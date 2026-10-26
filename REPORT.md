@@ -13,6 +13,12 @@ Python 3.12, NumPy 2.4.4, SciPy 1.17.1, mpmath 1.3.0, and Numba 0.68.0 were
 used. Dependencies are pinned. Public checkpoint history is at
 [davidiach/threshold-hillclimb](https://github.com/davidiach/threshold-hillclimb).
 
+Final proof checkpoint `a485ad6` also passed the independent
+[Linux CI run](https://github.com/davidiach/threshold-hillclimb/actions/runs/40410461304):
+all 33 frozen targets, the seven additional scalar lemmas, numerical checks,
+original input hashes, and locked experiment provenance. The proof score is
+therefore reproduced on Windows and Linux.
+
 ## A — Lean proofs
 
 **Proved and machine-checked: 0 → 34 → 60/60, all 33 targets.** Checkpoint 002

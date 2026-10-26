@@ -4,6 +4,9 @@ Reproducible experiments and formal proof work extending the supplied adaptive
 threshold estimation research. Numerical evidence, paper proofs, conjectures,
 and Lean kernel-checked results are labeled separately. No novelty claim.
 
+The final 60/60 checkpoint passed on Windows and in
+[independent Linux CI](https://github.com/davidiach/threshold-hillclimb/actions/runs/40410461304).
+
 ## Current checkpoints
 
 - Lean checkpoint 002 proves **all 33 frozen targets, 60/60 points**, with a
