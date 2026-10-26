@@ -1,0 +1,36 @@
+{
+  "accept": false,
+  "comparisons": [
+    {
+      "budget": 16384,
+      "rmse_difference_direct_minus_gha": 0.00919956727053262,
+      "descriptive_difference_interval": [
+        0.0022061970846030112,
+        0.01662329414673737
+      ],
+      "seed": 2026102703
+    },
+    {
+      "budget": 65536,
+      "rmse_difference_direct_minus_gha": 0.0017209833503901324,
+      "descriptive_difference_interval": [
+        -0.002074856161139486,
+        0.005666828482096435
+      ],
+      "seed": 2026102704
+    }
+  ],
+  "verdict": "GHA wins both held-out RMSE point estimates; no post-test tuning.",
+  "offline_work": {
+    "direct_training": 128413344,
+    "direct_tuning": 1413243264,
+    "direct_total": 1541656608,
+    "gha_training": 166827744.0,
+    "gha_tuning_only": 34093824.0,
+    "original_all_method_tuning": 139244642.0
+  },
+  "tuning_cells": 342,
+  "heldout_reps": 500,
+  "source_integrity": "all nine locked hashes match",
+  "interval_note": "Independent percentile bootstrap, 3000 resamples; descriptive, not certified heavy-tail coverage."
+}

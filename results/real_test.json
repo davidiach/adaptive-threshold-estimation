@@ -1,0 +1,154 @@
+{
+  "rows": [
+    {
+      "method": "gha_tuned",
+      "budget": 16384,
+      "seed": 41201,
+      "config": {
+        "n0": 8,
+        "C": 1.0,
+        "r": 1.5
+      },
+      "levels": [
+        4
+      ],
+      "counts": [
+        39
+      ],
+      "planned_work": 16214.016000000001,
+      "n": 500,
+      "rmse": 0.029903691565269484,
+      "rmse_se_delta": 0.0011083511395247317,
+      "rmse_raw": 0.029903691565269484,
+      "mean": 0.03461538461538461,
+      "bias": 0.009615384615384609,
+      "mean_work": 15892.992,
+      "work_se": 139.7738351260481,
+      "work_p95": 21504.0,
+      "work_max": 27648.0,
+      "clipped_fraction": 0.0,
+      "rmse_interval": [
+        0.02778146260836802,
+        0.032036175926937235
+      ],
+      "work_interval": [
+        15618.777600000001,
+        16167.168
+      ]
+    },
+    {
+      "method": "real_tuned",
+      "budget": 16384,
+      "seed": 41204,
+      "config": {
+        "start": 1024,
+        "ratio": 4,
+        "threshold": 1.0,
+        "sum_mode": true
+      },
+      "law": "geometric_three_quarters",
+      "probabilities": [
+        0.7387961250362586,
+        0.2612038749637415
+      ],
+      "n": 500,
+      "rmse": 0.0391032588358021,
+      "rmse_se_delta": 0.003428001910569983,
+      "rmse_raw": 0.04310162260084189,
+      "mean": 0.029626392779299387,
+      "bias": 0.0046263927792993854,
+      "mean_work": 15328.864,
+      "work_se": 442.56982470847805,
+      "work_p95": 34563.2,
+      "work_max": 58880.0,
+      "clipped_fraction": 0.064,
+      "rmse_interval": [
+        0.032597863959401646,
+        0.045631233550196104
+      ],
+      "work_interval": [
+        14466.6304,
+        16205.3784
+      ]
+    },
+    {
+      "method": "gha_tuned",
+      "budget": 65536,
+      "seed": 41301,
+      "config": {
+        "n0": 8,
+        "C": 1.0,
+        "r": 1.5
+      },
+      "levels": [
+        5
+      ],
+      "counts": [
+        78
+      ],
+      "planned_work": 64871.03999999999,
+      "n": 500,
+      "rmse": 0.020124121748144,
+      "rmse_se_delta": 0.0007450877568175101,
+      "rmse_raw": 0.020124121748144,
+      "mean": 0.028641025641025643,
+      "bias": 0.0036410256410256414,
+      "mean_work": 66846.72,
+      "work_se": 610.6586527476304,
+      "work_p95": 90624.0,
+      "work_max": 132096.0,
+      "clipped_fraction": 0.0,
+      "rmse_interval": [
+        0.01862234099623397,
+        0.021593812416748806
+      ],
+      "work_interval": [
+        65666.9568,
+        68031.05279999999
+      ]
+    },
+    {
+      "method": "real_tuned",
+      "budget": 65536,
+      "seed": 41304,
+      "config": {
+        "start": 1024,
+        "ratio": 4,
+        "threshold": 1.0,
+        "sum_mode": true,
+        "repeats": 4
+      },
+      "law": "geometric_three_quarters",
+      "probabilities": [
+        0.7387961250362586,
+        0.2612038749637415
+      ],
+      "n": 500,
+      "rmse": 0.021845105098534132,
+      "rmse_se_delta": 0.0019092278355863504,
+      "rmse_raw": 0.023161547791637083,
+      "mean": 0.028189284366038906,
+      "bias": 0.0031892843660389046,
+      "mean_work": 64658.208,
+      "work_se": 956.6552487219659,
+      "work_p95": 105133.59999999996,
+      "work_max": 135728.0,
+      "clipped_fraction": 0.072,
+      "rmse_interval": [
+        0.018380329482428272,
+        0.025810218540887973
+      ],
+      "work_interval": [
+        62853.324,
+        66585.8952
+      ]
+    }
+  ],
+  "seconds": 8.16132378578186,
+  "complete": true,
+  "total_work": 81363392.0,
+  "replications": 500,
+  "baseline_zero_rmse": 0.025,
+  "intervals": "descriptive percentile bootstrap, 3000 resamples, not certified heavy-tail coverage",
+  "accept": false
+}
