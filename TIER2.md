@@ -1,13 +1,16 @@
 # Tier 2: frozen targets and scorer v2
 
-**Status: all 13 Tier 2 targets proved. Complete checkpoint: 121/121 locally.**
+**Status: all 13 Tier 2 targets proved. Complete checkpoint: 121/121 on Windows and Linux.**
 Proposed by Opus from the open items in `REPORT.md`; reviewed and integrated by Codex.
 The approval and final verification record are in `FREEZE_LOG.md`.
 
 Checkpoint 001 proved I1–I4, I7, K3, and R1. Checkpoint 002 completes I5–I6
 and K1–K2/K4–K5: 61/61 Tier 2 points and all 60/60 Tier 1 points. Full build
 and both independent 46-target audits pass locally with the frozen statements
-unchanged and only the three standard axioms. Independent Linux replay is pending.
+unchanged and only the three standard axioms. The independent
+[Linux replay of `e6cbd9c`](https://github.com/davidiach/threshold-hillclimb/actions/runs/40417194219)
+also passes all 46 targets, 7 scalar lemmas, the complete 130-root 713 audit,
+and the numerical and validation checks.
 
 Tier 1 is complete (60/60, checkpoint `a485ad6`). Tier 2 adds 13 targets worth 61
 points, covering results that were paper-only when the extension was approved:
@@ -74,7 +77,9 @@ The guard builds all 11 modules from `targets.json`. It passes when Tier 2 is
 
 ## The 13 targets
 
-All are finite, with no measure theory. Each was checked by
+All target statements use finite sums. The classifier proofs use measure theory
+internally to derive these finite sums from independent Bernoulli observations.
+Each target was checked numerically by
 `tools/check_targets2_numeric.py` (about 10 s); all pass.
 Every target must have positive recorded coverage. I6 includes a deterministic
 one-coin case with `d = h = 1/2`, `eta = 1/8`, and both test errors `delta = 3/8`;
@@ -257,6 +262,22 @@ Whole-file locks retain the completed Lean development byte-for-byte. Proofs
 inside those files are consequently frozen too; future edits need approval.
 Other 713 proof modules remain editable. The theorem remains outside the scored
 Tier 1/2 target set; adding it to the scorer would be a separate scope change.
+
+## Proof entry points
+
+| Targets | Checked proof module |
+|---|---|
+| I1–I3, I7 | [InformationCore.lean](lean/ThresholdHC/Proofs/Tier2/InformationCore.lean) |
+| I4 | [TranscriptBase.lean](lean/ThresholdHC/Proofs/Tier2/TranscriptBase.lean) |
+| I5–I6 | [Transcript.lean](lean/ThresholdHC/Proofs/Tier2/Transcript.lean) |
+| K1–K2, K4–K5 | [ClassifierProb.lean](lean/ThresholdHC/Proofs/Tier2/ClassifierProb.lean) |
+| K3 | [ClassifierTelescoping.lean](lean/ThresholdHC/Proofs/Tier2/ClassifierTelescoping.lean) |
+| R1 | [RareEvent.lean](lean/ThresholdHC/Proofs/Tier2/RareEvent.lean) |
+
+The public declarations retain the exact frozen `ThresholdHC.Targets` types.
+The stopped-transcript proof is supported by likelihood factorization and
+posterior KL modules. The classifier proof is supported by explicit finite
+marginals, a stopping-rule identity, concentration bounds, and finite series.
 
 ## What Tier 2 does not cover
 

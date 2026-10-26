@@ -9,8 +9,8 @@ The original Tier 1 60/60 checkpoint passed on Windows and in
 
 **Tier 2 proved:** all 13 additional targets (61 points), with unchanged frozen
 statements and the stronger 713 definition lock. See [TIER2.md](TIER2.md) and
-[approval record](FREEZE_LOG.md). The complete 121/121 checkpoint passes locally;
-its independent Linux replay is pending.
+[approval record](FREEZE_LOG.md). The complete 121/121 checkpoint passes on
+Windows and in [independent Linux CI](https://github.com/davidiach/threshold-hillclimb/actions/runs/40417194219).
 
 ## Current checkpoints
 
@@ -19,7 +19,7 @@ its independent Linux replay is pending.
   information inequalities, adaptive stopped-transcript KL/testing bounds,
   the actual Bernoulli classifier and estimator bounds, and the atomic
   rare-event optimizer. No `sorry` remains in the proof modules. Full build,
-  exact target types, all 21 frozen hashes, and both audits pass locally
+  exact target types, all 21 frozen hashes, and both audits pass on Windows and Linux
   with only `propext`, `Classical.choice`, and `Quot.sound`.
 - The **full uniform 713 bound is proved in Lean**, including concentration,
   the actual stopping rule and coupled work, infinite random-level sampling,

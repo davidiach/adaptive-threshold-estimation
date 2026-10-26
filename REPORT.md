@@ -36,7 +36,10 @@ all 13 Tier 2 targets (61/61) while preserving Tier 1 (60/60). Full build,
 all 21 frozen hashes, exact target types, and both 46-report audits pass
 locally. No `sorry` remains in either tier's proofs, and the axiom union is
 exactly `propext`, `Classical.choice`, and `Quot.sound`. Evidence is saved
-under `results/lean_tier2_002*`. Independent Linux replay is pending.
+under `results/lean_tier2_002*`. Commit `e6cbd9c` also passes the independent
+[Linux replay](https://github.com/davidiach/threshold-hillclimb/actions/runs/40417194219):
+121/121, 46/46 targets, 7/7 scalar lemmas, and 130/130 roots for the full 713
+theorem. Both the Lean and numerical/validation CI jobs succeeded.
 
 The information proof factors each transcript likelihood by coin, derives
 the next-query posterior, and handles zero histories and deterministic-coin
