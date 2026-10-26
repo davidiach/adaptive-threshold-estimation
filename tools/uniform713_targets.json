@@ -163,5 +163,12 @@
     "ThresholdHC.Uniform713": []
   },
   "specification_sha256": "a3fd9513084b2168cf86fe74962c14df956970c28ff270795591cf45037d9a86",
-  "full_theorem": "ThresholdHC.Uniform713.full_bound_713"
+  "full_theorem": "ThresholdHC.Uniform713.full_bound_713",
+  "definition_sources_sha256": {
+    "lean/ThresholdHC/Statements.lean": "0873505b7c133561e82f63dcbba7f7a0a3da39d0c3692daee99d01882a757abf",
+    "lean/ThresholdHC/Uniform713/Classifier.lean": "432b97eeb99906269a89ec5688bb74c39f4eeb09029334335b32ef94275aef35",
+    "lean/ThresholdHC/Uniform713/Common.lean": "419b64d64f21f718214caabee9927b174d512f3c129139be26605400853e3dab",
+    "lean/ThresholdHC/Uniform713/Concentration.lean": "b494cc19ba348e05533c0a6f7715de8bda306c94e4ad613bb8515e5af6b7c149",
+    "lean/ThresholdHC/Uniform713/Estimator.lean": "39a49e46489f73b73c2fdd418134edf41ae5a6dfd8cefd0bf39d765d6f50780e"
+  }
 }

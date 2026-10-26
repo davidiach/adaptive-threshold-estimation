@@ -2,7 +2,7 @@
   "valid": true,
   "audit_exit_code": 0,
   "complete": true,
-  "target_count": 33,
+  "target_count": 46,
   "consistent_with_scorer": true,
   "no_regression": true,
   "points": 60,

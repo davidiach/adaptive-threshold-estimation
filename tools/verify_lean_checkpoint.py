@@ -1,8 +1,8 @@
-"""Rebuild and enforce complete, successful audits without changing the scorer.
+"""Rebuild and independently enforce successful audits and no proof regression.
 
-The frozen scorer is retained byte-for-byte. This additional guard checks its
-audit subprocess exit status and complete reports, then prevents regression
-against the committed best result. Use --sequential on memory-limited runners.
+Scorer v2 checks audit exit status and complete reports itself. This additional
+guard repeats the audit and prevents regression against the committed best
+result. Use --sequential on memory-limited runners.
 """
 from __future__ import annotations
 
@@ -25,17 +25,21 @@ def main() -> int:
                         help="Require the frozen scorer to accept an improvement over this JSON")
     args = parser.parse_args()
     if args.sequential:
-        for group in ("Algebra", "FixedGap", "Calibration", "Modulus", "Constants",
-                      "Classifier", "Hellinger", "KL"):
-            subprocess.run(["lake", "build", f"ThresholdHC.Proofs.{group}"],
-                           cwd=LEAN, check=True)
+        modules = []
+        for t in score.TARGETS["targets"]:
+            rel = Path(t["file"]).relative_to("lean").with_suffix("")
+            mod = ".".join(rel.parts)
+            if mod not in modules:
+                modules.append(mod)
+        for mod in modules:
+            subprocess.run(["lake", "build", mod], cwd=LEAN, check=True)
     command = [sys.executable, str(ROOT / "tools/score.py")]
     if args.accept:
         command += ["--accept", str(args.accept.resolve())]
     subprocess.run(command, cwd=ROOT, check=True)
     audit_file, spans = score.write_audit()
     result = subprocess.run(["lake", "env", "lean", str(audit_file.relative_to(LEAN))],
-                            cwd=LEAN, text=True, capture_output=True)
+                            cwd=LEAN, text=True, capture_output=True, encoding="utf-8")
     output = result.stdout + result.stderr
     (ROOT / "results/lean_independent_audit.log").write_text(output, encoding="utf-8")
     statuses = score.parse_audit(output, spans)

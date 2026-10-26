@@ -1,0 +1,11 @@
+{
+  "valid": true,
+  "audit_exit_code": 0,
+  "counts": {
+    "proven": 33,
+    "sorry": 13,
+    "error": 0,
+    "violation": 0
+  },
+  "scope": "Pre-freeze type/axiom audit only; final scorer runs after the approved re-freeze."
+}

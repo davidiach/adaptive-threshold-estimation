@@ -12,231 +12,368 @@
    "name": "posterior_identity",
    "group": "Algebra",
    "points": 1,
-   "file": "lean/ThresholdHC/Proofs/Algebra.lean"
+   "file": "lean/ThresholdHC/Proofs/Algebra.lean",
+   "tier": 1
   },
   {
    "id": "A2",
    "name": "posterior_diff_le",
    "group": "Algebra",
    "points": 1,
-   "file": "lean/ThresholdHC/Proofs/Algebra.lean"
+   "file": "lean/ThresholdHC/Proofs/Algebra.lean",
+   "tier": 1
   },
   {
    "id": "A3",
    "name": "posterior_mem",
    "group": "Algebra",
    "points": 1,
-   "file": "lean/ThresholdHC/Proofs/Algebra.lean"
+   "file": "lean/ThresholdHC/Proofs/Algebra.lean",
+   "tier": 1
   },
   {
    "id": "A4",
    "name": "pred_variance_ge",
    "group": "Algebra",
    "points": 1,
-   "file": "lean/ThresholdHC/Proofs/Algebra.lean"
+   "file": "lean/ThresholdHC/Proofs/Algebra.lean",
+   "tier": 1
   },
   {
    "id": "A5",
    "name": "ratio_bound",
    "group": "Algebra",
    "points": 1,
-   "file": "lean/ThresholdHC/Proofs/Algebra.lean"
+   "file": "lean/ThresholdHC/Proofs/Algebra.lean",
+   "tier": 1
   },
   {
    "id": "B1",
    "name": "kl_taylor_bound",
    "group": "KL",
    "points": 2,
-   "file": "lean/ThresholdHC/Proofs/KL.lean"
+   "file": "lean/ThresholdHC/Proofs/KL.lean",
+   "tier": 1
   },
   {
    "id": "B2",
    "name": "lemmaA_forward",
    "group": "KL",
    "points": 3,
-   "file": "lean/ThresholdHC/Proofs/KL.lean"
+   "file": "lean/ThresholdHC/Proofs/KL.lean",
+   "tier": 1
   },
   {
    "id": "B3",
    "name": "lemmaA_reverse",
    "group": "KL",
    "points": 3,
-   "file": "lean/ThresholdHC/Proofs/KL.lean"
+   "file": "lean/ThresholdHC/Proofs/KL.lean",
+   "tier": 1
   },
   {
    "id": "B4",
    "name": "lemmaA_sharp_at_one",
    "group": "KL",
    "points": 3,
-   "file": "lean/ThresholdHC/Proofs/KL.lean"
+   "file": "lean/ThresholdHC/Proofs/KL.lean",
+   "tier": 1
   },
   {
    "id": "B5",
    "name": "hardpair_step_kl",
    "group": "KL",
    "points": 2,
-   "file": "lean/ThresholdHC/Proofs/KL.lean"
+   "file": "lean/ThresholdHC/Proofs/KL.lean",
+   "tier": 1
   },
   {
    "id": "C1",
    "name": "sym_kl_hellinger_pointwise",
    "group": "Hellinger",
    "points": 2,
-   "file": "lean/ThresholdHC/Proofs/Hellinger.lean"
+   "file": "lean/ThresholdHC/Proofs/Hellinger.lean",
+   "tier": 1
   },
   {
    "id": "C2",
    "name": "kl_ge_two_hell_finite",
    "group": "Hellinger",
    "points": 2,
-   "file": "lean/ThresholdHC/Proofs/Hellinger.lean"
+   "file": "lean/ThresholdHC/Proofs/Hellinger.lean",
+   "tier": 1
   },
   {
    "id": "C3",
    "name": "sym_kl_ge_eight_hell_finite",
    "group": "Hellinger",
    "points": 2,
-   "file": "lean/ThresholdHC/Proofs/Hellinger.lean"
+   "file": "lean/ThresholdHC/Proofs/Hellinger.lean",
+   "tier": 1
   },
   {
    "id": "C4",
    "name": "two_point_variance_finite",
    "group": "Hellinger",
    "points": 2,
-   "file": "lean/ThresholdHC/Proofs/Hellinger.lean"
+   "file": "lean/ThresholdHC/Proofs/Hellinger.lean",
+   "tier": 1
   },
   {
    "id": "D1",
    "name": "fixed_gap_unbiased",
    "group": "FixedGap",
    "points": 1,
-   "file": "lean/ThresholdHC/Proofs/FixedGap.lean"
+   "file": "lean/ThresholdHC/Proofs/FixedGap.lean",
+   "tier": 1
   },
   {
    "id": "D2",
    "name": "fixed_gap_variance",
    "group": "FixedGap",
    "points": 1,
-   "file": "lean/ThresholdHC/Proofs/FixedGap.lean"
+   "file": "lean/ThresholdHC/Proofs/FixedGap.lean",
+   "tier": 1
   },
   {
    "id": "D3",
    "name": "fixed_gap_equality",
    "group": "FixedGap",
    "points": 1,
-   "file": "lean/ThresholdHC/Proofs/FixedGap.lean"
+   "file": "lean/ThresholdHC/Proofs/FixedGap.lean",
+   "tier": 1
   },
   {
    "id": "E1",
    "name": "negbin_total",
    "group": "Calibration",
    "points": 2,
-   "file": "lean/ThresholdHC/Proofs/Calibration.lean"
+   "file": "lean/ThresholdHC/Proofs/Calibration.lean",
+   "tier": 1
   },
   {
    "id": "E2",
    "name": "negbin_mean",
    "group": "Calibration",
    "points": 2,
-   "file": "lean/ThresholdHC/Proofs/Calibration.lean"
+   "file": "lean/ThresholdHC/Proofs/Calibration.lean",
+   "tier": 1
   },
   {
    "id": "E3",
    "name": "haldane_inverse_moment",
    "group": "Calibration",
    "points": 2,
-   "file": "lean/ThresholdHC/Proofs/Calibration.lean"
+   "file": "lean/ThresholdHC/Proofs/Calibration.lean",
+   "tier": 1
   },
   {
    "id": "F1",
    "name": "scaling_up_pointwise",
    "group": "Modulus",
    "points": 1,
-   "file": "lean/ThresholdHC/Proofs/Modulus.lean"
+   "file": "lean/ThresholdHC/Proofs/Modulus.lean",
+   "tier": 1
   },
   {
    "id": "F2",
    "name": "scaling_down_pointwise",
    "group": "Modulus",
    "points": 1,
-   "file": "lean/ThresholdHC/Proofs/Modulus.lean"
+   "file": "lean/ThresholdHC/Proofs/Modulus.lean",
+   "tier": 1
   },
   {
    "id": "F3",
    "name": "modulus_scaling_up",
    "group": "Modulus",
    "points": 2,
-   "file": "lean/ThresholdHC/Proofs/Modulus.lean"
+   "file": "lean/ThresholdHC/Proofs/Modulus.lean",
+   "tier": 1
   },
   {
    "id": "F4",
    "name": "power_modulus_critical",
    "group": "Modulus",
    "points": 2,
-   "file": "lean/ThresholdHC/Proofs/Modulus.lean"
+   "file": "lean/ThresholdHC/Proofs/Modulus.lean",
+   "tier": 1
   },
   {
    "id": "F5",
    "name": "power_modulus",
    "group": "Modulus",
    "points": 3,
-   "file": "lean/ThresholdHC/Proofs/Modulus.lean"
+   "file": "lean/ThresholdHC/Proofs/Modulus.lean",
+   "tier": 1
   },
   {
    "id": "G1",
    "name": "constant_second_moment",
    "group": "Constants",
    "points": 2,
-   "file": "lean/ThresholdHC/Proofs/Constants.lean"
+   "file": "lean/ThresholdHC/Proofs/Constants.lean",
+   "tier": 1
   },
   {
    "id": "G2",
    "name": "constant_work",
    "group": "Constants",
    "points": 2,
-   "file": "lean/ThresholdHC/Proofs/Constants.lean"
+   "file": "lean/ThresholdHC/Proofs/Constants.lean",
+   "tier": 1
   },
   {
    "id": "G3",
    "name": "kl_delta_identity",
    "group": "Constants",
    "points": 1,
-   "file": "lean/ThresholdHC/Proofs/Constants.lean"
+   "file": "lean/ThresholdHC/Proofs/Constants.lean",
+   "tier": 1
   },
   {
    "id": "G4",
    "name": "kl_delta_lower",
    "group": "Constants",
    "points": 2,
-   "file": "lean/ThresholdHC/Proofs/Constants.lean"
+   "file": "lean/ThresholdHC/Proofs/Constants.lean",
+   "tier": 1
   },
   {
    "id": "H1",
    "name": "error_tail_bound",
    "group": "Classifier",
    "points": 1,
-   "file": "lean/ThresholdHC/Proofs/Classifier.lean"
+   "file": "lean/ThresholdHC/Proofs/Classifier.lean",
+   "tier": 1
   },
   {
    "id": "H2",
    "name": "classifier_scale_step",
    "group": "Classifier",
    "points": 2,
-   "file": "lean/ThresholdHC/Proofs/Classifier.lean"
+   "file": "lean/ThresholdHC/Proofs/Classifier.lean",
+   "tier": 1
   },
   {
    "id": "H3",
    "name": "dyadic_sum_v1",
    "group": "Classifier",
    "points": 3,
-   "file": "lean/ThresholdHC/Proofs/Classifier.lean"
+   "file": "lean/ThresholdHC/Proofs/Classifier.lean",
+   "tier": 1
   },
   {
    "id": "H4",
    "name": "dyadic_sum_v2",
    "group": "Classifier",
    "points": 3,
-   "file": "lean/ThresholdHC/Proofs/Classifier.lean"
+   "file": "lean/ThresholdHC/Proofs/Classifier.lean",
+   "tier": 1
+  },
+  {
+   "id": "I1",
+   "name": "kl_data_processing_finite",
+   "group": "Information",
+   "points": 3,
+   "tier": 2,
+   "file": "lean/ThresholdHC/Proofs/Tier2/Information.lean"
+  },
+  {
+   "id": "I2",
+   "name": "pinsker_finite",
+   "group": "Information",
+   "points": 4,
+   "tier": 2,
+   "file": "lean/ThresholdHC/Proofs/Tier2/Information.lean"
+  },
+  {
+   "id": "I3",
+   "name": "two_point_rms_lower",
+   "group": "Information",
+   "points": 2,
+   "tier": 2,
+   "file": "lean/ThresholdHC/Proofs/Tier2/Information.lean"
+  },
+  {
+   "id": "I4",
+   "name": "transcript_law_total",
+   "group": "Information",
+   "points": 3,
+   "tier": 2,
+   "file": "lean/ThresholdHC/Proofs/Tier2/Information.lean"
+  },
+  {
+   "id": "I5",
+   "name": "stopped_transcript_kl",
+   "group": "Information",
+   "points": 10,
+   "tier": 2,
+   "file": "lean/ThresholdHC/Proofs/Tier2/Information.lean"
+  },
+  {
+   "id": "I6",
+   "name": "stopped_transcript_testing",
+   "group": "Information",
+   "points": 3,
+   "tier": 2,
+   "file": "lean/ThresholdHC/Proofs/Tier2/Information.lean"
+  },
+  {
+   "id": "I7",
+   "name": "bounded_ratio_log",
+   "group": "Information",
+   "points": 2,
+   "tier": 2,
+   "file": "lean/ThresholdHC/Proofs/Tier2/Information.lean"
+  },
+  {
+   "id": "K1",
+   "name": "lemma6_error",
+   "group": "ClassifierProb",
+   "points": 8,
+   "tier": 2,
+   "file": "lean/ThresholdHC/Proofs/Tier2/ClassifierProb.lean"
+  },
+  {
+   "id": "K2",
+   "name": "lemma6_work",
+   "group": "ClassifierProb",
+   "points": 8,
+   "tier": 2,
+   "file": "lean/ThresholdHC/Proofs/Tier2/ClassifierProb.lean"
+  },
+  {
+   "id": "K3",
+   "name": "lemma7_telescoping",
+   "group": "ClassifierProb",
+   "points": 2,
+   "tier": 2,
+   "file": "lean/ThresholdHC/Proofs/Tier2/ClassifierProb.lean"
+  },
+  {
+   "id": "K4",
+   "name": "lemma7_second_moment",
+   "group": "ClassifierProb",
+   "points": 6,
+   "tier": 2,
+   "file": "lean/ThresholdHC/Proofs/Tier2/ClassifierProb.lean"
+  },
+  {
+   "id": "K5",
+   "name": "lemma7_work",
+   "group": "ClassifierProb",
+   "points": 6,
+   "tier": 2,
+   "file": "lean/ThresholdHC/Proofs/Tier2/ClassifierProb.lean"
+  },
+  {
+   "id": "R1",
+   "name": "psi_optimizer_atomic",
+   "group": "RareEvent",
+   "points": 4,
+   "tier": 2,
+   "file": "lean/ThresholdHC/Proofs/Tier2/RareEvent.lean"
   }
  ]
 }

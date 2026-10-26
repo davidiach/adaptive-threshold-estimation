@@ -2,7 +2,8 @@
 
 A passing component checkpoint is explicitly distinguished from the completed
 theorem. The final proof must also typecheck against the recorded specification.
-The original frozen scorer and targets are never changed by this guard.
+The specification and its complete local import closure are hash-locked. This
+guard and its manifest are also included in the approved Tier 2 freeze.
 """
 from __future__ import annotations
 
@@ -16,10 +17,33 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 LEAN = ROOT / "lean"
 ALLOWED = {"propext", "Classical.choice", "Quot.sound"}
+SPECIFICATION = "lean/ThresholdHC/Uniform713/Specification.lean"
+# Whole-file locks preserve the existing completed proof without moving definitions.
+# The pinned Mathlib/toolchain and Statements.lean are also covered by FROZEN.sha256.
+DEFINITION_SOURCES = {
+    "lean/ThresholdHC/Statements.lean",
+    "lean/ThresholdHC/Uniform713/Common.lean",
+    "lean/ThresholdHC/Uniform713/Concentration.lean",
+    "lean/ThresholdHC/Uniform713/Classifier.lean",
+    "lean/ThresholdHC/Uniform713/Estimator.lean",
+}
 
 
 def sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def check_specification_lock(manifest: dict, root: Path = ROOT) -> dict[str, str]:
+    """Fail closed on a missing lock, changed definition, or changed specification."""
+    dependencies = manifest.get("definition_sources_sha256", {})
+    if set(dependencies) != DEFINITION_SOURCES:
+        raise SystemExit("713 definition lock must cover every required source file")
+    expected = {SPECIFICATION: manifest["specification_sha256"], **dependencies}
+    for rel, digest in expected.items():
+        path = root / rel
+        if not path.is_file() or sha(path) != digest:
+            raise SystemExit(f"713 specification/definition hash mismatch: {rel}; do not weaken the target")
+    return expected
 
 
 def main() -> int:
@@ -33,9 +57,7 @@ def main() -> int:
     }, indent=2) + "\n")
     manifest = json.loads((ROOT / "tools/uniform713_targets.json").read_text())
     modules = manifest["modules"]
-    specification = LEAN / "ThresholdHC/Uniform713/Specification.lean"
-    if sha(specification) != manifest["specification_sha256"]:
-        raise SystemExit("713 specification hash mismatch; do not weaken the target")
+    locked = check_specification_lock(manifest)
     sources = {m: LEAN / (m.replace(".", "/") + ".lean") for m in modules}
     hashes = {m: sha(p) for m, p in sources.items()}
     for module, path in sources.items():
@@ -55,7 +77,7 @@ def main() -> int:
         ["lake", "build", *modules]]
     build_log = []
     for command in commands:
-        result = subprocess.run(command, cwd=LEAN, capture_output=True, text=True)
+        result = subprocess.run(command, cwd=LEAN, capture_output=True, text=True, encoding="utf-8")
         build_log.append(result.stdout + result.stderr)
         if result.returncode:
             (ROOT / "results/uniform713_build.log").write_text("\n".join(build_log), encoding="utf-8")
@@ -73,7 +95,7 @@ def main() -> int:
     audit.parent.mkdir(exist_ok=True)
     audit.write_text("\n".join(lines) + "\n", encoding="utf-8")
     result = subprocess.run(["lake", "env", "lean", str(audit.relative_to(LEAN))],
-                            cwd=LEAN, capture_output=True, text=True)
+                            cwd=LEAN, capture_output=True, text=True, encoding="utf-8")
     output = result.stdout + result.stderr
     (ROOT / "results/uniform713_audit.log").write_text(output, encoding="utf-8")
     reports = {}
@@ -81,13 +103,17 @@ def main() -> int:
     for match in re.finditer(pattern, output, re.S):
         reports[match[1]] = [] if match[3] is None else [s.strip() for s in match[3].split(",") if s.strip()]
     unchanged = hashes == {m: sha(p) for m, p in sources.items()}
+    lock_unchanged = locked == {rel: sha(ROOT / rel) for rel in locked}
     ok = (result.returncode == 0 and set(reports) == set(names) and unchanged
+          and lock_unchanged
           and all(set(a) <= ALLOWED for a in reports.values()))
     complete = ok and full is not None
     status = dict(valid=ok, full_theorem_complete=complete, full_theorem=full,
                   audit_exit_code=result.returncode, root_count=len(reports),
                   expected_root_count=len(names), sources_unchanged_during_audit=unchanged,
                   specification_sha256=manifest["specification_sha256"],
+                  definition_sources_sha256=manifest["definition_sources_sha256"],
+                  specification_dependencies_unchanged_during_audit=lock_unchanged,
                   source_sha256=hashes, reports=reports)
     (ROOT / "results/uniform713_status.json").write_text(json.dumps(status, indent=2) + "\n")
     print(f"713 audit: valid={ok}, complete={complete}, roots={len(reports)}/{len(names)}")

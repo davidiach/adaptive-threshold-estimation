@@ -1,0 +1,110 @@
+$ python tools/verify_inputs.py
+Verified 50 original input files.
+
+$ python tools/verify_experiment_lock.py
+Verified 9 benchmark locks, constants selections, and 4 raw-data summaries.
+
+$ python tools/check_targets_numeric.py
+target                           min margin (>= 0 means true on all samples)
+posterior_identity               -9.80709e-54
+posterior_diff_le                9.12117e-7
+posterior_mem                    3.88027e-10
+pred_variance_ge                 0.000130855
+ratio_bound                      0.000125721
+kl_taylor_bound                  9.49411e-10
+lemmaA_forward                   0.00495849
+lemmaA_reverse                   0.0793785
+lemmaA_sharp_at_one              1.0e-15
+hardpair_step_kl                 0.132049
+sym_kl_hellinger_pointwise       2.63377e-12
+kl_ge_two_hell_finite            0.0
+sym_kl_ge_eight_hell_finite      0.0
+two_point_variance_finite        0.0
+fixed_gap_unbiased               -6.22302e-61
+fixed_gap_variance               1.41827e-9
+fixed_gap_equality               -1.51043e-62
+negbin_total                     0.0
+negbin_mean                      0.0
+haldane_inverse_moment           0.0
+scaling_up_pointwise             -7.77877e-62
+scaling_down_pointwise           -7.77877e-62
+modulus_scaling_up               -7.77877e-62
+power_modulus_critical           -7.77877e-62
+power_modulus                    -9.33452e-61
+constant_second_moment           0.308184
+constant_work                    0.537215
+kl_delta_identity                -6.22302e-61
+kl_delta_lower                   0.202733
+error_tail_bound                 0.774441
+classifier_scale_step            3.122
+dyadic_sum_v1                    0.557455
+dyadic_sum_v2                    1.22385
+
+All 33 targets numerically consistent.
+
+$ python tools/check_targets2_numeric.py
+kl_data_processing_finite      min margin  9.818e-13 checks=3000
+pinsker_finite                 min margin  9.999e-13 checks=3000
+two_point_rms_lower            min margin  0.08391 checks=3000
+transcript_law_total           min margin  1e-15 checks=250
+stopped_transcript_kl          min margin  9.998e-13 checks=250
+stopped_transcript_testing     min margin  0.002095 checks=25
+bounded_ratio_log              min margin  1 checks=5
+lemma6_error                   min margin  9.537e-07 checks=1846
+lemma6_work                    min margin  0.9196 checks=1846
+lemma7_telescoping             min margin  9.996e-13 checks=84
+lemma7_second_moment           min margin  81.59 checks=1846
+lemma7_work                    min margin  146 checks=1846
+psi_optimizer_atomic           min margin  9.999e-13 checks=24000
+
+All 13 Tier 2 targets numerically consistent.
+
+$ python tools/check_power_bracket.py
+Passed 25 analytic-formula quadrature checks; wrote 27 bracket cases.
+alpha=2 rho=0.01 upper/Psi=30.056
+alpha=2 rho=0.0001 upper/Psi=32.140
+alpha=2 rho=1e-06 upper/Psi=34.381
+alpha=3 rho=0.01 upper/Psi=26.036
+alpha=3 rho=0.0001 upper/Psi=30.067
+alpha=3 rho=1e-06 upper/Psi=33.633
+alpha=4 rho=0.01 upper/Psi=24.403
+alpha=4 rho=0.0001 upper/Psi=27.916
+alpha=4 rho=1e-06 upper/Psi=30.949
+
+$ python proposals/constants/bias_audit.py
+{
+  "status": "exact rational checks of paper counterexample",
+  "config": {
+    "k1": 0.25,
+    "k2": 0.5
+  },
+  "positive_sign": true,
+  "d": "1/10",
+  "cap": "2^97",
+  "all_tails_prefix": 128,
+  "exp_point7_series_lower": "482921/240000",
+  "threshold_squared_upper": "127/512",
+  "error_probability_lower_bound": "340282366920938463463374607431768211456/293873587705571876992184134305561419454666389193021880377187926569604314863681793212890625",
+  "claimed_bias_bound": "625/1569275433846670190958947355801916604025588861116008628224",
+  "exact_ratio": "533996758980227520598755426542388028650676130589163192486760401955554931445160137505740521734144/183670992315982423120115083940975887159166493245638675235742454106002696789801120758056640625",
+  "ratio_approx": 2907.3548971824275,
+  "all_checks_passed": true
+}
+
+$ python proposals/constants/uniform_constant_checks.py
+{
+  "status": "arithmetic checks only; full argument is a paper proof",
+  "candidate": {
+    "k1": 0.25,
+    "k2": 1.0
+  },
+  "c0_rational_upper": "489400000000/28875521871",
+  "second_moment_constant": 23,
+  "work_constant": 31,
+  "work_rational_upper": "896/29",
+  "uniform_product_constant": 713,
+  "all_checks_passed": true
+}
+
+$ python constants/score_constants.py constants/candidate.json
+valid=True k1=0.25 k2=0.5 product dev=4.2817 heldout=4.2821 (c1=2.229, c2=1.921; finite-budget product=6.56; bias_ratio=0.718) [1.9s]

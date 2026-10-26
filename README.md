@@ -7,11 +7,15 @@ and Lean kernel-checked results are labeled separately. No novelty claim.
 The final 60/60 checkpoint passed on Windows and in
 [independent Linux CI](https://github.com/davidiach/threshold-hillclimb/actions/runs/40410461304).
 
+**Tier 2 integrated and frozen:** 13 additional targets (61 points), scorer v2, and a stronger
+713 definition lock. See [TIER2.md](TIER2.md) and [approval record](FREEZE_LOG.md).
+
 ## Current checkpoints
 
-- Lean checkpoint 002 proves **all 33 frozen targets, 60/60 points**, with a
-  complete successful kernel audit. Statements compiled unchanged; no `sorry`
-  remains. The separate numerical sanity check is not a proof.
+- Lean checkpoint 002 proves **all 33 Tier 1 targets, 60/60 points**. Tier 2 adds
+  13 unproved targets worth 61 points, giving a baseline of **60/121**. Its
+  proof modules contain explicit `sorry` stubs. The separate numerical sanity
+  checks are not proofs; both sets of statements compile unchanged.
 - The **full uniform 713 bound is proved in Lean**, including concentration,
   the actual stopping rule and coupled work, infinite random-level sampling,
   unbiasedness, and integration over arbitrary magnitude/sign laws. See the
@@ -54,6 +58,8 @@ python -m pip install -r requirements.txt
 python tools/verify_inputs.py
 python tools/verify_experiment_lock.py
 python tools/check_targets_numeric.py
+python tools/check_targets2_numeric.py
+python -m unittest discover -s tools -p 'test_validation.py' -v
 python tools/check_power_bracket.py
 python proposals/constants/bias_audit.py
 python constants/score_constants.py constants/candidate_theory.json
@@ -64,8 +70,9 @@ The numerical and Lean checks run in GitHub Actions. After installing the pinned
 Lean toolchain and running `lake exe cache get` from `lean/`, use
 `python tools/verify_lean_checkpoint.py --sequential` from the repository root.
 Then run `python tools/verify_uniform713.py --sequential --require-complete`
-to check the full 713 theorem against its recorded specification and audit its
-transitive axioms. The original frozen targets remain unchanged.
+to check the full 713 theorem against its recorded specification, hash-locked
+local dependencies, and transitive axioms. The original Tier 1 mathematical
+statements remain unchanged.
 See [environment notes](proposals/lean-environment.md) and
 [benchmark reproduction](benchmark/README.md). All input files
 are preserved in [inputs/next-phase](inputs/next-phase/README.md), with the

@@ -14,6 +14,11 @@ A target counts as PROVEN only if all of the following hold:
     statement exactly);
   * `#print axioms audit_<name>` lists only propext, Classical.choice, Quot.sound.
 `sorryAx` means unproved. Any other axiom is a VIOLATION.
+
+v2 (Tier 2 approved, 27 Oct 2026): a run is valid only if the audit process
+exits with status 0 and every target reports `proven` or `sorry` (this folds in
+the independent guard Astra added in tools/verify_lean_checkpoint.py). Points
+are also reported per tier.
 """
 from __future__ import annotations
 
@@ -77,11 +82,11 @@ def check_frozen() -> tuple[bool, list[str]]:
 
 def scan_forbidden() -> list[str]:
     hits = []
-    frozen = {LEAN / "ThresholdHC" / "Statements.lean"}
+    frozen = {LEAN / "ThresholdHC" / "Statements.lean", LEAN / "ThresholdHC" / "Statements2.lean"}
     for p in sorted(LEAN.rglob("*.lean")):
         if ".lake" in p.parts or p in frozen or ".audit" in p.parts:
             continue
-        text = p.read_text(errors="replace")
+        text = p.read_text(encoding="utf-8", errors="replace")
         # strip block and line comments so documentation does not trigger false hits
         stripped = re.sub(r"/-.*?-/", lambda m: "\n" * m.group(0).count("\n"), text, flags=re.S)
         stripped = re.sub(r"--[^\n]*", "", stripped)
@@ -94,7 +99,8 @@ def scan_forbidden() -> list[str]:
 
 def run(cmd: list[str], timeout: int) -> tuple[int, str]:
     try:
-        r = subprocess.run(cmd, cwd=LEAN, capture_output=True, text=True, timeout=timeout)
+        r = subprocess.run(cmd, cwd=LEAN, capture_output=True, text=True,
+                           encoding="utf-8", timeout=timeout)
         return r.returncode, r.stdout + r.stderr
     except subprocess.TimeoutExpired as e:
         return 124, f"TIMEOUT after {timeout}s\n{e.stdout or ''}{e.stderr or ''}"
@@ -129,10 +135,11 @@ def parse_audit(output: str, spans: dict[str, tuple[int, int]]) -> dict[str, dic
         if n not in status:
             continue
         axioms = [] if m.group(3) is None else [a.strip() for a in m.group(3).replace("\n", " ").split(",") if a.strip()]
-        if "sorryAx" in axioms:
+        unexpected = set(axioms) - ALLOWED - {"sorryAx"}
+        if unexpected:
+            status[n] = {"status": "violation", "axioms": axioms, "detail": f"non-standard axioms {sorted(unexpected)}"}
+        elif "sorryAx" in axioms:
             status[n] = {"status": "sorry", "axioms": axioms, "detail": "uses sorry"}
-        elif set(axioms) - ALLOWED:
-            status[n] = {"status": "violation", "axioms": axioms, "detail": f"non-standard axioms {sorted(set(axioms) - ALLOWED)}"}
         else:
             status[n] = {"status": "proven", "axioms": axioms, "detail": ""}
     # any elaboration error inside a target's audit lines disqualifies it
@@ -160,12 +167,16 @@ def main() -> int:
         build_ok = rc == 0
     targets: dict[str, dict] = {}
     audit_log = ""
+    audit_rc = None
     if build_ok:
         f, spans = write_audit()
-        rc, audit_log = run(["lake", "env", "lean", str(f.relative_to(LEAN))], args.timeout)
+        audit_rc, audit_log = run(["lake", "env", "lean", str(f.relative_to(LEAN))], args.timeout)
         targets = parse_audit(audit_log, spans)
     points_of = {t["name"]: t["points"] for t in TARGETS["targets"]}
-    valid = frozen_ok and not forbidden and build_ok
+    tier_of = {t["name"]: t.get("tier", 1) for t in TARGETS["targets"]}
+    complete = bool(targets) and len(targets) == len(points_of) and all(
+        s["status"] in {"proven", "sorry"} for s in targets.values())
+    valid = frozen_ok and not forbidden and build_ok and audit_rc == 0 and complete
     proven = [n for n, s in targets.items() if s["status"] == "proven"] if valid else []
     violations = [n for n, s in targets.items() if s["status"] == "violation"]
     score = {
@@ -175,21 +186,31 @@ def main() -> int:
         "frozen_problems": frozen_problems,
         "forbidden": forbidden,
         "build_ok": build_ok,
+        "audit_exit_code": audit_rc,
+        "audit_complete": complete,
         "violations": violations,
         "points": sum(points_of[n] for n in proven) if not violations else 0,
         "max_points": sum(points_of.values()),
         "proven": sorted(proven),
+        "points_by_tier": {str(k): {"points": sum(points_of[n] for n in proven if tier_of[n] == k),
+                                    "max": sum(p for n, p in points_of.items() if tier_of[n] == k)}
+                           for k in sorted(set(tier_of.values()))},
         "targets": targets,
         "seconds": round(time.time() - t0, 1),
     }
     RESULTS.mkdir(exist_ok=True)
     (RESULTS / "lean_score.json").write_text(json.dumps(score, indent=1))
     if not build_ok:
-        (RESULTS / "lean_build.log").write_text(build_log[-200000:])
-    (RESULTS / "lean_audit.log").write_text(audit_log[-200000:])
+        (RESULTS / "lean_build.log").write_text(build_log[-200000:], encoding="utf-8")
+    (RESULTS / "lean_audit.log").write_text(audit_log[-200000:], encoding="utf-8")
 
     print(f"valid={score['valid']} build_ok={build_ok} frozen_ok={frozen_ok} "
-          f"points={score['points']}/{score['max_points']} proven={len(proven)}/{len(points_of)}")
+          f"audit_exit={audit_rc} complete={complete} "
+          f"points={score['points']}/{score['max_points']} proven={len(proven)}/{len(points_of)} "
+          + " ".join(f"tier{k}={v['points']}/{v['max']}" for k, v in score["points_by_tier"].items()))
+    if build_ok and not complete:
+        bad = [n for n, s in targets.items() if s["status"] not in {"proven", "sorry"}]
+        print("  ! incomplete audit:", bad[:10])
     for p in frozen_problems + forbidden:
         print("  !", p)
     for n in violations:

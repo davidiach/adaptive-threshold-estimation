@@ -1,0 +1,62 @@
+{
+  "valid": true,
+  "checks": [
+    {
+      "command": [
+        "python",
+        "tools/verify_inputs.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "python",
+        "tools/verify_experiment_lock.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "python",
+        "tools/check_targets_numeric.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "python",
+        "tools/check_targets2_numeric.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "python",
+        "tools/check_power_bracket.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "python",
+        "proposals/constants/bias_audit.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "python",
+        "proposals/constants/uniform_constant_checks.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "python",
+        "constants/score_constants.py",
+        "constants/candidate.json"
+      ],
+      "exit_code": 0
+    }
+  ]
+}

@@ -21,19 +21,27 @@ therefore reproduced on Windows and Linux.
 
 ## A — Lean proofs
 
+**Tier 2 integrated and verified locally, 27 October 2026.** The target set now contains
+the original 33 proved targets plus 13 unproved targets worth 61 points. The
+validated integration baseline is 60/121 (Tier 1 60/60, Tier 2 0/61). The proposed
+Tier 2 mathematical statements are unchanged. Scorer v2 requires a successful,
+complete audit and rejects unexpected axioms even when accompanied by `sorryAx`.
+The Tier 2 numeric checker requires positive coverage and includes a deterministic
+I6 test. See `TIER2.md` and the approval/validation record in `FREEZE_LOG.md`.
+
 **Proved and machine-checked: 0 → 34 → 60/60, all 33 targets.** Checkpoint 002
 passed the full build, frozen hashes, exact target types, and independent
 audit with exit zero and all 33 reports. The axiom union is exactly
 `propext`, `Classical.choice`, and `Quot.sound`. No `sorry` remains in the
-proof modules. No frozen targets are parked or unproved. This verifies the
+Tier 1 proof modules. No Tier 1 targets are parked or unproved. This verifies the
 specified targets, not every theorem of the research papers. Evidence is in
 `results/lean_score_002.json`, `results/lean_checkpoint_002.json`, and
 `results/lean_independent_audit_002.log`.
 
-The frozen scorer does not include its audit subprocess exit status in its
-validity flag. It remains unchanged. `tools/verify_lean_checkpoint.py` adds a
-separate guard requiring a zero audit exit, all 33 reports, consistency with
-the scorer, and no regression from the committed best. Linux CI replays it.
+The original scorer omitted its audit subprocess exit status from validity.
+The approved v2 scorer now checks exit status and all 46 target reports directly.
+`tools/verify_lean_checkpoint.py` retains the independent audit, consistency
+check, and no-regression requirement. Linux CI replays it.
 
 **Full 713 extension: proved and machine-checked.** The separate development in
 `lean/ThresholdHC/Uniform713/` proves `full_bound_713` against the exact
@@ -46,7 +54,9 @@ only measurable independent [0,1] observations with mean 1/2 ± d, 0<d≤1/2, an
 integrable 1/d. Bernoulli observations are included. No desired error or moment
 bound is assumed. A concrete Bernoulli(1) example verifies that the assumptions
 are satisfiable. The separate guard audits 130 public proof roots, checks the
-recorded specification hash, and requires the complete theorem in CI.
+recorded specification hash and all local specification dependency hashes, and
+requires the complete theorem in CI. Its guard, manifest, specification, and
+definition-bearing dependency files are included in the approved 21-file freeze.
 
 Full proof checkpoint `852690a` passed the independent
 [Linux CI run](https://github.com/davidiach/threshold-hillclimb/actions/runs/40414013439):
@@ -126,16 +136,17 @@ matching upper theorem for alpha>=2 or arbitrary laws.
 
 ## Open work and proposals
 
-- All current frozen Lean targets are complete; future targets should cover
-  the stopped-transcript and rare-event results separately.
-- Formalize the new 713 probability argument in a separately approved target set.
+- Tier 1 is complete. Prove the 13 new Tier 2 targets, prioritizing the
+  stopped-transcript information/testing bounds and atomic rare-event optimizer.
+- The full 713 probability theorem is already proved and separately audited;
+  adding it to the scored target list remains a separate scope decision.
 - The arbitrary-law matching upper bound and matching alpha>=2 constructions
   remain open here. No general distribution-blind theorem is supplied.
 - Unknown-rarity algorithms need a qualified guarantee, such as an additive
   floor or restricted parameter range; two-success work calibration alone
   cannot avoid the stated obstruction.
-- A future scorer revision should incorporate audit exit status directly;
-  the current experiment uses the independent guard without changing the freeze.
+- Scorer v2 incorporates audit exit status directly; the independent audit
+  remains a second check under the approved Tier 2 freeze.
 
 No novelty, priority, external-referee endorsement, or universal superiority
 claim is made.

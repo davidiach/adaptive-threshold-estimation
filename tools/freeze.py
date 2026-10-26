@@ -16,6 +16,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 FROZEN = [
     "lean/ThresholdHC/Statements.lean",
+    "lean/ThresholdHC/Statements2.lean",
     "lean/ThresholdHC.lean",
     "lean/lakefile.toml",
     "lean/lean-toolchain",
@@ -24,6 +25,14 @@ FROZEN = [
     "tools/score.py",
     "tools/freeze.py",
     "tools/check_targets_numeric.py",
+    "tools/check_targets2_numeric.py",
+    "lean/ThresholdHC/Uniform713/Specification.lean",
+    "lean/ThresholdHC/Uniform713/Common.lean",
+    "lean/ThresholdHC/Uniform713/Concentration.lean",
+    "lean/ThresholdHC/Uniform713/Classifier.lean",
+    "lean/ThresholdHC/Uniform713/Estimator.lean",
+    "tools/uniform713_targets.json",
+    "tools/verify_uniform713.py",
     "constants/evaluator.py",
     "constants/score_constants.py",
     "constants/grid.json",

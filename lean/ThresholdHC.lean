@@ -7,3 +7,7 @@ import ThresholdHC.Proofs.Calibration
 import ThresholdHC.Proofs.Modulus
 import ThresholdHC.Proofs.Constants
 import ThresholdHC.Proofs.Classifier
+import ThresholdHC.Statements2
+import ThresholdHC.Proofs.Tier2.Information
+import ThresholdHC.Proofs.Tier2.ClassifierProb
+import ThresholdHC.Proofs.Tier2.RareEvent

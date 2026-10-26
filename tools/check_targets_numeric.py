@@ -438,6 +438,8 @@ def _():
 
 # ---------- report ----------
 targets = json.loads((ROOT / "tools" / "targets.json").read_text())["targets"]
+# Tier 2 targets are checked by tools/check_targets2_numeric.py.
+targets = [t for t in targets if t.get("tier", 1) == 1]
 names = [t["name"] for t in targets]
 missing = [n for n in names if n not in results]
 bad = {n: v for n, v in results.items() if v < -mp.mpf("1e-25") and n in names}
