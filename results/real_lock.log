@@ -1,0 +1,119 @@
+[
+  {
+    "budget": 16384,
+    "candidate": {
+      "index": 176,
+      "budget": 16384,
+      "config": {
+        "start": 1024,
+        "ratio": 4,
+        "threshold": 1.0,
+        "sum_mode": true
+      },
+      "law": "geometric_three_quarters",
+      "probabilities": [
+        0.7387961250362586,
+        0.2612038749637415
+      ],
+      "seed": 34268,
+      "n": 100,
+      "rmse": 0.02537556532001217,
+      "rmse_se_delta": 0.001967373237799261,
+      "rmse_raw": 0.03281009863436932,
+      "mean": 0.02328587786466044,
+      "bias": -0.001714122135339561,
+      "mean_work": 14743.84,
+      "work_se": 935.3428616461042,
+      "work_p95": 34772.0,
+      "work_max": 44208.0,
+      "clipped_fraction": 0.05
+    },
+    "gha": {
+      "method": "gha",
+      "index": 3,
+      "budget": 16384,
+      "config": {
+        "n0": 8,
+        "C": 1.0,
+        "r": 1.5
+      },
+      "levels": [
+        4
+      ],
+      "counts": [
+        39
+      ],
+      "planned_work": 16214.016000000001,
+      "n": 100,
+      "rmse": 0.03134215537394564,
+      "rmse_se_delta": 0.0026328228590678945,
+      "rmse_raw": 0.03134215537394564,
+      "mean": 0.037692307692307685,
+      "bias": 0.012692307692307683,
+      "mean_work": 15836.16,
+      "work_se": 331.5049487632808,
+      "work_p95": 22272.0,
+      "work_max": 24576.0,
+      "clipped_fraction": 0.0
+    }
+  },
+  {
+    "budget": 65536,
+    "candidate": {
+      "index": 203,
+      "budget": 65536,
+      "config": {
+        "start": 1024,
+        "ratio": 4,
+        "threshold": 1.0,
+        "sum_mode": true,
+        "repeats": 4
+      },
+      "law": "geometric_three_quarters",
+      "probabilities": [
+        0.7387961250362586,
+        0.2612038749637415
+      ],
+      "seed": 35323,
+      "n": 100,
+      "rmse": 0.016608151231347977,
+      "rmse_se_delta": 0.0025508849474225608,
+      "rmse_raw": 0.017383372430894238,
+      "mean": 0.023782056722775096,
+      "bias": -0.0012179432772249053,
+      "mean_work": 60579.36,
+      "work_se": 1886.116894066974,
+      "work_p95": 92272.0,
+      "work_max": 103184.0,
+      "clipped_fraction": 0.03
+    },
+    "gha": {
+      "method": "gha",
+      "index": 3,
+      "budget": 65536,
+      "config": {
+        "n0": 8,
+        "C": 1.0,
+        "r": 1.5
+      },
+      "levels": [
+        5
+      ],
+      "counts": [
+        78
+      ],
+      "planned_work": 64871.03999999999,
+      "n": 100,
+      "rmse": 0.01964301723851867,
+      "rmse_se_delta": 0.0015046278929676756,
+      "rmse_raw": 0.01964301723851867,
+      "mean": 0.03012820512820513,
+      "bias": 0.005128205128205127,
+      "mean_work": 66577.92,
+      "work_se": 1192.2663609659164,
+      "work_p95": 86016.0,
+      "work_max": 108288.0,
+      "clipped_fraction": 0.0
+    }
+  }
+]

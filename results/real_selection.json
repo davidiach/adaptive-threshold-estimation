@@ -1,0 +1,144 @@
+{
+  "rows": [
+    {
+      "budget": 16384,
+      "candidate": {
+        "index": 176,
+        "budget": 16384,
+        "config": {
+          "start": 1024,
+          "ratio": 4,
+          "threshold": 1.0,
+          "sum_mode": true
+        },
+        "law": "geometric_three_quarters",
+        "probabilities": [
+          0.7387961250362586,
+          0.2612038749637415
+        ],
+        "seed": 34268,
+        "n": 100,
+        "rmse": 0.02537556532001217,
+        "rmse_se_delta": 0.001967373237799261,
+        "rmse_raw": 0.03281009863436932,
+        "mean": 0.02328587786466044,
+        "bias": -0.001714122135339561,
+        "mean_work": 14743.84,
+        "work_se": 935.3428616461042,
+        "work_p95": 34772.0,
+        "work_max": 44208.0,
+        "clipped_fraction": 0.05
+      },
+      "gha": {
+        "method": "gha",
+        "index": 3,
+        "budget": 16384,
+        "config": {
+          "n0": 8,
+          "C": 1.0,
+          "r": 1.5
+        },
+        "levels": [
+          4
+        ],
+        "counts": [
+          39
+        ],
+        "planned_work": 16214.016000000001,
+        "n": 100,
+        "rmse": 0.03134215537394564,
+        "rmse_se_delta": 0.0026328228590678945,
+        "rmse_raw": 0.03134215537394564,
+        "mean": 0.037692307692307685,
+        "bias": 0.012692307692307683,
+        "mean_work": 15836.16,
+        "work_se": 331.5049487632808,
+        "work_p95": 22272.0,
+        "work_max": 24576.0,
+        "clipped_fraction": 0.0
+      }
+    },
+    {
+      "budget": 65536,
+      "candidate": {
+        "index": 203,
+        "budget": 65536,
+        "config": {
+          "start": 1024,
+          "ratio": 4,
+          "threshold": 1.0,
+          "sum_mode": true,
+          "repeats": 4
+        },
+        "law": "geometric_three_quarters",
+        "probabilities": [
+          0.7387961250362586,
+          0.2612038749637415
+        ],
+        "seed": 35323,
+        "n": 100,
+        "rmse": 0.016608151231347977,
+        "rmse_se_delta": 0.0025508849474225608,
+        "rmse_raw": 0.017383372430894238,
+        "mean": 0.023782056722775096,
+        "bias": -0.0012179432772249053,
+        "mean_work": 60579.36,
+        "work_se": 1886.116894066974,
+        "work_p95": 92272.0,
+        "work_max": 103184.0,
+        "clipped_fraction": 0.03
+      },
+      "gha": {
+        "method": "gha",
+        "index": 3,
+        "budget": 65536,
+        "config": {
+          "n0": 8,
+          "C": 1.0,
+          "r": 1.5
+        },
+        "levels": [
+          5
+        ],
+        "counts": [
+          78
+        ],
+        "planned_work": 64871.03999999999,
+        "n": 100,
+        "rmse": 0.01964301723851867,
+        "rmse_se_delta": 0.0015046278929676756,
+        "rmse_raw": 0.01964301723851867,
+        "mean": 0.03012820512820513,
+        "bias": 0.005128205128205127,
+        "mean_work": 66577.92,
+        "work_se": 1192.2663609659164,
+        "work_p95": 86016.0,
+        "work_max": 108288.0,
+        "clipped_fraction": 0.0
+      }
+    }
+  ],
+  "hashes": {
+    "benchmark/run_real.py": "7ceb2855b5d56e989e19a827cc2c2fc62b62b0fb2ca34ccab5fb31e8aa0b22de",
+    "benchmark/real_threshold.py": "b5883bb572eea9204d0eb5ec6f17b8f7641d3bdc21745e50ab322b4087e35e2e",
+    "benchmark/reference.py": "ad2fb03d08b92b878391a08be6ee5de48181d70756fb95f13ac3915c626e1e05",
+    "benchmark/verify_real.py": "6e3966b1911b78af951cffd8a8a0a2d1c48d39cb4e761bc740c555d285b33d9b",
+    "results/real_verification.json": "00e69a62bbcc550ee76afdd4be50ddc9c70f32da9e09da7761db7a39fe680f83",
+    "results/real_training.json": "5900e384c139e3fe7a86b551c91c9f385d549d0202bf4a80c547020ecbd94ef9",
+    "results/real_tuning.json": "508bcc96279589d5270fc1d989859d8d211f8331739a4ca9a585affc79bdfc1e",
+    "benchmark/data/training.json": "2e12c73247e82632780394ce4d6aca25ae17754b6b2ddcfd9277afec5ad196af",
+    "benchmark/data/tuning.json": "0583e81d67f884f9c236eddba743a43d0f3a9ece21b0d140733ad0041a5303bb"
+  },
+  "heldout_replications": 500,
+  "selection_rule": "minimum clipped tuning RMSE per budget; 100 independent tuning repetitions per cell",
+  "baseline_zero_rmse": 0.025,
+  "test_seed_formula": "41000+original_budget_index*100+method_index; GHA=1, direct_real=4",
+  "environment": {
+    "python": "3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)]",
+    "numpy": "2.4.4",
+    "scipy": "1.17.1",
+    "numba": "0.68.0",
+    "platform": "Windows-11-10.0.26300-SP0"
+  },
+  "pretest_portability_note": "Normalized lock paths to POSIX; unchanged estimator, tuning, and selected rows; performed before any held-out test."
+}

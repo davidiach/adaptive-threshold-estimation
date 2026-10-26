@@ -1,0 +1,2558 @@
+{
+  "rows": [
+    {
+      "index": 0,
+      "config": {
+        "start": 16,
+        "ratio": 2,
+        "threshold": 0.5
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.1005,
+          "second": 0.1005,
+          "work": 16.0,
+          "total_work": 32000
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.0145,
+          "second": 0.0545,
+          "work": 18.736,
+          "total_work": 37472
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.005,
+          "second": 0.025,
+          "work": 20.936,
+          "total_work": 41872
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.0095,
+          "second": 0.0195,
+          "work": 25.88,
+          "total_work": 51760
+        },
+        {
+          "level": 4,
+          "n": 2000,
+          "mean": -0.0045,
+          "second": 0.0125,
+          "work": 30.856,
+          "total_work": 61712
+        },
+        {
+          "level": 5,
+          "n": 2000,
+          "mean": -0.0045,
+          "second": 0.0075,
+          "work": 38.432,
+          "total_work": 76864
+        },
+        {
+          "level": 6,
+          "n": 2000,
+          "mean": -0.002,
+          "second": 0.007,
+          "work": 42.512,
+          "total_work": 85024
+        },
+        {
+          "level": 7,
+          "n": 2000,
+          "mean": -0.001,
+          "second": 0.005,
+          "work": 59.896,
+          "total_work": 119792
+        },
+        {
+          "level": 8,
+          "n": 2000,
+          "mean": -0.0065,
+          "second": 0.0085,
+          "work": 80.328,
+          "total_work": 160656
+        },
+        {
+          "level": 9,
+          "n": 2000,
+          "mean": -0.0005,
+          "second": 0.0035,
+          "work": 78.808,
+          "total_work": 157616
+        },
+        {
+          "level": 10,
+          "n": 2000,
+          "mean": -0.0035,
+          "second": 0.0045,
+          "work": 115.384,
+          "total_work": 230768
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "config": {
+        "start": 16,
+        "ratio": 2,
+        "threshold": 1.0
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.1015,
+          "second": 0.1015,
+          "work": 16.0,
+          "total_work": 32000
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.025,
+          "second": 0.067,
+          "work": 21.304,
+          "total_work": 42608
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.018,
+          "second": 0.043,
+          "work": 29.128,
+          "total_work": 58256
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.005,
+          "second": 0.021,
+          "work": 37.96,
+          "total_work": 75920
+        },
+        {
+          "level": 4,
+          "n": 2000,
+          "mean": -0.0135,
+          "second": 0.0225,
+          "work": 57.168,
+          "total_work": 114336
+        },
+        {
+          "level": 5,
+          "n": 2000,
+          "mean": -0.0075,
+          "second": 0.0145,
+          "work": 78.416,
+          "total_work": 156832
+        },
+        {
+          "level": 6,
+          "n": 2000,
+          "mean": -0.0055,
+          "second": 0.0095,
+          "work": 113.704,
+          "total_work": 227408
+        },
+        {
+          "level": 7,
+          "n": 2000,
+          "mean": -0.0035,
+          "second": 0.0065,
+          "work": 157.44,
+          "total_work": 314880
+        },
+        {
+          "level": 8,
+          "n": 2000,
+          "mean": -0.001,
+          "second": 0.005,
+          "work": 212.112,
+          "total_work": 424224
+        },
+        {
+          "level": 9,
+          "n": 2000,
+          "mean": -0.0015,
+          "second": 0.0025,
+          "work": 296.52,
+          "total_work": 593040
+        },
+        {
+          "level": 10,
+          "n": 2000,
+          "mean": 0.002,
+          "second": 0.003,
+          "work": 423.424,
+          "total_work": 846848
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "config": {
+        "start": 16,
+        "ratio": 2,
+        "threshold": 1.5
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.0915,
+          "second": 0.0915,
+          "work": 16.0,
+          "total_work": 32000
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.0255,
+          "second": 0.0695,
+          "work": 23.248,
+          "total_work": 46496
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.0245,
+          "second": 0.0525,
+          "work": 35.008,
+          "total_work": 70016
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.0175,
+          "second": 0.0435,
+          "work": 53.64,
+          "total_work": 107280
+        },
+        {
+          "level": 4,
+          "n": 2000,
+          "mean": -0.007,
+          "second": 0.02,
+          "work": 79.232,
+          "total_work": 158464
+        },
+        {
+          "level": 5,
+          "n": 2000,
+          "mean": -0.003,
+          "second": 0.015,
+          "work": 122.792,
+          "total_work": 245584
+        },
+        {
+          "level": 6,
+          "n": 2000,
+          "mean": 0.0005,
+          "second": 0.0135,
+          "work": 176.512,
+          "total_work": 353024
+        },
+        {
+          "level": 7,
+          "n": 2000,
+          "mean": -0.004,
+          "second": 0.006,
+          "work": 256.632,
+          "total_work": 513264
+        },
+        {
+          "level": 8,
+          "n": 2000,
+          "mean": 0.001,
+          "second": 0.004,
+          "work": 353.784,
+          "total_work": 707568
+        },
+        {
+          "level": 9,
+          "n": 2000,
+          "mean": -0.002,
+          "second": 0.003,
+          "work": 537.168,
+          "total_work": 1074336
+        },
+        {
+          "level": 10,
+          "n": 2000,
+          "mean": 0.0015,
+          "second": 0.0035,
+          "work": 669.736,
+          "total_work": 1339472
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "config": {
+        "start": 16,
+        "ratio": 4,
+        "threshold": 0.5
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.1195,
+          "second": 0.1195,
+          "work": 16.0,
+          "total_work": 32000
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.0335,
+          "second": 0.0525,
+          "work": 21.56,
+          "total_work": 43120
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.0195,
+          "second": 0.0255,
+          "work": 29.44,
+          "total_work": 58880
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.015,
+          "second": 0.017,
+          "work": 45.528,
+          "total_work": 91056
+        },
+        {
+          "level": 4,
+          "n": 2000,
+          "mean": -0.0075,
+          "second": 0.0105,
+          "work": 64.488,
+          "total_work": 128976
+        },
+        {
+          "level": 5,
+          "n": 2000,
+          "mean": -0.004,
+          "second": 0.006,
+          "work": 104.904,
+          "total_work": 209808
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "config": {
+        "start": 16,
+        "ratio": 4,
+        "threshold": 1.0
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.102,
+          "second": 0.102,
+          "work": 16.0,
+          "total_work": 32000
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.048,
+          "second": 0.082,
+          "work": 28.68,
+          "total_work": 57360
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.024,
+          "second": 0.044,
+          "work": 58.024,
+          "total_work": 116048
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.0085,
+          "second": 0.0215,
+          "work": 109.04,
+          "total_work": 218080
+        },
+        {
+          "level": 4,
+          "n": 2000,
+          "mean": -0.0025,
+          "second": 0.0125,
+          "work": 228.776,
+          "total_work": 457552
+        },
+        {
+          "level": 5,
+          "n": 2000,
+          "mean": 0.0005,
+          "second": 0.0005,
+          "work": 413.584,
+          "total_work": 827168
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "config": {
+        "start": 16,
+        "ratio": 4,
+        "threshold": 1.5
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.1095,
+          "second": 0.1095,
+          "work": 16.0,
+          "total_work": 32000
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.0415,
+          "second": 0.0865,
+          "work": 34.904,
+          "total_work": 69808
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.0265,
+          "second": 0.0465,
+          "work": 80.808,
+          "total_work": 161616
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.012,
+          "second": 0.027,
+          "work": 180.776,
+          "total_work": 361552
+        },
+        {
+          "level": 4,
+          "n": 2000,
+          "mean": 0.0025,
+          "second": 0.0115,
+          "work": 356.152,
+          "total_work": 712304
+        },
+        {
+          "level": 5,
+          "n": 2000,
+          "mean": 0.001,
+          "second": 0.005,
+          "work": 684.488,
+          "total_work": 1368976
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "config": {
+        "start": 64,
+        "ratio": 2,
+        "threshold": 0.5
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.0695,
+          "second": 0.0695,
+          "work": 21.856,
+          "total_work": 43712
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.004,
+          "second": 0.019,
+          "work": 25.568,
+          "total_work": 51136
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.01,
+          "second": 0.014,
+          "work": 31.096,
+          "total_work": 62192
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.0045,
+          "second": 0.0095,
+          "work": 36.944,
+          "total_work": 73888
+        },
+        {
+          "level": 4,
+          "n": 2000,
+          "mean": -0.004,
+          "second": 0.006,
+          "work": 44.336,
+          "total_work": 88672
+        },
+        {
+          "level": 5,
+          "n": 2000,
+          "mean": -0.004,
+          "second": 0.006,
+          "work": 55.328,
+          "total_work": 110656
+        },
+        {
+          "level": 6,
+          "n": 2000,
+          "mean": -0.0015,
+          "second": 0.0045,
+          "work": 71.648,
+          "total_work": 143296
+        },
+        {
+          "level": 7,
+          "n": 2000,
+          "mean": -0.0025,
+          "second": 0.0035,
+          "work": 89.304,
+          "total_work": 178608
+        },
+        {
+          "level": 8,
+          "n": 2000,
+          "mean": -0.0045,
+          "second": 0.0065,
+          "work": 137.856,
+          "total_work": 275712
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "config": {
+        "start": 64,
+        "ratio": 2,
+        "threshold": 1.0
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.068,
+          "second": 0.068,
+          "work": 29.12,
+          "total_work": 58240
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.007,
+          "second": 0.036,
+          "work": 41.52,
+          "total_work": 83040
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.015,
+          "second": 0.028,
+          "work": 58.448,
+          "total_work": 116896
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.0025,
+          "second": 0.0155,
+          "work": 82.192,
+          "total_work": 164384
+        },
+        {
+          "level": 4,
+          "n": 2000,
+          "mean": -0.003,
+          "second": 0.01,
+          "work": 111.256,
+          "total_work": 222512
+        },
+        {
+          "level": 5,
+          "n": 2000,
+          "mean": 0.0005,
+          "second": 0.0085,
+          "work": 163.32,
+          "total_work": 326640
+        },
+        {
+          "level": 6,
+          "n": 2000,
+          "mean": 0.001,
+          "second": 0.006,
+          "work": 233.96,
+          "total_work": 467920
+        },
+        {
+          "level": 7,
+          "n": 2000,
+          "mean": -0.0005,
+          "second": 0.0045,
+          "work": 350.584,
+          "total_work": 701168
+        },
+        {
+          "level": 8,
+          "n": 2000,
+          "mean": -0.0015,
+          "second": 0.0035,
+          "work": 475.696,
+          "total_work": 951392
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "config": {
+        "start": 64,
+        "ratio": 2,
+        "threshold": 1.5
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.0665,
+          "second": 0.0665,
+          "work": 35.92,
+          "total_work": 71840
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.01,
+          "second": 0.038,
+          "work": 53.976,
+          "total_work": 107952
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.0065,
+          "second": 0.0235,
+          "work": 80.52,
+          "total_work": 161040
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.0075,
+          "second": 0.0205,
+          "work": 125.16,
+          "total_work": 250320
+        },
+        {
+          "level": 4,
+          "n": 2000,
+          "mean": 0.001,
+          "second": 0.011,
+          "work": 180.968,
+          "total_work": 361936
+        },
+        {
+          "level": 5,
+          "n": 2000,
+          "mean": 0.001,
+          "second": 0.012,
+          "work": 259.08,
+          "total_work": 518160
+        },
+        {
+          "level": 6,
+          "n": 2000,
+          "mean": -0.002,
+          "second": 0.004,
+          "work": 368.536,
+          "total_work": 737072
+        },
+        {
+          "level": 7,
+          "n": 2000,
+          "mean": -0.0005,
+          "second": 0.0015,
+          "work": 555.592,
+          "total_work": 1111184
+        },
+        {
+          "level": 8,
+          "n": 2000,
+          "mean": 0.001,
+          "second": 0.003,
+          "work": 734.048,
+          "total_work": 1468096
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "config": {
+        "start": 64,
+        "ratio": 4,
+        "threshold": 0.5
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.077,
+          "second": 0.077,
+          "work": 21.56,
+          "total_work": 43120
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.0165,
+          "second": 0.0285,
+          "work": 33.024,
+          "total_work": 66048
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.003,
+          "second": 0.015,
+          "work": 44.744,
+          "total_work": 89488
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.008,
+          "second": 0.01,
+          "work": 69.296,
+          "total_work": 138592
+        },
+        {
+          "level": 4,
+          "n": 2000,
+          "mean": -0.0025,
+          "second": 0.0085,
+          "work": 127.496,
+          "total_work": 254992
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "config": {
+        "start": 64,
+        "ratio": 4,
+        "threshold": 1.0
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.0605,
+          "second": 0.0605,
+          "work": 29.608,
+          "total_work": 59216
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.0215,
+          "second": 0.0355,
+          "work": 57.856,
+          "total_work": 115712
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.01,
+          "second": 0.018,
+          "work": 108.712,
+          "total_work": 217424
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.004,
+          "second": 0.008,
+          "work": 239.12,
+          "total_work": 478240
+        },
+        {
+          "level": 4,
+          "n": 2000,
+          "mean": 0.002,
+          "second": 0.007,
+          "work": 419.912,
+          "total_work": 839824
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "config": {
+        "start": 64,
+        "ratio": 4,
+        "threshold": 1.5
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.0705,
+          "second": 0.0705,
+          "work": 35.88,
+          "total_work": 71760
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.0375,
+          "second": 0.0485,
+          "work": 81.832,
+          "total_work": 163664
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.005,
+          "second": 0.02,
+          "work": 173.312,
+          "total_work": 346624
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.002,
+          "second": 0.009,
+          "work": 348.96,
+          "total_work": 697920
+        },
+        {
+          "level": 4,
+          "n": 2000,
+          "mean": -0.001,
+          "second": 0.006,
+          "work": 802.064,
+          "total_work": 1604128
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "config": {
+        "start": 256,
+        "ratio": 2,
+        "threshold": 0.5
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.0535,
+          "second": 0.0535,
+          "work": 30.344,
+          "total_work": 60688
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.004,
+          "second": 0.009,
+          "work": 36.128,
+          "total_work": 72256
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.002,
+          "second": 0.005,
+          "work": 41.648,
+          "total_work": 83296
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.0035,
+          "second": 0.0075,
+          "work": 53.624,
+          "total_work": 107248
+        },
+        {
+          "level": 4,
+          "n": 2000,
+          "mean": -0.005,
+          "second": 0.005,
+          "work": 61.912,
+          "total_work": 123824
+        },
+        {
+          "level": 5,
+          "n": 2000,
+          "mean": -0.0025,
+          "second": 0.0025,
+          "work": 66.296,
+          "total_work": 132592
+        },
+        {
+          "level": 6,
+          "n": 2000,
+          "mean": 0.001,
+          "second": 0.001,
+          "work": 119.088,
+          "total_work": 238176
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "config": {
+        "start": 256,
+        "ratio": 2,
+        "threshold": 1.0
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.034,
+          "second": 0.034,
+          "work": 55.752,
+          "total_work": 111504
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.004,
+          "second": 0.014,
+          "work": 79.496,
+          "total_work": 158992
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.003,
+          "second": 0.014,
+          "work": 119.448,
+          "total_work": 238896
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.0025,
+          "second": 0.0085,
+          "work": 158.496,
+          "total_work": 316992
+        },
+        {
+          "level": 4,
+          "n": 2000,
+          "mean": -0.0015,
+          "second": 0.0035,
+          "work": 207.744,
+          "total_work": 415488
+        },
+        {
+          "level": 5,
+          "n": 2000,
+          "mean": 0.0025,
+          "second": 0.0045,
+          "work": 308.928,
+          "total_work": 617856
+        },
+        {
+          "level": 6,
+          "n": 2000,
+          "mean": -0.002,
+          "second": 0.003,
+          "work": 480.344,
+          "total_work": 960688
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "config": {
+        "start": 256,
+        "ratio": 2,
+        "threshold": 1.5
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.038,
+          "second": 0.038,
+          "work": 82.136,
+          "total_work": 164272
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.01,
+          "second": 0.014,
+          "work": 117.952,
+          "total_work": 235904
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.0045,
+          "second": 0.0075,
+          "work": 172.216,
+          "total_work": 344432
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.0015,
+          "second": 0.0085,
+          "work": 245.048,
+          "total_work": 490096
+        },
+        {
+          "level": 4,
+          "n": 2000,
+          "mean": 0.0005,
+          "second": 0.0055,
+          "work": 383.216,
+          "total_work": 766432
+        },
+        {
+          "level": 5,
+          "n": 2000,
+          "mean": 0.0015,
+          "second": 0.0025,
+          "work": 534.216,
+          "total_work": 1068432
+        },
+        {
+          "level": 6,
+          "n": 2000,
+          "mean": -0.002,
+          "second": 0.003,
+          "work": 718.44,
+          "total_work": 1436880
+        }
+      ]
+    },
+    {
+      "index": 15,
+      "config": {
+        "start": 256,
+        "ratio": 4,
+        "threshold": 0.5
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.0565,
+          "second": 0.0565,
+          "work": 31.024,
+          "total_work": 62048
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.0075,
+          "second": 0.0125,
+          "work": 47.048,
+          "total_work": 94096
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.0035,
+          "second": 0.0085,
+          "work": 68.12,
+          "total_work": 136240
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.0025,
+          "second": 0.0065,
+          "work": 124.24,
+          "total_work": 248480
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "config": {
+        "start": 256,
+        "ratio": 4,
+        "threshold": 1.0
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.0415,
+          "second": 0.0415,
+          "work": 56.592,
+          "total_work": 113184
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.01,
+          "second": 0.015,
+          "work": 110.232,
+          "total_work": 220464
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": 0.0,
+          "second": 0.008,
+          "work": 203.816,
+          "total_work": 407632
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.003,
+          "second": 0.004,
+          "work": 379.648,
+          "total_work": 759296
+        }
+      ]
+    },
+    {
+      "index": 17,
+      "config": {
+        "start": 256,
+        "ratio": 4,
+        "threshold": 1.5
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.028,
+          "second": 0.028,
+          "work": 78.528,
+          "total_work": 157056
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.0065,
+          "second": 0.0215,
+          "work": 168.92,
+          "total_work": 337840
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.0025,
+          "second": 0.0125,
+          "work": 345.968,
+          "total_work": 691936
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": 0.001,
+          "second": 0.005,
+          "work": 771.68,
+          "total_work": 1543360
+        }
+      ]
+    },
+    {
+      "index": 18,
+      "config": {
+        "start": 64,
+        "ratio": 2,
+        "threshold": 0.5,
+        "antithetic": true
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.074,
+          "second": 0.074,
+          "work": 21.8,
+          "total_work": 43600
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.0105,
+          "second": 0.03325,
+          "work": 52.56,
+          "total_work": 105120
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.0015,
+          "second": 0.03025,
+          "work": 66.192,
+          "total_work": 132384
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": 0.0015,
+          "second": 0.0265,
+          "work": 90.144,
+          "total_work": 180288
+        },
+        {
+          "level": 4,
+          "n": 2000,
+          "mean": -0.00525,
+          "second": 0.024875,
+          "work": 106.048,
+          "total_work": 212096
+        },
+        {
+          "level": 5,
+          "n": 2000,
+          "mean": -0.0055,
+          "second": 0.01875,
+          "work": 129.44,
+          "total_work": 258880
+        },
+        {
+          "level": 6,
+          "n": 2000,
+          "mean": -0.00375,
+          "second": 0.021375,
+          "work": 171.936,
+          "total_work": 343872
+        },
+        {
+          "level": 7,
+          "n": 2000,
+          "mean": -0.002,
+          "second": 0.02425,
+          "work": 232.432,
+          "total_work": 464864
+        },
+        {
+          "level": 8,
+          "n": 2000,
+          "mean": -0.005,
+          "second": 0.02225,
+          "work": 346.144,
+          "total_work": 692288
+        }
+      ]
+    },
+    {
+      "index": 19,
+      "config": {
+        "start": 64,
+        "ratio": 2,
+        "threshold": 1.0,
+        "antithetic": true
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.06,
+          "second": 0.06,
+          "work": 28.792,
+          "total_work": 57584
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.00975,
+          "second": 0.022875,
+          "work": 69.184,
+          "total_work": 138368
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.0065,
+          "second": 0.0155,
+          "work": 99.088,
+          "total_work": 198176
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.0085,
+          "second": 0.012,
+          "work": 148.624,
+          "total_work": 297248
+        },
+        {
+          "level": 4,
+          "n": 2000,
+          "mean": -0.00325,
+          "second": 0.007875,
+          "work": 215.776,
+          "total_work": 431552
+        },
+        {
+          "level": 5,
+          "n": 2000,
+          "mean": -0.0035,
+          "second": 0.00825,
+          "work": 304.608,
+          "total_work": 609216
+        },
+        {
+          "level": 6,
+          "n": 2000,
+          "mean": -0.00225,
+          "second": 0.003875,
+          "work": 442.064,
+          "total_work": 884128
+        },
+        {
+          "level": 7,
+          "n": 2000,
+          "mean": 0.0,
+          "second": 0.002,
+          "work": 673.168,
+          "total_work": 1346336
+        },
+        {
+          "level": 8,
+          "n": 2000,
+          "mean": 0.0015,
+          "second": 0.00425,
+          "work": 919.152,
+          "total_work": 1838304
+        }
+      ]
+    },
+    {
+      "index": 20,
+      "config": {
+        "start": 64,
+        "ratio": 2,
+        "threshold": 1.5,
+        "antithetic": true
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.056,
+          "second": 0.056,
+          "work": 35.264,
+          "total_work": 70528
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.01425,
+          "second": 0.018375,
+          "work": 81.536,
+          "total_work": 163072
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.0085,
+          "second": 0.01475,
+          "work": 127.984,
+          "total_work": 255968
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.00125,
+          "second": 0.007875,
+          "work": 201.904,
+          "total_work": 403808
+        },
+        {
+          "level": 4,
+          "n": 2000,
+          "mean": -0.0015,
+          "second": 0.0055,
+          "work": 294.352,
+          "total_work": 588704
+        },
+        {
+          "level": 5,
+          "n": 2000,
+          "mean": -0.003,
+          "second": 0.0045,
+          "work": 423.808,
+          "total_work": 847616
+        },
+        {
+          "level": 6,
+          "n": 2000,
+          "mean": 0.00075,
+          "second": 0.002875,
+          "work": 607.088,
+          "total_work": 1214176
+        },
+        {
+          "level": 7,
+          "n": 2000,
+          "mean": 0.0005,
+          "second": 0.00175,
+          "work": 867.072,
+          "total_work": 1734144
+        },
+        {
+          "level": 8,
+          "n": 2000,
+          "mean": 0.00075,
+          "second": 0.001125,
+          "work": 1301.936,
+          "total_work": 2603872
+        }
+      ]
+    },
+    {
+      "index": 21,
+      "config": {
+        "start": 64,
+        "ratio": 4,
+        "threshold": 0.5,
+        "antithetic": true
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.0775,
+          "second": 0.0775,
+          "work": 22.08,
+          "total_work": 44160
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.0065,
+          "second": 0.0358125,
+          "work": 123.04,
+          "total_work": 246080
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.010125,
+          "second": 0.02578125,
+          "work": 218.912,
+          "total_work": 437824
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.0105,
+          "second": 0.02225,
+          "work": 377.216,
+          "total_work": 754432
+        },
+        {
+          "level": 4,
+          "n": 2000,
+          "mean": 0.000375,
+          "second": 0.01759375,
+          "work": 683.424,
+          "total_work": 1366848
+        }
+      ]
+    },
+    {
+      "index": 22,
+      "config": {
+        "start": 64,
+        "ratio": 4,
+        "threshold": 1.0,
+        "antithetic": true
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.0605,
+          "second": 0.0605,
+          "work": 29.112,
+          "total_work": 58224
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.021875,
+          "second": 0.01953125,
+          "work": 153.568,
+          "total_work": 307136
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.012875,
+          "second": 0.00928125,
+          "work": 347.648,
+          "total_work": 695296
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.002125,
+          "second": 0.00546875,
+          "work": 754.656,
+          "total_work": 1509312
+        },
+        {
+          "level": 4,
+          "n": 2000,
+          "mean": -0.002375,
+          "second": 0.00334375,
+          "work": 1590.208,
+          "total_work": 3180416
+        }
+      ]
+    },
+    {
+      "index": 23,
+      "config": {
+        "start": 64,
+        "ratio": 4,
+        "threshold": 1.5,
+        "antithetic": true
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.0585,
+          "second": 0.0585,
+          "work": 34.608,
+          "total_work": 69216
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.02025,
+          "second": 0.0174375,
+          "work": 172.768,
+          "total_work": 345536
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.00825,
+          "second": 0.008625,
+          "work": 443.936,
+          "total_work": 887872
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.004,
+          "second": 0.003875,
+          "work": 973.024,
+          "total_work": 1946048
+        },
+        {
+          "level": 4,
+          "n": 2000,
+          "mean": -0.000875,
+          "second": 0.00203125,
+          "work": 2007.232,
+          "total_work": 4014464
+        }
+      ]
+    },
+    {
+      "index": 24,
+      "config": {
+        "start": 256,
+        "ratio": 2,
+        "threshold": 0.5,
+        "antithetic": true
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.054,
+          "second": 0.054,
+          "work": 29.304,
+          "total_work": 58608
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.00375,
+          "second": 0.032125,
+          "work": 84.944,
+          "total_work": 169888
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.0025,
+          "second": 0.0255,
+          "work": 110.288,
+          "total_work": 220576
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.0015,
+          "second": 0.02225,
+          "work": 144.096,
+          "total_work": 288192
+        },
+        {
+          "level": 4,
+          "n": 2000,
+          "mean": 0.00075,
+          "second": 0.018625,
+          "work": 169.696,
+          "total_work": 339392
+        },
+        {
+          "level": 5,
+          "n": 2000,
+          "mean": -0.00125,
+          "second": 0.018625,
+          "work": 211.712,
+          "total_work": 423424
+        },
+        {
+          "level": 6,
+          "n": 2000,
+          "mean": -0.00125,
+          "second": 0.018125,
+          "work": 311.056,
+          "total_work": 622112
+        }
+      ]
+    },
+    {
+      "index": 25,
+      "config": {
+        "start": 256,
+        "ratio": 2,
+        "threshold": 1.0,
+        "antithetic": true
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.0405,
+          "second": 0.0405,
+          "work": 57.784,
+          "total_work": 115568
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.00925,
+          "second": 0.010875,
+          "work": 150.144,
+          "total_work": 300288
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.005,
+          "second": 0.00925,
+          "work": 213.632,
+          "total_work": 427264
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.0005,
+          "second": 0.007,
+          "work": 283.152,
+          "total_work": 566304
+        },
+        {
+          "level": 4,
+          "n": 2000,
+          "mean": 0.00075,
+          "second": 0.005625,
+          "work": 426.704,
+          "total_work": 853408
+        },
+        {
+          "level": 5,
+          "n": 2000,
+          "mean": 0.00025,
+          "second": 0.004625,
+          "work": 600.576,
+          "total_work": 1201152
+        },
+        {
+          "level": 6,
+          "n": 2000,
+          "mean": 0.00125,
+          "second": 0.003375,
+          "work": 861.872,
+          "total_work": 1723744
+        }
+      ]
+    },
+    {
+      "index": 26,
+      "config": {
+        "start": 256,
+        "ratio": 2,
+        "threshold": 1.5,
+        "antithetic": true
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.039,
+          "second": 0.039,
+          "work": 82.096,
+          "total_work": 164192
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.004,
+          "second": 0.0075,
+          "work": 194.128,
+          "total_work": 388256
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.004,
+          "second": 0.00475,
+          "work": 295.2,
+          "total_work": 590400
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.00125,
+          "second": 0.005875,
+          "work": 444.96,
+          "total_work": 889920
+        },
+        {
+          "level": 4,
+          "n": 2000,
+          "mean": 0.002,
+          "second": 0.00225,
+          "work": 598.992,
+          "total_work": 1197984
+        },
+        {
+          "level": 5,
+          "n": 2000,
+          "mean": 0.0015,
+          "second": 0.002,
+          "work": 855.28,
+          "total_work": 1710560
+        },
+        {
+          "level": 6,
+          "n": 2000,
+          "mean": 0.00075,
+          "second": 0.001125,
+          "work": 1156.848,
+          "total_work": 2313696
+        }
+      ]
+    },
+    {
+      "index": 27,
+      "config": {
+        "start": 256,
+        "ratio": 4,
+        "threshold": 0.5,
+        "antithetic": true
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.056,
+          "second": 0.056,
+          "work": 30.096,
+          "total_work": 60192
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.002625,
+          "second": 0.02821875,
+          "work": 211.648,
+          "total_work": 423296
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.005125,
+          "second": 0.02284375,
+          "work": 392.992,
+          "total_work": 785984
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.002125,
+          "second": 0.02328125,
+          "work": 659.52,
+          "total_work": 1319040
+        }
+      ]
+    },
+    {
+      "index": 28,
+      "config": {
+        "start": 256,
+        "ratio": 4,
+        "threshold": 1.0,
+        "antithetic": true
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.039,
+          "second": 0.039,
+          "work": 57.408,
+          "total_work": 114816
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.006375,
+          "second": 0.01253125,
+          "work": 364.448,
+          "total_work": 728896
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.002,
+          "second": 0.008375,
+          "work": 767.68,
+          "total_work": 1535360
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.002,
+          "second": 0.0019375,
+          "work": 1415.936,
+          "total_work": 2831872
+        }
+      ]
+    },
+    {
+      "index": 29,
+      "config": {
+        "start": 256,
+        "ratio": 4,
+        "threshold": 1.5,
+        "antithetic": true
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.0365,
+          "second": 0.0365,
+          "work": 82.512,
+          "total_work": 165024
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.005375,
+          "second": 0.00778125,
+          "work": 447.68,
+          "total_work": 895360
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.002375,
+          "second": 0.00328125,
+          "work": 1024.672,
+          "total_work": 2049344
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": 0.001,
+          "second": 0.0019375,
+          "work": 2091.872,
+          "total_work": 4183744
+        }
+      ]
+    },
+    {
+      "index": 30,
+      "config": {
+        "start": 1024,
+        "ratio": 2,
+        "threshold": 0.5,
+        "antithetic": true
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.0455,
+          "second": 0.0455,
+          "work": 43.704,
+          "total_work": 87408
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.00625,
+          "second": 0.025125,
+          "work": 136.416,
+          "total_work": 272832
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.0005,
+          "second": 0.02275,
+          "work": 182.752,
+          "total_work": 365504
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": 0.00175,
+          "second": 0.018625,
+          "work": 214.128,
+          "total_work": 428256
+        },
+        {
+          "level": 4,
+          "n": 2000,
+          "mean": 0.00025,
+          "second": 0.019625,
+          "work": 330.304,
+          "total_work": 660608
+        }
+      ]
+    },
+    {
+      "index": 31,
+      "config": {
+        "start": 1024,
+        "ratio": 2,
+        "threshold": 1.0,
+        "antithetic": true
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.0265,
+          "second": 0.0265,
+          "work": 109.992,
+          "total_work": 219984
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": 0.001,
+          "second": 0.00575,
+          "work": 297.872,
+          "total_work": 595744
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.0005,
+          "second": 0.00575,
+          "work": 466.944,
+          "total_work": 933888
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": 0.0005,
+          "second": 0.00475,
+          "work": 640.928,
+          "total_work": 1281856
+        },
+        {
+          "level": 4,
+          "n": 2000,
+          "mean": -0.00125,
+          "second": 0.002625,
+          "work": 777.152,
+          "total_work": 1554304
+        }
+      ]
+    },
+    {
+      "index": 32,
+      "config": {
+        "start": 1024,
+        "ratio": 2,
+        "threshold": 1.5,
+        "antithetic": true
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.037,
+          "second": 0.037,
+          "work": 181.144,
+          "total_work": 362288
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.002,
+          "second": 0.00375,
+          "work": 432.048,
+          "total_work": 864096
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.00075,
+          "second": 0.002875,
+          "work": 614.736,
+          "total_work": 1229472
+        },
+        {
+          "level": 3,
+          "n": 2000,
+          "mean": -0.00275,
+          "second": 0.002125,
+          "work": 923.408,
+          "total_work": 1846816
+        },
+        {
+          "level": 4,
+          "n": 2000,
+          "mean": 0.00025,
+          "second": 0.001125,
+          "work": 1272.448,
+          "total_work": 2544896
+        }
+      ]
+    },
+    {
+      "index": 33,
+      "config": {
+        "start": 1024,
+        "ratio": 4,
+        "threshold": 0.5,
+        "antithetic": true
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.0475,
+          "second": 0.0475,
+          "work": 43.072,
+          "total_work": 86144
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.012875,
+          "second": 0.02365625,
+          "work": 364.0,
+          "total_work": 728000
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.000875,
+          "second": 0.01990625,
+          "work": 556.544,
+          "total_work": 1113088
+        }
+      ]
+    },
+    {
+      "index": 34,
+      "config": {
+        "start": 1024,
+        "ratio": 4,
+        "threshold": 1.0,
+        "antithetic": true
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.0295,
+          "second": 0.0295,
+          "work": 115.0,
+          "total_work": 230000
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.002125,
+          "second": 0.00640625,
+          "work": 728.768,
+          "total_work": 1457536
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": 0.00075,
+          "second": 0.0046875,
+          "work": 1498.688,
+          "total_work": 2997376
+        }
+      ]
+    },
+    {
+      "index": 35,
+      "config": {
+        "start": 1024,
+        "ratio": 4,
+        "threshold": 1.5,
+        "antithetic": true
+      },
+      "levels": [
+        {
+          "level": 0,
+          "n": 2000,
+          "mean": 0.023,
+          "second": 0.023,
+          "work": 170.936,
+          "total_work": 341872
+        },
+        {
+          "level": 1,
+          "n": 2000,
+          "mean": -0.001375,
+          "second": 0.00315625,
+          "work": 966.4,
+          "total_work": 1932800
+        },
+        {
+          "level": 2,
+          "n": 2000,
+          "mean": -0.00025,
+          "second": 0.0018125,
+          "work": 2031.488,
+          "total_work": 4062976
+        }
+      ]
+    },
+    {
+      "index": 36,
+      "config": {
+        "start": 16,
+        "ratio": 2,
+        "threshold": 0.5,
+        "sum_mode": true
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 37,
+      "config": {
+        "start": 16,
+        "ratio": 2,
+        "threshold": 1.0,
+        "sum_mode": true
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 38,
+      "config": {
+        "start": 16,
+        "ratio": 2,
+        "threshold": 1.5,
+        "sum_mode": true
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 39,
+      "config": {
+        "start": 16,
+        "ratio": 4,
+        "threshold": 0.5,
+        "sum_mode": true
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 40,
+      "config": {
+        "start": 16,
+        "ratio": 4,
+        "threshold": 1.0,
+        "sum_mode": true
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 41,
+      "config": {
+        "start": 16,
+        "ratio": 4,
+        "threshold": 1.5,
+        "sum_mode": true
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 42,
+      "config": {
+        "start": 64,
+        "ratio": 2,
+        "threshold": 0.5,
+        "sum_mode": true
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 43,
+      "config": {
+        "start": 64,
+        "ratio": 2,
+        "threshold": 1.0,
+        "sum_mode": true
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 44,
+      "config": {
+        "start": 64,
+        "ratio": 2,
+        "threshold": 1.5,
+        "sum_mode": true
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 45,
+      "config": {
+        "start": 64,
+        "ratio": 4,
+        "threshold": 0.5,
+        "sum_mode": true
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 46,
+      "config": {
+        "start": 64,
+        "ratio": 4,
+        "threshold": 1.0,
+        "sum_mode": true
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 47,
+      "config": {
+        "start": 64,
+        "ratio": 4,
+        "threshold": 1.5,
+        "sum_mode": true
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 48,
+      "config": {
+        "start": 256,
+        "ratio": 2,
+        "threshold": 0.5,
+        "sum_mode": true
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 49,
+      "config": {
+        "start": 256,
+        "ratio": 2,
+        "threshold": 1.0,
+        "sum_mode": true
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 50,
+      "config": {
+        "start": 256,
+        "ratio": 2,
+        "threshold": 1.5,
+        "sum_mode": true
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 51,
+      "config": {
+        "start": 256,
+        "ratio": 4,
+        "threshold": 0.5,
+        "sum_mode": true
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 52,
+      "config": {
+        "start": 256,
+        "ratio": 4,
+        "threshold": 1.0,
+        "sum_mode": true
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 53,
+      "config": {
+        "start": 256,
+        "ratio": 4,
+        "threshold": 1.5,
+        "sum_mode": true
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 54,
+      "config": {
+        "start": 1024,
+        "ratio": 2,
+        "threshold": 0.5,
+        "sum_mode": true
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 55,
+      "config": {
+        "start": 1024,
+        "ratio": 2,
+        "threshold": 1.0,
+        "sum_mode": true
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 56,
+      "config": {
+        "start": 1024,
+        "ratio": 2,
+        "threshold": 1.5,
+        "sum_mode": true
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 57,
+      "config": {
+        "start": 1024,
+        "ratio": 4,
+        "threshold": 0.5,
+        "sum_mode": true
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 58,
+      "config": {
+        "start": 1024,
+        "ratio": 4,
+        "threshold": 1.0,
+        "sum_mode": true
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 59,
+      "config": {
+        "start": 1024,
+        "ratio": 4,
+        "threshold": 1.5,
+        "sum_mode": true
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 60,
+      "config": {
+        "start": 64,
+        "ratio": 4,
+        "threshold": 0.5,
+        "sum_mode": true,
+        "repeats": 4
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 61,
+      "config": {
+        "start": 64,
+        "ratio": 4,
+        "threshold": 1.0,
+        "sum_mode": true,
+        "repeats": 4
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 62,
+      "config": {
+        "start": 64,
+        "ratio": 4,
+        "threshold": 1.5,
+        "sum_mode": true,
+        "repeats": 4
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 63,
+      "config": {
+        "start": 256,
+        "ratio": 4,
+        "threshold": 0.5,
+        "sum_mode": true,
+        "repeats": 4
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 64,
+      "config": {
+        "start": 256,
+        "ratio": 4,
+        "threshold": 1.0,
+        "sum_mode": true,
+        "repeats": 4
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 65,
+      "config": {
+        "start": 256,
+        "ratio": 4,
+        "threshold": 1.5,
+        "sum_mode": true,
+        "repeats": 4
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 66,
+      "config": {
+        "start": 1024,
+        "ratio": 4,
+        "threshold": 0.5,
+        "sum_mode": true,
+        "repeats": 4
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 67,
+      "config": {
+        "start": 1024,
+        "ratio": 4,
+        "threshold": 1.0,
+        "sum_mode": true,
+        "repeats": 4
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    },
+    {
+      "index": 68,
+      "config": {
+        "start": 1024,
+        "ratio": 4,
+        "threshold": 1.5,
+        "sum_mode": true,
+        "repeats": 4
+      },
+      "levels": [],
+      "note": "fixed geometric law; no offline moment fit"
+    }
+  ],
+  "total_work": 128413344,
+  "seconds": 0.015741348266601562,
+  "seed_formula": "12000+config_index",
+  "replications": 2000
+}

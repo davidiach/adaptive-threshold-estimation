@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "finite_tape_pair_checks": 71049,
+  "exact_telescope_checks": 1000,
+  "repeated_calibration_checks": 10,
+  "seed": 2026102603,
+  "scope": "implementation coupling and cost invariants; not a statistical error theorem"
+}

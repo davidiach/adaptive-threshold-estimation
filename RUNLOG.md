@@ -8,3 +8,4 @@ One line per attempt, accepted or rejected:
 2026-10-26T21:48:26.0039380Z | B | prelocked finite-grid k1=.25 k2=.5 | dev 5.550646 -> 4.281742, heldout 5.550065 -> 4.282066 | ACCEPT on frozen finite grid ONLY | uniform bias bound disproved; see proposals/constants/BIAS_AUDIT.md
 
 Correction to Track B checkpoint digits: authoritative scorer JSONs give theory heldout=5.550060072084839 and finite-grid heldout=4.282068997489188. Earlier log entries transcribed intermediate messages inaccurately beyond four decimals; acceptance decisions and rounded summaries are unchanged.
+2026-10-26T21:52:13.1883648Z | C | 342 tuning cells; selected randomized-sum method | tuning RMSE .02538/.01661 at 16384/65536 | LOCKED before heldout | results/real_selection.json, 500 planned final repetitions
