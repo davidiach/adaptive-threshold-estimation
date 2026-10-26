@@ -1,0 +1,35 @@
+valid=True build_ok=True frozen_ok=True points=34/60 proven=23/33
+{
+  "valid": true,
+  "audit_exit_code": 0,
+  "complete": true,
+  "target_count": 33,
+  "consistent_with_scorer": true,
+  "no_regression": true,
+  "points": 34,
+  "proven": [
+    "classifier_scale_step",
+    "constant_second_moment",
+    "constant_work",
+    "error_tail_bound",
+    "fixed_gap_equality",
+    "fixed_gap_unbiased",
+    "fixed_gap_variance",
+    "haldane_inverse_moment",
+    "kl_delta_identity",
+    "kl_delta_lower",
+    "kl_ge_two_hell_finite",
+    "kl_taylor_bound",
+    "negbin_mean",
+    "negbin_total",
+    "posterior_diff_le",
+    "posterior_identity",
+    "posterior_mem",
+    "pred_variance_ge",
+    "ratio_bound",
+    "scaling_down_pointwise",
+    "scaling_up_pointwise",
+    "sym_kl_ge_eight_hell_finite",
+    "sym_kl_hellinger_pointwise"
+  ]
+}

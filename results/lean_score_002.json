@@ -1,0 +1,346 @@
+{
+ "timestamp": "2026-10-27T00:08:29",
+ "valid": true,
+ "frozen_ok": true,
+ "frozen_problems": [],
+ "forbidden": [],
+ "build_ok": true,
+ "violations": [],
+ "points": 60,
+ "max_points": 60,
+ "proven": [
+  "classifier_scale_step",
+  "constant_second_moment",
+  "constant_work",
+  "dyadic_sum_v1",
+  "dyadic_sum_v2",
+  "error_tail_bound",
+  "fixed_gap_equality",
+  "fixed_gap_unbiased",
+  "fixed_gap_variance",
+  "haldane_inverse_moment",
+  "hardpair_step_kl",
+  "kl_delta_identity",
+  "kl_delta_lower",
+  "kl_ge_two_hell_finite",
+  "kl_taylor_bound",
+  "lemmaA_forward",
+  "lemmaA_reverse",
+  "lemmaA_sharp_at_one",
+  "modulus_scaling_up",
+  "negbin_mean",
+  "negbin_total",
+  "posterior_diff_le",
+  "posterior_identity",
+  "posterior_mem",
+  "power_modulus",
+  "power_modulus_critical",
+  "pred_variance_ge",
+  "ratio_bound",
+  "scaling_down_pointwise",
+  "scaling_up_pointwise",
+  "sym_kl_ge_eight_hell_finite",
+  "sym_kl_hellinger_pointwise",
+  "two_point_variance_finite"
+ ],
+ "targets": {
+  "posterior_identity": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "posterior_diff_le": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "posterior_mem": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "pred_variance_ge": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "ratio_bound": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "kl_taylor_bound": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "lemmaA_forward": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "lemmaA_reverse": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "lemmaA_sharp_at_one": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "hardpair_step_kl": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "sym_kl_hellinger_pointwise": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "kl_ge_two_hell_finite": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "sym_kl_ge_eight_hell_finite": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "two_point_variance_finite": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "fixed_gap_unbiased": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "fixed_gap_variance": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "fixed_gap_equality": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "negbin_total": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "negbin_mean": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "haldane_inverse_moment": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "scaling_up_pointwise": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "scaling_down_pointwise": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "modulus_scaling_up": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "power_modulus_critical": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "power_modulus": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "constant_second_moment": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "constant_work": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "kl_delta_identity": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "kl_delta_lower": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "error_tail_bound": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "classifier_scale_step": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "dyadic_sum_v1": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  },
+  "dyadic_sum_v2": {
+   "status": "proven",
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": ""
+  }
+ },
+ "seconds": 55.4
+}

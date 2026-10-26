@@ -1,0 +1,26 @@
+⚠ [18168/18175] Replayed ThresholdHC.Statements
+warning: ThresholdHC\Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18169/18175] Ran ThresholdHC.Statements:irArts
+warning: ThresholdHC\Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+✔ [18170/18175] Built ThresholdHC.Proofs.Algebra (29s)
+✔ [18172/18175] Built ThresholdHC.Proofs.Calibration (29s)
+⚠ [18174/18175] Built ThresholdHC.Proofs.FixedGap (31s)
+warning: ThresholdHC/Proofs/FixedGap.lean:10:2: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Proofs/FixedGap.lean:10:2: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/FixedGap.lean:20:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Proofs/FixedGap.lean:20:4: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/FixedGap.lean:29:2: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Proofs/FixedGap.lean:29:2: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+Build completed successfully (18175 jobs).

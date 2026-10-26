@@ -122,6 +122,58 @@ private lemma centered_second {n : ℕ} (p Y : Fin n → ℝ)
       ring
 
 theorem two_point_variance_finite : ThresholdHC.Targets.two_point_variance_finite := by
-  sorry
+  intro n p q Y hp hq hp1 hq1
+  let c := (meanFin p Y + meanFin q Y) / 2
+  have hdiff :
+      (∑ i, (Real.sqrt (p i) - Real.sqrt (q i)) *
+        ((Y i - c) * (Real.sqrt (p i) + Real.sqrt (q i))))
+        = meanFin p Y - meanFin q Y := by
+    calc
+      _ = ∑ i, (p i - q i) * (Y i - c) := by
+        apply Finset.sum_congr rfl
+        intro i _
+        calc
+          _ = ((Real.sqrt (p i))^2 - (Real.sqrt (q i))^2) * (Y i - c) := by ring
+          _ = _ := by rw [Real.sq_sqrt (hp i), Real.sq_sqrt (hq i)]
+      _ = _ := by
+        simp only [sub_mul, mul_sub, Finset.sum_sub_distrib, ← Finset.sum_mul,
+          ← Finset.mul_sum, hp1, hq1, one_mul, mul_one]
+        unfold meanFin
+        ring
+  have hcenter : (∑ i, (Y i-c)^2 * (p i+q i)) =
+      varFin p Y + varFin q Y + (meanFin p Y - meanFin q Y)^2 / 2 := by
+    calc
+      _ = (∑ i, p i * (Y i-c)^2) + (∑ i, q i * (Y i-c)^2) := by
+        rw [← Finset.sum_add_distrib]
+        apply Finset.sum_congr rfl
+        intro i _
+        ring
+      _ = _ := by
+        rw [centered_second p Y hp1 c, centered_second q Y hq1 c]
+        dsimp [c]
+        ring
+  have hbound :
+      (∑ i, ((Y i-c) * (Real.sqrt (p i) + Real.sqrt (q i)))^2)
+        ≤ 2 * (∑ i, (Y i-c)^2 * (p i+q i)) := by
+    rw [Finset.mul_sum]
+    apply Finset.sum_le_sum
+    intro i _
+    have hs : (Real.sqrt (p i) + Real.sqrt (q i))^2 ≤ 2 * (p i + q i) := by
+      nlinarith [Real.sq_sqrt (hp i), Real.sq_sqrt (hq i),
+        sq_nonneg (Real.sqrt (p i) - Real.sqrt (q i))]
+    calc
+      _ = (Y i-c)^2 * (Real.sqrt (p i) + Real.sqrt (q i))^2 := by ring
+      _ ≤ (Y i-c)^2 * (2 * (p i+q i)) := mul_le_mul_of_nonneg_left hs (sq_nonneg _)
+      _ = _ := by ring
+  have hfactor : 0 ≤ 2 * hell2 p q := by
+    rw [← sqrt_distance_sum p q hp hq hp1 hq1]
+    exact Finset.sum_nonneg (fun i _ => sq_nonneg _)
+  have hcs := Finset.sum_mul_sq_le_sq_mul_sq Finset.univ
+    (fun i : Fin n => Real.sqrt (p i) - Real.sqrt (q i))
+    (fun i : Fin n => (Y i-c) * (Real.sqrt (p i) + Real.sqrt (q i)))
+  rw [hdiff, sqrt_distance_sum p q hp hq hp1 hq1] at hcs
+  have hscaled := mul_le_mul_of_nonneg_left hbound hfactor
+  rw [hcenter] at hscaled
+  nlinarith
 
 end ThresholdHC.Proofs

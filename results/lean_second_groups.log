@@ -1,0 +1,28 @@
+⚠ [18168/18175] Replayed ThresholdHC.Statements
+warning: ThresholdHC\Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18169/18175] Ran ThresholdHC.Statements:irArts
+warning: ThresholdHC\Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18170/18175] Built ThresholdHC.Proofs.Modulus (28s)
+warning: ThresholdHC/Proofs/Modulus.lean:10:4: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [mul_div_assoc]
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: ThresholdHC/Proofs/Modulus.lean:22:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Modulus.lean:25:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Modulus.lean:28:8: declaration uses `sorry`
+✔ [18172/18175] Built ThresholdHC.Proofs.Constants (29s)
+⚠ [18174/18175] Built ThresholdHC.Proofs.Classifier (30s)
+warning: ThresholdHC/Proofs/Classifier.lean:25:75: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: ThresholdHC/Proofs/Classifier.lean:25:71: Unused tactic linter: `<;>` can be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/Classifier.lean:25:75: Unused tactic linter: `ring` is never executed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/Classifier.lean:55:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Classifier.lean:58:8: declaration uses `sorry`
+Build completed successfully (18175 jobs).

@@ -1,37 +1,47 @@
 {
- "timestamp": "2026-10-27T00:02:17",
+ "timestamp": "2026-10-27T00:08:29",
  "valid": true,
  "frozen_ok": true,
  "frozen_problems": [],
  "forbidden": [],
  "build_ok": true,
  "violations": [],
- "points": 34,
+ "points": 60,
  "max_points": 60,
  "proven": [
   "classifier_scale_step",
   "constant_second_moment",
   "constant_work",
+  "dyadic_sum_v1",
+  "dyadic_sum_v2",
   "error_tail_bound",
   "fixed_gap_equality",
   "fixed_gap_unbiased",
   "fixed_gap_variance",
   "haldane_inverse_moment",
+  "hardpair_step_kl",
   "kl_delta_identity",
   "kl_delta_lower",
   "kl_ge_two_hell_finite",
   "kl_taylor_bound",
+  "lemmaA_forward",
+  "lemmaA_reverse",
+  "lemmaA_sharp_at_one",
+  "modulus_scaling_up",
   "negbin_mean",
   "negbin_total",
   "posterior_diff_le",
   "posterior_identity",
   "posterior_mem",
+  "power_modulus",
+  "power_modulus_critical",
   "pred_variance_ge",
   "ratio_bound",
   "scaling_down_pointwise",
   "scaling_up_pointwise",
   "sym_kl_ge_eight_hell_finite",
-  "sym_kl_hellinger_pointwise"
+  "sym_kl_hellinger_pointwise",
+  "two_point_variance_finite"
  ],
  "targets": {
   "posterior_identity": {
@@ -89,44 +99,40 @@
    "detail": ""
   },
   "lemmaA_forward": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "lemmaA_reverse": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "lemmaA_sharp_at_one": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "hardpair_step_kl": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "sym_kl_hellinger_pointwise": {
    "status": "proven",
@@ -156,14 +162,13 @@
    "detail": ""
   },
   "two_point_variance_finite": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "fixed_gap_unbiased": {
    "status": "proven",
@@ -238,34 +243,31 @@
    "detail": ""
   },
   "modulus_scaling_up": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "power_modulus_critical": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "power_modulus": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "constant_second_moment": {
    "status": "proven",
@@ -322,25 +324,23 @@
    "detail": ""
   },
   "dyadic_sum_v1": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "dyadic_sum_v2": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   }
  },
- "seconds": 29.6
+ "seconds": 55.4
 }

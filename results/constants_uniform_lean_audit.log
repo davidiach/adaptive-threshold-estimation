@@ -1,0 +1,9 @@
+'ThresholdHC.PaperConstants.error_prefactor_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PaperConstants.geometric_second_moment_factor_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.PaperConstants.fourth_root_three_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PaperConstants.second_moment_scalar_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PaperConstants.survival_coefficients' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PaperConstants.work_scalar_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PaperConstants.product_of_moment_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]

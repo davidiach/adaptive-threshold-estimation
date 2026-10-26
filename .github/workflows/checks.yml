@@ -1,5 +1,24 @@
 name: Reproducible checks
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - '.github/workflows/checks.yml'
+      - '.gitattributes'
+      - 'lean/**'
+      - 'tools/**'
+      - 'constants/**'
+      - 'benchmark/**'
+      - 'results/**'
+      - 'inputs/**'
+      - 'requirements.txt'
+      - 'FROZEN.sha256'
+      - 'proposals/constants/*.lean'
+      - 'proposals/constants/*.py'
+  pull_request:
+  workflow_dispatch:
+concurrency:
+  group: checks-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
@@ -43,6 +62,8 @@ jobs:
         run: lake exe cache get
       - name: Build sequentially and require complete kernel audit
         run: python tools/verify_lean_checkpoint.py --sequential
+      - name: Verify unscored arithmetic for the paper bound
+        run: python tools/verify_uniform_arithmetic.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -52,3 +73,5 @@ jobs:
             results/lean_checkpoint.json
             results/lean_audit.log
             results/lean_independent_audit.log
+            results/constants_uniform_lean_audit.log
+            results/constants_uniform_lean_status.json

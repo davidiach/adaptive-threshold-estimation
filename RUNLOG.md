@@ -13,3 +13,5 @@ Correction to Track B checkpoint digits: authoritative scorer JSONs give theory 
 2026-10-26T21:55:24.7289256Z | C | locked candidate once-only heldout500 | RMSE .039103/.021845 vs GHA .029904/.020124 | REJECT | preserve failed experiment; no posttest tuning, see TRACK_C.md
 2026-10-26T21:55:44.1881642Z | A | compile unchanged statements, freeze12files, baseline scorer and independent audit | 0/60, 0/33 proved | VALID BASELINE | independent audit exit0, all33 reports contain sorryAx; no target edits
 2026-10-26T22:03:39.5753647Z | A | checkpoint001, elementary groups plus B1 and C1-C3 | 0 -> 34/60,23/33 targets | ACCEPT | full build/freeze/types/axioms; independent audit exit0,complete33
+2026-10-26T22:10:42.8782876Z | A | checkpoint002, all remaining KL/Hellinger/modulus/dyadic targets | 34 -> 60/60,33/33 targets | ACCEPT | all12frozenfiles unchanged; audit exit0; standard3axioms only; no sorry
+2026-10-26T22:10:42.8782876Z | repository | future Git commits attributed to David Iach via verified GitHub noreply | GitHub author=davidiach verified | APPLIED | earlier commit history retained per user request

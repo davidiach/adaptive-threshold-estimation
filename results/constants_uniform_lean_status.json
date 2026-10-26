@@ -1,0 +1,42 @@
+{
+  "valid": true,
+  "exit_code": 0,
+  "reports": {
+    "error_prefactor_lt": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "geometric_second_moment_factor_lt": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "fourth_root_three_lt": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "second_moment_scalar_lt": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "survival_coefficients": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "work_scalar_lt": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "product_of_moment_bounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "scope": "scalar inequalities only; full probability theorem is not formalized"
+}

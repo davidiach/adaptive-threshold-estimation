@@ -1,0 +1,31 @@
+⚠ [18168/18171] Replayed ThresholdHC.Statements
+warning: ThresholdHC\Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18169/18171] Ran ThresholdHC.Statements:irArts
+warning: ThresholdHC\Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+✖ [18170/18171] Building ThresholdHC.Proofs.Algebra (26s)
+trace: .> LEAN_PATH=C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\Cli\.lake\build\lib\lean;C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\batteries\.lake\build\lib\lean;C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\Qq\.lake\build\lib\lean;C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\aesop\.lake\build\lib\lean;C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\proofwidgets\.lake\build\lib\lean;C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\importGraph\.lake\build\lib\lean;C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\LeanSearchClient\.lake\build\lib\lean;C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\plausible\.lake\build\lib\lean;C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\mathlib\.lake\build\lib\lean;C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\build\lib\lean c:\Users\User\Desktop\Projects\math\threshold-hillclimb\.runtime\elan\toolchains\leanprover--lean4---v4.36.0-rc1\bin\lean.exe C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\ThresholdHC\Proofs\Algebra.lean -o C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\build\lib\lean\ThresholdHC\Proofs\Algebra.olean -i C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\build\lib\lean\ThresholdHC\Proofs\Algebra.ilean -c C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\build\ir\ThresholdHC\Proofs\Algebra.c --setup C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\build\ir\ThresholdHC\Proofs\Algebra.setup.json --json
+info: ThresholdHC/Proofs/Algebra.lean:23:6: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+error: ThresholdHC/Proofs/Algebra.lean:11:71: unsolved goals
+η L : ℝ
+hη : 0 ≤ η
+hlt : η < 1 / 2
+hL : 0 < L
+ha : 0 < 1 / 2 - η
+hb : 0 < 1 / 2 + η
+hda : 1 / 2 - η + (1 / 2 + η) * L ≠ 0
+hdb : 1 / 2 + η + (1 / 2 - η) * L ≠ 0
+hdc : L + (1 / 4 - η ^ 2) * (L - 1) ^ 2 ≠ 0
+hdapos : 0 < 1 / 2 - η + (1 / 2 + η) * L
+hdbpos : 0 < 1 / 2 + η + (1 / 2 - η) * L
+hdcpos : 0 < L + (1 / 4 - η ^ 2) * (L - 1) ^ 2
+⊢ η * (1 - η * 2 + η * L * 2 + L)⁻¹ * 2 + η * (1 + η * 2 - η * L * 2 + L)⁻¹ * 2 + (1 - η * 2 + η * L * 2 + L)⁻¹ -
+      (1 + η * 2 - η * L * 2 + L)⁻¹ =
+    η * (1 - η ^ 2 * 4 + η ^ 2 * L * 8 - η ^ 2 * L ^ 2 * 4 + L * 2 + L ^ 2)⁻¹ * 8
+Some required targets logged failures:
+- ThresholdHC.Proofs.Algebra
+error: build failed

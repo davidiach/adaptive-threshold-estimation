@@ -21,13 +21,18 @@ LEAN = ROOT / "lean"
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--sequential", action="store_true")
+    parser.add_argument("--accept", type=Path,
+                        help="Require the frozen scorer to accept an improvement over this JSON")
     args = parser.parse_args()
     if args.sequential:
         for group in ("Algebra", "FixedGap", "Calibration", "Modulus", "Constants",
                       "Classifier", "Hellinger", "KL"):
             subprocess.run(["lake", "build", f"ThresholdHC.Proofs.{group}"],
                            cwd=LEAN, check=True)
-    subprocess.run([sys.executable, str(ROOT / "tools/score.py")], cwd=ROOT, check=True)
+    command = [sys.executable, str(ROOT / "tools/score.py")]
+    if args.accept:
+        command += ["--accept", str(args.accept.resolve())]
+    subprocess.run(command, cwd=ROOT, check=True)
     audit_file, spans = score.write_audit()
     result = subprocess.run(["lake", "env", "lean", str(audit_file.relative_to(LEAN))],
                             cwd=LEAN, text=True, capture_output=True)

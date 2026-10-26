@@ -52,10 +52,85 @@ theorem classifier_scale_step : ThresholdHC.Targets.classifier_scale_step := by
   rw [heq] at hscaled
   linarith
 
+private lemma exp_step_v1 (t : ℝ) :
+    t * Real.exp (-t) ≤ 2 * (Real.exp (-(t/2)) - Real.exp (-t)) := by
+  have h := mul_le_mul_of_nonneg_right (Real.add_one_le_exp (t/2))
+    (Real.exp_pos (-t)).le
+  have heq : Real.exp (t/2) * Real.exp (-t) = Real.exp (-(t/2)) := by
+    rw [← Real.exp_add]
+    congr 1
+    ring
+  rw [heq] at h
+  nlinarith only [h]
+
 theorem dyadic_sum_v1 : ThresholdHC.Targets.dyadic_sum_v1 := by
-  sorry
+  intro b hb
+  have hpartial : ∀ m : ℕ,
+      b * (∑ k ∈ Finset.range m, (2:ℝ)^k * Real.exp (-(b*2^k)))
+      ≤ 2 * (Real.exp (-(b/2)) - Real.exp (-(b*2^m/2))) := by
+    intro m
+    induction m with
+    | zero => simp
+    | succ m ih =>
+      rw [Finset.sum_range_succ]
+      have hpow : b * (2:ℝ)^(m+1) / 2 = b * 2^m := by rw [pow_succ]; ring
+      rw [hpow]
+      have hs := exp_step_v1 (b * (2:ℝ)^m)
+      nlinarith only [ih, hs]
+  apply Real.tsum_le_of_sum_range_le (fun k => by positivity)
+  intro m
+  apply (le_div_iff₀ hb).2
+  have hs := hpartial m
+  have hstart : Real.exp (-(b/2)) ≤ 1 := by
+    simpa using Real.exp_le_exp.mpr (show -(b/2) ≤ 0 by linarith)
+  have hend := (Real.exp_pos (-(b*(2:ℝ)^m/2))).le
+  nlinarith only [hs, hstart, hend]
+
+private noncomputable def expTail (t : ℝ) := (1+t) * Real.exp (-t)
+
+private lemma expTail_le_one (t : ℝ) : expTail t ≤ 1 := by
+  have h := mul_le_mul_of_nonneg_right (Real.add_one_le_exp t) (Real.exp_pos (-t)).le
+  rw [← Real.exp_add] at h
+  simpa [expTail, add_comm] using h
+
+private lemma exp_step_v2 (t : ℝ) (ht : 0 ≤ t) :
+    t^2 * Real.exp (-t) ≤ (8/3:ℝ) * (expTail (t/2) - expTail t) := by
+  have hq := Real.quadratic_le_exp_of_nonneg (show 0 ≤ t/2 by linarith)
+  have h := mul_le_mul_of_nonneg_right hq
+    (show 0 ≤ (1+t/2) * Real.exp (-t) by positivity)
+  have heq : Real.exp (t/2) * ((1+t/2) * Real.exp (-t)) = expTail (t/2) := by
+    calc
+      _ = (1+t/2) * (Real.exp (t/2) * Real.exp (-t)) := by ring
+      _ = _ := by
+        rw [← Real.exp_add]
+        unfold expTail
+        congr 2
+        ring
+  rw [heq] at h
+  have hcub : 0 ≤ t^3 * Real.exp (-t) := by positivity
+  dsimp [expTail] at h ⊢
+  nlinarith only [h, hcub]
 
 theorem dyadic_sum_v2 : ThresholdHC.Targets.dyadic_sum_v2 := by
-  sorry
+  intro b hb
+  have hpartial : ∀ m : ℕ,
+      b^2 * (∑ k ∈ Finset.range m, ((2:ℝ)^k)^2 * Real.exp (-(b*2^k)))
+      ≤ (8/3:ℝ) * (expTail (b/2) - expTail (b*2^m/2)) := by
+    intro m
+    induction m with
+    | zero => simp
+    | succ m ih =>
+      rw [Finset.sum_range_succ]
+      have hpow : b * (2:ℝ)^(m+1) / 2 = b * 2^m := by rw [pow_succ]; ring
+      rw [hpow]
+      have hs := exp_step_v2 (b * (2:ℝ)^m) (by positivity)
+      nlinarith only [ih, hs]
+  apply Real.tsum_le_of_sum_range_le (fun k => by positivity)
+  intro m
+  apply (le_div_iff₀ (show 0 < 3 * b^2 by positivity)).2
+  have hs := hpartial m
+  have hstart := expTail_le_one (b/2)
+  have hend : 0 ≤ expTail (b*(2:ℝ)^m/2) := by unfold expTail; positivity
+  nlinarith only [hs, hstart, hend]
 
 end ThresholdHC.Proofs

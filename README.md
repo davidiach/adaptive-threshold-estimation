@@ -6,9 +6,9 @@ and Lean kernel-checked results are labeled separately. No novelty claim.
 
 ## Current checkpoints
 
-- Lean checkpoint 001 proves **23/33 frozen targets, 34/60 points**, with a
-  complete successful kernel audit. Statements compiled unchanged. Further
-  proofs are in progress; the separate numerical sanity check is not a proof.
+- Lean checkpoint 002 proves **all 33 frozen targets, 60/60 points**, with a
+  complete successful kernel audit. Statements compiled unchanged; no `sorry`
+  remains. The separate numerical sanity check is not a proof.
 - The constants track has two independently preselected, held-out accepted
   improvements. The conservative choice preserves the original bias theorem;
   the finite-grid winner has an explicit off-grid counterexample.

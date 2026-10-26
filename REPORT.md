@@ -15,13 +15,14 @@ used. Dependencies are pinned. Public checkpoint history is at
 
 ## A — Lean proofs
 
-**Proved and machine-checked: 0 → 34/60, 23/33 targets.** Checkpoint 001
+**Proved and machine-checked: 0 → 34 → 60/60, all 33 targets.** Checkpoint 002
 passed the full build, frozen hashes, exact target types, and independent
-audit with exit zero and all 33 reports. The proved targets use only the
-allowed standard axioms; the remaining ten targets still use `sorryAx`.
-Further proofs are in progress. No score is awarded for drafts or numerical
-checks. Evidence is in `results/lean_score_001.json` and
-`results/lean_checkpoint_001.json`.
+audit with exit zero and all 33 reports. The axiom union is exactly
+`propext`, `Classical.choice`, and `Quot.sound`. No `sorry` remains in the
+proof modules. No frozen targets are parked or unproved. This verifies the
+specified targets, not every theorem of the research papers. Evidence is in
+`results/lean_score_002.json`, `results/lean_checkpoint_002.json`, and
+`results/lean_independent_audit_002.log`.
 
 The frozen scorer does not include its audit subprocess exit status in its
 validity flag. It remains unchanged. `tools/verify_lean_checkpoint.py` adds a
@@ -45,8 +46,9 @@ the untruncated estimator has
 `Var(Y) E[W] < 713 (E[1/D])^2` when `E[1/D]` is finite, improving the supplied
 analytic upper constant 12665. See the full
 [713 proof](proposals/constants/UNIFORM_PRODUCT_BOUND.md) and
-[independent review](proposals/RESEARCH_REVIEW.md). Exact rational checks
-certify its arithmetic, not the full probability argument. Optimality is not
+[independent review](proposals/RESEARCH_REVIEW.md). Seven supporting scalar
+lemmas are additionally Lean-checked in `proposals/constants/UniformArithmetic.lean`;
+the full probability argument remains paper-only. Optimality is not
 claimed; the lower bound 1/16 and finite-grid proxy remain different objects.
 
 **Proved counterexample.** The finite-grid winner (0.25,0.5) fails the original
@@ -98,7 +100,8 @@ matching upper theorem for alpha>=2 or arbitrary laws.
 
 ## Open work and proposals
 
-- Finish the remaining frozen Lean targets; preserve all axiom audits.
+- All current frozen Lean targets are complete; future targets should cover
+  the stopped-transcript and rare-event results separately.
 - Formalize the new 713 probability argument in a separately approved target set.
 - The arbitrary-law matching upper bound and matching alpha>=2 constructions
   remain open here. No general distribution-blind theorem is supplied.
@@ -110,3 +113,7 @@ matching upper theorem for alpha>=2 or arbitrary laws.
 
 No novelty, priority, external-referee endorsement, or universal superiority
 claim is made.
+
+The user's ETH preprint was assessed as an indirect algorithmic research lead;
+no result here depends on its claimed theorem. See
+[relevance assessment](proposals/ETH_PAPER_RELEVANCE.md).

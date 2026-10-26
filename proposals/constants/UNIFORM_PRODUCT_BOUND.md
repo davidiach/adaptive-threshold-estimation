@@ -1,8 +1,13 @@
 # A uniform variance-work upper constant of 713
 
-**Status: proved on paper below, not Lean-checked.** The arithmetic checks in
-`uniform_constant_checks.py` verify the rational comparisons, not the full
-probability argument. This concerns the theory-compatible candidate
+**Status: full probability argument proved on paper below, not Lean-checked.**
+The separate `UniformArithmetic.lean` artifact checks seven scalar lemmas,
+including the prefactor and final constants, in Lean. It does not formalize
+the stopping-time, concentration, series, or integration arguments. Run it
+from `lean/` with `lake env lean ../proposals/constants/UniformArithmetic.lean`;
+the axiom audit is saved in `results/constants_uniform_lean_audit.log`.
+`uniform_constant_checks.py` independently verifies rational comparisons.
+This concerns the theory-compatible candidate
 `k1=1/4, k2=1`, not the finite-grid winner `k2=1/2`.
 
 For the original geometric single-term construction with `r=1/sqrt(2)` and
