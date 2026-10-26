@@ -48,6 +48,12 @@ bound is assumed. A concrete Bernoulli(1) example verifies that the assumptions
 are satisfiable. The separate guard audits 130 public proof roots, checks the
 recorded specification hash, and requires the complete theorem in CI.
 
+Full proof checkpoint `852690a` passed the independent
+[Linux CI run](https://github.com/davidiach/threshold-hillclimb/actions/runs/40414013439):
+all 130 proof roots, the exact full theorem type, the original 33 targets,
+scalar checks, numerical checks, and provenance locks. This verification is
+for that committed checkpoint; later proposals are separate work.
+
 ## B — Constants
 
 **Numerical evidence.** Both candidates were chosen from 169 development-only
