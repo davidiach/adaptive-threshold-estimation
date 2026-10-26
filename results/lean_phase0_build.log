@@ -1,0 +1,44 @@
+⚠ [18168/18188] Built ThresholdHC.Statements (27s)
+warning: ThresholdHC\Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18169/18188] Ran ThresholdHC.Statements:irArts
+warning: ThresholdHC\Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+✖ [18170/18188] Building ThresholdHC.Proofs.KL (38s)
+trace: .> LEAN_PATH=C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\Cli\.lake\build\lib\lean;C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\batteries\.lake\build\lib\lean;C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\Qq\.lake\build\lib\lean;C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\aesop\.lake\build\lib\lean;C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\proofwidgets\.lake\build\lib\lean;C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\importGraph\.lake\build\lib\lean;C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\LeanSearchClient\.lake\build\lib\lean;C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\plausible\.lake\build\lib\lean;C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\mathlib\.lake\build\lib\lean;C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\build\lib\lean c:\Users\User\Desktop\Projects\math\threshold-hillclimb\.runtime\elan\toolchains\leanprover--lean4---v4.36.0-rc1\bin\lean.exe C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\ThresholdHC\Proofs\KL.lean -o C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\build\lib\lean\ThresholdHC\Proofs\KL.olean -i C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\build\lib\lean\ThresholdHC\Proofs\KL.ilean -c C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\build\ir\ThresholdHC\Proofs\KL.c --setup C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\build\ir\ThresholdHC\Proofs\KL.setup.json --json
+error: ThresholdHC/Proofs/KL.lean:1:0: failed to read file 'C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\mathlib\.lake\build\lib\lean\Mathlib\NumberTheory\Height\NumberField.olean.private'
+✖ [18172/18188] Building ThresholdHC.Proofs.Classifier (38s)
+trace: .> LEAN_PATH=C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\Cli\.lake\build\lib\lean;C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\batteries\.lake\build\lib\lean;C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\Qq\.lake\build\lib\lean;C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\aesop\.lake\build\lib\lean;C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\proofwidgets\.lake\build\lib\lean;C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\importGraph\.lake\build\lib\lean;C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\LeanSearchClient\.lake\build\lib\lean;C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\plausible\.lake\build\lib\lean;C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\mathlib\.lake\build\lib\lean;C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\build\lib\lean c:\Users\User\Desktop\Projects\math\threshold-hillclimb\.runtime\elan\toolchains\leanprover--lean4---v4.36.0-rc1\bin\lean.exe C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\ThresholdHC\Proofs\Classifier.lean -o C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\build\lib\lean\ThresholdHC\Proofs\Classifier.olean -i C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\build\lib\lean\ThresholdHC\Proofs\Classifier.ilean -c C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\build\ir\ThresholdHC\Proofs\Classifier.c --setup C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\build\ir\ThresholdHC\Proofs\Classifier.setup.json --json
+error: ThresholdHC/Proofs/Classifier.lean:1:0: failed to read file 'C:\Users\User\Desktop\Projects\math\threshold-hillclimb\lean\.lake\packages\mathlib\.lake\build\lib\lean\Mathlib\NumberTheory\ZetaValues.olean.private'
+⚠ [18174/18188] Built ThresholdHC.Proofs.Algebra (39s)
+warning: ThresholdHC/Proofs/Algebra.lean:11:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Algebra.lean:15:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Algebra.lean:19:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Algebra.lean:23:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Algebra.lean:27:8: declaration uses `sorry`
+⚠ [18176/18188] Built ThresholdHC.Proofs.Hellinger (39s)
+warning: ThresholdHC/Proofs/Hellinger.lean:11:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Hellinger.lean:15:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Hellinger.lean:19:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Hellinger.lean:23:8: declaration uses `sorry`
+⚠ [18178/18188] Built ThresholdHC.Proofs.Calibration (39s)
+warning: ThresholdHC/Proofs/Calibration.lean:11:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Calibration.lean:15:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Calibration.lean:19:8: declaration uses `sorry`
+⚠ [18180/18188] Built ThresholdHC.Proofs.FixedGap (40s)
+warning: ThresholdHC/Proofs/FixedGap.lean:11:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/FixedGap.lean:15:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/FixedGap.lean:19:8: declaration uses `sorry`
+⚠ [18182/18188] Built ThresholdHC.Proofs.Modulus (40s)
+warning: ThresholdHC/Proofs/Modulus.lean:11:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Modulus.lean:15:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Modulus.lean:19:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Modulus.lean:23:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Modulus.lean:27:8: declaration uses `sorry`
+⚠ [18184/18188] Built ThresholdHC.Proofs.Constants (40s)
+warning: ThresholdHC/Proofs/Constants.lean:11:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Constants.lean:15:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Constants.lean:19:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Constants.lean:23:8: declaration uses `sorry`
+Some required targets logged failures:
+- ThresholdHC.Proofs.KL
+- ThresholdHC.Proofs.Classifier
+error: build failed

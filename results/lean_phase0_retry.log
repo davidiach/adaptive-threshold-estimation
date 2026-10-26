@@ -1,0 +1,47 @@
+⚠ [18168/18188] Replayed ThresholdHC.Statements
+warning: ThresholdHC\Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18169/18188] Ran ThresholdHC.Statements:irArts
+warning: ThresholdHC\Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18170/18188] Replayed ThresholdHC.Proofs.Algebra
+warning: ThresholdHC/Proofs/Algebra.lean:11:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Algebra.lean:15:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Algebra.lean:19:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Algebra.lean:23:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Algebra.lean:27:8: declaration uses `sorry`
+⚠ [18172/18188] Replayed ThresholdHC.Proofs.Hellinger
+warning: ThresholdHC/Proofs/Hellinger.lean:11:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Hellinger.lean:15:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Hellinger.lean:19:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Hellinger.lean:23:8: declaration uses `sorry`
+⚠ [18174/18188] Replayed ThresholdHC.Proofs.FixedGap
+warning: ThresholdHC/Proofs/FixedGap.lean:11:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/FixedGap.lean:15:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/FixedGap.lean:19:8: declaration uses `sorry`
+⚠ [18176/18188] Replayed ThresholdHC.Proofs.Calibration
+warning: ThresholdHC/Proofs/Calibration.lean:11:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Calibration.lean:15:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Calibration.lean:19:8: declaration uses `sorry`
+⚠ [18178/18188] Replayed ThresholdHC.Proofs.Modulus
+warning: ThresholdHC/Proofs/Modulus.lean:11:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Modulus.lean:15:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Modulus.lean:19:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Modulus.lean:23:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Modulus.lean:27:8: declaration uses `sorry`
+⚠ [18180/18188] Replayed ThresholdHC.Proofs.Constants
+warning: ThresholdHC/Proofs/Constants.lean:11:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Constants.lean:15:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Constants.lean:19:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Constants.lean:23:8: declaration uses `sorry`
+⚠ [18182/18188] Built ThresholdHC.Proofs.Classifier (29s)
+warning: ThresholdHC/Proofs/Classifier.lean:11:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Classifier.lean:15:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Classifier.lean:19:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/Classifier.lean:23:8: declaration uses `sorry`
+⚠ [18184/18188] Built ThresholdHC.Proofs.KL (29s)
+warning: ThresholdHC/Proofs/KL.lean:11:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/KL.lean:15:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/KL.lean:19:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/KL.lean:23:8: declaration uses `sorry`
+warning: ThresholdHC/Proofs/KL.lean:27:8: declaration uses `sorry`
+✔ [18186/18188] Built ThresholdHC (25s)
+Build completed successfully (18188 jobs).

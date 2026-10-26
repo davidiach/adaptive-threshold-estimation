@@ -1,0 +1,345 @@
+{
+ "timestamp": "2026-10-26T23:54:31",
+ "valid": true,
+ "frozen_ok": true,
+ "frozen_problems": [],
+ "forbidden": [],
+ "build_ok": true,
+ "violations": [],
+ "points": 0,
+ "max_points": 60,
+ "proven": [],
+ "targets": {
+  "posterior_identity": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "posterior_diff_le": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "posterior_mem": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "pred_variance_ge": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "ratio_bound": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "kl_taylor_bound": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "lemmaA_forward": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "lemmaA_reverse": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "lemmaA_sharp_at_one": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "hardpair_step_kl": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "sym_kl_hellinger_pointwise": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "kl_ge_two_hell_finite": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "sym_kl_ge_eight_hell_finite": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "two_point_variance_finite": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "fixed_gap_unbiased": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "fixed_gap_variance": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "fixed_gap_equality": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "negbin_total": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "negbin_mean": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "haldane_inverse_moment": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "scaling_up_pointwise": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "scaling_down_pointwise": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "modulus_scaling_up": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "power_modulus_critical": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "power_modulus": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "constant_second_moment": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "constant_work": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "kl_delta_identity": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "kl_delta_lower": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "error_tail_bound": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "classifier_scale_step": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "dyadic_sum_v1": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  },
+  "dyadic_sum_v2": {
+   "status": "sorry",
+   "axioms": [
+    "propext",
+    "sorryAx",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "detail": "uses sorry"
+  }
+ },
+ "seconds": 57.2
+}
