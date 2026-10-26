@@ -1,0 +1,2 @@
+valid=True k1=0.25 k2=0.5 product dev=4.2817 heldout=4.2821 (c1=2.229, c2=1.921; finite-budget product=6.56; bias_ratio=0.718) [1.8s]
+ACCEPT
