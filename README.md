@@ -1,48 +1,61 @@
-# Threshold hill-climbing starter kit
+# Adaptive threshold research hill-climb
 
-A harness for letting coding agents improve the adaptive-threshold research
-overnight, using only machine-checkable scores. Give Astra this folder plus
-both research packages, v4 and next-phase. The agent instructions are in
-`BRIEF.md`.
+Reproducible experiments and formal proof work extending the supplied adaptive
+threshold estimation research. Numerical evidence, paper proofs, conjectures,
+and Lean kernel-checked results are labeled separately. No novelty claim.
 
-## Layout
+## Current checkpoints
 
-| Path | What it is |
-|---|---|
-| `BRIEF.md` | Agent instructions: Phase 0, four tracks, rules, report format |
-| `lean/ThresholdHC/Statements.lean` | 33 frozen Lean statements of v4 lemmas (60 points) |
-| `lean/ThresholdHC/Proofs/*.lean` | `sorry` stubs, one file per group; agents fill these |
-| `lean/setup.sh` | Installs Lean if needed, pins Mathlib, builds |
-| `tools/score.py` | Lean scorer and cheat checks: frozen hashes, forbidden constructs, build, per-target type and axiom audit |
-| `tools/freeze.py` | Records hashes of frozen files after Phase 0 |
-| `tools/check_targets_numeric.py` | High-precision check that every frozen statement is true |
-| `tools/targets.json` | Target list, points and files |
-| `constants/` | Exact evaluator and scorer for the variance–work constant |
-| `FREEZE_LOG.md`, `RUNLOG.md` | Logs the agent must keep |
+- The supplied numerical check passes all 33 target statements. Sampling is not
+  a proof. The Lean compile/freeze gate is in progress; no formal points are
+  claimed until its audit passes.
+- The constants track has two independently preselected, held-out accepted
+  improvements. The conservative choice preserves the original bias theorem;
+  the finite-grid winner has an explicit off-grid counterexample.
+- The real-valued benchmark is in tuning. Its final choices will be committed
+  before the one-time held-out evaluation.
+- The [research audit](TRACK_D.md) checks the imported Lee–Valiant input, evaluates
+  the existing power-margin upper bracket, and proves a limitation on completely
+  uniform adaptation to unknown rarity. These arguments are not Lean-checked.
 
-## Status when handed over (26 October 2026)
+| Constants configuration | Development proxy | Held-out proxy | Scope |
+|---|---:|---:|---|
+| Original (1, 1) | 6.7788 | 6.7719 | Supplied baseline |
+| (0.25, 1) | 5.5506 | 5.5501 | Original uniform bias bound proved on paper |
+| (0.25, 0.5) | 4.2817 | 4.2821 | Finite grid only; uniform bias bound fails |
 
-- All 33 Lean statements pass the numerical truth check.
-- **They have not been compiled.** This environment could not reach Mathlib's
-  cache. Phase 0 is a compile gate: syntax-only fixes are allowed and must be
-  logged in `FREEZE_LOG.md`.
-- The scorer was tested against simulated Lean output. It catches:
-  - non-standard axioms, including `native_decide`'s;
-  - forbidden tokens;
-  - type mismatches with the frozen statements;
-  - edits to frozen files;
-  - regressions.
-- The constants scorer was tested end to end. The v4 baseline proxy is 6.78;
-  `k2 = 0.7` gives 5.95; out-of-bounds settings are rejected.
+These proxies use a finite grid, truncated levels, and floating-point probability
+recursions. They are not universal variance–work constants. See the
+[bias audit](proposals/constants/BIAS_AUDIT.md),
+[locked choices](results/constants_candidate_lock.json), and raw result JSONs.
+`constants/candidate.json` records the scorer's finite-grid winner;
+`constants/candidate_theory.json` records the conservative alternative.
 
-## What to check in the morning
+## Reproduce
 
-1. `FREEZE_LOG.md`: read every entry. Any change that alters a statement's
-   meaning invalidates the related points.
-2. `results/lean_best.json`: points, proven targets, and the axioms list.
-3. `RUNLOG.md`: the attempt history.
-4. `REPORT.md`: the agent's summary, with status labels.
+Python 3.12:
 
-For a final check of any Lean proof, rerun `python tools/score.py` on a clean
-checkout. For extra assurance, replay the build with an external kernel
-checker such as `lean4checker`.
+```sh
+python -m pip install -r requirements.txt
+python tools/verify_inputs.py
+python tools/check_targets_numeric.py
+python tools/check_power_bracket.py
+python proposals/constants/bias_audit.py
+python constants/score_constants.py constants/candidate_theory.json
+python constants/score_constants.py constants/candidate_finite_grid.json
+```
+
+The numerical checks run in GitHub Actions. Benchmark commands and full Lean
+verification will be documented at their verified checkpoints. All input files
+are preserved in [inputs/next-phase](inputs/next-phase/README.md), with the
+original hash manifest checked by `tools/verify_inputs.py`.
+
+## Evidence and history
+
+- [Original project brief](BRIEF.md) and [starter README](inputs/STARTER_README.md)
+- [Provenance and verification policy](PROVENANCE.md)
+- [Run log](RUNLOG.md) and [freeze log](FREEZE_LOG.md)
+- [Source audit and theory limitations](TRACK_D.md)
+- [Proposals](proposals/)
+
+Local runtimes and dependency caches are excluded from version control.
