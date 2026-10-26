@@ -25,3 +25,29 @@ jobs:
       - name: Check accepted constants configuration
         run: |
           if test -f constants/candidate.json; then python constants/score_constants.py constants/candidate.json; fi
+  lean-kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Lean tool manager
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/v4.2.4/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download pinned Mathlib cache
+        working-directory: lean
+        run: lake exe cache get
+      - name: Build sequentially and require complete kernel audit
+        run: python tools/verify_lean_checkpoint.py --sequential
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lean-verification
+          path: |
+            results/lean_score.json
+            results/lean_checkpoint.json
+            results/lean_audit.log
+            results/lean_independent_audit.log
