@@ -1,22 +1,31 @@
 import ThresholdHC.Statements
 
-/-! Proofs for group FixedGap. Replace each `sorry`; do not change theorem names or types.
-Helper lemmas are welcome (put them above the theorem that uses them). -/
-
 namespace ThresholdHC.Proofs
-
 open ThresholdHC Real MeasureTheory
 
-/-- D1. -/
 theorem fixed_gap_unbiased : ThresholdHC.Targets.fixed_gap_unbiased := by
-  sorry
+  intro d q hd _
+  dsimp [pred]
+  field_simp
+  <;> ring
 
-/-- D2. -/
 theorem fixed_gap_variance : ThresholdHC.Targets.fixed_gap_variance := by
-  sorry
+  intro d q hd _
+  have hne : d ≠ 0 := ne_of_gt hd
+  have heq : pred d q * ((1 - 1/2 + d) / (2 * d) - q) ^ 2
+      + (1 - pred d q) * ((0 - 1/2 + d) / (2 * d) - q) ^ 2
+      = 1 / (16 * d ^ 2) - (q - 1/2) ^ 2 := by
+    dsimp [pred]
+    field_simp
+    <;> ring
+  rw [heq]
+  nlinarith [sq_nonneg (q - 1/2)]
 
-/-- D3. -/
 theorem fixed_gap_equality : ThresholdHC.Targets.fixed_gap_equality := by
-  sorry
+  intro d hd _
+  have hne : d ≠ 0 := ne_of_gt hd
+  dsimp [pred]
+  field_simp
+  <;> ring
 
 end ThresholdHC.Proofs

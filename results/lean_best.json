@@ -1,74 +1,92 @@
 {
- "timestamp": "2026-10-26T23:54:31",
+ "timestamp": "2026-10-27T00:02:17",
  "valid": true,
  "frozen_ok": true,
  "frozen_problems": [],
  "forbidden": [],
  "build_ok": true,
  "violations": [],
- "points": 0,
+ "points": 34,
  "max_points": 60,
- "proven": [],
+ "proven": [
+  "classifier_scale_step",
+  "constant_second_moment",
+  "constant_work",
+  "error_tail_bound",
+  "fixed_gap_equality",
+  "fixed_gap_unbiased",
+  "fixed_gap_variance",
+  "haldane_inverse_moment",
+  "kl_delta_identity",
+  "kl_delta_lower",
+  "kl_ge_two_hell_finite",
+  "kl_taylor_bound",
+  "negbin_mean",
+  "negbin_total",
+  "posterior_diff_le",
+  "posterior_identity",
+  "posterior_mem",
+  "pred_variance_ge",
+  "ratio_bound",
+  "scaling_down_pointwise",
+  "scaling_up_pointwise",
+  "sym_kl_ge_eight_hell_finite",
+  "sym_kl_hellinger_pointwise"
+ ],
  "targets": {
   "posterior_identity": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "posterior_diff_le": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "posterior_mem": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "pred_variance_ge": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "ratio_bound": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "kl_taylor_bound": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "lemmaA_forward": {
    "status": "sorry",
@@ -111,34 +129,31 @@
    "detail": "uses sorry"
   },
   "sym_kl_hellinger_pointwise": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "kl_ge_two_hell_finite": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "sym_kl_ge_eight_hell_finite": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "two_point_variance_finite": {
    "status": "sorry",
@@ -151,84 +166,76 @@
    "detail": "uses sorry"
   },
   "fixed_gap_unbiased": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "fixed_gap_variance": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "fixed_gap_equality": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "negbin_total": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "negbin_mean": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "haldane_inverse_moment": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "scaling_up_pointwise": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "scaling_down_pointwise": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "modulus_scaling_up": {
    "status": "sorry",
@@ -261,64 +268,58 @@
    "detail": "uses sorry"
   },
   "constant_second_moment": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "constant_work": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "kl_delta_identity": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "kl_delta_lower": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "error_tail_bound": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "classifier_scale_step": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "dyadic_sum_v1": {
    "status": "sorry",
@@ -341,5 +342,5 @@
    "detail": "uses sorry"
   }
  },
- "seconds": 57.2
+ "seconds": 29.6
 }
