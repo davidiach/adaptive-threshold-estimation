@@ -1,0 +1,23 @@
+name: Reproducible checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  numerical-evidence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - run: python tools/verify_inputs.py
+      - run: python tools/check_targets_numeric.py
+      - run: python tools/check_power_bracket.py
+      - name: Verify frozen hashes when Phase 0 is complete
+        run: |
+          if test -f FROZEN.sha256; then python tools/freeze.py --verify; fi
+      - name: Check accepted constants configuration
+        run: |
+          if test -f constants/candidate.json; then python constants/score_constants.py constants/candidate.json; fi
