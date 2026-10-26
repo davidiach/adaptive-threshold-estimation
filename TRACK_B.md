@@ -22,15 +22,19 @@ residual below 3.2e-15. The grid covers caps through 4096 only.
 There is no proof that these are globally optimal parameters, even for the
 finite-grid objective: this was a coarse grid plus two local refinements.
 
-**Uniform guarantee: proved on paper, not Lean-checked.**
+**Uniform guarantee: proved in Lean and on paper.**
 For `(0.25,1)`, `proposals/constants/UNIFORM_PRODUCT_BOUND.md` proves
 conditional second moment below `23/d` and expected work below `31/d`.
 Therefore the untruncated geometric single-term estimator has
 `Var(Y) E[W] < 713 (E[1/D])^2` whenever `E[1/D]<infinity`.
 The proof uses a tighter error envelope, one-sided survival concentration,
 and the pathwise fact that the coarse classifier stops no later than the
-fine classifier. Exact rational arithmetic checks pass in
-`results/constants_uniform_bound.json`; they do not certify the full proof.
+fine classifier. The complete Lean theorem is
+`ThresholdHC.Uniform713.full_bound_713`, checked against the recorded
+`FullBound713Statement` by `python tools/verify_uniform713.py --require-complete`.
+Its natural model assumptions contain no error, work, or moment bounds.
+The earlier exact rational checks remain in `results/constants_uniform_bound.json`;
+the full kernel audit is recorded separately in `results/uniform713_status.json`.
 This improves the supplied analytic upper constant 12665 but remains well
 above both the finite-grid proxy and the lower bound 1/16. No optimality claim.
 

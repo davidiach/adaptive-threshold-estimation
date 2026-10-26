@@ -250,4 +250,3 @@ theorem expected_work_survival_identity (μ : Measure Ω) [IsProbabilityMeasure 
 
 end Measure
 end ThresholdHC.Uniform713
-

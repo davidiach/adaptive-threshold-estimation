@@ -1,10 +1,10 @@
 {
   "valid": true,
-  "full_theorem_complete": false,
-  "full_theorem": null,
+  "full_theorem_complete": true,
+  "full_theorem": "ThresholdHC.Uniform713.full_bound_713",
   "audit_exit_code": 0,
-  "root_count": 86,
-  "expected_root_count": 86,
+  "root_count": 130,
+  "expected_root_count": 130,
   "sources_unchanged_during_audit": true,
   "specification_sha256": "a3fd9513084b2168cf86fe74962c14df956970c28ff270795591cf45037d9a86",
   "source_sha256": {
@@ -12,11 +12,18 @@
     "ThresholdHC.Uniform713.Arithmetic": "80ff25f6c52834b8374167cbafcf01acd08acabe7f4642fe04f195c77209fb05",
     "ThresholdHC.Uniform713.Concentration": "b494cc19ba348e05533c0a6f7715de8bda306c94e4ad613bb8515e5af6b7c149",
     "ThresholdHC.Uniform713.WorkArithmetic": "ac7482f757849fb39467917ba9f423e2ed5cd65c2b765be6279fd9016b5932a9",
-    "ThresholdHC.Uniform713.Classifier": "02ecdbe600515f233747d5ef53fe37daf8f7fdb1ad7de5da3f505662eb81fefb",
-    "ThresholdHC.Uniform713.Series": "e8c6baa3b129b973c8d62c1059fb06fd78891f76ae665d9dfcdfc210788d8020",
+    "ThresholdHC.Uniform713.Classifier": "432b97eeb99906269a89ec5688bb74c39f4eeb09029334335b32ef94275aef35",
+    "ThresholdHC.Uniform713.ClassifierModel": "d633c695062bb5b9a468e93a45ad7aeb4571d19efb87d9f3b38c6ecbf7ec1a77",
+    "ThresholdHC.Uniform713.Series": "e88d5540baff863c93de835cada6420cd76c759d88d6aa4435a4a4f991dcb2aa",
     "ThresholdHC.Uniform713.Estimator": "39a49e46489f73b73c2fdd418134edf41ae5a6dfd8cefd0bf39d765d6f50780e",
-    "ThresholdHC.Uniform713.Integration": "0395fcde1c00177d20d87d96b8061a8634fb0852791d0adf094276b4b50d5832",
-    "ThresholdHC.Uniform713.Specification": "a3fd9513084b2168cf86fe74962c14df956970c28ff270795591cf45037d9a86"
+    "ThresholdHC.Uniform713.Integration": "bb0b5f05f43b024c7cc5e85b6500260078a2d80b3a0ce233103724888c53371e",
+    "ThresholdHC.Uniform713.Specification": "a3fd9513084b2168cf86fe74962c14df956970c28ff270795591cf45037d9a86",
+    "ThresholdHC.Uniform713.Convergence": "081e74bf4f92ddbca2242db90a64f721d71aa7692763e7c7bd5d00ce0776e2f1",
+    "ThresholdHC.Uniform713.Conditional": "5b12572eac72fd3ab4b74bddd557ca6780d4e07da135cf02203a1f2ce8e37544",
+    "ThresholdHC.Uniform713.CoupledWork": "1c710be2d52c7815330a814aab3ca96e078caadafda04b7ae472a36d4a15bfa4",
+    "ThresholdHC.Uniform713.Examples": "3249d1bb51cd74dccc207a5bcd23d75b2a6ac17b136197452f34750910a60648",
+    "ThresholdHC.Uniform713.FullBound": "4f62788b6a0eb981f5d8a92d81d517e8f766363ef51fc04af90f16b961990def",
+    "ThresholdHC.Uniform713": "a0156085f0cbf977ac598d197baaa8ab3810a7ff1ded0e5a1d810d11aa39a3bd"
   },
   "reports": {
     "ThresholdHC.Uniform713.cap_pos": [
@@ -289,6 +296,146 @@
       "Classical.choice",
       "Quot.sound"
     ],
+    "ThresholdHC.Uniform713.error_positive_union": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.error_negative_union": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.error_le_one": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.survival_probability_positive": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.survival_probability_negative": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.expected_work_le_cap": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.expected_work_survival_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.squared_decision_difference_integral": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.squared_decision_difference_le_errors": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.squared_decision_difference_le_one": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.finite_dyadic_sum_v2": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.early_error_term": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.exp_cap_error": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.errorUnionBound_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.error_positive_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.error_negative_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.measurable_classifier_increment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.integrable_classifier_increment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.classifier_increment_sq_le_one": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.integrable_classifier_increment_sq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.work_bound_of_survival": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.expected_work_positive_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.expected_work_negative_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.decision_square_integral_le_one": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.error_pair_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.increment_secondMoment_envelope": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.increment_secondMoment_positive": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.increment_secondMoment_negative": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
     "ThresholdHC.Uniform713.summable_secondMomentEnvelope": [
       "propext",
       "Classical.choice",
@@ -315,6 +462,16 @@
       "Quot.sound"
     ],
     "ThresholdHC.Uniform713.workSeries_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.sum_secondMomentEnvelope_lt": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.sum_weightedWorkEnvelope_lt": [
       "propext",
       "Classical.choice",
       "Quot.sound"
@@ -439,12 +596,82 @@
       "Classical.choice",
       "Quot.sound"
     ],
+    "ThresholdHC.Uniform713.integrate_conditional_strict_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.integrate_conditional_inverse_gap_strict": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.variance_work_lt_713": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
     "ThresholdHC.Uniform713.samplingKernel_markov": [
       "propext",
       "Classical.choice",
       "Quot.sound"
     ],
     "ThresholdHC.Uniform713.samplingKernel_apply": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.tendsto_dyadic_error_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.tendsto_errorEnvelope_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.tendsto_of_error_envelope": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.tendsto_error_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.conditional_bounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.levelWork_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.levelWork_succ_eq_max": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.coupledLevelWork_eq_levelWork": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.uniformWork_eq_coupled": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.deterministic_positive_model": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Uniform713.full_bound_713": [
       "propext",
       "Classical.choice",
       "Quot.sound"

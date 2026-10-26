@@ -1,11 +1,14 @@
 # A uniform variance-work upper constant of 713
 
-**Status: full probability argument proved on paper below, not Lean-checked.**
-The separate `UniformArithmetic.lean` artifact checks seven scalar lemmas,
-including the prefactor and final constants, in Lean. It does not formalize
-the stopping-time, concentration, series, or integration arguments. Run it
-from `lean/` with `lake env lean ../proposals/constants/UniformArithmetic.lean`;
-the axiom audit is saved in `results/constants_uniform_lean_audit.log`.
+**Status: the full untruncated 713 theorem is proved in Lean.**
+`lean/ThresholdHC/Uniform713/FullBound.lean` proves concentration, classifier
+error and work bounds, geometric summability, estimator integrability and
+unbiasedness, and integration over arbitrary magnitude/sign laws. Its theorem
+is checked against the specification recorded in the preceding checkpoint,
+using only the three standard axioms. Run
+`python tools/verify_uniform713.py --require-complete` from the repository root;
+see `results/uniform713_status.json` and `LEAN713_PROGRESS.md`.
+The older `UniformArithmetic.lean` remains a separate seven-lemma scalar check.
 `uniform_constant_checks.py` independently verifies rational comparisons.
 This concerns the theory-compatible candidate
 `k1=1/4, k2=1`, not the finite-grid winner `k2=1/2`.

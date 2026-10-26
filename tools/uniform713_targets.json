@@ -64,13 +64,45 @@
       "ThresholdHC.Uniform713.work_survival_identity",
       "ThresholdHC.Uniform713.expected_work_survival_identity"
     ],
+    "ThresholdHC.Uniform713.ClassifierModel": [
+      "ThresholdHC.Uniform713.error_positive_union",
+      "ThresholdHC.Uniform713.error_negative_union",
+      "ThresholdHC.Uniform713.error_le_one",
+      "ThresholdHC.Uniform713.survival_probability_positive",
+      "ThresholdHC.Uniform713.survival_probability_negative",
+      "ThresholdHC.Uniform713.expected_work_le_cap",
+      "ThresholdHC.Uniform713.expected_work_survival_bound",
+      "ThresholdHC.Uniform713.squared_decision_difference_integral",
+      "ThresholdHC.Uniform713.squared_decision_difference_le_errors",
+      "ThresholdHC.Uniform713.squared_decision_difference_le_one",
+      "ThresholdHC.Uniform713.finite_dyadic_sum_v2",
+      "ThresholdHC.Uniform713.early_error_term",
+      "ThresholdHC.Uniform713.exp_cap_error",
+      "ThresholdHC.Uniform713.errorUnionBound_le",
+      "ThresholdHC.Uniform713.error_positive_bound",
+      "ThresholdHC.Uniform713.error_negative_bound",
+      "ThresholdHC.Uniform713.measurable_classifier_increment",
+      "ThresholdHC.Uniform713.integrable_classifier_increment",
+      "ThresholdHC.Uniform713.classifier_increment_sq_le_one",
+      "ThresholdHC.Uniform713.integrable_classifier_increment_sq",
+      "ThresholdHC.Uniform713.work_bound_of_survival",
+      "ThresholdHC.Uniform713.expected_work_positive_bound",
+      "ThresholdHC.Uniform713.expected_work_negative_bound",
+      "ThresholdHC.Uniform713.decision_square_integral_le_one",
+      "ThresholdHC.Uniform713.error_pair_bound",
+      "ThresholdHC.Uniform713.increment_secondMoment_envelope",
+      "ThresholdHC.Uniform713.increment_secondMoment_positive",
+      "ThresholdHC.Uniform713.increment_secondMoment_negative"
+    ],
     "ThresholdHC.Uniform713.Series": [
       "ThresholdHC.Uniform713.summable_secondMomentEnvelope",
       "ThresholdHC.Uniform713.tsum_secondMomentEnvelope_lt",
       "ThresholdHC.Uniform713.summable_weightedWorkEnvelope",
       "ThresholdHC.Uniform713.tsum_weightedWorkEnvelope_lt",
       "ThresholdHC.Uniform713.secondMomentSeries_bound",
-      "ThresholdHC.Uniform713.workSeries_bound"
+      "ThresholdHC.Uniform713.workSeries_bound",
+      "ThresholdHC.Uniform713.sum_secondMomentEnvelope_lt",
+      "ThresholdHC.Uniform713.sum_weightedWorkEnvelope_lt"
     ],
     "ThresholdHC.Uniform713.Estimator": [
       "ThresholdHC.Uniform713.levelMeasure_singleton",
@@ -98,13 +130,38 @@
     ],
     "ThresholdHC.Uniform713.Integration": [
       "ThresholdHC.Uniform713.integrate_conditional_bound",
-      "ThresholdHC.Uniform713.integrate_conditional_inverse_gap"
+      "ThresholdHC.Uniform713.integrate_conditional_inverse_gap",
+      "ThresholdHC.Uniform713.integrate_conditional_strict_bound",
+      "ThresholdHC.Uniform713.integrate_conditional_inverse_gap_strict",
+      "ThresholdHC.Uniform713.variance_work_lt_713"
     ],
     "ThresholdHC.Uniform713.Specification": [
       "ThresholdHC.Uniform713.samplingKernel_markov",
       "ThresholdHC.Uniform713.samplingKernel_apply"
-    ]
+    ],
+    "ThresholdHC.Uniform713.Convergence": [
+      "ThresholdHC.Uniform713.tendsto_dyadic_error_zero",
+      "ThresholdHC.Uniform713.tendsto_errorEnvelope_zero",
+      "ThresholdHC.Uniform713.tendsto_of_error_envelope",
+      "ThresholdHC.Uniform713.tendsto_error_probability"
+    ],
+    "ThresholdHC.Uniform713.Conditional": [
+      "ThresholdHC.Uniform713.conditional_bounds"
+    ],
+    "ThresholdHC.Uniform713.CoupledWork": [
+      "ThresholdHC.Uniform713.levelWork_zero",
+      "ThresholdHC.Uniform713.levelWork_succ_eq_max",
+      "ThresholdHC.Uniform713.coupledLevelWork_eq_levelWork",
+      "ThresholdHC.Uniform713.uniformWork_eq_coupled"
+    ],
+    "ThresholdHC.Uniform713.Examples": [
+      "ThresholdHC.Uniform713.deterministic_positive_model"
+    ],
+    "ThresholdHC.Uniform713.FullBound": [
+      "ThresholdHC.Uniform713.full_bound_713"
+    ],
+    "ThresholdHC.Uniform713": []
   },
   "specification_sha256": "a3fd9513084b2168cf86fe74962c14df956970c28ff270795591cf45037d9a86",
-  "full_theorem": null
+  "full_theorem": "ThresholdHC.Uniform713.full_bound_713"
 }

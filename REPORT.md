@@ -35,6 +35,19 @@ validity flag. It remains unchanged. `tools/verify_lean_checkpoint.py` adds a
 separate guard requiring a zero audit exit, all 33 reports, consistency with
 the scorer, and no regression from the committed best. Linux CI replays it.
 
+**Full 713 extension: proved and machine-checked.** The separate development in
+`lean/ThresholdHC/Uniform713/` proves `full_bound_713` against the exact
+`FullBound713Statement` recorded before the final proof. The theorem derives
+concentration from independent bounded observations, analyzes the actual capped
+classifier and shared-prefix cost, constructs the independent geometric level,
+and establishes square integrability, finite expected work, unbiasedness, and
+the strict product bound for arbitrary magnitude/sign laws. The model assumes
+only measurable independent [0,1] observations with mean 1/2 ± d, 0<d≤1/2, and
+integrable 1/d. Bernoulli observations are included. No desired error or moment
+bound is assumed. A concrete Bernoulli(1) example verifies that the assumptions
+are satisfiable. The separate guard audits 130 public proof roots, checks the
+recorded specification hash, and requires the complete theorem in CI.
+
 ## B — Constants
 
 **Numerical evidence.** Both candidates were chosen from 169 development-only
@@ -46,16 +59,17 @@ trials and published in `f4f8e84` before their held-out evaluations.
 | (0.25,1) | 5.550646 | 5.550060 | ACCEPT |
 | (0.25,0.5) | 4.281742 | 4.282069 | ACCEPT on finite grid |
 
-**Proved on paper, independently reviewed; not Lean-checked.** For (0.25,1),
+**Proved in Lean; also independently reviewed on paper.** For (0.25,1),
 conditional second moment is below 23/d and expected work below 31/d. Thus
 the untruncated estimator has
 `Var(Y) E[W] < 713 (E[1/D])^2` when `E[1/D]` is finite, improving the supplied
 analytic upper constant 12665. See the full
 [713 proof](proposals/constants/UNIFORM_PRODUCT_BOUND.md) and
-[independent review](proposals/RESEARCH_REVIEW.md). Seven supporting scalar
-lemmas are additionally Lean-checked in `proposals/constants/UniformArithmetic.lean`;
-the full probability argument remains paper-only. Optimality is not
-claimed; the lower bound 1/16 and finite-grid proxy remain different objects.
+[independent review](proposals/RESEARCH_REVIEW.md). The complete proof is
+`lean/ThresholdHC/Uniform713/FullBound.lean`; its audit is
+`results/uniform713_status.json`. The earlier seven scalar lemmas remain
+separately reproducible. Optimality is not claimed; the lower bound 1/16 and
+finite-grid proxy remain different objects.
 
 **Proved counterexample.** The finite-grid winner (0.25,0.5) fails the original
 uniform bias bound: at d=0.1 and cap 2^97, a specific all-tails event exceeds

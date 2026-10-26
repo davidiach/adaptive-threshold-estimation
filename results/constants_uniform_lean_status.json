@@ -38,5 +38,5 @@
       "Quot.sound"
     ]
   },
-  "scope": "scalar inequalities only; full probability theorem is not formalized"
+  "scope": "scalar inequalities only; full theorem audited separately by verify_uniform713.py"
 }

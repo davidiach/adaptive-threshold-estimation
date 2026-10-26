@@ -22,3 +22,13 @@ The initial import precedes the Lean compile gate so that the source baseline
 is recorded before environment setup and research changes. Subsequent commits
 record verified checkpoints and clearly labeled unsuccessful experiments.
 Local runtimes and downloaded dependencies are excluded from Git.
+
+The full 713 extension has its own specification, first published in checkpoint
+`8a435ec` before the final proof. Its SHA-256 remains
+`a3fd9513084b2168cf86fe74962c14df956970c28ff270795591cf45037d9a86`.
+The completion guard checks this hash, requires the proof to inhabit that exact
+statement, builds all registered modules, and independently audits every public
+proof root and the final theorem's transitive axioms. Source hashes are checked
+before and after the audit. Three parallel agents developed supporting modules;
+separate source reviews checked the model assumptions and final assembly.
+The 12 original frozen files and all benchmark locks remain unchanged.

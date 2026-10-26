@@ -4,8 +4,8 @@ import ThresholdHC.Uniform713.Arithmetic
 /-!
 Geometric-series estimates for the uniform variance-work bound.
 The explicit classifier envelopes imply summable second moments with constant 23
-and summable expected work with constant 31. Probability-model assumptions are
-discharged in other modules; the statements here are deterministic inequalities.
+and summable expected work with constant 31, including the finite-cap refinements.
+The statements here are deterministic inequalities.
 -/
 set_option maxHeartbeats 800000
 noncomputable section
@@ -33,7 +33,7 @@ private lemma cap_eq_inv_r_sq (l : ℕ) : cap l = (rLevel ^ l)⁻¹ ^ 2 := by
   field_simp
   exact h
 
-private lemma inverse_geom_sum (r : ℝ) (hr : 0 < r) (hr1 : r < 1) (n : ℕ) :
+private lemma inverse_geom_sum (r : ℝ) (hr : 0 < r) (_hr1 : r < 1) (n : ℕ) :
     (1-r) * (∑ k ∈ range (n+1), (r^k)⁻¹) = (r^n)⁻¹-r := by
   induction n with
   | zero => simp
@@ -41,7 +41,7 @@ private lemma inverse_geom_sum (r : ℝ) (hr : 0 < r) (hr1 : r < 1) (n : ℕ) :
     rw [sum_range_succ, mul_add, ih, pow_succ]
     have hn : r^n ≠ 0 := ne_of_gt (pow_pos hr n)
     field_simp
-    <;> ring
+    ring
 
 private lemma inverse_geom_sum_le (r : ℝ) (hr : 0 < r) (hr1 : r < 1) (n : ℕ) :
     ∑ k ∈ range (n+1), (r^k)⁻¹ ≤ (r^n)⁻¹/(1-r) := by
@@ -76,7 +76,6 @@ private lemma envelope_tail (l : ℕ) (d : ℝ) (hd : 0 < d) :
       have hd0 : d ≠ 0 := ne_of_gt hd
       rw [← pow_mul, Nat.mul_comm 3 l, pow_mul]
       field_simp
-      <;> ring
 
 
 private lemma r_cube_lt_one : rLevel^3 < 1 :=
@@ -143,7 +142,7 @@ theorem tsum_secondMomentEnvelope_lt (d : ℝ) (hd : 0 < d) (hdhalf : d ≤ 1/2)
   have hfactor : 0 < 4/(3*d) := by positivity
   calc
     _ ≤ (4/(3*d)) * ((1/(1-rLevel)) * (1/(1-rLevel)+1/(1-rLevel^3))) := by
-      convert add_le_add hpre htbound using 1 <;> ring
+      convert add_le_add hpre htbound using 1; ring
     _ < (4/(3*d)) * 17 := mul_lt_mul_of_pos_left hscalar hfactor
     _ < 23/d := by
       apply (lt_div_iff₀ hd).2
@@ -226,7 +225,6 @@ private lemma hasSum_work_majorant (d : ℝ) (hd : 0 < d) :
     ring
   · have hne := ne_of_gt (sub_pos.mpr rLevel_lt_one)
     field_simp
-    <;> ring
 
 private lemma work_sum_bound (d : ℝ) (hd : 0 < d) (hdhalf : d ≤ 1/2) :
     Summable (fun l => levelProb l * workEnvelope l d) ∧
@@ -260,7 +258,7 @@ private lemma work_sum_bound (d : ℝ) (hd : 0 < d) (hdhalf : d ≤ 1/2) :
         Summable.tsum_le_tsum (weighted_work_tail d hd n hnlo.le hnhi) hsTail
           (hasSum_work_majorant d hd).summable
       _ = _ := (hasSum_work_majorant d hd).tsum_eq
-  convert add_le_add hpre ht using 1 <;> ring
+  convert add_le_add hpre ht using 1; ring
 
 /-- Absolute convergence of the weighted stopping-work envelope. -/
 theorem summable_weightedWorkEnvelope (d : ℝ) (hd : 0 < d) (hdhalf : d ≤ 1/2) :
@@ -310,7 +308,75 @@ theorem workSeries_bound (d : ℝ) (hd : 0 < d) (hdhalf : d ≤ 1/2)
   exact ⟨hs, lt_of_le_of_lt (Summable.tsum_le_tsum hle hs
     (summable_weightedWorkEnvelope d hd hdhalf)) (tsum_weightedWorkEnvelope_lt d hd hdhalf)⟩
 
+
+private lemma sqrt_cap (l : ℕ) : Real.sqrt (cap l) = (rLevel^l)⁻¹ := by
+  rw [cap_eq_inv_r_sq, Real.sqrt_sq (inv_nonneg.mpr (pow_pos rLevel_pos l).le)]
+
+private lemma secondMoment_prefix_scalar_lt : (1-rLevel)⁻¹ * (1-rLevel)⁻¹ < 23 := by
+  have hr1 : 0 < 1-rLevel := sub_pos.mpr rLevel_lt_one
+  have hr3 : 0 < 1-rLevel^3 := sub_pos.mpr r_cube_lt_one
+  have h := Arithmetic.geometric_second_moment_factor_lt
+  have hp : 0 < (1-rLevel)⁻¹ * (1-rLevel^3)⁻¹ := by positivity
+  simp only [one_div] at h
+  nlinarith
+
+/-- The second-moment series also has the finite-cap refinement from the paper. -/
+theorem sum_secondMomentEnvelope_lt (L : ℕ) (d : ℝ) (hd : 0 < d) (hdhalf : d ≤ 1/2) :
+    (∑ l ∈ range (L+1), secondMomentEnvelope l d) <
+      23 * min (Real.sqrt (cap L)) (1/d) := by
+  have hs := summable_secondMomentEnvelope d hd
+  have hgap : (∑ l ∈ range (L+1), secondMomentEnvelope l d) < 23/d :=
+    lt_of_le_of_lt (hs.sum_le_tsum (range (L+1)) (fun l _ => envelope_nonneg l d))
+      (tsum_secondMomentEnvelope_lt d hd hdhalf)
+  have hr1 : 0 < 1-rLevel := sub_pos.mpr rLevel_lt_one
+  have hcap : (∑ l ∈ range (L+1), secondMomentEnvelope l d) < 23*Real.sqrt (cap L) := by
+    calc
+      _ ≤ ∑ l ∈ range (L+1), (1-rLevel)⁻¹ * (rLevel^l)⁻¹ :=
+        sum_le_sum (fun l _ => envelope_prefix l d)
+      _ = (1-rLevel)⁻¹ * (∑ l ∈ range (L+1), (rLevel^l)⁻¹) := by rw [mul_sum]
+      _ ≤ (1-rLevel)⁻¹ * ((rLevel^L)⁻¹/(1-rLevel)) :=
+        mul_le_mul_of_nonneg_left (inverse_geom_sum_le _ rLevel_pos rLevel_lt_one L)
+          (inv_nonneg.mpr hr1.le)
+      _ = ((1-rLevel)⁻¹ * (1-rLevel)⁻¹) * (rLevel^L)⁻¹ := by ring
+      _ < 23 * (rLevel^L)⁻¹ :=
+        mul_lt_mul_of_pos_right secondMoment_prefix_scalar_lt (inv_pos.mpr (pow_pos rLevel_pos L))
+      _ = _ := by rw [sqrt_cap]
+  rw [mul_min_of_nonneg _ _ (by norm_num : (0:ℝ) ≤ 23)]
+  exact lt_min hcap (by simpa [div_eq_mul_inv] using hgap)
+
+/-- The expected-work series also has the finite-cap refinement from the paper. -/
+theorem sum_weightedWorkEnvelope_lt (L : ℕ) (d : ℝ) (hd : 0 < d) (hdhalf : d ≤ 1/2) :
+    (∑ l ∈ range (L+1), levelProb l * (7*workEnvelope l d)) <
+      31 * min (Real.sqrt (cap L)) (1/d) := by
+  have hs := summable_weightedWorkEnvelope d hd hdhalf
+  have hgap : (∑ l ∈ range (L+1), levelProb l * (7*workEnvelope l d)) < 31/d :=
+    lt_of_le_of_lt (hs.sum_le_tsum (range (L+1)) (fun l _ =>
+      mul_nonneg (levelProb_pos l).le (mul_nonneg (by norm_num) (work_nonneg l d))))
+      (tsum_weightedWorkEnvelope_lt d hd hdhalf)
+  have hr1 : 0 < 1-rLevel := sub_pos.mpr rLevel_lt_one
+  have hcap : (∑ l ∈ range (L+1), levelProb l * (7*workEnvelope l d)) < 31*Real.sqrt (cap L) := by
+    calc
+      _ = 7 * (∑ l ∈ range (L+1), levelProb l * workEnvelope l d) := by
+        rw [mul_sum]
+        apply sum_congr rfl
+        intro l _
+        ring
+      _ ≤ 7 * (∑ l ∈ range (L+1), (1-rLevel) * (rLevel^l)⁻¹) := by
+        apply mul_le_mul_of_nonneg_left (sum_le_sum (fun l _ => weighted_work_prefix l d))
+          (by norm_num)
+      _ = 7 * ((1-rLevel) * (∑ l ∈ range (L+1), (rLevel^l)⁻¹)) := by simp only [mul_sum]
+      _ ≤ 7 * ((1-rLevel) * ((rLevel^L)⁻¹/(1-rLevel))) := by
+        gcongr
+        exact inverse_geom_sum_le _ rLevel_pos rLevel_lt_one L
+      _ = 7 * (rLevel^L)⁻¹ := by field_simp
+      _ < 31 * (rLevel^L)⁻¹ := by
+        exact mul_lt_mul_of_pos_right (by norm_num) (inv_pos.mpr (pow_pos rLevel_pos L))
+      _ = _ := by rw [sqrt_cap]
+  rw [mul_min_of_nonneg _ _ (by norm_num : (0:ℝ) ≤ 31)]
+  exact lt_min hcap (by simpa [div_eq_mul_inv] using hgap)
+
 end ThresholdHC.Uniform713
+
 
 #print axioms ThresholdHC.Uniform713.summable_secondMomentEnvelope
 #print axioms ThresholdHC.Uniform713.tsum_secondMomentEnvelope_lt
@@ -329,3 +395,6 @@ end ThresholdHC.Uniform713
 
 
 
+
+#print axioms ThresholdHC.Uniform713.sum_secondMomentEnvelope_lt
+#print axioms ThresholdHC.Uniform713.sum_weightedWorkEnvelope_lt

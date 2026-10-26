@@ -1,7 +1,7 @@
 import ThresholdHC.Proofs.Constants
 
 /-!
-Scalar lemmas supporting the paper-only variance-work bound 713.
+Scalar lemmas supporting the variance-work bound 713.
 These do not formalize the stopping-time, Hoeffding, geometric-series,
 unbiasedness, or integration arguments in UNIFORM_PRODUCT_BOUND.md.
 This module is additional evidence and earns no frozen-target points.

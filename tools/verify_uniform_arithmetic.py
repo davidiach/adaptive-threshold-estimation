@@ -23,7 +23,7 @@ def main():
         reports[match[1]] = axioms
     ok = result.returncode == 0 and set(reports) == NAMES and all(set(a) <= ALLOWED for a in reports.values())
     summary = dict(valid=ok, exit_code=result.returncode, reports=reports,
-                   scope="scalar inequalities only; full probability theorem is not formalized")
+                   scope="scalar inequalities only; full theorem audited separately by verify_uniform713.py")
     (ROOT / "results/constants_uniform_lean_status.json").write_text(json.dumps(summary, indent=2) + "\n")
     print(f"Scalar Lean audit: valid={ok}, reports={len(reports)}/7, exit={result.returncode}")
     return 0 if ok else 1

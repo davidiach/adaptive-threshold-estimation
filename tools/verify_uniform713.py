@@ -27,6 +27,10 @@ def main() -> int:
     parser.add_argument("--require-complete", action="store_true")
     parser.add_argument("--sequential", action="store_true")
     args = parser.parse_args()
+    (ROOT / "results/uniform713_status.json").write_text(json.dumps({
+        "valid": False, "full_theorem_complete": False,
+        "error": "Verification has not completed successfully."
+    }, indent=2) + "\n")
     manifest = json.loads((ROOT / "tools/uniform713_targets.json").read_text())
     modules = manifest["modules"]
     specification = LEAN / "ThresholdHC/Uniform713/Specification.lean"
@@ -34,11 +38,19 @@ def main() -> int:
         raise SystemExit("713 specification hash mismatch; do not weaken the target")
     sources = {m: LEAN / (m.replace(".", "/") + ".lean") for m in modules}
     hashes = {m: sha(p) for m, p in sources.items()}
-    for path in sources.values():
+    for module, path in sources.items():
         source = re.sub(r"/-[\s\S]*?-/|--[^\n]*", "", path.read_text(encoding="utf-8"))
         if re.search(r"\b(sorry|axiom|native_decide|implemented_by|extern|unsafe|opaque|run_cmd)\b"
                      r"|skipKernelTC|#exit|^\s*(elab|macro|syntax)\b", source, re.M):
             raise SystemExit(f"Forbidden proof escape in {path.relative_to(ROOT)}")
+        declared = re.findall(r"^(?:@\[[^\]]+\]\s+)?(?:theorem|lemma|instance)\s+([\w']+)",
+                              source, re.M)
+        namespaces = re.findall(r"^namespace\s+([\w.]+)", source, re.M)
+        if declared and len(namespaces) != 1:
+            raise SystemExit(f"Audit registration needs explicit namespace handling: {module}")
+        expected = {namespaces[0] + "." + n for n in declared} if declared else set()
+        if expected != set(modules[module]):
+            raise SystemExit(f"Public proof roots do not match audit registration: {module}")
     commands = [["lake", "build", m] for m in modules] if args.sequential else [
         ["lake", "build", *modules]]
     build_log = []
