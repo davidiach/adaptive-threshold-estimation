@@ -1,8 +1,12 @@
 # Tier 2: frozen targets and scorer v2
 
-**Status: approved and frozen 27 October 2026. Validated baseline: 60/121.**
+**Status: approved and frozen 27 October 2026. First proof checkpoint: 80/121.**
 Proposed by Opus from the open items in `REPORT.md`; reviewed and integrated by Codex.
 The approval and final verification record are in `FREEZE_LOG.md`.
+
+Checkpoint 001 proves I1–I4, I7, K3, and R1: 20/61 Tier 2 points and all
+60/60 Tier 1 points. Full build and both independent 46-target audits pass
+locally with the frozen statements unchanged. Six Tier 2 targets remain open.
 
 Tier 1 is complete (60/60, checkpoint `a485ad6`). Tier 2 adds 13 targets worth 61
 points, covering results that are still paper-only:

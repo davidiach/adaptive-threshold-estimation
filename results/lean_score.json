@@ -1,5 +1,5 @@
 {
- "timestamp": "2026-10-27T00:55:46",
+ "timestamp": "2026-10-27T00:59:43",
  "valid": true,
  "frozen_ok": true,
  "frozen_problems": [],
@@ -8,9 +8,10 @@
  "audit_exit_code": 0,
  "audit_complete": true,
  "violations": [],
- "points": 60,
+ "points": 80,
  "max_points": 121,
  "proven": [
+  "bounded_ratio_log",
   "classifier_scale_step",
   "constant_second_moment",
   "constant_work",
@@ -22,27 +23,33 @@
   "fixed_gap_variance",
   "haldane_inverse_moment",
   "hardpair_step_kl",
+  "kl_data_processing_finite",
   "kl_delta_identity",
   "kl_delta_lower",
   "kl_ge_two_hell_finite",
   "kl_taylor_bound",
+  "lemma7_telescoping",
   "lemmaA_forward",
   "lemmaA_reverse",
   "lemmaA_sharp_at_one",
   "modulus_scaling_up",
   "negbin_mean",
   "negbin_total",
+  "pinsker_finite",
   "posterior_diff_le",
   "posterior_identity",
   "posterior_mem",
   "power_modulus",
   "power_modulus_critical",
   "pred_variance_ge",
+  "psi_optimizer_atomic",
   "ratio_bound",
   "scaling_down_pointwise",
   "scaling_up_pointwise",
   "sym_kl_ge_eight_hell_finite",
   "sym_kl_hellinger_pointwise",
+  "transcript_law_total",
+  "two_point_rms_lower",
   "two_point_variance_finite"
  ],
  "points_by_tier": {
@@ -51,7 +58,7 @@
    "max": 60
   },
   "2": {
-   "points": 0,
+   "points": 20,
    "max": 61
   }
  },
@@ -354,44 +361,40 @@
    "detail": ""
   },
   "kl_data_processing_finite": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "pinsker_finite": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "two_point_rms_lower": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "transcript_law_total": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "stopped_transcript_kl": {
    "status": "sorry",
@@ -414,14 +417,13 @@
    "detail": "uses sorry"
   },
   "bounded_ratio_log": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "lemma6_error": {
    "status": "sorry",
@@ -444,14 +446,13 @@
    "detail": "uses sorry"
   },
   "lemma7_telescoping": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "lemma7_second_moment": {
    "status": "sorry",
@@ -474,15 +475,14 @@
    "detail": "uses sorry"
   },
   "psi_optimizer_atomic": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   }
  },
- "seconds": 33.7
+ "seconds": 69.4
 }

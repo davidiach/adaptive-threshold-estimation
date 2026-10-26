@@ -12,10 +12,12 @@ The final 60/60 checkpoint passed on Windows and in
 
 ## Current checkpoints
 
-- Lean checkpoint 002 proves **all 33 Tier 1 targets, 60/60 points**. Tier 2 adds
-  13 unproved targets worth 61 points, giving a baseline of **60/121**. Its
-  proof modules contain explicit `sorry` stubs. The separate numerical sanity
-  checks are not proofs; both sets of statements compile unchanged.
+- Lean Tier 2 checkpoint 001 proves **40/46 targets, 80/121 points**:
+  Tier 1 remains 60/60 and Tier 2 is 20/61. The seven new proofs cover finite
+  information inequalities, transcript normalization, telescoping, and the
+  atomic rare-event optimizer. Six Tier 2 targets remain explicit `sorry`
+  stubs. Both audits pass locally with only the three standard axioms on
+  proved targets; numerical sanity checks remain separate evidence.
 - The **full uniform 713 bound is proved in Lean**, including concentration,
   the actual stopping rule and coupled work, infinite random-level sampling,
   unbiasedness, and integration over arbitrary magnitude/sign laws. See the

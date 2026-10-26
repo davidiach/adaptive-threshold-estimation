@@ -5,8 +5,9 @@
 The Lean track ran: Lean 4.36.0-rc1 with Mathlib pinned to
 `9bdd0bc71aaae0fd83889f9aacd70c32fccd1bcd`. All 33 supplied statements
 compiled unchanged and passed their numerical sanity checks. Twelve files
-were frozen in commit `8128f9a`. **There are no FREEZE_LOG change entries**:
-no target syntax or mathematical meaning was changed. All 50 original input
+were frozen in commit `8128f9a`. The approved Tier 2 extension added nine
+locks in `f86a9ba`, as recorded in `FREEZE_LOG.md`; the original target
+syntax and mathematical meaning are unchanged. All 50 original input
 files match the supplied manifest.
 
 Python 3.12, NumPy 2.4.4, SciPy 1.17.1, mpmath 1.3.0, and Numba 0.68.0 were
@@ -22,12 +23,18 @@ therefore reproduced on Windows and Linux.
 ## A — Lean proofs
 
 **Tier 2 integrated and verified locally, 27 October 2026.** The target set now contains
-the original 33 proved targets plus 13 unproved targets worth 61 points. The
+the original 33 proved targets plus 13 new targets worth 61 points. The
 validated integration baseline is 60/121 (Tier 1 60/60, Tier 2 0/61). The proposed
 Tier 2 mathematical statements are unchanged. Scorer v2 requires a successful,
 complete audit and rejects unexpected axioms even when accompanied by `sorryAx`.
 The Tier 2 numeric checker requires positive coverage and includes a deterministic
 I6 test. See `TIER2.md` and the approval/validation record in `FREEZE_LOG.md`.
+
+**Tier 2 proof checkpoint 001: 80/121, 40/46 targets.** The seven new proofs
+are I1–I4, I7, K3, and R1. Full build, all 21 frozen hashes, exact target
+types, and both 46-report audits pass locally. No Tier 1 proof is lost;
+proved targets use only the three standard axioms. The six remaining targets
+are still explicit stubs. Evidence is saved under `results/lean_tier2_001*`.
 
 **Proved and machine-checked: 0 → 34 → 60/60, all 33 targets.** Checkpoint 002
 passed the full build, frozen hashes, exact target types, and independent
