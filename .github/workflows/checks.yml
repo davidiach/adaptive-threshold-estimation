@@ -15,6 +15,10 @@ jobs:
       - run: python tools/verify_inputs.py
       - run: python tools/check_targets_numeric.py
       - run: python tools/check_power_bracket.py
+      - run: python proposals/constants/bias_audit.py
+      - name: Check arithmetic for the paper constant when available
+        run: |
+          if test -f proposals/constants/uniform_constant_checks.py; then python proposals/constants/uniform_constant_checks.py; fi
       - name: Verify frozen hashes when Phase 0 is complete
         run: |
           if test -f FROZEN.sha256; then python tools/freeze.py --verify; fi

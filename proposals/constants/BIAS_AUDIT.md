@@ -42,8 +42,9 @@ magnitudes, rather than just on the frozen grid.
 
 Thus `(k1,k2)=(1/4,1)` is a theory-compatible candidate. Lowering `k1`
 also cannot increase either classifier's stopping time on the same data
-stream. This argument does **not** prove that its finite-grid variance-work
-proxy is a uniform variance-work constant; that remains to be analyzed.
+stream. This argument does **not** identify its finite-grid variance-work
+proxy with a uniform constant. A separate paper proof in
+`UNIFORM_PRODUCT_BOUND.md` establishes the conservative uniform constant 713.
 
 ## The finite-grid winner violates the uniform bias theorem
 

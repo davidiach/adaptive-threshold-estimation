@@ -1,0 +1,3 @@
+{"attempt":0,"kind":"baseline","config":{"k1":1.0,"k2":1.0},"valid":true,"dev":6.778762044556344,"heldout":6.771882136548527,"evidence":"constants_baseline.json"}
+{"attempt":1,"kind":"predeclared_acceptance","config":{"k1":0.25,"k2":1.0},"result":"ACCEPT","dev":5.55064632560529,"heldout":5.550060072084839,"selection_lock_commit":"f4f8e84","evidence":"constants_theory.json"}
+{"attempt":2,"kind":"predeclared_acceptance","config":{"k1":0.25,"k2":0.5},"result":"ACCEPT","dev":4.281742112936694,"heldout":4.282068997489188,"selection_lock_commit":"f4f8e84","evidence":"constants_finite_grid.json","warning":"Fails original bias bound outside frozen grid; see constants_bias_counterexample.json"}
