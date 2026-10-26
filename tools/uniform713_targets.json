@@ -1,0 +1,110 @@
+{
+  "modules": {
+    "ThresholdHC.Uniform713.Common": [
+      "ThresholdHC.Uniform713.cap_pos",
+      "ThresholdHC.Uniform713.cap_zero",
+      "ThresholdHC.Uniform713.cap_succ",
+      "ThresholdHC.Uniform713.rLevel_pos",
+      "ThresholdHC.Uniform713.rLevel_lt_one",
+      "ThresholdHC.Uniform713.levelProb_pos",
+      "ThresholdHC.Uniform713.hasSum_levelProb",
+      "ThresholdHC.Uniform713.sum_increment"
+    ],
+    "ThresholdHC.Uniform713.Arithmetic": [
+      "ThresholdHC.Uniform713.Arithmetic.error_prefactor_lt",
+      "ThresholdHC.Uniform713.Arithmetic.geometric_second_moment_factor_lt",
+      "ThresholdHC.Uniform713.Arithmetic.fourth_root_three_lt",
+      "ThresholdHC.Uniform713.Arithmetic.second_moment_scalar_lt",
+      "ThresholdHC.Uniform713.Arithmetic.survival_coefficients",
+      "ThresholdHC.Uniform713.Arithmetic.work_scalar_lt",
+      "ThresholdHC.Uniform713.Arithmetic.product_of_moment_bounds"
+    ],
+    "ThresholdHC.Uniform713.Concentration": [
+      "ThresholdHC.Uniform713.measurable_prefixMean",
+      "ThresholdHC.Uniform713.bounded_centered_subgaussian",
+      "ThresholdHC.Uniform713.prefixMean_subgaussian",
+      "ThresholdHC.Uniform713.hasMeanTails_of_independent_bounded"
+    ],
+    "ThresholdHC.Uniform713.WorkArithmetic": [
+      "ThresholdHC.Uniform713.survival_indicator_scale_step",
+      "ThresholdHC.Uniform713.sum_cap_range",
+      "ThresholdHC.Uniform713.finite_dyadic_indicator_sum",
+      "ThresholdHC.Uniform713.finite_dyadic_scaled_indicator_sum",
+      "ThresholdHC.Uniform713.finite_dyadic_sum_v1",
+      "ThresholdHC.Uniform713.finite_work_survival_bound"
+    ],
+    "ThresholdHC.Uniform713.Classifier": [
+      "ThresholdHC.Uniform713.firstStop_le",
+      "ThresholdHC.Uniform713.firstStop_spec",
+      "ThresholdHC.Uniform713.firstStop_min",
+      "ThresholdHC.Uniform713.firstStop_le_of_cross",
+      "ThresholdHC.Uniform713.firstStop_mono",
+      "ThresholdHC.Uniform713.firstStop_eq_iff",
+      "ThresholdHC.Uniform713.measurable_firstStop",
+      "ThresholdHC.Uniform713.firstDecision_zero_or_one",
+      "ThresholdHC.Uniform713.wrong_positive_stop",
+      "ThresholdHC.Uniform713.wrong_negative_stop",
+      "ThresholdHC.Uniform713.dyadic_survival_identity",
+      "ThresholdHC.Uniform713.stopLevel_le",
+      "ThresholdHC.Uniform713.cap_mono",
+      "ThresholdHC.Uniform713.threshold_nonneg",
+      "ThresholdHC.Uniform713.threshold_sq",
+      "ThresholdHC.Uniform713.threshold_mono_cap",
+      "ThresholdHC.Uniform713.stopLevel_mono",
+      "ThresholdHC.Uniform713.work_pos",
+      "ThresholdHC.Uniform713.work_le_cap",
+      "ThresholdHC.Uniform713.work_mono",
+      "ThresholdHC.Uniform713.coupled_work_eq",
+      "ThresholdHC.Uniform713.decision_zero_or_one",
+      "ThresholdHC.Uniform713.measurable_stopLevel",
+      "ThresholdHC.Uniform713.measurable_decision",
+      "ThresholdHC.Uniform713.measurable_work",
+      "ThresholdHC.Uniform713.integrable_work",
+      "ThresholdHC.Uniform713.integrable_decision",
+      "ThresholdHC.Uniform713.work_survival_identity",
+      "ThresholdHC.Uniform713.expected_work_survival_identity"
+    ],
+    "ThresholdHC.Uniform713.Series": [
+      "ThresholdHC.Uniform713.summable_secondMomentEnvelope",
+      "ThresholdHC.Uniform713.tsum_secondMomentEnvelope_lt",
+      "ThresholdHC.Uniform713.summable_weightedWorkEnvelope",
+      "ThresholdHC.Uniform713.tsum_weightedWorkEnvelope_lt",
+      "ThresholdHC.Uniform713.secondMomentSeries_bound",
+      "ThresholdHC.Uniform713.workSeries_bound"
+    ],
+    "ThresholdHC.Uniform713.Estimator": [
+      "ThresholdHC.Uniform713.levelMeasure_singleton",
+      "ThresholdHC.Uniform713.levelMeasure_real_singleton",
+      "ThresholdHC.Uniform713.levelMeasure_probability",
+      "ThresholdHC.Uniform713.samplingMeasure_probability",
+      "ThresholdHC.Uniform713.samplingMeasure_indep",
+      "ThresholdHC.Uniform713.integrable_levelMeasure_iff",
+      "ThresholdHC.Uniform713.integral_levelMeasure",
+      "ThresholdHC.Uniform713.measurable_sampled",
+      "ThresholdHC.Uniform713.integrable_sampled",
+      "ThresholdHC.Uniform713.integral_sampled",
+      "ThresholdHC.Uniform713.measurable_increment",
+      "ThresholdHC.Uniform713.integrable_increment",
+      "ThresholdHC.Uniform713.measurable_estimator",
+      "ThresholdHC.Uniform713.estimator_memLp",
+      "ThresholdHC.Uniform713.estimator_second_moment",
+      "ThresholdHC.Uniform713.integral_estimator",
+      "ThresholdHC.Uniform713.summable_mean_increments",
+      "ThresholdHC.Uniform713.estimator_unbiased",
+      "ThresholdHC.Uniform713.integrable_binary",
+      "ThresholdHC.Uniform713.integral_binary_error",
+      "ThresholdHC.Uniform713.abs_mean_error_le",
+      "ThresholdHC.Uniform713.tendsto_mean_of_binary_error"
+    ],
+    "ThresholdHC.Uniform713.Integration": [
+      "ThresholdHC.Uniform713.integrate_conditional_bound",
+      "ThresholdHC.Uniform713.integrate_conditional_inverse_gap"
+    ],
+    "ThresholdHC.Uniform713.Specification": [
+      "ThresholdHC.Uniform713.samplingKernel_markov",
+      "ThresholdHC.Uniform713.samplingKernel_apply"
+    ]
+  },
+  "specification_sha256": "a3fd9513084b2168cf86fe74962c14df956970c28ff270795591cf45037d9a86",
+  "full_theorem": null
+}
