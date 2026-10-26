@@ -1,5 +1,5 @@
 {
- "timestamp": "2026-10-27T00:59:43",
+ "timestamp": "2026-10-27T01:03:46",
  "valid": true,
  "frozen_ok": true,
  "frozen_problems": [],
@@ -8,7 +8,7 @@
  "audit_exit_code": 0,
  "audit_complete": true,
  "violations": [],
- "points": 80,
+ "points": 121,
  "max_points": 121,
  "proven": [
   "bounded_ratio_log",
@@ -28,7 +28,11 @@
   "kl_delta_lower",
   "kl_ge_two_hell_finite",
   "kl_taylor_bound",
+  "lemma6_error",
+  "lemma6_work",
+  "lemma7_second_moment",
   "lemma7_telescoping",
+  "lemma7_work",
   "lemmaA_forward",
   "lemmaA_reverse",
   "lemmaA_sharp_at_one",
@@ -46,6 +50,8 @@
   "ratio_bound",
   "scaling_down_pointwise",
   "scaling_up_pointwise",
+  "stopped_transcript_kl",
+  "stopped_transcript_testing",
   "sym_kl_ge_eight_hell_finite",
   "sym_kl_hellinger_pointwise",
   "transcript_law_total",
@@ -58,7 +64,7 @@
    "max": 60
   },
   "2": {
-   "points": 20,
+   "points": 61,
    "max": 61
   }
  },
@@ -397,24 +403,22 @@
    "detail": ""
   },
   "stopped_transcript_kl": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "stopped_transcript_testing": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "bounded_ratio_log": {
    "status": "proven",
@@ -426,24 +430,22 @@
    "detail": ""
   },
   "lemma6_error": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "lemma6_work": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "lemma7_telescoping": {
    "status": "proven",
@@ -455,24 +457,22 @@
    "detail": ""
   },
   "lemma7_second_moment": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "lemma7_work": {
-   "status": "sorry",
+   "status": "proven",
    "axioms": [
     "propext",
-    "sorryAx",
     "Classical.choice",
     "Quot.sound"
    ],
-   "detail": "uses sorry"
+   "detail": ""
   },
   "psi_optimizer_atomic": {
    "status": "proven",
@@ -484,5 +484,5 @@
    "detail": ""
   }
  },
- "seconds": 69.4
+ "seconds": 46.4
 }

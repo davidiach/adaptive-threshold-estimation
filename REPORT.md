@@ -30,11 +30,27 @@ complete audit and rejects unexpected axioms even when accompanied by `sorryAx`.
 The Tier 2 numeric checker requires positive coverage and includes a deterministic
 I6 test. See `TIER2.md` and the approval/validation record in `FREEZE_LOG.md`.
 
-**Tier 2 proof checkpoint 001: 80/121, 40/46 targets.** The seven new proofs
-are I1–I4, I7, K3, and R1. Full build, all 21 frozen hashes, exact target
-types, and both 46-report audits pass locally. No Tier 1 proof is lost;
-proved targets use only the three standard axioms. The six remaining targets
-are still explicit stubs. Evidence is saved under `results/lean_tier2_001*`.
+**Tier 2 complete: 80 → 121/121, all 46 targets.** Checkpoint 001 proved
+I1–I4, I7, K3, and R1. Checkpoint 002 adds I5–I6 and K1–K2/K4–K5, completing
+all 13 Tier 2 targets (61/61) while preserving Tier 1 (60/60). Full build,
+all 21 frozen hashes, exact target types, and both 46-report audits pass
+locally. No `sorry` remains in either tier's proofs, and the axiom union is
+exactly `propext`, `Classical.choice`, and `Quot.sound`. Evidence is saved
+under `results/lean_tier2_002*`. Independent Linux replay is pending.
+
+The information proof factors each transcript likelihood by coin, derives
+the next-query posterior, and handles zero histories and deterministic-coin
+endpoints explicitly. A finite chain-rule induction charges KL only for
+actual queries; data processing then yields the testing lower bound.
+This covers the frozen finite deterministic-policy, bounded-horizon model.
+
+The classifier proof identifies the exact finite `streamProb` sums with
+Bernoulli tape expectations, proves equality with the stopping implementation,
+and derives concentration, error, work, and moment bounds. Both signs, strict
+stopping tests, negative ties, shared prefixes, and Bernoulli endpoints are
+covered. R1 follows from a supporting-line inequality at the stipulated
+atomic cutoff. Independent agent reviews found no semantic mismatch in these
+boundary cases. The complete 713 guard also passes again at 130/130 roots.
 
 **Proved and machine-checked: 0 → 34 → 60/60, all 33 targets.** Checkpoint 002
 passed the full build, frozen hashes, exact target types, and independent
@@ -143,8 +159,9 @@ matching upper theorem for alpha>=2 or arbitrary laws.
 
 ## Open work and proposals
 
-- Tier 1 is complete. Prove the 13 new Tier 2 targets, prioritizing the
-  stopped-transcript information/testing bounds and atomic rare-event optimizer.
+- Tiers 1 and 2 are complete. Extensions of the finite transcript model to
+  randomized policies and unbounded horizons, and of the atomic optimizer to
+  arbitrary laws, remain outside the frozen targets.
 - The full 713 probability theorem is already proved and separately audited;
   adding it to the scored target list remains a separate scope decision.
 - The arbitrary-law matching upper bound and matching alpha>=2 constructions

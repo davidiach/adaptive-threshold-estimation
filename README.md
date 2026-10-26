@@ -4,20 +4,23 @@ Reproducible experiments and formal proof work extending the supplied adaptive
 threshold estimation research. Numerical evidence, paper proofs, conjectures,
 and Lean kernel-checked results are labeled separately. No novelty claim.
 
-The final 60/60 checkpoint passed on Windows and in
+The original Tier 1 60/60 checkpoint passed on Windows and in
 [independent Linux CI](https://github.com/davidiach/threshold-hillclimb/actions/runs/40410461304).
 
-**Tier 2 integrated and frozen:** 13 additional targets (61 points), scorer v2, and a stronger
-713 definition lock. See [TIER2.md](TIER2.md) and [approval record](FREEZE_LOG.md).
+**Tier 2 proved:** all 13 additional targets (61 points), with unchanged frozen
+statements and the stronger 713 definition lock. See [TIER2.md](TIER2.md) and
+[approval record](FREEZE_LOG.md). The complete 121/121 checkpoint passes locally;
+its independent Linux replay is pending.
 
 ## Current checkpoints
 
-- Lean Tier 2 checkpoint 001 proves **40/46 targets, 80/121 points**:
-  Tier 1 remains 60/60 and Tier 2 is 20/61. The seven new proofs cover finite
-  information inequalities, transcript normalization, telescoping, and the
-  atomic rare-event optimizer. Six Tier 2 targets remain explicit `sorry`
-  stubs. Both audits pass locally with only the three standard axioms on
-  proved targets; numerical sanity checks remain separate evidence.
+- Lean Tier 2 checkpoint 002 proves **46/46 targets, 121/121 points**:
+  Tier 1 remains 60/60 and Tier 2 is 61/61. The new proofs cover finite
+  information inequalities, adaptive stopped-transcript KL/testing bounds,
+  the actual Bernoulli classifier and estimator bounds, and the atomic
+  rare-event optimizer. No `sorry` remains in the proof modules. Full build,
+  exact target types, all 21 frozen hashes, and both audits pass locally
+  with only `propext`, `Classical.choice`, and `Quot.sound`.
 - The **full uniform 713 bound is proved in Lean**, including concentration,
   the actual stopping rule and coupled work, infinite random-level sampling,
   unbiasedness, and integration over arbitrary magnitude/sign laws. See the

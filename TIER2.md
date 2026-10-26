@@ -1,15 +1,16 @@
 # Tier 2: frozen targets and scorer v2
 
-**Status: approved and frozen 27 October 2026. First proof checkpoint: 80/121.**
+**Status: all 13 Tier 2 targets proved. Complete checkpoint: 121/121 locally.**
 Proposed by Opus from the open items in `REPORT.md`; reviewed and integrated by Codex.
 The approval and final verification record are in `FREEZE_LOG.md`.
 
-Checkpoint 001 proves I1–I4, I7, K3, and R1: 20/61 Tier 2 points and all
-60/60 Tier 1 points. Full build and both independent 46-target audits pass
-locally with the frozen statements unchanged. Six Tier 2 targets remain open.
+Checkpoint 001 proved I1–I4, I7, K3, and R1. Checkpoint 002 completes I5–I6
+and K1–K2/K4–K5: 61/61 Tier 2 points and all 60/60 Tier 1 points. Full build
+and both independent 46-target audits pass locally with the frozen statements
+unchanged and only the three standard axioms. Independent Linux replay is pending.
 
 Tier 1 is complete (60/60, checkpoint `a485ad6`). Tier 2 adds 13 targets worth 61
-points, covering results that are still paper-only:
+points, covering results that were paper-only when the extension was approved:
 
 - the stopped-transcript information bound behind the lower bound;
 - Lemmas 6–7 as probability statements, not scalar inequalities;
@@ -26,7 +27,7 @@ arbitrary-law theorem. See "The 713 track" below for its strengthened definition
 | File | Frozen? | Change |
 |---|---|---|
 | `lean/ThresholdHC/Statements2.lean` | new, frozen | 13 target statements plus supporting definitions |
-| `lean/ThresholdHC/Proofs/Tier2/*.lean` | no | `sorry` stubs, one per group |
+| `lean/ThresholdHC/Proofs/Tier2/*.lean` | no | three proof groups and supporting modules; all targets proved |
 | `lean/ThresholdHC.lean` | frozen | imports Statements2 and the Tier 2 proof modules |
 | `tools/targets.json` | frozen | `tier` field on every entry; 13 Tier 2 entries |
 | `tools/score.py` | frozen | v2 validity rule and per-tier points; Statements2 exempt from the token scan |
@@ -132,13 +133,13 @@ David approved integration and re-freezing on 27 October 2026:
 
 > Go ahead and fix the two validation issues, harden the 713 guard, and integrate Tier 2. I approve re-freezing once all checks pass.
 
-The integration retains all 13 proposed target statements unchanged. Before
-re-freezing, run both numeric suites, the validation regressions, the complete
-Lean build and target audit, the full 713 audit, and the remaining CI checks.
-The expected audit has 33 proven targets and 13 `sorry` targets. Record the
-results in `FREEZE_LOG.md`, then regenerate the 21-file freeze and run
-`tools/verify_lean_checkpoint.py --sequential`. Preserve the 60/60 Tier 1 proofs
-and save the valid 60/121 baseline to `results/lean_best.json`.
+The integration retained all 13 proposed target statements unchanged. Before
+re-freezing, both numeric suites, validation regressions, the complete Lean
+build and target audit, the full 713 audit, and the remaining local CI checks
+passed. The baseline audit had 33 proven targets and 13 `sorry` targets.
+`FREEZE_LOG.md` records the checks and the approved 21-file freeze. The valid
+60/121 integration baseline is preserved in `results/lean_tier2_baseline.json`;
+`results/lean_best.json` now records the complete 121/121 proof checkpoint.
 
 Subsequent proof checkpoints use `tools/score.py --accept results/lean_best.json`
 and the independent checkpoint guard before committing. This integration is an

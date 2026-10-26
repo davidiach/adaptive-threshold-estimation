@@ -106,4 +106,3 @@ theorem psi_optimizer_atomic : ThresholdHC.Targets.psi_optimizer_atomic := by
   linarith
 
 end ThresholdHC.Proofs
-
