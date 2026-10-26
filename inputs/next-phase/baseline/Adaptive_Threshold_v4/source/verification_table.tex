@@ -1,0 +1,25 @@
+\begin{table}[htbp]
+\centering\small
+\begin{tabularx}{\textwidth}{@{}Xrl@{}}
+\toprule
+Diagnostic & Count & Result / maximum observed \\
+\midrule
+Symbolic algebraic identities & 7 & Exact simplifications \\
+Predictive KL, both directions & 630 & Bound ratio $<1$ \\
+Hard-pair directional KL & 280 & $\KL/h^2\le0.503802$ \\
+Symmetric KL--Hellinger checks & 315 & $8H^2\le\KL+\KL^{\rm rev}$ \\
+Coupled classifier dynamic programs & 264 & $11$ magnitudes, both signs \\
+Classifier error / bound & & $0.748999$ \\
+Second moment / truncated inverse gap & & $3.414214$ (proved $85$) \\
+Expected work / truncated inverse gap & & $2.931912$ (proved $149$) \\
+Maximum probability-mass residual & & $4.22\times10^{-15}$ \\
+Maximum telescoping residual & & $2.11\times10^{-15}$ \\
+Modulus integral / closed-form checks & 96 & Residual $\le2.23\times10^{-16}$ \\
+\bottomrule
+\end{tabularx}
+\caption{Recomputed finite diagnostics for v4. Predictive and Hellinger
+comparisons use 120-decimal arithmetic. Classifier dynamic programs use
+floating-point probability recursion with caps through $2^{11}$ and include
+$D=1/2$; their maxima are not replacements for analytic constants.}
+\label{tab:verification}
+\end{table}

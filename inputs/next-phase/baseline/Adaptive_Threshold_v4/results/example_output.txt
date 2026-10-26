@@ -1,0 +1,3 @@
+RMS-oriented expected-budget estimate: Result(value=0.0285749481769224, work=9368, pilot_calls=206, production_calls=205)
+Confidence-amplified estimate: Result(value=1.0423013193974424, work=1959, pilot_calls=153, production_calls=144)
+Work can exceed the budget on a run; these outputs are not confidence intervals.

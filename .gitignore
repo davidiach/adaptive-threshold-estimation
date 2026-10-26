@@ -1,0 +1,7 @@
+lean/.lake/
+lean/.audit/
+__pycache__/
+.runtime/
+*.pyc
+*.pyo
+.venv/

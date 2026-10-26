@@ -1,0 +1,38 @@
+{
+  "status": "verified unchanged; no baseline rewrite",
+  "original_files": [
+    {
+      "name": "Distributional_Minimax_Law_Adaptive_Threshold_Estimation_v4.pdf",
+      "sha256": "f166e3cfe6838072a82e8bc42425219f5c18949b682a53bb91e6907fdb8e6522",
+      "unchanged": true
+    },
+    {
+      "name": "Adaptive_Threshold_v4_Research_Package.zip",
+      "sha256": "dec2e7c1a934c3b89e46f8123082a3974c6eac2e09be3223bf9493c8ac5070bb",
+      "unchanged": true
+    }
+  ],
+  "extracted_files_bytewise_matched_to_original_zip": [
+    "Adaptive_Threshold_v4/Distributional_Minimax_Law_Adaptive_Threshold_Estimation_v4.pdf",
+    "Adaptive_Threshold_v4/README.md",
+    "Adaptive_Threshold_v4/code/calibration.py",
+    "Adaptive_Threshold_v4/code/example.py",
+    "Adaptive_Threshold_v4/code/threshold.py",
+    "Adaptive_Threshold_v4/code/verify.py",
+    "Adaptive_Threshold_v4/code/verify_v4.py",
+    "Adaptive_Threshold_v4/requirements.txt",
+    "Adaptive_Threshold_v4/results/document_preflight.json",
+    "Adaptive_Threshold_v4/results/example_output.txt",
+    "Adaptive_Threshold_v4/results/latex_build.log",
+    "Adaptive_Threshold_v4/results/v4_classifier_checks.csv",
+    "Adaptive_Threshold_v4/results/v4_run.log",
+    "Adaptive_Threshold_v4/results/v4_verification_summary.json",
+    "Adaptive_Threshold_v4/review/CHANGELOG.md",
+    "Adaptive_Threshold_v4/review/CLAIMS_AND_SCOPE.md",
+    "Adaptive_Threshold_v4/review/RESPONSE_TO_OPUS.md",
+    "Adaptive_Threshold_v4/review/SOURCE_AUDIT.md",
+    "Adaptive_Threshold_v4/source/paper.tex",
+    "Adaptive_Threshold_v4/source/verification_table.tex",
+    "Adaptive_Threshold_v4/SHA256SUMS.txt"
+  ]
+}

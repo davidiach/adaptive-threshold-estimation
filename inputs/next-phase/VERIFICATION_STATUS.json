@@ -1,0 +1,39 @@
+{
+  "mathematics": "Proofs in report, not formal proof-assistant verification; no independent specialist review in this run",
+  "proved": [
+    "heuristic counterexample",
+    "arbitrary-law variational lower bound using Lee-Valiant Corollary 19",
+    "exact variational optimizer",
+    "matching power-margin rates for 0<alpha<2",
+    "general nonmatching upper bracket",
+    "model-specific Bernoulli conversion"
+  ],
+  "conjectural": [
+    "matching arbitrary-law upper rate Psi"
+  ],
+  "numerical": {
+    "atomic_optimizer_comparisons": 24,
+    "maximum_optimizer_discrepancy": 2.8452552813806875e-12,
+    "power_integral_checks": 20,
+    "fixed_prefix_implementation_comparisons": 570,
+    "held_out_replications_initial": 8000,
+    "held_out_replications_extension": 600,
+    "bootstrap_resamples_per_cell": 3000
+  },
+  "document": {
+    "pages": 17,
+    "rendered_and_visually_inspected": true,
+    "undefined_references": false,
+    "overfull_boxes_in_final_latex_log": false
+  },
+  "prior_art": "Targeted audit with explicit access/inspection limits; no novelty or priority claim",
+  "unfinished": [
+    "general matching upper bound",
+    "matching upper cases alpha>=2",
+    "fully distribution-blind rare-event upper algorithm",
+    "complete priority clearance",
+    "direct real-valued v4 theory",
+    "equal-total-training-cost benchmark"
+  ],
+  "optional_tasks": "Not pursued before completing the main tasks"
+}

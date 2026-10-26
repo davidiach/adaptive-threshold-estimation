@@ -1,0 +1,198 @@
+{
+  "scope": "Original proof arguments, supported by these finite diagnostics; no independent review or priority claim.",
+  "environment": {
+    "python": "3.13.5",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "sympy": "1.14.0",
+    "mpmath": "1.3.0"
+  },
+  "symbolic": [
+    "posterior contrast",
+    "posterior variance",
+    "symmetric-KL pointwise derivative",
+    "NB two-success inverse moment",
+    "normalized-magnitude density",
+    "fixed-gap unbiasedness",
+    "fixed-gap sharp variance"
+  ],
+  "information": {
+    "decimal_digits": 120,
+    "predictive_inequalities": 630,
+    "largest_ratio_to_sharp_predictive_bound": "0.999999999999999333333333333333418666666666666671542857142857143507301587301587419797979797979823440559440560309739521192",
+    "hard_pair_directional_checks": 280,
+    "largest_KL_over_h_squared": "0.503801453121556017595363689895115971423628837091151591168996066001167783639778362143843706859153111393081585873571799341",
+    "symmetric_KL_Hellinger_checks": 315,
+    "largest_8H2_over_Jeffreys": "0.99999999999999999999999999999999999999999999999999999999999999999999999999999983642350775732568046873149139273561051848",
+    "deterministic_endpoint_checks": 2
+  },
+  "classifier": {
+    "programs": 264,
+    "max_cap": 2048,
+    "magnitudes": 11,
+    "signs": 2,
+    "largest_error_bound_ratio": 0.748999,
+    "largest_second_moment_ratio": 3.414213562373096,
+    "largest_expected_work_ratio": 2.931911004396821,
+    "largest_telescoping_residual": 2.1094237467877974e-15,
+    "largest_mass_residual": 4.218847493575595e-15,
+    "proved_second_constant": 85,
+    "proved_work_constant": 149
+  },
+  "formulas": {
+    "modulus_comparisons": 96,
+    "largest_residual": 2.220446049250313e-16,
+    "inverse_moment_checks": [
+      {
+        "p": "0.01",
+        "inverse_expectation": "0.01",
+        "expected_pilot_count": "200.0"
+      },
+      {
+        "p": "0.1",
+        "inverse_expectation": "0.1",
+        "expected_pilot_count": "20.0"
+      },
+      {
+        "p": "0.3",
+        "inverse_expectation": "0.3",
+        "expected_pilot_count": "6.66666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666667"
+      },
+      {
+        "p": "0.7",
+        "inverse_expectation": "0.7",
+        "expected_pilot_count": "2.85714285714285714285714285714285714285714285714285714285714285714285714285714285714285714285714285714285714285714285714"
+      },
+      {
+        "p": "1",
+        "inverse_expectation": "1.0",
+        "expected_pilot_count": "2.0"
+      }
+    ]
+  },
+  "calibration_monte_carlo": [
+    {
+      "case": "constant_cost",
+      "repetitions": 4000,
+      "theoretical_mean": 1.0,
+      "observed_mean": 0.9769660533910534,
+      "theoretical_variance": 2.0,
+      "observed_variance": 1.9813416816896614,
+      "theoretical_work": 28.0,
+      "observed_work": 27.896,
+      "mean_standard_error_units": -1.0301094081541091,
+      "work_standard_error_units": -0.42226052725038127,
+      "max_observed_work": 116
+    },
+    {
+      "case": "correlated",
+      "repetitions": 4000,
+      "theoretical_mean": 1.75,
+      "observed_mean": 1.8022069867632367,
+      "theoretical_variance": 3.287109375,
+      "observed_variance": 3.198499044519526,
+      "theoretical_work": 27.75,
+      "observed_work": 27.906,
+      "mean_standard_error_units": 1.8211744377902717,
+      "work_standard_error_units": 0.9273628165568856,
+      "max_observed_work": 109
+    },
+    {
+      "case": "sparse_cost",
+      "repetitions": 4000,
+      "theoretical_mean": 1.0,
+      "observed_mean": 0.9912271701471084,
+      "theoretical_variance": 0.375,
+      "observed_variance": 0.36850481692202774,
+      "theoretical_work": 62.0,
+      "observed_work": 62.7,
+      "mean_standard_error_units": -0.9060539711829477,
+      "work_standard_error_units": 1.1618289250202976,
+      "max_observed_work": 376
+    },
+    {
+      "case": "deterministic_marker",
+      "repetitions": 4000,
+      "theoretical_mean": 0.0,
+      "observed_mean": 0.014,
+      "theoretical_variance": 1.0,
+      "observed_variance": 1.000054013503376,
+      "theoretical_work": 12.0,
+      "observed_work": 12.0,
+      "mean_standard_error_units": 0.8854377448471463,
+      "work_standard_error_units": 0.0,
+      "max_observed_work": 12
+    }
+  ],
+  "implementation": {
+    "smoke_runs": [
+      {
+        "budget": 1.0,
+        "value": 0.5,
+        "work": 0,
+        "pilot_calls": 0,
+        "production_calls": 0
+      },
+      {
+        "budget": 3.99,
+        "value": 0.5,
+        "work": 0,
+        "pilot_calls": 0,
+        "production_calls": 0
+      },
+      {
+        "budget": 4.0,
+        "value": 0.0,
+        "work": 2,
+        "pilot_calls": 2,
+        "production_calls": 1
+      },
+      {
+        "budget": 31.999999999999996,
+        "value": 0.6828427124746191,
+        "work": 14,
+        "pilot_calls": 6,
+        "production_calls": 5
+      },
+      {
+        "budget": 32.0,
+        "value": 4.82842712474619,
+        "work": 24,
+        "pilot_calls": 3,
+        "production_calls": 2
+      },
+      {
+        "budget": 128.0,
+        "value": 0.6828427124746191,
+        "work": 82,
+        "pilot_calls": 11,
+        "production_calls": 10
+      },
+      {
+        "budget": 1024.0,
+        "value": -0.17068857049980432,
+        "work": 1903,
+        "pilot_calls": 79,
+        "production_calls": 78
+      },
+      {
+        "budget": 1024,
+        "delta": 0.1,
+        "value": 0.0,
+        "work": 526,
+        "pilot_calls": 87,
+        "production_calls": 78
+      },
+      {
+        "budget": 1,
+        "delta": 0.01,
+        "value": 0.5,
+        "work": 0,
+        "pilot_calls": 0,
+        "production_calls": 0
+      }
+    ],
+    "invalid_inputs_rejected": 6,
+    "note": "Single runs are smoke tests; the work budget is only an expectation."
+  }
+}
