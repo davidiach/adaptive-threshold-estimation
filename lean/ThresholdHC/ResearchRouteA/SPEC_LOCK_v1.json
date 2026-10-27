@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "status": "specification reviewed before lock; proof acceptance pending replay",
+  "reviewer": "independent adversarial subagent /root/adversarial; same model family, diversity not guaranteed",
+  "review_result": "No blocking specification issue; conditional kernel-model scope only. Nonempty family and bounded-supremum conclusions; no fresh-coin realization.",
+  "source_commit": "12e73e5963bb313250b87aaed0fc700cb4ee9e00",
+  "specification_closure": [
+    "lean/ThresholdHC/ResearchRouteA/SeparateBoundsSpec.lean",
+    "lean/ThresholdHC/Statements.lean",
+    "lean/ThresholdHC/Uniform713/Classifier.lean",
+    "lean/ThresholdHC/Uniform713/Common.lean",
+    "lean/ThresholdHC/Uniform713/Concentration.lean",
+    "lean/ThresholdHC/Uniform713/Estimator.lean",
+    "lean/ThresholdHC/Uniform713/Specification.lean"
+  ],
+  "locked_sha256": {
+    "lean/ThresholdHC/ResearchRouteA/SeparateBoundsSpec.lean": "d114a2734cfd0164def475115d0ebb25d1ba49c7f87bb96fa45e441c3eb40dbe",
+    "lean/ThresholdHC/Statements.lean": "0873505b7c133561e82f63dcbba7f7a0a3da39d0c3692daee99d01882a757abf",
+    "lean/ThresholdHC/Uniform713/Classifier.lean": "432b97eeb99906269a89ec5688bb74c39f4eeb09029334335b32ef94275aef35",
+    "lean/ThresholdHC/Uniform713/Common.lean": "419b64d64f21f718214caabee9927b174d512f3c129139be26605400853e3dab",
+    "lean/ThresholdHC/Uniform713/Concentration.lean": "b494cc19ba348e05533c0a6f7715de8bda306c94e4ad613bb8515e5af6b7c149",
+    "lean/ThresholdHC/Uniform713/Estimator.lean": "39a49e46489f73b73c2fdd418134edf41ae5a6dfd8cefd0bf39d765d6f50780e",
+    "lean/ThresholdHC/Uniform713/Specification.lean": "a3fd9513084b2168cf86fe74962c14df956970c28ff270795591cf45037d9a86",
+    "lean/lean-toolchain": "d581a24b57a4ae9e0b2132ca8ac7cc3ac336a9fc2751fe6b29414e2d434d54c4",
+    "lean/lake-manifest.json": "a7058b14db1034b58735d82f1cf9a82a938855e93decc1960ca7d21e786fdfe2",
+    "lean/lakefile.toml": "273cfe4674e97219b22f7de1428bdadfb45379c7fa582882c59624ab7fbc3189",
+    "lean/ThresholdHC/ResearchRouteA/verify.py": "87dc4386e783bade1703ecc8089375fe46cbe9dd4bb25b370e5868b7415d7100",
+    "lean/ThresholdHC/ResearchRouteA/Audit.lean": "bcbc40f8db3185bf7988cd2f5f553f31bbad1afeff4443c38ca044905b9a9a47"
+  }
+}

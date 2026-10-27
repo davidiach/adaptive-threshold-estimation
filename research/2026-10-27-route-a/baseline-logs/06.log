@@ -1,0 +1,31 @@
+test_duplicate_reports_fail (test_tier3_validation.Tier3ValidationTests.test_duplicate_reports_fail) ... ok
+test_exact_declaration_names (test_tier3_validation.Tier3ValidationTests.test_exact_declaration_names) ... ok
+test_failed_incomplete_or_changed_audit_fails (test_tier3_validation.Tier3ValidationTests.test_failed_incomplete_or_changed_audit_fails) ... ok
+test_lock_cannot_escape_repository (test_tier3_validation.Tier3ValidationTests.test_lock_cannot_escape_repository) ... ok
+test_lock_rejects_changes_and_missing_dependency (test_tier3_validation.Tier3ValidationTests.test_lock_rejects_changes_and_missing_dependency) ... ok
+test_nested_comments_do_not_hide_code (test_tier3_validation.Tier3ValidationTests.test_nested_comments_do_not_hide_code) ... ok
+test_proof_escapes_and_namespace_are_rejected (test_tier3_validation.Tier3ValidationTests.test_proof_escapes_and_namespace_are_rejected) ... ok
+test_unexpected_axiom_and_sorry_both_fail (test_tier3_validation.Tier3ValidationTests.test_unexpected_axiom_and_sorry_both_fail) ... ok
+test_duplicate_reports_fail (test_tier4_validation.Tier4ValidationTests.test_duplicate_reports_fail) ... ok
+test_exact_declaration_names (test_tier4_validation.Tier4ValidationTests.test_exact_declaration_names) ... ok
+test_failed_incomplete_or_changed_audit_fails (test_tier4_validation.Tier4ValidationTests.test_failed_incomplete_or_changed_audit_fails) ... ok
+test_lock_cannot_escape_repository (test_tier4_validation.Tier4ValidationTests.test_lock_cannot_escape_repository) ... ok
+test_lock_rejects_changes_and_missing_dependency (test_tier4_validation.Tier4ValidationTests.test_lock_rejects_changes_and_missing_dependency) ... ok
+test_nested_comments_do_not_hide_code (test_tier4_validation.Tier4ValidationTests.test_nested_comments_do_not_hide_code) ... ok
+test_proof_escapes_and_namespace_are_rejected (test_tier4_validation.Tier4ValidationTests.test_proof_escapes_and_namespace_are_rejected) ... ok
+test_unexpected_axiom_and_sorry_both_fail (test_tier4_validation.Tier4ValidationTests.test_unexpected_axiom_and_sorry_both_fail) ... ok
+test_all_targets_have_real_checks (test_validation.NumericCoverageTests.test_all_targets_have_real_checks) ... ok
+test_zero_i6_coverage_fails (test_validation.NumericCoverageTests.test_zero_i6_coverage_fails) ... ok
+test_invalid_audits_zero_score (test_validation.ScorerTests.test_invalid_audits_zero_score) ... ok
+test_mixed_axiom_report_is_a_violation (test_validation.ScorerTests.test_mixed_axiom_report_is_a_violation) ... ok
+test_unicode_lean_output_with_windows_default_encoding (test_validation.ScorerTests.test_unicode_lean_output_with_windows_default_encoding) ... ok
+test_valid_tier2_baseline (test_validation.ScorerTests.test_valid_tier2_baseline) ... ok
+test_current_sources_match (test_validation.Uniform713LockTests.test_current_sources_match) ... ok
+test_every_locked_source_rejects_changes_and_deletion (test_validation.Uniform713LockTests.test_every_locked_source_rejects_changes_and_deletion) ... ok
+test_locks_cover_local_import_closure (test_validation.Uniform713LockTests.test_locks_cover_local_import_closure) ... ok
+test_missing_or_partial_manifest_fails (test_validation.Uniform713LockTests.test_missing_or_partial_manifest_fails) ... ok
+
+----------------------------------------------------------------------
+Ran 26 tests in 23.664s
+
+OK

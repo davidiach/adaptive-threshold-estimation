@@ -1,5 +1,61 @@
 # Research hill-climb report
 
+## Current research checkpoint — 27 October 2026
+
+**New mathematical result: paper proof with two separate agent reviews.** For
+the exact power margin $F(d)=(d/a)^\alpha$, the previously unresolved regime
+$\alpha>2$ now has the matching rare-event RMS rate
+
+$$R_{\mu,\rho}(B)\asymp_\alpha\min\{\rho,\sqrt\rho/(a\sqrt B)\}.$$
+
+The [complete TeX note](../../research/2026-10-27-route-a/construction.tex) gives
+an observable asymmetric classifier and unbiased randomized correction, with
+second moment at most $(153/56)\rho$ and separate mean work at most
+$w_\alpha/a^2$. It handles every measurable $q$ with $\int q\,d\mu\le\rho$;
+the sharp rarity-weighted inverse-square integral is the step that removes
+the extra logarithm. Exact expected-budget replication and saturation are
+proved. The upper bound also holds for the corresponding margin-envelope
+class without knowing its individual law. The matching lower bound imports
+the precise Lee–Valiant inputs through an explicit fixed-gap simulation.
+
+The [contract](../../research/2026-10-27-route-a/CONTRACT.md),
+[edge cases and failed approaches](../../research/2026-10-27-route-a/EDGE_CASES.md),
+[source refresh](../../research/2026-10-27-route-a/sources.md), and
+[two](../../research/2026-10-27-route-a/review.md)
+[reviews](../../research/2026-10-27-route-a/second-review.md) delimit the result.
+This is not an arbitrary-law theorem, an $\alpha=2$ solution, a Lean proof of
+the new rate, external specialist review, or a certified priority claim.
+Constants depend on $\alpha$ and diverge near two. The strongest failed
+construction charged logarithmic rarity work on every negative coin; the
+successful construction charges it only on positives and integrates that cost
+under the global rarity constraint. The next precise question is how to replace
+the inverse-square work argument at the critical exponent without introducing
+an extra budget logarithm.
+
+**Formal foundation, not a new constant.** A separately reviewed and locked
+[Lean bridge](../../research/2026-10-27-route-a/formal-audit.md) exports
+$\mathbb EY^2\le23I$, $\mathbb EW\le31I$, and the non-strict product of separate
+suprema at most $713I^2$ for the existing fixed kernel/estimator model. Five
+public roots pass exact-type and transitive-axiom checks. Fresh-coin realization
+of that kernel family remains outside this formal theorem.
+
+The [baseline ledger](../../research/2026-10-27-route-a/BASELINE.md) records the
+actual checkout/renamed remote, concurrent documentation commits, locks,
+existing evidence and replay. Tier4 was already complete when this session
+started: its full infinite tape KL still uses a fixed finite coin family.
+Older open-work descriptions below record their historical checkpoint.
+Published verification records and imported sources were preserved. Existing
+numerical/integrity gates and all 26 validation tests passed in a byte snapshot;
+the benchmark replay passed after making the existing ignored Python runtime
+available. Eighteen new exact finite-prefix classifier checks retain unresolved
+tails. Historical CI is not claimed as verification of this new state.
+
+**Retrospective.** The useful change came from attacking the estimator's noise
+and work allocation, not from adding formal proof lines. Parallel construction,
+source/adversarial review, and formal-foundation roles were separate; model
+diversity is not guaranteed. The new formal work stayed subordinate to the open
+statistical question. No remote publication or external contact occurred.
+
 ## Environment and evidence
 
 The Lean track ran: Lean 4.36.0-rc1 with Mathlib pinned to

@@ -1,5 +1,14 @@
 # Full verification commands
 
+For the additive 27 October rare-event result and separate-supremum bridge:
+
+```sh
+python research/2026-10-27-route-a/check_construction.py
+python lean/ThresholdHC/ResearchRouteA/verify.py
+```
+
+The first command checks exact rational finite-prefix experiments and retains unresolved tails; it does not certify the main theorem. The second checks the new locked formal specification, exact types, and all five public roots. See [formal replay details](../research/2026-10-27-route-a/formal-audit.md) for the local Windows environment. The main theorem remains a reviewed paper proof. [Baseline replay records](../research/2026-10-27-route-a/BASELINE.md) and the new `acceptance_check.py` keep diagnostics separate from published `results/`; the latter compares against this session's recorded source snapshot.
+
 Use Python 3.12 and the toolchain in [lean/lean-toolchain](../lean/lean-toolchain). The pinned package revisions are in [lean/lake-manifest.json](../lean/lake-manifest.json); do not run `lake update` on this frozen checkout. [Environment notes](../proposals/lean-environment.md) include the existing local Windows installation.
 
 Several verifiers write logs or summaries into `results/`. Run this sequence in a disposable checkout if you want the published evidence to remain byte-for-byte unchanged:

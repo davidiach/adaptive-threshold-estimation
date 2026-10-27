@@ -28,6 +28,8 @@ $$\operatorname{Var}(Y)\mathbb E W<713\left(\mathbb E[D^{-1}]\right)^2.$$
 
 Its assumptions describe an arbitrary magnitude/sign probability space, a conditional observation kernel, independent measurable observations in $[0,1]$ with means $1/2\pm D$, $0<D\le1/2$ almost surely, and an integrable inverse magnitude. Bernoulli observations are included. No classifier error, moment, work, or unbiasedness conclusion is an assumption. The random level has unbounded support. See the [kernel audit](../results/uniform713_status.json) and [paper argument](../proposals/constants/UNIFORM_PRODUCT_BOUND.md).
 
+The additive, separately locked `ThresholdHC.ResearchRouteA.separate_moment_bounds` exports $\mathbb E Y^2\le23I$ and $\mathbb E W\le31I$, including integrability. `uniform_family_bounds` proves bounded separate suprema and their product at most $713I^2$ for a nonempty family of latent laws sharing $I$, with the kernel and estimator fixed before the family. This supplies the formal separate-supremum bridge, not a fresh-coin realization or a new constant. See the [specification, hashes and local replay](../research/2026-10-27-route-a/formal-audit.md). Five public roots were checked with only the permitted axioms; external-machine replay is unavailable.
+
 ## Information and stopping
 
 Fix a finite set of $m$ coins with magnitudes $0<d_i\le1/2$. The hypotheses have sign probabilities $q_\pm(i)=1/2\pm\eta_i$, where $0\le\eta_i\le1/8$, $h>0$, and $d_i\eta_i\le h/8$. Policies adapt to observation history. Write $T_n$ for actual work by finite horizon $n$.
@@ -54,6 +56,18 @@ $$\Psi_{\mu,\rho}(h)=\sup_{\substack{v\text{ measurable},\ 0\le v\le1\\\mathbb E
 $$\Psi_{\mu,\rho}(h)=\Pr(D\le h)+h\mathbb E[D^{-1};h<D\le t]+ht\mathbb E[D^{-2};D>t].$$
 
 The [specification](../lean/ThresholdHC/Tier3/OptimizerModel.lean) permits atoms and singular laws and assumes no finite inverse moment. It formalizes the identity in [continuation §3.3](../inputs/next-phase/report/research_note.tex#L218). A matching arbitrary-law statistical upper bound remains conjectural. The matching rare-event construction in its §4 covers power margins $F(d)=(d/a)^\alpha$ on $(0,a]$ for $0<\alpha<2$, not $\alpha\ge2$.
+
+## Rare-event power margins above two
+
+The separate [27 October research note](../research/2026-10-27-route-a/construction.tex), Theorem 1 and its exact-power corollary, supplies a **paper proof with two separate agent reviews** of
+
+$$R_{\mu,\rho}(B)\asymp_\alpha\min\{\rho,\sqrt\rho/(a\sqrt B)\},\qquad \alpha>2,$$
+
+for $F_\mu(d)=(d/a)^\alpha$ on $(0,a]$, all $0<a\le1/2$, $0<\rho\le1/4$, $B\ge1$, and every measurable $q$ with $\int q\,d\mu\le\rho$. The upper algorithm observes only coin flips and an independent seed. It knows $a,\rho$ (and $\alpha,B$ for budget calibration), and its upper guarantee also holds uniformly over laws with $F_\mu(d)\le(d/a)^\alpha$ for $d<a$, without knowing the law itself.
+
+The new construction uses asymmetric sign-test errors and a randomized telescope. Its unbiased single-coin output has $\mathbb E Y^2\le(153/56)\rho$ and separately $\mathbb E T\le w_\alpha/a^2$, with explicit finite $w_\alpha$ in the note. The central integration step is $\mathbb E[q(D)\min(D,a)^{-2}]\le[\alpha/(\alpha-2)]a^{-2}\rho^{1-2/\alpha}$; this uses the global constraint, not $q(d)\le\rho$. Compound-Poisson replication enforces the exact expected budget, and a constant estimate covers saturation. The matching lower proof imports Lee–Valiant Corollary 19 and Lemma 18, then gives an explicit fixed-gap simulation reduction.
+
+The [adversarial review](../research/2026-10-27-route-a/review.md), [second analytic review](../research/2026-10-27-route-a/second-review.md), [primary-source comparison](../research/2026-10-27-route-a/sources.md), and [baseline ledger](../research/2026-10-27-route-a/BASELINE.md) record the evidence. Reviewers did not author the main proof; model diversity is not guaranteed. The theorem is **not Lean-checked or externally specialist-reviewed**, and worldwide novelty is unverified. The arbitrary-law conjecture, a universal two-atom characterization, and $\alpha=2$ remain open. Constants diverge as $\alpha\downarrow2$. The preserved paper and imported continuation are unchanged.
 
 ## Unknown rarity and numerical evidence
 
