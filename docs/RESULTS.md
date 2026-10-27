@@ -41,7 +41,7 @@ The stopping theorem above concerns terminal testing; the [audit record](../resu
 
 `ThresholdHC.Tier4.finite_prefix_kl_identity` in [FiniteBase.lean](../lean/ThresholdHC/Tier4/FiniteBase.lean) identifies joint seed/prefix KL with the conditional finite-sum information. `ThresholdHC.Tier4.infinite_kl_eq_iSup` in [StoppedFull.lean](../lean/ThresholdHC/Tier4/StoppedFull.lean) proves that full KL equals the supremum of prefix KL values. The theorems `infinite_kl_finite` and `observable_kl_bound` in [Full.lean](../lean/ThresholdHC/Tier4/Full.lean) derive absolute continuity, integrability of the log-likelihood ratio, and the same bound for every measurable statistic of the seed and tape. See the [complete audit](../results/tier4_status.json) and [development record](TIER4.md).
 
-These formalized experiments still have a fixed finite coin set. [Paper §3, Proposition 5](../paper/paper.tex#L425) allows adaptive coin creation without a fixed finite family; that broader scope retains paper-proof status.
+These formalized experiments still have a fixed finite coin set. [Paper §3, Proposition 6](../paper/paper.tex#L425) allows adaptive coin creation without a fixed finite family; that broader scope retains paper-proof status.
 
 ## Rare-event optimizer
 
