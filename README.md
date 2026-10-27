@@ -96,6 +96,11 @@ stated evidence levels.
 
 ## How this was made
 
+The [process note](docs/process/METHOD.md) explains how the experiment was
+specified, proofs and claims were checked, failed approaches were retained,
+and the limits of agent review were recorded. The current follow-up is tracked
+in the [verification and consolidation ledger](docs/WORKPLAN.md).
+
 AI agents carried out the research and formalization under David Iach's direction, against frozen Lean targets checked by a hash-locked scorer. The [provenance record](docs/process/PROVENANCE.md), [research report](docs/process/REPORT.md), and [run log](docs/process/RUNLOG.md) document the work and its evidence. Tiers, point totals, and checkpoints record that process; they do not extend the verified statements. The [process index](docs/process/README.md) links the original brief, approval history, and independent agent reviews.
 
 Code and Lean files use [Apache-2.0](LICENSE); the paper and documentation use [CC BY 4.0](LICENSE-CC-BY-4.0). See [license scope](LICENSES.md) and [CITATION.cff](CITATION.cff) for attribution and the AI-assisted provenance note.

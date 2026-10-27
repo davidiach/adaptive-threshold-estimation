@@ -1,0 +1,111 @@
+{
+  "valid": true,
+  "scope": "Entropy event packing and abstract compact convex common-point implication",
+  "full_critical_minimax_theorem_verified": false,
+  "base_cost_theorem_verified": false,
+  "finite_gap_sign_testing_theorem_verified": false,
+  "specifications_frozen_before_proofs": false,
+  "source_sha256": {
+    "lean/ThresholdHC/CriticalEntropy/Audit.lean": "49fd3f42371514e95852041998b6401ed71a9239d3c78d896356256739b34578",
+    "lean/ThresholdHC/CriticalEntropy/CommonPoint.lean": "e19f78d967948f5e5c3b2b3e8ef202e2ed5a8c6c7f65fb831789934a917b0026",
+    "lean/ThresholdHC/CriticalEntropy/Packing.lean": "0819b363020bec3f9b82bbaf86387be6d78d3631381b590b640d587fea011a95",
+    "lean/ThresholdHC/CriticalEntropy/Specification.lean": "095c11dbad0bb550691198873813e19c122d1010b71c3d7bdc80d38e0e9ad4e2",
+    "tools/verify_critical_components.py": "7c99cf2d139c8fdbf6215e9b3828628034658fd505166a4b229910e3c0ef1550",
+    "tools/verify_tier6.py": "7295c1609c57be9951fc46f3e210f7f7682083470cf94bbe2dd89a387b0f075e",
+    "lean/lean-toolchain": "d581a24b57a4ae9e0b2132ca8ac7cc3ac336a9fc2751fe6b29414e2d434d54c4",
+    "lean/lake-manifest.json": "a7058b14db1034b58735d82f1cf9a82a938855e93decc1960ca7d21e786fdfe2"
+  },
+  "commands": [
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\Packing.olean",
+        "ThresholdHC/CriticalEntropy/Packing.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\CommonPoint.olean",
+        "ThresholdHC/CriticalEntropy/CommonPoint.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\Specification.olean",
+        "ThresholdHC/CriticalEntropy/Specification.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "ThresholdHC/CriticalEntropy/Audit.lean"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "axioms": {
+    "ThresholdHC.CriticalEntropy.sum_event_mass_le_overlap": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.event_packing": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.overlap_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.entropy_of_packing": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.entropy_of_gap_count": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finite_common_point": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.common_point_of_finite_mixtures": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.EntropyPackingStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.CommonPointStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "exact_component_targets": 2,
+  "audited_declarations": 9
+}

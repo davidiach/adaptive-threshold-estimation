@@ -2,6 +2,9 @@
 
 These documents record the workflow and historical verification checkpoints. For mathematical claims, start with the [repository README](../../README.md) and [results guide](../RESULTS.md).
 
+Start with [How this research was developed and checked](METHOD.md) for the
+concise process account. The documents below retain the chronological evidence.
+
 | Document | Purpose |
 |---|---|
 | [BRIEF.md](../../BRIEF.md) | Original research instructions and acceptance rules. |

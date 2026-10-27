@@ -73,6 +73,8 @@ jobs:
       - name: Regression tests for the Tier 6 audit when present
         run: |
           if test -f tools/test_tier6_validation.py; then python -m unittest discover -s tools -p 'test_tier6_validation.py' -v; fi
+      - name: Regression tests for the scoped critical component audit
+        run: python -m unittest discover -s tools -p 'test_critical_components.py' -v
       - run: python tools/check_targets_numeric.py
       - name: Tier 2 numeric truth checks when present
         run: |
@@ -125,6 +127,8 @@ jobs:
           if test -f tools/verify_tier6.py; then python tools/verify_tier6.py --sequential --require-complete; fi
       - name: Verify the locked separate-moment research bridge
         run: python lean/ThresholdHC/ResearchRouteA/verify.py
+      - name: Verify critical-proof components without certifying the statistical theorem
+        run: python tools/verify_critical_components.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -151,3 +155,4 @@ jobs:
             results/tier6_build.log
             results/tier6_audit.log
             results/tier6_status.json
+            .runtime/critical-components/

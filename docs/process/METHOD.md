@@ -1,0 +1,118 @@
+# How this research was developed and checked
+
+This project combines written mathematical arguments, Lean proofs, and numerical
+experiments. AI agents produced research, code and reviews under David Iach's
+direction. The repository's [citation record](../../CITATION.cff) identifies the
+human project lead. Agent review is not human peer review, and sharing a model
+family can make apparently separate reviews fail in correlated ways.
+
+The transferable part of the workflow is the separation between proposing a
+claim, specifying it precisely, proving it, and checking that the specification
+still expresses the intended problem. The [current results guide](../RESULTS.md)
+states what has been established. This note explains how the evidence was made
+and where it can mislead.
+
+## Begin with the experiment, not the theorem name
+
+For this problem, a correct inequality can become irrelevant if an algorithm
+is given hidden magnitudes, if its budget excludes discarded pilot work, or if
+its output is restricted without justification. Similarly, proving a statement
+for a fixed finite inventory of coins does not automatically prove it for a
+reservoir with adaptive creation.
+
+The formal development therefore progressed through explicit transcript models.
+The final [Tier 6 model](../../lean/ThresholdHC/Tier6/AlgorithmModel.lean) defines
+uniform expected work, retains infinite squared error, and takes a minimax
+infimum over observable randomized adaptive estimators. Its process realization
+is a proved conclusion. Nonempty budget classes and a finite-risk witness check
+that the main statement is not vacuous. These semantic checks matter as much as
+the final kernel acceptance.
+
+The corresponding upper-bound task has an additional quantifier requirement:
+one algorithm must work across magnitude laws. An existence theorem allowing a
+different law-dependent algorithm for each law would leave that task unfinished.
+
+## Freeze established questions and preserve corrections
+
+The original [brief](../../BRIEF.md) required fixed target statements and
+scorers. Source hashes bind the question as well as the answer. Later extensions
+use separate specifications and manifests, with changes and authorizations
+recorded in the [freeze log](../../FREEZE_LOG.md).
+
+A hash proves file identity, not mathematical truth. Freezing an incorrect
+model would preserve the mistake. The useful order is to inspect definitions,
+check elaboration, challenge assumptions and quantifiers, and then freeze the
+target used to evaluate the proofs. A new specification introduced alongside
+its proof must not be retrospectively described as a target frozen beforehand.
+
+Historical manuscripts and reviewed bundles remain available. A subsequent
+correction belongs in the current explanation with a link to the old record;
+silently replacing the old bytes would destroy the evidence of what was checked.
+
+## Use each check for the question it can answer
+
+| Evidence | What it establishes | What it does not establish |
+|---|---|---|
+| Lean elaboration and kernel checking | The supplied term proves its precise formal type | That the type faithfully models the scientific claim |
+| Exact-type and transitive-axiom audit | The registered statement is inhabited using the allowed axioms | Correctness of unformalized neighboring arguments |
+| Source locks and clean replay | Which sources and commands produced a result | Independent mathematical review |
+| Exact finite experiments | Identities or inequalities for those enumerated experiments | A continuum or unbounded-horizon theorem |
+| Held-out simulations | Empirical performance on the specified data and budgets | Uniform statistical rates or practical superiority in other settings |
+| Paper review | A reader's reconstruction and objections for the inspected argument | Kernel verification or guaranteed independence |
+
+The formal guards reject incomplete axiom output and unsuccessful processes,
+rather than accepting a log merely because it contains some successful lines.
+Their regression tests exercise failure cases. Toolchain and Mathlib revisions
+are pinned. A successful CI run is attributed to its exact commit and actual
+completed jobs; an in-progress run is not evidence of success.
+
+## Failed approaches changed the mathematics
+
+The [off-grid bias audit](../../proposals/constants/BIAS_AUDIT.md) shows why a
+better finite-grid score cannot replace a uniform bound. The accepted 713 result
+instead has a separate analytic argument and formal specification. Its constant
+is an upper bound, not a claim of optimality.
+
+The rare-event continuation proposed a variational characterization using Psi.
+The later critical quadratic argument claims an additional scale-entropy factor.
+If that argument is correct, the statistical characterization fails while the
+formal optimizer of the variational problem remains correct. This distinction
+prevents a failed conjecture from being confused with a faulty optimizer proof.
+
+The critical proof's [attempt record](../../research/2026-10-27-nonlinear-critical/attempts.md)
+also records why a direct additive-estimator comparison did not settle general
+interaction. The successful paper route instead needs null-population cost,
+a common hard pair, and midpoint simulations. Each bridge has to be justified;
+repeatedly checking the easier endpoint calculation cannot substitute for it.
+
+## Review dependence and human responsibility
+
+Separate construction and adversarial review roles can expose mistakes, but the
+number of agent reviews is not a count of independent scientific validations.
+The critical theorem's [second review](../../research/2026-10-27-nonlinear-critical/second-review.md)
+discloses its author's contribution to the base-cost argument. That author can
+cross-check other components but cannot independently certify their own work.
+
+Primary-source comparisons must inspect assumptions, cost definitions and
+normalizations. A nearby theorem's title is insufficient. The source records
+credit established sign-entropy, convex-estimation and Hellinger-decomposition
+methods. A targeted literature check does not establish priority.
+
+A human specialist review remains a distinct step. A useful review package
+states the experiment, strongest claim, proof dependencies, and specific places
+where an objection would break the conclusion. No reviewer should have to infer
+the current theorem from chronological run logs.
+
+## Keep the evidence navigable
+
+The main reading path is the manuscript and results guide, followed by the
+precise specification or proof. Historical logs, raw samples and failed attempts
+remain supporting records. Fresh verification output goes to disposable or
+ignored directories so it cannot overwrite a published checkpoint by accident.
+
+The [active completion ledger](../WORKPLAN.md) and
+[critical follow-up audit](../CRITICAL_AUDIT.md) distinguish completed components
+from remaining work. As of this note, the original upper theorem, the complete
+critical statistical argument, and external specialist review must not be
+described as completed formal verification. More proof lines or larger logs
+would not change those boundaries on their own.

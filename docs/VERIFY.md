@@ -1,5 +1,18 @@
 # Full verification commands
 
+The follow-up's scoped critical-proof components have a separate check:
+
+```sh
+python tools/verify_critical_components.py
+python -m unittest discover -s tools -p 'test_critical_components.py' -v
+```
+
+This checks the exact entropy-packing and compact-convex common-point targets
+and all nine declarations in those modules. It writes fresh evidence under
+`.runtime/critical-components/`. It does not certify the finite-gap sign-testing,
+base-cost, or critical minimax theorem. See the
+[follow-up audit](CRITICAL_AUDIT.md#formalization-boundary-and-first-checkpoint).
+
 For the integrated research packages, including the full critical-law paper
 theorem and Psi counterexample:
 
