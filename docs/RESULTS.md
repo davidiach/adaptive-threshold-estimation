@@ -116,71 +116,37 @@ for the exact four-file source bundle, replay evidence, attribution and
 limitations. The full minimax theorem is not Lean-checked; no explicit hard-pair
 formula, external specialist review or priority certification is claimed.
 
-Its finite-gap sign-entropy dependency (BC2) is now separately Lean-checked:
-`finite_gap_sign_entropy` in [FiniteGap.lean](../lean/ThresholdHC/CriticalEntropy/FiniteGap.lean)
-proves `sum_j d_j^2 E_-j T >= K log(K)/512` for `log(K)>=32`, adjacent gap
-ratios at least two, and `0<d_j<=1/128`. One observable test with an arbitrary
-independent seed serves every gap and sign, has both error probabilities at
-most `1/10`, and has finite expected work under both signs. The fair-coin law
-need not terminate. The proof constructs the information bounds and stopping
-windows; neither is an assumption. This does not prove the continuum
-null-cost product theorem. See the [model and scope audit](CRITICAL_AUDIT.md#current-formal-boundary).
+The critical single-coin base-cost theorem (BC1) is Lean-checked in
+[BaseCost.lean](../lean/ThresholdHC/CriticalEntropy/BaseCost.lean):
 
-The restart argument now also has a proved probability foundation:
-`stopped_marked_suffix_map` in
-[StoppedTape.lean](../lean/ThresholdHC/CriticalEntropy/StoppedTape.lean) shows
-that unused flips after an observable stopping time retain the fixed coin's
-Bernoulli law and are independent of the output and work. It allows arbitrary
-measurable seed and output spaces and assumes finite expected work under that
-parameter. The observable two-procedure composition in
-[SequentialModel.lean](../lean/ThresholdHC/CriticalEntropy/SequentialModel.lean)
-has a proved product output law and exact additive expected-work identity in
-[RestartPair.lean](../lean/ThresholdHC/CriticalEntropy/RestartPair.lean).
-The [fixed-count repetition](../lean/ThresholdHC/CriticalEntropy/RepeatedRestart.lean)
-has a proved iid joint output law and expected work exactly `n E T`.
-[SignReduction.lean](../lean/ThresholdHC/CriticalEntropy/SignReduction.lean)
-transfers the second-moment error bounds to an actual observable sign test.
-[EstimationEntropy.lean](../lean/ThresholdHC/CriticalEntropy/EstimationEntropy.lean)
-then proves `sum_j d_j^2 E_-j T >= K log(K)/(512 n)` directly for a real-output
-procedure with conditional means at most `1/8` under minus and at least `5/8`
-under plus, raw second moments at most `M`, and a positive `n>=160 M`.
-Both signed laws have explicit square-integrability and finite-work assumptions.
-[PopulationMixture.lean](../lean/ThresholdHC/CriticalEntropy/PopulationMixture.lean)
-now derives the population-to-conditional moment identities from an actual
-hidden-parameter Bernoulli tape generator. Finite population second moment and
-work at the null prior and one positive constant prior imply almost-everywhere
-conditional square integrability and finite work under both signs, as well as
-integrable conditional means. The moment and work formulas retain infinity;
-the signed mean formula is proved under finite second moment. The seed and
-observable procedure are fixed across populations.
+$$V\,\mathbb E_0T\ge c\rho L(1+\log L),\qquad L=1+\log(1/\rho).$$
 
-[PopulationVariance.lean](../lean/ThresholdHC/CriticalEntropy/PopulationVariance.lean)
-derives the variance floor `V>=2 rho/3` from the null and constant-prior bias
-bounds, and converts an extended-variance bound into the raw second-moment
-bound `M<=3V/2`. It derives square integrability from finite extended variance;
-totalized real variance is not used to assume finiteness.
-[GoodGaps.lean](../lean/ThresholdHC/CriticalEntropy/GoodGaps.lean) derives a
-measurable set `G` with `mu(G^c)<=70m` from uniform second-moment, finite-work,
-and bias guarantees over `q<=1/2`, `integral q<=rho`. On `G`, the minus mean
-has absolute value at most `1/8`, the plus mean is at least `5/8`, and the
-conditional second moments are at most `1/64` and `1/64+2m/rho`; both signed
-conditional work expectations are finite. The gap law is atomless and supported
-on a bounded real interval. No conditional bound is assumed.
+One universal `c>0` works for every `0<rho<=1/4`. The same observable
+procedure and independent seed law serve every measurable `q<=1/2` with
+`integral q<=rho`. Its assumptions are uniform bias at most `rho/64`, a
+uniform extended-variance bound `V`, and finite expected work under each
+such prior. Finite extended variance implies square integrability; infinite
+work and moments are retained in the definitions. Per-prior finite work
+suffices, so the paper's stronger uniform finite-work hypothesis is covered.
+The raw-second-moment version is also proved.
 
-[CriticalLaw.lean](../lean/ThresholdHC/CriticalEntropy/CriticalLaw.lean) proves
-that the actual gap law has density `32d` on `(0,1/4]`, is an atomless
-probability measure, and has the stated quadratic CDF.
-[CriticalAnnuli.lean](../lean/ThresholdHC/CriticalEntropy/CriticalAnnuli.lean)
-selects good gaps in disjoint annuli and bounds their total weighted work by
-one third of the all-negative population work.
-[CriticalScale.lean](../lean/ThresholdHC/CriticalEntropy/CriticalScale.lean)
-combines this with observable restarts and sign entropy to prove
-`rho K log(K) <= (656384/3) m E_0 T`. Its hypotheses are the uniform
-population bias, raw second-moment and finite-work guarantees, `m>=2rho/3`,
-`log(K)>=32`, and annulus mass at least `140m` for each of the `K` chosen
-annuli. Neither conditional moment bounds nor a sign test is assumed.
-Activation normalization and a rarity-dependent choice of `K` remain open;
-this is still not the base-cost or full critical theorem.
+The proof derives activation normalization, population moment identities,
+good-gap selection, observable iid restarts, sign-testing entropy, and the
+rarity-dependent number of scales from those guarantees. In particular,
+[FiniteGap.lean](../lean/ThresholdHC/CriticalEntropy/FiniteGap.lean) proves
+the BC2 bound `sum_j d_j^2 E_-j T >= K log(K)/512` for one observable test
+serving every specified gap and sign. It constructs the information bounds
+and stopping windows and does not assume fair-coin termination.
+The [model and dependency audit](CRITICAL_AUDIT.md#current-formal-boundary)
+gives the exact intermediate hypotheses and source-specific evidence.
+Twenty exact targets and all 290 public declarations are audited.
+
+The statistical common hard pair, unrestricted population transfer, and
+critical upper construction remain unformalized. The abstract
+[common-point theorem](../lean/ThresholdHC/CriticalEntropy/CommonPoint.lean)
+does not establish its statistical hypotheses. Consequently the verified
+single-coin result does not certify the full critical minimax law or its
+refutation of the proposed general upper bound.
 
 ## Population and nonlinear feedback follow-ups
 

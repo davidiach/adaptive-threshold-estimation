@@ -22,8 +22,9 @@ brief. The [original v4](paper/paper.pdf) and historical evidence remain preserv
 Uniformity is over all conditional sign laws. The paper has agent-reviewed
 components but no external specialist review. Lean checks the linked exact
 statements. The [rare-event results](paper/v5/rare-events.tex), including the
-full critical law, retain paper-proof status; their finite-gap sign-entropy
-ingredient is now [Lean-checked](lean/ThresholdHC/CriticalEntropy/FiniteGap.lean).
+full critical law, retain paper-proof status. The critical single-coin
+variance/null-work lower bound, including its entropy mechanism, is now
+[Lean-checked](lean/ThresholdHC/CriticalEntropy/BaseCost.lean).
 [Verify locally](docs/VERIFY.md) · [CI](https://github.com/davidiach/adaptive-threshold-estimation/actions/workflows/checks.yml)
 
 <details>

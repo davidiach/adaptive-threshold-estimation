@@ -49,6 +49,14 @@ therefore requires bounds on extended variance and derives square integrability
 before using real-valued identities. This is a semantic safeguard, not an
 additional assumption about the algorithm's output.
 
+The critical single-coin base-cost theorem now composes that probability model
+with activation normalization, observable restarts, good-gap selection and a
+rarity-dependent scale count. Its exact specification quantifies one universal
+constant before the rarity and procedure, and charges all-negative population
+work. The full minimax transfer still needs its common population pair and
+interactive experiment. The verification record keeps those completion flags
+separate.
+
 ## Freeze established questions and preserve corrections
 
 The original [brief](../../BRIEF.md) required fixed target statements and

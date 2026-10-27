@@ -9,7 +9,7 @@ this plan. New work is published on `research/verification-consolidation-2026102
 |---|---|---|
 | Adversarial audit of the critical quadratic theorem | Trace every proof dependency, record objections and their resolution, distinguish paper arguments from kernel checks | Initial source audit in [CRITICAL_AUDIT.md](CRITICAL_AUDIT.md); further verification in progress |
 | Specialist review package | Short overview, complete consolidated proof, precise questions, source and prior-art references | [Prepared](../paper/critical-review/README.md): three-page brief plus complete proof, 16-page PDF compiled and visually checked; external review itself remains pending |
-| Formal critical argument | Exact statistical specification, proved dependency chain, kernel and axiom audit; scalar lemmas alone do not satisfy this item | Finite-gap estimator/sign entropy, observable restarts, population moments, extended-variance floor, quantitative good-gap selection for atomless bounded laws, quadratic-law annulus selection and finite-scale null-cost product, and abstract common-point theorem proved. Activation normalization, rarity-dependent scale-count choice and base-cost theorem, common-pair instantiation, and population transfer remain pending |
+| Formal critical argument | Exact statistical specification, proved dependency chain, kernel and axiom audit; scalar lemmas alone do not satisfy this item | Critical single-coin variance and raw-moment base-cost theorems proved for every rarity, including activation, constructed population moments, good gaps, observable restarts, sign entropy and scale selection. Abstract common-point theorem also proved. Statistical common-pair instantiation, unrestricted population transfer and the critical upper construction remain pending |
 | Original distribution-blind upper bound | One budget-indexed observable algorithm independent of the magnitude/sign laws, realized in the original experiment; uniform work and RMS bounds; exact type and axiom audit | Pending; existing classifier and negative-binomial identities are ingredients |
 | Consolidated v5 manuscript | Original minimax law, unbiasedness, 713 bound, rare-event regimes, critical result and correction to the Psi conjecture; accurate verification labels; compiled and visually checked | [Written](../paper/v5/README.md): 55-page manuscript with complete source-derived proof appendices, explicit editorial changes, source checks, and rendered-page review. No separate review of the new consolidation is claimed |
 | Process note | Reproducible account of construction, frozen statements, semantic review, failed approaches, reviewer dependence, and limits | [Written](process/METHOD.md); update verification boundaries as further work lands |
@@ -70,5 +70,11 @@ also passed all three jobs in
 including its ten exact targets and 135 declaration checks. The population
 moment checkpoint `145a78519b58e84a01314da356b380882b644c5b` passed all three jobs in
 [run 40510054032](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40510054032),
-including twelve exact targets and 189 declaration checks. Later extensions
+including twelve exact targets and 189 declaration checks. The good-gap
+checkpoint `13435c1464e449bfc76225ac3d2544e9699e7e4f` passed all three jobs in
+[run 40513347586](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40513347586).
+The finite-scale checkpoint `891d5dc4e74d849cc93b100fbf99a28da112ccc3` also
+passed all three jobs in
+[run 40516081123](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40516081123),
+including seventeen exact targets and 251 declaration checks. Later extensions
 require their own CI results.

@@ -9,6 +9,7 @@ import ThresholdHC.CriticalEntropy.RepeatedSignModel
 import ThresholdHC.CriticalEntropy.PopulationModel
 import ThresholdHC.CriticalEntropy.GoodGapModel
 import ThresholdHC.CriticalEntropy.CriticalModel
+import ThresholdHC.CriticalEntropy.ActivationModel
 
 noncomputable section
 open MeasureTheory Real
@@ -266,5 +267,54 @@ def CriticalScaleProductStatement : Prop :=
       (656384/3)*m*(populationExpectedWork criticalGapLaw ν
         (fun d => criticalParameter d false) (fun d => criticalParameter d true)
         (fun _ => 0) A).toReal
+
+/-- The conditioned observable procedure and its quantitative BC7 bounds. -/
+def ActivationNormalizationStatement : Prop :=
+  ∀ (R : Type) [MeasurableSpace R]
+    (μ : Measure ℝ) [IsProbabilityMeasure μ] (ν : Measure R) [IsProbabilityMeasure ν]
+    (p₀ p₁ : ℝ → unitInterval) (h₀ : Measurable p₀) (h₁ : Measurable p₁)
+    (A : StoppedProcedure R ℝ) (ρ : unitInterval) (hρ : 0 < (ρ : ℝ))
+    (hρ' : (ρ : ℝ) ≤ 1/4) (M : ℝ) (hM : 0 ≤ M)
+    (hguar : CappedPopulationGuarantee μ ν p₀ p₁ A (ρ : ℝ) M),
+    let p := ν.real (activeSeeds A)
+    let m := p*M+2*(ρ : ℝ)^2
+    let W := (populationExpectedWork μ ν p₀ p₁ (fun _ => 0) A).toReal
+    let WZ := (populationExpectedWork μ (ProbabilityTheory.cond ν (activeSeeds A)) p₀ p₁ (fun _ => 0)
+      (activeProcedure ν A)).toReal
+    ν (activeSeeds A) ≠ 0 ∧
+    CappedPopulationGuarantee μ (ProbabilityTheory.cond ν (activeSeeds A)) p₀ p₁ (activeProcedure ν A) (ρ : ℝ) m ∧
+    2*(ρ : ℝ)/3 ≤ m ∧ 1 ≤ WZ ∧ WZ = W/p ∧
+    m ≤ 4*(M*W) ∧ m*WZ ≤ 4*(M*W) ∧ (ρ : ℝ)/6 ≤ M*W
+
+/-- Actual critical raw-moment base cost; no sign test or scale bound is assumed. -/
+def CriticalRawBaseCostStatement : Prop := ∃ c : ℝ, 0 < c ∧
+    ∀ (R : Type) [MeasurableSpace R] (ν : Measure R) [IsProbabilityMeasure ν]
+      (A : StoppedProcedure R ℝ) (ρ : unitInterval),
+      0 < (ρ : ℝ) → (ρ : ℝ) ≤ 1/4 → ∀ (M : ℝ), 0 ≤ M →
+      CappedPopulationGuarantee criticalGapLaw ν
+        (fun d => criticalParameter d false) (fun d => criticalParameter d true) A (ρ : ℝ) M →
+      c*(ρ : ℝ)*criticalLogFactor (ρ : ℝ) ≤
+        M*(populationExpectedWork criticalGapLaw ν
+          (fun d => criticalParameter d false) (fun d => criticalParameter d true) (fun _ => 0) A).toReal
+
+/-- Actual critical variance base cost, retaining infinity in variance and work. -/
+def CriticalBaseCostStatement : Prop := ∃ c : ℝ, 0 < c ∧
+    ∀ (R : Type) [MeasurableSpace R] (ν : Measure R) [IsProbabilityMeasure ν]
+      (A : StoppedProcedure R ℝ) (ρ : unitInterval),
+      0 < (ρ : ℝ) → (ρ : ℝ) ≤ 1/4 → ∀ (V : ℝ), 0 ≤ V →
+      (∀ q : ℝ → unitInterval, CappedPrior criticalGapLaw (ρ : ℝ) q →
+        ProbabilityTheory.evariance (fun z => A.output (populationInput
+          (fun d => criticalParameter d false) (fun d => criticalParameter d true) q z))
+          (populationMeasure criticalGapLaw ν) ≤ ENNReal.ofReal V) →
+      (∀ q : ℝ → unitInterval, CappedPrior criticalGapLaw (ρ : ℝ) q →
+        populationExpectedWork criticalGapLaw ν
+          (fun d => criticalParameter d false) (fun d => criticalParameter d true) q A ≠ ∞) →
+      (∀ q : ℝ → unitInterval, CappedPrior criticalGapLaw (ρ : ℝ) q →
+        |populationMean criticalGapLaw ν
+          (fun d => criticalParameter d false) (fun d => criticalParameter d true) q A -
+          (∫ d,(q d : ℝ) ∂criticalGapLaw)| ≤ (ρ : ℝ)/64) →
+      c*(ρ : ℝ)*criticalLogFactor (ρ : ℝ) ≤
+        V*(populationExpectedWork criticalGapLaw ν
+          (fun d => criticalParameter d false) (fun d => criticalParameter d true) (fun _ => 0) A).toReal
 
 end ThresholdHC.CriticalEntropy

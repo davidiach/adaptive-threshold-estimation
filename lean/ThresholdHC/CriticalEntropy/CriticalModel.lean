@@ -21,4 +21,8 @@ the interval where it equals 1/2 ± d. -/
 def criticalParameter (d : ℝ) (b : Bool) : unitInterval :=
   projIcc 0 1 (by norm_num) (1/2+(if b then d else -d))
 
+/-- The critical rarity factor L(1+log L), with L=1+log(1/rho). -/
+def criticalLogFactor (ρ : ℝ) : ℝ :=
+  (1+Real.log (1/ρ))*(1+Real.log (1+Real.log (1/ρ)))
+
 end ThresholdHC.CriticalEntropy

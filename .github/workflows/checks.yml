@@ -131,7 +131,7 @@ jobs:
           if test -f tools/verify_tier6.py; then python tools/verify_tier6.py --sequential --require-complete; fi
       - name: Verify the locked separate-moment research bridge
         run: python lean/ThresholdHC/ResearchRouteA/verify.py
-      - name: Verify critical-proof components without certifying the statistical theorem
+      - name: Verify the critical single-coin lower bound and scoped components
         run: python tools/verify_critical_components.py
       - uses: actions/upload-artifact@v4
         if: always()

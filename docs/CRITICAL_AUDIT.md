@@ -18,6 +18,14 @@ the upper claim must still cover the full class.
 
 ## Current formal boundary
 
+The complete critical single-coin base-cost theorem (BC1) is proved in
+[BaseCost.lean](../lean/ThresholdHC/CriticalEntropy/BaseCost.lean): one universal
+positive constant gives `V E_0 T >= c rho L(1+log L)` for every
+`0<rho<=1/4`, under the actual population variance, bias and finite-work
+guarantees. The raw-moment version is also proved. The statistical common
+hard pair, interacting-population transfer and critical upper bound remain
+paper arguments. The dependency details below explain this boundary.
+
 The finite-gap sign-entropy theorem (BC2) is now proved in
 [FiniteGap.lean](../lean/ThresholdHC/CriticalEntropy/FiniteGap.lean), against the
 exact `FiniteGapSignEntropyStatement` in
@@ -145,13 +153,42 @@ population guarantees of the same observable procedure and seed law.
 The conditional moments, finite work, good gaps, iid restarts and sign test
 are derived. The remaining explicit hypotheses are `m>=2rho/3`,
 `log(K)>=32`, and mass at least `140m` for annuli indexed `3,...,K+2`.
-This is a finite-scale product bound, not yet the rarity-dependent base-cost
-theorem: activation normalization and the logarithmic scale-count choice
-still need proofs.
+This intermediate theorem retains its finite-scale hypotheses. They are now
+discharged in the full single-coin base-cost theorem below.
 
-The [ninth audit record](../results/critical_components_009.json) checks seventeen
-exact targets and all 251 public declarations using only the permitted standard
-axioms. The [eighth record](../results/critical_components_008.json) preserves
+[ActivationModel.lean](../lean/ThresholdHC/CriticalEntropy/ActivationModel.lean)
+defines activation solely from the seed and constructs the observable output
+`Z=pY+c`. [Activation.lean](../lean/ThresholdHC/CriticalEntropy/Activation.lean)
+proves the zero-flip output is population independent, so the null and
+constant-prior bias bounds force `p>0`. Conditioning changes only the seed
+law. It preserves every population mean, has work `E_q T/p`, and second
+moment at most `p E_q Y^2+(E_q Y)^2`. The moment proof expands the square
+and uses `2c E_q Y-c^2<=(E_q Y)^2`, avoiding division by `1-p` and covering
+`p=1` in the same argument. All integral identities use proved finiteness.
+
+[ActivationCost.lean](../lean/ThresholdHC/CriticalEntropy/ActivationCost.lean)
+then proves BC7 for `P=M E_0 T`: the active moment bound `m` satisfies
+`m>=2rho/3`, `m<=4P`, `m E_0 T_Z<=4P`, and `P>=rho/6`. Neither positive
+activation nor any transformed-procedure guarantee is assumed.
+[ScaleAsymptotics.lean](../lean/ThresholdHC/CriticalEntropy/ScaleAsymptotics.lean)
+chooses `K=floor(log(1/rho)/(8 log 16))` below a universal rarity threshold,
+proves the annulus-mass and logarithmic inequalities, and covers the remaining
+interval using `P>=rho/6`. This provides one positive universal constant.
+
+[BaseCost.lean](../lean/ThresholdHC/CriticalEntropy/BaseCost.lean) composes the
+actual statistical and analytic chain to prove both the raw-moment and
+extended-variance versions of `V E_0 T>=c rho L(1+log L)` for every rarity.
+The same seed law and observable procedure apply to all priors. Uniform bias
+and extended-variance bounds, plus finite work under each prior in the capped
+global class, are the only statistical guarantees assumed. This includes the
+paper's stronger uniform finite-work hypothesis. It proves BC1, but does not
+prove the common hard pair, interacting-population transfer, or critical upper
+construction.
+
+The [tenth audit record](../results/critical_components_010.json) checks twenty
+exact targets and all 290 public declarations using only the permitted standard
+axioms. The [ninth record](../results/critical_components_009.json) preserves
+the finite-scale checkpoint. The [eighth record](../results/critical_components_008.json) preserves
 the fifteen-target good-gap checkpoint. The [seventh record](../results/critical_components_007.json) preserves
 the twelve-target population-moment checkpoint. The [sixth record](../results/critical_components_006.json) preserves the
 ten-target estimator-entropy checkpoint. The [fifth record](../results/critical_components_005.json) preserves
@@ -159,10 +196,9 @@ the finite-repetition checkpoint; the [fourth record](../results/critical_compon
 preserves the six-target stopped-suffix checkpoint, and the
 [third record](../results/critical_components_003.json) the finite-gap checkpoint. These targets were
 introduced with their proofs, not retrospectively described as a pre-proof
-freeze. This is **not** a formalization of the continuum null-cost product
-theorem or the full critical minimax law. Activation normalization, the
-rarity-dependent scale-count choice, common-pair instantiation, and population
-transfer remain below.
+freeze. The single-coin continuum null-cost product is now verified. The
+full critical minimax law is **not**: common-pair instantiation, population
+transfer, and the critical upper construction remain below.
 
 ## Initial dependency audit
 
@@ -175,8 +211,8 @@ proof.
 |---|---|---|
 | Finite-gap sign entropy, BC2 | Early decisions use deterministic-prefix KL, not optional stopping under the fair coin. The events share one terminal time, making the scale-window overlap argument applicable. The fair law need not terminate. | Complete for the stated statistical model; see the current formal boundary above. |
 | Conditional moments and response | The populations `q=0` and `q=rho` give finite conditional second moments and work outside a common null set. The response bound comes from expectations before pointwise means are used. | Complete for the stated population model; see the current formal boundary above. |
-| First-observation normalization | The activation event is seed-only. Under its conditional seed law, `Z=pY+c` preserves means and changes null work to `W0/p`; the zero-activation case contradicts the bias requirement. | Construct the conditional procedure and verify its moment identities. |
-| Good-gap selection | The proof uses populations `(1/2)1_E` with `mu(E)=2rho`, respecting the lower subclass's pointwise cap. The excluded mass is at most `70m`. | Subset selection, good gaps, and annulus averaging are proved; the rarity-dependent scale-count choice remains. |
+| First-observation normalization | The activation event is seed-only. Under its conditional seed law, `Z=pY+c` preserves means and changes null work to `W0/p`; the zero-activation case contradicts the bias requirement. | Complete for the actual seed-conditioned procedure; see the current formal boundary above. |
+| Good-gap selection | The proof uses populations `(1/2)1_E` with `mu(E)=2rho`, respecting the lower subclass's pointwise cap. The excluded mass is at most `70m`. | Subset selection, good gaps, annulus averaging and the rarity-dependent scale count are proved. |
 | Sign-test restarts | The actual unused-suffix law, observable fixed-count repetition, sign-test errors and exact `n E T` work are Lean-checked. The finite-gap estimator entropy theorem constructs this reduction from conditional moments. | The finite-scale quadratic product theorem now derives these assumptions from uniform population guarantees. |
 | Finite observation reduction | At cap `m`, each seed/word cell has the integrated likelihood determined by `(T,heads)`. The multiplier cancels from conditional seed/word laws. | Formalize sufficiency, including arbitrary measurable seeds. |
 | Convex RMS comparison | Finite categorical probabilities are affine and positive; log moments are concave in the population and convex in the score/scale. Tail integration is used to obtain RMS, rather than substituting a confidence bound. | Kernel treatment of the minimax interchange and tail integrals remains open. |
@@ -216,7 +252,7 @@ establishing novelty or publication priority.
 
 ## Formalization boundary and first checkpoint
 
-Two exact component targets and all nine public declarations now pass the local
+At the first checkpoint, two exact component targets and all nine public declarations passed the local
 Lean audit using only `propext`, `Classical.choice`, and `Quot.sound`:
 
 * [Packing.lean](../lean/ThresholdHC/CriticalEntropy/Packing.lean) proves the
@@ -239,9 +275,9 @@ the source identities, commands, exit codes and transitive axioms. Reproduce it
 with `python tools/verify_critical_components.py`; fresh output is written under
 the ignored `.runtime/critical-components/` directory.
 
-This checkpoint does not prove the finite-gap sign-testing theorem, the
-base-cost theorem, or the full critical minimax law. The subsequent target is
-the actual Bernoulli sign-testing theorem and its use in the base-cost argument.
+That checkpoint did not prove the finite-gap sign-testing theorem, the
+base-cost theorem, or the full critical minimax law. Later checkpoints prove
+the first two, as recorded in the current formal boundary above.
 The full completion criteria remain in [WORKPLAN.md](WORKPLAN.md).
 
 ## Constructed Bernoulli prefix information

@@ -8,7 +8,7 @@ python -m unittest discover -s tools -p 'test_critical_components.py' -v
 ```
 
 After building the existing Lean dependencies with the kernel commands below,
-this checks seventeen exact targets: entropy packing, the compact-convex common
+this checks twenty exact targets: entropy packing, the compact-convex common
 point, seeded Bernoulli prefix information, finite-prefix event transfer,
 the statistical finite-gap sign-entropy theorem, actual stopped-suffix
 independence from output and work, observable sequential restart laws and
@@ -19,11 +19,13 @@ conditional finiteness derived from population guarantees, the extended-variance
 floor, conversion of variance bounds to raw moments, and quantitative good-gap
 selection over the capped global class, the exact quadratic gap law, and its
 finite-scale null-cost product under explicit annulus-mass and scale-count
-hypotheses. It audits all 251
+hypotheses, activation normalization and its cost bounds, and the full critical
+single-coin raw-moment and variance base-cost theorems for every rarity.
+It audits all 290
 declarations in these modules and writes fresh evidence under
-`.runtime/critical-components/`. It does not certify the continuum base-cost
-or critical minimax theorem. See the
-[follow-up audit](CRITICAL_AUDIT.md#formalization-boundary-and-first-checkpoint).
+`.runtime/critical-components/`. The base-cost flag now certifies the actual
+single-coin theorem; the full critical minimax flag remains false. See the
+[follow-up audit](CRITICAL_AUDIT.md#current-formal-boundary).
 
 For the integrated research packages, including the full critical-law paper
 theorem and Psi counterexample:

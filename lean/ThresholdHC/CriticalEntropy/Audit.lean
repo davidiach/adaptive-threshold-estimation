@@ -10,6 +10,7 @@ import ThresholdHC.CriticalEntropy.EstimationEntropy
 import ThresholdHC.CriticalEntropy.PopulationMixture
 import ThresholdHC.CriticalEntropy.GoodGaps
 import ThresholdHC.CriticalEntropy.CriticalScale
+import ThresholdHC.CriticalEntropy.BaseCost
 
 open ThresholdHC.CriticalEntropy
 
@@ -315,3 +316,49 @@ example : CriticalScaleProductStatement := fun _ => critical_scale_product
 #print axioms critical_scale_product
 #print axioms CriticalLawStatement
 #print axioms CriticalScaleProductStatement
+
+example : ActivationNormalizationStatement := fun _ => activation_product_bounds
+
+example : CriticalRawBaseCostStatement := critical_raw_base_cost
+
+example : CriticalBaseCostStatement := critical_base_cost
+
+#print axioms activeSeeds
+#print axioms measurableSet_activeSeeds
+#print axioms stop_zero_iff_inactive
+#print axioms inactive_output
+#print axioms inactive_work
+#print axioms active_work_lower
+#print axioms activation_work_restrict
+#print axioms activation_conditional_work
+#print axioms activation_probability_le_work
+#print axioms activation_conditional_work_lower
+#print axioms normalized_event_mean
+#print axioms normalized_event_moment
+#print axioms populationSeedEvent
+#print axioms measurableSet_populationSeedEvent
+#print axioms populationSeedEvent_measure
+#print axioms populationMeasure_restrict_seed
+#print axioms populationMeasure_smul_seed
+#print axioms populationMeasure_condition_seed
+#print axioms population_inactive_mean
+#print axioms activeProcedure
+#print axioms population_activation_mean
+#print axioms population_activation_work
+#print axioms activation_positive_of_bias
+#print axioms population_activation_moment
+#print axioms active_population_guarantee
+#print axioms capped_guarantee_moment_floor
+#print axioms population_null_work_ge_activation
+#print axioms activation_product_bounds
+#print axioms critical_product_scale
+#print axioms entropy_scale_count
+#print axioms critical_annulus_mass_of_small_product
+#print axioms entropy_logs_le_exp
+#print axioms criticalLogFactor
+#print axioms critical_scalar_base_cost
+#print axioms critical_raw_base_cost
+#print axioms critical_base_cost
+#print axioms ActivationNormalizationStatement
+#print axioms CriticalRawBaseCostStatement
+#print axioms CriticalBaseCostStatement

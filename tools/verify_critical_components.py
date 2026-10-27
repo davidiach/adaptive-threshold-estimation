@@ -1,4 +1,4 @@
-"""Check the scoped critical-proof components; never certify the full theorem.
+"""Check critical single-coin base cost and components, not the full minimax law.
 
 This extension does not change existing frozen targets or scores. It reuses the
 frozen Tier 6 source and transitive-axiom guards. Specifications were introduced
@@ -26,7 +26,8 @@ MODULES = ("Packing", "CommonPoint", "BernoulliPrefix", "EventInformation", "Sig
            "SignReduction", "EstimationEntropy", "PopulationModel", "UniformCoin",
            "PopulationMixture", "PopulationVariance", "GoodGapModel", "ConditionalMoments",
            "HalfPrior", "GapSelection", "GoodGaps", "CriticalModel", "CriticalLaw",
-           "CriticalAnnuli", "CriticalScale", "Specification")
+           "CriticalAnnuli", "CriticalScale", "ActivationModel", "Activation", "ActivationCost",
+           "ScaleAsymptotics", "BaseCost", "Specification")
 NAMESPACE = "ThresholdHC.CriticalEntropy."
 ROOTS = {
     NAMESPACE + name for name in (
@@ -114,6 +115,19 @@ ROOTS = {
         "criticalAnnulus_work_factor", "critical_annulus_work_sum", "critical_annulus_good_points",
         "population_negative_work_integral", "critical_scale_entropy", "critical_scale_product",
         "CriticalLawStatement", "CriticalScaleProductStatement",
+        "activeSeeds", "measurableSet_activeSeeds", "stop_zero_iff_inactive",
+        "inactive_output", "inactive_work", "active_work_lower",
+        "activation_work_restrict", "activation_conditional_work", "activation_probability_le_work",
+        "activation_conditional_work_lower", "normalized_event_mean", "normalized_event_moment",
+        "populationSeedEvent", "measurableSet_populationSeedEvent", "populationSeedEvent_measure",
+        "populationMeasure_restrict_seed", "populationMeasure_smul_seed", "populationMeasure_condition_seed",
+        "population_inactive_mean", "activeProcedure", "population_activation_mean",
+        "population_activation_work", "activation_positive_of_bias", "population_activation_moment",
+        "active_population_guarantee", "capped_guarantee_moment_floor", "population_null_work_ge_activation",
+        "activation_product_bounds", "critical_product_scale", "entropy_scale_count",
+        "critical_annulus_mass_of_small_product", "entropy_logs_le_exp", "criticalLogFactor",
+        "critical_scalar_base_cost", "critical_raw_base_cost", "critical_base_cost",
+        "ActivationNormalizationStatement", "CriticalRawBaseCostStatement", "CriticalBaseCostStatement",
     )
 }
 
@@ -169,7 +183,7 @@ def main() -> int:
               for p in protected}
     status = {
         "valid": False,
-        "scope": "Quadratic-law finite-scale null-cost product from actual population guarantees, with explicit scale-count and annulus-mass hypotheses; population moments and good gaps, observable restarts, sign entropy, and abstract compact convex common point",
+        "scope": "Critical quadratic single-coin variance and raw-moment base-cost bounds for all rarities, derived from actual observable population experiments; activation, scale selection, restarts, sign entropy, and abstract common point",
         "full_critical_minimax_theorem_verified": False,
         "base_cost_theorem_verified": False,
         "finite_gap_sign_testing_theorem_verified": False,
@@ -185,6 +199,8 @@ def main() -> int:
         "population_good_gap_selection_verified": False,
         "critical_gap_law_verified": False,
         "critical_scale_null_cost_product_verified": False,
+        "activation_normalization_verified": False,
+        "critical_raw_base_cost_verified": False,
         "specifications_frozen_before_proofs": False,
         "source_sha256": hashes,
         "commands": [],
@@ -210,7 +226,7 @@ def main() -> int:
     if any(hashlib.sha256((ROOT / rel).read_bytes()).hexdigest() != digest
            for rel, digest in hashes.items()):
         raise ValueError("Sources changed during audit")
-    status.update(valid=True, exact_component_targets=17, audited_declarations=len(ROOTS),
+    status.update(valid=True, exact_component_targets=20, audited_declarations=len(ROOTS),
                   finite_gap_sign_testing_theorem_verified=True,
                   stopped_suffix_independence_verified=True,
                   sequential_restart_law_and_work_verified=True,
@@ -223,9 +239,12 @@ def main() -> int:
                   population_moment_from_variance_verified=True,
                   population_good_gap_selection_verified=True,
                   critical_gap_law_verified=True,
-                  critical_scale_null_cost_product_verified=True)
+                  critical_scale_null_cost_product_verified=True,
+                  activation_normalization_verified=True,
+                  critical_raw_base_cost_verified=True,
+                  base_cost_theorem_verified=True)
     status_path.write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"valid": True, "exact_component_targets": 17,
+    print(json.dumps({"valid": True, "exact_component_targets": 20,
                       "audited_declarations": len(ROOTS), "evidence": str(output),
                       "finite_gap_sign_testing_theorem_verified": True,
                       "stopped_suffix_independence_verified": True,
@@ -240,6 +259,9 @@ def main() -> int:
                       "population_good_gap_selection_verified": True,
                       "critical_gap_law_verified": True,
                       "critical_scale_null_cost_product_verified": True,
+                      "activation_normalization_verified": True,
+                      "critical_raw_base_cost_verified": True,
+                      "base_cost_theorem_verified": True,
                       "full_critical_minimax_theorem_verified": False}))
     return 0
 
