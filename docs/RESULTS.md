@@ -145,8 +145,16 @@ then proves `sum_j d_j^2 E_-j T >= K log(K)/(512 n)` directly for a real-output
 procedure with conditional means at most `1/8` under minus and at least `5/8`
 under plus, raw second moments at most `M`, and a positive `n>=160 M`.
 Both signed laws have explicit square-integrability and finite-work assumptions.
-Deriving these good-gap moment assumptions from continuum population guarantees
-remains open in Lean; this is still not the base-cost or full critical theorem.
+[PopulationMixture.lean](../lean/ThresholdHC/CriticalEntropy/PopulationMixture.lean)
+now derives the population-to-conditional moment identities from an actual
+hidden-parameter Bernoulli tape generator. Finite population second moment and
+work at the null prior and one positive constant prior imply almost-everywhere
+conditional square integrability and finite work under both signs, as well as
+integrable conditional means. The moment and work formulas retain infinity;
+the signed mean formula is proved under finite second moment. The seed and
+observable procedure are fixed across populations. Quantitative good-gap
+bounds and selection remain open in Lean; this is still not the base-cost or
+full critical theorem.
 
 ## Population and nonlinear feedback follow-ups
 

@@ -23,7 +23,8 @@ MODULES = ("Packing", "CommonPoint", "BernoulliPrefix", "EventInformation", "Sig
            "EarlyDecision", "StoppingWindow", "GeometricOverlap", "FiniteGap",
            "StoppedModel", "StoppedTape", "SequentialModel", "RestartPair",
            "RepeatedModel", "RepeatedRestart", "RepeatedSignModel", "SampleMean",
-           "SignReduction", "EstimationEntropy", "Specification")
+           "SignReduction", "EstimationEntropy", "PopulationModel", "UniformCoin",
+           "PopulationMixture", "Specification")
 NAMESPACE = "ThresholdHC.CriticalEntropy."
 ROOTS = {
     NAMESPACE + name for name in (
@@ -72,6 +73,24 @@ ROOTS = {
         "iid_sum_upper_error", "repeated_sign_work", "repeated_sign_plus_error",
         "repeated_sign_minus_error", "finite_gap_estimation_entropy", "critical_restart_count_bounds",
         "RepeatedSignTestStatement", "FiniteGapEstimationEntropyStatement",
+        "uniformUnitMeasure", "uniformUnitMeasure_probability", "uniformCoinFlip",
+        "measurable_uniformCoinFlip", "uniformTapeMeasure", "uniformTapeMeasure_probability",
+        "uniformCoinTape", "measurable_uniformCoinTape", "uniformProcedureState",
+        "measurable_uniformProcedureState", "conditionalSecondMoment", "conditionalMean",
+        "mixtureParameter", "measurable_mixtureParameter", "populationInput",
+        "measurable_populationInput", "populationMeasure", "populationSecondMoment",
+        "populationExpectedWork", "populationMean", "uniformCoinFlip_true", "uniformCoinFlip_map",
+        "uniformCoinTape_map", "seeded_uniformCoinTape_map", "conditionalSecondMoment_uniform",
+        "conditionalMean_uniform", "conditionalWork_uniform", "measurable_conditionalSecondMoment",
+        "measurable_conditionalMean", "measurable_conditionalWork", "conditionalSecondMoment_finite_iff",
+        "conditionalMean_output_law", "conditionalSecondMoment_output_law", "seeded_lintegral_uniform",
+        "measurable_seeded_lintegral", "measurable_seeded_integral", "conditionalMean_integrable_of_moment",
+        "mixtureParameter_map", "lintegral_bernoulli_parameter", "mixtureParameter_lintegral",
+        "population_lintegral", "population_lintegral_const", "population_finite_components",
+        "population_ae_finite_components", "mixtureParameter_integral", "population_integral",
+        "population_finite_all", "population_conditional_finiteness", "population_second_moment_formula",
+        "population_work_formula", "population_mean_formula", "population_finiteness_transfer",
+        "PopulationMomentStatement", "PopulationFinitenessStatement",
     )
 }
 
@@ -127,7 +146,7 @@ def main() -> int:
               for p in protected}
     status = {
         "valid": False,
-        "scope": "Finite-gap real-output estimator entropy via constructed same-coin sign tests, observable repetition, stopped-suffix independence, probability dependencies, and abstract compact convex common point",
+        "scope": "Constructed hidden-parameter population moments and conditional finiteness, finite-gap estimator and sign entropy, observable restarts, probability dependencies, and abstract compact convex common point",
         "full_critical_minimax_theorem_verified": False,
         "base_cost_theorem_verified": False,
         "finite_gap_sign_testing_theorem_verified": False,
@@ -136,6 +155,8 @@ def main() -> int:
         "finite_repetition_iid_and_work_verified": False,
         "repeated_sign_error_and_work_verified": False,
         "finite_gap_estimation_entropy_verified": False,
+        "population_moment_disintegration_verified": False,
+        "population_conditional_finiteness_verified": False,
         "specifications_frozen_before_proofs": False,
         "source_sha256": hashes,
         "commands": [],
@@ -161,15 +182,17 @@ def main() -> int:
     if any(hashlib.sha256((ROOT / rel).read_bytes()).hexdigest() != digest
            for rel, digest in hashes.items()):
         raise ValueError("Sources changed during audit")
-    status.update(valid=True, exact_component_targets=10, audited_declarations=len(ROOTS),
+    status.update(valid=True, exact_component_targets=12, audited_declarations=len(ROOTS),
                   finite_gap_sign_testing_theorem_verified=True,
                   stopped_suffix_independence_verified=True,
                   sequential_restart_law_and_work_verified=True,
                   finite_repetition_iid_and_work_verified=True,
                   repeated_sign_error_and_work_verified=True,
-                  finite_gap_estimation_entropy_verified=True)
+                  finite_gap_estimation_entropy_verified=True,
+                  population_moment_disintegration_verified=True,
+                  population_conditional_finiteness_verified=True)
     status_path.write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"valid": True, "exact_component_targets": 10,
+    print(json.dumps({"valid": True, "exact_component_targets": 12,
                       "audited_declarations": len(ROOTS), "evidence": str(output),
                       "finite_gap_sign_testing_theorem_verified": True,
                       "stopped_suffix_independence_verified": True,
@@ -177,6 +200,8 @@ def main() -> int:
                       "finite_repetition_iid_and_work_verified": True,
                       "repeated_sign_error_and_work_verified": True,
                       "finite_gap_estimation_entropy_verified": True,
+                      "population_moment_disintegration_verified": True,
+                      "population_conditional_finiteness_verified": True,
                       "full_critical_minimax_theorem_verified": False}))
     return 0
 

@@ -32,6 +32,16 @@ The corresponding upper-bound task has an additional quantifier requirement:
 one algorithm must work across magnitude laws. An existence theorem allowing a
 different law-dependent algorithm for each law would leave that task unfinished.
 
+The critical single-coin development also distinguishes real expectations from
+extended nonnegative moments. Lean's real integral is totalized, so it must not
+silently stand in for an expectation without integrability. The
+[population model](../../lean/ThresholdHC/CriticalEntropy/PopulationModel.lean)
+retains infinite second moments and work; its signed mean identities require
+finiteness that implies integrability. A common uniform random tape constructs
+the parameterized Bernoulli laws and proves measurability of conditional
+quantities. The hidden parameter enters that generator, never the procedure's
+seed or observation interface.
+
 ## Freeze established questions and preserve corrections
 
 The original [brief](../../BRIEF.md) required fixed target statements and

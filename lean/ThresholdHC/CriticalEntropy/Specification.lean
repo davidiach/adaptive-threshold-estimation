@@ -6,6 +6,7 @@ import ThresholdHC.CriticalEntropy.StoppedModel
 import ThresholdHC.CriticalEntropy.SequentialModel
 import ThresholdHC.CriticalEntropy.RepeatedModel
 import ThresholdHC.CriticalEntropy.RepeatedSignModel
+import ThresholdHC.CriticalEntropy.PopulationModel
 
 noncomputable section
 open MeasureTheory Real
@@ -145,5 +146,47 @@ def FiniteGapEstimationEntropyStatement : Prop :=
       ∂(ν.prod (Tier2.tapeMeasure (signParameter (d i) true))).map A.output)) →
     (K : ℝ)*log (K : ℝ)/(512*(n : ℝ)) ≤
       ∑ i, (d i : ℝ)^2*(expectedStoppedProcedureWork ν (signParameter (d i) false) A).toReal
+
+/-- Population moment and work formulas are derived for an actual hidden-parameter
+tape generator. Infinite nonnegative expectations are retained. The signed mean
+formula requires finite second moment under the population being evaluated. -/
+def PopulationMomentStatement : Prop :=
+  ∀ (D R : Type) [MeasurableSpace D] [MeasurableSpace R]
+    (μ : Measure D) [IsProbabilityMeasure μ] (ν : Measure R) [IsProbabilityMeasure ν]
+    (p₀ p₁ q : D → unitInterval), Measurable p₀ → Measurable p₁ → Measurable q →
+    ∀ (A : StoppedProcedure R ℝ),
+    populationSecondMoment μ ν p₀ p₁ q A =
+      (∫⁻ d, ENNReal.ofReal (q d : ℝ)*conditionalSecondMoment ν (p₁ d) A +
+        ENNReal.ofReal (1-(q d : ℝ))*conditionalSecondMoment ν (p₀ d) A ∂μ) ∧
+    populationExpectedWork μ ν p₀ p₁ q A =
+      (∫⁻ d, ENNReal.ofReal (q d : ℝ)*expectedStoppedProcedureWork ν (p₁ d) A +
+        ENNReal.ofReal (1-(q d : ℝ))*expectedStoppedProcedureWork ν (p₀ d) A ∂μ) ∧
+    (populationSecondMoment μ ν p₀ p₁ q A ≠ ∞ →
+      populationMean μ ν p₀ p₁ q A =
+        ∫ d, (q d : ℝ)*conditionalMean ν (p₁ d) A +
+          (1-(q d : ℝ))*conditionalMean ν (p₀ d) A ∂μ)
+
+/-- Null and positive-constant population guarantees yield almost-everywhere
+conditional finiteness for both signs and integrable conditional means. They also
+yield finite (without a claimed numerical bound) moment and work at every prior. -/
+def PopulationFinitenessStatement : Prop :=
+  ∀ (D R : Type) [MeasurableSpace D] [MeasurableSpace R]
+    (μ : Measure D) [IsProbabilityMeasure μ] (ν : Measure R) [IsProbabilityMeasure ν]
+    (p₀ p₁ : D → unitInterval), Measurable p₀ → Measurable p₁ →
+    ∀ (c : unitInterval), 0 < (c : ℝ) → ∀ (A : StoppedProcedure R ℝ),
+    populationSecondMoment μ ν p₀ p₁ (fun _ => 0) A ≠ ∞ →
+    populationSecondMoment μ ν p₀ p₁ (fun _ => c) A ≠ ∞ →
+    populationExpectedWork μ ν p₀ p₁ (fun _ => 0) A ≠ ∞ →
+    populationExpectedWork μ ν p₀ p₁ (fun _ => c) A ≠ ∞ →
+    (∀ᵐ d ∂μ,
+      MemLp id 2 ((ν.prod (Tier2.tapeMeasure (p₀ d))).map A.output) ∧
+      MemLp id 2 ((ν.prod (Tier2.tapeMeasure (p₁ d))).map A.output) ∧
+      expectedStoppedProcedureWork ν (p₀ d) A ≠ ∞ ∧
+      expectedStoppedProcedureWork ν (p₁ d) A ≠ ∞) ∧
+    Integrable (fun d => conditionalMean ν (p₀ d) A) μ ∧
+    Integrable (fun d => conditionalMean ν (p₁ d) A) μ ∧
+    (∀ (q : D → unitInterval), Measurable q →
+      populationSecondMoment μ ν p₀ p₁ q A ≠ ∞ ∧
+      populationExpectedWork μ ν p₀ p₁ q A ≠ ∞)
 
 end ThresholdHC.CriticalEntropy

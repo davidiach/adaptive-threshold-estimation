@@ -88,16 +88,37 @@ one sign test at threshold `3/8`; no test, independence, information, or
 error bound is assumed. The paper's choice `n=ceil(512(1+r))` is also checked
 to satisfy `160(1/64+2r)<=n<=1282r` for `r>=2/3`.
 
-The [sixth audit record](../results/critical_components_006.json) checks ten
-exact targets and all 135 public declarations using only the permitted standard
-axioms. The [fifth record](../results/critical_components_005.json) preserves
+The population step is constructed in
+[PopulationModel.lean](../lean/ThresholdHC/CriticalEntropy/PopulationModel.lean):
+sample the latent gap, an independent uniform sign selector, an arbitrary
+independent seed, and an infinite uniform tape. Thresholding each tape coordinate
+at the latent Bernoulli parameter generates the observations. The procedure
+receives only its seed and those observations. [UniformCoin.lean](../lean/ThresholdHC/CriticalEntropy/UniformCoin.lean)
+proves that this construction has the original infinite Bernoulli tape law and
+that conditional means, extended second moments, and extended work are measurable
+in the parameter, including its endpoints.
+
+[PopulationMixture.lean](../lean/ThresholdHC/CriticalEntropy/PopulationMixture.lean)
+then proves the weighted conditional moment and work formulas for every measurable
+sign prior, retaining infinite values. The signed mean formula requires finite
+population second moment, from which integrability is proved. Finite second moment
+and work at the all-negative law and one positive constant prior imply a common
+full-measure set of gaps with square-integrable output and finite work under both
+signs. Both conditional means are integrable over the gap law. Moment and work
+are also finite at every measurable prior; this statement does not provide the
+uniform numerical bound needed for good-gap selection.
+
+The [seventh audit record](../results/critical_components_007.json) checks twelve
+exact targets and all 189 public declarations using only the permitted standard
+axioms. The [sixth record](../results/critical_components_006.json) preserves the
+ten-target estimator-entropy checkpoint. The [fifth record](../results/critical_components_005.json) preserves
 the finite-repetition checkpoint; the [fourth record](../results/critical_components_004.json)
 preserves the six-target stopped-suffix checkpoint, and the
 [third record](../results/critical_components_003.json) the finite-gap checkpoint. These targets were
 introduced with their proofs, not retrospectively described as a pre-proof
 freeze. This is **not** a formalization of the continuum null-cost product
-theorem or the full critical minimax law. Deriving the conditional moment
-bounds from population guarantees, good-gap selection, common-pair
+theorem or the full critical minimax law. Deriving the quantitative good-gap
+moment bounds from population guarantees, good-gap selection, common-pair
 instantiation, and population transfer remain below.
 
 ## Initial dependency audit

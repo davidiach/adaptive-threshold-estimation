@@ -7,6 +7,7 @@ import ThresholdHC.CriticalEntropy.StoppedTape
 import ThresholdHC.CriticalEntropy.RestartPair
 import ThresholdHC.CriticalEntropy.RepeatedRestart
 import ThresholdHC.CriticalEntropy.EstimationEntropy
+import ThresholdHC.CriticalEntropy.PopulationMixture
 
 open ThresholdHC.CriticalEntropy
 
@@ -35,6 +36,17 @@ example : RepeatedSignTestStatement := by
     (fun hm => repeated_sign_minus_error ν p A hf h n hn a M t ha hM hm)⟩
 
 example : FiniteGapEstimationEntropyStatement := fun _ => finite_gap_estimation_entropy
+
+example : PopulationMomentStatement := by
+  intro D R _ _ μ _ ν _ p₀ p₁ q h₀ h₁ hq A
+  exact ⟨population_second_moment_formula μ ν p₀ p₁ q h₀ h₁ hq A,
+    population_work_formula μ ν p₀ p₁ q h₀ h₁ hq A,
+    population_mean_formula μ ν p₀ p₁ q h₀ h₁ hq A⟩
+
+example : PopulationFinitenessStatement := by
+  intro D R _ _ μ _ ν _ p₀ p₁ h₀ h₁ c hc A hm₀ hm₁ hw₀ hw₁
+  obtain ⟨ha,hi₀,hi₁⟩ := population_conditional_finiteness μ ν p₀ p₁ h₀ h₁ c hc A hm₀ hm₁ hw₀ hw₁
+  exact ⟨ha,hi₀,hi₁,population_finiteness_transfer μ ν p₀ p₁ h₀ h₁ c hc A hm₀ hm₁ hw₀ hw₁⟩
 
 #print axioms sum_event_mass_le_overlap
 #print axioms event_packing
@@ -171,3 +183,57 @@ example : FiniteGapEstimationEntropyStatement := fun _ => finite_gap_estimation_
 #print axioms critical_restart_count_bounds
 #print axioms RepeatedSignTestStatement
 #print axioms FiniteGapEstimationEntropyStatement
+#print axioms uniformUnitMeasure
+#print axioms uniformUnitMeasure_probability
+#print axioms uniformCoinFlip
+#print axioms measurable_uniformCoinFlip
+#print axioms uniformTapeMeasure
+#print axioms uniformTapeMeasure_probability
+#print axioms uniformCoinTape
+#print axioms measurable_uniformCoinTape
+#print axioms uniformProcedureState
+#print axioms measurable_uniformProcedureState
+#print axioms conditionalSecondMoment
+#print axioms conditionalMean
+#print axioms mixtureParameter
+#print axioms measurable_mixtureParameter
+#print axioms populationInput
+#print axioms measurable_populationInput
+#print axioms populationMeasure
+#print axioms populationSecondMoment
+#print axioms populationExpectedWork
+#print axioms populationMean
+#print axioms uniformCoinFlip_true
+#print axioms uniformCoinFlip_map
+#print axioms uniformCoinTape_map
+#print axioms seeded_uniformCoinTape_map
+#print axioms conditionalSecondMoment_uniform
+#print axioms conditionalMean_uniform
+#print axioms conditionalWork_uniform
+#print axioms measurable_conditionalSecondMoment
+#print axioms measurable_conditionalMean
+#print axioms measurable_conditionalWork
+#print axioms conditionalSecondMoment_finite_iff
+#print axioms conditionalMean_output_law
+#print axioms conditionalSecondMoment_output_law
+#print axioms seeded_lintegral_uniform
+#print axioms measurable_seeded_lintegral
+#print axioms measurable_seeded_integral
+#print axioms conditionalMean_integrable_of_moment
+#print axioms mixtureParameter_map
+#print axioms lintegral_bernoulli_parameter
+#print axioms mixtureParameter_lintegral
+#print axioms population_lintegral
+#print axioms population_lintegral_const
+#print axioms population_finite_components
+#print axioms population_ae_finite_components
+#print axioms mixtureParameter_integral
+#print axioms population_integral
+#print axioms population_finite_all
+#print axioms population_conditional_finiteness
+#print axioms population_second_moment_formula
+#print axioms population_work_formula
+#print axioms population_mean_formula
+#print axioms population_finiteness_transfer
+#print axioms PopulationMomentStatement
+#print axioms PopulationFinitenessStatement
