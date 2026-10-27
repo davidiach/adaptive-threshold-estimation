@@ -24,7 +24,9 @@ positive constant gives `V E_0 T >= c rho L(1+log L)` for every
 `0<rho<=1/4`, under the actual population variance, bias and finite-work
 guarantees. The raw-moment version is also proved. The statistical common
 hard pair, interacting-population transfer and critical upper bound remain
-paper arguments. The dependency details below explain this boundary.
+paper arguments. The capped finite-observation reduction is also proved,
+including full-transcript reconstruction, canonical affinity, and expected
+work. The dependency details below explain this boundary.
 
 The finite-gap sign-entropy theorem (BC2) is now proved in
 [FiniteGap.lean](../lean/ThresholdHC/CriticalEntropy/FiniteGap.lean), against the
@@ -185,9 +187,37 @@ paper's stronger uniform finite-work hypothesis. It proves BC1, but does not
 prove the common hard pair, interacting-population transfer, or critical upper
 construction.
 
-The [tenth audit record](../results/critical_components_010.json) checks twenty
-exact targets and all 290 public declarations using only the permitted standard
-axioms. The [ninth record](../results/critical_components_009.json) preserves
+[ObservationModel.lean](../lean/ThresholdHC/CriticalEntropy/ObservationModel.lean)
+defines the full capped transcript as the independent seed and actual stopped
+word, pushed forward from the hidden-coin generator. The finite statistic is
+the pair of stopping time and head count. The seed remains arbitrary; its
+space need not be finite or standard Borel. All identities require the actual
+procedure to stop by its stated deterministic cap.
+[FiniteObservation.lean](../lean/ThresholdHC/CriticalEntropy/FiniteObservation.lean)
+proves word/seed-cell probabilities directly from the iid tape and population
+mixture. [CappedObservation.lean](../lean/ThresholdHC/CriticalEntropy/CappedObservation.lean)
+identifies the full transcript density relative to a population-independent
+reference measure. The density depends only on the finite statistic.
+
+[ObservationInformation.lean](../lean/ThresholdHC/CriticalEntropy/ObservationInformation.lean)
+then reconstructs the entire transcript law as a finite mixture of reference
+conditional measures. These conditionals depend on the seed law and policy,
+not on the sign prior. Null reference cells carry zero measures and receive
+zero mixture weight for every prior; the construction is not asserted to be
+a probability kernel on those impossible cells. The same module proves that
+canonical Hellinger affinity, defined from Radon--Nikodym derivatives of the
+two actual measures with respect to their sum, equals the finite categorical
+affinity. It also proves exact expected-work preservation. The critical-law
+specializations derive parameter positivity from the constructed gap law;
+no density, sufficiency, information, or cost-preservation identity is assumed.
+Weak-star compactness, affine continuity, the finite convex risk comparison,
+and statistical common-pair instantiation remain separate obligations.
+
+The [eleventh audit record](../results/critical_components_011.json) checks
+twenty-three exact targets and all 351 public declarations using only the
+permitted standard axioms. The [tenth record](../results/critical_components_010.json)
+preserves the twenty-target base-cost checkpoint. The
+[ninth record](../results/critical_components_009.json) preserves
 the finite-scale checkpoint. The [eighth record](../results/critical_components_008.json) preserves
 the fifteen-target good-gap checkpoint. The [seventh record](../results/critical_components_007.json) preserves
 the twelve-target population-moment checkpoint. The [sixth record](../results/critical_components_006.json) preserves the

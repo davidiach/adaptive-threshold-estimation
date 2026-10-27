@@ -11,8 +11,15 @@ import ThresholdHC.CriticalEntropy.PopulationMixture
 import ThresholdHC.CriticalEntropy.GoodGaps
 import ThresholdHC.CriticalEntropy.CriticalScale
 import ThresholdHC.CriticalEntropy.BaseCost
+import ThresholdHC.CriticalEntropy.ObservationInformation
 
 open ThresholdHC.CriticalEntropy
+
+example : CriticalObservationReconstructionStatement := fun _ _ => critical_observation_reconstruction
+
+example : CriticalObservationAffinityStatement := fun _ _ => critical_observation_finite_affinity
+
+example : CriticalObservationWorkStatement := fun _ _ => critical_observation_work
 
 example : EntropyPackingStatement := entropy_of_gap_count
 
@@ -362,3 +369,65 @@ example : CriticalBaseCostStatement := critical_base_cost
 #print axioms ActivationNormalizationStatement
 #print axioms CriticalRawBaseCostStatement
 #print axioms CriticalBaseCostStatement
+
+#print axioms wordHeads
+#print axioms stoppedSeedCell
+#print axioms wordLikelihood
+#print axioms populationWordLikelihood
+#print axioms CappedWord
+#print axioms cappedWord_fintype
+#print axioms cappedWord_measurableSpace
+#print axioms cappedWord_measurableSingleton
+#print axioms cappedTranscript
+#print axioms cappedTranscriptLaw
+#print axioms stoppedReference
+#print axioms stoppedStatistic
+#print axioms cappedStatisticLaw
+#print axioms transcriptReconstruction
+#print axioms streamProb_heads
+#print axioms measurableSet_stoppedSeedCell
+#print axioms stopped_word_probability
+#print axioms population_event_probability
+#print axioms measurable_wordLikelihood
+#print axioms population_stopped_word_probability
+#print axioms population_stopped_heads_probability
+#print axioms measurable_cappedTranscript
+#print axioms cappedTranscript_of_stop
+#print axioms cappedTranscript_mem_cell
+#print axioms cappedTranscriptLaw_cell
+#print axioms stoppedReference_cell
+#print axioms measure_ext_prod_finite
+#print axioms stoppedReference_finite
+#print axioms cappedTranscriptLaw_density
+#print axioms cappedTranscriptLaw_probability
+#print axioms map_factored_density
+#print axioms factored_density_restrict
+#print axioms factored_density_fiber_mass
+#print axioms factored_density_cond
+#print axioms cappedStatisticLaw_density
+#print axioms wordLikelihood_le_one
+#print axioms wordLikelihood_pos
+#print axioms prior_weights_sum
+#print axioms populationWordLikelihood_le_one
+#print axioms populationWordLikelihood_pos
+#print axioms critical_parameters_interior
+#print axioms hellingerAffinity
+#print axioms finiteAffinity
+#print axioms affinity_density_scaling
+#print axioms hellingerAffinity_withDensity
+#print axioms affinity_mass_scaling
+#print axioms hellingerAffinity_finite_density
+#print axioms cappedStatisticLaw_probability
+#print axioms cappedStatisticLaw_zero_iff_reference
+#print axioms hellingerAffinity_factored_statistic
+#print axioms capped_observation_reconstruction
+#print axioms capped_observation_affinity
+#print axioms capped_observation_finite_affinity
+#print axioms capped_transcript_work
+#print axioms capped_observation_work
+#print axioms critical_observation_reconstruction
+#print axioms critical_observation_finite_affinity
+#print axioms critical_observation_work
+#print axioms CriticalObservationReconstructionStatement
+#print axioms CriticalObservationAffinityStatement
+#print axioms CriticalObservationWorkStatement

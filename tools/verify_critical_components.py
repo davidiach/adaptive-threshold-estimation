@@ -27,7 +27,9 @@ MODULES = ("Packing", "CommonPoint", "BernoulliPrefix", "EventInformation", "Sig
            "PopulationMixture", "PopulationVariance", "GoodGapModel", "ConditionalMoments",
            "HalfPrior", "GapSelection", "GoodGaps", "CriticalModel", "CriticalLaw",
            "CriticalAnnuli", "CriticalScale", "ActivationModel", "Activation", "ActivationCost",
-           "ScaleAsymptotics", "BaseCost", "Specification")
+           "ScaleAsymptotics", "BaseCost",
+           "ObservationModel", "FiniteObservation", "CappedObservation", "FiniteSufficiency",
+           "LikelihoodBounds", "HellingerModel", "Hellinger", "ObservationInformation", "Specification")
 NAMESPACE = "ThresholdHC.CriticalEntropy."
 ROOTS = {
     NAMESPACE + name for name in (
@@ -128,6 +130,27 @@ ROOTS = {
         "critical_annulus_mass_of_small_product", "entropy_logs_le_exp", "criticalLogFactor",
         "critical_scalar_base_cost", "critical_raw_base_cost", "critical_base_cost",
         "ActivationNormalizationStatement", "CriticalRawBaseCostStatement", "CriticalBaseCostStatement",
+        "wordHeads", "stoppedSeedCell", "wordLikelihood",
+        "populationWordLikelihood", "CappedWord", "cappedWord_fintype",
+        "cappedWord_measurableSpace", "cappedWord_measurableSingleton", "cappedTranscript",
+        "cappedTranscriptLaw", "stoppedReference", "stoppedStatistic",
+        "cappedStatisticLaw", "transcriptReconstruction", "streamProb_heads",
+        "measurableSet_stoppedSeedCell", "stopped_word_probability", "population_event_probability",
+        "measurable_wordLikelihood", "population_stopped_word_probability", "population_stopped_heads_probability",
+        "measurable_cappedTranscript", "cappedTranscript_of_stop", "cappedTranscript_mem_cell",
+        "cappedTranscriptLaw_cell", "stoppedReference_cell", "measure_ext_prod_finite",
+        "stoppedReference_finite", "cappedTranscriptLaw_density", "cappedTranscriptLaw_probability",
+        "map_factored_density", "factored_density_restrict", "factored_density_fiber_mass",
+        "factored_density_cond", "cappedStatisticLaw_density", "wordLikelihood_le_one",
+        "wordLikelihood_pos", "prior_weights_sum", "populationWordLikelihood_le_one",
+        "populationWordLikelihood_pos", "critical_parameters_interior", "hellingerAffinity",
+        "finiteAffinity", "affinity_density_scaling", "hellingerAffinity_withDensity",
+        "affinity_mass_scaling", "hellingerAffinity_finite_density", "cappedStatisticLaw_probability",
+        "cappedStatisticLaw_zero_iff_reference", "hellingerAffinity_factored_statistic", "capped_observation_reconstruction",
+        "capped_observation_affinity", "capped_observation_finite_affinity", "capped_transcript_work",
+        "capped_observation_work", "critical_observation_reconstruction", "critical_observation_finite_affinity",
+        "critical_observation_work", "CriticalObservationReconstructionStatement", "CriticalObservationAffinityStatement",
+        "CriticalObservationWorkStatement",
     )
 }
 
@@ -183,9 +206,10 @@ def main() -> int:
               for p in protected}
     status = {
         "valid": False,
-        "scope": "Critical quadratic single-coin variance and raw-moment base-cost bounds for all rarities, derived from actual observable population experiments; activation, scale selection, restarts, sign entropy, and abstract common point",
+        "scope": "Critical quadratic single-coin variance and raw-moment base-cost bounds for all rarities, derived from actual observable population experiments; activation, scale selection, restarts, sign entropy, finite stopped-observation reconstruction, canonical affinity and work preservation, and abstract common point",
         "full_critical_minimax_theorem_verified": False,
         "base_cost_theorem_verified": False,
+        "capped_observation_reduction_verified": False,
         "finite_gap_sign_testing_theorem_verified": False,
         "stopped_suffix_independence_verified": False,
         "sequential_restart_law_and_work_verified": False,
@@ -226,7 +250,7 @@ def main() -> int:
     if any(hashlib.sha256((ROOT / rel).read_bytes()).hexdigest() != digest
            for rel, digest in hashes.items()):
         raise ValueError("Sources changed during audit")
-    status.update(valid=True, exact_component_targets=20, audited_declarations=len(ROOTS),
+    status.update(valid=True, exact_component_targets=23, audited_declarations=len(ROOTS),
                   finite_gap_sign_testing_theorem_verified=True,
                   stopped_suffix_independence_verified=True,
                   sequential_restart_law_and_work_verified=True,
@@ -242,9 +266,10 @@ def main() -> int:
                   critical_scale_null_cost_product_verified=True,
                   activation_normalization_verified=True,
                   critical_raw_base_cost_verified=True,
-                  base_cost_theorem_verified=True)
+                  base_cost_theorem_verified=True,
+                  capped_observation_reduction_verified=True)
     status_path.write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"valid": True, "exact_component_targets": 20,
+    print(json.dumps({"valid": True, "exact_component_targets": 23,
                       "audited_declarations": len(ROOTS), "evidence": str(output),
                       "finite_gap_sign_testing_theorem_verified": True,
                       "stopped_suffix_independence_verified": True,
@@ -262,6 +287,7 @@ def main() -> int:
                       "activation_normalization_verified": True,
                       "critical_raw_base_cost_verified": True,
                       "base_cost_theorem_verified": True,
+                      "capped_observation_reduction_verified": True,
                       "full_critical_minimax_theorem_verified": False}))
     return 0
 

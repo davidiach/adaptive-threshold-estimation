@@ -57,6 +57,14 @@ work. The full minimax transfer still needs its common population pair and
 interactive experiment. The verification record keeps those completion flags
 separate.
 
+The capped-observation reduction checks a further semantic boundary. Replacing
+the full transcript by stopping time and head count is justified by proving
+the full seed/word density, population-independent conditional reconstruction,
+canonical Hellinger affinity preservation, and exact work preservation.
+An equality for an invented finite probability vector alone would not establish
+this reduction. Impossible cells are identified explicitly, and the finite-cap
+assumption remains visible in the exact targets.
+
 ## Freeze established questions and preserve corrections
 
 The original [brief](../../BRIEF.md) required fixed target statements and

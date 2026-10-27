@@ -139,7 +139,15 @@ serving every specified gap and sign. It constructs the information bounds
 and stopping windows and does not assume fair-coin termination.
 The [model and dependency audit](CRITICAL_AUDIT.md#current-formal-boundary)
 gives the exact intermediate hypotheses and source-specific evidence.
-Twenty exact targets and all 290 public declarations are audited.
+The capped finite-observation reduction is also proved in
+[ObservationInformation.lean](../lean/ThresholdHC/CriticalEntropy/ObservationInformation.lean).
+For an arbitrary measurable independent seed and a procedure stopping by a
+deterministic cap, the statistic consisting of stopping time and head count
+reconstructs the full seed/word law through population-independent conditional
+measures. It preserves canonical Hellinger affinity and actual expected work.
+Zero-probability cells are independent of the sign prior. The
+[eleventh record](../results/critical_components_011.json) audits twenty-three
+exact targets and all 351 public declarations.
 
 The statistical common hard pair, unrestricted population transfer, and
 critical upper construction remain unformalized. The abstract

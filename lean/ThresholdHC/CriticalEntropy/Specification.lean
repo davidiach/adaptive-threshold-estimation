@@ -10,6 +10,8 @@ import ThresholdHC.CriticalEntropy.PopulationModel
 import ThresholdHC.CriticalEntropy.GoodGapModel
 import ThresholdHC.CriticalEntropy.CriticalModel
 import ThresholdHC.CriticalEntropy.ActivationModel
+import ThresholdHC.CriticalEntropy.ObservationModel
+import ThresholdHC.CriticalEntropy.HellingerModel
 
 noncomputable section
 open MeasureTheory Real
@@ -316,5 +318,45 @@ def CriticalBaseCostStatement : Prop := ∃ c : ℝ, 0 < c ∧
       c*(ρ : ℝ)*criticalLogFactor (ρ : ℝ) ≤
         V*(populationExpectedWork criticalGapLaw ν
           (fun d => criticalParameter d false) (fun d => criticalParameter d true) (fun _ => 0) A).toReal
+
+/-- Exact recovery of the full observation law from a finite statistic. The
+reconstruction measure is defined independently of the population sign law. -/
+def CriticalObservationReconstructionStatement : Prop :=
+  ∀ (R E : Type) [MeasurableSpace R] [MeasurableSpace E]
+    (ν : Measure R) [IsProbabilityMeasure ν] (q : ℝ → unitInterval), Measurable q →
+    ∀ (A : StoppedProcedure R E) (m : ℕ), (∀ z, A.stop z ≤ m) →
+    cappedTranscriptLaw criticalGapLaw ν
+      (fun d => criticalParameter d false) (fun d => criticalParameter d true) q A m =
+      ∑ i, cappedStatisticLaw criticalGapLaw ν
+        (fun d => criticalParameter d false) (fun d => criticalParameter d true) q A m {i} •
+          transcriptReconstruction ν A m i
+
+/-- Affinity is defined by Radon--Nikodym derivatives of the actual full
+observation laws. Equality to the finite expression is a conclusion. -/
+def CriticalObservationAffinityStatement : Prop :=
+  ∀ (R E : Type) [MeasurableSpace R] [MeasurableSpace E]
+    (ν : Measure R) [IsProbabilityMeasure ν] (q r : ℝ → unitInterval),
+    Measurable q → Measurable r →
+    ∀ (A : StoppedProcedure R E) (m : ℕ), (∀ z, A.stop z ≤ m) →
+    hellingerAffinity
+      (cappedTranscriptLaw criticalGapLaw ν
+        (fun d => criticalParameter d false) (fun d => criticalParameter d true) q A m)
+      (cappedTranscriptLaw criticalGapLaw ν
+        (fun d => criticalParameter d false) (fun d => criticalParameter d true) r A m) =
+      finiteAffinity
+        (fun i => cappedStatisticLaw criticalGapLaw ν
+          (fun d => criticalParameter d false) (fun d => criticalParameter d true) q A m {i})
+        (fun i => cappedStatisticLaw criticalGapLaw ν
+          (fun d => criticalParameter d false) (fun d => criticalParameter d true) r A m {i})
+
+/-- The finite representation preserves the actual expected flip count. -/
+def CriticalObservationWorkStatement : Prop :=
+  ∀ (R E : Type) [MeasurableSpace R] [MeasurableSpace E]
+    (ν : Measure R) [IsProbabilityMeasure ν] (q : ℝ → unitInterval), Measurable q →
+    ∀ (A : StoppedProcedure R E) (m : ℕ), (∀ z, A.stop z ≤ m) →
+    populationExpectedWork criticalGapLaw ν
+      (fun d => criticalParameter d false) (fun d => criticalParameter d true) q A =
+      ∑ i : Fin (m+1) × Fin (m+1), (i.1.val : ℝ≥0∞)*cappedStatisticLaw criticalGapLaw ν
+        (fun d => criticalParameter d false) (fun d => criticalParameter d true) q A m {i}
 
 end ThresholdHC.CriticalEntropy
