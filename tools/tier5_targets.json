@@ -1,0 +1,50 @@
+{
+  "specification_module": "ThresholdHC.Tier5.Specification",
+  "targets": [
+    {
+      "group": "cylinders",
+      "theorem": "ThresholdHC.Tier5.creation_law_total",
+      "statement": "ThresholdHC.Tier5.CreationTotalStatement"
+    },
+    {
+      "group": "cylinders",
+      "theorem": "ThresholdHC.Tier5.creation_law_consistent",
+      "statement": "ThresholdHC.Tier5.CreationConsistencyStatement"
+    },
+    {
+      "group": "finite",
+      "theorem": "ThresholdHC.Tier5.creation_finite_kl_bound",
+      "statement": "ThresholdHC.Tier5.CreationFiniteKLStatement"
+    },
+    {
+      "group": "stopping",
+      "theorem": "ThresholdHC.Tier5.creation_stops",
+      "statement": "ThresholdHC.Tier5.CreationStopsStatement"
+    },
+    {
+      "group": "infinite",
+      "theorem": "ThresholdHC.Tier5.creation_kl_eq_iSup",
+      "statement": "ThresholdHC.Tier5.CreationKLSupremumStatement"
+    },
+    {
+      "group": "infinite",
+      "theorem": "ThresholdHC.Tier5.creation_infinite_kl_bound",
+      "statement": "ThresholdHC.Tier5.CreationInfiniteKLStatement"
+    },
+    {
+      "group": "observable",
+      "theorem": "ThresholdHC.Tier5.creation_observable_kl_bound",
+      "statement": "ThresholdHC.Tier5.CreationObservableKLStatement"
+    },
+    {
+      "group": "example",
+      "theorem": "ThresholdHC.Tier5.unbounded_creation_example",
+      "statement": "ThresholdHC.Tier5.UnboundedCreationExampleStatement"
+    },
+    {
+      "group": "landmark",
+      "theorem": "ThresholdHC.Tier5.tier5_landmark",
+      "statement": "ThresholdHC.Tier5.Tier5LandmarkStatement"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+'ThresholdHC.Tier5.capPolicy' does not depend on any axioms
+'ThresholdHC.Tier5.coinCap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Tier5.creationLaw' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Tier5.creationActionMeasurableSpace' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Tier5.MeasurableCreationPolicy' does not depend on any axioms
+'ThresholdHC.Tier5.MeasurableEnvironment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Tier5.RealizesCreationPrefixes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Tier5.CreationTotalStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Tier5.CreationConsistencyStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Tier5.CreationFiniteKLStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Tier5.CreationStopsStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Tier5.CreationKLSupremumStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Tier5.CreationInfiniteKLStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Tier5.CreationObservableKLStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Tier5.freshPolicy' does not depend on any axioms
+'ThresholdHC.Tier5.UnboundedCreationExampleStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Tier5.Tier5LandmarkStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Tier5.queriedCoins' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Tier5.queriedCoins_card_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Tier5.coinLike_eq_one_of_not_queried' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Tier5.finite_transcript_le_of_prior_ratio_horizon' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.Tier5.finite_transcript_plus_le_minus_horizon' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Tier5.finite_transcript_minus_le_plus_horizon' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Tier5.klDiv_map_eq_lintegral_condExp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Tier5.klDiv_eq_iSup_map_of_generates' depends on axioms: [propext, Classical.choice, Quot.sound]
