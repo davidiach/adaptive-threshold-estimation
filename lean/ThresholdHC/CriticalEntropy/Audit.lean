@@ -3,6 +3,7 @@ import ThresholdHC.CriticalEntropy.CommonPoint
 import ThresholdHC.CriticalEntropy.Specification
 import ThresholdHC.CriticalEntropy.EventInformation
 import ThresholdHC.CriticalEntropy.FiniteGap
+import ThresholdHC.CriticalEntropy.StoppedTape
 
 open ThresholdHC.CriticalEntropy
 
@@ -15,6 +16,8 @@ example : PrefixInformationStatement := fun _ _ => prefix_observable_kl_le
 example : PrefixEventTransferStatement := fun _ => fair_prefix_event_mass_lower
 
 example : FiniteGapSignEntropyStatement := fun _ => finite_gap_sign_entropy
+
+example : StoppedSuffixStatement := fun _ _ => stopped_marked_suffix_map
 
 #print axioms sum_event_mass_le_overlap
 #print axioms event_packing
@@ -79,3 +82,24 @@ example : FiniteGapSignEntropyStatement := fun _ => finite_gap_sign_entropy
 #print axioms signTest_window_overlap
 #print axioms finite_gap_sign_entropy
 #print axioms FiniteGapSignEntropyStatement
+#print axioms tapeDrop
+#print axioms measurable_tapeDrop
+#print axioms StoppedProcedure
+#print axioms stoppedSuffix
+#print axioms measurable_stoppedSuffix
+#print axioms stoppedProcedureWork
+#print axioms expectedStoppedProcedureWork
+#print axioms measurable_stoppedProcedureWork
+#print axioms stoppedWithWork
+#print axioms tapeDrop_map
+#print axioms prefix_drop_independent
+#print axioms tape_split_map
+#print axioms seeded_tape_split_map
+#print axioms measure_eq_tsum_stopping
+#print axioms seeded_prefix_drop_probability
+#print axioms stopped_event_tail_probability
+#print axioms stopped_output_suffix_probability
+#print axioms stopped_output_suffix_map
+#print axioms stopped_procedure_terminates
+#print axioms stopped_marked_suffix_map
+#print axioms StoppedSuffixStatement

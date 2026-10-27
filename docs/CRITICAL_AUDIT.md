@@ -43,13 +43,25 @@ to handle zero expected work uniformly; the gap bound leaves the paper's BC3,
 BC4 and final constants unchanged. The abstract compact-convex common-point
 component is also proved, but its statistical instantiation remains open.
 
-The [third audit record](../results/critical_components_003.json) checks five
-exact targets and all 63 public declarations using only the permitted standard
-axioms. These targets were introduced with their proofs, not retrospectively
-described as a pre-proof freeze. This is **not** a formalization of the
-continuum null-cost product theorem or the full critical minimax law. Their
-conditional-moment, good-gap selection, stopped-suffix restart, common-pair,
-and population-transfer obligations remain below.
+The stopped-suffix foundation is now proved in
+[StoppedTape.lean](../lean/ThresholdHC/CriticalEntropy/StoppedTape.lean).
+For an observable procedure with an arbitrary measurable output and finite
+expected work under a fixed Bernoulli parameter, the actual unused suffix has
+that same Bernoulli law and is independent of both the output and stopping
+time. The proof splits the iid tape at deterministic prefixes, then sums over
+the countably many possible stopping times. Independence is a conclusion.
+The procedure has no parameter argument; infinite work remains explicit in
+[its model](../lean/ThresholdHC/CriticalEntropy/StoppedModel.lean).
+
+The [fourth audit record](../results/critical_components_004.json) checks six
+exact targets and all 84 public declarations using only the permitted standard
+axioms. The [third record](../results/critical_components_003.json) preserves
+the preceding five-target, 63-declaration checkpoint. These targets were
+introduced with their proofs, not retrospectively described as a pre-proof
+freeze. This is **not** a formalization of the continuum null-cost product
+theorem or the full critical minimax law. Iterated restart realization and
+its expected-work identity, conditional moments, good-gap selection,
+common-pair instantiation, and population transfer remain below.
 
 ## Initial dependency audit
 
@@ -64,7 +76,7 @@ proof.
 | Conditional moments and response | The populations `q=0` and `q=rho` give finite conditional second moments and work outside a common null set. The response bound comes from expectations before pointwise means are used. | Formalize conditional integration and variance decomposition. |
 | First-observation normalization | The activation event is seed-only. Under its conditional seed law, `Z=pY+c` preserves means and changes null work to `W0/p`; the zero-activation case contradicts the bias requirement. | Construct the conditional procedure and verify its moment identities. |
 | Good-gap selection | The proof uses populations `(1/2)1_E` with `mu(E)=2rho`, respecting the lower subclass's pointwise cap. The excluded mass is at most `70m`. | Formalize nonatomic subset selection and annulus averaging. |
-| Sign-test restarts | Restarting on unused flips of the same coin preserves its latent gap and sign. Conditional iid suffixes justify independent outputs; it does not draw new magnitudes. | Prove the stopped-suffix realization and expected-work identity. |
+| Sign-test restarts | The actual unused-suffix law, independent of terminal output and work, is now Lean-checked for arbitrary observable stopped procedures. | Construct the iterated fresh-seed procedure, its observable sign decision, and its expected-work identity. |
 | Finite observation reduction | At cap `m`, each seed/word cell has the integrated likelihood determined by `(T,heads)`. The multiplier cancels from conditional seed/word laws. | Formalize sufficiency, including arbitrary measurable seeds. |
 | Convex RMS comparison | Finite categorical probabilities are affine and positive; log moments are concave in the population and convex in the score/scale. Tail integration is used to obtain RMS, rather than substituting a confidence bound. | Kernel treatment of the minimax interchange and tail integrals remains open. |
 | One pair for all policies | The separated-pair set is compact convex in the weak-star topology. Squared Hellinger is continuous convex. A revealed finite policy mixture has exactly averaged Hellinger and null work. Finite-simplex minimax supplies the finite intersection property. | Formalize the compactness and minimax steps; a policy-dependent hard pair alone would not suffice. |

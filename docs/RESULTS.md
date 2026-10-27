@@ -126,6 +126,15 @@ need not terminate. The proof constructs the information bounds and stopping
 windows; neither is an assumption. This does not prove the continuum
 null-cost product theorem. See the [model and scope audit](CRITICAL_AUDIT.md#current-formal-boundary).
 
+The restart argument now also has a proved probability foundation:
+`stopped_marked_suffix_map` in
+[StoppedTape.lean](../lean/ThresholdHC/CriticalEntropy/StoppedTape.lean) shows
+that unused flips after an observable stopping time retain the fixed coin's
+Bernoulli law and are independent of the output and work. It allows arbitrary
+measurable seed and output spaces and assumes finite expected work under that
+parameter. Iterating this construction into the paper's sign test and proving
+its expected-work identity remain separate obligations.
+
 ## Population and nonlinear feedback follow-ups
 
 The [population-step report](../research/2026-10-27-population-step/FINAL_REPORT.md)

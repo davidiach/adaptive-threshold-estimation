@@ -2,6 +2,7 @@ import Mathlib
 import ThresholdHC.Proofs.Tier2.ClassifierProbability
 import ThresholdHC.CriticalEntropy.SignTest
 import ThresholdHC.CriticalEntropy.EarlyDecision
+import ThresholdHC.CriticalEntropy.StoppedModel
 
 noncomputable section
 open MeasureTheory Real
@@ -62,5 +63,17 @@ def FiniteGapSignEntropyStatement : Prop :=
       {z | A.output z ≠ b} ≤ 1/10) →
     (K : ℝ)*log (K : ℝ)/512 ≤
       ∑ i, (d i : ℝ)^2*(expectedSignTestWork ν (signParameter (d i) false) A).toReal
+
+/-- Actual unused Bernoulli flips after a stopped procedure are independent
+of its output and work. Work is finite in expectation under the stated law;
+the procedure itself is independent of the Bernoulli parameter. -/
+def StoppedSuffixStatement : Prop :=
+  ∀ (R E : Type) [MeasurableSpace R] [MeasurableSpace E]
+    (ν : Measure R) [IsProbabilityMeasure ν] (p : unitInterval)
+    (A : StoppedProcedure R E), expectedStoppedProcedureWork ν p A ≠ ∞ →
+    (ν.prod (Tier2.tapeMeasure p)).map
+        (fun z => ((A.stop z, A.output z), stoppedSuffix A z)) =
+      ((ν.prod (Tier2.tapeMeasure p)).map (fun z => (A.stop z, A.output z))).prod
+        (Tier2.tapeMeasure p)
 
 end ThresholdHC.CriticalEntropy

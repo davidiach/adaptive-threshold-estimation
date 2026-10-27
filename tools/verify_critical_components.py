@@ -20,7 +20,8 @@ ROOT = Path(__file__).resolve().parents[1]
 LEAN = ROOT / "lean"
 SOURCE = LEAN / "ThresholdHC/CriticalEntropy"
 MODULES = ("Packing", "CommonPoint", "BernoulliPrefix", "EventInformation", "SignTest",
-           "EarlyDecision", "StoppingWindow", "GeometricOverlap", "FiniteGap", "Specification")
+           "EarlyDecision", "StoppingWindow", "GeometricOverlap", "FiniteGap",
+           "StoppedModel", "StoppedTape", "Specification")
 NAMESPACE = "ThresholdHC.CriticalEntropy."
 ROOTS = {
     NAMESPACE + name for name in (
@@ -44,6 +45,14 @@ ROOTS = {
         "geometric_separation_of_adjacent", "half_low_cost", "geometric_interval_card",
         "inverse_gap_scales_separated", "signTest_window_overlap", "finite_gap_sign_entropy",
         "FiniteGapSignEntropyStatement",
+        "tapeDrop", "measurable_tapeDrop", "StoppedProcedure", "stoppedSuffix",
+        "measurable_stoppedSuffix", "stoppedProcedureWork", "expectedStoppedProcedureWork",
+        "measurable_stoppedProcedureWork", "stoppedWithWork", "tapeDrop_map",
+        "prefix_drop_independent", "tape_split_map", "seeded_tape_split_map",
+        "measure_eq_tsum_stopping", "seeded_prefix_drop_probability",
+        "stopped_event_tail_probability", "stopped_output_suffix_probability",
+        "stopped_output_suffix_map", "stopped_procedure_terminates", "stopped_marked_suffix_map",
+        "StoppedSuffixStatement",
     )
 }
 
@@ -99,10 +108,11 @@ def main() -> int:
               for p in protected}
     status = {
         "valid": False,
-        "scope": "Finite-gap statistical sign entropy, its probability dependencies, and abstract compact convex common point",
+        "scope": "Finite-gap statistical sign entropy, actual stopped-suffix independence, probability dependencies, and abstract compact convex common point",
         "full_critical_minimax_theorem_verified": False,
         "base_cost_theorem_verified": False,
         "finite_gap_sign_testing_theorem_verified": False,
+        "stopped_suffix_independence_verified": False,
         "specifications_frozen_before_proofs": False,
         "source_sha256": hashes,
         "commands": [],
@@ -128,12 +138,14 @@ def main() -> int:
     if any(hashlib.sha256((ROOT / rel).read_bytes()).hexdigest() != digest
            for rel, digest in hashes.items()):
         raise ValueError("Sources changed during audit")
-    status.update(valid=True, exact_component_targets=5, audited_declarations=len(ROOTS),
-                  finite_gap_sign_testing_theorem_verified=True)
+    status.update(valid=True, exact_component_targets=6, audited_declarations=len(ROOTS),
+                  finite_gap_sign_testing_theorem_verified=True,
+                  stopped_suffix_independence_verified=True)
     status_path.write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"valid": True, "exact_component_targets": 5,
+    print(json.dumps({"valid": True, "exact_component_targets": 6,
                       "audited_declarations": len(ROOTS), "evidence": str(output),
                       "finite_gap_sign_testing_theorem_verified": True,
+                      "stopped_suffix_independence_verified": True,
                       "full_critical_minimax_theorem_verified": False}))
     return 0
 
