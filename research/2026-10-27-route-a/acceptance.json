@@ -1,0 +1,49 @@
+{
+  "valid": true,
+  "baseline_files_unchanged": 266,
+  "broad_frozen_guard_sources": [
+    "lean\\ThresholdHC\\ResearchRouteA\\Audit.lean",
+    "lean\\ThresholdHC\\ResearchRouteA\\Sanity.lean",
+    "lean\\ThresholdHC\\ResearchRouteA\\SeparateBounds.lean",
+    "lean\\ThresholdHC\\ResearchRouteA\\SeparateBoundsSpec.lean"
+  ],
+  "commands": [
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "research/2026-10-27-route-a/check_construction.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "lean/ThresholdHC/ResearchRouteA/verify.py"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "head_at_replay": "ddf950122776a059e62c808021bbd2b59c39f0b0",
+  "source_sha256": {
+    "lean/ThresholdHC/ResearchRouteA/Audit.lean": "bcbc40f8db3185bf7988cd2f5f553f31bbad1afeff4443c38ca044905b9a9a47",
+    "lean/ThresholdHC/ResearchRouteA/Sanity.lean": "c07d5c81ccef735194f1f08a965a05ebca61324adc77cbdc9f0d6b8c78353f87",
+    "lean/ThresholdHC/ResearchRouteA/SeparateBounds.lean": "e32e31136b1d8396381a6bd8892d5275217bdf0bd7a7c644767555b853a280b8",
+    "lean/ThresholdHC/ResearchRouteA/SeparateBoundsSpec.lean": "d114a2734cfd0164def475115d0ebb25d1ba49c7f87bb96fa45e441c3eb40dbe",
+    "lean/ThresholdHC/ResearchRouteA/SPEC_LOCK_v1.json": "1b8115cf053e978f35d28854544b9ed01d871a5c7bc4eedf936c13ceebe9d4c9",
+    "lean/ThresholdHC/ResearchRouteA/verify.py": "87dc4386e783bade1703ecc8089375fe46cbe9dd4bb25b370e5868b7415d7100",
+    "research/2026-10-27-route-a/acceptance_check.py": "998cd4968c1ab980fc8e5b999cd837d3dc1237b0f838637b7c89169c3b09fbeb",
+    "research/2026-10-27-route-a/BASELINE.md": "e3fcecde49f7dadd46279fa802d9545c45d50f0735ed2218bf5b8e261e5f3551",
+    "research/2026-10-27-route-a/check_construction.py": "8faed70d0f52969eb6c6b8e97c7d7dc1973e04621ac7cf004f23be627d53e0ef",
+    "research/2026-10-27-route-a/CHECKPOINT.md": "953d518496facd40bdee4b169b86491cc0980bc861b938e2e41c1485f3bb0c5a",
+    "research/2026-10-27-route-a/construction.tex": "ff70296efd76f7b1fd0ac50d12eff1a22361b5bb566dc97c82836833640b3d00",
+    "research/2026-10-27-route-a/CONTRACT.md": "a1a94a5f046cd36713a922ab26d4c9041a925ae0a742d7b95dc403e9b7c3da17",
+    "research/2026-10-27-route-a/EDGE_CASES.md": "2e97a652548d5871707d4f504f5ecab30df14e8290dd448e44d24f0a94f2b61c",
+    "research/2026-10-27-route-a/formal-audit.md": "cdd6130c9380f38e6b017d69d3f6b2725648439f4394128636348cadc3b57bf9",
+    "research/2026-10-27-route-a/review.md": "1ba1fad474a3c03a806b9b545ba4619bd3d1e9706d499d8823d642363c662f57",
+    "research/2026-10-27-route-a/run_baseline.py": "d7eee0ead557b85a48846f0795828e2403e3af98444eb758d77b293eaeccab32",
+    "research/2026-10-27-route-a/second-review.md": "8d5cf5addeabec66914dad88213d342587000cc01de363f440f2e1364e81d67d",
+    "research/2026-10-27-route-a/sources.md": "d2904cbdf19e36f1efa1754c4173fd32acaea2d2089507f03760730b9031a501"
+  },
+  "independent_external_machine_replay": false,
+  "main_theorem_status": "paper proof with agent review; not Lean-checked"
+}

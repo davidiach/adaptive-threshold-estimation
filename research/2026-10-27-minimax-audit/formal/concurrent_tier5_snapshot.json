@@ -1,0 +1,24 @@
+{
+  "observed_at_utc": "2026-10-27T08:33:18.414692+00:00",
+  "head": "db25e62e15148af9661ae0994bec8ce895adf6ac",
+  "status": "concurrent in-progress work; not authored or audited by this task",
+  "source_sha256": {
+    "lean\\ThresholdHC\\Tier5\\BoundReduction.lean": "c5f75679894a49d84d4d267957e45f1b01f1efe77c9a67ea8b24377d34916085",
+    "lean\\ThresholdHC\\Tier5\\CreationBase.lean": "c77ca55ab89d3d286443be9699ebca100706851f2f33393c82770209362250ea",
+    "lean\\ThresholdHC\\Tier5\\CreationFresh.lean": "db4cdfad963ecb63718010bc9150864010c6bc6b673de676de4eab776c57a188",
+    "lean\\ThresholdHC\\Tier5\\CreationModel.lean": "b767058304f884582dc976a59b5d31671d417717097b60280d6b4533acae5871",
+    "lean\\ThresholdHC\\Tier5\\CreationPadding.lean": "0749f9235601e37c0e141414b6347c9df8b3028c9c44924ef324739eb3e5cf68",
+    "lean\\ThresholdHC\\Tier5\\CreationProduct.lean": "453b2c028190a1cddc2400a213a77b3c137436b64720531dbfec34a22d92bb9b",
+    "lean\\ThresholdHC\\Tier5\\Entropy.lean": "23cdfaa93a43a1198ca09a2517add6045eff94dd5cc0b77bf05b60ffb4153eb6",
+    "lean\\ThresholdHC\\Tier5\\EntropyPrefix.lean": "b10d2ae8c19595ae7f6abda7e1fc525b7021a4a2fd82d9d8d479e303befbfab7",
+    "lean\\ThresholdHC\\Tier5\\FiniteCreation.lean": "382ea9fae97e5c8184a129f29b5004aa91416a26350445971315fcc28bd0d017",
+    "lean\\ThresholdHC\\Tier5\\FiniteEnvironment.lean": "cdfd42cf5b704fd7577de9dc04fed2fcac94830cd7207240d704eb702f14b669",
+    "lean\\ThresholdHC\\Tier5\\FiniteJoint.lean": "b8c826351070c9c8f8eb92ae68e9499c32e77e777c9438aa15ec1cb7db17956a",
+    "lean\\ThresholdHC\\Tier5\\Model.lean": "d0bd50268eb858d2acb14f0f220f228d6a1d8b211dd4359864c35faca6bf0fdd",
+    "lean\\ThresholdHC\\Tier5\\PriorRatio.lean": "a116b733974fd4b0b1bddaf4c7eed5d161595b5a228fc59fbfcf68a5fbcc99d5",
+    "lean\\ThresholdHC\\Tier5\\Specification.lean": "e8039a4b9277f0b59ffb36ca016d97020a5d3e6e5a6568c43be706c4f553fa12",
+    "lean\\ThresholdHC\\Tier5\\StoppingBase.lean": "9ffc7fc2c7cf05885bbf88759ea62e436b525798378eee7abeb0dd4fb539815a",
+    "lean\\ThresholdHC\\Tier5\\StoppingEntropy.lean": "4547b54ca46c146ff10e46c00d1edb5197c5e1e09bf80a6905a92c86248ad43c",
+    "lean\\ThresholdHC\\Tier5\\StoppingFull.lean": "dfa01feebc73e7e56107b4d7efd4d28e5d56c95cce9045968596d00087e758d6"
+  }
+}

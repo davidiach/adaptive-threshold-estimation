@@ -1,0 +1,164 @@
+{
+  "valid": true,
+  "scope": "Paper-proof artifact, old-source preservation, exact scalar checks, finite numerical replay; no new Lean theorem",
+  "head_at_replay": "a8a8dc49115aabdd1fba8d53d3390eb0a5eee864",
+  "protected_baseline_files_unchanged": 311,
+  "lock_entries_verified": 65,
+  "paper_checkpoint_lock_sha256": "e35d1f0cfe06c9137e14a05a508af1fc7f4d4e685071f82b8bdecd0ce4add72d",
+  "final_paper_source_sha256": "8e72d93569fdd917675fda976475f9ddb9762e1e7c79d6fe43e9a269a01bf44a",
+  "compilation_source_matches": true,
+  "nonprotected_baseline_changes": [
+    {
+      "path": "docs/RESULTS.md",
+      "baseline": "6c3910891f7af5e9c6c5f6383273f078e7c49267c0cbdb40c9c9bcec53768d03",
+      "current": "cb1e5e1e1d5610ed0e91c70adf275f954d0c8501ce63925e8978c848112d0014"
+    },
+    {
+      "path": "docs/VERIFY.md",
+      "baseline": "0819f92105439ef0b072367a98ac82517ef8661ab366e639b014713b1897f336",
+      "current": "a1ec83486582bc53716b6e82ecda9a6557da8b3a288a88b2eff04a263429fc0e"
+    },
+    {
+      "path": "docs/process/REPORT.md",
+      "baseline": "746708c553a8e43044936d7fbeac871de3a4e0c2284f8594191e8f02764552f4",
+      "current": "cd50a87e8849950800df00e4c73d102329ae5bfa82d3fe77964ded47af6818e0"
+    },
+    {
+      "path": "docs/process/RUNLOG.md",
+      "baseline": "bb9087f90215f45b62928c6f5ec412e2efbeb2ecfd086d7a2d6fa4a64e368b68",
+      "current": "5f63582da83cc9f569a1a906e6ac9098e1819a03b10a431fad42cddc90277754"
+    },
+    {
+      "path": "paper/UPDATES.md",
+      "baseline": "07149e1c54bcd4a1cce28b76d031dfbdad2fd90a15a52fa40221b34d70b58927",
+      "current": "41ad6436b347041cdcfe305defc8ce04dfed6c2451cdea4789f89a1626360e31"
+    }
+  ],
+  "exact_scalar_checks": {
+    "prefix_KL": true,
+    "pinsker_squared": true,
+    "window_mass": true,
+    "unbiased_repeat_envelope": true,
+    "unbiased_chebyshev_sup": true,
+    "unbiased_product_coefficient": true,
+    "low_bias_variance": true,
+    "low_bias_second_to_variance": true,
+    "low_bias_repeat_envelope": true,
+    "low_bias_chebyshev_sup": true,
+    "low_bias_product_coefficient": true,
+    "additive_variance_factor": true,
+    "upper_second_moment_sum": true,
+    "upper_work_sum": true
+  },
+  "commands": [
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tools/freeze.py",
+        "--verify"
+      ],
+      "exit_code": 0,
+      "seconds": 0.15600000007543713
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tools/verify_inputs.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.21899999992456287
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 12.125
+    }
+  ],
+  "fisher_sanity": {
+    "finite_difference_states": 9,
+    "maximum_finite_difference_information_residual": 1.5772926367785267e-11,
+    "exhaustive_horizon": 3,
+    "exhaustive_policy_count": 64,
+    "exhaustive_ratio": 0.00012108193878791315,
+    "bellman_ratio": 0.00012108193878791315
+  },
+  "fisher_replayed_cases": [
+    {
+      "K": 2,
+      "horizon": 256,
+      "policy_sha256": "b2d975b5f31a12cf0993cfff4d2faf36ed00a55ab9f100246d0b7d9ab7d39c79"
+    },
+    {
+      "K": 2,
+      "horizon": 512,
+      "policy_sha256": "d3824039d1f40f1107328380306d92a4a266baf99afadf18460226b49f1cba9a"
+    },
+    {
+      "K": 2,
+      "horizon": 1024,
+      "policy_sha256": "1a6f07233b3ddaeef648992cbbaa7ecd22ca3286edd51603fcf89344e6b1a159"
+    },
+    {
+      "K": 3,
+      "horizon": 256,
+      "policy_sha256": "5ce3dc13590bac1227894332b14bf30266b483aa9fb3292e5c6abc2fd7bd0c50"
+    },
+    {
+      "K": 3,
+      "horizon": 512,
+      "policy_sha256": "9e5c00227b52b9aba7d9d19e58da667568bbb0eb8119c92bb7bb0051d9a3f294"
+    },
+    {
+      "K": 3,
+      "horizon": 1024,
+      "policy_sha256": "b15c7cdc4dc03f7de10a69d4e67cbf652f0bafa252855e0cac32fa0d43afdf9a"
+    },
+    {
+      "K": 4,
+      "horizon": 256,
+      "policy_sha256": "ecc4abb7428d0d7e9d29ced0781e1965fce561cd2701cb3448dba253883acc32"
+    },
+    {
+      "K": 4,
+      "horizon": 512,
+      "policy_sha256": "a00817b0151e9f649eb1bae10ceb63443a8f7a7ca4829207fa45abac235e9828"
+    },
+    {
+      "K": 4,
+      "horizon": 1024,
+      "policy_sha256": "22873b76e00ac4d4d0eb3fc8a8edcc51c13fa6a39abae2db87a5855ff4c10131"
+    }
+  ],
+  "source_sha256": {
+    "research/2026-10-27-critical-two/alternative.md": "a65e77f49d45a3e719187c7f6122b78c76706616b596b4b9c585ba1e8ca54319",
+    "research/2026-10-27-critical-two/BASELINE.md": "a42c4b1544b5346c77f897f28751277d37ba428ff7eac85d6d9d141ee4658914",
+    "research/2026-10-27-critical-two/CHECKPOINT.md": "7d4349ae798af899f3813be0b9db8dac3c644a893551ee1b26acb158bb26f9bc",
+    "research/2026-10-27-critical-two/construction-notes.md": "28ada89d5537f98656e2e3d9855ff68a5d3aae35d33c8930a6fc7319cc56bf25",
+    "research/2026-10-27-critical-two/construction.tex": "8e72d93569fdd917675fda976475f9ddb9762e1e7c79d6fe43e9a269a01bf44a",
+    "research/2026-10-27-critical-two/CONTRACT.md": "85ce84cc53e1363667edb501436527edc9ff71e8660b0f218310ef6de20f7bb0",
+    "research/2026-10-27-critical-two/fisher.py": "c9b3a2dcdc823833619e50edecf5d89265d4d87c2213aa06af24e03707fb3167",
+    "research/2026-10-27-critical-two/review.md": "133d23a194a5e59e4929bf4209eb918ad7d19f51771600066c9c4a4efdb13313",
+    "research/2026-10-27-critical-two/second-review.md": "2c15f23a5891bc8b5911ae35d1dd4fbe9e0b721da3e14225f8820a3501f0dfb2",
+    "research/2026-10-27-critical-two/snapshot.py": "f7bfdce5f5fb1b3cc29d7cc4d435d5b1fab52c5553640af223a5f64bc17a591c",
+    "research/2026-10-27-critical-two/sources.md": "c6e02e34db62fafe76726a2747270a1c82c107af9fd9e2075e7bc2f533657adc",
+    "research/2026-10-27-critical-two/validate.py": "07594023c62ca267a53d5aac167ca0c713b897032051e649f23c07307d34612d",
+    "docs/process/REPORT.md": "cd50a87e8849950800df00e4c73d102329ae5bfa82d3fe77964ded47af6818e0",
+    "docs/process/RUNLOG.md": "5f63582da83cc9f569a1a906e6ac9098e1819a03b10a431fad42cddc90277754",
+    "docs/RESULTS.md": "cb1e5e1e1d5610ed0e91c70adf275f954d0c8501ce63925e8978c848112d0014",
+    "docs/VERIFY.md": "a1ec83486582bc53716b6e82ecda9a6557da8b3a288a88b2eff04a263429fc0e",
+    "paper/UPDATES.md": "41ad6436b347041cdcfe305defc8ce04dfed6c2451cdea4789f89a1626360e31"
+  },
+  "new_Lean_targets": [],
+  "historical_Lean_replay": "Reused unchanged exact-source evidence from route-a and earlier checkpoints; not rerun here",
+  "external_machine_replay": false
+}

@@ -1,5 +1,45 @@
 # Results after the v4 paper
 
+## Critical quadratic margin: full characterization and Psi counterexample
+
+The [full critical note](../research/2026-10-27-nonlinear-critical/unrestricted.tex)
+proves $R_{\mu,\rho}(B)\asymp\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}$,
+$L=1+\log(1/\rho)$, at the single fixed law $F(d)=(4d)^2$, uniformly for
+$0<\rho\le1/4$ and $B\ge1$. The lower bound permits all observable fresh-coin
+algorithms, including nonlinear outputs, adaptive creation and interleaving,
+and unbounded stopping under the uniform expected-work constraint. The
+algorithm may know the law and rarity. The upper construction was already
+present in the separately credited critical note.
+
+The rate is larger than Psi by an unbounded factor along an explicit joint
+rarity/budget sequence. It therefore refutes the arbitrary-law matching-Psi
+upper conjecture in the preserved continuation. The variational optimizer
+theorem is unchanged. The new result is a paper proof with independent
+adversarial agent review and scoped component cross-checks, without Lean or
+external specialist verification or certified novelty. The
+[checkpoint](../research/2026-10-27-nonlinear-critical/CHECKPOINT.md) records
+proof dependencies, exact source hashes and reproducible checks.
+
+## Earlier critical quadratic margin: restricted characterization
+
+The separate [critical-regime note](../research/2026-10-27-critical-two/construction.tex)
+proves the sharp RMS order $\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}$,
+$L=1+\log(1/\rho)$, for the specified noninteractive additive estimator class
+at $F(d)=(4d)^2$. Heterogeneous components, shared randomness, an unbounded
+finite-mean preselected coin count, and unbounded per-coin stopping are
+included under the stated moment conditions. Its core product lower bound
+also permits single-coin bias up to $\rho/64$. The upper side reuses the
+separately developed critical construction with explicit attribution.
+
+This is a paper proof with two separate agent reviews. At that checkpoint it
+neither proved a matching unrestricted Psi upper bound nor refuted one;
+nonlinear aggregation and cross-coin feedback were unresolved. The later full
+theorem above resolves that gap. The [checkpoint](../research/2026-10-27-critical-two/CHECKPOINT.md)
+records exact scope, proof evidence, numerical limitations and prior-art
+overlap. The preserved v4 paper and imported continuation are unchanged.
+
+## Preserved v4 paper
+
 [paper.pdf](paper.pdf), [paper.tex](paper.tex), and [verification_table.tex](verification_table.tex) are byte-for-byte copies of the PDF and source in [the preserved v4 package](../inputs/next-phase/baseline/Adaptive_Threshold_v4/). The TeX is unchanged, including its original title, author line, date, constants, and verification table. Compile `paper.tex` with `verification_table.tex` beside it. The [separate rare-event continuation](../inputs/next-phase/report/research_note.pdf) and [its source](../inputs/next-phase/report/research_note.tex) also remain in the preserved inputs.
 
 ## The upper constant: 12665 to 713
@@ -38,4 +78,4 @@ The frozen target names `lemma6_*` and `lemma7_*` retain earlier numbering; in t
 
 ## What remains unchanged in scope
 
-The matching upper bound and confidence-radius parts of the unrestricted minimax law, and the uniform unbiasedness converse, retain paper-proof status. Tier 6 certifies the RMS lower-bound side. Neither the optimizer identity nor the upper-bracket calculations settle a matching arbitrary-law rare-event upper bound or the $\alpha\ge2$ rare-event constructions. The original expected-work, observation-independence, and confidence-radius limitations still apply; see [v4 §10](paper.tex#L1280), [the continuation's conjecture](../inputs/next-phase/report/research_note.tex#L246), and the [results guide](../docs/RESULTS.md).
+The matching upper bound and confidence-radius parts of the unrestricted minimax law, and the uniform unbiasedness converse, retain paper-proof status. Tier 6 certifies the RMS lower-bound side. The separate [power-margin proof](../research/2026-10-27-route-a/construction.tex) resolves the known-rarity regime $\alpha>2$. The full critical-law paper theorem above resolves $\alpha=2$ at $F(d)=(4d)^2$ and refutes the proposed arbitrary-law matching-Psi upper bound. A sharp replacement for general magnitude laws remains open. These rare-event results retain reviewed paper-proof status; they are not Lean-checked. The original expected-work, observation-independence, and confidence-radius limitations still apply; see [v4 §10](paper.tex#L1280) and the [current results guide](../docs/RESULTS.md).

@@ -1,0 +1,186 @@
+{
+  "valid": true,
+  "timestamp_utc": "20261027T094721.155405Z",
+  "evidence_scope": "Paper bundle, preservation and exact finite diagnostics; no Lean proof of new theorem",
+  "head_at_replay": "d75c775633df545b892e69fc876930d6d2dcc329",
+  "baseline_head": "d75c775633df545b892e69fc876930d6d2dcc329",
+  "protected_baseline_files_unchanged": 490,
+  "prior_lock_entries_verified": 78,
+  "other_baseline_changes": [
+    {
+      "path": "README.md",
+      "baseline": "5b2b731699fbf6dd1f0f5e569990ce5f2e6ea72db37dbd6f131e4ad9a9b0f52c",
+      "current": "5978e845a1ae126fac2c6b74fece2d3c2cffb8427661b8b4697773abe8fdc4c2",
+      "task_document": true
+    },
+    {
+      "path": "docs/RESULTS.md",
+      "baseline": "cb1e5e1e1d5610ed0e91c70adf275f954d0c8501ce63925e8978c848112d0014",
+      "current": "227858ea0e870f6438fc985b02918fd857bdab9abee7779fc8cd87ac6cb15019",
+      "task_document": true
+    },
+    {
+      "path": "docs/VERIFY.md",
+      "baseline": "a1ec83486582bc53716b6e82ecda9a6557da8b3a288a88b2eff04a263429fc0e",
+      "current": "7bfcbf59193979d27ab026376cd99ffa82d476341d230f1255571b6d6524421b",
+      "task_document": true
+    },
+    {
+      "path": "docs/process/REPORT.md",
+      "baseline": "cd50a87e8849950800df00e4c73d102329ae5bfa82d3fe77964ded47af6818e0",
+      "current": "8e3b16bb60caa2b47569d413623ac0a3fd181e029fdaaa6019f6c7fa01e16b65",
+      "task_document": true
+    },
+    {
+      "path": "paper/UPDATES.md",
+      "baseline": "41ad6436b347041cdcfe305defc8ce04dfed6c2451cdea4789f89a1626360e31",
+      "current": "c173b233aadd6bd23653245f863b0d8cd052586f9b80e73410e2d48b7cc0fc44",
+      "task_document": true
+    },
+    {
+      "path": "docs/process/RUNLOG.md",
+      "baseline": "5f63582da83cc9f569a1a906e6ac9098e1819a03b10a431fad42cddc90277754",
+      "current": "5e1807a23dad6d62b6a9dc678c7650c62075d0a23ca5b969448c133663175a16",
+      "task_document": true
+    }
+  ],
+  "paper_lock_sha256": "1e85c9e7a290e2b2cffde205934a08a289b48101fa30209e3a8a643cceb92131",
+  "paper_source_sha256": {
+    "unrestricted.tex": "b00b608ca1012148934e5717d2b10ee1d1379fa312a9f5bf06a0ac1e0e6fb853",
+    "base_cost.tex": "6c02a467ac9a8b989ccb3e3618a9bb567e332ed1d3830d70fca27c01e5e3265a",
+    "affine_comparison.tex": "c243a6ad355aeabb2fea3df195166faf066b95b4e5778e3bc02512d61a80f7c2",
+    "upper_bound.tex": "e4d8fd72f87fe0bf590b1cbbf8a61d9736f1402ba5e6a364df834cc810737fbc"
+  },
+  "compilation_bundle_matches": true,
+  "scalar_checks": {
+    "prefix_kl": true,
+    "prefix_pinsker": true,
+    "sign_window_mass": true,
+    "variance_floor": true,
+    "moment_variance_bridge": true,
+    "restart_envelope": true,
+    "restart_error": true,
+    "capped_bad_mass": true,
+    "annulus_product_constant": true,
+    "component_variance": true,
+    "affine_rms_squared_envelope": true,
+    "affine_saddle_rms_envelope": true,
+    "population_hellinger": true,
+    "population_tv_squared": true,
+    "testing_rms_squared": true,
+    "upper_second_moment": true,
+    "upper_work": true
+  },
+  "commands": [
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tools/freeze.py",
+        "--verify"
+      ],
+      "exit_code": 0,
+      "seconds": 0.10899999993853271
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tools/verify_inputs.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.125
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 11.719000000040978
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\threshold-hillclimb\\research\\2026-10-27-nonlinear-critical\\check_prefix.py",
+        "--output",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\threshold-hillclimb\\research\\2026-10-27-nonlinear-critical\\replays\\20261027T094721.155405Z\\check_prefix_results.json"
+      ],
+      "exit_code": 0,
+      "seconds": 0.26599999994505197
+    }
+  ],
+  "population_prefix_cases": 20,
+  "sufficiency_cases": 2,
+  "finite_prefix_replay_exact_match": true,
+  "source_sha256": {
+    "research/2026-10-27-nonlinear-critical/affine_comparison.tex": "c243a6ad355aeabb2fea3df195166faf066b95b4e5778e3bc02512d61a80f7c2",
+    "research/2026-10-27-nonlinear-critical/alternative.md": "4bffc1f9655e0623cc27f7fe25c517fdbf38dbbaba1653dee56c213a1a56e456",
+    "research/2026-10-27-nonlinear-critical/attempts.md": "924d73a3f44afe33a00b7ed6b232300c8f4e002ee2d7a58fe3a9ec1b74a758a8",
+    "research/2026-10-27-nonlinear-critical/base_cost.md": "58a235efbd06757826ad688f246a0f03d9ea92a965444136c270d00cea19f969",
+    "research/2026-10-27-nonlinear-critical/base_cost.tex": "6c02a467ac9a8b989ccb3e3618a9bb567e332ed1d3830d70fca27c01e5e3265a",
+    "research/2026-10-27-nonlinear-critical/check_prefix.py": "d6f4aa173b7922991fb0d83a1e9bed6231e60ec1236ad1f0389e3920aac3fef2",
+    "research/2026-10-27-nonlinear-critical/CHECKPOINT.md": "a46fecae66b5f2152c8e3a3b04dc0f75de1831e4abc95b9e1dfc7cca7e0df817",
+    "research/2026-10-27-nonlinear-critical/construction.tex": "449ed9c0bd249bb734189dc3c4bc6c2e4d8da5aae324e146ccf3eb7e9f163dcb",
+    "research/2026-10-27-nonlinear-critical/CONTRACT.md": "814df143348b800ce875383989d798f93a44cf2cb73a25b7c436f9e223493526",
+    "research/2026-10-27-nonlinear-critical/review.md": "a90a680855e82bfec442f63ab4834cf5256a74b556f102494798546cb6ab86f3",
+    "research/2026-10-27-nonlinear-critical/second-review.md": "1dbeffdf3723192b7c04c359010bbbc8f77f8ce453d1507b3c2b247f2f350604",
+    "research/2026-10-27-nonlinear-critical/sources.md": "7aff713fd30f03ceef73f8022b04dbf6667e82b6159aa2c76fa5445e8ad59196",
+    "research/2026-10-27-nonlinear-critical/unrestricted.tex": "b00b608ca1012148934e5717d2b10ee1d1379fa312a9f5bf06a0ac1e0e6fb853",
+    "research/2026-10-27-nonlinear-critical/upper_bound.tex": "e4d8fd72f87fe0bf590b1cbbf8a61d9736f1402ba5e6a364df834cc810737fbc",
+    "research/2026-10-27-nonlinear-critical/validate.py": "ac924c4d4f158e00c0d154b2bbb8a004189634cfd0c6185fe88b74a1ee830c42",
+    "README.md": "5978e845a1ae126fac2c6b74fece2d3c2cffb8427661b8b4697773abe8fdc4c2",
+    "docs/RESULTS.md": "227858ea0e870f6438fc985b02918fd857bdab9abee7779fc8cd87ac6cb15019",
+    "docs/VERIFY.md": "7bfcbf59193979d27ab026376cd99ffa82d476341d230f1255571b6d6524421b",
+    "docs/process/REPORT.md": "8e3b16bb60caa2b47569d413623ac0a3fd181e029fdaaa6019f6c7fa01e16b65",
+    "docs/process/RUNLOG.md": "5e1807a23dad6d62b6a9dc678c7650c62075d0a23ca5b969448c133663175a16",
+    "paper/UPDATES.md": "c173b233aadd6bd23653245f863b0d8cd052586f9b80e73410e2d48b7cc0fc44"
+  },
+  "new_Lean_targets": [],
+  "historical_Lean_evidence": "Unchanged pinned sources and prior evidence reused; not rerun here",
+  "external_replay": "No independent-machine replay of new research diagnostic or theorem",
+  "output_directory": "C:\\Users\\User\\Desktop\\Projects\\math\\threshold-hillclimb\\research\\2026-10-27-nonlinear-critical\\replays\\20261027T094721.155405Z",
+  "documentation_finalization": {
+    "time_utc": "2026-10-27T09:48:48.780264+00:00",
+    "reason": "Acceptance counts, final contract outcome, historical-attempt pointer and run-log entries added after the successful checks; proof and diagnostic code unchanged.",
+    "changes": [
+      {
+        "path": "research/2026-10-27-nonlinear-critical/attempts.md",
+        "at_replay": "ae299341fc553342c023060fd15bb9dad2d8370a8858a535cb14d69db67bcec7",
+        "final": "924d73a3f44afe33a00b7ed6b232300c8f4e002ee2d7a58fe3a9ec1b74a758a8"
+      },
+      {
+        "path": "research/2026-10-27-nonlinear-critical/CHECKPOINT.md",
+        "at_replay": "eb44e9a6d67490a640b527f1b9ca3be79301677a295b6ddfd562f629e3600f34",
+        "final": "a46fecae66b5f2152c8e3a3b04dc0f75de1831e4abc95b9e1dfc7cca7e0df817"
+      },
+      {
+        "path": "research/2026-10-27-nonlinear-critical/CONTRACT.md",
+        "at_replay": "8cc1406bdbdf65a4da4810e8c72e26e034edd034d82b6254a95c486c140fd720",
+        "final": "814df143348b800ce875383989d798f93a44cf2cb73a25b7c436f9e223493526"
+      },
+      {
+        "path": "docs/process/RUNLOG.md",
+        "at_replay": "5f63582da83cc9f569a1a906e6ac9098e1819a03b10a431fad42cddc90277754",
+        "final": "5e1807a23dad6d62b6a9dc678c7650c62075d0a23ca5b969448c133663175a16"
+      }
+    ]
+  },
+  "git_whitespace_check": {
+    "default_exit_code": 1,
+    "findings": [
+      "affine_comparison.tex has one blank line at EOF",
+      "upper_bound.tex has one blank line at EOF"
+    ],
+    "disposition": "Preserved exact reviewed and locked TeX bytes. No mathematical or executable change.",
+    "blank_at_eof_disabled_exit_code": 0,
+    "command": "git -c core.whitespace=cr-at-eol,-blank-at-eof diff --cached --check",
+    "intermediate_attempt": "An initial command-level override omitted the existing cr-at-eol setting and returned 1 on CRLF lines; corrected by retaining cr-at-eol. No file bytes or repository settings changed."
+  },
+  "staged_source_hashes_match": 21
+}

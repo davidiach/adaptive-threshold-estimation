@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "kind": "post-proof reviewed paper checkpoint identity, not a Lean specification lock",
+  "source_head": "a8a8dc49115aabdd1fba8d53d3390eb0a5eee864",
+  "date_utc": "2026-10-27",
+  "strongest_statement": "Sharp RMS law for the explicitly defined noninteractive additive class at a=1/4; unrestricted Psi remains open",
+  "review_files": [
+    "review.md",
+    "second-review.md"
+  ],
+  "sha256": {
+    "research/2026-10-27-critical-two/construction.tex": "8e72d93569fdd917675fda976475f9ddb9762e1e7c79d6fe43e9a269a01bf44a",
+    "research/2026-10-27-critical-two/fisher.py": "c9b3a2dcdc823833619e50edecf5d89265d4d87c2213aa06af24e03707fb3167",
+    "research/2026-10-27-critical-two/validate.py": "07594023c62ca267a53d5aac167ca0c713b897032051e649f23c07307d34612d",
+    "research/2026-10-27-critical-two/snapshot.py": "f7bfdce5f5fb1b3cc29d7cc4d435d5b1fab52c5553640af223a5f64bc17a591c",
+    "research/2026-10-27-minimax-audit/theorem/critical.tex": "0e8b9eaf762b3b09fa0d92ce1a036c2ceea8c12d00a5eea8286b852f36a81536"
+  }
+}

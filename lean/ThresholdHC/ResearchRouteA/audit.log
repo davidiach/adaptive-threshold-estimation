@@ -1,0 +1,11 @@
+ThresholdHC.ResearchRouteA.SeparateMomentBoundsStatement : Prop
+ThresholdHC.ResearchRouteA.UniformFamilyBoundsStatement : Prop
+'ThresholdHC.ResearchRouteA.separate_moment_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ResearchRouteA.uniform_family_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ResearchRouteA.independent_constant_observations' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ResearchRouteA.deterministic_gap_model' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ResearchRouteA.deterministic_gap_separate_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

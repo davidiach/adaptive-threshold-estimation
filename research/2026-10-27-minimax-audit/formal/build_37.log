@@ -1,0 +1,15 @@
+⚠ [18168/18173] Replayed ThresholdHC.Statements
+warning: ThresholdHC\Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18169/18173] Ran ThresholdHC.Statements:irArts
+warning: ThresholdHC\Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+ℹ [18172/18173] Replayed ThresholdHC.Uniform713.Arithmetic
+info: ThresholdHC/Uniform713/Arithmetic.lean:74:0: 'ThresholdHC.Uniform713.Arithmetic.error_prefactor_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Arithmetic.lean:76:0: 'ThresholdHC.Uniform713.Arithmetic.geometric_second_moment_factor_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ThresholdHC/Uniform713/Arithmetic.lean:78:0: 'ThresholdHC.Uniform713.Arithmetic.fourth_root_three_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Arithmetic.lean:80:0: 'ThresholdHC.Uniform713.Arithmetic.second_moment_scalar_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Arithmetic.lean:82:0: 'ThresholdHC.Uniform713.Arithmetic.survival_coefficients' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Arithmetic.lean:84:0: 'ThresholdHC.Uniform713.Arithmetic.work_scalar_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Arithmetic.lean:86:0: 'ThresholdHC.Uniform713.Arithmetic.product_of_moment_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (18173 jobs).

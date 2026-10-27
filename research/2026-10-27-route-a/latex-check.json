@@ -1,0 +1,12 @@
+{
+  "tool": "mcp__codex_app__compile_latex_document",
+  "path": "research/2026-10-27-route-a/construction.tex",
+  "source_sha256": "ff70296efd76f7b1fd0ac50d12eff1a22361b5bb566dc97c82836833640b3d00",
+  "final_kind": "success",
+  "final_message": "The current source compiled successfully with the desktop editor's compiler.",
+  "earlier_attempts": [
+    "An attempt while the source was being edited failed on a partial command; this is not counted as a successful compilation.",
+    "Stable source had an unescaped closing brace in equation (4); corrected without changing the formula, then compiled successfully."
+  ],
+  "scope": "LaTeX compilation only, not proof validation; built-in preview, no exported PDF asserted"
+}

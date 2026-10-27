@@ -1,0 +1,101 @@
+⚠ [18168/18197] Replayed ThresholdHC.Statements
+warning: ThresholdHC\Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18169/18197] Ran ThresholdHC.Statements:irArts
+warning: ThresholdHC\Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18172/18197] Replayed ThresholdHC.Uniform713.Classifier
+warning: ThresholdHC/Uniform713/Classifier.lean:121:10: `if_neg` has been deprecated: Use `ite_eq_right` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲
+warning: ThresholdHC/Uniform713/Classifier.lean:131:16: `if_pos` has been deprecated: Use `ite_eq_left` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲
+warning: ThresholdHC/Uniform713/Classifier.lean:221:0: automatically included section variable(s) unused in theorem `ThresholdHC.Uniform713.work_survival_identity`:
+  [MeasurableSpace Ω]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [MeasurableSpace Ω] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [18176/18197] Replayed ThresholdHC.Uniform713.Convergence
+warning: ThresholdHC/Uniform713/Convergence.lean:27:44: Variable name `hd` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hd
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+info: ThresholdHC/Uniform713/Convergence.lean:49:0: 'ThresholdHC.Uniform713.tendsto_dyadic_error_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Convergence.lean:50:0: 'ThresholdHC.Uniform713.tendsto_errorEnvelope_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Convergence.lean:51:0: 'ThresholdHC.Uniform713.tendsto_of_error_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Convergence.lean:52:0: 'ThresholdHC.Uniform713.tendsto_error_probability' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [18178/18197] Replayed ThresholdHC.Uniform713.Concentration
+warning: ThresholdHC\Uniform713\Concentration.lean: imports `Mathlib.Probability.Moments.SubGaussian` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/Uniform713/Concentration.lean:54:8: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: ThresholdHC/Uniform713/Concentration.lean:54:4: Unused tactic linter: `<;>` can be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Uniform713/Concentration.lean:54:8: Unused tactic linter: `ring` is never executed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Uniform713/Concentration.lean:74:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Uniform713/Concentration.lean:74:4: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [18179/18197] Ran ThresholdHC.Uniform713.Concentration:irArts
+warning: ThresholdHC\Uniform713\Concentration.lean: imports `Mathlib.Probability.Moments.SubGaussian` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18184/18197] Replayed ThresholdHC.Uniform713.WorkArithmetic
+warning: ThresholdHC/Uniform713/WorkArithmetic.lean:149:6: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Uniform713/WorkArithmetic.lean:149:6: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+ℹ [18186/18197] Replayed ThresholdHC.Uniform713.Arithmetic
+info: ThresholdHC/Uniform713/Arithmetic.lean:74:0: 'ThresholdHC.Uniform713.Arithmetic.error_prefactor_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Arithmetic.lean:76:0: 'ThresholdHC.Uniform713.Arithmetic.geometric_second_moment_factor_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ThresholdHC/Uniform713/Arithmetic.lean:78:0: 'ThresholdHC.Uniform713.Arithmetic.fourth_root_three_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Arithmetic.lean:80:0: 'ThresholdHC.Uniform713.Arithmetic.second_moment_scalar_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Arithmetic.lean:82:0: 'ThresholdHC.Uniform713.Arithmetic.survival_coefficients' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Arithmetic.lean:84:0: 'ThresholdHC.Uniform713.Arithmetic.work_scalar_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Arithmetic.lean:86:0: 'ThresholdHC.Uniform713.Arithmetic.product_of_moment_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [18188/18197] Replayed ThresholdHC.Uniform713.ClassifierModel
+warning: ThresholdHC/Uniform713/ClassifierModel.lean:145:0: automatically included section variable(s) unused in theorem `ThresholdHC.Uniform713.squared_decision_difference_integral`:
+  [IsProbabilityMeasure μ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [IsProbabilityMeasure μ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ThresholdHC/Uniform713/ClassifierModel.lean:241:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Uniform713/ClassifierModel.lean:241:4: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+ℹ [18190/18197] Replayed ThresholdHC.Uniform713.Series
+info: ThresholdHC/Uniform713/Series.lean:381:0: 'ThresholdHC.Uniform713.summable_secondMomentEnvelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Series.lean:382:0: 'ThresholdHC.Uniform713.tsum_secondMomentEnvelope_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Series.lean:383:0: 'ThresholdHC.Uniform713.summable_weightedWorkEnvelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Series.lean:384:0: 'ThresholdHC.Uniform713.tsum_weightedWorkEnvelope_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Series.lean:385:0: 'ThresholdHC.Uniform713.secondMomentSeries_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Series.lean:386:0: 'ThresholdHC.Uniform713.workSeries_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Series.lean:399:0: 'ThresholdHC.Uniform713.sum_secondMomentEnvelope_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Series.lean:400:0: 'ThresholdHC.Uniform713.sum_weightedWorkEnvelope_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [18192/18197] Replayed ThresholdHC.Uniform713.Conditional
+info: ThresholdHC/Uniform713/Conditional.lean:95:0: 'ThresholdHC.Uniform713.conditional_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [18196/18197] Replayed ThresholdHC.Uniform713.FullBound
+warning: ThresholdHC/Uniform713/FullBound.lean:18:2: Try this: 
+  haveI̵
+
+The goal is a proposition, so `have` is preferred over `haveI`.
+The difference between `have` and `haveI` is that `haveI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+info: ThresholdHC/Uniform713/FullBound.lean:96:0: 'ThresholdHC.Uniform713.full_bound_713' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (18197 jobs).

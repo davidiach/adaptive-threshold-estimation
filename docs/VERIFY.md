@@ -1,5 +1,41 @@
 # Full verification commands
 
+For the integrated research packages, including the full critical-law paper
+theorem and Psi counterexample:
+
+```sh
+python tools/verify_research.py
+```
+
+This verifies all five current frozen manifests and the research identity
+locks, reviewed four-file paper bundle, exact scalar arithmetic, 20 certified
+finite-prefix experiments plus two sufficient-statistic checks, Route A finite
+experiments, finite-support identities, and the recorded Fisher policies.
+It writes fresh diagnostics to a temporary directory; use `--output-dir` with
+a nonexistent directory to choose the destination. Published evidence stays
+unchanged. Run the guard regressions listed below as well. See the
+[checkpoint](../research/2026-10-27-nonlinear-critical/CHECKPOINT.md) and
+[validation record](../research/2026-10-27-nonlinear-critical/validation.json).
+These are reproducibility and sanity checks; the statistical theorem is a
+reviewed paper proof, not a Lean result. CI now runs this replay on research
+changes and checks the five locked Route A Lean roots after the complete
+Tier 6 audit. These checks do not certify the continuum paper proof.
+
+Historical research `validate.py` and acceptance scripts preserve their original
+checkout snapshots, including the old CI workflow. Replay those at the source
+commits named in their checkpoints. They may reject an integrated checkout
+because its workflow and completed formalization have advanced; their original
+locks and recorded evidence have not been rewritten.
+
+For the additive 27 October rare-event result and separate-supremum bridge:
+
+```sh
+python research/2026-10-27-route-a/check_construction.py
+python lean/ThresholdHC/ResearchRouteA/verify.py
+```
+
+The first command checks exact rational finite-prefix experiments and retains unresolved tails; it does not certify the main theorem. The second checks the new locked formal specification, exact types, and all five public roots. See [formal replay details](../research/2026-10-27-route-a/formal-audit.md) for the local Windows environment. The main theorem remains a reviewed paper proof. [Baseline replay records](../research/2026-10-27-route-a/BASELINE.md) and the new `acceptance_check.py` keep diagnostics separate from published `results/`; the latter compares against this session's recorded source snapshot.
+
 Use Python 3.12 and the toolchain in [lean/lean-toolchain](../lean/lean-toolchain). The pinned package revisions are in [lean/lake-manifest.json](../lean/lake-manifest.json); do not run `lake update` on this frozen checkout. [Environment notes](../proposals/lean-environment.md) include the existing local Windows installation.
 
 Several verifiers write logs or summaries into `results/`. Run this sequence in a disposable checkout if you want the published evidence to remain byte-for-byte unchanged:
@@ -50,6 +86,24 @@ python tools/verify_tier6.py --sequential --require-complete
 ```
 
 The first command rebuilds the scored proof modules and runs the frozen scorer plus an independent audit. The arithmetic command checks the separate scalar lemmas. The final three commands enforce complete proofs of their exact specifications and check their source locks and transitive axioms. Passing arithmetic or numerical checks alone does not establish those probability theorems.
+
+## Critical-regime paper checkpoint
+
+The critical note is a reviewed paper proof, not a new Lean target. Its
+preservation, exact scalar diagnostics, current 34 guard regressions and nine
+finite Fisher-policy replays run with:
+
+```sh
+python research/2026-10-27-critical-two/validate.py
+```
+
+This writes only that research directory's diagnostics; it does not replace
+published results or rebuild unchanged Lean dependencies. The
+[validation record](../research/2026-10-27-critical-two/validation.json) records
+exact commands, exit codes, source hashes and limits. The numerical checks do
+not prove the paper theorem. Compile the standalone
+[TeX note](../research/2026-10-27-critical-two/construction.tex) separately;
+compilation is also not mathematical verification.
 
 ## Evidence and CI
 

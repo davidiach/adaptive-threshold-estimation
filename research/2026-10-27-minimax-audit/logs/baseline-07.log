@@ -1,0 +1,10 @@
+Passed 25 analytic-formula quadrature checks; wrote 27 bracket cases.
+alpha=2 rho=0.01 upper/Psi=30.056
+alpha=2 rho=0.0001 upper/Psi=32.140
+alpha=2 rho=1e-06 upper/Psi=34.381
+alpha=3 rho=0.01 upper/Psi=26.036
+alpha=3 rho=0.0001 upper/Psi=30.067
+alpha=3 rho=1e-06 upper/Psi=33.633
+alpha=4 rho=0.01 upper/Psi=24.403
+alpha=4 rho=0.0001 upper/Psi=27.916
+alpha=4 rho=1e-06 upper/Psi=30.949

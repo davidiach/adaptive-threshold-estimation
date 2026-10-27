@@ -1,0 +1,336 @@
+\section{A critical-margin upper bound with a remaining iterated logarithm}
+\label{sec:critical}
+\noindent\textbf{PROVED-ON-PAPER.} The result below is new work in this run,
+reviewed by a separate adversarial agent. It is not Lean-checked or externally
+reviewed; priority is unresolved. It does not settle the candidate minimax law.
+Natural logarithms are used throughout.
+
+Assume the iid hidden-gap Bernoulli experiment of the question. Only requested
+coin observations are charged; arithmetic and independent randomness are free.
+For known $0<a\le1/2$, assume
+\begin{equation}\label{crit:envelope}
+ \mu((0,x])\le(x/a)^2\quad(0<x<a).
+\end{equation}
+The individual gaps, signs, and unknown measurable function $q$ remain hidden.
+Only the global condition $\int q\,d\mu\le\rho$ is imposed, with known
+$0<\rho\le1/4$. Set $L=1+\log(1/\rho)$ and $H=1+\log L$.
+
+\begin{theorem}\label{crit:theorem}
+There is an observable single-coin estimator $Y$, depending only on $a,\rho$,
+such that uniformly over \eqref{crit:envelope} and every admissible $q$,
+\[
+ \mathbb EY=\theta,\qquad
+ \mathbb EY^2\le\frac{165}{56}\rho<4\rho,\qquad
+ \mathbb ET_Y\le W:=1350a^{-2}LH.
+\]
+Thus, for every $B>0$, an algorithm of uniform expected work at most $B$ has
+worst-case RMS at most
+\[
+ \min\left\{\rho/2,\sqrt{5400\rho LH/(a^2B)}\right\}.
+\]
+For $0<\delta\le1/4$, let $k$ be the least odd integer at least
+$8\log(1/\delta)$. A confidence radius
+\[
+ \min\{\rho/2,4\sqrt{\rho Wk/B}\}
+\]
+is attainable with the same uniform expected-work budget. These statements
+give no deterministic work cap or high-probability work bound.
+\end{theorem}
+
+\subsection{An entirely observable finite classifier}
+For $j\ge0$, put
+\[
+ \varepsilon_j=16^{-(j+1)},\quad
+ N_j=\left\lceil(a^2\rho\varepsilon_j)^{-1}\right\rceil,\quad
+ K_j=\left\lceil\log_2(a\sqrt{N_j})\right\rceil.
+\]
+For $0\le k\le K_j$, let $r_k=a2^{-(k+1)}$. If $H_n$ is the number of
+observed heads after $n$ flips of the current coin, define
+\[
+ L^+_{k,n}=(1+2r_k)^{H_n}(1-2r_k)^{n-H_n},\qquad
+ L^-_{k,n}=(1-2r_k)^{H_n}(1+2r_k)^{n-H_n}.
+\]
+At each $n<N_j$, output zero and stop if some $L^-_{k,n}$ reaches
+$(K_j+1)/\varepsilon_j$, or output one and stop if some $L^+_{k,n}$ reaches
+$(K_j+1)/(\rho\varepsilon_j)$. Give zero priority in a simultaneous crossing.
+If neither decision has occurred before $N_j$, output
+$\mathbf1_{\{H_{N_j}>N_j/2\}}$. Call the output $Z_j$ and work $T_j$.
+Only finitely many likelihoods are checked at any time.
+
+Under the wrong sign the corresponding likelihood is a nonnegative
+supermartingale with expected multiplier $1-4r_kd\le1$. Applying the
+bounded-horizon crossing inequality to each of the $K_j+1$ likelihoods gives
+wrong-crossing probability at most $\varepsilon_j$ on positives and
+$\rho\varepsilon_j$ on negatives. The wrong forced-majority event is a
+subset of the full-tape majority-error event, whose conditional probability
+is at most $\exp(-2N_jd^2)$ by Hoeffding. No independence between stopping
+and this event is used. Stochastic dominance from \eqref{crit:envelope} yields
+\[
+ \mathbb E_\mu e^{-2ND^2}
+ \le\frac{1-e^{-2Na^2}}{2Na^2}\le\frac1{2Na^2}.
+\]
+Consequently, for every admissible $q$,
+\begin{equation}\label{crit:error}
+ \mathbb P(Z_j\ne S)\le\tfrac52\rho\varepsilon_j,
+ \qquad
+ \mathbb P(Z_j=1,S=0)\le\tfrac32\rho\varepsilon_j.
+\end{equation}
+The $\theta\varepsilon_j$ positive error was bounded by
+$\rho\varepsilon_j$; the assumption was never strengthened to $q(d)\le\rho$.
+For completeness, the concentration input has a direct Bernoulli proof:
+the centered log moment-generating function $\phi(\lambda)$ has
+$\phi(0)=\phi'(0)=0$ and $\phi''(\lambda)\le1/4$, because the tilted
+Bernoulli variance is at most $1/4$. Hence $\phi(\lambda)\le\lambda^2/8$.
+Multiply these bounds for independent observations and apply Markov's
+inequality with $\lambda=4d$ (or $-4d$) to obtain $e^{-2Nd^2}$.
+This argument also applies to the independent failure indicators used below.
+
+\subsection{Conditional work and global-rarity rearrangement}
+Write $x=\min(d,a)$ and
+\[
+ A_s=1+\log(K_j+1)+\log(1/\varepsilon_j)+s\log(1/\rho),\quad s=0,1.
+\]
+If $x\ge N_j^{-1/2}$, choose $k=\lceil\log_2(a/x)\rceil\le K_j$.
+Then $x/4\le r_k\le x/2$, $r_k\le1/4$, and the correct-sign log-likelihood
+has iid increments with mean
+\[
+ g=\tfrac12\log(1-4r_k^2)
+       +d\log\frac{1+2r_k}{1-2r_k}
+ \ge-\tfrac83r_k^2+4dr_k\ge\tfrac23x^2.
+\]
+Here $\log(1-z)\ge-z/(1-z)$ and
+$\log((1+u)/(1-u))\ge2u$ suffice. Every upward increment is less than one.
+For the crossing time $\sigma$ of the correct threshold, the bounded
+stopped-sum identity at $\sigma\wedge n$ gives
+$g\mathbb E(\sigma\wedge n)\le A_s$. Monotone convergence therefore gives
+$\mathbb E\sigma\le(3/2)A_s/x^2$. The capped classifier work is at most
+$\min(N_j,\sigma)$, including when the crossing occurs exactly at the cap.
+If $x<N_j^{-1/2}$ the same conclusion below holds trivially because $A_s\ge1$:
+\begin{equation}\label{crit:condwork}
+ \mathbb E(T_j\mid d,s)\le\min\{N_j,(3/2)A_s/x^2\}.
+\end{equation}
+
+Set $c=3/2$. For the negative-sign contribution stochastic dominance gives
+\[
+ \mathbb E\min\{N,cA_0/x^2\}
+ \le cA_0a^{-2}[1+\log_+(Na^2)].
+\]
+For positives, layer cake and
+$\mathbb E[q\mathbf1_E]\le\min\{\rho,\mu(E)\}$ give
+\begin{align*}
+ \mathbb E\bigl[q(D)\min\{N,cA_1/x^2\}\bigr]
+ &\le cA_1a^{-2}[1+\log_+(Na^2\rho/(cA_1))]\\
+ &\le cA_1a^{-2}[1+\log_+(Na^2\rho)].
+\end{align*}
+Indeed the sharp upper is the integral of
+$\min\{N,cA_1/(a^2u)\}$ over $0<u<\rho$. If
+$Na^2\rho\le cA_1$ this is $N\rho\le cA_1/a^2$; otherwise it is exactly
+$(cA_1/a^2)[1+\log(Na^2\rho/(cA_1))]$. This proof also covers envelope laws
+with atoms, through layer cake rather than a quantile-density assumption.
+Bounding the negative part by the full unweighted integral and adding the
+positive part bounds $\mathbb ET_j$.
+
+The following loose universal bounds follow directly from the definitions:
+\[
+ \begin{gathered}
+ N_ja^2\le2/(\rho\varepsilon_j),\qquad K_j+1\le5(L+j+1),\\
+ A_0\le7H(j+1),\qquad A_1\le7H(j+1)+L,\\
+ 1+\log(N_ja^2)\le5L(j+1),\qquad
+ 1+\log(N_ja^2\rho)\le5(j+1).
+ \end{gathered}
+\]
+For example, use $\log(L+j+1)\le\log L+j+1$ and $4\log2<3$ in the
+bound on $A_0$. Since $L,H\ge1$, substitution proves
+\begin{equation}\label{crit:work}
+ \mathbb ET_j\le(225/2)a^{-2}LH(j+1)^2.
+\end{equation}
+
+\subsection{Randomized telescoping and exact expected-budget aggregation}
+Independently draw $J$ with $p_j=2^{-(j+1)}$, then draw a fresh coin. For
+$J=0$, set $\Delta_0=Z_0$. For $J=j\ge1$, run $Z_j$ and $Z_{j-1}$ on
+two successive disjoint observation blocks of that \emph{same} coin and set
+$\Delta_j=Z_j-Z_{j-1}$. Return $Y=\Delta_J/p_J$.
+
+Conditional on $(D,S)$, the observations after the first bounded stopping
+time again form an iid Bernoulli tape with the original parameter. To verify
+this directly, condition on each possible first stopping time $n$ and each
+observed length-$n$ prefix. Its event is prefix-measurable and the unused iid
+coordinates have their original law. Summing the finitely many prefix events
+proves the suffix assertion. Thus the second block has exactly the classifier
+marginal used below; its work can be added in expectation. The two outputs
+share their latent sign, which is essential to the disagreement bound.
+
+By \eqref{crit:error},
+\[
+ \mathbb E\Delta_0^2\le\tfrac{35}{32}\rho,\qquad
+ \mathbb E\Delta_j^2\le\tfrac{85}{32}\rho16^{-j}\quad(j\ge1).
+\]
+For the latter, different decisions imply that at least one is wrong about
+the shared sign. Hence Tonelli gives
+\[
+ \mathbb EY^2\le\frac{35}{16}\rho+
+      \frac{85}{16}\rho\sum_{j\ge1}8^{-j}
+   =\frac{165}{56}\rho<4\rho.
+\]
+The same bounds give $\sum_j\mathbb E|\Delta_j|<\infty$; signed
+expectations may therefore be interchanged and telescoped, giving
+$\mathbb EY=\lim_j\mathbb EZ_j=\theta$. This proves integrability before
+using the signed telescope. The expected work of level $j$ is at most twice
+\eqref{crit:work}, and
+$\sum_jp_j(j+1)^2=6$. Thus $\mathbb ET_Y\le1350a^{-2}LH$.
+Every call terminates almost surely, and the resulting expected work is finite.
+
+For budget $B$, set $\lambda=B/W$, independently draw
+$M\sim\operatorname{Poisson}(\lambda)$, and average the independent fresh-coin
+outputs as $\lambda^{-1}\sum_{i=1}^M Y_i$. Conditioning on $M$ proves
+expectation $\theta$, variance $\mathbb EY^2/\lambda\le4\rho W/B$, and
+expected work at most $B$. This remains valid for $\lambda<1$. Project onto
+$[0,\rho]$, which improves squared error without preserving unbiasedness.
+If the stated RMS bound exceeds $\rho/2$, choose the zero-work constant
+$\rho/2$ instead. This proves the RMS assertion.
+
+For confidence, run $k$ independent copies with budgets $B/k$ and take their
+median. Each has failure probability at most $1/4$ at radius
+$4\sqrt{\rho Wk/B}$ by Chebyshev. Hoeffding's inequality for the independent
+failure indicators bounds median failure by $e^{-k/8}\le\delta$. If
+$\rho/2$ is the smaller displayed radius, explicitly choose the constant
+estimator instead. Total expected work is at most $B$.
+
+\subsection{Exact critical candidate and the unresolved gap}
+For the exact law $F(d)=(d/a)^2$, direct integration yields
+\[
+ \rho=(t/a)^2[1+2\log(a/t)],\qquad
+ \Psi(h)=\begin{cases}
+ [2ht(1+\log(a/t))-h^2]/a^2,&0<h<t,\\
+ \rho,&h\ge t.
+ \end{cases}
+\]
+Set $u=1+2\log(a/t)$. Then $\rho=u e^{1-u}$ and
+$L=u-\log u$, whence $L\le u\le2L$. For $h<t$,
+$\Psi(h)/h=(t/a^2)(u+1-h/t)$ lies between $tu/a^2$ and
+$t(u+1)/a^2$. Since $tu/a^2=\sqrt{\rho u}/a$, including the transition
+at $h=t$ proves
+\[
+ \Psi(h)\asymp\min\{\rho,h\sqrt{\rho L}/a\}
+\]
+with universal constants, jointly in $\rho,h,a$. Conditional on the audited
+arbitrary-law lower theorem, Theorem~\ref{crit:theorem} therefore leaves a
+factor at most $\sqrt{1+\log L}$. It improves the critical upper bracket but
+does not remove this factor, prove it necessary, or establish arbitrary-law
+optimality. At fixed positive $\rho$, the construction gives $B^{-1/2}$ RMS;
+this fixed-rarity statement must not be confused with a uniform rare-event
+matching theorem.
+
+\section{A finite, arbitrary-law upper bracket}
+\noindent\textbf{PROVED-ON-PAPER; established allocation principle.}
+The classifier analysis also gives a constructive upper bracket for every
+law on $(0,1/2]$, including atoms, singular laws, and infinite inverse moments.
+No comparison of this bracket to $\Psi$ is asserted.
+
+Set $a=1/2$. Choose finitely many integer caps $N_j\ge4$ and tolerances
+$0<\varepsilon_j\le1$, $0\le j\le m$, and use the preceding classifiers.
+Let
+\[
+ \beta_j=\mathbb E_\mu e^{-2N_jD^2},\quad
+ e_j=2\rho\varepsilon_j+\beta_j,\quad
+ A_{j,s}=1+\log(K_j+1)+\log(1/\varepsilon_j)+s\log(1/\rho).
+\]
+For a bounded nonnegative measurable function $f$, define
+\[
+ Q_\rho(f)=\int_0^\infty\min\{\rho,\mu(f>v)\}\,dv.
+\]
+Layer cake gives $\int qf\,d\mu\le Q_\rho(f)$ for every feasible $q$.
+Equality follows by choosing the largest $\rho$ mass of $f$, with a fractional
+value of $q$ on a cutoff atom. Thus this formula does not require a nonatomic
+law. Put
+\[
+ f_{j,s}(d)=\min\{N_j,(3/2)A_{j,s}/d^2\},\qquad
+ c_j=\mathbb E f_{j,0}+Q_\rho(f_{j,1}).
+\]
+The preceding conditional-work proof gives a uniform bound $c_j$; all these
+integrals are finite because the functions are bounded. Let
+\[
+ v_0=\rho+\rho\varepsilon_0+\beta_0,\quad C_0=c_0,
+ \qquad v_j=e_j+e_{j-1},\quad C_j=c_j+c_{j-1}\quad(j\ge1).
+\]
+Use independent copies of the same-coin increments, independently across
+levels. With $S_m=\sum_{j=0}^m\sqrt{v_jC_j}$, independently take
+Poisson numbers of copies at means
+$\lambda_j=B\sqrt{v_j/C_j}/S_m$. Their sum, with level $j$ divided by
+$\lambda_j$, has expectation $\mathbb EZ_m$, variance at most $S_m^2/B$,
+and expected work at most $B$. Therefore
+\[
+ R_{\mu,\rho}(B)\le
+ \min\{\rho/2,\sqrt{e_m^2+S_m^2/B}\}.
+\]
+All constants here are positive. The RMS bound uses the exact bias--variance
+identity, and clipping onto $[0,\rho]$ cannot increase risk.
+
+The known law can determine these finitely many design constants, or certified
+upper bounds on them, before sampling. This gives no access to the magnitude
+of a sampled coin. For an abstract probability measure this is existence at
+the fixed known law; uniform computability from every representation of a
+measure is not claimed. Floating-point quadrature alone supplies numerical
+design evidence, not certified risk constants. The Poisson allocation and
+randomized telescoping principles are established methods; no novelty is
+claimed for them.
+
+\section{A reusable bounded-channel upper principle}
+\noindent\textbf{PROVED-ON-PAPER; no lower transfer.}
+The critical theorem and arbitrary-law upper bracket hold with the same
+constants if each hidden state produces conditionally iid observations
+$X\in[0,1]$ of mean $1/2+(2S-1)D$. Charge one unit per observation; the
+algorithm receives no hidden magnitude, sign, or selected-state access.
+Replace the reference processes by
+\[
+ M^\pm_{k,n}=\prod_{i=1}^n[1\pm2r_k(2X_i-1)]
+\]
+and keep the same thresholds, caps, and empirical-mean decision. The factors
+are positive. Under the wrong sign their conditional mean is $1-4r_kd\le1$.
+For the correct sign, concavity of the logarithm gives
+\[
+ \log(1+2r(2X-1))\ge
+ X\log(1+2r)+(1-X)\log(1-2r).
+\]
+Its expected log increment is therefore at least the Bernoulli drift used
+above; upward increments remain below one. For the concentration step the
+second derivative of a centered log moment-generating function is the variance
+under a tilted law on $[0,1]$, at most $1/4$. Hence the previous mgf proof
+applies. All conditional work, global-rarity integration, and telescoping
+arguments carry over unchanged. This rule directly uses the real observations.
+
+For a concrete derived synthetic example, take, conditional on $d,s$,
+\[
+ X\sim\operatorname{Unif}
+ [1/2+(2s-1)d-1/4,\;1/2+(2s-1)d+1/4],
+ \quad 0<d\le a\le1/4.
+\]
+With independent noises on revisits this is a valid bounded channel with
+variance $1/48$. The quadratic-margin upper theorem applies, charging one
+real draw per step. No minimax equality or empirical application is asserted.
+
+An exact information-discarding reduction is also available: using an
+independent $U\sim\operatorname{Unif}[0,1]$, the variable
+$\mathbf1_{\{U\le X\}}$ is a Bernoulli observation with the required
+conditional mean. One real observation is charged per converted bit and the
+target is unchanged. This transfers Bernoulli upper algorithms; it does not
+transfer a Bernoulli lower bound to every channel. If instead $X$ is
+deterministically its conditional mean, one observation reveals $S$, and $n$
+fresh states yield variance at most $\rho/n$ without an inverse-gap factor.
+Nothing here extends a bounded-observation theorem to unbounded observations.
+
+Extra cross-state structure also changes the question. As an explicit
+different experiment, suppose the outer state $Z\sim\operatorname{Unif}[-1,1]$
+is observed, $\beta\in[-1/2,1/2]$ is unknown, and
+\[
+ X=\tfrac12+(Z-\beta)/8+\xi,\qquad
+ \xi\sim\operatorname{Unif}[-1/16,1/16].
+\]
+Independent pairs have $X\in[0,1]$, and the positive-mean fraction is
+$\theta=(1-\beta)/2$. The average of $Z-8(X-1/2)$ is unbiased for $\beta$
+with variance $1/(12n)$; the corresponding estimate of $\theta$ has variance
+$1/(48n)$. Charging one unit per outer draw and one per inner observation
+gives work $2n$. The margin near zero is linear, yet this common regression
+parameter permits $B^{-1/2}$ RMS without a margin logarithm. Observed states
+and cross-state structure are explicit extra information, so this calculation
+does not contradict the hidden unstructured reservoir lower theorem.

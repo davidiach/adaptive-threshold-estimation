@@ -1,0 +1,14 @@
+# Theorem-agent run log
+
+New files only, under `research/2026-10-27-minimax-audit/theorem/`. No old baseline, lock, or formal declaration was changed.
+
+- Read `research/2026-10-27-route-a/construction.tex` and the optimizer/power-margin sections of `inputs/next-phase/report/research_note.tex`; those are inherited proofs, not results of this run.
+- Constructed finite-reference, asymmetric likelihood classifiers with a forced empirical-majority cap; derived critical alpha=2 work bound and moment bound in `RESULT.md` and `critical.tex`.
+- Separate adversarial agent read the full proof and checked cap errors, reference coverage, all displayed constants, the global-rarity rearrangement, Poisson aggregation, and the finite arbitrary-law bracket. No blocking error found. Added its requested explicit conditional iid suffix justification. This is agent review, not independent human specialist review; no model diversity asserted.
+- First command `python research/2026-10-27-minimax-audit/theorem/critical.py` exited 1. The exact finite probability checks had passed, but two hand-entered endpoint stopping-time expectations were incorrect (5 and 8). With K=2 the thresholds are 12 and 48, so deterministic all-zero/all-one crossing times are 7 and 10. Corrected these expected values, leaving classifier logic unchanged.
+- Re-ran the same command: exit 0. Wrote `critical_checks.json`: 36 exact rational finite classifier cases at caps 8,16,32; 8 exact rational two/three-scale Psi identity fixtures; 3 exact arithmetic instances of the inherited heuristic counterexample; geometric second-moment coefficient 165/56. Additional floating-point implementation checks cover deterministic endpoint tapes and a tied alternating tape. No random seed or Monte Carlo was used.
+- The finite calculations certify only their rational cases; they do not certify the unrestricted statistical theorem or replace its proof. No unrestricted minimax optimization ran.
+- Added the direct bounded-channel e-process theorem, the uniform-noise example, and the explicit observed cross-state regression boundary. The adversarial agent checked all three, including log-concavity direction, uniform noise variance 1/48, cross-state estimator variance 1/(48n), and the lower-transfer limitation. No blocking issue found.
+- Added `bounded_classifier` to `critical.py`; reran all finite checks and `python -m py_compile research/2026-10-27-minimax-audit/theorem/critical.py`, both exit 0. Additional float checks compare the direct bounded implementation with deterministic Bernoulli endpoints and a real-valued tied tape. This is not a held-out performance experiment.
+
+Remaining precise obstacle: the critical classifier's simultaneous control over K possible gap scales costs log(K+1). No procedure removing it and no matching lower necessity has been proved. The arbitrary-law Psi conjecture remains open in this run.

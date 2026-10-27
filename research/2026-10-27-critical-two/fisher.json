@@ -1,0 +1,406 @@
+{
+  "status": "numerical evidence",
+  "scope": "One-coin stopping policies using (flip count, head count), at finite horizon",
+  "not_claimed": [
+    "certified floating-point optimum",
+    "unbounded-horizon optimum",
+    "all-population minimax lower bound",
+    "uniform-in-K theorem"
+  ],
+  "method": "Posterior prediction and score; backwards Bellman ratio search; exact policy cost/info recursions in float64",
+  "seeds": null,
+  "rarity_caveat": "rho records baseline mean. The two-sided local eta path lies in Q_(2rho) near zero; positive eta is outside Q_rho itself.",
+  "python": "3.12.2",
+  "numpy": "2.4.4",
+  "bisection_iterations": 44,
+  "rounding_controls": "log-sum-exp stabilization and algebraic identity checks; no interval enclosure",
+  "source_sha256": "c9b3a2dcdc823833619e50edecf5d89265d4d87c2213aa06af24e03707fb3167",
+  "sanity_checks": {
+    "finite_difference_states": 9,
+    "maximum_finite_difference_information_residual": 1.5772926367785267e-11,
+    "exhaustive_horizon": 3,
+    "exhaustive_policy_count": 64,
+    "exhaustive_ratio": 0.00012108193878791315,
+    "bellman_ratio": 0.00012108193878791315
+  },
+  "cases": [
+    {
+      "K": 2,
+      "atom_count": 3,
+      "a": 0.25,
+      "c": 0.0625,
+      "horizon": 256,
+      "rho": 0.008928571428571428,
+      "gaps": [
+        0.25,
+        0.125,
+        0.0625
+      ],
+      "masses": [
+        0.7619047619047619,
+        0.19047619047619047,
+        0.047619047619047616
+      ],
+      "baseline_q": [
+        0.00390625,
+        0.015625,
+        0.0625
+      ],
+      "parameter_path": "q_eta=(1+eta)*baseline_q; policy fixed at eta=0",
+      "per_flip_information_at_root": 3.325625573924925e-05,
+      "numerical_ratio_search_lower": 0.001322380305135924,
+      "numerical_ratio_search_upper": 0.0013223803051374795,
+      "extracted_policy_penalty": 0.0013223803038135437,
+      "fisher_per_expected_work": 0.0013223803051362144,
+      "ratio_to_a_squared_rho_over_K": 4.739411013608192,
+      "ratio_to_a_squared_rho_over_atom_count": 7.1091165204122895,
+      "bellman_identity_absolute_residual": 2.168404344971009e-19,
+      "table_storage_bytes": 526336,
+      "elapsed_seconds": 0.06015709997154772,
+      "root_objective": 3.763489303185152e-12,
+      "expected_work": 2.8453712618058393,
+      "fisher_information": 0.003762662917412621,
+      "policy_continuation_nodes": 2401,
+      "policy_sha256": "b2d975b5f31a12cf0993cfff4d2faf36ed00a55ab9f100246d0b7d9ab7d39c79"
+    },
+    {
+      "K": 2,
+      "atom_count": 3,
+      "a": 0.25,
+      "c": 0.0625,
+      "horizon": 512,
+      "rho": 0.008928571428571428,
+      "gaps": [
+        0.25,
+        0.125,
+        0.0625
+      ],
+      "masses": [
+        0.7619047619047619,
+        0.19047619047619047,
+        0.047619047619047616
+      ],
+      "baseline_q": [
+        0.00390625,
+        0.015625,
+        0.0625
+      ],
+      "parameter_path": "q_eta=(1+eta)*baseline_q; policy fixed at eta=0",
+      "per_flip_information_at_root": 3.325625573924925e-05,
+      "numerical_ratio_search_lower": 0.001323471076555227,
+      "numerical_ratio_search_upper": 0.0013234710765567823,
+      "extracted_policy_penalty": 0.0013234710752317558,
+      "fisher_per_expected_work": 0.001323471076556419,
+      "ratio_to_a_squared_rho_over_K": 4.743320338378206,
+      "ratio_to_a_squared_rho_over_atom_count": 7.114980507567309,
+      "bellman_identity_absolute_residual": 8.673617379884035e-19,
+      "table_storage_bytes": 2101248,
+      "elapsed_seconds": 0.1386412000283599,
+      "root_objective": 3.777682160144291e-12,
+      "expected_work": 2.8518063692126336,
+      "fisher_information": 0.0037742832455922967,
+      "policy_continuation_nodes": 5242,
+      "policy_sha256": "d3824039d1f40f1107328380306d92a4a266baf99afadf18460226b49f1cba9a"
+    },
+    {
+      "K": 2,
+      "atom_count": 3,
+      "a": 0.25,
+      "c": 0.0625,
+      "horizon": 1024,
+      "rho": 0.008928571428571428,
+      "gaps": [
+        0.25,
+        0.125,
+        0.0625
+      ],
+      "masses": [
+        0.7619047619047619,
+        0.19047619047619047,
+        0.047619047619047616
+      ],
+      "baseline_q": [
+        0.00390625,
+        0.015625,
+        0.0625
+      ],
+      "parameter_path": "q_eta=(1+eta)*baseline_q; policy fixed at eta=0",
+      "per_flip_information_at_root": 3.325625573924925e-05,
+      "numerical_ratio_search_lower": 0.0013234845512557463,
+      "numerical_ratio_search_upper": 0.0013234845512573017,
+      "extracted_policy_penalty": 0.0013234845499322618,
+      "fisher_per_expected_work": 0.0013234845512570534,
+      "ratio_to_a_squared_rho_over_K": 4.7433686317052794,
+      "ratio_to_a_squared_rho_over_atom_count": 7.11505294755792,
+      "bellman_identity_absolute_residual": 6.505213034913027e-19,
+      "table_storage_bytes": 8396800,
+      "elapsed_seconds": 0.3409722000360489,
+      "root_objective": 3.778128200918052e-12,
+      "expected_work": 2.851866857023423,
+      "fisher_information": 0.0037744017275125083,
+      "policy_continuation_nodes": 10874,
+      "policy_sha256": "1a6f07233b3ddaeef648992cbbaa7ecd22ca3286edd51603fcf89344e6b1a159"
+    },
+    {
+      "K": 3,
+      "atom_count": 4,
+      "a": 0.25,
+      "c": 0.0625,
+      "horizon": 256,
+      "rho": 0.0029411764705882353,
+      "gaps": [
+        0.25,
+        0.125,
+        0.0625,
+        0.03125
+      ],
+      "masses": [
+        0.7529411764705882,
+        0.18823529411764706,
+        0.047058823529411764,
+        0.011764705882352941
+      ],
+      "baseline_q": [
+        0.0009765625,
+        0.00390625,
+        0.015625,
+        0.0625
+      ],
+      "parameter_path": "q_eta=(1+eta)*baseline_q; policy fixed at eta=0",
+      "per_flip_information_at_root": 2.3288990233373802e-06,
+      "numerical_ratio_search_lower": 0.0003404347030780192,
+      "numerical_ratio_search_upper": 0.0003404347030793823,
+      "extracted_policy_penalty": 0.0003404347027375845,
+      "fisher_per_expected_work": 0.00034043470307806357,
+      "ratio_to_a_squared_rho_over_K": 5.555894354233997,
+      "ratio_to_a_squared_rho_over_atom_count": 7.407859138978663,
+      "bellman_identity_absolute_residual": 0.0,
+      "table_storage_bytes": 526336,
+      "elapsed_seconds": 0.05602479993831366,
+      "root_objective": 9.750450230203156e-13,
+      "expected_work": 2.8637445369811174,
+      "fisher_information": 0.0009749180211385933,
+      "policy_continuation_nodes": 3590,
+      "policy_sha256": "5ce3dc13590bac1227894332b14bf30266b483aa9fb3292e5c6abc2fd7bd0c50"
+    },
+    {
+      "K": 3,
+      "atom_count": 4,
+      "a": 0.25,
+      "c": 0.0625,
+      "horizon": 512,
+      "rho": 0.0029411764705882353,
+      "gaps": [
+        0.25,
+        0.125,
+        0.0625,
+        0.03125
+      ],
+      "masses": [
+        0.7529411764705882,
+        0.18823529411764706,
+        0.047058823529411764,
+        0.011764705882352941
+      ],
+      "baseline_q": [
+        0.0009765625,
+        0.00390625,
+        0.015625,
+        0.0625
+      ],
+      "parameter_path": "q_eta=(1+eta)*baseline_q; policy fixed at eta=0",
+      "per_flip_information_at_root": 2.3288990233373802e-06,
+      "numerical_ratio_search_lower": 0.00034596531017222693,
+      "numerical_ratio_search_upper": 0.00034596531017359,
+      "extracted_policy_penalty": 0.00034596530982626165,
+      "fisher_per_expected_work": 0.0003459653101723882,
+      "ratio_to_a_squared_rho_over_K": 5.646153862013375,
+      "ratio_to_a_squared_rho_over_atom_count": 7.528205149351168,
+      "bellman_identity_absolute_residual": 2.168404344971009e-19,
+      "table_storage_bytes": 2101248,
+      "elapsed_seconds": 0.14249200001358986,
+      "root_objective": 1.0125999431315202e-12,
+      "expected_work": 2.9255191014365547,
+      "fisher_information": 0.001012128123343744,
+      "policy_continuation_nodes": 8526,
+      "policy_sha256": "9e5c00227b52b9aba7d9d19e58da667568bbb0eb8119c92bb7bb0051d9a3f294"
+    },
+    {
+      "K": 3,
+      "atom_count": 4,
+      "a": 0.25,
+      "c": 0.0625,
+      "horizon": 1024,
+      "rho": 0.0029411764705882353,
+      "gaps": [
+        0.25,
+        0.125,
+        0.0625,
+        0.03125
+      ],
+      "masses": [
+        0.7529411764705882,
+        0.18823529411764706,
+        0.047058823529411764,
+        0.011764705882352941
+      ],
+      "baseline_q": [
+        0.0009765625,
+        0.00390625,
+        0.015625,
+        0.0625
+      ],
+      "parameter_path": "q_eta=(1+eta)*baseline_q; policy fixed at eta=0",
+      "per_flip_information_at_root": 2.3288990233373802e-06,
+      "numerical_ratio_search_lower": 0.00034718137779047784,
+      "numerical_ratio_search_upper": 0.0003471813777918409,
+      "extracted_policy_penalty": 0.00034718137744329646,
+      "fisher_per_expected_work": 0.0003471813777915376,
+      "ratio_to_a_squared_rho_over_K": 5.666000085557894,
+      "ratio_to_a_squared_rho_over_atom_count": 7.554666780743858,
+      "bellman_identity_absolute_residual": 1.0842021724855044e-19,
+      "table_storage_bytes": 8396800,
+      "elapsed_seconds": 0.3333882000297308,
+      "root_objective": 1.0250865911318185e-12,
+      "expected_work": 2.9436112136222565,
+      "fisher_information": 0.0010219669968279952,
+      "policy_continuation_nodes": 19378,
+      "policy_sha256": "b15c7cdc4dc03f7de10a69d4e67cbf652f0bafa252855e0cac32fa0d43afdf9a"
+    },
+    {
+      "K": 4,
+      "atom_count": 5,
+      "a": 0.25,
+      "c": 0.0625,
+      "horizon": 256,
+      "rho": 0.0009164222873900294,
+      "gaps": [
+        0.25,
+        0.125,
+        0.0625,
+        0.03125,
+        0.015625
+      ],
+      "masses": [
+        0.750733137829912,
+        0.187683284457478,
+        0.0469208211143695,
+        0.011730205278592375,
+        0.002932551319648094
+      ],
+      "baseline_q": [
+        0.000244140625,
+        0.0009765625,
+        0.00390625,
+        0.015625,
+        0.0625
+      ],
+      "parameter_path": "q_eta=(1+eta)*baseline_q; policy fixed at eta=0",
+      "per_flip_information_at_root": 1.5448770563665415e-07,
+      "numerical_ratio_search_lower": 8.291826473561618e-05,
+      "numerical_ratio_search_upper": 8.291826473691026e-05,
+      "extracted_policy_penalty": 8.291826465269792e-05,
+      "fisher_per_expected_work": 8.291826473658303e-05,
+      "ratio_to_a_squared_rho_over_K": 5.790746270755801,
+      "ratio_to_a_squared_rho_over_atom_count": 7.238432838444752,
+      "bellman_identity_absolute_residual": 4.0657581468206416e-20,
+      "table_storage_bytes": 526336,
+      "elapsed_seconds": 0.0565909999422729,
+      "root_objective": 2.0986664283576678e-13,
+      "expected_work": 2.5018336998044606,
+      "fisher_information": 0.00020744770904729127,
+      "policy_continuation_nodes": 4576,
+      "policy_sha256": "ecc4abb7428d0d7e9d29ced0781e1965fce561cd2701cb3448dba253883acc32"
+    },
+    {
+      "K": 4,
+      "atom_count": 5,
+      "a": 0.25,
+      "c": 0.0625,
+      "horizon": 512,
+      "rho": 0.0009164222873900294,
+      "gaps": [
+        0.25,
+        0.125,
+        0.0625,
+        0.03125,
+        0.015625
+      ],
+      "masses": [
+        0.750733137829912,
+        0.187683284457478,
+        0.0469208211143695,
+        0.011730205278592375,
+        0.002932551319648094
+      ],
+      "baseline_q": [
+        0.000244140625,
+        0.0009765625,
+        0.00390625,
+        0.015625,
+        0.0625
+      ],
+      "parameter_path": "q_eta=(1+eta)*baseline_q; policy fixed at eta=0",
+      "per_flip_information_at_root": 1.5448770563665415e-07,
+      "numerical_ratio_search_lower": 8.684222474212997e-05,
+      "numerical_ratio_search_upper": 8.684222474342405e-05,
+      "extracted_policy_penalty": 8.684222465528775e-05,
+      "fisher_per_expected_work": 8.684222474292011e-05,
+      "ratio_to_a_squared_rho_over_K": 6.064783080926363,
+      "ratio_to_a_squared_rho_over_atom_count": 7.580978851157954,
+      "bellman_identity_absolute_residual": 5.421010862427522e-20,
+      "table_storage_bytes": 2101248,
+      "elapsed_seconds": 0.12682730006054044,
+      "root_objective": 2.530924146475211e-13,
+      "expected_work": 2.8881152213977828,
+      "fisher_information": 0.0002508103511400747,
+      "policy_continuation_nodes": 11778,
+      "policy_sha256": "a00817b0151e9f649eb1bae10ceb63443a8f7a7ca4829207fa45abac235e9828"
+    },
+    {
+      "K": 4,
+      "atom_count": 5,
+      "a": 0.25,
+      "c": 0.0625,
+      "horizon": 1024,
+      "rho": 0.0009164222873900294,
+      "gaps": [
+        0.25,
+        0.125,
+        0.0625,
+        0.03125,
+        0.015625
+      ],
+      "masses": [
+        0.750733137829912,
+        0.187683284457478,
+        0.0469208211143695,
+        0.011730205278592375,
+        0.002932551319648094
+      ],
+      "baseline_q": [
+        0.000244140625,
+        0.0009765625,
+        0.00390625,
+        0.015625,
+        0.0625
+      ],
+      "parameter_path": "q_eta=(1+eta)*baseline_q; policy fixed at eta=0",
+      "per_flip_information_at_root": 1.5448770563665415e-07,
+      "numerical_ratio_search_lower": 8.875291807047315e-05,
+      "numerical_ratio_search_upper": 8.875291807176723e-05,
+      "extracted_policy_penalty": 8.875291798172024e-05,
+      "fisher_per_expected_work": 8.875291807133753e-05,
+      "ratio_to_a_squared_rho_over_K": 6.198219788764384,
+      "ratio_to_a_squared_rho_over_atom_count": 7.747774735955481,
+      "bellman_identity_absolute_residual": 2.710505431213761e-20,
+      "table_storage_bytes": 8396800,
+      "elapsed_seconds": 0.34471950004808605,
+      "root_objective": 2.642222107340081e-13,
+      "expected_work": 2.9483391854765983,
+      "fisher_information": 0.00026167370617511857,
+      "policy_continuation_nodes": 29038,
+      "policy_sha256": "22873b76e00ac4d4d0eb3fc8a8edcc51c13fa6a39abae2db87a5855ff4c10131"
+    }
+  ]
+}

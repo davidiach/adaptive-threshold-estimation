@@ -1,0 +1,342 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Pp}{\mathbb P}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Aff}{\operatorname{Aff}}
+\title{Nonlinear aggregation does not remove the critical penalty\newline for two independent observation designs}
+\author{Research continuation: construction role}
+\date{27 October 2026}
+\begin{document}
+\maketitle
+
+\noindent\textbf{Companion-note status.} The canonical strongest claim and its
+current acceptance status are in \texttt{unrestricted.tex}. This note records
+the intermediate independent-design result and explains the origin of the
+shared affine-estimation fragment used by that full-model proof. It is not
+Lean-checked or externally specialist-reviewed; separate agent-review records
+accompany the sources. The result here extends the previous additive obstruction
+to arbitrary nonlinear aggregation for the two acquisition designs specified
+below. All constants are independent of the rarity and budget; the support
+endpoint is fixed at $a=1/4$.
+
+\section{Contract and strongest statement}
+Let
+\[
+ \mu(dd)=\frac{2d}{a^2}\mathbf1_{(0,a]}(d)\,dd,\quad a=1/4,
+ \qquad \mathcal Q_\rho=\{q:0\le q\le1,\ \int q\,d\mu\le\rho\},
+ \quad 0<\rho\le1/4.
+\]
+Write $\theta(q)=\int q\,d\mu$, $L=1+\log(1/\rho)$, and
+$H=1+\log L$. Every coin has hidden $D\sim\mu$ and
+$S\mid D=d\sim\operatorname{Ber}(q(d))$; its flips are conditionally iid
+with parameter $1/2+(2S-1)D$. A local procedure observes its own flips and
+its independent seed only. It may know $\mu,\rho,B$, may stop before any
+flip, and may have unbounded stopping time. Nontermination has infinite work.
+Seeds and stopped observable transcripts are standard Borel random elements.
+This includes countable random tapes and their measurable policies.
+All local observations are charged; independent randomization and measurable
+terminal calculations are free, as in the original statistical model.
+
+We consider two classes of observation designs, selected without knowing $q$:
+\begin{enumerate}
+\item $\mathsf D$: a deterministic finite number $n\ge0$ of independent
+fresh coins, with arbitrary, possibly heterogeneous local procedures and
+independent local seeds. Their full stopped transcripts $Z_1,\ldots,Z_n$
+are independent conditional on the population $q$. The final output is any
+measurable function of these transcripts, with optional independent terminal
+randomness. There is no shared random variable selecting the local procedures.
+\item $\mathsf P$: a fixed $\lambda\in[0,\infty)$ is chosen, then
+$N\sim\operatorname{Pois}(\lambda)$ independently of all coins. The same
+fixed local procedure, with independent seeds, is applied to each of the
+$N$ coins. Its rule must not depend on the realized $N$. The final output
+may be any measurable function of $N$ and all the ordered stopped transcripts,
+with optional independent terminal randomness.
+\end{enumerate}
+In either class the final function may clip, threshold, or otherwise combine
+the data nonlinearly. Each local procedure may adapt to its own coin's past,
+but no local action can depend on another coin's observations. Independent
+execution may be scheduled or interleaved without changing these rules.
+Require a uniform expected total flip count at most $B$ and finite uniform
+RMS error. The infimum defining $R_{\mathsf D,\rho}(B)$ or
+$R_{\mathsf P,\rho}(B)$ is over all such designs and terminal outputs in
+the indicated class; no component moment restriction is imposed on the input
+design beyond its finite uniform work. In class $\mathsf D$ only the final
+output needs finite uniform RMS. The count-zero cases give seed-only outputs.
+
+\begin{theorem}[Sharp RMS law with arbitrary nonlinear aggregation]\label{thm:main}
+There are universal constants $0<c<C<\infty$ such that, for every
+$0<\rho\le1/4$ and $B\ge1$, and for each
+$\mathsf C\in\{\mathsf D,\mathsf P\}$,
+\[
+ c\min\left\{\rho,\sqrt{\frac{\rho LH}{B}}\right\}
+ \le R_{\mathsf C,\rho}(B)
+ \le C\min\left\{\rho,\sqrt{\frac{\rho LH}{B}}\right\}.       \tag{1}
+\]
+This characterizes an infimum up to constants, not attainment of an exact
+optimal procedure. In particular, arbitrary clipping of an estimator in
+either class cannot remove the factor $\sqrt H$ in the nonsaturated regime.
+\end{theorem}
+
+For the present law the proposed unrestricted minimax modulus satisfies
+$\Psi_{\mu,\rho}(B^{-1/2})\asymp
+\min\{\rho,\sqrt{\rho L/B}\}$, with $a=1/4$ absorbed in the constants.
+Thus (1) has an unbounded extra factor $\sqrt H$ when $\rho\downarrow0$
+and, for example, $B=\rho^{-2}$. Any procedure attaining the proposed
+full-model rate must escape both stated acquisition classes. This direct
+comparison alone does not rule out shared random selection of a local
+experiment or cross-coin feedback; the canonical note uses the stronger
+universal-pair argument to address that gap.
+
+\section{Dependencies and what is new}
+The committed note \texttt{research/2026-10-27-critical-two/construction.tex}
+at commit \texttt{d75c775} proves the following two inputs:
+\begin{enumerate}
+\item every admissible noninteractive additive estimator with uniform
+expected work at most $B$ has worst RMS at least
+$c_0\min\{\rho,\sqrt{\rho LH/B}\}$;
+\item an observable unbiased single-coin output $Y$, with work $T$, has
+uniform bounds $\sup_q\E_qY^2\le M_0=C_0\rho$ and
+$\sup_q\E_qT\le W_0=C_1LH$.
+\end{enumerate}
+The first input includes heterogeneous components, shared seeds and a
+seed-selected random count with finite mean, subject to the separate moment
+conditions stated in that note. The finite-partition additive estimators
+constructed here satisfy those conditions explicitly. The inherited source
+SHA256 is
+\begin{center}\small\texttt{8e72d93569fdd917675fda976475f9ddb9762e1e7c79d6fe43e9a269a01bf44a}.\end{center}
+
+The new step is a risk comparison for arbitrary aggregation, with unchanged
+observation cost, for the two designs above. The finite-experiment argument
+is a specialization of the convex estimation method of Juditsky and
+Nemirovski \cite{JN}, with a direct RMS proof below. Polyanskiy and Wu
+\cite{PW}, Theorem 1 and Proposition 4, already give a direct quadratic-risk
+affine comparison for iid mixture experiments; their Section 4 treats
+exponential families. Thus neither affine minimax comparison nor its
+quadratic-risk version is claimed as a new general principle. The application to
+the critical hidden-gap experiment and its combination with the previous
+entropy obstruction are the claims made here. A novelty search does not
+certify that this application has no predecessor.
+
+\input{affine_comparison.tex}
+
+The hard-pair lemmas in the shared fragment are conditional on (BC).
+They support the separate full-model investigation and are not needed for
+the two independent-design conclusions of Theorem~\ref{thm:main}.
+
+\section{Full stopped transcripts and the convex parameter image}
+For a fixed local procedure, denote by $K_{d,s}$ its stopped transcript law
+at hidden state $(d,s)$. Its observable transcript includes its private
+seed, stopping time, and observed finite bit string. For every measurable
+transcript event $A$,
+\[
+ P_q(A)=\int\big[(1-q(d))K_{d,0}(A)+q(d)K_{d,1}(A)\big]\,d\mu. \tag{6}
+\]
+All kernels in (6) are measurable. They are determined by the fixed local
+policy, without observing its latent state. Let $P_*=P_{q_*}$ for the
+admissible constant function $q_*(d)=\rho$. Then
+\[
+                 P_q\le\rho^{-1}P_* \quad(q\in\mathcal Q_\rho). \tag{7}
+\]
+This follows directly from $q\le1$, $1-q\le1$ and $1-\rho\ge\rho$;
+it does not require $q(d)\le\rho$. Finite expected work at $q_*$ implies
+almost-sure finite stopping there, and (7) implies the same for all $q$.
+
+Every transcript cell with positive $P_*$ probability has strictly positive
+probability under every admissible $q$. To verify this without an
+unproved equivalence claim for infinite product laws, decompose that cell
+by its finite stopping time $t$ and bit string $x\in\{0,1\}^t$.
+For the seed set causing this stopped record to belong to the cell, let
+$b_{t,x}$ be its seed probability. At a fixed Bernoulli parameter $p$ the
+cell probability is
+\[
+ \sum_{t,x} b_{t,x}p^{\#1(x)}(1-p)^{t-\#1(x)}.
+\]
+Some $b_{t,x}>0$, since the cell has positive baseline probability.
+All possible $p$ lie in $[1/4,3/4]$, so this single term is at least
+$b_{t,x}4^{-t}>0$, uniformly in the latent state and in $q$.
+
+For any finite list of finite measurable transcript partitions, discard
+baseline-null cells, which are null for every $q$ by (7). Take the vector
+$x(q)$ of all remaining cell probabilities together with $\theta(q)$.
+Its range $X$ is finite-dimensional compact convex. In detail,
+$\mathcal Q_\rho$ is weak-star compact in $L^\infty(\mu)$ by
+Banach--Alaoglu: the box $0\le q\le1$ and the integral inequality are
+weak-star closed. Each coordinate in (6), and $\theta$, is a weak-star
+continuous affine functional, since its kernel belongs to $L^1(\mu)$.
+Thus the image is compact convex, each probability coordinate is strictly
+positive throughout it, and $\theta$ is its linear last coordinate.
+Distinct functions $q$ with the same probability coordinates may have
+different last coordinates; this causes no difficulty and does not assume
+identifiability. This verifies all parameter conditions of
+Lemma~\ref{lem:comparison} for the finite partitions actually used.
+
+\section{Fixed independent heterogeneous designs}
+Fix a design in $\mathsf D$ with $n\ge1$, and any terminal output of worst
+RMS $r$. First project its output onto $[0,\rho]$, which decreases squared
+error for every $\theta\in[0,\rho]$. Average out independent terminal
+randomization. We obtain a bounded measurable function $G(Z_1,\ldots,Z_n)$
+of no larger RMS. This operation leaves every local procedure unchanged.
+
+By independence and (7), its transcript law satisfies
+\[
+        \bigotimes_{i=1}^nP_{i,q}
+          \le \rho^{-n}\bigotimes_{i=1}^nP_{i,*}.            \tag{8}
+\]
+On a finite product probability space, simple functions measurable with
+respect to finite product partitions are dense in $L^2$. For example,
+finite linear combinations of measurable rectangles form a dense class,
+and their component sets have a common finite partition refinement.
+Choose such a function $G_\varepsilon$ with baseline squared error small
+enough that (8) implies
+\[
+ \sup_q\|G_\varepsilon-G\|_{L^2(P_q)}\le\varepsilon.
+\]
+One may clip the approximation as well. Hence $G_\varepsilon$ has worst
+RMS at most $r+\varepsilon$. It depends only on the finitely partitioned
+individual stopped transcripts. Apply Lemma~\ref{lem:comparison} to their
+convex probability image: an output
+$F_\varepsilon=c+\sum_i\phi_i(Z_i)$ has worst RMS at most
+$12(r+\varepsilon)+\varepsilon$.
+
+Each $\phi_i$ is a function of a finite partition, hence bounded. It is
+observable at the original local stopping time, with exactly the original
+local work. Thus all separate component moment conditions in the inherited
+additive lower bound hold. No extra coin or flip was used. That lower bound
+gives
+\[
+ 12r+13\varepsilon\ge
+ c_0\min\{\rho,\sqrt{\rho LH/B}\}.
+\]
+Let $\varepsilon\downarrow0$. The comparison constructs finite approximants;
+it makes no unjustified assertion that a limiting additive procedure is
+realized or has finite work. If $n=0$, the output law is independent of $q$,
+and comparing $q=0$ with $q=\rho$ gives worst RMS at least $\rho/2$.
+This proves the lower bound of (1) for $\mathsf D$.
+
+\section{Independent Poisson replication}
+Fix $\lambda>0$ and a design in $\mathsf P$ with local mark law $P_q$.
+Again clip the final output to $[0,\rho]$ and average out terminal randomness.
+For each count $n$, average this function over all $n!$ permutations of the
+ordered marks. The marks are iid conditional on $N=n$, so Jensen's inequality
+shows that this symmetrization cannot increase risk. Denote the resulting
+bounded symmetric function by $G$.
+
+Use the reference experiment $N_*\sim\operatorname{Pois}(\lambda/\rho)$
+with iid marks of law $P_*$. Under this reference, the likelihood ratio of
+the actual count-and-mark law at $q$ is
+\[
+ e^{\lambda/\rho-\lambda}\rho^n
+       \prod_{i=1}^n\frac{dP_q}{dP_*}(z_i)
+       \le e^{\lambda/\rho-\lambda}.                       \tag{9}
+\]
+The constant can be large but is finite for each fixed design; no uniform
+efficiency of the finite approximation is asserted or needed.
+
+For any $\varepsilon>0$, $G$ can be approximated in reference $L^2$ by a
+bounded function of the cell counts of one finite measurable mark
+partition. Here is a direct justification. First ignore the reference tail
+$N_*>m$, whose contribution vanishes because $G$ is bounded. For each of
+the finitely many counts $n\le m$, approximate $G$ in $L^2(P_*^n)$ by a
+finite product-partition function. Refine all the finitely many component
+partitions to one common finite mark partition and symmetrize each
+approximation. Its value then depends only on the mark cell counts.
+Set it to zero for $N>m$. This is still a function of the same finite cell
+counts, since their sum is $N$. Inequality (9) upgrades an arbitrarily
+accurate reference approximation to
+$\sup_q\|G_\varepsilon-G\|_2\le\varepsilon$.
+
+For a finite partition $A_1,\ldots,A_k$ with positive baseline cells, the
+actual counts $C_1,\ldots,C_k$ are independent Poisson variables with
+intensities $\lambda P_q(A_j)$. These are strictly positive affine
+coordinates on the compact convex signal image of the previous section.
+Lemma~\ref{lem:comparison} gives a count-affine output
+\[
+                  F_\varepsilon=c+\sum_{j=1}^k\beta_j C_j
+\]
+with RMS at most $12r+13\varepsilon$. On the original experiment this is
+$c+\sum_{i=1}^N\beta_{j(Z_i)}$, an additive estimator with exactly the same
+work. Its expected component square sum is at most
+$\lambda\max_j\beta_j^2<\infty$ and its uniform second moment is finite
+because $\E N^2<\infty$. The inherited additive lower bound applies;
+letting $\varepsilon\downarrow0$ proves (1)'s lower bound for $\mathsf P$.
+For $\lambda=0$, the earlier seed-only lower bound applies.
+
+\section{Matching upper bounds and realization}
+Use the inherited unbiased local kernel $Y,T$ with the uniform constants
+$M_0=C_0\rho$, $W_0=C_1LH$ fixed above. For class $\mathsf D$, choose
+$n=\lceil B/W_0\rceil\ge1$ and $p=B/(nW_0)\in(0,1]$.
+Independently for each of the $n$ coins, activate the kernel with probability
+$p$, stopping before any observation on the other event, and return
+$A_iY_i/(np)$. The sum is unbiased and obeys
+\[
+ \sup_q\E_q\sum_i A_iT_i\le npW_0=B,\qquad
+ \sup_q\Var_q\left(\sum_i\frac{A_iY_i}{np}\right)
+       \le\frac{M_0}{np}=\frac{M_0W_0}{B}.                 \tag{10}
+\]
+This is a deterministic finite design with private activation seeds.
+For class $\mathsf P$, choose $\lambda=B/W_0$ and output
+$\lambda^{-1}\sum_{i=1}^N Y_i$. The elementary Poisson mean and variance
+identities give the same bounds as (10). The kernel is fixed before $N$
+is drawn. In either class choose the constant output $\rho/2$ instead when
+it gives a smaller bound. This proves the upper half of (1) for every
+budget, including the saturation regime.
+
+No latent-variable access is hidden in these constructions. A probability
+space may realize each coin by independent uniforms via
+$D=a\sqrt{U_0}$, $S=\mathbf1_{\{U_1\le q(D)\}}$, and subsequent
+Bernoulli flips from independent uniforms; the policy sees only its own
+independent seed and flips. The inherited random-level local kernel has
+genuinely unbounded finite-mean stopping, as proved in the pinned source.
+Our comparison retains these full stopped observable records and their
+work; it does not replace them with an oracle magnitude or a bounded
+horizon. All null sets discarded in the argument are simultaneously null
+for every admissible $q$ by (7) or (9).
+
+\section{Adversarial checks, limitations, and next question}
+The distinction between marginal affinity and the whole product is
+essential: each $P_{i,q}$ is affine in $q$, but
+$\bigotimes_iP_{i,q}$ is usually not. The proof uses the additive
+log-moment structure, not a false assertion of product affinity.
+It also uses the global constraint $\int q\le\rho$, not a pointwise rarity
+bound. The reference $q_*=\rho$ is only an analytic dominating law and is
+never supplied as the true population to a procedure.
+
+A shared random choice of the entire local experiment can destroy the
+required log-moment concavity. Accordingly a general seed-dependent
+preselected design or count is not covered by the new comparison, even
+though it is covered by the earlier \emph{additive} lower theorem.
+Nor is acquisition using other coins' outcomes covered by this direct
+comparison. This was the exact gap that motivated the stronger base-cost
+and universal-pair route, now developed in \texttt{unrestricted.tex}. The
+population-step radial construction already demonstrates that a natural
+one-dimensional radial direction does not carry the extra logarithm;
+this note makes no contrary directional-information claim.
+
+The parameter-image and finite-partition steps are existence arguments
+for measurable statistical algorithms. They do not assert that a finite
+convex program can compute the required partitions from a source-code
+description of an arbitrary policy. Computational work is not charged in
+the specified experiment. No numerical search, discretized estimator
+family, or held-out simulation supports the lower bound: it is analytic.
+
+\begin{thebibliography}{9}
+\bibitem{JN} A. Juditsky and A. Nemirovski,
+\emph{Nonparametric estimation by convex programming},
+Annals of Statistics 37(5A), 2278--2300 (2009),
+Theorems 3.1--3.2, Lemmas 3.1--3.2, and Examples 1--4.
+\url{https://www2.isye.gatech.edu/~nemirovs/AnnStat_Saddle_2009.pdf}.
+The finite-dimensional saddle argument and affine-estimation principle
+are credited to this source; the RMS tail integration is explicit here.
+\bibitem{PW} Y. Polyanskiy and Y. Wu,
+\emph{Dualizing Le Cam's method for functional estimation, with
+applications to estimating the unseens}, arXiv:1902.05616v2 (2021),
+Theorem 1, Proposition 4, and Section 4.
+\url{https://arxiv.org/abs/1902.05616}.
+\end{thebibliography}
+\end{document}
