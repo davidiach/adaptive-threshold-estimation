@@ -24,7 +24,8 @@ MODULES = ("Packing", "CommonPoint", "BernoulliPrefix", "EventInformation", "Sig
            "StoppedModel", "StoppedTape", "SequentialModel", "RestartPair",
            "RepeatedModel", "RepeatedRestart", "RepeatedSignModel", "SampleMean",
            "SignReduction", "EstimationEntropy", "PopulationModel", "UniformCoin",
-           "PopulationMixture", "Specification")
+           "PopulationMixture", "PopulationVariance", "GoodGapModel", "ConditionalMoments",
+           "HalfPrior", "GapSelection", "GoodGaps", "Specification")
 NAMESPACE = "ThresholdHC.CriticalEntropy."
 ROOTS = {
     NAMESPACE + name for name in (
@@ -91,6 +92,17 @@ ROOTS = {
         "population_finite_all", "population_conditional_finiteness", "population_second_moment_formula",
         "population_work_formula", "population_mean_formula", "population_finiteness_transfer",
         "PopulationMomentStatement", "PopulationFinitenessStatement",
+        "population_memLp_of_moment", "population_second_moment_toReal", "variance_lower_of_mixture",
+        "population_second_moment_const", "population_mean_const", "population_variance_mixture_lower",
+        "population_variance_floor", "conditionalMean_sq_le_moment", "population_moment_bound_of_variance",
+        "population_moment_finite_of_evariance", "population_evariance_floor",
+        "population_moment_bound_of_evariance", "CappedPrior", "halfPrior", "CappedPopulationGuarantee",
+        "PopulationGoodGap", "conditional_moment_pair_integrable", "population_second_moment_real_formula",
+        "measurable_halfPrior", "halfPrior_le_half", "halfPrior_integral", "cappedPrior_const",
+        "cappedPrior_half", "halfPrior_weighted_integral", "population_halfPrior_moment", "population_halfPrior_mean",
+        "exists_subset_real_measure", "bad_set_mass_lt_of_integral_lower", "bad_set_mass_lt_of_integral_upper",
+        "population_good_gaps", "PopulationVarianceFloorStatement", "PopulationMomentFromVarianceStatement",
+        "PopulationGoodGapsStatement",
     )
 }
 
@@ -146,7 +158,7 @@ def main() -> int:
               for p in protected}
     status = {
         "valid": False,
-        "scope": "Constructed hidden-parameter population moments and conditional finiteness, finite-gap estimator and sign entropy, observable restarts, probability dependencies, and abstract compact convex common point",
+        "scope": "Population variance floor and quantitative good-gap selection from capped global guarantees, constructed population moments, finite-gap estimator and sign entropy, observable restarts, and abstract compact convex common point",
         "full_critical_minimax_theorem_verified": False,
         "base_cost_theorem_verified": False,
         "finite_gap_sign_testing_theorem_verified": False,
@@ -157,6 +169,9 @@ def main() -> int:
         "finite_gap_estimation_entropy_verified": False,
         "population_moment_disintegration_verified": False,
         "population_conditional_finiteness_verified": False,
+        "population_extended_variance_floor_verified": False,
+        "population_moment_from_variance_verified": False,
+        "population_good_gap_selection_verified": False,
         "specifications_frozen_before_proofs": False,
         "source_sha256": hashes,
         "commands": [],
@@ -182,7 +197,7 @@ def main() -> int:
     if any(hashlib.sha256((ROOT / rel).read_bytes()).hexdigest() != digest
            for rel, digest in hashes.items()):
         raise ValueError("Sources changed during audit")
-    status.update(valid=True, exact_component_targets=12, audited_declarations=len(ROOTS),
+    status.update(valid=True, exact_component_targets=15, audited_declarations=len(ROOTS),
                   finite_gap_sign_testing_theorem_verified=True,
                   stopped_suffix_independence_verified=True,
                   sequential_restart_law_and_work_verified=True,
@@ -190,9 +205,12 @@ def main() -> int:
                   repeated_sign_error_and_work_verified=True,
                   finite_gap_estimation_entropy_verified=True,
                   population_moment_disintegration_verified=True,
-                  population_conditional_finiteness_verified=True)
+                  population_conditional_finiteness_verified=True,
+                  population_extended_variance_floor_verified=True,
+                  population_moment_from_variance_verified=True,
+                  population_good_gap_selection_verified=True)
     status_path.write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"valid": True, "exact_component_targets": 12,
+    print(json.dumps({"valid": True, "exact_component_targets": 15,
                       "audited_declarations": len(ROOTS), "evidence": str(output),
                       "finite_gap_sign_testing_theorem_verified": True,
                       "stopped_suffix_independence_verified": True,
@@ -202,6 +220,9 @@ def main() -> int:
                       "finite_gap_estimation_entropy_verified": True,
                       "population_moment_disintegration_verified": True,
                       "population_conditional_finiteness_verified": True,
+                      "population_extended_variance_floor_verified": True,
+                      "population_moment_from_variance_verified": True,
+                      "population_good_gap_selection_verified": True,
                       "full_critical_minimax_theorem_verified": False}))
     return 0
 

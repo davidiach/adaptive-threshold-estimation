@@ -7,6 +7,7 @@ import ThresholdHC.CriticalEntropy.SequentialModel
 import ThresholdHC.CriticalEntropy.RepeatedModel
 import ThresholdHC.CriticalEntropy.RepeatedSignModel
 import ThresholdHC.CriticalEntropy.PopulationModel
+import ThresholdHC.CriticalEntropy.GoodGapModel
 
 noncomputable section
 open MeasureTheory Real
@@ -188,5 +189,51 @@ def PopulationFinitenessStatement : Prop :=
     (∀ (q : D → unitInterval), Measurable q →
       populationSecondMoment μ ν p₀ p₁ q A ≠ ∞ ∧
       populationExpectedWork μ ν p₀ p₁ q A ≠ ∞)
+
+/-- The variance floor uses genuine extended-variance finiteness, so totalized
+real variance cannot conceal a non-square-integrable output. -/
+def PopulationVarianceFloorStatement : Prop :=
+  ∀ (D R : Type) [MeasurableSpace D] [MeasurableSpace R]
+    (μ : Measure D) [IsProbabilityMeasure μ] (ν : Measure R) [IsProbabilityMeasure ν]
+    (p₀ p₁ : D → unitInterval), Measurable p₀ → Measurable p₁ →
+    ∀ (ρ : unitInterval), 0 < (ρ : ℝ) → (ρ : ℝ) ≤ 1/4 →
+    ∀ (A : StoppedProcedure R ℝ),
+    ProbabilityTheory.evariance (fun z => A.output (populationInput p₀ p₁ (fun _ => 0) z))
+      (populationMeasure μ ν) ≠ ∞ →
+    ProbabilityTheory.evariance (fun z => A.output (populationInput p₀ p₁ (fun _ => ρ) z))
+      (populationMeasure μ ν) ≠ ∞ →
+    |populationMean μ ν p₀ p₁ (fun _ => 0) A| ≤ (ρ : ℝ)/64 →
+    |populationMean μ ν p₀ p₁ (fun _ => ρ) A-(ρ : ℝ)| ≤ (ρ : ℝ)/64 →
+    ENNReal.ofReal (2*(ρ : ℝ)/3) ≤
+      ProbabilityTheory.evariance (fun z => A.output (populationInput p₀ p₁ (fun _ => ρ) z))
+        (populationMeasure μ ν)
+
+/-- An actual extended-variance bound and bias control imply the raw moment
+bound. Finiteness of the raw moment is derived, not assumed. -/
+def PopulationMomentFromVarianceStatement : Prop :=
+  ∀ (D R : Type) [MeasurableSpace D] [MeasurableSpace R]
+    (μ : Measure D) [IsProbabilityMeasure μ] (ν : Measure R) [IsProbabilityMeasure ν]
+    (p₀ p₁ q : D → unitInterval), Measurable p₀ → Measurable p₁ → Measurable q →
+    ∀ (A : StoppedProcedure R ℝ) (ρ V : ℝ), 0 < ρ → ρ ≤ 1/4 → 2*ρ/3 ≤ V →
+    (∫ d, (q d : ℝ) ∂μ) ≤ ρ →
+    |populationMean μ ν p₀ p₁ q A - (∫ d, (q d : ℝ) ∂μ)| ≤ ρ/64 →
+    ProbabilityTheory.evariance (fun z => A.output (populationInput p₀ p₁ q z))
+      (populationMeasure μ ν) ≤ ENNReal.ofReal V →
+    populationSecondMoment μ ν p₀ p₁ q A ≤ ENNReal.ofReal (3*V/2)
+
+/-- Construct the good set from uniform population guarantees over the capped
+global class on an atomless bounded real gap law. The conditional bounds and
+almost-everywhere finiteness are conclusions. Annulus selection is separate. -/
+def PopulationGoodGapsStatement : Prop :=
+  ∀ (R : Type) [MeasurableSpace R]
+    (μ : Measure ℝ) [IsProbabilityMeasure μ] [NullSingletonClass μ]
+    (ν : Measure R) [IsProbabilityMeasure ν]
+    (p₀ p₁ : ℝ → unitInterval), Measurable p₀ → Measurable p₁ →
+    ∀ (a b : ℝ), a ≤ b → μ (Set.Ioc a b)ᶜ = 0 →
+    ∀ (ρ : unitInterval), 0 < (ρ : ℝ) → (ρ : ℝ) ≤ 1/4 →
+    ∀ (m : ℝ), 2*(ρ : ℝ)/3 ≤ m → ∀ (A : StoppedProcedure R ℝ),
+    CappedPopulationGuarantee μ ν p₀ p₁ A (ρ : ℝ) m →
+    ∃ G : Set ℝ, MeasurableSet G ∧ G ⊆ Set.Ioc a b ∧ μ.real Gᶜ ≤ 70*m ∧
+      ∀ d ∈ G, PopulationGoodGap ν p₀ p₁ A (ρ : ℝ) m d
 
 end ThresholdHC.CriticalEntropy

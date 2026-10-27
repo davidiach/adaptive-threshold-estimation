@@ -42,6 +42,13 @@ the parameterized Bernoulli laws and proves measurability of conditional
 quantities. The hidden parameter enters that generator, never the procedure's
 seed or observation interface.
 
+The same issue arises for variance: Mathlib's ordinary real variance converts
+an infinite extended variance to zero. The
+[variance-to-moment bridge](../../lean/ThresholdHC/CriticalEntropy/PopulationVariance.lean)
+therefore requires bounds on extended variance and derives square integrability
+before using real-valued identities. This is a semantic safeguard, not an
+additional assumption about the algorithm's output.
+
 ## Freeze established questions and preserve corrections
 
 The original [brief](../../BRIEF.md) required fixed target statements and

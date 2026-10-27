@@ -108,18 +108,40 @@ signs. Both conditional means are integrable over the gap law. Moment and work
 are also finite at every measurable prior; this statement does not provide the
 uniform numerical bound needed for good-gap selection.
 
-The [seventh audit record](../results/critical_components_007.json) checks twelve
-exact targets and all 189 public declarations using only the permitted standard
-axioms. The [sixth record](../results/critical_components_006.json) preserves the
+The variance bridge in
+[PopulationVariance.lean](../lean/ThresholdHC/CriticalEntropy/PopulationVariance.lean)
+proves the BC5 floor from bias at the null and constant-prior populations and
+then the BC6 raw-moment bound. Finiteness is required of extended variance;
+square integrability and raw-moment finiteness are derived. This avoids using
+Mathlib's totalized real variance to hide infinite second moments.
+
+The quantitative good-set construction (BC8) is proved in
+[GoodGaps.lean](../lean/ThresholdHC/CriticalEntropy/GoodGaps.lean). Its
+[model](../lean/ThresholdHC/CriticalEntropy/GoodGapModel.lean) quantifies the
+uniform guarantees over the actual capped global class `q<=1/2`,
+`integral q<=rho`. [GapSelection.lean](../lean/ThresholdHC/CriticalEntropy/GapSelection.lean)
+uses continuity of the distribution function and the intermediate value theorem
+to trim measurable subsets of an atomless bounded real law to mass `2 rho`.
+[HalfPrior.lean](../lean/ThresholdHC/CriticalEntropy/HalfPrior.lean) constructs
+the resulting admissible `q=1_E/2` populations and proves their exact mean and
+moment changes. These facts bound the three exceptional sets and produce
+`mu(G^c)<=70m`. All conditional mean, second-moment, and work bounds on `G`
+are conclusions. Applying this general result to the critical density's
+separated annuli and summing their work remains a separate step.
+
+The [eighth audit record](../results/critical_components_008.json) checks fifteen
+exact targets and all 222 public declarations using only the permitted standard
+axioms. The [seventh record](../results/critical_components_007.json) preserves
+the twelve-target population-moment checkpoint. The [sixth record](../results/critical_components_006.json) preserves the
 ten-target estimator-entropy checkpoint. The [fifth record](../results/critical_components_005.json) preserves
 the finite-repetition checkpoint; the [fourth record](../results/critical_components_004.json)
 preserves the six-target stopped-suffix checkpoint, and the
 [third record](../results/critical_components_003.json) the finite-gap checkpoint. These targets were
 introduced with their proofs, not retrospectively described as a pre-proof
 freeze. This is **not** a formalization of the continuum null-cost product
-theorem or the full critical minimax law. Deriving the quantitative good-gap
-moment bounds from population guarantees, good-gap selection, common-pair
-instantiation, and population transfer remain below.
+theorem or the full critical minimax law. Activation normalization, the critical
+law's annulus selection and work summation, common-pair instantiation, and
+population transfer remain below.
 
 ## Initial dependency audit
 

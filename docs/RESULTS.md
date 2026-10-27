@@ -152,9 +152,22 @@ work at the null prior and one positive constant prior imply almost-everywhere
 conditional square integrability and finite work under both signs, as well as
 integrable conditional means. The moment and work formulas retain infinity;
 the signed mean formula is proved under finite second moment. The seed and
-observable procedure are fixed across populations. Quantitative good-gap
-bounds and selection remain open in Lean; this is still not the base-cost or
-full critical theorem.
+observable procedure are fixed across populations.
+
+[PopulationVariance.lean](../lean/ThresholdHC/CriticalEntropy/PopulationVariance.lean)
+derives the variance floor `V>=2 rho/3` from the null and constant-prior bias
+bounds, and converts an extended-variance bound into the raw second-moment
+bound `M<=3V/2`. It derives square integrability from finite extended variance;
+totalized real variance is not used to assume finiteness.
+[GoodGaps.lean](../lean/ThresholdHC/CriticalEntropy/GoodGaps.lean) derives a
+measurable set `G` with `mu(G^c)<=70m` from uniform second-moment, finite-work,
+and bias guarantees over `q<=1/2`, `integral q<=rho`. On `G`, the minus mean
+has absolute value at most `1/8`, the plus mean is at least `5/8`, and the
+conditional second moments are at most `1/64` and `1/64+2m/rho`; both signed
+conditional work expectations are finite. The gap law is atomless and supported
+on a bounded real interval. No conditional bound is assumed. Activation
+normalization and the critical law's annulus selection and cost summation
+remain open; this is still not the base-cost or full critical theorem.
 
 ## Population and nonlinear feedback follow-ups
 

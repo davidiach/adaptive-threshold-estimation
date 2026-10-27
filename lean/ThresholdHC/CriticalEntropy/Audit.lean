@@ -8,6 +8,7 @@ import ThresholdHC.CriticalEntropy.RestartPair
 import ThresholdHC.CriticalEntropy.RepeatedRestart
 import ThresholdHC.CriticalEntropy.EstimationEntropy
 import ThresholdHC.CriticalEntropy.PopulationMixture
+import ThresholdHC.CriticalEntropy.GoodGaps
 
 open ThresholdHC.CriticalEntropy
 
@@ -47,6 +48,12 @@ example : PopulationFinitenessStatement := by
   intro D R _ _ μ _ ν _ p₀ p₁ h₀ h₁ c hc A hm₀ hm₁ hw₀ hw₁
   obtain ⟨ha,hi₀,hi₁⟩ := population_conditional_finiteness μ ν p₀ p₁ h₀ h₁ c hc A hm₀ hm₁ hw₀ hw₁
   exact ⟨ha,hi₀,hi₁,population_finiteness_transfer μ ν p₀ p₁ h₀ h₁ c hc A hm₀ hm₁ hw₀ hw₁⟩
+
+example : PopulationVarianceFloorStatement := fun _ _ => population_evariance_floor
+
+example : PopulationMomentFromVarianceStatement := fun _ _ => population_moment_bound_of_evariance
+
+example : PopulationGoodGapsStatement := fun _ => population_good_gaps
 
 #print axioms sum_event_mass_le_overlap
 #print axioms event_packing
@@ -237,3 +244,36 @@ example : PopulationFinitenessStatement := by
 #print axioms population_finiteness_transfer
 #print axioms PopulationMomentStatement
 #print axioms PopulationFinitenessStatement
+#print axioms population_memLp_of_moment
+#print axioms population_second_moment_toReal
+#print axioms variance_lower_of_mixture
+#print axioms population_second_moment_const
+#print axioms population_mean_const
+#print axioms population_variance_mixture_lower
+#print axioms population_variance_floor
+#print axioms conditionalMean_sq_le_moment
+#print axioms population_moment_bound_of_variance
+#print axioms population_moment_finite_of_evariance
+#print axioms population_evariance_floor
+#print axioms population_moment_bound_of_evariance
+#print axioms CappedPrior
+#print axioms halfPrior
+#print axioms CappedPopulationGuarantee
+#print axioms PopulationGoodGap
+#print axioms conditional_moment_pair_integrable
+#print axioms population_second_moment_real_formula
+#print axioms measurable_halfPrior
+#print axioms halfPrior_le_half
+#print axioms halfPrior_integral
+#print axioms cappedPrior_const
+#print axioms cappedPrior_half
+#print axioms halfPrior_weighted_integral
+#print axioms population_halfPrior_moment
+#print axioms population_halfPrior_mean
+#print axioms exists_subset_real_measure
+#print axioms bad_set_mass_lt_of_integral_lower
+#print axioms bad_set_mass_lt_of_integral_upper
+#print axioms population_good_gaps
+#print axioms PopulationVarianceFloorStatement
+#print axioms PopulationMomentFromVarianceStatement
+#print axioms PopulationGoodGapsStatement
