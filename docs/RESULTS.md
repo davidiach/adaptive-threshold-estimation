@@ -1,6 +1,15 @@
 # Results and verification scope
 
-This guide distinguishes complete Lean specifications from broader paper claims. Sources are the unchanged [v4 paper](../paper/paper.pdf), its [TeX](../paper/paper.tex), the [rare-event continuation](../inputs/next-phase/report/research_note.pdf), and the theorem files below.
+Start with the [consolidated v5 manuscript](../paper/v5/paper.pdf) for the
+current theory in one document: main statements in sections 2, 7 and 11,
+formal scope in section 12, and full rare-event arguments in appendices A–C.
+Its [source and editorial record](../paper/v5/README.md) preserves the original
+proofs and makes the Psi correction explicit.
+
+This guide gives the exact Lean specifications and remaining paper-proof
+boundaries. Historical source pointers below refer to the unchanged
+[v4 paper](../paper/paper.pdf), its [TeX](../paper/paper.tex), and the
+[rare-event continuation](../inputs/next-phase/report/research_note.pdf).
 
 ## Paper review scope
 

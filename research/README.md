@@ -1,5 +1,9 @@
 # Research packages and current status
 
+For the current mathematical narrative and full proofs, start with the
+[consolidated v5 manuscript](../paper/v5/paper.pdf). The packages below preserve
+the detailed provenance and evidence behind its appendices.
+
 These packages preserve the reviewed sources, failed approaches, exact source
 locks, diagnostics and numerical evidence from separate research passes.
 Their original reports and acceptance records describe their own checkpoints;

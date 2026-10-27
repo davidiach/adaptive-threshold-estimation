@@ -1,0 +1,136 @@
+\section{A uniform variance--work upper constant of 713}\label{sec:713}
+The finite-budget construction in \cref{sec:classifier,sec:minimax-proof}
+uses the original threshold and constants $85,149$. For the unbiased
+upper bound in \cref{thm:unbiased}, change the classifier threshold to
+\[
+ t_{n,N}=\sqrt{\frac{1/4+\log(N/n)}n}\qquad(n<N),
+\]
+keeping the same dyadic checkpoints, strict crossing rule, negative final
+tie convention, shared-prefix increments, and independent level law
+$p_\ell=(1-r)r^\ell$, $r=2^{-1/2}$. In this section $Z_N,\tau_N,
+\Delta_\ell,Y_L,\mathcal W_L$ denote this modified construction only.
+It observes no magnitude or sign and uses no distributional parameters.
+
+\begin{theorem}[Separate conditional moment bounds]\label{thm:713}
+For every $0<d\le1/2$, either sign, and finite $L$, $N=2^L$,
+\[
+ \E[Y_L^2\mid d,S]\le23\min\{\sqrt N,d^{-1}\},\qquad
+ \E[\mathcal W_L\mid d,S]\le31\min\{\sqrt N,d^{-1}\}.
+\]
+If $I_\mu<\infty$, the untruncated estimator is square-integrable,
+unbiased, and has finite expected actual work, with
+\[
+ \sup_q\E_{\mu,q}Y^2\le23I_\mu,\qquad
+ \sup_q\E_{\mu,q}\mathcal W\le31I_\mu.
+\]
+Consequently the product of the separate variance and work suprema is
+at most $713I_\mu^2$.
+\end{theorem}
+
+\paragraph{Error envelope.}
+An incorrect early stop at prefix $n$ requires a one-sided deviation of
+at least $d+t_{n,N}$. Hoeffding's inequality and a union bound over the
+fixed dyadic prefixes yield, with $x=Nd^2$,
+\[
+ e_N\le e^{-2x}+e^{-1/2}N^{-2}
+             \sum_{n<N,\ n\text{ dyadic}}n^2e^{-2nd^2}
+ \le e^{-2x}+\tfrac23e^{-1/2}x^{-2}.
+\]
+For the second step integrate $u e^{-bu}$ over the disjoint intervals
+$[n/2,n]$: each integral is at least $3n^2e^{-bn}/8$, so the sum is
+at most $8/(3b^2)$. Since $x^2e^{-2x}\le e^{-2}$ for every $x>0$,
+\[
+ e_N\le\min\{1,A x^{-2}\},\qquad
+ A=e^{-2}+\tfrac23e^{-1/2}<\tfrac17+\tfrac5{12}
+ =\tfrac{47}{84}<\tfrac35.
+\]
+Here $e^2>7$ and $e^{1/2}>8/5$ follow from their positive power series.
+For $\ell\ge1$, a nonzero increment requires a fine or coarse error;
+the coarse scale has $x/2$. Hence
+\begin{equation}\label{eq:713-increment}
+ \E\Delta_\ell^2\le\min\{1,5A x^{-2}\}
+             \le\min\{1,3x^{-2}\}.
+\end{equation}
+The same envelope covers $\ell=0$, because $d^2\le1/4$ and
+$\Delta_0=Z_1\in\{0,1\}$.
+
+\paragraph{Second moment.}
+Put $d'=d/3^{1/4}$. Summing \eqref{eq:713-increment} divided by
+$p_\ell$ and splitting at $2^\ell(d')^2=1$ gives
+\[
+ \E Y_L^2\le C_0\min\{\sqrt{2^L},1/d'\},\qquad
+ C_0=\frac1{1-r}\left(\frac1{1-r}+\frac1{1-r^3}\right)<17.
+\]
+Before the split the terms are geometric with size $\sqrt{2^\ell}$;
+after it their ratio is $r^3$. This includes cutoffs before the split.
+The rational comparison $r<442/625$ and monotonicity of the displayed
+expression prove $C_0<17$ by integer arithmetic. Since
+$3^{1/4}<4/3$, the conditional constant is less than $68/3<23$.
+
+\paragraph{Expected work.}
+Take $c=13/7$. Survival at a dyadic prefix $n<N$ and $d>ct_{n,N}$
+requires a one-sided deviation larger than $(1-1/c)d$. Therefore
+\[
+ \Prob(\tau_N>n)\le\ind\{d\le ct_{n,N}\}
+            +\exp\{-2(1-1/c)^2nd^2\}.
+\]
+Suppose $x=Nd^2\ge1$ and write $u=nd^2$. The indicator implies
+$u\le c^2[1/4+\log(x/u)]$. If $u<1$, then
+$u\le1+c^2\log x$; if $u\ge1$, use $\log u\ge0$ and
+$c^2/4=169/196<1$ for the same conclusion. Its dyadic contribution
+is at most $2d^{-2}(1+c^2\log x)$.
+For $b>0$, integration on $[n/2,n]$ gives
+$\sum n e^{-bnd^2}\le2/(bd^2)$. The survival identity and
+$1\le d^{-2}/4$ now give
+\[
+ \E\tau_N
+ \le d^{-2}\left[\frac{125}{18}+\frac{338}{49}\log x\right]
+ \le7d^{-2}(1+\log x).
+\]
+Together with $\tau_N\le N$, this proves $\E\tau_N\le7m_N(d)$.
+
+On a shared stream the cap-$N$ threshold is at least the cap-$N/2$
+threshold at every prefix before $N/2$. If the fine classifier stops
+there, the coarse one has already stopped; at or after $N/2$ the coarse
+one has reached its cap. Thus $\tau_{N/2}\le\tau_N$ pathwise and the
+actual work of the coupled increment equals $\tau_N$. Level zero
+costs one. It follows that
+\[
+ \E\mathcal W_L\le7(1-r)\sum_{\ell=0}^L
+          2^{-\ell/2}m_{2^\ell}(d)
+ \le7\left(2+\frac{\log2}{1-r}\right)
+          \min\{\sqrt{2^L},d^{-1}\}.
+\]
+To obtain the last inequality, split at $2^\ell d^2=1$ as in
+\cref{lem:universal}. The first tail value satisfies $1<2^\ell d^2\le2$;
+the remaining sum is bounded by
+$d^{-1}\sum_{k\ge0}r^k(1+\log2+k\log2)$.
+Using $r<71/100$ and $\log2<7/10$ bounds the final constant by
+$896/29<31$.
+
+\paragraph{Untruncated limit and separate suprema.}
+Integrate the conditional bounds over $(D,S)$. Monotone convergence of
+the nonnegative moment and cost series gives finite second moment and
+work when $I_\mu<\infty$. More explicitly,
+\[
+ \E[(Y-Y_L)^2]=\sum_{\ell>L}\frac{\E\Delta_\ell^2}{p_\ell}
+       \longrightarrow0.
+\]
+Thus $Y_L\to Y$ in $L^2$ and $L^1$. Finite telescoping gives
+$\E Y_L=\E Z_{2^L}$; the conditional error tends to zero for every
+$d>0$, and bounded convergence proves $\E Y=\theta$.
+The bounds hold for every $q$ with the same estimator and the same
+$I_\mu$. Taking the two suprema separately and using
+$\Var Y\le\E Y^2$ proves \cref{thm:713} and the improved upper
+constant in \cref{thm:unbiased}. No interchange of a supremum with a
+strict inequality is needed.
+
+\paragraph{Formal scope.}
+\leanref{Uniform713/FullBound.lean}{full\_bound\_713} proves the
+untruncated estimator result in a conditional observation-kernel model,
+including bounded independent observations with means $1/2\pm D$.
+\leanref{ResearchRouteA/SeparateBounds.lean}{uniform\_family\_bounds}
+supplies the separate-supremum conclusion for a fixed kernel and
+estimator over a nonempty family of latent laws sharing $I_\mu$.
+These results do not yet realize the finite-budget calibration wrapper
+as a policy in the full fresh-coin experiment.

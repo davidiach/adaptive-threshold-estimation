@@ -132,6 +132,12 @@ compilation is also not mathematical verification.
 
 ## Evidence and CI
 
+The [consolidated v5 manuscript](../paper/v5/README.md) is checked with
+`python tools/build_v5.py --check`. This verifies the inherited source
+identities, generated proofs, unique labels, and citation references.
+Its PDF is separately compiled and visually inspected; these checks do not
+extend the mathematical claims verified by Lean.
+
 The critical-law [review packet](../paper/critical-review/README.md) is assembled
 from the locked mathematical sources and a short editable overview. Check its
 source identity with `python tools/build_critical_review.py --check`. PDF

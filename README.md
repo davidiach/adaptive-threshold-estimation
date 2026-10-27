@@ -1,10 +1,12 @@
 # A Distributional Minimax Law for Adaptive Threshold Estimation
 
-[Paper (PDF)](paper/paper.pdf) · [Lean 4 / Mathlib proofs](lean/) · [Reproducible numerics](docs/VERIFY.md)
+[Consolidated paper v5 (PDF)](paper/v5/paper.pdf) · [Lean 4 / Mathlib proofs](lean/) · [Verification](docs/VERIFY.md)
 
-The later critical-law result has a [specialist review packet](paper/critical-review/review.pdf)
-with a three-page brief and complete proof. Its [source and review status](paper/critical-review/README.md)
-are separate from the unchanged v4 paper.
+[Version 5](paper/v5/README.md) brings the original law, the 713 construction,
+the rare-event regimes, and the Psi correction into one manuscript with complete
+proofs and explicit verification boundaries. The critical result also has a
+[specialist review packet](paper/critical-review/review.pdf) with a three-page
+brief. The [original v4](paper/paper.pdf) and historical evidence remain preserved.
 
 **The problem.** A coin's hidden gap $`D\sim\mu`$ on $`(0,1/2]`$ and sign $`S\in\{0,1\}`$ determine $`P=\tfrac12+(2S-1)D`$. Estimate $`\theta=\Pr(P>1/2)`$ by adaptive flips, allowing revisits and interleaving; cost is expected flips.
 
@@ -12,12 +14,17 @@ are separate from the unchanged v4 paper.
 
 | Result | Statement | Status | Source |
 |---|---|---|---|
-| Minimax law | $`R_\mu(B)\asymp\omega_\mu(B^{-1/2})`$; one algorithm independent of $`\mu`$. | paper proof | [Theorem 1](paper/paper.tex#L239) |
+| Minimax law | $`R_\mu(B)\asymp\omega_\mu(B^{-1/2})`$; one algorithm independent of $`\mu`$. | paper proof | [v5, Theorem 1](paper/v5/core.tex) |
 | Minimax RMS lower bound | $`R_\mu(B)\ge\omega_\mu(B^{-1/2})/64`$ for every gap law and $`B\ge1`$. | Lean-checked | [minimax_lower_bound](lean/ThresholdHC/Tier6/Full.lean) |
-| Uniform unbiasedness | Finite uniform variance and work are attainable iff $`I<\infty`$; their product is $`\ge I^2/16`$. | paper proof | [Theorem 2](paper/paper.tex#L272) |
+| Uniform unbiasedness | Finite uniform variance and work are attainable iff $`I<\infty`$; their product is $`\ge I^2/16`$. | paper proof | [v5, Theorem 2](paper/v5/core.tex) |
 | Unbiased estimate $`Y`$, flip count $`W`$ | For $`(k_1,k_2)=(1/4,1)`$ and $`I<\infty`$:<br>$`\mathbb E Y=\theta`$, $`\mathrm{Var}(Y)\mathbb E W<713I^2`$. | Lean-checked | [full_bound_713](lean/ThresholdHC/Uniform713/FullBound.lean) |
 
-Uniformity is over all conditional sign laws. The paper has agent-reviewed components, not independent specialist review of v4. Lean checks the linked exact statements. [Verify locally](docs/VERIFY.md) · [CI](https://github.com/davidiach/adaptive-threshold-estimation/actions/workflows/checks.yml)
+Uniformity is over all conditional sign laws. The paper has agent-reviewed
+components but no external specialist review. Lean checks the linked exact
+statements. The [rare-event results](paper/v5/rare-events.tex), including the
+full critical law, retain paper-proof status; their finite-gap sign-entropy
+ingredient is now [Lean-checked](lean/ThresholdHC/CriticalEntropy/FiniteGap.lean).
+[Verify locally](docs/VERIFY.md) · [CI](https://github.com/davidiach/adaptive-threshold-estimation/actions/workflows/checks.yml)
 
 <details>
 <summary>All results: full statements, assumptions, theorem names and sources</summary>
@@ -91,7 +98,7 @@ stated evidence levels.
 
 | Path | Contents |
 |---|---|
-| [paper/](paper/) | Unchanged v4 PDF and TeX, and subsequent results. |
+| [paper/](paper/) | Current v5 manuscript, critical review packet, and preserved v4. |
 | [lean/](lean/) | Statements, proofs, and pinned Mathlib dependencies. |
 | [docs/RESULTS.md](docs/RESULTS.md), [docs/VERIFY.md](docs/VERIFY.md) | Claim scopes, source pointers, and verification commands. |
 | [constants/](constants/), [benchmark/](benchmark/) | Numerical evaluators and benchmark code. |

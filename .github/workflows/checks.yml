@@ -47,6 +47,8 @@ jobs:
         run: python -m unittest discover -s tools -p 'test_research_validation.py' -v
       - name: Verify the critical review packet matches its locked sources
         run: python tools/build_critical_review.py --check
+      - name: Verify the consolidated manuscript and its inherited sources
+        run: python tools/build_v5.py --check
       - name: Replay population and nonlinear feedback checkpoints
         run: python tools/verify_population_research.py
   numerical-evidence:

@@ -1,0 +1,99 @@
+\section{Verification, provenance, and remaining questions}\label{sec:verification}
+The distinction between a checked theorem and a checked ingredient is
+part of each result's scope. The following table records the boundary
+at the finite-gap checkpoint \nolinkurl{accdb144972edd255dedec50cc1cbcaa45587040}.
+Links point to that source revision rather than a moving branch.
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.28\textwidth}>{\raggedright\arraybackslash}p{0.67\textwidth}@{}}
+\toprule
+Claim & Verification scope\\
+\midrule
+\endhead
+Original RMS minimax lower bound &
+\leanref{Tier6/Full.lean}{minimax\_lower\_bound} proves
+$R_\mu(B)\ge\omega_\mu(B^{-1/2})/64$ in the hidden-magnitude iid
+fresh-coin model, for arbitrary measurable seeds, natural-number coin
+labels, revisits, interleaving, and unbounded stopping. It constructs
+the experiment and retains infinite risk. The stronger revealed- or
+selected-magnitude paper statement is not the exact Lean target.\\[5pt]
+Original upper and confidence laws &
+The budget-only algorithm and confidence characterization in
+\cref{thm:main} remain paper proofs. Classifier estimates and
+inverse-binomial identities alone do not establish their realization
+in the full algorithm model.\\[5pt]
+Unbiased characterization &
+The necessity of $I_\mu<\infty$ and lower product coefficient $1/16$
+in \cref{thm:unbiased} remain paper proofs. The constructive upper
+bound has the formal coverage described in the next row.\\[5pt]
+713 construction &
+\leanref{Uniform713/FullBound.lean}{full\_bound\_713} proves the
+untruncated estimator theorem in a conditional observation-kernel
+model. \leanref{ResearchRouteA/SeparateBounds.lean}{uniform\_family\_bounds}
+proves the separate-supremum bridge with a fixed kernel and estimator.\\[5pt]
+Variational optimizer &
+\leanref{Tier3/Optimizer.lean}{arbitrary\_law\_optimizer}
+proves the optimizer and value formula for arbitrary laws. It does
+not assert a matching rare-event statistical upper bound.\\[5pt]
+Rare-event rates &
+The rates in \cref{sec:rare} remain paper theorems. The arbitrary-law
+lower bound and the above-two matching lower bound use the cited
+Lee--Valiant input. The critical argument has the formal components
+in the next two rows.\\[5pt]
+Finite-gap sign entropy &
+\leanref{CriticalEntropy/FiniteGap.lean}{finite\_gap\_sign\_entropy}
+proves the statistical bound with actual stopping and flip costs.
+The audit checks five exact targets and all 63 public declarations
+in its component chain.\\[5pt]
+Common-point step &
+\leanref{CriticalEntropy/CommonPoint.lean}{common\_point\_of\_finite\_mixtures}
+proves an abstract compact-convex theorem. Statistical compactness,
+mixture information, and the hypothesis needed to instantiate it
+are not supplied by that theorem.\\
+\bottomrule
+\end{longtable}
+
+The audits permit three standard Lean axioms: \texttt{propext},
+\texttt{Classical.choice}, and \texttt{Quot.sound}.
+The exact specifications and model definitions are necessary to interpret
+that fact: absence of proof holes does not show that a statement matches
+an intended experiment. The finite-gap targets were introduced with their
+proofs and are not described as specifications frozen before the proof work.
+The repository's \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/accdb144972edd255dedec50cc1cbcaa45587040/docs/VERIFY.md}{verification guide}
+gives reproduction commands and the source-specific audit records.
+
+\paragraph{Numerical evidence and its limits.}
+Exact finite certificates, floating-point recursions, and held-out
+simulations do not certify the continuum theorems or the iterated-log
+separation. Finite-grid constants do not replace 713: the grid-winning
+logarithmic threshold coefficient $1/2$ fails the uniform error envelope
+at an explicit large cap, whereas this construction retains coefficient
+one. The finite-budget feedback advantage and practical experiments
+remain supporting research with their original limited scopes.
+
+\paragraph{Provenance and review.}
+This version incorporates the original law, the 713 argument, and the
+rare-event continuations, with full proofs in the main text and
+\cref{app:localization,app:above-two,app:critical}.
+The assembly script checks source identities and records editorial
+changes; historical sources and reviews remain unchanged.
+AI agents performed the work under David Iach's direction. No external
+specialist review or model diversity is established. One critical
+reviewer authored part of the argument, precluding two independent
+validations of the full proof. The
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/accdb144972edd255dedec50cc1cbcaa45587040/docs/process/METHOD.md}{process note}
+records the workflow, failed approaches, and these limits.
+
+\paragraph{Remaining mathematical work.}
+The critical continuum null-cost theorem, statistical common-pair
+construction, and interacting-population transfer are the immediate
+verification targets. The original distribution-blind upper theorem
+still needs one observable budget-indexed algorithm realized in the
+same full experiment as the formal lower bound. The unbiased converse
+and confidence characterization also remain unformalized.
+A corrected arbitrary-law rare-event functional is open.
+
+The model requires independent fresh coins and conditionally independent
+flips, without drift or additional smooth structure linking states.
+Expected-work optimality supplies no deterministic latency bound or
+data-computable confidence radius over all unknown laws. Neither useful
+finite critical constants nor practical superiority is established.
