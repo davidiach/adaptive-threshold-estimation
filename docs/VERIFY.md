@@ -129,6 +129,12 @@ compilation is also not mathematical verification.
 
 ## Evidence and CI
 
+The critical-law [review packet](../paper/critical-review/README.md) is assembled
+from the locked mathematical sources and a short editable overview. Check its
+source identity with `python tools/build_critical_review.py --check`. PDF
+compilation and visual inspection are documented with the packet and are
+separate from mathematical verification.
+
 | Check | Published record |
 |---|---|
 | Scored Lean statements | [lean_tier2_002_checkpoint.json](../results/lean_tier2_002_checkpoint.json) |

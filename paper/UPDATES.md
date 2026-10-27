@@ -2,6 +2,11 @@
 
 ## Critical quadratic margin: full characterization and Psi counterexample
 
+The [specialist review packet](critical-review/review.pdf) puts a three-page
+overview and the complete existing proof in one document. Its
+[reproduction notes](critical-review/README.md) identify the locked source;
+no external specialist approval is claimed.
+
 The [full critical note](../research/2026-10-27-nonlinear-critical/unrestricted.tex)
 proves $R_{\mu,\rho}(B)\asymp\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}$,
 $L=1+\log(1/\rho)$, at the single fixed law $F(d)=(4d)^2$, uniformly for
@@ -60,7 +65,7 @@ This is a changed classifier and tighter analysis, not a correction to the origi
 
 | Paper location or scope | What the repository adds | Evidence and limits |
 |---|---|---|
-| v4 §§3–7: information, classifier, geometric sums, calibration, and modulus calculations | Lean proofs of the frozen component statements. | [Statements.lean](../lean/ThresholdHC/Statements.lean), [Statements2.lean](../lean/ThresholdHC/Statements2.lean), [target-to-proof map](../tools/targets.json), and [checkpoint](../results/lean_tier2_002_checkpoint.json). The entire minimax theorem and unbiased converse remain paper proofs. |
+| v4 §§3–7: information, classifier, geometric sums, calibration, and modulus calculations | Lean proofs of the frozen component statements. | [Statements.lean](../lean/ThresholdHC/Statements.lean), [Statements2.lean](../lean/ThresholdHC/Statements2.lean), [target-to-proof map](../tools/targets.json), and [checkpoint](../results/lean_tier2_002_checkpoint.json). The matching upper bound, confidence characterization, and unbiased converse remain paper proofs; the later Tier 6 row records the complete RMS lower bound. |
 | v4 §4, Lemmas 7–8 | The original classifier error/work and estimator telescoping/moment inequalities are checked as probability statements. | [ClassifierProb.lean](../lean/ThresholdHC/Proofs/Tier2/ClassifierProb.lean), [ClassifierTelescoping.lean](../lean/ThresholdHC/Proofs/Tier2/ClassifierTelescoping.lean), and the exact `lemma6_*`/`lemma7_*` targets in [Statements2.lean](../lean/ThresholdHC/Statements2.lean). |
 | v4 §3, Proposition 6 | Finite stopped-transcript KL/testing is formalized, then extended to arbitrary measurable random seeds. | `ThresholdHC.Proofs.stopped_transcript_kl` in [Transcript.lean](../lean/ThresholdHC/Proofs/Tier2/Transcript.lean); `ThresholdHC.Tier3.randomized_marginal_kl_bound` and `randomized_testing_bound` in [Randomized.lean](../lean/ThresholdHC/Tier3/Randomized.lean). The coin set and observation horizon are finite. |
 | v4 §3, passage to unbounded stopping | Finite expected plus-hypothesis work implies halting under both hypotheses and the terminal testing bound at unbounded horizons. | `ThresholdHC.Tier3.unbounded_stopping` in [StoppingBase.lean](../lean/ThresholdHC/Tier3/StoppingBase.lean), `unbounded_testing` in [Stopping.lean](../lean/ThresholdHC/Tier3/Stopping.lean), and `unbounded_example` in [Examples.lean](../lean/ThresholdHC/Tier3/Examples.lean). Fixed finite coin set; this theorem concerns terminal testing. The subsequent KL theorem is listed next. |

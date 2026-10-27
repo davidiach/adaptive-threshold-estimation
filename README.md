@@ -2,6 +2,10 @@
 
 [Paper (PDF)](paper/paper.pdf) · [Lean 4 / Mathlib proofs](lean/) · [Reproducible numerics](docs/VERIFY.md)
 
+The later critical-law result has a [specialist review packet](paper/critical-review/review.pdf)
+with a three-page brief and complete proof. Its [source and review status](paper/critical-review/README.md)
+are separate from the unchanged v4 paper.
+
 **The problem.** A coin's hidden gap $`D\sim\mu`$ on $`(0,1/2]`$ and sign $`S\in\{0,1\}`$ determine $`P=\tfrac12+(2S-1)D`$. Estimate $`\theta=\Pr(P>1/2)`$ by adaptive flips, allowing revisits and interleaving; cost is expected flips.
 
 **Main results.** Set $`\omega_\mu(h)=\mathbb E_\mu\min\{1,h/D\}`$ for $`h>0`$ and $`I=\mathbb E_\mu[D^{-1}]`$. Write $`R_\mu(B)`$ for minimax RMS error at uniform expected budget $`B\ge1`$.
