@@ -203,15 +203,36 @@ population flip count. A finite likelihood decomposition and canonical Hellinger
 data processing transfer the common-pair bound; midpoint domination pays at
 most twice the midpoint work. Impossible transcripts and zero work are retained.
 
-The [fifteenth record](../results/critical_components_015.json) audits thirty-four
-exact targets and all 614 public declarations. The
-[fourteenth record](../results/critical_components_014.json) preserves the common-pair
-checkpoint before population transfer.
+[CriticalMinimax.lean](../lean/ThresholdHC/CriticalEntropy/CriticalMinimax.lean)
+now proves the full critical minimax **lower** bound:
 
-The extension to arbitrary measurable population seeds, unrestricted creation,
-the termination limit, and the critical upper construction remain unformalized.
-The finite result does not certify the full critical minimax law or its
-refutation of the proposed general upper bound.
+$$R_{\mu,\rho}(B)\ge c\min\{\rho,\sqrt{\rho L(1+\log L)/B}\},\qquad L=1+\log(1/\rho).$$
+
+One universal `c>0` works for `0<rho<=1/4`, `B>=1`, and the quadratic law
+with density `32d` on `(0,1/4]`. The infimum uses the existing Tier 6
+observable adaptive estimators and constructed infinite creation experiment.
+It permits arbitrary measurable independent seeds, unrestricted natural-number
+coin labels, revisits, interleaving, and unbounded stopping. Neither policy nor
+output can observe latent magnitudes or signs. The budget and risk range over
+every measurable `[0,1]`-valued prior of mean at most `rho`; the half cap belongs
+only to the hard-pair subclass. Squared error remains extended-real.
+
+The proof transfers the common pair through each seed-dependent finite decision
+tree, integrates the hidden iid magnitudes, and bounds finite-prefix affinity
+by actual midpoint expected work. Finite work proves termination separately
+under both endpoints. Each stopped tape is eventually equal to its padded
+prefix, so bounded-event convergence gives terminal affinity without any
+continuity assumption on the estimator's output. Direct Hellinger testing and
+separation optimization give the rate, including saturation at `rho`.
+A zero-work estimator proves budget nonemptiness and minimax risk at most `rho`.
+
+The [sixteenth record](../results/critical_components_016.json) checks forty-three
+exact targets and all 674 public declarations. The
+[fifteenth record](../results/critical_components_015.json) preserves the finite
+population checkpoint. Specifications were introduced alongside these proofs.
+The matching critical upper, the original distribution-blind upper, and the
+explicit comparison refuting the matching-Psi conjecture are not fully
+formalized. The full critical minimax completion flag remains false.
 
 ## Population and nonlinear feedback follow-ups
 

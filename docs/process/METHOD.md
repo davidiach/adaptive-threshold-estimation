@@ -53,10 +53,9 @@ The critical single-coin base-cost theorem now composes that probability model
 with activation normalization, observable restarts, good-gap selection and a
 rarity-dependent scale count. Its exact specification quantifies one universal
 constant before the rarity and procedure, and charges all-negative population
-work. The common population pair and its finite interactive transfer are now
-proved. The full minimax transfer still needs arbitrary population seeds,
-unrestricted creation and the termination limit. The verification record keeps
-those completion flags separate.
+work. The common population pair, its unrestricted interactive transfer and
+the critical minimax lower rate are now proved. The matching upper remains
+open in Lean. The verification record keeps these completion flags separate.
 
 The capped-observation reduction checks a further semantic boundary. Replacing
 the full transcript by stopping time and head count is justified by proving
@@ -99,8 +98,15 @@ the existing finite transcript probabilities. Replacing one genuine tape gives
 the exact hybrid law. Each local simulator is an observable stopped procedure,
 and its actual population expected cost is charged to the full flip count.
 This checks the probability interpretation and work accounting as well as the
-algebraic Hellinger decomposition. Arbitrary population seeds and unbounded
-creation remain separate completion requirements.
+algebraic Hellinger decomposition. The next extension integrates arbitrary
+measurable seed laws and uses each finite decision tree's derived label cap;
+this imposes no global creation bound. The original infinite experiment supplies
+the finite-prefix laws. Finite work yields termination separately under both
+hard-pair endpoints, and stopped prefixes eventually reconstruct the entire
+tape. Bounded-event convergence proves the affinity limit even for arbitrary
+measurable output. Direct Hellinger testing gives the critical minimax lower
+rate. A zero-work estimator proves the admissible class is nonempty, while
+extended squared risk retains infinite errors.
 
 ## Freeze established questions and preserve corrections
 
@@ -191,6 +197,6 @@ ignored directories so it cannot overwrite a published checkpoint by accident.
 The [active completion ledger](../WORKPLAN.md) and
 [critical follow-up audit](../CRITICAL_AUDIT.md) distinguish completed components
 from remaining work. As of this note, the original upper theorem, the complete
-critical statistical argument, and external specialist review must not be
+critical upper construction, and external specialist review must not be
 described as completed formal verification. More proof lines or larger logs
 would not change those boundaries on their own.

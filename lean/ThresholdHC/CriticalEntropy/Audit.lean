@@ -1,3 +1,4 @@
+import ThresholdHC.CriticalEntropy.CriticalMinimax
 import ThresholdHC.CriticalEntropy.CriticalPopulationFinite
 import ThresholdHC.CriticalEntropy.Packing
 import ThresholdHC.CriticalEntropy.CommonPoint
@@ -724,3 +725,76 @@ example : CriticalBaseCostStatement := critical_base_cost
 #print axioms PopulationTapeLawStatement
 #print axioms PopulationLocalWorkStatement
 #print axioms CriticalFinitePopulationPairStatement
+
+open ThresholdHC.CriticalEntropy
+
+example : SeedKernelDensityStatement := finite_kernel_density
+example : CriticalExperimentPrefixPairStatement := critical_common_experiment_prefix_pair
+example : CriticalEndpointStoppingStatement := critical_experiment_stops
+example : CriticalEventualReconstructionStatement := critical_eventual_tape_reconstruction
+example : CriticalTerminalPairStatement := critical_common_terminal_pair
+example : CriticalAlgorithmLowerStatement := critical_algorithm_lower_bound
+example : CriticalMinimaxLowerStatement := critical_minimax_lower_bound
+example : CriticalBudgetNonemptyStatement := critical_budget_class_nonempty
+example : CriticalTrivialUpperStatement := critical_minimax_le_rarity
+
+#print axioms finite_kernel_density
+#print axioms finite_kernel_hellinger_identity
+#print axioms finite_kernel_hellinger_bound
+#print axioms finite_kernel_marginal
+#print axioms creationPopulationWeight
+#print axioms creationPopulationWeight_eq_finite
+#print axioms measurable_creationPopulationWeight
+#print axioms creationPopulationWeight_total
+#print axioms finitePopulation_work_law
+#print axioms finitePopulation_work_real
+#print axioms criticalClipped_parameters
+#print axioms critical_common_creation_prefix_pair
+#print axioms observable_population_prefix_kernel
+#print axioms observable_population_hellinger_bound
+#print axioms criticalExperimentLaw
+#print axioms criticalExperimentLaw_probability
+#print axioms criticalPrefixLaw
+#print axioms criticalExpectedWork
+#print axioms criticalExperimentLaw_realizes
+#print axioms critical_common_experiment_prefix_pair
+#print axioms map_singleton_real_tendsto
+#print axioms hellingerAffinity_finite_real
+#print axioms hellingerAffinity_tendsto_eventual_maps
+#print axioms hellingerAffinity_lower_of_eventual_maps
+#print axioms critical_tape_measurable
+#print axioms critical_prefix_work_le_total
+#print axioms critical_experiment_stops
+#print axioms critical_eventual_tape_reconstruction
+#print axioms criticalObservationLaw
+#print axioms criticalPrefixLaw_probability
+#print axioms critical_terminal_affinity_bound
+#print axioms thresholdDecision
+#print axioms measurable_thresholdDecision
+#print axioms risk_event_markov
+#print axioms bool_affinity_le_half_of_errors
+#print axioms two_point_risk_lower_of_decision_affinity
+#print axioms CriticalRarePrior
+#print axioms CriticalUniformBudget
+#print axioms criticalMaximalRMSRisk
+#print axioms criticalMinimaxRisk
+#print axioms critical_common_terminal_pair
+#print axioms critical_rms_pair_lower
+#print axioms critical_algorithm_lower_at_separation
+#print axioms critical_rate_separation
+#print axioms critical_algorithm_lower_bound
+#print axioms critical_minimax_lower_bound
+#print axioms criticalZeroEstimator
+#print axioms criticalZeroEstimator_work
+#print axioms critical_budget_class_nonempty
+#print axioms criticalZeroEstimator_risk
+#print axioms critical_minimax_le_rarity
+#print axioms SeedKernelDensityStatement
+#print axioms CriticalExperimentPrefixPairStatement
+#print axioms CriticalEndpointStoppingStatement
+#print axioms CriticalEventualReconstructionStatement
+#print axioms CriticalTerminalPairStatement
+#print axioms CriticalAlgorithmLowerStatement
+#print axioms CriticalMinimaxLowerStatement
+#print axioms CriticalBudgetNonemptyStatement
+#print axioms CriticalTrivialUpperStatement

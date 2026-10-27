@@ -1,4 +1,6 @@
-"""Check critical single-coin base cost and components, not the full minimax law.
+"""Check critical base cost, statistical transfer and minimax lower bound.
+
+The matching critical upper and the original distribution-blind upper remain open.
 
 This extension does not change existing frozen targets or scores. It reuses the
 frozen Tier 6 source and transitive-axiom guards. Specifications were introduced
@@ -36,7 +38,8 @@ MODULES = ("Packing", "CommonPoint", "BernoulliPrefix", "EventInformation", "Sig
            "FiniteSaddle", "ExponentialRisk", "FiniteCentering", "FiniteRMS",
            "FiniteSupport", "ObservationRisk", "CriticalRisk",
            "PolicyNormalization", "SelectedPolicy", "CapInvariance", "SeedAdaptation", "PolicyMixture", "CriticalCommonPair",
-           "FiniteAffinity", "MidpointWork", "LocalSimulation", "FinitePopulation", "PopulationTapeLaw", "PopulationLocalWork", "PopulationTransfer", "CriticalPopulationFinite", "Specification")
+           "FiniteAffinity", "MidpointWork", "LocalSimulation", "FinitePopulation", "PopulationTapeLaw", "PopulationLocalWork", "PopulationTransfer", "CriticalPopulationFinite",
+           "SeedAffinity", "CreationPopulation", "PopulationWorkLaw", "CriticalCreation", "ObservablePopulation", "SeededPopulationTransfer", "CriticalExperiment", "EventualAffinity", "CriticalTermination", "CriticalTerminalAffinity", "AffinityTesting", "CriticalRareModel", "CriticalAlgorithmLower", "CriticalRate", "CriticalMinimax", "Specification")
 NAMESPACE = "ThresholdHC.CriticalEntropy."
 ROOTS = {
     NAMESPACE + name for name in (
@@ -247,6 +250,66 @@ ROOTS = {
         "criticalClippedGap", "measurable_criticalClippedGap", "criticalClippedGap_bounds",
         "criticalClippedGap_ae", "critical_common_finite_population_pair", "PopulationTapeLawStatement",
         "PopulationLocalWorkStatement", "CriticalFinitePopulationPairStatement",
+        "finite_kernel_density",
+        "finite_kernel_hellinger_identity",
+        "finite_kernel_hellinger_bound",
+        "finite_kernel_marginal",
+        "creationPopulationWeight",
+        "creationPopulationWeight_eq_finite",
+        "measurable_creationPopulationWeight",
+        "creationPopulationWeight_total",
+        "finitePopulation_work_law",
+        "finitePopulation_work_real",
+        "criticalClipped_parameters",
+        "critical_common_creation_prefix_pair",
+        "observable_population_prefix_kernel",
+        "observable_population_hellinger_bound",
+        "criticalExperimentLaw",
+        "criticalExperimentLaw_probability",
+        "criticalPrefixLaw",
+        "criticalExpectedWork",
+        "criticalExperimentLaw_realizes",
+        "critical_common_experiment_prefix_pair",
+        "map_singleton_real_tendsto",
+        "hellingerAffinity_finite_real",
+        "hellingerAffinity_tendsto_eventual_maps",
+        "hellingerAffinity_lower_of_eventual_maps",
+        "critical_tape_measurable",
+        "critical_prefix_work_le_total",
+        "critical_experiment_stops",
+        "critical_eventual_tape_reconstruction",
+        "criticalObservationLaw",
+        "criticalPrefixLaw_probability",
+        "critical_terminal_affinity_bound",
+        "thresholdDecision",
+        "measurable_thresholdDecision",
+        "risk_event_markov",
+        "bool_affinity_le_half_of_errors",
+        "two_point_risk_lower_of_decision_affinity",
+        "CriticalRarePrior",
+        "CriticalUniformBudget",
+        "criticalMaximalRMSRisk",
+        "criticalMinimaxRisk",
+        "critical_common_terminal_pair",
+        "critical_rms_pair_lower",
+        "critical_algorithm_lower_at_separation",
+        "critical_rate_separation",
+        "critical_algorithm_lower_bound",
+        "critical_minimax_lower_bound",
+        "criticalZeroEstimator",
+        "criticalZeroEstimator_work",
+        "critical_budget_class_nonempty",
+        "criticalZeroEstimator_risk",
+        "critical_minimax_le_rarity",
+        "SeedKernelDensityStatement",
+        "CriticalExperimentPrefixPairStatement",
+        "CriticalEndpointStoppingStatement",
+        "CriticalEventualReconstructionStatement",
+        "CriticalTerminalPairStatement",
+        "CriticalAlgorithmLowerStatement",
+        "CriticalMinimaxLowerStatement",
+        "CriticalBudgetNonemptyStatement",
+        "CriticalTrivialUpperStatement",
     )
 }
 
@@ -291,6 +354,12 @@ def main() -> int:
             "ThresholdHC.Proofs.Tier2.TranscriptLikelihood",
             "ThresholdHC.Tier4.FiniteDensity", "ThresholdHC.Tier6.TestingFinite",
             "ThresholdHC.Tier5.FiniteEnvironment",
+            "ThresholdHC.Tier3.StoppingBase",
+            "ThresholdHC.Tier5.FiniteJoint",
+            "ThresholdHC.Tier5.FiniteCreation",
+            "ThresholdHC.Tier5.StoppingBase",
+            "ThresholdHC.Tier6.AlgorithmCore",
+            "ThresholdHC.Tier6.Process",
         } | {NAMESPACE + name for name in MODULES}
         if any(module not in allowed_imports for module in imports):
             raise ValueError("Unregistered component import in " + path.name)
@@ -303,7 +372,7 @@ def main() -> int:
               for p in protected}
     status = {
         "valid": False,
-        "scope": "Critical quadratic single-coin variance and raw-moment base-cost bounds for all rarities, derived from actual observable population experiments; activation, scale selection, restarts, sign entropy, finite stopped-observation reconstruction, canonical affinity and work preservation, actual population compactness and affine/convex observation geometry, finite convex RMS comparison, actual observable one-run estimator and policy-specific separated pair, normalized Hellinger/work constraints, actual heterogeneous revealed mixtures, and one common separated pair for every capped observable policy, and its transfer to fixed finite coin families and finite horizons using exact population simulation laws and work charging",
+        "scope": "Critical quadratic single-coin variance and raw-moment base-cost bounds for all rarities, derived from actual observable population experiments; activation, scale selection, restarts, sign entropy, finite stopped-observation reconstruction, canonical affinity and work preservation, actual population compactness and affine/convex observation geometry, finite convex RMS comparison, actual observable one-run estimator and policy-specific separated pair, normalized Hellinger/work constraints, actual heterogeneous revealed mixtures, and one common separated pair for every capped observable policy, its transfer to arbitrary measurable seeds and unrestricted creation using exact population simulation laws and work charging, endpoint termination and observable affinity limits, and the critical minimax lower bound for the full rare-prior class",
         "full_critical_minimax_theorem_verified": False,
         "base_cost_theorem_verified": False,
         "capped_observation_reduction_verified": False,
@@ -311,6 +380,9 @@ def main() -> int:
         "capped_policy_risk_and_pair_verified": False,
         "common_capped_pair_verified": False,
         "finite_horizon_population_transfer_verified": False,
+        "unrestricted_population_transfer_verified": False,
+        "endpoint_termination_limit_verified": False,
+        "critical_minimax_lower_bound_verified": False,
         "finite_gap_sign_testing_theorem_verified": False,
         "stopped_suffix_independence_verified": False,
         "sequential_restart_law_and_work_verified": False,
@@ -351,7 +423,7 @@ def main() -> int:
     if any(hashlib.sha256((ROOT / rel).read_bytes()).hexdigest() != digest
            for rel, digest in hashes.items()):
         raise ValueError("Sources changed during audit")
-    status.update(valid=True, exact_component_targets=34, audited_declarations=len(ROOTS),
+    status.update(valid=True, exact_component_targets=43, audited_declarations=len(ROOTS),
                   finite_gap_sign_testing_theorem_verified=True,
                   stopped_suffix_independence_verified=True,
                   sequential_restart_law_and_work_verified=True,
@@ -372,9 +444,12 @@ def main() -> int:
                   population_observation_geometry_verified=True,
                   capped_policy_risk_and_pair_verified=True,
                   common_capped_pair_verified=True,
-                  finite_horizon_population_transfer_verified=True)
+                  finite_horizon_population_transfer_verified=True,
+                  unrestricted_population_transfer_verified=True,
+                  endpoint_termination_limit_verified=True,
+                  critical_minimax_lower_bound_verified=True)
     status_path.write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"valid": True, "exact_component_targets": 34,
+    print(json.dumps({"valid": True, "exact_component_targets": 43,
                       "audited_declarations": len(ROOTS), "evidence": str(output),
                       "finite_gap_sign_testing_theorem_verified": True,
                       "stopped_suffix_independence_verified": True,
@@ -397,6 +472,9 @@ def main() -> int:
                       "capped_policy_risk_and_pair_verified": True,
                       "common_capped_pair_verified": True,
                       "finite_horizon_population_transfer_verified": True,
+                      "unrestricted_population_transfer_verified": True,
+                      "endpoint_termination_limit_verified": True,
+                      "critical_minimax_lower_bound_verified": True,
                       "full_critical_minimax_theorem_verified": False}))
     return 0
 

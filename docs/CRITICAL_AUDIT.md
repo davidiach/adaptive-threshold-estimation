@@ -23,10 +23,11 @@ The complete critical single-coin base-cost theorem (BC1) is proved in
 positive constant gives `V E_0 T >= c rho L(1+log L)` for every
 `0<rho<=1/4`, under the actual population variance, bias and finite-work
 guarantees. The raw-moment version and the statistical common hard pair are
-also proved. The finite interacting-population transfer is now proved for a
-fixed finite coin family and deterministic horizon. Arbitrary population seeds,
-unrestricted creation, the termination limit and the critical upper bound
-remain paper arguments. The capped finite-observation reduction is also proved,
+also proved. The interacting-population transfer now permits arbitrary
+measurable population seeds and unrestricted creation. Separate endpoint
+termination and the terminal affinity limit yield the full critical minimax
+lower bound in the original observable model, over the full rare-prior class.
+The matching critical upper remains a paper argument. The capped finite-observation reduction is also proved,
 including full-transcript reconstruction, canonical affinity, and expected
 work. The dependency details below explain this boundary.
 
@@ -308,9 +309,38 @@ population flip count. A finite likelihood decomposition and canonical Hellinger
 data processing transfer the common-pair bound; midpoint domination pays at
 most twice the midpoint work. Impossible transcripts and zero work are retained.
 
-The [fifteenth audit record](../results/critical_components_015.json) checks
-thirty-four exact targets and all 614 public declarations using only the
-permitted standard axioms. The
+[CriticalMinimax.lean](../lean/ThresholdHC/CriticalEntropy/CriticalMinimax.lean)
+now proves the full critical minimax **lower** bound:
+
+$$R_{\mu,\rho}(B)\ge c\min\{\rho,\sqrt{\rho L(1+\log L)/B}\},\qquad L=1+\log(1/\rho).$$
+
+One universal `c>0` works for `0<rho<=1/4`, `B>=1`, and the quadratic law
+with density `32d` on `(0,1/4]`. The infimum uses the existing Tier 6
+observable adaptive estimators and constructed infinite creation experiment.
+It permits arbitrary measurable independent seeds, unrestricted natural-number
+coin labels, revisits, interleaving, and unbounded stopping. Neither policy nor
+output can observe latent magnitudes or signs. The budget and risk range over
+every measurable `[0,1]`-valued prior of mean at most `rho`; the half cap belongs
+only to the hard-pair subclass. Squared error remains extended-real.
+
+The proof transfers the common pair through each seed-dependent finite decision
+tree, integrates the hidden iid magnitudes, and bounds finite-prefix affinity
+by actual midpoint expected work. Finite work proves termination separately
+under both endpoints. Each stopped tape is eventually equal to its padded
+prefix, so bounded-event convergence gives terminal affinity without any
+continuity assumption on the estimator's output. Direct Hellinger testing and
+separation optimization give the rate, including saturation at `rho`.
+A zero-work estimator proves budget nonemptiness and minimax risk at most `rho`.
+
+The [sixteenth record](../results/critical_components_016.json) checks forty-three
+exact targets and all 674 public declarations. The
+[fifteenth record](../results/critical_components_015.json) preserves the finite
+population checkpoint. Specifications were introduced alongside these proofs.
+The matching critical upper, the original distribution-blind upper, and the
+explicit comparison refuting the matching-Psi conjecture are not fully
+formalized. The full critical minimax completion flag remains false.
+
+All audited declarations use only the permitted standard axioms. The
 [fourteenth record](../results/critical_components_014.json) preserves the
 thirty-one-target common-pair checkpoint. The
 [thirteenth record](../results/critical_components_013.json) preserves the
@@ -330,8 +360,8 @@ preserves the six-target stopped-suffix checkpoint, and the
 [third record](../results/critical_components_003.json) the finite-gap checkpoint. These targets were
 introduced with their proofs, not retrospectively described as a pre-proof
 freeze. The single-coin continuum null-cost product is now verified. The
-full critical minimax law is **not**: population transfer, the termination
-limit, and the critical upper construction remain below.
+full critical minimax law is **not**: the matching critical upper construction
+remains below.
 
 ## Initial dependency audit
 
@@ -350,8 +380,8 @@ proof.
 | Finite observation reduction | At cap `m`, each seed/word cell has the integrated likelihood determined by `(T,heads)`. The multiplier cancels from conditional seed/word laws. | Complete for the actual capped procedure and arbitrary measurable seed; see the current formal boundary above. |
 | Convex RMS comparison | Log-moment curvature, compact minimax selection, centering, and actual iid exponential moments are proved. Direct exponential domination establishes square integrability and the RMS bound, replacing the paper's tail integral step. | Complete for the finite capped experiment, including the actual observable one-run estimator and its application to base cost. |
 | One pair for all policies | The separated-pair set is compact convex in the weak-star topology. Squared Hellinger is continuous convex. A revealed finite policy mixture has exactly averaged Hellinger and null work. Finite-simplex minimax supplies the finite intersection property. | Complete for every capped observable policy with an arbitrary measurable independent seed. Actual normalization, heterogeneous revealed-mixture identities and common-pair instantiation are proved; the pair is chosen before all policy and cap quantifiers. |
-| Interacting population transfer | Leaf likelihoods factor by genuine coin even with interleaving. The midpoint hybrid simulations use independent auxiliary tapes. Since midpoint `q<=1/2`, its one-coin law dominates half the null law, giving the required cost direction. | The exact finite-prefix likelihood decomposition, legal independent-tape simulations, actual transcript laws and midpoint work charging are proved for every fixed finite family and deterministic horizon. Arbitrary seed laws and unrestricted creation remain pending. |
-| Unbounded stopping | The same pair applies at every cap. Uniform work gives termination separately under both endpoints; terminal events are approximated by stopped-prefix events. | Prove the limit without assuming termination transfers from one endpoint to the other. |
+| Interacting population transfer | Leaf likelihoods factor by genuine coin even with interleaving. The midpoint hybrid simulations use independent auxiliary tapes. Since midpoint `q<=1/2`, its one-coin law dominates half the null law, giving the required cost direction. | Complete for arbitrary measurable seeds and unrestricted natural-number coin creation. Exact finite likelihoods, local simulations, seed integration and midpoint work charging are proved in the existing creation experiment. |
+| Unbounded stopping | The same pair applies at every cap. Uniform work gives termination separately under both endpoints; terminal events are approximated by stopped-prefix events. | Complete: the budget proves finite work and termination separately under each endpoint. Eventual exact padded-prefix reconstruction and bounded-event convergence prove terminal affinity; no output continuity or cross-endpoint termination transfer is assumed. |
 | Upper construction | Wrong-sign likelihoods are supermartingales; forced-majority error is bounded on the complete iid tape. Positive work is integrated under a global mass constraint, not a pointwise bound on `q`. The random telescope and Poisson replication use separately finite moments. | Full probability and algorithm realization remain paper arguments. |
 
 ## Specific constants and edge cases checked
@@ -401,8 +431,8 @@ Lean audit using only `propext`, `Classical.choice`, and `Quot.sound`:
   mixture bound remain separate obligations.
 
 [Specification.lean](../lean/ThresholdHC/CriticalEntropy/Specification.lean)
-states these targets without importing their proofs; the audit checks exact
-types. These specifications were introduced alongside the proofs, not frozen
+states explicit target types, and the audit checks that their proof terms
+inhabit those exact types. These specifications were introduced alongside the proofs, not frozen
 beforehand. [Recorded evidence](../results/critical_components_001.json) contains
 the source identities, commands, exit codes and transitive axioms. Reproduce it
 with `python tools/verify_critical_components.py`; fresh output is written under

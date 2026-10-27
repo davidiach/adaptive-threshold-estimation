@@ -1,3 +1,4 @@
+import ThresholdHC.CriticalEntropy.CriticalMinimax
 import ThresholdHC.CriticalEntropy.PopulationTransfer
 import Mathlib
 import ThresholdHC.Proofs.Tier2.ClassifierProbability
@@ -567,5 +568,79 @@ def CriticalFinitePopulationPairStatement : Prop :=
         C*δ^2*(finitePopulationExpectedWork criticalGapLaw
           (fun d => criticalParameter d false) (fun d => criticalParameter d true)
           (midpointPrior q r) pol n).toReal
+
+end ThresholdHC.CriticalEntropy
+
+namespace ThresholdHC.CriticalEntropy
+open MeasureTheory Filter ThresholdHC.Tier3 ThresholdHC.Tier4
+open scoped ENNReal
+
+def SeedKernelDensityStatement : Prop :=
+  ∀ {R I : Type} [MeasurableSpace R] [Fintype I] [MeasurableSpace I] [MeasurableSingletonClass I]
+    (ν : Measure R) [IsFiniteMeasure ν] (P : Measure (R × I)) [IsFiniteMeasure P]
+    (p : R → I → ℝ),
+    (∀ i, Measurable (fun r => p r i)) → (∀ r i, 0 ≤ p r i) → (∀ r i, p r i ≤ 1) →
+    Tier5.FiniteKernelRealization ν P p →
+    P = (ν.prod Measure.count).withDensity (fun z => ENNReal.ofReal (p z.1 z.2))
+
+def CriticalExperimentPrefixPairStatement : Prop := ∃ C : ℝ, 0 < C ∧
+    ∀ (ρ : unitInterval), 0 < (ρ : ℝ) → (ρ : ℝ) ≤ 1/4 →
+    ∀ δ : ℝ, 0 ≤ δ → δ ≤ (ρ : ℝ)/96 →
+    ∃ (q r : ℝ → unitInterval) (hq : CappedPrior criticalGapLaw (ρ : ℝ) q)
+      (hr : CappedPrior criticalGapLaw (ρ : ℝ) r),
+      δ ≤ (∫ d, (r d : ℝ) ∂criticalGapLaw)-(∫ d, (q d : ℝ) ∂criticalGapLaw) ∧
+      ∀ (R : Type) [MeasurableSpace R] (A : Tier6.AdaptiveEstimator R) (n : ℕ),
+        (1-(hellingerAffinity (criticalPrefixLaw A q hq.1 n)
+          (criticalPrefixLaw A r hr.1 n)).toReal)*(ρ : ℝ)*criticalLogFactor (ρ : ℝ) ≤
+        C*δ^2*∫ z, ThresholdHC.workOf (processPrefix n z.2)
+          ∂criticalExperimentLaw A (midpointPrior q r) (measurable_midpointPrior q r hq.1 hr.1)
+
+def CriticalEndpointStoppingStatement : Prop :=
+  ∀ {R : Type} [MeasurableSpace R] (A : Tier6.AdaptiveEstimator R)
+    (q : ℝ → unitInterval) (hq : Measurable q),
+    criticalExpectedWork A q hq < ∞ →
+    ∀ᵐ z ∂criticalExperimentLaw A q hq, ∃ n, A.policy z.1.1 (processHistory z.2 n) = none
+
+def CriticalEventualReconstructionStatement : Prop :=
+  ∀ {R : Type} [MeasurableSpace R] (A : Tier6.AdaptiveEstimator R)
+    (q : ℝ → unitInterval) (hq : Measurable q),
+    criticalExpectedWork A q hq < ∞ →
+    ∀ᵐ z ∂criticalExperimentLaw A q hq,
+      ∀ᶠ n in atTop, padPrefix n (processPrefix n z.2) = z.2
+
+def CriticalTerminalPairStatement : Prop := ∃ C : ℝ, 0 < C ∧
+    ∀ (ρ : unitInterval), 0 < (ρ : ℝ) → (ρ : ℝ) ≤ 1/4 →
+    ∀ δ : ℝ, 0 ≤ δ → δ ≤ (ρ : ℝ)/96 →
+    ∃ (q r : ℝ → unitInterval) (hq : CappedPrior criticalGapLaw (ρ : ℝ) q)
+      (hr : CappedPrior criticalGapLaw (ρ : ℝ) r),
+      δ ≤ (∫ d, (r d : ℝ) ∂criticalGapLaw)-(∫ d, (q d : ℝ) ∂criticalGapLaw) ∧
+      ∀ (R I : Type) [MeasurableSpace R] [Fintype I] [MeasurableSpace I]
+        [MeasurableSingletonClass I] (A : Tier6.AdaptiveEstimator R)
+        (B : ℝ), 0 ≤ B → CriticalUniformBudget A (ρ : ℝ) B →
+        ∀ (f : R × ProcessTape → I), Measurable f →
+        (1-(hellingerAffinity (criticalObservationLaw A q hq.1 f)
+          (criticalObservationLaw A r hr.1 f)).toReal)*(ρ : ℝ)*criticalLogFactor (ρ : ℝ) ≤
+          C*δ^2*B
+
+def CriticalAlgorithmLowerStatement : Prop := ∃ c : ℝ, 0 < c ∧
+    ∀ (ρ : unitInterval), 0 < (ρ : ℝ) → (ρ : ℝ) ≤ 1/4 →
+    ∀ B : ℝ, 1 ≤ B → ∀ (R : Type) [MeasurableSpace R]
+      (A : Tier6.AdaptiveEstimator R), CriticalUniformBudget A (ρ : ℝ) B →
+      ENNReal.ofReal (c*min (ρ : ℝ)
+        (Real.sqrt ((ρ : ℝ)*criticalLogFactor (ρ : ℝ)/B))) ≤
+          criticalMaximalRMSRisk A (ρ : ℝ)
+
+def CriticalMinimaxLowerStatement : Prop := ∃ c : ℝ, 0 < c ∧
+    ∀ (ρ : unitInterval), 0 < (ρ : ℝ) → (ρ : ℝ) ≤ 1/4 →
+    ∀ B : ℝ, 1 ≤ B →
+      ENNReal.ofReal (c*min (ρ : ℝ)
+        (Real.sqrt ((ρ : ℝ)*criticalLogFactor (ρ : ℝ)/B))) ≤
+          criticalMinimaxRisk (ρ : ℝ) B
+
+def CriticalBudgetNonemptyStatement : Prop :=
+  ∀ ρ B : ℝ, ∃ A : Tier6.AdaptiveEstimator Unit, CriticalUniformBudget A ρ B
+
+def CriticalTrivialUpperStatement : Prop :=
+  ∀ ρ B : ℝ, criticalMinimaxRisk ρ B ≤ ENNReal.ofReal ρ
 
 end ThresholdHC.CriticalEntropy

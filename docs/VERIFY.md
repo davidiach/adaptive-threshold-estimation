@@ -8,7 +8,7 @@ python -m unittest discover -s tools -p 'test_critical_components.py' -v
 ```
 
 After building the existing Lean dependencies with the kernel commands below,
-this checks thirty-four exact targets: entropy packing, the compact-convex common
+this checks forty-three exact targets: entropy packing, the compact-convex common
 point, seeded Bernoulli prefix information, finite-prefix event transfer,
 the statistical finite-gap sign-entropy theorem, actual stopped-suffix
 independence from output and work, observable sequential restart laws and
@@ -32,9 +32,12 @@ for all capped policies with arbitrary measurable seeds. Actual finite revealed
 mixtures, reseeding and cap invariance are proved in the dependency chain.
 It also checks the exact independent-tape population law, actual local work
 charging, and the common pair's transfer to every fixed finite coin family and
-deterministic horizon. This transfer permits revisiting and interleaving, but
-does not yet include arbitrary population seeds or unrestricted creation.
-It audits all 614
+deterministic horizon. It then checks the unrestricted transfer with arbitrary
+measurable population seeds, separate endpoint termination, eventual exact tape
+reconstruction, terminal affinity, algorithm and minimax lower rates, budget
+nonemptiness, and the trivial upper bound by rarity. The full rare-prior class
+is used in the budget and risk. The matching critical upper is still pending.
+It audits all 674
 declarations in these modules and writes fresh evidence under
 `.runtime/critical-components/`. The base-cost flag now certifies the actual
 single-coin theorem; the full critical minimax flag remains false. See the
