@@ -21,7 +21,8 @@ LEAN = ROOT / "lean"
 SOURCE = LEAN / "ThresholdHC/CriticalEntropy"
 MODULES = ("Packing", "CommonPoint", "BernoulliPrefix", "EventInformation", "SignTest",
            "EarlyDecision", "StoppingWindow", "GeometricOverlap", "FiniteGap",
-           "StoppedModel", "StoppedTape", "Specification")
+           "StoppedModel", "StoppedTape", "SequentialModel", "RestartPair",
+           "RepeatedModel", "RepeatedRestart", "Specification")
 NAMESPACE = "ThresholdHC.CriticalEntropy."
 ROOTS = {
     NAMESPACE + name for name in (
@@ -53,6 +54,17 @@ ROOTS = {
         "stopped_event_tail_probability", "stopped_output_suffix_probability",
         "stopped_output_suffix_map", "stopped_procedure_terminates", "stopped_marked_suffix_map",
         "StoppedSuffixStatement",
+        "completePrefix", "measurable_completePrefix", "tapePrefix_completePrefix",
+        "prefix_eq_restrict", "prefix_eq_drop", "stopped_prefix_ext", "restartInput",
+        "measurable_restartInput", "sequentialStop", "sequentialOutput",
+        "measurable_sequentialStop", "measurable_sequentialOutput", "sequential_prefix_ext",
+        "sequentialProcedure", "prod_swap_middle", "seeded_stopped_suffix_map",
+        "two_run_marked_map", "two_run_expected_work", "sequential_expected_work",
+        "sequential_output_map", "SequentialRestartStatement",
+        "reseedProcedure", "postprocessProcedure", "emptyProcedure", "measurable_finCons",
+        "repeatedProcedure", "fin_seed_split_map", "reseed_expected_work",
+        "repeated_expected_work", "reseed_output_map", "fin_product_cons_map",
+        "repeated_output_map", "RepeatedRestartStatement",
     )
 }
 
@@ -108,11 +120,13 @@ def main() -> int:
               for p in protected}
     status = {
         "valid": False,
-        "scope": "Finite-gap statistical sign entropy, actual stopped-suffix independence, probability dependencies, and abstract compact convex common point",
+        "scope": "Finite-gap sign entropy, observable finite repetition with iid output and linear expected work, stopped-suffix independence, probability dependencies, and abstract compact convex common point",
         "full_critical_minimax_theorem_verified": False,
         "base_cost_theorem_verified": False,
         "finite_gap_sign_testing_theorem_verified": False,
         "stopped_suffix_independence_verified": False,
+        "sequential_restart_law_and_work_verified": False,
+        "finite_repetition_iid_and_work_verified": False,
         "specifications_frozen_before_proofs": False,
         "source_sha256": hashes,
         "commands": [],
@@ -138,14 +152,18 @@ def main() -> int:
     if any(hashlib.sha256((ROOT / rel).read_bytes()).hexdigest() != digest
            for rel, digest in hashes.items()):
         raise ValueError("Sources changed during audit")
-    status.update(valid=True, exact_component_targets=6, audited_declarations=len(ROOTS),
+    status.update(valid=True, exact_component_targets=8, audited_declarations=len(ROOTS),
                   finite_gap_sign_testing_theorem_verified=True,
-                  stopped_suffix_independence_verified=True)
+                  stopped_suffix_independence_verified=True,
+                  sequential_restart_law_and_work_verified=True,
+                  finite_repetition_iid_and_work_verified=True)
     status_path.write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"valid": True, "exact_component_targets": 6,
+    print(json.dumps({"valid": True, "exact_component_targets": 8,
                       "audited_declarations": len(ROOTS), "evidence": str(output),
                       "finite_gap_sign_testing_theorem_verified": True,
                       "stopped_suffix_independence_verified": True,
+                      "sequential_restart_law_and_work_verified": True,
+                      "finite_repetition_iid_and_work_verified": True,
                       "full_critical_minimax_theorem_verified": False}))
     return 0
 

@@ -4,6 +4,8 @@ import ThresholdHC.CriticalEntropy.Specification
 import ThresholdHC.CriticalEntropy.EventInformation
 import ThresholdHC.CriticalEntropy.FiniteGap
 import ThresholdHC.CriticalEntropy.StoppedTape
+import ThresholdHC.CriticalEntropy.RestartPair
+import ThresholdHC.CriticalEntropy.RepeatedRestart
 
 open ThresholdHC.CriticalEntropy
 
@@ -18,6 +20,12 @@ example : PrefixEventTransferStatement := fun _ => fair_prefix_event_mass_lower
 example : FiniteGapSignEntropyStatement := fun _ => finite_gap_sign_entropy
 
 example : StoppedSuffixStatement := fun _ _ => stopped_marked_suffix_map
+
+example : SequentialRestartStatement := fun _ _ _ _ _ _ _ _ ν η _ _ p A B h =>
+  ⟨sequential_output_map ν η p A B h, sequential_expected_work ν η p A B h⟩
+
+example : RepeatedRestartStatement := fun _ _ _ _ ν _ p A h n =>
+  ⟨repeated_output_map ν p A h n, repeated_expected_work ν p A h n⟩
 
 #print axioms sum_event_mass_le_overlap
 #print axioms event_packing
@@ -103,3 +111,36 @@ example : StoppedSuffixStatement := fun _ _ => stopped_marked_suffix_map
 #print axioms stopped_procedure_terminates
 #print axioms stopped_marked_suffix_map
 #print axioms StoppedSuffixStatement
+#print axioms completePrefix
+#print axioms measurable_completePrefix
+#print axioms tapePrefix_completePrefix
+#print axioms prefix_eq_restrict
+#print axioms prefix_eq_drop
+#print axioms stopped_prefix_ext
+#print axioms restartInput
+#print axioms measurable_restartInput
+#print axioms sequentialStop
+#print axioms sequentialOutput
+#print axioms measurable_sequentialStop
+#print axioms measurable_sequentialOutput
+#print axioms sequential_prefix_ext
+#print axioms sequentialProcedure
+#print axioms prod_swap_middle
+#print axioms seeded_stopped_suffix_map
+#print axioms two_run_marked_map
+#print axioms two_run_expected_work
+#print axioms sequential_expected_work
+#print axioms sequential_output_map
+#print axioms SequentialRestartStatement
+#print axioms reseedProcedure
+#print axioms postprocessProcedure
+#print axioms emptyProcedure
+#print axioms measurable_finCons
+#print axioms repeatedProcedure
+#print axioms fin_seed_split_map
+#print axioms reseed_expected_work
+#print axioms repeated_expected_work
+#print axioms reseed_output_map
+#print axioms fin_product_cons_map
+#print axioms repeated_output_map
+#print axioms RepeatedRestartStatement

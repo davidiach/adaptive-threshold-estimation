@@ -132,8 +132,13 @@ The restart argument now also has a proved probability foundation:
 that unused flips after an observable stopping time retain the fixed coin's
 Bernoulli law and are independent of the output and work. It allows arbitrary
 measurable seed and output spaces and assumes finite expected work under that
-parameter. Iterating this construction into the paper's sign test and proving
-its expected-work identity remain separate obligations.
+parameter. The observable two-procedure composition in
+[SequentialModel.lean](../lean/ThresholdHC/CriticalEntropy/SequentialModel.lean)
+has a proved product output law and exact additive expected-work identity in
+[RestartPair.lean](../lean/ThresholdHC/CriticalEntropy/RestartPair.lean).
+The [fixed-count repetition](../lean/ThresholdHC/CriticalEntropy/RepeatedRestart.lean)
+has a proved iid joint output law and expected work exactly `n E T`. The error
+bound for thresholding its real-output average remains a separate obligation.
 
 ## Population and nonlinear feedback follow-ups
 

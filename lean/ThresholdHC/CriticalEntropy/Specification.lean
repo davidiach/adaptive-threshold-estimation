@@ -3,6 +3,8 @@ import ThresholdHC.Proofs.Tier2.ClassifierProbability
 import ThresholdHC.CriticalEntropy.SignTest
 import ThresholdHC.CriticalEntropy.EarlyDecision
 import ThresholdHC.CriticalEntropy.StoppedModel
+import ThresholdHC.CriticalEntropy.SequentialModel
+import ThresholdHC.CriticalEntropy.RepeatedModel
 
 noncomputable section
 open MeasureTheory Real
@@ -75,5 +77,34 @@ def StoppedSuffixStatement : Prop :=
         (fun z => ((A.stop z, A.output z), stoppedSuffix A z)) =
       ((ν.prod (Tier2.tapeMeasure p)).map (fun z => (A.stop z, A.output z))).prod
         (Tier2.tapeMeasure p)
+
+/-- The constructed observable sequential procedure uses successive flips
+of one coin and independent seed coordinates. Its outputs have the product
+law and its honest expected work adds, even if the second expectation is infinite. -/
+def SequentialRestartStatement : Prop :=
+  ∀ (R S E F : Type)
+    [MeasurableSpace R] [MeasurableSpace S] [MeasurableSpace E] [MeasurableSpace F]
+    (ν : Measure R) (η : Measure S) [IsProbabilityMeasure ν] [IsProbabilityMeasure η]
+    (p : unitInterval) (A : StoppedProcedure R E) (B : StoppedProcedure S F),
+    expectedStoppedProcedureWork ν p A ≠ ∞ →
+    ((ν.prod η).prod (Tier2.tapeMeasure p)).map (sequentialProcedure A B).output =
+      ((ν.prod (Tier2.tapeMeasure p)).map A.output).prod
+        ((η.prod (Tier2.tapeMeasure p)).map B.output) ∧
+    expectedStoppedProcedureWork (ν.prod η) p (sequentialProcedure A B) =
+      expectedStoppedProcedureWork ν p A + expectedStoppedProcedureWork η p B
+
+/-- A fixed number of observable runs, with independent seeds and successive
+unused flips of the same coin, has the iid joint output law and linear expected
+work. The repeated procedure itself has no Bernoulli-parameter argument. -/
+def RepeatedRestartStatement : Prop :=
+  ∀ (R E : Type) [MeasurableSpace R] [MeasurableSpace E]
+    (ν : Measure R) [IsProbabilityMeasure ν] (p : unitInterval)
+    (A : StoppedProcedure R E), expectedStoppedProcedureWork ν p A ≠ ∞ →
+    ∀ n : ℕ,
+    ((Measure.pi (fun _ : Fin n => ν)).prod (Tier2.tapeMeasure p)).map
+        (repeatedProcedure A n).output =
+      Measure.pi (fun _ : Fin n => (ν.prod (Tier2.tapeMeasure p)).map A.output) ∧
+    expectedStoppedProcedureWork (Measure.pi (fun _ : Fin n => ν)) p (repeatedProcedure A n) =
+      (n : ℝ≥0∞) * expectedStoppedProcedureWork ν p A
 
 end ThresholdHC.CriticalEntropy

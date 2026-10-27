@@ -53,14 +53,34 @@ the countably many possible stopping times. Independence is a conclusion.
 The procedure has no parameter argument; infinite work remains explicit in
 [its model](../lean/ThresholdHC/CriticalEntropy/StoppedModel.lean).
 
-The [fourth audit record](../results/critical_components_004.json) checks six
-exact targets and all 84 public declarations using only the permitted standard
-axioms. The [third record](../results/critical_components_003.json) preserves
-the preceding five-target, 63-declaration checkpoint. These targets were
+The sequential realization is constructed in
+[SequentialModel.lean](../lean/ThresholdHC/CriticalEntropy/SequentialModel.lean):
+it runs two procedures on successive blocks of one tape, with separate seed
+coordinates. Its finite stopping decisions and outputs are proved observable
+pointwise. [RestartPair.lean](../lean/ThresholdHC/CriticalEntropy/RestartPair.lean)
+then proves the product output law and exact addition of expected work under
+independent seed laws. Only the first procedure needs finite expected work;
+the second may have infinite expectation, which the identity retains. The
+stronger joint identity includes both stopping times alongside both outputs.
+
+The finite iteration is constructed in
+[RepeatedModel.lean](../lean/ThresholdHC/CriticalEntropy/RepeatedModel.lean).
+It takes a fixed-length vector of independent seeds and runs the same procedure
+successively on one tape. [RepeatedRestart.lean](../lean/ThresholdHC/CriticalEntropy/RepeatedRestart.lean)
+proves its full iid joint output law and expected work exactly `n E T`, including
+the zero-repetition case. The number of repetitions is fixed before observing
+flips; no latent gap or sign is passed to the procedure. The error bound for the
+thresholded real-output average remains the next sign-reduction obligation.
+
+The [fifth audit record](../results/critical_components_005.json) checks eight
+exact targets and all 117 public declarations using only the permitted standard
+axioms. The [fourth record](../results/critical_components_004.json) preserves
+the six-target stopped-suffix checkpoint, and the
+[third record](../results/critical_components_003.json) the finite-gap checkpoint. These targets were
 introduced with their proofs, not retrospectively described as a pre-proof
 freeze. This is **not** a formalization of the continuum null-cost product
-theorem or the full critical minimax law. Iterated restart realization and
-its expected-work identity, conditional moments, good-gap selection,
+theorem or the full critical minimax law. The thresholded sign test's error
+bound, conditional moments, good-gap selection,
 common-pair instantiation, and population transfer remain below.
 
 ## Initial dependency audit
@@ -76,7 +96,7 @@ proof.
 | Conditional moments and response | The populations `q=0` and `q=rho` give finite conditional second moments and work outside a common null set. The response bound comes from expectations before pointwise means are used. | Formalize conditional integration and variance decomposition. |
 | First-observation normalization | The activation event is seed-only. Under its conditional seed law, `Z=pY+c` preserves means and changes null work to `W0/p`; the zero-activation case contradicts the bias requirement. | Construct the conditional procedure and verify its moment identities. |
 | Good-gap selection | The proof uses populations `(1/2)1_E` with `mu(E)=2rho`, respecting the lower subclass's pointwise cap. The excluded mass is at most `70m`. | Formalize nonatomic subset selection and annulus averaging. |
-| Sign-test restarts | The actual unused-suffix law, independent of terminal output and work, is now Lean-checked for arbitrary observable stopped procedures. | Construct the iterated fresh-seed procedure, its observable sign decision, and its expected-work identity. |
+| Sign-test restarts | The actual unused-suffix law, observable sequential composition, and arbitrary fixed-count repetition are Lean-checked, including the iid joint output law and exact `n E T` work. | Connect thresholded real-output averages to the sign-test error bound. |
 | Finite observation reduction | At cap `m`, each seed/word cell has the integrated likelihood determined by `(T,heads)`. The multiplier cancels from conditional seed/word laws. | Formalize sufficiency, including arbitrary measurable seeds. |
 | Convex RMS comparison | Finite categorical probabilities are affine and positive; log moments are concave in the population and convex in the score/scale. Tail integration is used to obtain RMS, rather than substituting a confidence bound. | Kernel treatment of the minimax interchange and tail integrals remains open. |
 | One pair for all policies | The separated-pair set is compact convex in the weak-star topology. Squared Hellinger is continuous convex. A revealed finite policy mixture has exactly averaged Hellinger and null work. Finite-simplex minimax supplies the finite intersection property. | Formalize the compactness and minimax steps; a policy-dependent hard pair alone would not suffice. |
