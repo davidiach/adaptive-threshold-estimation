@@ -188,7 +188,11 @@ targets: ten components and `tier3_landmark`. The separate audit passes
 `Quot.sound`; no pending targets or proof stubs remain. Eight audit regression
 tests pass. The original 21-file freeze and the separate nine-file Tier 3
 specification lock both verify. The existing 121-point target set is retained,
-and the full 713 audit passes again at 130/130. Linux replay is pending.
+and the full 713 audit passes again at 130/130. The independent
+[Linux replay of `23988c7`](https://github.com/davidiach/threshold-hillclimb/actions/runs/40468287646)
+confirms 11/11 Tier 3 targets and 152/152 declarations, the original 121/121
+score, 7/7 scalar lemmas, and the complete 130/130-root 713 audit. Both CI jobs
+passed, including the numerical checks and both validation regression suites.
 
 The randomized proof derives integrability by factoring finite-horizon policies
 and tests through finite codes. Marginal KL and tests with global error bounds
@@ -201,12 +205,12 @@ assumption in the specified conclusions.
 
 | Component | Proof entry point |
 |---|---|
-| Arbitrary-seed marginal KL and testing | `Tier3/Randomized.lean` |
-| Finite work and almost-sure halting | `Tier3/StoppingBase.lean` |
-| Unbounded terminal testing | `Tier3/Stopping.lean` |
-| Arbitrary-law optimizer and cutoff | `Tier3/Optimizer.lean` |
-| Explicit unbounded experiment | `Tier3/Examples.lean` |
-| Combined locked landmark | `Tier3/Full.lean` |
+| Arbitrary-seed marginal KL and testing | [Randomized.lean](lean/ThresholdHC/Tier3/Randomized.lean) |
+| Finite work and almost-sure halting | [StoppingBase.lean](lean/ThresholdHC/Tier3/StoppingBase.lean) |
+| Unbounded terminal testing | [Stopping.lean](lean/ThresholdHC/Tier3/Stopping.lean) |
+| Arbitrary-law optimizer and cutoff | [Optimizer.lean](lean/ThresholdHC/Tier3/Optimizer.lean) |
+| Explicit unbounded experiment | [Examples.lean](lean/ThresholdHC/Tier3/Examples.lean) |
+| Combined locked landmark | [Full.lean](lean/ThresholdHC/Tier3/Full.lean) |
 
 This development still has a fixed finite set of coin magnitudes in the
 transcript model. Its unbounded result concerns stopping and terminal testing;

@@ -25,15 +25,16 @@ Windows and in [independent Linux CI](https://github.com/davidiach/threshold-hil
   the actual stopping rule and coupled work, infinite random-level sampling,
   unbiasedness, and integration over arbitrary magnitude/sign laws. See the
   [formal development](proposals/constants/LEAN713_PROGRESS.md).
-- **The Tier 3 landmark is proved locally:** arbitrary measurable random
+- **The Tier 3 landmark is proved on Windows and Linux:** arbitrary measurable random
   seeds, unbounded stopping/testing, and the arbitrary-law rare-event optimizer.
   All ten component statements and their combined theorem pass the locked
   audit: **11/11 targets, 152/152 declaration checks**. A concrete geometric-seed
   experiment has finite expected work and positive probability of exceeding
   every finite cap. See the [combined proof](lean/ThresholdHC/Tier3/Full.lean),
   [specification](lean/ThresholdHC/Tier3/Specification.lean), and
-  [audit status](results/tier3_status.json). Linux replay is pending. The
-  121-point scorer and the separate 713 guarantee are preserved.
+  [audit status](results/tier3_status.json). The
+  [independent Linux replay](https://github.com/davidiach/threshold-hillclimb/actions/runs/40468287646)
+  also preserves the 121-point score and the complete 713 guarantee.
 - The constants track has two independently preselected, held-out accepted
   improvements. The conservative choice preserves the original bias theorem;
   the finite-grid winner has an explicit off-grid counterexample.

@@ -56,3 +56,9 @@ Format, one entry per change:
 - First accepted component audit: four of eleven registered targets, 81/81
   declaration reports, exit zero, standard axioms only. The full optimizer is
   included; unbounded stopping/testing and the example remain pending.
+- Final landmark in `23988c7`: all eleven exact targets and 152/152 declarations
+  pass with only the three standard axioms. All nine Tier 3 locks and the
+  original 21-file freeze are unchanged. The original score remains 121/121;
+  the separate full 713 audit remains 130/130. Independent Linux run
+  [40468287646](https://github.com/davidiach/threshold-hillclimb/actions/runs/40468287646)
+  passed both jobs with complete Tier 3 verification required.
