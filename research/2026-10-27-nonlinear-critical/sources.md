@@ -1,0 +1,33 @@
+# Nonlinear aggregation: focused primary-source audit
+
+This is a separate agent source audit, not external specialist review or a priority certificate. The reviewer does not author the candidate theorem. Earlier coin-mixture and critical-margin audits remain in their original directories. Model diversity is not guaranteed.
+
+## Juditsky--Nemirovski: actual theorem and proof inspected
+
+**A. Juditsky and A. Nemirovski, _Nonparametric estimation by convex programming_, Annals of Statistics 37(5A), 2278--2300 (2009), DOI 10.1214/08-AOS654.** [Author-hosted primary PDF](https://www2.isye.gatech.edu/~nemirovs/AnnStat_Saddle_2009.pdf).
+
+Inspected Section 2.1's good-pair definition and Examples 1, 2 and 4, Theorem 3.1, proofs of Lemmas 3.1--3.2, Proposition 3.1, and Section 3.2/Theorem 3.2. The signal set is finite-dimensional, convex and compact. Observation parameters are affine functions of the signal. A good pair requires positive densities, a finite-dimensional function space containing constants and log density ratios, and concavity of every corresponding log moment-generating function. Finite categorical and Poisson families, and their finite independent products, qualify. Theorem 3.2 permits heterogeneous observations and produces a sum of component functions. For 0<epsilon<1/4, its fixed-confidence risk is at most [2 log(2/epsilon)/log(1/(4epsilon))] times unrestricted fixed-confidence minimax risk. This is not stated as an RMS theorem. Lemma 3.1 supplies exponential-moment inequalities; Proposition 3.1 represents the saddle value through Hellinger affinity. Neither a cost constraint nor general common-seed mixture is covered. The arXiv HTML route for 0908.3108 returned 404; the author PDF was readable.
+
+## Donoho--Liu: useful context, not the needed affine comparison
+
+**D. Donoho and R. Liu, _Geometrizing Rates of Convergence, II_, Annals of Statistics 19(2), 633--667 (1991).** [Author-hosted published PDF](https://web.stanford.edu/dept/statistics/cgi-bin/donoho/wp-content/uploads/2018/08/GeoII.pdf); [Berkeley technical-report copy](https://digicoll.lib.berkeley.edu/record/85827/files/120.pdf).
+
+The published abstract/introduction and the indexed primary technical-report statements of Theorems 2.1 and 3.1 were accessible. The model is a fixed iid sample from a convex distribution family with linear target. Theorem 3.1 compares the composite-testing resolution with the Hellinger modulus at scale sqrt(log(1/alpha)/n); accompanying regularity and loss conditions produce minimax-rate statements. This does not by itself say that componentwise additive estimators are nearly optimal for arbitrary heterogeneous stopped-coin designs. The published PDF produced no readable body text through the browser extractor, and the Berkeley open request returned 403 despite indexed excerpts. A complete proof audit of this source was therefore not performed. Theorem numbers here refer to the inspected technical-report text; no unverified correspondence of numbering with the final article is asserted.
+
+## Later quadratic-risk comparison
+
+**Y. Polyanskiy and Y. Wu, _Dualizing Le Cam's method for functional estimation, with applications to estimating the unseens_, arXiv:1902.05616v2 (January 2021).** [Primary PDF](https://arxiv.org/pdf/1902.05616).
+
+Followed the alternate agent's citation and inspected Theorem 1, assumptions A1--A4, Proposition 4 and its minimax setup, plus the statement of Theorem 12 and Section 4.1's comparison with Juditsky--Nemirovski. Theorem 1 treats a fixed iid mixture experiment: affine target, convex latent-law class, a function space dense in every observable L2, and a topology making that class compact and target/first/second moments continuous. Quadratic minimax risk lies between delta_chi2(1/sqrt(n))^2/(1+sqrt(e))^2 and delta_chi2(1/sqrt(n))^2; the upper uses a sample average. Proposition 4 identifies the relevant bias--variance dual bound. Theorem 12 separately addresses regular exponential families with a convex mean-parameter set and affine target. These results establish prior quadratic-risk affine comparison; such a general principle is not a new claim here. This inspection does not import a comparison for arbitrary adaptive coin acquisition or prove the proposed cost-sensitive universal pair.
+
+## Lee--Valiant direct sum reinspection
+
+**J. C. H. Lee and P. Valiant, _Uncertainty about Uncertainty: Optimal Adaptive Algorithms for Estimating Mixtures of Unknown Coins_, arXiv:1904.09228v3.** [Primary text, Section 5.1](https://arxiv.org/html/1904.09228v3#S5.SS1).
+
+Reinspected Lemma 17 and its full proof after the parent proposed a stronger population transfer. It bounds squared Hellinger distance between full adaptive transcripts by a sum of single-variable hybrid distances. Each hybrid uses the indicated variable from one endpoint and independently simulates every other variable from the midpoint population. The endpoints can be arbitrary populations; unlike Lemma 18, this statement has no fixed-conditional-law or small mixture-weight perturbation restriction. Its convention is H^2=1-affinity. The finite decision-tree proof factors each leaf probability by coin and uses a product inequality. Randomization is handled by revealing the seed. The source explicitly leaves general measure-theoretic issues informal. A capped Bernoulli-tree proof and a separate limit argument are therefore required here. The lemma supplies no hard endpoint pair and no comparison between the hybrid's work laws; these are separate dependencies of the proposed unrestricted lower bound.
+
+## Workspace overlap and limits
+
+Re-read the current result summaries in `research/2026-10-27-population-step/lower/RESULT.md` and `upper/RESULT.md`. They continue to leave unrestricted population minimax unresolved. The lower summary records a radial-information obstruction and a calibrated radial submodel; the upper summary concerns a specified pilot/control-variate class. Neither supplies the nonlinear-aggregation comparison proposed here. Those proofs were not adopted as dependencies or independently replayed in this pass.
+
+The initial route used the reviewed sharp additive result in `research/2026-10-27-critical-two/construction.tex`, whose review records its exact source hash and scope. The later unrestricted proof instead strengthens the single-coin argument to all-negative cost, extracts a universal hard pair, and proves the finite-prefix adaptive transfer. These new steps are independently assessed in `review.md`; they are not asserted to follow merely from the cited source theorems or the old additive statement. Searches were focused and nonexhaustive; no external contact occurred.

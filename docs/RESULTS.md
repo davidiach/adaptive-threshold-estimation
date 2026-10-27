@@ -55,7 +55,7 @@ $$\Psi_{\mu,\rho}(h)=\sup_{\substack{v\text{ measurable},\ 0\le v\le1\\\mathbb E
 
 $$\Psi_{\mu,\rho}(h)=\Pr(D\le h)+h\mathbb E[D^{-1};h<D\le t]+ht\mathbb E[D^{-2};D>t].$$
 
-The [specification](../lean/ThresholdHC/Tier3/OptimizerModel.lean) permits atoms and singular laws and assumes no finite inverse moment. It formalizes the identity in [continuation §3.3](../inputs/next-phase/report/research_note.tex#L218). A matching arbitrary-law statistical upper bound remains conjectural. The matching rare-event construction in its §4 covers power margins $F(d)=(d/a)^\alpha$ on $(0,a]$ for $0<\alpha<2$, not $\alpha\ge2$.
+The [specification](../lean/ThresholdHC/Tier3/OptimizerModel.lean) permits atoms and singular laws and assumes no finite inverse moment. It formalizes the identity in [continuation §3.3](../inputs/next-phase/report/research_note.tex#L218). The proposed matching arbitrary-law statistical upper bound is refuted by the reviewed critical-law paper proof below; the variational identity remains valid. The matching rare-event construction in the preserved continuation's §4 covers power margins $F(d)=(d/a)^\alpha$ on $(0,a]$ for $0<\alpha<2$, not $\alpha\ge2$.
 
 ## Rare-event power margins above two
 
@@ -69,7 +69,37 @@ The new construction uses asymmetric sign-test errors and a randomized telescope
 
 The [adversarial review](../research/2026-10-27-route-a/review.md), [second analytic review](../research/2026-10-27-route-a/second-review.md), [primary-source comparison](../research/2026-10-27-route-a/sources.md), and [baseline ledger](../research/2026-10-27-route-a/BASELINE.md) record the evidence. Reviewers did not author the main proof; model diversity is not guaranteed. The theorem is **not Lean-checked or externally specialist-reviewed**, and worldwide novelty is unverified. The arbitrary-law conjecture, a universal two-atom characterization, and $\alpha=2$ remain open. Constants diverge as $\alpha\downarrow2$. The preserved paper and imported continuation are unchanged.
 
-## Critical power margin: sharp additive-class obstruction
+## Critical power margin: full minimax characterization
+
+For the one fixed law $F(d)=(4d)^2$ on $(0,1/4]$, the
+[full critical note](../research/2026-10-27-nonlinear-critical/unrestricted.tex)
+proves, with universal constants, for all $0<\rho\le1/4$ and $B\ge1$,
+
+$$R_{\mu,\rho}(B)\asymp\min\{\rho,\sqrt{\rho L(1+\log L)/B}\},\qquad L=1+\log(1/\rho).$$
+
+The minimax class is every observable iid fresh-coin algorithm with uniform
+expected work at most B. It includes nonlinear biased output, arbitrary
+independent seeds, adaptive creation/revisiting/interleaving and unbounded
+stopping. The algorithm may know mu, rho and B. The supremum ranges over all
+measurable q in [0,1] with integral q at most rho; the lower proof's cap q<=1/2
+is only an adversarial subclass. Neither individual magnitudes nor signs are
+observed. The upper uses the pre-existing critical construction.
+
+The new lower bound combines a strengthened all-negative-cost entropy
+theorem, a rigorously justified common hard pair, and a finite-prefix adaptive
+Hellinger reduction with an endpoint termination limit. Thus it covers the
+previously unresolved nonlinear and interactive estimators. At this law
+Psi(B^-1/2) has order min{rho,sqrt(rho L/B)}. Taking rho=exp(-exp(n)), B=rho^-2
+forces R/Psi to diverge, refuting a universal C Psi upper even with known mu
+and rho. This supplies no characterization for arbitrary other laws.
+
+Status: **paper proof with independent adversarial agent review and scoped
+component cross-checks**. See the [checkpoint](../research/2026-10-27-nonlinear-critical/CHECKPOINT.md)
+for the exact four-file source bundle, replay evidence, attribution and
+limitations. No Lean theorem, explicit hard-pair formula, external specialist
+review or priority certification is claimed.
+
+## Earlier critical power margin: additive-class obstruction
 
 At the single fixed law $F(d)=(4d)^2$, the new
 [critical-regime note](../research/2026-10-27-critical-two/construction.tex)
@@ -98,8 +128,9 @@ links the complete proof, exact source hashes, prior-art comparison and checks.
 No new Lean statistical theorem, external review or novelty certification is
 claimed. Since $\Psi(B^{-1/2})\asymp\min\{\rho,\sqrt{\rho L/B}\}$ at this law,
 the new result rules out a uniform matching-Psi guarantee in the specified
-additive class. The unrestricted alpha=2 and arbitrary-law conjectures remain
-open.
+additive class. The later full critical-law theorem above resolves the
+nonlinear/interactive gap; this earlier checkpoint's restricted statement and
+evidence are preserved.
 
 ## Unknown rarity and numerical evidence
 

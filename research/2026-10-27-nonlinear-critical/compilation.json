@@ -1,0 +1,12 @@
+{
+  "kind": "success",
+  "tool": "mcp__codex_app__compile_latex_document",
+  "path": "C:\\Users\\User\\Desktop\\Projects\\math\\threshold-hillclimb\\research\\2026-10-27-nonlinear-critical\\unrestricted.tex",
+  "source_sha256": {
+    "unrestricted.tex": "b00b608ca1012148934e5717d2b10ee1d1379fa312a9f5bf06a0ac1e0e6fb853",
+    "base_cost.tex": "6c02a467ac9a8b989ccb3e3618a9bb567e332ed1d3830d70fca27c01e5e3265a",
+    "affine_comparison.tex": "c243a6ad355aeabb2fea3df195166faf066b95b4e5778e3bc02512d61a80f7c2",
+    "upper_bound.tex": "e4d8fd72f87fe0bf590b1cbbf8a61d9736f1402ba5e6a364df834cc810737fbc"
+  },
+  "message": "Final four-file source compiled successfully with desktop editor compiler; this is not proof verification."
+}

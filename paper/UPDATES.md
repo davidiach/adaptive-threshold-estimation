@@ -1,6 +1,26 @@
 # Results after the v4 paper
 
-## Critical quadratic margin: a restricted minimax characterization
+## Critical quadratic margin: full characterization and Psi counterexample
+
+The [full critical note](../research/2026-10-27-nonlinear-critical/unrestricted.tex)
+proves $R_{\mu,\rho}(B)\asymp\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}$,
+$L=1+\log(1/\rho)$, at the single fixed law $F(d)=(4d)^2$, uniformly for
+$0<\rho\le1/4$ and $B\ge1$. The lower bound permits all observable fresh-coin
+algorithms, including nonlinear outputs, adaptive creation and interleaving,
+and unbounded stopping under the uniform expected-work constraint. The
+algorithm may know the law and rarity. The upper construction was already
+present in the separately credited critical note.
+
+The rate is larger than Psi by an unbounded factor along an explicit joint
+rarity/budget sequence. It therefore refutes the arbitrary-law matching-Psi
+upper conjecture in the preserved continuation. The variational optimizer
+theorem is unchanged. The new result is a paper proof with independent
+adversarial agent review and scoped component cross-checks, without Lean or
+external specialist verification or certified novelty. The
+[checkpoint](../research/2026-10-27-nonlinear-critical/CHECKPOINT.md) records
+proof dependencies, exact source hashes and reproducible checks.
+
+## Earlier critical quadratic margin: restricted characterization
 
 The separate [critical-regime note](../research/2026-10-27-critical-two/construction.tex)
 proves the sharp RMS order $\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}$,
@@ -11,9 +31,10 @@ included under the stated moment conditions. Its core product lower bound
 also permits single-coin bias up to $\rho/64$. The upper side reuses the
 separately developed critical construction with explicit attribution.
 
-This is a paper proof with two separate agent reviews. It neither proves a
-matching unrestricted Psi upper bound nor refutes one: nonlinear aggregation
-and cross-coin feedback remain unresolved. The [checkpoint](../research/2026-10-27-critical-two/CHECKPOINT.md)
+This is a paper proof with two separate agent reviews. At that checkpoint it
+neither proved a matching unrestricted Psi upper bound nor refuted one;
+nonlinear aggregation and cross-coin feedback were unresolved. The later full
+theorem above resolves that gap. The [checkpoint](../research/2026-10-27-critical-two/CHECKPOINT.md)
 records exact scope, proof evidence, numerical limitations and prior-art
 overlap. The preserved v4 paper and imported continuation are unchanged.
 

@@ -1,8 +1,45 @@
 # Research hill-climb report
 
-## Current critical-regime checkpoint — 27 October 2026
+## Current checkpoint: full critical minimax law — 27 October 2026
 
-**The unrestricted alpha=2 Psi conjecture remains open.** The new
+**The proposed arbitrary-law matching-Psi upper bound is refuted at the fixed
+quadratic law $F(d)=(4d)^2$.** The new
+[complete paper proof](../../research/2026-10-27-nonlinear-critical/unrestricted.tex)
+establishes, with universal constants, for every $0<\rho\le1/4$ and $B\ge1$,
+
+$$R_{\mu,\rho}(B)\asymp\min\{\rho,\sqrt{\rho L(1+\log L)/B}\},\qquad L=1+\log(1/\rho).$$
+
+This is the full iid fresh-coin experiment: the algorithm may know mu, rho
+and B, use nonlinear biased outputs, create, revisit and interleave coins,
+and stop at an unbounded time. It sees only its seed and observed flips.
+The parameter class is every measurable q with integral q at most rho.
+The upper construction was already available; the new lower bound extends
+beyond the earlier additive-class result. Since Psi has order
+min{rho,sqrt(rho L/B)}, the ratio diverges along rho=exp(-exp(n)), B=rho^-2.
+
+The central improvement is a single-coin product lower bound charged to
+all-negative work, followed by a common hard pair obtained through convex
+minimax and compactness. A finite-prefix midpoint Hellinger argument charges
+its information to actual population work. Endpoint termination then gives
+the unrestricted lower bound. The reference cost and common-pair quantifier
+are essential new dependencies; the prior product of separate suprema alone
+did not imply this result. The proof explicitly credits the existing critical
+upper, Chen–Li–Qiao entropy, Juditsky–Nemirovski and Polyanskiy–Wu convex
+estimation, and Lee–Valiant's adaptive Hellinger decomposition.
+
+Status: **paper proof with an independent adversarial agent review and scoped
+component cross-checks**. Model diversity is not guaranteed. This is neither
+a new Lean theorem nor external specialist review or priority certification.
+The compactness proof does not provide an explicit hard pair or useful
+numerical lower constant. A sharp replacement for arbitrary magnitude laws
+remains open. The [checkpoint](../../research/2026-10-27-nonlinear-critical/CHECKPOINT.md)
+records source identities, proof dependencies, failed approaches and exact
+validation. Existing freezes, imported papers, published verification records
+and concurrent Tier5/population work are preserved.
+
+## Previous restricted critical-regime checkpoint — 27 October 2026
+
+**At this earlier checkpoint the unrestricted alpha=2 Psi conjecture was open.** The
 [paper theorem](../../research/2026-10-27-critical-two/construction.tex)
 characterizes the minimax rate of noninteractive additive estimators at the
 fixed quadratic law $F(d)=(4d)^2$:

@@ -1,0 +1,751 @@
+{
+  "status": "finite_exact_checks_passed",
+  "scope": "finite atomic observable trees only; not proof of continuum or all-policy theorem",
+  "arithmetic": "Fraction probabilities/work and certified dyadic square-root enclosures",
+  "sqrt_bits": 160,
+  "monte_carlo": false,
+  "random_seed": null,
+  "source_sha256": "d6f4aa173b7922991fb0d83a1e9bed6231e60ec1236ad1f0389e3920aac3fef2",
+  "population_cases": 20,
+  "sufficiency_cases": 2,
+  "results": [
+    {
+      "case": "two_scales",
+      "policy": "interleave",
+      "cap": 2,
+      "revealed_seed_leaf_count": 4,
+      "theta_minus": "1/34",
+      "theta_plus": "3/34",
+      "population_h": {
+        "lower": "480827359323162172440663242976974966979935701349/422373973188630943360864916655005792680564504920064",
+        "upper": "480827359323162172440663242976974966979935701927/422373973188630943360864916655005792680564504920064",
+        "midpoint_float": 0.0011383924906481538
+      },
+      "sum_hybrid_h": {
+        "lower": "7071208354645468192163291214246390491533461489/6211381958656337402365660539044202833537713307648",
+        "upper": "28284833418581872768653164856985561966133846041/24845527834625349609462642156176811334150853230592",
+        "midpoint_float": 0.0011384275515033905
+      },
+      "decomposition_gap_lower": "14808792729664626440559591779586444339679325/422373973188630943360864916655005792680564504920064",
+      "null_hybrid_slot_work": [
+        "343/272",
+        "781/1088"
+      ],
+      "midpoint_slot_work": [
+        "1395/1088",
+        "781/1088"
+      ],
+      "midpoint_total_work": "2",
+      "normalization_exact": true,
+      "midpoint_word_affinity_exact": true,
+      "hellinger_decomposition_certified": true,
+      "null_cost_domination_exact": true,
+      "work_sum_exact": true
+    },
+    {
+      "case": "two_scales",
+      "policy": "interleave",
+      "cap": 4,
+      "revealed_seed_leaf_count": 16,
+      "theta_minus": "1/34",
+      "theta_plus": "3/34",
+      "population_h": {
+        "lower": "7721688308399850620706069185671995147781436383615/3590178772103363018567351791567549237784798291820544",
+        "upper": "3860844154199925310353034592835997573890718209003/1795089386051681509283675895783774618892399145910272",
+        "midpoint_float": 0.0021507810052244216
+      },
+      "sum_hybrid_h": {
+        "lower": "53454232837574429014502005943205392812458847797/24845527834625349609462642156176811334150853230592",
+        "upper": "53454232837574429014502005943205392812458848409/24845527834625349609462642156176811334150853230592",
+        "midpoint_float": 0.0021514629591841182
+      },
+      "decomposition_gap_lower": "4896673259308743778941346242368227237734177321/7180357544206726037134703583135098475569596583641088",
+      "null_hybrid_slot_work": [
+        "615/272",
+        "1",
+        "781/1088",
+        "0"
+      ],
+      "midpoint_slot_work": [
+        "2483/1088",
+        "1",
+        "781/1088",
+        "0"
+      ],
+      "midpoint_total_work": "4",
+      "normalization_exact": true,
+      "midpoint_word_affinity_exact": true,
+      "hellinger_decomposition_certified": true,
+      "null_cost_domination_exact": true,
+      "work_sum_exact": true
+    },
+    {
+      "case": "two_scales",
+      "policy": "interleave",
+      "cap": 6,
+      "revealed_seed_leaf_count": 56,
+      "theta_minus": "1/34",
+      "theta_plus": "3/34",
+      "population_h": {
+        "lower": "26179394252551766442042896055239550320347167768181/7180357544206726037134703583135098475569596583641088",
+        "upper": "13089697126275883221021448027619775160173583994633/3590178772103363018567351791567549237784798291820544",
+        "midpoint_float": 0.0036459736289419027
+      },
+      "sum_hybrid_h": {
+        "lower": "1637545784356107587586500403067739278179011873839/448772346512920377320918973945943654723099786477568",
+        "upper": "6550183137424430350346001612270957112716047608355/1795089386051681509283675895783774618892399145910272",
+        "midpoint_float": 0.0036489453886369575
+      },
+      "decomposition_gap_lower": "10669148572977479670555196922139065258510996079/3590178772103363018567351791567549237784798291820544",
+      "null_hybrid_slot_work": [
+        "13628517019/5151653888",
+        "126875448885/82426462208",
+        "267883/295936",
+        "0",
+        "0",
+        "0"
+      ],
+      "midpoint_slot_work": [
+        "108043657/40247296",
+        "511356708217/329705848832",
+        "1089495/1183744",
+        "0",
+        "0",
+        "0"
+      ],
+      "midpoint_total_work": "1699905209721/329705848832",
+      "normalization_exact": true,
+      "midpoint_word_affinity_exact": true,
+      "hellinger_decomposition_certified": true,
+      "null_cost_domination_exact": true,
+      "work_sum_exact": true
+    },
+    {
+      "case": "two_scales",
+      "policy": "screen",
+      "cap": 2,
+      "revealed_seed_leaf_count": 4,
+      "theta_minus": "1/34",
+      "theta_plus": "3/34",
+      "population_h": {
+        "lower": "480827359323162172440663242976974966979935701349/422373973188630943360864916655005792680564504920064",
+        "upper": "480827359323162172440663242976974966979935701927/422373973188630943360864916655005792680564504920064",
+        "midpoint_float": 0.0011383924906481538
+      },
+      "sum_hybrid_h": {
+        "lower": "7071208354645468192163291214246390491533461489/6211381958656337402365660539044202833537713307648",
+        "upper": "28284833418581872768653164856985561966133846041/24845527834625349609462642156176811334150853230592",
+        "midpoint_float": 0.0011384275515033905
+      },
+      "decomposition_gap_lower": "14808792729664626440559591779586444339679325/422373973188630943360864916655005792680564504920064",
+      "null_hybrid_slot_work": [
+        "343/272",
+        "781/1088"
+      ],
+      "midpoint_slot_work": [
+        "1395/1088",
+        "781/1088"
+      ],
+      "midpoint_total_work": "2",
+      "normalization_exact": true,
+      "midpoint_word_affinity_exact": true,
+      "hellinger_decomposition_certified": true,
+      "null_cost_domination_exact": true,
+      "work_sum_exact": true
+    },
+    {
+      "case": "two_scales",
+      "policy": "screen",
+      "cap": 4,
+      "revealed_seed_leaf_count": 14,
+      "theta_minus": "1/34",
+      "theta_plus": "3/34",
+      "population_h": {
+        "lower": "25350036586286576888636142442571750351219316555203/7180357544206726037134703583135098475569596583641088",
+        "upper": "12675018293143288444318071221285875175609658304623/3590178772103363018567351791567549237784798291820544",
+        "midpoint_float": 0.0035304699564354643
+      },
+      "sum_hybrid_h": {
+        "lower": "1584509017397830040788666654143507008715829299653/448772346512920377320918973945943654723099786477568",
+        "upper": "3169018034795660081577333308287014017431658614045/897544693025840754641837947891887309446199572955136",
+        "midpoint_float": 0.003530763492246979
+      },
+      "decomposition_gap_lower": "1053846039351881991262011862180894116976092601/3590178772103363018567351791567549237784798291820544",
+      "null_hybrid_slot_work": [
+        "94055/69632",
+        "2961441/2367488",
+        "253349371/321978368",
+        "0"
+      ],
+      "midpoint_slot_work": [
+        "392735/278528",
+        "6085699/4734976",
+        "1027426587/1287913472",
+        "0"
+      ],
+      "midpoint_total_work": "4498743355/1287913472",
+      "normalization_exact": true,
+      "midpoint_word_affinity_exact": true,
+      "hellinger_decomposition_certified": true,
+      "null_cost_domination_exact": true,
+      "work_sum_exact": true
+    },
+    {
+      "case": "two_scales",
+      "policy": "screen",
+      "cap": 6,
+      "revealed_seed_leaf_count": 40,
+      "theta_minus": "1/34",
+      "theta_plus": "3/34",
+      "population_h": {
+        "lower": "627593051521854232138991444690957645575549691223043/122066078251514342631289960913296674084683141921898496",
+        "upper": "313796525760927116069495722345478822787774847073139/61033039125757171315644980456648337042341570960949248",
+        "midpoint_float": 0.0051414206183368425
+      },
+      "sum_hybrid_h": {
+        "lower": "627700435707038468657116981326731871275089458445159/122066078251514342631289960913296674084683141921898496",
+        "upper": "313850217853519234328558490663365935637544732688701/61033039125757171315644980456648337042341570960949248",
+        "midpoint_float": 0.005142300340096748
+      },
+      "decomposition_gap_lower": "107384185184236518125536635774225699539764298881/122066078251514342631289960913296674084683141921898496",
+      "null_hybrid_slot_work": [
+        "24215223/17825792",
+        "1617310279/1212153856",
+        "41524614541/41213231104",
+        "999757600941/5604999430144",
+        "0",
+        "0"
+      ],
+      "midpoint_slot_work": [
+        "102690655/71303168",
+        "1697098581/1212153856",
+        "172354146319/164852924416",
+        "505707892767/2802499715072",
+        "0",
+        "0"
+      ],
+      "midpoint_total_work": "5697786901791/1401249857536",
+      "normalization_exact": true,
+      "midpoint_word_affinity_exact": true,
+      "hellinger_decomposition_certified": true,
+      "null_cost_domination_exact": true,
+      "work_sum_exact": true
+    },
+    {
+      "case": "two_scales",
+      "policy": "mixed",
+      "cap": 2,
+      "revealed_seed_leaf_count": 13,
+      "theta_minus": "1/34",
+      "theta_plus": "3/34",
+      "population_h": {
+        "lower": "206074218265038970619658403940782657468037153729/263983733242894339600540572909378620425352815575040",
+        "upper": "824296873060155882478633615763130629872148619251/1055934932971577358402162291637514481701411262300160",
+        "midpoint_float": 0.0007806322599257576
+      },
+      "sum_hybrid_h": {
+        "lower": "2852380380577464451711852021301608867865269401/3653754093327257295509212081790707549139831357440",
+        "upper": "5704760761154928903423704042603217735730538877/7307508186654514591018424163581415098279662714880",
+        "midpoint_float": 0.0007806711419869997
+      },
+      "decomposition_gap_lower": "20528463365672033045809196517166470457118819/527967466485788679201081145818757240850705631150080",
+      "null_hybrid_slot_work": [
+        "751/680",
+        "265/544"
+      ],
+      "midpoint_slot_work": [
+        "3027/2720",
+        "265/544"
+      ],
+      "midpoint_total_work": "8/5",
+      "normalization_exact": true,
+      "midpoint_word_affinity_exact": true,
+      "hellinger_decomposition_certified": true,
+      "null_cost_domination_exact": true,
+      "work_sum_exact": true
+    },
+    {
+      "case": "two_scales",
+      "policy": "mixed",
+      "cap": 4,
+      "revealed_seed_leaf_count": 49,
+      "theta_minus": "1/34",
+      "theta_plus": "3/34",
+      "population_h": {
+        "lower": "122171932984409935964703542579663214139169646797581/76291298907196464144556225570810421302926963701186560",
+        "upper": "122171932984409935964703542579663214139169648468001/76291298907196464144556225570810421302926963701186560",
+        "midpoint_float": 0.0016013875072834237
+      },
+      "sum_hybrid_h": {
+        "lower": "49747250045909377580171027478946899400654068679/31056909793281687011828302695221014167688566538240",
+        "upper": "99494500091818755160342054957893798801308142033/62113819586563374023656605390442028335377133076480",
+        "midpoint_float": 0.0016018094001313302
+      },
+      "decomposition_gap_lower": "12874701346580024394634568947937695414828496785/30516519562878585657822490228324168521170785480474624",
+      "null_hybrid_slot_work": [
+        "259/136",
+        "3/5",
+        "265/544",
+        "1/5"
+      ],
+      "midpoint_slot_work": [
+        "5203/2720",
+        "3/5",
+        "265/544",
+        "1/5"
+      ],
+      "midpoint_total_work": "16/5",
+      "normalization_exact": true,
+      "midpoint_word_affinity_exact": true,
+      "hellinger_decomposition_certified": true,
+      "null_cost_domination_exact": true,
+      "work_sum_exact": true
+    },
+    {
+      "case": "two_scales",
+      "policy": "mixed",
+      "cap": 6,
+      "revealed_seed_leaf_count": 185,
+      "theta_minus": "1/34",
+      "theta_plus": "3/34",
+      "population_h": {
+        "lower": "455026408561306685992402469123974521398128261077313291/176385483073438225102213993519713694052367140077143326720",
+        "upper": "56878301070163335749050308640496815174766034460067817/22048185384179778137776749189964211756545892509642915840",
+        "midpoint_float": 0.002579727087698346
+      },
+      "sum_hybrid_h": {
+        "lower": "92672871132546075113615065796675877437384713812941/35901787721033630185673517915675492377847982918205440",
+        "upper": "92672871132546075113615065796675877437384726586741/35901787721033630185673517915675492377847982918205440",
+        "midpoint_float": 0.0025812884821401864
+      },
+      "decomposition_gap_lower": "275407312892181040788349135094064451742823282436597/176385483073438225102213993519713694052367140077143326720",
+      "null_hybrid_slot_work": [
+        "31659305627/12879134720",
+        "168088679989/206066155520",
+        "415851/739840",
+        "1/5",
+        "1/5",
+        "1/5"
+      ],
+      "midpoint_slot_work": [
+        "248909193/100618240",
+        "676209632633/824264622080",
+        "1681367/2959360",
+        "1/5",
+        "1/5",
+        "1/5"
+      ],
+      "midpoint_total_work": "3678140302713/824264622080",
+      "normalization_exact": true,
+      "midpoint_word_affinity_exact": true,
+      "hellinger_decomposition_certified": true,
+      "null_cost_domination_exact": true,
+      "work_sum_exact": true
+    },
+    {
+      "case": "two_scales",
+      "policy": "mixed",
+      "cap": 0,
+      "revealed_seed_leaf_count": 4,
+      "theta_minus": "1/34",
+      "theta_plus": "3/34",
+      "population_h": {
+        "lower": "0",
+        "upper": "0",
+        "midpoint_float": 0.0
+      },
+      "sum_hybrid_h": {
+        "lower": "0",
+        "upper": "0",
+        "midpoint_float": 0.0
+      },
+      "decomposition_gap_lower": "0",
+      "null_hybrid_slot_work": [],
+      "midpoint_slot_work": [],
+      "midpoint_total_work": "0",
+      "normalization_exact": true,
+      "midpoint_word_affinity_exact": true,
+      "hellinger_decomposition_certified": true,
+      "null_cost_domination_exact": true,
+      "work_sum_exact": true
+    },
+    {
+      "case": "three_scales",
+      "policy": "interleave",
+      "cap": 2,
+      "revealed_seed_leaf_count": 4,
+      "theta_minus": "1/54",
+      "theta_plus": "13/162",
+      "population_h": {
+        "lower": "8670665766405935405437624372957740478309979105713/9588912242528054046334376187451532891962573414465536",
+        "upper": "8670665766405935405437624372957740478309979118835/9588912242528054046334376187451532891962573414465536",
+        "midpoint_float": 0.0009042387235488945
+      },
+      "sum_hybrid_h": {
+        "lower": "35682670396893783572574404570705667490125537341/39460544207934378791499490483339641530710178660352",
+        "upper": "8920667599223445893143601142676416872531384369/9865136051983594697874872620834910382677544665088",
+        "midpoint_float": 0.0009042619941799745
+      },
+      "decomposition_gap_lower": "55785009813500674488984430934180447631613757/2397228060632013511583594046862883222990643353616384",
+      "null_hybrid_slot_work": [
+        "3311/2592",
+        "17/24"
+      ],
+      "midpoint_slot_work": [
+        "31/24",
+        "17/24"
+      ],
+      "midpoint_total_work": "2",
+      "normalization_exact": true,
+      "midpoint_word_affinity_exact": true,
+      "hellinger_decomposition_certified": true,
+      "null_cost_domination_exact": true,
+      "work_sum_exact": true
+    },
+    {
+      "case": "three_scales",
+      "policy": "interleave",
+      "cap": 4,
+      "revealed_seed_leaf_count": 16,
+      "theta_minus": "1/54",
+      "theta_plus": "13/162",
+      "population_h": {
+        "lower": "454411039861088939055729162483141083236514339886989/258900630548257459251028157061191388082989482190569472",
+        "upper": "454411039861088939055729162483141083236514342367047/258900630548257459251028157061191388082989482190569472",
+        "midpoint_float": 0.0017551561728482911
+      },
+      "sum_hybrid_h": {
+        "lower": "34638555981514908054290463421510069693678543489/19730272103967189395749745241669820765355089330176",
+        "upper": "34638555981514908054290463421510069693678543975/19730272103967189395749745241669820765355089330176",
+        "midpoint_float": 0.0017556045754964571
+      },
+      "decomposition_gap_lower": "116091728349684432670298533914051283935505295611/258900630548257459251028157061191388082989482190569472",
+      "null_hybrid_slot_work": [
+        "5903/2592",
+        "1",
+        "17/24",
+        "0"
+      ],
+      "midpoint_slot_work": [
+        "55/24",
+        "1",
+        "17/24",
+        "0"
+      ],
+      "midpoint_total_work": "4",
+      "normalization_exact": true,
+      "midpoint_word_affinity_exact": true,
+      "hellinger_decomposition_certified": true,
+      "null_cost_domination_exact": true,
+      "work_sum_exact": true
+    },
+    {
+      "case": "three_scales",
+      "policy": "interleave",
+      "cap": 6,
+      "revealed_seed_leaf_count": 56,
+      "theta_minus": "1/54",
+      "theta_plus": "13/162",
+      "population_h": {
+        "lower": "199251976162415053592457424747321021948678943585585/64725157637064364812757039265297847020747370547642368",
+        "upper": "797007904649660214369829698989284087794715782313955/258900630548257459251028157061191388082989482190569472",
+        "midpoint_float": 0.003078431686171977
+      },
+      "sum_hybrid_h": {
+        "lower": "9845972151813007585719172687508772250358228595223/3196304080842684682111458729150510963987524471488512",
+        "upper": "9845972151813007585719172687508772250358228796427/3196304080842684682111458729150510963987524471488512",
+        "midpoint_float": 0.0030804241094662
+      },
+      "decomposition_gap_lower": "128959911798350018355822174731616121075183474777/64725157637064364812757039265297847020747370547642368",
+      "null_hybrid_slot_work": [
+        "1534577653/573308928",
+        "114483693605/73383542784",
+        "56287/62208",
+        "0",
+        "0",
+        "0"
+      ],
+      "midpoint_slot_work": [
+        "43047985/15925248",
+        "1065542117/679477248",
+        "527/576",
+        "0",
+        "0",
+        "0"
+      ],
+      "midpoint_total_work": "10571791919/2038431744",
+      "normalization_exact": true,
+      "midpoint_word_affinity_exact": true,
+      "hellinger_decomposition_certified": true,
+      "null_cost_domination_exact": true,
+      "work_sum_exact": true
+    },
+    {
+      "case": "three_scales",
+      "policy": "screen",
+      "cap": 2,
+      "revealed_seed_leaf_count": 4,
+      "theta_minus": "1/54",
+      "theta_plus": "13/162",
+      "population_h": {
+        "lower": "8670665766405935405437624372957740478309979105713/9588912242528054046334376187451532891962573414465536",
+        "upper": "8670665766405935405437624372957740478309979118835/9588912242528054046334376187451532891962573414465536",
+        "midpoint_float": 0.0009042387235488945
+      },
+      "sum_hybrid_h": {
+        "lower": "35682670396893783572574404570705667490125537341/39460544207934378791499490483339641530710178660352",
+        "upper": "8920667599223445893143601142676416872531384369/9865136051983594697874872620834910382677544665088",
+        "midpoint_float": 0.0009042619941799745
+      },
+      "decomposition_gap_lower": "55785009813500674488984430934180447631613757/2397228060632013511583594046862883222990643353616384",
+      "null_hybrid_slot_work": [
+        "3311/2592",
+        "17/24"
+      ],
+      "midpoint_slot_work": [
+        "31/24",
+        "17/24"
+      ],
+      "midpoint_total_work": "2",
+      "normalization_exact": true,
+      "midpoint_word_affinity_exact": true,
+      "hellinger_decomposition_certified": true,
+      "null_cost_domination_exact": true,
+      "work_sum_exact": true
+    },
+    {
+      "case": "three_scales",
+      "policy": "screen",
+      "cap": 4,
+      "revealed_seed_leaf_count": 14,
+      "theta_minus": "1/54",
+      "theta_plus": "13/162",
+      "population_h": {
+        "lower": "383472850269940072523145605163532840685710369640191/129450315274128729625514078530595694041494741095284736",
+        "upper": "766945700539880145046291210327065681371420741228999/258900630548257459251028157061191388082989482190569472",
+        "midpoint_float": 0.002962316850738323
+      },
+      "sum_hybrid_h": {
+        "lower": "1578182018273575258707195320312804379197812679869/532717346807114113685243121525085160664587411914752",
+        "upper": "1578182018273575258707195320312804379197812688617/532717346807114113685243121525085160664587411914752",
+        "midpoint_float": 0.002962512911833153
+      },
+      "decomposition_gap_lower": "50760341077430685405715344957246918716221187335/258900630548257459251028157061191388082989482190569472",
+      "null_hybrid_slot_work": [
+        "1222085/884736",
+        "91199567/71663616",
+        "4663049/5971968",
+        "0"
+      ],
+      "midpoint_slot_work": [
+        "8731/6144",
+        "429865/331776",
+        "522869/663552",
+        "0"
+      ],
+      "midpoint_total_work": "2325547/663552",
+      "normalization_exact": true,
+      "midpoint_word_affinity_exact": true,
+      "hellinger_decomposition_certified": true,
+      "null_cost_domination_exact": true,
+      "work_sum_exact": true
+    },
+    {
+      "case": "three_scales",
+      "policy": "screen",
+      "cap": 6,
+      "revealed_seed_leaf_count": 40,
+      "theta_minus": "1/54",
+      "theta_plus": "13/162",
+      "population_h": {
+        "lower": "33285646507796537364155095499397613945464006721595903/6990317024802951399777760240652167478240716019145375744",
+        "upper": "16642823253898268682077547749698806972732003444499909/3495158512401475699888880120326083739120358009572687872",
+        "midpoint_float": 0.004761679104065358
+      },
+      "sum_hybrid_h": {
+        "lower": "68498141102412713873168491692780131190032017014991/14383368363792081069501564281177299337943860121698304",
+        "upper": "136996282204825427746336983385560262380064035663671/28766736727584162139003128562354598675887720243396608",
+        "midpoint_float": 0.004762315708665729
+      },
+      "decomposition_gap_lower": "278129248502598637799466455845613305722086267863/436894814050184462486110015040760467390044751196585984",
+      "null_hybrid_slot_work": [
+        "3781708399/2717908992",
+        "16743199231/12230590464",
+        "2027239610927/1981355655168",
+        "30344469821/165112971264",
+        "0",
+        "0"
+      ],
+      "midpoint_slot_work": [
+        "81824365/56623104",
+        "4319578553/3057647616",
+        "19231161917/18345885696",
+        "3397560857/18345885696",
+        "0",
+        "0"
+      ],
+      "midpoint_total_work": "2345540261/573308928",
+      "normalization_exact": true,
+      "midpoint_word_affinity_exact": true,
+      "hellinger_decomposition_certified": true,
+      "null_cost_domination_exact": true,
+      "work_sum_exact": true
+    },
+    {
+      "case": "three_scales",
+      "policy": "mixed",
+      "cap": 2,
+      "revealed_seed_leaf_count": 13,
+      "theta_minus": "1/54",
+      "theta_plus": "13/162",
+      "population_h": {
+        "lower": "29815790439055802361371523866986758929986679667109/47944561212640270231671880937257664459812867072327680",
+        "upper": "29815790439055802361371523866986758929986679863939/47944561212640270231671880937257664459812867072327680",
+        "midpoint_float": 0.0006218805571463873
+      },
+      "sum_hybrid_h": {
+        "lower": "30675927906526525095733136742845374236856479179/49325680259917973489374363104174551913387723325440",
+        "upper": "122703711626106100382932546971381496947425918741/197302721039671893957497452416698207653550893301760",
+        "midpoint_float": 0.0006219058256243406
+      },
+      "decomposition_gap_lower": "1211486087980031681085047058944828237817898049/47944561212640270231671880937257664459812867072327680",
+      "null_hybrid_slot_work": [
+        "7199/6480",
+        "29/60"
+      ],
+      "midpoint_slot_work": [
+        "67/60",
+        "29/60"
+      ],
+      "midpoint_total_work": "8/5",
+      "normalization_exact": true,
+      "midpoint_word_affinity_exact": true,
+      "hellinger_decomposition_certified": true,
+      "null_cost_domination_exact": true,
+      "work_sum_exact": true
+    },
+    {
+      "case": "three_scales",
+      "policy": "mixed",
+      "cap": 4,
+      "revealed_seed_leaf_count": 49,
+      "theta_minus": "1/54",
+      "theta_plus": "13/162",
+      "population_h": {
+        "lower": "209344989692321977652613677700897075968330068815430631/157282133058066406494999605414673768260416110430770954240",
+        "upper": "209344989692321977652613677700897075968330072259168311/157282133058066406494999605414673768260416110430770954240",
+        "midpoint_float": 0.0013310157080272727
+      },
+      "sum_hybrid_h": {
+        "lower": "6566682494572770094740403954414731547615923535/4932568025991797348937436310417455191338772332544",
+        "upper": "26266729978291080378961615817658926190463695625/19730272103967189395749745241669820765355089330176",
+        "midpoint_float": 0.0013312908124064643
+      },
+      "decomposition_gap_lower": "43269003572873062522423375390084935463168902667789/157282133058066406494999605414673768260416110430770954240",
+      "null_hybrid_slot_work": [
+        "12383/6480",
+        "3/5",
+        "29/60",
+        "1/5"
+      ],
+      "midpoint_slot_work": [
+        "23/12",
+        "3/5",
+        "29/60",
+        "1/5"
+      ],
+      "midpoint_total_work": "16/5",
+      "normalization_exact": true,
+      "midpoint_word_affinity_exact": true,
+      "hellinger_decomposition_certified": true,
+      "null_cost_domination_exact": true,
+      "work_sum_exact": true
+    },
+    {
+      "case": "three_scales",
+      "policy": "mixed",
+      "cap": 6,
+      "revealed_seed_leaf_count": 185,
+      "theta_minus": "1/54",
+      "theta_plus": "13/162",
+      "population_h": {
+        "lower": "4652145291885271570585663692750651742391503747690268611553/2063856149987947386027384822251349187113180201072576461537280",
+        "upper": "2326072645942635785292831846375325871195751959280069091279/1031928074993973693013692411125674593556590100536288230768640",
+        "midpoint_float": 0.0022541034615772225
+      },
+      "sum_hybrid_h": {
+        "lower": "36040561835077586350048001943164355836514703810613/15981520404213423410557293645752554819937622357442560",
+        "upper": "36040561835077586350048001943164355836514709496813/15981520404213423410557293645752554819937622357442560",
+        "midpoint_float": 0.002255139744124453
+      },
+      "decomposition_gap_lower": "2138738108227048306110336013909906126006283439145767361/2063856149987947386027384822251349187113180201072576461537280",
+      "null_hybrid_slot_work": [
+        "3541158901/1433272320",
+        "151175464997/183458856960",
+        "87391/155520",
+        "1/5",
+        "1/5",
+        "1/5"
+      ],
+      "midpoint_slot_work": [
+        "98786353/39813120",
+        "1405280741/1698693120",
+        "163/288",
+        "1/5",
+        "1/5",
+        "1/5"
+      ],
+      "midpoint_total_work": "22802382383/5096079360",
+      "normalization_exact": true,
+      "midpoint_word_affinity_exact": true,
+      "hellinger_decomposition_certified": true,
+      "null_cost_domination_exact": true,
+      "work_sum_exact": true
+    },
+    {
+      "case": "three_scales",
+      "policy": "mixed",
+      "cap": 0,
+      "revealed_seed_leaf_count": 4,
+      "theta_minus": "1/54",
+      "theta_plus": "13/162",
+      "population_h": {
+        "lower": "0",
+        "upper": "0",
+        "midpoint_float": 0.0
+      },
+      "sum_hybrid_h": {
+        "lower": "0",
+        "upper": "0",
+        "midpoint_float": 0.0
+      },
+      "decomposition_gap_lower": "0",
+      "null_hybrid_slot_work": [],
+      "midpoint_slot_work": [],
+      "midpoint_total_work": "0",
+      "normalization_exact": true,
+      "midpoint_word_affinity_exact": true,
+      "hellinger_decomposition_certified": true,
+      "null_cost_domination_exact": true,
+      "work_sum_exact": true
+    }
+  ],
+  "sufficiency": [
+    {
+      "case": "two_scales",
+      "cap": 5,
+      "full_seed_word_atoms": 43,
+      "statistic_atoms": 13,
+      "conditional_kernel_independent_exact": true,
+      "affinity_preserved_exact_via_common_conditional_kernel": true
+    },
+    {
+      "case": "three_scales",
+      "cap": 5,
+      "full_seed_word_atoms": 43,
+      "statistic_atoms": 13,
+      "conditional_kernel_independent_exact": true,
+      "affinity_preserved_exact_via_common_conditional_kernel": true
+    }
+  ]
+}

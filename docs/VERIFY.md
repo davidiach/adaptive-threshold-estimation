@@ -1,5 +1,21 @@
 # Full verification commands
 
+For the full critical-law paper theorem and Psi counterexample:
+
+```sh
+python research/2026-10-27-nonlinear-critical/validate.py
+```
+
+This verifies the reviewed four-file paper lock, source preservation, current
+guard regressions, exact scalar arithmetic and 20 certified finite-prefix
+experiments plus two sufficient-statistic checks. It writes only new local
+diagnostics, leaving prior published evidence intact. See the
+[checkpoint](../research/2026-10-27-nonlinear-critical/CHECKPOINT.md) and
+[validation record](../research/2026-10-27-nonlinear-critical/validation.json).
+These are reproducibility and sanity checks; the statistical theorem is a
+reviewed paper proof, not a Lean result. Existing CI does not check this proof
+or automatically run the new research-directory diagnostic.
+
 For the additive 27 October rare-event result and separate-supremum bridge:
 
 ```sh
