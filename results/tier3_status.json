@@ -1,25 +1,24 @@
 {
   "valid": true,
-  "complete": false,
+  "complete": true,
   "audit_exit_code": 0,
   "target_count": 11,
   "proved_targets": [
     "ThresholdHC.Tier3.randomized_law_total",
     "ThresholdHC.Tier3.randomized_information_bound",
-    "ThresholdHC.Tier3.arbitrary_law_cutoff",
-    "ThresholdHC.Tier3.arbitrary_law_optimizer"
-  ],
-  "pending_targets": [
     "ThresholdHC.Tier3.randomized_marginal_kl_bound",
     "ThresholdHC.Tier3.randomized_testing_bound",
     "ThresholdHC.Tier3.finite_work_stops",
     "ThresholdHC.Tier3.unbounded_stopping",
     "ThresholdHC.Tier3.unbounded_testing",
+    "ThresholdHC.Tier3.arbitrary_law_cutoff",
+    "ThresholdHC.Tier3.arbitrary_law_optimizer",
     "ThresholdHC.Tier3.unbounded_example",
     "ThresholdHC.Tier3.tier3_landmark"
   ],
-  "root_count": 81,
-  "expected_root_count": 81,
+  "pending_targets": [],
+  "root_count": 152,
+  "expected_root_count": 152,
   "sources_unchanged_during_audit": true,
   "locked_sha256": {
     "lean/ThresholdHC/Statements.lean": "0873505b7c133561e82f63dcbba7f7a0a3da39d0c3692daee99d01882a757abf",
@@ -33,13 +32,18 @@
     "tools/verify_tier3.py": "d0d10237b2e6761e425ee9095a9c1b117a21cf9dda040d8819fa85b6cbf0fc47"
   },
   "source_sha256": {
+    "lean/ThresholdHC/Tier3/Examples.lean": "d3c8da8c75721742709b56288caaeea9406c8ab2b22443ebe6fa5d68d69f0395",
     "lean/ThresholdHC/Tier3/ExamplesModel.lean": "e03edb36c05e3e43601dddf4e8d510231f46bdb04a7b8b4f7bb884a2133e0cd5",
+    "lean/ThresholdHC/Tier3/Full.lean": "08600a86663dfadde9663d8b5420c27b8e97fc09056ac00259e856db5e0e7cac",
     "lean/ThresholdHC/Tier3/IntegralLogSum.lean": "ecc8c3ca647b00fef691fbb2ecde8304c7f48e844a9c3a8a45a5fc9a948f94ff",
     "lean/ThresholdHC/Tier3/Optimizer.lean": "7cc4481368339e0a0ae9ad24bc0f547bcbc0c25883ca2982e38fdd0042977f68",
     "lean/ThresholdHC/Tier3/OptimizerModel.lean": "36c085b6409b1355247d5127ab4ee9fdb94e621c1aac8379fb1f119d607cae49",
+    "lean/ThresholdHC/Tier3/Randomized.lean": "3e74e2a34d509b577730eb041447d6f63c54fde8d551860cd1cdbf8c6b5926ab",
     "lean/ThresholdHC/Tier3/RandomizedBase.lean": "87af7b31ba2c3cc9ff623cf403d954ffd7b8844c1b3af6e9283b823921ed8285",
     "lean/ThresholdHC/Tier3/RandomizedModel.lean": "3a61f9b034ee58e45e903356c60037e4808fdb1a711d96b24f3013ef95716f6b",
     "lean/ThresholdHC/Tier3/Specification.lean": "0bb5d84153c8197aebf798df159b9ffb6fa16529e20f4db162abf4153b709fac",
+    "lean/ThresholdHC/Tier3/Stopping.lean": "8490ec062f045c47f7aad53ece5b9ce6224f5a3978a8798c76a2c6765ac527b1",
+    "lean/ThresholdHC/Tier3/StoppingBase.lean": "0989b9b554ea0c056ec9f296e463c1767dc3509400960c266593c64e3daaa51d",
     "lean/ThresholdHC/Tier3/StoppingModel.lean": "36aed19aa97432a9068952e5d389fe6a992faad0da71984b7412204940aa3892",
     "lean/ThresholdHC/Tier3/TranscriptRatio.lean": "49b87fb8ece824fd69d52f2d83b40050529f3c7a295ed59e214cb18d1f139d4d"
   },
@@ -118,7 +122,13 @@
       "Classical.choice",
       "Quot.sound"
     ],
+    "ThresholdHC.Tier3.acceptance_eq_code": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
     "ThresholdHC.Tier3.acceptedBy": [],
+    "ThresholdHC.Tier3.acceptedBy_processPrefix_iff": [],
     "ThresholdHC.Tier3.allocation": [
       "propext",
       "Classical.choice",
@@ -199,12 +209,22 @@
       "Classical.choice",
       "Quot.sound"
     ],
+    "ThresholdHC.Tier3.codeAcceptance": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
     "ThresholdHC.Tier3.codeLaw": [
       "propext",
       "Classical.choice",
       "Quot.sound"
     ],
     "ThresholdHC.Tier3.conditionalInformation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.continuousAt_testing_kl": [
       "propext",
       "Classical.choice",
       "Quot.sound"
@@ -222,7 +242,33 @@
     "ThresholdHC.Tier3.examplePolicy": [
       "propext"
     ],
+    "ThresholdHC.Tier3.examplePolicy_prefix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.examplePrefix": [],
+    "ThresholdHC.Tier3.examplePrefix_hist_length": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.examplePrefix_snoc": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.examplePrefix_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
     "ThresholdHC.Tier3.exampleProcessLaw": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.exampleProcessLaw_probability": [
       "propext",
       "Classical.choice",
       "Quot.sound"
@@ -232,8 +278,74 @@
       "Classical.choice",
       "Quot.sound"
     ],
+    "ThresholdHC.Tier3.exampleSeedLaw_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
     "ThresholdHC.Tier3.exampleTape": [],
+    "ThresholdHC.Tier3.example_finite_expected_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.example_path_expect": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.example_policy_measurable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.example_realizes": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.example_seed_work_integrable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.example_totalWork": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.example_transcript_expect": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.example_unbounded_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
     "ThresholdHC.Tier3.finiteHistory": [],
+    "ThresholdHC.Tier3.finiteHistory_processPrefix": [],
+    "ThresholdHC.Tier3.finite_work_stops": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.fullHist_snoc_example": [
+      "propext",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.histBefore_processPrefix_last": [],
+    "ThresholdHC.Tier3.integrable_acceptance": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.integrable_acceptance_function": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
     "ThresholdHC.Tier3.integrable_allocation": [
       "propext",
       "Classical.choice",
@@ -269,7 +381,22 @@
       "Classical.choice",
       "Quot.sound"
     ],
+    "ThresholdHC.Tier3.integrable_kl_term": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
     "ThresholdHC.Tier3.integrable_policy_function": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.integrable_prefix_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.integrable_test_function": [
       "propext",
       "Classical.choice",
       "Quot.sound"
@@ -289,12 +416,52 @@
       "Classical.choice",
       "Quot.sound"
     ],
+    "ThresholdHC.Tier3.integral_total_work_eq_iSup": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.measurableSet_acceptedBy": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.measurableSet_prefixAcceptance": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
     "ThresholdHC.Tier3.measurable_allocation": [
       "propext",
       "Classical.choice",
       "Quot.sound"
     ],
+    "ThresholdHC.Tier3.measurable_policy": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
     "ThresholdHC.Tier3.measurable_policyCode": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.measurable_prefix_function": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.measurable_processPrefix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.measurable_testCode": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.measurable_totalProcessWork": [
       "propext",
       "Classical.choice",
       "Quot.sound"
@@ -324,9 +491,44 @@
       "Classical.choice",
       "Quot.sound"
     ],
+    "ThresholdHC.Tier3.pathProb_zero_of_invalid": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
     "ThresholdHC.Tier3.policyCode": [],
+    "ThresholdHC.Tier3.prefixAcceptanceSet": [],
+    "ThresholdHC.Tier3.prefixAcceptance_mono": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.prefixAcceptance_subset_terminal": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.prefixAcceptance_tendsto": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.prefix_work_le_total": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
     "ThresholdHC.Tier3.processHistory": [],
     "ThresholdHC.Tier3.processPrefix": [],
+    "ThresholdHC.Tier3.processPrefix_snoc": [
+      "propext",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.process_work_mono": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
     "ThresholdHC.Tier3.randomizedAcceptance": [
       "propext",
       "Classical.choice",
@@ -352,12 +554,81 @@
       "Classical.choice",
       "Quot.sound"
     ],
+    "ThresholdHC.Tier3.randomized_marginal_kl_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.randomized_marginal_kl_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.randomized_test_data_processing": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.randomized_testing_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.randomized_work_prior_comparison": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
     "ThresholdHC.Tier3.rareObjective": [
       "propext",
       "Classical.choice",
       "Quot.sound"
     ],
+    "ThresholdHC.Tier3.realized_prefix_acceptance": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.realized_prefix_work_eq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.realized_valid_step": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.sum_support": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
     "ThresholdHC.Tier3.terminalAccept": [],
+    "ThresholdHC.Tier3.terminalAccept_eq_iUnion": [
+      "propext",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.terminalFiniteTest": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.terminalFiniteTest_measurable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.testCode": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.tier3_landmark": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
     "ThresholdHC.Tier3.totalProcessWork": [
       "propext",
       "Classical.choice",
@@ -383,6 +654,36 @@
       "Classical.choice",
       "Quot.sound"
     ],
+    "ThresholdHC.Tier3.transcriptLaw_zero_of_invalid": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.unbounded_example": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.unbounded_stopping": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.unbounded_testing": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.workOf_le_length": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.workOf_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
     "ThresholdHCTier3Audit.audit_arbitrary_law_cutoff": [
       "propext",
       "Classical.choice",
@@ -393,12 +694,47 @@
       "Classical.choice",
       "Quot.sound"
     ],
+    "ThresholdHCTier3Audit.audit_finite_work_stops": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
     "ThresholdHCTier3Audit.audit_randomized_information_bound": [
       "propext",
       "Classical.choice",
       "Quot.sound"
     ],
     "ThresholdHCTier3Audit.audit_randomized_law_total": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHCTier3Audit.audit_randomized_marginal_kl_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHCTier3Audit.audit_randomized_testing_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHCTier3Audit.audit_tier3_landmark": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHCTier3Audit.audit_unbounded_example": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHCTier3Audit.audit_unbounded_stopping": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHCTier3Audit.audit_unbounded_testing": [
       "propext",
       "Classical.choice",
       "Quot.sound"

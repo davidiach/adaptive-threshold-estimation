@@ -53,7 +53,27 @@ consider restructuring your `variable` declarations so that the variables are no
   omit [MeasurableSpace Ω] in theorem ...
 
 Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
-⚠ [18182/18203] Replayed ThresholdHC.Uniform713.ClassifierModel
+ℹ [18182/18203] Replayed ThresholdHC.Uniform713.Series
+info: ThresholdHC/Uniform713/Series.lean:381:0: 'ThresholdHC.Uniform713.summable_secondMomentEnvelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Series.lean:382:0: 'ThresholdHC.Uniform713.tsum_secondMomentEnvelope_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Series.lean:383:0: 'ThresholdHC.Uniform713.summable_weightedWorkEnvelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Series.lean:384:0: 'ThresholdHC.Uniform713.tsum_weightedWorkEnvelope_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Series.lean:385:0: 'ThresholdHC.Uniform713.secondMomentSeries_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Series.lean:386:0: 'ThresholdHC.Uniform713.workSeries_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Series.lean:399:0: 'ThresholdHC.Uniform713.sum_secondMomentEnvelope_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Series.lean:400:0: 'ThresholdHC.Uniform713.sum_weightedWorkEnvelope_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [18186/18203] Replayed ThresholdHC.Uniform713.Convergence
+warning: ThresholdHC/Uniform713/Convergence.lean:27:44: Variable name `hd` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hd
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+info: ThresholdHC/Uniform713/Convergence.lean:49:0: 'ThresholdHC.Uniform713.tendsto_dyadic_error_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Convergence.lean:50:0: 'ThresholdHC.Uniform713.tendsto_errorEnvelope_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Convergence.lean:51:0: 'ThresholdHC.Uniform713.tendsto_of_error_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Convergence.lean:52:0: 'ThresholdHC.Uniform713.tendsto_error_probability' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [18188/18203] Replayed ThresholdHC.Uniform713.ClassifierModel
 warning: ThresholdHC/Uniform713/ClassifierModel.lean:145:0: automatically included section variable(s) unused in theorem `ThresholdHC.Uniform713.squared_decision_difference_integral`:
   [IsProbabilityMeasure μ]
 consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
@@ -66,26 +86,6 @@ Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus fa
 warning: ThresholdHC/Uniform713/ClassifierModel.lean:241:4: Unused tactic linter: `<;>` can be replaced with `;`.
 
 Note: This linter can be disabled with `set_option linter.unusedTactic false`
-ℹ [18184/18203] Replayed ThresholdHC.Uniform713.Series
-info: ThresholdHC/Uniform713/Series.lean:381:0: 'ThresholdHC.Uniform713.summable_secondMomentEnvelope' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ThresholdHC/Uniform713/Series.lean:382:0: 'ThresholdHC.Uniform713.tsum_secondMomentEnvelope_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ThresholdHC/Uniform713/Series.lean:383:0: 'ThresholdHC.Uniform713.summable_weightedWorkEnvelope' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ThresholdHC/Uniform713/Series.lean:384:0: 'ThresholdHC.Uniform713.tsum_weightedWorkEnvelope_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ThresholdHC/Uniform713/Series.lean:385:0: 'ThresholdHC.Uniform713.secondMomentSeries_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ThresholdHC/Uniform713/Series.lean:386:0: 'ThresholdHC.Uniform713.workSeries_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ThresholdHC/Uniform713/Series.lean:399:0: 'ThresholdHC.Uniform713.sum_secondMomentEnvelope_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ThresholdHC/Uniform713/Series.lean:400:0: 'ThresholdHC.Uniform713.sum_weightedWorkEnvelope_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
-⚠ [18192/18203] Replayed ThresholdHC.Uniform713.Convergence
-warning: ThresholdHC/Uniform713/Convergence.lean:27:44: Variable name `hd` is not explicitly referenced.
-
-Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
-  [apply] _hd
-
-Note: This linter can be disabled with `set_option linter.unusedVariables false`
-info: ThresholdHC/Uniform713/Convergence.lean:49:0: 'ThresholdHC.Uniform713.tendsto_dyadic_error_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ThresholdHC/Uniform713/Convergence.lean:50:0: 'ThresholdHC.Uniform713.tendsto_errorEnvelope_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ThresholdHC/Uniform713/Convergence.lean:51:0: 'ThresholdHC.Uniform713.tendsto_of_error_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
-info: ThresholdHC/Uniform713/Convergence.lean:52:0: 'ThresholdHC.Uniform713.tendsto_error_probability' depends on axioms: [propext, Classical.choice, Quot.sound]
 ℹ [18194/18203] Replayed ThresholdHC.Uniform713.Conditional
 info: ThresholdHC/Uniform713/Conditional.lean:95:0: 'ThresholdHC.Uniform713.conditional_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
 ℹ [18198/18203] Replayed ThresholdHC.Uniform713.Examples

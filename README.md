@@ -25,13 +25,15 @@ Windows and in [independent Linux CI](https://github.com/davidiach/threshold-hil
   the actual stopping rule and coupled work, infinite random-level sampling,
   unbiasedness, and integration over arbitrary magnitude/sign laws. See the
   [formal development](proposals/constants/LEAN713_PROGRESS.md).
-- **Tier 3 is in progress.** Its separately locked specification extends the
-  work to arbitrary measurable random seeds, unbounded stopping/testing, and
-  the arbitrary-law rare-event optimizer. The first checkpoint proves four
-  of eleven registered targets, with 81/81 declaration audits passing.
-  The full optimizer (including cutoff existence and uniqueness) is proved.
-  See [specification](lean/ThresholdHC/Tier3/Specification.lean) and
-  [audit status](results/tier3_status.json). The 121-point scorer is unchanged.
+- **The Tier 3 landmark is proved locally:** arbitrary measurable random
+  seeds, unbounded stopping/testing, and the arbitrary-law rare-event optimizer.
+  All ten component statements and their combined theorem pass the locked
+  audit: **11/11 targets, 152/152 declaration checks**. A concrete geometric-seed
+  experiment has finite expected work and positive probability of exceeding
+  every finite cap. See the [combined proof](lean/ThresholdHC/Tier3/Full.lean),
+  [specification](lean/ThresholdHC/Tier3/Specification.lean), and
+  [audit status](results/tier3_status.json). Linux replay is pending. The
+  121-point scorer and the separate 713 guarantee are preserved.
 - The constants track has two independently preselected, held-out accepted
   improvements. The conservative choice preserves the original bias theorem;
   the finite-grid winner has an explicit off-grid counterexample.
@@ -85,6 +87,10 @@ Then run `python tools/verify_uniform713.py --sequential --require-complete`
 to check the full 713 theorem against its recorded specification, hash-locked
 local dependencies, and transitive axioms. The original Tier 1 mathematical
 statements remain unchanged.
+For the Tier 3 extension, run
+`python tools/verify_tier3.py --sequential --require-complete` and
+`python -m unittest discover -s tools -p 'test_tier3_validation.py' -v`.
+Its separate lock is `TIER3_FROZEN.sha256`; no existing scored statement changed.
 See [environment notes](proposals/lean-environment.md) and
 [benchmark reproduction](benchmark/README.md). All input files
 are preserved in [inputs/next-phase](inputs/next-phase/README.md), with the

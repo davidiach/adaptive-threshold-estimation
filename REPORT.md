@@ -160,7 +160,7 @@ for a known fixed gap. Both arguments and their qualifications are in
 27 cases evaluate the existing upper bracket. These do not establish a
 matching upper theorem for alpha>=2 or arbitrary laws.
 
-## Tier 3 extension in progress
+## Tier 3 landmark
 
 The separately locked Tier 3 specification contains ten component statements
 and one conjunction theorem. It extends the existing finite model to arbitrary
@@ -169,8 +169,10 @@ horizons with finite expected actual work under the plus hypothesis. The
 unbounded model identifies all joint finite-prefix laws explicitly; it does
 not assume a KL bound, convergence of tests, or almost-sure termination.
 Its targets derive almost-sure termination under both hypotheses and the
-terminal testing lower bound. A geometric-seed experiment must also establish
-that the specification is realized by a process with genuinely unbounded work.
+terminal testing lower bound. A geometric-seed experiment establishes that
+the specification is realized by a process with genuinely unbounded work:
+its work is N+1, has finite expectation, and exceeds every finite cap with
+positive probability. The realization theorem covers every sign prior in [0,1].
 
 The optimizer target covers an arbitrary probability space and measurable
 positive magnitude bounded by one half, allowing atoms and singular laws and
@@ -178,12 +180,33 @@ assuming no inverse moment. It proves the unique cutoff, feasibility and
 optimality for every positive parameter, saturation, and the three-region
 integral identity.
 
-Checkpoint 001 proves randomized transcript normalization, the integrated
+Checkpoint 001 proved randomized transcript normalization, the integrated
 conditional information/work inequality, cutoff existence/uniqueness, and
-the full arbitrary-law optimizer. The separate audit passes 81/81 declaration
-checks and four exact target-type checks. Remaining targets are explicitly
-pending. Eight audit regression tests pass. The original 21-file freeze,
-121-point scorer, and 713 statements are unchanged.
+the full arbitrary-law optimizer. Checkpoint 002 completes all eleven exact
+targets: ten components and `tier3_landmark`. The separate audit passes
+**152/152 declaration checks**, with only `propext`, `Classical.choice`, and
+`Quot.sound`; no pending targets or proof stubs remain. Eight audit regression
+tests pass. The original 21-file freeze and the separate nine-file Tier 3
+specification lock both verify. The existing 121-point target set is retained,
+and the full 713 audit passes again at 130/130. Linux replay is pending.
+
+The randomized proof derives integrability by factoring finite-horizon policies
+and tests through finite codes. Marginal KL and tests with global error bounds
+follow from integral log-sum inequalities. The unbounded proof derives valid
+policy paths and almost-sure halting from finite expected work, transfers that
+property to the other hypothesis using bounded prior ratios, and proves
+convergence of bounded terminal acceptance events. Independent agent reviews
+found no hidden termination, convergence, information, or inverse-moment
+assumption in the specified conclusions.
+
+| Component | Proof entry point |
+|---|---|
+| Arbitrary-seed marginal KL and testing | `Tier3/Randomized.lean` |
+| Finite work and almost-sure halting | `Tier3/StoppingBase.lean` |
+| Unbounded terminal testing | `Tier3/Stopping.lean` |
+| Arbitrary-law optimizer and cutoff | `Tier3/Optimizer.lean` |
+| Explicit unbounded experiment | `Tier3/Examples.lean` |
+| Combined locked landmark | `Tier3/Full.lean` |
 
 This development still has a fixed finite set of coin magnitudes in the
 transcript model. Its unbounded result concerns stopping and terminal testing;
@@ -193,9 +216,9 @@ arbitrary-law minimax upper theorem.
 
 ## Open work and proposals
 
-- Tiers 1 and 2 are complete. Extensions of the finite transcript model to
-  randomized policies and unbounded horizons, and of the atomic optimizer to
-  arbitrary laws, remain outside the frozen targets.
+- Tiers 1 and 2 and the separately specified Tier 3 landmark are proved.
+  Extending the transcript model to countably many coins and identifying the
+  measure-theoretic KL of the entire infinite transcript remain further work.
 - The full 713 probability theorem is already proved and separately audited;
   adding it to the scored target list remains a separate scope decision.
 - The arbitrary-law matching upper bound and matching alpha>=2 constructions

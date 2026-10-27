@@ -131,6 +131,8 @@ Observed slack:
 R1 assumes a cutoff `t` satisfying the mass constraint and restricts `0 < h < t`.
 It does not establish cutoff existence/uniqueness, the `h >= t` saturation case,
 or the arbitrary-law optimizer. Its proposed mathematical statement is unchanged.
+These extensions are now proved separately in
+[Tier 3's optimizer](lean/ThresholdHC/Tier3/Optimizer.lean).
 
 ## Approval and re-freeze
 
@@ -281,11 +283,12 @@ marginals, a stopping-rule identity, concentration bounds, and finite series.
 
 ## What Tier 2 does not cover
 
-- Randomized policies and unbounded horizons. The finite deterministic case is
-  the core; the extension is routine but not formalized.
+- Randomized policies and unbounded horizons remain outside Tier 2's score.
+  They are now covered by the separate [Tier 3 landmark](lean/ThresholdHC/Tier3/Full.lean)
+  for stopping and terminal testing, with finite expected work.
 - Untruncated estimators in Group K. The statements bound truncation level L
   uniformly; second-moment and work series have monotone limits. The untruncated 713 theorem is on the
   `Uniform713` track.
 - The minimax lower and upper theorems as wholes, and the power-margin rates.
-  These are candidates for a Tier 3 once Tier 2 lands.
+  These remain further work beyond the completed Tier 3 specification.
 - Any optimality claim for 713. The lower bound remains 1/16.
