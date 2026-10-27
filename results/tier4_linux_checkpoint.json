@@ -1,0 +1,67 @@
+{
+  "verified_at_utc": "2026-10-27 08:15:14 UTC",
+  "proof_commit": "06af2dfce31e0f768fd47bf1b94dd233fe3a2559",
+  "target_count": 6,
+  "declaration_checks": 65,
+  "allowed_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "runs": [
+    {
+      "id": 40470998119,
+      "head_commit": "12e73e5963bb313250b87aaed0fc700cb4ee9e00",
+      "branch": "main",
+      "url": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40470998119",
+      "jobs": [
+        {
+          "id": 122078221242,
+          "name": "lean-kernel",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 122078221554,
+          "name": "numerical-evidence",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "lean_evidence": [
+        "2026-10-27T08:09:44.1789788Z valid=True build_ok=True frozen_ok=True audit_exit=0 complete=True points=121/121 proven=46/46 tier1=60/60 tier2=61/61",
+        "2026-10-27T08:09:52.5148449Z Scalar Lean audit: valid=True, reports=7/7, exit=0",
+        "2026-10-27T08:11:52.7813634Z 713 audit: valid=True, complete=True, roots=130/130",
+        "2026-10-27T08:13:46.0509310Z Tier 3 audit: valid=True, complete=True, targets=11/11, roots=152/152",
+        "2026-10-27T08:15:00.8055144Z Tier 4 audit: valid=True, complete=True, targets=6/6, roots=65/65"
+      ]
+    },
+    {
+      "id": 40471311295,
+      "head_commit": "06af2dfce31e0f768fd47bf1b94dd233fe3a2559",
+      "branch": "verify/tier4-landmark",
+      "url": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40471311295",
+      "jobs": [
+        {
+          "id": 122078826656,
+          "name": "numerical-evidence",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 122078826845,
+          "name": "lean-kernel",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "lean_evidence": [
+        "2026-10-27T08:10:34.0248145Z valid=True build_ok=True frozen_ok=True audit_exit=0 complete=True points=121/121 proven=46/46 tier1=60/60 tier2=61/61",
+        "2026-10-27T08:10:40.3647520Z Scalar Lean audit: valid=True, reports=7/7, exit=0",
+        "2026-10-27T08:12:09.8844441Z 713 audit: valid=True, complete=True, roots=130/130",
+        "2026-10-27T08:13:32.4926294Z Tier 3 audit: valid=True, complete=True, targets=11/11, roots=152/152",
+        "2026-10-27T08:14:27.0334277Z Tier 4 audit: valid=True, complete=True, targets=6/6, roots=65/65"
+      ]
+    }
+  ]
+}

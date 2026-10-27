@@ -58,9 +58,25 @@ coordinate cancels identically. Common zero-probability prefixes are handled by
 proved support comparison. Restrictions use Mathlib's corrected KL for finite
 subprobability measures, so no mass correction is dropped.
 
-Independent Linux verification of the complete checkpoint is pending. CI now
-requires all six Tier 4 targets, in addition to the prior 121-point, 713, and
-Tier 3 audits.
+Independent Linux verification passed on both the
+[main-branch replay](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40470998119)
+and the [pinned proof-commit replay](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40471311295).
+Both report **6/6 targets and 65/65 declaration checks**, and also pass the
+original **121/121** score, **7/7** scalar checks, **130/130** roots for 713,
+and **11/11 targets with 152/152 roots** for Tier 3. Numerical, regression,
+input-preservation, and frozen-hash checks also passed.
+
+The tested proof commit is `06af2dfce31e0f768fd47bf1b94dd233fe3a2559`;
+the main replay at `12e73e5` includes subsequent documentation updates.
+Every Tier 4 proof-source hash was compared with both tested commits and the
+local audit. The [machine-readable CI record](../results/tier4_linux_checkpoint.json)
+contains job identities and exact audit summary lines. Earlier interrupted runs
+were superseded by concurrent pushes; neither is used as successful evidence.
+
+The landmark was achieved in about 27 minutes, satisfying the early-landmark
+condition of the eight-hour-or-landmark goal. The full infinite-transcript KL
+extension is complete for the fixed finite coin model. A model with unrestricted
+coin creation remains a separate extension.
 
 Run `python tools/verify_tier4.py --sequential --require-complete` for the complete
 audit. A partial checkpoint must omit `--require-complete` and explicitly report
