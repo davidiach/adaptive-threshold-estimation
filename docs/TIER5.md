@@ -47,12 +47,43 @@ integrability bounds even when the seed-dependent finite cap is unbounded.
 
 ## Verification
 
-The specifications compile, all three semantic reviews approve them, and the
-eight new validation regression tests pass. The first foundations audit passes
-**25/25 declarations**, including the horizon-only prior comparison and the
-generic generating-filtration entropy theorem. No complete Tier 5 target is
-claimed in this initial checkpoint; the exact process bridges and example remain
-in progress.
+The complete aggregate module `ThresholdHC.Tier5` builds. Its theorem
+`tier5_landmark` combines all nine locked targets. The eight validation
+regression tests pass. The first published foundation checkpoint, `199dcee`,
+audited 25 declarations. The complete local audit now passes **9/9 targets and
+109/109 declaration checks**, with all sources unchanged during verification.
+The 13-file Tier 5 lock and every prior frozen file pass their hash checks.
+Evidence is saved in `results/tier5_checkpoint_001.json` and
+`results/tier5_audit_001.log`. Independent Linux CI is pending.
+
+The main theorem proves, for the actual joint seed and infinite observation tape,
+
+\[
+D_{\mathrm{KL}}(P_T\Vert Q_T)
+\le \frac{128}{225}h^2\,\mathbb E_P[W].
+\]
+
+The hypotheses are measurable policies and environments, the explicit realized
+prefix laws, `0 < h`, `0 < d <= 1/2`, `0 <= eta <= 1/8`, and
+`d * eta <= h/8` for every seed and coin. The locked theorem assumes finite
+expected work under `P`; `creation_infinite_kl_bound_extended` also covers infinite
+expected work using extended-real values. Every measurable statistic of the
+joint transcript obeys the same bound by data processing.
+
+The proof derives global absolute continuity from the stopped restrictions and
+the `P`-almost-sure stopped cover. The minus law need not terminate. Generating
+prefix sigma-algebras, conditional density convergence and Fatou then give
+actual full KL equal to the supremum of prefix KL. Neither absolute continuity
+nor entropy convergence is supplied as a hypothesis of the process theorem.
+
+The nonvacuity example is a geometric stopping seed independent of countably
+many Bernoulli signs. It observes a distinct new coin on every step. Both laws
+realize the explicit model, expected work is finite, and every deterministic
+creation bound is exceeded with positive probability.
+
+This extends the information/work theorem. The prior 713 and other frozen
+theorems retain their existing statements; Tier 5 does not silently change
+their scope.
 
 Run `python tools/verify_tier5.py --sequential --require-complete` to require
 all nine targets. Partial checkpoints omit `--require-complete` and must report
