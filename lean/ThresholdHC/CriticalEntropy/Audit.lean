@@ -13,8 +13,15 @@ import ThresholdHC.CriticalEntropy.CriticalScale
 import ThresholdHC.CriticalEntropy.BaseCost
 import ThresholdHC.CriticalEntropy.ObservationInformation
 import ThresholdHC.CriticalEntropy.CriticalGeometry
+import ThresholdHC.CriticalEntropy.CriticalRisk
 
 open ThresholdHC.CriticalEntropy
+
+example : CriticalCappedEstimatorStatement := fun _ _ => critical_capped_estimator
+
+example : CriticalCappedAffinityObstructionStatement := critical_capped_affinity_obstruction
+
+example : CriticalCappedPolicyPairStatement := critical_capped_policy_pair
 
 example : CriticalPopulationRepresentationStatement := critical_population_representation
 
@@ -501,3 +508,62 @@ example : CriticalBaseCostStatement := critical_base_cost
 #print axioms CriticalPopulationRepresentationStatement
 #print axioms CriticalObservationGeometryStatement
 #print axioms CriticalPairGeometryStatement
+
+#print axioms finitePartition
+#print axioms finitePartitionLinear
+#print axioms finiteRepeatedObjective
+#print axioms finitePartition_pos
+#print axioms realFiniteAffinity_pos
+#print axioms affinity_le_tilted_partition
+#print axioms finite_log_partition_lower
+#print axioms finite_log_partition_attained
+#print axioms finitePartition_shift
+#print axioms finitePartition_convex
+#print axioms finiteLogPartition_convex
+#print axioms positiveVectors_convex
+#print axioms finiteLogPartition_population_concave
+#print axioms finitePartition_continuous
+#print axioms finiteLogPartition_continuousOn
+#print axioms finitePerspective_convex
+#print axioms convex_concave_uniform_strict
+#print axioms exists_positive_scale_lt
+#print axioms finiteRepeatedObjective_pointwise
+#print axioms finiteRepeatedObjective_convex
+#print axioms cappedStatisticProcedure
+#print axioms cappedStatisticProcedure_work
+#print axioms cappedStatisticProcedure_output_law
+#print axioms cappedStatisticProcedure_memLp
+#print axioms population_capped_work_le
+#print axioms iid_score_memLp
+#print axioms iid_score_integral
+#print axioms iid_score_variance
+#print axioms symmetric_one_run_reduction
+#print axioms finiteRepeatedObjective_population_geometry
+#print axioms finiteRepeatedObjective_score_continuous
+#print axioms finite_repeated_uniform_saddle
+#print axioms square_le_shifted_exponentials
+#print axioms second_moment_of_exponential_bounds
+#print axioms realFiniteAffinity_self
+#print axioms finiteRepeatedObjective_diagonal
+#print axioms finite_saddle_centering
+#print axioms finite_function_memLp
+#print axioms finite_function_integrable
+#print axioms finite_integral_exp
+#print axioms finite_iid_exponential
+#print axioms radius_second_moment_le
+#print axioms finite_iid_risk_of_log_bounds
+#print axioms finite_convex_rms_comparison
+#print axioms finiteSupportRetraction
+#print axioms finiteSupportRetraction_val
+#print axioms finite_support_sum
+#print axioms finite_support_map_mass
+#print axioms finite_support_affinity
+#print axioms evariance_map_measurable
+#print axioms finite_convex_one_run
+#print axioms capped_observation_one_run
+#print axioms critical_capped_estimator
+#print axioms critical_capped_affinity_obstruction
+#print axioms critical_capped_policy_pair
+#print axioms CriticalCappedEstimatorStatement
+#print axioms CriticalCappedAffinityObstructionStatement
+#print axioms CriticalCappedPolicyPairStatement

@@ -237,9 +237,39 @@ Affinity is proved at most one before conversion from extended nonnegative
 reals, and the resulting distance lies in `[0,1]`. No risk comparison, policy
 mixture bound or common hard pair is assumed or concluded by these targets.
 
-The [twelfth audit record](../results/critical_components_012.json) checks
-twenty-six exact targets and all 413 public declarations using only the
+The finite convex RMS comparison is proved in
+[FiniteRMS.lean](../lean/ThresholdHC/CriticalEntropy/FiniteRMS.lean).
+The proof establishes log-partition curvature and continuity, attains the
+pointwise likelihood-ratio optimum, and applies compact convex minimax to
+select one score and scale. Centering yields two exponential-moment bounds.
+A pointwise square-versus-exponential inequality proves square integrability
+and second moment at most `9 epsilon^2`; no tail-integrability conclusion is
+assumed. This gives the paper's `3 epsilon` RMS bound by a direct moment proof.
+
+[ObservationRisk.lean](../lean/ThresholdHC/CriticalEntropy/ObservationRisk.lean)
+restricts to the population-independent active support, preserving probability
+masses and affinity. It constructs a uniform score for the actual finite law
+and transports the one-run estimator to the original stopped procedure.
+For `F=c+sum_i u(Z_i)` with `n` iid observations, the checked identity
+`Var(n u(Z_1)+c)=n Var(F)` supplies the needed one-run variance bound.
+The resulting observable estimator has bias at most `3 epsilon`, extended
+variance at most `9 n epsilon^2`, and the original stopping rule and work.
+
+[CriticalRisk.lean](../lean/ThresholdHC/CriticalEntropy/CriticalRisk.lean)
+then applies the complete base-cost theorem. If `3 epsilon<=rho/64` and
+`9 n epsilon^2 E_0 T<c rho L(1+log L)`, it proves the existence of actual
+admissible priors separated by at least `2 epsilon`, whose canonical full
+observation affinity satisfies `Aff^n>=1/2`. One universal positive `c` is
+chosen before the seed, policy, rarity and repetition count. The pair is
+specific to the selected policy; the common-pair quantifier interchange is
+not asserted. The conversion to a normalized Hellinger/work bound and the
+revealed-mixture identities remain next steps.
+
+The [thirteenth audit record](../results/critical_components_013.json) checks
+twenty-nine exact targets and all 471 public declarations using only the
 permitted standard axioms. The
+[twelfth record](../results/critical_components_012.json) preserves the
+twenty-six-target population and observation geometry checkpoint. The
 [eleventh record](../results/critical_components_011.json) preserves the
 twenty-three-target transcript-reduction checkpoint. The [tenth record](../results/critical_components_010.json)
 preserves the twenty-target base-cost checkpoint. The
@@ -271,8 +301,8 @@ proof.
 | Good-gap selection | The proof uses populations `(1/2)1_E` with `mu(E)=2rho`, respecting the lower subclass's pointwise cap. The excluded mass is at most `70m`. | Subset selection, good gaps, annulus averaging and the rarity-dependent scale count are proved. |
 | Sign-test restarts | The actual unused-suffix law, observable fixed-count repetition, sign-test errors and exact `n E T` work are Lean-checked. The finite-gap estimator entropy theorem constructs this reduction from conditional moments. | The finite-scale quadratic product theorem now derives these assumptions from uniform population guarantees. |
 | Finite observation reduction | At cap `m`, each seed/word cell has the integrated likelihood determined by `(T,heads)`. The multiplier cancels from conditional seed/word laws. | Complete for the actual capped procedure and arbitrary measurable seed; see the current formal boundary above. |
-| Convex RMS comparison | Finite categorical probabilities are affine and positive; log moments are concave in the population and convex in the score/scale. Tail integration is used to obtain RMS, rather than substituting a confidence bound. | Kernel treatment of the minimax interchange and tail integrals remains open. |
-| One pair for all policies | The separated-pair set is compact convex in the weak-star topology. Squared Hellinger is continuous convex. A revealed finite policy mixture has exactly averaged Hellinger and null work. Finite-simplex minimax supplies the finite intersection property. | Actual population compactness, affine observation coordinates and continuous convex Hellinger constraints are proved. Statistical risk comparison, revealed-mixture identities and common-pair instantiation remain pending. |
+| Convex RMS comparison | Log-moment curvature, compact minimax selection, centering, and actual iid exponential moments are proved. Direct exponential domination establishes square integrability and the RMS bound, replacing the paper's tail integral step. | Complete for the finite capped experiment, including the actual observable one-run estimator and its application to base cost. |
+| One pair for all policies | The separated-pair set is compact convex in the weak-star topology. Squared Hellinger is continuous convex. A revealed finite policy mixture has exactly averaged Hellinger and null work. Finite-simplex minimax supplies the finite intersection property. | Actual population compactness, affine observation coordinates and continuous convex Hellinger constraints are proved. Risk comparison and a separated pair for each policy are proved. Affinity/work normalization, revealed-mixture identities and common-pair instantiation remain pending. |
 | Interacting population transfer | Leaf likelihoods factor by genuine coin even with interleaving. The midpoint hybrid simulations use independent auxiliary tapes. Since midpoint `q<=1/2`, its one-coin law dominates half the null law, giving the required cost direction. | Formalize the finite-prefix decomposition and simulation. Existing finite examples do not prove the general statement. |
 | Unbounded stopping | The same pair applies at every cap. Uniform work gives termination separately under both endpoints; terminal events are approximated by stopped-prefix events. | Prove the limit without assuming termination transfers from one endpoint to the other. |
 | Upper construction | Wrong-sign likelihoods are supermartingales; forced-majority error is bounded on the complete iid tape. Positive work is integrated under a global mass constraint, not a pointwise bound on `q`. The random telescope and Poisson replication use separately finite moments. | Full probability and algorithm realization remain paper arguments. |

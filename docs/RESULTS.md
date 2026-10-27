@@ -156,10 +156,26 @@ The separated population-pair set is nonempty, compact and convex before any
 policy is selected; each capped policy supplies a continuous convex canonical
 Hellinger distance taking values in `[0,1]` on that set. The formal construction
 uses the weak dual of `L²` and proves its correspondence with actual populations.
-The [twelfth record](../results/critical_components_012.json) audits twenty-six
-exact targets and all 413 public declarations. The
-[eleventh record](../results/critical_components_011.json) preserves the earlier
-transcript-reduction checkpoint.
+
+[CriticalRisk.lean](../lean/ThresholdHC/CriticalEntropy/CriticalRisk.lean)
+now applies the finite convex RMS comparison to this actual experiment.
+It constructs one observable estimator, proves its square integrability and
+uniform bias and extended-variance bounds, and preserves the original stopping
+rule and actual work. The minimax selection, exponential moments, and RMS bound
+are proved rather than assumed.
+
+One universal `c>0` works for every capped policy. For `0<rho<=1/4`,
+a nonnegative radius `epsilon`, and a repetition count `n`, write `w=E_0 T`.
+Whenever `3 epsilon<=rho/64` and
+`9 n epsilon^2 w<c rho L(1+log L)`, an actual admissible population pair has
+target separation at least `2 epsilon` and canonical affinity to the power `n`
+at least `1/2`. The pair may depend on the policy. This is the precise
+policy-specific conclusion, before selecting a common pair.
+
+The [thirteenth record](../results/critical_components_013.json) audits twenty-nine
+exact targets and all 471 public declarations. The
+[twelfth record](../results/critical_components_012.json) preserves the earlier
+population and observation geometry checkpoint.
 
 The statistical common hard pair, unrestricted population transfer, and
 critical upper construction remain unformalized. The abstract

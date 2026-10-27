@@ -71,8 +71,18 @@ Riesz representation, and proves that every admissible prior is covered. The
 target integral is retained as a separate finite coordinate: two populations
 may have the same observation law and different targets. Continuity and
 convexity of the actual Hellinger constraints are then derived from the
-likelihood formulas. These are inputs to the common-pair argument; they do not
-replace its still-pending statistical risk and policy-mixture bounds.
+likelihood formulas. The finite convex RMS comparison now uses those actual
+coordinates, restricts to the common support, and transports its estimator back
+to the observable procedure with unchanged work. The exponential-moment proof
+establishes square integrability before bounding RMS.
+
+The formal proof also uses a narrower construction than the paper's general
+additive-component reduction. For repeated copies of one policy, the minimax
+score can be symmetric: `F=c+sum_i u(Z_i)`. Then `Z=n u(Z_1)+c` has the same
+mean and variance `n Var(F)`, proved under the actual iid law. This suffices for
+the policy-specific pair and avoids importing the more general component
+randomization argument. It does not remove the remaining need for revealed
+policy mixtures and one common population pair.
 
 ## Freeze established questions and preserve corrections
 
