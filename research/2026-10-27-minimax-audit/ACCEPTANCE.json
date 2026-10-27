@@ -1,0 +1,47 @@
+{
+  "valid": false,
+  "head": "c11aa9ba41eb30beb040b979b074a0629fe79e1e",
+  "global_protected_byte_preservation": false,
+  "changed_existing_files": [
+    "lean/ThresholdHC/ResearchRouteA/build.log",
+    "lean/ThresholdHC/ResearchRouteA/status.json"
+  ],
+  "changed_existing_hashes": {
+    "lean/ThresholdHC/ResearchRouteA/build.log": {
+      "initial": "3d02a919d687d1845fa7cc151d18a1ebb606cc06d9a870935dcf45954dc300fb",
+      "current": "ae7d6db29fef6374ab12b63d7c932fe41e82055f83451e5c486674ce750637bb"
+    },
+    "lean/ThresholdHC/ResearchRouteA/status.json": {
+      "initial": "6b3644d589dc1cf41f34261e0790c25c8be970e31de24b4b9e554b8241702311",
+      "current": "7f6a1419722ff05b5e137149c6a364fe82cb7af9c6185c441f8879984149a7af"
+    }
+  },
+  "other_deliverable_checks_passed": true,
+  "protected_existing_files_checked": 279,
+  "protected_existing_files_unchanged": 277,
+  "v4_tex_and_pdf_match_inputs": true,
+  "baseline_gates": 14,
+  "historical_reproduced_runs": 2000,
+  "new_final_cells": 42,
+  "new_final_runs": 5376,
+  "new_final_observations": 52720432,
+  "preregistration_unchanged": true,
+  "new_paper_spec_lock_checked": true,
+  "formal_scope": "See scoped_recheck.json; new statistical theorems not Lean checked; concurrent Tier5 excluded",
+  "final_artifact_sha256": {
+    "STATE.md": "4de3d09c8713e118348550162540d9844c1c83ddb4eacd185f4c31f5738261e7",
+    "CLAIMS.tsv": "959d114da8700625aac2edcd0b835f99831119370846f98de004bb1cdf8c178a",
+    "RESEARCH_NOTE.tex": "caa9fabc285ad310ab306806de20a8e9019b09812c92f820228feabfec2f87d3",
+    "RESEARCH_NOTE.pdf": "3cffad5d08f0c89cea0f522881e5f2b2ba9cf4aa7b75a9260476edfc4f55b0fc",
+    "LITERATURE_AUDIT.md": "3faf204ee453df67882f3c3f7ffa9e8250b3f3d6807b75c336557e4cd98ff1b3",
+    "ALGORITHMS.md": "6c185e47095cd51792eee9d3b8441dfb85404ac4cd0dfdf56171498ab036ab6c",
+    "FORMAL_COVERAGE.md": "e1b8bee0d21a47307d2bb87ff755908255702988c70ccafa09e7c4fb6b16bfcc",
+    "FAILED_APPROACHES.md": "b46089df611b526d8af6e34d638f1b9e85658bdffd32a570dad8099b6e011279",
+    "REVIEW_PACKET.md": "6992217f1aee72ddbdec998c494c695d676c62daedc0d377a84dae87ce5ecddb",
+    "FINAL_REPORT.md": "825344405340854751b5730640d4767f9822bc62112409b704e476c0be2c9806",
+    "DEPENDENCIES.md": "70ddb1bf69d0d95d45b4cc3d9d983a70c178e23118bc862c1446bcfdd08a4aa7",
+    "RUN_LOG.md": "d2fb69b5c13391d95cd614d5f551a6631c0760a029f217e91707527dbb34ef5c"
+  },
+  "visual_review": "12-page contact sheet plus full-resolution pages3,8,12 inspected; no clipping/overlap observed; fontconfig renderer warnings retained",
+  "limitations": "Arbitrary-law minimax unresolved; no novelty certification or practical superiority; no external review"
+}

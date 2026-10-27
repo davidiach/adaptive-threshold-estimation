@@ -34,6 +34,8 @@ $$\operatorname{Var}(Y)\mathbb E W<713\left(\mathbb E[D^{-1}]\right)^2.$$
 
 Its assumptions describe an arbitrary magnitude/sign probability space, a conditional observation kernel, independent measurable observations in $[0,1]$ with means $1/2\pm D$, $0<D\le1/2$ almost surely, and an integrable inverse magnitude. Bernoulli observations are included. No classifier error, moment, work, or unbiasedness conclusion is an assumption. The random level has unbounded support. See the [kernel audit](../results/uniform713_status.json) and [paper argument](../proposals/constants/UNIFORM_PRODUCT_BOUND.md).
 
+The additive, separately locked `ThresholdHC.ResearchRouteA.separate_moment_bounds` exports $\mathbb E Y^2\le23I$ and $\mathbb E W\le31I$, including integrability. `uniform_family_bounds` proves bounded separate suprema and their product at most $713I^2$ for a nonempty family of latent laws sharing $I$, with the kernel and estimator fixed before the family. This supplies the formal separate-supremum bridge, not a fresh-coin realization or a new constant. See the [specification, hashes and local replay](../research/2026-10-27-route-a/formal-audit.md). Five public roots were checked with only the permitted axioms; external-machine replay is unavailable.
+
 ## Information and stopping
 
 Fix a finite set of $m$ coins with magnitudes $0<d_i\le1/2$. The hypotheses have sign probabilities $q_\pm(i)=1/2\pm\eta_i$, where $0\le\eta_i\le1/8$, $h>0$, and $d_i\eta_i\le h/8$. Policies adapt to observation history. Write $T_n$ for actual work by finite horizon $n$.
@@ -61,7 +63,82 @@ $$\Psi_{\mu,\rho}(h)=\sup_{\substack{v\text{ measurable},\ 0\le v\le1\\\mathbb E
 
 $$\Psi_{\mu,\rho}(h)=\Pr(D\le h)+h\mathbb E[D^{-1};h<D\le t]+ht\mathbb E[D^{-2};D>t].$$
 
-The [specification](../lean/ThresholdHC/Tier3/OptimizerModel.lean) permits atoms and singular laws and assumes no finite inverse moment. It formalizes the identity in [continuation §3.3](../inputs/next-phase/report/research_note.tex#L218). A matching arbitrary-law statistical upper bound remains conjectural. The matching rare-event construction in its §4 covers power margins $F(d)=(d/a)^\alpha$ on $(0,a]$ for $0<\alpha<2$, not $\alpha\ge2$.
+The [specification](../lean/ThresholdHC/Tier3/OptimizerModel.lean) permits atoms and singular laws and assumes no finite inverse moment. It formalizes the identity in [continuation §3.3](../inputs/next-phase/report/research_note.tex#L218). The proposed matching arbitrary-law statistical upper bound is refuted by the reviewed critical-law paper proof below; the variational identity remains valid. The matching rare-event construction in the preserved continuation's §4 covers power margins $F(d)=(d/a)^\alpha$ on $(0,a]$ for $0<\alpha<2$, not $\alpha\ge2$.
+
+## Rare-event power margins above two
+
+The separate [27 October research note](../research/2026-10-27-route-a/construction.tex), Theorem 1 and its exact-power corollary, supplies a **paper proof with two separate agent reviews** of
+
+$$R_{\mu,\rho}(B)\asymp_\alpha\min\{\rho,\sqrt\rho/(a\sqrt B)\},\qquad \alpha>2,$$
+
+for $F_\mu(d)=(d/a)^\alpha$ on $(0,a]$, all $0<a\le1/2$, $0<\rho\le1/4$, $B\ge1$, and every measurable $q$ with $\int q\,d\mu\le\rho$. The upper algorithm observes only coin flips and an independent seed. It knows $a,\rho$ (and $\alpha,B$ for budget calibration), and its upper guarantee also holds uniformly over laws with $F_\mu(d)\le(d/a)^\alpha$ for $d<a$, without knowing the law itself.
+
+The new construction uses asymmetric sign-test errors and a randomized telescope. Its unbiased single-coin output has $\mathbb E Y^2\le(153/56)\rho$ and separately $\mathbb E T\le w_\alpha/a^2$, with explicit finite $w_\alpha$ in the note. The central integration step is $\mathbb E[q(D)\min(D,a)^{-2}]\le[\alpha/(\alpha-2)]a^{-2}\rho^{1-2/\alpha}$; this uses the global constraint, not $q(d)\le\rho$. Compound-Poisson replication enforces the exact expected budget, and a constant estimate covers saturation. The matching lower proof imports Lee–Valiant Corollary 19 and Lemma 18, then gives an explicit fixed-gap simulation reduction.
+
+The [adversarial review](../research/2026-10-27-route-a/review.md), [second analytic review](../research/2026-10-27-route-a/second-review.md), [primary-source comparison](../research/2026-10-27-route-a/sources.md), and [baseline ledger](../research/2026-10-27-route-a/BASELINE.md) record the evidence. Reviewers did not author the main proof; model diversity is not guaranteed. The theorem is **not Lean-checked or externally specialist-reviewed**, and worldwide novelty is unverified. At that checkpoint, the arbitrary-law conjecture and $\alpha=2$ were unresolved. The later critical-law theorem below resolves the specified quadratic law and refutes the matching-Psi conjecture. A sharp replacement for arbitrary laws and a universal two-atom characterization remain open. Constants diverge as $\alpha\downarrow2$. The preserved paper and imported continuation are unchanged.
+
+## Critical power margin: full minimax characterization
+
+For the one fixed law $F(d)=(4d)^2$ on $(0,1/4]$, the
+[full critical note](../research/2026-10-27-nonlinear-critical/unrestricted.tex)
+proves, with universal constants, for all $0<\rho\le1/4$ and $B\ge1$,
+
+$$R_{\mu,\rho}(B)\asymp\min\{\rho,\sqrt{\rho L(1+\log L)/B}\},\qquad L=1+\log(1/\rho).$$
+
+The minimax class is every observable iid fresh-coin algorithm with uniform
+expected work at most B. It includes nonlinear biased output, arbitrary
+independent seeds, adaptive creation/revisiting/interleaving and unbounded
+stopping. The algorithm may know mu, rho and B. The supremum ranges over all
+measurable q in [0,1] with integral q at most rho; the lower proof's cap q<=1/2
+is only an adversarial subclass. Neither individual magnitudes nor signs are
+observed. The upper uses the pre-existing critical construction.
+
+The new lower bound combines a strengthened all-negative-cost entropy
+theorem, a rigorously justified common hard pair, and a finite-prefix adaptive
+Hellinger reduction with an endpoint termination limit. Thus it covers the
+previously unresolved nonlinear and interactive estimators. At this law
+Psi(B^-1/2) has order min{rho,sqrt(rho L/B)}. Taking rho=exp(-exp(n)), B=rho^-2
+forces R/Psi to diverge, refuting a universal C Psi upper even with known mu
+and rho. This supplies no characterization for arbitrary other laws.
+
+Status: **paper proof with independent adversarial agent review and scoped
+component cross-checks**. See the [checkpoint](../research/2026-10-27-nonlinear-critical/CHECKPOINT.md)
+for the exact four-file source bundle, replay evidence, attribution and
+limitations. No Lean theorem, explicit hard-pair formula, external specialist
+review or priority certification is claimed.
+
+## Earlier critical power margin: additive-class obstruction
+
+At the single fixed law $F(d)=(4d)^2$, the new
+[critical-regime note](../research/2026-10-27-critical-two/construction.tex)
+proves, with universal constants and $L=1+\log(1/\rho)$,
+
+$$R_{\rm add}(B)\asymp\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}.$$
+
+This restricted minimax class permits known $\mu,\rho,B$, a common independent
+seed, an almost-surely finite seed-preselected coin count with finite mean,
+and heterogeneous per-coin policies with unbounded stopping. Conditional on
+the seed, components use independent genuine coins and local randomness;
+each policy sees only its own observations. The output is an additive sum
+plus a seed-dependent constant, with the square-sum and uniform moment/work
+conditions stated in the note. Feedback across coins, data-dependent counts
+and nonlinear terminal postprocessing are not covered.
+
+The core theorem gives $\inf_A V(A)W(A)\asymp\rho L(1+\log L)$ for all
+single-coin estimators with uniform bias at most $\rho/64$, including exact
+unbiasedness. A component-selection reduction proves the population-class
+lower bound without requiring identical kernels or predetermined finite
+stopping horizons. The upper reuses the already available
+[critical construction](../research/2026-10-27-minimax-audit/theorem/critical.tex).
+
+Status: **paper proof with two separate agent reviews**. The [checkpoint](../research/2026-10-27-critical-two/CHECKPOINT.md)
+links the complete proof, exact source hashes, prior-art comparison and checks.
+No new Lean statistical theorem, external review or novelty certification is
+claimed. Since $\Psi(B^{-1/2})\asymp\min\{\rho,\sqrt{\rho L/B}\}$ at this law,
+the new result rules out a uniform matching-Psi guarantee in the specified
+additive class. The later full critical-law theorem above resolves the
+nonlinear/interactive gap; this earlier checkpoint's restricted statement and
+evidence are preserved.
 
 ## Unknown rarity and numerical evidence
 

@@ -1,0 +1,299 @@
+\section{An RMS comparison for finite convex experiments}
+Let $X$ be a finite-dimensional nonempty compact convex set and $\ell(x)$
+a linear functional. Consider either of the following experiments:
+\begin{enumerate}
+\item independent finite categorical observations, whose positive probability
+vectors $p_i(x)$ are affine functions of $x$;
+\item a finite vector of independent Poisson counts, whose strictly positive
+intensities $v_j(x)$ are affine functions of $x$.
+\end{enumerate}
+In the first case let $\mathcal F$ be the finite-dimensional space of
+functions $c+\sum_i\phi_i(z_i)$. In the second let
+$\mathcal F=\{c+\sum_j\beta_j z_j\}$. Let $P_x$ denote the whole
+observation law. All exponential moments of functions in $\mathcal F$
+are finite. For fixed $\phi\in\mathcal F$, the function
+$x\mapsto\log\E_xe^\phi$ is concave: it is a sum of logarithms of positive
+affine forms in the categorical case, and an affine function of the
+intensities in the Poisson case. Moreover $\log(dP_x/dP_y)\in\mathcal F$.
+
+\begin{lemma}[RMS affine comparison]\label{lem:comparison}
+For any measurable estimator $G$ with
+$r_G=\sup_{x\in X}(\E_x(G-\ell(x))^2)^{1/2}<\infty$ and any $\eta>0$,
+there exists $F\in\mathcal F$ such that
+\[
+ \sup_{x\in X}(\E_x(F-\ell(x))^2)^{1/2}\le12r_G+\eta.       \tag{2}
+\]
+The result permits nonattainment of the infimum and imposes no restriction
+on the original estimator's output range.
+\end{lemma}
+\begin{proof}
+Put $s=\log2$. For $\alpha>0$ and $\phi\in\mathcal F$ define
+\begin{align*}
+ \Phi(x,y;\phi,\alpha)
+ &=\ell(x)-\ell(y)
+   +\alpha\log\E_y e^{\phi/\alpha}
+   +\alpha\log\E_x e^{-\phi/\alpha}+2\alpha s,\\
+ 2S&=\inf_{\phi,\alpha>0}\max_{x,y\in X}\Phi(x,y;\phi,\alpha).
+\end{align*}
+This real-valued continuous function is convex in $(\phi,\alpha)$ by the
+perspective transformation and concave in $(x,y)$ by the preceding
+log-moment observation. Sion's minimax theorem applies because $X\times X$
+is compact convex and the other domain is convex. Thus the infimum and
+supremum commute. For fixed $x,y$, Cauchy--Schwarz gives
+\[
+ \inf_{\psi\in\mathcal F}
+  \left(\log\E_y e^\psi+\log\E_x e^{-\psi}\right)
+   =2\log\Aff(P_x,P_y),
+\]
+with equality at $\psi=\tfrac12\log(dP_x/dP_y)$.
+Taking the infimum over $\alpha>0$ after putting $\phi=\alpha\psi$
+therefore proves
+\[
+ 2S=\max\{\ell(x)-\ell(y):x,y\in X,\ \Aff(P_x,P_y)\ge1/2\}. \tag{3}
+\]
+The constraint is closed and nonempty, so the maximum exists. Continuity
+of affinity is immediate from the finite categorical formula and, for
+Poisson vectors, from
+$\Aff(P_x,P_y)=\exp[-\tfrac12\sum_j(\sqrt{v_j(x)}-\sqrt{v_j(y)})^2]$.
+In particular $0\le S<\infty$.
+
+For the maximizing pair in (3), total variation is at most $\sqrt3/2$
+by the standard Cauchy--Schwarz affinity bound
+$\|P-Q\|_{\rm TV}\le\sqrt{1-\Aff(P,Q)^2}$.
+Testing the two endpoints by thresholding $G$ at their functional midpoint
+gives, with $\Delta=2S$,
+\[
+ 2r_G^2\ge \frac{\Delta^2}{4}
+           (1-\|P_x-P_y\|_{\rm TV}),\qquad
+ S\le\sqrt{\frac{2}{1-\sqrt3/2}}\,r_G.                    \tag{4}
+\]
+Indeed each wrong decision has squared estimation error at least
+$\Delta^2/4$, and the sum of the two testing errors is at least one minus
+total variation. The case $S=0$ requires no division by $S$.
+
+Fix $R>S$. Choose $(\phi,\alpha)$ with
+$\max_{x,y}\Phi\le2R$. On the diagonal, Cauchy--Schwarz gives
+$\Phi(x,x;\phi,\alpha)\ge2\alpha s$, hence $\alpha\le R/s$.
+Set
+\[
+ U=\max_x\{\ell(x)+\alpha\log\E_xe^{-\phi/\alpha}\},\qquad
+ V=\max_x\{-\ell(x)+\alpha\log\E_xe^{\phi/\alpha}\}.
+\]
+Then $U+V+2\alpha s\le2R$. The additive estimator
+$F=\phi+(U-V)/2$ satisfies, uniformly in $x$,
+\[
+ \E_x e^{(F-\ell(x))/\alpha}\le e^{R/\alpha-s},\qquad
+ \E_x e^{(\ell(x)-F)/\alpha}\le e^{R/\alpha-s}.
+\]
+For $t\ge0$, Markov's inequality consequently gives
+$\Pp_x(|F-\ell(x)|>R+t)\le e^{-t/\alpha}$, since $2e^{-s}=1$.
+Integrating this tail, rather than substituting a confidence guarantee
+for an RMS bound, yields
+\[
+ \E_x(F-\ell(x))^2
+ \le R^2+2R\alpha+2\alpha^2
+ \le R^2\left(1+\frac2s+\frac2{s^2}\right).                \tag{5}
+\]
+The product of the squared constants in (4)--(5) is less than $144$:
+$\log2>2/3$ and $\sqrt3/2<7/8$ bound it by $8.5\cdot16=136$.
+Letting $R\downarrow S$, with the slack chosen for the given $\eta$,
+proves (2). This also proves uniform square integrability of the produced
+estimator, rather than assuming it.
+\end{proof}
+
+\section{From a base-cost obstruction to one pair hard for every capped policy}
+In this section only, restrict the parameter set to
+\[
+ \mathcal X_\rho=\{q:0\le q\le1/2,\ \int q\,d\mu\le\rho\},
+ \qquad J=\rho L H.
+\]
+It is a weak-star compact convex subset of $L^\infty(\mu)$.
+The following implication separates its one required entropy input from
+the convex-experiment argument. The input is the base-cost bound proved in
+the accompanying base-cost section of the full-model note:
+\begin{equation}\label{eq:base-cost-input}
+ \begin{gathered}
+ \text{There is a universal }c_b>0\text{ such that every observable
+ single-coin estimator }Y\text{ with}\\
+ \sup_{q\in\mathcal X_\rho}|\E_qY-\theta(q)|\le\rho/64,
+ \quad V=\sup_{q\in\mathcal X_\rho}\Var_qY<\infty,
+ \quad \sup_{q\in\mathcal X_\rho}\E_qT<\infty
+ \quad\text{satisfies}\quad V\E_0T\ge c_bJ.
+ \end{gathered}                                                     \tag{BC}
+\end{equation}
+The cost in (BC) is at the all-negative population $q=0$, not the supremum
+over populations. The two lemmas below are conditional on precisely this
+input. No algorithm-level lower bound is inferred from a variational
+optimization alone. Write
+$h(P,Q)=1-\Aff(P,Q)$ for squared Hellinger distance in the normalization
+used here; it takes values in $[0,1]$.
+
+\subsection*{Exact finite observation reduction}
+A capped local policy $A$ includes its independent seed and stops after at
+most $m<\infty$ flips of one genuine coin. Its full observed transcript
+contains the seed and the stopped word. Its seed distribution and policy
+may depend on known parameters, but not on the actual $q$.
+For each word $x\in\{0,1\}^t$, let $B_{t,x}$ be the measurable seed set
+that causes stopping exactly at that word. For $0\le k\le t\le m$ put
+\[
+ a_{t,k}=\sum_{x:\,|x|=t,\,\#1(x)=k}\Pp(\text{seed}\in B_{t,x}),
+\]
+and, with $p_s(d)=1/2+(2s-1)d$, put
+\[
+ m_{t,k}(q)=\int\big[(1-q(d))p_0(d)^k(1-p_0(d))^{t-k}
+                  +q(d)p_1(d)^k(1-p_1(d))^{t-k}\big]\,d\mu.
+\]
+The finite statistic $(T,K)$, where $K$ is the number of observed heads,
+has probabilities $a_{t,k}m_{t,k}(q)$. Conditional on $(T,K)$, the stopped
+word and seed have a distribution independent of $q$: their common
+likelihood multiplier is exactly $m_{t,k}(q)$ and cancels. This statement
+also follows directly by integrating any bounded transcript function over
+the finitely many word/seed cells, so it does not assume a latent oracle.
+Consequently the full transcript and this finite statistic have exactly
+the same Hellinger affinities for all pairs of populations.
+
+Remove coordinates with $a_{t,k}=0$. The remaining coordinates are positive
+for every $q$, since $p_s(d)\in[1/4,3/4]$. They are affine weak-star
+continuous functions of $q$. Thus their probability vector together with
+$\theta(q)$ has a compact convex finite-dimensional range. In particular,
+for each capped $A$, its full-transcript squared Hellinger distance
+$h_A(q_-,q_+)$ is a continuous convex function of the pair on
+$\mathcal X_\rho^2$. Convexity follows from joint concavity of affinity for
+two affine probability vectors. This reduction retains the stopping time
+and expected cost, not just a fixed number of sampled bits.
+
+\begin{lemma}[A hard pair for each capped policy]\label{lem:hard-pair}
+Assume (BC). There are universal constants $c_\delta>0$ and $C_H<\infty$
+such that, for every $\rho\in(0,1/4]$, every
+$0<\delta\le c_\delta\rho$, and every randomized capped local policy $A$,
+there exist $q_-,q_+\in\mathcal X_\rho$ with
+$\theta(q_+)-\theta(q_-)\ge\delta$ and
+\[
+ h_A(q_-,q_+)\le C_H\frac{\delta^2}{J}\E_0T_A.              \tag{6}
+\]
+The full observed seed and stopped history are included in the Hellinger
+distance.
+\end{lemma}
+\begin{proof}
+Let $w=\E_0T_A$. If $w=0$, the seed-only event of taking a first observation
+has probability zero, so $A$ has the same transcript law for every $q$.
+The pair $q_-=0$, $q_+=\delta$ gives separation $\delta$ and $h_A=0$.
+We therefore assume $w>0$ in all the divisions below.
+First establish the following additive lower bound for
+$n\ge1$ independent runs of $A$. If an additive output with bounded
+component functions
+$F=c+\sum_{i=1}^nY_i$ has worst RMS $r<\rho/64$, put
+$b_i=\E_0Y_i$, $b=\E_0F$, and choose $I$ uniformly in $\{1,\ldots,n\}$
+independently. Run just its component on one coin and return
+$Z=n(Y_I-b_I)+b$. This preserves every population mean and uses base cost
+$w$.
+
+For $\theta=\theta(q)$, the laws of each component output under $q$ and
+$0$ have a common subprobability of mass $1-\theta$: integrate the
+negative-sign kernel with weight $1-q(d)$. For any two distributions
+sharing such a subprobability, writing each as a mixture of its normalized
+common part and residual part shows
+\[
+ (\E_qY_i-\E_0Y_i)^2
+ \le\frac{2\theta}{1-\theta}
+       (\Var_qY_i+\Var_0Y_i).                              \tag{7}
+\]
+Indeed the squared displacement of either mixture mean from the common
+mean is at most $\theta/(1-\theta)$ times its variance; use
+$(u-v)^2\le2u^2+2v^2$. The case $\theta=0$ is identical laws.
+Independence and $\sup_q\Var_qF\le r^2$ imply
+\[
+ \sum_i(\E_qY_i-b_i)^2\le\frac{4\rho}{1-\rho}r^2,
+ \quad
+ \Var_qZ\le n\sum_i\Var_qY_i
+                 +n\sum_i(\E_qY_i-b_i)^2
+              \le\frac73nr^2.
+\]
+All outputs here are bounded, and stopping is capped, so (BC) applies to
+$Z$ without an additional integrability assumption. It gives
+$r^2\ge3c_bJ/(7nw)$. Including the branch $r\ge\rho/64$ establishes
+\[
+ r\ge c_a\min\{\rho,\sqrt{J/(nw)}\},\qquad
+ c_a=\min\{1/64,\sqrt{3c_b/7}\}.                           \tag{8}
+\]
+
+For $w>0$, let $S_n$ be the saddle quantity $S$ from the proof of
+Lemma~\ref{lem:comparison} for $n$ independent copies of the finite
+statistic of $A$, on the parameter set $\mathcal X_\rho$.
+Equations (3) and (5) of that proof show
+\[
+ 2S_n=\max\{\theta(q_+)-\theta(q_-):
+             \Aff(P_{A,q_+},P_{A,q_-})^n\ge1/2\},
+ \quad \inf_{F\text{ additive}}\sup_q\|F-\theta(q)\|_2\le3S_n.
+\]
+The latter constant is valid because
+$1+2/\log2+2/(\log2)^2<9$. The finite statistic outputs are bounded, so
+(8) applies. Hence, for $\beta=2c_a/3$,
+\[
+ 2S_n\ge\beta\min\{\rho,\sqrt{J/(nw)}\}.                 \tag{9}
+\]
+Take $c_\delta=\beta/2$ and $C_H=8/\beta^2$.
+For $0<\delta\le c_\delta\rho$ set
+$x=\beta^2J/(4\delta^2w)$. If $x\ge2$, choose $n=\lfloor x\rfloor$,
+so $x/2\le n\le x$. Equation (9) gives a pair of separation at least
+$2\delta$, with
+\[
+ h_A\le1-e^{-(\log2)/n}
+       \le\frac{\log2}{n}
+       \le\frac{8\log2}{\beta^2}\frac{\delta^2w}{J}
+       \le C_H\frac{\delta^2w}{J}.
+\]
+If $x<2$, the pair $q_-=0$, $q_+=\delta$ belongs to
+$\mathcal X_\rho$, has separation $\delta$, and $h_A\le1$ suffices
+because $C_H\delta^2w/J>1$.
+\end{proof}
+
+\begin{lemma}[One pair hard for every capped policy]\label{lem:universal-pair}
+Assume (BC), and keep the universal constants of
+Lemma~\ref{lem:hard-pair}. For every $0<\rho\le1/4$ and
+$0<\delta\le c_\delta\rho$, there exist
+$q_-,q_+\in\mathcal X_\rho$, with
+$\theta(q_+)-\theta(q_-)\ge\delta$, such that simultaneously for every
+randomized capped single-coin policy $A$,
+\[
+ h_A(q_-,q_+)\le C_H\frac{\delta^2}{\rho LH}\E_0T_A.       \tag{10}
+\]
+Each policy's seed and full stopped observable history are included.
+The constants and pair are chosen before the policy.
+\end{lemma}
+\begin{proof}
+Let $\mathcal K_\delta=\{(q_-,q_+)\in\mathcal X_\rho^2:
+\theta(q_+)-\theta(q_-)\ge\delta\}$. It is nonempty compact convex in
+the weak-star topology. Fix any finite list of capped policies
+$A_1,\ldots,A_k$ and put $w_i=\E_0T_{A_i}$ and
+$\lambda=C_H\delta^2/(\rho LH)$. For a simplex vector
+$\pi\in\Delta_k$, define the observable mixture policy that draws
+$i\sim\pi$, reveals this index in its independent seed, and runs $A_i$.
+This is still capped, by the largest of the finitely many caps. Its
+base cost is $\sum_i\pi_iw_i$ and, since the revealed labels occupy
+disjoint transcript components, its squared Hellinger distance is exactly
+$\sum_i\pi_i h_{A_i}$. Lemma~\ref{lem:hard-pair} therefore gives
+\[
+ \min_{z\in\mathcal K_\delta}
+       \sum_i\pi_i\big(h_{A_i}(z)-\lambda w_i\big)\le0
+       \qquad(\pi\in\Delta_k).
+\]
+For the finite simplex the displayed function is continuous affine in
+$\pi$ and continuous convex in $z$, by the finite observation reduction.
+Sion's theorem now gives
+\[
+ \min_{z\in\mathcal K_\delta}
+       \max_{1\le i\le k}\big(h_{A_i}(z)-\lambda w_i\big)
+   =\max_{\pi\in\Delta_k}\min_{z\in\mathcal K_\delta}
+       \sum_i\pi_i\big(h_{A_i}(z)-\lambda w_i\big)\le0.
+\]
+Thus the closed subsets
+$\{z\in\mathcal K_\delta:h_A(z)\le\lambda\E_0T_A\}$
+have the finite intersection property as $A$ ranges over all capped
+policies. Compactness of $\mathcal K_\delta$ gives a point in their full
+intersection, proving (10). This uses only finite revealed mixtures and
+a finite simplex minimax theorem; no topology on a space of all policies,
+unjustified exchange of arbitrary infima, or unobserved-mixture affinity
+identity is needed.
+\end{proof}
+

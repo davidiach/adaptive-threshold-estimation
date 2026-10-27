@@ -1,0 +1,15 @@
+kl_data_processing_finite      min margin  9.818e-13 checks=3000
+pinsker_finite                 min margin  9.999e-13 checks=3000
+two_point_rms_lower            min margin  0.08391 checks=3000
+transcript_law_total           min margin  1e-15 checks=250
+stopped_transcript_kl          min margin  9.998e-13 checks=250
+stopped_transcript_testing     min margin  0.002095 checks=25
+bounded_ratio_log              min margin  1 checks=5
+lemma6_error                   min margin  9.537e-07 checks=1846
+lemma6_work                    min margin  0.9196 checks=1846
+lemma7_telescoping             min margin  9.996e-13 checks=84
+lemma7_second_moment           min margin  81.59 checks=1846
+lemma7_work                    min margin  146 checks=1846
+psi_optimizer_atomic           min margin  9.999e-13 checks=24000
+
+All 13 Tier 2 targets numerically consistent.

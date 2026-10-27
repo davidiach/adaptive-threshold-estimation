@@ -1,0 +1,36 @@
+target                           min margin (>= 0 means true on all samples)
+posterior_identity               -9.80709e-54
+posterior_diff_le                9.12117e-7
+posterior_mem                    3.88027e-10
+pred_variance_ge                 0.000130855
+ratio_bound                      0.000125721
+kl_taylor_bound                  9.49411e-10
+lemmaA_forward                   0.00495849
+lemmaA_reverse                   0.0793785
+lemmaA_sharp_at_one              1.0e-15
+hardpair_step_kl                 0.132049
+sym_kl_hellinger_pointwise       2.63377e-12
+kl_ge_two_hell_finite            0.0
+sym_kl_ge_eight_hell_finite      0.0
+two_point_variance_finite        0.0
+fixed_gap_unbiased               -6.22302e-61
+fixed_gap_variance               1.41827e-9
+fixed_gap_equality               -1.51043e-62
+negbin_total                     0.0
+negbin_mean                      0.0
+haldane_inverse_moment           0.0
+scaling_up_pointwise             -7.77877e-62
+scaling_down_pointwise           -7.77877e-62
+modulus_scaling_up               -7.77877e-62
+power_modulus_critical           -7.77877e-62
+power_modulus                    -9.33452e-61
+constant_second_moment           0.308184
+constant_work                    0.537215
+kl_delta_identity                -6.22302e-61
+kl_delta_lower                   0.202733
+error_tail_bound                 0.774441
+classifier_scale_step            3.122
+dyadic_sum_v1                    0.557455
+dyadic_sum_v2                    1.22385
+
+All 33 targets numerically consistent.

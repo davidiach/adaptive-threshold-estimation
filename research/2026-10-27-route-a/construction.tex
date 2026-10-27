@@ -1,0 +1,480 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Pp}{\mathbb P}
+\newcommand{\ind}{\mathbf1}
+\newcommand{\Var}{\operatorname{Var}}
+\title{A rarity-sensitive unbiased construction above the inverse-square boundary}
+\author{Research continuation: mathematical construction agent}
+\date{27 October 2026}
+\begin{document}
+\maketitle
+
+\noindent\textbf{Evidence status.} This is a paper proof checked in two separate
+agent reviews recorded in \texttt{review.md} and \texttt{second-review.md}.
+The reviewers did not author this specification or proof; model diversity is
+not guaranteed. It is not Lean-checked and has not received external specialist
+review. The upper construction below does not invoke the
+arbitrary-law rare-event lower bound. Matching lower bounds invoke the published
+fixed-gap Lee--Valiant lower bound, through an explicit simulation reduction.
+Novelty relative to all prior literature is not certified.
+
+\section{Claim and observational contract}
+For $\alpha>2$ and $0<a\le 1/2$, let $\mathcal M_{\alpha,a}$ be the probability
+laws on $(0,1/2]$ satisfying
+\[
+ \mu((0,x])\le (x/a)^\alpha\qquad (0<x<a).
+\]
+A coin has hidden $D\sim\mu$ and $S\mid D=d\sim\operatorname{Ber}(q(d))$;
+its successive flips are conditionally independent Bernoulli variables with
+parameter $1/2+(2S-1)D$. Fresh coins are iid. All functions $q$ below are measurable,
+$0\le q\le1$, and $\theta=\int q\,d\mu\le\rho$, where $0<\rho\le1/4$.
+Only actual coin flips are charged. Independent random bits and arithmetic are
+free, as in the repository's experiment.
+
+An explicit realization uses mutually independent variables $D_i\sim\mu$,
+$U_i\sim\operatorname{Unif}(0,1)$, and $V_{i,n}\sim\operatorname{Unif}(0,1)$,
+for $i,n\ge1$, on their countable product probability space. Set
+$S_i=\ind_{\{U_i\le q(D_i)\}}$ and
+$X_{i,n}=\ind_{\{V_{i,n}\le1/2+(2S_i-1)D_i\}}$.
+An additional independent seed supplies every algorithmic random choice.
+These are measurable variables and give the required conditional iid flip
+tapes and independent fresh coins. The algorithms below use only the next
+unused $X_{i,n}$ on a requested coin. Their likelihoods, comparisons, and
+stopping decisions depend only on finite observed prefixes. The random-level
+and Poisson choices are measurable functions of the independent seed.
+
+Set
+\[
+\begin{aligned}
+ \beta&=1-2/\alpha,\qquad A_0=\frac{\alpha}{\alpha-2},\qquad
+ A_1=\frac{\alpha}{(\alpha-2)^2},\\
+ w_\alpha&=\frac32\left[
+ A_0\left(1+10\log2+\frac1{e\beta}\right)+A_1\right],
+ \qquad K=\frac{153}{56}<3.
+\end{aligned}
+\]
+All constants here precede the choice of $a,\mu,\rho,q,B$.
+
+\begin{theorem}[Uniform upper theorem above two]\label{thm:upper}
+For every $\alpha>2$, $0<a\le1/2$, and $0<\rho\le1/4$, there is one observable
+single-coin estimator $Y=Y_{a,\rho}$, independent of $\mu$ and $q$, such that
+for every $\mu\in\mathcal M_{\alpha,a}$ and every admissible $q$,
+\[
+ \E Y=\theta,\qquad \E Y^2\le K\rho,\qquad
+ \E T_Y\le w_\alpha/a^2.
+\]
+In particular all integrability and finite-work assertions are conclusions.
+For every $B\ge1$, a family of observable algorithms depending only on
+$(\alpha,a,\rho,B)$ has uniform expected work at most $B$ and worst-case RMS
+at most
+\[
+ \min\left\{\frac\rho2,
+       \sqrt{K w_\alpha}\frac{\sqrt\rho}{a\sqrt B}\right\}.
+\]
+The final budgeted estimator need not be unbiased, because clipping or a constant
+estimate may be used. The underlying compound-Poisson estimator is unbiased.
+\end{theorem}
+
+The theorem gives a known-law result for the exact power law
+$F(d)=(d/a)^\alpha$ on $(0,a]$. Its proof also gives the stated uniform upper
+bound for the larger margin class. This is not an arbitrary-law solution and
+not an estimator independent of a rarity bound. In particular constants diverge
+as $\alpha\downarrow2$.
+
+\section{Observable asymmetric sequential classifier}
+For $k=0,1,\ldots$ define known reference gaps and weights
+\[
+ r_k=a2^{-(k+1)},\qquad \pi_k=2^{-(k+1)}.
+\]
+For the observed flips $X_1,X_2,\ldots$ of one coin, let
+\[
+ L^+_{k,n}=\prod_{i=1}^n(1+2r_k)^{X_i}(1-2r_k)^{1-X_i},\quad
+ L^-_{k,n}=\prod_{i=1}^n(1-2r_k)^{X_i}(1+2r_k)^{1-X_i}.
+\]
+These are likelihood ratios against the fair-coin law. Fix $0<\varepsilon\le1$.
+At the first $n\ge1$ for which some $k\ge0$ satisfies either
+\[
+ L^-_{k,n}\ge\frac1{\pi_k\varepsilon}
+ \quad\hbox{or}\quad
+ L^+_{k,n}\ge\frac1{\pi_k\rho\varepsilon},                 \tag{C}
+\]
+stop and return $Z_\varepsilon=0$ in the former case and $Z_\varepsilon=1$ in
+the latter. Fix negative priority in case both conditions first occur together.
+The stopping time is $T_\varepsilon$.
+
+This rule does not observe $D,S$, or $q$. It also does not require infinitely
+many operations at any finite observation prefix. If $k\ge n\ge1$, then
+$2r_k\le2^{-k}$ and
+\[
+ L^{\pm}_{k,n}\le(1+2r_k)^n\le\exp(n2^{-k})\le e^{1/2}<2,
+ \qquad \frac1{\pi_k\varepsilon}\ge2^{k+1}\ge4.
+\]
+Thus only the finite set $k<n$ needs to be checked at time $n$. The positive
+threshold is even larger. The products for any newly activated index can be
+computed from $n$ and the observed head count. Every action and output is
+therefore a measurable function of the independent seed and observable history.
+
+\begin{lemma}[Errors and expected work]\label{lem:classifier}
+For every fixed $0<d\le1/2$ and $s\in\{0,1\}$,
+\[
+ \Pp(Z_\varepsilon=0\mid d,1)\le\varepsilon,
+ \qquad \Pp(Z_\varepsilon=1\mid d,0)\le\rho\varepsilon.
+\]
+Put $x=\min(d,a)$ and $c_0=1+2\log2$. Then
+\[
+ \E(T_\varepsilon\mid d,s)
+ \le\frac32x^{-2}\left[c_0+\log(a/x)+\log(1/\varepsilon)
+                         +s\log(1/\rho)\right].           \tag{1}
+\]
+In particular this stopping time is finite almost surely for every allowed
+latent state, including $d=1/2$.
+\end{lemma}
+\begin{proof}
+Under a positive coin, the expected next factor of $L^-_k$ is
+$1-4r_kd\le1$; under a negative coin, that of $L^+_k$ is the same.
+Consequently these wrong-sign processes are nonnegative supermartingales
+starting at one. For completeness, stopping a nonnegative supermartingale
+$M$ at its first crossing of $b$ and at a deterministic horizon $N$ gives
+$b\Pp(\max_{n\le N}M_n\ge b)\le\E M_{\tau\wedge N}\le1$.
+Letting $N\uparrow\infty$ proves the crossing bound $1/b$ without an
+unbounded optional-stopping assumption. Applying this to each $k$ and summing
+$\sum_k\pi_k=1$ proves the two error bounds, once almost-sure termination is
+established below.
+
+Choose $k=\lceil\log_2(a/x)\rceil$. Then $x/4<r_k\le x/2$ (the weaker
+$x/4\le r_k\le x/2$ suffices), $r_k\le1/4$, and
+$(k+1)\log2\le\log(a/x)+2\log2$.
+Under the true sign, the logarithm of the corresponding correct-sign
+likelihood ratio is a sum of iid bounded increments, with mean
+\[
+ g(d,r_k)=\tfrac12\log(1-4r_k^2)
+                +d\log\frac{1+2r_k}{1-2r_k}.
+\]
+The elementary inequalities
+$\log(1-z)\ge-z/(1-z)$ and
+$\log((1+u)/(1-u))\ge2u$ yield
+\[
+ g(d,r_k)\ge-\tfrac83r_k^2+4dr_k
+            \ge\tfrac83xr_k\ge\tfrac23x^2.               \tag{2}
+\]
+Every upward log increment is at most $\log(1+2r_k)<1$.
+If $\sigma$ is the first time this particular log process reaches
+\[
+ A=\log(1/\varepsilon)+(k+1)\log2+s\log(1/\rho),
+\]
+then for every integer $N$, its value at $\sigma\wedge N$ is at most $A+1$.
+The elementary bounded-horizon identity
+\[
+ \E\sum_{i=1}^{\sigma\wedge N}\xi_i
+   =\sum_{i=1}^N\E[\xi_i\ind_{\{\sigma\ge i\}}]
+   =g(d,r_k)\E(\sigma\wedge N)
+\]
+uses only that $\{\sigma\ge i\}$ is determined before increment $i$.
+Hence $\E(\sigma\wedge N)\le(A+1)/g(d,r_k)$.
+Monotone convergence proves $\E\sigma\le(A+1)/g(d,r_k)<\infty$ and
+therefore $\sigma<\infty$ almost surely. Since $T_\varepsilon\le\sigma$,
+equations (1)--(2) follow. This also completes the termination needed for
+the error assertions.
+\end{proof}
+
+\section{The moment calculation that removes the logarithmic loss}
+The relevant distinction from symmetric high-confidence screening is that
+$\log(1/\rho)$ in (1) is paid only on positive coins.
+
+\begin{lemma}[Margin integration]\label{lem:integration}
+If $\mu\in\mathcal M_{\alpha,a}$, $x=\min(D,a)$, $\alpha>2$, and
+$0\le q\le1$, $\E q(D)\le\rho$, then
+\[
+\begin{aligned}
+ \E x^{-2}&\le A_0a^{-2},\\
+ \E[x^{-2}\log(a/x)]&\le A_1a^{-2},\\
+ \E[q(D)x^{-2}]&\le A_0a^{-2}\rho^\beta.
+\end{aligned}                                           \tag{3}
+\]
+For the exact power law the first two inequalities are equalities, and the
+last is attained by $q(d)=\ind_{\{d\le a\rho^{1/\alpha}\}}$.
+\end{lemma}
+\begin{proof}
+The variable $x$ stochastically dominates the power-law variable $aU^{1/\alpha}$,
+where $U$ is uniform on $(0,1)$. Integrating decreasing nonnegative functions,
+or equivalently applying the layer-cake identity to their sublevel events,
+gives the first two inequalities. Their explicit integrals are
+\[
+ \frac\alpha{a^\alpha}\int_0^a d^{\alpha-3}\,dd=A_0a^{-2},
+ \qquad
+ \frac\alpha{a^\alpha}\int_0^a d^{\alpha-3}\log(a/d)\,dd=A_1a^{-2}.
+\]
+For the third, Tonelli's theorem and $q\le1$ give
+\[
+ \E[qx^{-2}]
+ =a^{-2}\E q+\int_{a^{-2}}^\infty\E[q\ind_{\{x^{-2}>u\}}]\,du
+ \le a^{-2}\rho+\int_{a^{-2}}^\infty
+                  \min\{\rho,(a^2u)^{-\alpha/2}\}\,du.
+\]
+Splitting at $a^{-2}\rho^{-2/\alpha}$ evaluates the last expression as
+$A_0a^{-2}\rho^{1-2/\alpha}$. The claimed equality case follows by direct
+integration. These arguments concern nonnegative extended integrals;
+finiteness is established by the displayed evaluations.
+\end{proof}
+
+Combining (1) and (3), with $\theta\le\rho$, gives the uniform bound
+\[
+ \E T_\varepsilon\le\frac{3}{2a^2}
+ \left[A_0\{c_0+\log(1/\varepsilon)\}+A_1
+                  +A_0\rho^\beta\log(1/\rho)\right].     \tag{4}
+\]
+Here $\rho^\beta\log(1/\rho)\le1/(e\beta)$, obtained by maximizing
+$te^{-\beta t}$ over $t\ge0$. This is where $\alpha>2$ is essential.
+The logarithm is controlled uniformly in the supplied rarity bound.
+
+\section{Unbiased random-level estimator}
+The single-term randomized telescoping device is an established unbiased
+multilevel ingredient; see Vihola~\cite[Theorem 3]{vihola}. The particular classifier and
+the rarity-sensitive moment and work calculation below are analyzed explicitly.
+Let $\varepsilon_j=16^{-(j+1)}$ for $j\ge0$ and use the above classifiers
+$Z_j=Z_{\varepsilon_j}$ on one common coin-flip tape. Define
+\[
+ \Delta_0=Z_0,\qquad \Delta_j=Z_j-Z_{j-1}\quad(j\ge1).
+\]
+Choose an independent $J$ with $p_j=\Pp(J=j)=2^{-(j+1)}$, draw one fresh coin,
+and return $Y=\Delta_J/p_J$. Only the classifiers actually needed for this
+increment are evaluated. Both threshold families in (C) grow by the same
+factor $16$ between successive levels, so $T_j\ge T_{j-1}$ pathwise. The
+increment costs exactly $T_J$, with the earlier decision stored from the same
+prefix. No assumption about independence between classifier levels is made.
+
+The conditional error bounds give
+\[
+ \Pp(Z_j\ne S)\le (\theta+\rho)\varepsilon_j\le2\rho\varepsilon_j,
+ \qquad \E Z_0^2=\E Z_0\le\theta+\rho\varepsilon_0\le\tfrac{17}{16}\rho.
+\]
+For $j\ge1$, a disagreement implies an error of at least one classifier, hence
+\[
+ \E\Delta_j^2\le2\rho(\varepsilon_j+\varepsilon_{j-1})
+                    =\tfrac{17}{8}\rho\,16^{-j}.
+\]
+All square terms are nonnegative, so Tonelli gives
+\[
+ \E Y^2=\sum_{j\ge0}\frac{\E\Delta_j^2}{p_j}
+ \le\left(\frac{17}{8}+\frac{17}{4}\sum_{j\ge1}8^{-j}\right)\rho
+ =\frac{153}{56}\rho.                                  \tag{5}
+\]
+This proves square integrability, hence integrability, before using signed
+expectations. Alternatively $\sum_j\E|\Delta_j|<\infty$ directly follows
+from the same disagreement bounds because $|\Delta_j|=\Delta_j^2$ for $j\ge1$.
+Consequently
+\[
+ \E Y=\sum_{j\ge0}\E\Delta_j
+       =\lim_{j\to\infty}\E Z_j=\E S=\theta.             \tag{6}
+\]
+Finally (4), $\E(J+1)=2$, and $\log(1/\varepsilon_j)=4(j+1)\log2$ imply
+\[
+ \E T_Y\le\frac3{2a^2}
+ \left[A_0\{1+10\log2+1/(e\beta)\}+A_1\right]
+ =w_\alpha/a^2.                                         \tag{7}
+\]
+Equations (5)--(7) prove the single-coin part of Theorem~\ref{thm:upper}, with
+separate uniform second-moment and work bounds.
+
+\section{Exact expected-budget calibration and matching power-law rate}
+Independent Poisson replication and its variance formula are also established
+ingredients; see Vihola~\cite[Example 8]{vihola}. We give the direct calculation
+to verify the exact expected budget, including when the expected count is below one.
+Set $\lambda=Ba^2/w_\alpha>0$. Draw an independent
+$M\sim\operatorname{Poisson}(\lambda)$ and run independent copies $Y_1,\ldots,Y_M$
+of the single-coin procedure on fresh coins. Return
+\[
+ \widehat\theta=\lambda^{-1}\sum_{i=1}^M Y_i.
+\]
+The empty sum is zero. Conditioning first on $M$, then using its mean and
+variance $\lambda$, proves
+\[
+ \E\widehat\theta=\theta,
+ \quad \Var(\widehat\theta)=\lambda^{-1}\E Y^2
+            \le\frac{K w_\alpha\rho}{a^2B},
+ \quad \E T\le\lambda w_\alpha/a^2=B.
+\]
+All sums stop almost surely and have finite expected work. These identities are
+valid even when $\lambda<1$; no rounding of the budget is hidden. Clip the result
+to $[0,\rho]$, which cannot increase squared error for $\theta\in[0,\rho]$.
+When its displayed RMS bound exceeds $\rho/2$, instead output $\rho/2$ at zero
+work. The choice uses only the allowed parameters. This proves the budgeted
+part of Theorem~\ref{thm:upper}.
+
+\begin{lemma}[Localized fixed-gap RMS lower bound]\label{lem:fixedlower}
+There is a universal $c>0$ such that the minimax RMS risk for fixed gap
+$0<a\le1/2$, prior $0\le\vartheta\le\rho\le1/4$, and uniform expected
+work at most $B\ge1$ is at least
+$c\min\{\rho,\sqrt\rho/(a\sqrt B)\}$.
+This lemma uses Lee--Valiant Corollary 19 and Lemma 18 as external inputs.
+\end{lemma}
+\begin{proof}
+The exact imported assertions imply the following: there are universal
+$a_*,c_*,C_*>0$ such that, if $a<a_*$ and $u,v,v/u<c_*$, the KL divergence
+of any finite-prefix fully adaptive fixed-gap transcript under sign priors
+$u$ and $u+v$ is at most $C_*v^2a^2\E_u T/u$.
+Indeed, Corollary 19 bounds each single-coin hybrid's squared Hellinger
+distance by a universal multiple of $v^2a^2/u$ times its expected observations
+under $u$. Lemma 18 bounds joint KL by the sum of those distances. Summing
+coin work counts each observation once. Their Hellinger normalization is
+absorbed in $C_*$. We use the original-prior, not midpoint-prior, expectation.
+All their smallness hypotheses are enforced in the choices below.
+
+For arbitrary almost-surely terminating policies with finite expected work,
+first stop at $T\wedge n$ and number coins by first observation. At most $n$
+coins are then observed, so the finite-prefix statement applies. This numbering
+preserves the paper's creation and interleaving model: an unobserved coin has
+provided no information, and its iid latent draw can be deferred until its first
+observation. A dictionary from the policy's original coin labels to the new
+indices preserves every revisit. Unobserved-label choices use only the seed
+and observed history, so this relabeling changes neither their law nor any
+charged observation or output. Include the
+independent random seed in the transcript; conditioning on it and averaging
+extends the deterministic statement. Relative entropy along increasing prefix
+sigma fields converges to full transcript relative entropy. The stopped output
+is measurable in this sigma field. Thus the same bound holds at unbounded
+stopping, without a globally fixed finite coin family.
+
+Write $r=\min\{\rho,\sqrt\rho/(a\sqrt B)\}$, and take
+$u=b\rho$, $v=\gamma r$ for fixed sufficiently small positive universal
+constants $b,\gamma$. Choose $b+\gamma\le1$ and $\gamma/b<c_*$,
+so $u,u+v\in[0,\rho]$ and all prior smallness assumptions hold.
+Since $r^2a^2B\le\rho$, for $a<a_*$ the transcript KL is at most
+$C_*\gamma^2/b$.
+
+For $a\ge a_*$, give the algorithm each coin's true sign on its first
+observation. This more informative experiment simulates all requested flips
+from that sign. Each newly observed sign has Bernoulli KL at most $2v^2/u$,
+using $u+v\le1/4$ and the KL--chi-square inequality. The expected number of
+newly observed signs is at most $\E_u T\le B$, so full KL is at most
+$2v^2B/u\le2\gamma^2/(ba_*^2)$. The same finite-prefix argument justifies
+unbounded stopping. This also covers the endpoint $a=1/2$.
+
+Choose $\gamma$ small enough that both displayed KL bounds are at most $1/8$.
+Pinsker's inequality then bounds total variation by $1/4$. If an estimator has
+RMS at most $R$ at both priors, thresholding halfway between them gives a test
+whose two error probabilities sum to at most $8R^2/v^2$. Every test has error
+sum at least $1-\mathrm{TV}\ge3/4$. Therefore $R\ge v/4$, proving the claim
+with $c=\gamma/4$. This proves all budget and rarity regimes, including the
+saturated regime, from the precise source inputs rather than an informal
+high-confidence asymptotic statement.
+\end{proof}
+
+\begin{corollary}[The previously unresolved exact-power regime $\alpha>2$]\label{cor:power}
+Let $\mu$ have distribution function $(d/a)^\alpha$ on $(0,a]$ with $\alpha>2$.
+Subject to the published fixed-gap lower bound of Lee--Valiant, there is a
+universal $c>0$ and, for each $\alpha>2$, a finite $C_\alpha$ such that for all
+$0<a\le1/2$, $0<\rho\le1/4$, and $B\ge1$,
+\[
+ c\min\left\{\rho,\frac{\sqrt\rho}{a\sqrt B}\right\}
+ \le R_{\mu,\rho}(B)
+ \le C_\alpha\min\left\{\rho,\frac{\sqrt\rho}{a\sqrt B}\right\}.
+\]
+Moreover this risk is comparable, with constants depending only on $\alpha$,
+to $\Psi_{\mu,\rho}(B^{-1/2})$.
+\end{corollary}
+\begin{proof}
+The upper bound was just proved. For the lower bound it is enough to restrict
+to constant sign functions $q(d)=\vartheta\in[0,\rho]$. An experiment using
+fixed-gap $a$ coins can simulate the variable-gap experiment at the same charged
+work: sample $D\sim\mu$ privately for each fresh fixed-gap coin; on each request,
+flip that coin once, and with probability $D/a$ return its flip, otherwise
+return an independent fair bit. Conditional on the fixed coin's sign and its
+privately sampled $D$, the
+returned flips are iid Bernoulli$(1/2\pm D)$. The same latent $D$ is retained
+on revisits, and is not disclosed to the simulated algorithm. The simulation
+uses one charged flip per returned observation even when that flip is discarded.
+It preserves all interleaving and stopping choices. Thus a smaller variable-gap
+risk would contradict Lemma~\ref{lem:fixedlower}. This reduction does not need
+the continuation note's arbitrary-law lower-bound theorem.
+
+For comparison with the functional, constant allocation $w\equiv\rho$ and
+$D\le a$ give
+\[
+ \Psi_{\mu,\rho}(h)\ge\min\{\rho,h\sqrt\rho/a\}.
+\]
+For every feasible $w$, Cauchy--Schwarz and $\E D^{-2}=A_0/a^2$ give
+\[
+ \int\min\{w,h\sqrt w/D\}\,d\mu
+ \le\min\{\rho,h\sqrt{\rho A_0}/a\}.
+\]
+Taking the supremum proves the claimed comparison, including saturation.
+\end{proof}
+
+\section{Scope, edge cases, and failed approaches}
+The classifier and estimator operate at $D=1/2$, with no likelihood logarithm
+at zero because the reference gaps satisfy $r_k\le1/4$. At arbitrarily small
+$D>0$ each conditional expected stopping time is finite; the margin assumption
+then proves population integrability. The level $J$ has unbounded support and
+finite mean. For the admissible law $\mu=\delta_{1/2}$, $a=1/2$, and $q=0$,
+all observations are zero. At time $n$ every correct-sign likelihood is at most
+$(3/2)^n$, whereas every level-$j$ correct-sign threshold is at least
+$2/\varepsilon_j$. Thus each fixed $n$ is exceeded for sufficiently large $j$.
+Since all $p_j>0$, actual work has genuinely unbounded support and finite mean,
+not merely an unused unbounded seed. A finite Poisson number of such procedures
+also has finite expected work.
+
+The global constraint $\int q\,d\mu\le\rho$ is used precisely in (3); no
+pointwise bound $q\le\rho$ is imposed. Its extremizer puts all positive mass
+on the smallest gaps. The algorithm never assumes known positive or negative
+conditional magnitude laws. The result is uniform jointly in $B,\rho,a$ for
+each fixed $\alpha>2$, but is not uniform as $\alpha\downarrow2$.
+
+Two earlier approaches exposed the obstruction addressed here. Symmetric
+high-confidence screening charges $\log(1/\rho)$ on all coins, retaining an
+unwanted logarithm. An unamplified ballot-survival estimator has positive
+conditional second moment of order $1/D$; placing positives near the threshold
+then gives an unwanted $\rho^{1-1/\alpha}$ moment scale. The asymmetric
+classifier followed by an unbiased random-level correction avoids both
+problems. The negative classifier error is $\rho\varepsilon$, whereas the
+positive error is only $\varepsilon$; the extra positive work is absorbed by
+the sharp global-rarity integral in (3).
+
+The same proof does not settle $\alpha=2$: its inverse-square integral diverges,
+and the uniform control of $\rho^\beta\log(1/\rho)$ loses meaning at $\beta=0$.
+It does not characterize arbitrary laws with a finite inverse-square moment,
+because that moment alone does not uniformly control the logarithmically
+weighted moment or the rarity-weighted cost. It does not refute that larger
+conjecture. A direct finite-support modification gives finite bounds with
+support-dependent constants, but this is not the universal two-atom theorem.
+
+The sequential likelihood test, Ville inequality, and randomized telescoping
+are established ingredients. The proposed repository advance is their
+combination with the global-rarity rearrangement bound to close the complete
+$\alpha>2$ regime. Comparison with all predecessor theorems remains separate
+from validity of this proof.
+
+\paragraph{Reproducible diagnostics.}
+From the repository root, run
+\begin{verbatim}
+python research/2026-10-27-route-a/check_construction.py
+\end{verbatim}
+The companion \texttt{construction-checks.json} records 18 exact-rational
+finite-prefix experiments, with cap 80 and unresolved probability retained.
+There is no Monte Carlo seed, optimization, or fresh held-out sample.
+The diagnostic also checks the geometric moment sum $153/56$ exactly;
+displayed values of $w_\alpha$ use floating-point arithmetic. These finite
+checks are numerical evidence for implementation consistency, not a proof
+of infinite-horizon correctness or a replacement for the analytic arguments.
+
+\begin{thebibliography}{9}
+\bibitem{lv} J. C. H. Lee and P. Valiant.
+\emph{Uncertainty about Uncertainty: Optimal Adaptive Algorithms for Estimating
+Mixtures of Unknown Coins}. SODA 2021; arXiv:1904.09228v3.
+\url{https://arxiv.org/html/1904.09228v3}.
+The fixed-gap lower theorem is an external input; its scope is audited
+separately in this research directory.
+\bibitem{vihola} M. Vihola. \emph{Unbiased Estimators and Multilevel Monte Carlo}.
+Operations Research 66(2):448--462, 2018; arXiv:1512.01022.
+\url{https://arxiv.org/abs/1512.01022}.
+\bibitem{baseline} Repository continuation note,
+\emph{Rare-event localization for adaptive threshold estimation},
+26 October 2026. The exact-power regimes at and above two were left open.
+\end{thebibliography}
+\end{document}

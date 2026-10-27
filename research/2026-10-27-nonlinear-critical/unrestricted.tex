@@ -1,0 +1,299 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Pp}{\mathbb P}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\ind}{\mathbf1}
+\newcommand{\KL}{\operatorname{KL}}
+\newcommand{\Aff}{\operatorname{Aff}}
+\newcommand{\Hsq}{\mathsf H^2}
+\newcommand{\Xrho}{\mathcal X_\rho}
+\title{The critical quadratic margin: an unrestricted minimax characterization}
+\author{Research continuation: independent construction and adversarial review roles}
+\date{27 October 2026}
+\begin{document}
+\maketitle
+
+\noindent\textbf{Status.} Complete paper proof with an independent adversarial
+agent review and additional component cross-checks. This is not a Lean proof,
+an external specialist review, or a novelty certification. Exact reviewed
+source identities and findings are maintained separately. The strongest claim below concerns
+the full iid fresh-coin experiment, including nonlinear outputs and interaction
+among coins; it is not inferred merely from the earlier additive-class theorem.
+
+\section{Experiment, quantifiers, and result}
+Throughout fix $a=1/4$ and
+\[
+ \mu(dd)=\frac{2d}{a^2}\ind_{(0,a]}(d)\,dd.
+\]
+For $0<\rho\le1/4$, let
+\[
+ \mathcal Q_\rho=\{q:(0,a]\to[0,1]\text{ measurable}:\int q\,d\mu\le\rho\},
+ \qquad \theta(q)=\int q\,d\mu.
+\]
+Each genuine fresh coin has an independent hidden magnitude $D\sim\mu$,
+hidden sign $S\mid D\sim\operatorname{Ber}(q(D))$, and conditionally iid
+flips of mean $1/2+(2S-1)D$. Neither latent variable is observed. One realization
+uses independent uniforms on $(0,1)$ for each coin: $D=a\sqrt{U_0}$,
+$S=\ind_{\{U_1\le q(D)\}}$, and flips
+$X_k=\ind_{\{U_{k+1}\le1/2+(2S-1)D\}}$ for $k\ge1$. Measurable functions
+equal $\mu$-almost everywhere define the same experiment; Borel versions may
+be used in this standard probability space.
+
+The algorithm has an independent seed and sees only its seed and the observed
+history. At each step it stops and returns a real measurable output, revisits
+an observed coin, or observes a fresh coin. Every flip costs one. The output
+may be biased and nonlinear, and the choices may depend on all previous
+observations. Stopping may be unbounded. A design may know $\mu,\rho,B$ but is
+fixed before the unknown $q$ is supplied. Work $T=\infty$ on nontermination.
+Define
+\[
+ R_{\mu,\rho}(B)=\inf_{A:\,\sup_{q\in\mathcal Q_\rho}\E_qT_A\le B}
+       \sup_{q\in\mathcal Q_\rho}\bigl(\E_q(\widehat\theta_A-\theta(q))^2\bigr)^{1/2}.
+\]
+This class permits arbitrary creation and interleaving, not a globally fixed
+number of coins. We number coins by their first charged observation. This
+is equivalent to giving names to iid unseen coins earlier: an unused coin's
+latent state is independent of the observed history and seed, and choosing
+among unused names using only that information still selects an iid fresh
+state. The relabeling retains the map for every later revisit. Creating or
+discarding an unobserved coin supplies no information. Consequently at most
+$K$ different coins occur before the $K$th charged observation.
+
+Write $L=1+\log(1/\rho)$, $H=1+\log L$, and $J=\rho LH$.
+For the lower proof we use the convex subclass
+\[
+ \Xrho=\{q\in L^\infty(\mu):0\le q\le1/2\ \mu\text{-a.e.},\ \int q\,d\mu\le\rho\}.
+\]
+This pointwise cap restricts the lower-bound adversary only; the algorithmic
+upper and minimax definition still use the full global-rarity class.
+
+\begin{theorem}[Full critical law]\label{thm:critical-minimax}
+There exist universal constants $0<c<C<\infty$ such that, for the one fixed
+law above, every $0<\rho\le1/4$ and $B\ge1$ satisfy
+\[
+ c\min\{\rho,\sqrt{J/B}\}\le R_{\mu,\rho}(B)
+       \le C\min\{\rho,\sqrt{J/B}\}.                    \tag{A}
+\]
+The lower bound holds for every observable algorithm in the stated full
+experiment, including arbitrary randomization, nonlinear estimation and
+data-dependent creation, revisiting and interleaving. The upper permits the
+known rarity and law; it has separately finite uniform work and squared error.
+\end{theorem}
+
+The upper construction was already available in the separately owned critical
+note, now at commit \texttt{a8a8dc49115aabdd1fba8d53d3390eb0a5eee864}; it is
+reproduced with attribution in the appendix. The new lower proof has three
+steps. First, sign-testing entropy forces a small-bias variance product using
+\emph{all-negative work}, not a supremum of work over populations. Second,
+convex estimation and minimax supply one hard pair valid for every capped
+single-coin observation policy. Third, a midpoint simulation charges those
+bounds to the actual work of an interactive population algorithm. The last
+step is the established Lee--Valiant Hellinger decomposition mechanism
+\cite[Lemma 17]{lv}, proved below at finite prefixes to make its observation
+and stopping scope explicit.
+
+The convex-estimation step follows Juditsky--Nemirovski's saddle-point
+framework \cite{jn}; the passage from its exponential tails to RMS risk is
+written out here. Polyanskiy--Wu \cite{pw} already establish broad quadratic-risk
+affine comparisons and convex duality for functional estimation. Neither that
+general principle nor the Hellinger decomposition is claimed as new. The
+cost-sensitive common pair and its application to this critical hidden-coin
+class are the proposed contribution; priority remains unverified.
+
+\input{base_cost.tex}
+\input{affine_comparison.tex}
+
+\section{From one universal pair to every population algorithm}
+\begin{lemma}[Finite-prefix midpoint decomposition]\label{lem:population-prefix}
+Suppose $q_-,q_+\in\Xrho$ have this property: every observable randomized
+single-coin policy with a deterministic finite cap obeys
+\[
+ \Hsq(P^A_{q_-},P^A_{q_+})\le\lambda\E_0 T_A,           \tag{B}
+\]
+where the transcript includes its independent seed and stopped observations,
+and $\Hsq(P,Q)=1-\int\sqrt{dP\,dQ}$. Let $\bar q=(q_-+q_+)/2$.
+Then every population algorithm capped after $K$ total flips obeys
+\[
+ \Hsq(P_{q_-}^{\rm pop},P_{q_+}^{\rm pop})
+       \le2\lambda\E_{\bar q}T.                       \tag{C}
+\]
+\end{lemma}
+\begin{proof}
+Condition first on the original independent seed. Pad the list of observed
+coins to $K$ slots by their first-observation indices; an unobserved slot
+contributes the empty word of probability one. The policy is a finite binary
+decision tree, whose choices are determined by past outcomes and the fixed
+seed. For a leaf $z$, let $h_i(z)$ be the ordered word observed from slot $i$.
+Under a single fresh coin from $q_r$, write its word probability as
+$p_r(h)$, $r\in\{-,+\}$. Independence of the coin tapes gives leaf density
+\[
+ P_r(z)=\prod_{i=1}^Kp_r(h_i(z)).
+\]
+Interleaving changes the tree and the words, but not this factorization.
+Set $m_i=(p_-(h_i)+p_+(h_i))/2$ and
+$c_i=\sqrt{p_-(h_i)p_+(h_i)}$. Word probabilities are affine in $q$, so
+$m_i=p_{\bar q}(h_i)$. These quantities are positive; empty words cause
+no exception. Since $0\le c_i\le m_i$, the elementary product inequality
+gives
+\[
+ \prod_i m_i-\prod_i c_i
+   \le\sum_i(m_i-c_i)\prod_{j\ne i}m_j.                \tag{D}
+\]
+The left side sums over leaves to $\Hsq(P_-^{\rm pop},P_+^{\rm pop})$,
+because the midpoint experiment is normalized. The $i$th right side sums
+to the squared Hellinger distance between the two hybrid population
+experiments having slot $i$ drawn from $q_-$ or $q_+$ and all other slots
+independently drawn from $\bar q$. Those finite experiments are normalized
+too. Integrating the original common seed preserves this inequality: joint
+Hellinger distance with a revealed common seed is the integral of conditional
+Hellinger distances.
+
+For each slot $i$, realize the hybrid experiment by a single-coin policy $A_i$.
+Simulate all other slots using independent artificial tapes from the fixed
+known reference population $\bar q$, and supply slot $i$ by one genuine
+coin. If that slot is never requested, take no genuine observations. Include
+the original seed and all artificial tapes in the independent auxiliary seed.
+This is an observable single-coin policy capped at $K$ genuine flips.
+It may use the fixed reference pair as design constants, but these do not
+depend on the genuine coin's unknown endpoint law. The universal quantifier
+in (B) covers this policy. No artificial tape is supplied to the original
+population algorithm.
+
+The hybrid population transcript is a measurable function of this larger
+seed and the stopped genuine observations. Hellinger data processing and
+(B) therefore bound its distance by $\lambda\E_0T_{A_i}$.
+Since $0\le\bar q\le1/2$, the one-coin latent distribution under $\bar q$
+dominates one half of the all-negative distribution, with the magnitude
+law fixed. The same domination holds after adjoining the common auxiliary
+seed and taking any measurable nonnegative work functional. Hence
+\[
+ \E_0 T_{A_i}\le2\E_{\bar q}T_{A_i}.
+\]
+When the genuine coin too is from $\bar q$, its expected charged work is
+exactly the work on slot $i$ in the original midpoint experiment. Summing
+over the at most $K$ slots yields (C). All simulations are only devices in
+the lower-bound comparison; every genuine flip of the population algorithm
+is counted exactly once.
+\end{proof}
+
+\begin{proof}[Proof of the lower bound in Theorem~\ref{thm:critical-minimax}]
+Take the universal constants $c_\delta,C_H$ from
+Lemma~\ref{lem:universal-pair}. Choose a fixed
+\[
+ 0<\gamma\le\min\{c_\delta,1/(4\sqrt{C_H})\},
+ \qquad \delta=\gamma\min\{\rho,\sqrt{J/B}\}.
+\]
+That lemma provides one pair $q_-,q_+\in\Xrho$ with target separation at
+least $\delta$ and property (B) with $\lambda=C_H\delta^2/J$.
+The pair is valid simultaneously for all finite caps and policies; it is
+not reselected after seeing a population transcript.
+
+Let $A$ be any full population algorithm with uniform expected work at most
+$B$. Apply Lemma~\ref{lem:population-prefix} to its prefix capped after
+$K$ flips, recording whether it already halted and, when relevant, its
+terminal output as a measurable statistic. Since $\bar q\in\Xrho\subset
+\mathcal Q_\rho$, its midpoint expected capped work is at most $B$.
+Thus every prefix has squared Hellinger distance at most
+$2C_H\delta^2B/J\le1/8$. The inequality
+$\operatorname{TV}(P,Q)\le\sqrt{2\Hsq(P,Q)}$ bounds its total variation
+by $1/2$.
+
+Uniform expected work implies almost-sure termination separately under both
+endpoints. For any terminal event $E$, the event $E\cap\{T\le K\}$ is
+determined by the capped prefix, and the omitted endpoint probabilities
+are at most $\Pp_{q_-}(T>K)+\Pp_{q_+}(T>K)\to0$.
+Consequently the terminal transcript's total variation is also at most
+$1/2$. This passage assumes neither a globally bounded number of coins
+nor differentiability or a chain rule at an unbounded stopping time.
+
+If the estimator has infinite worst-case squared error, the lower bound is
+automatic. Otherwise threshold its output halfway between the endpoint
+targets. With endpoint separation $\Delta\ge\delta$ and worst RMS $r$,
+Markov's inequality bounds the sum of the two testing errors by
+$8r^2/\Delta^2$. Every test has error sum at least
+$1-\operatorname{TV}\ge1/2$. Hence $r\ge\Delta/4\ge\delta/4$,
+which proves the lower inequality in (A), including saturation.
+\end{proof}
+
+\section{Consequence for the proposed rare-event modulus}
+For this exact law the variational optimizer gives a cutoff $t\in(0,a)$:
+\[
+ \rho=(t/a)^2[1+2\log(a/t)],\qquad
+ \Psi_{\mu,\rho}(h)=
+ \begin{cases}
+ [2ht(1+\log(a/t))-h^2]/a^2,&0<h<t,\\
+ \rho,&h\ge t.
+ \end{cases}                                          \tag{E}
+\]
+These are inherited variational identities, not an attaining statistical
+algorithm. Put $u=1+2\log(a/t)$. Then $\rho=u e^{1-u}$ and
+$L=u-\log u$, so $L\le u\le2L$. For $h<t$,
+$\Psi(h)=(ht/a^2)(u+1-h/t)$; its coefficient lies between $u$ and $u+1$.
+Together with the saturated branch this proves, with universal constants
+and fixed $a=1/4$,
+\[
+ \Psi_{\mu,\rho}(B^{-1/2})\asymp\min\{\rho,\sqrt{\rho L/B}\}.
+\]
+For instance take $\rho_n=\exp(-\exp n)$ and $B_n=\rho_n^{-2}$.
+Both radii are eventually unsaturated, and (A) implies
+\[
+ \frac{R_{\mu,\rho_n}(B_n)}{\Psi_{\mu,\rho_n}(B_n^{-1/2})}
+       \ge c'\sqrt{1+\log(1+\log(1/\rho_n))}\longrightarrow\infty.
+\]
+Thus no one finite universal $C$ can
+satisfy the conjectured upper bound even at this single known law, with
+the algorithm knowing $\rho$ and $B$. The missing statistical cost is not
+hidden magnitudes alone: known-profile submodels can behave differently.
+The lower bound uses the entire convex nuisance class to obtain a common
+hard pair. It does not assert that the radial variational optimizer itself
+is that pair, nor give a closed-form expression for the pair selected by
+compactness. No claim for every other magnitude law follows from (A).
+
+\appendix
+\input{upper_bound.tex}
+
+\begin{proof}[Proof of the upper bound in Theorem~\ref{thm:critical-minimax}]
+The preceding construction supplies a one-coin unbiased output with
+$\sup_q\E_qY^2\le(165/56)\rho$ and
+$\sup_q\E_qT_Y\le W_*=1350a^{-2}LH$. Independently select
+$N\sim\operatorname{Poisson}(B/W_*)$ and return
+$\widehat\theta=(W_*/B)\sum_{i=1}^NY_i$ from independent genuine coins.
+Conditioning on $N$ proves unbiasedness, uniform expected work at most $B$,
+and variance at most $(165/56)\rho W_*/B$. All moments are finite before
+using these identities, by the bounds and the finite Poisson moments.
+Choose the zero-work constant $\rho/2$ whenever its known error bound is
+smaller. Both choices are observable and depend only on known parameters.
+With $a$ fixed, this proves the upper inequality in (A). This established
+replication device is not claimed as new.
+\end{proof}
+
+\begin{thebibliography}{9}
+\bibitem{jn} A. Juditsky and A. Nemirovski.
+\emph{Nonparametric estimation by convex programming}.
+Annals of Statistics 37 (2009), 2278--2300.
+\url{https://www2.isye.gatech.edu/~nemirovs/AnnStat_Saddle_2009.pdf}.
+\bibitem{pw} Y. Polyanskiy and Y. Wu.
+\emph{Dualizing Le Cam's method for functional estimation, with applications
+to estimating the unseens}. arXiv:1902.05616v2 (2021), Theorem 1,
+Proposition 4 and Section 4.1.
+\url{https://arxiv.org/abs/1902.05616}.
+\bibitem{lv} J. C. H. Lee and P. Valiant.
+\emph{Uncertainty about Uncertainty: Optimal Adaptive Algorithms for
+Estimating Mixtures of Unknown Coins}. SODA 2021; arXiv:1904.09228v3.
+\url{https://arxiv.org/html/1904.09228v3}.
+\bibitem{clq} L. Chen, J. Li and M. Qiao.
+\emph{Towards Instance Optimal Bounds for Best Arm Identification}.
+COLT 2017; arXiv:1608.06031v2.
+\url{https://arxiv.org/html/1608.06031v2}.
+\bibitem{critical} Existing workspace critical upper construction,
+\texttt{research/2026-10-27-minimax-audit/theorem/critical.tex},
+commit \texttt{a8a8dc49115aabdd1fba8d53d3390eb0a5eee864}.
+\end{thebibliography}
+\end{document}

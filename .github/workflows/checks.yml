@@ -14,6 +14,7 @@ on:
       - 'constants/**'
       - 'benchmark/**'
       - 'results/**'
+      - 'research/**'
       - 'inputs/**'
       - 'requirements.txt'
       - 'FROZEN.sha256'
@@ -31,6 +32,19 @@ concurrency:
 permissions:
   contents: read
 jobs:
+  research-evidence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - name: Verify research identities and replay finite diagnostics
+        run: python tools/verify_research.py
+      - name: Check research guard rejects tampering
+        run: python -m unittest discover -s tools -p 'test_research_validation.py' -v
   numerical-evidence:
     runs-on: ubuntu-latest
     steps:
@@ -107,6 +121,8 @@ jobs:
       - name: Require the complete Tier 6 landmark when present
         run: |
           if test -f tools/verify_tier6.py; then python tools/verify_tier6.py --sequential --require-complete; fi
+      - name: Verify the locked separate-moment research bridge
+        run: python lean/ThresholdHC/ResearchRouteA/verify.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:

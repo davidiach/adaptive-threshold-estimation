@@ -1,0 +1,133 @@
+\section{Self-contained upper checkpoint and provenance}
+This appendix records the existing upper argument needed for the upper
+inequality in Theorem~\ref{thm:critical-minimax}, so the characterization does not depend on an inaccessible
+working-tree file. The inspected source was
+\texttt{research/2026-10-27-minimax-audit/theorem/critical.tex}, SHA-256
+\begin{center}\small\texttt{0e8b9eaf762b3b09fa0d92ce1a036c2ceea8c12d00a5eea8286b852f36a81536}\end{center}
+It was read without modifying it. The following is a compact restatement of
+that pre-existing proof, not a new construction or discovery claim.
+The source is now committed at
+\texttt{a8a8dc49115aabdd1fba8d53d3390eb0a5eee864}.
+
+Put $H=1+\log L$. For $j\ge0$ choose
+\[
+ \varepsilon_j=16^{-(j+1)},\qquad
+ N_j=\lceil(a^2\rho\varepsilon_j)^{-1}\rceil,\qquad
+ K_j=\lceil\log_2(a\sqrt{N_j})\rceil.
+\]
+For $0\le k\le K_j$, let $r_k=a2^{-(k+1)}$ and, after $n$ observations
+with $h_n$ heads, define
+\[
+ L^+_{k,n}=(1+2r_k)^{h_n}(1-2r_k)^{n-h_n},\qquad
+ L^-_{k,n}=(1-2r_k)^{h_n}(1+2r_k)^{n-h_n}.
+\]
+Before $N_j$, stop with output zero if a negative likelihood reaches
+$(K_j+1)/\varepsilon_j$, or with output one if a positive likelihood reaches
+$(K_j+1)/(\rho\varepsilon_j)$. Fix zero priority for ties. At $N_j$, if no
+earlier decision was made, return the strict majority bit. Denote this bounded,
+observable classifier by $Z_j$ and its work by $T_j$.
+
+For the wrong-sign likelihood, each next multiplier has mean $1-4r_kd\le1$.
+Stopping this nonnegative supermartingale at a crossing and a deterministic
+horizon, and then increasing the horizon, bounds the probability of crossing
+level $b$ by $1/b$. Summing over $K_j+1$ references gives wrong-crossing
+probabilities at most $\varepsilon_j$ on a positive coin and
+$\rho\varepsilon_j$ on a negative coin. The wrong forced-majority event is
+a subset of the full-tape event, of probability at most $e^{-2N_jd^2}$.
+This is Hoeffding's bound: the centered Bernoulli log moment-generating
+function has second derivative at most $1/4$, so is at most $\lambda^2/8$;
+use independence and exponential Markov with $\lambda=\pm4d$.
+For the exact power law,
+\[
+ \E_\mu e^{-2ND^2}=\frac{1-e^{-2Na^2}}{2Na^2}\le\frac1{2Na^2}.
+\]
+No independence of a stopping event and this full-tape majority event is used.
+It follows, uniformly over the global-rarity class, that
+\[
+ \Pp(Z_j\ne S)\le\tfrac52\rho\varepsilon_j,
+ \qquad \Pp(Z_j=1,S=0)\le\tfrac32\rho\varepsilon_j.       \tag{U1}
+\]
+
+For $d\ge N_j^{-1/2}$, choose $k=\lceil\log_2(a/d)\rceil\le K_j$.
+Then $d/4\le r_k\le d/2$, and the correct-sign log likelihood has mean
+increment at least $2d^2/3$: use
+\[
+ \tfrac12\log(1-4r_k^2)
+       +d\log\frac{1+2r_k}{1-2r_k}
+ \ge-\tfrac83r_k^2+4dr_k\ge\tfrac23d^2.
+\]
+Its upward increment is less than one. The bounded stopped-sum identity for
+the crossing time $\sigma$ at a finite horizon $n$ gives
+$g\E(\sigma\wedge n)\le A_{j,s}$, where
+\[
+ A_{j,s}=1+\log(K_j+1)+\log(1/\varepsilon_j)+s\log(1/\rho).
+\]
+Monotone convergence proves finite expected crossing time and, including the
+cap and the trivial small-gap case,
+\[
+ \E(T_j\mid d,s)\le\min\{N_j,(3/2)A_{j,s}/d^2\}.        \tag{U2}
+\]
+Write $c_0=3/2$. Direct integration of the negative contribution gives
+\[
+ \E\min\{N,c_0A/D^2\}
+ \le(c_0A/a^2)[1+\log_+(Na^2)].
+\]
+For positives, layer cake and
+$\E[q\ind_E]\le\min\{\rho,\mu(E)\}$ give
+\[
+ \E[q\min\{N,c_0A/D^2\}]
+ \le\int_0^\rho\min\{N,c_0A/(a^2u)\}\,du
+ \le(c_0A/a^2)[1+\log_+(Na^2\rho)].
+\]
+The exact integral is $N\rho$ when $Na^2\rho\le c_0A$, and otherwise is
+$(c_0A/a^2)[1+\log(Na^2\rho/(c_0A))]$. Thus this step also enforces the
+global, rather than pointwise, rarity condition.
+
+Elementary bounds from the definitions are
+\[
+\begin{gathered}
+ N_ja^2\le2/(\rho\varepsilon_j),\qquad K_j+1\le5(L+j+1),\\
+ A_{j,0}\le7H(j+1),\qquad A_{j,1}\le7H(j+1)+L,\\
+ 1+\log(N_ja^2)\le5L(j+1),\qquad
+ 1+\log(N_ja^2\rho)\le5(j+1).
+\end{gathered}
+\]
+For example, $\log(L+j+1)\le\log L+j+1$ and $4\log2<3$ prove the
+bound on $A_{j,0}$. Substitution in (U2) and the two integrals gives
+\[
+ \E T_j\le(225/2)a^{-2}LH(j+1)^2.                        \tag{U3}
+\]
+
+Independently choose a level $J$ with $p_j=2^{-(j+1)}$. For $J=0$ return
+$Y=Z_0/p_0$ on one fresh coin. For $J=j\ge1$, run $Z_j$ and $Z_{j-1}$
+on successive unused blocks of that same coin, set $\Delta_j=Z_j-Z_{j-1}$,
+and return $Y=\Delta_j/p_j$. The bounded stopping times make the iid suffix
+argument elementary, as in the restart argument above; both decisions share
+the same latent sign. A disagreement implies an error of one classifier.
+Hence (U1) gives
+\[
+ \E Z_0^2\le\tfrac{35}{32}\rho,
+ \qquad \E\Delta_j^2\le\tfrac{85}{32}\rho16^{-j}\quad(j\ge1).
+\]
+Tonelli and the exact geometric sum now give
+\[
+ \E Y^2\le\frac{35}{16}\rho+
+                 \frac{85}{16}\rho\sum_{j\ge1}8^{-j}
+            =\frac{165}{56}\rho.
+\]
+The disagreement bounds also give absolute summability of expected increments,
+so signed expectations may be telescoped after integrability is established:
+$\E Y=\lim_j\E Z_j=\theta$. Work costs at most twice (U3), and
+$\sum_jp_j(j+1)^2=6$, yielding
+\[
+ \E T_Y\le1350a^{-2}LH.
+\]
+All operations are on one observable coin with independent seed; the random
+level is unbounded but the separate expectations are finite. This completes
+the upper checkpoint used in Theorem~\ref{thm:critical-minimax}.
+Its actual work also has genuinely unbounded support: at any fixed observation
+count $n$, all likelihoods are at most $(1+a)^n$. For sufficiently large $j$,
+both the smallest stopping boundary and $N_j$ exceed the relevant finite
+thresholds, so $T_j>n$ on every tape. Since $\Pp(J=j)>0$, actual work exceeds
+every finite cap with positive probability while retaining finite mean.
+

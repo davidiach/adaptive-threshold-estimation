@@ -1,0 +1,250 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,graphicx}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\KL}{\operatorname{KL}}
+\newcommand{\ind}{\mathbf 1}
+\setlength{\parskip}{4pt}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{2em}
+\title{Rare-event threshold estimation: a critical-margin upper bound,\\a stopping obstruction, and an audited research checkpoint}
+\author{AI-assisted research in the adaptive-threshold-estimation repository}
+\date{27 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+The arbitrary-law rare-event minimax conjecture remains unresolved in this
+checkpoint. A new paper proof supplies an unbiased observable estimator under
+a quadratic margin envelope with second moment at most $165\rho/56$ and
+mean work at most $1350a^{-2}L(1+\log L)$, where $L=1+\log(1/\rho)$.
+Its budgeted risk is within a factor of order $\sqrt{1+\log L}$ of the
+audited candidate lower bound for the exact quadratic law. We neither remove
+this factor nor prove it necessary. A counterexample shows that one-law finite
+expected stopping time cannot transfer almost-sure termination to the other
+law in an unbounded fresh-coin reservoir. A corrected finite-prefix testing
+principle explains the role of uniform budgets. An elementary qualified
+unknown-rarity guarantee and an arbitrary-law finite upper bracket are also
+given. New direct-observation experiments have mixed and sometimes poor
+performance; no practical superiority is established. Primary-source
+comparison identifies the exact scope of the inherited nested-simulation
+lower bound and important model exclusions. All new statistical theorems are
+paper proofs, not Lean proofs; novelty and external specialist review remain
+unresolved. The v4 paper and frozen baselines are preserved.
+\end{abstract}
+
+\section{Experiment, computation, and evidence contract}
+A fresh opaque coin independently draws $D\sim\mu$ on $(0,1/2]$ and
+$S\mid D=d\sim\operatorname{Bernoulli}(q(d))$. Its retained probability is
+$P=1/2+(2S-1)D$. Observations of that coin are conditionally iid Bernoulli($P$).
+The algorithm observes only bits and identities. It may create, revisit,
+interleave, abandon, and stop. Every requested observation costs one;
+independent randomization and finite deterministic computation are uncharged.
+Creating unused coins gives no information and can be deferred to first use.
+No magnitude-selected query, sign oracle, or oracle for $q$ is supplied.
+
+For known $0<\rho\le1/4$, define
+\[
+ \mathcal Q_\rho(\mu)=\{q\text{ measurable}:0\le q\le1,
+                 \ \int q\,d\mu\le\rho\},\qquad \theta=\int q\,d\mu.
+\]
+This is a global constraint; $q(d)$ may equal one on a small region.
+$R_{\mu,\rho}(B)$ is the infimum of worst-case RMS error over algorithms with
+$\sup_{q\in\mathcal Q_\rho}\E_qT\le B$.
+$r_{\mu,\rho}(B,\delta)$ is the infimum radius for which an algorithm under
+the same uniform expected-work constraint has
+$\sup_q\Pr_q(|\widehat\theta-\theta|>r)\le\delta$.
+Algorithms and their design constants may depend on known $\mu,\rho,B,\delta$.
+The new critical-envelope algorithm uses only $a,\rho,B,\delta$, not $\mu$.
+
+For arbitrary known laws, the finite upper bracket below permits precomputed
+real integral constants or certified upper bounds. This is the mathematical
+known-law minimax convention, not a universal computability theorem for every
+representation of a measure. A sampled coin's magnitude remains hidden.
+Infinite arithmetic operations between two observations are not allowed.
+An explicit experiment exists on a countable product of independent magnitude
+variables, uniform variables producing signs, and uniform flip tapes. All
+algorithms below make finite operations at each step and have the stated
+termination property. Their random seed is independent of this product.
+
+\paragraph{Pinned baseline.}
+Initial HEAD was \texttt{ddf950122776a059e62c808021bbd2b59c39f0b0}, with
+preexisting uncommitted route-a research and documentation.
+The new local branch is \path{research/rare-minimax-20261027}.
+Concurrent activity later
+committed that inherited work and edited separate Tier 5 files; source hashes
+and the precise audit scope are recorded in \path{STATE.md} and
+\path{FORMAL_COVERAGE.md}. No concurrent work is credited as this run's
+construction. No remote publication or researcher contact was performed.
+
+\paragraph{Evidence labels.}
+FORMALIZED means only an exact checked Lean declaration with its assumptions
+and audited dependency closure. PROVED-ON-PAPER means the argument is written,
+with explicit dependencies; agent review is not external peer review.
+CONJECTURE, NUMERICAL, DISPROVED, and PRIOR-ART / UNRESOLVED-PRIORITY are
+used literally. Exact rational finite checks certify those calculations only.
+The new results below have no corresponding complete Lean statistical theorem.
+
+\section{The candidate, inherited results, and what remains open}
+The proposed functional is
+\[
+ \Psi_{\mu,\rho}(h)=\sup_{0\le w\le1,\,\E_\mu w\le\rho}
+       \E_\mu\min\{w(D),h\sqrt{w(D)}/D\}.
+\]
+The existing arbitrary-law optimizer is
+$w_*(d)=\min\{1,t^2/d^2\}$, where $\E\min(1,t^2/D^2)=\rho$.
+This variational statement is FORMALIZED in
+\texttt{ThresholdHC.Tier3.arbitrary\_law\_optimizer}; it does not supply a
+statistical algorithm. The cutoff exists uniquely for $0<\rho<1$:
+dominated convergence gives continuity from zero to one, and strict increase
+holds before saturation because there is positive mass above the smaller
+cutoff. Atoms require no allocation of selected magnitudes.
+For $h<t$ the value is
+\[
+ \mu(D\le h)+h\E[D^{-1}\ind_{\{h<D\le t\}}]
+       +ht\E[D^{-2}\ind_{\{D>t\}}],
+\]
+and for $h\ge t$ it is $\rho$. The pieces agree at boundary atoms.
+For a fixed gap this is $\min\{\rho,h\sqrt\rho/d\}$.
+For rarity bounded below, $\rho\omega_\mu(h)\le\Psi(h)\le\omega_\mu(h)$,
+by choosing $w\equiv\rho$ and by $w\le1$ respectively.
+These comparisons have constants depending on the lower bound for $\rho$.
+
+The inherited lower bound $R\gtrsim\Psi(B^{-1/2})$ (and its confidence
+analogue) is PROVED-ON-PAPER with the imported Lee--Valiant Corollary 19
+and a bounded-likelihood-ratio decomposition as dependencies. The source
+requires simultaneous universal smallness of its prior, increment, gap,
+and relative increment; it is an expected-work, history-averaged statement.
+The continuation handles larger gaps separately by sign revelation and data
+processing. The fresh-reservoir reduction and its limits remain paper-level.
+The audit found no blocking gap in this argument; it is not an independently
+formalized minimax theorem. See \texttt{REVIEW\_MATH.md} and
+\texttt{LITERATURE\_AUDIT.md} for the exact inspected material.
+
+Matching paper rates for $0<\alpha<2$ and the separate $\alpha>2$ result
+were inherited, not proved for the first time by this run. For $\alpha>2$,
+constants depend on $\alpha$ and diverge near two. The next section addresses
+the missing critical case but leaves an iterated logarithm.
+The heuristic $\rho\omega_\mu((\rho B)^{-1/2})$ remains DISPROVED:
+$\mu=\rho\delta_{\rho^2}+(1-\rho)\delta_{1/4}$ and $B=\rho^{-4}$ give
+true lower order $\rho$ versus heuristic order $\rho^2$.
+No counterexample to $\Psi$ itself was established here.
+
+\input{theorem/critical.tex}
+\input{formal/stopping_bridge.tex}
+\input{adaptation.tex}
+
+\section{What the existing nested-simulation lower bound settles}
+\paragraph{PRIOR-ART / UNRESOLVED-PRIORITY.}
+The detailed audit inspected primary theorem statements and relevant proofs,
+not just abstracts. The v4 observed-state construction satisfies GHA's
+Assumptions 2.1 and 2.4 literally. Fixing $a_0=1/4$, its normalized gap has
+density
+$[2a_0(1+z^2)^{3/2}]^{-1}\le2$, and every conditional standardized
+$k$th absolute moment is at most $3^{k/2}$. Both constants are independent of
+accuracy and the number of cells. The fixed admissible class is the union of
+all finite cell constructions with arbitrary finite sign arrays. Its hard
+member may depend on accuracy. A fixed finite list of cells is not the claimed
+asymptotic hard instance.
+
+Thus the inherited lower theorem concerns an unstructured observed-state
+class meeting the stated adaptive-MLMC assumptions, even with selected-state
+queries. A fixed per-outer-draw cost changes its upper accounting by a constant
+factor. This does not establish a lower bound for the specific known Gaussian
+GHA simulator, conditional-Gaussian-only classes, smooth cross-state
+regression classes, or rare-event subclasses. Broadie--Du--Moallemi's
+conditional-normal premise and Gordy--Juneja's joint-density premise exclude
+the literal Bernoulli hard family. Smooth nested simulation and nested kernel
+quadrature have additional cross-state or outer-function regularity.
+
+The audit also located Blum--Hu's earlier adaptive good-arm fraction problem.
+Inverse-binomial calibration and randomized telescoping have explicit
+predecessors in Mendo/Haldane, McLeish, Rhee--Glynn, and Vihola. The inherited
+audit's assertion that Lee--Valiant used a different Hellinger normalization
+was wrong: Definition 14 uses the same $1-$affinity convention. This correction
+is recorded separately without altering history. No priority claim follows
+from this bounded search, and specialist correspondence remains unsent.
+
+\section{Practical evidence on a fixed, disclosed suite}
+\paragraph{NUMERICAL; no superiority claim.}
+All four historical direct-real versus tuned-GHA cells were resimulated with
+their original seeds and 500 replications each. All 2,000 raw outputs and work
+counts matched exactly. At budget 16,384 the clipped RMS values remain
+0.02990 for tuned GHA and 0.03910 for the historical candidate; at 65,536 they
+remain 0.02012 and 0.02185. The earlier rejection is preserved.
+
+The new suite froze implementation hashes, seven simulators, two budgets,
+128 replications per cell, metrics, seeds, and exclusion rules before running
+42 cells. The candidate changes the positive sample-variance threshold of a
+two-level direct-real randomized telescope by $\sqrt{1+\log(1/\rho)}$.
+This is a heuristic, not an implementation of the proved likelihood-test
+theorem. It is compared to its symmetric ablation and the GHA Algorithm 1
+inner-sampling component in a single-level, independently calibrated driver.
+The latter is explicitly an altered driver, not the original tuned full
+comparator; favorable results against it do not establish superiority to GHA.
+All methods receive the same original real observations, with no Bernoulli
+conversion. Every pilot and production observation is charged; fresh outer
+counts and alternative accounting charging them are also recorded.
+
+The models are the published GHA simulator, a rarer version, a fixed Bernoulli
+gap, two separated gap scales, near-threshold negative coins, an independently
+specified uniform-mean Gaussian simulator, and deterministic endpoint coins.
+Their ground truths are analytic. Synthetic models are labelled synthetic.
+All probabilities are nonzero. Zero, half, and supplied-rarity-half constants
+are reported; some latter constants coincide with a particular simulator's
+truth, a coincidence that confers no uniform guarantee.
+
+The candidate is rejected as a general practical improvement: results are
+mixed, and the near-negative model has RMS around 0.43 even at the larger
+budget while the true probability is 0.05. No matched-accuracy speedup or
+break-even workload is established. New fitting and tuning costs are zero;
+verification, baseline replay, and historical development costs are separately
+recorded. Final clipping improves squared loss but changes bias and leaves
+cost unchanged. There is no confidence procedure for this heuristic, so
+coverage is marked not applicable. Bootstrap intervals are descriptive only.
+\begin{figure}[htbp]
+ \centering\includegraphics[width=\textwidth]{figures/benchmark.pdf}
+ \caption{New held-out numerical evidence, budget 16,384. Error bars are
+ descriptive bootstrap intervals. The grey line is the zero-estimator error;
+ the GHA curve uses an altered single-level driver. No uniform gain follows.}
+\end{figure}
+
+\section{Reproducibility and remaining obligations}
+The package contains a claim ledger, dependency graph, source audit, algorithm
+contracts, fixed test configuration, raw samples, exact finite diagnostics,
+current-source formal audit records, and a failed-approach log. The initial
+fourteen numerical/integrity gates passed on a byte snapshot rather than
+overwriting historical results. Kernel coverage and any concurrent-source
+limitations are specified in \texttt{FORMAL\_COVERAGE.md}; a build verifies
+only its audited statements. New statistics are not certified by those builds.
+
+The central unresolved obligation is a universal $\Psi$ upper theorem or a
+rigorous counterexample. Even for the quadratic power law, necessity or
+removal of $1+\log L$ is open. Unknown-law adaptation outside specified
+envelopes, sharp unknown-rarity penalties, and a formal countable-reservoir
+realization with all information bounds are not completed here. This is a
+finite research checkpoint, not a promise of background continuation.
+
+\begin{thebibliography}{9}
+\bibitem{lv} J. C. H. Lee and P. Valiant.
+Uncertainty about Uncertainty: Optimal Adaptive Algorithms for Estimating
+Mixtures of Unknown Coins. arXiv:1904.09228v3, 2021, Section 7,
+Lemmas 17--18 and Corollary 19.
+\url{https://arxiv.org/html/1904.09228v3}.
+\bibitem{gha} M. B. Giles and A.-L. Haji-Ali.
+Multilevel nested simulation for efficient risk estimation.
+arXiv:1802.05016v2, 2019, Assumptions 2.1 and 2.4, Theorem 2.7, Algorithm 1.
+\url{https://arxiv.org/pdf/1802.05016v2}.
+\bibitem{vihola} M. Vihola. Unbiased estimators and multilevel Monte Carlo.
+arXiv:1512.01022v4, 2017, Condition 2 and Theorem 3.
+\url{https://arxiv.org/html/1512.01022v4}.
+\bibitem{blum} A. Blum and L. Hu. Active Tolerant Testing.
+COLT 2018, Appendix G.
+\url{https://home.ttic.edu/~avrim/Papers/TolerantTesting.pdf}.
+\end{thebibliography}
+\end{document}

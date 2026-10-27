@@ -1,0 +1,130 @@
+[
+  {
+    "command": [
+      "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "tools/verify_inputs.py"
+    ],
+    "exit": 0,
+    "seconds": 0.331,
+    "log": "baseline-logs\\01.log"
+  },
+  {
+    "command": [
+      "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "tools/verify_experiment_lock.py"
+    ],
+    "exit": 0,
+    "seconds": 0.356,
+    "log": "baseline-logs\\02.log"
+  },
+  {
+    "command": [
+      "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "tools/freeze.py",
+      "--verify"
+    ],
+    "exit": 0,
+    "seconds": 0.184,
+    "log": "baseline-logs\\03.log"
+  },
+  {
+    "command": [
+      "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "tools/check_targets_numeric.py"
+    ],
+    "exit": 0,
+    "seconds": 2.233,
+    "log": "baseline-logs\\04.log"
+  },
+  {
+    "command": [
+      "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "tools/check_targets2_numeric.py"
+    ],
+    "exit": 0,
+    "seconds": 15.738,
+    "log": "baseline-logs\\05.log"
+  },
+  {
+    "command": [
+      "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools",
+      "-p",
+      "test_*.py",
+      "-v"
+    ],
+    "exit": 0,
+    "seconds": 24.06,
+    "log": "baseline-logs\\06.log"
+  },
+  {
+    "command": [
+      "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "tools/check_power_bracket.py"
+    ],
+    "exit": 0,
+    "seconds": 1.122,
+    "log": "baseline-logs\\07.log"
+  },
+  {
+    "command": [
+      "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "proposals/constants/bias_audit.py"
+    ],
+    "exit": 0,
+    "seconds": 0.092,
+    "log": "baseline-logs\\08.log"
+  },
+  {
+    "command": [
+      "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "proposals/constants/uniform_constant_checks.py"
+    ],
+    "exit": 0,
+    "seconds": 0.093,
+    "log": "baseline-logs\\09.log"
+  },
+  {
+    "command": [
+      "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "constants/score_constants.py",
+      "constants/candidate_theory.json"
+    ],
+    "exit": 0,
+    "seconds": 3.314,
+    "log": "baseline-logs\\10.log"
+  },
+  {
+    "command": [
+      "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "constants/score_constants.py",
+      "constants/candidate_finite_grid.json"
+    ],
+    "exit": 0,
+    "seconds": 3.731,
+    "log": "baseline-logs\\11.log"
+  },
+  {
+    "command": [
+      "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "constants/score_constants.py",
+      "constants/candidate.json"
+    ],
+    "exit": 0,
+    "seconds": 5.37,
+    "log": "baseline-logs\\12.log"
+  },
+  {
+    "command": [
+      "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "benchmark/verify_real.py"
+    ],
+    "exit": 1,
+    "seconds": 0.243,
+    "log": "baseline-logs\\13.log"
+  }
+]

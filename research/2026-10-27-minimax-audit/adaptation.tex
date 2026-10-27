@@ -1,0 +1,71 @@
+\section{A qualified guarantee when rarity is unknown}
+\paragraph{Evidence status.} PROVED-ON-PAPER in this run, not Lean-checked and
+not claimed original. This elementary construction supplies a sufficient
+additive floor, not a matching adaptation penalty.
+
+\begin{proposition}[Known fixed gap, unknown rarity]
+Let $\mu=\delta_d$, $0<d<1/2$, be known. For budget $B\ge1$, let $m$ be the
+least positive odd integer at least $\log(2B)/(2d^2)$. If $B\ge2m$, there is
+one estimator independent of $\rho$ such that, for every $0\le\theta\le1$,
+\[
+ \mathbb E_\theta T\le B,\qquad
+ \mathbb E_\theta(\widehat\theta-\theta)^2
+ \le \frac{8m\theta}{B}+\frac{4m}{B^2}.
+\]
+Its work actually has a deterministic cap. For $B<2m$, the constant zero
+has error $\theta$. These two cases specify the algorithm without knowing
+$\theta$ or a rarity bound.
+\end{proposition}
+\begin{proof}
+Set $n=\lfloor B/m\rfloor$, and query $n$ fresh coins exactly $m$ times each.
+Let $Z_i$ be their strict-majority decisions. Put
+\[
+ f=\Pr\{\operatorname{Bin}(m,1/2-d)>m/2\}.
+\]
+This number is computable from $d,m$, with no access to the hidden sign.
+Oddness gives positive-sign success probability $1-f$, so
+$Z_i$ are iid Bernoulli with mean $p=f+(1-2f)\theta$.
+Return $(\overline Z-f)/(1-2f)$, clipped to $[0,1]$.
+Hoeffding's inequality gives $f\le e^{-2md^2}\le1/(2B)\le1/4$.
+The raw estimator is unbiased and has variance
+\[
+ \frac{p(1-p)}{n(1-2f)^2}
+ \le\frac{4(\theta+f)}n
+ \le\frac{8m\theta}{B}+\frac{4m}{B^2},
+\]
+using $n\ge B/(2m)$. Clipping reduces squared error. The cost is $nm\le B$;
+termination is deterministic. This proof requires no random-budget argument.
+\end{proof}
+
+Thus for a known fixed interior gap this one estimator has, uniformly over
+$\theta\le\rho$, error of order at most
+$\sqrt{\rho\log(2B)/(d^2B)}+\sqrt{\log(2B)}/(dB)$ in the nontrivial regime.
+The logarithmic multiplicative loss and additive floor are \emph{sufficient};
+the qualitative unknown-rarity impossibility does not establish either as
+necessary. No claim of an optimal adaptation rate follows.
+
+Unlike a distribution-dependent oracle radius, this construction also provides
+a genuinely computable, although not rarity-sharp, confidence interval.
+For $B\ge2m$, set
+\[r=\frac{\sqrt{\log(2/\delta)/(2n)}}{1-2f}\]
+and intersect
+$[(\overline Z-f)/(1-2f)-r,(\overline Z-f)/(1-2f)+r]$ with $[0,1]$.
+The Bernoulli Hoeffding inequality gives coverage at least $1-\delta$.
+For smaller budgets return $[0,1]$. Exact arithmetic is the mathematical
+contract; a floating approximation to $f$ must use certified bounds or add its
+numerical error to the interval. This interval was not benchmarked here.
+
+At the deterministic endpoint $d=1/2$, one flip reveals the sign, and
+$n=\lfloor B\rfloor$ flips give the ordinary binomial estimator with variance
+$\theta(1-\theta)/n$. It needs no rarity input and vanishes surely at
+$\theta=0$. The inherited impossibility explicitly excludes this endpoint.
+
+\paragraph{Other adaptation questions.}
+The critical-margin theorem above already handles unknown individual $\mu$
+inside a supplied quadratic envelope, with known $(a,\rho)$; the inherited
+$\alpha>2$ construction handles its own envelope class. Neither proves
+distribution-blind attainment of $\Psi$ for arbitrary unknown $\mu$.
+When both $\mu$ and $\rho$ are unknown, the inherited v4 unrestricted
+distribution-blind bound still applies, with its population-dependent modulus;
+it is not an observable confidence radius or a rarity-optimal guarantee.
+Matching necessity for qualified adaptation remains open here.

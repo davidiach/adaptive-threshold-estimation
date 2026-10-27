@@ -1,0 +1,72 @@
+{
+  "status": "NUMERICAL",
+  "budgets": [
+    4096,
+    16384
+  ],
+  "replications": 128,
+  "models": [
+    {
+      "id": 0,
+      "name": "gha_published",
+      "theta": 0.025,
+      "rho": 0.1,
+      "epsilon": 0.0125
+    },
+    {
+      "id": 1,
+      "name": "gha_rare",
+      "theta": 0.005,
+      "rho": 0.02,
+      "epsilon": 0.0025
+    },
+    {
+      "id": 2,
+      "name": "fixed_gap",
+      "theta": 0.01,
+      "rho": 0.04,
+      "epsilon": 0.005
+    },
+    {
+      "id": 3,
+      "name": "mixed_scales",
+      "theta": 0.02,
+      "rho": 0.04,
+      "epsilon": 0.01
+    },
+    {
+      "id": 4,
+      "name": "near_negative",
+      "theta": 0.05,
+      "rho": 0.1,
+      "epsilon": 0.025
+    },
+    {
+      "id": 5,
+      "name": "uniform_gaussian",
+      "theta": 0.05,
+      "rho": 0.1,
+      "epsilon": 0.025
+    },
+    {
+      "id": 6,
+      "name": "deterministic_endpoint",
+      "theta": 0.02,
+      "rho": 0.04,
+      "epsilon": 0.01
+    }
+  ],
+  "methods": [
+    "gha_calibrated_single_level",
+    "direct_symmetric",
+    "direct_asymmetric"
+  ],
+  "seed_formula": "202610270 + 10000*model + 100*budget_index + method",
+  "metrics": "Raw and [0,1]-clipped RMS, bias, population empirical variance, miss probability; mean work/quantiles; wall seconds; no confidence procedure",
+  "exclusions": "None. Failed cells retained; no rerun or tuning on this test.",
+  "selection": "One candidate (asymmetric), fixed analytically before new data. Symmetric ablation and GHA comparator. No fitted allocation or training.",
+  "comparison": "Matched observation oracle; calibrated expected budget bound. GHA Algorithm1 sampling component only, single base level; not published full MLMC driver.",
+  "observations": "Each original real observation charged 1; fresh outer draws recorded as uncharged as inherited convention. Arithmetic/randomization free. No Bernoulli conversion for GHA.",
+  "uncertainty": "2000-resample percentile bootstrap is descriptive only; no claimed heavy-tail or performance confidence certificate.",
+  "source_sha256": "5d84bb3e55b4582137abc96997beaacd915f6c020a5d255743cff43452f878ac"
+}
