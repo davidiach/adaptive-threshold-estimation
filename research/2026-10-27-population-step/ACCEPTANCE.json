@@ -1,0 +1,58 @@
+{
+  "valid": true,
+  "scope": "Verified new package and original locks; not a claim of arbitrary-law minimax completion or a clean shared checkout",
+  "utc": "2026-10-27T09:23:21.337501+00:00",
+  "base_commit": "a8a8dc49115aabdd1fba8d53d3390eb0a5eee864",
+  "shared_head": "d75c775633df545b892e69fc876930d6d2dcc329",
+  "shared_branch": "research/rare-minimax-20261027",
+  "shared_status": "?? lean/ThresholdHC/Tier5.lean\n?? lean/ThresholdHC/Tier5/BoundReduction.lean\n?? lean/ThresholdHC/Tier5/CreationBase.lean\n?? lean/ThresholdHC/Tier5/CreationExample.lean\n?? lean/ThresholdHC/Tier5/CreationFresh.lean\n?? lean/ThresholdHC/Tier5/CreationPadding.lean\n?? lean/ThresholdHC/Tier5/CreationProduct.lean\n?? lean/ThresholdHC/Tier5/EntropyPrefix.lean\n?? lean/ThresholdHC/Tier5/FiniteCreation.lean\n?? lean/ThresholdHC/Tier5/FiniteEnvironment.lean\n?? lean/ThresholdHC/Tier5/FiniteJoint.lean\n?? lean/ThresholdHC/Tier5/Full.lean\n?? lean/ThresholdHC/Tier5/StoppingBase.lean\n?? lean/ThresholdHC/Tier5/StoppingEntropy.lean\n?? lean/ThresholdHC/Tier5/StoppingFull.lean\n?? research/2026-10-27-population-step/\n?? results/tier5_audit.log\n?? results/tier5_build.log\n?? results/tier5_status.json",
+  "publish_branch": "research/population-step-20261027",
+  "checks": {
+    "reviewed_paper_sources_match": true,
+    "inherited_snapshot_matches": true,
+    "tier5_actual_targets_and_roots": true,
+    "tier5_standard_axioms": true,
+    "tier5_snapshots_match": true,
+    "tier5_live_sources_match": true,
+    "all_four_original_locks": true,
+    "original_input_manifest": true,
+    "regressions_passed": true,
+    "audit/arithmetic_recheck.json": true,
+    "audit/small_bias_recheck.json": true,
+    "population_constants": true,
+    "population_final_sources_match": true,
+    "population_exact_cases": true,
+    "upper_exact_checks_passed": true,
+    "upper_verified_implementation_match": true,
+    "finite_preregistered_lock": true,
+    "independent_finite_check": true,
+    "finite_fresh_replay_exact": true,
+    "policies_fresh_replay_exact": true,
+    "paper_packaging_matches": true,
+    "pdf_compiled": true,
+    "pdf_no_overflow_or_unresolved_refs": true,
+    "required_deliverables": true
+  },
+  "lock_counts": {
+    "FROZEN.sha256": 21,
+    "TIER3_FROZEN.sha256": 9,
+    "TIER4_FROZEN.sha256": 10,
+    "TIER5_FROZEN.sha256": 13
+  },
+  "inputs_output": "Verified 50 original input files.\n",
+  "finite_replay": [
+    {
+      "script": "finite_bayes.py",
+      "exit_code": 0,
+      "output": "two_scales 1 {'adaptive': 0.00216746170591898, 'fresh': 0.00216746170591898, 'single': 0.00216746170591898}\ntwo_scales 2 {'adaptive': 0.002162301887232086, 'fresh': 0.0021647999367853015, 'single': 0.002163808676033158}\ntwo_scales 3 {'adaptive': 0.002155420083442185, 'fresh': 0.0021621534038785955, 'single': 0.0021599580120087343}\ntwo_scales 4 {'adaptive': 0.0021475188358106912, 'fresh': 0.0021595219338168873, 'single': 0.0021564342155075463}\ntwo_scales 5 {'adaptive': 0.0021390109498254815, 'fresh': 0.0021569053572672438, 'single': 0.002153272541062525}\ntwo_scales 6 {'adaptive': 0.002130120277806013, 'fresh': 0.0021543035087791713, 'single': 0.0021504941224560923}\ntwo_scales 7 {'adaptive': 0.0021210131859642745, 'fresh': 0.0021517162266285806, 'single': 0.0021480639567717486}\ntwo_scales 8 {'adaptive': 0.0021117830012387685, 'fresh': 0.002149143352671352, 'single': 0.002145940859276478}\nthree_scales 1 {'adaptive': 0.0018971432139339892, 'fresh': 0.0018971432139339892, 'single': 0.0018971432139339892}\nthree_scales 2 {'adaptive': 0.001874536546119891, 'fresh': 0.0018815327642251781, 'single': 0.0018877208973004534}\nthree_scales 3 {'adaptive': 0.0018471480268701576, 'fresh': 0.001866404270440084, 'single': 0.0018799409040739503}\nthree_scales 4 {'adaptive': 0.0018177348520997648, 'fresh': 0.0018517309730429615, 'single': 0.001874873823991995}\nthree_scales 5 {'adaptive': 0.0017882848921446557, 'fresh': 0.0018374886912626693, 'single': 0.001872019028514388}\nthree_scales 6 {'adaptive': 0.0017597661923514276, 'fresh': 0.0018236554899703178, 'single': 0.001870427007827434}\nthree_scales 7 {'adaptive': 0.0017325470311976576, 'fresh': 0.0018102113810174192, 'single': 0.0018694387612427001}\nthree_scales 8 {'adaptive': 0.0017067290841114916, 'fresh': 0.0017971380658713002, 'single': 0.0018687220550759006}\n"
+    },
+    {
+      "script": "verify_finite.py",
+      "exit_code": 0,
+      "output": "{\"valid\": true, \"exact_comparisons\": 10, \"seconds\": 0.8296094000106677}\n"
+    }
+  ],
+  "checkpoint_sha256": "352b94ce07a5f9e6f2869a047390384310af302e872ced487c8255e6b9d791a4",
+  "new_package_file_count": 131,
+  "pdf_visual_review": "20-page contact sheet; larger radial page8 and final changed page19 inspected; no clipping/overlap seen; two underfull source-path paragraph warnings remain"
+}

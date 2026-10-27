@@ -1,0 +1,17 @@
+{
+  "transform": "extract document body; remove maketitle and appendix commands; permit line breaks in texttt paths and long hashes",
+  "files": [
+    {
+      "source": "inherited/construction.tex",
+      "source_sha256": "29463b56bfcbcf35b0e9be2347d824489240d091fd26003bf17515e1b930affe",
+      "target": "inherited/construction-body.tex",
+      "target_sha256": "33b19f900eddae0da3cdc0343e10a9d1eea7642a21fe144526b560b80b7b9e6c"
+    },
+    {
+      "source": "upper/proof.tex",
+      "source_sha256": "3bfdc6e40fcfff4a013537290dac7f59c42096c8165090bd5a7a6ea3b8e12ff3",
+      "target": "upper/proof-body.tex",
+      "target_sha256": "c61bf53a29c8d97952482f36352dd80bfed8524f3c31dfccfb09383aafc506cb"
+    }
+  ]
+}
