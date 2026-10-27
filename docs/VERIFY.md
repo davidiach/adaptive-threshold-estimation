@@ -58,6 +58,24 @@ python tools/verify_tier4.py --sequential --require-complete
 
 The first command rebuilds the scored proof modules and runs the frozen scorer plus an independent audit. The arithmetic command checks the separate scalar lemmas. The final three commands enforce complete proofs of their exact specifications and check their source locks and transitive axioms. Passing arithmetic or numerical checks alone does not establish those probability theorems.
 
+## Critical-regime paper checkpoint
+
+The critical note is a reviewed paper proof, not a new Lean target. Its
+preservation, exact scalar diagnostics, current 34 guard regressions and nine
+finite Fisher-policy replays run with:
+
+```sh
+python research/2026-10-27-critical-two/validate.py
+```
+
+This writes only that research directory's diagnostics; it does not replace
+published results or rebuild unchanged Lean dependencies. The
+[validation record](../research/2026-10-27-critical-two/validation.json) records
+exact commands, exit codes, source hashes and limits. The numerical checks do
+not prove the paper theorem. Compile the standalone
+[TeX note](../research/2026-10-27-critical-two/construction.tex) separately;
+compilation is also not mathematical verification.
+
 ## Evidence and CI
 
 | Check | Published record |

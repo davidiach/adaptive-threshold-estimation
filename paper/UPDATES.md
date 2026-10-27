@@ -1,5 +1,24 @@
 # Results after the v4 paper
 
+## Critical quadratic margin: a restricted minimax characterization
+
+The separate [critical-regime note](../research/2026-10-27-critical-two/construction.tex)
+proves the sharp RMS order $\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}$,
+$L=1+\log(1/\rho)$, for the specified noninteractive additive estimator class
+at $F(d)=(4d)^2$. Heterogeneous components, shared randomness, an unbounded
+finite-mean preselected coin count, and unbounded per-coin stopping are
+included under the stated moment conditions. Its core product lower bound
+also permits single-coin bias up to $\rho/64$. The upper side reuses the
+separately developed critical construction with explicit attribution.
+
+This is a paper proof with two separate agent reviews. It neither proves a
+matching unrestricted Psi upper bound nor refutes one: nonlinear aggregation
+and cross-coin feedback remain unresolved. The [checkpoint](../research/2026-10-27-critical-two/CHECKPOINT.md)
+records exact scope, proof evidence, numerical limitations and prior-art
+overlap. The preserved v4 paper and imported continuation are unchanged.
+
+## Preserved v4 paper
+
 [paper.pdf](paper.pdf), [paper.tex](paper.tex), and [verification_table.tex](verification_table.tex) are byte-for-byte copies of the PDF and source in [the preserved v4 package](../inputs/next-phase/baseline/Adaptive_Threshold_v4/). The TeX is unchanged, including its original title, author line, date, constants, and verification table. Compile `paper.tex` with `verification_table.tex` beside it. The [separate rare-event continuation](../inputs/next-phase/report/research_note.pdf) and [its source](../inputs/next-phase/report/research_note.tex) also remain in the preserved inputs.
 
 ## The upper constant: 12665 to 713

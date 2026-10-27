@@ -69,6 +69,38 @@ The new construction uses asymmetric sign-test errors and a randomized telescope
 
 The [adversarial review](../research/2026-10-27-route-a/review.md), [second analytic review](../research/2026-10-27-route-a/second-review.md), [primary-source comparison](../research/2026-10-27-route-a/sources.md), and [baseline ledger](../research/2026-10-27-route-a/BASELINE.md) record the evidence. Reviewers did not author the main proof; model diversity is not guaranteed. The theorem is **not Lean-checked or externally specialist-reviewed**, and worldwide novelty is unverified. The arbitrary-law conjecture, a universal two-atom characterization, and $\alpha=2$ remain open. Constants diverge as $\alpha\downarrow2$. The preserved paper and imported continuation are unchanged.
 
+## Critical power margin: sharp additive-class obstruction
+
+At the single fixed law $F(d)=(4d)^2$, the new
+[critical-regime note](../research/2026-10-27-critical-two/construction.tex)
+proves, with universal constants and $L=1+\log(1/\rho)$,
+
+$$R_{\rm add}(B)\asymp\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}.$$
+
+This restricted minimax class permits known $\mu,\rho,B$, a common independent
+seed, an almost-surely finite seed-preselected coin count with finite mean,
+and heterogeneous per-coin policies with unbounded stopping. Conditional on
+the seed, components use independent genuine coins and local randomness;
+each policy sees only its own observations. The output is an additive sum
+plus a seed-dependent constant, with the square-sum and uniform moment/work
+conditions stated in the note. Feedback across coins, data-dependent counts
+and nonlinear terminal postprocessing are not covered.
+
+The core theorem gives $\inf_A V(A)W(A)\asymp\rho L(1+\log L)$ for all
+single-coin estimators with uniform bias at most $\rho/64$, including exact
+unbiasedness. A component-selection reduction proves the population-class
+lower bound without requiring identical kernels or predetermined finite
+stopping horizons. The upper reuses the already available
+[critical construction](../research/2026-10-27-minimax-audit/theorem/critical.tex).
+
+Status: **paper proof with two separate agent reviews**. The [checkpoint](../research/2026-10-27-critical-two/CHECKPOINT.md)
+links the complete proof, exact source hashes, prior-art comparison and checks.
+No new Lean statistical theorem, external review or novelty certification is
+claimed. Since $\Psi(B^{-1/2})\asymp\min\{\rho,\sqrt{\rho L/B}\}$ at this law,
+the new result rules out a uniform matching-Psi guarantee in the specified
+additive class. The unrestricted alpha=2 and arbitrary-law conjectures remain
+open.
+
 ## Unknown rarity and numerical evidence
 
 The [unknown-rarity obstruction](process/TRACK_D.md#an-obstruction-to-completely-uniform-adaptation-to-unknown-rarity) concerns a budget-indexed estimator family independent of the rarity bound. For a known fixed $0<d<1/2$ and almost-sure stopping at every constant sign prior in $[0,1/4]$, no universal finite $C$ gives RMS error at most $C\min\{\rho,\sqrt\rho/(d\sqrt B)\}$ for every $B\ge1$, $0<\rho\le1/4$, and $\theta\in[0,\rho]$. This is an independently agent-reviewed paper proof. It does not rule out an additive error floor, a positive lower bound on rarity, or an algorithm given $\rho$.

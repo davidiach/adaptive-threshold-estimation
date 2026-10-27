@@ -1,6 +1,41 @@
 # Research hill-climb report
 
-## Current research checkpoint — 27 October 2026
+## Current critical-regime checkpoint — 27 October 2026
+
+**The unrestricted alpha=2 Psi conjecture remains open.** The new
+[paper theorem](../../research/2026-10-27-critical-two/construction.tex)
+characterizes the minimax rate of noninteractive additive estimators at the
+fixed quadratic law $F(d)=(4d)^2$:
+
+$$R_{\rm add}(B)\asymp\min\{\rho,\sqrt{\rho L(1+\log L)/B}\},\qquad L=1+\log(1/\rho).$$
+
+The class includes heterogeneous single-coin procedures, shared independent
+randomness, and an unbounded finite-mean number of coins selected before
+observations. Each component may stop at an unbounded time using its own
+coin history. Its terminal output is an additive sum; the note states the
+separate square-moment and work conditions. Nonlinear aggregation and
+decisions using other coins' observations remain outside this lower bound.
+Thus the extra iterated logarithm is necessary in this class; it has not been
+proved necessary for unrestricted population estimation.
+
+The central new product theorem covers every single-coin procedure with
+uniform bias at most $\rho/64$ and arbitrary variance/work allocation. A
+seed reweighting argument extends it to the additive population class. The
+matching upper construction was already present in the separately owned
+[critical upper note](../../research/2026-10-27-minimax-audit/theorem/critical.tex)
+and is credited explicitly. The new argument is a **paper proof with two
+separate agent reviews**, not a Lean theorem, external specialist review or
+priority certification. See the [checkpoint and exact scope](../../research/2026-10-27-critical-two/CHECKPOINT.md).
+
+All 34 current guard regressions pass; 311 protected baseline paths and 65
+lock entries are unchanged. Exact scalar checks and all nine finite Fisher
+diagnostics replay successfully, with their limitations recorded. No old
+verification record or other owner's Tier5/population work was overwritten.
+The useful change was a lower bound for an entire estimator class rather than
+further tuning of its likelihood dictionary. The next unresolved step is to
+control nonlinear or interactive estimators, or construct one attaining Psi.
+
+## Previous alpha>2 checkpoint — 27 October 2026
 
 **New mathematical result: paper proof with two separate agent reviews.** For
 the exact power margin $F(d)=(d/a)^\alpha$, the previously unresolved regime
