@@ -1,0 +1,183 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=24mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\IfFileExists{rendered/times.ttf}{%
+\DeclareFontFamily{TU}{tasktimes}{}
+\DeclareFontShape{TU}{tasktimes}{m}{n}{<->"[rendered/times.ttf]"}{}
+\DeclareFontShape{TU}{tasktimes}{m}{it}{<->"[rendered/timesi.ttf]"}{}
+\DeclareFontShape{TU}{tasktimes}{bx}{n}{<->"[rendered/timesbd.ttf]"}{}
+\DeclareFontShape{TU}{tasktimes}{bx}{it}{<->"[rendered/timesbi.ttf]"}{}
+\DeclareFontShape{TU}{tasktimes}{b}{n}{<->"[rendered/timesbd.ttf]"}{}
+\DeclareFontShape{TU}{tasktimes}{b}{it}{<->"[rendered/timesbi.ttf]"}{}
+\renewcommand{\rmdefault}{tasktimes}\normalfont}{}
+\usepackage[hidelinks]{hyperref}
+\DeclareFontShape{OMX}{cmex}{m}{n}{<->cmex10}{}
+\DeclareFontShape{OT1}{cmr}{bx}{n}{<->cmbx10}{}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\TV}{\operatorname{TV}}
+\setlength{\emergencystretch}{3em}
+\title{Nonlinear population estimation:\\feedback gains, depth requirements, and a tested heuristic}
+\author{Research checkpoint in adaptive threshold estimation}
+\date{27 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We investigate acquisition feedback as a possible escape from the verified
+single-coin and additive obstructions. In a two-gap experiment with a
+deterministic cap of two flips, an explicit feedback policy has smaller
+minimax squared error over the full global-rarity class than every
+preselected independent acquisition design, including arbitrary nonlinear
+postprocessing. Exact rational inequalities certify the separation.
+Conversely, polynomial moment matching gives two globally rare quadratic-law
+populations that are indistinguishable to every feedback algorithm with a
+fixed local observation cap. The same construction imposes a quantitative
+depth-tail requirement on unrestricted algorithms. A separate approximation
+theorem reduces the unrestricted expected-budget value to finite convex
+programs with explicit risk and budget errors for arbitrary known laws.
+A finite-prior greedy
+feedback estimator was implemented and evaluated in a frozen synthetic
+suite of7,680 runs. Its point estimates are encouraging, but establish
+neither a uniform error guarantee nor stable practical superiority.
+The arbitrary-law expected-budget minimax problem remains unresolved.
+\end{abstract}
+
+\noindent\textbf{Evidence and scope.}
+The mathematical statements are \textbf{PROVED-ON-PAPER} with separate
+adversarial agent review and explicitly limited exact arithmetic checks.
+They are not Lean formalized or externally peer reviewed. The simulation
+is \textbf{NUMERICAL}, in float64 with recorded seeds. No novelty or priority
+claim is made. A deterministic two-flip cap must not be replaced by an
+expected-work budget of two; an algorithm can satisfy the latter while
+occasionally taking more observations.
+
+\section{Experiment and unresolved objective}
+A fresh iid coin has hidden $D\sim\mu$ on $(0,1/2]$ and
+$S\mid D=d\sim\operatorname{Bernoulli}(q(d))$. Its conditional flips are iid
+Bernoulli with mean $1/2+(2S-1)D$. The unknown measurable allocation satisfies
+$0\le q\le1$ and the global constraint $\theta(q):=\int q\,d\mu\le\rho$.
+Known $\mu,\rho$ do not reveal any sampled magnitude or sign. The algorithm
+sees only coin identities and bits and can create, revisit, interleave,
+abandon and stop adaptively. Genuine flips, including pilots, cost one each;
+deterministic computation and independent randomization are free in the
+statistical model. Actual computation time is accounted for separately.
+
+The primary risk is minimax RMS under $\sup_q\E_qT\le B$. The candidate
+arbitrary-law formula is
+\[
+ \Psi_{\mu,\rho}(B^{-1/2}),\qquad
+ \Psi_{\mu,\rho}(h)=\sup_{0\le w\le1,\int w\,d\mu\le\rho}
+ \int\min\{w(d),h\sqrt{w(d)}/d\}\,\mu(dd).
+\]
+For the exact quadratic law on $(0,1/4]$, the candidate unsaturated order
+is $\sqrt{\rho L/B}$, $L=1+\log(1/\rho)$. The inherited single-coin and
+specified additive classes lose $\sqrt{1+\log L}$. This pass asks whether
+genuine acquisition feedback can avoid that obstruction, without assuming
+that it does.
+
+\input{lower/feedback.tex}
+\input{lower/full_class-body.tex}
+\input{lower/local_information.tex}
+
+\section{A limit on shallow calibration, including feedback}
+\input{upper/proof-body.tex}
+
+\input{audit/CLIPPING_BOUNDARY.tex}
+
+\section{A faithful approximation of the unrestricted expected-budget problem}
+\input{upper/approximation-body.tex}
+
+\section{A concrete nonlinear feedback estimator}
+For a specified finite law, choose a finite prior on feasible allocations
+using only known $\mu,\rho$. The prior includes the null, masses $\rho/2$
+and $\rho$, and uniform, hardest-first, easiest-first, inverse-square and
+feasible single-atom profiles. The true allocation is not supplied to the
+policy. Conditional on each prior hypothesis, coin likelihoods factor over
+their observed local words. Thus an existing coin's next-bit probability
+can be computed from its heads/tails counts, and the posterior weights
+on allocations update after every actual bit.
+
+For action $a$ (a fresh or existing coin), let $p_a(q)$ be that next-bit
+probability. Its one-step posterior variance reduction is exactly
+\[
+ \frac{\operatorname{Cov}(\theta,p_a)^2}
+      {\overline p_a(1-\overline p_a)},\qquad
+ \overline p_a=\E[p_a\mid\text{observed transcript}].
+\]
+Select the action maximizing this quantity, with a deterministic tie rule,
+and return the final posterior mean after exactly $B$ flips. This is an
+implementable nonlinear feedback heuristic. One-step optimality under a
+finite prior is neither global Bayes optimality nor a guarantee over
+arbitrary $q$. No claim of calibrated uncertainty under misspecification
+is made.
+
+The frozen suite uses two- and four-gap laws, $\rho=1/4,1/16$, five
+allocations including an out-of-prior mixture, budgets64,256,1024,
+and32 replicates per cell. Comparators use the same posterior estimator
+with fresh-only or fixed blocks of4 or16 flips, plus zero, half and rarity
+midpoint constants. All sampling procedures use the identical observation
+interface and exactly $B$ charged flips. The total evaluation used
+3,440,640 genuine flips in41.22seconds. The source, configurations and seeds
+were locked before evaluation; no post-result tuning was performed.
+
+Feedback had a smaller MSE point estimate than the best fixed acquisition
+comparator in40 of60 cells, and a smaller maximum tested MSE in all12
+law/rarity/budget groups. At $B=1024$:
+\begin{center}
+\begin{tabular}{lrrr}
+Law & $\rho$ & Feedback max MSE & Best fixed max MSE\\\hline
+Two gaps & 1/4 & 0.0034615 & 0.0044203\\
+Two gaps & 1/16 & 0.0005496 & 0.0013175\\
+Four gaps & 1/4 & 0.0022861 & 0.0054182\\
+Four gaps & 1/16 & 0.0004891 & 0.0012849
+\end{tabular}
+\end{center}
+These are maxima over only five tested profiles and noisy finite-replicate
+estimates, not minimax certificates. Complete bias, variance, raw/clipped
+RMS, target-miss probability and bounded-loss uncertainty are in the data
+tables. The uncertainty bounds are wide and cellwise, not simultaneous.
+No confidence-interval estimator or coverage result is supplied. Outputs
+already lie in $[0,\rho]$, so clipping to $[0,1]$ changes nothing.
+
+Independent replay of one predesignated replicate in every one of240 cells
+matched outputs and acquisition counts. An independent code audit found no
+access to actual $q,D,S$ and checked every stored work count. Row timings
+share deterministic prediction caches and omit model setup; the overall
+timer includes setup. There are zero extra pilot observations, but setup
+has nonzero computational cost. No one-shot speedup or amortized break-even
+claim follows from these timings.
+
+\section{Remaining proof obligations and source positioning}
+A successful pilot-selected production rule needs a response-weighted
+calibration guarantee. Conditional on a pilot, let $g=m_+-m_-$ denote the
+production response and let it be calibrated at a fitted $\widehat q$.
+Its actual bias is
+\[
+ \int(q-\widehat q)(g-1)\,d\mu.
+\]
+Matching a few pilot moments or an estimated target does not bound this
+quantity. The local-depth theorem supplies an exact failure of shallow
+identification, while deeper production remains a possible escape.
+Independent pilot and production data do not remove conditional bias.
+
+Lee--Valiant's Section7 oracle construction optimizes stopping flows and
+terminal coefficients for known conditional populations and a specified
+cap. Learning those populations with a uniform robust calibration guarantee
+is an additional obligation here. Juditsky--Nemirovski's product-experiment
+comparison is relevant to fixed acquisition; a concurrent repository task
+is developing its faithful transcript transfer and is not adopted as a
+completed dependency. The focused primary-source audit accompanies this
+note. Classical moment matching, score identities and convex comparison
+arguments are not claimed original.
+
+The exact feedback gain is a finite cap-two effect; the small-rarity
+information calculation does not amplify it into the missing logarithm.
+The depth-tail hard pair changes with $K$, so those tail bounds cannot be
+summed as though they held at one fixed population. The finite-prior
+heuristic has no uniform-q guarantee. These limitations leave the original
+arbitrary-law expected-budget rate and confidence dependence open.
+\end{document}

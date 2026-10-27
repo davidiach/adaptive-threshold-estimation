@@ -1,0 +1,129 @@
+\section{Feedback strictly improves a two-flip minimax subproblem}
+\label{sec:feedback-counterexample}
+\noindent\textbf{PROVED-ON-PAPER with certified finite rational arithmetic.}
+This is a counterexample to removing cross-coin acquisition feedback without
+loss. It is not a separation under expected budgets, not an asymptotic rate
+separation, and not a lower bound for the full class $\mathcal Q_\rho$.
+No novelty or formalization claim is made.
+
+Fix $\rho=1/4$ and the known magnitude law
+$\mu=\tfrac12\delta_{1/4}+\tfrac12\delta_{1/8}$.
+The magnitude of each actual coin remains hidden. Consider the admissible
+two-point parameter class
+$\mathcal H=\{q_0\equiv0,q_1\equiv1/4\}$, with targets
+$\theta_0=0$ and $\theta_1=1/4$.
+All genuine coins are iid and every requested flip is charged. The
+following comparison imposes a \emph{deterministic total cap of two flips}.
+
+The noninteractive comparison class preselects its independent local coin
+policies using an arbitrary shared seed, independent of all coin tapes.
+Each local policy may stop using its own observations and the seed, but its
+acquisition choices cannot depend on any other coin's observations. The
+terminal estimator may be an arbitrary nonlinear function of all acquired
+data and the seed. The sum of the preselected policies' actual flips must
+obey the cap almost surely at every parameter; an external budget monitor
+that cancels one policy because of another's observations is cross-coin
+feedback and is outside this comparison class.
+
+\begin{theorem}\label{feedback:strict}
+For this two-point problem, the minimax squared error of the noninteractive
+comparison class is strictly greater than $15313/10^6$.
+There is a feedback procedure with exactly two flips and maximum squared
+error strictly less than $7623/500000$.
+In particular its minimax squared-error advantage exceeds $67/10^6$.
+\end{theorem}
+
+\paragraph{Likelihoods and the two fixed schedules.}
+For a word $h$ of length $n$ with $k$ heads, its one-coin probability under
+hypothesis $j$ is the rational number
+\[
+ f_j(h)=\frac12\sum_{d\in\{1/4,1/8\}}
+ \left[(1-j/4)(1/2-d)^k(1/2+d)^{n-k}
+       +(j/4)(1/2+d)^k(1/2-d)^{n-k}\right].
+\]
+If two bits $(x,y)$ come from the same coin, their probability is
+$p_{j,O}(x,y)=f_j(xy)$. For two fresh coins it is
+$p_{j,N}(x,y)=f_j(x)f_j(y)$.
+These probabilities use only actual observed bits, not conditional gap
+information supplied to the estimator.
+
+Every member of the stated noninteractive class is statistically dominated
+by a random mixture of these two full schedules. To see this, condition
+on all independent seeds, including local randomization. If a local policy
+can request two flips with positive probability under $q_0$, no other
+policy can request even one with positive probability under $q_0$;
+otherwise independence would make total work greater than two with positive
+probability. If no policy can request two, at most two policies can request
+one. Finite words have strictly positive probability under both hypotheses,
+so the same statement holds for both hypotheses and for every potentially
+queried finite history. Unused pre-created identities reveal no data and
+can be omitted. A one-coin policy that stops early is dominated by completing
+two flips of that coin; policies with at most one flip each are dominated
+by observing one flip from each of two fresh coins. The original estimator
+can ignore the additional bits. This also handles zero observations.
+The chosen dominating schedule depends only on the seed, not on the
+hypothesis. Randomization therefore cannot lower its Bayes risk below
+the smaller Bayes risk of the two schedules.
+
+\paragraph{A feedback policy and its exact estimator.}
+Flip one fresh coin. After a tail, use the second flip on a fresh coin.
+After a head, revisit the original coin. In symbols, its probability of
+$(x,y)$ is
+\[
+ p_{j,A}(x,y)=
+ \begin{cases}f_j(x)f_j(y),&x=0,\\ f_j(xy),&x=1.\end{cases}
+\]
+This costs exactly two flips in both hypotheses. Fix the rational number
+$\pi=1075683009/2147483648$, interpreted only as a design constant, and
+output the posterior mean
+\[
+ \widehat\theta_A(x,y)
+ =\frac14\frac{\pi p_{1,A}(x,y)}
+ {(1-\pi)p_{0,A}(x,y)+\pi p_{1,A}(x,y)}.
+\]
+The estimator is fully specified and takes values in $(0,1/4)$; there is
+no uncharged pilot, latent-gap query, or unknown-parameter calibration.
+
+\paragraph{Finite rational verification.}
+For any schedule $P\in\{O,N,A\}$ the optimal Bayes squared error under
+prior $\pi$ is exactly
+\[
+ \mathcal B_P(\pi)=\frac1{16}\pi(1-\pi)
+ \sum_{x,y\in\{0,1\}}
+ \frac{p_{0,P}(x,y)p_{1,P}(x,y)}
+ {(1-\pi)p_{0,P}(x,y)+\pi p_{1,P}(x,y)}.
+\]
+Let $r_{j,A}=\sum_{x,y}p_{j,A}(x,y)
+(\widehat\theta_A(x,y)-j/4)^2$.
+The script \texttt{feedback\_certificate.py} computes all these fractions
+exactly, checks that each likelihood vector sums to one, and checks the
+independent posterior-variance identity for every Bayes risk. It verifies
+\[
+ \max_j r_{j,A}<\frac{7623}{500000}
+ <\frac{15313}{10^6}<\min\{\mathcal B_O(\pi),\mathcal B_N(\pi)\}.
+\]
+For orientation only, the adaptive maximum is approximately
+$0.01524525010158912$, while the smaller fixed-schedule Bayes lower bound
+is approximately $0.015313875487111883$.
+The inequalities, rather than these decimal displays, are the certificate.
+Every minimax risk is at least its Bayes risk under the specified prior,
+so the displayed chain proves Theorem~\ref{feedback:strict}.
+
+The script also gives exact certificates for magnitude laws with equal
+weights at $(1/4,1/64)$ and $(1/4,1/1024)$, with separately pinned dyadic
+design priors. Thus strict feedback gain is not specific to neighboring
+gap scales. It remains a finite cap-two effect: none of the certificates
+establishes a growing advantage, a critical-law lower bound, or the same
+comparison for algorithms having only a uniform expected-work budget.
+
+\paragraph{Why this matters, and the remaining gap.}
+An unrestricted estimator cannot in general be replaced at no loss by a
+preselected independent acquisition design and an optimal nonlinear
+postprocessor. The first bit changes whether information should be acquired
+from the same latent coin or a fresh one, even in this tiny admissible
+subproblem. The certificate does not imply that feedback defeats the
+critical logarithmic obstruction in the worst case over arbitrary $q$.
+Amplifying the finite advantage into such a statement requires a hard
+family or construction whose advantage grows with the number of gap scales,
+while controlling the original uniform expected budget. No such
+amplification is proved here.

@@ -1,0 +1,77 @@
+\section{The feedback effect for arbitrary hidden magnitude laws}
+\label{sec:feedback-local-information}
+\noindent\textbf{PROVED-ON-PAPER.} This finite two-flip information
+comparison concerns the submodel $q_t(d)\equiv t$. It is not a minimax
+comparison over arbitrary $q$ or an asymptotic normality assertion.
+
+Let $\mu$ be any law on $(0,1/4]$. Write
+$m=\mathbb E D>0$, $v=\mathbb E D^2$, and
+\[
+ p_H=\tfrac12-m,\quad p_T=\tfrac12+m,\quad
+ h=\tfrac14-m+v,\quad c=\tfrac14-v,\quad z=\tfrac14+m+v.
+\]
+These positive quantities are the first-head/first-tail probabilities and
+the word probabilities of $HH,HT,TT$ at $t=0$. Their derivatives along
+$q_t=t$ are $2m,-2m$ for $H,T$ and $2m,0,-2m$ for $HH,HT,TT$.
+The derivatives are from the admissible right side at $t=0$; the finite
+word probabilities are positive and affine, so their information is defined.
+
+\begin{proposition}\label{feedback:information}
+The information $J$ from a fresh bit and conditional information $J_H,J_T$
+from revisiting after a head or tail satisfy
+\[
+ J=\frac{4m^2}{p_Hp_T},\qquad
+ J_H=\frac{4m^2c}{p_H^2h},\qquad
+ J_T=\frac{4m^2c}{p_T^2z},\qquad J_T<J<J_H.
+\]
+The feedback policy $A$ (fresh after a tail, revisit after a head) therefore
+has strictly more information than either fixed two-flip schedule:
+\[
+ I_A=J+p_HJ_H+p_TJ,\quad I_O=J+p_HJ_H+p_TJ_T,\quad I_N=2J,
+ \qquad I_A>\max\{I_O,I_N\}.
+\]
+\end{proposition}
+\begin{proof}
+The Bernoulli information formula gives $J$. After a head the next-head
+probability is $h/p_H$, with derivative $2mc/p_H^2$; after a tail it is
+$c/p_T$, with derivative $2mc/p_T^2$. Applying the same formula gives
+$J_H,J_T$. Since $cp_H<p_Tz$, we have $J_T<J$.
+Direct algebra gives $cp_T-p_Hh=m-m^2-v$.
+The support restriction implies $m^2\le m/4$ and $v\le m/4$, so this
+expression is at least $m/2>0$, proving $J_H>J$.
+The second bit's score increment has conditional mean zero, so its
+information adds to that of the first. This proves the remaining identities.
+\end{proof}
+
+For the exact quadratic law with $a=1/4$, $m=1/6$, $v=1/32$, and
+\[
+ J=\frac12,\quad J_H=\frac{21}{11},\quad J_T=\frac{21}{172},
+ \qquad I_A=\frac{97}{66},\quad I_O=\frac{576}{473},\quad I_N=1.
+\]
+Thus feedback changes information even for the critical law. All compared
+procedures use two genuine flips and no realized-gap information.
+
+\paragraph{What does not amplify automatically.}
+For hypotheses $q=0$ and $q=\rho$ with equal prior, any of these three
+fixed finite experiments has Bayes risk, for fixed $\mu$,
+\[
+ \mathcal B_P(\rho)
+ =\frac{\rho^2}{4}-\frac{\rho^4}{16}I_P(0)+O_\mu(\rho^5).
+\]
+To prove this, write its finitely many positive cell probabilities as
+$p_\rho(x)=p_0(x)+\rho g(x)+O(\rho^2)$ and expand the exact identity
+$\mathcal B_P=(\rho^2/2)\sum_xp_0(x)p_\rho(x)/(p_0(x)+p_\rho(x))$.
+Normalization cancels the linear term and the sum of second derivatives
+of the probabilities. The remaining second-order term is
+$-\rho^4\sum_x g(x)^2/p_0(x)/16$.
+The positive finite denominators bound the Taylor remainder. The feedback
+schedule is fixed and its finite cell probabilities are polynomial, so
+this also applies to it.
+
+Hence its equal-prior Bayes advantage persists for sufficiently small
+$\rho$ for every fixed $\mu$, but is of order $\rho^4$ against a leading
+risk of order $\rho^2$. This does not give a growing minimax advantage.
+Repeating two-flip batches would also restrict the comparison experiment:
+it does not bound competitors that revisit more deeply, use other feedback,
+or have only an expected-work constraint. The missing multiscale argument
+cannot be replaced by multiplying this finite advantage.

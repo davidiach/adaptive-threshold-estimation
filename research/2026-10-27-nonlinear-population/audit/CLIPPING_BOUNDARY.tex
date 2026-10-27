@@ -1,0 +1,92 @@
+\section{What clipping does and does not inherit from a variance lower bound}
+\label{sec:clipping-boundary}
+\noindent\textbf{PROVED-ON-PAPER; elementary reduction, priority unresolved.}
+This section was constructed by the audit agent and received a separate agent
+review recorded in \texttt{REVIEW.md}; it is not Lean formalized or externally
+peer reviewed. It gives a conditional transfer, not a theorem
+that every estimator in the original model satisfies its tail premise.
+
+Write $\Pi_\rho(x)=\min\{\rho,\max\{0,x\}\}$ and assume the true parameter
+$\theta\in[0,\rho]$. The clipping interval is known.
+
+\begin{proposition}[A bounded-kurtosis transfer]
+Suppose $F$ is unbiased for $\theta$, with finite variance $\sigma^2$ and
+\[
+ \mathbb E(F-\theta)^4\le K\sigma^4,\qquad 1\le K<\infty.
+\]
+Then
+\[
+ \mathbb E(\Pi_\rho(F)-\theta)^2
+ \ge\frac{\min\{\sigma^2,\rho^2\}}{256K^2}.
+\]
+This includes $\theta=0$ and $\theta=\rho$.
+\end{proposition}
+\begin{proof}
+The case $\sigma=0$ is immediate. Put $X=F-\theta$. Holder's inequality gives
+\[
+ \sigma^2\le(\mathbb E|X|)^{2/3}(\mathbb EX^4)^{1/3},
+ \quad\text{so}\quad \mathbb E|X|\ge\sigma/\sqrt K.
+\]
+Since $\mathbb EX=0$, both positive and negative parts have mean at least
+$\sigma/(2\sqrt K)$. If $\theta\le\rho/2$ take $Y=X_+$; otherwise take
+$Y=X_-$. In both cases this is the error directed toward the more distant
+endpoint of the clipping interval. Write $m=\mathbb EY$.
+From $\mathbb EY^2\le\sigma^2$ and Cauchy--Schwarz,
+\[
+ \mathbb P\{Y\ge m/2\}\ge\frac{m^2}{4\mathbb EY^2}
+ \ge\frac1{16K}.
+\]
+On this event the clipped absolute error is at least
+$\min\{m/2,\rho/2\}\ge\min\{\sigma/(4\sqrt K),\rho/2\}$.
+Consequently its squared expectation is at least
+$\min\{\sigma^2/(256K^2),\rho^2/(64K)\}$, which implies the claim.
+\end{proof}
+
+If these premises hold for every $q$ with one common $K$, taking suprema
+gives a clipped RMS lower bound of
+$(16K)^{-1}\min\{\rho,\sqrt{\sup_q\operatorname{Var}_qF}\}$.
+The inherited additive variance--work lower bound therefore survives
+clipping for unbiased additive estimators with uniformly bounded standardized
+fourth moment. The constant explicitly deteriorates with $K$; no such
+moment hypothesis was established for the inherited randomized telescopes.
+This proposition does not cover arbitrary biased raw estimators.
+
+\begin{proposition}[Why there is no unrestricted variance transfer]
+Let $F_0$ be any unbiased square-integrable raw estimator, and independently
+draw $Z=0$ with probability $1-\varepsilon$ and $Z=\pm M$ with probability
+$\varepsilon/2$ each. Set $F=F_0+Z$. Then the acquisition cost is unchanged,
+$F$ remains unbiased, and
+\[
+ \operatorname{Var}_qF=\operatorname{Var}_qF_0+\varepsilon M^2,
+ \qquad
+ \mathbb E_q(\Pi_\rho(F)-\theta)^2
+ \le\mathbb E_q(F_0-\theta)^2+\varepsilon\rho^2.
+\]
+\end{proposition}
+\begin{proof}
+The variance identity uses independent mean-zero seed noise. On $Z=0$,
+projection does not increase squared error. On the other event the clipped
+estimate and target both belong to $[0,\rho]$, so their distance is at most
+$\rho$. Taking expectations proves the bound.
+\end{proof}
+
+This construction applies within the original quadratic-law experiment by
+using its existing unbiased additive estimator for $F_0$. The noise is a
+square-integrable seed offset for each finite $\varepsilon,M$, so it also
+respects the inherited additive class. Taking $M=1/\varepsilon$ makes the
+raw variance diverge while the clipping penalty tends to zero. This does
+not construct an estimator beating the additive minimax rate: it disproves
+an inference from a particular estimator's raw variance to its clipped risk.
+To make the clipped risk arbitrarily small, first select an increasingly
+accurate unbiased base estimator at its actual charged budget, and then take
+$\varepsilon$ small. A fixed base estimator alone establishes variance
+divergence with a bounded clipping penalty, not vanishing clipped risk.
+
+There is also a simple tail-energy transfer without unbiasedness. Let
+$D=F-\Pi_\rho(F)$. The triangle inequality in $L^2$ gives
+\[
+ \|\Pi_\rho(F)-\theta\|_2\ge\|F-\theta\|_2-\|D\|_2.
+\]
+Thus a separately proved uniform bound on the clipping displacement can
+transfer a raw-risk lower bound. The displacement bound is an additional
+obligation, not a consequence of finite variance or expected work.

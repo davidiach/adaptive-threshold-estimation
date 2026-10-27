@@ -1,0 +1,57 @@
+{
+  "laws": [
+    {
+      "name": "two_scales",
+      "d": [
+        0.03125,
+        0.25
+      ],
+      "mass": [
+        0.125,
+        0.875
+      ]
+    },
+    {
+      "name": "four_scales",
+      "d": [
+        0.0078125,
+        0.03125,
+        0.125,
+        0.25
+      ],
+      "mass": [
+        0.015625,
+        0.046875,
+        0.1875,
+        0.75
+      ]
+    }
+  ],
+  "rhos": [
+    0.25,
+    0.0625
+  ],
+  "budgets": [
+    64,
+    256,
+    1024
+  ],
+  "replicates": 32,
+  "modes": [
+    "feedback",
+    "fresh",
+    "block4",
+    "block16"
+  ],
+  "seed_rule": "2026102700+100000000*law_index+10000000*rho_index+100000*profile_index+replicate; same seed across policies and budgets",
+  "precision": "IEEE754 float64 likelihoods/posteriors; Python random53-bit uniforms",
+  "source_sha256": "58da93f0046ea15bbb6371f5c86ae4d6b9225b48bccb794640681c0f8ffad251",
+  "contract_sha256": "1f919cbb98f79bc3bf15b4c49aebaf9e18b0b553a5bf8e76e8f09f236b28e6d2",
+  "identity_checks": {
+    "predictive_fraction_comparisons": 128,
+    "variance_reduction_identity": true
+  },
+  "numpy": "2.4.4",
+  "python": "3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)]",
+  "scope": "Frozen exploratory heuristic evaluation, not uniform minimax or practical-superiority certificate"
+}
