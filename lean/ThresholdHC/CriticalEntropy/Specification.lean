@@ -8,6 +8,7 @@ import ThresholdHC.CriticalEntropy.RepeatedModel
 import ThresholdHC.CriticalEntropy.RepeatedSignModel
 import ThresholdHC.CriticalEntropy.PopulationModel
 import ThresholdHC.CriticalEntropy.GoodGapModel
+import ThresholdHC.CriticalEntropy.CriticalModel
 
 noncomputable section
 open MeasureTheory Real
@@ -235,5 +236,35 @@ def PopulationGoodGapsStatement : Prop :=
     CappedPopulationGuarantee μ ν p₀ p₁ A (ρ : ℝ) m →
     ∃ G : Set ℝ, MeasurableSet G ∧ G ⊆ Set.Ioc a b ∧ μ.real Gᶜ ≤ 70*m ∧
       ∀ d ∈ G, PopulationGoodGap ν p₀ p₁ A (ρ : ℝ) m d
+
+/-- The gap law is an atomless probability law with the claimed quadratic CDF.
+The observation parameter equals the untruncated Bernoulli parameter everywhere
+on its support. No probability instance or density identity is assumed. -/
+def CriticalLawStatement : Prop :=
+  IsProbabilityMeasure criticalGapLaw ∧ NullSingletonClass criticalGapLaw ∧
+    criticalGapLaw (Set.Ioc (0 : ℝ) (1/4))ᶜ = 0 ∧
+    (∀ x : ℝ, 0 ≤ x → x ≤ 1/4 →
+      criticalGapLaw (Set.Ioc (0 : ℝ) x) = ENNReal.ofReal (16*x^2)) ∧
+    (∀ d ∈ Set.Ioc (0 : ℝ) (1/4), ∀ b : Bool,
+      (criticalParameter d b : ℝ) = 1/2+(if b then d else -d))
+
+/-- Finite-scale null-cost product for the actual quadratic population model.
+Only uniform population guarantees are supplied: good conditional gaps, their
+moments, restarts and sign-test information are derived. The explicit annulus
+mass and scale-count hypotheses remain; this does not yet state the full
+rarity-dependent base-cost bound. -/
+def CriticalScaleProductStatement : Prop :=
+  ∀ (R : Type) [MeasurableSpace R]
+    (ν : Measure R) [IsProbabilityMeasure ν] (A : StoppedProcedure R ℝ)
+    (ρ : unitInterval), 0 < (ρ : ℝ) → (ρ : ℝ) ≤ 1/4 →
+    ∀ (m : ℝ), 2*(ρ : ℝ)/3 ≤ m →
+    CappedPopulationGuarantee criticalGapLaw ν
+      (fun d => criticalParameter d false) (fun d => criticalParameter d true) A (ρ : ℝ) m →
+    ∀ (K : ℕ), 32 ≤ Real.log (K : ℝ) →
+    (∀ i : Fin K, 140*m ≤ criticalGapLaw.real (criticalAnnulus (i.val+3))) →
+    (ρ : ℝ)*((K : ℝ)*Real.log (K : ℝ)) ≤
+      (656384/3)*m*(populationExpectedWork criticalGapLaw ν
+        (fun d => criticalParameter d false) (fun d => criticalParameter d true)
+        (fun _ => 0) A).toReal
 
 end ThresholdHC.CriticalEntropy

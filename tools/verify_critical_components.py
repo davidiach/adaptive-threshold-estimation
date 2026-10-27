@@ -25,7 +25,8 @@ MODULES = ("Packing", "CommonPoint", "BernoulliPrefix", "EventInformation", "Sig
            "RepeatedModel", "RepeatedRestart", "RepeatedSignModel", "SampleMean",
            "SignReduction", "EstimationEntropy", "PopulationModel", "UniformCoin",
            "PopulationMixture", "PopulationVariance", "GoodGapModel", "ConditionalMoments",
-           "HalfPrior", "GapSelection", "GoodGaps", "Specification")
+           "HalfPrior", "GapSelection", "GoodGaps", "CriticalModel", "CriticalLaw",
+           "CriticalAnnuli", "CriticalScale", "Specification")
 NAMESPACE = "ThresholdHC.CriticalEntropy."
 ROOTS = {
     NAMESPACE + name for name in (
@@ -103,6 +104,16 @@ ROOTS = {
         "exists_subset_real_measure", "bad_set_mass_lt_of_integral_lower", "bad_set_mass_lt_of_integral_upper",
         "population_good_gaps", "PopulationVarianceFloorStatement", "PopulationMomentFromVarianceStatement",
         "PopulationGoodGapsStatement",
+        "criticalGapLaw", "criticalUpper", "criticalAnnulus",
+        "criticalParameter", "criticalGapLaw_noAtoms", "linear_density_interval",
+        "criticalGapLaw_Ioc", "criticalGapLaw_supported", "criticalGapLaw_probability",
+        "criticalGapLaw_real_Ioc", "criticalUpper_pos", "criticalUpper_le_quarter",
+        "criticalUpper_succ", "criticalAnnulus_mass", "criticalAnnulus_adjacent",
+        "criticalUpper_antitone", "criticalAnnulus_disjoint", "measurable_criticalParameter",
+        "criticalParameter_eq_sign", "criticalParameter_coe_of_mem", "exists_good_point_low_work",
+        "criticalAnnulus_work_factor", "critical_annulus_work_sum", "critical_annulus_good_points",
+        "population_negative_work_integral", "critical_scale_entropy", "critical_scale_product",
+        "CriticalLawStatement", "CriticalScaleProductStatement",
     )
 }
 
@@ -158,7 +169,7 @@ def main() -> int:
               for p in protected}
     status = {
         "valid": False,
-        "scope": "Population variance floor and quantitative good-gap selection from capped global guarantees, constructed population moments, finite-gap estimator and sign entropy, observable restarts, and abstract compact convex common point",
+        "scope": "Quadratic-law finite-scale null-cost product from actual population guarantees, with explicit scale-count and annulus-mass hypotheses; population moments and good gaps, observable restarts, sign entropy, and abstract compact convex common point",
         "full_critical_minimax_theorem_verified": False,
         "base_cost_theorem_verified": False,
         "finite_gap_sign_testing_theorem_verified": False,
@@ -172,6 +183,8 @@ def main() -> int:
         "population_extended_variance_floor_verified": False,
         "population_moment_from_variance_verified": False,
         "population_good_gap_selection_verified": False,
+        "critical_gap_law_verified": False,
+        "critical_scale_null_cost_product_verified": False,
         "specifications_frozen_before_proofs": False,
         "source_sha256": hashes,
         "commands": [],
@@ -197,7 +210,7 @@ def main() -> int:
     if any(hashlib.sha256((ROOT / rel).read_bytes()).hexdigest() != digest
            for rel, digest in hashes.items()):
         raise ValueError("Sources changed during audit")
-    status.update(valid=True, exact_component_targets=15, audited_declarations=len(ROOTS),
+    status.update(valid=True, exact_component_targets=17, audited_declarations=len(ROOTS),
                   finite_gap_sign_testing_theorem_verified=True,
                   stopped_suffix_independence_verified=True,
                   sequential_restart_law_and_work_verified=True,
@@ -208,9 +221,11 @@ def main() -> int:
                   population_conditional_finiteness_verified=True,
                   population_extended_variance_floor_verified=True,
                   population_moment_from_variance_verified=True,
-                  population_good_gap_selection_verified=True)
+                  population_good_gap_selection_verified=True,
+                  critical_gap_law_verified=True,
+                  critical_scale_null_cost_product_verified=True)
     status_path.write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"valid": True, "exact_component_targets": 15,
+    print(json.dumps({"valid": True, "exact_component_targets": 17,
                       "audited_declarations": len(ROOTS), "evidence": str(output),
                       "finite_gap_sign_testing_theorem_verified": True,
                       "stopped_suffix_independence_verified": True,
@@ -223,6 +238,8 @@ def main() -> int:
                       "population_extended_variance_floor_verified": True,
                       "population_moment_from_variance_verified": True,
                       "population_good_gap_selection_verified": True,
+                      "critical_gap_law_verified": True,
+                      "critical_scale_null_cost_product_verified": True,
                       "full_critical_minimax_theorem_verified": False}))
     return 0
 

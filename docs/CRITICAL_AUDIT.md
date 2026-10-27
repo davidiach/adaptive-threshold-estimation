@@ -126,12 +126,33 @@ to trim measurable subsets of an atomless bounded real law to mass `2 rho`.
 the resulting admissible `q=1_E/2` populations and proves their exact mean and
 moment changes. These facts bound the three exceptional sets and produce
 `mu(G^c)<=70m`. All conditional mean, second-moment, and work bounds on `G`
-are conclusions. Applying this general result to the critical density's
-separated annuli and summing their work remains a separate step.
+are conclusions.
 
-The [eighth audit record](../results/critical_components_008.json) checks fifteen
-exact targets and all 222 public declarations using only the permitted standard
-axioms. The [seventh record](../results/critical_components_007.json) preserves
+The quadratic gap law is now constructed and normalized in
+[CriticalLaw.lean](../lean/ThresholdHC/CriticalEntropy/CriticalLaw.lean). It is
+an atomless probability measure of density `32d` on `(0,1/4]`; its interval
+masses and the actual Bernoulli parameter `1/2 +/- d` on that support are
+proved. The separated annuli `I_j=(u_j/2,u_j]`, `u_j=1/(4*4^j)`, have
+exact mass `3/(4*16^j)`.
+[CriticalAnnuli.lean](../lean/ThresholdHC/CriticalEntropy/CriticalAnnuli.lean)
+selects a good point in each annulus whose mass is at least `140m`.
+The proof handles zero annulus work without a positive-work assumption.
+Pairwise disjointness and annulus averaging give `sum_j d_j^2 w(d_j)<=W0/3`.
+
+[CriticalScale.lean](../lean/ThresholdHC/CriticalEntropy/CriticalScale.lean)
+then proves `rho K log(K)<=(656384/3)m W0`, starting from the actual uniform
+population guarantees of the same observable procedure and seed law.
+The conditional moments, finite work, good gaps, iid restarts and sign test
+are derived. The remaining explicit hypotheses are `m>=2rho/3`,
+`log(K)>=32`, and mass at least `140m` for annuli indexed `3,...,K+2`.
+This is a finite-scale product bound, not yet the rarity-dependent base-cost
+theorem: activation normalization and the logarithmic scale-count choice
+still need proofs.
+
+The [ninth audit record](../results/critical_components_009.json) checks seventeen
+exact targets and all 251 public declarations using only the permitted standard
+axioms. The [eighth record](../results/critical_components_008.json) preserves
+the fifteen-target good-gap checkpoint. The [seventh record](../results/critical_components_007.json) preserves
 the twelve-target population-moment checkpoint. The [sixth record](../results/critical_components_006.json) preserves the
 ten-target estimator-entropy checkpoint. The [fifth record](../results/critical_components_005.json) preserves
 the finite-repetition checkpoint; the [fourth record](../results/critical_components_004.json)
@@ -139,9 +160,9 @@ preserves the six-target stopped-suffix checkpoint, and the
 [third record](../results/critical_components_003.json) the finite-gap checkpoint. These targets were
 introduced with their proofs, not retrospectively described as a pre-proof
 freeze. This is **not** a formalization of the continuum null-cost product
-theorem or the full critical minimax law. Activation normalization, the critical
-law's annulus selection and work summation, common-pair instantiation, and
-population transfer remain below.
+theorem or the full critical minimax law. Activation normalization, the
+rarity-dependent scale-count choice, common-pair instantiation, and population
+transfer remain below.
 
 ## Initial dependency audit
 
@@ -153,10 +174,10 @@ proof.
 | Dependency | Check performed | Remaining verification |
 |---|---|---|
 | Finite-gap sign entropy, BC2 | Early decisions use deterministic-prefix KL, not optional stopping under the fair coin. The events share one terminal time, making the scale-window overlap argument applicable. The fair law need not terminate. | Complete for the stated statistical model; see the current formal boundary above. |
-| Conditional moments and response | The populations `q=0` and `q=rho` give finite conditional second moments and work outside a common null set. The response bound comes from expectations before pointwise means are used. | Formalize conditional integration and variance decomposition. |
+| Conditional moments and response | The populations `q=0` and `q=rho` give finite conditional second moments and work outside a common null set. The response bound comes from expectations before pointwise means are used. | Complete for the stated population model; see the current formal boundary above. |
 | First-observation normalization | The activation event is seed-only. Under its conditional seed law, `Z=pY+c` preserves means and changes null work to `W0/p`; the zero-activation case contradicts the bias requirement. | Construct the conditional procedure and verify its moment identities. |
-| Good-gap selection | The proof uses populations `(1/2)1_E` with `mu(E)=2rho`, respecting the lower subclass's pointwise cap. The excluded mass is at most `70m`. | Formalize nonatomic subset selection and annulus averaging. |
-| Sign-test restarts | The actual unused-suffix law, observable fixed-count repetition, sign-test errors and exact `n E T` work are Lean-checked. The finite-gap estimator entropy theorem constructs this reduction from conditional moments. | Supply these moment assumptions on good gaps from the continuum population model. |
+| Good-gap selection | The proof uses populations `(1/2)1_E` with `mu(E)=2rho`, respecting the lower subclass's pointwise cap. The excluded mass is at most `70m`. | Subset selection, good gaps, and annulus averaging are proved; the rarity-dependent scale-count choice remains. |
+| Sign-test restarts | The actual unused-suffix law, observable fixed-count repetition, sign-test errors and exact `n E T` work are Lean-checked. The finite-gap estimator entropy theorem constructs this reduction from conditional moments. | The finite-scale quadratic product theorem now derives these assumptions from uniform population guarantees. |
 | Finite observation reduction | At cap `m`, each seed/word cell has the integrated likelihood determined by `(T,heads)`. The multiplier cancels from conditional seed/word laws. | Formalize sufficiency, including arbitrary measurable seeds. |
 | Convex RMS comparison | Finite categorical probabilities are affine and positive; log moments are concave in the population and convex in the score/scale. Tail integration is used to obtain RMS, rather than substituting a confidence bound. | Kernel treatment of the minimax interchange and tail integrals remains open. |
 | One pair for all policies | The separated-pair set is compact convex in the weak-star topology. Squared Hellinger is continuous convex. A revealed finite policy mixture has exactly averaged Hellinger and null work. Finite-simplex minimax supplies the finite intersection property. | Formalize the compactness and minimax steps; a policy-dependent hard pair alone would not suffice. |

@@ -9,6 +9,7 @@ import ThresholdHC.CriticalEntropy.RepeatedRestart
 import ThresholdHC.CriticalEntropy.EstimationEntropy
 import ThresholdHC.CriticalEntropy.PopulationMixture
 import ThresholdHC.CriticalEntropy.GoodGaps
+import ThresholdHC.CriticalEntropy.CriticalScale
 
 open ThresholdHC.CriticalEntropy
 
@@ -54,6 +55,13 @@ example : PopulationVarianceFloorStatement := fun _ _ => population_evariance_fl
 example : PopulationMomentFromVarianceStatement := fun _ _ => population_moment_bound_of_evariance
 
 example : PopulationGoodGapsStatement := fun _ => population_good_gaps
+
+example : CriticalLawStatement := by
+  refine ⟨inferInstance, inferInstance, criticalGapLaw_supported, ?_, criticalParameter_coe_of_mem⟩
+  intro x hx hx'
+  simpa using criticalGapLaw_Ioc 0 x (by norm_num) hx hx'
+
+example : CriticalScaleProductStatement := fun _ => critical_scale_product
 
 #print axioms sum_event_mass_le_overlap
 #print axioms event_packing
@@ -277,3 +285,33 @@ example : PopulationGoodGapsStatement := fun _ => population_good_gaps
 #print axioms PopulationVarianceFloorStatement
 #print axioms PopulationMomentFromVarianceStatement
 #print axioms PopulationGoodGapsStatement
+
+#print axioms criticalGapLaw
+#print axioms criticalUpper
+#print axioms criticalAnnulus
+#print axioms criticalParameter
+#print axioms criticalGapLaw_noAtoms
+#print axioms linear_density_interval
+#print axioms criticalGapLaw_Ioc
+#print axioms criticalGapLaw_supported
+#print axioms criticalGapLaw_probability
+#print axioms criticalGapLaw_real_Ioc
+#print axioms criticalUpper_pos
+#print axioms criticalUpper_le_quarter
+#print axioms criticalUpper_succ
+#print axioms criticalAnnulus_mass
+#print axioms criticalAnnulus_adjacent
+#print axioms criticalUpper_antitone
+#print axioms criticalAnnulus_disjoint
+#print axioms measurable_criticalParameter
+#print axioms criticalParameter_eq_sign
+#print axioms criticalParameter_coe_of_mem
+#print axioms exists_good_point_low_work
+#print axioms criticalAnnulus_work_factor
+#print axioms critical_annulus_work_sum
+#print axioms critical_annulus_good_points
+#print axioms population_negative_work_integral
+#print axioms critical_scale_entropy
+#print axioms critical_scale_product
+#print axioms CriticalLawStatement
+#print axioms CriticalScaleProductStatement

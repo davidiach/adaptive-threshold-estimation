@@ -165,9 +165,22 @@ and bias guarantees over `q<=1/2`, `integral q<=rho`. On `G`, the minus mean
 has absolute value at most `1/8`, the plus mean is at least `5/8`, and the
 conditional second moments are at most `1/64` and `1/64+2m/rho`; both signed
 conditional work expectations are finite. The gap law is atomless and supported
-on a bounded real interval. No conditional bound is assumed. Activation
-normalization and the critical law's annulus selection and cost summation
-remain open; this is still not the base-cost or full critical theorem.
+on a bounded real interval. No conditional bound is assumed.
+
+[CriticalLaw.lean](../lean/ThresholdHC/CriticalEntropy/CriticalLaw.lean) proves
+that the actual gap law has density `32d` on `(0,1/4]`, is an atomless
+probability measure, and has the stated quadratic CDF.
+[CriticalAnnuli.lean](../lean/ThresholdHC/CriticalEntropy/CriticalAnnuli.lean)
+selects good gaps in disjoint annuli and bounds their total weighted work by
+one third of the all-negative population work.
+[CriticalScale.lean](../lean/ThresholdHC/CriticalEntropy/CriticalScale.lean)
+combines this with observable restarts and sign entropy to prove
+`rho K log(K) <= (656384/3) m E_0 T`. Its hypotheses are the uniform
+population bias, raw second-moment and finite-work guarantees, `m>=2rho/3`,
+`log(K)>=32`, and annulus mass at least `140m` for each of the `K` chosen
+annuli. Neither conditional moment bounds nor a sign test is assumed.
+Activation normalization and a rarity-dependent choice of `K` remain open;
+this is still not the base-cost or full critical theorem.
 
 ## Population and nonlinear feedback follow-ups
 
