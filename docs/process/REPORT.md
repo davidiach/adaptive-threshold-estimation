@@ -6,16 +6,16 @@ The Lean track ran: Lean 4.36.0-rc1 with Mathlib pinned to
 `9bdd0bc71aaae0fd83889f9aacd70c32fccd1bcd`. All 33 supplied statements
 compiled unchanged and passed their numerical sanity checks. Twelve files
 were frozen in commit `8128f9a`. The approved Tier 2 extension added nine
-locks in `f86a9ba`, as recorded in `FREEZE_LOG.md`; the original target
+locks in `f86a9ba`, as recorded in [FREEZE_LOG.md](../../FREEZE_LOG.md); the original target
 syntax and mathematical meaning are unchanged. All 50 original input
 files match the supplied manifest.
 
 Python 3.12, NumPy 2.4.4, SciPy 1.17.1, mpmath 1.3.0, and Numba 0.68.0 were
 used. Dependencies are pinned. Public checkpoint history is at
-[davidiach/threshold-hillclimb](https://github.com/davidiach/threshold-hillclimb).
+[davidiach/adaptive-threshold-estimation](https://github.com/davidiach/adaptive-threshold-estimation).
 
 Final proof checkpoint `a485ad6` also passed the independent
-[Linux CI run](https://github.com/davidiach/threshold-hillclimb/actions/runs/40410461304):
+[Linux CI run](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40410461304):
 all 33 frozen targets, the seven additional scalar lemmas, numerical checks,
 original input hashes, and locked experiment provenance. The proof score is
 therefore reproduced on Windows and Linux.
@@ -28,7 +28,7 @@ validated integration baseline is 60/121 (Tier 1 60/60, Tier 2 0/61). The propos
 Tier 2 mathematical statements are unchanged. Scorer v2 requires a successful,
 complete audit and rejects unexpected axioms even when accompanied by `sorryAx`.
 The Tier 2 numeric checker requires positive coverage and includes a deterministic
-I6 test. See `TIER2.md` and the approval/validation record in `FREEZE_LOG.md`.
+I6 test. See [TIER2.md](TIER2.md) and the approval/validation record in [FREEZE_LOG.md](../../FREEZE_LOG.md).
 
 **Tier 2 complete: 80 → 121/121, all 46 targets.** Checkpoint 001 proved
 I1–I4, I7, K3, and R1. Checkpoint 002 adds I5–I6 and K1–K2/K4–K5, completing
@@ -37,7 +37,7 @@ all 21 frozen hashes, exact target types, and both 46-report audits pass
 locally. No `sorry` remains in either tier's proofs, and the axiom union is
 exactly `propext`, `Classical.choice`, and `Quot.sound`. Evidence is saved
 under `results/lean_tier2_002*`. Commit `e6cbd9c` also passes the independent
-[Linux replay](https://github.com/davidiach/threshold-hillclimb/actions/runs/40417194219):
+[Linux replay](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40417194219):
 121/121, 46/46 targets, 7/7 scalar lemmas, and 130/130 roots for the full 713
 theorem. Both the Lean and numerical/validation CI jobs succeeded.
 
@@ -85,7 +85,7 @@ requires the complete theorem in CI. Its guard, manifest, specification, and
 definition-bearing dependency files are included in the approved 21-file freeze.
 
 Full proof checkpoint `852690a` passed the independent
-[Linux CI run](https://github.com/davidiach/threshold-hillclimb/actions/runs/40414013439):
+[Linux CI run](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40414013439):
 all 130 proof roots, the exact full theorem type, the original 33 targets,
 scalar checks, numerical checks, and provenance locks. This verification is
 for that committed checkpoint; later proposals are separate work.
@@ -106,8 +106,8 @@ conditional second moment is below 23/d and expected work below 31/d. Thus
 the untruncated estimator has
 `Var(Y) E[W] < 713 (E[1/D])^2` when `E[1/D]` is finite, improving the supplied
 analytic upper constant 12665. See the full
-[713 proof](proposals/constants/UNIFORM_PRODUCT_BOUND.md) and
-[independent review](proposals/RESEARCH_REVIEW.md). The complete proof is
+[713 proof](../../proposals/constants/UNIFORM_PRODUCT_BOUND.md) and
+[independent review](../../proposals/RESEARCH_REVIEW.md). The complete proof is
 `lean/ThresholdHC/Uniform713/FullBound.lean`; its audit is
 `results/uniform713_status.json`. The earlier seven scalar lemmas remain
 separately reproducible. Optimality is not claimed; the lower bound 1/16 and
@@ -116,7 +116,7 @@ finite-grid proxy remain different objects.
 **Proved counterexample.** The finite-grid winner (0.25,0.5) fails the original
 uniform bias bound: at d=0.1 and cap 2^97, a specific all-tails event exceeds
 that bound by a factor greater than 2907. Its grid score therefore cannot be
-used as a universal guarantee. See [bias audit](proposals/constants/BIAS_AUDIT.md).
+used as a universal guarantee. See [bias audit](../../proposals/constants/BIAS_AUDIT.md).
 
 ## C — Direct-real benchmark
 
@@ -189,7 +189,7 @@ targets: ten components and `tier3_landmark`. The separate audit passes
 tests pass. The original 21-file freeze and the separate nine-file Tier 3
 specification lock both verify. The existing 121-point target set is retained,
 and the full 713 audit passes again at 130/130. The independent
-[Linux replay of `23988c7`](https://github.com/davidiach/threshold-hillclimb/actions/runs/40468287646)
+[Linux replay of `23988c7`](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40468287646)
 confirms 11/11 Tier 3 targets and 152/152 declarations, the original 121/121
 score, 7/7 scalar lemmas, and the complete 130/130-root 713 audit. Both CI jobs
 passed, including the numerical checks and both validation regression suites.
@@ -205,12 +205,12 @@ assumption in the specified conclusions.
 
 | Component | Proof entry point |
 |---|---|
-| Arbitrary-seed marginal KL and testing | [Randomized.lean](lean/ThresholdHC/Tier3/Randomized.lean) |
-| Finite work and almost-sure halting | [StoppingBase.lean](lean/ThresholdHC/Tier3/StoppingBase.lean) |
-| Unbounded terminal testing | [Stopping.lean](lean/ThresholdHC/Tier3/Stopping.lean) |
-| Arbitrary-law optimizer and cutoff | [Optimizer.lean](lean/ThresholdHC/Tier3/Optimizer.lean) |
-| Explicit unbounded experiment | [Examples.lean](lean/ThresholdHC/Tier3/Examples.lean) |
-| Combined locked landmark | [Full.lean](lean/ThresholdHC/Tier3/Full.lean) |
+| Arbitrary-seed marginal KL and testing | [Randomized.lean](../../lean/ThresholdHC/Tier3/Randomized.lean) |
+| Finite work and almost-sure halting | [StoppingBase.lean](../../lean/ThresholdHC/Tier3/StoppingBase.lean) |
+| Unbounded terminal testing | [Stopping.lean](../../lean/ThresholdHC/Tier3/Stopping.lean) |
+| Arbitrary-law optimizer and cutoff | [Optimizer.lean](../../lean/ThresholdHC/Tier3/Optimizer.lean) |
+| Explicit unbounded experiment | [Examples.lean](../../lean/ThresholdHC/Tier3/Examples.lean) |
+| Combined locked landmark | [Full.lean](../../lean/ThresholdHC/Tier3/Full.lean) |
 
 This development still has a fixed finite set of coin magnitudes in the
 transcript model. Its unbounded result concerns stopping and terminal testing;
@@ -238,4 +238,4 @@ claim is made.
 
 The user's ETH preprint was assessed as an indirect algorithmic research lead;
 no result here depends on its claimed theorem. See
-[relevance assessment](proposals/ETH_PAPER_RELEVANCE.md).
+[relevance assessment](../../proposals/ETH_PAPER_RELEVANCE.md).

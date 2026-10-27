@@ -24,7 +24,7 @@ This kit adds frozen targets, scorers and cheat checks.
      `--accept <previous best>`.
    - Commit only on ACCEPT. On REJECT, revert (`git checkout -- .` for
      tracked files).
-   - Append one line per attempt to `RUNLOG.md`, accepted or not.
+   - Append one line per attempt to [RUNLOG.md](docs/process/RUNLOG.md), accepted or not.
 3. **No unverifiable claims.** Every statement in your report must be one of:
    - proved and machine-checked (Lean score);
    - proved on paper (give the proof);
@@ -175,7 +175,7 @@ status labels.
    whether the two-success calibration plus a data-driven start level can
    replace knowledge of ρ.
 
-## Morning report: `REPORT.md`
+## Morning report: [REPORT.md](docs/process/REPORT.md)
 
 1. **Environment:** whether Track A ran; any `FREEZE_LOG.md` entries, quoted
    in full.

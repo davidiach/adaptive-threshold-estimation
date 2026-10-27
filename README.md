@@ -1,108 +1,71 @@
-# Adaptive threshold research hill-climb
+# A Distributional Minimax Law for Adaptive Threshold Estimation
 
-Reproducible experiments and formal proof work extending the supplied adaptive
-threshold estimation research. Numerical evidence, paper proofs, conjectures,
-and Lean kernel-checked results are labeled separately. No novelty claim.
+[Paper (PDF)](paper/paper.pdf), Lean 4 formalization with Mathlib, and reproducible numerics for estimating the fraction of noisy coins above a threshold.
 
-The original Tier 1 60/60 checkpoint passed on Windows and in
-[independent Linux CI](https://github.com/davidiach/threshold-hillclimb/actions/runs/40410461304).
+## The problem
 
-**Tier 2 proved:** all 13 additional targets (61 points), with unchanged frozen
-statements and the stronger 713 definition lock. See [TIER2.md](TIER2.md) and
-[approval record](FREEZE_LOG.md). The complete 121/121 checkpoint passes on
-Windows and in [independent Linux CI](https://github.com/davidiach/threshold-hillclimb/actions/runs/40417194219).
+A fresh coin has an unobserved magnitude $D$ with law $\mu$ on $(0,1/2]$ and sign $S\in\{0,1\}$. A measurable function $q(d)\in[0,1]$ gives its positive-sign probability. Its success probability is $P$; conditional on $P$, flips are independent Bernoulli trials, and fresh coins are independent. An algorithm may create, revisit, and interleave coins, then stop after $T$ flips. The target $\theta$ is the positive fraction; cost is $\mathbb E T$.
 
-## Current checkpoints
+$$D\sim\mu,\quad S\mid D=d\sim\operatorname{Bernoulli}(q(d)),\quad P=\tfrac12+(2S-1)D,\quad \theta=\Pr(P>1/2)=\mathbb E_\mu q(D).$$
 
-- Lean Tier 2 checkpoint 002 proves **46/46 targets, 121/121 points**:
-  Tier 1 remains 60/60 and Tier 2 is 61/61. The new proofs cover finite
-  information inequalities, adaptive stopped-transcript KL/testing bounds,
-  the actual Bernoulli classifier and estimator bounds, and the atomic
-  rare-event optimizer. No `sorry` remains in the proof modules. Full build,
-  exact target types, all 21 frozen hashes, and both audits pass on Windows and Linux
-  with only `propext`, `Classical.choice`, and `Quot.sound`.
-- The **full uniform 713 bound is proved in Lean**, including concentration,
-  the actual stopping rule and coupled work, infinite random-level sampling,
-  unbiasedness, and integration over arbitrary magnitude/sign laws. See the
-  [formal development](proposals/constants/LEAN713_PROGRESS.md).
-- **The Tier 3 landmark is proved on Windows and Linux:** arbitrary measurable random
-  seeds, unbounded stopping/testing, and the arbitrary-law rare-event optimizer.
-  All ten component statements and their combined theorem pass the locked
-  audit: **11/11 targets, 152/152 declaration checks**. A concrete geometric-seed
-  experiment has finite expected work and positive probability of exceeding
-  every finite cap. See the [combined proof](lean/ThresholdHC/Tier3/Full.lean),
-  [specification](lean/ThresholdHC/Tier3/Specification.lean), and
-  [audit status](results/tier3_status.json). The
-  [independent Linux replay](https://github.com/davidiach/threshold-hillclimb/actions/runs/40468287646)
-  also preserves the 121-point score and the complete 713 guarantee.
-- The constants track has two independently preselected, held-out accepted
-  improvements. The conservative choice preserves the original bias theorem;
-  the finite-grid winner has an explicit off-grid counterexample.
-- The direct-real candidate was rejected after its one-time held-out test:
-  tuned GHA had lower RMSE at both budgets. See [benchmark results](TRACK_C.md).
-- The [research audit](TRACK_D.md) checks the imported Lee–Valiant input, evaluates
-  the existing power-margin upper bracket, and proves a limitation on completely
-  uniform adaptation to unknown rarity. These arguments are not Lean-checked.
+## Main results
 
-| Constants configuration | Development proxy | Held-out proxy | Scope |
-|---|---:|---:|---|
-| Original (1, 1) | 6.7788 | 6.7719 | Supplied baseline |
-| (0.25, 1) | 5.5506 | 5.5501 | Uniform 713 bound proved in Lean |
-| (0.25, 0.5) | 4.2817 | 4.2821 | Finite grid only; uniform bias bound fails |
+Write $R_\mu(B)$ for minimax RMS error over all $q$ at uniform expected budget $B\ge1$, $\omega_\mu(h)=\mathbb E_\mu\min\{1,h/D\}$ for $h>0$, and $I=\mathbb E_\mu[D^{-1}]$. For an estimator $Y$ using $W$ flips, let $V=\sup_q\operatorname{Var}_{\mu,q}(Y)$ and $\overline W=\sup_q\mathbb E_{\mu,q}W$.
 
-These proxies use a finite grid, truncated levels, and floating-point probability
-recursions. They are not universal variance–work constants. See the
-[bias audit](proposals/constants/BIAS_AUDIT.md),
-[locked choices](results/constants_candidate_lock.json), and raw result JSONs.
-`constants/candidate.json` records the scorer's finite-grid winner;
-`constants/candidate_theory.json` records the conservative alternative.
+In the information rows, $\mathsf P_\pm$ are transcript laws with sign priors $1/2\pm\eta(d)$, $0\le\eta\le1/8$, and $d\eta(d)\le h/8$; $\operatorname{kl}$ is Bernoulli relative entropy and $0<\delta<1/2$ bounds both testing errors. For the optimizer, $0<\rho<1$ is the allocation budget and $t$ solves $\mathbb E_\mu\min\{1,t^2/D^2\}=\rho$.
 
-The independently reviewed [paper proof](proposals/constants/UNIFORM_PRODUCT_BOUND.md)
-and [complete Lean theorem](lean/ThresholdHC/Uniform713/FullBound.lean) establish
-`Var(Y) E[W] < 713 (E[1/D])²` for (0.25,1) when `E[1/D]` is finite,
-improving the supplied upper constant 12665. The theorem covers the untruncated
-estimator and assumes no error or moment bounds. The [research report](REPORT.md)
-distinguishes this guarantee from finite-grid proxies and optimality claims.
+| Result | One-line statement | Status | Where |
+|---|---|---|---|
+| Minimax law | $R_\mu(B)\asymp\omega_\mu(B^{-1/2})$; universal constants, one algorithm independent of $\mu$. | paper proof | [Theorem 1; §§2, 5](paper/paper.tex#L239). Component agent review; consolidated v4 not independently specialist-reviewed ([record](docs/RESULTS.md#paper-review-scope)). |
+| Unbiasedness criterion | Unbiased for every $q$ with $V,\overline W<\infty$ is possible iff $I<\infty$. | paper proof | [Theorem 2; §6](paper/paper.tex#L272). Same component-review scope as above. |
+| Uniform variance–work lower bound | $V\overline W\ge I^2/16$ for every unbiased estimator with both uniform bounds finite. | paper proof | [Theorem 2; §6](paper/paper.tex#L774). Same component-review scope as above. |
+| Unbiased construction, $(k_1,k_2)=(1/4,1)$ | $I<\infty\Rightarrow\mathbb E Y=\theta,\quad\operatorname{Var}(Y)\mathbb E W<713I^2$. | Lean-checked | `ThresholdHC.Uniform713.full_bound_713` in [FullBound.lean](lean/ThresholdHC/Uniform713/FullBound.lean); [assumptions](lean/ThresholdHC/Uniform713/Specification.lean). |
+| Stopped-transcript information, finite coin set and horizon | $\operatorname{KL}(\mathsf P_+,\mathsf P_-)\le(128/225)h^2\mathbb E_+T$. | Lean-checked | `ThresholdHC.Proofs.stopped_transcript_kl` in [Transcript.lean](lean/ThresholdHC/Proofs/Tier2/Transcript.lean); [randomized extension](docs/RESULTS.md#information-and-stopping). |
+| Randomized, unbounded stopping/testing, finite coin set | $\mathbb E_+T<\infty\Rightarrow T<\infty$ a.s. under both laws; $\operatorname{kl}(1-\delta,\delta)\le(128/225)h^2\mathbb E_+T$. | Lean-checked | `ThresholdHC.Tier3.unbounded_stopping` in [StoppingBase.lean](lean/ThresholdHC/Tier3/StoppingBase.lean); `ThresholdHC.Tier3.unbounded_testing` in [Stopping.lean](lean/ThresholdHC/Tier3/Stopping.lean). |
+| Rare-event optimizer, arbitrary laws | $v_*(d)=\min\{1,t^2/d^2\}$ maximizes $\mathbb E_\mu\min\{v(D),h\sqrt{v(D)}/D\}$ over measurable $0\le v\le1$, $\mathbb E_\mu v(D)\le\rho$. | Lean-checked | `ThresholdHC.Tier3.arbitrary_law_optimizer` in [Optimizer.lean](lean/ThresholdHC/Tier3/Optimizer.lean); [specification](lean/ThresholdHC/Tier3/OptimizerModel.lean). |
+| Unknown-rarity limitation | No $\rho$-independent estimator family has RMS error $\le C\min\{\rho,\sqrt\rho/(d\sqrt B)\}$ uniformly over $B\ge1$, $0<\rho\le1/4$, $0\le\theta\le\rho$. | paper proof | [Argument](docs/process/TRACK_D.md#an-obstruction-to-completely-uniform-adaptation-to-unknown-rarity): known $0<d<1/2$, a.s. stopping, universal finite $C$. [Independently agent-reviewed](proposals/RESEARCH_REVIEW.md#unknown-rarity-adaptation-obstruction). |
 
-## Reproduce
+The Lean rows certify their linked specifications, not the entire paper. Unbounded testing allows arbitrary measurable random seeds but a fixed finite set of coins; it does not identify KL for the entire infinite transcript. The 713 theorem covers the untruncated estimator and arbitrary magnitude/sign laws. See [precise scopes](docs/RESULTS.md) and [updates to the unchanged paper](paper/UPDATES.md).
 
-Python 3.12:
+## What is not claimed
+
+- **713 is not asserted to be optimal.** The lower bound uses uniform bounds over $q$, not a pointwise bound for every population; see [paper §6](paper/paper.tex#L774).
+- **Matching rare-event upper bounds for arbitrary laws or power margins with $\alpha\ge2$ remain open here.** This concerns the rarity-constrained class, not the unrestricted minimax law; see [continuation §4 and its conjecture](inputs/next-phase/report/research_note.tex#L246).
+- **Finite-grid proxies are not universal constants.** Truncated floating-point recursions give numerical evidence; the grid winner fails the original uniform bias bound off-grid. See the [counterexample](proposals/constants/BIAS_AUDIT.md) and [scores](results/constants_finite_grid.json).
+- **Numerical comparisons do not establish practical superiority or universal theorems.** See [benchmark limitations](docs/process/TRACK_C.md). Expected-work guarantees provide neither a deterministic work cap nor a data-observable confidence radius for every unknown law ([paper §10](paper/paper.tex#L1280)).
+
+## Verify it yourself
+
+Use Python 3.12 and the [pinned Lean toolchain](lean/lean-toolchain). From the repository root:
 
 ```sh
 python -m pip install -r requirements.txt
-python tools/verify_inputs.py
-python tools/verify_experiment_lock.py
+cd lean
+lake exe cache get
+cd ..
+python tools/verify_lean_checkpoint.py --sequential
+python tools/verify_uniform713.py --sequential --require-complete
+python tools/verify_tier3.py --sequential --require-complete
 python tools/check_targets_numeric.py
 python tools/check_targets2_numeric.py
-python -m unittest discover -s tools -p 'test_validation.py' -v
-python tools/check_power_bracket.py
-python proposals/constants/bias_audit.py
-python constants/score_constants.py constants/candidate_theory.json
-python constants/score_constants.py constants/candidate_finite_grid.json
+python -m unittest discover -s tools -p 'test_*.py' -v
 ```
 
-The numerical and Lean checks run in GitHub Actions. After installing the pinned
-Lean toolchain and running `lake exe cache get` from `lean/`, use
-`python tools/verify_lean_checkpoint.py --sequential` from the repository root.
-Then run `python tools/verify_uniform713.py --sequential --require-complete`
-to check the full 713 theorem against its recorded specification, hash-locked
-local dependencies, and transitive axioms. The original Tier 1 mathematical
-statements remain unchanged.
-For the Tier 3 extension, run
-`python tools/verify_tier3.py --sequential --require-complete` and
-`python -m unittest discover -s tools -p 'test_tier3_validation.py' -v`.
-Its separate lock is `TIER3_FROZEN.sha256`; no existing scored statement changed.
-See [environment notes](proposals/lean-environment.md) and
-[benchmark reproduction](benchmark/README.md). All input files
-are preserved in [inputs/next-phase](inputs/next-phase/README.md), with the
-original hash manifest checked by `tools/verify_inputs.py`.
+The [full verification list](docs/VERIFY.md) includes hashes, experiment locks, arithmetic, constant scores, and benchmark checks. Several commands write diagnostics under `results/`; use a disposable checkout to preserve published records. [GitHub Actions](https://github.com/davidiach/adaptive-threshold-estimation/actions/workflows/checks.yml) runs the numerical and Lean audits.
 
-## Evidence and history
+## Repository layout
 
-- [Original project brief](BRIEF.md) and [starter README](inputs/STARTER_README.md)
-- [Provenance and verification policy](PROVENANCE.md)
-- [Run log](RUNLOG.md) and [freeze log](FREEZE_LOG.md)
-- [Source audit and theory limitations](TRACK_D.md)
-- [Proposals](proposals/)
+| Path | Contents |
+|---|---|
+| [paper/](paper/) | Unchanged v4 PDF and TeX, and subsequent results. |
+| [lean/](lean/) | Statements, proofs, and pinned Mathlib dependencies. |
+| [docs/RESULTS.md](docs/RESULTS.md), [docs/VERIFY.md](docs/VERIFY.md) | Claim scopes, source pointers, and verification commands. |
+| [constants/](constants/), [benchmark/](benchmark/) | Numerical evaluators and benchmark code. |
+| [results/](results/), [inputs/](inputs/) | Recorded evidence and preserved inputs. |
+| [proposals/](proposals/), [docs/process/](docs/process/) | Supporting arguments, reviews, and research history. |
 
-Local runtimes and dependency caches are excluded from version control.
+## How this was made
+
+AI agents carried out the research and formalization under David Iach's direction, against frozen Lean targets checked by a hash-locked scorer. The [provenance record](docs/process/PROVENANCE.md), [research report](docs/process/REPORT.md), and [run log](docs/process/RUNLOG.md) document the work and its evidence. Tiers, point totals, and checkpoints record that process; they do not extend the verified statements. The [process index](docs/process/README.md) links the original brief, approval history, and independent agent reviews.
+
+Code and Lean files use [Apache-2.0](LICENSE); the paper and documentation use [CC BY 4.0](LICENSE-CC-BY-4.0). See [license scope](LICENSES.md) and [CITATION.cff](CITATION.cff) for attribution and the AI-assisted provenance note.

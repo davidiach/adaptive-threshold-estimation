@@ -41,7 +41,7 @@ stopping costs on the shared tape. The final proof contains no assumed
 concentration, error, work, second-moment, or unbiasedness bounds.
 
 Checkpoint `852690a` passed the complete guard on Windows and in the independent
-[Linux CI run](https://github.com/davidiach/threshold-hillclimb/actions/runs/40414013439).
+[Linux CI run](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40414013439).
 Both CI jobs succeeded, including all 130 roots, the original frozen targets,
 and the numerical/provenance checks. GitHub attributes both new proof
 checkpoints to `davidiach`; earlier history was preserved.

@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: >-
+  Please cite this repository when using its paper, formalization, or numerics.
+  This work is AI-assisted: AI agents performed research and formalization
+  under David Iach's direction. See the provenance and process documentation.
+type: software
+title: A Distributional Minimax Law for Adaptive Threshold Estimation
+authors:
+  - family-names: Iach
+    given-names: David
+    affiliation: Arkantum Labs
+repository-code: https://github.com/davidiach/adaptive-threshold-estimation
+url: https://github.com/davidiach/adaptive-threshold-estimation
+license:
+  - Apache-2.0
+  - CC-BY-4.0
+abstract: >-
+  Paper, Lean 4 formalization with Mathlib, and reproducible numerics for
+  adaptive estimation of a threshold probability from noisy coins.
+  Code and Lean files use Apache-2.0; the paper and documentation use
+  CC BY 4.0. Claim scopes are distinguished in the README and docs/RESULTS.md.

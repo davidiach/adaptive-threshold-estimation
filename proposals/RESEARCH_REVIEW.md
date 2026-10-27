@@ -34,9 +34,12 @@ geometric-level, and work definitions. The proof concerns `(k1,k2)=(1/4,1)`.
   telescoping and the vanishing classifier error give unbiasedness.
 
 The exact rational comparisons in `uniform_constant_checks.py` passed on
-review. These checks verify arithmetic only. The full probability argument
-still has paper-proof status. The constant 713 is an upper bound, not an
-optimum, and does not identify the finite-grid proxy with a universal value.
+review. These checks verify arithmetic only. At the time of this review, the full
+probability argument had paper-proof status. It was subsequently formalized as
+[`ThresholdHC.Uniform713.full_bound_713`](../lean/ThresholdHC/Uniform713/FullBound.lean);
+see the [complete kernel audit](../results/uniform713_status.json). The constant
+713 is an upper bound, not an optimum, and does not identify the finite-grid proxy
+with a universal value.
 It does not apply to the direct-real heuristic classifier in the benchmark.
 
 ## Counterexample for the finite-grid winner
@@ -52,7 +55,7 @@ not itself determine the winner's alternative asymptotic bias rate.
 
 ## Unknown-rarity adaptation obstruction
 
-The argument in `../TRACK_D.md` is sound for its fully uniform formulation.
+The argument in [TRACK_D.md](../docs/process/TRACK_D.md) is sound for its fully uniform formulation.
 For each fixed budget, using the same estimator for every positive rarity
 bound forces zero second moment at theta=0. With `0<d<1/2`, every feasible
 finite binary observation history has positive likelihood under all constant

@@ -40,7 +40,7 @@ The approved Tier 2 integration now enforces audit exit status and all 46 report
 in scorer v2, while retaining the independent checkpoint guard. Its scorer and
 checkpoint/713 readers explicitly decode Lean's UTF-8 output, so Windows cp1252
 defaults no longer break Unicode diagnostics. `PYTHONUTF8=1` remains useful for
-other Python tools. See the approval and verification record in `FREEZE_LOG.md`.
+other Python tools. See the approval and verification record in [FREEZE_LOG.md](../FREEZE_LOG.md).
 
 Evidence: `results/lean_phase0_build.log`, `results/lean_phase0_retry.log`,
 `results/lean_baseline.json`, `results/lean_baseline_direct_audit.log`, and

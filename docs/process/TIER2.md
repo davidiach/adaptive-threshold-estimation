@@ -1,14 +1,14 @@
 # Tier 2: frozen targets and scorer v2
 
 **Status: all 13 Tier 2 targets proved. Complete checkpoint: 121/121 on Windows and Linux.**
-Proposed by Opus from the open items in `REPORT.md`; reviewed and integrated by Codex.
-The approval and final verification record are in `FREEZE_LOG.md`.
+Proposed by Opus from the open items in [REPORT.md](REPORT.md); reviewed and integrated by Codex.
+The approval and final verification record are in [FREEZE_LOG.md](../../FREEZE_LOG.md).
 
 Checkpoint 001 proved I1–I4, I7, K3, and R1. Checkpoint 002 completes I5–I6
 and K1–K2/K4–K5: 61/61 Tier 2 points and all 60/60 Tier 1 points. Full build
 and both independent 46-target audits pass locally with the frozen statements
 unchanged and only the three standard axioms. The independent
-[Linux replay of `e6cbd9c`](https://github.com/davidiach/threshold-hillclimb/actions/runs/40417194219)
+[Linux replay of `e6cbd9c`](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40417194219)
 also passes all 46 targets, 7 scalar lemmas, the complete 130-root 713 audit,
 and the numerical and validation checks.
 
@@ -132,7 +132,7 @@ R1 assumes a cutoff `t` satisfying the mass constraint and restricts `0 < h < t`
 It does not establish cutoff existence/uniqueness, the `h >= t` saturation case,
 or the arbitrary-law optimizer. Its proposed mathematical statement is unchanged.
 These extensions are now proved separately in
-[Tier 3's optimizer](lean/ThresholdHC/Tier3/Optimizer.lean).
+[Tier 3's optimizer](../../lean/ThresholdHC/Tier3/Optimizer.lean).
 
 ## Approval and re-freeze
 
@@ -144,7 +144,7 @@ The integration retained all 13 proposed target statements unchanged. Before
 re-freezing, both numeric suites, validation regressions, the complete Lean
 build and target audit, the full 713 audit, and the remaining local CI checks
 passed. The baseline audit had 33 proven targets and 13 `sorry` targets.
-`FREEZE_LOG.md` records the checks and the approved 21-file freeze. The valid
+[FREEZE_LOG.md](../../FREEZE_LOG.md) records the checks and the approved 21-file freeze. The valid
 60/121 integration baseline is preserved in `results/lean_tier2_baseline.json`;
 `results/lean_best.json` now records the complete 121/121 proof checkpoint.
 
@@ -269,12 +269,12 @@ Tier 1/2 target set; adding it to the scorer would be a separate scope change.
 
 | Targets | Checked proof module |
 |---|---|
-| I1–I3, I7 | [InformationCore.lean](lean/ThresholdHC/Proofs/Tier2/InformationCore.lean) |
-| I4 | [TranscriptBase.lean](lean/ThresholdHC/Proofs/Tier2/TranscriptBase.lean) |
-| I5–I6 | [Transcript.lean](lean/ThresholdHC/Proofs/Tier2/Transcript.lean) |
-| K1–K2, K4–K5 | [ClassifierProb.lean](lean/ThresholdHC/Proofs/Tier2/ClassifierProb.lean) |
-| K3 | [ClassifierTelescoping.lean](lean/ThresholdHC/Proofs/Tier2/ClassifierTelescoping.lean) |
-| R1 | [RareEvent.lean](lean/ThresholdHC/Proofs/Tier2/RareEvent.lean) |
+| I1–I3, I7 | [InformationCore.lean](../../lean/ThresholdHC/Proofs/Tier2/InformationCore.lean) |
+| I4 | [TranscriptBase.lean](../../lean/ThresholdHC/Proofs/Tier2/TranscriptBase.lean) |
+| I5–I6 | [Transcript.lean](../../lean/ThresholdHC/Proofs/Tier2/Transcript.lean) |
+| K1–K2, K4–K5 | [ClassifierProb.lean](../../lean/ThresholdHC/Proofs/Tier2/ClassifierProb.lean) |
+| K3 | [ClassifierTelescoping.lean](../../lean/ThresholdHC/Proofs/Tier2/ClassifierTelescoping.lean) |
+| R1 | [RareEvent.lean](../../lean/ThresholdHC/Proofs/Tier2/RareEvent.lean) |
 
 The public declarations retain the exact frozen `ThresholdHC.Targets` types.
 The stopped-transcript proof is supported by likelihood factorization and
@@ -284,7 +284,7 @@ marginals, a stopping-rule identity, concentration bounds, and finite series.
 ## What Tier 2 does not cover
 
 - Randomized policies and unbounded horizons remain outside Tier 2's score.
-  They are now covered by the separate [Tier 3 landmark](lean/ThresholdHC/Tier3/Full.lean)
+  They are now covered by the separate [Tier 3 landmark](../../lean/ThresholdHC/Tier3/Full.lean)
   for stopping and terminal testing, with finite expected work.
 - Untruncated estimators in Group K. The statements bound truncation level L
   uniformly; second-moment and work series have monotone limits. The untruncated 713 theorem is on the
