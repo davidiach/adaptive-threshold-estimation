@@ -5,6 +5,7 @@ import ThresholdHC.CriticalEntropy.EarlyDecision
 import ThresholdHC.CriticalEntropy.StoppedModel
 import ThresholdHC.CriticalEntropy.SequentialModel
 import ThresholdHC.CriticalEntropy.RepeatedModel
+import ThresholdHC.CriticalEntropy.RepeatedSignModel
 
 noncomputable section
 open MeasureTheory Real
@@ -106,5 +107,43 @@ def RepeatedRestartStatement : Prop :=
       Measure.pi (fun _ : Fin n => (ν.prod (Tier2.tapeMeasure p)).map A.output) ∧
     expectedStoppedProcedureWork (Measure.pi (fun _ : Fin n => ν)) p (repeatedProcedure A n) =
       (n : ℝ≥0∞) * expectedStoppedProcedureWork ν p A
+
+/-- The constructed same-coin sign test has exact expected work and both
+one-sided error bounds from the original output law's moments. -/
+def RepeatedSignTestStatement : Prop :=
+  ∀ (R : Type) [MeasurableSpace R] (ν : Measure R) [IsProbabilityMeasure ν]
+    (p : unitInterval) (A : StoppedProcedure R ℝ),
+    expectedStoppedProcedureWork ν p A ≠ ∞ →
+    MemLp id 2 ((ν.prod (Tier2.tapeMeasure p)).map A.output) →
+    ∀ (n : ℕ), 0 < n → ∀ (a M t : ℝ), 0 < a →
+    (∫ x : ℝ, x^2 ∂(ν.prod (Tier2.tapeMeasure p)).map A.output) ≤ M →
+    expectedSignTestWork (Measure.pi (fun _ : Fin n => ν)) p (repeatedSignTest A n t) =
+      (n : ℝ≥0∞) * expectedStoppedProcedureWork ν p A ∧
+    (t+a ≤ (∫ x : ℝ, x ∂(ν.prod (Tier2.tapeMeasure p)).map A.output) →
+      ((Measure.pi (fun _ : Fin n => ν)).prod (Tier2.tapeMeasure p)).real
+        {z | (repeatedSignTest A n t).output z ≠ true} ≤ M / ((n : ℝ)*a^2)) ∧
+    ((∫ x : ℝ, x ∂(ν.prod (Tier2.tapeMeasure p)).map A.output)+a ≤ t →
+      ((Measure.pi (fun _ : Fin n => ν)).prod (Tier2.tapeMeasure p)).real
+        {z | (repeatedSignTest A n t).output z ≠ false} ≤ M / ((n : ℝ)*a^2))
+
+/-- A statistical entropy bound charging the original real-output estimator's
+negative-sign work. Its sign-test reduction is constructed in the conclusion's
+proof, not supplied as a hypothesis. Continuum good-gap selection is separate. -/
+def FiniteGapEstimationEntropyStatement : Prop :=
+  ∀ (R : Type) [MeasurableSpace R] (ν : Measure R) [IsProbabilityMeasure ν]
+    (A : StoppedProcedure R ℝ) (K : ℕ) (d : Fin K → EntropyGap),
+    32 ≤ log (K : ℝ) →
+    (∀ i j, j.val = i.val+1 → 2*(d j : ℝ) ≤ (d i : ℝ)) →
+    ∀ (n : ℕ), 0 < n → ∀ (M : ℝ), 160*M ≤ (n : ℝ) →
+    (∀ i b, expectedStoppedProcedureWork ν (signParameter (d i) b) A ≠ ∞) →
+    (∀ i b, MemLp id 2 ((ν.prod (Tier2.tapeMeasure (signParameter (d i) b))).map A.output)) →
+    (∀ i b, (∫ x : ℝ, x^2
+      ∂(ν.prod (Tier2.tapeMeasure (signParameter (d i) b))).map A.output) ≤ M) →
+    (∀ i, (∫ x : ℝ, x
+      ∂(ν.prod (Tier2.tapeMeasure (signParameter (d i) false))).map A.output) ≤ 1/8) →
+    (∀ i, 5/8 ≤ (∫ x : ℝ, x
+      ∂(ν.prod (Tier2.tapeMeasure (signParameter (d i) true))).map A.output)) →
+    (K : ℝ)*log (K : ℝ)/(512*(n : ℝ)) ≤
+      ∑ i, (d i : ℝ)^2*(expectedStoppedProcedureWork ν (signParameter (d i) false) A).toReal
 
 end ThresholdHC.CriticalEntropy

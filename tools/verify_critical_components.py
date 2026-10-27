@@ -22,7 +22,8 @@ SOURCE = LEAN / "ThresholdHC/CriticalEntropy"
 MODULES = ("Packing", "CommonPoint", "BernoulliPrefix", "EventInformation", "SignTest",
            "EarlyDecision", "StoppingWindow", "GeometricOverlap", "FiniteGap",
            "StoppedModel", "StoppedTape", "SequentialModel", "RestartPair",
-           "RepeatedModel", "RepeatedRestart", "Specification")
+           "RepeatedModel", "RepeatedRestart", "RepeatedSignModel", "SampleMean",
+           "SignReduction", "EstimationEntropy", "Specification")
 NAMESPACE = "ThresholdHC.CriticalEntropy."
 ROOTS = {
     NAMESPACE + name for name in (
@@ -65,6 +66,12 @@ ROOTS = {
         "repeatedProcedure", "fin_seed_split_map", "reseed_expected_work",
         "repeated_expected_work", "reseed_output_map", "fin_product_cons_map",
         "repeated_output_map", "RepeatedRestartStatement",
+        "stopped_before_prefix_ext", "stoppedToSignTest", "repeatedSignDecision",
+        "measurable_repeatedSignDecision", "repeatedSignTest", "iid_sum_memLp",
+        "iid_sum_integral", "iid_sum_variance", "iid_sum_deviation", "iid_sum_lower_error",
+        "iid_sum_upper_error", "repeated_sign_work", "repeated_sign_plus_error",
+        "repeated_sign_minus_error", "finite_gap_estimation_entropy", "critical_restart_count_bounds",
+        "RepeatedSignTestStatement", "FiniteGapEstimationEntropyStatement",
     )
 }
 
@@ -120,13 +127,15 @@ def main() -> int:
               for p in protected}
     status = {
         "valid": False,
-        "scope": "Finite-gap sign entropy, observable finite repetition with iid output and linear expected work, stopped-suffix independence, probability dependencies, and abstract compact convex common point",
+        "scope": "Finite-gap real-output estimator entropy via constructed same-coin sign tests, observable repetition, stopped-suffix independence, probability dependencies, and abstract compact convex common point",
         "full_critical_minimax_theorem_verified": False,
         "base_cost_theorem_verified": False,
         "finite_gap_sign_testing_theorem_verified": False,
         "stopped_suffix_independence_verified": False,
         "sequential_restart_law_and_work_verified": False,
         "finite_repetition_iid_and_work_verified": False,
+        "repeated_sign_error_and_work_verified": False,
+        "finite_gap_estimation_entropy_verified": False,
         "specifications_frozen_before_proofs": False,
         "source_sha256": hashes,
         "commands": [],
@@ -152,18 +161,22 @@ def main() -> int:
     if any(hashlib.sha256((ROOT / rel).read_bytes()).hexdigest() != digest
            for rel, digest in hashes.items()):
         raise ValueError("Sources changed during audit")
-    status.update(valid=True, exact_component_targets=8, audited_declarations=len(ROOTS),
+    status.update(valid=True, exact_component_targets=10, audited_declarations=len(ROOTS),
                   finite_gap_sign_testing_theorem_verified=True,
                   stopped_suffix_independence_verified=True,
                   sequential_restart_law_and_work_verified=True,
-                  finite_repetition_iid_and_work_verified=True)
+                  finite_repetition_iid_and_work_verified=True,
+                  repeated_sign_error_and_work_verified=True,
+                  finite_gap_estimation_entropy_verified=True)
     status_path.write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"valid": True, "exact_component_targets": 8,
+    print(json.dumps({"valid": True, "exact_component_targets": 10,
                       "audited_declarations": len(ROOTS), "evidence": str(output),
                       "finite_gap_sign_testing_theorem_verified": True,
                       "stopped_suffix_independence_verified": True,
                       "sequential_restart_law_and_work_verified": True,
                       "finite_repetition_iid_and_work_verified": True,
+                      "repeated_sign_error_and_work_verified": True,
+                      "finite_gap_estimation_entropy_verified": True,
                       "full_critical_minimax_theorem_verified": False}))
     return 0
 

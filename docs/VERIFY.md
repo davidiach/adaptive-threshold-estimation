@@ -8,12 +8,13 @@ python -m unittest discover -s tools -p 'test_critical_components.py' -v
 ```
 
 After building the existing Lean dependencies with the kernel commands below,
-this checks eight exact targets: entropy packing, the compact-convex common
+this checks ten exact targets: entropy packing, the compact-convex common
 point, seeded Bernoulli prefix information, finite-prefix event transfer,
 the statistical finite-gap sign-entropy theorem, actual stopped-suffix
 independence from output and work, observable sequential restart laws and
-expected work, and arbitrary fixed-count repetition with iid outputs and
-linear expected work. It audits all 117
+expected work, arbitrary fixed-count repetition with iid outputs and linear
+expected work, the constructed sign test's error and work bounds, and finite-gap
+real-output estimator entropy. It audits all 135
 declarations in these modules and writes fresh evidence under
 `.runtime/critical-components/`. It does not certify the continuum base-cost
 or critical minimax theorem. See the

@@ -69,19 +69,36 @@ It takes a fixed-length vector of independent seeds and runs the same procedure
 successively on one tape. [RepeatedRestart.lean](../lean/ThresholdHC/CriticalEntropy/RepeatedRestart.lean)
 proves its full iid joint output law and expected work exactly `n E T`, including
 the zero-repetition case. The number of repetitions is fixed before observing
-flips; no latent gap or sign is passed to the procedure. The error bound for the
-thresholded real-output average remains the next sign-reduction obligation.
+flips; no latent gap or sign is passed to the procedure.
 
-The [fifth audit record](../results/critical_components_005.json) checks eight
-exact targets and all 117 public declarations using only the permitted standard
-axioms. The [fourth record](../results/critical_components_004.json) preserves
-the six-target stopped-suffix checkpoint, and the
+The [observable sign-test model](../lean/ThresholdHC/CriticalEntropy/RepeatedSignModel.lean)
+thresholds the repeated real outputs. [SignReduction.lean](../lean/ThresholdHC/CriticalEntropy/SignReduction.lean)
+proves exact work `n E T` and error at most `M/(n a^2)` when the appropriate
+mean is separated from the threshold by `a>0` and its raw second moment is at
+most `M`. These are bounds on the actual stopped procedure's output law,
+derived from the iid realization and finite-product moment identities.
+
+Consequently, [EstimationEntropy.lean](../lean/ThresholdHC/CriticalEntropy/EstimationEntropy.lean)
+proves `sum_j d_j^2 E_-j T >= K log(K)/(512 n)` directly for a real-output
+procedure under the same geometric gap conditions. Its conditional means are
+at most `1/8` under minus and at least `5/8` under plus, its raw second moments
+are at most `M`, and `n>=160 M` is positive. Square integrability and finite
+expected work under both signs are explicit hypotheses. The proof constructs
+one sign test at threshold `3/8`; no test, independence, information, or
+error bound is assumed. The paper's choice `n=ceil(512(1+r))` is also checked
+to satisfy `160(1/64+2r)<=n<=1282r` for `r>=2/3`.
+
+The [sixth audit record](../results/critical_components_006.json) checks ten
+exact targets and all 135 public declarations using only the permitted standard
+axioms. The [fifth record](../results/critical_components_005.json) preserves
+the finite-repetition checkpoint; the [fourth record](../results/critical_components_004.json)
+preserves the six-target stopped-suffix checkpoint, and the
 [third record](../results/critical_components_003.json) the finite-gap checkpoint. These targets were
 introduced with their proofs, not retrospectively described as a pre-proof
 freeze. This is **not** a formalization of the continuum null-cost product
-theorem or the full critical minimax law. The thresholded sign test's error
-bound, conditional moments, good-gap selection,
-common-pair instantiation, and population transfer remain below.
+theorem or the full critical minimax law. Deriving the conditional moment
+bounds from population guarantees, good-gap selection, common-pair
+instantiation, and population transfer remain below.
 
 ## Initial dependency audit
 
@@ -96,7 +113,7 @@ proof.
 | Conditional moments and response | The populations `q=0` and `q=rho` give finite conditional second moments and work outside a common null set. The response bound comes from expectations before pointwise means are used. | Formalize conditional integration and variance decomposition. |
 | First-observation normalization | The activation event is seed-only. Under its conditional seed law, `Z=pY+c` preserves means and changes null work to `W0/p`; the zero-activation case contradicts the bias requirement. | Construct the conditional procedure and verify its moment identities. |
 | Good-gap selection | The proof uses populations `(1/2)1_E` with `mu(E)=2rho`, respecting the lower subclass's pointwise cap. The excluded mass is at most `70m`. | Formalize nonatomic subset selection and annulus averaging. |
-| Sign-test restarts | The actual unused-suffix law, observable sequential composition, and arbitrary fixed-count repetition are Lean-checked, including the iid joint output law and exact `n E T` work. | Connect thresholded real-output averages to the sign-test error bound. |
+| Sign-test restarts | The actual unused-suffix law, observable fixed-count repetition, sign-test errors and exact `n E T` work are Lean-checked. The finite-gap estimator entropy theorem constructs this reduction from conditional moments. | Supply these moment assumptions on good gaps from the continuum population model. |
 | Finite observation reduction | At cap `m`, each seed/word cell has the integrated likelihood determined by `(T,heads)`. The multiplier cancels from conditional seed/word laws. | Formalize sufficiency, including arbitrary measurable seeds. |
 | Convex RMS comparison | Finite categorical probabilities are affine and positive; log moments are concave in the population and convex in the score/scale. Tail integration is used to obtain RMS, rather than substituting a confidence bound. | Kernel treatment of the minimax interchange and tail integrals remains open. |
 | One pair for all policies | The separated-pair set is compact convex in the weak-star topology. Squared Hellinger is continuous convex. A revealed finite policy mixture has exactly averaged Hellinger and null work. Finite-simplex minimax supplies the finite intersection property. | Formalize the compactness and minimax steps; a policy-dependent hard pair alone would not suffice. |

@@ -9,7 +9,7 @@ this plan. New work is published on `research/verification-consolidation-2026102
 |---|---|---|
 | Adversarial audit of the critical quadratic theorem | Trace every proof dependency, record objections and their resolution, distinguish paper arguments from kernel checks | Initial source audit in [CRITICAL_AUDIT.md](CRITICAL_AUDIT.md); further verification in progress |
 | Specialist review package | Short overview, complete consolidated proof, precise questions, source and prior-art references | [Prepared](../paper/critical-review/README.md): three-page brief plus complete proof, 16-page PDF compiled and visually checked; external review itself remains pending |
-| Formal critical argument | Exact statistical specification, proved dependency chain, kernel and axiom audit; scalar lemmas alone do not satisfy this item | Statistical finite-gap sign entropy (BC2), observable fixed-count restarts with iid outputs and exact work, and abstract common-point theorem proved. Thresholded sign-test error, continuum conditional moments, base-cost theorem, common-pair instantiation, and population transfer remain pending |
+| Formal critical argument | Exact statistical specification, proved dependency chain, kernel and axiom audit; scalar lemmas alone do not satisfy this item | Finite-gap sign and real-output estimator entropy, observable restarts, sign-test errors and exact work, and abstract common-point theorem proved. Continuum conditional moments and good-gap selection, base-cost theorem, common-pair instantiation, and population transfer remain pending |
 | Original distribution-blind upper bound | One budget-indexed observable algorithm independent of the magnitude/sign laws, realized in the original experiment; uniform work and RMS bounds; exact type and axiom audit | Pending; existing classifier and negative-binomial identities are ingredients |
 | Consolidated v5 manuscript | Original minimax law, unbiasedness, 713 bound, rare-event regimes, critical result and correction to the Psi conjecture; accurate verification labels; compiled and visually checked | [Written](../paper/v5/README.md): 55-page manuscript with complete source-derived proof appendices, explicit editorial changes, source checks, and rendered-page review. No separate review of the new consolidation is claimed |
 | Process note | Reproducible account of construction, frozen statements, semantic review, failed approaches, reviewer dependence, and limits | [Written](process/METHOD.md); update verification boundaries as further work lands |
@@ -58,5 +58,10 @@ while the Lean job was cancelled after the subsequent push; that run is not
 recorded as a full CI pass. The stopped-suffix checkpoint
 `0bbd0ee7164b3b15aa2bda68466e5c0e25a6480f` passed all three jobs in
 [run 40501696138](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40501696138),
-including all six exact targets and 84 declaration checks. The subsequent
-fixed-count restart extension requires its own CI result.
+including all six exact targets and 84 declaration checks.
+
+The fixed-count restart checkpoint `af25e8827254f8ce9050cca409c7294ede0c64b8`
+passed all three jobs in
+[run 40504616018](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40504616018),
+including its eight exact targets and 117 declaration checks. The subsequent
+sign-test and estimator-entropy extension requires its own CI result.

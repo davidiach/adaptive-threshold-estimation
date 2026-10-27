@@ -137,8 +137,16 @@ parameter. The observable two-procedure composition in
 has a proved product output law and exact additive expected-work identity in
 [RestartPair.lean](../lean/ThresholdHC/CriticalEntropy/RestartPair.lean).
 The [fixed-count repetition](../lean/ThresholdHC/CriticalEntropy/RepeatedRestart.lean)
-has a proved iid joint output law and expected work exactly `n E T`. The error
-bound for thresholding its real-output average remains a separate obligation.
+has a proved iid joint output law and expected work exactly `n E T`.
+[SignReduction.lean](../lean/ThresholdHC/CriticalEntropy/SignReduction.lean)
+transfers the second-moment error bounds to an actual observable sign test.
+[EstimationEntropy.lean](../lean/ThresholdHC/CriticalEntropy/EstimationEntropy.lean)
+then proves `sum_j d_j^2 E_-j T >= K log(K)/(512 n)` directly for a real-output
+procedure with conditional means at most `1/8` under minus and at least `5/8`
+under plus, raw second moments at most `M`, and a positive `n>=160 M`.
+Both signed laws have explicit square-integrability and finite-work assumptions.
+Deriving these good-gap moment assumptions from continuum population guarantees
+remains open in Lean; this is still not the base-cost or full critical theorem.
 
 ## Population and nonlinear feedback follow-ups
 

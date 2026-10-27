@@ -6,6 +6,7 @@ import ThresholdHC.CriticalEntropy.FiniteGap
 import ThresholdHC.CriticalEntropy.StoppedTape
 import ThresholdHC.CriticalEntropy.RestartPair
 import ThresholdHC.CriticalEntropy.RepeatedRestart
+import ThresholdHC.CriticalEntropy.EstimationEntropy
 
 open ThresholdHC.CriticalEntropy
 
@@ -26,6 +27,14 @@ example : SequentialRestartStatement := fun _ _ _ _ _ _ _ _ ν η _ _ p A B h =>
 
 example : RepeatedRestartStatement := fun _ _ _ _ ν _ p A h n =>
   ⟨repeated_output_map ν p A h n, repeated_expected_work ν p A h n⟩
+
+example : RepeatedSignTestStatement := by
+  intro R _ ν _ p A hf h n hn a M t ha hM
+  exact ⟨repeated_sign_work ν p A hf n t,
+    (fun hm => repeated_sign_plus_error ν p A hf h n hn a M t ha hM hm),
+    (fun hm => repeated_sign_minus_error ν p A hf h n hn a M t ha hM hm)⟩
+
+example : FiniteGapEstimationEntropyStatement := fun _ => finite_gap_estimation_entropy
 
 #print axioms sum_event_mass_le_overlap
 #print axioms event_packing
@@ -144,3 +153,21 @@ example : RepeatedRestartStatement := fun _ _ _ _ ν _ p A h n =>
 #print axioms fin_product_cons_map
 #print axioms repeated_output_map
 #print axioms RepeatedRestartStatement
+#print axioms stopped_before_prefix_ext
+#print axioms stoppedToSignTest
+#print axioms repeatedSignDecision
+#print axioms measurable_repeatedSignDecision
+#print axioms repeatedSignTest
+#print axioms iid_sum_memLp
+#print axioms iid_sum_integral
+#print axioms iid_sum_variance
+#print axioms iid_sum_deviation
+#print axioms iid_sum_lower_error
+#print axioms iid_sum_upper_error
+#print axioms repeated_sign_work
+#print axioms repeated_sign_plus_error
+#print axioms repeated_sign_minus_error
+#print axioms finite_gap_estimation_entropy
+#print axioms critical_restart_count_bounds
+#print axioms RepeatedSignTestStatement
+#print axioms FiniteGapEstimationEntropyStatement
