@@ -12,6 +12,7 @@ on:
       - 'inputs/**'
       - 'requirements.txt'
       - 'FROZEN.sha256'
+      - 'TIER3_FROZEN.sha256'
       - 'proposals/constants/*.lean'
       - 'proposals/constants/*.py'
   pull_request:
@@ -35,6 +36,9 @@ jobs:
       - run: python tools/verify_experiment_lock.py
       - name: Regression tests for validation guards
         run: python -m unittest discover -s tools -p 'test_validation.py' -v
+      - name: Regression tests for the Tier 3 audit when present
+        run: |
+          if test -f tools/test_tier3_validation.py; then python -m unittest discover -s tools -p 'test_tier3_validation.py' -v; fi
       - run: python tools/check_targets_numeric.py
       - name: Tier 2 numeric truth checks when present
         run: |
@@ -71,6 +75,9 @@ jobs:
         run: python tools/verify_uniform_arithmetic.py
       - name: Require the complete uniform 713 theorem
         run: python tools/verify_uniform713.py --sequential --require-complete
+      - name: Audit Tier 3 progress when present
+        run: |
+          if test -f tools/verify_tier3.py; then python tools/verify_tier3.py --sequential; fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -85,3 +92,6 @@ jobs:
             results/uniform713_build.log
             results/uniform713_audit.log
             results/uniform713_status.json
+            results/tier3_build.log
+            results/tier3_audit.log
+            results/tier3_status.json

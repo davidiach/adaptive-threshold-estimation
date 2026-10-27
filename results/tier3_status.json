@@ -1,0 +1,407 @@
+{
+  "valid": true,
+  "complete": false,
+  "audit_exit_code": 0,
+  "target_count": 11,
+  "proved_targets": [
+    "ThresholdHC.Tier3.randomized_law_total",
+    "ThresholdHC.Tier3.randomized_information_bound",
+    "ThresholdHC.Tier3.arbitrary_law_cutoff",
+    "ThresholdHC.Tier3.arbitrary_law_optimizer"
+  ],
+  "pending_targets": [
+    "ThresholdHC.Tier3.randomized_marginal_kl_bound",
+    "ThresholdHC.Tier3.randomized_testing_bound",
+    "ThresholdHC.Tier3.finite_work_stops",
+    "ThresholdHC.Tier3.unbounded_stopping",
+    "ThresholdHC.Tier3.unbounded_testing",
+    "ThresholdHC.Tier3.unbounded_example",
+    "ThresholdHC.Tier3.tier3_landmark"
+  ],
+  "root_count": 81,
+  "expected_root_count": 81,
+  "sources_unchanged_during_audit": true,
+  "locked_sha256": {
+    "lean/ThresholdHC/Statements.lean": "0873505b7c133561e82f63dcbba7f7a0a3da39d0c3692daee99d01882a757abf",
+    "lean/ThresholdHC/Statements2.lean": "51f85fee842aec2de331872b760ecd47e15715a84deaf5b8f08970bd9fa01414",
+    "lean/ThresholdHC/Tier3/ExamplesModel.lean": "e03edb36c05e3e43601dddf4e8d510231f46bdb04a7b8b4f7bb884a2133e0cd5",
+    "lean/ThresholdHC/Tier3/OptimizerModel.lean": "36c085b6409b1355247d5127ab4ee9fdb94e621c1aac8379fb1f119d607cae49",
+    "lean/ThresholdHC/Tier3/RandomizedModel.lean": "3a61f9b034ee58e45e903356c60037e4808fdb1a711d96b24f3013ef95716f6b",
+    "lean/ThresholdHC/Tier3/Specification.lean": "0bb5d84153c8197aebf798df159b9ffb6fa16529e20f4db162abf4153b709fac",
+    "lean/ThresholdHC/Tier3/StoppingModel.lean": "36aed19aa97432a9068952e5d389fe6a992faad0da71984b7412204940aa3892",
+    "tools/tier3_targets.json": "21eebfc9e3fa300c80d879b5d0761e23388925d3695784a7e74d8042af739806",
+    "tools/verify_tier3.py": "d0d10237b2e6761e425ee9095a9c1b117a21cf9dda040d8819fa85b6cbf0fc47"
+  },
+  "source_sha256": {
+    "lean/ThresholdHC/Tier3/ExamplesModel.lean": "e03edb36c05e3e43601dddf4e8d510231f46bdb04a7b8b4f7bb884a2133e0cd5",
+    "lean/ThresholdHC/Tier3/IntegralLogSum.lean": "ecc8c3ca647b00fef691fbb2ecde8304c7f48e844a9c3a8a45a5fc9a948f94ff",
+    "lean/ThresholdHC/Tier3/Optimizer.lean": "7cc4481368339e0a0ae9ad24bc0f547bcbc0c25883ca2982e38fdd0042977f68",
+    "lean/ThresholdHC/Tier3/OptimizerModel.lean": "36c085b6409b1355247d5127ab4ee9fdb94e621c1aac8379fb1f119d607cae49",
+    "lean/ThresholdHC/Tier3/RandomizedBase.lean": "87af7b31ba2c3cc9ff623cf403d954ffd7b8844c1b3af6e9283b823921ed8285",
+    "lean/ThresholdHC/Tier3/RandomizedModel.lean": "3a61f9b034ee58e45e903356c60037e4808fdb1a711d96b24f3013ef95716f6b",
+    "lean/ThresholdHC/Tier3/Specification.lean": "0bb5d84153c8197aebf798df159b9ffb6fa16529e20f4db162abf4153b709fac",
+    "lean/ThresholdHC/Tier3/StoppingModel.lean": "36aed19aa97432a9068952e5d389fe6a992faad0da71984b7412204940aa3892",
+    "lean/ThresholdHC/Tier3/TranscriptRatio.lean": "49b87fb8ece824fd69d52f2d83b40050529f3c7a295ed59e214cb18d1f139d4d"
+  },
+  "reports": {
+    "ThresholdHC.Tier3.ArbitraryLawCutoffStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.ArbitraryLawOptimizerStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.FeasibleAllocation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.FiniteWorkStopsStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.MeasurablePolicy": [],
+    "ThresholdHC.Tier3.MeasurableTest": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.PolicyCode": [],
+    "ThresholdHC.Tier3.Prefix": [],
+    "ThresholdHC.Tier3.ProcessTape": [],
+    "ThresholdHC.Tier3.RandomizedInformationStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.RandomizedMarginalKLStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.RandomizedTestingStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.RandomizedTotalStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.RealizesPrefixes": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.Tier3LandmarkStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.UnboundedExampleStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.UnboundedStoppingStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.UnboundedTestingStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.acceptedBy": [],
+    "ThresholdHC.Tier3.allocation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.allocationMass": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.allocationMass_continuous": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.allocationMass_half": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.allocationMass_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.allocation_eq_one": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.allocation_feasible": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.allocation_le_one": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.allocation_mono": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.allocation_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.allocation_payoff_regions": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.allocation_payoff_saturated": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.allocation_strict_below_one": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.allocation_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.arbitrary_law_cutoff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.arbitrary_law_optimizer": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.codeLaw": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.conditionalInformation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.cutoff_exists": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.cutoff_unique": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.examplePolicy": [
+      "propext"
+    ],
+    "ThresholdHC.Tier3.exampleProcessLaw": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.exampleSeedLaw": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.exampleTape": [],
+    "ThresholdHC.Tier3.finiteHistory": [],
+    "ThresholdHC.Tier3.integrable_allocation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.integrable_conditional_kl": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.integrable_conditional_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.integrable_feasible": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.integrable_finite_comp": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.integrable_indicator_inv": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.integrable_indicator_inv_sq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.integrable_policy_function": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.integrable_transcriptLaw": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.integral_log_sum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.integral_support": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.measurable_allocation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.measurable_policyCode": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.objective_integrable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.optimizer_above_cutoff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.optimizer_below_cutoff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.optimizer_formula": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.optimizer_saturation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.policyCode": [],
+    "ThresholdHC.Tier3.processHistory": [],
+    "ThresholdHC.Tier3.processPrefix": [],
+    "ThresholdHC.Tier3.randomizedAcceptance": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.randomizedLaw": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.randomizedWork": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.randomized_information_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.randomized_law_total": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.rareObjective": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.terminalAccept": [],
+    "ThresholdHC.Tier3.totalProcessWork": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.transcriptLaw_eq_codeLaw": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.transcriptLaw_le_of_prior_ratio": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.transcriptLaw_minus_le_plus": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier3.transcriptLaw_plus_le_minus": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHCTier3Audit.audit_arbitrary_law_cutoff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHCTier3Audit.audit_arbitrary_law_optimizer": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHCTier3Audit.audit_randomized_information_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHCTier3Audit.audit_randomized_law_total": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  }
+}

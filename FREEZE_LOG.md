@@ -32,3 +32,27 @@ Format, one entry per change:
 - Re-freeze: performed only after the above gates passed; all 21 hashes verify. All 11 target modules passed sequential builds; after the Windows decoding fix, `tools/verify_lean_checkpoint.py` passed the full build, the frozen scorer, and its independent 46-report audit with no Tier 1 regression.
 - Baseline saved: `results/lean_best.json` and `results/lean_tier2_baseline.json`, valid 60/121 (Tier 1 60/60, Tier 2 0/61); all 13 Tier 2 proofs remain `sorry`. Evidence: `results/lean_checkpoint.json`, `results/lean_audit.log`, and `results/lean_independent_audit.log`.
 - Verification environment: local Windows with the pinned Lean/Mathlib and Python dependencies. CI includes the new regression suite; this entry does not claim a remote CI run for the integration.
+
+## Separate Tier 3 specification lock — 27 October 2026
+
+- Authorization: David requested Tier 3 randomized policies, unbounded stopping,
+  and the arbitrary-law optimizer, using multiple agents and verified commits,
+  with another eight-hour-or-landmark goal.
+- The original `FROZEN.sha256`, all 21 protected files, and the 121-point target
+  set are unchanged. This is a separate extension, not a re-scoring of Tier 2.
+- `TIER3_FROZEN.sha256` locks the four definition-only model files, the complete
+  landmark specification, their local statement dependencies, the target
+  manifest, and the Tier 3 verifier (nine files including two existing sources).
+  Every model and the combined specification compiled before the lock was made.
+- The fixed targets cover arbitrary measurable common seeds, marginal KL and
+  seed-dependent tests; finite expected plus-work implying halting under both
+  hypotheses; unbounded terminal testing; the arbitrary-law optimizer with
+  cutoff existence/uniqueness and both parameter regimes; and an explicit
+  geometric-seed experiment with unbounded work support and finite expectation.
+- The locked verifier checks exact final target types, standard axioms, every
+  public Tier 3 declaration, source stability during the audit, and both sets
+  of frozen hashes. Missing target proofs remain pending. `--require-complete`
+  rejects any partial checkpoint. Eight failure-path regression tests pass.
+- First accepted component audit: four of eleven registered targets, 81/81
+  declaration reports, exit zero, standard axioms only. The full optimizer is
+  included; unbounded stopping/testing and the example remain pending.

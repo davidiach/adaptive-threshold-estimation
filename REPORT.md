@@ -160,6 +160,37 @@ for a known fixed gap. Both arguments and their qualifications are in
 27 cases evaluate the existing upper bracket. These do not establish a
 matching upper theorem for alpha>=2 or arbitrary laws.
 
+## Tier 3 extension in progress
+
+The separately locked Tier 3 specification contains ten component statements
+and one conjunction theorem. It extends the existing finite model to arbitrary
+measurable random seeds and seed-dependent tests, then to unbounded observation
+horizons with finite expected actual work under the plus hypothesis. The
+unbounded model identifies all joint finite-prefix laws explicitly; it does
+not assume a KL bound, convergence of tests, or almost-sure termination.
+Its targets derive almost-sure termination under both hypotheses and the
+terminal testing lower bound. A geometric-seed experiment must also establish
+that the specification is realized by a process with genuinely unbounded work.
+
+The optimizer target covers an arbitrary probability space and measurable
+positive magnitude bounded by one half, allowing atoms and singular laws and
+assuming no inverse moment. It proves the unique cutoff, feasibility and
+optimality for every positive parameter, saturation, and the three-region
+integral identity.
+
+Checkpoint 001 proves randomized transcript normalization, the integrated
+conditional information/work inequality, cutoff existence/uniqueness, and
+the full arbitrary-law optimizer. The separate audit passes 81/81 declaration
+checks and four exact target-type checks. Remaining targets are explicitly
+pending. Eight audit regression tests pass. The original 21-file freeze,
+121-point scorer, and 713 statements are unchanged.
+
+This development still has a fixed finite set of coin magnitudes in the
+transcript model. Its unbounded result concerns stopping and terminal testing;
+it does not claim a measure-theoretic KL identity for the entire infinite
+transcript. The optimizer result is a variational identity, not a matching
+arbitrary-law minimax upper theorem.
+
 ## Open work and proposals
 
 - Tiers 1 and 2 are complete. Extensions of the finite transcript model to

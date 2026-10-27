@@ -25,6 +25,13 @@ Windows and in [independent Linux CI](https://github.com/davidiach/threshold-hil
   the actual stopping rule and coupled work, infinite random-level sampling,
   unbiasedness, and integration over arbitrary magnitude/sign laws. See the
   [formal development](proposals/constants/LEAN713_PROGRESS.md).
+- **Tier 3 is in progress.** Its separately locked specification extends the
+  work to arbitrary measurable random seeds, unbounded stopping/testing, and
+  the arbitrary-law rare-event optimizer. The first checkpoint proves four
+  of eleven registered targets, with 81/81 declaration audits passing.
+  The full optimizer (including cutoff existence and uniqueness) is proved.
+  See [specification](lean/ThresholdHC/Tier3/Specification.lean) and
+  [audit status](results/tier3_status.json). The 121-point scorer is unchanged.
 - The constants track has two independently preselected, held-out accepted
   improvements. The conservative choice preserves the original bias theorem;
   the finite-grid winner has an explicit off-grid counterexample.

@@ -1,0 +1,16 @@
+{
+  "specification_module": "ThresholdHC.Tier3.Specification",
+  "targets": [
+    {"group": "randomized", "theorem": "ThresholdHC.Tier3.randomized_law_total", "statement": "ThresholdHC.Tier3.RandomizedTotalStatement"},
+    {"group": "randomized", "theorem": "ThresholdHC.Tier3.randomized_information_bound", "statement": "ThresholdHC.Tier3.RandomizedInformationStatement"},
+    {"group": "randomized", "theorem": "ThresholdHC.Tier3.randomized_marginal_kl_bound", "statement": "ThresholdHC.Tier3.RandomizedMarginalKLStatement"},
+    {"group": "randomized", "theorem": "ThresholdHC.Tier3.randomized_testing_bound", "statement": "ThresholdHC.Tier3.RandomizedTestingStatement"},
+    {"group": "stopping", "theorem": "ThresholdHC.Tier3.finite_work_stops", "statement": "ThresholdHC.Tier3.FiniteWorkStopsStatement"},
+    {"group": "stopping", "theorem": "ThresholdHC.Tier3.unbounded_stopping", "statement": "ThresholdHC.Tier3.UnboundedStoppingStatement"},
+    {"group": "stopping", "theorem": "ThresholdHC.Tier3.unbounded_testing", "statement": "ThresholdHC.Tier3.UnboundedTestingStatement"},
+    {"group": "optimizer", "theorem": "ThresholdHC.Tier3.arbitrary_law_cutoff", "statement": "ThresholdHC.Tier3.ArbitraryLawCutoffStatement"},
+    {"group": "optimizer", "theorem": "ThresholdHC.Tier3.arbitrary_law_optimizer", "statement": "ThresholdHC.Tier3.ArbitraryLawOptimizerStatement"},
+    {"group": "example", "theorem": "ThresholdHC.Tier3.unbounded_example", "statement": "ThresholdHC.Tier3.UnboundedExampleStatement"},
+    {"group": "landmark", "theorem": "ThresholdHC.Tier3.tier3_landmark", "statement": "ThresholdHC.Tier3.Tier3LandmarkStatement"}
+  ]
+}
