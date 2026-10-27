@@ -90,5 +90,21 @@ the two-point risk theorem. Evidence is in
 `results/tier6_foundations_status.json` and
 `results/tier6_foundations_audit.log`.
 
-The general process-realization bridge and the final algorithm/minimax theorems
-remain pending. No completed Tier 6 landmark is claimed in this checkpoint.
+The complete local audit now passes **11/11 exact targets and 127/127 declaration
+checks**, with unchanged source hashes and all frozen locks valid. The aggregate
+`ThresholdHC.Tier6` builds successfully. Evidence is saved in
+`results/tier6_checkpoint_001.json` and `results/tier6_audit_001.log`.
+
+The exact `minimax_lower_bound` theorem has only an arbitrary probability law on
+`Gap` and `B >= 1` as hypotheses. The process realization, probability laws, KL
+bound, testing reduction, and algorithm-level risk bound are all supplied by
+proved theorems. The auxiliary `minimaxRisk_le_one` transfers the immediate
+estimator's finite risk to the minimax infimum.
+
+Two final independent semantic reviews passed: one traced the canonical
+construction through all bounded-prefix laws, and one checked the complete
+algorithm-to-minimax reduction and constant. They found no hidden existence,
+realization, information, or testing premise in the final theorem, and no
+restriction to a finite coin family or finite observation horizon.
+
+Independent Linux CI remains pending before the landmark is declared complete.

@@ -16,7 +16,13 @@ For every probability law $\mu$ on $(0,1/2]$, $B\ge1$, and $0<\delta\le1/4$, it 
 
 $$R_\mu(B)\asymp\omega_\mu(B^{-1/2}),\qquad r_\mu(B,\delta)\asymp\omega_\mu\!\left(\sqrt{\log(1/\delta)/B}\right),\qquad \omega_\mu(h)=\mathbb E_\mu\min\{1,h/D\}.$$
 
-Here $r_\mu(B,\delta)$ is the minimax uniform error radius at failure probability at most $\delta$, with the same expected-budget constraint. The constants are universal. The algorithms depend only on $B$, or on $(B,\delta)$, and observe neither magnitudes nor their law. The proof is in §5. The full algorithm-level theorem has paper-proof status; component Lean lemmas do not certify it.
+Here $r_\mu(B,\delta)$ is the minimax uniform error radius at failure probability at most $\delta$, with the same expected-budget constraint. The constants are universal. The algorithms depend only on $B$, or on $(B,\delta)$, and observe neither magnitudes nor their law. The proof is in §5. The full matching upper/lower characterization and confidence-radius statement retain paper-proof status.
+
+The RMS lower-bound side is now formalized end to end. `ThresholdHC.Tier6.minimax_lower_bound` in [Full.lean](../lean/ThresholdHC/Tier6/Full.lean) proves
+
+$$R_\mu(B)\ge\frac1{64}\omega_\mu(B^{-1/2})\qquad(B\ge1).$$
+
+The [algorithm model](../lean/ThresholdHC/Tier6/AlgorithmModel.lean) takes the infimum over all measurable random-seed spaces and adaptive estimators, with expected work uniformly bounded over every measurable sign law. It permits unrestricted natural-number coin creation, revisits, interleaving, and unbounded stopping. The iid hidden magnitude environment is independent of algorithm randomness and is not visible to policy or output. Squared error and RMS use extended-real values, retaining infinite risk. `process_realization` constructs the infinite probability laws and proves their cylinder identities; realization, KL, absolute continuity, and testing bounds are not assumptions of the final minimax theorem. An immediate-stopping estimator proves the class nonempty and its minimax RMS risk at most one. See the [exact specification](../lean/ThresholdHC/Tier6/Specification.lean), [complete audit](../results/tier6_status.json), and [verification record](TIER6.md). Optimality of the coefficient $1/64$ is not asserted.
 
 [Theorem 2 and §6](../paper/paper.tex#L272) quantify over every measurable sign function $q$ at a fixed $\mu$. Put $I=\mathbb E_\mu[D^{-1}]$, $V=\sup_q\operatorname{Var}_{\mu,q}(Y)$, and $\overline W=\sup_q\mathbb E_{\mu,q}W$. An estimator unbiased for all such $q$ can have $V,\overline W<\infty$ exactly when $I<\infty$, and every such estimator satisfies $V\overline W\ge I^2/16$. These are uniform bounds, not a lower bound for each individual population. The theorem and converse remain paper proofs. The fixed-gap example attaining the lower coefficient is in §6, equation `eq:fixed-gap-sharp`; it does not identify the optimum for every nondegenerate law.
 

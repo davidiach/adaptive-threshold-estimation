@@ -9,6 +9,7 @@
 | Result | Statement | Status | Source |
 |---|---|---|---|
 | Minimax law | $`R_\mu(B)\asymp\omega_\mu(B^{-1/2})`$; one algorithm independent of $`\mu`$. | paper proof | [Theorem 1](paper/paper.tex#L239) |
+| Minimax RMS lower bound | $`R_\mu(B)\ge\omega_\mu(B^{-1/2})/64`$ for every gap law and $`B\ge1`$. | Lean-checked | [minimax_lower_bound](lean/ThresholdHC/Tier6/Full.lean) |
 | Uniform unbiasedness | Finite uniform variance and work are attainable iff $`I<\infty`$; their product is $`\ge I^2/16`$. | paper proof | [Theorem 2](paper/paper.tex#L272) |
 | Unbiased estimate $`Y`$, flip count $`W`$ | For $`(k_1,k_2)=(1/4,1)`$ and $`I<\infty`$:<br>$`\mathbb E Y=\theta`$, $`\mathrm{Var}(Y)\mathbb E W<713I^2`$. | Lean-checked | [full_bound_713](lean/ThresholdHC/Uniform713/FullBound.lean) |
 
@@ -33,6 +34,7 @@ In the information rows, $`\mathsf P_\pm`$ are transcript laws with sign priors 
 | Result | One-line statement | Status | Where |
 |---|---|---|---|
 | Minimax law | $`R_\mu(B)\asymp\omega_\mu(B^{-1/2})`$; universal constants, one algorithm independent of $`\mu`$. | paper proof | [Theorem 1; §§2, 5](paper/paper.tex#L239). Component agent review; [review scope](docs/RESULTS.md#paper-review-scope). |
+| Minimax RMS lower bound, unrestricted adaptive algorithms | $`R_\mu(B)\ge\omega_\mu(B^{-1/2})/64`$. The infinite experiments are constructed, and the infimum ranges over arbitrary measurable randomized estimators with a uniform expected-work budget. | Lean-checked | `minimax_lower_bound` in [Full.lean](lean/ThresholdHC/Tier6/Full.lean); [algorithm model](lean/ThresholdHC/Tier6/AlgorithmModel.lean), [scope and verification](docs/TIER6.md). |
 | Unbiasedness criterion | Unbiased for every $`q`$ with $`V,\overline W<\infty`$ is possible iff $`I<\infty`$. | paper proof | [Theorem 2; §6](paper/paper.tex#L272). Same review scope. |
 | Uniform variance–work lower bound | $`V\overline W\ge I^2/16`$ for every unbiased estimator with both uniform bounds finite. | paper proof | [Theorem 2; §6](paper/paper.tex#L774). Same review scope. |
 | Unbiased construction, $`(k_1,k_2)=(1/4,1)`$ | $`I<\infty\Rightarrow\mathbb E Y=\theta,`$<br>$`\mathrm{Var}(Y)\mathbb E W<713I^2`$. | Lean-checked | `full_bound_713` in [FullBound.lean](lean/ThresholdHC/Uniform713/FullBound.lean); [assumptions](lean/ThresholdHC/Uniform713/Specification.lean). |
@@ -67,6 +69,7 @@ python tools/verify_uniform713.py --sequential --require-complete
 python tools/verify_tier3.py --sequential --require-complete
 python tools/verify_tier4.py --sequential --require-complete
 python tools/verify_tier5.py --sequential --require-complete
+python tools/verify_tier6.py --sequential --require-complete
 python tools/check_targets_numeric.py
 python tools/check_targets2_numeric.py
 python -m unittest discover -s tools -p 'test_*.py' -v
