@@ -1,0 +1,7 @@
+__pycache__/
+scratch/
+rendered/
+*.aux
+*.out
+*.toc
+PUBLICATION_RECEIPT.json

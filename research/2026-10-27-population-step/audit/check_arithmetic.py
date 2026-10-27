@@ -1,0 +1,102 @@
+"""Exact arithmetic diagnostics for the single-coin proof; not a proof checker.
+
+All assertions use Fraction/integer arithmetic. Analytic inequalities and
+probability arguments remain paper obligations documented in SINGLE_COIN_AUDIT.md.
+Outputs are confined to this new audit directory; no historical artifacts change.
+"""
+from fractions import Fraction as Q
+from pathlib import Path
+import hashlib
+import json
+import platform
+import subprocess
+from datetime import datetime, timezone
+
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parents[2]
+SOURCES = [
+    "research/2026-10-27-population-step/inherited/construction.tex",
+    "research/2026-10-27-population-step/inherited/construction-notes.md",
+    "research/2026-10-27-population-step/inherited/review.md",
+    "research/2026-10-27-population-step/inherited/second-review.md",
+    "research/2026-10-27-population-step/inherited/sources.md",
+    "research/2026-10-27-population-step/inherited/upper-critical.tex",
+]
+
+
+def digest(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def main():
+    hashes = {s: digest(ROOT / s) for s in SOURCES}
+    checks = {}
+
+    def check(name, claim, evidence):
+        assert claim, name
+        checks[name] = {"passed": True, "exact_evidence": evidence}
+
+    check("prefix_chi_square_denominator", Q(1, 4) - Q(1, 128)**2 > Q(3, 16),
+          "1/4 - (1/128)^2 > 3/16")
+    check("early_prefix_kl", Q(64, 3) * Q(1, 1024) == Q(1, 48),
+          "(64/3)(1/1024)=1/48")
+    check("pinsker_tv", Q(1, 96) < Q(1, 8)**2,
+          "KL/2 <= 1/96 < (1/8)^2")
+    check("window_probability", 1-Q(1, 10)-(Q(1, 10)+Q(1, 8))-Q(1, 4) == Q(17, 40),
+          "17/40 > 1/4")
+    check("window_gt_quarter", Q(17, 40) > Q(1, 4), "17/40 > 1/4")
+    check("prefix_floor", Q(1, 1024) / Q(1, 128)**2 == 16,
+          "b0/d^2 >= 16, so floor(b0/d^2) >= b0/(2d^2)")
+    check("entropy_polynomial", Q(32**2, 16) - 6 - Q(32, 4) == 50,
+          "For x=32+y, x^2/16-6-x/4=50+(15/4)y+y^2/16")
+    check("entropy_log_comparison", 1024 + 256 * 32 > 2048 + 32 * 32,
+          "For x>=32, 4^(5+x/4) >=1024(1+x/4)>2048+32x, using ln4>1 and exp(t)>=1+t")
+    check("upper_drift_endpoint", -Q(8, 3)*Q(1, 4)**2+4*Q(1, 4) > Q(2, 3)
+          and -Q(8, 3)*Q(1, 2)**2+4*Q(1, 2) > Q(2, 3),
+          "Concavity on r/d in [1/4,1/2] reduces lower bound to endpoints 5/6,4/3")
+    check("unbiased_chebyshev", Q(64, 9*256)*2 < Q(1, 10),
+          "(1/64+2x)/(1+x) <=2 for x>=0; bound <=1/18<1/10")
+    check("annulus_mass", 1-Q(1, 2)**2 == Q(3, 4),
+          "F(a4^-j)-F(a4^-j/2)=(3/4)16^-j")
+    check("annulus_cutoff", Q(3, 4)*Q(520, 3) == 130,
+          "J=floor(log_16(3/(520m))) implies annulus mass >=130m")
+    check("lower_product_coefficient", Q(16, 3)*513*Q(4, 3) == 3648,
+          "(16/3)*513*(4/3)=3648")
+    check("upper_second_moment", Q(35, 16)+Q(85, 16)*Q(1, 7) == Q(165, 56),
+          "35/16+(85/16)*sum_{j>=1}8^-j=165/56")
+    check("upper_work", 2*Q(225, 2)*6 == 1350,
+          "2*(225/2)*sum_{j>=0}2^(-j-1)(j+1)^2=1350")
+    check("small_bias_variance", Q(3, 4)*Q(31, 32)**2 > Q(2, 3),
+          "(1-rho)*(31/32)^2 >=(3/4)*(31/32)^2>2/3")
+    check("small_bias_MV", Q(65, 64)**2*Q(1, 4)*Q(3, 2) < Q(1, 2),
+          "(65rho/64)^2/V <=(65/64)^2*(1/4)*(3/2)<1/2")
+    check("small_bias_normalization", Q(2, 3)-2*Q(1, 4) == Q(1, 6),
+          "pM >=(2/3)rho-2rho^2 >=rho/6; m<=4pM")
+    check("small_bias_repetitions", (1282-512)*Q(2, 3) >= 513,
+          "512(1+x)+1 <=1282x for x>=2/3")
+    check("small_bias_chebyshev", Q(16*2, 512) < Q(1, 10),
+          "(1/64+2x)/(1+x)<=2 implies error<=1/16<1/10")
+    check("small_bias_annulus", Q(3, 4)*Q(536, 3) == 134,
+          "cutoff ensures annulus mass>=134m, twice missing mass67m")
+    check("small_bias_product", Q(16, 3)*1282*4 < 30000,
+          "(16/3)*1282*4=82048/3<30000")
+    result = {
+        "status": "EXACT-ARITHMETIC-DIAGNOSTICS; not FORMALIZED",
+        "head": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
+        "utc": datetime.now(timezone.utc).isoformat(),
+        "python": platform.python_version(),
+        "script_sha256": digest(Path(__file__)),
+        "source_sha256_before": hashes,
+        "source_sha256_after": {s: digest(ROOT / s) for s in SOURCES},
+        "checks": checks,
+        "count": len(checks),
+        "seeds": None,
+        "precision": "exact integers and fractions; no floating-point assertions",
+    }
+    assert result["source_sha256_before"] == result["source_sha256_after"]
+    (HERE / "arithmetic_recheck.json").write_text(json.dumps(result, indent=2)+"\n", encoding="utf-8")
+    print(f"{len(checks)} exact arithmetic checks passed; sources unchanged")
+
+
+if __name__ == "__main__":
+    main()

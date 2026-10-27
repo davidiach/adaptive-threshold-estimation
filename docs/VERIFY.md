@@ -5,6 +5,7 @@ theorem and Psi counterexample:
 
 ```sh
 python tools/verify_research.py
+python tools/verify_population_research.py
 ```
 
 This verifies all five current frozen manifests and the research identity
@@ -26,6 +27,14 @@ checkout snapshots, including the old CI workflow. Replay those at the source
 commits named in their checkpoints. They may reject an integrated checkout
 because its workflow and completed formalization have advanced; their original
 locks and recorded evidence have not been rewritten.
+
+The population replay additionally checks both sealed research packages,
+recomputes exact single-coin and population arithmetic, finite Bayes policies,
+feedback certificates and bounded-depth identities, audits all 7,680 recorded
+synthetic rows, and replays one predesignated replicate in each of 240 cells.
+It runs in disposable copies under `.runtime/`; historical reports and source
+locks are unchanged. See the [research index](../research/README.md) for how the
+earlier checkpoints relate to the later full critical-law paper theorem.
 
 For the additive 27 October rare-event result and separate-supremum bridge:
 

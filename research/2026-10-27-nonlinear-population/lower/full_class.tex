@@ -1,0 +1,134 @@
+\section{A strict feedback advantage over the full rarity class}
+\label{sec:feedback-full-class}
+\noindent\textbf{PROVED-ON-PAPER with exact rational verification.}
+This strengthens the preceding two-profile example to the entire
+global-rarity class for one finite-support magnitude law. It retains the
+deterministic total cap of two flips; no expected-budget comparison or
+asymptotic rate separation is asserted. The earlier certificate is preserved.
+
+Let $\rho=1/4$ and
+$\mu=\tfrac12\delta_{1/4}+\tfrac12\delta_{1/8}$.
+Write $q_1=q(1/4)$, $q_2=q(1/8)$. The full admissible class is exactly
+$q_1,q_2\ge0$, $q_1+q_2\le1/2$; the individual upper bounds by one
+are automatic. Put
+\[
+ \theta=\tfrac12(q_1+q_2),\qquad
+ A=\mathbb E[Dq(D)]=q_1/8+q_2/16.
+\]
+The feasible $(A,\theta)$ region is the triangle with vertices
+\[
+ (0,0),\quad(1/32,1/4),\quad(1/16,1/4).
+\]
+Equivalently $0\le A\le1/16$ and
+$4A\le\theta\le\min\{8A,1/4\}$.
+
+The noninteractive comparison class is exactly the one defined in the
+preceding theorem: preselected independent local acquisition policies,
+arbitrary shared and local seeds, and arbitrary nonlinear terminal
+postprocessing, with a deterministic total cap of two flips and no
+cross-coin acquisition feedback or outcome-dependent cancellation.
+
+\begin{theorem}\label{feedback:full-class}
+Over the entire class $\mathcal Q_{1/4}(\mu)$, the minimax MSE of the
+noninteractive comparison class is strictly greater than $15475/10^6$.
+An explicit two-flip feedback estimator has worst-case MSE strictly less
+than $15443/10^6$. Its minimax squared-error advantage therefore exceeds
+$32/10^6$.
+\end{theorem}
+
+\begin{proof}
+One fresh bit has head probability $p=5/16+2A$.
+In the word order $(TT,TH,HT,HH)$, the same-coin probabilities are
+\[
+ P_O(A)=(61/128-2A,\ 27/128,\ 27/128,\ 13/128+2A),
+\]
+whereas the two-fresh probabilities are
+$P_N(A)=((1-p)^2,(1-p)p,p(1-p),p^2)$.
+These formulas integrate out the hidden retained magnitude and sign;
+the algorithm observes neither. In particular the two-flip laws depend
+on $A$, while the target $\theta$ still varies over its feasible interval.
+
+The feedback policy takes a fresh coin after the first tail and revisits
+after the first head. Its four probabilities are
+\[
+ P_A(A)=((11/16-2A)^2,\ (11/16-2A)(5/16+2A),\
+                       27/128,\ 13/128+2A).
+\]
+It takes exactly two charged flips. Define the fixed rational constant
+$\pi=1074499095/2147483648$, and set
+$a_x=P_A(0)_x$, $b_x=P_A(1/32)_x$ for its four outcomes. Its output table is
+\[
+ y_x=\frac14\frac{\pi b_x}{(1-\pi)a_x+\pi b_x}.
+\]
+In the displayed word order this is exactly
+\[
+ (y_{TT},y_{TH},y_{HT},y_{HH})=
+ \left(\frac{26862477375}{237281040413},
+       \frac{3223497285}{24696819223},
+       \frac{1074499095}{8589934592},
+       \frac{22564480995}{146053120736}\right).
+\]
+Although this table was constructed from the null and the admissible hard
+alternative $(q_1,q_2)=(0,1/2)$, the same fixed table is used for every
+$q\in\mathcal Q_{1/4}(\mu)$. It requires no unknown-parameter calibration.
+
+Its risk is the polynomial
+$R(A,\theta)=\sum_x P_A(A)_x(y_x-\theta)^2$.
+For fixed $A$, its second derivative in $\theta$ is exactly two, so the
+maximum over the vertical feasible interval is at an endpoint. It remains
+to maximize on the three edges $\theta=4A$ for $A\in[0,1/16]$,
+$\theta=8A$ for $A\in[0,1/32]$, and
+$\theta=1/4$ for $A\in[1/32,1/16]$.
+On each diagonal edge the risk has degree at most three in $A$, and on the
+horizontal edge degree at most two. The certificate computes their exact
+rational coefficients and verifies that every edge's second derivative
+exceeds respectively $30$, $124$, and $3/100$ at both endpoints.
+Since each such second derivative
+is affine, it is positive throughout the edge. Thus each edge is convex
+and the maximum over the entire triangle occurs at one of its three vertices.
+This is a polynomial proof, not inference from a numerical grid.
+
+The largest of the three exact vertex risks is less than $15443/10^6$;
+its approximate value is $0.015442586588172843$. This proves the full-class
+upper bound.
+
+For the lower bound, use only the null $(0,0)$ and hard alternative
+$(0,1/2)$, with probabilities $1-\pi,\pi$. Both belong to the full class.
+For either fixed schedule $P\in\{O,N\}$ its optimal Bayes risk is
+\[
+ \mathcal B_P=\frac1{16}\pi(1-\pi)\sum_x
+ \frac{P(0)_xP(1/32)_x}{(1-\pi)P(0)_x+\pi P(1/32)_x}.
+\]
+The preceding dominance argument for noninteractive cap-two designs
+applies unchanged: the null has full finite-word support, so conditioning
+on all seeds permits either one local policy with two flips or at most two
+local policies with one flip each. Completing any early stops gives one
+of these schedules and cannot increase the optimal Bayes risk. The
+comparison permits arbitrary nonlinear estimates; the posterior mean used
+in the Bayes formula is optimal among all of them. Therefore every
+noninteractive procedure's worst-case MSE over the full class is at least
+$\min\{\mathcal B_O,\mathcal B_N\}$.
+
+The exact certificate verifies
+\[
+ \max_{\text{three vertices}} R
+ <\frac{15443}{10^6}<\frac{15475}{10^6}
+ <\min\{\mathcal B_O,\mathcal B_N\}.
+\]
+The smaller Bayes lower bound is approximately
+$0.015475854685963823$. This proves the strict separation.
+\end{proof}
+
+All probabilities, coefficients, outputs and inequalities are recorded in
+\texttt{full\_class\_certificate.json}, generated by
+\texttt{full\_class\_certificate.py} using rational arithmetic only.
+The design prior was selected by a bounded exploratory rational bisection;
+its optimality is not asserted or used. The independent proof of the full
+triangle maximum is the essential new certification step.
+
+This result shows that acquisition feedback can improve minimax performance
+even when the adversary ranges over \emph{all} globally rare sign
+allocations for a known magnitude law. It does not show that the improvement
+grows with rarity or gap-scale count. The comparison for a uniform expected
+budget remains separate, since a noninteractive procedure allowed occasional
+work above two is not covered by the cap-two dominance argument.

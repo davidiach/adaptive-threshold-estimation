@@ -1,0 +1,19 @@
+{
+  "utc": "2026-10-27T09:12:53.821451+00:00",
+  "head": "a8a8dc49115aabdd1fba8d53d3390eb0a5eee864",
+  "review_status": "Independent agent paper-proof audit; no blocking mathematical defect found; not external review or Lean formalization",
+  "initial_unbiased_proof_sha256": "d85f58c1201fcd20e8769161ec27bfd51283f574fe9b0a9649f2f7b1974041a8",
+  "final_accepted_proof_sha256": {
+    "inherited/construction.tex": "29463b56bfcbcf35b0e9be2347d824489240d091fd26003bf17515e1b930affe",
+    "inherited/upper-critical.tex": "0e8b9eaf762b3b09fa0d92ce1a036c2ceea8c12d00a5eea8286b852f36a81536",
+    "lower/proof.tex": "f4f09ffedd2b357c0c51df72f89f203dbedc04467977c04bd01b6324636a35d0",
+    "lower/population_information.tex": "1b525d121ba77d32714f55b08cb2d0a2d651ed4bd8715df3628994b512ef8dc6",
+    "upper/proof.tex": "3bfdc6e40fcfff4a013537290dac7f59c42096c8165090bd5a7a6ea3b8e12ff3"
+  },
+  "arithmetic_records": [
+    "arithmetic_recheck.json",
+    "small_bias_recheck.json",
+    "population_recheck.json"
+  ],
+  "coverage_limits": "Single-coin product; restricted raw averages; fixed-feature pilot theorem; finite-prefix information reduction; known radial submodel only. Arbitrary-q population minimax remains open."
+}

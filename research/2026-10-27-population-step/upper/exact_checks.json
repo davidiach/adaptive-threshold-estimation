@@ -1,0 +1,322 @@
+{
+  "status": "EXACT_RATIONAL_FINITE_CHECKS_PASSED",
+  "scope": "Finite moment and finite pilot/production identities; no minimax numerical certificate",
+  "utc": "2026-10-27T09:07:15.360756+00:00",
+  "python_version": "3.12.2",
+  "arithmetic": "Python fractions.Fraction, exact rational; no seeds or Monte Carlo",
+  "source_sha256": {
+    "check_exact.py": "761c1daeb0f4e1ce99ad8b0ebc3000f268084e94880ff28c2b4294bfd522a85d",
+    "two_gap_control.py": "73a4c6b4815abf78b0552810b9dcbe77d0c9f886506ed5ec64be4864772e1ad3",
+    "proof.tex": "3bfdc6e40fcfff4a013537290dac7f59c42096c8165090bd5a7a6ea3b8e12ff3",
+    "RESULT.md": "5cc37d7b3bfe7a25324408328c84674d84cb35d484c40f8d4b4676949c2fedc6"
+  },
+  "cases": [
+    {
+      "name": "zero",
+      "d1": "1/8",
+      "d2": "1/4",
+      "mass1": "1/2",
+      "rho": "1/4",
+      "q": [
+        "0",
+        "0"
+      ],
+      "theta": "0",
+      "a": "7/3",
+      "b": "-16/3",
+      "v": "423/1024",
+      "variance": "427/16",
+      "covariance": "553/384",
+      "yz_variance": "468181/73728",
+      "finite_transcript_checks": [
+        {
+          "pilot_coins": 1,
+          "production_coins": 1,
+          "nonzero_transcripts": 64,
+          "mean": "0",
+          "mse": "1128071/30456",
+          "formula_mse": "1128071/30456",
+          "clipped_mse": "18935/1048576",
+          "flips": 6
+        },
+        {
+          "pilot_coins": 2,
+          "production_coins": 1,
+          "nonzero_transcripts": 512,
+          "mean": "0",
+          "mse": "595987/20304",
+          "formula_mse": "595987/20304",
+          "clipped_mse": "46017463/2147483648",
+          "flips": 9
+        },
+        {
+          "pilot_coins": 1,
+          "production_coins": 2,
+          "nonzero_transcripts": 512,
+          "mean": "0",
+          "mse": "1128071/60912",
+          "formula_mse": "1128071/60912",
+          "clipped_mse": "221260453/8589934592",
+          "flips": 9
+        }
+      ]
+    },
+    {
+      "name": "independent_boundary",
+      "d1": "1/8",
+      "d2": "1/4",
+      "mass1": "1/2",
+      "rho": "1/4",
+      "q": [
+        "1/4",
+        "1/4"
+      ],
+      "theta": "1/4",
+      "a": "7/3",
+      "b": "-16/3",
+      "v": "423/1024",
+      "variance": "215/8",
+      "covariance": "553/768",
+      "yz_variance": "1524457/196608",
+      "finite_transcript_checks": [
+        {
+          "pilot_coins": 1,
+          "production_coins": 1,
+          "nonzero_transcripts": 64,
+          "mean": "1/4",
+          "mse": "5407801/121824",
+          "formula_mse": "5407801/121824",
+          "clipped_mse": "79369/2097152",
+          "flips": 6
+        },
+        {
+          "pilot_coins": 2,
+          "production_coins": 1,
+          "nonzero_transcripts": 512,
+          "mean": "1/4",
+          "mse": "17057833/487296",
+          "formula_mse": "17057833/487296",
+          "clipped_mse": "612871241/17179869184",
+          "flips": 9
+        },
+        {
+          "pilot_coins": 1,
+          "production_coins": 2,
+          "nonzero_transcripts": 512,
+          "mean": "1/4",
+          "mse": "5407801/243648",
+          "formula_mse": "5407801/243648",
+          "clipped_mse": "2234723303/68719476736",
+          "flips": 9
+        }
+      ]
+    },
+    {
+      "name": "all_positive_mass_at_small_gap",
+      "d1": "1/8",
+      "d2": "1/4",
+      "mass1": "1/2",
+      "rho": "1/4",
+      "q": [
+        "1/2",
+        "0"
+      ],
+      "theta": "1/4",
+      "a": "7/3",
+      "b": "-16/3",
+      "v": "423/1024",
+      "variance": "215/8",
+      "covariance": "359/384",
+      "yz_variance": "183689/24576",
+      "finite_transcript_checks": [
+        {
+          "pilot_coins": 1,
+          "production_coins": 1,
+          "nonzero_transcripts": 64,
+          "mean": "1/4",
+          "mse": "2610263/60912",
+          "formula_mse": "2610263/60912",
+          "clipped_mse": "5189/131072",
+          "flips": 6
+        },
+        {
+          "pilot_coins": 2,
+          "production_coins": 1,
+          "nonzero_transcripts": 512,
+          "mean": "1/4",
+          "mse": "514799/15228",
+          "formula_mse": "514799/15228",
+          "clipped_mse": "154309/4194304",
+          "flips": 9
+        },
+        {
+          "pilot_coins": 1,
+          "production_coins": 2,
+          "nonzero_transcripts": 512,
+          "mean": "1/4",
+          "mse": "2610263/121824",
+          "formula_mse": "2610263/121824",
+          "clipped_mse": "4465367/134217728",
+          "flips": 9
+        }
+      ]
+    },
+    {
+      "name": "all_positive_mass_at_large_gap",
+      "d1": "1/8",
+      "d2": "1/4",
+      "mass1": "1/2",
+      "rho": "1/4",
+      "q": [
+        "0",
+        "1/2"
+      ],
+      "theta": "1/4",
+      "a": "7/3",
+      "b": "-16/3",
+      "v": "423/1024",
+      "variance": "215/8",
+      "covariance": "97/192",
+      "yz_variance": "390313/49152",
+      "finite_transcript_checks": [
+        {
+          "pilot_coins": 1,
+          "production_coins": 1,
+          "nonzero_transcripts": 64,
+          "mean": "1/4",
+          "mse": "2770313/60912",
+          "formula_mse": "2770313/60912",
+          "clipped_mse": "37857/1048576",
+          "flips": 6
+        },
+        {
+          "pilot_coins": 2,
+          "production_coins": 1,
+          "nonzero_transcripts": 512,
+          "mean": "1/4",
+          "mse": "4369687/121824",
+          "formula_mse": "4369687/121824",
+          "clipped_mse": "74428113/2147483648",
+          "flips": 9
+        },
+        {
+          "pilot_coins": 1,
+          "production_coins": 2,
+          "nonzero_transcripts": 512,
+          "mean": "1/4",
+          "mse": "2770313/121824",
+          "formula_mse": "2770313/121824",
+          "clipped_mse": "273259347/8589934592",
+          "flips": 9
+        }
+      ]
+    },
+    {
+      "name": "endpoint_and_rare_difficult_subpopulation",
+      "d1": "1/32",
+      "d2": "1/2",
+      "mass1": "1/16",
+      "rho": "1/8",
+      "q": [
+        "1",
+        "1/15"
+      ],
+      "theta": "1/8",
+      "a": "273/34",
+      "b": "-128/17",
+      "v": "1327615/16777216",
+      "variance": "690907/139264",
+      "covariance": "-8265/131072",
+      "yz_variance": "18506700388435/2336462209024",
+      "finite_transcript_checks": [
+        {
+          "pilot_coins": 1,
+          "production_coins": 1,
+          "nonzero_transcripts": 64,
+          "mean": "1/8",
+          "mse": "242683358683/2311112192",
+          "formula_mse": "242683358683/2311112192",
+          "clipped_mse": "948295811/68719476736",
+          "flips": 6
+        },
+        {
+          "pilot_coins": 2,
+          "production_coins": 1,
+          "nonzero_transcripts": 512,
+          "mean": "1/8",
+          "mse": "4064527400169/73955590144",
+          "formula_mse": "4064527400169/73955590144",
+          "clipped_mse": "62217149093264789/4611686018427387904",
+          "flips": 9
+        },
+        {
+          "pilot_coins": 1,
+          "production_coins": 2,
+          "nonzero_transcripts": 512,
+          "mean": "1/8",
+          "mse": "242683358683/4622224384",
+          "formula_mse": "242683358683/4622224384",
+          "clipped_mse": "1808299470981263/144115188075855872",
+          "flips": 9
+        }
+      ]
+    },
+    {
+      "name": "widely_separated_tiny_rarity",
+      "d1": "1/128",
+      "d2": "3/8",
+      "mass1": "1/64",
+      "rho": "1/64",
+      "q": [
+        "1",
+        "0"
+      ],
+      "theta": "1/64",
+      "a": "4706/147",
+      "b": "-8192/147",
+      "v": "27204424191/68719476736",
+      "variance": "20788445117/11239424",
+      "covariance": "2491430135/117440512",
+      "yz_variance": "5395489066109259705509/6951306024846360576",
+      "finite_transcript_checks": [
+        {
+          "pilot_coins": 1,
+          "production_coins": 1,
+          "nonzero_transcripts": 64,
+          "mean": "1/64",
+          "mse": "919610902994196468529/343982315428319232",
+          "formula_mse": "919610902994196468529/343982315428319232",
+          "clipped_mse": "28279017240847/288230376151711744",
+          "flips": 6
+        },
+        {
+          "pilot_coins": 2,
+          "production_coins": 1,
+          "nonzero_transcripts": 512,
+          "mean": "1/64",
+          "mse": "9318285381797883790955/5503717046853107712",
+          "formula_mse": "9318285381797883790955/5503717046853107712",
+          "clipped_mse": "282283440884957512478711/2475880078570760549798248448",
+          "flips": 9
+        },
+        {
+          "pilot_coins": 1,
+          "production_coins": 2,
+          "nonzero_transcripts": 512,
+          "mean": "1/64",
+          "mse": "919610902994196468529/687964630856638464",
+          "formula_mse": "919610902994196468529/687964630856638464",
+          "clipped_mse": "281371554508784735072261/2475880078570760549798248448",
+          "flips": 9
+        }
+      ]
+    }
+  ],
+  "interface_check": {
+    "raw": "2827/729",
+    "clipped_to_rarity": "1/4",
+    "coefficient": "1616/243",
+    "fresh_coins": "3",
+    "flips": "9"
+  }
+}

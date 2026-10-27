@@ -1,0 +1,116 @@
+{
+  "status": "EXACT-ARITHMETIC-DIAGNOSTICS; not FORMALIZED",
+  "head": "a8a8dc49115aabdd1fba8d53d3390eb0a5eee864",
+  "utc": "2026-10-27T08:59:19.562649+00:00",
+  "python": "3.12.2",
+  "script_sha256": "9d8e4510a5f786d4d1e37ccd298da48700ab785ec2ccfc984a7b6e55ab004afb",
+  "source_sha256_before": {
+    "research/2026-10-27-critical-two/construction.tex": "29463b56bfcbcf35b0e9be2347d824489240d091fd26003bf17515e1b930affe",
+    "research/2026-10-27-critical-two/construction-notes.md": "e7ed80e9a470f61e73f1f8899b028c16eddabb68e72b57b6e893b0e5da3efc66",
+    "research/2026-10-27-critical-two/review.md": "f707758019f6b1fc477a73ae88843b7096bc2e7e6f3a3130e4ade26a05b438b4",
+    "research/2026-10-27-critical-two/second-review.md": "997a59d3bf6c3ad5976c9e90e067c40f4b7df729651005cf7fc4c2a30fdec881",
+    "research/2026-10-27-critical-two/sources.md": "5b97196c96d5d8ab1529b8e31f68b6c13515401dfe443418508c7720aac9bb38",
+    "research/2026-10-27-minimax-audit/theorem/critical.tex": "0e8b9eaf762b3b09fa0d92ce1a036c2ceea8c12d00a5eea8286b852f36a81536"
+  },
+  "source_sha256_after": {
+    "research/2026-10-27-critical-two/construction.tex": "29463b56bfcbcf35b0e9be2347d824489240d091fd26003bf17515e1b930affe",
+    "research/2026-10-27-critical-two/construction-notes.md": "e7ed80e9a470f61e73f1f8899b028c16eddabb68e72b57b6e893b0e5da3efc66",
+    "research/2026-10-27-critical-two/review.md": "f707758019f6b1fc477a73ae88843b7096bc2e7e6f3a3130e4ade26a05b438b4",
+    "research/2026-10-27-critical-two/second-review.md": "997a59d3bf6c3ad5976c9e90e067c40f4b7df729651005cf7fc4c2a30fdec881",
+    "research/2026-10-27-critical-two/sources.md": "5b97196c96d5d8ab1529b8e31f68b6c13515401dfe443418508c7720aac9bb38",
+    "research/2026-10-27-minimax-audit/theorem/critical.tex": "0e8b9eaf762b3b09fa0d92ce1a036c2ceea8c12d00a5eea8286b852f36a81536"
+  },
+  "checks": {
+    "prefix_chi_square_denominator": {
+      "passed": true,
+      "exact_evidence": "1/4 - (1/128)^2 > 3/16"
+    },
+    "early_prefix_kl": {
+      "passed": true,
+      "exact_evidence": "(64/3)(1/1024)=1/48"
+    },
+    "pinsker_tv": {
+      "passed": true,
+      "exact_evidence": "KL/2 <= 1/96 < (1/8)^2"
+    },
+    "window_probability": {
+      "passed": true,
+      "exact_evidence": "17/40 > 1/4"
+    },
+    "window_gt_quarter": {
+      "passed": true,
+      "exact_evidence": "17/40 > 1/4"
+    },
+    "prefix_floor": {
+      "passed": true,
+      "exact_evidence": "b0/d^2 >= 16, so floor(b0/d^2) >= b0/(2d^2)"
+    },
+    "entropy_polynomial": {
+      "passed": true,
+      "exact_evidence": "For x=32+y, x^2/16-6-x/4=50+(15/4)y+y^2/16"
+    },
+    "entropy_log_comparison": {
+      "passed": true,
+      "exact_evidence": "For x>=32, 4^(5+x/4) >=1024(1+x/4)>2048+32x, using ln4>1 and exp(t)>=1+t"
+    },
+    "upper_drift_endpoint": {
+      "passed": true,
+      "exact_evidence": "Concavity on r/d in [1/4,1/2] reduces lower bound to endpoints 5/6,4/3"
+    },
+    "unbiased_chebyshev": {
+      "passed": true,
+      "exact_evidence": "(1/64+2x)/(1+x) <=2 for x>=0; bound <=1/18<1/10"
+    },
+    "annulus_mass": {
+      "passed": true,
+      "exact_evidence": "F(a4^-j)-F(a4^-j/2)=(3/4)16^-j"
+    },
+    "annulus_cutoff": {
+      "passed": true,
+      "exact_evidence": "J=floor(log_16(3/(520m))) implies annulus mass >=130m"
+    },
+    "lower_product_coefficient": {
+      "passed": true,
+      "exact_evidence": "(16/3)*513*(4/3)=3648"
+    },
+    "upper_second_moment": {
+      "passed": true,
+      "exact_evidence": "35/16+(85/16)*sum_{j>=1}8^-j=165/56"
+    },
+    "upper_work": {
+      "passed": true,
+      "exact_evidence": "2*(225/2)*sum_{j>=0}2^(-j-1)(j+1)^2=1350"
+    },
+    "small_bias_variance": {
+      "passed": true,
+      "exact_evidence": "(1-rho)*(31/32)^2 >=(3/4)*(31/32)^2>2/3"
+    },
+    "small_bias_MV": {
+      "passed": true,
+      "exact_evidence": "(65rho/64)^2/V <=(65/64)^2*(1/4)*(3/2)<1/2"
+    },
+    "small_bias_normalization": {
+      "passed": true,
+      "exact_evidence": "pM >=(2/3)rho-2rho^2 >=rho/6; m<=4pM"
+    },
+    "small_bias_repetitions": {
+      "passed": true,
+      "exact_evidence": "512(1+x)+1 <=1282x for x>=2/3"
+    },
+    "small_bias_chebyshev": {
+      "passed": true,
+      "exact_evidence": "(1/64+2x)/(1+x)<=2 implies error<=1/16<1/10"
+    },
+    "small_bias_annulus": {
+      "passed": true,
+      "exact_evidence": "cutoff ensures annulus mass>=134m, twice missing mass67m"
+    },
+    "small_bias_product": {
+      "passed": true,
+      "exact_evidence": "(16/3)*1282*4=82048/3<30000"
+    }
+  },
+  "count": 22,
+  "seeds": null,
+  "precision": "exact integers and fractions; no floating-point assertions"
+}

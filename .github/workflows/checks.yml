@@ -45,6 +45,8 @@ jobs:
         run: python tools/verify_research.py
       - name: Check research guard rejects tampering
         run: python -m unittest discover -s tools -p 'test_research_validation.py' -v
+      - name: Replay population and nonlinear feedback checkpoints
+        run: python tools/verify_population_research.py
   numerical-evidence:
     runs-on: ubuntu-latest
     steps:

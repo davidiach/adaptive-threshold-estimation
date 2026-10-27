@@ -1,0 +1,209 @@
+% Generated packaging derivative; source remains byte-preserved.
+
+
+
+\paragraph{Evidence and scope.}
+The statements below are proved on paper, with exact rational finite checks
+in the accompanying script. They have no Lean formal counterpart and no
+external peer review. No novelty claim is made. They concern a restricted
+class of population procedures and do not resolve unrestricted minimax risk.
+
+\paragraph{Experiment.}
+Let $\mu=\sum_{i=1}^k\pi_i\delta_{d_i}$, where $\pi_i>0$,
+$\sum_i\pi_i=1$, and $0<d_i\le1/2$ are known. A new coin independently draws
+$D\sim\mu$ and $S\mid D=d_i\sim\operatorname{Bernoulli}(q_i)$, then supplies
+conditionally iid flips with success probability $1/2+(2S-1)D$.
+The gap and sign are hidden. For known $0<\rho\le1/4$, the parameter space is
+the compact convex set
+\[
+ Q=\{q\in[0,1]^k:\ \theta(q):=\textstyle\sum_i\pi_iq_i\le\rho\}.
+\]
+All coin observations, including pilot observations, are charged. Arithmetic
+and internal randomization are free. The three-flip construction below has a
+deterministic work count; no random-work approximation is used.
+
+\begin{theorem}[A saddle point for a fixed scalar control variate]\label{thm:saddle}
+Fix a single-coin observation rule and real features $Y,Z$ of its observations
+and internal randomization. Suppose they have finite second moments under
+each conditional law $(D,S)=(d_i,s)$, and for all $q\in Q$,
+\[
+ \E_qY=\theta(q),\qquad \E_qZ=0,\qquad \E_qZ^2=v>0,
+\]
+where $v$ does not depend on $q$. Put
+$f(q,\beta)=\Var_q(Y-\beta Z)$ and
+$F(\beta)=\max_{q\in Q}f(q,\beta)$.
+There exist $\beta_*\in\mathbb R$ and $q_*\in Q$ such that
+\[
+ f(q_*,\beta)\ \ge\ f(q_*,\beta_*)=F(\beta_*)=\min_{b\in\mathbb R}F(b)
+ \quad\text{for every }\beta\in\mathbb R.
+\]
+In particular,
+\[
+ \sup_{q\in Q}\inf_{\beta\in\mathbb R} f(q,\beta)
+ =\inf_{\beta\in\mathbb R}\sup_{q\in Q} f(q,\beta).
+\]
+\end{theorem}
+
+\begin{proof}
+Write $c(q)=\E_q[YZ]$ and $V(q)=\Var_qY$. Conditional mixture probabilities
+are affine functions of $q$. Therefore $c$ is affine and continuous,
+$V(q)=\E_qY^2-\theta(q)^2$ is continuous and concave, and
+\[
+ f(q,\beta)=V(q)-2\beta c(q)+v\beta^2
+\]
+is concave in $q$ and strictly convex in $\beta$.
+On compact $Q$, let $C=\max_q|c(q)|<\infty$. Since $V(q)\ge0$,
+$F(\beta)\ge v\beta^2-2C|\beta|$, so $F$ is coercive. It is continuous,
+being a maximum over a compact set of functions whose joint formula is
+continuous. It has a global minimizer $\beta_*$.
+
+Let $\mathcal A=\{q:f(q,\beta_*)=F(\beta_*)\}$ be its nonempty compact active
+set. We show that the active slopes
+$g(q)=2v\beta_*-2c(q)$ include one nonpositive and one nonnegative slope.
+If every active slope were positive, compactness would give a neighborhood
+$U$ of $\mathcal A$ on which $g\ge\eta>0$. On the compact complement
+$Q\setminus U$, the value at $\beta_*$ is at most $F(\beta_*)-\gamma$ for
+some $\gamma>0$ (if the complement is empty, omit it). For sufficiently small
+$t>0$, the identity
+\[
+ f(q,\beta_*-t)=f(q,\beta_*)-t g(q)+vt^2
+\]
+then makes every value strictly smaller than $F(\beta_*)$: on $U$ use
+$t\eta-vt^2>0$, and on its complement use the uniform bound on $|g|$ and
+the gap $\gamma$. This contradicts minimality. The all-negative case follows
+by increasing $\beta_*$. Thus there are $q_1,q_2\in\mathcal A$ and
+$\lambda\in[0,1]$ for which
+$\lambda g(q_1)+(1-\lambda)g(q_2)=0$.
+
+Set $q_*=\lambda q_1+(1-\lambda)q_2\in Q$. Concavity gives
+\[
+ f(q_*,\beta_*)\ge\lambda f(q_1,\beta_*)+(1-\lambda)f(q_2,\beta_*)
+ =F(\beta_*).
+\]
+The opposite inequality is the definition of $F$. Moreover $g(q_*)=0$
+by affinity of $c$, so $\beta_*$ minimizes the quadratic $f(q_*,\cdot)$.
+This proves the saddle assertion and both directions of the equality.
+\end{proof}
+
+\begin{theorem}[Independent pilot learning does not improve this minimax risk]
+Under Theorem~\ref{thm:saddle}, take $n\ge1$ independent fresh production
+coins, obtaining iid pairs $(Y_i,Z_i)$. A pilot may use arbitrary additional
+coins and observations to choose an almost surely finite real coefficient
+$\widehat\beta$, but its complete transcript and randomization must be
+independent of the production coins under each $q$. Let
+\[
+ \widehat\theta=\frac1n\sum_{i=1}^n(Y_i-\widehat\beta Z_i),\qquad
+ F_*:=F(\beta_*).
+\]
+Then, allowing infinite mean squared error,
+\[
+ \sup_{q\in Q}\E_q(\widehat\theta-\theta(q))^2\ge F_*/n.
+\]
+The fixed coefficient $\beta_*$ attains equality without any pilot. If the
+features use exactly $\ell$ flips per coin and a pilot spends $\ell m$ flips,
+then a fixed-coefficient estimate from $m+n$ coins instead has worst-case
+MSE $F_*/(m+n)$ at the same deterministic total work.
+\end{theorem}
+
+\begin{proof}
+For each realized finite coefficient, the production estimate has conditional
+mean $\theta(q)$ and conditional squared error $f(q,\widehat\beta)/n$.
+Taking expectations of this nonnegative conditional second moment is valid
+even when it is infinite. At the specific $q_*$ in
+Theorem~\ref{thm:saddle}, every possible coefficient has
+$f(q_*,\widehat\beta)\ge F_*$. A fixed $\beta_*$ has worst-case variance
+$F_*$ per production coin and is unbiased. The work comparison follows by
+counting coins. The last assertion requires that the stated pilot work is
+indeed deterministic; no conversion from expected work is implicit.
+\end{proof}
+
+\paragraph{Excluded procedures.}
+The final estimate here is the raw affine average. Clipping it, changing the
+production feature or sampling rule after seeing a pilot, adaptively selecting
+the production sample size, accepting bias, and nonlinear aggregation are all
+outside the theorem. Thus this result does not transfer a single-coin lower
+bound to unrestricted population procedures.
+
+\begin{proposition}[Explicit two-gap three-flip construction]\label{prop:two}
+Suppose $k=2$, $0<d_1<d_2\le1/2$, and put $x_i=2d_i$. Take exactly three
+flips on a fresh coin and put $R_j=2X_j-1$,
+\[
+ A=(R_1+R_2+R_3)/3,\quad B=R_1R_2R_3,\quad
+ C=(R_1R_2+R_1R_3+R_2R_3)/3.
+\]
+Define
+\[
+ a=\frac{x_1^2+x_1x_2+x_2^2}{2x_1x_2(x_1+x_2)},\qquad
+ b=-\frac1{2x_1x_2(x_1+x_2)},\qquad
+ m_2=\pi_1x_1^2+\pi_2x_2^2,
+\]
+and $Y=1/2+aA+bB$, $Z=C-m_2$. Then $\E_qY=\theta(q)$ and
+$\E_qZ=0$ for every $q$. Moreover
+\[
+ v:=\E_q Z^2=(1-m_2)(m_2+1/3)>0.
+\]
+Write $m_j=\sum_i\pi_i(2q_i-1)x_i^j$ for odd $j$, and
+\[
+ K=a^2(1+2m_2)/3+2abm_2+b^2.
+\]
+The exact moments are
+\begin{align*}
+ V(q)&=K-1/4+\theta(q)-\theta(q)^2,\\
+ c(q)&=a\{(2/3-m_2)m_1+m_3/3\}+b(m_1-m_2m_3).
+\end{align*}
+Consequently these features satisfy Theorem~\ref{thm:saddle}.
+\end{proposition}
+
+\begin{proof}
+Conditionally on $D=d_i,S=s$, the $R_j$ are iid with mean
+$x=(2s-1)x_i$. Hence $\E A=x$, $\E B=x^3$, $\E C=x^2$.
+The displayed coefficients solve $ax_i+bx_i^3=1/2$ for both $i$, so
+$\E[Y\mid D=d_i,S=s]=s$.
+The identity $\E[C\mid D=d_i,S=s]=x_i^2$ proves the assertion for $Z$.
+Direct multiplication using $R_j^2=1$ gives
+\[
+ \E A^2=\E C^2=(1+2m_2)/3,\quad \E B^2=1,\quad
+ \E AB=m_2,
+\]
+and
+\[
+ \E AC=2m_1/3+m_3/3,\qquad \E BC=m_1.
+\]
+These yield the claimed variance and covariance formulas. Since the two
+gaps are distinct and both masses are positive, $0<m_2<1$, even when
+$d_2=1/2$. Thus $v>0$. All features are bounded for the fixed positive gaps,
+and no sampled latent value is used by the computation.
+\end{proof}
+
+\begin{proposition}[A fully specified pilot implementation]
+Use $m\ge1$ independent pilot coins with the features in
+Proposition~\ref{prop:two}. Set
+\[
+ \widehat\beta=\frac1{mv}\sum_{j=1}^mY_jZ_j.
+\]
+On $n\ge1$ independent production coins return the raw average of
+$Y-\widehat\beta Z$. It is unbiased for all $q$, terminates after exactly
+$3(m+n)$ flips, and has exact MSE
+\[
+ \frac1n\left(V(q)-\frac{c(q)^2}{v}
+             +\frac{\Var_q(YZ)}{mv}\right).
+\]
+\end{proposition}
+
+\begin{proof}
+The pilot is independent of production, with
+$\E\widehat\beta=c(q)/v$ and
+$\Var(\widehat\beta)=\Var_q(YZ)/(mv^2)$. Completing the square in
+$f(q,\beta)=V(q)-c(q)^2/v+v(\beta-c(q)/v)^2$ and then averaging proves
+the formula. Conditional unbiasedness proves unconditional unbiasedness.
+All moments are finite for fixed gaps, and the work count is deterministic.
+\end{proof}
+
+\paragraph{Interpretation.}
+The explicit estimator is an exact hidden-gap construction, not an efficient
+rare-event algorithm: its interpolation coefficients grow as the gaps shrink,
+and it can have a large variance even at $\theta=0$. The no-gain theorem
+shows why merely learning a coefficient for fixed unbiased features cannot
+be the sought minimax improvement. It leaves acquisition adaptation and
+nonlinear estimators as separate questions. No claim is made that the
+control-variate idea or the convex saddle argument is new.
