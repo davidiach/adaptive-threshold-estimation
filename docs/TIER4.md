@@ -41,9 +41,26 @@ integral, after which the prior work bound applies.
 
 ## Verification
 
-Specification modules and the generic entropy/bound-reduction modules compile.
-The eight audit regression tests pass. No completed Tier 4 target is claimed at
-this initial foundations checkpoint; the specialized bridges remain in progress.
+The complete development passes the local locked audit: **6/6 targets and
+65/65 declaration checks**, with no `sorry` and only standard axioms. The eight
+audit regression tests pass. The first foundations checkpoint (`bcf7ff4`)
+audited 22 declarations and claimed no final targets; checkpoint 001 now proves
+the exact finite KL identity, full infinite KL supremum, work bound, finiteness,
+and arbitrary measurable-observable bound.
+
+`infinite_kl_bound_extended` also covers infinite expected work: its right side
+is then infinity, while the substantive finite-work case is the locked theorem.
+
+Three agents independently cross-reviewed the finite-density, stopped-path,
+and entropy-exhaustion arguments. In particular, reconstruction measurability
+does not require a measurable diagonal on the arbitrary seed space; the seed
+coordinate cancels identically. Common zero-probability prefixes are handled by
+proved support comparison. Restrictions use Mathlib's corrected KL for finite
+subprobability measures, so no mass correction is dropped.
+
+Independent Linux verification of the complete checkpoint is pending. CI now
+requires all six Tier 4 targets, in addition to the prior 121-point, 713, and
+Tier 3 audits.
 
 Run `python tools/verify_tier4.py --sequential --require-complete` for the complete
 audit. A partial checkpoint must omit `--require-complete` and explicitly report

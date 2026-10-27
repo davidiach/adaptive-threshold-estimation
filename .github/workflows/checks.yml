@@ -90,9 +90,9 @@ jobs:
       - name: Require the complete Tier 3 landmark when present
         run: |
           if test -f tools/verify_tier3.py; then python tools/verify_tier3.py --sequential --require-complete; fi
-      - name: Audit the locked Tier 4 extension when present
+      - name: Require the complete Tier 4 landmark when present
         run: |
-          if test -f tools/verify_tier4.py; then python tools/verify_tier4.py --sequential; fi
+          if test -f tools/verify_tier4.py; then python tools/verify_tier4.py --sequential --require-complete; fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:
