@@ -95,3 +95,31 @@ This checkpoint does not prove the finite-gap sign-testing theorem, the
 base-cost theorem, or the full critical minimax law. The subsequent target is
 the actual Bernoulli sign-testing theorem and its use in the base-cost argument.
 The full completion criteria remain in [WORKPLAN.md](WORKPLAN.md).
+
+## Constructed Bernoulli prefix information
+
+The next checkpoint connects probability measures to the information step.
+[BernoulliPrefix.lean](../lean/ThresholdHC/CriticalEntropy/BernoulliPrefix.lean)
+proves that an arbitrary common independent seed and `n` iid Bernoulli flips
+have KL exactly `n * klB(p,q)`. The proof constructs the finite likelihood
+density, proves the product identity, identifies finite prefixes of the
+infinite iid law, and applies data processing to any measurable statistic of
+the seed and prefix. Its upper bound is derived from the flip probabilities;
+no information inequality is an assumption of the statistical target.
+
+[EventInformation.lean](../lean/ThresholdHC/CriticalEntropy/EventInformation.lean)
+proves the resulting event transfer. In particular, if an event at a finite
+prefix has probability at least `1/4` under parameter `p` and
+`n*(p-1/2)^2 <= 4*c+1/4`, its probability under the fair coin is at least
+`exp(-64*c-8)`, matching BC3. The seed space is arbitrary, and no fair-coin
+termination hypothesis occurs.
+
+These statements do not yet construct the events from a general stopping
+rule. The remaining finite-gap steps are the early-decision bound, the
+Markov window, and the overlap bound for geometrically separated gaps,
+followed by their composition with the existing packing theorem. The null-cost
+base theorem additionally needs the restart and good-gap selection arguments.
+Four exact component targets and 25 declarations are checked by the expanded
+audit; [the second record](../results/critical_components_002.json) preserves
+their source identities and axiom reports. The original record remains a
+record of the earlier, narrower checkpoint.

@@ -19,13 +19,18 @@ from verify_tier6 import ALLOWED, DECLARATION, FORBIDDEN, REPORT, strip_comments
 ROOT = Path(__file__).resolve().parents[1]
 LEAN = ROOT / "lean"
 SOURCE = LEAN / "ThresholdHC/CriticalEntropy"
-MODULES = ("Packing", "CommonPoint", "Specification")
+MODULES = ("Packing", "CommonPoint", "BernoulliPrefix", "EventInformation", "Specification")
 NAMESPACE = "ThresholdHC.CriticalEntropy."
 ROOTS = {
     NAMESPACE + name for name in (
         "sum_event_mass_le_overlap", "event_packing", "overlap_bound",
         "entropy_of_packing", "entropy_of_gap_count", "finite_common_point",
         "common_point_of_finite_mixtures", "EntropyPackingStatement", "CommonPointStatement",
+        "streamProb_pos", "stream_kl_identity", "finiteMeasure_positive", "finiteMeasure_density",
+        "seeded_prefix_kl", "binary_kl_le_chisq", "seeded_prefix_kl_le_chisq",
+        "seeded_tape_prefix_map", "prefix_observable_kl_le", "binary_kl_lower_log",
+        "event_binary_kl_le", "event_mass_lower_of_kl", "prefix_event_mass_lower",
+        "fair_prefix_event_mass_lower", "PrefixInformationStatement", "PrefixEventTransferStatement",
     )
 }
 
@@ -62,7 +67,14 @@ def main() -> int:
         if FORBIDDEN.search(source):
             raise ValueError("Forbidden proof escape in " + path.name)
         imports = re.findall(r"^import\s+([\w.]+)\s*$", source, re.M)
-        allowed_imports = {"Mathlib"} | {NAMESPACE + name for name in MODULES}
+        allowed_imports = {
+            "Mathlib", "Mathlib.MeasureTheory.Integral.Prod",
+            "Mathlib.InformationTheory.KullbackLeibler.DataProcessing",
+            "Mathlib.Analysis.SpecialFunctions.BinaryEntropy",
+            "ThresholdHC.Proofs.Tier2.ClassifierProbability",
+            "ThresholdHC.Proofs.Tier2.TranscriptLikelihood",
+            "ThresholdHC.Tier4.FiniteDensity", "ThresholdHC.Tier6.TestingFinite",
+        } | {NAMESPACE + name for name in MODULES}
         if any(module not in allowed_imports for module in imports):
             raise ValueError("Unregistered component import in " + path.name)
         declared.extend(NAMESPACE + name for name in DECLARATION.findall(source))
@@ -74,7 +86,7 @@ def main() -> int:
               for p in protected}
     status = {
         "valid": False,
-        "scope": "Entropy event packing and abstract compact convex common-point implication",
+        "scope": "Entropy packing, compact convex common point, and seeded Bernoulli prefix information/event transfer",
         "full_critical_minimax_theorem_verified": False,
         "base_cost_theorem_verified": False,
         "finite_gap_sign_testing_theorem_verified": False,
@@ -103,9 +115,9 @@ def main() -> int:
     if any(hashlib.sha256((ROOT / rel).read_bytes()).hexdigest() != digest
            for rel, digest in hashes.items()):
         raise ValueError("Sources changed during audit")
-    status.update(valid=True, exact_component_targets=2, audited_declarations=len(ROOTS))
+    status.update(valid=True, exact_component_targets=4, audited_declarations=len(ROOTS))
     status_path.write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"valid": True, "exact_component_targets": 2,
+    print(json.dumps({"valid": True, "exact_component_targets": 4,
                       "audited_declarations": len(ROOTS), "evidence": str(output),
                       "full_critical_minimax_theorem_verified": False}))
     return 0
