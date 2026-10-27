@@ -104,8 +104,18 @@ and rho. This supplies no characterization for arbitrary other laws.
 Status: **paper proof with independent adversarial agent review and scoped
 component cross-checks**. See the [checkpoint](../research/2026-10-27-nonlinear-critical/CHECKPOINT.md)
 for the exact four-file source bundle, replay evidence, attribution and
-limitations. No Lean theorem, explicit hard-pair formula, external specialist
-review or priority certification is claimed.
+limitations. The full minimax theorem is not Lean-checked; no explicit hard-pair
+formula, external specialist review or priority certification is claimed.
+
+Its finite-gap sign-entropy dependency (BC2) is now separately Lean-checked:
+`finite_gap_sign_entropy` in [FiniteGap.lean](../lean/ThresholdHC/CriticalEntropy/FiniteGap.lean)
+proves `sum_j d_j^2 E_-j T >= K log(K)/512` for `log(K)>=32`, adjacent gap
+ratios at least two, and `0<d_j<=1/128`. One observable test with an arbitrary
+independent seed serves every gap and sign, has both error probabilities at
+most `1/10`, and has finite expected work under both signs. The fair-coin law
+need not terminate. The proof constructs the information bounds and stopping
+windows; neither is an assumption. This does not prove the continuum
+null-cost product theorem. See the [model and scope audit](CRITICAL_AUDIT.md#current-formal-boundary).
 
 ## Population and nonlinear feedback follow-ups
 

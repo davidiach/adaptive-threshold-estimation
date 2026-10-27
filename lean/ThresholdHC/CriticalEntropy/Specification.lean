@@ -1,8 +1,11 @@
 import Mathlib
 import ThresholdHC.Proofs.Tier2.ClassifierProbability
+import ThresholdHC.CriticalEntropy.SignTest
+import ThresholdHC.CriticalEntropy.EarlyDecision
 
 noncomputable section
 open MeasureTheory Real
+open scoped ENNReal
 namespace ThresholdHC.CriticalEntropy
 
 /-- Exact analytic target. Its packing inequality is an explicit hypothesis. -/
@@ -46,5 +49,18 @@ def PrefixEventTransferStatement : Prop :=
     ∀ (s : Set (R × (Fin n → Bool))), MeasurableSet s →
       (1/4 : ℝ) ≤ (ν.prod (Tier2.finiteMeasure p n)).real s →
       exp (-64*c-8) ≤ (ν.prod (Tier2.finiteMeasure ⟨1/2, by norm_num⟩ n)).real s
+
+/-- The statistical finite-gap theorem. A single test and seed law serve all
+gaps and signs. Work is the actual stopping time; both signed laws terminate
+in finite expectation. No fair-coin termination or information bound is assumed. -/
+def FiniteGapSignEntropyStatement : Prop :=
+  ∀ (R : Type) [MeasurableSpace R] (ν : Measure R) [IsProbabilityMeasure ν]
+    (A : SignTest R) (K : ℕ) (d : Fin K → EntropyGap), 32 ≤ log (K : ℝ) →
+    (∀ i j, j.val = i.val+1 → 2*(d j : ℝ) ≤ (d i : ℝ)) →
+    (∀ i b, expectedSignTestWork ν (signParameter (d i) b) A ≠ ∞) →
+    (∀ i b, (ν.prod (Tier2.tapeMeasure (signParameter (d i) b))).real
+      {z | A.output z ≠ b} ≤ 1/10) →
+    (K : ℝ)*log (K : ℝ)/512 ≤
+      ∑ i, (d i : ℝ)^2*(expectedSignTestWork ν (signParameter (d i) false) A).toReal
 
 end ThresholdHC.CriticalEntropy

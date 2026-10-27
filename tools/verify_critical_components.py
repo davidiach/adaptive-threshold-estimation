@@ -19,7 +19,8 @@ from verify_tier6 import ALLOWED, DECLARATION, FORBIDDEN, REPORT, strip_comments
 ROOT = Path(__file__).resolve().parents[1]
 LEAN = ROOT / "lean"
 SOURCE = LEAN / "ThresholdHC/CriticalEntropy"
-MODULES = ("Packing", "CommonPoint", "BernoulliPrefix", "EventInformation", "Specification")
+MODULES = ("Packing", "CommonPoint", "BernoulliPrefix", "EventInformation", "SignTest",
+           "EarlyDecision", "StoppingWindow", "GeometricOverlap", "FiniteGap", "Specification")
 NAMESPACE = "ThresholdHC.CriticalEntropy."
 ROOTS = {
     NAMESPACE + name for name in (
@@ -31,6 +32,18 @@ ROOTS = {
         "seeded_tape_prefix_map", "prefix_observable_kl_le", "binary_kl_lower_log",
         "event_binary_kl_le", "event_mass_lower_of_kl", "prefix_event_mass_lower",
         "fair_prefix_event_mass_lower", "PrefixInformationStatement", "PrefixEventTransferStatement",
+        "SignTest", "signTestWork", "expectedSignTestWork", "signTestWindow",
+        "measurable_signTestWork", "measurable_signTestWindow", "signTest_prefix_probability",
+        "signTest_terminates", "signTest_late_probability", "signTest_window_probability",
+        "binary_kl_separation", "early_event_probability", "EntropyGap", "signParameter",
+        "signParameter_interior", "early_prefix_information", "signTest_early_minus",
+        "entropyLowerTime", "entropyUpperTime", "entropyLowerTime_bounds", "entropyUpperTime_bounds",
+        "signTest_quarter_late", "signTest_negative_window", "restrictPrefix", "signTestWindowPrefix",
+        "measurable_signTestWindowPrefix", "signTestWindowPrefix_preimage", "signTestWindowPrefix_probability",
+        "signTestWindow_positive_imp_lt", "signTest_fair_window", "signTest_window_scale",
+        "geometric_separation_of_adjacent", "half_low_cost", "geometric_interval_card",
+        "inverse_gap_scales_separated", "signTest_window_overlap", "finite_gap_sign_entropy",
+        "FiniteGapSignEntropyStatement",
     )
 }
 
@@ -86,7 +99,7 @@ def main() -> int:
               for p in protected}
     status = {
         "valid": False,
-        "scope": "Entropy packing, compact convex common point, and seeded Bernoulli prefix information/event transfer",
+        "scope": "Finite-gap statistical sign entropy, its probability dependencies, and abstract compact convex common point",
         "full_critical_minimax_theorem_verified": False,
         "base_cost_theorem_verified": False,
         "finite_gap_sign_testing_theorem_verified": False,
@@ -115,10 +128,12 @@ def main() -> int:
     if any(hashlib.sha256((ROOT / rel).read_bytes()).hexdigest() != digest
            for rel, digest in hashes.items()):
         raise ValueError("Sources changed during audit")
-    status.update(valid=True, exact_component_targets=4, audited_declarations=len(ROOTS))
+    status.update(valid=True, exact_component_targets=5, audited_declarations=len(ROOTS),
+                  finite_gap_sign_testing_theorem_verified=True)
     status_path.write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"valid": True, "exact_component_targets": 4,
+    print(json.dumps({"valid": True, "exact_component_targets": 5,
                       "audited_declarations": len(ROOTS), "evidence": str(output),
+                      "finite_gap_sign_testing_theorem_verified": True,
                       "full_critical_minimax_theorem_verified": False}))
     return 0
 

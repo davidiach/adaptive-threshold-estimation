@@ -16,6 +16,41 @@ fresh-coin algorithms with a uniform expected-flip budget. Set
 `min(rho,sqrt(rho L H/B))`. The lower argument uses the subclass `q<=1/2`;
 the upper claim must still cover the full class.
 
+## Current formal boundary
+
+The finite-gap sign-entropy theorem (BC2) is now proved in
+[FiniteGap.lean](../lean/ThresholdHC/CriticalEntropy/FiniteGap.lean), against the
+exact `FiniteGapSignEntropyStatement` in
+[Specification.lean](../lean/ThresholdHC/CriticalEntropy/Specification.lean):
+
+$$\sum_{j=1}^K d_j^2\mathbb E_{-d_j}T\ge K\log K/512\qquad(\log K\ge32).$$
+
+Its assumptions are `0<d_j<=1/128`, adjacent ratios `d_j/d_(j+1)>=2`,
+error at most `1/10` under each sign at each gap, and finite expected work
+under both signs. The same test and independent seed law apply to all gaps.
+[SignTest.lean](../lean/ThresholdHC/CriticalEntropy/SignTest.lean) makes work an
+extended natural stopping time and requires each terminal decision by time
+`n` to be measurable from the seed and the first `n` flips. The experiment is
+the product of the seed law and the constructed infinite iid Bernoulli law.
+Infinite costs are retained; conversion to a real expectation occurs under
+the explicit finiteness hypotheses. Termination under the fair coin is not
+assumed, and nonterminating fair paths belong to none of the finite windows.
+
+The proof derives early-decision and Markov bounds, constructs finite-prefix
+windows, transfers their mass to the fair law, and counts their overlap before
+applying entropy packing. It uses `ceil(4 E_-T)+1` for the upper window endpoint
+to handle zero expected work uniformly; the gap bound leaves the paper's BC3,
+BC4 and final constants unchanged. The abstract compact-convex common-point
+component is also proved, but its statistical instantiation remains open.
+
+The [third audit record](../results/critical_components_003.json) checks five
+exact targets and all 63 public declarations using only the permitted standard
+axioms. These targets were introduced with their proofs, not retrospectively
+described as a pre-proof freeze. This is **not** a formalization of the
+continuum null-cost product theorem or the full critical minimax law. Their
+conditional-moment, good-gap selection, stopped-suffix restart, common-pair,
+and population-transfer obligations remain below.
+
 ## Initial dependency audit
 
 The following records checks of actual arguments, with their remaining proof
@@ -25,7 +60,7 @@ proof.
 
 | Dependency | Check performed | Remaining verification |
 |---|---|---|
-| Finite-gap sign entropy, BC2 | Early decisions use deterministic-prefix KL, not optional stopping under the fair coin. The events share one terminal time, making the scale-window overlap argument applicable. The fair law need not terminate. | Formalize the probability comparison, overlap count, and analytic implication BC4 -> BC2. |
+| Finite-gap sign entropy, BC2 | Early decisions use deterministic-prefix KL, not optional stopping under the fair coin. The events share one terminal time, making the scale-window overlap argument applicable. The fair law need not terminate. | Complete for the stated statistical model; see the current formal boundary above. |
 | Conditional moments and response | The populations `q=0` and `q=rho` give finite conditional second moments and work outside a common null set. The response bound comes from expectations before pointwise means are used. | Formalize conditional integration and variance decomposition. |
 | First-observation normalization | The activation event is seed-only. Under its conditional seed law, `Z=pY+c` preserves means and changes null work to `W0/p`; the zero-activation case contradicts the bias requirement. | Construct the conditional procedure and verify its moment identities. |
 | Good-gap selection | The proof uses populations `(1/2)1_E` with `mu(E)=2rho`, respecting the lower subclass's pointwise cap. The excluded mass is at most `70m`. | Formalize nonatomic subset selection and annulus averaging. |
@@ -98,7 +133,7 @@ The full completion criteria remain in [WORKPLAN.md](WORKPLAN.md).
 
 ## Constructed Bernoulli prefix information
 
-The next checkpoint connects probability measures to the information step.
+The second checkpoint connected probability measures to the information step.
 [BernoulliPrefix.lean](../lean/ThresholdHC/CriticalEntropy/BernoulliPrefix.lean)
 proves that an arbitrary common independent seed and `n` iid Bernoulli flips
 have KL exactly `n * klB(p,q)`. The proof constructs the finite likelihood
@@ -114,12 +149,10 @@ prefix has probability at least `1/4` under parameter `p` and
 `exp(-64*c-8)`, matching BC3. The seed space is arbitrary, and no fair-coin
 termination hypothesis occurs.
 
-These statements do not yet construct the events from a general stopping
-rule. The remaining finite-gap steps are the early-decision bound, the
-Markov window, and the overlap bound for geometrically separated gaps,
-followed by their composition with the existing packing theorem. The null-cost
-base theorem additionally needs the restart and good-gap selection arguments.
-Four exact component targets and 25 declarations are checked by the expanded
-audit; [the second record](../results/critical_components_002.json) preserves
+At that checkpoint, constructing the events from a general stopping rule
+remained open. The current finite-gap theorem above completes that step and
+its overlap argument. The continuum null-cost base theorem still needs the
+restart and good-gap selection arguments. Four exact component targets and
+25 declarations were checked in [the second record](../results/critical_components_002.json), which preserves
 their source identities and axiom reports. The original record remains a
 record of the earlier, narrower checkpoint.
