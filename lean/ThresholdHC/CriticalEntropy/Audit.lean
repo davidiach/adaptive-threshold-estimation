@@ -12,8 +12,15 @@ import ThresholdHC.CriticalEntropy.GoodGaps
 import ThresholdHC.CriticalEntropy.CriticalScale
 import ThresholdHC.CriticalEntropy.BaseCost
 import ThresholdHC.CriticalEntropy.ObservationInformation
+import ThresholdHC.CriticalEntropy.CriticalGeometry
 
 open ThresholdHC.CriticalEntropy
+
+example : CriticalPopulationRepresentationStatement := critical_population_representation
+
+example : CriticalObservationGeometryStatement := fun _ _ => critical_observation_geometry
+
+example : CriticalPairGeometryStatement := critical_pair_hellinger_geometry
 
 example : CriticalObservationReconstructionStatement := fun _ _ => critical_observation_reconstruction
 
@@ -431,3 +438,66 @@ example : CriticalBaseCostStatement := critical_base_cost
 #print axioms CriticalObservationReconstructionStatement
 #print axioms CriticalObservationAffinityStatement
 #print axioms CriticalObservationWorkStatement
+
+#print axioms PopulationDual
+#print axioms populationDualSet
+#print axioms populationDualDensity
+#print axioms populationDualPrior
+#print axioms populationMomentMap
+#print axioms boundedPriorMomentSet
+#print axioms populationTarget
+#print axioms populationPairSet
+#print axioms populationDualSet_compact
+#print axioms populationDualSet_nonempty
+#print axioms populationDualSet_convex
+#print axioms populationDualDensity_test
+#print axioms populationDualDensity_setIntegral
+#print axioms populationDualDensity_bounds
+#print axioms populationDualPrior_measurable
+#print axioms populationDualPrior_le_half
+#print axioms populationDualPrior_ae
+#print axioms populationDualPrior_mass
+#print axioms populationDualPrior_admissible
+#print axioms populationDualSet_covers_priors
+#print axioms populationDualPrior_test
+#print axioms populationMomentMap_apply
+#print axioms populationMomentMap_continuous
+#print axioms populationMomentImage_compact_convex
+#print axioms boundedPriorMomentSet_eq_image
+#print axioms boundedPriorMomentSet_compact_convex
+#print axioms populationPairSet_compact_convex
+#print axioms populationPairSet_nonempty
+#print axioms realFiniteAffinity
+#print axioms sqrt_product_scale
+#print axioms sqrt_product_mix
+#print axioms realFiniteAffinity_continuous
+#print axioms realFiniteAffinity_concave
+#print axioms realFiniteAffinity_le_one
+#print axioms realFiniteDistance_convex
+#print axioms finiteAffinity_toReal
+#print axioms cappedObservationVector
+#print axioms cappedObservationImage
+#print axioms wordLikelihood_real_bounds
+#print axioms wordLikelihood_real_memLp
+#print axioms populationWordLikelihood_real
+#print axioms populationWordLikelihood_affine_moment
+#print axioms cappedStatisticLaw_real_mass
+#print axioms cappedStatisticLaw_affine_moment
+#print axioms cappedObservationVector_affine_coordinates
+#print axioms cappedObservationVector_congr_ae
+#print axioms capped_observation_affine_representation
+#print axioms capped_observation_image_compact_convex
+#print axioms capped_observation_image_nonempty
+#print axioms capped_observation_image_positive
+#print axioms capped_observation_uniform_positive
+#print axioms capped_statistic_probabilities
+#print axioms capped_observation_affinity_real
+#print axioms capped_observation_hellinger_geometry
+#print axioms capped_observation_affinity_le_one
+#print axioms critical_population_representation
+#print axioms critical_observation_geometry
+#print axioms populationPairSet_realization
+#print axioms critical_pair_hellinger_geometry
+#print axioms CriticalPopulationRepresentationStatement
+#print axioms CriticalObservationGeometryStatement
+#print axioms CriticalPairGeometryStatement

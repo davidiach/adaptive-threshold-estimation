@@ -145,9 +145,21 @@ For an arbitrary measurable independent seed and a procedure stopping by a
 deterministic cap, the statistic consisting of stopping time and head count
 reconstructs the full seed/word law through population-independent conditional
 measures. It preserves canonical Hellinger affinity and actual expected work.
-Zero-probability cells are independent of the sign prior. The
-[eleventh record](../results/critical_components_011.json) audits twenty-three
-exact targets and all 351 public declarations.
+Zero-probability cells are independent of the sign prior.
+
+[CriticalGeometry.lean](../lean/ThresholdHC/CriticalEntropy/CriticalGeometry.lean)
+also proves a compact convex representation of the entire admissible population
+class, with every measurable prior covered up to almost-everywhere equality.
+Its finite observation probabilities and target integral form an affine compact
+convex image. Active probability coordinates have uniform positive lower bounds.
+The separated population-pair set is nonempty, compact and convex before any
+policy is selected; each capped policy supplies a continuous convex canonical
+Hellinger distance taking values in `[0,1]` on that set. The formal construction
+uses the weak dual of `L²` and proves its correspondence with actual populations.
+The [twelfth record](../results/critical_components_012.json) audits twenty-six
+exact targets and all 413 public declarations. The
+[eleventh record](../results/critical_components_011.json) preserves the earlier
+transcript-reduction checkpoint.
 
 The statistical common hard pair, unrestricted population transfer, and
 critical upper construction remain unformalized. The abstract

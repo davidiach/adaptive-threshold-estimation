@@ -12,6 +12,8 @@ import ThresholdHC.CriticalEntropy.CriticalModel
 import ThresholdHC.CriticalEntropy.ActivationModel
 import ThresholdHC.CriticalEntropy.ObservationModel
 import ThresholdHC.CriticalEntropy.HellingerModel
+import ThresholdHC.CriticalEntropy.CriticalLaw
+import ThresholdHC.CriticalEntropy.ObservationGeometryModel
 
 noncomputable section
 open MeasureTheory Real
@@ -358,5 +360,66 @@ def CriticalObservationWorkStatement : Prop :=
       (fun d => criticalParameter d false) (fun d => criticalParameter d true) q A =
       ∑ i : Fin (m+1) × Fin (m+1), (i.1.val : ℝ≥0∞)*cappedStatisticLaw criticalGapLaw ν
         (fun d => criticalParameter d false) (fun d => criticalParameter d true) q A m {i}
+
+/-- Actual population compactness and finite-experiment geometry. These
+targets do not assert the missing risk comparison or a common hard pair. -/
+def CriticalPopulationRepresentationStatement : Prop :=
+  ∀ (ρ : ℝ), 0 ≤ ρ →
+    IsCompact (populationDualSet criticalGapLaw ρ) ∧
+    Convex ℝ (populationDualSet criticalGapLaw ρ) ∧
+    (populationDualSet criticalGapLaw ρ).Nonempty ∧
+    (∀ f ∈ populationDualSet criticalGapLaw ρ,
+      CappedPrior criticalGapLaw ρ (populationDualPrior criticalGapLaw f) ∧
+      populationTarget criticalGapLaw f =
+        ∫ d, (populationDualPrior criticalGapLaw f d : ℝ) ∂criticalGapLaw) ∧
+    (∀ q : ℝ → unitInterval, CappedPrior criticalGapLaw ρ q →
+      ∃ f ∈ populationDualSet criticalGapLaw ρ,
+        (fun d => (populationDualPrior criticalGapLaw f d : ℝ)) =ᵐ[criticalGapLaw]
+          (fun d => (q d : ℝ)))
+
+def CriticalObservationGeometryStatement : Prop :=
+  ∀ (R E : Type) [MeasurableSpace R] [MeasurableSpace E]
+    (ν : Measure R) [IsProbabilityMeasure ν] (A : StoppedProcedure R E)
+    (m : ℕ), (∀ z, A.stop z ≤ m) → ∀ (ρ : ℝ), 0 ≤ ρ →
+    (∃ F : PopulationDual criticalGapLaw →ᵃ[ℝ] (Option (Fin (m+1) × Fin (m+1)) → ℝ),
+      Continuous F ∧ ∀ f ∈ populationDualSet criticalGapLaw ρ,
+        F f = cappedObservationVector criticalGapLaw ν
+          (fun d => criticalParameter d false) (fun d => criticalParameter d true)
+          (populationDualPrior criticalGapLaw f) A m) ∧
+    IsCompact (cappedObservationImage criticalGapLaw ν
+      (fun d => criticalParameter d false) (fun d => criticalParameter d true) A m ρ) ∧
+    Convex ℝ (cappedObservationImage criticalGapLaw ν
+      (fun d => criticalParameter d false) (fun d => criticalParameter d true) A m ρ) ∧
+    (cappedObservationImage criticalGapLaw ν
+      (fun d => criticalParameter d false) (fun d => criticalParameter d true) A m ρ).Nonempty ∧
+    (∀ i : Fin (m+1) × Fin (m+1),
+      ((stoppedReference ν A m).map (fun z => stoppedStatistic m z.2)) {i} ≠ 0 →
+      ∃ ε : ℝ, 0 < ε ∧ ∀ v ∈ cappedObservationImage criticalGapLaw ν
+        (fun d => criticalParameter d false) (fun d => criticalParameter d true) A m ρ,
+        ε ≤ v (some i))
+
+def CriticalPairGeometryStatement : Prop :=
+  ∀ (ρ δ : ℝ), 0 ≤ δ → δ ≤ 1/2 → δ ≤ ρ →
+    IsCompact (populationPairSet criticalGapLaw ρ δ) ∧
+    Convex ℝ (populationPairSet criticalGapLaw ρ δ) ∧
+    (populationPairSet criticalGapLaw ρ δ).Nonempty ∧
+    (∀ z ∈ populationPairSet criticalGapLaw ρ δ,
+      CappedPrior criticalGapLaw ρ (populationDualPrior criticalGapLaw z.1) ∧
+      CappedPrior criticalGapLaw ρ (populationDualPrior criticalGapLaw z.2) ∧
+      δ ≤ (∫ d, (populationDualPrior criticalGapLaw z.2 d : ℝ) ∂criticalGapLaw) -
+        (∫ d, (populationDualPrior criticalGapLaw z.1 d : ℝ) ∂criticalGapLaw)) ∧
+    ∀ (R E : Type) [MeasurableSpace R] [MeasurableSpace E]
+      (ν : Measure R) [IsProbabilityMeasure ν] (A : StoppedProcedure R E)
+      (m : ℕ), (∀ z, A.stop z ≤ m) →
+      ∃ H : PopulationDual criticalGapLaw × PopulationDual criticalGapLaw → ℝ,
+        Continuous H ∧ ConvexOn ℝ (populationPairSet criticalGapLaw ρ δ) H ∧
+        ∀ z ∈ populationPairSet criticalGapLaw ρ δ,
+          H z = 1-(hellingerAffinity
+            (cappedTranscriptLaw criticalGapLaw ν
+              (fun d => criticalParameter d false) (fun d => criticalParameter d true)
+              (populationDualPrior criticalGapLaw z.1) A m)
+            (cappedTranscriptLaw criticalGapLaw ν
+              (fun d => criticalParameter d false) (fun d => criticalParameter d true)
+              (populationDualPrior criticalGapLaw z.2) A m)).toReal ∧ H z ∈ Set.Icc 0 1
 
 end ThresholdHC.CriticalEntropy

@@ -65,6 +65,15 @@ An equality for an invented finite probability vector alone would not establish
 this reduction. Impossible cells are identified explicitly, and the finite-cap
 assumption remains visible in the exact targets.
 
+Compactness is now checked against the actual population class as well. The
+formal proof uses the weak dual of `L²`, recovers bounded measurable priors by
+Riesz representation, and proves that every admissible prior is covered. The
+target integral is retained as a separate finite coordinate: two populations
+may have the same observation law and different targets. Continuity and
+convexity of the actual Hellinger constraints are then derived from the
+likelihood formulas. These are inputs to the common-pair argument; they do not
+replace its still-pending statistical risk and policy-mixture bounds.
+
 ## Freeze established questions and preserve corrections
 
 The original [brief](../../BRIEF.md) required fixed target statements and

@@ -210,12 +210,38 @@ two actual measures with respect to their sum, equals the finite categorical
 affinity. It also proves exact expected-work preservation. The critical-law
 specializations derive parameter positivity from the constructed gap law;
 no density, sufficiency, information, or cost-preservation identity is assumed.
-Weak-star compactness, affine continuity, the finite convex risk comparison,
-and statistical common-pair instantiation remain separate obligations.
+[PopulationCompactness.lean](../lean/ThresholdHC/CriticalEntropy/PopulationCompactness.lean)
+now constructs a compact convex model of all admissible populations in the weak
+dual of `L²`. Indicator constraints force its Riesz representative to lie in
+`[0,1/2]` almost everywhere. Clipping supplies a measurable pointwise-bounded
+prior without changing integrals. Conversely every admissible prior is
+represented, and its target is exactly evaluation against the constant one.
+This supplies the compactness needed by the argument using an explicit topology;
+it does not assume an identification of the dual of `L¹` with `L∞`.
 
-The [eleventh audit record](../results/critical_components_011.json) checks
-twenty-three exact targets and all 351 public declarations using only the
-permitted standard axioms. The [tenth record](../results/critical_components_010.json)
+[ObservationAffine.lean](../lean/ThresholdHC/CriticalEntropy/ObservationAffine.lean)
+derives affine continuous coordinates from the actual word likelihoods. The
+finite image contains the target integral separately from the observation
+probabilities, so identical observations do not force identical targets.
+Its compactness and convexity follow from the proved population representation.
+Every active observation coordinate has a uniform positive lower bound on this
+image; the reference law identifies impossible coordinates independently of
+the population.
+
+[CriticalGeometry.lean](../lean/ThresholdHC/CriticalEntropy/CriticalGeometry.lean)
+combines these facts on the same separated-pair set for every capped policy.
+The set is nonempty, compact and convex; its members are actual admissible
+population pairs with the required target separation. The canonical squared
+Hellinger distance has a continuous extension and is convex on that set.
+Affinity is proved at most one before conversion from extended nonnegative
+reals, and the resulting distance lies in `[0,1]`. No risk comparison, policy
+mixture bound or common hard pair is assumed or concluded by these targets.
+
+The [twelfth audit record](../results/critical_components_012.json) checks
+twenty-six exact targets and all 413 public declarations using only the
+permitted standard axioms. The
+[eleventh record](../results/critical_components_011.json) preserves the
+twenty-three-target transcript-reduction checkpoint. The [tenth record](../results/critical_components_010.json)
 preserves the twenty-target base-cost checkpoint. The
 [ninth record](../results/critical_components_009.json) preserves
 the finite-scale checkpoint. The [eighth record](../results/critical_components_008.json) preserves
@@ -244,9 +270,9 @@ proof.
 | First-observation normalization | The activation event is seed-only. Under its conditional seed law, `Z=pY+c` preserves means and changes null work to `W0/p`; the zero-activation case contradicts the bias requirement. | Complete for the actual seed-conditioned procedure; see the current formal boundary above. |
 | Good-gap selection | The proof uses populations `(1/2)1_E` with `mu(E)=2rho`, respecting the lower subclass's pointwise cap. The excluded mass is at most `70m`. | Subset selection, good gaps, annulus averaging and the rarity-dependent scale count are proved. |
 | Sign-test restarts | The actual unused-suffix law, observable fixed-count repetition, sign-test errors and exact `n E T` work are Lean-checked. The finite-gap estimator entropy theorem constructs this reduction from conditional moments. | The finite-scale quadratic product theorem now derives these assumptions from uniform population guarantees. |
-| Finite observation reduction | At cap `m`, each seed/word cell has the integrated likelihood determined by `(T,heads)`. The multiplier cancels from conditional seed/word laws. | Formalize sufficiency, including arbitrary measurable seeds. |
+| Finite observation reduction | At cap `m`, each seed/word cell has the integrated likelihood determined by `(T,heads)`. The multiplier cancels from conditional seed/word laws. | Complete for the actual capped procedure and arbitrary measurable seed; see the current formal boundary above. |
 | Convex RMS comparison | Finite categorical probabilities are affine and positive; log moments are concave in the population and convex in the score/scale. Tail integration is used to obtain RMS, rather than substituting a confidence bound. | Kernel treatment of the minimax interchange and tail integrals remains open. |
-| One pair for all policies | The separated-pair set is compact convex in the weak-star topology. Squared Hellinger is continuous convex. A revealed finite policy mixture has exactly averaged Hellinger and null work. Finite-simplex minimax supplies the finite intersection property. | Formalize the compactness and minimax steps; a policy-dependent hard pair alone would not suffice. |
+| One pair for all policies | The separated-pair set is compact convex in the weak-star topology. Squared Hellinger is continuous convex. A revealed finite policy mixture has exactly averaged Hellinger and null work. Finite-simplex minimax supplies the finite intersection property. | Actual population compactness, affine observation coordinates and continuous convex Hellinger constraints are proved. Statistical risk comparison, revealed-mixture identities and common-pair instantiation remain pending. |
 | Interacting population transfer | Leaf likelihoods factor by genuine coin even with interleaving. The midpoint hybrid simulations use independent auxiliary tapes. Since midpoint `q<=1/2`, its one-coin law dominates half the null law, giving the required cost direction. | Formalize the finite-prefix decomposition and simulation. Existing finite examples do not prove the general statement. |
 | Unbounded stopping | The same pair applies at every cap. Uniform work gives termination separately under both endpoints; terminal events are approximated by stopped-prefix events. | Prove the limit without assuming termination transfers from one endpoint to the other. |
 | Upper construction | Wrong-sign likelihoods are supermartingales; forced-majority error is bounded on the complete iid tape. Positive work is integrated under a global mass constraint, not a pointwise bound on `q`. The random telescope and Poisson replication use separately finite moments. | Full probability and algorithm realization remain paper arguments. |

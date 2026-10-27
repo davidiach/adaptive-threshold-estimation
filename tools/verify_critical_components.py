@@ -29,7 +29,9 @@ MODULES = ("Packing", "CommonPoint", "BernoulliPrefix", "EventInformation", "Sig
            "CriticalAnnuli", "CriticalScale", "ActivationModel", "Activation", "ActivationCost",
            "ScaleAsymptotics", "BaseCost",
            "ObservationModel", "FiniteObservation", "CappedObservation", "FiniteSufficiency",
-           "LikelihoodBounds", "HellingerModel", "Hellinger", "ObservationInformation", "Specification")
+           "LikelihoodBounds", "HellingerModel", "Hellinger", "ObservationInformation",
+           "PopulationGeometryModel", "PopulationCompactness", "FiniteGeometryModel", "FiniteGeometry",
+           "ObservationGeometryModel", "LikelihoodAffine", "ObservationAffine", "HellingerGeometry", "CriticalGeometry", "Specification")
 NAMESPACE = "ThresholdHC.CriticalEntropy."
 ROOTS = {
     NAMESPACE + name for name in (
@@ -151,6 +153,27 @@ ROOTS = {
         "capped_observation_work", "critical_observation_reconstruction", "critical_observation_finite_affinity",
         "critical_observation_work", "CriticalObservationReconstructionStatement", "CriticalObservationAffinityStatement",
         "CriticalObservationWorkStatement",
+        "PopulationDual", "populationDualSet", "populationDualDensity",
+        "populationDualPrior", "populationMomentMap", "boundedPriorMomentSet",
+        "populationTarget", "populationPairSet", "populationDualSet_compact",
+        "populationDualSet_nonempty", "populationDualSet_convex", "populationDualDensity_test",
+        "populationDualDensity_setIntegral", "populationDualDensity_bounds", "populationDualPrior_measurable",
+        "populationDualPrior_le_half", "populationDualPrior_ae", "populationDualPrior_mass",
+        "populationDualPrior_admissible", "populationDualSet_covers_priors", "populationDualPrior_test",
+        "populationMomentMap_apply", "populationMomentMap_continuous", "populationMomentImage_compact_convex",
+        "boundedPriorMomentSet_eq_image", "boundedPriorMomentSet_compact_convex", "populationPairSet_compact_convex",
+        "populationPairSet_nonempty", "realFiniteAffinity", "sqrt_product_scale",
+        "sqrt_product_mix", "realFiniteAffinity_continuous", "realFiniteAffinity_concave",
+        "realFiniteAffinity_le_one", "realFiniteDistance_convex", "finiteAffinity_toReal",
+        "cappedObservationVector", "cappedObservationImage", "wordLikelihood_real_bounds",
+        "wordLikelihood_real_memLp", "populationWordLikelihood_real", "populationWordLikelihood_affine_moment",
+        "cappedStatisticLaw_real_mass", "cappedStatisticLaw_affine_moment", "cappedObservationVector_affine_coordinates",
+        "cappedObservationVector_congr_ae", "capped_observation_affine_representation", "capped_observation_image_compact_convex",
+        "capped_observation_image_nonempty", "capped_observation_image_positive", "capped_observation_uniform_positive",
+        "capped_statistic_probabilities", "capped_observation_affinity_real", "capped_observation_hellinger_geometry",
+        "capped_observation_affinity_le_one", "critical_population_representation", "critical_observation_geometry",
+        "populationPairSet_realization", "critical_pair_hellinger_geometry", "CriticalPopulationRepresentationStatement",
+        "CriticalObservationGeometryStatement", "CriticalPairGeometryStatement",
     )
 }
 
@@ -206,10 +229,11 @@ def main() -> int:
               for p in protected}
     status = {
         "valid": False,
-        "scope": "Critical quadratic single-coin variance and raw-moment base-cost bounds for all rarities, derived from actual observable population experiments; activation, scale selection, restarts, sign entropy, finite stopped-observation reconstruction, canonical affinity and work preservation, and abstract common point",
+        "scope": "Critical quadratic single-coin variance and raw-moment base-cost bounds for all rarities, derived from actual observable population experiments; activation, scale selection, restarts, sign entropy, finite stopped-observation reconstruction, canonical affinity and work preservation, actual population compactness and affine/convex observation geometry, and abstract common point",
         "full_critical_minimax_theorem_verified": False,
         "base_cost_theorem_verified": False,
         "capped_observation_reduction_verified": False,
+        "population_observation_geometry_verified": False,
         "finite_gap_sign_testing_theorem_verified": False,
         "stopped_suffix_independence_verified": False,
         "sequential_restart_law_and_work_verified": False,
@@ -250,7 +274,7 @@ def main() -> int:
     if any(hashlib.sha256((ROOT / rel).read_bytes()).hexdigest() != digest
            for rel, digest in hashes.items()):
         raise ValueError("Sources changed during audit")
-    status.update(valid=True, exact_component_targets=23, audited_declarations=len(ROOTS),
+    status.update(valid=True, exact_component_targets=26, audited_declarations=len(ROOTS),
                   finite_gap_sign_testing_theorem_verified=True,
                   stopped_suffix_independence_verified=True,
                   sequential_restart_law_and_work_verified=True,
@@ -267,9 +291,10 @@ def main() -> int:
                   activation_normalization_verified=True,
                   critical_raw_base_cost_verified=True,
                   base_cost_theorem_verified=True,
-                  capped_observation_reduction_verified=True)
+                  capped_observation_reduction_verified=True,
+                  population_observation_geometry_verified=True)
     status_path.write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"valid": True, "exact_component_targets": 23,
+    print(json.dumps({"valid": True, "exact_component_targets": 26,
                       "audited_declarations": len(ROOTS), "evidence": str(output),
                       "finite_gap_sign_testing_theorem_verified": True,
                       "stopped_suffix_independence_verified": True,
@@ -288,6 +313,7 @@ def main() -> int:
                       "critical_raw_base_cost_verified": True,
                       "base_cost_theorem_verified": True,
                       "capped_observation_reduction_verified": True,
+                      "population_observation_geometry_verified": True,
                       "full_critical_minimax_theorem_verified": False}))
     return 0
 
