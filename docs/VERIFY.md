@@ -45,6 +45,7 @@ python tools/verify_uniform_arithmetic.py
 python tools/verify_uniform713.py --sequential --require-complete
 python tools/verify_tier3.py --sequential --require-complete
 python tools/verify_tier4.py --sequential --require-complete
+python tools/verify_tier5.py --sequential --require-complete
 ```
 
 The first command rebuilds the scored proof modules and runs the frozen scorer plus an independent audit. The arithmetic command checks the separate scalar lemmas. The final three commands enforce complete proofs of their exact specifications and check their source locks and transitive axioms. Passing arithmetic or numerical checks alone does not establish those probability theorems.
@@ -57,6 +58,7 @@ The first command rebuilds the scored proof modules and runs the frozen scorer p
 | Full 713 theorem | [uniform713_status.json](../results/uniform713_status.json) |
 | Randomized stopping and optimizer | [tier3_status.json](../results/tier3_status.json) |
 | Full infinite-transcript KL | [tier4_status.json](../results/tier4_status.json) |
+| Unrestricted adaptive-creation KL (9 targets, 109 declaration checks) | [tier5_status.json](../results/tier5_status.json) |
 | Input preservation | [MANIFEST_SHA256.txt](../inputs/next-phase/MANIFEST_SHA256.txt) |
 | Frozen specifications and tools | [FROZEN.sha256](../FROZEN.sha256), [TIER3_FROZEN.sha256](../TIER3_FROZEN.sha256), [TIER4_FROZEN.sha256](../TIER4_FROZEN.sha256) |
 | Workflow definition | [checks.yml](../.github/workflows/checks.yml) |

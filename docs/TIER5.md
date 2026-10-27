@@ -54,14 +54,27 @@ audited 25 declarations. The complete local audit now passes **9/9 targets and
 109/109 declaration checks**, with all sources unchanged during verification.
 The 13-file Tier 5 lock and every prior frozen file pass their hash checks.
 Evidence is saved in `results/tier5_checkpoint_001.json` and
-`results/tier5_audit_001.log`. Independent Linux CI is pending.
+`results/tier5_audit_001.log`.
+
+Independent Linux CI passed on proof commit
+`bd446de9255fce6b7ea000cf44e933cd38733009` in
+[run 40475536939](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40475536939).
+It independently reports 9/9 Tier 5 targets and 109/109 declaration checks.
+The same run also passes the original 121/121-point suite, the 713 theorem's
+130 checks, Tier 3's 11 targets and 152 checks, Tier 4's 6 targets and 65 checks,
+and the numerical and validation tests. The extracted CI evidence is stored in
+`results/tier5_linux_checkpoint.json`.
+
+The eight-hour-or-landmark goal reached its landmark in about 36 minutes:
+all locked targets proved, independent final semantic reviews passed, standard
+axioms only, earlier frozen results preserved, and Linux verification successful.
 
 The main theorem proves, for the actual joint seed and infinite observation tape,
 
-\[
+$$
 D_{\mathrm{KL}}(P_T\Vert Q_T)
 \le \frac{128}{225}h^2\,\mathbb E_P[W].
-\]
+$$
 
 The hypotheses are measurable policies and environments, the explicit realized
 prefix laws, `0 < h`, `0 < d <= 1/2`, `0 <= eta <= 1/8`, and
@@ -84,6 +97,18 @@ creation bound is exceeded with positive probability.
 This extends the information/work theorem. The prior 713 and other frozen
 theorems retain their existing statements; Tier 5 does not silently change
 their scope.
+
+The theorem applies to any probability laws realizing the specified independent
+latent-sign cylinders. Normalization and consistency are proved for every
+admissible policy and environment. The concrete fresh-coin example proves
+nonvacuity; constructing a canonical infinite process for every admissible
+environment is not a target of this extension.
+
+Two independent final reviews checked the exact combined theorem and the
+finite/infinite bridges. They confirmed that the finite cap is derived per seed
+and horizon, that density and absolute continuity are proved, that only `P`
+stopping is used, and that the fresh-coin example has no deterministic creation
+cap. Neither review found a substantive issue.
 
 Run `python tools/verify_tier5.py --sequential --require-complete` to require
 all nine targets. Partial checkpoints omit `--require-complete` and must report

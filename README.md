@@ -37,11 +37,12 @@ In the information rows, $`\mathsf P_\pm`$ are transcript laws with sign priors 
 | Uniform variance–work lower bound | $`V\overline W\ge I^2/16`$ for every unbiased estimator with both uniform bounds finite. | paper proof | [Theorem 2; §6](paper/paper.tex#L774). Same review scope. |
 | Unbiased construction, $`(k_1,k_2)=(1/4,1)`$ | $`I<\infty\Rightarrow\mathbb E Y=\theta,`$<br>$`\mathrm{Var}(Y)\mathbb E W<713I^2`$. | Lean-checked | `full_bound_713` in [FullBound.lean](lean/ThresholdHC/Uniform713/FullBound.lean); [assumptions](lean/ThresholdHC/Uniform713/Specification.lean). |
 | Full transcript information, finite coin set | $`\mathbb E_+T<\infty\Rightarrow`$<br>$`\mathrm{KL}(\mathsf P_+,\mathsf P_-)\le`$<br>$`(128/225)h^2\mathbb E_+T`$. | Lean-checked | `infinite_kl_bound` in [Full.lean](lean/ThresholdHC/Tier4/Full.lean); [exact joint-law specification](lean/ThresholdHC/Tier4/Model.lean). |
+| Full transcript information, unrestricted adaptive coin creation | The same KL/work bound with arbitrary natural-number coin labels, measurable common random environments, revisiting and interleaving. Only plus-law finite expected work is required. | Lean-checked | `creation_infinite_kl_bound` in [Full.lean](lean/ThresholdHC/Tier5/Full.lean); [exact model](lean/ThresholdHC/Tier5/Model.lean), [proof and verification scope](docs/TIER5.md). |
 | Randomized, unbounded stopping/testing, finite coin set | $`\mathbb E_+T<\infty\Rightarrow T<\infty`$ a.s. under both laws; $`\mathrm{kl}(1-\delta,\delta)\le`$<br>$`(128/225)h^2\mathbb E_+T`$. | Lean-checked | `unbounded_stopping` in [StoppingBase.lean](lean/ThresholdHC/Tier3/StoppingBase.lean); `unbounded_testing` in [Stopping.lean](lean/ThresholdHC/Tier3/Stopping.lean). |
 | Rare-event optimizer, arbitrary laws | $`v_*(d)=\min\{1,t^2/d^2\}`$ maximizes $`\mathbb E_\mu\min\{v(D),h\sqrt{v(D)}/D\}`$ over measurable $`0\le v\le1`$, $`\mathbb E_\mu v(D)\le\rho`$. | Lean-checked | `arbitrary_law_optimizer` in [Optimizer.lean](lean/ThresholdHC/Tier3/Optimizer.lean); [specification](lean/ThresholdHC/Tier3/OptimizerModel.lean). |
 | Unknown-rarity limitation | No $`\rho`$-independent estimator family has RMS error $`\le C\min\{\rho,\sqrt\rho/(d\sqrt B)\}`$ uniformly over $`B\ge1`$, $`0<\rho\le1/4`$, $`0\le\theta\le\rho`$. | paper proof | [Argument](docs/process/TRACK_D.md#an-obstruction-to-completely-uniform-adaptation-to-unknown-rarity): known $`0<d<1/2`$, a.s. stopping, universal finite $`C`$. [Independently agent-reviewed](proposals/RESEARCH_REVIEW.md#unknown-rarity-adaptation-obstruction). |
 
-Paper proofs in v4 have component agent review, but the consolidated manuscript has no independent specialist review. The Lean rows certify their linked specifications, not the entire paper. The stopping and transcript bounds allow arbitrary measurable random seeds and unbounded horizons, but retain a fixed finite set of coins; the full-transcript bound uses Mathlib's measure-theoretic KL. The 713 theorem covers the untruncated estimator and arbitrary magnitude/sign laws. See [precise scopes](docs/RESULTS.md) and [updates to the unchanged paper](paper/UPDATES.md).
+Paper proofs in v4 have component agent review, but the consolidated manuscript has no independent specialist review. The Lean rows certify their linked specifications, not the entire paper. Tier 5 removes the fixed finite coin set from the full-transcript information/work theorem, using Mathlib's measure-theoretic KL. The earlier stopping/testing statements keep their original finite-family scope. The 713 theorem covers the untruncated estimator and arbitrary magnitude/sign laws. See [precise scopes](docs/RESULTS.md) and [updates to the unchanged paper](paper/UPDATES.md).
 
 </details>
 
@@ -65,6 +66,7 @@ python tools/verify_lean_checkpoint.py --sequential
 python tools/verify_uniform713.py --sequential --require-complete
 python tools/verify_tier3.py --sequential --require-complete
 python tools/verify_tier4.py --sequential --require-complete
+python tools/verify_tier5.py --sequential --require-complete
 python tools/check_targets_numeric.py
 python tools/check_targets2_numeric.py
 python -m unittest discover -s tools -p 'test_*.py' -v

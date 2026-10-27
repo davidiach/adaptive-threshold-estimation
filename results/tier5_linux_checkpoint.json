@@ -1,0 +1,42 @@
+{
+  "verified_at_utc": "2026-10-27 08:55:32 UTC",
+  "proof_commit": "bd446de9255fce6b7ea000cf44e933cd38733009",
+  "goal_started_at_utc": "2026-10-27 08:19:16 UTC",
+  "target_count": 9,
+  "declaration_checks": 109,
+  "allowed_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "runs": [
+    {
+      "id": 40475536939,
+      "head_commit": "bd446de9255fce6b7ea000cf44e933cd38733009",
+      "branch": "verify/tier5-landmark",
+      "url": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40475536939",
+      "jobs": [
+        {
+          "id": 122092739103,
+          "name": "numerical-evidence",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "id": 122092739441,
+          "name": "lean-kernel",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "lean_evidence": [
+        "2026-10-27T08:48:03.0638217Z valid=True build_ok=True frozen_ok=True audit_exit=0 complete=True points=121/121 proven=46/46 tier1=60/60 tier2=61/61",
+        "2026-10-27T08:48:10.6163095Z Scalar Lean audit: valid=True, reports=7/7, exit=0",
+        "2026-10-27T08:49:55.7490947Z 713 audit: valid=True, complete=True, roots=130/130",
+        "2026-10-27T08:51:29.4066415Z Tier 3 audit: valid=True, complete=True, targets=11/11, roots=152/152",
+        "2026-10-27T08:52:33.7793310Z Tier 4 audit: valid=True, complete=True, targets=6/6, roots=65/65",
+        "2026-10-27T08:54:53.0859207Z Tier 5 audit: valid=True, complete=True, targets=9/9, roots=109/109"
+      ]
+    }
+  ]
+}
