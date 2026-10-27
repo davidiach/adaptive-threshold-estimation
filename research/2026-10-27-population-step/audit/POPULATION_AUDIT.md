@@ -1,0 +1,53 @@
+# Independent audit of the population-route results
+
+These are paper-proof findings by an agent that did not author the claims. They are neither Lean formalization nor external specialist review. The accepted final proof hashes are recorded in `FINAL_PROOF_HASHES.json`; finite diagnostics are in `population_arithmetic.json`, with their own checkpoint hashes. A later source edit requires renewed review. No claim here establishes priority.
+
+## Directional information and the radial obstruction
+
+The complete argument in `lower/population_information.tex` was read, including the direct-sum lemma, expected-budget testing corollary, and the observable ruin construction. No blocking mathematical defect was found.
+
+For a nondegenerate finite parameter interval, feasibility of both endpoints bounds the affine direction u in absolute value by the reciprocal interval length. With gaps at most a<1/2, every fixed finite word has probability bounded below uniformly over the path. Thus finite-prefix density derivatives and their seed integrals are legitimate. The fixed seed may have a general distribution: conditional on it, the action/stopping choices are deterministic functions of observed histories, and only the finite bit branches contribute likelihood factors.
+
+The factorization into local coin word probabilities is correct for arbitrary adaptive interleaving. The next score increment has conditional mean zero. Because the horizon is finite and scores are bounded, cross terms vanish without an optional-stopping or infinite-horizon differentiability premise.
+
+The reference-simulation step is valid as an information inequality. At a fixed reference t, all coins except the selected creation-index coin are simulated from that reference population as independent seed randomness. Their law is then held fixed when differentiating the one genuine coin. The single-coin premise quantifies over every such fixed randomized policy and may grant the reference t. This is not an implementation that gives the original population estimator access to q. A coin never created contributes zero information and zero work. Summing over at most N first-observed coins gives the claimed direct sum.
+
+The testing consequence uses the L1 derivative bound `TV <= (1/2) integral sqrt(I_t) dt`. The expected-work bound applies to each capped prefix because its work is no greater than the original work. The passage to terminal events requires termination at both endpoints, which follows from the stated finite expected work when nontermination is assigned infinite work. Intersecting any terminal event with `{T<=N}` and letting N increase is valid; no uniform stopping bound over the entire parameter interval is required. Finally, the midpoint test has summed errors at most `8R^2/Delta^2`, giving `R>=Delta/4` when TV<=1/2.
+
+For the quadratic radial path, q_eta=(1+eta)w_b/2 has global mass `(1+eta)rho/2<=3rho/4` and values at most 3/4 on eta in [-1/2,1/2]. It is an admissible one-dimensional submodel. The test knows b through the known law and rho, and sees only the genuine coin's bits; it never observes D or eta.
+
+The walk stopped at -1 or M has the displayed gambler's-ruin probabilities. Their lower/upper bounds use `d<=1/4`; they must not be advertised with the same constants at arbitrary a. The positive bound is particularly useful: the exact expected positive work is in fact at most `2(M+1)` from the stated probability bound, so the draft's additional `1/(2d)` is harmless slack. Negative work is at most `1/(2d)`.
+
+Integrating the negative false-trigger probability gives `F < 1/[a^2(M+1)^3] <= b^3/(512a^5)`. The positive contribution satisfies `A_+ >=8b^2/(9a)`, and at a=1/4 their ratio is at most 9/64. Therefore `z'_0>=3A_+/4`, `z_0<=5A_+/4`, and the indicator Fisher information is at least `2b^2/(5a)`. Both boundaries have positive conditional hitting probabilities for every gap, so `0<z_0<1`; the information denominator is legitimate.
+
+The work calculation gives `E_0 tau <=8+16+1/2<25`, using exact integration and `exp(-ell)(1+2ell)<=2`. The identity `rho=(b/a)^2 u`, `L=u-log u`, with `log u<=u/2` for u>=1, gives `b^2>=a^2rho/(2L)`. This proves the ratio lower bound `a^2rho/(32L)` with conservative constants. The cost guarantee used here is at eta=0; it is not silently a uniform work guarantee for every q in the full model.
+
+Finite-cap passage is sound. For N>=M, the indicator probabilities are positive and below one. The conditional success probabilities converge monotonically to their stopped counterparts. The eta derivative is an integral of their difference weighted by bounded q_0; dominated convergence handles that difference without claiming it is monotone. Expected capped work increases to the finite stopped expectation. Indicator information therefore converges, and full finite-prefix information dominates it. No differentiation of an unbounded stopping-time likelihood is needed.
+
+**DISPROVED (paper proof):** the particular radial directional information envelope cannot be uniformly upper-bounded by a constant times `a^2rho/[L(1+log L)]` as rho tends to zero. This invalidates that proposed route to an extra-log population converse. It does not disprove an extra-log minimax lower bound obtained by other directions, and does not prove or refute the candidate arbitrary-q Psi minimax law.
+
+### Added calibrated radial upper bound
+
+The subsequent calibrated-estimator corollary was separately read and accepted. Its output `Y=rho(A-F)/(2d0)` uses known model integrals, with `d0=z'_0>=2b^2/(3a)>0`. The identity `z_eta=F+(1+eta)d0` proves unbiasedness throughout the known radial submodel. The previous inequalities imply `F<=d0/3` and `z_eta<=11d0/6`, yielding the stated variance at most `(11/2)rho L`. With the sharper positive work bound, uniform work throughout this radial interval is at most `4+(3/2)(16+1/2)=28.75<29`.
+
+The centered compound-Poisson construction correctly uses a raw centered second moment, not only variance. Its extra squared mean displacement is at most `rho^2/16<=rho L/64`; hence the overall constant is `29*(11/2+1/64)=10237/64<160`. It handles every B>0, including Poisson intensity below one, and the constant rho/2 gives the stated trivial radius rho/4 for this submodel's target interval. Thus the displayed candidate-order upper bound is proved for this **known one-dimensional radial family**, while the unrestricted all-q problem remains open.
+
+The calibration perturbation calculation also checks: with `|dhat-d0|<=d0/2` and `|A-F|<=1`, each output changes by at most the displayed zeta. For the same Poisson count, the final difference is bounded by `zeta N/lambda`, whose RMS is `zeta sqrt(1+1/lambda)`. The final text expressly fixes b,M in this perturbation calculation; it does not claim an implemented root finder, certified integer-ceiling decision, or measured calibration overhead. Exact model-integral evaluation is an explicit ideal computation assumption.
+
+## Fixed-feature control-variate saddle theorem
+
+The entire `upper/proof.tex` was read. Its coefficient set really is all real numbers; no unmentioned bounded-coefficient assumption is needed. Conditional second moments are finite at each of finitely many signed gaps, so covariance and raw second moments are affine continuous functions of q on compact Q. The variance subtracts the square of the affine target, making it concave in q.
+
+The common positive variance v gives uniform coercivity: `F(beta)>=v beta^2-2C|beta|` for bounded C. Hence a finite minimizing beta exists. The active-slope proof is valid: strict same-sign slopes on the compact active set have a common margin in a neighborhood, while the compact complement has a strict value gap. A sufficiently small perturbation lowers all branches, contradicting minimality. Two active slopes can therefore be mixed to zero. Concavity in q gives the full saddle value at the mixture, and affinity of the covariance makes its beta derivative zero. No unsupported minimax exchange is used.
+
+The worst-case q_star does not depend on the realized pilot coefficient. At that same q_star, each finite pilot coefficient has production variance at least F_star/n. Nonnegative conditional squared errors can be integrated even when the resulting MSE is infinite. If a completely arbitrary pilot coefficient is not integrable, conditional fiber means alone should not be interpreted as an unconditional unbiasedness claim; the theorem needs only the squared-error identity. The explicit finite pilot construction is bounded at fixed positive gaps and has the claimed unconditional unbiasedness.
+
+The three-flip interpolation coefficients solve both signed conditional expectation equations. Direct enumeration confirms the displayed second moments, covariance, and `v=(1-m2)(m2+1/3)`. Distinct positive gaps and positive masses ensure 0<m2<1, even when the larger gap is 1/2. The pilot plug-in formula follows by completing the production variance square and using its independent coefficient variance. All pilot flips are charged, and the same-budget comparison requires the stated deterministic pilot cost.
+
+The result rules out an independent pilot improving worst-case raw MSE by selecting only a coefficient for these fixed unbiased features. Clipping, bias, pilot-dependent acquisition or features, adaptive production counts, and nonlinear aggregation remain excluded. This is a standard convex saddle principle applied to a specific hidden-gap construction; no novelty or unrestricted impossibility claim follows.
+
+## Exact arithmetic diagnostics
+
+The independently written `check_population.py` ran successfully with Python 3.12.2. It solves 32 finite gambler's-ruin recurrences by exact Fraction Gaussian elimination, then compares their probabilities and expected work with the closed formulas. It separately enumerates all eight bit strings, both signs and two latent magnitudes in eight feasible two-gap population cases, including an endpoint gap 1/2, to check the control-variate moment identities. The first checkpoint had four further rational constant comparisons; the final recheck has ten, including six for the added radial estimator. All pass. It uses no seeds, floating point, optimizer, or Monte Carlo. Historical `population_arithmetic.json` is preserved; `population_recheck.json` pins the final mathematical sources.
+
+These finite checks are useful arithmetic diagnostics; the general theorem and limiting arguments are justified by the written analysis above. No numerical dynamic program or finite enumeration is substituted for the unrestricted population problem.

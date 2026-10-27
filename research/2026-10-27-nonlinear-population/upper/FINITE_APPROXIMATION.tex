@@ -1,0 +1,252 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\E}{\mathbb E}
+\newcommand{\TV}{\operatorname{TV}}
+\title{A faithful finite approximation of the expected-budget experiment}
+\author{Research checkpoint: unrestricted population model}
+\date{27 October 2026}
+\begin{document}\maketitle
+\paragraph{Evidence and purpose.}
+These are complete written arguments, not Lean-checked or externally
+peer-reviewed results. No novelty claim is made. The result justifies a
+finite approximation route for the actual unrestricted minimax problem. It
+does not identify its rate or make a finite computation an exact certificate
+for an unbounded experiment.
+
+\paragraph{Model and computational access.}
+Fix a known probability law $\mu$ on $(0,1/2]$ and known $0<\rho\le1/4$.
+A fresh coin draws $D\sim\mu$ and $S\mid D=d\sim\mathrm{Ber}(q(d))$, and
+supplies conditionally iid $\mathrm{Ber}(1/2+(2S-1)D)$ bits. The allocation
+$q$ is measurable, $0\le q\le1$, and $\theta(q)=\int q\,d\mu\le\rho$.
+An algorithm sees bits and identities only, and may create, interleave,
+revisit, abandon and stop adaptively, with arbitrary independent seeds.
+Every actual bit is charged; deterministic computation is not charged.
+
+For the mathematical approximation we grant exact values of the masses of
+the finitely many chosen bins, and exact real arithmetic on the resulting
+finite coefficients. This is an explicit known-law oracle convention.
+An arbitrary measure given without an effective representation need not have
+computable bin masses. An executable certified computation would need exact
+coefficients or separately certified coefficient errors; neither effective
+computability for every measure nor a finite-program solve is claimed here.
+The quadratic law with rational endpoints has exact rational bin masses.
+Knowing the law never reveals an individual coin's latent magnitude.
+
+Write $V_\mu(B)=R_{\mu,\rho}(B)^2$ for minimax squared error at uniform
+expected budget $B>0$. We may restrict all outputs to $[0,\rho]$: projection
+onto this interval decreases squared loss for every admissible target and
+does not change work. Let $V_{\mu,N}(B)$ impose also at most $N$ total flips,
+where $N\ge1$ is an integer. This is a total cap, not a per-coin cap.
+
+Choose a finite interval partition of $(0,1/2]$, retain its positive-mass bins
+$A_1,\ldots,A_m$, and choose pairwise-distinct representatives
+$d_j\in(0,1/2]$ such that
+$|d-d_j|\le\eta$ on $A_j$. Put $\pi_j=\mu(A_j)$ and
+$\mu_\eta=\sum_j\pi_j\delta_{d_j}$. Such partitions and distinct interior
+representatives exist for every $\eta>0$; discarded bins are $\mu$-null and
+all allocation lifts may be defined arbitrarily on them. For
+$0<\gamma\le1$, define the finite parameter set
+\[
+ Q_\gamma=\{q\in(\gamma\mathbb Z_{\ge0})^m:
+                    0\le q_j\le1,\ \sum_j\pi_jq_j\le\rho\}.
+\]
+Let $G_{N,\eta,\gamma}(B)$ be the minimax squared error on this finite
+parameter set and rounded magnitude law, using the full adaptive population
+experiment with at most $N$ total flips and uniform expected work at most
+$B$. The actual representatives and bin masses, not merely $\eta$, are part
+of this notation. The finite experiment still hides every sampled type.
+
+\begin{theorem}[Explicit expected-budget approximation]\label{thm:approx}
+Put
+\[
+ C=N^2(\eta+\gamma),\qquad
+ E=\rho^2N(\eta+\gamma)+2\rho\gamma.
+\]
+Then
+\[
+ \left|V_\mu(B)-G_{N,\eta,\gamma}(B)\right|
+ \le \frac{\rho^2B}{N}+E+
+                  \frac{\rho^2 C}{4(B+C)}.                 \tag{1}
+\]
+In particular, for fixed $\mu,\rho,B>0$, taking $N\to\infty$ and partitions
+with $\eta=N^{-3}$ and grids $\gamma=N^{-3}$ makes the right side tend to
+zero. Each approximating experiment has a finite-dimensional convex
+minimax formulation retaining all adaptive coin allocations and exactly
+the specified uniform expected-work constraint.
+\end{theorem}
+
+\begin{lemma}[Truncation preserves the expected-budget comparison]
+\[
+ V_\mu(B)\le V_{\mu,N}(B)
+        \le V_\mu(B)+\rho^2B/N.
+\]
+\end{lemma}
+\begin{proof}
+The first inequality is inclusion of policy classes. For any nearly optimal
+expected-budget policy, follow it until it terminates or reaches $N$ flips.
+If it has not terminated by that point, output $\rho/2$. Work only decreases.
+On $\{T\le N\}$ its clipped output is unchanged; on $\{T>N\}$ the squared
+loss increase is at most $\rho^2$. Uniformly in $q$, Markov's inequality
+gives $\mathbb P_q(T>N)\le B/N$. Take suprema and then the infimum. The
+original finite expected budget implies almost-sure finite stopping work;
+the truncated procedure terminates after at most $N$ observations regardless.
+No deterministic work cap is inferred for the original procedure.
+\end{proof}
+
+\begin{lemma}[Uniform hidden-magnitude rounding]
+For every original allocation $q$, define
+$\bar q_j=\pi_j^{-1}\int_{A_j}q\,d\mu$. This allocation is admissible for
+$\mu_\eta$ and preserves $\theta$ exactly. Conversely, any finite allocation
+$\bar q$ lifts to $q(d)=\bar q_j$ on $A_j$, preserving feasibility and target.
+For any fixed $N$-capped adaptive policy, the two transcript laws in either
+comparison have total variation at most $N\eta$. Their expected work differs
+by at most $N^2\eta$, and their squared risks differ by at most $\rho^2N\eta$.
+\end{lemma}
+\begin{proof}
+On each fresh coin draw its original $D$ and $S$ jointly, and replace $D$
+by its bin representative while retaining $S$. The rounded coin has exactly
+the required mixture allocation $\bar q$. Its probability of heads differs
+from the original by at most $\eta$, even after conditioning on both hidden
+variables. Couple each queried pair of bits using a fresh common uniform.
+Use the same independent policy seed. Until the first differing bit the two
+policies make the same decisions, visit the same coin identities and stop
+together. There are at most $N$ opportunities for a mismatch, each having
+conditional probability at most $\eta$. Thus the mismatch probability, and
+hence total variation, is at most $N\eta$. This holds under arbitrary
+cross-coin feedback, since the latent probability difference is pointwise
+bounded, not merely bounded before observations. The reverse lift uses the
+same coupling. Both work and squared loss are bounded respectively by $N$
+and $\rho^2$, and the target is unchanged, giving the two expectation bounds.
+Free unused identities may be removed: coins are indexed by first charged
+observation, so at most $N$ genuine coin tapes are needed.
+\end{proof}
+
+\begin{lemma}[A rarity-preserving finite parameter grid]
+For any admissible allocation $\bar q$ under $\mu_\eta$, put
+$q_j^\downarrow=\gamma\lfloor\bar q_j/\gamma\rfloor$. Then
+$q^\downarrow\in Q_\gamma$,
+$0\le\theta(\bar q)-\theta(q^\downarrow)\le\gamma$, and every fixed
+$N$-capped policy satisfies
+\[
+ \TV(P_{\bar q},P_{q^\downarrow})\le N\gamma,
+ \quad |\E_{\bar q}T-\E_{q^\downarrow}T|\le N^2\gamma,
+\]
+and
+\[
+ |\E_{\bar q}(Z-\theta(\bar q))^2
+       -\E_{q^\downarrow}(Z-\theta(q^\downarrow))^2|
+       \le\rho^2N\gamma+2\rho\gamma.
+\]
+\end{lemma}
+\begin{proof}
+Rounding downward preserves the global rarity inequality, and the target
+change is at most $\sum_j\pi_j\gamma=\gamma$. On every new coin couple the
+hidden type identically and the two signs by a common uniform. Their sign
+disagreement probability is at most $\gamma$. If signs match, use identical
+bit tapes. At most $N$ fresh coins are actually queried. Union bounding their
+sign disagreements gives the transcript bound uniformly over adaptive
+policies. The work bound follows from $0\le T\le N$. First hold the target
+fixed to obtain the squared-loss change $\rho^2N\gamma$ from total variation;
+then use $|(z-\theta)^2-(z-\theta')^2|\le2\rho|\theta-\theta'|$ for
+$z,\theta,\theta'\in[0,\rho]$ to account for the target shift.
+\end{proof}
+
+\paragraph{Restoring the exact expected budget.}
+If a transferred policy has uniform expected work at most $B+D$ and squared
+risk at most $A$, independently run it with probability $p=B/(B+D)$ and
+otherwise output $\rho/2$ without observations. This is an allowed independent
+seed choice. Its work is at most $B$, and its squared risk is at most
+\[
+ pA+(1-p)\rho^2/4\le A+\rho^2D/[4(B+D)].                 \tag{2}
+\]
+This is an expected-work statement, not a high-probability or deterministic
+work guarantee. The extra error is explicit.
+
+\begin{proof}[Proof of Theorem~\ref{thm:approx}: value comparison]
+Start with a nearly optimal finite-grid policy at budget $B$. For any
+original $q$, average it within the bins and then round the averaged
+coordinates downward. The two preceding lemmas show that running this same
+policy on the original experiment has uniform squared risk at most
+$G_{N,\eta,\gamma}(B)+E$ and expected work at most $B+C$. Apply (2), then
+take the approximation error in the nearly optimal policy to zero. This gives
+\[
+ V_\mu(B)\le G_{N,\eta,\gamma}(B)+E+
+                         \rho^2C/[4(B+C)].                \tag{3}
+\]
+
+For the opposite direction start with an $N$-capped original policy at
+budget $B$. Every grid parameter has the bin-constant lift to the original
+class. Magnitude rounding alone gives squared risk increase at most
+$E_\eta=\rho^2N\eta$ and work increase at most $C_\eta=N^2\eta$.
+Applying (2) now in the finite-grid experiment and then the truncation lemma
+gives
+\[
+ G_{N,\eta,\gamma}(B)
+ \le V_\mu(B)+\rho^2B/N+E_\eta+
+                         \rho^2 C_\eta/[4(B+C_\eta)].      \tag{4}
+\]
+No grid approximation is needed in this direction: the grid is a subset of
+the feasible rounded parameters. Since $C_\eta\le C$, $E_\eta\le E$, and
+$D/(B+D)$ is increasing, (3)--(4) imply (1). The claimed limit follows
+directly from the displayed error terms.
+\end{proof}
+
+\paragraph{Exact finite-dimensional convex formulation.}
+We give the formulation to specify what a future finite numerical solve
+would actually certify. A history records the ordered sequence of queried
+coin identities and returned bits, with identities canonically numbered by
+first observation. After $n<N$ bits its actions are stop, query any existing
+coin, or query one fresh coin. At depth $N$ it must stop. This is a finite
+tree, including all feedback policies. The number of nodes may be enormous;
+no efficient-computation claim is made.
+
+For each history $h$, let $\ell_q(h)$ be the product, over its distinct coins,
+of the probabilities of their local bit words under the finite mixture and
+grid parameter $q$. It excludes policy-choice probabilities. Let $x_h$ be a
+nonnegative realization weight with $x_\varnothing=1$. At a decision node,
+introduce action weights $x_{h,a}\ge0$ satisfying
+\[
+ \sum_a x_{h,a}=x_h.
+\]
+For a querying action $a$, both bit children obey
+$x_{(h,a,0)}=x_{(h,a,1)}=x_{h,a}$. Chance probabilities belong in
+$\ell_q$, not in these policy weights. Let $t_h=x_{h,\mathrm{stop}}$ be
+the terminal weight. At depth $N$ set $t_h=x_h$. Terminal probability under
+$q$ is $\ell_q(h)t_h$.
+
+Choose scaled terminal outputs $y_h$ with $0\le y_h\le\rho t_h$. If $t_h>0$,
+output $z_h=y_h/t_h$. The uniform work constraints and squared-risk objective
+are the finite constraints, one pair for every $q\in Q_\gamma$,
+\[
+ \sum_h |h|\ell_q(h)t_h\le B,\qquad
+ \sum_h\ell_q(h)\frac{(y_h-\theta(q)t_h)^2}{t_h}\le r.
+\]
+The sums are over terminal histories. Minimize $r$. Each quotient is the
+closed quadratic perspective, assigned value zero when $t_h=y_h=0$.
+The other constraints are linear, so this is a finite-dimensional convex
+program; continuous terminal outputs need not be discretized.
+
+For exactness, any such action flows produce a behavioral policy by choosing
+action $a$ with probability $x_{h,a}/x_h$ when $x_h>0$; unreachable nodes may
+use arbitrary decisions. Conversely, arbitrary shared and local seeds do
+not create extra statistical strategies here. Conditional on a history of
+actions and bits, seed consistency contributes a parameter-independent
+indicator, while its observation likelihood is $\ell_q(h)$ independently
+of the consistent seed. Thus the conditional law of that seed, and hence of
+its next action, is independent of $q$ whenever the history is possible.
+The resulting behavioral action probabilities have the same laws for all
+grid parameters. At a terminal history, replace any remaining randomized
+output by its conditional mean. That conditional law is again parameter
+independent, and Jensen's inequality decreases squared loss for every
+target. This proves equality with the stated policy minimax value, including
+shared independent randomization and arbitrary cross-coin feedback.
+
+There is always a feasible constant-output policy. All flow and scaled-output
+variables range over a compact polytope; the perspectives are continuous
+on $0\le y_h\le\rho t_h$ with the specified value at zero. Therefore the
+minimum is attained. This existence assertion does not claim that the
+program was solved in this research pass.
+\end{document}

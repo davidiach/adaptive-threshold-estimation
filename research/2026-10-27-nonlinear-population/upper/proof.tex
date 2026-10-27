@@ -1,0 +1,238 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\E}{\mathbb E}
+\title{An exact calibration obstruction under bounded local depth}
+\author{Research checkpoint: nonlinear population attempt}
+\date{27 October 2026}
+\begin{document}\maketitle
+\paragraph{Evidence and limits.}
+This is a paper proof, accompanied by exact rational finite identity checks.
+It is not Lean formalized or externally peer reviewed. No novelty claim is
+made: the argument uses polynomial moment matching. It rules out a bounded
+local-depth pilot strategy, including arbitrary feedback between coins. It
+does not resolve the unrestricted rare-event minimax problem.
+
+\paragraph{Experiment.}
+Fix $0<a<1/2$ and the known law $\mu(dd)=2d\,dd/a^2$ on $(0,a]$.
+The sign allocation $q$ is unknown, $0\le q\le1$ and $\int q\,d\mu\le\rho$,
+where $0<\rho\le1/4$ is known. Each iid fresh coin has hidden $D\sim\mu$,
+hidden $S\mid D=d\sim\mathrm{Ber}(q(d))$, and supplies conditionally iid
+$\mathrm{Ber}(1/2+(2S-1)D)$ observations. An algorithm may use arbitrary
+independent randomization, create, revisit, interleave and abandon coins, and
+let all these decisions depend on all earlier observations. Only flips and
+identities are observed. Every flip is charged. The restriction considered
+below is solely that each individual coin supplies at most $2K$ flips.
+
+\begin{lemma}[An elementary bounded polynomial]\label{lem:poly}
+For integer $K\ge1$, let $P_n$ be the degree-$n$ Legendre polynomial defined
+by Rodrigues' formula, $n=2K+1$, and put
+\[
+ c=P_n'(0),\qquad u_K(x)=P_n(x)/(cx),\quad u_K(0)=1.
+\]
+Then $u_K$ is an even polynomial of degree $2K$ satisfying
+\[
+ |u_K(x)|\le1\quad(0\le x\le1),\qquad
+ \int_0^1x^{2j+2}u_K(x)\,dx=0\quad(0\le j<K),
+\]
+and
+\[
+ \int_0^1 2x u_K(x)\,dx=\frac1{(K+1)(2K+1)}=:m_K.
+\]
+\end{lemma}
+\begin{proof}
+For completeness the polynomial facts needed here follow from
+\[
+ P_n(x)=\frac1{2^n n!}\frac{d^n}{dx^n}(x^2-1)^n.
+\]
+Expansion gives
+\[
+ c=(-1)^K(2K+1){\binom{2K}{K}}4^{-K},\qquad
+ P_{2K}(0)=(-1)^K\binom{2K}{K}4^{-K}=:v_K.
+\]
+It also gives the differential and derivative identities
+\[
+ (1-x^2)P_n''-2xP_n'+n(n+1)P_n=0,
+ \qquad P_{n+1}'-P_{n-1}'=(2n+1)P_n.
+\]
+These identities can equivalently be verified coefficient by coefficient
+from the displayed expansion. Rodrigues' formula at $x=1$ gives $P_j(1)=1$:
+in the derivative of $(x-1)^j(x+1)^j$ only the term differentiating the first
+factor $j$ times survives at $1$.
+
+Substitute $P_n=cxu_K$ in the differential equation and set
+$\lambda=n(n+1)-2=2K(2K+3)>0$. On $(0,1)$,
+\[
+ (1-x^2)u_K''+(2/x-4x)u_K'+\lambda u_K=0.
+\]
+The energy $H(x)=u_K(x)^2+(1-x^2)u_K'(x)^2/\lambda$ satisfies
+\[
+ H'(x)=(6x-4/x)u_K'(x)^2/\lambda.
+\]
+Thus $H$ decreases up to $\sqrt{2/3}$ and increases thereafter, and its
+maximum on $[0,1]$ is at an endpoint. Since $u_K$ is even, $H(0)=1$;
+$H(1)=1/c^2\le1$. The last inequality follows from $|c|\ge1$: the value
+at $K=0$ is $1$ and the ratio of successive absolute values is
+$(2K+3)/(2K+2)>1$. Since $H\ge u_K^2$, the asserted bound follows.
+
+Integrating Rodrigues' formula by parts $n$ times shows that $P_n$ is
+orthogonal on $[-1,1]$ to every polynomial of degree less than $n$; the
+boundary terms vanish because $(x^2-1)^n$ has zeros of order $n$ at both
+endpoints. Therefore
+\[
+ \int_0^1x^{2j+2}u_K(x)\,dx
+ =\frac1{2c}\int_{-1}^1x^{2j+1}P_n(x)\,dx=0.
+\]
+Finally $v_{K+1}=-(2K+1)v_K/(2K+2)$ and the derivative identity give
+\[
+ \int_0^1P_{2K+1}(x)\,dx
+ =\frac{v_K-v_{K+1}}{4K+3}=\frac{v_K}{2K+2}.
+\]
+Multiply by $2/c$, where $c=(2K+1)v_K$, to obtain $m_K$.
+\end{proof}
+
+\begin{theorem}[Feedback does not repair bounded-depth nonidentifiability]
+\label{thm:cap}
+For any $K\ge1$, define $h=a\sqrt\rho$ and
+\[
+ q_\pm(d)=\frac{1\pm u_K(d/h)}2\,\mathbf1_{\{d\le h\}}.
+\]
+Both are admissible allocations, with
+\[
+ \theta_\pm=\frac\rho2(1\pm m_K),\qquad
+ \theta_+-\theta_-=\frac\rho{(K+1)(2K+1)}.
+\]
+Every population algorithm obeying the per-coin cap $2K$ has identical
+finite-prefix transcript distributions under these two allocations,
+including arbitrary cross-coin feedback and pilot-dependent acquisition.
+If its terminal output is measurable and the procedure terminates almost
+surely under both laws, its output distributions also coincide. Consequently
+its worst-case RMS error is at least
+\[
+ \frac\rho{2(K+1)(2K+1)},
+\]
+regardless of its expected total work or number of coins.
+\end{theorem}
+\begin{proof}
+Lemma~\ref{lem:poly} implies $0\le q_\pm\le1$. A change of variable
+$d=hx$ gives the displayed targets, each at most $\rho$. This uses only
+the global rarity constraint: the pointwise allocations can be as large as
+one in the small difficult population.
+
+For a particular bit word $w$ of length $r$ and head count $s$, its likelihood
+conditional on a positive or negative sign is
+\[
+ \ell_\pm(d)=(1/2\pm d)^s(1/2\mp d)^{r-s}.
+\]
+The difference $\ell_+(d)-\ell_-(d)$ is an odd polynomial of degree at most
+$r$. When $r\le2K$, all its monomials have degrees $2j+1$ with $j<K$.
+For each such degree,
+\[
+ \int(q_+-q_-)(d)d^{2j+1}\,\mu(dd)
+ =\frac{2h^{2j+3}}{a^2}\int_0^1u_K(x)x^{2j+2}\,dx=0.
+\]
+Hence the probability of every local word of length at most $2K$ is exactly
+the same under the two allocations.
+
+Condition on the algorithm's independent seed. For any finite global
+transcript, its probability is the product of the probabilities of the
+local words of the distinct coins it sampled, multiplied by the indicator
+that its scheduling and stopping decisions agree with the transcript.
+The indicator is parameter independent; every local word has length at most
+$2K$. Thus each finite prefix has the same probability under the two laws.
+Integrating the seed preserves equality. Coins may be indexed by their
+first charged observation, so free unused identities cause no difficulty.
+Equivalently, equality follows successively from identical conditional
+next-bit probabilities for every eligible local history.
+
+For an almost surely terminating procedure, a terminal event intersected
+with the event of termination within $N$ observations belongs to a finite
+prefix. Its probabilities coincide for every $N$ and converge to the full
+terminal probabilities under both laws. Finally, if $Z$ has this common
+output law and $\Delta=\theta_+-\theta_-$, then pointwise
+\[
+ \tfrac12[(Z-\theta_+)^2+(Z-\theta_-)^2]
+ =(Z-(\theta_++\theta_-)/2)^2+\Delta^2/4\ge\Delta^2/4.
+\]
+Taking expectations, including infinite second moments, proves the RMS bound.
+\end{proof}
+
+\begin{theorem}[A depth-tail necessity for unrestricted feedback]\label{thm:tail}
+Keep the two allocations and target gap $\Delta_K=\rho m_K$ from
+Theorem~\ref{thm:cap}. Now allow an unrestricted population algorithm,
+including arbitrarily many observations on a coin, and assume almost-sure
+termination under these two laws. Let $E_K$ be the event that some individual
+coin receives more than $2K$ flips. Then
+\[
+ p_K:=\mathbb P_+(E_K)=\mathbb P_-(E_K).
+\]
+If the RMS error is at most $\varepsilon$ under both laws, then
+\[
+ p_K\ge 1-\frac{4\varepsilon^2}{\Delta_K^2}.
+\]
+In particular, $\Delta_K\ge4\varepsilon$ forces $p_K\ge3/4$ under each law.
+Moreover, separately under both laws,
+\[
+ \mathbb E_\pm T\ge(2K+1)p_K.
+\]
+The right side of the probability lower bound is informative only when
+positive; it can always be replaced by its maximum with zero.
+\end{theorem}
+\begin{proof}
+Construct a capped experiment from the given algorithm. Follow all its
+decisions until it terminates, or until it is about to request the
+$(2K+1)$st observation of some coin. In the latter case stop immediately
+\emph{before} that observation and record an exit flag. Otherwise record
+the original terminal output and a no-exit flag. This auxiliary experiment
+obeys the local cap $2K$. It terminates almost surely under both laws: on
+paths with no exit it follows the original terminating procedure, and on
+exit paths it stops earlier. Theorem~\ref{thm:cap} therefore gives equality
+of its terminal laws. In particular the exit probabilities agree, proving
+the first assertion. This equality concerns the event of the first excessive
+query, whose decision is made using only earlier allowed observations; it
+does not assert equality of later unrestricted transcripts.
+
+Let $\nu$ be the subprobability measure of the original output together with
+the no-exit event. The capped experiment shows that it is the same under
+both laws and has total mass $1-p_K$. If $Z$ denotes the output coordinate,
+nonnegativity of squared errors gives
+\begin{align*}
+ \mathbb E_+(Z-\theta_+)^2+\mathbb E_-(Z-\theta_-)^2
+ &\ge\int\bigl[(z-\theta_+)^2+(z-\theta_-)^2\bigr]\,\nu(dz)\\
+ &\ge (1-p_K)\Delta_K^2/2.
+\end{align*}
+The assumed RMS bounds make the left side at most $2\varepsilon^2$, giving
+the probability claim. This common-submeasure argument also gives total
+variation at most $p_K$ between the unrestricted output laws; there is no
+factor two, since their common part has mass $1-p_K$.
+On the exit event the original algorithm actually requests and obtains a
+coin's $(2K+1)$st flip, so its total charged work is at least $2K+1$.
+Taking expectations proves the work bound, even when the expectations are
+infinite.
+\end{proof}
+
+\paragraph{The first nontrivial calibration example.}
+For $K=2$,
+\[
+ u_2(x)=1-\frac{14}3x^2+\frac{21}5x^4,\quad m_2=1/15,
+\]
+and the targets are $8\rho/15$ and $7\rho/15$. No population policy with
+at most four flips per coin can have uniform RMS error below $\rho/30$,
+even with arbitrarily many pilot and production coins and nonlinear output.
+The two profiles agree on every pilot statistic measurable from these
+observations. A pilot that fits one of the profiles and uses that fit for
+later calibration therefore cannot validate its target uniformly.
+
+\paragraph{What remains open.}
+This theorem permits arbitrary feedback but imposes a fixed local cap. The
+main expected-budget experiment has no such cap. The depth-tail corollary
+nevertheless applies to that unrestricted experiment: sufficiently accurate
+procedures must enter greater local depths with a quantified probability.
+The target gap decreases quadratically with the cap and proves neither an iterated logarithm in the
+unrestricted rate nor the optimality of any proposed estimator. An attempt
+to turn pilot-learned survivor weights into a uniform estimator remains
+unsuccessful: calibration requires controlling the response-weighted error
+of the nuisance fit, and finite-depth agreement does not do that.
+\end{document}

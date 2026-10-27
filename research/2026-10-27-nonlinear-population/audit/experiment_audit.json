@@ -1,0 +1,39 @@
+{
+  "status": "PASS: frozen source/contract/raw hashes and finite accounting",
+  "utc": "2026-10-27T09:41:52.953939+00:00",
+  "source_sha256_before": {
+    "feedback_experiment.py": "58da93f0046ea15bbb6371f5c86ae4d6b9225b48bccb794640681c0f8ffad251",
+    "CONTRACT.md": "1f919cbb98f79bc3bf15b4c49aebaf9e18b0b553a5bf8e76e8f09f236b28e6d2",
+    "EXPERIMENT_LOCK.json": "4054779be4eb593bc9eaffc32ec17ac62c7ec9f68b183f26611f3cd7483ea897",
+    "EXPERIMENT_COMPLETE.json": "1027d973590f04d43dcbb9e6f07ce5a914de126b13254196d36fe5d75d7052c7",
+    "RAW.csv": "9f10ccb5b6b76421097962513774672362e36795f4df334e4da4a6b1859af990"
+  },
+  "source_sha256_after": {
+    "feedback_experiment.py": "58da93f0046ea15bbb6371f5c86ae4d6b9225b48bccb794640681c0f8ffad251",
+    "CONTRACT.md": "1f919cbb98f79bc3bf15b4c49aebaf9e18b0b553a5bf8e76e8f09f236b28e6d2",
+    "EXPERIMENT_LOCK.json": "4054779be4eb593bc9eaffc32ec17ac62c7ec9f68b183f26611f3cd7483ea897",
+    "EXPERIMENT_COMPLETE.json": "1027d973590f04d43dcbb9e6f07ce5a914de126b13254196d36fe5d75d7052c7",
+    "RAW.csv": "9f10ccb5b6b76421097962513774672362e36795f4df334e4da4a6b1859af990"
+  },
+  "identity_checks": {
+    "predictive_fraction_comparisons": 128,
+    "variance_reduction_identity": true
+  },
+  "rows": 7680,
+  "cells": 240,
+  "replicates_per_cell": 32,
+  "charged_flips": 3440640,
+  "unseen_profiles_outside_prior": {
+    "two_scales:0.25": true,
+    "two_scales:0.0625": true,
+    "four_scales:0.25": true,
+    "four_scales:0.0625": true
+  },
+  "limitations": [
+    "No new benchmark run or Monte Carlo precision improvement",
+    "Numerical predictive checks compare float64 with exact binary-rational inputs",
+    "Per-row times exclude Model setup and share a warmed predictive cache",
+    "Known finite prior is a design choice, not an oracle for unknown true q",
+    "No confidence interval estimator or coverage guarantee"
+  ]
+}

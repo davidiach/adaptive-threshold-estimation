@@ -1,0 +1,351 @@
+\section{A population information reduction and a radial obstruction}
+\label{sec:population-information}
+\noindent\textbf{PROVED-ON-PAPER.} These statements concern the actual iid
+hidden-gap experiment. They neither reveal a sampled gap nor provide an
+oracle for the unknown sign allocation. The reduction below is finite-prefix;
+the stated testing consequence uses almost-sure termination separately at
+the two endpoint laws. No unproved differentiability claim at an unbounded
+stopping time is used. No Lean formalization or priority claim is made.
+
+\subsection{Directional information inequalities tensorize over interleaving}
+Fix a known magnitude law on $(0,a]$, $a<1/2$, and a path
+$q_t=q_*+tu$, $t\in[\alpha,\beta]$, of measurable feasible sign
+allocations in $\mathcal Q_\rho$. The algorithm is independent of $t$.
+When $\alpha<\beta$, feasibility at the two endpoints implies
+$|u|\le1/(\beta-\alpha)$ almost everywhere; the degenerate path is trivial.
+For a finite bit word $h$ write $f_t(h)$ for its probability on one
+fresh coin, and set
+\[
+ s_t(h)=\partial_t\log f_t(h),\quad
+ p_t(b\mid h)=f_t(hb)/f_t(h),\quad
+ v_t(h)=\sum_{b=0}^1p_t(b\mid h)
+                  [s_t(hb)-s_t(h)]^2.
+\]
+Here $f_t(h)$ is affine in $t$ and strictly positive, because all Bernoulli
+parameters lie in $[1/2-a,1/2+a]$. A bounded number of observations therefore
+has a well-defined ordinary Fisher information. Include the independent
+random seed in each transcript; its law is fixed when taking a derivative.
+
+\begin{lemma}[Finite-prefix information/work direct sum]
+\label{pop:direct-sum}
+Suppose a measurable function $\kappa(t)\ge0$ has this property: for
+each fixed $t$, every randomized single-coin policy with a deterministic
+finite cap on its number of flips satisfies
+\[
+ I_t(\text{seed and stopped coin history})
+ =\mathbb E_t\sum_{k<\tau}v_t(H_k)
+ \le\kappa(t)\mathbb E_t\tau.
+\]
+Then every population algorithm with at most $N<\infty$ total flips,
+arbitrary interleaving and adaptive creation of iid coins satisfies
+\[
+ I_t(\text{full population transcript})
+ =\mathbb E_t\sum_{n<T}v_t(H_{i_n,n})
+ \le\kappa(t)\mathbb E_tT.
+\]
+Here $H_{i_n,n}$ is the previous local history of the coin selected for
+the next observation. The single-coin premise may grant its policy knowledge
+of the reference value $t$; the derivative keeps that policy fixed.
+\end{lemma}
+\begin{proof}
+Conditioning on the seed, each possible transcript has likelihood equal to
+the product of $f_t(h_i)$ over the local histories of its distinct coins.
+The adaptive scheduling and stopping choices are already determined by
+the displayed seed and past observations, so contribute no likelihood
+factor depending on $t$. Revealing the next bit changes the score by
+$s_t(hb)-s_t(h)$, which has conditional mean zero. Squaring the finite
+sum of score increments and taking expectations makes the cross terms
+vanish. This proves the two information identities.
+
+For the inequality fix a reference $t$ and a creation index $i\le N$,
+where coins are indexed by their first charged observation. Run a copy of
+the capped population policy with its $i$th such coin supplied by one
+genuine coin, and simulate all other coins using independent tapes drawn
+from the known reference law $q_t$. The simulated tapes are part of an
+independent seed. They are held fixed in law while differentiating the
+genuine coin's distribution. If the $i$th coin is never requested, take
+zero genuine flips. This is a valid one-coin policy using at most $N$
+genuine flips; simulated observations and arithmetic are only auxiliary
+randomization in this information comparison. Its expected information
+and work at the reference law are exactly the contributions of coin $i$
+to the two displayed population sums. The hypothesis bounds that
+contribution by $\kappa(t)\mathbb E_t T_i$. Summing over $i\le N$
+proves the result. No simulated reference coins are supplied to the
+original statistical algorithm.
+\end{proof}
+
+The proof is not specific to Bernoulli observations: it applies to any
+independent reservoir observation channel having positive differentiable
+finite-history likelihoods, provided differentiation under the seed and
+observation integrals is justified and the stated one-coin information/work
+premise holds. This is a conditional transfer principle, not a guessed
+universal information functional for other channels or cost models.
+
+\begin{corollary}[Expected-budget testing consequence]
+\label{pop:testing}
+Let an unrestricted population procedure satisfy
+$\sup_{t\in[\alpha,\beta]}\mathbb E_tT\le B<\infty$.
+If the premise of Lemma~\ref{pop:direct-sum} holds, then the total variation
+distance between its two terminal transcript laws is at most
+\[
+ \frac{\sqrt B}{2}\int_\alpha^\beta\sqrt{\kappa(t)}\,dt.
+\]
+Consequently, if this quantity is at most $1/2$ and
+$\Delta=|\theta(q_\beta)-\theta(q_\alpha)|$, its worst-case RMS error
+over these two laws is at least $\Delta/4$.
+\end{corollary}
+\begin{proof}
+For every finite prefix capped at $N$ flips, integrate its score derivative
+along the path and apply Cauchy--Schwarz:
+\[
+ \|P_{\beta,N}-P_{\alpha,N}\|_{\rm TV}
+ \le\tfrac12\int_\alpha^\beta\sqrt{I_t(P_{t,N})}\,dt
+ \le\tfrac{\sqrt B}{2}\int_\alpha^\beta\sqrt{\kappa(t)}\,dt.
+\]
+Finite prefix densities are finite sums over observation/action branches
+conditional on the seed, so differentiating is legitimate; the same
+identity extends by integration over the fixed independent seed.
+Finite expected work implies almost-sure termination separately at each
+endpoint. For any terminal event $E$, its intersection with $\{T\le N\}$
+is determined by that prefix. Thus its endpoint probability difference
+is bounded by the preceding total-variation bound plus
+$\mathbb P_\alpha(T>N)+\mathbb P_\beta(T>N)$, which tends to zero.
+Take the supremum over $E$. Finally threshold an estimator at the midpoint
+of the two target values. The sum of its two testing errors is at least
+$1-\operatorname{TV}\ge1/2$, whereas Markov's inequality bounds that
+sum by $8R^2/\Delta^2$. Hence $R\ge\Delta/4$.
+\end{proof}
+
+The missing hypothesis is an upper bound on \emph{directional Fisher
+information per expected flip for every single-coin policy}. A lower bound
+on the uniform variance--work product of estimators of the entire
+functional does not provide this hypothesis. The next example shows why
+the most natural radial path cannot supply the extra critical logarithm.
+
+\subsection{The radial path has too much information for that converse}
+Fix again $a=1/4$, the exact quadratic law, and define $b\in(0,a)$ by
+\[
+ w_b(d)=\min\{1,b^2/d^2\},\qquad
+ \mathbb E w_b(D)=\rho.
+\]
+Set $\ell=\log(a/b)$ and $L=1+\log(1/\rho)$. Then
+$\rho=(b/a)^2(1+2\ell)$ and
+$L=1+2\ell-\log(1+2\ell)$.
+Consider the genuine one-dimensional submodel
+\[
+ q_\eta(d)=\tfrac12(1+\eta)w_b(d),\qquad -1/2\le\eta\le1/2.
+\]
+It belongs to $\mathcal Q_\rho$, and its target derivative is $\rho/2$.
+
+\begin{proposition}\label{pop:radial-information}
+At $\eta=0$, the supremum of single-coin information/work ratios over
+finite-cap policies is at least
+\[
+ \frac{a^2\rho}{32L}.
+\]
+Thus no uniform upper bound of order $a^2\rho/[L(1+\log L)]$ can hold
+for this directional information envelope as $\rho\downarrow0$.
+\end{proposition}
+\begin{proof}
+Let $M=\lceil8a/b\rceil$. On the genuine coin, run the integer walk
+with increments $2X-1$ from zero until it hits $-1$ or $M$; output the
+indicator $A$ of hitting $M$. Let $\pi_\pm(d)$ be its success probabilities
+conditional on mean $1/2\pm d$. The elementary gambler's-ruin formula gives
+\[
+ \pi_+(d)=\frac{1-r}{1-r^{M+1}},\quad
+ r=\frac{1-2d}{1+2d},\qquad
+ \pi_-(d)=\frac{R-1}{R^{M+1}-1},\quad R=r^{-1}.
+\]
+These follow by solving the two-boundary recurrence, or by summing its
+geometric first differences. In particular
+\begin{equation}\label{pop:ruin-bounds}
+ \frac83d\le\pi_+(d)\le4d+\frac1{M+1},\qquad
+ \pi_-(d)\le\frac{8d}{e^{4(M+1)d}-1}.
+\end{equation}
+For the upper positive bound, write
+$\pi_+=(1-r)+r^{M+1}\pi_+$ and use
+$r^{M+1}(M+1)\le\sum_{k=0}^M r^k=1/\pi_+$.
+The negative bound uses $R-1\le8d$ and $\log R\ge4d$.
+
+Write $F=\mathbb E\pi_-(D)$ and
+$A_+=\mathbb E[q_0(D)\pi_+(D)]$. Expanding
+$(e^x-1)^{-1}=\sum_{k\ge1}e^{-kx}$ and using
+$\sum_{k\ge1}k^{-3}<2$ yields
+\[
+ F\le\frac{16}{a^2}\int_0^\infty
+           \frac{d^2}{e^{4(M+1)d}-1}\,dd
+ <\frac1{a^2(M+1)^3}
+ \le\frac{b^3}{512a^5}.
+\]
+Direct integration gives
+$\mathbb E[D w_b(D)]=2b^2/a-4b^3/(3a^2)\ge2b^2/(3a)$.
+Hence \eqref{pop:ruin-bounds} gives
+\[
+ A_+\ge\tfrac43\mathbb E[D w_b(D)]\ge\frac89\frac{b^2}{a},
+ \qquad \frac F{A_+}\le\frac{9b}{4096a^4}
+ \le\frac9{64}<\frac14.
+\]
+Let $z_\eta=\mathbb P_\eta(A=1)$. Because this single-coin law is affine
+in $\eta$,
+\[
+ z_0\le A_++F\le\tfrac54 A_+,\qquad
+ z'_0=\mathbb E[q_0(\pi_+-\pi_-)]\ge A_+-F\ge\tfrac34 A_+.
+\]
+Both boundary events have strictly positive probability at every signed
+gap; hence $0<z_0<1$.
+The information in the output indicator alone therefore satisfies
+\begin{equation}\label{pop:radial-I}
+ I_0(A)=\frac{(z'_0)^2}{z_0(1-z_0)}
+ \ge\frac9{20}A_+\ge\frac25\frac{b^2}{a}.
+\end{equation}
+
+For fixed signed $d$, the hitting time has finite mean: in every block of
+$M+1$ observations there is a positive, uniform-in-the-current-state chance
+of hitting a boundary, because both bit probabilities are at least $1/4$.
+The stopped walk identity (or the same finite difference recurrence) gives
+\[
+ \mathbb E_{-d}\tau=\frac{1-(M+1)\pi_-(d)}{2d}\le\frac1{2d},
+ \qquad
+ \mathbb E_{+d}\tau
+ =\frac{(M+1)\pi_+(d)-1}{2d}
+ \le2(M+1)+\frac1{2d}.
+\]
+At $\eta=0$, integration and
+$\mathbb E[w_b(D)/D]\le4b/a^2$ imply
+\begin{align*}
+ \mathbb E_0\tau
+ &\le\frac1a+(M+1)\rho+\frac b{a^2}\\
+ &\le8+8(b/a)(1+2\ell)+2\rho<25.
+\end{align*}
+The last inequality uses $e^{-\ell}(1+2\ell)\le2$ for $\ell\ge0$,
+which follows from $e^\ell\ge1+\ell$.
+Now set $u=1+2\ell$. The elementary inequality $\log u\le u/2$ gives
+$L=u-\log u\ge u/2$, so $b^2\ge a^2\rho/(2L)$.
+Combining this with \eqref{pop:radial-I} and $a=1/4$ shows
+\[
+ \frac{I_0(A)}{\mathbb E_0\tau}
+ \ge\frac{2b^2}{125a}
+ \ge\frac{a\rho}{125L}
+ =\frac{a^2\rho}{(125/4)L}
+ \ge\frac{a^2\rho}{32L}.
+\]
+To obtain the asserted finite-cap result, stop after at most $N$ flips
+and output one only if the upper boundary was already hit. For $N\ge M$
+this event and its complement both have positive probability. Its success
+probability and its $\eta$ derivative converge to $z_0,z'_0$ by dominated
+convergence: the mixture probabilities are affine in $\eta$ and
+$|q'_\eta|=q_0\le1/2$. Its work increases to $\mathbb E_0\tau$.
+The finite-cap output information therefore converges to $I_0(A)$, and
+the full transcript has at least this information. Taking the supremum
+over finite caps proves the proposition.
+\end{proof}
+
+\subsection{An estimator at the candidate order on the known radial submodel}
+\begin{corollary}\label{pop:radial-upper}
+Under the known radial submodel of Proposition~\ref{pop:radial-information},
+and the ideal arithmetic convention allowing exact evaluation of known
+one-dimensional calibration integrals, there is an observable estimator
+with uniform expected work at most $B>0$ and worst-case RMS at most
+\[
+ \min\left\{\rho/4,\sqrt{160\rho L/B}\right\}.
+\]
+The guarantee is only over $q_\eta$, $|\eta|\le1/2$, and not over
+arbitrary sign allocations in $\mathcal Q_\rho$.
+\end{corollary}
+\begin{proof}
+All expectations in the following calibration constants are integrals
+against the known exact quadratic law. Set
+\[
+ d_0=\mathbb E[q_0(D)(\pi_+(D)-\pi_-(D))],\qquad
+ F=\mathbb E\pi_-(D),\qquad
+ Y=\frac{\rho}{2d_0}(A-F).
+\]
+These constants depend only on the known submodel, not on $\eta$ or on
+the realized gap. The previous proof gives $d_0\ge(2/3)b^2/a>0$ and
+$F\le d_0/3$. Since $z_\eta=F+(1+\eta)d_0$,
+$\mathbb E_\eta Y=(1+\eta)\rho/2=\theta(q_\eta)$, and
+\[
+ \operatorname{Var}_\eta(Y)
+ \le\frac{\rho^2}{4d_0^2}z_\eta
+ \le\frac{11\rho^2}{24d_0}
+ \le\frac{11a\rho^2}{16b^2}
+ \le\frac{11}{8a}\rho L=\frac{11}{2}\rho L.
+\]
+The upper bound for $\pi_+$ in \eqref{pop:ruin-bounds}, retaining the
+subtraction of one in the work formula, improves the positive conditional
+work bound to $\mathbb E_{+d}\tau\le2(M+1)$. Thus uniformly in this
+submodel,
+\[
+ \mathbb E_\eta\tau
+ \le\frac1a+2(M+1)\theta(q_\eta)
+ \le4+\frac32(M+1)\rho
+ \le4+\frac32(16+1/2)<29.
+\]
+Each test terminates almost surely by the finite-interval argument above.
+
+Independently draw $N\sim\operatorname{Poisson}(B/29)$ and run $N$
+independent copies on genuinely fresh coins, with independent seeds. Put
+$\lambda=B/29$ and output
+\[
+ \widehat\theta=\rho/2+\lambda^{-1}
+                   \sum_{i=1}^N(Y_i-\rho/2).
+\]
+This is a finite sum almost surely and costs at most $29\mathbb EN=B$
+in expectation, uniformly in $\eta$. The compound-Poisson identities
+(obtained directly by conditioning on $N$) give
+$\mathbb E\widehat\theta=\theta$ and
+\[
+ \operatorname{Var}(\widehat\theta)
+ =\lambda^{-1}\mathbb E_\eta(Y-\rho/2)^2
+ \le\frac{29}{B}\left(\frac{11}{2}\rho L+\frac{\rho^2}{16}\right)
+ <\frac{160\rho L}{B},
+\]
+using $\rho^2/16\le\rho L/64$.
+The deterministic output $\rho/2$ has worst-case error $\rho/4$ on this
+submodel. Choose the smaller stated guarantee using known $B,\rho$.
+\end{proof}
+
+\paragraph{Calibration and practical scope.}
+This is a proved estimator in the stated ideal computation model, not a
+held-out benchmark or claim of efficient numerical calibration. Its
+one-dimensional integrands are explicit and continuous, using the fair
+limit $\pi_\pm(0)=1/(M+1)$, and the cutoff $b$ is the unique root of a
+known strictly increasing continuous function. For a fixed justified integer
+$M$ and a fixed known radial profile, these calibration integrals can be
+approximated to arbitrary certified precision. The following error bound
+holds with $b,M$ fixed and approximates only $F,d_0$; it does not certify
+root-finding for $b$ or rounding $\lceil8a/b\rceil$. No such executed
+certification is claimed. For explicit error accounting, if
+$|\widehat d_0-d_0|\le d_0/2$ and
+$\widehat Y=\rho(A-\widehat F)/(2\widehat d_0)$, then pointwise
+\[
+ |\widehat Y-Y|
+ \le\rho\left(\frac{|\widehat d_0-d_0|}{d_0^2}
+                 +\frac{|\widehat F-F|}{d_0}\right)=:\zeta.
+\]
+Using the same independent Poisson count, the RMS difference of the
+calibrated and ideal final outputs is at most
+$\zeta\sqrt{1+1/\lambda}$, because it is pointwise at most
+$\zeta N/\lambda$. Add this term to the ideal RMS guarantee; flip costs
+are unchanged. No actual numerical integration or implementation run is
+claimed here, and any computational calibration cost must be reported
+separately in a practical comparison.
+
+\paragraph{Pseudocode.}
+Compute $b,M,F,d_0$ from the known radial model and select the better of
+the trivial radius and the displayed Poisson bound. If selecting the
+trivial bound, output $\rho/2$ immediately. Otherwise sample the independent
+Poisson count. For each of its genuinely fresh coins, accumulate $2X-1$
+until the running sum hits $-1$ or $M$, record the upper-hit indicator,
+and convert it to $Y$ by the displayed calibration. Return the centered
+Poisson sum. No posterior involving the unknown $\eta$, no true gap,
+and no selected-magnitude request is used.
+
+The proposition disproves a particular proposed directional information
+upper bound, not the unrestricted minimax rate. The calibrated estimator
+knows the radial profile $w_b$ through the specified submodel and estimates
+$\int q\,d\mu$ only on that submodel. It charges every
+genuine flip and never uses the realized magnitude. The full nonparametric
+problem could still require an entropy loss arising from multiple nuisance
+directions, or could admit a nonlinear population construction absent from
+the single-coin product argument.

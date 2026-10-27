@@ -80,6 +80,11 @@ The [full verification list](docs/VERIFY.md) includes hashes, experiment locks, 
 
 ## Repository layout
 
+The [research index](research/README.md) connects the rare-event, population and
+nonlinear-feedback packages and distinguishes their historical checkpoints from
+the current results. Their paper proofs and numerical experiments retain their
+stated evidence levels.
+
 | Path | Contents |
 |---|---|
 | [paper/](paper/) | Unchanged v4 PDF and TeX, and subsequent results. |

@@ -1,0 +1,16 @@
+# Focused source comparison and unresolved priority
+
+This follow-up's source audit is narrow. The preceding broad comparison remains in ../2026-10-27-minimax-audit/LITERATURE_AUDIT.md; it is inherited evidence and is not represented as a newly repeated literature search. No theorem in this package carries a novelty claim, and no search certifies priority.
+
+| Claim | Inspected primary source | Category | Exact relation and remaining difference |
+|---|---|---|---|
+| Finite scale-entropy mechanism | Chen, Li and Qiao, arXiv:1608.06031v2,24 May2017, Definitions1.4–1.5 p.3, Lemma4.1 pp.7–8, AppendixD pp.50–54, RemarkD.4 p.54 | OVERLAPPING / PRIOR-ART | Gaussian SIGN testing, delta<.04, finite dyadic gaps and entropy lower bound; RemarkD.4 explicitly extends the KL mechanism to interior Bernoulli. The current proof supplies selected-gap correctness, arbitrary separated gaps, error.1 and explicit finite-prefix constants. The source is not a population-mass product theorem. |
+| Sharp single-coin product and small-bias extension | The same source, plus separately identified inherited repository construction | UNRESOLVED-PRIORITY | The response/moment localization and integrated product argument add steps beyond the cited sign lemma. This focused search has not established whether that consequence is known elsewhere. |
+| Radial calibrated estimator | No fresh primary-source priority audit of scalar-mixture estimation completed in this pass | UNRESOLVED / potentially OVERLAPPING | The radial family is one-dimensional and its conditional sign distributions are known. Lee–Valiant scalar-mixture results may overlap. The proof here is self-contained and makes no novelty claim or implication that it improves Lee–Valiant. |
+| Ruin probabilities, score direct sum, and convex saddle | Elementary derivations included in the proof; no new source attribution asserted | UNRESOLVED-PRIORITY | Classical recurrence, score orthogonality and minimax ideas are used. Their application and explicit constants are proved, not claimed original. The saddle proof does not rely on an uninspected Sion theorem. |
+
+Primary source actually inspected by the adversarial reviewer: [Chen–Li–Qiao v2 PDF](https://arxiv.org/pdf/1608.06031v2). The detailed passage-by-passage comparison and source identities are in audit/SINGLE_COIN_AUDIT.md. Other bibliographic references in inherited/sources.md remain attributed inherited material, not new inspection claims.
+
+No conclusion about the published nested-simulation log-squared lower bound is strengthened by this follow-up. Its exact model comparison and minimax quantifiers remain those audited in the preceding package. Observed outer-state structure, selected-state access, unbounded observations, and smooth cross-state regression cannot be imported into the present hidden iid Bernoulli experiment without a proved reduction.
+
+External review remains pending. The correct specialist questions are whether the integrated single-coin product follows from established sign-testing lower bounds, whether the known-profile radial estimator is directly implied by an existing scalar-mixture theorem, and whether a nonparametric population converse or matching nonlinear estimator is already known.

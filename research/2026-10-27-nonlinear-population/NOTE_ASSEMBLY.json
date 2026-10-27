@@ -1,0 +1,23 @@
+{
+  "files": [
+    {
+      "source": "upper/proof.tex",
+      "source_sha256": "72df0ee46660c1a72b9c15271f29867dce1760ccaf6253bd43327964373b26f1",
+      "target": "upper/proof-body.tex",
+      "target_sha256": "e42b3c4b97ec4edec619cdcf1f2dafe1f95b3b99490f9123b5e6b61e758fff7a"
+    },
+    {
+      "source": "upper/FINITE_APPROXIMATION.tex",
+      "source_sha256": "b01ca6fee968feb6b82121be9b762a1748dd64bd7d19c26323bbe6c6d6e3109e",
+      "target": "upper/approximation-body.tex",
+      "target_sha256": "72626b1b56be0503e897c7ad5fb5eed0d8016c2000394a32ba0dd6e88e76dd5b"
+    },
+    {
+      "source": "lower/full_class.tex",
+      "source_sha256": "bff3e1e5ead021b4f8b36e84b2b5eea504e62a22f245f0a4f96a82d1e483329e",
+      "target": "lower/full_class-body.tex",
+      "target_sha256": "c86f73660fc711049a048484e60c90d7189ef9c789b165bf5a945c6d0b5d2c53"
+    }
+  ],
+  "transformation": "Extract standalone document bodies; remove maketitle; allow one line break before a certificate filename. Mathematics unchanged."
+}

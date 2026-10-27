@@ -1,0 +1,218 @@
+\section{The single-coin obstruction survives uniformly small bias}
+\label{sec:small-bias-obstruction}
+\noindent\textbf{PROVED-ON-PAPER; INDEPENDENT VERIFICATION/REFINEMENT.}
+The small-bias extension was already present in the concurrently maintained
+critical-two research notes when the separate reviewer first inspected them.
+This independent derivation is not counted as discovery of a new theorem.
+It is a single-coin obstruction, not a theorem about unrestricted population
+algorithms. The finite-gap sign entropy lemma below is the sole imported
+mathematical input. Its separate audit is part of the companion review.
+This section is not Lean formalized or externally peer reviewed.
+
+Fix $a=1/4$, $\mu(dd)=2d/a^2\,dd$ on $(0,a]$,
+$0<\rho\le1/4$, $L=1+\log(1/\rho)$ and $H=1+\log L$.
+One genuine coin has hidden $D\sim\mu$ and
+$S\mid D=d\sim\operatorname{Bernoulli}(q(d))$; its observations are
+conditionally iid $\operatorname{Bernoulli}(1/2+(2S-1)D)$.
+Let $\mathcal Q_\rho=\{q:0\le q\le1,\int q\,d\mu\le\rho\}$ and
+$\theta(q)=\int q\,d\mu$. An observable single-coin procedure may use an
+independent seed, output any real $Y$, and stop at $T=0$ or at an unbounded
+stopping time. Only its genuine coin flips are charged. The seed and policy
+cannot depend on $q$ or the realized hidden gap.
+
+\begin{theorem}\label{sb:theorem}
+There is a universal $c>0$ such that every such procedure with
+\[
+ V:=\sup_{q\in\mathcal Q_\rho}\operatorname{Var}_q(Y)<\infty,
+ \qquad W:=\sup_{q\in\mathcal Q_\rho}\mathbb E_qT<\infty,
+ \qquad
+ \sup_{q\in\mathcal Q_\rho}|\mathbb E_qY-\theta(q)|\le\epsilon
+ \le\rho/64
+\]
+satisfies $VW\ge c\rho LH$. The same lower bound holds for
+$MW$, where $M:=\sup_q\mathbb E_qY^2$.
+\end{theorem}
+
+\paragraph{The finite-gap input.}
+The following statement is used, with the common randomized test independent
+of the unknown gap. If
+$0<d_K<\cdots<d_1\le1/128$, $d_j/d_{j+1}\ge2$,
+$K\ge\lceil e^{32}\rceil$, and one observable sign test has error at most
+$1/10$ at every $1/2\pm d_j$ and finite expected stopping time at every one
+of these $2K$ laws, then
+\begin{equation}\label{sb:entropy}
+ \sum_{j=1}^K d_j^2\mathbb E_{-d_j}\tau
+ \ge\frac1{512}K\log K.
+\end{equation}
+No stopping or integrability is required at the fair-coin law. The companion
+single-coin proof establishes this from finite-prefix KL, time-window
+overlap, and the binary data-processing inequality. In particular this is
+not a direct appeal to a pointwise or limsup version of a sign-testing bound.
+
+\begin{proof}[Proof of Theorem~\ref{sb:theorem}]
+First $M\le V+(\rho+\epsilon)^2<\infty$. Write
+$m_s(d)=\mathbb E_{d,s}Y$ and $M_s(d)=\mathbb E_{d,s}Y^2$ on a common
+full-measure set. Such a set exists because the laws $q=0$ and $q=\rho$
+make both conditional second moments integrable. Set $g=m_+-m_-$ and
+$b_q=\mathbb E_qY$. For every feasible $q$,
+\begin{equation}\label{sb:response}
+ \left|\int q(g-1)\,d\mu\right|
+ =|b_q-b_0-\theta(q)|\le2\epsilon.
+\end{equation}
+Taking $q=\rho$ gives $\int g\,d\mu\ge31/32$. Conditional variance under
+this constant sign allocation and Cauchy--Schwarz imply
+\begin{equation}\label{sb:variance}
+ V\ge\rho(1-\rho)\int g^2\,d\mu
+ \ge\frac{2883}{4096}\rho>\frac7{10}\rho.
+\end{equation}
+Indeed conditioning on $D$ and then the two signs contributes
+$\rho(1-\rho)g(D)^2$ to the variance. Since
+$(\rho+\epsilon)^2\le(4225/16384)\rho$, it follows that
+\begin{equation}\label{sb:M-V}
+ M\le\tfrac32 V.
+\end{equation}
+
+We next remove artificial thinning before the first observation. The event
+$A=\{T\ge1\}$ is determined by the seed alone, so its probability $p$ is
+the same for every $q$ and every fixed signed gap. If $p=0$, the expectation
+would be constant in $q$, contradicting the bias guarantee at
+$\theta=0$ and $\theta=\rho$; hence $p>0$. Let
+$c_0=\mathbb E[Y\mathbf1_{A^c}]$, also independent of $q$.
+Condition the seed on $A$, run the original procedure, and output
+$Z=pY+c_0$. Resampling seeds until $A$ occurs implements this conditioning
+almost surely using free independent randomness; the constants $p,c_0$
+are fixed by the original policy and may be granted in this lower-bound
+argument. The new procedure always takes at least one genuine flip,
+preserves each expectation $b_q$, and has
+$W_Z=W/p\ge1$.
+For $p<1$, Cauchy--Schwarz on $A^c$ gives
+\begin{align*}
+ \mathbb E_qZ^2
+ &=p\mathbb E_q[Y^2\mathbf1_A]+2c_0b_q-c_0^2\\
+ &\le pM+2c_0b_q-\frac{c_0^2}{1-p}
+ \le pM+(1-p)b_q^2
+ \le pM+(\rho+\epsilon)^2.
+\end{align*}
+For $p=1$ the last bound is immediate. Apply \eqref{sb:variance} also to
+$Z$, whose bias bound is unchanged. The last display implies
+$pM\ge(7/10-4225/16384)\rho\ge2\rho/5$.
+Set
+\[
+ P=MW,\qquad
+ m=\max\{\rho,pM+(\rho+\epsilon)^2\}.
+\]
+The preceding inequalities imply
+\begin{equation}\label{sb:normalization}
+ \rho\le m\le\tfrac52pM\le\tfrac52P,
+ \qquad mW_Z\le\tfrac52P,
+ \qquad P\ge\tfrac25\rho.
+\end{equation}
+In what follows $m_s,M_s,w_s$ denote the conditional means, second moments,
+and expected work of the active procedure $Z$. They are finite for both
+signs on a common full-measure set. Its uniform second moment is at most
+$m$, and \eqref{sb:response} remains valid.
+
+\paragraph{Good gaps without exact unbiasedness.}
+For $E=\{g<7/8\}$, nonatomicity allows a subset of mass exactly $\rho$
+if $\mu(E)\ge\rho$. Its indicator would contradict
+\eqref{sb:response}, since $\rho/8>2\epsilon$.
+Thus $\mu(E)<\rho$; applying \eqref{sb:response} to $q=\mathbf1_E$
+now gives
+\[
+ \mu(E)\le16\epsilon\le\rho/4.
+\]
+The other bad sets are
+$E_-:=\{M_->1/64\}$ and
+$E_+:=\{M_+-M_->2m/\rho\}$.
+Markov's inequality under $q=0$ gives $\mu(E_-)\le64m$.
+If $\mu(E_+)\ge\rho$, a subset $F$ of mass $\rho$ and
+$q=\mathbf1_F$ would give
+$\mathbb E_qZ^2=\int M_-\,d\mu+\int_F(M_+-M_-)\,d\mu>2m$,
+contradicting the uniform second-moment bound. Hence $\mu(E_+)<\rho$.
+On the complement $G$ of these sets and the common null set,
+\begin{equation}\label{sb:good}
+ \mu(G^c)\le66m,\quad
+ |m_-|\le1/8,\quad m_+\ge3/4,\quad
+ M_-\le1/64,\quad M_+\le1/64+2m/\rho.
+\end{equation}
+
+Run the active procedure
+$n=\lceil256(1+m/\rho)\rceil\le513m/\rho$ times, with independent
+seeds on successive unused blocks of the same fixed-gap coin. Compare the
+average output to $7/16$. At every gap in $G$ the distance of either mean
+from this threshold is at least $5/16$. Conditional independence of
+successive blocks follows by summing over the finite stopping prefixes;
+their conditional finite expected lengths imply almost-sure termination.
+Chebyshev's inequality gives, for either sign, an error at most
+\[
+ \frac{256}{25n}\left(\frac1{64}+\frac{2m}{\rho}\right)
+ \le\frac2{25}<\frac1{10}.
+\]
+The negative expected work of this common test is $nw_-(d)$.
+
+\paragraph{Select separated gaps and apply the entropy bound.}
+For $j\ge3$, put
+$I_j=(a4^{-j}/2,a4^{-j}]$, so
+$\mu(I_j)=(3/4)16^{-j}$. Set
+\[
+ J=\left\lfloor\log_{16}\frac1{176m}\right\rfloor,
+ \qquad K=J-2.
+\]
+When $K\ge\lceil e^{32}\rceil$, every $j=3,\ldots,J$ satisfies
+$\mu(I_j)\ge132m$, so at least half its mass is in $G$.
+Choose $d_j\in G\cap I_j$ with
+\[
+ w_-(d_j)\le\frac4{\mu(I_j)}\int_{I_j}w_-\,d\mu.
+\]
+Such points exist by averaging; conditional finite moments and work may
+also be imposed because the discarded set is null. These gaps have ratios
+strictly greater than two and maximum at most $1/256$. Moreover
+\[
+ \sum_{j=3}^J d_j^2w_-(d_j)
+ \le\frac{16a^2}{3}\sum_{j=3}^J\int_{I_j}w_-\,d\mu
+ \le\frac{16a^2}{3}W_Z.
+\]
+Applying \eqref{sb:entropy} and \eqref{sb:normalization},
+\begin{equation}\label{sb:entropy-product}
+ \frac1{512}K\log K
+ \le\frac{16a^2}{3}nW_Z
+ \le6840a^2\frac P\rho.
+\end{equation}
+
+It remains to compare scales without assuming the variance is small.
+If $P\ge\sqrt\rho$, then $P\ge c_1\rho LH$ for a universal
+$c_1>0$, since $\sqrt\rho LH$ is bounded on $(0,1/4]$.
+If $P<\sqrt\rho$, then $m<(5/2)\sqrt\rho$, and therefore
+\[
+ K\ge\frac{\tfrac12\log(1/\rho)-\log440}{\log16}-3.
+\]
+For all sufficiently small universal $\rho_0>0$, this ensures the
+cardinality required in \eqref{sb:entropy}, $K\ge c_2L$, and
+$\log K\ge c_3H$. Equation~\eqref{sb:entropy-product} then gives
+$P\ge c_4\rho LH$. For $\rho\in[\rho_0,1/4]$ use
+$P\ge2\rho/5$ and boundedness of $LH$ on that fixed compact interval.
+This proves the universal lower bound for $MW$. Finally
+\eqref{sb:M-V} yields the asserted bound for $VW$.
+\end{proof}
+
+\begin{corollary}\label{sb:arithmetic-average}
+Suppose an estimator is the deterministic arithmetic average of $n\ge1$
+independent copies of the same single-coin procedure, and its uniform
+expected work is at most $B$. If its worst-case RMS error is at most
+$\eta\le\rho/64$, then $B\eta^2\ge c\rho LH$.
+The procedure and $n$ may depend on $B,\rho$.
+\end{corollary}
+\begin{proof}
+For every $q$ the squared error of the average is
+$\operatorname{Var}_q(Y)/n+(\mathbb E_qY-\theta(q))^2$.
+Thus its kernel has bias at most $\eta$ and $V/n\le\eta^2$.
+Uniform expected work gives $nW\le B$, so
+$B\eta^2\ge(nW)(V/n)=VW\ge c\rho LH$.
+\end{proof}
+
+The last corollary does not cover clipping or any other nonlinear
+postprocessing, unequal kernels whose biases cancel, data-dependent
+replication counts, or interaction among genuine reservoir coins.
+In particular, a raw variance lower bound cannot be substituted for a
+lower bound on clipped probability-estimation risk. The unrestricted
+population minimax problem remains open in this pass.

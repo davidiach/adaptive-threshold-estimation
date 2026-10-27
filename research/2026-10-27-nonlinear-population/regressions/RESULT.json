@@ -1,0 +1,45 @@
+{
+  "valid": true,
+  "commands": [
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tools/test_validation.py"
+      ],
+      "exit_code": 0,
+      "seconds": 11.635756799951196
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tools/test_tier3_validation.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.2578068000730127
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tools/test_tier4_validation.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.23346760007552803
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tools/test_tier5_validation.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.24201789998915046
+    },
+    {
+      "command": [
+        "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "tools/verify_inputs.py"
+      ],
+      "exit_code": 0,
+      "seconds": 0.4881629999727011
+    }
+  ]
+}

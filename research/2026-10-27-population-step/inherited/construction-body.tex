@@ -1,0 +1,618 @@
+% Generated packaging derivative; source remains byte-preserved.
+
+
+
+\noindent\textbf{Status and main limitation.} This is a paper proof checked in
+separate agent reviews, not a Lean-checked or externally specialist-reviewed
+result. The review records accompany this note; model diversity is not
+guaranteed. It gives matching characterizations for unbiased and uniformly
+small-bias \emph{single-coin} estimators, including all moment--work tradeoffs
+in those classes. It does not prove a lower
+bound for arbitrary population algorithms and does not refute the critical
+minimax conjecture. The latter remains open in this attempt.
+
+\section{Exact scope and strongest statement}
+Fix $a=1/4$ and the probability law
+\[
+ \mu(dd)=\frac{2d}{a^2}\ind_{(0,a]}(d)\,dd.
+\]
+The choice of one fixed interior $a$ suffices for the obstruction. Let
+$0<\rho\le1/4$ and
+$\mathcal Q_\rho=\{q:0\le q\le1,\ \int q\,d\mu\le\rho\}$,
+with all functions measurable. A fresh coin has hidden magnitude $D\sim\mu$,
+hidden sign $S\mid D=d\sim\operatorname{Ber}(q(d))$, and iid Bernoulli flips
+of parameter $1/2+(2S-1)D$ conditional on $(D,S)$.
+
+A single-coin procedure $A$ may know $\mu,a,\rho$ and may use arbitrary
+independent randomization. It observes the flips of this one coin only,
+stops at a possibly unbounded observable stopping time
+$T\in\mathbb N_0\cup\{\infty\}$, and returns a real
+observable output $Y$. It may stop before the first flip. It cannot sample
+additional genuine reservoir coins; free parameter-independent simulated
+variables can be included in its seed. Neither $D$, $S$, nor $q$ is observed.
+Assume that for every $q\in\mathcal Q_\rho$,
+\[
+ \E_qY=\theta(q):=\int q\,d\mu,
+ \qquad
+ V=\sup_{q\in\mathcal Q_\rho}\Var_qY<\infty,
+ \qquad
+ W=\sup_{q\in\mathcal Q_\rho}\E_qT<\infty.
+\]
+Write $M=\sup_q\E_qY^2$. This is finite because $M\le V+\rho^2$.
+All suprema in this note are over the stated nonempty class.
+Nontermination is recorded as $T=\infty$, so finite expected work implies
+almost-sure termination under every admissible population. The output can be
+defined to be zero on the resulting null nontermination event.
+
+\begin{theorem}[Sharp critical single-coin product]\label{thm:main}
+There exist finite universal constants $0<c<C$ such that for every
+$0<\rho\le1/4$, with $L=1+\log(1/\rho)$,
+\[
+ c\rho L(1+\log L)
+ \le \inf_A V(A)W(A)
+ \le C\rho L(1+\log L).                                  \tag{1}
+\]
+The infimum ranges over exactly the single-coin procedures above and permits
+dependence on $\rho$. The same assertion holds with $M(A)$ in place of $V(A)$.
+The lower bound holds for every admissible procedure; no threshold family,
+finite depth, or numerical grid restriction is imposed.
+\end{theorem}
+
+The next theorem strengthens the lower bound beyond exact unbiasedness while
+preserving Theorem~\ref{thm:main} as a separate statement.
+
+\begin{theorem}[Small relative bias does not remove the entropy loss]\label{thm:bias}
+Keep the same fixed law and single-coin observation rules. Replace exact
+unbiasedness by
+\[
+ \sup_{q\in\mathcal Q_\rho}|\E_qY-\theta(q)|\le\rho/64,
+\]
+and retain separate finite uniform variance $V$ and expected work $W$.
+There are universal $0<c<C<\infty$ such that, for every $0<\rho\le1/4$,
+\[
+ c\rho L(1+\log L)
+ \le\inf_A V(A)W(A)
+ \le C\rho L(1+\log L).                                 \tag{1b}
+\]
+The same assertion holds with $M(A)=\sup_q\E_qY^2$ in place of $V(A)$.
+The infimum in (1b) includes every single-coin policy meeting this bias bound,
+not just the unbiased subclass or any chosen classifier family.
+\end{theorem}
+
+The upper bound in (1) reuses the current separately reviewed paper proof in
+\texttt{research/\allowbreak{}2026-10-27-minimax-audit/\allowbreak{}theorem/\allowbreak{}critical.tex}, which supplies
+$M\le(165/56)\rho$ and $W\le1350a^{-2}L(1+\log L)$.
+That source is preserved, and its theorem is not claimed as new here.
+The new lower proof below is self-contained. Its finite-grid sign-testing
+argument follows the established entropy mechanism of Chen--Li--Qiao
+\cite[Lemma 4.1 and Appendix D]{clq}; we prove the needed Bernoulli,
+separated-gap, one-sided-cost version explicitly rather than silently
+substituting their Gaussian formulation.
+
+For the population minimax problem, the candidate modulus is
+$\Psi(B^{-1/2})\asymp\min\{\rho,\sqrt{\rho L}/(a\sqrt B)\}$.
+Thus (1) shows that a proof through an unbiased single-coin variance--work
+bound of order $\rho L$ is impossible for this fixed law. Changing only the
+allocation between its variance and work cannot remove the iterated logarithm.
+A matching population algorithm would need a different argument or estimator
+class. No reduction from arbitrary biased or cross-coin algorithms to this
+class is asserted.
+
+\section{A finite-grid sign-testing entropy bound}
+\begin{lemma}\label{lem:sign}
+There are universal $c_s>0$ and an integer $K_s$ such that the following holds.
+Let $0<d_K<\cdots<d_1\le1/128$, with $d_j/d_{j+1}\ge2$.
+One randomized observable procedure receives iid Bernoulli flips of unknown
+parameter $1/2\pm d_j$, stops, and returns a sign. Suppose its error is at most
+$1/10$ at all $2K$ parameter values and its expected stopping time is finite
+there. Put
+\[
+ c_j=d_j^2\E_{-d_j}\tau,\qquad \bar c=K^{-1}\sum_{j=1}^Kc_j.
+\]
+For $K\ge K_s$,
+\[
+ \sum_{j=1}^K d_j^2\E_{-d_j}\tau\ge c_sK\log K.          \tag{2}
+\]
+Correctness and termination at the fair coin are not assumed.
+\end{lemma}
+\begin{proof}
+Set $b_0=1/1024$, $n_j=\lfloor b_0/d_j^2\rfloor$, and
+$u_j=\lceil4\E_{-d_j}\tau\rceil$. Since $d_j\le1/128$,
+$n_j\ge b_0/(2d_j^2)\ge1$.
+The event of returning minus by time $n_j$ is measurable in the independent
+seed and the first $n_j$ flips, including unused flips if the procedure stops
+earlier. Between the laws $1/2-d_j$ and $1/2+d_j$, the KL divergence of these
+full finite prefixes is at most
+\[
+ n_j\frac{(2d_j)^2}{(1/2+d_j)(1/2-d_j)}
+ \le(64/3)n_jd_j^2\le1/48.
+\]
+Here Bernoulli KL is at most its chi-square divergence. Pinsker bounds total
+variation by less than $1/8$. Since the event is an error under the plus law,
+its probability under the minus law is at most $1/10+1/8$.
+Markov gives $\Pp_{-d_j}(\tau>u_j)\le1/4$.
+Consequently the finite-window event
+\[
+ A_j=\{\text{output minus and } n_j<\tau\le u_j\}
+\]
+has probability at least $1-1/10-(1/10+1/8)-1/4>1/4$ under the minus law.
+
+Let $P_0$ denote the fair-coin experiment with the same independent seed and
+policy. At a finite prefix of length $u_j$, its KL from the minus law is at
+most $4d_j^2u_j\le16c_j+1$. For any event of probability $p\ge1/4$ under
+that minus law and probability $z$ under $P_0$, binary data processing and
+$\operatorname{kl}(p,z)\ge p\log(1/z)-\log2$ give
+\[
+ P_0(A_j)\ge\exp(-64c_j-8).                              \tag{3}
+\]
+All information comparisons here concern deterministic finite prefixes.
+There is no optional-stopping identity under $P_0$, which may fail to halt.
+
+At least $K/2$ indices form a set $G$ with $c_j\le2\bar c$. For those indices,
+\[
+ (n_j,u_j]\subset
+ [b_0/(2d_j^2),(8\bar c+1)/d_j^2].
+\]
+The numbers $d_j^{-2}$ are separated by factors at least four. At every
+finite time, the number of these intervals containing that time is therefore
+at most
+\[
+ H(\bar c)=1+\log_4((16\bar c+2)/b_0).
+\]
+On every realization under the fair law, all events $A_j$ concern the same
+terminal time and output. Summing their indicators, then taking expectations,
+gives $\sum_{j\in G}P_0(A_j)\le H(\bar c)$, even on paths that never halt.
+Together with (3),
+\[
+ (K/2)e^{-128\bar c-8}
+ \le1+\log_4(1024(16\bar c+2)).                          \tag{4}
+\]
+This entails $\bar c\ge(\log K)/512$ for all sufficiently large universal
+$K$. One can take $K_s=\lceil e^{32}\rceil$: if
+$\bar c<(\log K)/512$ and $x=\log K\ge32$, the left side of (4) exceeds
+$\tfrac12e^{3x/4-8}\ge\tfrac12e^{x/2}\ge x^2/16$,
+while its right side is at most $1+\log_4(32x+2048)<6+x/4$.
+These inequalities contradict $x\ge32$. Thus $c_s=1/512$ suffices.
+\end{proof}
+
+\section{What unbiasedness for every global-rarity allocation forces}
+For a fixed procedure first define the nonnegative extended conditional moments
+\[
+ M_s(d)=\E_{d,s}Y^2,
+ \quad w_s(d)=\E_{d,s}T.
+\]
+These are measurable nonnegative conditional moment functions, defined by the
+explicit iid Bernoulli kernel and independent seed. Their integrability is
+proved before signed manipulations: the admissible choices $q=0$ and
+$q\equiv\rho$ imply $\int M_-d\mu\le M$ and
+$\int M_+d\mu\le M/\rho$, as well as finite integrated work on both signs.
+All conditional moments used below are thus finite outside one common
+$\mu$-null set. On the set $\{M_s(d)<\infty\}$ define the integrable signed
+conditional mean $m_s(d)=\E_{d,s}Y$, and assign it zero on its exceptional null
+set. This avoids interpreting any undefined difference of infinite integrals.
+
+Unbiasedness at $q=0$ gives $\int m_-d\mu=0$.
+For every measurable $E$ of positive mass, take
+$q=\min(1,\rho/\mu(E))\ind_E$. Subtracting its unbiasedness identity from
+the one at zero proves $\int_E(m_+-m_-)d\mu=\mu(E)$.
+Hence
+\[
+ m_+(d)-m_-(d)=1\quad\mu\text{-almost everywhere}.         \tag{5}
+\]
+This uses the global constraint only; it does not assume $q\le\rho$ pointwise.
+Conditional Jensen at the constant prior $q\equiv\rho$ now gives
+\[
+ \E_\rho Y^2\ge\int[(1-\rho)m_-^2+\rho(m_-+1)^2]d\mu
+               =\int m_-^2d\mu+\rho\ge\rho.
+\]
+Consequently
+\[
+ M\ge\rho,\qquad V\ge\rho(1-\rho),\qquad
+ M\le V+\rho^2\le\tfrac43V.                             \tag{6}
+\]
+The response identity is stronger than a single unbiasedness statement at a
+known mixture: its pointwise content will make a sign-testing reduction possible.
+
+\section{Removing artificial thinning and controlling all product allocations}
+The event $A=\{T\ge1\}$ is determined by the independent seed before any
+observation. Its probability $p$ is independent of every latent state. It is
+positive, since otherwise the expectation of $Y$ could not vary with $q$.
+Put $c=\E[Y\ind_{A^c}]$, also independent of $q$.
+Use the conditional seed law on $A$ to define the active procedure
+\[
+ Z=pY+c\quad\hbox{conditional on }A,
+ \qquad T_Z=T\quad\hbox{conditional on }A.
+\]
+This is a valid mathematical single-coin procedure. Conditioning can be
+implemented by resampling independent seeds until $A$ occurs, before making
+any charged observation. The constants $p,c$ are properties of the original
+policy, independent of $D,S,q$; the reduction may give them to the test.
+The active procedure always makes at least one flip, and
+\[
+ \E_q Z=\theta(q),\qquad W_Z=W/p\ge1.
+\]
+For $p<1$, Cauchy--Schwarz on $A^c$ and completing the square give
+\begin{align*}
+ \E_q Z^2
+ &=p\E_q[Y^2\ind_A]+2c\theta-c^2\\
+ &\le pM+2c\theta-c^2/(1-p)
+ \le pM+(1-p)\theta^2
+ \le m:=pM+\rho^2.
+\end{align*}
+For $p=1$ take $c=0$ and the same final bound holds directly.
+Applying (6) to $Z$ shows
+$pM\ge\rho-(1-p)\rho^2\ge\rho(1-\rho)$.
+Write $P=MW$. The resulting useful bounds are
+\[
+ \rho\le m\le\tfrac43pM\le\tfrac43P,
+ \qquad mW_Z\le\tfrac43P,
+ \qquad P\ge\tfrac34\rho.                               \tag{7}
+\]
+Thus random refusal to observe the coin cannot evade the product argument.
+
+\section{Good gaps and the same-coin sign reduction}
+Use conditional means and moments for $Z$ in this section, denoted again by
+$m_s(d),M_s(d),w_s(d)$. We have $\sup_q\E_qZ^2\le m$ and response identity (5).
+The set $B_-:=\{M_->1/64\}$ has mass at most $64m$.
+The set
+\[
+ B_+:=\{M_+-M_->2m/\rho\}
+\]
+has mass less than $\rho$: otherwise nonatomicity of the exact power law gives
+a subset $E\subset B_+$ of mass $\rho$, and the admissible $q=\ind_E$ would
+give $\E_q Z^2=\int M_-d\mu+\int_E(M_+-M_-)d\mu>2m$, a contradiction.
+After excluding also the common null sets above, the good set $G$ has complement
+of mass at most $64m+\rho\le65m$. On $G$,
+\[
+ |m_-|\le1/8,\qquad m_+=m_-+1\ge7/8,
+ \qquad M_-\le1/64,\qquad M_+\le1/64+2m/\rho.             \tag{8}
+\]
+
+Let $n=\lceil256(1+m/\rho)\rceil\le513m/\rho$; the last inequality uses
+$m\ge\rho$. Run $n$ independent restarts of the active procedure on the
+\emph{same} fixed-gap coin, with independent seeds and consecutive unused flip
+blocks, and output plus iff their average exceeds $1/2$.
+The test is independent of which good gap is supplied. Conditional on its
+fixed latent state, each restart has the stated law, and the outputs are iid.
+To justify this with unbounded stopping, condition on each finite first stopping
+time and finite observed prefix; unused iid coordinates retain their original
+law. Sum over the countably many prefixes, whose probabilities sum to one
+because conditional expected work is finite. Repeating this argument proves
+the restart assertion and additivity of expected work.
+By (8), the threshold is separated from either mean by at least $3/8$.
+Chebyshev gives error at most $1/10$ on both signs, because
+\[
+ \frac{64}{9n}\max\{1/64,1/64+2m/\rho\}<1/10.
+\]
+Its expected work under the minus sign at gap $d$ is exactly $nw_-(d)$.
+This construction has not drawn additional latent gaps: it repeatedly observes
+one fixed coin, as required by Lemma~\ref{lem:sign}.
+
+\section{Selecting geometric gaps from the continuous law}
+For integers $j\ge3$ set
+\[
+ I_j=(a4^{-j}/2,a4^{-j}],\qquad \mu(I_j)=\tfrac34\,16^{-j}.
+\]
+Their intervals are disjoint and any choices $d_j\in I_j$ satisfy
+$d_j/d_{j+1}>2$; also $d_j\le a/64=1/256<1/128$.
+Let
+\[
+ J=\left\lfloor\log_{16}\frac{3}{520m}\right\rfloor,
+ \qquad K=J-2,
+\]
+and consider the case $J\ge3$. For $3\le j\le J$, each annulus has mass
+at least $130m$, so $\mu(G\cap I_j)\ge\mu(I_j)/2$.
+Choose $d_j\in G\cap I_j$ with
+\[
+ w_-(d_j)\le\frac4{\mu(I_j)}\int_{I_j}w_-\,d\mu.       \tag{9}
+\]
+Such a choice follows from the average on $G\cap I_j$. The integral is strictly
+positive because the active procedure always makes at least one observation,
+so $w_-(d)\ge1$. All exceptional null sets have already been removed.
+These are existential selections used only in the proof; the procedure is not
+given their values or the latent gap.
+
+Since $d_j^2\le a^2 16^{-j}$, summing (9) yields
+\[
+ \sum_{j=3}^Jd_j^2 w_-(d_j)
+ \le\frac{16a^2}{3}\int w_-\,d\mu
+ \le\frac{16a^2}{3}W_Z.
+\]
+Apply Lemma~\ref{lem:sign} to the same test from the preceding section.
+For $K\ge K_s$, its cost lower bound and (7) give
+\[
+ c_sK\log K
+ \le\sum_{j=3}^Jd_j^2 nw_-(d_j)
+ \le\frac{16a^2}{3}\frac{513m}{\rho}W_Z
+ \le\frac{3648a^2P}{\rho}.                              \tag{10}
+\]
+The coefficient $3648=(16/3)\cdot513\cdot(4/3)$ is deliberately unoptimized.
+This proves a quantitative implicit product obstruction with every parameter
+and exceptional set accounted for.
+
+\section{Completion of the product theorem and what it leaves open}
+We deduce an explicit order from (10) as $\rho\downarrow0$, keeping $a=1/4$.
+If $P\ge\sqrt\rho$, then $P\ge c\rho L(1+\log L)$ for all sufficiently small
+$\rho$, since $\sqrt\rho L(1+\log L)\to0$.
+If $P<\sqrt\rho$, (7) gives $m<(4/3)\sqrt\rho$, and the definition of $K$
+implies
+\[
+ K\ge\frac{\tfrac12\log(1/\rho)-\log(2080/9)}{\log16}-3.
+\]
+For sufficiently small universal $\rho$, this is at least a universal positive
+multiple of $L$, exceeds $K_s$, and has $\log K\ge\tfrac12\log L$.
+Equation (10) then gives $P\ge c\rho L(1+\log L)$, with a universal $c>0$.
+All thresholds here are universal because $a$ was fixed.
+For the remaining compact interval of rarities, reduce $c$ if necessary and use
+$P\ge3\rho/4$ from (7). Thus the raw-second-moment product lower bound holds
+for every $0<\rho\le1/4$.
+Finally $M\le(4/3)V$ by (6), so the same order lower bound holds for $VW$.
+The previously available upper construction supplies the other direction,
+proving Theorem~\ref{thm:main}.
+
+The result explains a real statistical loss in the unbiased single-coin route:
+its pointwise response identity permits recovery of a uniformly accurate sign
+test at many separated gap scales. The entropy cost of those scales forces the
+iterated logarithm. This is stronger than failure of the particular likelihood
+dictionary or a numerical estimator search, because the proof permits arbitrary
+single-coin observable policies and arbitrary separate variance--work allocations.
+
+The result alone does not exclude biased estimators. The next section proves
+the separate extension stated in Theorem~\ref{thm:bias}. It remains possible
+that nonlinear use of population data or interaction between multiple genuine
+coins attains the candidate
+$\Psi$ rate. The current proof neither constructs such an algorithm nor proves
+that it cannot exist. An extension would require a valid reduction from the
+full population minimax class to one of these single-coin classes, or a new direct
+information argument. Such a reduction is an open premise, not an accepted
+step of this note.
+
+\section{Proof of the small-bias extension}
+Put $\eta=1/64$. Consider a procedure with
+$\sup_q|\E_qY-\theta(q)|\le\eta\rho$ and the same finite separate bounds.
+As before, the nonnegative conditional moments are integrated first under
+$q=0$ and $q\equiv\rho$, and the signed means are defined only where square
+integrable. Put $b(d)=\E_{d,-}Y$ and
+$f(d)=\E_{d,+}Y-\E_{d,-}Y$. The two population bias bounds give
+\[
+ \int f\,d\mu=\frac{\E_\rho Y-\E_0Y}{\rho}\ge31/32.
+\]
+The law of total variance, conditioning first on $D$ and then on $S$, gives
+\[
+ V\ge\Var_\rho(Y)
+ \ge\rho(1-\rho)\int f^2\,d\mu
+ \ge\rho(1-\rho)(31/32)^2\ge\tfrac23\rho.                \tag{14}
+\]
+There is no pointwise response assumption in this step. Since every absolute
+population mean is at most $65\rho/64$, also
+\[
+ M\le V+(65\rho/64)^2\le\tfrac32 V.                     \tag{15}
+\]
+
+Normalize the first-observation event as before. Its probability $p$ is
+positive: an output taking no observations has one common expectation and
+cannot approximate both $\theta=0$ and $\theta=\rho$ within $\rho/64$.
+For $c=\E[Y\ind_{\{T=0\}}]$, use the active output $Z=pY+c$ conditional on
+$T\ge1$. Its expectations are exactly those of $Y$, so the bias guarantee is
+unchanged, and $W_Z=W/p\ge1$. The same completed-square computation, with
+the actual mean $\E_qY$ in place of $\theta$, yields
+\[
+ \sup_q\E_qZ^2\le pM+(65\rho/64)^2\le m:=pM+2\rho^2.
+\]
+Applying (14) to $Z$ shows
+$m\ge2\rho/3$ and $pM\ge2\rho/3-2\rho^2\ge\rho/6$.
+Consequently, for $P=MW$,
+\[
+ m\le4pM\le4P,\qquad mW_Z\le4P,\qquad P\ge\rho/6.       \tag{16}
+\]
+Indeed $2\rho^2\le\rho/2\le3pM$. Thus arbitrary pre-observation thinning
+and moment--work reallocations are again covered.
+
+Use conditional moments for $Z$ in what follows. The negative-moment bad set
+$\{M_->1/64\}$ has mass at most $64m$. As in the unbiased proof,
+$\{M_+-M_->2m/\rho\}$ has mass less than $\rho$.
+The additional response bad set
+\[
+ B_f=\{d:f(d)<3/4\}
+\]
+also has mass less than $\rho$. If it had mass at least $\rho$, choose a
+measurable $E\subset B_f$ of mass $\rho$ and the admissible $q=\ind_E$.
+Then
+\[
+ \E_{\ind_E}Z-\E_0Z=\int_E f\,d\mu<3\rho/4,
+\]
+while the two bias bounds force this difference to be at least
+$\rho-2\rho/64=31\rho/32$, a contradiction. This argument uses only
+global-rarity alternatives and does not assume pointwise classification errors.
+
+After excluding these three bad sets and the common null sets, the good set
+has complement of mass at most $64m+2\rho\le67m$. On it,
+\[
+ |m_-|\le1/8,\qquad m_+\ge5/8,\qquad
+ M_+\le1/64+2m/\rho,\qquad M_-\le1/64.
+\]
+Restart $Z$ independently
+$n=\lceil512(1+m/\rho)\rceil\le1282m/\rho$ times on the same fixed coin;
+the inequality uses $m/\rho\ge2/3$. Threshold their average at $3/8$.
+Both mean separations are at least $1/4$, so Chebyshev bounds both errors by
+\[
+ \frac{16(1/64+2m/\rho)}{n}<1/10.
+\]
+The iid unused-suffix argument already proved gives expected work $nw_-(d)$
+on a negative gap. No additional genuine coin or magnitude is introduced.
+
+Use the same annuli $I_j$, now retaining
+\[
+ j\le J=\left\lfloor\log_{16}\frac3{536m}\right\rfloor,
+ \qquad K=J-2.
+\]
+Each retained annulus has mass at least $134m$, and the good set occupies at
+least half. The identical averaging selection and sign-entropy lemma give,
+for $K\ge K_s$,
+\[
+ c_sK\log K
+ \le\sum_jd_j^2nw_-(d_j)
+ \le\frac{16a^2}{3}\frac{1282m}{\rho}W_Z
+ \le\frac{30000a^2P}{\rho}.                             \tag{17}
+\]
+Here $30000>(16/3)\cdot1282\cdot4$ is a conservative numerical constant.
+If $P<\sqrt\rho$, (16) shows $m\le4\sqrt\rho$, so $K$ is at least a
+universal positive multiple of $\log(1/\rho)$ for sufficiently small $\rho$.
+Equation (17) proves the required order lower bound. If $P\ge\sqrt\rho$,
+that order already holds for small $\rho$; extend to the remaining compact
+interval using $P\ge\rho/6$. Finally (15) transfers the lower bound from
+$MW$ to $VW$. The unbiased upper construction also belongs to this bias class,
+which proves both sides of Theorem~\ref{thm:bias}.
+
+\paragraph{Exact averaging consequence.}
+For an unprojected mean of a fixed number $n$ of iid outputs of one such
+procedure, a uniform expected budget $nW\le B$ implies worst-case variance
+at least $V/n\ge VW/B$. Independent Poisson replication with mean count
+$\lambda$ and output normalized by $\lambda$ has variance
+$\E_qY^2/\lambda$, giving the corresponding raw-moment product obstruction
+when $\lambda W\le B$. In particular small uniform per-coin bias does not
+remove this loss from either of these averaging arguments.
+These consequences do not include arbitrary nonlinear aggregation,
+data-dependent repetition counts, clipping, or interaction between genuine
+coins. No all-algorithm minimax conclusion follows without an additional
+valid reduction.
+
+% Appendix numbering supplied by the wrapper.
+\section{Self-contained upper checkpoint and provenance}
+This appendix records the existing upper argument needed for the second
+inequality in (1), so the characterization does not depend on an inaccessible
+working-tree file. The inspected source was
+\texttt{research/\allowbreak{}2026-10-27-minimax-audit/\allowbreak{}theorem/\allowbreak{}critical.tex}, SHA-256
+\begin{center}\small\texttt{0e8b9eaf762b3b09fa0d92ce1a036c2c}\\\texttt{eea8c12d00a5eea8286b852f36a81536}\end{center}
+It was read without modifying it. The following is a compact restatement of
+that pre-existing proof, not a new construction or discovery claim.
+The source is now committed at
+\par\noindent\texttt{a8a8dc49115aabdd1fba8d53d3390eb0a5eee864}.
+
+Put $H=1+\log L$. For $j\ge0$ choose
+\[
+ \varepsilon_j=16^{-(j+1)},\qquad
+ N_j=\lceil(a^2\rho\varepsilon_j)^{-1}\rceil,\qquad
+ K_j=\lceil\log_2(a\sqrt{N_j})\rceil.
+\]
+For $0\le k\le K_j$, let $r_k=a2^{-(k+1)}$ and, after $n$ observations
+with $h_n$ heads, define
+\[
+ L^+_{k,n}=(1+2r_k)^{h_n}(1-2r_k)^{n-h_n},\qquad
+ L^-_{k,n}=(1-2r_k)^{h_n}(1+2r_k)^{n-h_n}.
+\]
+Before $N_j$, stop with output zero if a negative likelihood reaches
+$(K_j+1)/\varepsilon_j$, or with output one if a positive likelihood reaches
+$(K_j+1)/(\rho\varepsilon_j)$. Fix zero priority for ties. At $N_j$, if no
+earlier decision was made, return the strict majority bit. Denote this bounded,
+observable classifier by $Z_j$ and its work by $T_j$.
+
+For the wrong-sign likelihood, each next multiplier has mean $1-4r_kd\le1$.
+Stopping this nonnegative supermartingale at a crossing and a deterministic
+horizon, and then increasing the horizon, bounds the probability of crossing
+level $b$ by $1/b$. Summing over $K_j+1$ references gives wrong-crossing
+probabilities at most $\varepsilon_j$ on a positive coin and
+$\rho\varepsilon_j$ on a negative coin. The wrong forced-majority event is
+a subset of the full-tape event, of probability at most $e^{-2N_jd^2}$.
+This is Hoeffding's bound: the centered Bernoulli log moment-generating
+function has second derivative at most $1/4$, so is at most $\lambda^2/8$;
+use independence and exponential Markov with $\lambda=\pm4d$.
+For the exact power law,
+\[
+ \E_\mu e^{-2ND^2}=\frac{1-e^{-2Na^2}}{2Na^2}\le\frac1{2Na^2}.
+\]
+No independence of a stopping event and this full-tape majority event is used.
+It follows, uniformly over the global-rarity class, that
+\[
+ \Pp(Z_j\ne S)\le\tfrac52\rho\varepsilon_j,
+ \qquad \Pp(Z_j=1,S=0)\le\tfrac32\rho\varepsilon_j.       \tag{11}
+\]
+
+For $d\ge N_j^{-1/2}$, choose $k=\lceil\log_2(a/d)\rceil\le K_j$.
+Then $d/4\le r_k\le d/2$, and the correct-sign log likelihood has mean
+increment at least $2d^2/3$: use
+\[
+ \tfrac12\log(1-4r_k^2)
+       +d\log\frac{1+2r_k}{1-2r_k}
+ \ge-\tfrac83r_k^2+4dr_k\ge\tfrac23d^2.
+\]
+Its upward increment is less than one. The bounded stopped-sum identity for
+the crossing time $\sigma$ at a finite horizon $n$ gives
+$g\E(\sigma\wedge n)\le A_{j,s}$, where
+\[
+ A_{j,s}=1+\log(K_j+1)+\log(1/\varepsilon_j)+s\log(1/\rho).
+\]
+Monotone convergence proves finite expected crossing time and, including the
+cap and the trivial small-gap case,
+\[
+ \E(T_j\mid d,s)\le\min\{N_j,(3/2)A_{j,s}/d^2\}.        \tag{12}
+\]
+Write $c_0=3/2$. Direct integration of the negative contribution gives
+\[
+ \E\min\{N,c_0A/D^2\}
+ \le(c_0A/a^2)[1+\log_+(Na^2)].
+\]
+For positives, layer cake and
+$\E[q\ind_E]\le\min\{\rho,\mu(E)\}$ give
+\[
+ \E[q\min\{N,c_0A/D^2\}]
+ \le\int_0^\rho\min\{N,c_0A/(a^2u)\}\,du
+ \le(c_0A/a^2)[1+\log_+(Na^2\rho)].
+\]
+The exact integral is $N\rho$ when $Na^2\rho\le c_0A$, and otherwise is
+$(c_0A/a^2)[1+\log(Na^2\rho/(c_0A))]$. Thus this step also enforces the
+global, rather than pointwise, rarity condition.
+
+Elementary bounds from the definitions are
+\[
+\begin{gathered}
+ N_ja^2\le2/(\rho\varepsilon_j),\qquad K_j+1\le5(L+j+1),\\
+ A_{j,0}\le7H(j+1),\qquad A_{j,1}\le7H(j+1)+L,\\
+ 1+\log(N_ja^2)\le5L(j+1),\qquad
+ 1+\log(N_ja^2\rho)\le5(j+1).
+\end{gathered}
+\]
+For example, $\log(L+j+1)\le\log L+j+1$ and $4\log2<3$ prove the
+bound on $A_{j,0}$. Substitution in (12) and the two integrals gives
+\[
+ \E T_j\le(225/2)a^{-2}LH(j+1)^2.                        \tag{13}
+\]
+
+Independently choose a level $J$ with $p_j=2^{-(j+1)}$. For $J=0$ return
+$Y=Z_0/p_0$ on one fresh coin. For $J=j\ge1$, run $Z_j$ and $Z_{j-1}$
+on successive unused blocks of that same coin, set $\Delta_j=Z_j-Z_{j-1}$,
+and return $Y=\Delta_j/p_j$. The bounded stopping times make the iid suffix
+argument elementary, as in the restart argument above; both decisions share
+the same latent sign. A disagreement implies an error of one classifier.
+Hence (11) gives
+\[
+ \E Z_0^2\le\tfrac{35}{32}\rho,
+ \qquad \E\Delta_j^2\le\tfrac{85}{32}\rho16^{-j}\quad(j\ge1).
+\]
+Tonelli and the exact geometric sum now give
+\[
+ \E Y^2\le\frac{35}{16}\rho+
+                 \frac{85}{16}\rho\sum_{j\ge1}8^{-j}
+            =\frac{165}{56}\rho.
+\]
+The disagreement bounds also give absolute summability of expected increments,
+so signed expectations may be telescoped after integrability is established:
+$\E Y=\lim_j\E Z_j=\theta$. Work costs at most twice (13), and
+$\sum_jp_j(j+1)^2=6$, yielding
+\[
+ \E T_Y\le1350a^{-2}LH.
+\]
+All operations are on one observable coin with independent seed; the random
+level is unbounded but the separate expectations are finite. This completes
+the upper checkpoint used in (1).
+
+\begin{thebibliography}{9}
+\bibitem{clq} L. Chen, J. Li, and M. Qiao.
+\emph{Towards Instance Optimal Bounds for Best Arm Identification}.
+COLT 2017; arXiv:1608.06031v2.
+\url{https://arxiv.org/abs/1608.06031}.
+\bibitem{critical} Current workspace continuation,
+\emph{A critical-margin upper bound with a remaining iterated logarithm},
+\texttt{research/\allowbreak{}2026-10-27-minimax-audit/\allowbreak{}theorem/\allowbreak{}critical.tex}.
+Reviewed paper proof, not Lean-checked; preserved without modification.
+\end{thebibliography}

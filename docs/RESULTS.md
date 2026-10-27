@@ -107,6 +107,32 @@ for the exact four-file source bundle, replay evidence, attribution and
 limitations. No Lean theorem, explicit hard-pair formula, external specialist
 review or priority certification is claimed.
 
+## Population and nonlinear feedback follow-ups
+
+The [population-step report](../research/2026-10-27-population-step/FINAL_REPORT.md)
+contains reviewed paper proofs of a conditional information reduction, a
+counterexample to one proposed radial information bound, and a calibrated
+upper bound for that specified radial submodel. The counterexample rules out
+that proof route; it does not refute the later full critical-law theorem above,
+whose hard pair is not the radial proposal. Its finite Bayes calculations use
+deterministic observation caps and do not settle the expected-budget minimax
+problem.
+
+The [nonlinear-feedback report](../research/2026-10-27-nonlinear-population/FINAL_REPORT.md)
+adds a reviewed paper proof of strict acquisition-feedback advantage for a
+two-gap experiment at a deterministic two-flip cap, an arbitrary-feedback
+bounded-depth obstruction, and a finite approximation theorem that preserves
+the uniform expected budget. Exact rational certificates support the finite
+examples; no general finite convex program was solved. The 7,680-replicate
+synthetic experiment is numerical evidence with 32 replicates per cell, not
+a uniform risk guarantee, practical superiority claim, or confidence result.
+
+These packages retain their original statements and source locks. Statements
+that the matching-Psi conjecture was unresolved describe their historical
+scope; the full critical-law paper result above supplies the counterexample.
+A sharp arbitrary-law replacement remains open. See the
+[research index](../research/README.md) and [replay commands](VERIFY.md).
+
 ## Earlier critical power margin: additive-class obstruction
 
 At the single fixed law $F(d)=(4d)^2$, the new

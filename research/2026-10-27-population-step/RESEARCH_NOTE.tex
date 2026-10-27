@@ -1,0 +1,168 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=24mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+% Use available Windows fonts when the offline TeX cache lacks italic sizes.
+% A full TeX installation elsewhere can use its normal default fonts.
+\IfFileExists{rendered/times.ttf}{%
+\DeclareFontFamily{TU}{tasktimes}{}
+\DeclareFontShape{TU}{tasktimes}{m}{n}{<->"[rendered/times.ttf]"}{}
+\DeclareFontShape{TU}{tasktimes}{m}{it}{<->"[rendered/timesi.ttf]"}{}
+\DeclareFontShape{TU}{tasktimes}{bx}{n}{<->"[rendered/timesbd.ttf]"}{}
+\DeclareFontShape{TU}{tasktimes}{bx}{it}{<->"[rendered/timesbi.ttf]"}{}
+\DeclareFontShape{TU}{tasktimes}{b}{n}{<->"[rendered/timesbd.ttf]"}{}
+\DeclareFontShape{TU}{tasktimes}{b}{it}{<->"[rendered/timesbi.ttf]"}{}
+\renewcommand{\rmdefault}{tasktimes}\normalfont
+}{}
+\usepackage[hidelinks]{hyperref}
+\DeclareFontShape{OMX}{cmex}{m}{n}{<->cmex10}{}
+\DeclareFontShape{OT1}{cmr}{bx}{n}{<->cmbx10}{}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Pp}{\mathbb P}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\ind}{\mathbf1}
+\newcommand{\KL}{\operatorname{KL}}
+\setlength{\emergencystretch}{3em}
+\renewcommand{\theequation}{N\arabic{equation}}
+\title{From a verified single-coin obstruction\newline to the population problem}
+\author{Research checkpoint: proof, counterexample, and scope audit}
+\date{27 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We verify a sharp critical-margin obstruction for single-coin estimators
+and investigate its population implications. For the exact quadratic
+magnitude law on $(0,1/4]$, separate uniform variance and expected-work
+suprema have product of order $\rho L(1+\log L)$, where
+$L=1+\log(1/\rho)$, even with uniform bias at most $\rho/64$.
+This result was inherited from concurrent repository work; the current
+checkpoint independently audits it and refines one proof. It excludes
+budget-dependent raw iid averages but does not exclude nonlinear population
+estimators. A finite-prefix directional-information reduction handles
+arbitrary creation and interleaving of coins. An explicit observable
+gambler's-ruin procedure disproves the extra-log information upper bound
+on the natural radial submodel; calibration attains the rate without that
+logarithm on the specified submodel. A separate fixed-feature theorem
+excludes improvement from independent pilot selection of a scalar control
+variate. Exact rational finite-horizon diagnostics exhibit small benefits
+from adaptive allocation. The arbitrary-law rare-event minimax problem
+remains unresolved.
+\end{abstract}
+
+\noindent\textbf{Evidence discipline.}
+The statistical assertions here are \textbf{Proved-on-paper} with separate
+adversarial agent review, not Lean formalized or externally peer reviewed.
+The finite computations are \textbf{Numerical}, using exact rational
+arithmetic in their stated finite scope. The radial information upper
+bound is \textbf{Disproved} by an analytic counterexample. The full minimax
+formula is a \textbf{Conjecture}. Priority is unresolved; no novelty claim
+is made. The independent replay of nine exact Tier5 declarations applies
+only to their supplied realized prefix laws and balanced sign priors, not
+to these rare-event theorems.
+
+\section{Experiment and question}
+For each fresh iid coin, $D\sim\mu$ on $(0,1/2]$ is hidden and
+$S\mid D=d\sim\operatorname{Bernoulli}(q(d))$. Conditional flips are iid
+with success probability $1/2+(2S-1)D$. The unknown measurable allocation
+belongs to the global class
+$\mathcal Q_\rho=\{0\le q\le1:\int q\,d\mu\le\rho\}$;
+the target is $\theta(q)=\int q\,d\mu$. Knowing $\mu,\rho$ does not reveal
+any coin's $D,S$. Algorithms observe bits and coin identities, may create,
+revisit and interleave coins, and may stop adaptively. Every genuine flip
+costs one, including pilot flips. Deterministic arithmetic and independent
+randomness are free. Exact deterministic integrals of the specified known
+law are allowed in theoretical constructions; approximate implementations
+need a separate numerical error analysis. Uniform expected work is
+$\sup_q\E_qT\le B$, not a deterministic cap.
+
+The candidate arbitrary-law functional is
+\[
+ \Psi_{\mu,\rho}(h)=\sup_{0\le w\le1,\ \int w\,d\mu\le\rho}
+           \int\min\{w(d),h\sqrt{w(d)}/d\}\,\mu(dd).
+\]
+For the exact quadratic law with $a=1/4$, its unsaturated order is
+$\sqrt{\rho L/B}$ at $h=B^{-1/2}$; the currently established upper
+construction for arbitrary $q$ retains the factor $\sqrt{1+\log L}$.
+The single-coin obstruction alone does not decide which rate is the full
+population minimax rate. Confidence-radius optimality and uniform
+adaptation to unknown $\mu,\rho$ are not established in this checkpoint.
+
+\section{What was independently verified}
+The inherited full proof appears in the final appendix, including its
+finite-gap entropy lemma, arbitrary thinning argument, global-rarity
+localization, small-bias extension, and matching single-coin upper bound.
+Its source snapshot has SHA-256 beginning \texttt{29463b56bfcb}; the earlier
+version first inspected by the reviewer began \texttt{d85f58c1201f}.
+The added small-bias section was reviewed separately. The original sources
+and v4 paper were not edited. Chen--Li--Qiao's scale-entropy mechanism and
+interior Bernoulli applicability are prior art; the focused source audit
+does not establish priority for the product theorem.
+
+The next section records a refined small-bias proof and the exact
+arithmetic-average consequence. The later population reduction identifies
+the hypothesis actually needed to transfer a one-coin information bound,
+and the radial construction shows that a tempting version of that
+hypothesis is false.
+
+\input{lower/proof.tex}
+\input{lower/population_information.tex}
+
+\section{A separate restriction on independent pilot correction}
+\input{upper/proof-body.tex}
+
+\section{Exact finite-horizon evidence}
+Two preregistered synthetic laws have respectively masses
+$(1/8,7/8)$ at gaps $(1/32,1/4)$ and masses $(1/16,3/16,3/4)$ at gaps
+$(1/32,1/8,1/2)$. In both cases $\rho=1/8$. The finite prior is uniform
+over $q=0$, feasible single-atom allocations with target $\rho/2$ or
+$\rho$, and $q\equiv\rho$, with duplicates removed. The prior draws one
+common $q$ before generating any coins. Neither sampled signs nor gaps
+are observed.
+
+At deterministic horizons one through eight we solve the finite Bayes
+allocation problem exactly with rational arithmetic. A state is the sorted
+list of heads/tails counts for each observed coin. Transcript likelihoods
+factor by coin; the terminal posterior mean is optimal, and minimizing
+the two-child expected posterior variance over fresh/revisited choices
+gives the Bellman recursion. Randomization and earlier stopping cannot
+improve the Bayes minimum. A separate labeled ordered-tape recursion agrees
+exactly at all ten case/horizon pairs through horizon five.
+
+\begin{center}
+\begin{tabular}{lrrr}
+Law, horizon 8 & Adaptive MSE & Best restricted MSE & Reduction\\\hline
+Two scales & 0.002111783 & 0.002145941 & 1.5917\%\\
+Three scales & 0.001706729 & 0.001797138 & 5.0307\%
+\end{tabular}
+\end{center}
+Restricted choices are one coin only or fresh coins only, with the same
+posterior-optimal terminal estimator. These are rounded displays of exact
+fractions, not estimates with sampling uncertainty. They concern a finite
+prior and a deterministic cap, not the uniform expected-budget minimax
+problem. They are not held-out practical performance claims.
+
+\section{Exact remaining obligations}
+A full resolution needs either a biased or nonlinear population estimator
+with uniform error and expected work at the candidate scale for every
+global allocation, or a population lower bound exploiting nuisance
+directions beyond the radial path. The current product lower bound does
+not apply after clipping or nonlinear aggregation. The pilot theorem fixes
+its production features and excludes adaptive acquisition. The information
+reduction supplies no automatic bound on its one-coin directional premise.
+Finite computations do not close any of these logical gaps. Extending
+the result to arbitrary measures, joint rarity/accuracy/confidence limits,
+or unknown-law adaptation remains separate work.
+
+\appendix
+\section{Preserved inherited proof and upper checkpoint}
+\noindent This appendix is a packaging derivative of the byte-preserved
+concurrent source. Its document wrapper, title command, and appendix
+numbering command were removed; line breaks were allowed in source paths
+and hashes. Its mathematical content and manually
+tagged equations are unchanged. Its repeated status descriptions refer
+to that inherited work; the new review is recorded in the current audit.
+\input{inherited/construction-body.tex}
+\end{document}

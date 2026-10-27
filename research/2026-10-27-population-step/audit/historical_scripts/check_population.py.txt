@@ -1,0 +1,125 @@
+"""Independent exact finite diagnostics for the two population-route results.
+
+The gambler's-ruin recurrence is solved by Fraction Gaussian elimination.
+Three-flip control-variate moments are enumerated over all eight bit strings.
+These finite checks supplement, and do not replace, the written all-parameter
+proof, interleaving argument, or limiting arguments.
+"""
+from fractions import Fraction as Q
+from itertools import product
+from pathlib import Path
+import hashlib
+import json
+import subprocess
+
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parents[2]
+PROOFS = [HERE.parent / "lower/population_information.tex", HERE.parent / "upper/proof.tex"]
+
+
+def sha(p):
+    return hashlib.sha256(p.read_bytes()).hexdigest()
+
+
+def solve(matrix, rhs):
+    rows = [list(a)+[b] for a,b in zip(matrix,rhs)]
+    n = len(rows)
+    for j in range(n):
+        pivot = next(i for i in range(j,n) if rows[i][j])
+        rows[j],rows[pivot] = rows[pivot],rows[j]
+        scale = rows[j][j]
+        rows[j] = [v/scale for v in rows[j]]
+        for i in range(n):
+            if i != j:
+                c = rows[i][j]
+                rows[i] = [x-c*y for x,y in zip(rows[i],rows[j])]
+    return [r[-1] for r in rows]
+
+
+def ruin(d, sign, upper):
+    p = Q(1,2)+sign*d
+    matrix = [[Q(i==j) for j in range(upper)] for i in range(upper)]
+    success = [Q(0) for _ in range(upper)]
+    for i in range(upper):
+        if i: matrix[i][i-1] -= 1-p
+        if i+1 < upper: matrix[i][i+1] -= p
+        else: success[i] = p
+    prob = solve(matrix,success)[0]
+    work = solve(matrix,[Q(1)]*upper)[0]
+    ratio = (1-p)/p
+    assert prob == (1-ratio)/(1-ratio**(upper+1))
+    assert work == ((upper+1)*prob-1)/(2*sign*d)
+    if sign==1:
+        assert Q(8,3)*d <= prob <= 4*d+Q(1,upper+1)
+        assert work <= 2*(upper+1)
+    else:
+        assert 0 < work <= 1/(2*d)
+    return {"d":str(d),"sign":sign,"upper":upper,
+            "probability":str(prob),"work":str(work)}
+
+
+def moments(gaps,masses,q):
+    x1,x2 = [2*d for d in gaps]
+    aa = (x1*x1+x1*x2+x2*x2)/(2*x1*x2*(x1+x2))
+    bb = -1/(2*x1*x2*(x1+x2))
+    m2 = sum(pi*(2*d)**2 for pi,d in zip(masses,gaps))
+    values = {k:Q(0) for k in ["Y","Z","YY","ZZ","YZ"]}
+    for pi,d,qi in zip(masses,gaps,q):
+        for s in [0,1]:
+            p = Q(1,2)+(2*s-1)*d
+            prior = pi*(qi if s else 1-qi)
+            for bits in product([0,1],repeat=3):
+                prob = prior
+                for bit in bits: prob *= p if bit else 1-p
+                r = [2*bit-1 for bit in bits]
+                A=Q(sum(r),3); B=r[0]*r[1]*r[2]
+                C=Q(r[0]*r[1]+r[0]*r[2]+r[1]*r[2],3)
+                y=Q(1,2)+aa*A+bb*B; z=C-m2
+                for key,value in {"Y":y,"Z":z,"YY":y*y,"ZZ":z*z,"YZ":y*z}.items():
+                    values[key] += prob*value
+    theta=sum(pi*qi for pi,qi in zip(masses,q))
+    m1=sum(pi*(2*qi-1)*(2*d) for pi,qi,d in zip(masses,q,gaps))
+    m3=sum(pi*(2*qi-1)*(2*d)**3 for pi,qi,d in zip(masses,q,gaps))
+    v=(1-m2)*(m2+Q(1,3))
+    K=aa*aa*(1+2*m2)/3+2*aa*bb*m2+bb*bb
+    covariance=aa*((Q(2,3)-m2)*m1+m3/3)+bb*(m1-m2*m3)
+    assert values["Y"] == theta and values["Z"] == 0
+    assert values["ZZ"] == v and v>0
+    assert values["YY"]-theta*theta == K-Q(1,4)+theta-theta*theta
+    assert values["YZ"] == covariance
+    return {"gaps":list(map(str,gaps)),"masses":list(map(str,masses)),"q":list(map(str,q)),
+            "theta":str(theta),"moments":{k:str(v) for k,v in values.items()}}
+
+
+def main():
+    before={str(p.relative_to(ROOT)).replace("\\","/"):sha(p) for p in PROOFS}
+    ruin_cases=[ruin(d,s,m) for d in [Q(1,128),Q(1,32),Q(1,8),Q(1,4)]
+                for s in [-1,1] for m in [1,2,8,16]]
+    moment_cases=[]
+    for gaps,masses in [((Q(1,32),Q(1,4)),(Q(1,4),Q(3,4))),
+                        ((Q(1,8),Q(1,2)),(Q(2,5),Q(3,5)))]:
+        for q in [(Q(0),Q(0)),(Q(1,8),Q(1,8)),
+                  (Q(1,4)/masses[0],Q(0)),(Q(0),Q(1,4)/masses[1])]:
+            moment_cases.append(moments(gaps,masses,q))
+    constants={
+        "F_over_A":Q(9,4096)*Q(1,4)/(Q(1,4)**4)==Q(9,64)<Q(1,4),
+        "indicator_information":Q(3,4)**2/Q(5,4)*Q(8,9)==Q(2,5),
+        "work_bound":8+8*2+Q(1,2)<25,
+        "ratio_denominator":Q(125,4)<32,
+    }
+    assert all(constants.values())
+    after={str(p.relative_to(ROOT)).replace("\\","/"):sha(p) for p in PROOFS}
+    assert before==after
+    result={"status":"EXACT-FINITE-DIAGNOSTICS; not FORMALIZED",
+            "head":subprocess.check_output(["git","rev-parse","HEAD"],cwd=ROOT,text=True).strip(),
+            "source_sha256_before":before,"source_sha256_after":after,
+            "script_sha256":sha(Path(__file__)),"ruin_cases":ruin_cases,
+            "three_flip_moment_cases":moment_cases,"constants":constants,
+            "precision":"Fraction exact rational arithmetic; no random seeds",
+            "scope":"32 finite ruin recurrences, 8 exact latent-mixture moment enumerations, 4 constant checks; no asymptotic numerical claim"}
+    (HERE/"population_arithmetic.json").write_text(json.dumps(result,indent=2)+"\n",encoding="utf-8")
+    print("32 ruin recurrences, 8 three-flip moment cases and 4 constant checks passed exactly")
+
+
+if __name__=="__main__":
+    main()

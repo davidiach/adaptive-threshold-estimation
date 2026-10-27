@@ -1,0 +1,23 @@
+{
+  "status": "EXACT-ARITHMETIC-DIAGNOSTICS; not FORMALIZED",
+  "head": "a8a8dc49115aabdd1fba8d53d3390eb0a5eee864",
+  "proof": "research/2026-10-27-population-step/lower/proof.tex",
+  "proof_sha256_before": "f4f09ffedd2b357c0c51df72f89f203dbedc04467977c04bd01b6324636a35d0",
+  "proof_sha256_after": "f4f09ffedd2b357c0c51df72f89f203dbedc04467977c04bd01b6324636a35d0",
+  "script_sha256": "e82d894e83815cd5975acc1125a9ff8d279533b3384f9133d1209a4a9eac490b",
+  "checks": {
+    "variance_constant": true,
+    "bias_square": true,
+    "M_le_3V_over_2": true,
+    "active_pM": true,
+    "active_m_component": true,
+    "response_exception": true,
+    "combined_exception": true,
+    "threshold_distances": true,
+    "chebyshev": true,
+    "annulus": true,
+    "product_coefficient": true
+  },
+  "precision": "exact integers and Fraction; no random seeds or numerical optimizer",
+  "coverage": "Local constants only; probability, measurability and limiting arguments are audited on paper"
+}

@@ -1,0 +1,33 @@
+{
+  "head": "a8a8dc49115aabdd1fba8d53d3390eb0a5eee864",
+  "status": "?? lean/ThresholdHC/Tier5.lean\n?? lean/ThresholdHC/Tier5/BoundReduction.lean\n?? lean/ThresholdHC/Tier5/CreationBase.lean\n?? lean/ThresholdHC/Tier5/CreationExample.lean\n?? lean/ThresholdHC/Tier5/CreationFresh.lean\n?? lean/ThresholdHC/Tier5/CreationPadding.lean\n?? lean/ThresholdHC/Tier5/CreationProduct.lean\n?? lean/ThresholdHC/Tier5/EntropyPrefix.lean\n?? lean/ThresholdHC/Tier5/FiniteCreation.lean\n?? lean/ThresholdHC/Tier5/FiniteEnvironment.lean\n?? lean/ThresholdHC/Tier5/FiniteJoint.lean\n?? lean/ThresholdHC/Tier5/Full.lean\n?? lean/ThresholdHC/Tier5/StoppingBase.lean\n?? lean/ThresholdHC/Tier5/StoppingEntropy.lean\n?? lean/ThresholdHC/Tier5/StoppingFull.lean\n?? research/2026-10-27-critical-two/\n?? research/2026-10-27-population-step/\n?? results/tier5_audit.log\n?? results/tier5_build.log\n?? results/tier5_status.json\n",
+  "files": [
+    {
+      "source": "research/2026-10-27-critical-two/construction.tex",
+      "snapshot": "inherited/construction.tex",
+      "sha256": "29463b56bfcbcf35b0e9be2347d824489240d091fd26003bf17515e1b930affe"
+    },
+    {
+      "source": "research/2026-10-27-critical-two/review.md",
+      "snapshot": "inherited/review.md",
+      "sha256": "f707758019f6b1fc477a73ae88843b7096bc2e7e6f3a3130e4ade26a05b438b4"
+    },
+    {
+      "source": "research/2026-10-27-critical-two/sources.md",
+      "snapshot": "inherited/sources.md",
+      "sha256": "5b97196c96d5d8ab1529b8e31f68b6c13515401dfe443418508c7720aac9bb38"
+    },
+    {
+      "source": "research/2026-10-27-critical-two/alternative.md",
+      "snapshot": "inherited/alternative.md",
+      "sha256": "668e2cabc22ee6897fbfe8f50852c67e1474e28f27df6f9fe72a982e1beefbab"
+    },
+    {
+      "source": "research/2026-10-27-minimax-audit/theorem/critical.tex",
+      "snapshot": "inherited/upper-critical.tex",
+      "sha256": "0e8b9eaf762b3b09fa0d92ce1a036c2ceea8c12d00a5eea8286b852f36a81536"
+    }
+  ],
+  "contract_sha256": "0659f1e683c17832619a6f550c987e6861ef83452130ed410eee8ea8ea83528f",
+  "note": "Inherited work pinned before this run; no priority or external-review assertion"
+}
