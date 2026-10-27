@@ -1,0 +1,15 @@
+note: using only cached resource files
+note: Running TeX ...
+Fontconfig error: Cannot load default config file: No such file: (null)
+warning: RESEARCH_NOTE.tex:82: Overfull \hbox (105.51506pt too wide) in paragraph at lines 75--82
+warning: RESEARCH_NOTE.tex:82: Overfull \hbox (9.94475pt too wide) in paragraph at lines 75--82
+warning: adaptation.tex:55: Overfull \hbox (4.67021pt too wide) in paragraph at lines 47--55
+note: Rerunning TeX because "RESEARCH_NOTE.out" changed ...
+warning: RESEARCH_NOTE.tex:82: Overfull \hbox (105.51506pt too wide) in paragraph at lines 75--82
+warning: RESEARCH_NOTE.tex:82: Overfull \hbox (9.94475pt too wide) in paragraph at lines 75--82
+warning: adaptation.tex:55: Overfull \hbox (4.67021pt too wide) in paragraph at lines 47--55
+note: Running xdvipdfmx ...
+warning: warnings were issued by the TeX engine; use --print and/or --keep-logs for details.
+note: Writing `research/2026-10-27-minimax-audit\RESEARCH_NOTE.log` (13.6416015625 KiB)
+note: Writing `research/2026-10-27-minimax-audit\RESEARCH_NOTE.pdf` (140.28515625 KiB)
+note: Skipped writing 2 intermediate files (use --keep-intermediates to keep them)

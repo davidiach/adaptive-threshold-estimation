@@ -1,0 +1,16 @@
+⚠ [18168/18173] Replayed ThresholdHC.Statements
+warning: ThresholdHC\Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18169/18173] Ran ThresholdHC.Statements:irArts
+warning: ThresholdHC\Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18172/18173] Replayed ThresholdHC.Uniform713.Convergence
+warning: ThresholdHC/Uniform713/Convergence.lean:27:44: Variable name `hd` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hd
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+info: ThresholdHC/Uniform713/Convergence.lean:49:0: 'ThresholdHC.Uniform713.tendsto_dyadic_error_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Convergence.lean:50:0: 'ThresholdHC.Uniform713.tendsto_errorEnvelope_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Convergence.lean:51:0: 'ThresholdHC.Uniform713.tendsto_of_error_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Convergence.lean:52:0: 'ThresholdHC.Uniform713.tendsto_error_probability' depends on axioms: [propext, Classical.choice, Quot.sound]
+Build completed successfully (18173 jobs).

@@ -1,0 +1,2069 @@
+{
+  "complete": true,
+  "rows": [
+    {
+      "model": "gha_published",
+      "budget": 4096,
+      "method": "gha_calibrated_single_level",
+      "seed": 202610270,
+      "theta": 0.025,
+      "rho": 0.1,
+      "epsilon": 0.0125,
+      "seconds": 0.692700200015679,
+      "mean_outer_draws": 10.3125,
+      "outer_total": 1320,
+      "mean_work_if_outer_charged": 4054.3125,
+      "raw": {
+        "rmse": 0.11252877138920349,
+        "bias": 0.0026625934829059865,
+        "variance": 0.012655634986308397,
+        "miss_probability": 1.0,
+        "descriptive_rmse_interval": [
+          0.05029859026416111,
+          0.17619928710244787
+        ]
+      },
+      "clipped": {
+        "rmse": 0.11252877138920349,
+        "bias": 0.0026625934829059865,
+        "variance": 0.012655634986308397,
+        "miss_probability": 1.0,
+        "descriptive_rmse_interval": [
+          0.05029859026416111,
+          0.17619928710244787
+        ]
+      },
+      "mean_work": 4044.0,
+      "work_quantiles": {
+        "0.5": 3456.0,
+        "0.9": 6912.0,
+        "0.95": 8268.799999999996,
+        "0.99": 10170.880000000001,
+        "1.0": 13312.0
+      },
+      "work_total": 517632,
+      "clipped_fraction": 0.0,
+      "coverage": null,
+      "mean_work_interval": [
+        3648.975,
+        4443.0
+      ]
+    },
+    {
+      "model": "gha_published",
+      "budget": 4096,
+      "method": "direct_symmetric",
+      "seed": 202610271,
+      "theta": 0.025,
+      "rho": 0.1,
+      "epsilon": 0.0125,
+      "seconds": 0.018366999924182892,
+      "mean_outer_draws": 50.546875,
+      "outer_total": 6470,
+      "mean_work_if_outer_charged": 3802.296875,
+      "raw": {
+        "rmse": 0.08504443471433426,
+        "bias": 0.0075622359254908355,
+        "variance": 0.007175368463687878,
+        "miss_probability": 0.875,
+        "descriptive_rmse_interval": [
+          0.055989131432144144,
+          0.1125638036585054
+        ]
+      },
+      "clipped": {
+        "rmse": 0.07622041555027283,
+        "bias": 0.016259860758877046,
+        "variance": 0.005545168674758202,
+        "miss_probability": 0.875,
+        "descriptive_rmse_interval": [
+          0.042982338019386945,
+          0.1054364804246144
+        ]
+      },
+      "mean_work": 3751.75,
+      "work_quantiles": {
+        "0.5": 3192.0,
+        "0.9": 6852.8,
+        "0.95": 8833.599999999999,
+        "0.99": 12143.36000000001,
+        "1.0": 13296.0
+      },
+      "work_total": 480224,
+      "clipped_fraction": 0.09375,
+      "coverage": null,
+      "mean_work_interval": [
+        3350.603125,
+        4191.128125
+      ]
+    },
+    {
+      "model": "gha_published",
+      "budget": 4096,
+      "method": "direct_asymmetric",
+      "seed": 202610272,
+      "theta": 0.025,
+      "rho": 0.1,
+      "epsilon": 0.0125,
+      "seconds": 0.019313300028443336,
+      "mean_outer_draws": 53.109375,
+      "outer_total": 6798,
+      "mean_work_if_outer_charged": 4035.609375,
+      "raw": {
+        "rmse": 0.05959275055208804,
+        "bias": -0.0069244316671752525,
+        "variance": 0.00350334816445001,
+        "miss_probability": 0.8671875,
+        "descriptive_rmse_interval": [
+          0.04194288557659781,
+          0.07795430364287062
+        ]
+      },
+      "clipped": {
+        "rmse": 0.04216970586623522,
+        "bias": 0.0006708912090485277,
+        "variance": 0.0017778339978304137,
+        "miss_probability": 0.8671875,
+        "descriptive_rmse_interval": [
+          0.031074305955189712,
+          0.05367738762907572
+        ]
+      },
+      "mean_work": 3982.5,
+      "work_quantiles": {
+        "0.5": 3344.0,
+        "0.9": 7508.799999999999,
+        "0.95": 9251.199999999999,
+        "0.99": 11629.760000000006,
+        "1.0": 12128.0
+      },
+      "work_total": 509760,
+      "clipped_fraction": 0.0859375,
+      "coverage": null,
+      "mean_work_interval": [
+        3568.78125,
+        4424.26875
+      ]
+    },
+    {
+      "model": "gha_published",
+      "budget": 16384,
+      "method": "gha_calibrated_single_level",
+      "seed": 202610370,
+      "theta": 0.025,
+      "rho": 0.1,
+      "epsilon": 0.0125,
+      "seconds": 0.0847770000109449,
+      "mean_outer_draws": 16.453125,
+      "outer_total": 2106,
+      "mean_work_if_outer_charged": 16180.453125,
+      "raw": {
+        "rmse": 0.07269930589725097,
+        "bias": 0.00012459643064262425,
+        "variance": 0.005285173553671542,
+        "miss_probability": 0.9921875,
+        "descriptive_rmse_interval": [
+          0.04101727498052262,
+          0.10076090673767439
+        ]
+      },
+      "clipped": {
+        "rmse": 0.07269930589725097,
+        "bias": 0.00012459643064262425,
+        "variance": 0.005285173553671542,
+        "miss_probability": 0.9921875,
+        "descriptive_rmse_interval": [
+          0.04101727498052262,
+          0.10076090673767439
+        ]
+      },
+      "mean_work": 16164.0,
+      "work_quantiles": {
+        "0.5": 13184.0,
+        "0.9": 28134.399999999998,
+        "0.95": 41190.39999999999,
+        "0.99": 49907.20000000001,
+        "1.0": 55808.0
+      },
+      "work_total": 2068992,
+      "clipped_fraction": 0.0,
+      "coverage": null,
+      "mean_work_interval": [
+        14359.55,
+        18034.199999999997
+      ]
+    },
+    {
+      "model": "gha_published",
+      "budget": 16384,
+      "method": "direct_symmetric",
+      "seed": 202610371,
+      "theta": 0.025,
+      "rho": 0.1,
+      "epsilon": 0.0125,
+      "seconds": 0.08124970004428178,
+      "mean_outer_draws": 111.59375,
+      "outer_total": 14284,
+      "mean_work_if_outer_charged": 16518.21875,
+      "raw": {
+        "rmse": 0.06421854406414618,
+        "bias": -0.008479739200345917,
+        "variance": 0.004052115424812801,
+        "miss_probability": 0.6796875,
+        "descriptive_rmse_interval": [
+          0.030144603000154504,
+          0.10061706461873268
+        ]
+      },
+      "clipped": {
+        "rmse": 0.028763007692808564,
+        "bias": -0.0004989408556309444,
+        "variance": 0.0008270616695591471,
+        "miss_probability": 0.6796875,
+        "descriptive_rmse_interval": [
+          0.022822970326411722,
+          0.03477170364237574
+        ]
+      },
+      "mean_work": 16406.625,
+      "work_quantiles": {
+        "0.5": 14784.0,
+        "0.9": 30403.19999999999,
+        "0.95": 39931.99999999998,
+        "0.99": 45339.52000000002,
+        "1.0": 47120.0
+      },
+      "work_total": 2100048,
+      "clipped_fraction": 0.078125,
+      "coverage": null,
+      "mean_work_interval": [
+        14570.2375,
+        18239.975
+      ]
+    },
+    {
+      "model": "gha_published",
+      "budget": 16384,
+      "method": "direct_asymmetric",
+      "seed": 202610372,
+      "theta": 0.025,
+      "rho": 0.1,
+      "epsilon": 0.0125,
+      "seconds": 0.07767050003167242,
+      "mean_outer_draws": 98.75,
+      "outer_total": 12640,
+      "mean_work_if_outer_charged": 15971.25,
+      "raw": {
+        "rmse": 0.03701955023462439,
+        "bias": -0.007379592657867216,
+        "variance": 0.0013159887117778308,
+        "miss_probability": 0.6953125,
+        "descriptive_rmse_interval": [
+          0.031001890450718106,
+          0.042936673606430636
+        ]
+      },
+      "clipped": {
+        "rmse": 0.029521005022371927,
+        "bias": -0.002859746702605111,
+        "variance": 0.0008633115863278475,
+        "miss_probability": 0.6953125,
+        "descriptive_rmse_interval": [
+          0.024724394218792557,
+          0.03476958939021822
+        ]
+      },
+      "mean_work": 15872.5,
+      "work_quantiles": {
+        "0.5": 13384.0,
+        "0.9": 29232.0,
+        "0.95": 33859.999999999985,
+        "0.99": 48259.840000000004,
+        "1.0": 66800.0
+      },
+      "work_total": 2031680,
+      "clipped_fraction": 0.09375,
+      "coverage": null,
+      "mean_work_interval": [
+        14140.90625,
+        17676.1375
+      ]
+    },
+    {
+      "model": "gha_rare",
+      "budget": 4096,
+      "method": "gha_calibrated_single_level",
+      "seed": 202620270,
+      "theta": 0.005,
+      "rho": 0.02,
+      "epsilon": 0.0025,
+      "seconds": 0.018147099995985627,
+      "mean_outer_draws": 11.265625,
+      "outer_total": 1442,
+      "mean_work_if_outer_charged": 3729.265625,
+      "raw": {
+        "rmse": 0.05483098700548913,
+        "bias": 0.008278431637806637,
+        "variance": 0.002937904705614281,
+        "miss_probability": 1.0,
+        "descriptive_rmse_interval": [
+          0.029318735053708776,
+          0.076819648134168
+        ]
+      },
+      "clipped": {
+        "rmse": 0.05483098700548913,
+        "bias": 0.008278431637806637,
+        "variance": 0.002937904705614281,
+        "miss_probability": 1.0,
+        "descriptive_rmse_interval": [
+          0.029318735053708776,
+          0.076819648134168
+        ]
+      },
+      "mean_work": 3718.0,
+      "work_quantiles": {
+        "0.5": 2880.0,
+        "0.9": 7552.0,
+        "0.95": 9107.199999999988,
+        "0.99": 11869.44,
+        "1.0": 12800.0
+      },
+      "work_total": 475904,
+      "clipped_fraction": 0.0,
+      "coverage": null,
+      "mean_work_interval": [
+        3300.0,
+        4162.025
+      ]
+    },
+    {
+      "model": "gha_rare",
+      "budget": 4096,
+      "method": "direct_symmetric",
+      "seed": 202620271,
+      "theta": 0.005,
+      "rho": 0.02,
+      "epsilon": 0.0025,
+      "seconds": 0.019255400053225458,
+      "mean_outer_draws": 93.03125,
+      "outer_total": 11908,
+      "mean_work_if_outer_charged": 3946.40625,
+      "raw": {
+        "rmse": 0.030494250447313152,
+        "bias": 0.00043536239840866165,
+        "variance": 0.0009297097699255105,
+        "miss_probability": 0.9921875,
+        "descriptive_rmse_interval": [
+          0.017406295867437725,
+          0.044545818051233525
+        ]
+      },
+      "clipped": {
+        "rmse": 0.018465205648599246,
+        "bias": 0.004165129452257318,
+        "variance": 0.0003236155162910001,
+        "miss_probability": 0.9921875,
+        "descriptive_rmse_interval": [
+          0.012965290469160827,
+          0.023894168927103533
+        ]
+      },
+      "mean_work": 3853.375,
+      "work_quantiles": {
+        "0.5": 3216.0,
+        "0.9": 7110.399999999999,
+        "0.95": 8268.8,
+        "0.99": 13348.480000000003,
+        "1.0": 15472.0
+      },
+      "work_total": 493232,
+      "clipped_fraction": 0.0546875,
+      "coverage": null,
+      "mean_work_interval": [
+        3382.7,
+        4366.034375
+      ]
+    },
+    {
+      "model": "gha_rare",
+      "budget": 4096,
+      "method": "direct_asymmetric",
+      "seed": 202620272,
+      "theta": 0.005,
+      "rho": 0.02,
+      "epsilon": 0.0025,
+      "seconds": 0.02001949993427843,
+      "mean_outer_draws": 93.890625,
+      "outer_total": 12018,
+      "mean_work_if_outer_charged": 4119.765625,
+      "raw": {
+        "rmse": 0.015083653858552579,
+        "bias": -0.0004726508288000585,
+        "variance": 0.00022729321491866283,
+        "miss_probability": 0.9921875,
+        "descriptive_rmse_interval": [
+          0.011310433588889883,
+          0.018430617127326753
+        ]
+      },
+      "clipped": {
+        "rmse": 0.013347085812271535,
+        "bias": 0.00043307153788808915,
+        "variance": 0.0001779571487232114,
+        "miss_probability": 0.9921875,
+        "descriptive_rmse_interval": [
+          0.00990714284079673,
+          0.01662539596585355
+        ]
+      },
+      "mean_work": 4025.875,
+      "work_quantiles": {
+        "0.5": 3232.0,
+        "0.9": 8001.599999999999,
+        "0.95": 9278.39999999999,
+        "0.99": 12747.68,
+        "1.0": 14048.0
+      },
+      "work_total": 515312,
+      "clipped_fraction": 0.03125,
+      "coverage": null,
+      "mean_work_interval": [
+        3543.1,
+        4543.171875
+      ]
+    },
+    {
+      "model": "gha_rare",
+      "budget": 16384,
+      "method": "gha_calibrated_single_level",
+      "seed": 202620370,
+      "theta": 0.005,
+      "rho": 0.02,
+      "epsilon": 0.0025,
+      "seconds": 0.07556960009969771,
+      "mean_outer_draws": 22.09375,
+      "outer_total": 2828,
+      "mean_work_if_outer_charged": 15978.09375,
+      "raw": {
+        "rmse": 0.0097330408483249,
+        "bias": -0.003878205128205128,
+        "variance": 7.969160913872451e-05,
+        "miss_probability": 1.0,
+        "descriptive_rmse_interval": [
+          0.005000000000000001,
+          0.014306724418139688
+        ]
+      },
+      "clipped": {
+        "rmse": 0.0097330408483249,
+        "bias": -0.003878205128205128,
+        "variance": 7.969160913872451e-05,
+        "miss_probability": 1.0,
+        "descriptive_rmse_interval": [
+          0.005000000000000001,
+          0.014306724418139688
+        ]
+      },
+      "mean_work": 15956.0,
+      "work_quantiles": {
+        "0.5": 13056.0,
+        "0.9": 30694.399999999998,
+        "0.95": 37708.799999999996,
+        "0.99": 43194.880000000005,
+        "1.0": 49664.0
+      },
+      "work_total": 2042368,
+      "clipped_fraction": 0.0,
+      "coverage": null,
+      "mean_work_interval": [
+        14183.4,
+        17856.1
+      ]
+    },
+    {
+      "model": "gha_rare",
+      "budget": 16384,
+      "method": "direct_symmetric",
+      "seed": 202620371,
+      "theta": 0.005,
+      "rho": 0.02,
+      "epsilon": 0.0025,
+      "seconds": 0.07671459997072816,
+      "mean_outer_draws": 229.890625,
+      "outer_total": 29426,
+      "mean_work_if_outer_charged": 15465.765625,
+      "raw": {
+        "rmse": 0.008877958843534893,
+        "bias": -0.00013619380912830543,
+        "variance": 7.879960447385452e-05,
+        "miss_probability": 0.8984375,
+        "descriptive_rmse_interval": [
+          0.0070957441144967135,
+          0.010536725272719833
+        ]
+      },
+      "clipped": {
+        "rmse": 0.008091113212424065,
+        "bias": 0.000308276758368975,
+        "variance": 6.537107845651282e-05,
+        "miss_probability": 0.8984375,
+        "descriptive_rmse_interval": [
+          0.006535968585134133,
+          0.009680714093315584
+        ]
+      },
+      "mean_work": 15235.875,
+      "work_quantiles": {
+        "0.5": 12400.0,
+        "0.9": 29633.6,
+        "0.95": 36987.19999999998,
+        "0.99": 50508.48,
+        "1.0": 51744.0
+      },
+      "work_total": 1950192,
+      "clipped_fraction": 0.03125,
+      "coverage": null,
+      "mean_work_interval": [
+        13442.56875,
+        17034.303125
+      ]
+    },
+    {
+      "model": "gha_rare",
+      "budget": 16384,
+      "method": "direct_asymmetric",
+      "seed": 202620372,
+      "theta": 0.005,
+      "rho": 0.02,
+      "epsilon": 0.0025,
+      "seconds": 0.0846922000637278,
+      "mean_outer_draws": 236.171875,
+      "outer_total": 30230,
+      "mean_work_if_outer_charged": 17097.671875,
+      "raw": {
+        "rmse": 0.011955715881993168,
+        "bias": 0.00013006217750275947,
+        "variance": 0.00014292222608092695,
+        "miss_probability": 0.890625,
+        "descriptive_rmse_interval": [
+          0.009143709207967747,
+          0.01482836816739243
+        ]
+      },
+      "clipped": {
+        "rmse": 0.009882573439357176,
+        "bias": 0.001251053746123632,
+        "variance": 9.610012230859796e-05,
+        "miss_probability": 0.890625,
+        "descriptive_rmse_interval": [
+          0.007639353670369249,
+          0.012415965144584666
+        ]
+      },
+      "mean_work": 16861.5,
+      "work_quantiles": {
+        "0.5": 15312.0,
+        "0.9": 29948.8,
+        "0.95": 35975.199999999975,
+        "0.99": 57538.560000000034,
+        "1.0": 60672.0
+      },
+      "work_total": 2158272,
+      "clipped_fraction": 0.0546875,
+      "coverage": null,
+      "mean_work_interval": [
+        14865.428125,
+        18869.128125
+      ]
+    },
+    {
+      "model": "fixed_gap",
+      "budget": 4096,
+      "method": "gha_calibrated_single_level",
+      "seed": 202630270,
+      "theta": 0.01,
+      "rho": 0.04,
+      "epsilon": 0.005,
+      "seconds": 0.005969699937850237,
+      "mean_outer_draws": 12.109375,
+      "outer_total": 1550,
+      "mean_work_if_outer_charged": 3853.109375,
+      "raw": {
+        "rmse": 0.042986487669192296,
+        "bias": 0.0007225308499979525,
+        "variance": 0.0018473160713044215,
+        "miss_probability": 1.0,
+        "descriptive_rmse_interval": [
+          0.02159042496981081,
+          0.062164775767920316
+        ]
+      },
+      "clipped": {
+        "rmse": 0.042986487669192296,
+        "bias": 0.0007225308499979525,
+        "variance": 0.0018473160713044215,
+        "miss_probability": 1.0,
+        "descriptive_rmse_interval": [
+          0.02159042496981081,
+          0.062164775767920316
+        ]
+      },
+      "mean_work": 3841.0,
+      "work_quantiles": {
+        "0.5": 3584.0,
+        "0.9": 7244.799999999999,
+        "0.95": 8396.799999999996,
+        "0.99": 10524.160000000007,
+        "1.0": 12288.0
+      },
+      "work_total": 491648,
+      "clipped_fraction": 0.0,
+      "coverage": null,
+      "mean_work_interval": [
+        3433.975,
+        4226.025
+      ]
+    },
+    {
+      "model": "fixed_gap",
+      "budget": 4096,
+      "method": "direct_symmetric",
+      "seed": 202630271,
+      "theta": 0.01,
+      "rho": 0.04,
+      "epsilon": 0.005,
+      "seconds": 0.007305599981918931,
+      "mean_outer_draws": 103.546875,
+      "outer_total": 13254,
+      "mean_work_if_outer_charged": 3888.921875,
+      "raw": {
+        "rmse": 0.028455000569913097,
+        "bias": 0.0014827028953008751,
+        "variance": 0.0008074886495580205,
+        "miss_probability": 0.828125,
+        "descriptive_rmse_interval": [
+          0.012945389515255416,
+          0.04493281374101475
+        ]
+      },
+      "clipped": {
+        "rmse": 0.028059400948071828,
+        "bias": 0.0018672925263926697,
+        "variance": 0.0007838432001855323,
+        "miss_probability": 0.828125,
+        "descriptive_rmse_interval": [
+          0.012443107381916842,
+          0.04469706739684326
+        ]
+      },
+      "mean_work": 3785.375,
+      "work_quantiles": {
+        "0.5": 3280.0,
+        "0.9": 7747.199999999999,
+        "0.95": 9095.199999999999,
+        "0.99": 11420.640000000001,
+        "1.0": 12464.0
+      },
+      "work_total": 484528,
+      "clipped_fraction": 0.015625,
+      "coverage": null,
+      "mean_work_interval": [
+        3341.99375,
+        4240.409375
+      ]
+    },
+    {
+      "model": "fixed_gap",
+      "budget": 4096,
+      "method": "direct_asymmetric",
+      "seed": 202630272,
+      "theta": 0.01,
+      "rho": 0.04,
+      "epsilon": 0.005,
+      "seconds": 0.008519500028342009,
+      "mean_outer_draws": 102.6875,
+      "outer_total": 13144,
+      "mean_work_if_outer_charged": 3889.4375,
+      "raw": {
+        "rmse": 0.03314394919916439,
+        "bias": 0.002140937753588698,
+        "variance": 0.0010939377540520486,
+        "miss_probability": 0.921875,
+        "descriptive_rmse_interval": [
+          0.013139505564460443,
+          0.053326805479992516
+        ]
+      },
+      "clipped": {
+        "rmse": 0.03314394919916439,
+        "bias": 0.002140937753588698,
+        "variance": 0.0010939377540520486,
+        "miss_probability": 0.921875,
+        "descriptive_rmse_interval": [
+          0.013139505564460443,
+          0.053326805479992516
+        ]
+      },
+      "mean_work": 3786.75,
+      "work_quantiles": {
+        "0.5": 3256.0,
+        "0.9": 7145.6,
+        "0.95": 8675.19999999999,
+        "0.99": 11839.680000000002,
+        "1.0": 15632.0
+      },
+      "work_total": 484704,
+      "clipped_fraction": 0.0,
+      "coverage": null,
+      "mean_work_interval": [
+        3376.115625,
+        4252.26875
+      ]
+    },
+    {
+      "model": "fixed_gap",
+      "budget": 16384,
+      "method": "gha_calibrated_single_level",
+      "seed": 202630370,
+      "theta": 0.01,
+      "rho": 0.04,
+      "epsilon": 0.005,
+      "seconds": 0.022329000057652593,
+      "mean_outer_draws": 28.6875,
+      "outer_total": 3672,
+      "mean_work_if_outer_charged": 14824.6875,
+      "raw": {
+        "rmse": 0.027254811365001005,
+        "bias": -0.0016535654331975129,
+        "variance": 0.0007400904638999226,
+        "miss_probability": 1.0,
+        "descriptive_rmse_interval": [
+          0.01785392040169543,
+          0.035799814426619815
+        ]
+      },
+      "clipped": {
+        "rmse": 0.027254811365001005,
+        "bias": -0.0016535654331975129,
+        "variance": 0.0007400904638999226,
+        "miss_probability": 1.0,
+        "descriptive_rmse_interval": [
+          0.01785392040169543,
+          0.035799814426619815
+        ]
+      },
+      "mean_work": 14796.0,
+      "work_quantiles": {
+        "0.5": 11776.0,
+        "0.9": 25932.8,
+        "0.95": 31846.399999999965,
+        "0.99": 50224.64,
+        "1.0": 50688.0
+      },
+      "work_total": 1893888,
+      "clipped_fraction": 0.0,
+      "coverage": null,
+      "mean_work_interval": [
+        13128.0,
+        16524.05
+      ]
+    },
+    {
+      "model": "fixed_gap",
+      "budget": 16384,
+      "method": "direct_symmetric",
+      "seed": 202630371,
+      "theta": 0.01,
+      "rho": 0.04,
+      "epsilon": 0.005,
+      "seconds": 0.027835699962452054,
+      "mean_outer_draws": 353.3125,
+      "outer_total": 45224,
+      "mean_work_if_outer_charged": 16468.5625,
+      "raw": {
+        "rmse": 0.009573451063036524,
+        "bias": 0.0012465512941644292,
+        "variance": 9.009707512737213e-05,
+        "miss_probability": 0.5546875,
+        "descriptive_rmse_interval": [
+          0.008006004088757469,
+          0.01110881599094061
+        ]
+      },
+      "clipped": {
+        "rmse": 0.009573451063036524,
+        "bias": 0.0012465512941644292,
+        "variance": 9.009707512737213e-05,
+        "miss_probability": 0.5546875,
+        "descriptive_rmse_interval": [
+          0.008006004088757469,
+          0.01110881599094061
+        ]
+      },
+      "mean_work": 16115.25,
+      "work_quantiles": {
+        "0.5": 12752.0,
+        "0.9": 30356.8,
+        "0.95": 40699.999999999956,
+        "0.99": 52738.560000000005,
+        "1.0": 63504.0
+      },
+      "work_total": 2062752,
+      "clipped_fraction": 0.0,
+      "coverage": null,
+      "mean_work_interval": [
+        14243.590625,
+        18064.190625
+      ]
+    },
+    {
+      "model": "fixed_gap",
+      "budget": 16384,
+      "method": "direct_asymmetric",
+      "seed": 202630372,
+      "theta": 0.01,
+      "rho": 0.04,
+      "epsilon": 0.005,
+      "seconds": 0.025698099983856082,
+      "mean_outer_draws": 315.75,
+      "outer_total": 40416,
+      "mean_work_if_outer_charged": 14889.75,
+      "raw": {
+        "rmse": 0.0114462061445447,
+        "bias": 0.0010292603533010119,
+        "variance": 0.00012995625822853548,
+        "miss_probability": 0.578125,
+        "descriptive_rmse_interval": [
+          0.007633292133782644,
+          0.0162696738011376
+        ]
+      },
+      "clipped": {
+        "rmse": 0.0114462061445447,
+        "bias": 0.0010292603533010119,
+        "variance": 0.00012995625822853548,
+        "miss_probability": 0.578125,
+        "descriptive_rmse_interval": [
+          0.007633292133782644,
+          0.0162696738011376
+        ]
+      },
+      "mean_work": 14574.0,
+      "work_quantiles": {
+        "0.5": 11752.0,
+        "0.9": 28889.6,
+        "0.95": 35407.19999999998,
+        "0.99": 41577.44,
+        "1.0": 45808.0
+      },
+      "work_total": 1865472,
+      "clipped_fraction": 0.0,
+      "coverage": null,
+      "mean_work_interval": [
+        12970.65,
+        16205.553124999999
+      ]
+    },
+    {
+      "model": "mixed_scales",
+      "budget": 4096,
+      "method": "gha_calibrated_single_level",
+      "seed": 202640270,
+      "theta": 0.02,
+      "rho": 0.04,
+      "epsilon": 0.01,
+      "seconds": 0.005910399951972067,
+      "mean_outer_draws": 14.109375,
+      "outer_total": 1806,
+      "mean_work_if_outer_charged": 3881.109375,
+      "raw": {
+        "rmse": 0.06151603660293577,
+        "bias": -0.0037810301677489193,
+        "variance": 0.0037699265702043046,
+        "miss_probability": 1.0,
+        "descriptive_rmse_interval": [
+          0.031210406023603896,
+          0.09134369003319495
+        ]
+      },
+      "clipped": {
+        "rmse": 0.06151603660293577,
+        "bias": -0.0037810301677489193,
+        "variance": 0.0037699265702043046,
+        "miss_probability": 1.0,
+        "descriptive_rmse_interval": [
+          0.031210406023603896,
+          0.09134369003319495
+        ]
+      },
+      "mean_work": 3867.0,
+      "work_quantiles": {
+        "0.5": 3200.0,
+        "0.9": 7027.199999999999,
+        "0.95": 8735.999999999995,
+        "0.99": 11392.0,
+        "1.0": 15360.0
+      },
+      "work_total": 494976,
+      "clipped_fraction": 0.0,
+      "coverage": null,
+      "mean_work_interval": [
+        3435.925,
+        4307.0
+      ]
+    },
+    {
+      "model": "mixed_scales",
+      "budget": 4096,
+      "method": "direct_symmetric",
+      "seed": 202640271,
+      "theta": 0.02,
+      "rho": 0.04,
+      "epsilon": 0.01,
+      "seconds": 0.00860820000525564,
+      "mean_outer_draws": 108.265625,
+      "outer_total": 13858,
+      "mean_work_if_outer_charged": 4260.515625,
+      "raw": {
+        "rmse": 0.04027630481506298,
+        "bias": -0.001826726434103591,
+        "variance": 0.0016188438000908124,
+        "miss_probability": 0.71875,
+        "descriptive_rmse_interval": [
+          0.028208572710406346,
+          0.05144325235798239
+        ]
+      },
+      "clipped": {
+        "rmse": 0.03295848380665764,
+        "bias": 0.001419790499824407,
+        "variance": 0.0010842458497703224,
+        "miss_probability": 0.71875,
+        "descriptive_rmse_interval": [
+          0.0221021539461717,
+          0.04277252825226797
+        ]
+      },
+      "mean_work": 4152.25,
+      "work_quantiles": {
+        "0.5": 3536.0,
+        "0.9": 7577.599999999999,
+        "0.95": 8714.4,
+        "0.99": 12720.160000000002,
+        "1.0": 13280.0
+      },
+      "work_total": 531488,
+      "clipped_fraction": 0.046875,
+      "coverage": null,
+      "mean_work_interval": [
+        3712.48125,
+        4621.412499999999
+      ]
+    },
+    {
+      "model": "mixed_scales",
+      "budget": 4096,
+      "method": "direct_asymmetric",
+      "seed": 202640272,
+      "theta": 0.02,
+      "rho": 0.04,
+      "epsilon": 0.01,
+      "seconds": 0.0073457000544294715,
+      "mean_outer_draws": 96.796875,
+      "outer_total": 12390,
+      "mean_work_if_outer_charged": 4100.296875,
+      "raw": {
+        "rmse": 0.0718453460689214,
+        "bias": 0.00215076915925733,
+        "variance": 0.005157127943786668,
+        "miss_probability": 0.78125,
+        "descriptive_rmse_interval": [
+          0.024939174952709628,
+          0.11828439863649362
+        ]
+      },
+      "clipped": {
+        "rmse": 0.07085157250445656,
+        "bias": 0.003694287878427174,
+        "variance": 0.00500629756342557,
+        "miss_probability": 0.78125,
+        "descriptive_rmse_interval": [
+          0.02261963005436549,
+          0.1177559851764638
+        ]
+      },
+      "mean_work": 4003.5,
+      "work_quantiles": {
+        "0.5": 3400.0,
+        "0.9": 7206.4,
+        "0.95": 8208.799999999996,
+        "0.99": 10391.200000000004,
+        "1.0": 12176.0
+      },
+      "work_total": 512448,
+      "clipped_fraction": 0.0390625,
+      "coverage": null,
+      "mean_work_interval": [
+        3580.6625,
+        4445.6375
+      ]
+    },
+    {
+      "model": "mixed_scales",
+      "budget": 16384,
+      "method": "gha_calibrated_single_level",
+      "seed": 202640370,
+      "theta": 0.02,
+      "rho": 0.04,
+      "epsilon": 0.01,
+      "seconds": 0.024665299919433892,
+      "mean_outer_draws": 27.921875,
+      "outer_total": 3574,
+      "mean_work_if_outer_charged": 16807.921875,
+      "raw": {
+        "rmse": 0.046042065052265296,
+        "bias": -0.002090720801961277,
+        "variance": 0.0021155006408052754,
+        "miss_probability": 0.984375,
+        "descriptive_rmse_interval": [
+          0.029071003335779718,
+          0.06340710143307533
+        ]
+      },
+      "clipped": {
+        "rmse": 0.046042065052265296,
+        "bias": -0.002090720801961277,
+        "variance": 0.0021155006408052754,
+        "miss_probability": 0.984375,
+        "descriptive_rmse_interval": [
+          0.029071003335779718,
+          0.06340710143307533
+        ]
+      },
+      "mean_work": 16780.0,
+      "work_quantiles": {
+        "0.5": 13824.0,
+        "0.9": 34432.0,
+        "0.95": 40691.2,
+        "0.99": 54576.64,
+        "1.0": 57088.0
+      },
+      "work_total": 2147840,
+      "clipped_fraction": 0.0,
+      "coverage": null,
+      "mean_work_interval": [
+        14617.95,
+        19096.05
+      ]
+    },
+    {
+      "model": "mixed_scales",
+      "budget": 16384,
+      "method": "direct_symmetric",
+      "seed": 202640371,
+      "theta": 0.02,
+      "rho": 0.04,
+      "epsilon": 0.01,
+      "seconds": 0.031703799962997437,
+      "mean_outer_draws": 220.1875,
+      "outer_total": 28184,
+      "mean_work_if_outer_charged": 17807.0625,
+      "raw": {
+        "rmse": 0.03955077047009096,
+        "bias": 0.006419014603326218,
+        "variance": 0.0015230596963001037,
+        "miss_probability": 0.6484375,
+        "descriptive_rmse_interval": [
+          0.024999402618017103,
+          0.05598454571366526
+        ]
+      },
+      "clipped": {
+        "rmse": 0.03815877890648905,
+        "bias": 0.007723570144095144,
+        "variance": 0.0013964388718635562,
+        "miss_probability": 0.6484375,
+        "descriptive_rmse_interval": [
+          0.02308065106711558,
+          0.05512449637577889
+        ]
+      },
+      "mean_work": 17586.875,
+      "work_quantiles": {
+        "0.5": 14240.0,
+        "0.9": 34579.19999999999,
+        "0.95": 41346.4,
+        "0.99": 55415.840000000026,
+        "1.0": 59984.0
+      },
+      "work_total": 2251120,
+      "clipped_fraction": 0.0390625,
+      "coverage": null,
+      "mean_work_interval": [
+        15579.103125,
+        19641.83125
+      ]
+    },
+    {
+      "model": "mixed_scales",
+      "budget": 16384,
+      "method": "direct_asymmetric",
+      "seed": 202640372,
+      "theta": 0.02,
+      "rho": 0.04,
+      "epsilon": 0.01,
+      "seconds": 0.038439400028437376,
+      "mean_outer_draws": 188.796875,
+      "outer_total": 24166,
+      "mean_work_if_outer_charged": 17035.171875,
+      "raw": {
+        "rmse": 0.024594883923405125,
+        "bias": -0.0014430005150542755,
+        "variance": 0.0006028260647193248,
+        "miss_probability": 0.703125,
+        "descriptive_rmse_interval": [
+          0.020106695170683007,
+          0.029416769034801064
+        ]
+      },
+      "clipped": {
+        "rmse": 0.023460735604479838,
+        "bias": -0.0007546835405680301,
+        "variance": 0.0005498365678569038,
+        "miss_probability": 0.703125,
+        "descriptive_rmse_interval": [
+          0.018952350772803717,
+          0.028316668117135537
+        ]
+      },
+      "mean_work": 16846.375,
+      "work_quantiles": {
+        "0.5": 14568.0,
+        "0.9": 29828.8,
+        "0.95": 32970.4,
+        "0.99": 57881.4400000001,
+        "1.0": 64832.0
+      },
+      "work_total": 2156336,
+      "clipped_fraction": 0.03125,
+      "coverage": null,
+      "mean_work_interval": [
+        15005.253125,
+        18773.140625
+      ]
+    },
+    {
+      "model": "near_negative",
+      "budget": 4096,
+      "method": "gha_calibrated_single_level",
+      "seed": 202650270,
+      "theta": 0.05,
+      "rho": 0.1,
+      "epsilon": 0.025,
+      "seconds": 0.008107800036668777,
+      "mean_outer_draws": 5.34375,
+      "outer_total": 684,
+      "mean_work_if_outer_charged": 3353.34375,
+      "raw": {
+        "rmse": 0.5653227783753279,
+        "bias": 0.40039062500000006,
+        "variance": 0.15927719116210937,
+        "miss_probability": 1.0,
+        "descriptive_rmse_interval": [
+          0.5056424251747607,
+          0.6227928467613051
+        ]
+      },
+      "clipped": {
+        "rmse": 0.5653227783753279,
+        "bias": 0.40039062500000006,
+        "variance": 0.15927719116210937,
+        "miss_probability": 1.0,
+        "descriptive_rmse_interval": [
+          0.5056424251747607,
+          0.6227928467613051
+        ]
+      },
+      "mean_work": 3348.0,
+      "work_quantiles": {
+        "0.5": 3200.0,
+        "0.9": 5760.0,
+        "0.95": 7040.0,
+        "0.99": 7974.400000000005,
+        "1.0": 10880.0
+      },
+      "work_total": 428544,
+      "clipped_fraction": 0.0,
+      "coverage": null,
+      "mean_work_interval": [
+        3056.9,
+        3637.124999999999
+      ]
+    },
+    {
+      "model": "near_negative",
+      "budget": 4096,
+      "method": "direct_symmetric",
+      "seed": 202650271,
+      "theta": 0.05,
+      "rho": 0.1,
+      "epsilon": 0.025,
+      "seconds": 0.01027049997355789,
+      "mean_outer_draws": 11.9375,
+      "outer_total": 1528,
+      "mean_work_if_outer_charged": 3894.1875,
+      "raw": {
+        "rmse": 0.5881700610777844,
+        "bias": 0.34870617195313225,
+        "variance": 0.22434802639003715,
+        "miss_probability": 1.0,
+        "descriptive_rmse_interval": [
+          0.48663454547035206,
+          0.7112301746795616
+        ]
+      },
+      "clipped": {
+        "rmse": 0.5012378452918671,
+        "bias": 0.3833686086015309,
+        "variance": 0.10426788749175991,
+        "miss_probability": 1.0,
+        "descriptive_rmse_interval": [
+          0.45143520121266373,
+          0.5503107111481536
+        ]
+      },
+      "mean_work": 3882.25,
+      "work_quantiles": {
+        "0.5": 3360.0,
+        "0.9": 6984.0,
+        "0.95": 8574.4,
+        "0.99": 11430.240000000009,
+        "1.0": 14512.0
+      },
+      "work_total": 496928,
+      "clipped_fraction": 0.09375,
+      "coverage": null,
+      "mean_work_interval": [
+        3469.11875,
+        4317.24375
+      ]
+    },
+    {
+      "model": "near_negative",
+      "budget": 4096,
+      "method": "direct_asymmetric",
+      "seed": 202650272,
+      "theta": 0.05,
+      "rho": 0.1,
+      "epsilon": 0.025,
+      "seconds": 0.00782119994983077,
+      "mean_outer_draws": 10.28125,
+      "outer_total": 1316,
+      "mean_work_if_outer_charged": 3833.28125,
+      "raw": {
+        "rmse": 0.6951640813524139,
+        "bias": 0.4495332671208242,
+        "variance": 0.28117294175422325,
+        "miss_probability": 0.9765625,
+        "descriptive_rmse_interval": [
+          0.5563037217089626,
+          0.8629464573513895
+        ]
+      },
+      "clipped": {
+        "rmse": 0.5490020335714114,
+        "bias": 0.4253637270816213,
+        "variance": 0.12046893254877712,
+        "miss_probability": 0.9765625,
+        "descriptive_rmse_interval": [
+          0.49716014067873476,
+          0.5974527415197849
+        ]
+      },
+      "mean_work": 3823.0,
+      "work_quantiles": {
+        "0.5": 3560.0,
+        "0.9": 6312.0,
+        "0.95": 7127.999999999998,
+        "0.99": 8515.04,
+        "1.0": 9648.0
+      },
+      "work_total": 489344,
+      "clipped_fraction": 0.1640625,
+      "coverage": null,
+      "mean_work_interval": [
+        3512.4875,
+        4113.50625
+      ]
+    },
+    {
+      "model": "near_negative",
+      "budget": 16384,
+      "method": "gha_calibrated_single_level",
+      "seed": 202650370,
+      "theta": 0.05,
+      "rho": 0.1,
+      "epsilon": 0.025,
+      "seconds": 0.02823189995251596,
+      "mean_outer_draws": 5.078125,
+      "outer_total": 650,
+      "mean_work_if_outer_charged": 13855.078125,
+      "raw": {
+        "rmse": 0.4614783197327187,
+        "bias": 0.27669270833333337,
+        "variance": 0.13640338473849828,
+        "miss_probability": 1.0,
+        "descriptive_rmse_interval": [
+          0.3965653839819485,
+          0.5194075241718713
+        ]
+      },
+      "clipped": {
+        "rmse": 0.4614783197327187,
+        "bias": 0.27669270833333337,
+        "variance": 0.13640338473849828,
+        "miss_probability": 1.0,
+        "descriptive_rmse_interval": [
+          0.3965653839819485,
+          0.5194075241718713
+        ]
+      },
+      "mean_work": 13850.0,
+      "work_quantiles": {
+        "0.5": 14080.0,
+        "0.9": 21427.199999999993,
+        "0.95": 25344.0,
+        "0.99": 30976.0,
+        "1.0": 32000.0
+      },
+      "work_total": 1772800,
+      "clipped_fraction": 0.0,
+      "coverage": null,
+      "mean_work_interval": [
+        12886.0,
+        14842.249999999998
+      ]
+    },
+    {
+      "model": "near_negative",
+      "budget": 16384,
+      "method": "direct_symmetric",
+      "seed": 202650371,
+      "theta": 0.05,
+      "rho": 0.1,
+      "epsilon": 0.025,
+      "seconds": 0.028647099970839918,
+      "mean_outer_draws": 12.828125,
+      "outer_total": 1642,
+      "mean_work_if_outer_charged": 15504.453125,
+      "raw": {
+        "rmse": 0.5623519958564384,
+        "bias": 0.2787422408374126,
+        "variance": 0.23854253041665752,
+        "miss_probability": 0.9765625,
+        "descriptive_rmse_interval": [
+          0.4355486167561581,
+          0.6829075659137659
+        ]
+      },
+      "clipped": {
+        "rmse": 0.40934479875119995,
+        "bias": 0.2741898405931508,
+        "variance": 0.09238309558016294,
+        "miss_probability": 0.9765625,
+        "descriptive_rmse_interval": [
+          0.3537601630033754,
+          0.46017244838933885
+        ]
+      },
+      "mean_work": 15491.625,
+      "work_quantiles": {
+        "0.5": 13560.0,
+        "0.9": 26339.199999999997,
+        "0.95": 31267.199999999997,
+        "0.99": 37744.16,
+        "1.0": 55792.0
+      },
+      "work_total": 1982928,
+      "clipped_fraction": 0.125,
+      "coverage": null,
+      "mean_work_interval": [
+        14041.921875,
+        17038.471875
+      ]
+    },
+    {
+      "model": "near_negative",
+      "budget": 16384,
+      "method": "direct_asymmetric",
+      "seed": 202650372,
+      "theta": 0.05,
+      "rho": 0.1,
+      "epsilon": 0.025,
+      "seconds": 0.02716529997996986,
+      "mean_outer_draws": 10.890625,
+      "outer_total": 1394,
+      "mean_work_if_outer_charged": 14829.765625,
+      "raw": {
+        "rmse": 0.628908463405421,
+        "bias": 0.2566126182524389,
+        "variance": 0.3296758194965957,
+        "miss_probability": 1.0,
+        "descriptive_rmse_interval": [
+          0.45866677520886406,
+          0.8192740519249624
+        ]
+      },
+      "clipped": {
+        "rmse": 0.43267660468996655,
+        "bias": 0.2752977475724969,
+        "variance": 0.11142019442754734,
+        "miss_probability": 1.0,
+        "descriptive_rmse_interval": [
+          0.3704071567301661,
+          0.49370859596040745
+        ]
+      },
+      "mean_work": 14818.875,
+      "work_quantiles": {
+        "0.5": 12424.0,
+        "0.9": 25830.399999999998,
+        "0.95": 31831.199999999957,
+        "0.99": 42126.08,
+        "1.0": 53280.0
+      },
+      "work_total": 1896816,
+      "clipped_fraction": 0.171875,
+      "coverage": null,
+      "mean_work_interval": [
+        13385.571875,
+        16443.78125
+      ]
+    },
+    {
+      "model": "uniform_gaussian",
+      "budget": 4096,
+      "method": "gha_calibrated_single_level",
+      "seed": 202660270,
+      "theta": 0.05,
+      "rho": 0.1,
+      "epsilon": 0.025,
+      "seconds": 0.009721799986436963,
+      "mean_outer_draws": 9.984375,
+      "outer_total": 1278,
+      "mean_work_if_outer_charged": 3966.984375,
+      "raw": {
+        "rmse": 0.11633270432245892,
+        "bias": -0.0005607673576423552,
+        "variance": 0.013532983634947253,
+        "miss_probability": 1.0,
+        "descriptive_rmse_interval": [
+          0.08282360149971861,
+          0.14831483028891468
+        ]
+      },
+      "clipped": {
+        "rmse": 0.11633270432245892,
+        "bias": -0.0005607673576423552,
+        "variance": 0.013532983634947253,
+        "miss_probability": 1.0,
+        "descriptive_rmse_interval": [
+          0.08282360149971861,
+          0.14831483028891468
+        ]
+      },
+      "mean_work": 3957.0,
+      "work_quantiles": {
+        "0.5": 3392.0,
+        "0.9": 6694.4,
+        "0.95": 8697.599999999997,
+        "0.99": 12115.200000000003,
+        "1.0": 12928.0
+      },
+      "work_total": 506496,
+      "clipped_fraction": 0.0,
+      "coverage": null,
+      "mean_work_interval": [
+        3540.0,
+        4377.0
+      ]
+    },
+    {
+      "model": "uniform_gaussian",
+      "budget": 4096,
+      "method": "direct_symmetric",
+      "seed": 202660271,
+      "theta": 0.05,
+      "rho": 0.1,
+      "epsilon": 0.025,
+      "seconds": 0.010459400014951825,
+      "mean_outer_draws": 49.5625,
+      "outer_total": 6344,
+      "mean_work_if_outer_charged": 4196.5625,
+      "raw": {
+        "rmse": 0.09302408950966375,
+        "bias": -0.007056686058081239,
+        "variance": 0.008603684410979615,
+        "miss_probability": 0.7578125,
+        "descriptive_rmse_interval": [
+          0.07117157626810745,
+          0.11605786063993187
+        ]
+      },
+      "clipped": {
+        "rmse": 0.07148953836912801,
+        "bias": 0.0037698316969352677,
+        "variance": 0.005096542465207809,
+        "miss_probability": 0.7578125,
+        "descriptive_rmse_interval": [
+          0.05702161716806827,
+          0.08799626312676984
+        ]
+      },
+      "mean_work": 4147.0,
+      "work_quantiles": {
+        "0.5": 3416.0,
+        "0.9": 8145.599999999999,
+        "0.95": 10223.999999999996,
+        "0.99": 11488.160000000002,
+        "1.0": 12080.0
+      },
+      "work_total": 530816,
+      "clipped_fraction": 0.1171875,
+      "coverage": null,
+      "mean_work_interval": [
+        3708.65625,
+        4618.38125
+      ]
+    },
+    {
+      "model": "uniform_gaussian",
+      "budget": 4096,
+      "method": "direct_asymmetric",
+      "seed": 202660272,
+      "theta": 0.05,
+      "rho": 0.1,
+      "epsilon": 0.025,
+      "seconds": 0.010973899974487722,
+      "mean_outer_draws": 44.328125,
+      "outer_total": 5674,
+      "mean_work_if_outer_charged": 4130.578125,
+      "raw": {
+        "rmse": 0.08939971322848862,
+        "bias": -0.006715071687714126,
+        "variance": 0.007947216537564864,
+        "miss_probability": 0.7890625,
+        "descriptive_rmse_interval": [
+          0.07196971236624856,
+          0.10558324948749517
+        ]
+      },
+      "clipped": {
+        "rmse": 0.0755137977410472,
+        "bias": 0.0016203085965543738,
+        "variance": 0.005699708249327718,
+        "miss_probability": 0.7890625,
+        "descriptive_rmse_interval": [
+          0.05980094347086647,
+          0.09120304096108742
+        ]
+      },
+      "mean_work": 4086.25,
+      "work_quantiles": {
+        "0.5": 3568.0,
+        "0.9": 7747.199999999999,
+        "0.95": 9168.799999999997,
+        "0.99": 11613.120000000003,
+        "1.0": 12736.0
+      },
+      "work_total": 523040,
+      "clipped_fraction": 0.0703125,
+      "coverage": null,
+      "mean_work_interval": [
+        3616.865625,
+        4539.424999999999
+      ]
+    },
+    {
+      "model": "uniform_gaussian",
+      "budget": 16384,
+      "method": "gha_calibrated_single_level",
+      "seed": 202660370,
+      "theta": 0.05,
+      "rho": 0.1,
+      "epsilon": 0.025,
+      "seconds": 0.03442989999894053,
+      "mean_outer_draws": 12.9375,
+      "outer_total": 1656,
+      "mean_work_if_outer_charged": 14040.9375,
+      "raw": {
+        "rmse": 0.13331458501318363,
+        "bias": 0.007517442346256682,
+        "variance": 0.017716266637808075,
+        "miss_probability": 0.9453125,
+        "descriptive_rmse_interval": [
+          0.08494089965662227,
+          0.1874888797536342
+        ]
+      },
+      "clipped": {
+        "rmse": 0.13331458501318363,
+        "bias": 0.007517442346256682,
+        "variance": 0.017716266637808075,
+        "miss_probability": 0.9453125,
+        "descriptive_rmse_interval": [
+          0.08494089965662227,
+          0.1874888797536342
+        ]
+      },
+      "mean_work": 14028.0,
+      "work_quantiles": {
+        "0.5": 12160.0,
+        "0.9": 25241.6,
+        "0.95": 29696.0,
+        "0.99": 36705.280000000006,
+        "1.0": 41984.0
+      },
+      "work_total": 1795584,
+      "clipped_fraction": 0.0,
+      "coverage": null,
+      "mean_work_interval": [
+        12721.7,
+        15410.15
+      ]
+    },
+    {
+      "model": "uniform_gaussian",
+      "budget": 16384,
+      "method": "direct_symmetric",
+      "seed": 202660371,
+      "theta": 0.05,
+      "rho": 0.1,
+      "epsilon": 0.025,
+      "seconds": 0.04349369998089969,
+      "mean_outer_draws": 82.375,
+      "outer_total": 10544,
+      "mean_work_if_outer_charged": 16774.625,
+      "raw": {
+        "rmse": 0.06675775064283516,
+        "bias": -0.015319573304617359,
+        "variance": 0.004221907944655414,
+        "miss_probability": 0.6328125,
+        "descriptive_rmse_interval": [
+          0.05066295949958619,
+          0.08251003572757963
+        ]
+      },
+      "clipped": {
+        "rmse": 0.04963897288836002,
+        "bias": -0.007098122828114058,
+        "variance": 0.002413644281728347,
+        "miss_probability": 0.6328125,
+        "descriptive_rmse_interval": [
+          0.040123336403766,
+          0.06194257593532361
+        ]
+      },
+      "mean_work": 16692.25,
+      "work_quantiles": {
+        "0.5": 14624.0,
+        "0.9": 31225.6,
+        "0.95": 34804.0,
+        "0.99": 44200.80000000001,
+        "1.0": 47088.0
+      },
+      "work_total": 2136608,
+      "clipped_fraction": 0.1015625,
+      "coverage": null,
+      "mean_work_interval": [
+        14999.790625,
+        18317.743749999998
+      ]
+    },
+    {
+      "model": "uniform_gaussian",
+      "budget": 16384,
+      "method": "direct_asymmetric",
+      "seed": 202660372,
+      "theta": 0.05,
+      "rho": 0.1,
+      "epsilon": 0.025,
+      "seconds": 0.036202199989929795,
+      "mean_outer_draws": 63.578125,
+      "outer_total": 8138,
+      "mean_work_if_outer_charged": 14079.578125,
+      "raw": {
+        "rmse": 0.07026726862987741,
+        "bias": -0.01639684261386145,
+        "variance": 0.004668632592999612,
+        "miss_probability": 0.6796875,
+        "descriptive_rmse_interval": [
+          0.055276775990251166,
+          0.08512098940443441
+        ]
+      },
+      "clipped": {
+        "rmse": 0.05566272962725437,
+        "bias": -0.008921376670424499,
+        "variance": 0.003018748507861225,
+        "miss_probability": 0.6796875,
+        "descriptive_rmse_interval": [
+          0.04411284488780176,
+          0.06793149381309846
+        ]
+      },
+      "mean_work": 14016.0,
+      "work_quantiles": {
+        "0.5": 12600.0,
+        "0.9": 24176.0,
+        "0.95": 27808.79999999999,
+        "0.99": 36538.72000000001,
+        "1.0": 36896.0
+      },
+      "work_total": 1794048,
+      "clipped_fraction": 0.0859375,
+      "coverage": null,
+      "mean_work_interval": [
+        12758.15,
+        15307.165625
+      ]
+    },
+    {
+      "model": "deterministic_endpoint",
+      "budget": 4096,
+      "method": "gha_calibrated_single_level",
+      "seed": 202670270,
+      "theta": 0.02,
+      "rho": 0.04,
+      "epsilon": 0.01,
+      "seconds": 0.0029646999901160598,
+      "mean_outer_draws": 14.1875,
+      "outer_total": 1816,
+      "mean_work_if_outer_charged": 3646.1875,
+      "raw": {
+        "rmse": 0.044476515993229895,
+        "bias": -0.006077742850491012,
+        "variance": 0.0019412215167393413,
+        "miss_probability": 1.0,
+        "descriptive_rmse_interval": [
+          0.03124781799166254,
+          0.057114757795472114
+        ]
+      },
+      "clipped": {
+        "rmse": 0.044476515993229895,
+        "bias": -0.006077742850491012,
+        "variance": 0.0019412215167393413,
+        "miss_probability": 1.0,
+        "descriptive_rmse_interval": [
+          0.03124781799166254,
+          0.057114757795472114
+        ]
+      },
+      "mean_work": 3632.0,
+      "work_quantiles": {
+        "0.5": 3328.0,
+        "0.9": 6912.0,
+        "0.95": 7936.0,
+        "0.99": 10357.760000000002,
+        "1.0": 11008.0
+      },
+      "work_total": 464896,
+      "clipped_fraction": 0.0,
+      "coverage": null,
+      "mean_work_interval": [
+        3264.0,
+        4024.0999999999995
+      ]
+    },
+    {
+      "model": "deterministic_endpoint",
+      "budget": 4096,
+      "method": "direct_symmetric",
+      "seed": 202670271,
+      "theta": 0.02,
+      "rho": 0.04,
+      "epsilon": 0.01,
+      "seconds": 0.004819099907763302,
+      "mean_outer_draws": 266.09375,
+      "outer_total": 34060,
+      "mean_work_if_outer_charged": 4523.59375,
+      "raw": {
+        "rmse": 0.01588256263744328,
+        "bias": -0.0004728875797455676,
+        "variance": 0.0002520321732692317,
+        "miss_probability": 0.4765625,
+        "descriptive_rmse_interval": [
+          0.013022218337885395,
+          0.01964954440835186
+        ]
+      },
+      "clipped": {
+        "rmse": 0.01588256263744328,
+        "bias": -0.0004728875797455676,
+        "variance": 0.0002520321732692317,
+        "miss_probability": 0.4765625,
+        "descriptive_rmse_interval": [
+          0.013022218337885395,
+          0.01964954440835186
+        ]
+      },
+      "mean_work": 4257.5,
+      "work_quantiles": {
+        "0.5": 3568.0,
+        "0.9": 8451.199999999997,
+        "0.95": 9828.8,
+        "0.99": 12689.600000000011,
+        "1.0": 13968.0
+      },
+      "work_total": 544960,
+      "clipped_fraction": 0.0,
+      "coverage": null,
+      "mean_work_interval": [
+        3785.1875,
+        4799.2625
+      ]
+    },
+    {
+      "model": "deterministic_endpoint",
+      "budget": 4096,
+      "method": "direct_asymmetric",
+      "seed": 202670272,
+      "theta": 0.02,
+      "rho": 0.04,
+      "epsilon": 0.01,
+      "seconds": 0.004480200004763901,
+      "mean_outer_draws": 247.3125,
+      "outer_total": 31656,
+      "mean_work_if_outer_charged": 4204.3125,
+      "raw": {
+        "rmse": 0.01435709465287308,
+        "bias": -0.003198552557968958,
+        "variance": 0.000195895428405467,
+        "miss_probability": 0.53125,
+        "descriptive_rmse_interval": [
+          0.012441519211315321,
+          0.016483596082243094
+        ]
+      },
+      "clipped": {
+        "rmse": 0.01435709465287308,
+        "bias": -0.003198552557968958,
+        "variance": 0.000195895428405467,
+        "miss_probability": 0.53125,
+        "descriptive_rmse_interval": [
+          0.012441519211315321,
+          0.016483596082243094
+        ]
+      },
+      "mean_work": 3957.0,
+      "work_quantiles": {
+        "0.5": 3440.0,
+        "0.9": 6851.2,
+        "0.95": 9328.0,
+        "0.99": 12685.44,
+        "1.0": 15600.0
+      },
+      "work_total": 506496,
+      "clipped_fraction": 0.0,
+      "coverage": null,
+      "mean_work_interval": [
+        3497.24375,
+        4437.26875
+      ]
+    },
+    {
+      "model": "deterministic_endpoint",
+      "budget": 16384,
+      "method": "gha_calibrated_single_level",
+      "seed": 202670370,
+      "theta": 0.02,
+      "rho": 0.04,
+      "epsilon": 0.01,
+      "seconds": 0.011283600004389882,
+      "mean_outer_draws": 27.484375,
+      "outer_total": 3518,
+      "mean_work_if_outer_charged": 14099.484375,
+      "raw": {
+        "rmse": 0.04047497822609099,
+        "bias": -0.0035903064774900468,
+        "variance": 0.0016253335618002327,
+        "miss_probability": 0.9921875,
+        "descriptive_rmse_interval": [
+          0.028709833949133304,
+          0.05242413799479257
+        ]
+      },
+      "clipped": {
+        "rmse": 0.04047497822609099,
+        "bias": -0.0035903064774900468,
+        "variance": 0.0016253335618002327,
+        "miss_probability": 0.9921875,
+        "descriptive_rmse_interval": [
+          0.028709833949133304,
+          0.05242413799479257
+        ]
+      },
+      "mean_work": 14072.0,
+      "work_quantiles": {
+        "0.5": 12800.0,
+        "0.9": 25088.0,
+        "0.95": 27801.59999999999,
+        "0.99": 37294.080000000016,
+        "1.0": 47616.0
+      },
+      "work_total": 1801216,
+      "clipped_fraction": 0.0,
+      "coverage": null,
+      "mean_work_interval": [
+        12543.8,
+        15576.0
+      ]
+    },
+    {
+      "model": "deterministic_endpoint",
+      "budget": 16384,
+      "method": "direct_symmetric",
+      "seed": 202670371,
+      "theta": 0.02,
+      "rho": 0.04,
+      "epsilon": 0.01,
+      "seconds": 0.019668599939905107,
+      "mean_outer_draws": 1065.59375,
+      "outer_total": 136396,
+      "mean_work_if_outer_charged": 18115.09375,
+      "raw": {
+        "rmse": 0.007845798949762263,
+        "bias": -0.0017420190241279735,
+        "variance": 5.852193087966685e-05,
+        "miss_probability": 0.1640625,
+        "descriptive_rmse_interval": [
+          0.0067347951588409526,
+          0.008918592791148653
+        ]
+      },
+      "clipped": {
+        "rmse": 0.007845798949762263,
+        "bias": -0.0017420190241279735,
+        "variance": 5.852193087966685e-05,
+        "miss_probability": 0.1640625,
+        "descriptive_rmse_interval": [
+          0.0067347951588409526,
+          0.008918592791148653
+        ]
+      },
+      "mean_work": 17049.5,
+      "work_quantiles": {
+        "0.5": 13648.0,
+        "0.9": 32716.799999999992,
+        "0.95": 43339.19999999998,
+        "0.99": 52156.800000000025,
+        "1.0": 59024.0
+      },
+      "work_total": 2182336,
+      "clipped_fraction": 0.0,
+      "coverage": null,
+      "mean_work_interval": [
+        14899.34375,
+        19230.887499999997
+      ]
+    },
+    {
+      "model": "deterministic_endpoint",
+      "budget": 16384,
+      "method": "direct_asymmetric",
+      "seed": 202670372,
+      "theta": 0.02,
+      "rho": 0.04,
+      "epsilon": 0.01,
+      "seconds": 0.019059999962337315,
+      "mean_outer_draws": 1047.734375,
+      "outer_total": 134110,
+      "mean_work_if_outer_charged": 17811.484375,
+      "raw": {
+        "rmse": 0.006287877162675506,
+        "bias": 0.00033514860433736266,
+        "variance": 3.942507462590688e-05,
+        "miss_probability": 0.109375,
+        "descriptive_rmse_interval": [
+          0.005481625947019897,
+          0.007033202042865538
+        ]
+      },
+      "clipped": {
+        "rmse": 0.006287877162675506,
+        "bias": 0.00033514860433736266,
+        "variance": 3.942507462590688e-05,
+        "miss_probability": 0.109375,
+        "descriptive_rmse_interval": [
+          0.005481625947019897,
+          0.007033202042865538
+        ]
+      },
+      "mean_work": 16763.75,
+      "work_quantiles": {
+        "0.5": 14192.0,
+        "0.9": 30819.199999999997,
+        "0.95": 38480.0,
+        "0.99": 50243.840000000026,
+        "1.0": 52784.0
+      },
+      "work_total": 2145760,
+      "clipped_fraction": 0.0,
+      "coverage": null,
+      "mean_work_interval": [
+        14931.80625,
+        18688.79375
+      ]
+    }
+  ],
+  "seconds": 2.296381900086999,
+  "total_work": 52720432,
+  "training_work": 0,
+  "tuning_work": 0,
+  "trivial": [
+    {
+      "model": "gha_published",
+      "zero_rmse": 0.025,
+      "half_rmse": 0.475,
+      "rarity_half_rmse": 0.025
+    },
+    {
+      "model": "gha_rare",
+      "zero_rmse": 0.005,
+      "half_rmse": 0.495,
+      "rarity_half_rmse": 0.005
+    },
+    {
+      "model": "fixed_gap",
+      "zero_rmse": 0.01,
+      "half_rmse": 0.49,
+      "rarity_half_rmse": 0.01
+    },
+    {
+      "model": "mixed_scales",
+      "zero_rmse": 0.02,
+      "half_rmse": 0.48,
+      "rarity_half_rmse": 0.0
+    },
+    {
+      "model": "near_negative",
+      "zero_rmse": 0.05,
+      "half_rmse": 0.45,
+      "rarity_half_rmse": 0.0
+    },
+    {
+      "model": "uniform_gaussian",
+      "zero_rmse": 0.05,
+      "half_rmse": 0.45,
+      "rarity_half_rmse": 0.0
+    },
+    {
+      "model": "deterministic_endpoint",
+      "zero_rmse": 0.02,
+      "half_rmse": 0.48,
+      "rarity_half_rmse": 0.0
+    }
+  ]
+}

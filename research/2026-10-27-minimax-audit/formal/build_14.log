@@ -1,0 +1,11 @@
+⚠ [18168/18177] Replayed ThresholdHC.Statements
+warning: ThresholdHC\Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18169/18177] Ran ThresholdHC.Statements:irArts
+warning: ThresholdHC\Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18176/18177] Replayed ThresholdHC.Tier3.ExamplesModel
+warning: ThresholdHC\Tier3\ExamplesModel.lean: imports `Mathlib.Probability.Distributions.Geometric` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC\Tier3\ExamplesModel.lean: imports `Mathlib.Probability.Distributions.Bernoulli` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18177/18177] Ran ThresholdHC.Tier3.ExamplesModel:irArts
+warning: ThresholdHC\Tier3\ExamplesModel.lean: imports `Mathlib.Probability.Distributions.Geometric` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC\Tier3\ExamplesModel.lean: imports `Mathlib.Probability.Distributions.Bernoulli` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+Build completed successfully (18177 jobs).

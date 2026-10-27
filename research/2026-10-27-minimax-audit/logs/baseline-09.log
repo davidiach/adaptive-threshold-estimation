@@ -1,0 +1,13 @@
+{
+  "status": "arithmetic checks only; full argument is a paper proof",
+  "candidate": {
+    "k1": 0.25,
+    "k2": 1.0
+  },
+  "c0_rational_upper": "489400000000/28875521871",
+  "second_moment_constant": 23,
+  "work_constant": 31,
+  "work_rational_upper": "896/29",
+  "uniform_product_constant": 713,
+  "all_checks_passed": true
+}

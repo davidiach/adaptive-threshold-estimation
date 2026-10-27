@@ -1,0 +1,11 @@
+{
+  "status": "Post-proof reviewed paper checkpoint lock; not a pre-proof Lean specification or a novelty certificate",
+  "sha256": {
+    "RESEARCH_NOTE.tex": "caa9fabc285ad310ab306806de20a8e9019b09812c92f820228feabfec2f87d3",
+    "theorem/critical.tex": "0e8b9eaf762b3b09fa0d92ce1a036c2ceea8c12d00a5eea8286b852f36a81536",
+    "theorem/critical.py": "66e6f33f775d51be68fcc0028ee7233c114f6bbae29796be209dc49108dc07d8",
+    "formal/stopping_bridge.tex": "f1bcdcc167f4a3f465399eb2cc5d86b4cc6cc0df9964301ade6de0bd2769a673",
+    "adaptation.tex": "3609230361afe9829af61f54cbd5876c7cd8ba555d59b19e3075240d5f4eb680",
+    "check_exact.py": "522ca727ea22de9012d33ce0316a208716c0864dbcdab05f9ee8d8bc3b2793c6"
+  }
+}

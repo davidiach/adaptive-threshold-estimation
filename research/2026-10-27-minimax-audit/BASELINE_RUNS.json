@@ -1,0 +1,153 @@
+[
+  {
+    "command": [
+      "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "tools/verify_inputs.py"
+    ],
+    "cwd": "C:\\Users\\User\\Desktop\\Projects\\math\\minimax-baseline-snapshot",
+    "exit": 0,
+    "seconds": 0.6853753000032157,
+    "log": "logs/baseline-01.log"
+  },
+  {
+    "command": [
+      "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "tools/verify_experiment_lock.py"
+    ],
+    "cwd": "C:\\Users\\User\\Desktop\\Projects\\math\\minimax-baseline-snapshot",
+    "exit": 0,
+    "seconds": 0.6694710999727249,
+    "log": "logs/baseline-02.log"
+  },
+  {
+    "command": [
+      "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "tools/freeze.py",
+      "--verify"
+    ],
+    "cwd": "C:\\Users\\User\\Desktop\\Projects\\math\\minimax-baseline-snapshot",
+    "exit": 0,
+    "seconds": 0.3833487000083551,
+    "log": "logs/baseline-03.log"
+  },
+  {
+    "command": [
+      "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "tools/check_targets_numeric.py"
+    ],
+    "cwd": "C:\\Users\\User\\Desktop\\Projects\\math\\minimax-baseline-snapshot",
+    "exit": 0,
+    "seconds": 5.242339799995534,
+    "log": "logs/baseline-04.log"
+  },
+  {
+    "command": [
+      "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "tools/check_targets2_numeric.py"
+    ],
+    "cwd": "C:\\Users\\User\\Desktop\\Projects\\math\\minimax-baseline-snapshot",
+    "exit": 0,
+    "seconds": 17.377049399889074,
+    "log": "logs/baseline-05.log"
+  },
+  {
+    "command": [
+      "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tools",
+      "-p",
+      "test_*.py",
+      "-v"
+    ],
+    "cwd": "C:\\Users\\User\\Desktop\\Projects\\math\\minimax-baseline-snapshot",
+    "exit": 0,
+    "seconds": 17.492328300024383,
+    "log": "logs/baseline-06.log"
+  },
+  {
+    "command": [
+      "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "tools/check_power_bracket.py"
+    ],
+    "cwd": "C:\\Users\\User\\Desktop\\Projects\\math\\minimax-baseline-snapshot",
+    "exit": 0,
+    "seconds": 1.4203005000017583,
+    "log": "logs/baseline-07.log"
+  },
+  {
+    "command": [
+      "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "proposals/constants/bias_audit.py"
+    ],
+    "cwd": "C:\\Users\\User\\Desktop\\Projects\\math\\minimax-baseline-snapshot",
+    "exit": 0,
+    "seconds": 0.15126029995735735,
+    "log": "logs/baseline-08.log"
+  },
+  {
+    "command": [
+      "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "proposals/constants/uniform_constant_checks.py"
+    ],
+    "cwd": "C:\\Users\\User\\Desktop\\Projects\\math\\minimax-baseline-snapshot",
+    "exit": 0,
+    "seconds": 0.5741189999971539,
+    "log": "logs/baseline-09.log"
+  },
+  {
+    "command": [
+      "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "constants/score_constants.py",
+      "constants/candidate_theory.json"
+    ],
+    "cwd": "C:\\Users\\User\\Desktop\\Projects\\math\\minimax-baseline-snapshot",
+    "exit": 0,
+    "seconds": 7.187623800011352,
+    "log": "logs/baseline-10.log"
+  },
+  {
+    "command": [
+      "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "constants/score_constants.py",
+      "constants/candidate_finite_grid.json"
+    ],
+    "cwd": "C:\\Users\\User\\Desktop\\Projects\\math\\minimax-baseline-snapshot",
+    "exit": 0,
+    "seconds": 5.635941300075501,
+    "log": "logs/baseline-11.log"
+  },
+  {
+    "command": [
+      "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "constants/score_constants.py",
+      "constants/candidate.json"
+    ],
+    "cwd": "C:\\Users\\User\\Desktop\\Projects\\math\\minimax-baseline-snapshot",
+    "exit": 0,
+    "seconds": 25.28605119988788,
+    "log": "logs/baseline-12.log"
+  },
+  {
+    "command": [
+      "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "benchmark/verify_real.py"
+    ],
+    "cwd": "C:\\Users\\User\\Desktop\\Projects\\math\\minimax-baseline-snapshot",
+    "exit": 0,
+    "seconds": 60.44865089992527,
+    "log": "logs/baseline-13.log"
+  },
+  {
+    "command": [
+      "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+      "research/2026-10-27-route-a/check_construction.py"
+    ],
+    "cwd": "C:\\Users\\User\\Desktop\\Projects\\math\\minimax-baseline-snapshot",
+    "exit": 0,
+    "seconds": 0.4800882999552414,
+    "log": "logs/baseline-14.log"
+  }
+]

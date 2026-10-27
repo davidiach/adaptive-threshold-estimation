@@ -1,0 +1,136 @@
+% Self-contained fragment for the research note; paper proof, not Lean-checked.
+\section{A necessary correction to the countable-reservoir bridge}
+\paragraph{Evidence status.}
+The next two propositions are PROVED-ON-PAPER in this run. Their stochastic
+statements are not Lean-checked. Exact rational finite-prefix checks are reported
+separately and do not certify the infinite-horizon calculation. The finite-coin
+Tier 3 theorem is unchanged and is not contradicted.
+
+\begin{proposition}[One-law finite work does not transfer termination]
+Consider fresh iid coins with deterministic gap $D=1/2$. Under $P$ their positive
+sign probability is $5/8$, and under $Q$ it is $3/8$. Query each coin once. If
+$X_i$ is its observed bit, stop at
+\[
+ T=\inf\{n\ge1:\ \textstyle\sum_{i=1}^n(2X_i-1)=1\}.
+\]
+Then $P(T<\infty)=1$, $\mathbb E_P T=4$, whereas
+$Q(T<\infty)=3/5$. In particular $Q(T=\infty)=2/5$.
+\end{proposition}
+\begin{proof}
+For iid bits of parameter $p$, put $q=1-p$. A first hit at time $2k+1$ has
+$k+1$ upward and $k$ downward steps, and the first $2k$ partial sums never
+exceed zero. The number of such paths is the Catalan number
+$C_k=(k+1)^{-1}\binom{2k}{k}$. This follows by reflecting at the first
+forbidden positive step: among paths with $k$ up and $k$ down steps, the
+forbidden paths are counted by $\binom{2k}{k+1}$, whose subtraction gives
+$C_k$. Thus
+\[
+ \Pr_p(T=2k+1)=C_kp^{k+1}q^k.
+\]
+The generating series $C(z)=\sum_{k\ge0}C_kz^k$ satisfies
+$C(z)=1+zC(z)^2$: split a nonempty Catalan path at its first return to zero.
+The solution continuous at zero with $C(0)=1$ is
+$C(z)=(1-\sqrt{1-4z})/(2z)$ for $0\le z<1/4$.
+Consequently the probability generating function, excluding the mass at
+infinity, is
+\[
+ G_p(s)=\mathbb E_p[s^T;T<\infty]
+       =psC(pqs^2)=\frac{1-\sqrt{1-4pqs^2}}{2qs},\qquad 0<s\le1.
+\]
+For $p\ne1/2$ all series converge in a neighborhood of $s=1$.
+It follows that $G_p(1)=1$ when $p>1/2$, and $G_p(1)=p/q$ when $p<1/2$.
+For $p>1/2$, differentiation gives $G_p'(1)=1/(2p-1)$.
+Equivalently differentiate $G_p(s)=s[p+qG_p(s)^2]$ at $s=1$;
+nonnegative-series differentiation computes $\mathbb E_pT$ because
+$G_p(1)=1$. Substituting $p=5/8$ and $p=3/8$ gives the claims.
+\end{proof}
+
+The example lies exactly in the symmetric prior family $1/2\pm\eta$ with
+$\eta=1/8$. It also has an interior-gap variant: choose $D=1/4$, retain the
+same sign priors, and use only the first observation of each fresh coin.
+The observed bits then have parameters $9/16$ and $7/16$; the same calculation
+gives $\mathbb E_PT=8$ and $Q(T=\infty)=2/9$. Thus deterministic coin
+endpoints are not responsible for the failure. For a fixed finite coin family,
+the two latent-prior laws have a globally bounded likelihood ratio; for an
+unbounded reservoir that finite-family comparison is unavailable.
+
+This example still has finite full-transcript relative entropy. On every finite
+stopped path the upward step count exceeds the downward count by one, so the
+likelihood ratio $dP/dQ$ is $5/3$. On infinite paths it is zero, since P has no
+such mass. Therefore $\operatorname{KL}(P,Q)=\log(5/3)$. It is consistent with
+the proposed full-transcript bound at $h=1/2$: convexity of $1/x$ gives
+$\log(5/3)\le8/15<128/225=(128/225)h^2\mathbb E_PT$.
+Thus full KL can extend while the two-law stopping transfer cannot.
+
+\begin{proposition}[Finite-prefix information implies terminal testing]
+Let $P,Q$ describe a common policy with independent seed included in increasing
+observable prefix sigma fields $\mathcal F_n$. Let $T$ be its stopping time.
+Assume $T<\infty$ almost surely under each law and $\mathbb E_PT\le B<\infty$.
+Suppose, for a constant $k\ge0$, every finite-prefix transcript satisfies
+\[
+ \operatorname{KL}(P|_{\mathcal F_n},Q|_{\mathcal F_n})
+       \le k\mathbb E_P(T\wedge n).
+\]
+If a terminal test $\phi\in\{0,1\}$ has
+$P(\phi=1)\ge1-\delta$ and $Q(\phi=1)\le\delta$, with $0<\delta<1/2$, then
+\[
+ \operatorname{kl}(1-\delta,\delta)\le kB.
+\]
+\end{proposition}
+\begin{proof}
+The event $A_n=\{T\le n,\phi=1\}$ belongs to $\mathcal F_n$ because the
+test is measurable at stopping. Let $p_n=P(A_n)$ and $q_n=Q(A_n)$.
+Then $p_n\ge1-\delta-P(T>n)\ge1-\delta-B/n$, while $q_n\le\delta$.
+For all sufficiently large $n$, $1-\delta-B/n>\delta$.
+Data processing for the binary indicator of $A_n$, and monotonicity of binary
+relative entropy in its first argument above its second, and in its second
+argument below its first, give
+\[
+ \operatorname{kl}(1-\delta-B/n,\delta)
+ \le\operatorname{kl}(p_n,q_n)
+ \le\operatorname{KL}(P|_{\mathcal F_n},Q|_{\mathcal F_n})\le kB.
+\]
+Continuity at $(1-\delta,\delta)$ proves the result by $n\to\infty$.
+The case $q_n=0<p_n$ gives infinite binary relative entropy and cannot occur
+under a finite information bound. No transfer of termination from $P$ to $Q$
+has been used. Separate finite expected-work bounds under the two laws are
+a sufficient condition for the stated two termination assumptions.
+\end{proof}
+
+\paragraph{Canonical numbering and the remaining formal obligation.}
+After $n$ charged observations, at most $n$ coin identities have been observed.
+Assign indices $1,\ldots,n$ in order of first observation and retain a dictionary
+for revisits. Every unobserved iid latent draw can be deferred until its first
+observation: prior decisions involving its label contain no information about
+that draw. This recursive construction preserves the observed finite-prefix law
+and the number of charged observations. It requires that each action completes
+after finite computation; infinitely many cost-free operations do not constitute
+an observation oracle. For the symmetric information bound, condition on the
+first $n$ iid magnitudes and the independent seed, apply the deterministic-gap
+finite-prefix bound, and integrate. Magnitudes may be appended for this upper
+bound on information and then removed by data processing; the policy itself
+does not observe them. For the rare-prior bound, the appropriate single-coin
+inequality and bounded-ratio hybrid decomposition must instead be used.
+
+This is a paper-level reservoir realization and reduction, not an existing Lean
+theorem. The existing finite-family declaration cannot be instantiated with a
+different coin count at each horizon and thereby produce a single already
+formalized infinite-reservoir process. One must formalize its joint law and
+prove consistent realization of every prefix. The terminal-testing proposition
+then closes the limit once those prefix bounds and the policy's admissibility
+are available. The minimax experiment's uniform expected budget gives finite
+work under both alternatives, so the counterexample does not invalidate the
+paper minimax lower bound.
+
+\paragraph{Reusable scope and boundary.}
+The terminal-testing bridge works for any observation channel and any positive
+cost accounting once its finite-prefix KL bound has been proved. With unequal
+costs, a proved bound of the form
+$\operatorname{KL}_n\le c\mathbb E_P\sum_{j\le T\wedge n}a_j$
+gives the corresponding testing bound by the same limiting argument, provided
+stopping is established separately (a positive lower bound on $a_j$ is one
+sufficient condition). There is no asserted universal Bernoulli scaling for
+other channels. Cross-state information can invalidate the iid coin likelihood
+factorization even though this abstract testing step still holds; a shared
+unknown parameter learned at one state must be included in a different
+finite-prefix information calculation.
