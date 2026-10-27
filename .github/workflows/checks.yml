@@ -20,6 +20,7 @@ on:
       - 'TIER3_FROZEN.sha256'
       - 'TIER4_FROZEN.sha256'
       - 'TIER5_FROZEN.sha256'
+      - 'TIER6_FROZEN.sha256'
       - 'proposals/constants/*.lean'
       - 'proposals/constants/*.py'
   pull_request:
@@ -53,6 +54,9 @@ jobs:
       - name: Regression tests for the Tier 5 audit when present
         run: |
           if test -f tools/test_tier5_validation.py; then python -m unittest discover -s tools -p 'test_tier5_validation.py' -v; fi
+      - name: Regression tests for the Tier 6 audit when present
+        run: |
+          if test -f tools/test_tier6_validation.py; then python -m unittest discover -s tools -p 'test_tier6_validation.py' -v; fi
       - run: python tools/check_targets_numeric.py
       - name: Tier 2 numeric truth checks when present
         run: |
@@ -100,6 +104,9 @@ jobs:
       - name: Require the complete Tier 5 landmark when present
         run: |
           if test -f tools/verify_tier5.py; then python tools/verify_tier5.py --sequential --require-complete; fi
+      - name: Audit the locked Tier 6 extension when present
+        run: |
+          if test -f tools/verify_tier6.py; then python tools/verify_tier6.py --sequential; fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -123,3 +130,6 @@ jobs:
             results/tier5_build.log
             results/tier5_audit.log
             results/tier5_status.json
+            results/tier6_build.log
+            results/tier6_audit.log
+            results/tier6_status.json

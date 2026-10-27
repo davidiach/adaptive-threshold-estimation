@@ -1,0 +1,16 @@
+{
+  "specification_module": "ThresholdHC.Tier6.Specification",
+  "targets": [
+    {"group":"construction","theorem":"ThresholdHC.Tier6.process_realization","statement":"ThresholdHC.Tier6.ProcessRealizationStatement"},
+    {"group":"construction","theorem":"ThresholdHC.Tier6.population_realization","statement":"ThresholdHC.Tier6.PopulationRealizationStatement"},
+    {"group":"hard_pair","theorem":"ThresholdHC.Tier6.hard_pair_validity","statement":"ThresholdHC.Tier6.HardPairValidityStatement"},
+    {"group":"hard_pair","theorem":"ThresholdHC.Tier6.hard_pair_separation","statement":"ThresholdHC.Tier6.HardPairSeparationStatement"},
+    {"group":"hard_pair","theorem":"ThresholdHC.Tier6.modulus_scaling","statement":"ThresholdHC.Tier6.ModulusScalingStatement"},
+    {"group":"hard_pair","theorem":"ThresholdHC.Tier6.budget_hard_pair","statement":"ThresholdHC.Tier6.BudgetHardPairStatement"},
+    {"group":"testing","theorem":"ThresholdHC.Tier6.two_point_risk_lower","statement":"ThresholdHC.Tier6.TwoPointRiskStatement"},
+    {"group":"nonvacuity","theorem":"ThresholdHC.Tier6.budget_class_nonempty","statement":"ThresholdHC.Tier6.BudgetClassNonemptyStatement"},
+    {"group":"risk","theorem":"ThresholdHC.Tier6.adaptive_algorithm_lower_bound","statement":"ThresholdHC.Tier6.AlgorithmLowerBoundStatement"},
+    {"group":"risk","theorem":"ThresholdHC.Tier6.minimax_lower_bound","statement":"ThresholdHC.Tier6.MinimaxLowerBoundStatement"},
+    {"group":"landmark","theorem":"ThresholdHC.Tier6.tier6_landmark","statement":"ThresholdHC.Tier6.Tier6LandmarkStatement"}
+  ]
+}
