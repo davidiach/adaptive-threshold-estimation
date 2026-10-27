@@ -14,6 +14,11 @@ The [source audit](../../docs/CRITICAL_AUDIT.md) records the follow-up review
 and formalization boundary. In particular, the full statistical critical
 theorem is not Lean-checked.
 
+The verification table includes the statistical finite-gap sign-entropy
+theorem proved at `accdb144972edd255dedec50cc1cbcaa45587040`. Its continuum
+restart and base-cost applications remain open. The mathematical proof bundle
+itself remains the original four-file source identified above.
+
 ## Reproduce the packet
 
 From the repository root:
