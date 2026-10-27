@@ -1,0 +1,3478 @@
+{
+  "valid": true,
+  "scope": "Critical quadratic single-coin variance and raw-moment base-cost bounds for all rarities, derived from actual observable population experiments; activation, scale selection, restarts, sign entropy, finite stopped-observation reconstruction, canonical affinity and work preservation, actual population compactness and affine/convex observation geometry, finite convex RMS comparison, actual observable one-run estimator and policy-specific separated pair, normalized Hellinger/work constraints, actual heterogeneous revealed mixtures, and one common separated pair for every capped observable policy",
+  "full_critical_minimax_theorem_verified": false,
+  "base_cost_theorem_verified": true,
+  "capped_observation_reduction_verified": true,
+  "population_observation_geometry_verified": true,
+  "capped_policy_risk_and_pair_verified": true,
+  "common_capped_pair_verified": true,
+  "finite_gap_sign_testing_theorem_verified": true,
+  "stopped_suffix_independence_verified": true,
+  "sequential_restart_law_and_work_verified": true,
+  "finite_repetition_iid_and_work_verified": true,
+  "repeated_sign_error_and_work_verified": true,
+  "finite_gap_estimation_entropy_verified": true,
+  "population_moment_disintegration_verified": true,
+  "population_conditional_finiteness_verified": true,
+  "population_extended_variance_floor_verified": true,
+  "population_moment_from_variance_verified": true,
+  "population_good_gap_selection_verified": true,
+  "critical_gap_law_verified": true,
+  "critical_scale_null_cost_product_verified": true,
+  "activation_normalization_verified": true,
+  "critical_raw_base_cost_verified": true,
+  "specifications_frozen_before_proofs": false,
+  "source_sha256": {
+    "lean/ThresholdHC/CriticalEntropy/Activation.lean": "f672ce06ed0a648c90730a4d4ba6272730372f70c1e1da0130ebd7ec7c047b4f",
+    "lean/ThresholdHC/CriticalEntropy/ActivationCost.lean": "2fabd22ddf086c380d23792b0889874b5881f4a0c19a45238ff7e12ddd4d1a4f",
+    "lean/ThresholdHC/CriticalEntropy/ActivationModel.lean": "b2632bce6dda14e63fb6def05373cbd88259a1386cc010f0d171b7f33613f978",
+    "lean/ThresholdHC/CriticalEntropy/Audit.lean": "d10d59bb352c5076b2461e7740868e791c9f7339ce83ea234904ed8b2fa9f08e",
+    "lean/ThresholdHC/CriticalEntropy/BaseCost.lean": "b8bcbdd53e3829d4f8d8ccd26d4666d4dd81f3d5323fc97e40ae8e836917043d",
+    "lean/ThresholdHC/CriticalEntropy/BernoulliPrefix.lean": "56a12478a7b94b06519f60a003819575e61ca18bd447d5734a770ba3f54b4708",
+    "lean/ThresholdHC/CriticalEntropy/CapInvariance.lean": "d050bdfb4010ab90a324f2a264c485e4769e1586c12fb7f26f7f6fa4e11a2928",
+    "lean/ThresholdHC/CriticalEntropy/CappedObservation.lean": "92ca17da2e1aa36e5822a9ce70021579701463daaf93b41dca9ed5b95464afdf",
+    "lean/ThresholdHC/CriticalEntropy/CommonPoint.lean": "e19f78d967948f5e5c3b2b3e8ef202e2ed5a8c6c7f65fb831789934a917b0026",
+    "lean/ThresholdHC/CriticalEntropy/ConditionalMoments.lean": "4d031b445e8a457a621620e656315ac8250360a04f91804e669e85b5a5367744",
+    "lean/ThresholdHC/CriticalEntropy/CriticalAnnuli.lean": "40ebdbc1e8324db9145b2422c05cbaa91a49223ae21b67cbbb68534b8b763316",
+    "lean/ThresholdHC/CriticalEntropy/CriticalCommonPair.lean": "c78f8633bfbca7766b5c01fa5f5219b01881f8c74c53ad78c500e7ff422a6dae",
+    "lean/ThresholdHC/CriticalEntropy/CriticalGeometry.lean": "b204193b923995a9fc7c1fc22e1ecf02ced7f45b854270889bd1e7344fe5382e",
+    "lean/ThresholdHC/CriticalEntropy/CriticalLaw.lean": "61a07e9e35e3660979e918a4ba33e3b08ba3f0449241acda00ace49c8c2b6bb7",
+    "lean/ThresholdHC/CriticalEntropy/CriticalModel.lean": "66465b14833b77f3dddd3fe1cef2e40714613d9783d87c610e30be0745a8e685",
+    "lean/ThresholdHC/CriticalEntropy/CriticalRisk.lean": "25eff4fc55db1e7063126efd84a047fe85f3eca9c1a676d7e9a1e3899a5869c8",
+    "lean/ThresholdHC/CriticalEntropy/CriticalScale.lean": "9e5112a2824d5a952b62aed55990e99595b2f40d4305b163821216c304f97fe3",
+    "lean/ThresholdHC/CriticalEntropy/EarlyDecision.lean": "87fe08199c0052318fef8a0c11e6ba8be2297a712fdfe86f7a17b0be0a45ba38",
+    "lean/ThresholdHC/CriticalEntropy/EstimationEntropy.lean": "25f05e3ed3a8b39aff00534ca1a6dee766012abf12a00c508de1074b48de4312",
+    "lean/ThresholdHC/CriticalEntropy/EventInformation.lean": "d2888a4291ca0423077dc6026fded8f4cdec9a821a1db5c4e848060e004bf71e",
+    "lean/ThresholdHC/CriticalEntropy/ExponentialRisk.lean": "74833dac4120f11a46cf49c6dc41bac4af881d543c4fcc5d6a93eeb4246429e5",
+    "lean/ThresholdHC/CriticalEntropy/FiniteCentering.lean": "ce0705f843de5861abd3a25435fdf33735286eedc2d2cb0f966b83200a1a69e0",
+    "lean/ThresholdHC/CriticalEntropy/FiniteGap.lean": "e7a7094bd949b745b6603d3bb6f6f757d5fdc7e6c531028013d9aa2e109bb369",
+    "lean/ThresholdHC/CriticalEntropy/FiniteGeometry.lean": "e5436d4149a3b6cc05eb6b7365f9161041c3fb13dccc2008668b42519077f31c",
+    "lean/ThresholdHC/CriticalEntropy/FiniteGeometryModel.lean": "80b129847b95fc576e9dc862c09faef9be060f73e77d8401c9de74c9b949a211",
+    "lean/ThresholdHC/CriticalEntropy/FiniteObservation.lean": "48023892a01fededd97c1235e5856796ee53bbabdd9a065f66c2853371fb6d21",
+    "lean/ThresholdHC/CriticalEntropy/FiniteRiskAnalytic.lean": "47b444213466fb778e5dc53df699efae7ed18d15d66886de366179d6494d8644",
+    "lean/ThresholdHC/CriticalEntropy/FiniteRiskModel.lean": "fd4643aeed2ee06031f3d52771d275c8a72769c275cc186298772c347d3f00f1",
+    "lean/ThresholdHC/CriticalEntropy/FiniteRMS.lean": "7de8c257c00e294edb45e122fa1a09cd708850508acfeb6ce2af4100b580435b",
+    "lean/ThresholdHC/CriticalEntropy/FiniteSaddle.lean": "7272c2a8ddeb2511d007a0c0f499004acc37191dd0bac6b97065b9a751128f46",
+    "lean/ThresholdHC/CriticalEntropy/FiniteSufficiency.lean": "0ab437a2cd3fbdd20589fcc4ced2132f55cc3791025bab6a672870d3112b9f93",
+    "lean/ThresholdHC/CriticalEntropy/FiniteSupport.lean": "b3f63d024ad64868c35d422f11da08f2429a82bd545d36e74f6bbc8e944c37ac",
+    "lean/ThresholdHC/CriticalEntropy/GapSelection.lean": "798d3d4b24bedb28375b3931578495531497440ce8cf331656ff37519d63a5dd",
+    "lean/ThresholdHC/CriticalEntropy/GeometricOverlap.lean": "5b782cc81f070a81b818be81acfab69f4fae9bd6ae27cc30d3b1501b41eca93f",
+    "lean/ThresholdHC/CriticalEntropy/GoodGapModel.lean": "6e8774ae05d6c09e93f91457e5ce0f21de9febc5eb5764aeca1663389944f64e",
+    "lean/ThresholdHC/CriticalEntropy/GoodGaps.lean": "245c07a0b986381ea4359cc3ac2f0c386965c7dc8eb1cdc7fe27b2925e42b93f",
+    "lean/ThresholdHC/CriticalEntropy/HalfPrior.lean": "70987dd4ac7631e55befa63d70436272ada328177a6888be7632752a723771b7",
+    "lean/ThresholdHC/CriticalEntropy/Hellinger.lean": "f34c15c6f8f475a838fb95f2045735184f22e8cb6a57955fe8c77541c9abab51",
+    "lean/ThresholdHC/CriticalEntropy/HellingerGeometry.lean": "79629a0920d02949a6ab847b121086509f2ae2b4404f4766aaa69100fda2c5b9",
+    "lean/ThresholdHC/CriticalEntropy/HellingerModel.lean": "5a4b8bb5bf4cd2645df2292a121741e4b8eb7abf62a4b627a8bbb77f54ccf422",
+    "lean/ThresholdHC/CriticalEntropy/LikelihoodAffine.lean": "6b33f2bc2089744151d7a8feaceb021bbf4fab523164da0381c5efc619d53cf3",
+    "lean/ThresholdHC/CriticalEntropy/LikelihoodBounds.lean": "ebd8e2d89d2bfee76560aac507ff4b6140b469999e88a024b825af5a5cfda9b1",
+    "lean/ThresholdHC/CriticalEntropy/ObservationAffine.lean": "1a8a038c6ec2557da51a81f9612aea488a161d40fa90517e5251be4f71333ebe",
+    "lean/ThresholdHC/CriticalEntropy/ObservationGeometryModel.lean": "a36242357255714ad7b8517f105abc6fb818e931a0ff7a0a516459505cc61e4d",
+    "lean/ThresholdHC/CriticalEntropy/ObservationInformation.lean": "dc4a3a38802ef2a4fc8489766a38bdf372270bb076007e1e7c6dc1ea6f0f8907",
+    "lean/ThresholdHC/CriticalEntropy/ObservationModel.lean": "f6661ef822601181c09be8961cacf624d1cb2a8514eeb4c17b9a8a0ccd997bae",
+    "lean/ThresholdHC/CriticalEntropy/ObservationRisk.lean": "645615c417ceb827f296d60cc8bcc08dfbf3ecba2d203dc3b2f774538a0d468a",
+    "lean/ThresholdHC/CriticalEntropy/Packing.lean": "0819b363020bec3f9b82bbaf86387be6d78d3631381b590b640d587fea011a95",
+    "lean/ThresholdHC/CriticalEntropy/PolicyMixture.lean": "bd70670e38955cd6a412b7ab29988726450eab7201085735d9a81a86e9080505",
+    "lean/ThresholdHC/CriticalEntropy/PolicyNormalization.lean": "fce07cda2ed0ae77f3e715cbe3a04995482f6af6be89045a7a75b7f629567f95",
+    "lean/ThresholdHC/CriticalEntropy/PopulationCompactness.lean": "e86ebcbf2ce3cdeeaa35ca95b76516150509d34e768b212a72c7fadf4f095ae3",
+    "lean/ThresholdHC/CriticalEntropy/PopulationGeometryModel.lean": "30979c088ab1e746169485fa6792deacae84671b103ac6b4a46d4788aaf5f0ac",
+    "lean/ThresholdHC/CriticalEntropy/PopulationMixture.lean": "e1731a76df0e157101ec7013e01c21c854c4219a760c1e94371f06a6eba49525",
+    "lean/ThresholdHC/CriticalEntropy/PopulationModel.lean": "6563b8a07b6941cae10140c0611d6c13e63378bb9eae0009f1d03e987ac315fd",
+    "lean/ThresholdHC/CriticalEntropy/PopulationVariance.lean": "39ae6e240767e093a33bec7290e5daa16ae2dcf4c791f84f078ad5bff584f2e5",
+    "lean/ThresholdHC/CriticalEntropy/RepeatedModel.lean": "de43c043e98529ed9509400d0eb2f3ea4216c27343fd660f55e4320125e72f1e",
+    "lean/ThresholdHC/CriticalEntropy/RepeatedRestart.lean": "0451ca311f815b6a93876917db5527ba94aaf1e169e2b5f1fe6b47b9e336c231",
+    "lean/ThresholdHC/CriticalEntropy/RepeatedSignModel.lean": "660542041063023fc2d70962d777600ff60411007b25f76cf7e466968106a652",
+    "lean/ThresholdHC/CriticalEntropy/RestartPair.lean": "8c86a915636f670d1161a12e75d0a7ad18c5a4780f63e8c8a26064ec39c3ce5a",
+    "lean/ThresholdHC/CriticalEntropy/SampleMean.lean": "1befda118991d7f53aa696f75ce26c48cea9e48c302badb719ad7880e8833286",
+    "lean/ThresholdHC/CriticalEntropy/ScaleAsymptotics.lean": "6cae0e65bc2bce3dc390855869edfd9fa24aefde46ddac9bb03fc755c565d234",
+    "lean/ThresholdHC/CriticalEntropy/SeedAdaptation.lean": "72be0dcbfb68c571d8eb13eeb804b9629fd855d3708be156c434232a561579a9",
+    "lean/ThresholdHC/CriticalEntropy/SelectedPolicy.lean": "d08bb2ada0d4d6c85779b97257eb06b3895d966f12fcfc8ea8d751de0ebfd625",
+    "lean/ThresholdHC/CriticalEntropy/SequentialModel.lean": "f7e044ffb8ca3182c405730e3491fe1b813da85728fc8ee030aec5e97336bff4",
+    "lean/ThresholdHC/CriticalEntropy/SignReduction.lean": "3fadc6fcb4f89fe3b84e4d07447ea349acfb7f490bacaf337509270d26829cb9",
+    "lean/ThresholdHC/CriticalEntropy/SignTest.lean": "39842334c60c3b8d63e9bdd67d33496a12270eacf58375cb8c02fb583a3fe776",
+    "lean/ThresholdHC/CriticalEntropy/Specification.lean": "f12923d734c23229bc63a865003def4cc7be9a6bb420673cae3d9532be01c2b9",
+    "lean/ThresholdHC/CriticalEntropy/StatisticProcedure.lean": "17c41e220816ac6384d30d0f045370b81efcc29d8b1ef83e601af0d971a40059",
+    "lean/ThresholdHC/CriticalEntropy/StoppedModel.lean": "0ea485349d3f2465044b1978f0dc544935a40cc764bf615a98a8ba9bfc734378",
+    "lean/ThresholdHC/CriticalEntropy/StoppedTape.lean": "3a856b343447fdcfc3633a59684804af603de9279cbfc4b30202992c2c9c1124",
+    "lean/ThresholdHC/CriticalEntropy/StoppingWindow.lean": "5c746a6415390eed76298153a03dae8ea42a38fd5a2a52cb1c16a2da6fa038ee",
+    "lean/ThresholdHC/CriticalEntropy/SymmetricReduction.lean": "83286a71a724fc55d96364f89eb1578517d5ea52cbcc4486d4ad5b3ca7ac0201",
+    "lean/ThresholdHC/CriticalEntropy/UniformCoin.lean": "0485ada581ebb1d3c551fb15b4b7fd0edf4b6f1b5901912420d0c7d53fbb4ee6",
+    "tools/verify_critical_components.py": "48e8fcf4729cea9f5004a41a4e7f23c6b3c954eadef09b4555336ee68505cbef",
+    "tools/verify_tier6.py": "7295c1609c57be9951fc46f3e210f7f7682083470cf94bbe2dd89a387b0f075e",
+    "lean/lean-toolchain": "d581a24b57a4ae9e0b2132ca8ac7cc3ac336a9fc2751fe6b29414e2d434d54c4",
+    "lean/lake-manifest.json": "a7058b14db1034b58735d82f1cf9a82a938855e93decc1960ca7d21e786fdfe2"
+  },
+  "commands": [
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\Packing.olean",
+        "ThresholdHC/CriticalEntropy/Packing.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\CommonPoint.olean",
+        "ThresholdHC/CriticalEntropy/CommonPoint.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\BernoulliPrefix.olean",
+        "ThresholdHC/CriticalEntropy/BernoulliPrefix.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\EventInformation.olean",
+        "ThresholdHC/CriticalEntropy/EventInformation.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\SignTest.olean",
+        "ThresholdHC/CriticalEntropy/SignTest.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\EarlyDecision.olean",
+        "ThresholdHC/CriticalEntropy/EarlyDecision.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\StoppingWindow.olean",
+        "ThresholdHC/CriticalEntropy/StoppingWindow.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\GeometricOverlap.olean",
+        "ThresholdHC/CriticalEntropy/GeometricOverlap.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\FiniteGap.olean",
+        "ThresholdHC/CriticalEntropy/FiniteGap.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\StoppedModel.olean",
+        "ThresholdHC/CriticalEntropy/StoppedModel.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\StoppedTape.olean",
+        "ThresholdHC/CriticalEntropy/StoppedTape.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\SequentialModel.olean",
+        "ThresholdHC/CriticalEntropy/SequentialModel.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\RestartPair.olean",
+        "ThresholdHC/CriticalEntropy/RestartPair.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\RepeatedModel.olean",
+        "ThresholdHC/CriticalEntropy/RepeatedModel.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\RepeatedRestart.olean",
+        "ThresholdHC/CriticalEntropy/RepeatedRestart.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\RepeatedSignModel.olean",
+        "ThresholdHC/CriticalEntropy/RepeatedSignModel.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\SampleMean.olean",
+        "ThresholdHC/CriticalEntropy/SampleMean.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\SignReduction.olean",
+        "ThresholdHC/CriticalEntropy/SignReduction.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\EstimationEntropy.olean",
+        "ThresholdHC/CriticalEntropy/EstimationEntropy.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\PopulationModel.olean",
+        "ThresholdHC/CriticalEntropy/PopulationModel.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\UniformCoin.olean",
+        "ThresholdHC/CriticalEntropy/UniformCoin.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\PopulationMixture.olean",
+        "ThresholdHC/CriticalEntropy/PopulationMixture.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\PopulationVariance.olean",
+        "ThresholdHC/CriticalEntropy/PopulationVariance.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\GoodGapModel.olean",
+        "ThresholdHC/CriticalEntropy/GoodGapModel.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\ConditionalMoments.olean",
+        "ThresholdHC/CriticalEntropy/ConditionalMoments.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\HalfPrior.olean",
+        "ThresholdHC/CriticalEntropy/HalfPrior.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\GapSelection.olean",
+        "ThresholdHC/CriticalEntropy/GapSelection.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\GoodGaps.olean",
+        "ThresholdHC/CriticalEntropy/GoodGaps.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\CriticalModel.olean",
+        "ThresholdHC/CriticalEntropy/CriticalModel.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\CriticalLaw.olean",
+        "ThresholdHC/CriticalEntropy/CriticalLaw.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\CriticalAnnuli.olean",
+        "ThresholdHC/CriticalEntropy/CriticalAnnuli.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\CriticalScale.olean",
+        "ThresholdHC/CriticalEntropy/CriticalScale.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\ActivationModel.olean",
+        "ThresholdHC/CriticalEntropy/ActivationModel.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\Activation.olean",
+        "ThresholdHC/CriticalEntropy/Activation.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\ActivationCost.olean",
+        "ThresholdHC/CriticalEntropy/ActivationCost.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\ScaleAsymptotics.olean",
+        "ThresholdHC/CriticalEntropy/ScaleAsymptotics.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\BaseCost.olean",
+        "ThresholdHC/CriticalEntropy/BaseCost.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\ObservationModel.olean",
+        "ThresholdHC/CriticalEntropy/ObservationModel.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\FiniteObservation.olean",
+        "ThresholdHC/CriticalEntropy/FiniteObservation.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\CappedObservation.olean",
+        "ThresholdHC/CriticalEntropy/CappedObservation.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\FiniteSufficiency.olean",
+        "ThresholdHC/CriticalEntropy/FiniteSufficiency.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\LikelihoodBounds.olean",
+        "ThresholdHC/CriticalEntropy/LikelihoodBounds.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\HellingerModel.olean",
+        "ThresholdHC/CriticalEntropy/HellingerModel.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\Hellinger.olean",
+        "ThresholdHC/CriticalEntropy/Hellinger.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\ObservationInformation.olean",
+        "ThresholdHC/CriticalEntropy/ObservationInformation.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\PopulationGeometryModel.olean",
+        "ThresholdHC/CriticalEntropy/PopulationGeometryModel.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\PopulationCompactness.olean",
+        "ThresholdHC/CriticalEntropy/PopulationCompactness.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\FiniteGeometryModel.olean",
+        "ThresholdHC/CriticalEntropy/FiniteGeometryModel.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\FiniteGeometry.olean",
+        "ThresholdHC/CriticalEntropy/FiniteGeometry.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\ObservationGeometryModel.olean",
+        "ThresholdHC/CriticalEntropy/ObservationGeometryModel.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\LikelihoodAffine.olean",
+        "ThresholdHC/CriticalEntropy/LikelihoodAffine.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\ObservationAffine.olean",
+        "ThresholdHC/CriticalEntropy/ObservationAffine.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\HellingerGeometry.olean",
+        "ThresholdHC/CriticalEntropy/HellingerGeometry.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\CriticalGeometry.olean",
+        "ThresholdHC/CriticalEntropy/CriticalGeometry.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\FiniteRiskModel.olean",
+        "ThresholdHC/CriticalEntropy/FiniteRiskModel.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\FiniteRiskAnalytic.olean",
+        "ThresholdHC/CriticalEntropy/FiniteRiskAnalytic.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\StatisticProcedure.olean",
+        "ThresholdHC/CriticalEntropy/StatisticProcedure.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\SymmetricReduction.olean",
+        "ThresholdHC/CriticalEntropy/SymmetricReduction.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\FiniteSaddle.olean",
+        "ThresholdHC/CriticalEntropy/FiniteSaddle.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\ExponentialRisk.olean",
+        "ThresholdHC/CriticalEntropy/ExponentialRisk.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\FiniteCentering.olean",
+        "ThresholdHC/CriticalEntropy/FiniteCentering.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\FiniteRMS.olean",
+        "ThresholdHC/CriticalEntropy/FiniteRMS.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\FiniteSupport.olean",
+        "ThresholdHC/CriticalEntropy/FiniteSupport.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\ObservationRisk.olean",
+        "ThresholdHC/CriticalEntropy/ObservationRisk.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\CriticalRisk.olean",
+        "ThresholdHC/CriticalEntropy/CriticalRisk.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\PolicyNormalization.olean",
+        "ThresholdHC/CriticalEntropy/PolicyNormalization.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\SelectedPolicy.olean",
+        "ThresholdHC/CriticalEntropy/SelectedPolicy.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\CapInvariance.olean",
+        "ThresholdHC/CriticalEntropy/CapInvariance.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\SeedAdaptation.olean",
+        "ThresholdHC/CriticalEntropy/SeedAdaptation.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\PolicyMixture.olean",
+        "ThresholdHC/CriticalEntropy/PolicyMixture.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\CriticalCommonPair.olean",
+        "ThresholdHC/CriticalEntropy/CriticalCommonPair.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\verification-consolidation\\lean\\.lake\\build\\lib\\lean\\ThresholdHC\\CriticalEntropy\\Specification.olean",
+        "ThresholdHC/CriticalEntropy/Specification.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "ThresholdHC/CriticalEntropy/Audit.lean"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "axioms": {
+    "ThresholdHC.CriticalEntropy.sum_event_mass_le_overlap": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.event_packing": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.overlap_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.entropy_of_packing": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.entropy_of_gap_count": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finite_common_point": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.common_point_of_finite_mixtures": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.EntropyPackingStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.CommonPointStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.streamProb_pos": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.stream_kl_identity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finiteMeasure_positive": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finiteMeasure_density": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.seeded_prefix_kl": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.binary_kl_le_chisq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.seeded_prefix_kl_le_chisq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.seeded_tape_prefix_map": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.prefix_observable_kl_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.binary_kl_lower_log": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.event_binary_kl_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.event_mass_lower_of_kl": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.prefix_event_mass_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.fair_prefix_event_mass_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.PrefixInformationStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.PrefixEventTransferStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.SignTest": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.signTestWork": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.expectedSignTestWork": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.signTestWindow": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurable_signTestWork": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurable_signTestWindow": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.signTest_prefix_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.signTest_terminates": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.signTest_late_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.signTest_window_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.binary_kl_separation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.early_event_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.EntropyGap": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.signParameter": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.signParameter_interior": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.early_prefix_information": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.signTest_early_minus": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.entropyLowerTime": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.entropyUpperTime": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.entropyLowerTime_bounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.entropyUpperTime_bounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.signTest_quarter_late": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.signTest_negative_window": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.restrictPrefix": [],
+    "ThresholdHC.CriticalEntropy.signTestWindowPrefix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurable_signTestWindowPrefix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.signTestWindowPrefix_preimage": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.signTestWindowPrefix_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.signTestWindow_positive_imp_lt": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.signTest_fair_window": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.signTest_window_scale": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.geometric_separation_of_adjacent": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.half_low_cost": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.geometric_interval_card": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.inverse_gap_scales_separated": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.signTest_window_overlap": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finite_gap_sign_entropy": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.FiniteGapSignEntropyStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.tapeDrop": [],
+    "ThresholdHC.CriticalEntropy.measurable_tapeDrop": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.StoppedProcedure": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.stoppedSuffix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurable_stoppedSuffix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.stoppedProcedureWork": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.expectedStoppedProcedureWork": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurable_stoppedProcedureWork": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.stoppedWithWork": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.tapeDrop_map": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.prefix_drop_independent": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.tape_split_map": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.seeded_tape_split_map": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measure_eq_tsum_stopping": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.seeded_prefix_drop_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.stopped_event_tail_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.stopped_output_suffix_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.stopped_output_suffix_map": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.stopped_procedure_terminates": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.stopped_marked_suffix_map": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.StoppedSuffixStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.completePrefix": [],
+    "ThresholdHC.CriticalEntropy.measurable_completePrefix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.tapePrefix_completePrefix": [
+      "propext",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.prefix_eq_restrict": [
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.prefix_eq_drop": [
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.stopped_prefix_ext": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.restartInput": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurable_restartInput": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.sequentialStop": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.sequentialOutput": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurable_sequentialStop": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurable_sequentialOutput": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.sequential_prefix_ext": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.sequentialProcedure": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.prod_swap_middle": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.seeded_stopped_suffix_map": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.two_run_marked_map": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.two_run_expected_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.sequential_expected_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.sequential_output_map": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.SequentialRestartStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.reseedProcedure": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.postprocessProcedure": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.emptyProcedure": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurable_finCons": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.repeatedProcedure": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.fin_seed_split_map": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.reseed_expected_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.repeated_expected_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.reseed_output_map": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.fin_product_cons_map": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.repeated_output_map": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.RepeatedRestartStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.stopped_before_prefix_ext": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.stoppedToSignTest": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.repeatedSignDecision": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurable_repeatedSignDecision": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.repeatedSignTest": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.iid_sum_memLp": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.iid_sum_integral": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.iid_sum_variance": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.iid_sum_deviation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.iid_sum_lower_error": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.iid_sum_upper_error": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.repeated_sign_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.repeated_sign_plus_error": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.repeated_sign_minus_error": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finite_gap_estimation_entropy": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.critical_restart_count_bounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.RepeatedSignTestStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.FiniteGapEstimationEntropyStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.uniformUnitMeasure": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.uniformUnitMeasure_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.uniformCoinFlip": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurable_uniformCoinFlip": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.uniformTapeMeasure": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.uniformTapeMeasure_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.uniformCoinTape": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurable_uniformCoinTape": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.uniformProcedureState": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurable_uniformProcedureState": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.conditionalSecondMoment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.conditionalMean": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.mixtureParameter": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurable_mixtureParameter": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationInput": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurable_populationInput": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationMeasure": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationSecondMoment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationExpectedWork": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationMean": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.uniformCoinFlip_true": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.uniformCoinFlip_map": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.uniformCoinTape_map": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.seeded_uniformCoinTape_map": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.conditionalSecondMoment_uniform": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.conditionalMean_uniform": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.conditionalWork_uniform": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurable_conditionalSecondMoment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurable_conditionalMean": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurable_conditionalWork": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.conditionalSecondMoment_finite_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.conditionalMean_output_law": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.conditionalSecondMoment_output_law": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.seeded_lintegral_uniform": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurable_seeded_lintegral": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurable_seeded_integral": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.conditionalMean_integrable_of_moment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.mixtureParameter_map": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.lintegral_bernoulli_parameter": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.mixtureParameter_lintegral": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_lintegral": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_lintegral_const": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_finite_components": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_ae_finite_components": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.mixtureParameter_integral": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_integral": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_finite_all": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_conditional_finiteness": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_second_moment_formula": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_work_formula": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_mean_formula": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_finiteness_transfer": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.PopulationMomentStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.PopulationFinitenessStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_memLp_of_moment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_second_moment_toReal": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.variance_lower_of_mixture": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_second_moment_const": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_mean_const": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_variance_mixture_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_variance_floor": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.conditionalMean_sq_le_moment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_moment_bound_of_variance": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_moment_finite_of_evariance": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_evariance_floor": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_moment_bound_of_evariance": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.CappedPrior": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.halfPrior": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.CappedPopulationGuarantee": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.PopulationGoodGap": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.conditional_moment_pair_integrable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_second_moment_real_formula": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurable_halfPrior": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.halfPrior_le_half": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.halfPrior_integral": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedPrior_const": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedPrior_half": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.halfPrior_weighted_integral": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_halfPrior_moment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_halfPrior_mean": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.exists_subset_real_measure": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.bad_set_mass_lt_of_integral_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.bad_set_mass_lt_of_integral_upper": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_good_gaps": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.PopulationVarianceFloorStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.PopulationMomentFromVarianceStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.PopulationGoodGapsStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.criticalGapLaw": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.criticalUpper": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.criticalAnnulus": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.criticalParameter": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.criticalGapLaw_noAtoms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.linear_density_interval": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.criticalGapLaw_Ioc": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.criticalGapLaw_supported": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.criticalGapLaw_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.criticalGapLaw_real_Ioc": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.criticalUpper_pos": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.criticalUpper_le_quarter": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.criticalUpper_succ": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.criticalAnnulus_mass": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.criticalAnnulus_adjacent": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.criticalUpper_antitone": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.criticalAnnulus_disjoint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurable_criticalParameter": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.criticalParameter_eq_sign": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.criticalParameter_coe_of_mem": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.exists_good_point_low_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.criticalAnnulus_work_factor": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.critical_annulus_work_sum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.critical_annulus_good_points": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_negative_work_integral": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.critical_scale_entropy": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.critical_scale_product": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.CriticalLawStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.CriticalScaleProductStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.activeSeeds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurableSet_activeSeeds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.stop_zero_iff_inactive": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.inactive_output": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.inactive_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.active_work_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.activation_work_restrict": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.activation_conditional_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.activation_probability_le_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.activation_conditional_work_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.normalized_event_mean": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.normalized_event_moment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationSeedEvent": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurableSet_populationSeedEvent": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationSeedEvent_measure": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationMeasure_restrict_seed": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationMeasure_smul_seed": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationMeasure_condition_seed": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_inactive_mean": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.activeProcedure": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_activation_mean": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_activation_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.activation_positive_of_bias": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_activation_moment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.active_population_guarantee": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.capped_guarantee_moment_floor": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_null_work_ge_activation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.activation_product_bounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.critical_product_scale": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.entropy_scale_count": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.critical_annulus_mass_of_small_product": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.entropy_logs_le_exp": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.criticalLogFactor": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.critical_scalar_base_cost": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.critical_raw_base_cost": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.critical_base_cost": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.ActivationNormalizationStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.CriticalRawBaseCostStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.CriticalBaseCostStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.wordHeads": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.stoppedSeedCell": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.wordLikelihood": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationWordLikelihood": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.CappedWord": [],
+    "ThresholdHC.CriticalEntropy.cappedWord_fintype": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedWord_measurableSpace": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedWord_measurableSingleton": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedTranscript": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedTranscriptLaw": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.stoppedReference": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.stoppedStatistic": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedStatisticLaw": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.transcriptReconstruction": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.streamProb_heads": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurableSet_stoppedSeedCell": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.stopped_word_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_event_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurable_wordLikelihood": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_stopped_word_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_stopped_heads_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurable_cappedTranscript": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedTranscript_of_stop": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedTranscript_mem_cell": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedTranscriptLaw_cell": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.stoppedReference_cell": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measure_ext_prod_finite": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.stoppedReference_finite": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedTranscriptLaw_density": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedTranscriptLaw_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.map_factored_density": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.factored_density_restrict": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.factored_density_fiber_mass": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.factored_density_cond": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedStatisticLaw_density": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.wordLikelihood_le_one": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.wordLikelihood_pos": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.prior_weights_sum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationWordLikelihood_le_one": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationWordLikelihood_pos": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.critical_parameters_interior": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.hellingerAffinity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finiteAffinity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.affinity_density_scaling": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.hellingerAffinity_withDensity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.affinity_mass_scaling": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.hellingerAffinity_finite_density": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedStatisticLaw_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedStatisticLaw_zero_iff_reference": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.hellingerAffinity_factored_statistic": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.capped_observation_reconstruction": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.capped_observation_affinity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.capped_observation_finite_affinity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.capped_transcript_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.capped_observation_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.critical_observation_reconstruction": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.critical_observation_finite_affinity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.critical_observation_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.CriticalObservationReconstructionStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.CriticalObservationAffinityStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.CriticalObservationWorkStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.PopulationDual": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationDualSet": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationDualDensity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationDualPrior": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationMomentMap": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.boundedPriorMomentSet": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationTarget": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationPairSet": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationDualSet_compact": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationDualSet_nonempty": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationDualSet_convex": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationDualDensity_test": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationDualDensity_setIntegral": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationDualDensity_bounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationDualPrior_measurable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationDualPrior_le_half": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationDualPrior_ae": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationDualPrior_mass": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationDualPrior_admissible": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationDualSet_covers_priors": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationDualPrior_test": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationMomentMap_apply": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationMomentMap_continuous": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationMomentImage_compact_convex": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.boundedPriorMomentSet_eq_image": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.boundedPriorMomentSet_compact_convex": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationPairSet_compact_convex": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationPairSet_nonempty": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.realFiniteAffinity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.sqrt_product_scale": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.sqrt_product_mix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.realFiniteAffinity_continuous": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.realFiniteAffinity_concave": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.realFiniteAffinity_le_one": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.realFiniteDistance_convex": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finiteAffinity_toReal": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedObservationVector": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedObservationImage": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.wordLikelihood_real_bounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.wordLikelihood_real_memLp": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationWordLikelihood_real": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationWordLikelihood_affine_moment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedStatisticLaw_real_mass": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedStatisticLaw_affine_moment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedObservationVector_affine_coordinates": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedObservationVector_congr_ae": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.capped_observation_affine_representation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.capped_observation_image_compact_convex": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.capped_observation_image_nonempty": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.capped_observation_image_positive": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.capped_observation_uniform_positive": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.capped_statistic_probabilities": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.capped_observation_affinity_real": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.capped_observation_hellinger_geometry": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.capped_observation_affinity_le_one": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.critical_population_representation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.critical_observation_geometry": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationPairSet_realization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.critical_pair_hellinger_geometry": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.CriticalPopulationRepresentationStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.CriticalObservationGeometryStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.CriticalPairGeometryStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finitePartition": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finitePartitionLinear": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finiteRepeatedObjective": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finitePartition_pos": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.realFiniteAffinity_pos": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.affinity_le_tilted_partition": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finite_log_partition_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finite_log_partition_attained": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finitePartition_shift": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finitePartition_convex": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finiteLogPartition_convex": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.positiveVectors_convex": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finiteLogPartition_population_concave": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finitePartition_continuous": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finiteLogPartition_continuousOn": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finitePerspective_convex": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.convex_concave_uniform_strict": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.exists_positive_scale_lt": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finiteRepeatedObjective_pointwise": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finiteRepeatedObjective_convex": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedStatisticProcedure": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedStatisticProcedure_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedStatisticProcedure_output_law": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedStatisticProcedure_memLp": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_capped_work_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.iid_score_memLp": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.iid_score_integral": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.iid_score_variance": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.symmetric_one_run_reduction": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finiteRepeatedObjective_population_geometry": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finiteRepeatedObjective_score_continuous": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finite_repeated_uniform_saddle": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.square_le_shifted_exponentials": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.second_moment_of_exponential_bounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.realFiniteAffinity_self": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finiteRepeatedObjective_diagonal": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finite_saddle_centering": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finite_function_memLp": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finite_function_integrable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finite_integral_exp": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finite_iid_exponential": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.radius_second_moment_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finite_iid_risk_of_log_bounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finite_convex_rms_comparison": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finiteSupportRetraction": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finiteSupportRetraction_val": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finite_support_sum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finite_support_map_mass": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finite_support_affinity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.evariance_map_measurable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finite_convex_one_run": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.capped_observation_one_run": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.critical_capped_estimator": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.critical_capped_affinity_obstruction": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.critical_capped_policy_pair": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.CriticalCappedEstimatorStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.CriticalCappedAffinityObstructionStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.CriticalCappedPolicyPairStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.affinity_power_controls_distance": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.critical_repeat_choice": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.compact_power_pair_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.populationPairSet_covers_priors": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.capped_observation_affinity_real_congr": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.capped_observation_affinity_real_symm": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.criticalLogFactor_pos": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.critical_capped_constraint_feasible": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.measurable_selected": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.selectedProcedure": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.selectedProcedure_capped": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.selected_seed_lintegral": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.selected_expected_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_selected_lintegral": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.selected_population_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.capped_statistic_lintegral": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.selected_statistic_lintegral": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.selected_statistic_mass": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.selected_statistic_real_mass": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.real_affinity_common_density_mixture": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.selected_affinity_real": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_seed_map": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_reseed_lintegral": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.population_reseed_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.reseed_statistic_lintegral": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.statisticCapEmbedding": [],
+    "ThresholdHC.CriticalEntropy.statisticCapEmbedding_injective": [],
+    "ThresholdHC.CriticalEntropy.stoppedStatistic_enlarge_cap": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedStatisticLaw_enlarge_cap": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.realFiniteAffinity_map_injective": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.capped_affinity_enlarge_cap": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.reseed_statistic_law": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.reseed_affinity_real": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finiteWeightMeasure": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finiteWeightMeasure_singleton": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finiteWeightMeasure_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.finiteWeightMeasure_real_singleton": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.selected_population_work_real": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.CappedPolicy": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedPolicyOfProcedure": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.policyAffinity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.policyNullWork": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedPolicyOfProcedure_affinity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.cappedPolicyOfProcedure_nullWork": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.capped_policy_mixture": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.critical_common_capped_pair": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.CriticalCappedConstraintStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalEntropy.CriticalCommonCappedPairStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "exact_component_targets": 31,
+  "audited_declarations": 519
+}

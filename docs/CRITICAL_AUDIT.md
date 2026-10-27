@@ -22,9 +22,9 @@ The complete critical single-coin base-cost theorem (BC1) is proved in
 [BaseCost.lean](../lean/ThresholdHC/CriticalEntropy/BaseCost.lean): one universal
 positive constant gives `V E_0 T >= c rho L(1+log L)` for every
 `0<rho<=1/4`, under the actual population variance, bias and finite-work
-guarantees. The raw-moment version is also proved. The statistical common
-hard pair, interacting-population transfer and critical upper bound remain
-paper arguments. The capped finite-observation reduction is also proved,
+guarantees. The raw-moment version and the statistical common hard pair are
+also proved. Interacting-population transfer, the termination limit and the
+critical upper bound remain paper arguments. The capped finite-observation reduction is also proved,
 including full-transcript reconstruction, canonical affinity, and expected
 work. The dependency details below explain this boundary.
 
@@ -51,7 +51,7 @@ windows, transfers their mass to the fair law, and counts their overlap before
 applying entropy packing. It uses `ceil(4 E_-T)+1` for the upper window endpoint
 to handle zero expected work uniformly; the gap bound leaves the paper's BC3,
 BC4 and final constants unchanged. The abstract compact-convex common-point
-component is also proved, but its statistical instantiation remains open.
+component is also proved; its statistical instantiation is now completed below.
 
 The stopped-suffix foundation is now proved in
 [StoppedTape.lean](../lean/ThresholdHC/CriticalEntropy/StoppedTape.lean).
@@ -261,13 +261,41 @@ then applies the complete base-cost theorem. If `3 epsilon<=rho/64` and
 admissible priors separated by at least `2 epsilon`, whose canonical full
 observation affinity satisfies `Aff^n>=1/2`. One universal positive `c` is
 chosen before the seed, policy, rarity and repetition count. The pair is
-specific to the selected policy; the common-pair quantifier interchange is
-not asserted. The conversion to a normalized Hellinger/work bound and the
-revealed-mixture identities remain next steps.
+specific to the selected policy. The next stage supplies the stronger
+quantifier order.
 
-The [thirteenth audit record](../results/critical_components_013.json) checks
-twenty-nine exact targets and all 471 public declarations using only the
+[CriticalCommonPair.lean](../lean/ThresholdHC/CriticalEntropy/CriticalCommonPair.lean)
+now proves the statistical common-pair statement. One universal `C>0` works
+for every `0<rho<=1/4` and `0<=delta<=rho/96`: there are two actual measurable
+priors in `[0,1/2]`, each with mass at most `rho`, whose target separation is
+at least `delta`, and **the same pair** satisfies
+`(1-Aff) rho L(1+log L) <= C delta^2 E_0 T` for every capped observable policy.
+The pair is selected before the arbitrary seed space, seed law, output space,
+policy and stopping cap. Affinity is the canonical affinity of the full
+seed/transcript laws; work is measured under the all-negative population.
+
+The proof derives a normalized bound without dividing by work, including zero
+null work. Revealed finite mixtures are constructed as actual policies with
+independent product seeds. Component seeds and caps may differ; both canonical
+affinity and expected work average exactly. These identities discharge the
+statistical hypothesis of the compact-convex common-point theorem.
+
+[PolicyNormalization.lean](../lean/ThresholdHC/CriticalEntropy/PolicyNormalization.lean)
+minimizes the continuous distance on the common compact pair set and uses
+`n=ceil(2/H)` when the minimum distance is positive. This handles zero null
+work without a separate positive-work assumption.
+[PolicyMixture.lean](../lean/ThresholdHC/CriticalEntropy/PolicyMixture.lean)
+constructs the required mixtures; its seed law and observable stopping rule
+are independent of the unknown population. The finite likelihood factorization
+proves exact affinity averaging, rather than assuming equality in affinity's
+general concavity bound. The common pair covers every capped procedure in the
+existing seed/output universe; no finite-seed restriction is introduced.
+
+The [fourteenth audit record](../results/critical_components_014.json) checks
+thirty-one exact targets and all 519 public declarations using only the
 permitted standard axioms. The
+[thirteenth record](../results/critical_components_013.json) preserves the
+twenty-nine-target capped-policy risk checkpoint. The
 [twelfth record](../results/critical_components_012.json) preserves the
 twenty-six-target population and observation geometry checkpoint. The
 [eleventh record](../results/critical_components_011.json) preserves the
@@ -283,8 +311,8 @@ preserves the six-target stopped-suffix checkpoint, and the
 [third record](../results/critical_components_003.json) the finite-gap checkpoint. These targets were
 introduced with their proofs, not retrospectively described as a pre-proof
 freeze. The single-coin continuum null-cost product is now verified. The
-full critical minimax law is **not**: common-pair instantiation, population
-transfer, and the critical upper construction remain below.
+full critical minimax law is **not**: population transfer, the termination
+limit, and the critical upper construction remain below.
 
 ## Initial dependency audit
 
@@ -302,7 +330,7 @@ proof.
 | Sign-test restarts | The actual unused-suffix law, observable fixed-count repetition, sign-test errors and exact `n E T` work are Lean-checked. The finite-gap estimator entropy theorem constructs this reduction from conditional moments. | The finite-scale quadratic product theorem now derives these assumptions from uniform population guarantees. |
 | Finite observation reduction | At cap `m`, each seed/word cell has the integrated likelihood determined by `(T,heads)`. The multiplier cancels from conditional seed/word laws. | Complete for the actual capped procedure and arbitrary measurable seed; see the current formal boundary above. |
 | Convex RMS comparison | Log-moment curvature, compact minimax selection, centering, and actual iid exponential moments are proved. Direct exponential domination establishes square integrability and the RMS bound, replacing the paper's tail integral step. | Complete for the finite capped experiment, including the actual observable one-run estimator and its application to base cost. |
-| One pair for all policies | The separated-pair set is compact convex in the weak-star topology. Squared Hellinger is continuous convex. A revealed finite policy mixture has exactly averaged Hellinger and null work. Finite-simplex minimax supplies the finite intersection property. | Actual population compactness, affine observation coordinates and continuous convex Hellinger constraints are proved. Risk comparison and a separated pair for each policy are proved. Affinity/work normalization, revealed-mixture identities and common-pair instantiation remain pending. |
+| One pair for all policies | The separated-pair set is compact convex in the weak-star topology. Squared Hellinger is continuous convex. A revealed finite policy mixture has exactly averaged Hellinger and null work. Finite-simplex minimax supplies the finite intersection property. | Complete for every capped observable policy with an arbitrary measurable independent seed. Actual normalization, heterogeneous revealed-mixture identities and common-pair instantiation are proved; the pair is chosen before all policy and cap quantifiers. |
 | Interacting population transfer | Leaf likelihoods factor by genuine coin even with interleaving. The midpoint hybrid simulations use independent auxiliary tapes. Since midpoint `q<=1/2`, its one-coin law dominates half the null law, giving the required cost direction. | Formalize the finite-prefix decomposition and simulation. Existing finite examples do not prove the general statement. |
 | Unbounded stopping | The same pair applies at every cap. Uniform work gives termination separately under both endpoints; terminal events are approximated by stopped-prefix events. | Prove the limit without assuming termination transfers from one endpoint to the other. |
 | Upper construction | Wrong-sign likelihoods are supermartingales; forced-majority error is bounded on the complete iid tape. Positive work is integrated under a global mass constraint, not a pointwise bound on `q`. The random telescope and Poisson replication use separately finite moments. | Full probability and algorithm realization remain paper arguments. |
@@ -319,8 +347,8 @@ proof.
   `ceil(512(1+m/rho))<=1282m/rho`.
 * The annulus comparison uses `d_j^2/mu(I_j)<=4a^2/3`; the averaging
   factor four gives the displayed `16a^2/3` work charge.
-* Zero-work capped policies have population-independent transcripts. The
-  hard-pair proof handles this case before any division by work.
+* The normalized hard-pair proof includes zero null work and never divides
+  by work. In that case it selects a separated pair with zero distance.
 * The statistical modulus is not identified with the variational optimizer's
   population profile. The claimed hard pair is existential.
 

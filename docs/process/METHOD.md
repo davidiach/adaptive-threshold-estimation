@@ -53,9 +53,9 @@ The critical single-coin base-cost theorem now composes that probability model
 with activation normalization, observable restarts, good-gap selection and a
 rarity-dependent scale count. Its exact specification quantifies one universal
 constant before the rarity and procedure, and charges all-negative population
-work. The full minimax transfer still needs its common population pair and
-interactive experiment. The verification record keeps those completion flags
-separate.
+work. The common population pair is now proved; the full minimax transfer
+still needs its interactive experiment and termination limit. The verification
+record keeps those completion flags separate.
 
 The capped-observation reduction checks a further semantic boundary. Replacing
 the full transcript by stopping time and head count is justified by proving
@@ -81,8 +81,16 @@ additive-component reduction. For repeated copies of one policy, the minimax
 score can be symmetric: `F=c+sum_i u(Z_i)`. Then `Z=n u(Z_1)+c` has the same
 mean and variance `n Var(F)`, proved under the actual iid law. This suffices for
 the policy-specific pair and avoids importing the more general component
-randomization argument. It does not remove the remaining need for revealed
-policy mixtures and one common population pair.
+randomization argument.
+
+The common-pair extension proves the statistical quantifier interchange.
+First a repetition argument converts the policy-specific affinity bound to
+a normalized distance/work constraint, including zero null work. Then a finite
+revealed policy mixture is constructed using product seed spaces, and its
+affinity and work are proved to be the weighted averages. Enlarging caps and
+adding independent seed coordinates preserve the canonical affinity. Compactness
+now selects one population pair before every capped-policy quantifier. This
+does not replace the remaining simulation of interacting population algorithms.
 
 ## Freeze established questions and preserve corrections
 

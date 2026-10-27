@@ -172,17 +172,31 @@ target separation at least `2 epsilon` and canonical affinity to the power `n`
 at least `1/2`. The pair may depend on the policy. This is the precise
 policy-specific conclusion, before selecting a common pair.
 
-The [thirteenth record](../results/critical_components_013.json) audits twenty-nine
-exact targets and all 471 public declarations. The
-[twelfth record](../results/critical_components_012.json) preserves the earlier
-population and observation geometry checkpoint.
+[CriticalCommonPair.lean](../lean/ThresholdHC/CriticalEntropy/CriticalCommonPair.lean)
+now proves the statistical common-pair statement. One universal `C>0` works
+for every `0<rho<=1/4` and `0<=delta<=rho/96`: there are two actual measurable
+priors in `[0,1/2]`, each with mass at most `rho`, whose target separation is
+at least `delta`, and **the same pair** satisfies
+`(1-Aff) rho L(1+log L) <= C delta^2 E_0 T` for every capped observable policy.
+The pair is selected before the arbitrary seed space, seed law, output space,
+policy and stopping cap. Affinity is the canonical affinity of the full
+seed/transcript laws; work is measured under the all-negative population.
 
-The statistical common hard pair, unrestricted population transfer, and
-critical upper construction remain unformalized. The abstract
-[common-point theorem](../lean/ThresholdHC/CriticalEntropy/CommonPoint.lean)
-does not establish its statistical hypotheses. Consequently the verified
-single-coin result does not certify the full critical minimax law or its
-refutation of the proposed general upper bound.
+The proof derives a normalized bound without dividing by work, including zero
+null work. Revealed finite mixtures are constructed as actual policies with
+independent product seeds. Component seeds and caps may differ; both canonical
+affinity and expected work average exactly. These identities discharge the
+statistical hypothesis of the compact-convex common-point theorem.
+
+The [fourteenth record](../results/critical_components_014.json) audits thirty-one
+exact targets and all 519 public declarations. The
+[thirteenth record](../results/critical_components_013.json) preserves the earlier
+capped-policy risk checkpoint.
+
+Unrestricted population transfer, the termination limit, and the critical
+upper construction remain unformalized. The common-pair result does not by
+itself certify the full critical minimax law or its refutation of the proposed
+general upper bound.
 
 ## Population and nonlinear feedback follow-ups
 

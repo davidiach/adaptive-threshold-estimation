@@ -486,4 +486,41 @@ def CriticalCappedPolicyPairStatement : Prop := ∃ c : ℝ, 0 < c ∧
           (cappedTranscriptLaw criticalGapLaw ν
             (fun d => criticalParameter d false) (fun d => criticalParameter d true) r A m)).toReal)^n
 
+/-- Actual normalized policy constraint and one common pair for all capped
+policies. Unrestricted population transfer is not asserted. -/
+def CriticalCappedConstraintStatement : Prop := ∃ C : ℝ, 0 < C ∧
+    ∀ (R E : Type) [MeasurableSpace R] [MeasurableSpace E]
+      (ν : Measure R) [IsProbabilityMeasure ν] (A : StoppedProcedure R E)
+      (m : ℕ), (∀ z, A.stop z ≤ m) → ∀ (ρ : unitInterval),
+      0 < (ρ : ℝ) → (ρ : ℝ) ≤ 1/4 → ∀ δ : ℝ, 0 ≤ δ → δ ≤ (ρ : ℝ)/96 →
+      ∃ z ∈ populationPairSet criticalGapLaw (ρ : ℝ) δ,
+        (1-(hellingerAffinity
+          (cappedTranscriptLaw criticalGapLaw ν
+            (fun d => criticalParameter d false) (fun d => criticalParameter d true)
+            (populationDualPrior criticalGapLaw z.1) A m)
+          (cappedTranscriptLaw criticalGapLaw ν
+            (fun d => criticalParameter d false) (fun d => criticalParameter d true)
+            (populationDualPrior criticalGapLaw z.2) A m)).toReal)*
+          (ρ : ℝ)*criticalLogFactor (ρ : ℝ) ≤
+        C*δ^2*(populationExpectedWork criticalGapLaw ν
+          (fun d => criticalParameter d false) (fun d => criticalParameter d true) (fun _ => 0) A).toReal
+
+def CriticalCommonCappedPairStatement : Prop := ∃ C : ℝ, 0 < C ∧
+    ∀ (ρ : unitInterval), 0 < (ρ : ℝ) → (ρ : ℝ) ≤ 1/4 →
+    ∀ δ : ℝ, 0 ≤ δ → δ ≤ (ρ : ℝ)/96 →
+    ∃ q r : ℝ → unitInterval, CappedPrior criticalGapLaw (ρ : ℝ) q ∧
+      CappedPrior criticalGapLaw (ρ : ℝ) r ∧
+      δ ≤ (∫ d, (r d : ℝ) ∂criticalGapLaw)-(∫ d, (q d : ℝ) ∂criticalGapLaw) ∧
+      ∀ (R E : Type) [MeasurableSpace R] [MeasurableSpace E]
+        (ν : Measure R) [IsProbabilityMeasure ν] (A : StoppedProcedure R E)
+        (m : ℕ), (∀ z, A.stop z ≤ m) →
+        (1-(hellingerAffinity
+          (cappedTranscriptLaw criticalGapLaw ν
+            (fun d => criticalParameter d false) (fun d => criticalParameter d true) q A m)
+          (cappedTranscriptLaw criticalGapLaw ν
+            (fun d => criticalParameter d false) (fun d => criticalParameter d true) r A m)).toReal)*
+          (ρ : ℝ)*criticalLogFactor (ρ : ℝ) ≤
+        C*δ^2*(populationExpectedWork criticalGapLaw ν
+          (fun d => criticalParameter d false) (fun d => criticalParameter d true) (fun _ => 0) A).toReal
+
 end ThresholdHC.CriticalEntropy

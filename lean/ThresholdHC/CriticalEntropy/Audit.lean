@@ -14,8 +14,13 @@ import ThresholdHC.CriticalEntropy.BaseCost
 import ThresholdHC.CriticalEntropy.ObservationInformation
 import ThresholdHC.CriticalEntropy.CriticalGeometry
 import ThresholdHC.CriticalEntropy.CriticalRisk
+import ThresholdHC.CriticalEntropy.CriticalCommonPair
 
 open ThresholdHC.CriticalEntropy
+
+example : CriticalCappedConstraintStatement := critical_capped_constraint_feasible
+
+example : CriticalCommonCappedPairStatement := critical_common_capped_pair
 
 example : CriticalCappedEstimatorStatement := fun _ _ => critical_capped_estimator
 
@@ -567,3 +572,52 @@ example : CriticalBaseCostStatement := critical_base_cost
 #print axioms CriticalCappedEstimatorStatement
 #print axioms CriticalCappedAffinityObstructionStatement
 #print axioms CriticalCappedPolicyPairStatement
+
+#print axioms affinity_power_controls_distance
+#print axioms critical_repeat_choice
+#print axioms compact_power_pair_bound
+#print axioms populationPairSet_covers_priors
+#print axioms capped_observation_affinity_real_congr
+#print axioms capped_observation_affinity_real_symm
+#print axioms criticalLogFactor_pos
+#print axioms critical_capped_constraint_feasible
+#print axioms measurable_selected
+#print axioms selectedProcedure
+#print axioms selectedProcedure_capped
+#print axioms selected_seed_lintegral
+#print axioms selected_expected_work
+#print axioms population_selected_lintegral
+#print axioms selected_population_work
+#print axioms capped_statistic_lintegral
+#print axioms selected_statistic_lintegral
+#print axioms selected_statistic_mass
+#print axioms selected_statistic_real_mass
+#print axioms real_affinity_common_density_mixture
+#print axioms selected_affinity_real
+#print axioms population_seed_map
+#print axioms population_reseed_lintegral
+#print axioms population_reseed_work
+#print axioms reseed_statistic_lintegral
+#print axioms statisticCapEmbedding
+#print axioms statisticCapEmbedding_injective
+#print axioms stoppedStatistic_enlarge_cap
+#print axioms cappedStatisticLaw_enlarge_cap
+#print axioms realFiniteAffinity_map_injective
+#print axioms capped_affinity_enlarge_cap
+#print axioms reseed_statistic_law
+#print axioms reseed_affinity_real
+#print axioms finiteWeightMeasure
+#print axioms finiteWeightMeasure_singleton
+#print axioms finiteWeightMeasure_probability
+#print axioms finiteWeightMeasure_real_singleton
+#print axioms selected_population_work_real
+#print axioms CappedPolicy
+#print axioms cappedPolicyOfProcedure
+#print axioms policyAffinity
+#print axioms policyNullWork
+#print axioms cappedPolicyOfProcedure_affinity
+#print axioms cappedPolicyOfProcedure_nullWork
+#print axioms capped_policy_mixture
+#print axioms critical_common_capped_pair
+#print axioms CriticalCappedConstraintStatement
+#print axioms CriticalCommonCappedPairStatement

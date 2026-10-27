@@ -34,7 +34,8 @@ MODULES = ("Packing", "CommonPoint", "BernoulliPrefix", "EventInformation", "Sig
            "ObservationGeometryModel", "LikelihoodAffine", "ObservationAffine", "HellingerGeometry", "CriticalGeometry",
            "FiniteRiskModel", "FiniteRiskAnalytic", "StatisticProcedure", "SymmetricReduction",
            "FiniteSaddle", "ExponentialRisk", "FiniteCentering", "FiniteRMS",
-           "FiniteSupport", "ObservationRisk", "CriticalRisk", "Specification")
+           "FiniteSupport", "ObservationRisk", "CriticalRisk",
+           "PolicyNormalization", "SelectedPolicy", "CapInvariance", "SeedAdaptation", "PolicyMixture", "CriticalCommonPair", "Specification")
 NAMESPACE = "ThresholdHC.CriticalEntropy."
 ROOTS = {
     NAMESPACE + name for name in (
@@ -197,6 +198,22 @@ ROOTS = {
         "capped_observation_one_run", "critical_capped_estimator", "critical_capped_affinity_obstruction",
         "critical_capped_policy_pair", "CriticalCappedEstimatorStatement", "CriticalCappedAffinityObstructionStatement",
         "CriticalCappedPolicyPairStatement",
+        "affinity_power_controls_distance", "critical_repeat_choice", "compact_power_pair_bound",
+        "populationPairSet_covers_priors", "capped_observation_affinity_real_congr", "capped_observation_affinity_real_symm",
+        "criticalLogFactor_pos", "critical_capped_constraint_feasible", "measurable_selected",
+        "selectedProcedure", "selectedProcedure_capped", "selected_seed_lintegral",
+        "selected_expected_work", "population_selected_lintegral", "selected_population_work",
+        "capped_statistic_lintegral", "selected_statistic_lintegral", "selected_statistic_mass",
+        "selected_statistic_real_mass", "real_affinity_common_density_mixture", "selected_affinity_real",
+        "population_seed_map", "population_reseed_lintegral", "population_reseed_work",
+        "reseed_statistic_lintegral", "statisticCapEmbedding", "statisticCapEmbedding_injective",
+        "stoppedStatistic_enlarge_cap", "cappedStatisticLaw_enlarge_cap", "realFiniteAffinity_map_injective",
+        "capped_affinity_enlarge_cap", "reseed_statistic_law", "reseed_affinity_real",
+        "finiteWeightMeasure", "finiteWeightMeasure_singleton", "finiteWeightMeasure_probability",
+        "finiteWeightMeasure_real_singleton", "selected_population_work_real", "CappedPolicy",
+        "cappedPolicyOfProcedure", "policyAffinity", "policyNullWork",
+        "cappedPolicyOfProcedure_affinity", "cappedPolicyOfProcedure_nullWork", "capped_policy_mixture",
+        "critical_common_capped_pair", "CriticalCappedConstraintStatement", "CriticalCommonCappedPairStatement",
     )
 }
 
@@ -252,12 +269,13 @@ def main() -> int:
               for p in protected}
     status = {
         "valid": False,
-        "scope": "Critical quadratic single-coin variance and raw-moment base-cost bounds for all rarities, derived from actual observable population experiments; activation, scale selection, restarts, sign entropy, finite stopped-observation reconstruction, canonical affinity and work preservation, actual population compactness and affine/convex observation geometry, finite convex RMS comparison, actual observable one-run estimator and policy-specific separated pair, and abstract common point",
+        "scope": "Critical quadratic single-coin variance and raw-moment base-cost bounds for all rarities, derived from actual observable population experiments; activation, scale selection, restarts, sign entropy, finite stopped-observation reconstruction, canonical affinity and work preservation, actual population compactness and affine/convex observation geometry, finite convex RMS comparison, actual observable one-run estimator and policy-specific separated pair, normalized Hellinger/work constraints, actual heterogeneous revealed mixtures, and one common separated pair for every capped observable policy",
         "full_critical_minimax_theorem_verified": False,
         "base_cost_theorem_verified": False,
         "capped_observation_reduction_verified": False,
         "population_observation_geometry_verified": False,
         "capped_policy_risk_and_pair_verified": False,
+        "common_capped_pair_verified": False,
         "finite_gap_sign_testing_theorem_verified": False,
         "stopped_suffix_independence_verified": False,
         "sequential_restart_law_and_work_verified": False,
@@ -298,7 +316,7 @@ def main() -> int:
     if any(hashlib.sha256((ROOT / rel).read_bytes()).hexdigest() != digest
            for rel, digest in hashes.items()):
         raise ValueError("Sources changed during audit")
-    status.update(valid=True, exact_component_targets=29, audited_declarations=len(ROOTS),
+    status.update(valid=True, exact_component_targets=31, audited_declarations=len(ROOTS),
                   finite_gap_sign_testing_theorem_verified=True,
                   stopped_suffix_independence_verified=True,
                   sequential_restart_law_and_work_verified=True,
@@ -317,9 +335,10 @@ def main() -> int:
                   base_cost_theorem_verified=True,
                   capped_observation_reduction_verified=True,
                   population_observation_geometry_verified=True,
-                  capped_policy_risk_and_pair_verified=True)
+                  capped_policy_risk_and_pair_verified=True,
+                  common_capped_pair_verified=True)
     status_path.write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"valid": True, "exact_component_targets": 29,
+    print(json.dumps({"valid": True, "exact_component_targets": 31,
                       "audited_declarations": len(ROOTS), "evidence": str(output),
                       "finite_gap_sign_testing_theorem_verified": True,
                       "stopped_suffix_independence_verified": True,
@@ -340,6 +359,7 @@ def main() -> int:
                       "capped_observation_reduction_verified": True,
                       "population_observation_geometry_verified": True,
                       "capped_policy_risk_and_pair_verified": True,
+                      "common_capped_pair_verified": True,
                       "full_critical_minimax_theorem_verified": False}))
     return 0
 
