@@ -25,6 +25,7 @@ python tools/check_targets_numeric.py
 python tools/check_targets2_numeric.py
 python -m unittest discover -s tools -p 'test_validation.py' -v
 python -m unittest discover -s tools -p 'test_tier3_validation.py' -v
+python -m unittest discover -s tools -p 'test_tier4_validation.py' -v
 python tools/check_power_bracket.py
 python proposals/constants/bias_audit.py
 python proposals/constants/uniform_constant_checks.py
@@ -43,9 +44,10 @@ python tools/verify_lean_checkpoint.py --sequential
 python tools/verify_uniform_arithmetic.py
 python tools/verify_uniform713.py --sequential --require-complete
 python tools/verify_tier3.py --sequential --require-complete
+python tools/verify_tier4.py --sequential --require-complete
 ```
 
-The first command rebuilds the scored proof modules and runs the frozen scorer plus an independent audit. The arithmetic command checks the separate scalar lemmas. The final two commands enforce complete proofs of their exact specifications and check their source locks and transitive axioms. Passing arithmetic or numerical checks alone does not establish those probability theorems.
+The first command rebuilds the scored proof modules and runs the frozen scorer plus an independent audit. The arithmetic command checks the separate scalar lemmas. The final three commands enforce complete proofs of their exact specifications and check their source locks and transitive axioms. Passing arithmetic or numerical checks alone does not establish those probability theorems.
 
 ## Evidence and CI
 
@@ -54,8 +56,9 @@ The first command rebuilds the scored proof modules and runs the frozen scorer p
 | Scored Lean statements | [lean_tier2_002_checkpoint.json](../results/lean_tier2_002_checkpoint.json) |
 | Full 713 theorem | [uniform713_status.json](../results/uniform713_status.json) |
 | Randomized stopping and optimizer | [tier3_status.json](../results/tier3_status.json) |
+| Full infinite-transcript KL | [tier4_status.json](../results/tier4_status.json) |
 | Input preservation | [MANIFEST_SHA256.txt](../inputs/next-phase/MANIFEST_SHA256.txt) |
-| Frozen specifications and tools | [FROZEN.sha256](../FROZEN.sha256), [TIER3_FROZEN.sha256](../TIER3_FROZEN.sha256) |
+| Frozen specifications and tools | [FROZEN.sha256](../FROZEN.sha256), [TIER3_FROZEN.sha256](../TIER3_FROZEN.sha256), [TIER4_FROZEN.sha256](../TIER4_FROZEN.sha256) |
 | Workflow definition | [checks.yml](../.github/workflows/checks.yml) |
 
 The completed research commit `23988c7` passed [Linux CI](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40468287646). Later runs are available on the [workflow page](https://github.com/davidiach/adaptive-threshold-estimation/actions/workflows/checks.yml). Historical logs retain the terminology and checkpoints used when each result was produced.
