@@ -35,7 +35,8 @@ MODULES = ("Packing", "CommonPoint", "BernoulliPrefix", "EventInformation", "Sig
            "FiniteRiskModel", "FiniteRiskAnalytic", "StatisticProcedure", "SymmetricReduction",
            "FiniteSaddle", "ExponentialRisk", "FiniteCentering", "FiniteRMS",
            "FiniteSupport", "ObservationRisk", "CriticalRisk",
-           "PolicyNormalization", "SelectedPolicy", "CapInvariance", "SeedAdaptation", "PolicyMixture", "CriticalCommonPair", "Specification")
+           "PolicyNormalization", "SelectedPolicy", "CapInvariance", "SeedAdaptation", "PolicyMixture", "CriticalCommonPair",
+           "FiniteAffinity", "MidpointWork", "LocalSimulation", "FinitePopulation", "PopulationTapeLaw", "PopulationLocalWork", "PopulationTransfer", "CriticalPopulationFinite", "Specification")
 NAMESPACE = "ThresholdHC.CriticalEntropy."
 ROOTS = {
     NAMESPACE + name for name in (
@@ -214,6 +215,38 @@ ROOTS = {
         "cappedPolicyOfProcedure", "policyAffinity", "policyNullWork",
         "cappedPolicyOfProcedure_affinity", "cappedPolicyOfProcedure_nullWork", "capped_policy_mixture",
         "critical_common_capped_pair", "CriticalCappedConstraintStatement", "CriticalCommonCappedPairStatement",
+        "hellingerAffinity_finite", "lintegral_sqrt_product_le", "hellingerAffinity_map_finite",
+        "hellingerAffinity_probability_le_one", "finiteWeightMeasure_finite", "finiteWeightMeasure_affinity",
+        "hellingerAffinity_withDensity_nonnegative", "hellingerAffinity_revealed_finite", "cappedOutput",
+        "measurable_cappedOutput", "cappedOutput_cappedTranscript", "cappedOutput_map",
+        "cappedOutput_affinity", "midpointPrior", "measurable_midpointPrior",
+        "unitInterval_integrable", "midpointPrior_integral", "cappedPrior_midpoint",
+        "unitInterval_memLp", "populationWordLikelihood_real_midpoint", "null_work_le_twice_population_work",
+        "localSimulation", "localSimulation_count_le", "localSimulation_prefix_ext",
+        "measurable_localSimulation", "localSimulationProcedure", "localSimulationProcedure_capped",
+        "populationSimulation", "localSimulation_eq_population", "populationSimulation_total_work",
+        "localSimulation_total_work", "finitePopulationWeight", "finite_population_factor",
+        "finite_population_total", "populationCoinMass", "coinLike_le_one",
+        "continuous_coinLike", "population_coin_integrand_bounds", "population_coin_integrable",
+        "populationCoinMass_midpoint", "product_defect_le_sum", "sqrt_product_common_factor",
+        "sqrt_product_le_midpoint", "finite_midpoint_hybrid_decomposition", "finite_weighted_midpoint_hybrid_decomposition",
+        "finite_population_hybrid_decomposition", "tape_head_drop_preserving", "array_head_drop_preserving",
+        "histBefore_cons_zero", "histBefore_cons_succ", "pathProb_cons",
+        "pathProb_initial_stop", "sum_cons_word", "measurable_populationSimulation_word",
+        "bernoulli_singleton_ofReal", "populationSimulation_lintegral", "populationSimulation_word_law",
+        "measurable_uniformTapeArray", "parameterTapeLaw", "parameterTapeLaw_probability",
+        "parameterTapeLaw_array_map", "fixed_parameter_uniform_array_lintegral", "parameterTapeLaw_population_lintegral",
+        "measurable_pathProb_parameters", "pathProb_parameters_bounds", "integrable_pathProb_parameters",
+        "parameterTapeLaw_population_word_law", "parameter_pathProb_factor", "populationParameterLaw",
+        "populationParameterLaw_probability", "populationParameterLaw_integral", "population_tape_word_law",
+        "populationInput_preserving", "populationInput_output_law", "populationInput_work",
+        "populationInput_capped_law", "array_replace_preserving", "measurable_populationSimulation_count",
+        "localSimulation_word_law", "localSimulation_work", "population_localSimulation_total_work",
+        "population_localSimulation_word_law", "localSimulation_affinity_le", "finitePopulationExpectedWork",
+        "population_localSimulation_total_work_real", "finite_population_transfer", "finitePopulationWeight_gap_congr",
+        "criticalClippedGap", "measurable_criticalClippedGap", "criticalClippedGap_bounds",
+        "criticalClippedGap_ae", "critical_common_finite_population_pair", "PopulationTapeLawStatement",
+        "PopulationLocalWorkStatement", "CriticalFinitePopulationPairStatement",
     )
 }
 
@@ -257,6 +290,7 @@ def main() -> int:
             "ThresholdHC.Proofs.Tier2.ClassifierProbability",
             "ThresholdHC.Proofs.Tier2.TranscriptLikelihood",
             "ThresholdHC.Tier4.FiniteDensity", "ThresholdHC.Tier6.TestingFinite",
+            "ThresholdHC.Tier5.FiniteEnvironment",
         } | {NAMESPACE + name for name in MODULES}
         if any(module not in allowed_imports for module in imports):
             raise ValueError("Unregistered component import in " + path.name)
@@ -269,13 +303,14 @@ def main() -> int:
               for p in protected}
     status = {
         "valid": False,
-        "scope": "Critical quadratic single-coin variance and raw-moment base-cost bounds for all rarities, derived from actual observable population experiments; activation, scale selection, restarts, sign entropy, finite stopped-observation reconstruction, canonical affinity and work preservation, actual population compactness and affine/convex observation geometry, finite convex RMS comparison, actual observable one-run estimator and policy-specific separated pair, normalized Hellinger/work constraints, actual heterogeneous revealed mixtures, and one common separated pair for every capped observable policy",
+        "scope": "Critical quadratic single-coin variance and raw-moment base-cost bounds for all rarities, derived from actual observable population experiments; activation, scale selection, restarts, sign entropy, finite stopped-observation reconstruction, canonical affinity and work preservation, actual population compactness and affine/convex observation geometry, finite convex RMS comparison, actual observable one-run estimator and policy-specific separated pair, normalized Hellinger/work constraints, actual heterogeneous revealed mixtures, and one common separated pair for every capped observable policy, and its transfer to fixed finite coin families and finite horizons using exact population simulation laws and work charging",
         "full_critical_minimax_theorem_verified": False,
         "base_cost_theorem_verified": False,
         "capped_observation_reduction_verified": False,
         "population_observation_geometry_verified": False,
         "capped_policy_risk_and_pair_verified": False,
         "common_capped_pair_verified": False,
+        "finite_horizon_population_transfer_verified": False,
         "finite_gap_sign_testing_theorem_verified": False,
         "stopped_suffix_independence_verified": False,
         "sequential_restart_law_and_work_verified": False,
@@ -316,7 +351,7 @@ def main() -> int:
     if any(hashlib.sha256((ROOT / rel).read_bytes()).hexdigest() != digest
            for rel, digest in hashes.items()):
         raise ValueError("Sources changed during audit")
-    status.update(valid=True, exact_component_targets=31, audited_declarations=len(ROOTS),
+    status.update(valid=True, exact_component_targets=34, audited_declarations=len(ROOTS),
                   finite_gap_sign_testing_theorem_verified=True,
                   stopped_suffix_independence_verified=True,
                   sequential_restart_law_and_work_verified=True,
@@ -336,9 +371,10 @@ def main() -> int:
                   capped_observation_reduction_verified=True,
                   population_observation_geometry_verified=True,
                   capped_policy_risk_and_pair_verified=True,
-                  common_capped_pair_verified=True)
+                  common_capped_pair_verified=True,
+                  finite_horizon_population_transfer_verified=True)
     status_path.write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"valid": True, "exact_component_targets": 31,
+    print(json.dumps({"valid": True, "exact_component_targets": 34,
                       "audited_declarations": len(ROOTS), "evidence": str(output),
                       "finite_gap_sign_testing_theorem_verified": True,
                       "stopped_suffix_independence_verified": True,
@@ -360,6 +396,7 @@ def main() -> int:
                       "population_observation_geometry_verified": True,
                       "capped_policy_risk_and_pair_verified": True,
                       "common_capped_pair_verified": True,
+                      "finite_horizon_population_transfer_verified": True,
                       "full_critical_minimax_theorem_verified": False}))
     return 0
 

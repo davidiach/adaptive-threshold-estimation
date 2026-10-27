@@ -1,3 +1,4 @@
+import ThresholdHC.CriticalEntropy.CriticalPopulationFinite
 import ThresholdHC.CriticalEntropy.Packing
 import ThresholdHC.CriticalEntropy.CommonPoint
 import ThresholdHC.CriticalEntropy.Specification
@@ -17,6 +18,12 @@ import ThresholdHC.CriticalEntropy.CriticalRisk
 import ThresholdHC.CriticalEntropy.CriticalCommonPair
 
 open ThresholdHC.CriticalEntropy
+
+example : PopulationTapeLawStatement := population_tape_word_law
+
+example : PopulationLocalWorkStatement := population_localSimulation_total_work
+
+example : CriticalFinitePopulationPairStatement := critical_common_finite_population_pair
 
 example : CriticalCappedConstraintStatement := critical_capped_constraint_feasible
 
@@ -621,3 +628,99 @@ example : CriticalBaseCostStatement := critical_base_cost
 #print axioms critical_common_capped_pair
 #print axioms CriticalCappedConstraintStatement
 #print axioms CriticalCommonCappedPairStatement
+
+#print axioms hellingerAffinity_finite
+#print axioms lintegral_sqrt_product_le
+#print axioms hellingerAffinity_map_finite
+#print axioms hellingerAffinity_probability_le_one
+#print axioms finiteWeightMeasure_finite
+#print axioms finiteWeightMeasure_affinity
+#print axioms hellingerAffinity_withDensity_nonnegative
+#print axioms hellingerAffinity_revealed_finite
+#print axioms cappedOutput
+#print axioms measurable_cappedOutput
+#print axioms cappedOutput_cappedTranscript
+#print axioms cappedOutput_map
+#print axioms cappedOutput_affinity
+#print axioms midpointPrior
+#print axioms measurable_midpointPrior
+#print axioms unitInterval_integrable
+#print axioms midpointPrior_integral
+#print axioms cappedPrior_midpoint
+#print axioms unitInterval_memLp
+#print axioms populationWordLikelihood_real_midpoint
+#print axioms null_work_le_twice_population_work
+#print axioms localSimulation
+#print axioms localSimulation_count_le
+#print axioms localSimulation_prefix_ext
+#print axioms measurable_localSimulation
+#print axioms localSimulationProcedure
+#print axioms localSimulationProcedure_capped
+#print axioms populationSimulation
+#print axioms localSimulation_eq_population
+#print axioms populationSimulation_total_work
+#print axioms localSimulation_total_work
+#print axioms finitePopulationWeight
+#print axioms finite_population_factor
+#print axioms finite_population_total
+#print axioms populationCoinMass
+#print axioms coinLike_le_one
+#print axioms continuous_coinLike
+#print axioms population_coin_integrand_bounds
+#print axioms population_coin_integrable
+#print axioms populationCoinMass_midpoint
+#print axioms product_defect_le_sum
+#print axioms sqrt_product_common_factor
+#print axioms sqrt_product_le_midpoint
+#print axioms finite_midpoint_hybrid_decomposition
+#print axioms finite_weighted_midpoint_hybrid_decomposition
+#print axioms finite_population_hybrid_decomposition
+#print axioms tape_head_drop_preserving
+#print axioms array_head_drop_preserving
+#print axioms histBefore_cons_zero
+#print axioms histBefore_cons_succ
+#print axioms pathProb_cons
+#print axioms pathProb_initial_stop
+#print axioms sum_cons_word
+#print axioms measurable_populationSimulation_word
+#print axioms bernoulli_singleton_ofReal
+#print axioms populationSimulation_lintegral
+#print axioms populationSimulation_word_law
+#print axioms measurable_uniformTapeArray
+#print axioms parameterTapeLaw
+#print axioms parameterTapeLaw_probability
+#print axioms parameterTapeLaw_array_map
+#print axioms fixed_parameter_uniform_array_lintegral
+#print axioms parameterTapeLaw_population_lintegral
+#print axioms measurable_pathProb_parameters
+#print axioms pathProb_parameters_bounds
+#print axioms integrable_pathProb_parameters
+#print axioms parameterTapeLaw_population_word_law
+#print axioms parameter_pathProb_factor
+#print axioms populationParameterLaw
+#print axioms populationParameterLaw_probability
+#print axioms populationParameterLaw_integral
+#print axioms population_tape_word_law
+#print axioms populationInput_preserving
+#print axioms populationInput_output_law
+#print axioms populationInput_work
+#print axioms populationInput_capped_law
+#print axioms array_replace_preserving
+#print axioms measurable_populationSimulation_count
+#print axioms localSimulation_word_law
+#print axioms localSimulation_work
+#print axioms population_localSimulation_total_work
+#print axioms population_localSimulation_word_law
+#print axioms localSimulation_affinity_le
+#print axioms finitePopulationExpectedWork
+#print axioms population_localSimulation_total_work_real
+#print axioms finite_population_transfer
+#print axioms finitePopulationWeight_gap_congr
+#print axioms criticalClippedGap
+#print axioms measurable_criticalClippedGap
+#print axioms criticalClippedGap_bounds
+#print axioms criticalClippedGap_ae
+#print axioms critical_common_finite_population_pair
+#print axioms PopulationTapeLawStatement
+#print axioms PopulationLocalWorkStatement
+#print axioms CriticalFinitePopulationPairStatement

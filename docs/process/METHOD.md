@@ -53,9 +53,10 @@ The critical single-coin base-cost theorem now composes that probability model
 with activation normalization, observable restarts, good-gap selection and a
 rarity-dependent scale count. Its exact specification quantifies one universal
 constant before the rarity and procedure, and charges all-negative population
-work. The common population pair is now proved; the full minimax transfer
-still needs its interactive experiment and termination limit. The verification
-record keeps those completion flags separate.
+work. The common population pair and its finite interactive transfer are now
+proved. The full minimax transfer still needs arbitrary population seeds,
+unrestricted creation and the termination limit. The verification record keeps
+those completion flags separate.
 
 The capped-observation reduction checks a further semantic boundary. Replacing
 the full transcript by stopping time and head count is justified by proving
@@ -90,7 +91,16 @@ revealed policy mixture is constructed using product seed spaces, and its
 affinity and work are proved to be the weighted averages. Enlarging caps and
 adding independent seed coordinates preserve the canonical affinity. Compactness
 now selects one population pair before every capped-policy quantifier. This
-does not replace the remaining simulation of interacting population algorithms.
+does not by itself establish the simulation of interacting population algorithms.
+
+That simulation is now constructed for every fixed finite family and horizon.
+The independent-tape law is derived from one-step tape splitting and matched to
+the existing finite transcript probabilities. Replacing one genuine tape gives
+the exact hybrid law. Each local simulator is an observable stopped procedure,
+and its actual population expected cost is charged to the full flip count.
+This checks the probability interpretation and work accounting as well as the
+algebraic Hellinger decomposition. Arbitrary population seeds and unbounded
+creation remain separate completion requirements.
 
 ## Freeze established questions and preserve corrections
 

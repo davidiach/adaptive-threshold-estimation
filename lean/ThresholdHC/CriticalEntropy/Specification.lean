@@ -1,3 +1,4 @@
+import ThresholdHC.CriticalEntropy.PopulationTransfer
 import Mathlib
 import ThresholdHC.Proofs.Tier2.ClassifierProbability
 import ThresholdHC.CriticalEntropy.SignTest
@@ -522,5 +523,49 @@ def CriticalCommonCappedPairStatement : Prop := ∃ C : ℝ, 0 < C ∧
           (ρ : ℝ)*criticalLogFactor (ρ : ℝ) ≤
         C*δ^2*(populationExpectedWork criticalGapLaw ν
           (fun d => criticalParameter d false) (fun d => criticalParameter d true) (fun _ => 0) A).toReal
+
+/-- Exact finite-population simulation and cost identities, followed by the
+critical common pair for fixed finite families and horizons. Arbitrary seed
+laws, unrestricted creation and termination limits are not asserted here. -/
+def PopulationTapeLawStatement : Prop :=
+  letI : MeasurableSpace (Option Bool) := ⊤
+  ∀ {D : Type} [MeasurableSpace D] {m n : ℕ}
+    (μ : Measure D) [IsProbabilityMeasure μ] (p₀ p₁ : D → unitInterval)
+    (h₀ : Measurable p₀) (h₁ : Measurable p₁)
+    (q : Fin m → D → unitInterval) (hq : ∀ i, Measurable (q i))
+    (d : D → ℝ) (h₀d : ∀ᵐ x ∂μ, (p₀ x : ℝ) = 1/2-d x)
+    (h₁d : ∀ᵐ x ∂μ, (p₁ x : ℝ) = 1/2+d x)
+    (pol : List Bool → Option (Fin m)),
+    (Measure.pi (fun i => parameterTapeLaw (populationParameterLaw μ p₀ p₁ (q i)))).map
+      (fun s => (populationSimulation pol n s).2) =
+      finiteWeightMeasure (finitePopulationWeight (n := n) μ pol d (fun i x => (q i x : ℝ)))
+
+def PopulationLocalWorkStatement : Prop :=
+  letI : MeasurableSpace (Option Bool) := ⊤
+  ∀ {D : Type} [MeasurableSpace D] {m n : ℕ}
+    (μ : Measure D) [IsProbabilityMeasure μ] (p₀ p₁ q : D → unitInterval)
+    (h₀ : Measurable p₀) (h₁ : Measurable p₁) (hq : Measurable q)
+    (pol : List Bool → Option (Fin m)),
+    let τ := parameterTapeLaw (populationParameterLaw μ p₀ p₁ q)
+    (∑ i : Fin m, populationExpectedWork μ (Measure.pi (fun _ : Fin m => τ)) p₀ p₁ q
+      (localSimulationProcedure i n pol)) =
+      ∫⁻ s, ((∑ t : Fin n, if ((populationSimulation pol n s).2 t).isSome then 1 else 0 : ℕ) : ℝ≥0∞)
+        ∂Measure.pi (fun _ : Fin m => τ)
+
+def CriticalFinitePopulationPairStatement : Prop :=
+  ∃ C : ℝ, 0 < C ∧
+    ∀ (ρ : unitInterval), 0 < (ρ : ℝ) → (ρ : ℝ) ≤ 1/4 →
+    ∀ δ : ℝ, 0 ≤ δ → δ ≤ (ρ : ℝ)/96 →
+    ∃ q r : ℝ → unitInterval, CappedPrior criticalGapLaw (ρ : ℝ) q ∧
+      CappedPrior criticalGapLaw (ρ : ℝ) r ∧
+      δ ≤ (∫ d, (r d : ℝ) ∂criticalGapLaw)-(∫ d, (q d : ℝ) ∂criticalGapLaw) ∧
+      ∀ (m n : ℕ) (pol : List Bool → Option (Fin m)),
+        (1-realFiniteAffinity
+          (finitePopulationWeight (n := n) criticalGapLaw pol id (fun _ d => (q d : ℝ)))
+          (finitePopulationWeight criticalGapLaw pol id (fun _ d => (r d : ℝ))))*
+          (ρ : ℝ)*criticalLogFactor (ρ : ℝ) ≤
+        C*δ^2*(finitePopulationExpectedWork criticalGapLaw
+          (fun d => criticalParameter d false) (fun d => criticalParameter d true)
+          (midpointPrior q r) pol n).toReal
 
 end ThresholdHC.CriticalEntropy

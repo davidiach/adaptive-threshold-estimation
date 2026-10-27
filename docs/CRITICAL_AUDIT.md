@@ -23,8 +23,10 @@ The complete critical single-coin base-cost theorem (BC1) is proved in
 positive constant gives `V E_0 T >= c rho L(1+log L)` for every
 `0<rho<=1/4`, under the actual population variance, bias and finite-work
 guarantees. The raw-moment version and the statistical common hard pair are
-also proved. Interacting-population transfer, the termination limit and the
-critical upper bound remain paper arguments. The capped finite-observation reduction is also proved,
+also proved. The finite interacting-population transfer is now proved for a
+fixed finite coin family and deterministic horizon. Arbitrary population seeds,
+unrestricted creation, the termination limit and the critical upper bound
+remain paper arguments. The capped finite-observation reduction is also proved,
 including full-transcript reconstruction, canonical affinity, and expected
 work. The dependency details below explain this boundary.
 
@@ -291,9 +293,26 @@ proves exact affinity averaging, rather than assuming equality in affinity's
 general concavity bound. The common pair covers every capped procedure in the
 existing seed/output universe; no finite-seed restriction is introduced.
 
-The [fourteenth audit record](../results/critical_components_014.json) checks
-thirty-one exact targets and all 519 public declarations using only the
+[CriticalPopulationFinite.lean](../lean/ThresholdHC/CriticalEntropy/CriticalPopulationFinite.lean)
+transfers that common pair to the actual finite adaptive population experiment.
+One pair is chosen before every finite coin-family size, deterministic horizon,
+and policy. The policy may revisit and interleave coins. The bound is
+`(1-Aff) rho L(1+log L) <= C delta^2 E_mid T_n`, where the right-hand side
+counts the simulator's observed flips under the same midpoint population.
+
+The proof constructs a legal one-coin simulation for each label, using independent
+auxiliary tapes for the other labels. It proves the full simulator's law equals
+the existing Tier 2 transcript law after integrating latent magnitudes and signs,
+including coin-specific hybrid priors. Local expected costs sum exactly to the
+population flip count. A finite likelihood decomposition and canonical Hellinger
+data processing transfer the common-pair bound; midpoint domination pays at
+most twice the midpoint work. Impossible transcripts and zero work are retained.
+
+The [fifteenth audit record](../results/critical_components_015.json) checks
+thirty-four exact targets and all 614 public declarations using only the
 permitted standard axioms. The
+[fourteenth record](../results/critical_components_014.json) preserves the
+thirty-one-target common-pair checkpoint. The
 [thirteenth record](../results/critical_components_013.json) preserves the
 twenty-nine-target capped-policy risk checkpoint. The
 [twelfth record](../results/critical_components_012.json) preserves the
@@ -331,7 +350,7 @@ proof.
 | Finite observation reduction | At cap `m`, each seed/word cell has the integrated likelihood determined by `(T,heads)`. The multiplier cancels from conditional seed/word laws. | Complete for the actual capped procedure and arbitrary measurable seed; see the current formal boundary above. |
 | Convex RMS comparison | Log-moment curvature, compact minimax selection, centering, and actual iid exponential moments are proved. Direct exponential domination establishes square integrability and the RMS bound, replacing the paper's tail integral step. | Complete for the finite capped experiment, including the actual observable one-run estimator and its application to base cost. |
 | One pair for all policies | The separated-pair set is compact convex in the weak-star topology. Squared Hellinger is continuous convex. A revealed finite policy mixture has exactly averaged Hellinger and null work. Finite-simplex minimax supplies the finite intersection property. | Complete for every capped observable policy with an arbitrary measurable independent seed. Actual normalization, heterogeneous revealed-mixture identities and common-pair instantiation are proved; the pair is chosen before all policy and cap quantifiers. |
-| Interacting population transfer | Leaf likelihoods factor by genuine coin even with interleaving. The midpoint hybrid simulations use independent auxiliary tapes. Since midpoint `q<=1/2`, its one-coin law dominates half the null law, giving the required cost direction. | Formalize the finite-prefix decomposition and simulation. Existing finite examples do not prove the general statement. |
+| Interacting population transfer | Leaf likelihoods factor by genuine coin even with interleaving. The midpoint hybrid simulations use independent auxiliary tapes. Since midpoint `q<=1/2`, its one-coin law dominates half the null law, giving the required cost direction. | The exact finite-prefix likelihood decomposition, legal independent-tape simulations, actual transcript laws and midpoint work charging are proved for every fixed finite family and deterministic horizon. Arbitrary seed laws and unrestricted creation remain pending. |
 | Unbounded stopping | The same pair applies at every cap. Uniform work gives termination separately under both endpoints; terminal events are approximated by stopped-prefix events. | Prove the limit without assuming termination transfers from one endpoint to the other. |
 | Upper construction | Wrong-sign likelihoods are supermartingales; forced-majority error is bounded on the complete iid tape. Positive work is integrated under a global mass constraint, not a pointwise bound on `q`. The random telescope and Poisson replication use separately finite moments. | Full probability and algorithm realization remain paper arguments. |
 

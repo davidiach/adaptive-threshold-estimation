@@ -188,15 +188,30 @@ independent product seeds. Component seeds and caps may differ; both canonical
 affinity and expected work average exactly. These identities discharge the
 statistical hypothesis of the compact-convex common-point theorem.
 
-The [fourteenth record](../results/critical_components_014.json) audits thirty-one
-exact targets and all 519 public declarations. The
-[thirteenth record](../results/critical_components_013.json) preserves the earlier
-capped-policy risk checkpoint.
+[CriticalPopulationFinite.lean](../lean/ThresholdHC/CriticalEntropy/CriticalPopulationFinite.lean)
+transfers that common pair to the actual finite adaptive population experiment.
+One pair is chosen before every finite coin-family size, deterministic horizon,
+and policy. The policy may revisit and interleave coins. The bound is
+`(1-Aff) rho L(1+log L) <= C delta^2 E_mid T_n`, where the right-hand side
+counts the simulator's observed flips under the same midpoint population.
 
-Unrestricted population transfer, the termination limit, and the critical
-upper construction remain unformalized. The common-pair result does not by
-itself certify the full critical minimax law or its refutation of the proposed
-general upper bound.
+The proof constructs a legal one-coin simulation for each label, using independent
+auxiliary tapes for the other labels. It proves the full simulator's law equals
+the existing Tier 2 transcript law after integrating latent magnitudes and signs,
+including coin-specific hybrid priors. Local expected costs sum exactly to the
+population flip count. A finite likelihood decomposition and canonical Hellinger
+data processing transfer the common-pair bound; midpoint domination pays at
+most twice the midpoint work. Impossible transcripts and zero work are retained.
+
+The [fifteenth record](../results/critical_components_015.json) audits thirty-four
+exact targets and all 614 public declarations. The
+[fourteenth record](../results/critical_components_014.json) preserves the common-pair
+checkpoint before population transfer.
+
+The extension to arbitrary measurable population seeds, unrestricted creation,
+the termination limit, and the critical upper construction remain unformalized.
+The finite result does not certify the full critical minimax law or its
+refutation of the proposed general upper bound.
 
 ## Population and nonlinear feedback follow-ups
 
