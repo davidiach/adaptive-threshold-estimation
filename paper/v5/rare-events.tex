@@ -164,9 +164,9 @@ rarity. The variational optimizer remains valid. A sharp replacement
 for arbitrary laws must account for additional statistical difficulty
 across scales; no such replacement is established here.
 
-\subsection{The formal entropy milestone}
-The part of the critical proof now verified in Lean is a statistical
-finite-gap theorem, rather than just its concluding scalar inequality.
+\subsection{The formal single-coin lower bound}
+The formal development reaches the critical single-coin base-cost
+theorem through the following statistical finite-gap result.
 Let $0<d_j\le1/128$, $d_j/d_{j+1}\ge2$, and $\log K\ge32$.
 One measurable test with an independent seed and observable stopping
 time $T$ is run on iid Bernoulli flips of mean $1/2\pm d_j$.
@@ -179,6 +179,20 @@ signs for every gap, then
 derives this from the actual infinite Bernoulli experiment. It assumes
 neither a KL bound nor a packing estimate nor termination under the fair
 coin. This proves the finite-gap ingredient in
-\cref{crit:lem:finite-sign-entropy}. Its continuum restart application,
-the common population pair, and the population transfer remain paper
-arguments.
+\cref{crit:lem:finite-sign-entropy}.
+
+\leanref{CriticalEntropy/BaseCost.lean}{critical\_base\_cost} now proves
+the single-coin bound in \cref{crit:thm:base-cost}: for a universal $c>0$,
+\[
+ V\E_0T\ge c\rho L(1+\log L),\qquad 0<\rho\le1/4.
+\]
+The same observable procedure and independent seed law serve every
+measurable prior $q\le1/2$ with $\int q\,d\mu\le\rho$. Its uniform
+bias is at most $\rho/64$, its extended variance is bounded by $V$,
+and expected work is finite under each such prior. The proof derives
+square integrability, positive activation, the conditioned procedure,
+good gaps, iid restarts, and a sufficient number of scales. A raw
+second-moment version is also proved. Neither conditional moment
+bounds nor an information inequality is assumed. The common population
+pair, population transfer, and critical upper construction remain paper
+arguments; this does not formalize the full critical minimax rate.

@@ -1,7 +1,7 @@
 {
   "description": "Inherited v5 inputs, SHA-256 after CRLF-to-LF normalization. Original sources remain unchanged; editorial changes are explicit in tools/build_v5.py. The 713 exposition uses the two cited Markdown arguments.",
   "baseline_commit": "b3f88e6bc02b3d59ec9fe99529688e2bd911e1db",
-  "formal_scope_commit": "accdb144972edd255dedec50cc1cbcaa45587040",
+  "formal_scope_commit": "625da11cae0aeef00d36202b6eaf55f9ec04e256",
   "sha256": {
     "paper/paper.tex": "48f1a588ccad0d1a34cf900018442b81a2f5330cbf03b4eda29d8d8e1130652b",
     "inputs/next-phase/report/research_note.tex": "3a1b1a0534bbda7d46f0b9ae0354ff911683df6392164eab8c931d1dbeed62c1",

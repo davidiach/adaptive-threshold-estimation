@@ -85,6 +85,14 @@ silently replacing the old bytes would destroy the evidence of what was checked.
 | Held-out simulations | Empirical performance on the specified data and budgets | Uniform statistical rates or practical superiority in other settings |
 | Paper review | A reader's reconstruction and objections for the inspected argument | Kernel verification or guaranteed independence |
 
+A rendered-page review caught a manuscript assembly error that compilation
+and source hashes had missed: globally prefixing parenthesized equation tags
+also changed arguments such as `q(D)`, `R(B)` and `mu(E)`. The original proof
+sources were intact. The builder now protects mathematical expressions, and
+regression tests check the restored formulas as well as renamed references.
+Source identity and successful typesetting alone do not establish faithful
+assembly of a new document.
+
 The formal guards reject incomplete axiom output and unsuccessful processes,
 rather than accepting a log merely because it contains some successful lines.
 Their regression tests exercise failure cases. Toolchain and Mathlib revisions

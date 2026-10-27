@@ -10,7 +10,8 @@ formal verification boundary. Appendices A–C contain the longer rare-event
 proofs, including their published external inputs.
 
 The full critical theorem and original distribution-blind upper bound remain
-paper proofs. The statistical finite-gap sign-entropy ingredient is proved
+paper proofs. The single-coin variance and raw-moment base-cost lower bounds,
+including activation normalization and the finite-gap entropy chain, are proved
 in Lean. The manuscript has no independent external specialist review, and
 the new consolidation itself has not had a separate agent review.
 For a narrower critical-result review, use the
@@ -50,11 +51,17 @@ From the repository root:
 ```sh
 python tools/build_v5.py
 python tools/build_v5.py --check
+python -m unittest discover -s tools -p 'test_build_v5.py' -v
 tectonic paper/v5/main.tex --outdir /path/to/disposable-output --keep-logs --untrusted
 ```
 
 The project also compiles in the desktop LaTeX editor. The published PDF was
 exported with Tectonic 0.17.0, rendered with Poppler, and visually inspected.
-It has 55 pages, no unresolved references or overfull boxes. The source check
+It has 56 pages, no unresolved references or overfull boxes. The source check
 resolves 141 unique labels and 19 bibliography citations. Typesetting and source
 identity checks do not constitute a new mathematical proof or independent review.
+
+The assembly regression checks preserve function arguments such as `q(D)`,
+`R(B)` and `mu(E)` when prefixing equation tags. The earlier global parenthesis
+replacement altered those expressions in Appendix C; this version restores
+the original formulas. The inherited proof sources were unaffected.

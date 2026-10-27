@@ -86,8 +86,8 @@ The same endpoint pair applies at all caps. Finite expected endpoint work
 then passes the testing bound to the terminal experiment.
 \end{enumerate}
 
-\noindent\textbf{Requested scrutiny.} Does good-gap selection and the
-restart construction establish the stated \emph{null-cost} bound? Are the
+\noindent\textbf{Requested scrutiny.} Does the formal single-coin model
+faithfully express the intended \emph{null-cost} theorem? Are the
 sufficiency, convexity and compactness hypotheses satisfied strongly enough
 to obtain a pair common to all policies? Does the hybrid simulation charge
 work under the correct law, including arbitrary randomization and creation?
@@ -110,10 +110,10 @@ Claim or component & Verification boundary\\
 Original arbitrary-law minimax lower bound & Lean-checked in Tier 6,
 with a constructed infinite experiment and uniform expected budget.
 It is a different theorem from the critical rare-event result.\\[5pt]
-Finite-gap sign entropy & The statistical BC2 theorem is Lean-checked for
-actual seeded Bernoulli tests with observable stopping and actual flip
-costs. Its application through restarts and good-gap selection remains
-unformalized.\\[5pt]
+Single-coin base cost & The BC1 variance/null-work bound and its raw-moment
+version are Lean-checked for all rarities. The proof derives activation,
+good gaps, observable restarts and the BC2 entropy bound from actual
+seeded Bernoulli experiments.\\[5pt]
 Common-point quantifier interchange & A compact-convex theorem for all
 finite mixtures is Lean-checked. The statistical population set and its
 mixture-information bounds remain hypotheses to be established.\\[5pt]
@@ -144,9 +144,9 @@ and layout. The inherited mathematical statements and arguments are preserved;
 monospaced source paths and hashes are made line-breakable for typesetting.
 
 \begin{itemize}
-\item \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/accdb144972edd255dedec50cc1cbcaa45587040/docs/CRITICAL_AUDIT.md}{Follow-up dependency audit and formalization boundary}.
+\item \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/625da11cae0aeef00d36202b6eaf55f9ec04e256/docs/CRITICAL_AUDIT.md}{Follow-up dependency audit and formalization boundary}.
 \item \href{https://github.com/davidiach/adaptive-threshold-estimation/tree/b3f88e6bc02b3d59ec9fe99529688e2bd911e1db/research/2026-10-27-nonlinear-critical}{Original proof bundle, source lock, and scoped reviews}.
-\item \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/1c1b761702126aa543a78d5e3f5ba23c8a5d87b8/docs/process/METHOD.md}{Process note and limits of the evidence}.
+\item \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/625da11cae0aeef00d36202b6eaf55f9ec04e256/docs/process/METHOD.md}{Process note and limits of the evidence}.
 \end{itemize}
 
 \noindent A matching characterization for arbitrary magnitude laws remains

@@ -14,10 +14,12 @@ The [source audit](../../docs/CRITICAL_AUDIT.md) records the follow-up review
 and formalization boundary. In particular, the full statistical critical
 theorem is not Lean-checked.
 
-The verification table includes the statistical finite-gap sign-entropy
-theorem proved at `accdb144972edd255dedec50cc1cbcaa45587040`. Its continuum
-restart and base-cost applications remain open. The mathematical proof bundle
-itself remains the original four-file source identified above.
+The verification table includes the single-coin variance and raw-moment
+base-cost lower bounds at `625da11cae0aeef00d36202b6eaf55f9ec04e256`. Activation normalization,
+observable restarts, good gaps and the scale count are all derived. The
+common-hard-pair instantiation, unrestricted population transfer and critical
+upper construction remain paper proofs. The mathematical proof bundle itself
+remains the original four-file source identified above.
 
 ## Reproduce the packet
 
