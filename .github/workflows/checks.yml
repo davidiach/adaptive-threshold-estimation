@@ -4,6 +4,11 @@ on:
     paths:
       - '.github/workflows/checks.yml'
       - '.gitattributes'
+      - 'README.md'
+      - 'docs/**'
+      - 'paper/**'
+      - 'LICENSE*'
+      - 'CITATION.cff'
       - 'lean/**'
       - 'tools/**'
       - 'constants/**'
@@ -13,6 +18,7 @@ on:
       - 'requirements.txt'
       - 'FROZEN.sha256'
       - 'TIER3_FROZEN.sha256'
+      - 'TIER4_FROZEN.sha256'
       - 'proposals/constants/*.lean'
       - 'proposals/constants/*.py'
   pull_request:
@@ -34,11 +40,15 @@ jobs:
       - run: python -m pip install -r requirements.txt
       - run: python tools/verify_inputs.py
       - run: python tools/verify_experiment_lock.py
+      - run: python benchmark/verify_real.py
       - name: Regression tests for validation guards
         run: python -m unittest discover -s tools -p 'test_validation.py' -v
       - name: Regression tests for the Tier 3 audit when present
         run: |
           if test -f tools/test_tier3_validation.py; then python -m unittest discover -s tools -p 'test_tier3_validation.py' -v; fi
+      - name: Regression tests for the Tier 4 audit when present
+        run: |
+          if test -f tools/test_tier4_validation.py; then python -m unittest discover -s tools -p 'test_tier4_validation.py' -v; fi
       - run: python tools/check_targets_numeric.py
       - name: Tier 2 numeric truth checks when present
         run: |
@@ -54,6 +64,8 @@ jobs:
       - name: Check accepted constants configuration
         run: |
           if test -f constants/candidate.json; then python constants/score_constants.py constants/candidate.json; fi
+          python constants/score_constants.py constants/candidate_theory.json
+          python constants/score_constants.py constants/candidate_finite_grid.json
   lean-kernel:
     runs-on: ubuntu-latest
     timeout-minutes: 45
@@ -78,6 +90,9 @@ jobs:
       - name: Require the complete Tier 3 landmark when present
         run: |
           if test -f tools/verify_tier3.py; then python tools/verify_tier3.py --sequential --require-complete; fi
+      - name: Audit the locked Tier 4 extension when present
+        run: |
+          if test -f tools/verify_tier4.py; then python tools/verify_tier4.py --sequential; fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -95,3 +110,6 @@ jobs:
             results/tier3_build.log
             results/tier3_audit.log
             results/tier3_status.json
+            results/tier4_build.log
+            results/tier4_audit.log
+            results/tier4_status.json

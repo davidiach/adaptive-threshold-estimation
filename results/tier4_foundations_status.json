@@ -1,0 +1,138 @@
+{
+  "checkpoint": "foundations",
+  "valid": true,
+  "complete": false,
+  "target_count": 6,
+  "proved_targets": [],
+  "root_count": 22,
+  "source_sha256": {
+    "lean/ThresholdHC/Tier4/Model.lean": "2271691c5af1c4936accbb9a5c62b6ea5cbc3e6bdd718b0b44a958cd7a057214",
+    "lean/ThresholdHC/Tier4/Specification.lean": "0efabcf37033de62f3c23cbb932d6c4367055a88a3c079cb0c2a461d9193c3ec",
+    "lean/ThresholdHC/Tier4/Entropy.lean": "f02035deb7d23182c83ef57b55fa13557e95d49682d741f33092589e61aa39ac",
+    "lean/ThresholdHC/Tier4/BoundReduction.lean": "0e0325bb1e4d18804437177eab78ab1741a0b387f31b7231b8a1826124d067c0"
+  },
+  "locked_sha256": {
+    "FROZEN.sha256": "58a05472d0ba6aa09134cefb9c89850040a027e02ad6feb6f24e3792643822d0",
+    "TIER3_FROZEN.sha256": "b66d8a15a4d5470478005efa02a38db88db1b081408f04be0224faa7997c8df9",
+    "lean/ThresholdHC/Statements.lean": "0873505b7c133561e82f63dcbba7f7a0a3da39d0c3692daee99d01882a757abf",
+    "lean/ThresholdHC/Statements2.lean": "51f85fee842aec2de331872b760ecd47e15715a84deaf5b8f08970bd9fa01414",
+    "lean/ThresholdHC/Tier3/RandomizedModel.lean": "3a61f9b034ee58e45e903356c60037e4808fdb1a711d96b24f3013ef95716f6b",
+    "lean/ThresholdHC/Tier3/StoppingModel.lean": "36aed19aa97432a9068952e5d389fe6a992faad0da71984b7412204940aa3892",
+    "lean/ThresholdHC/Tier4/Model.lean": "2271691c5af1c4936accbb9a5c62b6ea5cbc3e6bdd718b0b44a958cd7a057214",
+    "lean/ThresholdHC/Tier4/Specification.lean": "0efabcf37033de62f3c23cbb932d6c4367055a88a3c079cb0c2a461d9193c3ec",
+    "tools/tier4_targets.json": "699055998a7a1702167ba4ad17771f3397cc75b7a117c69f142068140dcfb264",
+    "tools/verify_tier4.py": "7c39a6b70eaa7ba5df90929e597931887a9350ddc0544163a66ee30e889d1a3c"
+  },
+  "reports": {
+    "ThresholdHC.Tier4.tapeSymbolMeasurableSpace": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier4.infiniteTranscriptLaw": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier4.prefixTranscriptLaw": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier4.FinitePrefixKLStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier4.InfiniteKLSupremumStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier4.InfiniteKLBoundStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier4.InfiniteKLFiniteStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier4.ObservableKLBoundStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier4.Tier4LandmarkStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier4.rnDeriv_restrict_both": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier4.klDiv_restrict_eq_lintegral": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier4.klDiv_restrict_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier4.absolutelyContinuous_of_restrict_exhaustion": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier4.klDiv_eq_iSup_restrict": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier4.klDiv_le_of_restrict_exhaustion": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier4.restrict_eq_map_reconstruct": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier4.klDiv_restrict_le_map_of_reconstruct": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier4.klDiv_eq_iSup_map_of_reconstruction": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier4.infiniteKLBound_of_supremum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier4.infiniteKLFinite_of_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier4.measurable_infinite_observation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.Tier4.observableKLBound_of_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  }
+}

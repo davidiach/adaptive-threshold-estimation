@@ -1,0 +1,35 @@
+{
+  "specification_module": "ThresholdHC.Tier4.Specification",
+  "targets": [
+    {
+      "group": "finite_prefix",
+      "theorem": "ThresholdHC.Tier4.finite_prefix_kl_identity",
+      "statement": "ThresholdHC.Tier4.FinitePrefixKLStatement"
+    },
+    {
+      "group": "infinite",
+      "theorem": "ThresholdHC.Tier4.infinite_kl_eq_iSup",
+      "statement": "ThresholdHC.Tier4.InfiniteKLSupremumStatement"
+    },
+    {
+      "group": "infinite",
+      "theorem": "ThresholdHC.Tier4.infinite_kl_bound",
+      "statement": "ThresholdHC.Tier4.InfiniteKLBoundStatement"
+    },
+    {
+      "group": "infinite",
+      "theorem": "ThresholdHC.Tier4.infinite_kl_finite",
+      "statement": "ThresholdHC.Tier4.InfiniteKLFiniteStatement"
+    },
+    {
+      "group": "observable",
+      "theorem": "ThresholdHC.Tier4.observable_kl_bound",
+      "statement": "ThresholdHC.Tier4.ObservableKLBoundStatement"
+    },
+    {
+      "group": "landmark",
+      "theorem": "ThresholdHC.Tier4.tier4_landmark",
+      "statement": "ThresholdHC.Tier4.Tier4LandmarkStatement"
+    }
+  ]
+}
