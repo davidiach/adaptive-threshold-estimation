@@ -36,6 +36,8 @@ Squared error is a nonnegative extended-real integral, and RMS error is its
 square root. Infinite risk is retained. `minimaxRisk` takes the infimum over all
 measurable seed spaces and all admissible estimators of the supremum of RMS
 error over sign laws.
+The infimum is taken separately for each `mu`, so the lower bound also permits
+an estimator chosen with knowledge of the magnitude law.
 
 ## Canonical process and proof route
 
@@ -107,4 +109,18 @@ algorithm-to-minimax reduction and constant. They found no hidden existence,
 realization, information, or testing premise in the final theorem, and no
 restriction to a finite coin family or finite observation horizon.
 
-Independent Linux CI remains pending before the landmark is declared complete.
+Independent Linux CI passed on proof commit
+`f0bf2351c380c6887a74ec386904e10c5acbf372` in
+[run 40481894446](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40481894446).
+The run independently confirms 11/11 Tier 6 targets and 127/127 declaration
+checks. It also passes the original 121/121-point suite, the 713 theorem's
+130 checks, Tier 3's 11 targets and 152 checks, Tier 4's 6 targets and 65 checks,
+Tier 5's 9 targets and 109 checks, and the numerical and validation tests.
+The extracted evidence is in `results/tier6_linux_checkpoint.json`; the final
+independent reviews are recorded in `results/tier6_independent_reviews.json`.
+
+The eight-hour-or-landmark goal reached its landmark in about 49 minutes:
+the canonical realization and full algorithm-level RMS minimax lower bound are
+proved, every locked target is complete, independent semantic reviews pass,
+only standard axioms are used, earlier frozen results are preserved, and Linux
+verification succeeds.

@@ -1,0 +1,33 @@
+{
+  "proof_commit": "f0bf2351c380c6887a74ec386904e10c5acbf372",
+  "review_type": "Separate proof agents reviewed each other's stable final modules and the exact frozen statements.",
+  "reviews": [
+    {
+      "reviewer": "tier6_testing",
+      "scope": ["ProcessWeights", "ProcessModel", "ProcessIntegral", "Process", "Full"],
+      "conclusion": "No substantive semantic findings.",
+      "checked": [
+        "The canonical probability law is constructed from explicit Markov kernels using Ionescu-Tulcea.",
+        "At a zero-mass prefix, nonnegative child masses sum to zero, making the default stopping transition harmless.",
+        "Arbitrary measurable seeds and every coordinate of the infinite observation tape are retained.",
+        "The seed marginal and one-step integral recursion follow from actual trajectory and kernel-composition laws.",
+        "Bounded-test integrability is derived and finite-prefix realization is proved by induction.",
+        "Full discharges every realization premise; the zero-work finite-risk estimator prevents an empty minimax class."
+      ]
+    },
+    {
+      "reviewer": "tier6_hard_pair",
+      "scope": ["AlgorithmCore", "AlgorithmModel", "AlgorithmRisk", "RiskReduction", "ModelReduction", "Full", "Specification"],
+      "conclusion": "No semantic findings.",
+      "checked": [
+        "The exact minimax theorem assumes only an arbitrary probability law on Gap and B >= 1.",
+        "The order is an infimum over fixed measurable randomized estimators, followed by a supremum over all measurable sign laws, with work uniformly bounded over that same class.",
+        "Hidden iid gaps are independent of algorithm randomness and excluded from policy and output.",
+        "The constant chain is h^2 B = 1/16, KL <= 8/225 < 1/8, separation >= modulus/16, MSE >= separation^2/16, hence RMS >= modulus/64.",
+        "Extended-real squared risk and square root retain infinite error without an integrability assumption.",
+        "Canonical realization, KL, absolute continuity, and testing conclusions are not assumptions of the final target.",
+        "The immediate estimator has zero expected work and worst-case RMS <= 1; the auxiliary minimax bound transfers that finite witness through the infimum."
+      ]
+    }
+  ]
+}
