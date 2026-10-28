@@ -1,10 +1,14 @@
 # Results and verification scope
 
 Start with the [consolidated v5 manuscript](../paper/v5/paper.pdf) for the
-current theory in one document: main statements in sections 2, 7 and 11,
+original theory and its formalization: main statements in sections 2, 7 and 11,
 formal scope in section 12, and full rare-event arguments in appendices A–C.
 Its [source and editorial record](../paper/v5/README.md) preserves the original
 proofs and makes the Psi correction explicit.
+
+The later [finite-gap rare-event manuscript](../paper/finite-gap-rare-events/README.md)
+is a separate paper proof for known finite gap laws. It is not part of v5 or
+the Lean-checked results; its scope is recorded below.
 
 This guide gives the exact Lean specifications and remaining paper-proof
 boundaries. Historical source pointers below refer to the unchanged
@@ -165,7 +169,31 @@ for $F_\mu(d)=(d/a)^\alpha$ on $(0,a]$, all $0<a\le1/2$, $0<\rho\le1/4$, $B\ge1$
 
 The new construction uses asymmetric sign-test errors and a randomized telescope. Its unbiased single-coin output has $\mathbb E Y^2\le(153/56)\rho$ and separately $\mathbb E T\le w_\alpha/a^2$, with explicit finite $w_\alpha$ in the note. The central integration step is $\mathbb E[q(D)\min(D,a)^{-2}]\le[\alpha/(\alpha-2)]a^{-2}\rho^{1-2/\alpha}$; this uses the global constraint, not $q(d)\le\rho$. Compound-Poisson replication enforces the exact expected budget, and a constant estimate covers saturation. The matching lower proof imports Lee–Valiant Corollary 19 and Lemma 18, then gives an explicit fixed-gap simulation reduction.
 
-The [adversarial review](../research/2026-10-27-route-a/review.md), [second analytic review](../research/2026-10-27-route-a/second-review.md), [primary-source comparison](../research/2026-10-27-route-a/sources.md), and [baseline ledger](../research/2026-10-27-route-a/BASELINE.md) record the evidence. Reviewers did not author the main proof; model diversity is not guaranteed. The theorem is **not Lean-checked or externally specialist-reviewed**, and worldwide novelty is unverified. At that checkpoint, the arbitrary-law conjecture and $\alpha=2$ were unresolved. The later critical-law theorem below resolves the specified quadratic law and refutes the matching-Psi conjecture. A sharp replacement for arbitrary laws and a universal two-atom characterization remain open. Constants diverge as $\alpha\downarrow2$. The preserved paper and imported continuation are unchanged.
+The [adversarial review](../research/2026-10-27-route-a/review.md), [second analytic review](../research/2026-10-27-route-a/second-review.md), [primary-source comparison](../research/2026-10-27-route-a/sources.md), and [baseline ledger](../research/2026-10-27-route-a/BASELINE.md) record the evidence. Reviewers did not author the main proof; model diversity is not guaranteed. The theorem is **not Lean-checked or externally specialist-reviewed**, and worldwide novelty is unverified. At that checkpoint, the arbitrary-law conjecture and $\alpha=2$ were unresolved. The later critical-law theorem below resolves the specified quadratic law and refutes the matching-Psi conjecture. The separate finite-gap manuscript below supplies a paper-proof characterization for known finite laws, including two atoms; general infinite-support and unknown-law extensions remain outside its scope. Constants diverge as $\alpha\downarrow2$. The preserved paper and imported continuation are unchanged.
+
+## Known finite-gap rare events: paper-proof characterization
+
+Theorem 1.1 of the [standalone manuscript](../paper/finite-gap-rare-events/paper.pdf)
+states, for every known finite positive-gap law, $0<\rho\le1/4$ and $B>0$,
+
+$$10^{-20}Q(B)\le R_{\mu,\rho}(B)\le30001Q(B),\qquad Q(B)=\min\{\rho,T_h+h\sqrt{\rho\Gamma_\kappa}\},\quad h=B^{-1/2}.$$
+
+Here $\nu$ is exactly the smallest-gap mass $\rho$, $\kappa=\mu-\nu$,
+$T_h=\int\min\{1,h/d\}\,\nu(dd)$, and $\Gamma_\kappa$ is the dyadic
+inverse-square cost entropy defined in the [paper guide](../paper/finite-gap-rare-events/README.md).
+Rarity is the global constraint $\int q\,d\mu\le\rho$, with $0\le q\le1$.
+Coins have iid complete persistent latent pairs; algorithms observe only
+their independent seed, coin identities and purchased flips. Both bounds
+use uniform expected physical-observation budgets and allow adaptive
+creation, revisiting and interleaving.
+
+Status: **paper proof, not Lean-checked or externally specialist-reviewed**.
+The precursor received fresh-context AI review; the
+[provenance note](../paper/finite-gap-rare-events/PROVENANCE.md) records its
+limits. Existing Lean entropy and critical-law results do not certify this
+theorem. The manuscript does not establish an unknown-law guarantee, a
+general infinite-support extension, a deterministic budget or a
+high-confidence result.
 
 ## Critical power margin: full minimax characterization
 
@@ -393,7 +421,9 @@ a uniform risk guarantee, practical superiority claim, or confidence result.
 These packages retain their original statements and source locks. Statements
 that the matching-Psi conjecture was unresolved describe their historical
 scope; the full critical-law paper result above supplies the counterexample.
-A sharp arbitrary-law replacement remains open. See the
+A replacement for known finite laws is given by the separate paper-proof
+manuscript above. General infinite-support and unknown-law extensions
+remain outside its scope. See the
 [research index](../research/README.md) and [replay commands](VERIFY.md).
 
 ## Earlier critical power margin: additive-class obstruction

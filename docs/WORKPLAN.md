@@ -53,8 +53,14 @@ numerical integration, binomial tails, invalid inputs, hangs, and overstated
 planning claims. Its Python implementation remains outside the Lean proof.
 
 The next formalization priorities are stronger revealed- or selected-magnitude
-claims and the remaining paper-only rare-event results. A corrected
-arbitrary-law rare-event characterization remains open research.
+claims and the remaining paper-only rare-event results. The 29 October
+[finite-gap manuscript](../paper/finite-gap-rare-events/README.md), introduced
+in [PR #18](https://github.com/davidiach/adaptive-threshold-estimation/pull/18),
+supplies a separate paper-proof closed quantile law for known finite positive-gap
+laws, global rarity and uniform expected observation budgets. It is not
+Lean-checked or externally specialist-reviewed. General infinite-support
+and unknown-law extensions remain outside its scope; this contribution does
+not change the formal verification boundary above.
 
 The project owner does not plan human specialist review. Its absence remains
 a stated review limitation, not a pending task or completion gate. The four
