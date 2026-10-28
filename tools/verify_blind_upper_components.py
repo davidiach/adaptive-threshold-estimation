@@ -1,8 +1,8 @@
-"""Kernel-check the observable upper-bound construction's completed components.
+"""Kernel-check the full distribution-blind upper theorem and its construction.
 
-Run after the documented baseline/Tier 6 and critical-component builds. This
-does not certify the distribution-blind upper theorem: the policy's simulation
-identities and the budget-indexed conclusion are still pending.
+Run after the documented baseline/Tier 6 and critical-component builds. The
+final proof must inhabit the unchanged frozen specification. This audit does
+not certify the separate critical rare-event upper theorem.
 """
 from __future__ import annotations
 
@@ -14,15 +14,24 @@ from pathlib import Path
 import re
 import subprocess
 
-from verify_tier6 import ALLOWED, DECLARATION, FORBIDDEN, REPORT, strip_comments
+from verify_tier6 import ALLOWED, FORBIDDEN, REPORT, strip_comments
 
 ROOT = Path(__file__).resolve().parents[1]
 LEAN = ROOT / "lean"
 REGISTRY = ROOT / "tools/blind_upper_components.json"
 SPECIFICATION = "lean/ThresholdHC/BlindUpper/Specification.lean"
 SPECIFICATION_SHA256 = "9531acd63300aa44359d293b84cc544d40977c6be79c0a87a1d24bcfe410ab15"
-INDUCTIVE = re.compile(r"^\s*inductive\s+([A-Za-z_][\w']*)", re.M)
+DECLARATION = re.compile(
+    r"^\s*(?:@\[[^\]]+\]\s*)?(?:noncomputable\s+)?"
+    r"(?:def|abbrev|structure|theorem|lemma|instance|inductive)\s+"
+    r"([A-Za-z_][\w']*(?:\.[A-Za-z_][\w']*)*)", re.M)
 IMPORT = re.compile(r"^import\s+([\w.]+)\s*$", re.M)
+EXACT_TARGETS = {
+    "ThresholdHC.BlindUpper.distribution_blind_upper":
+        "ThresholdHC.BlindUpper.DistributionBlindUpperStatement",
+}
+EXTRA_DEPENDENCIES = ["ThresholdHC.Tier6.HardPair", "ThresholdHC.Tier6.AlgorithmNonempty",
+                      "ThresholdHC.Tier6.RiskReduction"]
 
 
 def sha(path: Path) -> str:
@@ -55,13 +64,15 @@ def validate_sources(registry: dict) -> tuple[list[Path], set[str]]:
     roots = registry["roots"]
     if len(modules) != len(set(modules)) or len(roots) != len(set(roots)):
         raise ValueError("Duplicate module or root")
-    if registry["full_distribution_blind_upper_verified"] is not False or registry["full_critical_upper_verified"] is not False:
-        raise ValueError("This component audit cannot certify either full upper theorem")
+    if registry["full_distribution_blind_upper_verified"] is not True or registry["full_critical_upper_verified"] is not False:
+        raise ValueError("The registered full theorem is the distribution-blind upper only")
+    if registry.get("exact_targets") != EXACT_TARGETS or not set(EXACT_TARGETS) <= set(roots):
+        raise ValueError("Missing or changed frozen full-theorem target")
     if registry["specification_path"] != SPECIFICATION or registry["specification_sha256"] != SPECIFICATION_SHA256:
         raise ValueError("Frozen specification registration changed")
     if sha(ROOT / SPECIFICATION) != SPECIFICATION_SHA256:
         raise ValueError("Frozen distribution-blind specification changed")
-    if registry["extra_dependency_builds"] != ["ThresholdHC.Tier6.HardPair"]:
+    if registry["extra_dependency_builds"] != EXTRA_DEPENDENCIES:
         raise ValueError("Unregistered prerequisite build")
     paths = [module_path(m) for m in modules]
     actual = set((LEAN / "ThresholdHC/ObservableSimulation").glob("*.lean"))
@@ -75,7 +86,7 @@ def validate_sources(registry: dict) -> tuple[list[Path], set[str]]:
         if FORBIDDEN.search(source):
             raise ValueError("Forbidden proof escape in " + str(path))
         namespace = module.rsplit(".", 1)[0] + "."
-        declared.extend(namespace + name for name in DECLARATION.findall(source) + INDUCTIVE.findall(source))
+        declared.extend(namespace + name for name in DECLARATION.findall(source))
         for dependency in IMPORT.findall(source):
             if dependency in modules and dependency not in seen:
                 raise ValueError("Component dependency order is invalid: " + dependency)
@@ -128,6 +139,8 @@ def main() -> int:
         "independent_seed_stream_law_verified": False,
         "observable_controller_verified": False,
         "controller_population_cost_and_output_identities_verified": False,
+        "exact_targets": EXACT_TARGETS,
+        "exact_targets_checked": 0,
         "specification_sha256": SPECIFICATION_SHA256,
         "source_sha256": hashes,
         "commands": [],
@@ -137,6 +150,8 @@ def main() -> int:
     audit = LEAN / ".audit/BlindUpperComponents.lean"
     audit.parent.mkdir(exist_ok=True)
     audit.write_text("".join("import " + m + "\n" for m in registry["modules"]) + "\n" +
+                     "".join(f"example : {target} := {declaration}\n"
+                             for declaration, target in EXACT_TARGETS.items()) + "\n" +
                      "".join("#print axioms " + r + "\n" for r in sorted(expected)), encoding="utf-8")
     commands = []
     for module in registry["extra_dependency_builds"] + registry["modules"]:
@@ -161,10 +176,12 @@ def main() -> int:
         raise ValueError("Protected source changed during audit")
     status.update(valid=True, audited_modules=len(paths), audited_declarations=len(expected),
                   observable_simulation_law_verified=True, calibrated_call_array_bounds_verified=True,
-                  independent_seed_stream_law_verified=True, observable_controller_verified=True)
+                  independent_seed_stream_law_verified=True, observable_controller_verified=True,
+                  controller_population_cost_and_output_identities_verified=True,
+                  full_distribution_blind_upper_verified=True, exact_targets_checked=len(EXACT_TARGETS))
     status_path.write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"valid": True, "modules": len(paths), "axiom_roots": len(expected),
-                      "full_distribution_blind_upper_verified": False, "evidence": str(output)}), flush=True)
+                      "full_distribution_blind_upper_verified": True, "evidence": str(output)}), flush=True)
     return 0
 
 

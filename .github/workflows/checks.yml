@@ -81,7 +81,7 @@ jobs:
           if test -f tools/test_tier6_validation.py; then python -m unittest discover -s tools -p 'test_tier6_validation.py' -v; fi
       - name: Regression tests for the scoped critical component audit
         run: python -m unittest discover -s tools -p 'test_critical_components.py' -v
-      - name: Regression tests for the scoped upper construction audit
+      - name: Regression tests for the upper theorem audit
         run: python -m unittest discover -s tools -p 'test_blind_upper_components.py' -v
       - run: python tools/check_targets_numeric.py
       - name: Tier 2 numeric truth checks when present
@@ -102,7 +102,7 @@ jobs:
           python constants/score_constants.py constants/candidate_finite_grid.json
   lean-kernel:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -137,7 +137,7 @@ jobs:
         run: python lean/ThresholdHC/ResearchRouteA/verify.py
       - name: Verify the critical single-coin lower bound and scoped components
         run: python tools/verify_critical_components.py
-      - name: Verify the observable upper construction components
+      - name: Verify the full distribution-blind upper theorem
         run: python tools/verify_blind_upper_components.py
       - uses: actions/upload-artifact@v4
         if: always()

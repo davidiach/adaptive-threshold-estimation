@@ -31,6 +31,14 @@ the final kernel acceptance.
 The corresponding upper-bound task has an additional quantifier requirement:
 one algorithm must work across magnitude laws. An existence theorem allowing a
 different law-dependent algorithm for each law would leave that task unfinished.
+The completed [upper proof](../BLIND_UPPER.md) preserves this quantifier order.
+It first proves cost and error bounds for independent calibrated calls, then
+constructs an observable controller and proves that its actual population path,
+work and terminal output coincide with those quantities almost surely.
+Pilot termination follows from the seed law and positive mean marked cost.
+Dyadic cutoff selection and a zero-work small-budget case give one family on
+a fixed seed space. Checking the statistical formulas alone would have left
+the realization requirement open; the final exact-type audit includes it.
 
 The critical single-coin development also distinguishes real expectations from
 extended nonnegative moments. Lean's real integral is totalized, so it must not
@@ -196,7 +204,7 @@ ignored directories so it cannot overwrite a published checkpoint by accident.
 
 The [active completion ledger](../WORKPLAN.md) and
 [critical follow-up audit](../CRITICAL_AUDIT.md) distinguish completed components
-from remaining work. As of this note, the original upper theorem, the complete
-critical upper construction, and external specialist review must not be
-described as completed formal verification. More proof lines or larger logs
+from remaining work. The original upper theorem is now formally proved. The
+matching critical upper and explicit Psi comparison remain incomplete in Lean;
+external specialist review remains pending. More proof lines or larger logs
 would not change those boundaries on their own.

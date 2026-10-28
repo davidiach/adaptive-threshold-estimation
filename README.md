@@ -14,7 +14,7 @@ brief. The [original v4](paper/paper.pdf) and historical evidence remain preserv
 
 | Result | Statement | Status | Source |
 |---|---|---|---|
-| Minimax law | $`R_\mu(B)\asymp\omega_\mu(B^{-1/2})`$; one algorithm independent of $`\mu`$. | paper proof | [v5, Theorem 1](paper/v5/core.tex) |
+| Minimax RMS law | $`\omega_\mu(B^{-1/2})/64\le R_\mu(B)\le512\omega_\mu(B^{-1/2})`$; one upper algorithm independent of $`\mu`$. | Lean-checked | [upper theorem](lean/ThresholdHC/BlindUpper/Full.lean) · [lower theorem](lean/ThresholdHC/Tier6/Full.lean) |
 | Minimax RMS lower bound | $`R_\mu(B)\ge\omega_\mu(B^{-1/2})/64`$ for every gap law and $`B\ge1`$. | Lean-checked | [minimax_lower_bound](lean/ThresholdHC/Tier6/Full.lean) |
 | Uniform unbiasedness | Finite uniform variance and work are attainable iff $`I<\infty`$; their product is $`\ge I^2/16`$. | paper proof | [v5, Theorem 2](paper/v5/core.tex) |
 | Unbiased estimate $`Y`$, flip count $`W`$ | For $`(k_1,k_2)=(1/4,1)`$ and $`I<\infty`$:<br>$`\mathbb E Y=\theta`$, $`\mathrm{Var}(Y)\mathbb E W<713I^2`$. | Lean-checked | [full_bound_713](lean/ThresholdHC/Uniform713/FullBound.lean) |
@@ -27,9 +27,9 @@ adaptive algorithms. Its matching upper and the other
 [rare-event results](paper/v5/rare-events.tex) retain paper-proof status.
 The [results guide](docs/RESULTS.md) records the precise rate, model and audit;
 the PDFs retain their stated earlier formal-reference checkpoint.
-The [upper-bound construction checkpoint](docs/BLIND_UPPER.md) checks the
-calibrated call-array bounds, independent seed law, and observable controller;
-the full distribution-blind upper theorem remains pending.
+The [full distribution-blind upper theorem](docs/BLIND_UPPER.md) now includes
+the controller's actual cost/output identities, almost-sure termination,
+budget selection and uniform RMS bound. Confidence radii remain paper proofs.
 [Verify locally](docs/VERIFY.md) · [CI](https://github.com/davidiach/adaptive-threshold-estimation/actions/workflows/checks.yml)
 
 <details>

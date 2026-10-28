@@ -34,12 +34,24 @@ class BlindUpperAuditTests(unittest.TestCase):
             with self.subTest(axiom=axiom), self.assertRaises(ValueError):
                 validate_reports("\n".join(lines), 0, self.roots)
 
-    def test_component_evidence_cannot_promote_full_theorem(self):
-        for flag in ("full_distribution_blind_upper_verified", "full_critical_upper_verified"):
+    def test_unrelated_critical_upper_cannot_be_promoted(self):
+        changed = copy.deepcopy(self.registry)
+        changed['full_critical_upper_verified'] = True
+        with self.assertRaises(ValueError):
+            validate_sources(changed)
+
+    def test_full_theorem_requires_unchanged_exact_target(self):
+        for targets in ({}, {'ThresholdHC.BlindUpper.distribution_blind_upper': 'True'}):
             changed = copy.deepcopy(self.registry)
-            changed[flag] = True
-            with self.subTest(flag=flag), self.assertRaises(ValueError):
+            changed['exact_targets'] = targets
+            with self.subTest(targets=targets), self.assertRaises(ValueError):
                 validate_sources(changed)
+
+    def test_qualified_execution_declarations_cannot_be_omitted(self):
+        changed = copy.deepcopy(self.registry)
+        changed['roots'].remove('ThresholdHC.BlindUpper.BatchConsumes.path_eq')
+        with self.assertRaises(ValueError):
+            validate_sources(changed)
 
     def test_changed_specification_and_missing_registration_rejected(self):
         for change in ("specification_sha256", "roots", "modules"):

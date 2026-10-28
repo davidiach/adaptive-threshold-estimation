@@ -336,9 +336,9 @@ The [sixteenth record](../results/critical_components_016.json) checks forty-thr
 exact targets and all 674 public declarations. The
 [fifteenth record](../results/critical_components_015.json) preserves the finite
 population checkpoint. Specifications were introduced alongside these proofs.
-The matching critical upper, the original distribution-blind upper, and the
-explicit comparison refuting the matching-Psi conjecture are not fully
-formalized. The full critical minimax completion flag remains false.
+The original [distribution-blind upper](BLIND_UPPER.md) is now fully formalized.
+The matching critical upper and the explicit comparison refuting the
+matching-Psi conjecture remain unfinished in Lean. The full critical minimax completion flag remains false.
 
 All audited declarations use only the permitted standard axioms. The
 [fourteenth record](../results/critical_components_014.json) preserves the

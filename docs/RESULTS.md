@@ -25,14 +25,19 @@ For every probability law $\mu$ on $(0,1/2]$, $B\ge1$, and $0<\delta\le1/4$, it 
 
 $$R_\mu(B)\asymp\omega_\mu(B^{-1/2}),\qquad r_\mu(B,\delta)\asymp\omega_\mu\!\left(\sqrt{\log(1/\delta)/B}\right),\qquad \omega_\mu(h)=\mathbb E_\mu\min\{1,h/D\}.$$
 
-Here $r_\mu(B,\delta)$ is the minimax uniform error radius at failure probability at most $\delta$, with the same expected-budget constraint. The constants are universal. The algorithms depend only on $B$, or on $(B,\delta)$, and observe neither magnitudes nor their law. The proof is in §5. The full matching upper/lower characterization and confidence-radius statement retain paper-proof status.
+Here $r_\mu(B,\delta)$ is the minimax uniform error radius at failure probability at most $\delta$, with the same expected-budget constraint. The constants are universal. The algorithms depend only on $B$, or on $(B,\delta)$, and observe neither magnitudes nor their law. The proof is in §5. The RMS characterization now has Lean proofs in both directions. The confidence-radius statement retains paper-proof status.
 
-The [upper construction checkpoint](BLIND_UPPER.md) now checks the original
-observable simulation law, cutoff-call bounds, actual pilot/production
-calibration, and the independent seed-to-call-array law. It also constructs a
-measurable controller in the original `AdaptiveEstimator` class and proves its
-per-call and full finite-word state transitions. The controller's population
-cost/output identities and the final budget-indexed RMS theorem remain pending.
+The [full upper theorem](BLIND_UPPER.md), `distribution_blind_upper` in
+[Full.lean](../lean/ThresholdHC/BlindUpper/Full.lean), proves one budget-indexed
+observable algorithm family chosen before every magnitude law. It satisfies
+the uniform expected budget and has maximal RMS risk at most
+`512 * modulus μ (1 / Real.sqrt B)` for every `B ≥ 1`. The corresponding
+`minimax_upper_bound` uses the same minimax risk as the lower theorem below.
+The original simulation law, actual controller cost/output identities,
+almost-sure pilot termination and budget selection are proved. The
+[full audit](../results/blind_upper_components_002.json) checks the unchanged
+frozen specification and all 373 declaration roots; coefficient 512 is not
+claimed optimal.
 
 The RMS lower-bound side is now formalized end to end. `ThresholdHC.Tier6.minimax_lower_bound` in [Full.lean](../lean/ThresholdHC/Tier6/Full.lean) proves
 
