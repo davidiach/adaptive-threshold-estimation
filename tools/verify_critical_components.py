@@ -1,7 +1,8 @@
 """Check critical base cost, statistical transfer and minimax lower bound.
 
-The matching critical upper remains open. The original distribution-blind upper
-is checked separately by tools/verify_blind_upper_components.py.
+This audit covers the critical lower theorem. The original distribution-blind
+upper and matching critical upper have separate audits in
+tools/verify_blind_upper_components.py and tools/verify_critical_upper_components.py.
 
 This extension does not change existing frozen targets or scores. It reuses the
 frozen Tier 6 source and transitive-axiom guards. Specifications were introduced
