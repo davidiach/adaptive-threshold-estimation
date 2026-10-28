@@ -1,0 +1,71 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=27mm,headheight=14pt]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype,booktabs,tabularx,array,longtable,xurl}
+\usepackage{enumitem,needspace,fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Adaptive Threshold Estimation: Minimax Laws and a Rare-Event Phase Transition},pdfauthor={David Iach; AI-assisted research},pdfsubject={Consolidated version 5: mathematical results and exact formal verification scope}}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\setlength{\parskip}{3pt}
+\setlength{\parindent}{1.3em}
+\setlength{\emergencystretch}{2em}
+\setcounter{tocdepth}{1}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Adaptive threshold estimation}
+\fancyhead[R]{\small Consolidated research draft, v5}
+\fancyfoot[C]{\thepage}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\Pp}{\mathbb P}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathcal Q}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\KL}{\operatorname{KL}}
+\newcommand{\kl}{\operatorname{kl}}
+\newcommand{\Ber}{\operatorname{Ber}}
+\newcommand{\ind}{\mathbf 1}
+\newcommand{\cG}{\mathcal G}
+\newcommand{\cA}{\mathcal A}
+\newcommand{\om}{\omega_\mu}
+\newcommand{\Am}{A_\mu}
+\newcommand{\Iinv}{I_\mu}
+\newcommand{\logp}{\log_+}
+\newcommand{\Aff}{\operatorname{Aff}}
+\newcommand{\Hsq}{\mathsf H^2}
+\newcommand{\Xrho}{\mathcal X_\rho}
+\DeclareMathOperator{\TV}{TV}
+\newcommand{\leanref}[2]{\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/236eb2d4f286f8987f74f293c129258f517f2ec4/lean/ThresholdHC/#1}{\textnormal{\texttt{#2}}}}
+\title{\vspace{-1.2em}\textbf{Adaptive Threshold Estimation}\\[0.4em]\large Minimax laws, unbiased estimation, and a rare-event phase transition}
+\author{Project lead: David Iach\\\small AI-assisted research and formalization}
+\date{Version 5 \quad\textbullet\quad 28 October 2026}
+\begin{document}
+\maketitle
+\thispagestyle{plain}
+\input{frontmatter}
+\clearpage
+\tableofcontents
+\clearpage
+\input{introduction}
+\input{core}
+\input{rare-events}
+\input{verification}
+\clearpage
+\appendix
+\input{appendix-localization}
+\clearpage
+\input{appendix-above-two}
+\clearpage
+\input{appendix-critical}
+\clearpage
+\input{references}
+\end{document}

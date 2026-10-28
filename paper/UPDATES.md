@@ -1,6 +1,17 @@
 # Results after the v4 paper
 
+The [consolidated v5 manuscript](v5/paper.pdf) now presents the current theory,
+including the 713 construction, rare-event regimes, critical correction, and
+formal verification boundaries. Its [source record](v5/README.md) describes the
+assembly and preserved inputs. This file remains a chronological guide to the
+results that followed the unchanged v4.
+
 ## Critical quadratic margin: full characterization and Psi counterexample
+
+The [specialist review packet](critical-review/review.pdf) puts a three-page
+overview and the complete existing proof in one document. Its
+[reproduction notes](critical-review/README.md) identify the locked source;
+no external specialist approval is claimed.
 
 The [full critical note](../research/2026-10-27-nonlinear-critical/unrestricted.tex)
 proves $R_{\mu,\rho}(B)\asymp\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}$,
@@ -14,9 +25,12 @@ present in the separately credited critical note.
 The rate is larger than Psi by an unbounded factor along an explicit joint
 rarity/budget sequence. It therefore refutes the arbitrary-law matching-Psi
 upper conjecture in the preserved continuation. The variational optimizer
-theorem is unchanged. The new result is a paper proof with independent
-adversarial agent review and scoped component cross-checks, without Lean or
-external specialist verification or certified novelty. The
+theorem is unchanged. The critical minimax lower bound is now
+[Lean-checked](../lean/ThresholdHC/CriticalEntropy/CriticalMinimax.lean), including
+arbitrary measurable seeds, unrestricted creation and termination in the
+original observable experiment. The matching upper and explicit Psi comparison
+remain paper arguments. External specialist verification and novelty assessment
+remain pending. The
 [checkpoint](../research/2026-10-27-nonlinear-critical/CHECKPOINT.md) records
 proof dependencies, exact source hashes and reproducible checks.
 
@@ -60,7 +74,7 @@ This is a changed classifier and tighter analysis, not a correction to the origi
 
 | Paper location or scope | What the repository adds | Evidence and limits |
 |---|---|---|
-| v4 §§3–7: information, classifier, geometric sums, calibration, and modulus calculations | Lean proofs of the frozen component statements. | [Statements.lean](../lean/ThresholdHC/Statements.lean), [Statements2.lean](../lean/ThresholdHC/Statements2.lean), [target-to-proof map](../tools/targets.json), and [checkpoint](../results/lean_tier2_002_checkpoint.json). The entire minimax theorem and unbiased converse remain paper proofs. |
+| v4 §§3–7: information, classifier, geometric sums, calibration, and modulus calculations | Lean proofs of the frozen component statements. | [Statements.lean](../lean/ThresholdHC/Statements.lean), [Statements2.lean](../lean/ThresholdHC/Statements2.lean), [target-to-proof map](../tools/targets.json), and [checkpoint](../results/lean_tier2_002_checkpoint.json). The confidence characterization and unbiased converse remain paper proofs. The RMS lower and distribution-blind upper are now complete; see the [upper verification guide](../docs/BLIND_UPPER.md). |
 | v4 §4, Lemmas 7–8 | The original classifier error/work and estimator telescoping/moment inequalities are checked as probability statements. | [ClassifierProb.lean](../lean/ThresholdHC/Proofs/Tier2/ClassifierProb.lean), [ClassifierTelescoping.lean](../lean/ThresholdHC/Proofs/Tier2/ClassifierTelescoping.lean), and the exact `lemma6_*`/`lemma7_*` targets in [Statements2.lean](../lean/ThresholdHC/Statements2.lean). |
 | v4 §3, Proposition 6 | Finite stopped-transcript KL/testing is formalized, then extended to arbitrary measurable random seeds. | `ThresholdHC.Proofs.stopped_transcript_kl` in [Transcript.lean](../lean/ThresholdHC/Proofs/Tier2/Transcript.lean); `ThresholdHC.Tier3.randomized_marginal_kl_bound` and `randomized_testing_bound` in [Randomized.lean](../lean/ThresholdHC/Tier3/Randomized.lean). The coin set and observation horizon are finite. |
 | v4 §3, passage to unbounded stopping | Finite expected plus-hypothesis work implies halting under both hypotheses and the terminal testing bound at unbounded horizons. | `ThresholdHC.Tier3.unbounded_stopping` in [StoppingBase.lean](../lean/ThresholdHC/Tier3/StoppingBase.lean), `unbounded_testing` in [Stopping.lean](../lean/ThresholdHC/Tier3/Stopping.lean), and `unbounded_example` in [Examples.lean](../lean/ThresholdHC/Tier3/Examples.lean). Fixed finite coin set; this theorem concerns terminal testing. The subsequent KL theorem is listed next. |
@@ -78,4 +92,4 @@ The frozen target names `lemma6_*` and `lemma7_*` retain earlier numbering; in t
 
 ## What remains unchanged in scope
 
-The matching upper bound and confidence-radius parts of the unrestricted minimax law, and the uniform unbiasedness converse, retain paper-proof status. Tier 6 certifies the RMS lower-bound side. The separate [power-margin proof](../research/2026-10-27-route-a/construction.tex) resolves the known-rarity regime $\alpha>2$. The full critical-law paper theorem above resolves $\alpha=2$ at $F(d)=(4d)^2$ and refutes the proposed arbitrary-law matching-Psi upper bound. A sharp replacement for general magnitude laws remains open. These rare-event results retain reviewed paper-proof status; they are not Lean-checked. The original expected-work, observation-independence, and confidence-radius limitations still apply; see [v4 §10](paper.tex#L1280) and the [current results guide](../docs/RESULTS.md).
+The unrestricted RMS minimax law is now Lean-checked in both directions: Tier 6 gives the lower coefficient 1/64, and [the distribution-blind upper](../docs/BLIND_UPPER.md) gives coefficient 512 with one observable family independent of the gap law. The confidence-radius statement and uniform unbiasedness converse retain paper-proof status. The separate [power-margin proof](../research/2026-10-27-route-a/construction.tex) resolves the known-rarity regime $\alpha>2$. The full critical-law paper theorem above resolves $\alpha=2$ at $F(d)=(4d)^2$ and refutes the proposed arbitrary-law matching-Psi upper bound. A sharp replacement for general magnitude laws remains open. The critical minimax lower side is now Lean-checked; the matching upper, explicit Psi comparison and other rare-event conclusions retain paper-proof status. The original expected-work, observation-independence, and confidence-radius limitations still apply; see [v4 §10](paper.tex#L1280) and the [current results guide](../docs/RESULTS.md).

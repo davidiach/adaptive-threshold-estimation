@@ -1,6 +1,15 @@
 # Results and verification scope
 
-This guide distinguishes complete Lean specifications from broader paper claims. Sources are the unchanged [v4 paper](../paper/paper.pdf), its [TeX](../paper/paper.tex), the [rare-event continuation](../inputs/next-phase/report/research_note.pdf), and the theorem files below.
+Start with the [consolidated v5 manuscript](../paper/v5/paper.pdf) for the
+current theory in one document: main statements in sections 2, 7 and 11,
+formal scope in section 12, and full rare-event arguments in appendices A–C.
+Its [source and editorial record](../paper/v5/README.md) preserves the original
+proofs and makes the Psi correction explicit.
+
+This guide gives the exact Lean specifications and remaining paper-proof
+boundaries. Historical source pointers below refer to the unchanged
+[v4 paper](../paper/paper.pdf), its [TeX](../paper/paper.tex), and the
+[rare-event continuation](../inputs/next-phase/report/research_note.pdf).
 
 ## Paper review scope
 
@@ -16,7 +25,19 @@ For every probability law $\mu$ on $(0,1/2]$, $B\ge1$, and $0<\delta\le1/4$, it 
 
 $$R_\mu(B)\asymp\omega_\mu(B^{-1/2}),\qquad r_\mu(B,\delta)\asymp\omega_\mu\!\left(\sqrt{\log(1/\delta)/B}\right),\qquad \omega_\mu(h)=\mathbb E_\mu\min\{1,h/D\}.$$
 
-Here $r_\mu(B,\delta)$ is the minimax uniform error radius at failure probability at most $\delta$, with the same expected-budget constraint. The constants are universal. The algorithms depend only on $B$, or on $(B,\delta)$, and observe neither magnitudes nor their law. The proof is in §5. The full matching upper/lower characterization and confidence-radius statement retain paper-proof status.
+Here $r_\mu(B,\delta)$ is the minimax uniform error radius at failure probability at most $\delta$, with the same expected-budget constraint. The constants are universal. The algorithms depend only on $B$, or on $(B,\delta)$, and observe neither magnitudes nor their law. The proof is in §5. The RMS characterization now has Lean proofs in both directions. The confidence-radius statement retains paper-proof status.
+
+The [full upper theorem](BLIND_UPPER.md), `distribution_blind_upper` in
+[Full.lean](../lean/ThresholdHC/BlindUpper/Full.lean), proves one budget-indexed
+observable algorithm family chosen before every magnitude law. It satisfies
+the uniform expected budget and has maximal RMS risk at most
+`512 * modulus μ (1 / Real.sqrt B)` for every `B ≥ 1`. The corresponding
+`minimax_upper_bound` uses the same minimax risk as the lower theorem below.
+The original simulation law, actual controller cost/output identities,
+almost-sure pilot termination and budget selection are proved. The
+[full audit](../results/blind_upper_components_002.json) checks the unchanged
+frozen specification and all 373 declaration roots; coefficient 512 is not
+claimed optimal.
 
 The RMS lower-bound side is now formalized end to end. `ThresholdHC.Tier6.minimax_lower_bound` in [Full.lean](../lean/ThresholdHC/Tier6/Full.lean) proves
 
@@ -34,7 +55,7 @@ $$\operatorname{Var}(Y)\mathbb E W<713\left(\mathbb E[D^{-1}]\right)^2.$$
 
 Its assumptions describe an arbitrary magnitude/sign probability space, a conditional observation kernel, independent measurable observations in $[0,1]$ with means $1/2\pm D$, $0<D\le1/2$ almost surely, and an integrable inverse magnitude. Bernoulli observations are included. No classifier error, moment, work, or unbiasedness conclusion is an assumption. The random level has unbounded support. See the [kernel audit](../results/uniform713_status.json) and [paper argument](../proposals/constants/UNIFORM_PRODUCT_BOUND.md).
 
-The additive, separately locked `ThresholdHC.ResearchRouteA.separate_moment_bounds` exports $\mathbb E Y^2\le23I$ and $\mathbb E W\le31I$, including integrability. `uniform_family_bounds` proves bounded separate suprema and their product at most $713I^2$ for a nonempty family of latent laws sharing $I$, with the kernel and estimator fixed before the family. This supplies the formal separate-supremum bridge, not a fresh-coin realization or a new constant. See the [specification, hashes and local replay](../research/2026-10-27-route-a/formal-audit.md). Five public roots were checked with only the permitted axioms; external-machine replay is unavailable.
+The additive, separately locked `ThresholdHC.ResearchRouteA.separate_moment_bounds` exports $\mathbb E Y^2\le23I$ and $\mathbb E W\le31I$, including integrability. `uniform_family_bounds` proves bounded separate suprema and their product at most $713I^2$ for a nonempty family of latent laws sharing $I$, with the kernel and estimator fixed before the family. This supplies the formal separate-supremum bridge, not a fresh-coin realization or a new constant. See the [specification, hashes and local replay](../research/2026-10-27-route-a/formal-audit.md). Five public roots were checked with only the permitted axioms. The integrated Linux replay also passed in [run 40488398325](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40488398325) on main commit `b3f88e6`.
 
 ## Information and stopping
 
@@ -104,8 +125,135 @@ and rho. This supplies no characterization for arbitrary other laws.
 Status: **paper proof with independent adversarial agent review and scoped
 component cross-checks**. See the [checkpoint](../research/2026-10-27-nonlinear-critical/CHECKPOINT.md)
 for the exact four-file source bundle, replay evidence, attribution and
-limitations. No Lean theorem, explicit hard-pair formula, external specialist
-review or priority certification is claimed.
+limitations. The full minimax theorem is not Lean-checked; no explicit hard-pair
+formula, external specialist review or priority certification is claimed.
+
+The critical single-coin base-cost theorem (BC1) is Lean-checked in
+[BaseCost.lean](../lean/ThresholdHC/CriticalEntropy/BaseCost.lean):
+
+$$V\,\mathbb E_0T\ge c\rho L(1+\log L),\qquad L=1+\log(1/\rho).$$
+
+One universal `c>0` works for every `0<rho<=1/4`. The same observable
+procedure and independent seed law serve every measurable `q<=1/2` with
+`integral q<=rho`. Its assumptions are uniform bias at most `rho/64`, a
+uniform extended-variance bound `V`, and finite expected work under each
+such prior. Finite extended variance implies square integrability; infinite
+work and moments are retained in the definitions. Per-prior finite work
+suffices, so the paper's stronger uniform finite-work hypothesis is covered.
+The raw-second-moment version is also proved.
+
+The proof derives activation normalization, population moment identities,
+good-gap selection, observable iid restarts, sign-testing entropy, and the
+rarity-dependent number of scales from those guarantees. In particular,
+[FiniteGap.lean](../lean/ThresholdHC/CriticalEntropy/FiniteGap.lean) proves
+the BC2 bound `sum_j d_j^2 E_-j T >= K log(K)/512` for one observable test
+serving every specified gap and sign. It constructs the information bounds
+and stopping windows and does not assume fair-coin termination.
+The [model and dependency audit](CRITICAL_AUDIT.md#current-formal-boundary)
+gives the exact intermediate hypotheses and source-specific evidence.
+The capped finite-observation reduction is also proved in
+[ObservationInformation.lean](../lean/ThresholdHC/CriticalEntropy/ObservationInformation.lean).
+For an arbitrary measurable independent seed and a procedure stopping by a
+deterministic cap, the statistic consisting of stopping time and head count
+reconstructs the full seed/word law through population-independent conditional
+measures. It preserves canonical Hellinger affinity and actual expected work.
+Zero-probability cells are independent of the sign prior.
+
+[CriticalGeometry.lean](../lean/ThresholdHC/CriticalEntropy/CriticalGeometry.lean)
+also proves a compact convex representation of the entire admissible population
+class, with every measurable prior covered up to almost-everywhere equality.
+Its finite observation probabilities and target integral form an affine compact
+convex image. Active probability coordinates have uniform positive lower bounds.
+The separated population-pair set is nonempty, compact and convex before any
+policy is selected; each capped policy supplies a continuous convex canonical
+Hellinger distance taking values in `[0,1]` on that set. The formal construction
+uses the weak dual of `L²` and proves its correspondence with actual populations.
+
+[CriticalRisk.lean](../lean/ThresholdHC/CriticalEntropy/CriticalRisk.lean)
+now applies the finite convex RMS comparison to this actual experiment.
+It constructs one observable estimator, proves its square integrability and
+uniform bias and extended-variance bounds, and preserves the original stopping
+rule and actual work. The minimax selection, exponential moments, and RMS bound
+are proved rather than assumed.
+
+One universal `c>0` works for every capped policy. For `0<rho<=1/4`,
+a nonnegative radius `epsilon`, and a repetition count `n`, write `w=E_0 T`.
+Whenever `3 epsilon<=rho/64` and
+`9 n epsilon^2 w<c rho L(1+log L)`, an actual admissible population pair has
+target separation at least `2 epsilon` and canonical affinity to the power `n`
+at least `1/2`. The pair may depend on the policy. This is the precise
+policy-specific conclusion, before selecting a common pair.
+
+[CriticalCommonPair.lean](../lean/ThresholdHC/CriticalEntropy/CriticalCommonPair.lean)
+now proves the statistical common-pair statement. One universal `C>0` works
+for every `0<rho<=1/4` and `0<=delta<=rho/96`: there are two actual measurable
+priors in `[0,1/2]`, each with mass at most `rho`, whose target separation is
+at least `delta`, and **the same pair** satisfies
+`(1-Aff) rho L(1+log L) <= C delta^2 E_0 T` for every capped observable policy.
+The pair is selected before the arbitrary seed space, seed law, output space,
+policy and stopping cap. Affinity is the canonical affinity of the full
+seed/transcript laws; work is measured under the all-negative population.
+
+The proof derives a normalized bound without dividing by work, including zero
+null work. Revealed finite mixtures are constructed as actual policies with
+independent product seeds. Component seeds and caps may differ; both canonical
+affinity and expected work average exactly. These identities discharge the
+statistical hypothesis of the compact-convex common-point theorem.
+
+[CriticalPopulationFinite.lean](../lean/ThresholdHC/CriticalEntropy/CriticalPopulationFinite.lean)
+transfers that common pair to the actual finite adaptive population experiment.
+One pair is chosen before every finite coin-family size, deterministic horizon,
+and policy. The policy may revisit and interleave coins. The bound is
+`(1-Aff) rho L(1+log L) <= C delta^2 E_mid T_n`, where the right-hand side
+counts the simulator's observed flips under the same midpoint population.
+
+The proof constructs a legal one-coin simulation for each label, using independent
+auxiliary tapes for the other labels. It proves the full simulator's law equals
+the existing Tier 2 transcript law after integrating latent magnitudes and signs,
+including coin-specific hybrid priors. Local expected costs sum exactly to the
+population flip count. A finite likelihood decomposition and canonical Hellinger
+data processing transfer the common-pair bound; midpoint domination pays at
+most twice the midpoint work. Impossible transcripts and zero work are retained.
+
+[CriticalMinimax.lean](../lean/ThresholdHC/CriticalEntropy/CriticalMinimax.lean)
+now proves the full critical minimax **lower** bound:
+
+$$R_{\mu,\rho}(B)\ge c\min\{\rho,\sqrt{\rho L(1+\log L)/B}\},\qquad L=1+\log(1/\rho).$$
+
+One universal `c>0` works for `0<rho<=1/4`, `B>=1`, and the quadratic law
+with density `32d` on `(0,1/4]`. The infimum uses the existing Tier 6
+observable adaptive estimators and constructed infinite creation experiment.
+It permits arbitrary measurable independent seeds, unrestricted natural-number
+coin labels, revisits, interleaving, and unbounded stopping. Neither policy nor
+output can observe latent magnitudes or signs. The budget and risk range over
+every measurable `[0,1]`-valued prior of mean at most `rho`; the half cap belongs
+only to the hard-pair subclass. Squared error remains extended-real.
+
+The proof transfers the common pair through each seed-dependent finite decision
+tree, integrates the hidden iid magnitudes, and bounds finite-prefix affinity
+by actual midpoint expected work. Finite work proves termination separately
+under both endpoints. Each stopped tape is eventually equal to its padded
+prefix, so bounded-event convergence gives terminal affinity without any
+continuity assumption on the estimator's output. Direct Hellinger testing and
+separation optimization give the rate, including saturation at `rho`.
+A zero-work estimator proves budget nonemptiness and minimax risk at most `rho`.
+
+The [sixteenth record](../results/critical_components_016.json) checks forty-three
+exact targets and all 674 public declarations. The
+[fifteenth record](../results/critical_components_015.json) preserves the finite
+population checkpoint. Specifications were introduced alongside these proofs.
+The matching critical upper and the explicit comparison refuting the
+matching-Psi conjecture are not fully formalized. The original
+[distribution-blind upper](BLIND_UPPER.md) is complete. The full critical
+minimax completion flag remains false.
+
+The [critical upper component checkpoint](CRITICAL_AUDIT.md#upper-construction-checkpoint)
+adds an observable asymmetric classifier, its actual Bernoulli-tape error and
+flip bounds, integration under every measurable prior with total mass at most
+`rho`, and actual population bias and second-moment bounds. This dyadic
+classifier is an alternative to the paper's likelihood-bank construction.
+Parameter calibration, unbiased telescoping, and a budgeted estimator in the
+original model remain open; these components do not prove the critical upper.
 
 ## Population and nonlinear feedback follow-ups
 

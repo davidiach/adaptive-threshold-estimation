@@ -1,0 +1,210 @@
+\section{Rare events and the inverse-square boundary}\label{sec:rare}
+The preceding minimax law takes a worst case over every sign function.
+For rare events, fix $0<\rho\le1/4$ and restrict this class to
+\[
+ \mathcal Q_\rho(\mu)=
+ \left\{q:(0,1/2]\to[0,1]\text{ measurable}:\int q\,d\mu\le\rho\right\}.
+\]
+The unknown target is still $\theta(q)=\int q\,d\mu$; $\rho$ is a known
+upper bound. Define
+\[
+ R_{\mu,\rho}(B)=
+ \inf_{\mathcal A:\,\sup_{q\in\mathcal Q_\rho(\mu)}\E_qT_\mathcal A\le B}
+ \sup_{q\in\mathcal Q_\rho(\mu)}
+       \bigl(\E_q(\widehat\theta_\mathcal A-\theta(q))^2\bigr)^{1/2}.
+\]
+The observation model remains the ordinary iid fresh-coin experiment:
+individual magnitudes and signs are hidden; all creation, revisiting,
+interleaving, and stopping decisions use only the seed and observed flips.
+The benchmark may know $\mu,\rho,B$. In particular, the global constraint
+does not impose $q(d)\le\rho$ pointwise, nor fix either conditional
+magnitude law given the sign. Returning $\rho/2$ costs nothing and has
+RMS error at most $\rho/2$.
+
+\subsection{A variational lower modulus and its exact optimizer}
+For $h>0$ set
+\begin{equation}\label{eq:v5-psi}
+ \Psi_{\mu,\rho}(h)=
+ \sup_{\substack{v\text{ measurable},\ 0\le v\le1\\\int v\,d\mu\le\rho}}
+       \int\min\{v(d),h\sqrt{v(d)}/d\}\,\mu(dd).
+\end{equation}
+There is a universal $c>0$ such that
+$R_{\mu,\rho}(B)\ge c\Psi_{\mu,\rho}(B^{-1/2})$.
+The corresponding confidence lower bound replaces $B^{-1/2}$ by
+$\sqrt{\log(1/\delta)/B}$. The proof in \cref{app:localization}
+explicitly imports the single-coin rare-prior Hellinger bound of
+Lee--Valiant~\cite[Corollary 19]{leevaliant}; its bounded-ratio hybrid
+argument is written out. These statistical lower bounds are paper
+proofs with that published external input.
+
+The variational optimization itself is fully explicit. There is a unique
+$t\in(0,1/2)$ with
+\[
+ \E_\mu\min\{1,t^2/D^2\}=\rho.
+\]
+For every $h>0$, $v_*(d)=\min\{1,t^2/d^2\}$ is an optimizer. For $h\ge t$
+the value is $\rho$; for $h<t$ it is
+\begin{equation}\label{eq:v5-psi-form}
+ F_\mu(h)+h\E[D^{-1};\,h<D\le t]+ht\E[D^{-2};\,D>t].
+\end{equation}
+Atoms and singular laws are allowed, with no inverse-moment assumption.
+The Lean theorem
+\leanref{Tier3/Optimizer.lean}{arbitrary\_law\_optimizer} proves this
+functional statement. It does not supply an attaining statistical
+algorithm. In particular,
+\[
+ \Psi_{\delta_a,\rho}(h)=\min\{\rho,h\sqrt\rho/a\},\qquad
+ \rho\omega_\mu(h/\sqrt\rho)\le\Psi_{\mu,\rho}(h)\le\omega_\mu(h).
+\]
+
+\subsection{The power-margin regimes}
+Let $\mu_{\alpha,a}$ have distribution function $(d/a)^\alpha$ on
+$(0,a]$ and put $x=(a\sqrt B)^{-1}$. The proved RMS orders are:
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Magnitude law & RMS order, with saturation included\\
+\midrule
+$0<\alpha<1$ & $\min\{\rho,x^\alpha\}$\\
+$\alpha=1$ & $\min\{\rho,x[1+\log_+(\rho/x)]\}$\\
+$1<\alpha<2$ & $\min\{\rho,\rho^{\,1-1/\alpha}x\}$\\
+$\alpha=2$, fixed $a=1/4$
+ & $\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}$\\
+$\alpha>2$ & $\min\{\rho,\sqrt\rho\,x\}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Here $L=1+\log(1/\rho)$. For the rows below two, $0<a\le1/4$;
+for the row above two, $0<a\le1/2$. Constants may depend on the fixed
+exponent. The quadratic row concerns one normalized law, with universal
+constants; it does not claim a theorem uniform in $\alpha$ near two.
+All rows hold for $B\ge1$ and $0<\rho\le1/4$ in their stated domains.
+
+For $0<\alpha<2$, \cref{app:localization} gives full proofs, including
+confidence radii after replacing $x$ by
+$a^{-1}\sqrt{\log(1/\delta)/B}$. The lower bound restricts the balanced
+hard alternatives to a region of magnitude mass $\rho$ and does not
+use the imported rare-prior theorem. The upper bound starts the
+randomized telescope at a large enough cap that its base false-positive
+probability is at most $\rho$, then uses the same two-success
+calibration as \cref{sec:minimax-proof}. It knows $(\alpha,a,\rho)$.
+It also holds under the envelope
+$F_\mu(d)\le\min\{(d/a)^\alpha,1\}$.
+
+For $\alpha>2$, \cref{app:above-two} supplies an asymmetric sequential
+classifier: its negative-coin error is at most $\rho\varepsilon$, while
+its positive-coin error is at most $\varepsilon$. A randomized telescope
+then yields a one-coin unbiased output with separate bounds
+$\sup_q\E Y^2\le(153/56)\rho$ and $\sup_q\E T_Y\le w_\alpha/a^2$,
+where $w_\alpha<\infty$ is explicit there. Independent Poisson replication
+calibrates every real budget, including expected replication counts
+below one. The upper bound is uniform over the same envelope class and
+knows $(\alpha,a,\rho,B)$.
+The matching exact-power lower bound uses the published fixed-gap
+Lee--Valiant theorem through a simulation that keeps a coin's privately
+sampled magnitude fixed on every revisit. Constants diverge as
+$\alpha\downarrow2$. No sharp confidence characterization above or at
+two is asserted in this manuscript.
+
+\subsection{The full critical theorem and the correction to \texorpdfstring{$\Psi$}{Psi}}
+\begin{theorem}[Critical quadratic law]\label{thm:v5-critical}
+Fix $\mu(dd)=32d\,dd$ on $(0,1/4]$. There are universal
+$0<c<C<\infty$ such that for all $0<\rho\le1/4$ and $B\ge1$,
+\[
+ c\min\{\rho,\sqrt{\rho L H/B}\}
+ \le R_{\mu,\rho}(B)
+ \le C\min\{\rho,\sqrt{\rho L H/B}\},\qquad
+ L=1+\log(1/\rho),\quad H=1+\log L.
+\]
+The lower bound covers every observable randomized population algorithm,
+including nonlinear outputs, unbounded stopping, and arbitrary creation
+and interleaving. The upper construction may know $\mu,\rho,B$.
+\end{theorem}
+\noindent The complete paper argument is in \cref{app:critical}.
+The lower bound is Lean-checked; see \cref{sec:verification} for its exact
+scope. The matching upper bound remains a paper proof.
+
+The proof has three substantive transitions. First, sequential testing
+at many possible gaps forces a scale-entropy cost. Conditional moments,
+activation normalization, and repeated runs on unused flips of the
+\emph{same} hidden coin transfer that fact to a small-bias one-coin
+estimator: its variance supremum times its expected work under the
+all-negative population is at least $c_0\rho LH$.
+Second, a finite-experiment RMS comparison and compact convex minimax
+argument obtain \emph{one} population pair for every capped single-coin
+policy. A policy-dependent hard pair would not suffice.
+Third, a finite-prefix midpoint decomposition transfers this pair to
+interacting population algorithms, charging each flip once. The same
+pair works at every cap; finite expected work under both endpoints
+justifies passage to terminal outputs. The longer proof, including the
+upper construction, is in \cref{app:critical}.
+
+For this fixed law, the optimizer identity is
+\[
+ \rho=(t/a)^2[1+2\log(a/t)],\qquad
+ \Psi_{\mu,\rho}(h)=
+ \begin{cases}
+ [2ht(1+\log(a/t))-h^2]/a^2,&0<h<t,\\
+ \rho,&h\ge t,
+ \end{cases}
+ \quad a=1/4.
+\]
+It follows that
+$\Psi_{\mu,\rho}(B^{-1/2})\asymp
+\min\{\rho,\sqrt{\rho L/B}\}$.
+Taking $\rho_n=\exp(-\exp n)$ and $B_n=\rho_n^{-2}$ gives
+\[
+ \frac{R_{\mu,\rho_n}(B_n)}
+      {\Psi_{\mu,\rho_n}(B_n^{-1/2})}
+ \ge c'\sqrt{1+\log(1+\log(1/\rho_n))}\longrightarrow\infty.
+\]
+Thus the proposed universal matching-$\Psi$ upper bound is false
+according to \cref{thm:v5-critical}, even for one known law and known
+rarity. The variational optimizer remains valid. A sharp replacement
+for arbitrary laws must account for additional statistical difficulty
+across scales; no such replacement is established here.
+
+\subsection{The formal critical lower bound}
+The formal lower proof starts with the following statistical finite-gap result.
+Let $0<d_j\le1/128$, $d_j/d_{j+1}\ge2$, and $\log K\ge32$.
+One measurable test with an independent seed and observable stopping
+time $T$ is run on iid Bernoulli flips of mean $1/2\pm d_j$.
+If it has finite expected work and error at most $1/10$ under both
+signs for every gap, then
+\[
+ \sum_{j=1}^K d_j^2\E_{-d_j}T\ge \frac{K\log K}{512}.
+\]
+\leanref{CriticalEntropy/FiniteGap.lean}{finite\_gap\_sign\_entropy}
+derives this from the actual infinite Bernoulli experiment. It assumes
+neither a KL bound nor a packing estimate nor termination under the fair
+coin. This proves the finite-gap ingredient in
+\cref{crit:lem:finite-sign-entropy}.
+
+\leanref{CriticalEntropy/BaseCost.lean}{critical\_base\_cost} now proves
+the single-coin bound in \cref{crit:thm:base-cost}: for a universal $c>0$,
+\[
+ V\E_0T\ge c\rho L(1+\log L),\qquad 0<\rho\le1/4.
+\]
+The same observable procedure and independent seed law serve every
+measurable prior $q\le1/2$ with $\int q\,d\mu\le\rho$. Its uniform
+bias is at most $\rho/64$, its extended variance is bounded by $V$,
+and expected work is finite under each such prior. The proof derives
+square integrability, positive activation, the conditioned procedure,
+good gaps, iid restarts, and a sufficient number of scales. A raw
+second-moment version is also proved. Neither conditional moment
+bounds nor an information inequality is assumed.
+
+The proof then constructs the compact population set, realizes finite
+policy mixtures, and obtains one separated pair valid for every capped
+policy. Exact finite-prefix simulation laws and work charging transfer
+the pair to arbitrary population seeds, coin creation, revisiting and
+interleaving. Finite expected work under each endpoint yields termination
+and the terminal affinity bound without a continuity assumption on the
+output. Thus
+\leanref{CriticalEntropy/CriticalMinimax.lean}{critical\_minimax\_lower\_bound}
+proves the displayed lower rate for the full $[0,1]$-valued rare-prior
+class, including saturation. Separate zero-work results prove that the
+budget class is nonempty and its minimax risk is at most $\rho$.
+The matching critical upper and the explicit comparison with $\Psi$
+remain unformalized.

@@ -45,6 +45,12 @@ jobs:
         run: python tools/verify_research.py
       - name: Check research guard rejects tampering
         run: python -m unittest discover -s tools -p 'test_research_validation.py' -v
+      - name: Verify the critical review packet matches its locked sources
+        run: python tools/build_critical_review.py --check
+      - name: Verify the consolidated manuscript and its inherited sources
+        run: python tools/build_v5.py --check
+      - name: Check manuscript assembly preserves mathematical expressions
+        run: python -m unittest discover -s tools -p 'test_build_v5.py' -v
       - name: Replay population and nonlinear feedback checkpoints
         run: python tools/verify_population_research.py
   numerical-evidence:
@@ -73,6 +79,12 @@ jobs:
       - name: Regression tests for the Tier 6 audit when present
         run: |
           if test -f tools/test_tier6_validation.py; then python -m unittest discover -s tools -p 'test_tier6_validation.py' -v; fi
+      - name: Regression tests for the scoped critical component audit
+        run: python -m unittest discover -s tools -p 'test_critical_components.py' -v
+      - name: Regression tests for the upper theorem audit
+        run: python -m unittest discover -s tools -p 'test_blind_upper_components.py' -v
+      - name: Regression tests for the critical upper component audit
+        run: python -m unittest discover -s tools -p 'test_critical_upper_components.py' -v
       - run: python tools/check_targets_numeric.py
       - name: Tier 2 numeric truth checks when present
         run: |
@@ -92,7 +104,7 @@ jobs:
           python constants/score_constants.py constants/candidate_finite_grid.json
   lean-kernel:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -104,7 +116,16 @@ jobs:
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
       - name: Download pinned Mathlib cache
         working-directory: lean
-        run: lake exe cache get
+        run: |
+          for attempt in 1 2 3; do
+            if lake exe cache get; then
+              exit 0
+            fi
+            if [ "$attempt" -eq 3 ]; then
+              exit 1
+            fi
+            sleep 10
+          done
       - name: Build sequentially and require complete kernel audit
         run: python tools/verify_lean_checkpoint.py --sequential
       - name: Verify unscored arithmetic for the paper bound
@@ -125,10 +146,17 @@ jobs:
           if test -f tools/verify_tier6.py; then python tools/verify_tier6.py --sequential --require-complete; fi
       - name: Verify the locked separate-moment research bridge
         run: python lean/ThresholdHC/ResearchRouteA/verify.py
+      - name: Verify the critical single-coin lower bound and scoped components
+        run: python tools/verify_critical_components.py
+      - name: Verify the full distribution-blind upper theorem
+        run: python tools/verify_blind_upper_components.py
+      - name: Verify critical upper classifier components
+        run: python tools/verify_critical_upper_components.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: lean-verification
+          include-hidden-files: true
           path: |
             results/lean_score.json
             results/lean_checkpoint.json
@@ -151,3 +179,6 @@ jobs:
             results/tier6_build.log
             results/tier6_audit.log
             results/tier6_status.json
+            .runtime/critical-components/
+            .runtime/blind-upper-components/
+            .runtime/critical-upper-components/

@@ -1,0 +1,162 @@
+\section*{Review brief: a possible iterated-log phase transition}
+\addcontentsline{toc}{section}{Review brief}
+
+\noindent\textbf{Purpose.} This packet asks for a correctness and prior-art
+assessment of a specific statistical claim. The first three pages give the
+claim, its vulnerable dependencies, and the verification boundary. The
+remaining pages contain the complete existing paper argument with its three
+proof inputs expanded in place. This is an AI-assisted research draft; no
+external specialist review is claimed.
+
+\subsection*{The experiment and claimed rate}
+A fresh coin has hidden magnitude $D$ with density $32d$ on $(0,1/4]$ and
+hidden sign $S\mid D=d\sim\operatorname{Ber}(q(d))$. Its flips have mean
+$1/2+(2S-1)D$. The unknown measurable allocation satisfies
+$0\le q\le1$ and $\theta(q)=\int q\,d\mu\le\rho$, where $0<\rho\le1/4$.
+Algorithms know $\mu,\rho,B$, but observe only their independent randomness
+and coin flips. They may create, revisit and interleave coins, return biased
+nonlinear estimates, and stop at an unbounded time. Every flip is charged.
+The budget is $\sup_q\E_qT\le B$, $B\ge1$.
+
+For $L=1+\log(1/\rho)$ and $H=1+\log L$, the paper claims
+\[
+ R_{\mu,\rho}(B)\asymp
+ \min\left\{\rho,\sqrt{\frac{\rho LH}{B}}\right\},
+\]
+with universal constants for this one fixed magnitude law. The supremum is
+over the full global-rarity class; it is not a pointwise constraint
+$q(d)\le\rho$, and the target is not the known number $\rho$.
+
+\subsection*{Why this claim matters}
+The proposed general variational functional has order
+\[
+ \Psi_{\mu,\rho}(B^{-1/2})\asymp
+ \min\left\{\rho,\sqrt{\frac{\rho L}{B}}\right\}
+\]
+at this law. If the new lower bound is correct, no universal matching
+$C\Psi$ upper bound can hold. For example, the choice
+$\rho_n=\exp(-\exp n)$, $B_n=\rho_n^{-2}$ gives an unbounded ratio of
+order at least $\sqrt{H_n}$. The optimizer of the variational functional
+remains valid; its proposed statistical interpretation is what fails.
+
+The claimed additional cost is the need to discover a coin's sign across
+unknown gap scales. Sign-entropy mechanisms are established prior work.
+The proposed contribution is their cost-sensitive transfer to the full
+population-estimation experiment. No novelty or practical-performance claim
+follows merely from this explanation.
+
+\clearpage
+\section*{Proof route and questions for the reviewer}
+\addcontentsline{toc}{section}{Proof route and review questions}
+
+The lower proof uses the convex subclass
+$\mathcal X_\rho=\{0\le q\le1/2,\ \int q\,d\mu\le\rho\}$ and
+$J=\rho LH$. Its logical chain is as follows.
+
+\begin{enumerate}
+\item \textbf{Null-cost entropy obstruction.} For every one-coin estimator
+with uniform bias at most $\rho/64$ and separately finite uniform variance
+and work, the claim is
+\[
+ \left(\sup_{q\in\mathcal X_\rho}\Var_qY\right)\E_0T\ge c_bJ.
+\]
+The work is measured under the all-negative population. The proof selects
+good gaps in separated annuli and restarts the estimator on unused blocks
+of the \emph{same} coin to construct one sign test. Finite-prefix
+change-of-measure inequalities and overlapping stopping windows supply the
+entropy penalty. Fair-coin termination is not assumed.
+
+\item \textbf{One common pair.} A finite categorical reduction and convex
+RMS comparison first give a hard pair for each capped local policy.
+Revealing the index of a finite policy mixture makes both its null work
+and squared Hellinger distance exactly affine in the mixture weights.
+Minimax and weak-star compactness are then used to obtain one separated
+pair satisfying, for \emph{every} capped policy $A$,
+\[
+ \mathsf H^2(P^A_-,P^A_+)\le C\delta^2\E_0T_A/J.
+\]
+The pair is existential. It is not identified with the radial variational
+optimizer or selected after observing a transcript.
+
+\item \textbf{Population transfer and termination.} Finite tree leaves
+factor by coin even under interleaving. One-coin hybrid simulations use
+midpoint tapes for the other coins. The midpoint law dominates half the
+null law, so the one-coin bounds can be charged to actual midpoint work.
+The same endpoint pair applies at all caps. Finite expected endpoint work
+then passes the testing bound to the terminal experiment.
+\end{enumerate}
+
+\noindent\textbf{Requested scrutiny.} Does the formal single-coin model
+faithfully express the intended \emph{null-cost} theorem? Are the
+sufficiency, convexity and compactness hypotheses satisfied strongly enough
+to obtain a pair common to all policies? Does the hybrid simulation charge
+work under the correct law, including arbitrary randomization and creation?
+Does the endpoint limit preserve the full unrestricted model?
+
+Separately, is an equivalent critical population-estimation result already
+known? The complete proof credits Chen--Li--Qiao, Juditsky--Nemirovski,
+Polyanskiy--Wu and Lee--Valiant. Their ingredients and this particular
+application should be assessed separately.
+
+\clearpage
+\section*{What has been checked, and what remains open}
+\addcontentsline{toc}{section}{Verification and provenance}
+
+\begin{center}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.34\textwidth}>{\raggedright\arraybackslash}p{0.58\textwidth}}
+\toprule
+Claim or component & Verification boundary\\
+\midrule
+Original arbitrary-law RMS law & Both directions are Lean-checked,
+with coefficients $1/64$ and $512$. One budget-indexed upper family
+works for every gap law in the original observable experiment.\\[5pt]
+Single-coin base cost & The BC1 variance/null-work bound and its raw-moment
+version are Lean-checked for all rarities. The proof derives activation,
+good gaps, observable restarts and the BC2 entropy bound from actual
+seeded Bernoulli experiments.\\[5pt]
+Critical minimax lower bound & Lean-checked for the full rare-prior class.
+The proof constructs one common pair, transfers it to unrestricted
+population algorithms, and proves endpoint termination and testing.
+Budget nonemptiness and a trivial upper bound are also proved.\\[5pt]
+Critical upper and $\Psi$ comparison & Paper proofs with agent review.
+The matching upper construction and explicit unbounded ratio to $\Psi$
+remain unformalized; no external specialist review is claimed.\\[5pt]
+Numerical and exact finite checks & Sanity and reproducibility evidence.
+They do not certify the continuum theorem or distinguish its asymptotic
+rate from the proposed Psi rate.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The existing critical proof was reviewed by an adversarial agent. A second
+review disclosed that its author also wrote the base-cost component; it
+must not be counted as a fully independent review of that component.
+Model diversity is not established. The follow-up audit has not identified
+a blocking error in its initial pass, but that observation is not a
+certificate of correctness.
+
+\subsection*{Source and reproduction}
+The complete mathematical argument below is expanded from the four
+source files at published commit
+\texttt{b3f88e6bc02b3d59ec9fe99529688e2bd911e1db}.
+The accompanying build script verifies their existing SHA-256 lock before
+assembly. Editorial changes in this packet concern the title, this brief,
+and layout. The inherited mathematical statements and arguments are preserved;
+monospaced source paths and hashes are made line-breakable for typesetting.
+The verification table refers to the later formal checkpoint
+\nolinkurl{236eb2d4f286f8987f74f293c129258f517f2ec4}.
+
+\begin{itemize}
+\item \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/236eb2d4f286f8987f74f293c129258f517f2ec4/docs/CRITICAL_AUDIT.md}{Follow-up dependency audit and formalization boundary}.
+\item \href{https://github.com/davidiach/adaptive-threshold-estimation/tree/b3f88e6bc02b3d59ec9fe99529688e2bd911e1db/research/2026-10-27-nonlinear-critical}{Original proof bundle, source lock, and scoped reviews}.
+\item \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/236eb2d4f286f8987f74f293c129258f517f2ec4/docs/process/METHOD.md}{Process note and limits of the evidence}.
+\end{itemize}
+
+\noindent A matching characterization for arbitrary magnitude laws remains
+open. This packet concerns a fixed quadratic law. It does not establish
+uniformity as a power exponent approaches two, explicit useful constants,
+or practical superiority of an implementation.
+
+\clearpage
+\part*{Complete critical-law argument}
+\addcontentsline{toc}{part}{Complete critical-law argument}

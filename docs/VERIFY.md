@@ -1,5 +1,85 @@
 # Full verification commands
 
+The critical lower and both upper component verifiers use `lake build`, which
+rebuilds stale transitive imports before the kernel and axiom checks. Use
+`--sequential` to build one registered module at a time on constrained machines.
+The lower audit checks that all 43 statement examples are present exactly once;
+its source hashes cover the full local import closure. The upper audits also
+check the review-time dependency snapshots in their specification freeze records.
+These additions preserve the original frozen statements and published evidence.
+
+The critical upper classifier checkpoint has a scoped audit, run after the
+critical and distribution-blind builds below:
+
+```sh
+python tools/verify_critical_upper_components.py
+python -m unittest discover -s tools -p 'test_critical_upper_components.py' -v
+```
+
+It checks every declaration in the ten `CriticalUpper` modules, their
+transitive axioms, and the unchanged pre-proof full specification. The
+[component record](../results/critical_upper_components_001.json) does not
+certify the full upper theorem: calibration, unbiased telescoping, and
+budgeted realization remain pending. See the [exact scope](CRITICAL_AUDIT.md#upper-construction-checkpoint).
+
+The full distribution-blind upper theorem has a separate
+[verification record](BLIND_UPPER.md). After the baseline, Tier 6, and critical
+builds below, run:
+
+```sh
+python tools/verify_blind_upper_components.py
+python -m unittest discover -s tools -p 'test_blind_upper_components.py' -v
+```
+
+This rebuilds 45 modules plus three existing prerequisites and checks the
+final theorem against its unchanged frozen type, together with all 373
+declaration roots and their transitive axioms. It includes actual population
+cost/output identities, termination, budget selection and uniform RMS risk.
+The separate critical upper remains pending, with its completion flag false.
+
+The follow-up's scoped critical-proof components have a separate check:
+
+```sh
+python tools/verify_critical_components.py
+python -m unittest discover -s tools -p 'test_critical_components.py' -v
+```
+
+After building the existing Lean dependencies with the kernel commands below,
+this checks forty-three exact targets: entropy packing, the compact-convex common
+point, seeded Bernoulli prefix information, finite-prefix event transfer,
+the statistical finite-gap sign-entropy theorem, actual stopped-suffix
+independence from output and work, observable sequential restart laws and
+expected work, arbitrary fixed-count repetition with iid outputs and linear
+expected work, the constructed sign test's error and work bounds, and finite-gap
+real-output estimator entropy, constructed population moment identities, and
+conditional finiteness derived from population guarantees, the extended-variance
+floor, conversion of variance bounds to raw moments, and quantitative good-gap
+selection over the capped global class, the exact quadratic gap law, and its
+finite-scale null-cost product under explicit annulus-mass and scale-count
+hypotheses, activation normalization and its cost bounds, and the full critical
+single-coin raw-moment and variance base-cost theorems for every rarity,
+plus capped full-transcript reconstruction, canonical Hellinger affinity
+preservation, exact expected-work preservation, and actual population
+compactness, affine observation geometry, and continuous convex Hellinger
+constraints on the separated population-pair set, actual observable estimator
+realization from the affinity modulus, its critical null-work obstruction, and
+an admissible separated pair for each capped policy, its normalized
+Hellinger/work constraint, and one common separated pair valid simultaneously
+for all capped policies with arbitrary measurable seeds. Actual finite revealed
+mixtures, reseeding and cap invariance are proved in the dependency chain.
+It also checks the exact independent-tape population law, actual local work
+charging, and the common pair's transfer to every fixed finite coin family and
+deterministic horizon. It then checks the unrestricted transfer with arbitrary
+measurable population seeds, separate endpoint termination, eventual exact tape
+reconstruction, terminal affinity, algorithm and minimax lower rates, budget
+nonemptiness, and the trivial upper bound by rarity. The full rare-prior class
+is used in the budget and risk. The matching critical upper is still pending.
+It audits all 674
+declarations in these modules and writes fresh evidence under
+`.runtime/critical-components/`. The base-cost flag now certifies the actual
+single-coin theorem; the full critical minimax flag remains false. See the
+[follow-up audit](CRITICAL_AUDIT.md#current-formal-boundary).
+
 For the integrated research packages, including the full critical-law paper
 theorem and Psi counterexample:
 
@@ -115,6 +195,18 @@ not prove the paper theorem. Compile the standalone
 compilation is also not mathematical verification.
 
 ## Evidence and CI
+
+The [consolidated v5 manuscript](../paper/v5/README.md) is checked with
+`python tools/build_v5.py --check`. This verifies the inherited source
+identities, generated proofs, unique labels, and citation references.
+Its PDF is separately compiled and visually inspected; these checks do not
+extend the mathematical claims verified by Lean.
+
+The critical-law [review packet](../paper/critical-review/README.md) is assembled
+from the locked mathematical sources and a short editable overview. Check its
+source identity with `python tools/build_critical_review.py --check`. PDF
+compilation and visual inspection are documented with the packet and are
+separate from mathematical verification.
 
 | Check | Published record |
 |---|---|

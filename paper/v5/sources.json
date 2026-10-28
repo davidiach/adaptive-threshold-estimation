@@ -1,0 +1,16 @@
+{
+  "description": "Inherited v5 inputs, SHA-256 after CRLF-to-LF normalization. Original sources remain unchanged; editorial changes are explicit in tools/build_v5.py. The 713 exposition uses the two cited Markdown arguments.",
+  "baseline_commit": "b3f88e6bc02b3d59ec9fe99529688e2bd911e1db",
+  "formal_scope_commit": "236eb2d4f286f8987f74f293c129258f517f2ec4",
+  "sha256": {
+    "paper/paper.tex": "48f1a588ccad0d1a34cf900018442b81a2f5330cbf03b4eda29d8d8e1130652b",
+    "inputs/next-phase/report/research_note.tex": "3a1b1a0534bbda7d46f0b9ae0354ff911683df6392164eab8c931d1dbeed62c1",
+    "research/2026-10-27-route-a/construction.tex": "ff70296efd76f7b1fd0ac50d12eff1a22361b5bb566dc97c82836833640b3d00",
+    "proposals/constants/UNIFORM_PRODUCT_BOUND.md": "f5aedefccf34ad32d92ffa8e04de0c20b92a39f5a63641734c00426bdd774213",
+    "proposals/constants/BIAS_AUDIT.md": "07d0234a758f1476037859014fc6695a3dec2b8e7ccdd16286255ebbf0d4efca",
+    "research/2026-10-27-nonlinear-critical/unrestricted.tex": "b00b608ca1012148934e5717d2b10ee1d1379fa312a9f5bf06a0ac1e0e6fb853",
+    "research/2026-10-27-nonlinear-critical/base_cost.tex": "6c02a467ac9a8b989ccb3e3618a9bb567e332ed1d3830d70fca27c01e5e3265a",
+    "research/2026-10-27-nonlinear-critical/affine_comparison.tex": "c243a6ad355aeabb2fea3df195166faf066b95b4e5778e3bc02512d61a80f7c2",
+    "research/2026-10-27-nonlinear-critical/upper_bound.tex": "24c9e5aa5232c6079b462fa0421885a51c38a2ac07eda87c7c28f2f660d495b2"
+  }
+}
