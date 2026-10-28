@@ -17,7 +17,7 @@ toward the expected-work budget.
 
 Let $R_\mu(B)$ be the minimax root-mean-square error over all measurable sign
 laws at uniform expected budget $B\ge1$, and define
-$\omega_\mu(h)=\mathbb E_\mu\min\{1,h/D\}$ for $h>0$. Then
+$\omega_\mu(h)=\mathbb E_\mu[\min(1,h/D)]$ for $h>0$. Then
 
 ```math
 \frac{1}{64}\,\omega_\mu(B^{-1/2})
