@@ -297,6 +297,14 @@ def score_blocks(counts: np.ndarray, level: int) -> Tuple[np.ndarray, np.ndarray
     return (fine - coarse) / level_probability(level), prefix[fine_stop]
 
 
+# Simulated calls are drawn at most this many at a time, so memory stays
+# bounded however large the budget is.
+MAX_CHUNK = 2 ** 22
+# Each simulated run makes about 2 * budget / 4 calls or more, so larger
+# budgets would not finish in practice.
+MAX_SIMULATED_BUDGET = 2.0 ** 40
+
+
 def _calls(population: Population, level_cap: int, count: int,
            rng: np.random.Generator) -> Tuple[np.ndarray, np.ndarray]:
     """`count` independent estimator calls on fresh simulated items."""
@@ -333,9 +341,13 @@ def _simulate_run(population: Population, level_cap: int,
             flips += int(costs.sum())
             items += chunk
             production += chunk
-            chunk *= 2
-    values, costs = _calls(population, level_cap, production, rng)
-    return float(values.mean()), flips + int(costs.sum()), items + production
+            chunk = min(2 * chunk, MAX_CHUNK)
+    total = 0.0
+    for start in range(0, production, MAX_CHUNK):
+        values, costs = _calls(population, level_cap, min(MAX_CHUNK, production - start), rng)
+        total += float(values.sum())
+        flips += int(costs.sum())
+    return total / production, flips, items + production
 
 
 @dataclass(frozen=True)
@@ -361,9 +373,11 @@ def simulate(population: Population, budget: float, runs: int = 200,
     """Run the estimator `runs` times on simulated items drawn from the guess."""
     if not isinstance(runs, int) or runs < 2:
         raise ValueError("use at least 2 runs")
+    level_cap = budget_level(budget)
+    if budget > MAX_SIMULATED_BUDGET:
+        raise ValueError(f"budgets above {MAX_SIMULATED_BUDGET:,.0f} flips are too large to simulate")
     if rng is None:
         rng = np.random.default_rng(seed)
-    level_cap = budget_level(budget)
     results = np.array([_simulate_run(population, level_cap, rng) for _ in range(runs)])
     raw, flips, items = results[:, 0], results[:, 1], results[:, 2]
     truth = population.true_fraction()
@@ -439,6 +453,8 @@ def plan_target(population: Population, target: float, runs: int = 200,
     """
     _validate_target(target)
     budget_level(max_budget)
+    if max_budget > MAX_SIMULATED_BUDGET:
+        raise ValueError(f"budgets above {MAX_SIMULATED_BUDGET:,.0f} flips are too large to simulate")
     if not isinstance(runs, int) or runs < 2:
         raise ValueError("use at least 2 runs")
     majority = majority_plan_for_target(population, target)

@@ -122,7 +122,9 @@ proven method at doubling budgets until it meets the target too, giving up at 64
 times the simple plan's flips.
 
 Use `--runs` to change the number of simulated runs (default 200) and `--seed` to
-change the simulation's seed.
+change the simulation's seed. With `--target-error`, `--max-budget` (default
+16,777,216) caps the doubling search. Simulation time grows with the budget, and
+budgets above $2^{40}$ flips are rejected as too large to simulate.
 
 ## 2. Run it on your items
 

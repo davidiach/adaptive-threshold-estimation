@@ -12,7 +12,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from threshold_toolkit.__main__ import main, read_rates
 from threshold_toolkit.planner import (EvenlySpread, GuessedRates, _calls, _majority_plan,
-                                       _odd_flip_counts, binomial_tail,
+                                       _odd_flip_counts, _simulate_run, binomial_tail,
                                        difficulty, floor_budget, majority_plan_for_budget,
                                        majority_plan_for_target, plan_target, simulate)
 
@@ -210,6 +210,28 @@ class SimulationTests(unittest.TestCase):
         self.assertGreater(sim.mean_flips, 256 * 0.7)
         self.assertLessEqual(sim.flips_p90, sim.flips_p99)
 
+    def test_chunked_runs_keep_the_calibration(self):
+        # Tiny chunks split both pilot streams and the production average.
+        population = GuessedRates([0.85, 0.6, 0.52, 0.4])
+        level_cap = 4
+        exact = np.mean([exact_positive_probability(p, 2 ** level_cap) for p in population.rates])
+        rng = np.random.default_rng(5)
+        with patch("threshold_toolkit.planner.MAX_CHUNK", 8):
+            runs = np.array([_simulate_run(population, level_cap, rng) for _ in range(4000)])
+        raw, flips = runs[:, 0], runs[:, 1]
+        self.assertLess(abs(raw.mean() - exact), 5 * raw.std() / math.sqrt(raw.size))
+        # Expected total flips are exactly 4 * cap - (mean flips per call).
+        _, costs = _calls(population, level_cap, 1_000_000, rng)
+        expected = 4 * 2 ** level_cap - costs.mean()
+        self.assertLess(abs(flips.mean() - expected), 5 * flips.std() / math.sqrt(flips.size))
+
+    def test_budgets_too_large_to_simulate_are_rejected(self):
+        population = GuessedRates([0.9, 0.3])
+        with self.assertRaises(ValueError):
+            simulate(population, 1e300, runs=2)
+        with self.assertRaises(ValueError):
+            plan_target(population, 0.1, runs=2, max_budget=1e300)
+
 
 class CommandLineTests(unittest.TestCase):
     def run_cli(self, *args):
@@ -249,12 +271,19 @@ class CommandLineTests(unittest.TestCase):
         for args in (("--rates", "0.5", "--budget", "1000"),
                      ("--rates", "0.9,0.3", "--budget", "inf"),
                      ("--rates", "0.9,0.3", "--target-error", "inf"),
-                     ("--rates", "0.9,0.3", "--target-error", "1e200")):
+                     ("--rates", "0.9,0.3", "--target-error", "1e200"),
+                     ("--rates", "0.9,0.3", "--budget", "1e300")):
             with self.subTest(args=args), contextlib.redirect_stderr(io.StringIO()) as err:
                 code, text = self.run_cli(*args)
                 self.assertEqual(code, 2)
                 self.assertIn("error:", err.getvalue())
                 self.assertNotIn("no budget", text)
+
+    def test_whole_percentages_are_not_written_as_exponents(self):
+        code, text = self.run_cli("--rates", "0.95,0.05", "--target-error", "1", "--runs", "2")
+        self.assertEqual(code, 0)
+        self.assertIn("about 100 percentage points", text)
+        self.assertNotIn("e+02", text)
 
     def test_read_rates(self):
         self.assertEqual(read_rates("0.1, 0.2\n# note\n0.3 0.4;0.5"), [0.1, 0.2, 0.3, 0.4, 0.5])
