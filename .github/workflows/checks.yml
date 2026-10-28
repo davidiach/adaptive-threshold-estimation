@@ -116,7 +116,16 @@ jobs:
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
       - name: Download pinned Mathlib cache
         working-directory: lean
-        run: lake exe cache get
+        run: |
+          for attempt in 1 2 3; do
+            if lake exe cache get; then
+              exit 0
+            fi
+            if [ "$attempt" -eq 3 ]; then
+              exit 1
+            fi
+            sleep 10
+          done
       - name: Build sequentially and require complete kernel audit
         run: python tools/verify_lean_checkpoint.py --sequential
       - name: Verify unscored arithmetic for the paper bound
@@ -147,6 +156,7 @@ jobs:
         if: always()
         with:
           name: lean-verification
+          include-hidden-files: true
           path: |
             results/lean_score.json
             results/lean_checkpoint.json
