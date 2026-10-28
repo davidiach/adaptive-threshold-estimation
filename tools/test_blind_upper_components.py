@@ -47,9 +47,11 @@ class BlindUpperAuditTests(unittest.TestCase):
 
     def test_sorry_warning_rejected(self):
         # Anonymous examples are not axiom-audited, so the warning is the evidence.
-        output = "\n".join(self.lines + ["Audit.lean:3:0: warning: declaration uses 'sorry'"])
-        with self.assertRaisesRegex(ValueError, "sorry"):
-            validate_reports(output, 0, self.roots)
+        for warning in ("Audit.lean:3:0: warning: declaration uses `sorry`",
+                        "Audit.lean:3:0: warning: declaration uses 'sorry'"):
+            output = "\n".join(self.lines + [warning])
+            with self.subTest(warning=warning), self.assertRaisesRegex(ValueError, "sorry"):
+                validate_reports(output, 0, self.roots)
 
     def test_primed_root_names_are_read(self):
         output = "'A.foo'' depends on axioms: [propext]\n'A.bar' does not depend on any axioms"
@@ -59,6 +61,7 @@ class BlindUpperAuditTests(unittest.TestCase):
     def test_proof_escapes_missed_by_the_frozen_pattern_rejected(self):
         hidden = "set_option debug.skipKernelTC true\ntheorem hidden : False := by sorry\n"
         for source in ("example : Statement := by admit\n",
+                       "set_option warn.sorry false in\nexample : Statement := by stop rfl\n",
                        'def a : String := "/-"\n' + hidden + 'def b : String := "-/"\n',
                        'def a : String := "--" ; run_cmd pure ()\n',
                        '#print "\'A.foo\' does not depend on any axioms"\n'):

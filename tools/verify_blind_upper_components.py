@@ -28,10 +28,14 @@ DECLARATION = re.compile(
     r"([A-Za-z_][\w']*(?:\.[A-Za-z_][\w']*)*)", re.M)
 IMPORT = re.compile(r"^import\s+([\w.]+)\s*$", re.M)
 # The frozen Tier 6 pattern misses the `admit` tactic, which is Lean's synonym
-# for `sorry`. Audited sources also contain no string literals: strip_comments
-# does not parse strings, so "/-" or "--" inside one could hide the code after
-# it, and a printed string could forge an axiom report in the audit output.
-FORBIDDEN = re.compile(TIER6_FORBIDDEN.pattern + r'|\badmit\b|"', TIER6_FORBIDDEN.flags)
+# for `sorry`, and `set_option warn.sorry`, which silences SORRY_WARNING below.
+# Audited sources also contain no string literals: strip_comments does not
+# parse strings, so "/-" or "--" inside one could hide the code after it, and a
+# printed string could forge an axiom report in the audit output.
+FORBIDDEN = re.compile(TIER6_FORBIDDEN.pattern + r'|\badmit\b|\bwarn\.sorry\b|"',
+                       TIER6_FORBIDDEN.flags)
+# Lean warns "declaration uses `sorry`" (backticks in the pinned toolchain).
+SORRY_WARNING = re.compile(r"declaration uses [`']")
 # Unlike the frozen Tier 6 pattern, this also reads primed names such as foo'.
 REPORT = re.compile(
     r"'(\S+?)'\s+(depends on axioms:\s*\[(.*?)\]|does not depend on any axioms)", re.S)
@@ -79,7 +83,7 @@ def validate_dependency_freeze(specification: Path, freeze: dict) -> None:
 def validate_reports(output: str, returncode: int, expected: set[str]) -> dict[str, list[str]]:
     if returncode:
         raise ValueError("Lean audit exited unsuccessfully")
-    if "declaration uses 'sorry'" in output:
+    if SORRY_WARNING.search(output):
         raise ValueError("Lean audit reported a declaration that uses sorry")
     reports: dict[str, list[str]] = {}
     for name, _kind, axioms in REPORT.findall(output):

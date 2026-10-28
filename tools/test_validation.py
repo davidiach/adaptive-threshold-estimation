@@ -181,7 +181,7 @@ class UniformArithmeticAuditTests(unittest.TestCase):
 
     def test_sorry_warning_failure_and_missing_lemma_rejected(self):
         for output, returncode in (
-                ("\n".join(self.lines + ["warning: declaration uses 'sorry'"]), 0),
+                ("\n".join(self.lines + ["warning: declaration uses `sorry`"]), 0),
                 ("\n".join(self.lines), 1), ("\n".join(self.lines[1:]), 0)):
             with self.subTest(output=output[-40:], returncode=returncode):
                 self.assertFalse(arithmetic.check(output, returncode)[0])

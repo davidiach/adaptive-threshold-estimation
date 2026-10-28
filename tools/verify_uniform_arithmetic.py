@@ -4,7 +4,7 @@ from pathlib import Path
 import re
 import subprocess
 
-from verify_blind_upper_components import FORBIDDEN, strip_comments
+from verify_blind_upper_components import FORBIDDEN, SORRY_WARNING, strip_comments
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "proposals/constants/UniformArithmetic.lean"
@@ -23,7 +23,7 @@ def check(output, returncode):
     for match in REPORT.finditer(output):
         duplicate |= match[1] in reports
         reports[match[1]] = [] if match[3] is None else [s.strip() for s in match[3].split(',') if s.strip()]
-    ok = (returncode == 0 and not duplicate and "declaration uses 'sorry'" not in output
+    ok = (returncode == 0 and not duplicate and not SORRY_WARNING.search(output)
           and set(reports) == NAMES and all(set(a) <= ALLOWED for a in reports.values()))
     return ok, reports
 
