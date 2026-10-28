@@ -252,8 +252,13 @@ adds an observable asymmetric classifier, its actual Bernoulli-tape error and
 flip bounds, integration under every measurable prior with total mass at most
 `rho`, and actual population bias and second-moment bounds. This dyadic
 classifier is an alternative to the paper's likelihood-bank construction.
-Parameter calibration, unbiased telescoping, and a budgeted estimator in the
-original model remain open; these components do not prove the critical upper.
+The [second component checkpoint](../results/critical_upper_components_002.json)
+adds rarity-dependent calibration and an observable unbiased random-level
+single-coin estimator. Its actual population mean is the sign mass, its
+extended second moment is at most `28*rho`, and its expected flip count is at
+most `112000000*criticalLogFactor(rho)`. Fresh-coin aggregation within every
+budget and realization of that aggregate in the original Tier 6 model remain
+open; these components do not prove the full critical upper theorem.
 
 ## Population and nonlinear feedback follow-ups
 

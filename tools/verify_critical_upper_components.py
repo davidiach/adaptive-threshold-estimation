@@ -1,4 +1,4 @@
-"""Check critical-upper classifier components; the full upper theorem is pending.
+"""Check critical-upper estimator components; the full upper theorem is pending.
 
 Lake rebuilds any stale prerequisite, so earlier critical and distribution-blind
 runs only save time. Every declaration in CriticalUpper is kernel checked and
@@ -24,15 +24,19 @@ LEAN = ROOT / 'lean'
 SOURCE = LEAN / 'ThresholdHC/CriticalUpper'
 MODULES = ('Specification', 'GapIntegration', 'CappedCost', 'WeightedCost',
            'ScreenModel', 'ScreenError', 'ScreenWork', 'ScreenCoin',
-           'ScreenPopulation', 'ScreenMoments')
+           'ScreenPopulation', 'ScreenMoments', 'Parameters', 'Calibration',
+           'CoupledModel', 'CoinLaw', 'Increment', 'Unbiased', 'UnbiasedWork',
+           'UnbiasedPopulation')
 PREFIX = 'ThresholdHC.CriticalUpper.'
 SPECIFICATION_SHA256 = '2e6482ac338da26b5ceaf4bfac38cf63bff401aa934e43ea19f21368625a21ae'
 FREEZE = ROOT / 'tools/critical_upper_specification_freeze.json'
 SCOPE = ('Observable asymmetric single-coin classifiers, exact quadratic-law '
          'integration, population error/work bounds under global rarity, and '
-         'actual population bias and second moments. Parameter calibration, '
-         'unbiased telescoping, budgeted aggregation, and the full critical '
-         'upper theorem are not certified.')
+         'parameter calibration, observable random-level estimation, exact '
+         'population unbiasedness, extended second moment at most 28*rho, and '
+         'actual expected work at most 112000000*criticalLogFactor(rho). '
+         'Budgeted fresh-coin aggregation, its Tier 6 realization, and the '
+         'full critical upper theorem are not certified.')
 
 
 def validate_sources() -> tuple[list[Path], set[str]]:
@@ -64,7 +68,10 @@ def validate_sources() -> tuple[list[Path], set[str]]:
         'CriticalUpperStatement', 'CriticalMinimaxUpperStatement',
         'criticalCappedCost_weighted_le', 'screen_coin_error', 'screen_coin_work',
         'screen_population_error_le', 'screen_population_work_le',
-        'screen_population_bias_le', 'screen_population_second_moment_le')}
+        'screen_population_bias_le', 'screen_population_second_moment_le',
+        'calibratedScreen_error', 'calibratedScreen_work',
+        'criticalUnbiased_population_integrable', 'criticalUnbiased_population_mean',
+        'criticalUnbiased_population_second_moment', 'criticalUnbiased_population_work')}
     if not required <= set(roots):
         raise ValueError('Missing component target')
     return paths, set(roots)

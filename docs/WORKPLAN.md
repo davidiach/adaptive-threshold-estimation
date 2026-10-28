@@ -3,7 +3,9 @@
 This is the active completion ledger for the follow-up authorized on 27 October
 2026. The starting published commit is `b3f88e6bc02b3d59ec9fe99529688e2bd911e1db`.
 It preserves the full requested scope; a partial formalization does not complete
-this plan. New work is published on `research/verification-consolidation-20261027`.
+this plan. The original checkpoint is on `research/verification-consolidation-20261027`.
+The next focused review unit, based on that branch at `2162210`, is on
+`research/critical-unbiased-estimator-20261028`.
 
 ## Current proof boundary
 
@@ -16,12 +18,13 @@ Lean. The manuscript and review packet now reference the completed-upper
 checkpoint `236eb2d`; final review of the full requested scope remains.
 Elapsed time and component counts do not establish completion.
 
-The critical upper construction now has observable asymmetric classifiers and
-population error, expected-flip, bias, and second-moment bounds under the full
-global rarity constraint. This is a component checkpoint, described in
+The critical upper construction now has calibrated observable classifiers and
+an unbiased random-level single-coin estimator under the full global rarity
+constraint. Its actual population second moment is at most `28*rho`, and its
+expected flip count is at most `112000000*criticalLogFactor(rho)`. Integrability,
+population transfer and both bounds are proved; see
 [the critical audit](CRITICAL_AUDIT.md#upper-construction-checkpoint).
-The remaining gates are parameter calibration at the claimed rate, the unbiased
-random-level estimator, fresh-coin aggregation within every budget, realization
+The remaining gates are fresh-coin aggregation within every budget, realization
 in the original Tier 6 experiment, and the explicit Psi comparison. The unchanged
 [full upper specification](../lean/ThresholdHC/CriticalUpper/Specification.lean)
 is present but has no proof yet.

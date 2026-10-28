@@ -25,15 +25,36 @@ allows positive mass to concentrate on the smallest gaps.
 [ScreenMoments.lean](../lean/ThresholdHC/CriticalUpper/ScreenMoments.lean)
 connects the bounds to the actual population mean and extended second moment:
 `|E Z-theta|<=e` and `E Z^2<=rho+e`. Integrability is proved before the real
-expectation identities are used. The component audit is reproduced with
-`python tools/verify_critical_upper_components.py`; its
-[record](../results/critical_upper_components_001.json) retains source hashes
-and transitive axiom reports.
+expectation identities are used. The [first component record](../results/critical_upper_components_001.json)
+preserves that classifier checkpoint.
+
+[Calibration.lean](../lean/ThresholdHC/CriticalUpper/Calibration.lean) chooses
+the cap and asymmetric thresholds using the known rarity and level. At level
+`j`, the population error is at most `3*rho/16^(j+1)` and expected flips are at
+most `500000*criticalLogFactor(rho)*(j+1)^2`.
+
+[CoupledModel.lean](../lean/ThresholdHC/CriticalUpper/CoupledModel.lean) constructs
+an observable stopped procedure using an independent geometric level. It runs
+the adjacent classifiers on the same coin prefix and returns their difference
+divided by the level probability, with the base classifier at level zero.
+Both classifiers have stopped after the larger of their observed flip counts;
+no independence between these two outputs is assumed.
+
+[UnbiasedPopulation.lean](../lean/ThresholdHC/CriticalUpper/UnbiasedPopulation.lean)
+proves integrability and exact mean `theta`, extended second moment at most
+`28*rho`, and actual expected flips at most
+`112000000*criticalLogFactor(rho)`. These hold for every measurable `[0,1]` prior
+with total mass at most `rho`, for `0<rho<=1`. The population-input map transfers
+the independent level/tape calculation to the existing hidden-coin experiment.
+The large work constant is a coarse universal bound, not an optimized constant.
+
+The component audit is reproduced with `python tools/verify_critical_upper_components.py`.
+The [second record](../results/critical_upper_components_002.json) retains source
+hashes and transitive axiom reports for all eighteen modules.
 
 The [full specification](../lean/ThresholdHC/CriticalUpper/Specification.lean)
 was frozen before this construction and is unchanged. It still has no proof.
-The remaining obligations are parameter calibration, an unbiased random-level
-estimator, independent fresh-coin aggregation within every budget, and realization
+The remaining obligations are independent fresh-coin aggregation within every budget and realization
 in the original observable experiment. The explicit Psi comparison is also
 unfinished. The component record keeps `full_critical_upper_verified=false`.
 
