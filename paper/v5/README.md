@@ -1,12 +1,12 @@
 # Consolidated version 5
 
-[Read the manuscript](paper.pdf) Â· [Open the LaTeX project](main.tex)
+[Read the manuscript](paper.pdf) · [Open the LaTeX project](main.tex)
 
 This is the current combined research draft: the original minimax law and
 unbiased characterization, the 713 construction, rare-event power regimes,
 and the critical quadratic result correcting the matching-Psi conjecture.
 The main statements are in sections 2, 7 and 11. Section 12 gives the exact
-formal verification boundary. Appendices Aâ€“C contain the longer rare-event
+formal verification boundary. Appendices A–C contain the longer rare-event
 proofs, including their published external inputs.
 
 The original RMS law is Lean-checked in both directions, with lower coefficient
