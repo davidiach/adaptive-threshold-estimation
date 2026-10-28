@@ -1,5 +1,14 @@
 # Freeze log
 
+## Upper specification dependency checks — 28 October 2026 review
+
+The original upper specification files and their freeze timestamps are unchanged.
+The two upper freeze records now also record the project imports at PR #3's
+`2162210` checkpoint: 31 distribution-blind dependencies and 137 critical-upper
+dependencies. These hashes were added during this review, not at the original
+freeze times. Both verifiers reject changes to that complete dependency set.
+No frozen Lean file or existing lock manifest was changed.
+
 Record every change made to a frozen file BEFORE `tools/freeze.py --init`
 (Phase 0 compile fixes only). After freezing, changes need David's approval
 and go here too, with the approval noted.
