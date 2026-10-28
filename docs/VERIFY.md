@@ -8,7 +8,7 @@ its source hashes cover the full local import closure. The upper audits also
 check the review-time dependency snapshots in their specification freeze records.
 These additions preserve the original frozen statements and published evidence.
 
-The critical upper estimator checkpoint has a scoped audit, run after the
+The full critical upper theorem has a dedicated audit, run after the
 critical and distribution-blind builds below:
 
 ```sh
@@ -16,12 +16,13 @@ python tools/verify_critical_upper_components.py
 python -m unittest discover -s tools -p 'test_critical_upper_components.py' -v
 ```
 
-It checks every declaration in the eighteen `CriticalUpper` modules, their
-transitive axioms, and the unchanged pre-proof full specification. The
-[component record](../results/critical_upper_components_002.json) includes
-calibration and the actual population unbiased estimator, second moment and
-expected work. It does not certify the full upper theorem: budgeted fresh-coin
-aggregation and its Tier 6 realization remain pending. See the
+It checks every declaration in the 26 `CriticalUpper` modules, their transitive
+axioms, and both exact full targets against the unchanged pre-proof
+specification. The [full record](../results/critical_upper_components_003.json)
+includes the unbiased estimator, independent fresh-coin aggregation, actual
+controller work/output identities, original-experiment realization, and every
+budget regime. The universal upper coefficient is 100000. The explicit Psi
+comparison is not certified. See the
 [exact scope](CRITICAL_AUDIT.md#upper-construction-checkpoint).
 
 The full distribution-blind upper theorem has a separate
@@ -37,7 +38,7 @@ This rebuilds 45 modules plus three existing prerequisites and checks the
 final theorem against its unchanged frozen type, together with all 373
 declaration roots and their transitive axioms. It includes actual population
 cost/output identities, termination, budget selection and uniform RMS risk.
-The separate critical upper remains pending, with its completion flag false.
+The critical upper has its own full audit above; historical records retain their original completion flags.
 
 The follow-up's scoped critical-proof components have a separate check:
 
@@ -75,7 +76,7 @@ deterministic horizon. It then checks the unrestricted transfer with arbitrary
 measurable population seeds, separate endpoint termination, eventual exact tape
 reconstruction, terminal affinity, algorithm and minimax lower rates, budget
 nonemptiness, and the trivial upper bound by rarity. The full rare-prior class
-is used in the budget and risk. The matching critical upper is still pending.
+is used in the budget and risk. The matching critical upper has the separate audit above.
 It audits all 674
 declarations in these modules and writes fresh evidence under
 `.runtime/critical-components/`. The base-cost flag now certifies the actual

@@ -4,8 +4,10 @@ This is the active completion ledger for the follow-up authorized on 27 October
 2026. The starting published commit is `b3f88e6bc02b3d59ec9fe99529688e2bd911e1db`.
 It preserves the full requested scope; a partial formalization does not complete
 this plan. The original checkpoint is on `research/verification-consolidation-20261027`.
-The next focused review unit, based on that branch at `2162210`, is on
-`research/critical-unbiased-estimator-20261028`.
+The unbiased-estimator review unit is [PR #4](https://github.com/davidiach/adaptive-threshold-estimation/pull/4),
+based on that branch at `2162210`. The full critical upper proof is a further
+focused unit on `research/critical-minimax-upper-20261028`, based on PR #4's
+verified checkpoint `678e81c`.
 
 ## Current proof boundary
 
@@ -13,9 +15,10 @@ The original distribution-blind upper theorem is now proved against its
 unchanged specification: one observable family satisfies the budget and RMS
 bound for every gap law. The [full audit](../results/blind_upper_components_002.json)
 includes almost-sure execution identities and every budget. The matching
-critical rare-event upper and explicit Psi comparison remain unfinished in
-Lean. The manuscript and review packet now reference the completed-upper
-checkpoint `236eb2d`; final review of the full requested scope remains.
+critical rare-event upper is also proved against its frozen specification,
+with coefficient 100000 in the original observable experiment. The explicit
+Psi comparison remains unfinished in Lean. The manuscript and review packet
+still reference checkpoint `236eb2d`; their final refresh and review remain.
 Elapsed time and component counts do not establish completion.
 
 The critical upper construction now has calibrated observable classifiers and
@@ -24,16 +27,18 @@ constraint. Its actual population second moment is at most `28*rho`, and its
 expected flip count is at most `112000000*criticalLogFactor(rho)`. Integrability,
 population transfer and both bounds are proved; see
 [the critical audit](CRITICAL_AUDIT.md#upper-construction-checkpoint).
-The remaining gates are fresh-coin aggregation within every budget, realization
-in the original Tier 6 experiment, and the explicit Psi comparison. The unchanged
+Fresh-coin aggregation, its exact work/output identities in the original
+experiment, and every budget regime are now proved. The unchanged
 [full upper specification](../lean/ThresholdHC/CriticalUpper/Specification.lean)
-is present but has no proof yet.
+is inhabited by [the final theorem](../lean/ThresholdHC/CriticalUpper/Full.lean).
+The remaining proof gate is the explicit comparison with the actual variational
+Psi objective, followed by the final manuscript and verification refresh.
 
 | Work | Completion evidence | Current state |
 |---|---|---|
 | Adversarial audit of the critical quadratic theorem | Trace every proof dependency, record objections and their resolution, distinguish paper arguments from kernel checks | Initial source audit in [CRITICAL_AUDIT.md](CRITICAL_AUDIT.md); further verification in progress |
 | Specialist review package | Short overview, complete consolidated proof, precise questions, source and prior-art references | [Prepared](../paper/critical-review/README.md): three-page brief plus complete proof, 16-page PDF compiled and visually checked; external review itself remains pending |
-| Formal critical argument | Exact statistical specification, proved dependency chain, kernel and axiom audit; scalar lemmas alone do not satisfy this item | Critical single-coin variance and raw-moment base-cost theorems proved for every rarity. Capped finite-observation reduction now proves full seed/transcript reconstruction and preservation of canonical affinity and expected work. Actual population compactness, affine observation geometry and continuous convex Hellinger constraints on a common separated-pair set are proved, together with the abstract common-point theorem. The finite convex RMS comparison, actual observable one-run estimator and separated pair for each capped policy are now proved. Affinity/work normalization, actual revealed mixtures with heterogeneous seeds and caps, and one common separated pair for all capped policies are now proved. Exact finite population simulation laws, local expected-work charging and the common pair's finite-horizon transfer are now proved. Arbitrary measurable population seeds, unrestricted creation, separate endpoint termination, the terminal affinity limit, and the critical minimax lower bound are now proved in the original observable experiment for the full rare-prior class. Nonempty budgets and the trivial upper bound by rarity are also proved. The matching critical upper construction remains pending |
+| Formal critical argument | Exact statistical specification, proved dependency chain, kernel and axiom audit; scalar lemmas alone do not satisfy this item | The base-cost theorem, common hard pair, unrestricted critical minimax lower bound, and matching upper bound are proved in the original observable experiment for the full rare-prior class. See the [lower audit](../results/critical_components_016.json) and [full upper audit](../results/critical_upper_components_003.json). The explicit Psi comparison remains pending |
 | Original distribution-blind upper bound | One budget-indexed observable algorithm independent of the magnitude/sign laws, realized in the original experiment; uniform work and RMS bounds; exact type and axiom audit | [Complete](BLIND_UPPER.md): the frozen full statement is inhabited by one budget-indexed observable family, with coefficient 512. Actual execution, almost-sure cost/output identities, uniform budget and RMS bounds are proved; exact-type and transitive-axiom audit passed |
 | Consolidated v5 manuscript | Original minimax law, unbiasedness, 713 bound, rare-event regimes, critical result and correction to the Psi conjecture; accurate verification labels; compiled and visually checked | [Written](../paper/v5/README.md): 56-page manuscript with complete source-derived proof appendices, explicit editorial changes, source checks, and rendered-page review. No separate review of the new consolidation is claimed |
 | Process note | Reproducible account of construction, frozen statements, semantic review, failed approaches, reviewer dependence, and limits | [Written](process/METHOD.md); update verification boundaries as further work lands |
@@ -121,3 +126,7 @@ The common-pair checkpoint `d726b00d4ed552cc03e49a0eaf33cdedbb73ecbb`
 passed all three jobs in
 [run 40546208702](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40546208702),
 including the full Lean audit and the research and numerical evidence jobs.
+
+The unbiased-estimator checkpoint `678e81c` in PR #4 passed all three Linux
+jobs in [run 40667339241](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40667339241).
+The later full-upper branch requires its own CI result.

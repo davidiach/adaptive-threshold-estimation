@@ -48,15 +48,38 @@ with total mass at most `rho`, for `0<rho<=1`. The population-input map transfer
 the independent level/tape calculation to the existing hidden-coin experiment.
 The large work constant is a coarse universal bound, not an optimized constant.
 
-The component audit is reproduced with `python tools/verify_critical_upper_components.py`.
-The [second record](../results/critical_upper_components_002.json) retains source
-hashes and transitive axiom reports for all eighteen modules.
+The [second record](../results/critical_upper_components_002.json) preserves the
+eighteen-module single-coin checkpoint; it did not certify the full upper theorem.
+
+[Average.lean](../lean/ThresholdHC/CriticalUpper/Average.lean) constructs an iid
+array of random levels and fresh-coin tapes. An average of `n+1` calls has MSE
+at most `28*rho/(n+1)` and expected work at most
+`(n+1)*112000000*criticalLogFactor(rho)`. The measurable
+[fixed-count controller](../lean/ThresholdHC/CriticalUpper/FixedModel.lean)
+requests only the next observable flip and stops each call from its observed
+prefix. Its [execution proof](../lean/ThresholdHC/CriticalUpper/FixedExecution.lean)
+and [exact identities](../lean/ThresholdHC/CriticalUpper/FixedIdentities.lean)
+identify its actual total flips and output with that array calculation.
+[Simulation.lean](../lean/ThresholdHC/CriticalUpper/Simulation.lean) transfers
+the joint observable law to the original Tier 6 experiment; no realization or
+integrability conclusion is assumed.
+
+Write `W=112000000*criticalLogFactor(rho)`. For `B>=W/rho`, the
+[budget rule](../lean/ThresholdHC/CriticalUpper/Budget.lean) averages
+`floor(B/(2*W))+1` calls. Otherwise it uses the zero-work, zero-output estimator.
+Both regimes satisfy the exact expected budget and a common RMS bound with
+coefficient 100000. This loose constant is not claimed optimal.
 
 The [full specification](../lean/ThresholdHC/CriticalUpper/Specification.lean)
-was frozen before this construction and is unchanged. It still has no proof.
-The remaining obligations are independent fresh-coin aggregation within every budget and realization
-in the original observable experiment. The explicit Psi comparison is also
-unfinished. The component record keeps `full_critical_upper_verified=false`.
+was frozen before the construction and remains byte-identical.
+[Full.lean](../lean/ThresholdHC/CriticalUpper/Full.lean) inhabits both
+`CriticalUpperStatement` and `CriticalMinimaxUpperStatement`, for every
+`0<rho<=1/4` and `B>=1`, with one universal constant and common seed space.
+The [third record](../results/critical_upper_components_003.json) checks all
+26 modules, both exact frozen types, and every declaration's transitive axioms.
+Reproduce it with `python tools/verify_critical_upper_components.py`.
+The explicit comparison with the variational Psi objective is still unfinished;
+the record keeps `explicit_psi_comparison_verified=false`.
 
 ## Scope and source identity
 
@@ -85,7 +108,7 @@ also proved. The interacting-population transfer now permits arbitrary
 measurable population seeds and unrestricted creation. Separate endpoint
 termination and the terminal affinity limit yield the full critical minimax
 lower bound in the original observable model, over the full rare-prior class.
-The matching critical upper remains a paper argument. The capped finite-observation reduction is also proved,
+The matching critical upper is also proved, as detailed above. The capped finite-observation reduction is also proved,
 including full-transcript reconstruction, canonical affinity, and expected
 work. The dependency details below explain this boundary.
 
