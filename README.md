@@ -8,6 +8,13 @@ proofs and explicit verification boundaries. The critical result also has a
 [specialist review packet](paper/critical-review/review.pdf) with a four-page
 brief. The [original v4](paper/paper.pdf) and historical evidence remain preserved.
 
+**Use it.** The [toolkit](toolkit/README.md) is a budget calculator with two
+ready-to-run estimators, for questions like "what share of test questions does
+a model answer correctly more often than not?". Building it showed that at
+everyday budgets a simple fixed plan, majority vote over a set number of tries
+per item, needs far fewer tries than the proven no-tuning method. The
+calculator compares the two and gives the proven limits.
+
 **The problem.** A coin's hidden gap $`D\sim\mu`$ on $`(0,1/2]`$ and sign $`S\in\{0,1\}`$ determine $`P=\tfrac12+(2S-1)D`$. Estimate $`\theta=\Pr(P>1/2)`$ by adaptive flips, allowing revisits and interleaving; cost is expected flips.
 
 **Main results.** Set $`\omega_\mu(h)=\mathbb E_\mu\min\{1,h/D\}`$ for $`h>0`$ and $`I=\mathbb E_\mu[D^{-1}]`$. Write $`R_\mu(B)`$ for minimax RMS error at uniform expected budget $`B\ge1`$.
@@ -112,6 +119,7 @@ stated evidence levels.
 | [paper/](paper/) | Current v5 manuscript, critical review packet, and preserved v4. |
 | [lean/](lean/) | Statements, proofs, and pinned Mathlib dependencies. |
 | [docs/RESULTS.md](docs/RESULTS.md), [docs/VERIFY.md](docs/VERIFY.md) | Claim scopes, source pointers, and verification commands. |
+| [toolkit/](toolkit/README.md) | Budget calculator and ready-to-run estimators, with tests. |
 | [constants/](constants/), [benchmark/](benchmark/) | Numerical evaluators and benchmark code. |
 | [results/](results/), [inputs/](inputs/) | Recorded evidence and preserved inputs. |
 | [proposals/](proposals/), [docs/process/](docs/process/) | Supporting arguments, reviews, and research history. |
