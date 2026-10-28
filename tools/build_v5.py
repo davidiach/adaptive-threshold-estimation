@@ -114,7 +114,9 @@ minimax law, exact $\Psi$ comparison and counterexample, and unbiased
 characterization with coefficients $1/16$ and $713$ are also proved in the
 observable model. One 713 estimator is fixed before every gap law. The
 variational optimizer has its separate formal specification.
-Confidence guarantees and other rare-event regimes
+The confidence characterization is also proved in that model, with
+coefficients $1/64$ and $8192$ and one upper family depending only on
+budget and failure probability. Other rare-event regimes
 retain paper-proof status. Section~\ref{sec:verification} gives the exact
 scope and links.
 """
@@ -140,7 +142,9 @@ scope and links.
         "\\leanref{BlindUpper/Full.lean}{distribution\\_blind\\_upper}, with\n"
         "coefficients $1/64$ and $512$. The upper family is chosen before every\n"
         "gap law and satisfies the budget in the same experiment. The\n"
-        "confidence statement and stronger\n"
+        "confidence law is proved by \\confidenceleanref{confidence\\_characterization},\n"
+        "with coefficients $1/64$ and $8192$ for $B\\ge1$ and $0<\\delta\\le1/4$.\n"
+        "Its upper family depends only on $(B,\\delta)$. Stronger\n"
         "revealed- or selected-magnitude claims retain paper-proof status.\n\n"
         "This is distribution-wise minimax optimality:")
     core = once(core, r"\subsection{Unknown magnitude laws under an envelope}",

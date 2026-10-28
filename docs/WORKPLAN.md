@@ -31,15 +31,30 @@ target combines the upper construction with the converse to prove unbiased
 existence iff the inverse gap is integrable. The
 [new audit](../results/observable713_001.json) checks both frozen targets and
 all 47 declarations at proof checkpoint `15dbbda`.
-The new realization is published in
-[PR #14](https://github.com/davidiach/adaptive-threshold-estimation/pull/14),
-a separate review unit from PR #13.
+The new realization was reviewed and merged in
+[PR #14](https://github.com/davidiach/adaptive-threshold-estimation/pull/14)
+at `45dde91`, after all six checks passed and no blocking findings remained.
 
-The next formalization priorities are the confidence characterization,
-stronger revealed- or selected-magnitude claims, and other paper-only
-rare-event results. A corrected arbitrary-law rare-event characterization
-remains open research. Publication and CI for this addition are recorded
-on its focused PR; the local audit alone does not establish CI success.
+The confidence characterization is now proved in the same observable model
+at `d6feb30`: a lower coefficient `1/64`, an upper coefficient `8192`, one
+family depending only on budget and failure probability, and explicit
+nonvacuity. The model and full targets were frozen at `76e9a8f` before
+supporting proofs. All three construction steps are complete: measurable
+median amplification, exact execution of independent observable batches,
+and the expected-work/radius comparison for every admissible budget.
+The [full theorem](../lean/ThresholdHC/Confidence/Full.lean) and
+[audit](../results/confidence_001.json) cover 18 modules, all 107 declaration
+roots, and four frozen targets. Publication and CI are recorded on its
+focused PR; the local audit alone does not establish CI success.
+
+PR #12's toolkit was reviewed, repaired, and merged at `a7ed3b0` after all
+10 checks passed on `d1f2191`. All 13 review threads were resolved, covering
+numerical integration, binomial tails, invalid inputs, hangs, and overstated
+planning claims. Its Python implementation remains outside the Lean proof.
+
+The next formalization priorities are stronger revealed- or selected-magnitude
+claims and the remaining paper-only rare-event results. A corrected
+arbitrary-law rare-event characterization remains open research.
 
 The project owner does not plan human specialist review. Its absence remains
 a stated review limitation, not a pending task or completion gate. The four
@@ -118,7 +133,7 @@ GitHub Actions run has finished.
 | Specialist review package | Short overview, complete consolidated proof, precise questions, source and prior-art references | [Prepared](../paper/critical-review/README.md): four-page brief, two-page all-size addendum and complete proof, 20-page PDF compiled and visually checked; external specialist review is not planned |
 | Formal critical argument | Exact statistical specification, proved dependency chain, kernel and axiom audit; scalar lemmas alone do not satisfy this item | The base-cost theorem, common hard pair, unrestricted critical minimax lower bound, and matching upper bound are proved in the original observable experiment for the full rare-prior class. See the [lower audit](../results/critical_components_016.json) and [full upper audit](../results/critical_upper_components_003.json). The [exact Psi formula, rate and minimax separation](../results/critical_psi_001.json) are also proved |
 | Original distribution-blind upper bound | One budget-indexed observable algorithm independent of the magnitude/sign laws, realized in the original experiment; uniform work and RMS bounds; exact type and axiom audit | [Complete](BLIND_UPPER.md): the frozen full statement is inhabited by one budget-indexed observable family, with coefficient 512. Actual execution, almost-sure cost/output identities, uniform budget and RMS bounds are proved; exact-type and transitive-axiom audit passed |
-| Consolidated v5 manuscript | Original minimax law, unbiasedness, 713 bound, rare-event regimes, critical result and correction to the Psi conjecture; accurate verification labels; compiled and visually checked | [Written](../paper/v5/README.md): 60-page manuscript including the all-size addendum, complete source-derived proof appendices, source checks and rendered-page review. Both critical bounds and Psi are linked at `eabf274`; the addendum's explicit constants are linked at `ebd3667`, the converse at `631886e`, and the observable 713 construction at `15dbbda`. No independent specialist review is claimed |
+| Consolidated v5 manuscript | Original minimax law, unbiasedness, 713 bound, rare-event regimes, critical result and correction to the Psi conjecture; accurate verification labels; compiled and visually checked | [Written](../paper/v5/README.md): 61-page manuscript including the all-size addendum, complete source-derived proof appendices, source checks and rendered-page review. Both critical bounds and Psi are linked at `eabf274`; the addendum's explicit constants are linked at `ebd3667`, the converse at `631886e`, the observable 713 construction at `15dbbda`, and confidence at `d6feb30`. No independent specialist review is claimed |
 | Process note | Reproducible account of construction, frozen statements, semantic review, failed approaches, reviewer dependence, and limits | [Written](process/METHOD.md) and refreshed at `6009662`, including completed realization proofs, the formula's freeze chronology, and lessons from the long run and focused PRs |
 | Repository cleanup and publication | Clear current entry points, preserved source/evidence identities, passing relevant guards and CI, pushed commits and reviewable changes | The proof and manuscript stack through PR #10 is merged into main. README, results and verification guides lead to current evidence; historical bundles remain intact. CI results belong to each exact commit and are recorded in the corresponding PR |
 

@@ -55,9 +55,11 @@ python tools/verify_blind_upper_components.py
 python -m unittest discover -s tools -p 'test_blind_upper_components.py' -v
 ```
 
-The confidence-radius characterization remains a paper proof. The uniform
-unbiasedness converse, observable 713 construction, matching critical
+The confidence-radius characterization now has a separate
+[full observable proof](../lean/ThresholdHC/Confidence/Full.lean), with
+coefficients 1/64 and 8192 and a law-independent family indexed by budget
+and failure probability. The uniform unbiasedness converse, observable 713 construction, matching critical
 rare-event upper, and exact Psi comparison have separate completed audits
 in [VERIFY](VERIFY.md). The original upper, critical upper, and Psi theorem
 links use checkpoint `eabf274`; the [current v5 guide](../paper/v5/README.md)
-records the later checkpoints for the converse and 713 realization.
+records the later checkpoints for the converse, 713 realization, and confidence law.

@@ -62,6 +62,28 @@ The verifier rejects missing or weakened targets, unregistered modules,
 altered frozen dependencies, proof escapes, unexpected axioms, and source
 changes during the audit. CI runs the audit and its regression tests.
 
+The confidence characterization in the same observable model has a dedicated audit:
+
+```sh
+python tools/verify_confidence.py
+python -m unittest discover -s tools -p 'test_confidence.py' -v
+```
+
+The [record](../results/confidence_001.json) covers 18 modules, all 107
+declaration roots, and four exact targets: the algorithm-level lower bound,
+one law-independent upper family, the two-sided minimax characterization,
+and nonvacuity. The constants are `1/64` and `8192`, for `B >= 1` and
+`0 < delta <= 1/4`. The definition uses strict error exceedance, all measurable
+sign laws, arbitrary measurable seed spaces, and the original expected number
+of actual flips. The full targets and their transitive model definitions were
+compiled and frozen at `76e9a8f` before supporting proofs. The verifier rebuilds
+imports, checks every declaration's transitive axioms, and rejects altered
+models, weakened targets, missing modules, and changes during the audit.
+The statistical independence of the repetitions and their actual execution
+are proved; neither is assumed in the final target. CI runs this audit and
+its regression tests. The radius is a theoretical function of the gap law,
+not a data-computable confidence interval over all unknown laws.
+
 The actual critical-law Psi formula, two-sided rate and unrestricted minimax
 counterexample have a separate audit. After the prerequisite builds below:
 
@@ -293,6 +315,7 @@ separate from mathematical verification.
 | Canonical experiments and minimax RMS lower bound (11 targets) | [tier6_status.json](../results/tier6_status.json) |
 | Full observable unbiased converse and 1/16 lower coefficient | [unbiased_converse_001.json](../results/unbiased_converse_001.json) |
 | Observable 713 construction and unbiased existence iff finite inverse moment | [observable713_001.json](../results/observable713_001.json) |
+| Full observable confidence characterization, upper family, and nonvacuity | [confidence_001.json](../results/confidence_001.json) |
 | Input preservation | [MANIFEST_SHA256.txt](../inputs/next-phase/MANIFEST_SHA256.txt) |
 | Frozen specifications and tools | [FROZEN.sha256](../FROZEN.sha256), [TIER3_FROZEN.sha256](../TIER3_FROZEN.sha256), [TIER4_FROZEN.sha256](../TIER4_FROZEN.sha256) |
 | Workflow definition | [checks.yml](../.github/workflows/checks.yml) |
