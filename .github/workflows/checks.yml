@@ -87,6 +87,8 @@ jobs:
         run: python -m unittest discover -s tools -p 'test_critical_upper_components.py' -v
       - name: Regression tests for the critical Psi audit
         run: python -m unittest discover -s tools -p 'test_critical_psi.py' -v
+      - name: Regression tests for the all-size critical extension audit
+        run: python -m unittest discover -s tools -p 'test_critical_all_sizes.py' -v
       - run: python tools/check_targets_numeric.py
       - name: Tier 2 numeric truth checks when present
         run: |
@@ -156,6 +158,8 @@ jobs:
         run: python tools/verify_critical_upper_components.py
       - name: Verify the actual critical Psi formula and minimax counterexample
         run: python tools/verify_critical_psi.py
+      - name: Verify all-size entropy and explicit single-coin constants
+        run: python tools/verify_critical_all_sizes.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -187,3 +191,4 @@ jobs:
             .runtime/blind-upper-components/
             .runtime/critical-upper-components/
             .runtime/critical-psi/
+            .runtime/critical-all-sizes/
