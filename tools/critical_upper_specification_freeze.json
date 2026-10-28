@@ -4,6 +4,8 @@
   "frozen_at": "2026-10-28T07:36:44.108008+00:00",
   "status": "Specification only, compiled before any critical-upper proof; not a completion claim.",
   "original_path": ".runtime/CriticalUpperSpecification.lean",
+  "dependency_lock_added_at": "2026-10-28",
+  "dependency_lock_note": "Review-time dependency snapshot of PR #3 at 2162210; the original specification bytes and freeze timestamp are unchanged. This does not claim the dependencies were frozen at the original timestamp.",
   "dependency_sha256": {
     "lean/ThresholdHC/CriticalEntropy/Activation.lean": "f672ce06ed0a648c90730a4d4ba6272730372f70c1e1da0130ebd7ec7c047b4f",
     "lean/ThresholdHC/CriticalEntropy/ActivationCost.lean": "2fabd22ddf086c380d23792b0889874b5881f4a0c19a45238ff7e12ddd4d1a4f",
@@ -26,7 +28,7 @@
     "lean/ThresholdHC/CriticalEntropy/CriticalMinimax.lean": "dae05791661897fa8145d0d69c3d957457cda5327d67e76e24a17e07696a1474",
     "lean/ThresholdHC/CriticalEntropy/CriticalModel.lean": "66465b14833b77f3dddd3fe1cef2e40714613d9783d87c610e30be0745a8e685",
     "lean/ThresholdHC/CriticalEntropy/CriticalPopulationFinite.lean": "6557b3cd77779814cb20e19891a292dd2c7382942a0baa9cec7d7bf83afe2efe",
-    "lean/ThresholdHC/CriticalEntropy/CriticalRareModel.lean": "1db016d52f908bdf8aa9b5d602ed387d36a997e2098c2d5047977ca4ace69b24",
+    "lean/ThresholdHC/CriticalEntropy/CriticalRareModel.lean": "f6448a591f8287e24cef27a3276ad6bbb6f12b9f86cf1cd3975bcf243a783a13",
     "lean/ThresholdHC/CriticalEntropy/CriticalRate.lean": "45b2083fb202e86ccf89ca4e6d6cd941e7dc61fd271bc43a7f9af267c549d11e",
     "lean/ThresholdHC/CriticalEntropy/CriticalRisk.lean": "25eff4fc55db1e7063126efd84a047fe85f3eca9c1a676d7e9a1e3899a5869c8",
     "lean/ThresholdHC/CriticalEntropy/CriticalScale.lean": "9e5112a2824d5a952b62aed55990e99595b2f40d4305b163821216c304f97fe3",
@@ -44,9 +46,9 @@
     "lean/ThresholdHC/CriticalEntropy/FiniteGeometryModel.lean": "80b129847b95fc576e9dc862c09faef9be060f73e77d8401c9de74c9b949a211",
     "lean/ThresholdHC/CriticalEntropy/FiniteObservation.lean": "48023892a01fededd97c1235e5856796ee53bbabdd9a065f66c2853371fb6d21",
     "lean/ThresholdHC/CriticalEntropy/FinitePopulation.lean": "790b778f93225b18266a67e8d2f23f22a3838077379b7459dbd99231de6e8228",
-    "lean/ThresholdHC/CriticalEntropy/FiniteRMS.lean": "7de8c257c00e294edb45e122fa1a09cd708850508acfeb6ce2af4100b580435b",
     "lean/ThresholdHC/CriticalEntropy/FiniteRiskAnalytic.lean": "47b444213466fb778e5dc53df699efae7ed18d15d66886de366179d6494d8644",
     "lean/ThresholdHC/CriticalEntropy/FiniteRiskModel.lean": "fd4643aeed2ee06031f3d52771d275c8a72769c275cc186298772c347d3f00f1",
+    "lean/ThresholdHC/CriticalEntropy/FiniteRMS.lean": "7de8c257c00e294edb45e122fa1a09cd708850508acfeb6ce2af4100b580435b",
     "lean/ThresholdHC/CriticalEntropy/FiniteSaddle.lean": "7272c2a8ddeb2511d007a0c0f499004acc37191dd0bac6b97065b9a751128f46",
     "lean/ThresholdHC/CriticalEntropy/FiniteSufficiency.lean": "0ab437a2cd3fbdd20589fcc4ced2132f55cc3791025bab6a672870d3112b9f93",
     "lean/ThresholdHC/CriticalEntropy/FiniteSupport.lean": "b3f63d024ad64868c35d422f11da08f2429a82bd545d36e74f6bbc8e944c37ac",
@@ -142,7 +144,5 @@
     "lean/ThresholdHC/Tier6/TestingModel.lean": "941b5583b6a9d8776c38ac9de371b5f30a7a2c580b4cd627df7935665ca80944",
     "lean/ThresholdHC/Uniform713/Common.lean": "419b64d64f21f718214caabee9927b174d512f3c129139be26605400853e3dab",
     "lean/ThresholdHC/Uniform713/Concentration.lean": "b494cc19ba348e05533c0a6f7715de8bda306c94e4ad613bb8515e5af6b7c149"
-  },
-  "dependencies_frozen_at": "2026-10-28T10:30:44.183960+00:00",
-  "dependency_note": "Transitive project imports of the specification, recorded after its original byte freeze so the definitions giving the statement its meaning cannot change unnoticed. The statement bytes are unchanged."
+  }
 }

@@ -16,7 +16,7 @@ import subprocess
 
 from verify_blind_upper_components import (
     DECLARATION, FORBIDDEN, IMPORT, module_path, project_dependencies, sha,
-    strip_comments, validate_reports,
+    strip_comments, validate_reports, imports, validate_dependency_freeze,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -41,15 +41,11 @@ def validate_sources() -> tuple[list[Path], set[str]]:
         raise ValueError('Missing or unregistered critical-upper source')
     if sha(SOURCE / 'Specification.lean') != SPECIFICATION_SHA256:
         raise ValueError('Frozen critical-upper specification changed')
-    freeze = json.loads(FREEZE.read_text())
+    freeze = json.loads(FREEZE.read_text(encoding='utf-8'))
     if freeze['sha256'] != SPECIFICATION_SHA256 or freeze['path'] != 'lean/ThresholdHC/CriticalUpper/Specification.lean':
         raise ValueError('Frozen specification registration changed')
     # The statement's meaning lives in the definitions it imports; freeze those too.
-    specification = SOURCE / 'Specification.lean'
-    dependencies = project_dependencies([specification]) - {specification}
-    if freeze.get('dependency_sha256') != {p.relative_to(ROOT).as_posix(): sha(p)
-                                           for p in sorted(dependencies)}:
-        raise ValueError('Frozen critical-upper specification dependency changed')
+    validate_dependency_freeze(SOURCE / 'Specification.lean', freeze)
     roots = []
     seen = set()
     all_modules = {PREFIX + name for name in MODULES}
@@ -58,7 +54,7 @@ def validate_sources() -> tuple[list[Path], set[str]]:
         if FORBIDDEN.search(text):
             raise ValueError('Forbidden proof escape in ' + str(path))
         roots.extend(PREFIX + name for name in DECLARATION.findall(text))
-        for dependency in IMPORT.findall(text):
+        for dependency in imports(text):
             if dependency in all_modules and dependency not in seen:
                 raise ValueError('Invalid component dependency order: ' + dependency)
         seen.add(PREFIX + name)
@@ -83,7 +79,7 @@ def main() -> int:
     protected = project_dependencies(paths) | {
         Path(__file__).resolve(), ROOT / 'tools/verify_blind_upper_components.py',
         ROOT / 'tools/verify_tier6.py', FREEZE,
-        LEAN / 'lean-toolchain', LEAN / 'lake-manifest.json',
+        LEAN / 'lean-toolchain', LEAN / 'lake-manifest.json', LEAN / 'lakefile.toml',
     }
     hashes = {p.relative_to(ROOT).as_posix(): sha(p) for p in sorted(protected)}
     output = args.output_dir or ROOT / '.runtime/critical-upper-components' / datetime.now(

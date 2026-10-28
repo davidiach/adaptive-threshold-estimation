@@ -64,8 +64,9 @@ exported with Tectonic 0.17.0 on 28 October 2026, rendered with Poppler,
 and visually inspected.
 It has 56 pages, no unresolved references or overfull boxes. The source check
 resolves 141 unique labels and 20 bibliography citations, and rejects uncited
-references. The PDF predates the citation of Chen--Li--Qiao in Appendix C,
-which replaced an inline arXiv reference; re-export to pick up that line. Typesetting and source
+references. The PDF includes the corrected Chen--Li--Qiao citation in Appendix C;
+the rebuilt page 43 was rendered and inspected, and all other page text matches
+the previous publication. Typesetting and source
 identity checks do not constitute a new mathematical proof or independent review.
 
 The assembly regression checks preserve function arguments such as `q(D)`,

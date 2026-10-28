@@ -1,5 +1,13 @@
 # Full verification commands
 
+The critical lower and both upper component verifiers use `lake build`, which
+rebuilds stale transitive imports before the kernel and axiom checks. Use
+`--sequential` to build one registered module at a time on constrained machines.
+The lower audit checks that all 43 statement examples are present exactly once;
+its source hashes cover the full local import closure. The upper audits also
+check the review-time dependency snapshots in their specification freeze records.
+These additions preserve the original frozen statements and published evidence.
+
 The critical upper classifier checkpoint has a scoped audit, run after the
 critical and distribution-blind builds below:
 
@@ -68,7 +76,7 @@ measurable population seeds, separate endpoint termination, eventual exact tape
 reconstruction, terminal affinity, algorithm and minimax lower rates, budget
 nonemptiness, and the trivial upper bound by rarity. The full rare-prior class
 is used in the budget and risk. The matching critical upper is still pending.
-It audits all 673
+It audits all 674
 declarations in these modules and writes fresh evidence under
 `.runtime/critical-components/`. The base-cost flag now certifies the actual
 single-coin theorem; the full critical minimax flag remains false. See the

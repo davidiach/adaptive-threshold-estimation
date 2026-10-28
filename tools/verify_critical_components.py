@@ -18,7 +18,7 @@ import subprocess
 
 from verify_blind_upper_components import (
     DECLARATION, FORBIDDEN, IMPORT, project_dependencies, sha, strip_comments,
-    validate_reports,
+    validate_reports, imports as source_imports,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -289,6 +289,7 @@ ROOTS = {
         "risk_event_markov",
         "bool_affinity_le_half_of_errors",
         "two_point_risk_lower_of_decision_affinity",
+        "CriticalRarePrior",
         "CriticalUniformBudget",
         "criticalMaximalRMSRisk",
         "criticalMinimaxRisk",
@@ -372,7 +373,7 @@ def main() -> int:
         texts[path.stem] = source
         if FORBIDDEN.search(source):
             raise ValueError("Forbidden proof escape in " + path.name)
-        imports = IMPORT.findall(source)
+        imports = source_imports(source)
         allowed_imports = {
             "Mathlib", "Mathlib.MeasureTheory.Integral.Prod",
             "Mathlib.InformationTheory.KullbackLeibler.DataProcessing",
@@ -395,7 +396,7 @@ def main() -> int:
         raise ValueError("Public declaration coverage mismatch")
     seen = set()
     for name in MODULES:
-        for dependency in IMPORT.findall(texts[name]):
+        for dependency in source_imports(texts[name]):
             if dependency.startswith(NAMESPACE) and dependency not in seen:
                 raise ValueError("Component dependency order is invalid: " + dependency)
         seen.add(NAMESPACE + name)
@@ -403,6 +404,7 @@ def main() -> int:
     protected = project_dependencies(sources) | {
         Path(__file__).resolve(), ROOT / "tools/verify_blind_upper_components.py",
         ROOT / "tools/verify_tier6.py", LEAN / "lean-toolchain", LEAN / "lake-manifest.json",
+        LEAN / "lakefile.toml",
     }
     hashes = {p.relative_to(ROOT).as_posix(): sha(p) for p in sorted(protected)}
     status = {

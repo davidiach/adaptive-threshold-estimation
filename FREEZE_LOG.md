@@ -1,5 +1,14 @@
 # Freeze log
 
+## Upper specification dependency checks — 28 October 2026 review
+
+The original upper specification files and their freeze timestamps are unchanged.
+The two upper freeze records now also record the project imports at PR #3's
+`2162210` checkpoint: 31 distribution-blind dependencies and 137 critical-upper
+dependencies. These hashes were added during this review, not at the original
+freeze times. Both verifiers reject changes to that complete dependency set.
+No frozen Lean file or existing lock manifest was changed.
+
 Record every change made to a frozen file BEFORE `tools/freeze.py --init`
 (Phase 0 compile fixes only). After freezing, changes need David's approval
 and go here too, with the approval noted.
@@ -88,5 +97,7 @@ Format, one entry per change:
   137 transitive project imports (`dependency_sha256`), and
   `tools/verify_critical_upper_components.py` rejects any change to them. The
   statement bytes are unchanged. The hashes record the dependency state on that
-  date, after the unused `CriticalRarePrior` definition was removed, not the
-  state at the original freeze time.
+  date. The subsequent review restored the existing `CriticalRarePrior`
+  declaration so all Lean sources retain their published bytes; the dependency
+  snapshot now matches PR #3 at `2162210`, as recorded above. This is not a
+  retrospective dependency freeze at the original specification timestamp.

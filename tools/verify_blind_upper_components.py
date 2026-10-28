@@ -45,6 +45,29 @@ def module_path(module: str) -> Path:
     return LEAN.joinpath(*module.split(".")).with_suffix(".lean")
 
 
+def imports(source: str) -> list[str]:
+    """Accept the registered one-module-per-line format, failing closed otherwise.
+
+    Lean also accepts several modules on one import line. Silently ignoring such
+    a line would omit dependencies from the source hashes and specification lock.
+    """
+    result = []
+    for line in source.splitlines():
+        if re.match(r"\s*import\b", line):
+            match = re.fullmatch(r"\s*import[^\S\n]+([\w.]+)\s*", line)
+            if match is None:
+                raise ValueError("Unsupported import syntax: " + line.strip())
+            result.append(match[1])
+    return result
+
+
+def validate_dependency_freeze(specification: Path, freeze: dict) -> None:
+    dependencies = project_dependencies([specification]) - {specification}
+    actual = {p.relative_to(ROOT).as_posix(): sha(p) for p in sorted(dependencies)}
+    if freeze.get("dependency_sha256") != actual:
+        raise ValueError("Frozen specification dependency changed")
+
+
 def validate_reports(output: str, returncode: int, expected: set[str]) -> dict[str, list[str]]:
     if returncode:
         raise ValueError("Lean audit exited unsuccessfully")
@@ -73,6 +96,10 @@ def validate_sources(registry: dict) -> tuple[list[Path], set[str]]:
         raise ValueError("Frozen specification registration changed")
     if sha(ROOT / SPECIFICATION) != SPECIFICATION_SHA256:
         raise ValueError("Frozen distribution-blind specification changed")
+    freeze = json.loads((ROOT / "tools/blind_upper_specification_freeze.json").read_text(encoding="utf-8"))
+    if freeze.get("source") != SPECIFICATION or freeze.get("sha256") != SPECIFICATION_SHA256:
+        raise ValueError("Frozen specification registration changed")
+    validate_dependency_freeze(ROOT / SPECIFICATION, freeze)
     if registry["extra_dependency_builds"] != EXTRA_DEPENDENCIES:
         raise ValueError("Unregistered prerequisite build")
     paths = [module_path(m) for m in modules]
@@ -88,7 +115,7 @@ def validate_sources(registry: dict) -> tuple[list[Path], set[str]]:
             raise ValueError("Forbidden proof escape in " + str(path))
         namespace = module.rsplit(".", 1)[0] + "."
         declared.extend(namespace + name for name in DECLARATION.findall(source))
-        for dependency in IMPORT.findall(source):
+        for dependency in imports(source):
             if dependency in modules and dependency not in seen:
                 raise ValueError("Component dependency order is invalid: " + dependency)
         seen.add(module)
@@ -107,7 +134,7 @@ def project_dependencies(paths: list[Path]) -> set[Path]:
             continue
         source = strip_comments(path.read_text(encoding="utf-8"))
         found.add(path)
-        for dependency in IMPORT.findall(source):
+        for dependency in imports(source):
             if dependency.startswith("ThresholdHC."):
                 pending.append(module_path(dependency))
             elif dependency != "Mathlib" and not dependency.startswith("Mathlib."):
@@ -125,7 +152,7 @@ def main() -> int:
     protected = project_dependencies(paths) | {
         Path(__file__).resolve(), REGISTRY, ROOT / "tools/verify_tier6.py",
         ROOT / "tools/blind_upper_specification_freeze.json",
-        LEAN / "lean-toolchain", LEAN / "lake-manifest.json",
+        LEAN / "lean-toolchain", LEAN / "lake-manifest.json", LEAN / "lakefile.toml",
     }
     hashes = {p.relative_to(ROOT).as_posix(): sha(p) for p in sorted(protected)}
     output = args.output_dir or ROOT / ".runtime/blind-upper-components" / datetime.now(
