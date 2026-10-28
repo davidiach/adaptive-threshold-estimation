@@ -407,3 +407,36 @@ evidence are preserved.
 The [unknown-rarity obstruction](process/TRACK_D.md#an-obstruction-to-completely-uniform-adaptation-to-unknown-rarity) concerns a budget-indexed estimator family independent of the rarity bound. For a known fixed $0<d<1/2$ and almost-sure stopping at every constant sign prior in $[0,1/4]$, no universal finite $C$ gives RMS error at most $C\min\{\rho,\sqrt\rho/(d\sqrt B)\}$ for every $B\ge1$, $0<\rho\le1/4$, and $\theta\in[0,\rho]$. This is an independently agent-reviewed paper proof. It does not rule out an additive error floor, a positive lower bound on rarity, or an algorithm given $\rho$.
 
 [Constant scores](../results/constants_theory.json), [upper-bracket evaluations](../results/power_bracket.json), and [held-out benchmark summaries](../results/real_test.json) are numerical evidence. Finite grids, truncation, floating-point arithmetic, and benchmark-specific assumptions do not yield universal theorems. See the [off-grid counterexample](../proposals/constants/BIAS_AUDIT.md) and [benchmark report](process/TRACK_C.md).
+
+## Practical comparison with a fixed plan
+
+The [toolkit](../toolkit/README.md) implements the algorithm of
+`distribution_blind_upper` and a fixed plan: $n$ fresh coins, an odd number $m$
+of flips each, and the share of coins with a majority of heads. Over every sign
+law at a known gap law, the fixed plan's bias is at most the mean
+misclassification probability and its variance at most $1/(4n)$. The toolkit
+evaluates the analytic formulas with binomial tails, using floating-point
+arithmetic. The continuous uniform law uses an analytic integral rather than
+a finite grid. This elementary bound is not Lean-checked, and its numerical
+evaluation is subject to roundoff.
+
+Take the ten-coin example law from the toolkit guide, with probabilities 0.9,
+0.8, 0.7, 0.6, 0.55, 0.52, 0.45, 0.3, 0.2 and 0.1 drawn uniformly, and
+$B=16{,}384$. The fixed plan with $m=169$ and $n=96$ has RMS error at most 0.0713
+for every sign law, about $0.75\,\omega_\mu(B^{-1/2})$. On the listed signs, the
+distribution-blind algorithm's simulated RMS error is 0.277, with a standard
+error of about 0.012 over 200 runs. For RMS error 0.03, the planner finds a
+fixed plan using 258,153 flips for every sign law. In simulation, the blind algorithm first
+reaches 0.03 at budget 4,194,304.
+
+This is numerical evidence for one law and, for the blind algorithm, one sign
+assignment. The fixed plan uses the gap law to choose $m$, as the
+distribution-wise minimax benchmark permits; the blind algorithm does not know
+$\mu$. The comparison does not affect the theorem or its coefficient 512. It
+shows that the blind algorithm's practical constants are far from those of a
+plan tuned to the law at these budgets. The planner searches a 1.25× grid of
+odd flip counts and does not claim a global optimum: for example, 428 coins
+with 599 flips each give another qualifying plan at 256,372 flips.
+To reproduce the grid result from `toolkit/`, run
+`python -m threshold_toolkit --rates 0.9,0.8,0.7,0.6,0.55,0.52,0.45,0.3,0.2,0.1`
+with `--budget 16384` or `--target-error 0.03`. The seed defaults to 0.
