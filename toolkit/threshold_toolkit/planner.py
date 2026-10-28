@@ -19,6 +19,7 @@ at most 512 * difficulty for every placement (BlindUpper/Full.lean).
 """
 
 import math
+import numbers
 import sys
 from dataclasses import dataclass
 from typing import Callable, List, Optional, Sequence, Tuple
@@ -371,8 +372,9 @@ def simulate(population: Population, budget: float, runs: int = 200,
              seed: Optional[int] = None,
              rng: Optional[np.random.Generator] = None) -> Simulation:
     """Run the estimator `runs` times on simulated items drawn from the guess."""
-    if not isinstance(runs, int) or runs < 2:
+    if not isinstance(runs, numbers.Integral) or runs < 2:
         raise ValueError("use at least 2 runs")
+    runs = int(runs)
     level_cap = budget_level(budget)
     if budget > MAX_SIMULATED_BUDGET:
         raise ValueError(f"budgets above {MAX_SIMULATED_BUDGET:,.0f} flips are too large to simulate")
@@ -455,7 +457,7 @@ def plan_target(population: Population, target: float, runs: int = 200,
     budget_level(max_budget)
     if max_budget > MAX_SIMULATED_BUDGET:
         raise ValueError(f"budgets above {MAX_SIMULATED_BUDGET:,.0f} flips are too large to simulate")
-    if not isinstance(runs, int) or runs < 2:
+    if not isinstance(runs, numbers.Integral) or runs < 2:
         raise ValueError("use at least 2 runs")
     majority = majority_plan_for_target(population, target)
     if planned is not None:
