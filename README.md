@@ -1,133 +1,113 @@
-# A Distributional Minimax Law for Adaptive Threshold Estimation
+# Adaptive Threshold Estimation
 
-[Consolidated paper v5 (PDF)](paper/v5/paper.pdf) · [Lean 4 / Mathlib proofs](lean/) · [Verification](docs/VERIFY.md)
+[![Checks](https://github.com/davidiach/adaptive-threshold-estimation/actions/workflows/checks.yml/badge.svg?branch=main)](https://github.com/davidiach/adaptive-threshold-estimation/actions/workflows/checks.yml)
 
-[Version 5](paper/v5/README.md) brings the original law, the 713 construction,
-the rare-event regimes, and the Psi correction into one manuscript with complete
-proofs and explicit verification boundaries. The critical result also has a
-[specialist review packet](paper/critical-review/review.pdf) with a four-page
-brief. The [original v4](paper/paper.pdf) and historical evidence remain preserved.
+Minimax theory for estimating a threshold probability from noisy coin flips,
+with a research manuscript, Lean 4 proofs built on Mathlib, and reproducible experiments.
 
-**The problem.** A coin's hidden gap $`D\sim\mu`$ on $`(0,1/2]`$ and sign $`S\in\{0,1\}`$ determine $`P=\tfrac12+(2S-1)D`$. Estimate $`\theta=\Pr(P>1/2)`$ by adaptive flips, allowing revisits and interleaving; cost is expected flips.
+**[Paper](paper/v5/paper.pdf)** · **[Formal proofs](lean/ThresholdHC/)** · **[Verification guide](docs/VERIFY.md)** · **[Specialist review packet](paper/critical-review/review.pdf)**
 
-**Main results.** Set $`\omega_\mu(h)=\mathbb E_\mu\min\{1,h/D\}`$ for $`h>0`$ and $`I=\mathbb E_\mu[D^{-1}]`$. Write $`R_\mu(B)`$ for minimax RMS error at uniform expected budget $`B\ge1`$.
+## Problem and main result
 
-| Result | Statement | Status | Source |
-|---|---|---|---|
-| Minimax RMS law | $`\omega_\mu(B^{-1/2})/64\le R_\mu(B)\le512\omega_\mu(B^{-1/2})`$; one upper algorithm independent of $`\mu`$. | Lean-checked | [upper theorem](lean/ThresholdHC/BlindUpper/Full.lean) · [lower theorem](lean/ThresholdHC/Tier6/Full.lean) |
-| Critical quadratic rare-event law | For $`F(d)=(4d)^2`$, RMS risk has order $`\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}`$, $`L=1+\log(1/\rho)`$, $`0<\rho\le1/4`$, $`B\ge1`$. | Lean-checked in both directions | [lower theorem](lean/ThresholdHC/CriticalEntropy/CriticalMinimax.lean) · [upper theorem](lean/ThresholdHC/CriticalUpper/Full.lean) · [scope](docs/CRITICAL_AUDIT.md) |
-| Minimax RMS lower bound | $`R_\mu(B)\ge\omega_\mu(B^{-1/2})/64`$ for every gap law and $`B\ge1`$. | Lean-checked | [minimax_lower_bound](lean/ThresholdHC/Tier6/Full.lean) |
-| Uniform unbiasedness | Finite uniform variance and work are attainable iff $`I<\infty`$; their product is $`\ge I^2/16`$. | paper proof | [v5, Theorem 2](paper/v5/core.tex) |
-| Unbiased estimate $`Y`$, flip count $`W`$ | For $`(k_1,k_2)=(1/4,1)`$ and $`I<\infty`$:<br>$`\mathbb E Y=\theta`$, $`\mathrm{Var}(Y)\mathbb E W<713I^2`$. | Lean-checked | [full_bound_713](lean/ThresholdHC/Uniform713/FullBound.lean) |
+Estimate the fraction of a population of coins whose probability of heads
+exceeds one half. Each fresh coin has an independent hidden gap $D\sim\mu$
+in $(0,1/2]$ and a hidden sign. An algorithm sees only its randomness and
+coin flips; it may create, revisit, and interleave coins. Every flip counts
+toward the expected-work budget.
 
-Uniformity is over all conditional sign laws. The paper has agent-reviewed
-components but no external specialist review. Lean checks the linked exact
-statements. The [critical minimax lower bound](lean/ThresholdHC/CriticalEntropy/CriticalMinimax.lean)
-and its [matching upper](lean/ThresholdHC/CriticalUpper/Full.lean) are now
-Lean-checked for the full rare-prior class in the original observable experiment.
-The upper coefficient is 100000, a coarse universal bound. The exact
-[Psi formula, rate and counterexample](lean/ThresholdHC/CriticalPsi/Full.lean)
-are also Lean-checked. The other [rare-event results](paper/v5/rare-events.tex)
-retain paper-proof status.
-The [results guide](docs/RESULTS.md) records the precise rate, model and audit.
-The [all-size finite-gap extension](lean/ThresholdHC/CriticalAllSizes/FiniteGap.lean)
-removes the count restriction at coefficient 1/4096, preserving 1/512 for
-`log K >= 32`. Its [separate audit](results/critical_all_sizes_002.json) also
-checks explicit single-coin raw-moment and variance/null-work coefficients;
-these are not explicit population minimax constants.
-Both PDFs now link the completed formal results at checkpoint `eabf274` and
-explain the differences between the paper and formal constructions.
-The [full distribution-blind upper theorem](docs/BLIND_UPPER.md) now includes
-the controller's actual cost/output identities, almost-sure termination,
-budget selection and uniform RMS bound. Confidence radii remain paper proofs.
-[Verify locally](docs/VERIFY.md) · [CI](https://github.com/davidiach/adaptive-threshold-estimation/actions/workflows/checks.yml)
+Let $R_\mu(B)$ be the minimax root-mean-square error over all measurable sign
+laws at uniform expected budget $B\ge1$, and define
+$\omega_\mu(h)=\mathbb E_\mu[\min(1,h/D)]$ for $h>0$. Then
 
-<details>
-<summary>All results: full statements, assumptions, theorem names and sources</summary>
+```math
+\frac{1}{64}\,\omega_\mu(B^{-1/2})
+\;\le\; R_\mu(B)
+\;\le\; 512\,\omega_\mu(B^{-1/2}).
+```
 
-## The problem
+Both bounds are proved in Lean for the observable adaptive experiment.
+One upper algorithm works for every gap law without knowing $\mu$.
+The [lower theorem](lean/ThresholdHC/Tier6/Full.lean),
+[upper theorem](lean/ThresholdHC/BlindUpper/Full.lean), and
+[model and scope](docs/RESULTS.md) give the precise statements.
 
-A fresh coin has an unobserved magnitude $`D`$ with law $`\mu`$ on $`(0,1/2]`$ and sign $`S\in\{0,1\}`$. A measurable function $`q(d)\in[0,1]`$ gives its positive-sign probability. Its success probability is $`P`$; conditional on $`P`$, flips are independent Bernoulli trials, and fresh coins are independent. An algorithm may create, revisit, and interleave coins, then stop after $`T`$ flips. The target $`\theta`$ is the positive fraction; cost is $`\mathbb E T`$.
+## Further results
 
-$`D\sim\mu`$, $`S\mid D=d\sim\mathrm{Bernoulli}(q(d))`$,<br>
-$`P=\tfrac12+(2S-1)D`$, $`\theta=\Pr(P>1/2)=\mathbb E_\mu q(D)`$.
+| Result | Verification | Read more |
+|---|---|---|
+| Critical quadratic rare-event law, including unrestricted adaptive algorithms | Both minimax bounds proved in Lean | [Statement and scope](docs/RESULTS.md#critical-power-margin-full-minimax-characterization) |
+| Exact critical-law Ψ formula and counterexample to a universal matching-Ψ upper bound | Proved in Lean | [Theorems](lean/ThresholdHC/CriticalPsi/Full.lean) |
+| Unbiased construction with variance–work coefficient 713 | Proved in Lean | [Theorem and assumptions](lean/ThresholdHC/Uniform713/FullBound.lean) |
+| Finite-gap entropy for every gap count; explicit single-coin base costs | Proved in Lean | [Proofs](lean/ThresholdHC/CriticalAllSizes/) · [Audit](results/critical_all_sizes_002.json) |
+| Unbiasedness characterization, confidence radii, and other rare-event regimes | Paper proofs; formalization incomplete | [Full results guide](docs/RESULTS.md) |
 
-## Main results
+For the critical law $F(d)=(4d)^2$ on $(0,1/4]$, with known rarity bound
+$0<\rho\le1/4$, the minimax RMS rate is
 
-Write $`R_\mu(B)`$ for minimax RMS error over all $`q`$ at uniform expected budget $`B\ge1`$, $`\omega_\mu(h)=\mathbb E_\mu\min\{1,h/D\}`$ for $`h>0`$, and $`I=\mathbb E_\mu[D^{-1}]`$. For an estimator $`Y`$ using $`W`$ flips, let $`V=\sup_q\mathrm{Var}_{\mu,q}(Y)`$ and $`\overline W=\sup_q\mathbb E_{\mu,q}W`$.
+```math
+R_{\mu,\rho}(B)\asymp
+\min\!\left\{\rho,\sqrt{\frac{\rho L(1+\log L)}{B}}\right\},
+\qquad L=1+\log(1/\rho),\quad B\ge1.
+```
 
-In the information rows, $`\mathsf P_\pm`$ are transcript laws with sign priors $`1/2\pm\eta(d)`$, $`0\le\eta\le1/8`$, and $`d\eta(d)\le h/8`$; $`\mathrm{kl}`$ is Bernoulli relative entropy and $`0<\delta<1/2`$ bounds both testing errors. For the optimizer, $`0<\rho<1`$ is the allocation budget and $`t`$ solves $`\mathbb E_\mu\min\{1,t^2/D^2\}=\rho`$.
+The extra scale-entropy factor refutes the proposed matching-Ψ characterization.
+A sharp replacement for arbitrary gap laws remains open. The all-count entropy
+coefficient is 1/4096; the sharper 1/512 bound retains its large-count assumption.
+The explicit new base-cost constants apply to single-coin procedures.
 
-| Result | One-line statement | Status | Where |
-|---|---|---|---|
-| Minimax RMS law | $`\omega_\mu(B^{-1/2})/64\le R_\mu(B)\le512\omega_\mu(B^{-1/2})`$; one upper algorithm independent of $`\mu`$. | Lean-checked | [Upper proof](lean/ThresholdHC/BlindUpper/Full.lean), [lower proof](lean/ThresholdHC/Tier6/Full.lean), [exact scope](docs/BLIND_UPPER.md). |
-| Minimax RMS lower bound, unrestricted adaptive algorithms | $`R_\mu(B)\ge\omega_\mu(B^{-1/2})/64`$. The infinite experiments are constructed, and the infimum ranges over arbitrary measurable randomized estimators with a uniform expected-work budget. | Lean-checked | `minimax_lower_bound` in [Full.lean](lean/ThresholdHC/Tier6/Full.lean); [algorithm model](lean/ThresholdHC/Tier6/AlgorithmModel.lean), [scope and verification](docs/TIER6.md). |
-| Unbiasedness criterion | Unbiased for every $`q`$ with $`V,\overline W<\infty`$ is possible iff $`I<\infty`$. | paper proof | [Theorem 2; §6](paper/paper.tex#L272). Same review scope. |
-| Uniform variance–work lower bound | $`V\overline W\ge I^2/16`$ for every unbiased estimator with both uniform bounds finite. | paper proof | [Theorem 2; §6](paper/paper.tex#L774). Same review scope. |
-| Unbiased construction, $`(k_1,k_2)=(1/4,1)`$ | $`I<\infty\Rightarrow\mathbb E Y=\theta,`$<br>$`\mathrm{Var}(Y)\mathbb E W<713I^2`$. | Lean-checked | `full_bound_713` in [FullBound.lean](lean/ThresholdHC/Uniform713/FullBound.lean); [assumptions](lean/ThresholdHC/Uniform713/Specification.lean). |
-| Full transcript information, finite coin set | $`\mathbb E_+T<\infty\Rightarrow`$<br>$`\mathrm{KL}(\mathsf P_+,\mathsf P_-)\le`$<br>$`(128/225)h^2\mathbb E_+T`$. | Lean-checked | `infinite_kl_bound` in [Full.lean](lean/ThresholdHC/Tier4/Full.lean); [exact joint-law specification](lean/ThresholdHC/Tier4/Model.lean). |
-| Full transcript information, unrestricted adaptive coin creation | The same KL/work bound with arbitrary natural-number coin labels, measurable common random environments, revisiting and interleaving. Only plus-law finite expected work is required. | Lean-checked | `creation_infinite_kl_bound` in [Full.lean](lean/ThresholdHC/Tier5/Full.lean); [exact model](lean/ThresholdHC/Tier5/Model.lean), [proof and verification scope](docs/TIER5.md). |
-| Randomized, unbounded stopping/testing, finite coin set | $`\mathbb E_+T<\infty\Rightarrow T<\infty`$ a.s. under both laws; $`\mathrm{kl}(1-\delta,\delta)\le`$<br>$`(128/225)h^2\mathbb E_+T`$. | Lean-checked | `unbounded_stopping` in [StoppingBase.lean](lean/ThresholdHC/Tier3/StoppingBase.lean); `unbounded_testing` in [Stopping.lean](lean/ThresholdHC/Tier3/Stopping.lean). |
-| Rare-event optimizer, arbitrary laws | $`v_*(d)=\min\{1,t^2/d^2\}`$ maximizes $`\mathbb E_\mu\min\{v(D),h\sqrt{v(D)}/D\}`$ over measurable $`0\le v\le1`$, $`\mathbb E_\mu v(D)\le\rho`$. | Lean-checked | `arbitrary_law_optimizer` in [Optimizer.lean](lean/ThresholdHC/Tier3/Optimizer.lean); [specification](lean/ThresholdHC/Tier3/OptimizerModel.lean). |
-| Rare-event power margins above two | For $`F(d)=(d/a)^\alpha`$, $`\alpha>2`$, $`R_{\mu,\rho}(B)\asymp_\alpha\min\{\rho,\sqrt\rho/(a\sqrt B)\}`$. | paper proof | Two agent reviews; [Construction and proof](research/2026-10-27-route-a/construction.tex), [scope and evidence](docs/RESULTS.md#rare-event-power-margins-above-two). Known rarity; constants depend on $`\alpha`$; not Lean-checked or externally specialist-reviewed. |
-| Unknown-rarity limitation | No $`\rho`$-independent estimator family has RMS error $`\le C\min\{\rho,\sqrt\rho/(d\sqrt B)\}`$ uniformly over $`B\ge1`$, $`0<\rho\le1/4`$, $`0\le\theta\le\rho`$. | paper proof | [Argument](docs/process/TRACK_D.md#an-obstruction-to-completely-uniform-adaptation-to-unknown-rarity): known $`0<d<1/2`$, a.s. stopping, universal finite $`C`$. [Independently agent-reviewed](proposals/RESEARCH_REVIEW.md#unknown-rarity-adaptation-obstruction). |
+## Check the proofs
 
-Paper proofs in v4 have component agent review, but the consolidated manuscript has no independent specialist review. The Lean rows certify their linked specifications, not the entire paper. Tier 5 removes the fixed finite coin set from the full-transcript information/work theorem, using Mathlib's measure-theoretic KL. The earlier stopping/testing statements keep their original finite-family scope. The 713 theorem covers the untruncated estimator and arbitrary magnitude/sign laws. See [precise scopes](docs/RESULTS.md) and [updates to the unchanged paper](paper/UPDATES.md).
-
-</details>
-
-## What is not claimed
-
-- **713 is not asserted to be optimal.** The lower bound uses uniform bounds over $`q`$, not a pointwise bound for every population; see [paper §6](paper/paper.tex#L774).
-- **The proposed arbitrary-law matching-Psi upper bound is refuted at $`\alpha=2`$.** The [full critical note](research/2026-10-27-nonlinear-critical/unrestricted.tex) proves $`R_{\mu,\rho}(B)\asymp\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}`$, $`L=1+\log(1/\rho)`$, at $`F(d)=(4d)^2`$, for all observable fresh-coin algorithms with uniform expected work at most B, including interaction and nonlinear output. The critical minimax [lower](lean/ThresholdHC/CriticalEntropy/CriticalMinimax.lean) and [upper](lean/ThresholdHC/CriticalUpper/Full.lean) bounds are now Lean-checked; the exact [Psi comparison and refutation](lean/ThresholdHC/CriticalPsi/Full.lean) are also Lean-checked. No external specialist verification is claimed. The [scope and evidence](research/2026-10-27-nonlinear-critical/CHECKPOINT.md) distinguish this from the preserved variational optimizer. A sharp replacement for arbitrary laws remains open; the earlier [power-margin note](research/2026-10-27-route-a/construction.tex) resolves $`\alpha>2`$.
-- **Finite-grid proxies are not universal constants.** Truncated floating-point recursions give numerical evidence; the grid winner fails the original uniform bias bound off-grid. See the [counterexample](proposals/constants/BIAS_AUDIT.md) and [scores](results/constants_finite_grid.json).
-- **Numerical comparisons do not establish practical superiority or universal theorems.** See [benchmark limitations](docs/process/TRACK_C.md). Expected-work guarantees provide neither a deterministic work cap nor a data-observable confidence radius for every unknown law ([paper §10](paper/paper.tex#L1280)).
-
-## Verify it yourself
-
-Use Python 3.12 and the [pinned Lean toolchain](lean/lean-toolchain). From the repository root:
+Install Python 3.12 and Lean's `elan` tool manager. The repository pins its
+[Lean toolchain](lean/lean-toolchain) and [Mathlib revision](lean/lake-manifest.json).
+To check both directions of the main RMS law:
 
 ```sh
+git clone https://github.com/davidiach/adaptive-threshold-estimation.git
+cd adaptive-threshold-estimation
 python -m pip install -r requirements.txt
 cd lean
 lake exe cache get
 cd ..
-python tools/verify_lean_checkpoint.py --sequential
-python tools/verify_uniform713.py --sequential --require-complete
-python tools/verify_tier3.py --sequential --require-complete
-python tools/verify_tier4.py --sequential --require-complete
-python tools/verify_tier5.py --sequential --require-complete
 python tools/verify_tier6.py --sequential --require-complete
-python tools/check_targets_numeric.py
-python tools/check_targets2_numeric.py
-python -m unittest discover -s tools -p 'test_*.py' -v
+python tools/verify_blind_upper_components.py --sequential
 ```
 
-The [full verification list](docs/VERIFY.md) includes hashes, experiment locks, arithmetic, constant scores, and benchmark checks. Several commands write diagnostics under `results/`; use a disposable checkout to preserve published records. [GitHub Actions](https://github.com/davidiach/adaptive-threshold-estimation/actions/workflows/checks.yml) runs the numerical and Lean audits.
+The [verification guide](docs/VERIFY.md) covers the other theorems, exact target
+types, transitive-axiom audits, source hashes, and numerical checks.
+[GitHub Actions](.github/workflows/checks.yml) runs the complete suite.
+Use a disposable checkout for reproduction: some checks write diagnostic files.
 
-## Repository layout
+## Navigate the project
 
-The [research index](research/README.md) connects the rare-event, population and
-nonlinear-feedback packages and distinguishes their historical checkpoints from
-the current results. Their paper proofs and numerical experiments retain their
-stated evidence levels.
+- **Read the mathematics:** [consolidated v5 paper](paper/v5/README.md),
+  [critical-result review packet](paper/critical-review/README.md),
+  and [claims with exact assumptions](docs/RESULTS.md).
+- **Inspect the formalization:** [Lean sources](lean/ThresholdHC/),
+  [main upper-bound scope](docs/BLIND_UPPER.md), and
+  [critical-law audit](docs/CRITICAL_AUDIT.md).
+- **Reproduce the evidence:** [verification commands](docs/VERIFY.md),
+  [recorded results](results/), and [benchmarks](benchmark/).
+- **Follow the research:** [remaining work](docs/WORKPLAN.md),
+  [research index](research/README.md), and [process note](docs/process/METHOD.md).
 
-| Path | Contents |
-|---|---|
-| [paper/](paper/) | Current v5 manuscript, critical review packet, and preserved v4. |
-| [lean/](lean/) | Statements, proofs, and pinned Mathlib dependencies. |
-| [docs/RESULTS.md](docs/RESULTS.md), [docs/VERIFY.md](docs/VERIFY.md) | Claim scopes, source pointers, and verification commands. |
-| [constants/](constants/), [benchmark/](benchmark/) | Numerical evaluators and benchmark code. |
-| [results/](results/), [inputs/](inputs/) | Recorded evidence and preserved inputs. |
-| [proposals/](proposals/), [docs/process/](docs/process/) | Supporting arguments, reviews, and research history. |
+## Scope and review
 
-## How this was made
+Lean verifies the linked mathematical statements and their definitions;
+coverage of the manuscript is recorded claim by claim. The work has received
+AI review and has not had independent external specialist review. Numerical
+experiments provide supporting evidence, not proofs of universal claims.
 
-The [process note](docs/process/METHOD.md) explains how the experiment was
-specified, proofs and claims were checked, failed approaches were retained,
-and the limits of agent review were recorded. The current follow-up is tracked
-in the [verification and consolidation ledger](docs/WORKPLAN.md).
+The next formalization targets include the unbiased-estimation converse and
+its sharp lower bound, confidence guarantees, and the remaining rare-event
+regimes. General-law rare-event theory and tighter constants remain research
+directions. See the [completion ledger](docs/WORKPLAN.md) for the current boundary.
 
-AI agents carried out the research and formalization under David Iach's direction, against frozen Lean targets checked by a hash-locked scorer. The [provenance record](docs/process/PROVENANCE.md), [research report](docs/process/REPORT.md), and [run log](docs/process/RUNLOG.md) document the work and its evidence. Tiers, point totals, and checkpoints record that process; they do not extend the verified statements. The [process index](docs/process/README.md) links the original brief, approval history, and independent agent reviews.
+## Attribution and license
 
-Code and Lean files use [Apache-2.0](LICENSE); the paper and documentation use [CC BY 4.0](LICENSE-CC-BY-4.0). See [license scope](LICENSES.md) and [CITATION.cff](CITATION.cff) for attribution and the AI-assisted provenance note.
+AI agents carried out the research and formalization under David Iach's
+direction. The [process note](docs/process/METHOD.md) and
+[provenance record](docs/process/PROVENANCE.md) document the workflow and review limits.
+
+Use [CITATION.cff](CITATION.cff) to cite this work. Code and Lean files are
+licensed under [Apache-2.0](LICENSE); the paper and documentation are licensed
+under [CC BY 4.0](LICENSE-CC-BY-4.0). See [license scope](LICENSES.md).
