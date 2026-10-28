@@ -1,9 +1,24 @@
 # Verification and consolidation
 
-This is the active completion ledger for the follow-up authorized on 27 October
+This ledger records the follow-up authorized on 27 October
 2026. The starting published commit is `b3f88e6bc02b3d59ec9fe99529688e2bd911e1db`.
 It preserves the full requested scope; a partial formalization does not complete
 this plan. The original checkpoint is on `research/verification-consolidation-20261027`.
+
+**Current status (28 October 2026):** the core verification and consolidation
+package is complete and merged into `main`, through
+[PR #10](https://github.com/davidiach/adaptive-threshold-estimation/pull/10).
+The original RMS law and critical quadratic law are proved in Lean in both
+directions; the exact Psi comparison, all-size extension, consolidated v5
+manuscript, specialist packet, and process note are published.
+
+Remaining priorities are independent external specialist review; formalizing
+the unbiased-estimation converse and sharp lower coefficient, confidence
+guarantees, and other paper-only results; and research on a corrected
+arbitrary-law rare-event characterization. The four maintenance refactorings
+below are non-blocking follow-up work. The historical checkpoints and their
+original evidence scopes are retained below.
+
 The unbiased-estimator review unit is [PR #4](https://github.com/davidiach/adaptive-threshold-estimation/pull/4),
 based on that branch at `2162210`. The full critical upper proof is a further
 focused unit on `research/critical-minimax-upper-20261028`, based on PR #4's
@@ -78,7 +93,7 @@ GitHub Actions run has finished.
 | Original distribution-blind upper bound | One budget-indexed observable algorithm independent of the magnitude/sign laws, realized in the original experiment; uniform work and RMS bounds; exact type and axiom audit | [Complete](BLIND_UPPER.md): the frozen full statement is inhabited by one budget-indexed observable family, with coefficient 512. Actual execution, almost-sure cost/output identities, uniform budget and RMS bounds are proved; exact-type and transitive-axiom audit passed |
 | Consolidated v5 manuscript | Original minimax law, unbiasedness, 713 bound, rare-event regimes, critical result and correction to the Psi conjecture; accurate verification labels; compiled and visually checked | [Written](../paper/v5/README.md): 59-page manuscript including the all-size addendum, complete source-derived proof appendices, source checks and rendered-page review. Both critical bounds and Psi are linked at `eabf274`; the addendum's explicit constants are linked at `ebd3667`. No independent specialist review is claimed |
 | Process note | Reproducible account of construction, frozen statements, semantic review, failed approaches, reviewer dependence, and limits | [Written](process/METHOD.md) and refreshed at `6009662`, including completed realization proofs, the formula's freeze chronology, and lessons from the long run and focused PRs |
-| Repository cleanup and publication | Clear current entry points, preserved source/evidence identities, passing relevant guards and CI, pushed commits and reviewable changes | README, results and verification guides lead to current evidence; historical bundles remain intact. Proof checkpoints are published in PRs #3, #4, #5 and #7; the final manuscript branch is separate. CI results belong to each exact commit and are recorded in the corresponding PR |
+| Repository cleanup and publication | Clear current entry points, preserved source/evidence identities, passing relevant guards and CI, pushed commits and reviewable changes | The proof and manuscript stack through PR #10 is merged into main. README, results and verification guides lead to current evidence; historical bundles remain intact. CI results belong to each exact commit and are recorded in the corresponding PR |
 
 ## Working rules
 
