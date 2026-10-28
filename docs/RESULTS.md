@@ -27,6 +27,13 @@ $$R_\mu(B)\asymp\omega_\mu(B^{-1/2}),\qquad r_\mu(B,\delta)\asymp\omega_\mu\!\le
 
 Here $r_\mu(B,\delta)$ is the minimax uniform error radius at failure probability at most $\delta$, with the same expected-budget constraint. The constants are universal. The algorithms depend only on $B$, or on $(B,\delta)$, and observe neither magnitudes nor their law. The proof is in §5. The full matching upper/lower characterization and confidence-radius statement retain paper-proof status.
 
+The [upper construction checkpoint](BLIND_UPPER.md) now checks the original
+observable simulation law, cutoff-call bounds, actual pilot/production
+calibration, and the independent seed-to-call-array law. It also constructs a
+measurable controller in the original `AdaptiveEstimator` class and proves its
+per-call and full finite-word state transitions. The controller's population
+cost/output identities and the final budget-indexed RMS theorem remain pending.
+
 The RMS lower-bound side is now formalized end to end. `ThresholdHC.Tier6.minimax_lower_bound` in [Full.lean](../lean/ThresholdHC/Tier6/Full.lean) proves
 
 $$R_\mu(B)\ge\frac1{64}\omega_\mu(B^{-1/2})\qquad(B\ge1).$$

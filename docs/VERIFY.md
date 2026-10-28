@@ -1,5 +1,18 @@
 # Full verification commands
 
+The distribution-blind upper construction has a separate
+[component checkpoint](BLIND_UPPER.md). After the baseline, Tier 6, and critical
+builds below, run:
+
+```sh
+python tools/verify_blind_upper_components.py
+python -m unittest discover -s tools -p 'test_blind_upper_components.py' -v
+```
+
+This checks the independent call-array cost/error bounds, exact seed law, and
+observable controller. The controller's population cost/output identities and
+the full upper theorem remain pending; the verifier keeps those flags false.
+
 The follow-up's scoped critical-proof components have a separate check:
 
 ```sh

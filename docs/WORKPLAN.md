@@ -5,12 +5,23 @@ This is the active completion ledger for the follow-up authorized on 27 October
 It preserves the full requested scope; a partial formalization does not complete
 this plan. New work is published on `research/verification-consolidation-20261027`.
 
+## Current proof boundary
+
+The original distribution-blind upper theorem remains unfinished. The active
+step is to identify the observable controller's actual total flips and terminal
+output with the calibrated statistical quantities almost surely. The cost and
+error bounds for those quantities, the independent seed law, and the controller
+construction are proved. After the identification, cutoff selection and the
+uniform budget/RMS conclusion remain. The matching critical rare-event upper
+is a separate unfinished proof. Neither elapsed time nor the number of checked
+components measures the fraction of these remaining obligations completed.
+
 | Work | Completion evidence | Current state |
 |---|---|---|
 | Adversarial audit of the critical quadratic theorem | Trace every proof dependency, record objections and their resolution, distinguish paper arguments from kernel checks | Initial source audit in [CRITICAL_AUDIT.md](CRITICAL_AUDIT.md); further verification in progress |
 | Specialist review package | Short overview, complete consolidated proof, precise questions, source and prior-art references | [Prepared](../paper/critical-review/README.md): three-page brief plus complete proof, 16-page PDF compiled and visually checked; external review itself remains pending |
 | Formal critical argument | Exact statistical specification, proved dependency chain, kernel and axiom audit; scalar lemmas alone do not satisfy this item | Critical single-coin variance and raw-moment base-cost theorems proved for every rarity. Capped finite-observation reduction now proves full seed/transcript reconstruction and preservation of canonical affinity and expected work. Actual population compactness, affine observation geometry and continuous convex Hellinger constraints on a common separated-pair set are proved, together with the abstract common-point theorem. The finite convex RMS comparison, actual observable one-run estimator and separated pair for each capped policy are now proved. Affinity/work normalization, actual revealed mixtures with heterogeneous seeds and caps, and one common separated pair for all capped policies are now proved. Exact finite population simulation laws, local expected-work charging and the common pair's finite-horizon transfer are now proved. Arbitrary measurable population seeds, unrestricted creation, separate endpoint termination, the terminal affinity limit, and the critical minimax lower bound are now proved in the original observable experiment for the full rare-prior class. Nonempty budgets and the trivial upper bound by rarity are also proved. The matching critical upper construction remains pending |
-| Original distribution-blind upper bound | One budget-indexed observable algorithm independent of the magnitude/sign laws, realized in the original experiment; uniform work and RMS bounds; exact type and axiom audit | Pending; existing classifier and negative-binomial identities are ingredients |
+| Original distribution-blind upper bound | One budget-indexed observable algorithm independent of the magnitude/sign laws, realized in the original experiment; uniform work and RMS bounds; exact type and axiom audit | [Construction checkpoint](BLIND_UPPER.md): original observable simulator, finite cutoff calls, actual independent pilot/production calibration, modulus bounds, seed law and a measurable Tier 6 controller are checked. Exact call transitions and full finite-word controller transitions are proved. Controller/population cost and output identities, cutoff selection and the final uniform RMS theorem remain pending |
 | Consolidated v5 manuscript | Original minimax law, unbiasedness, 713 bound, rare-event regimes, critical result and correction to the Psi conjecture; accurate verification labels; compiled and visually checked | [Written](../paper/v5/README.md): 56-page manuscript with complete source-derived proof appendices, explicit editorial changes, source checks, and rendered-page review. No separate review of the new consolidation is claimed |
 | Process note | Reproducible account of construction, frozen statements, semantic review, failed approaches, reviewer dependence, and limits | [Written](process/METHOD.md); update verification boundaries as further work lands |
 | Repository cleanup and publication | Clear current entry points, preserved source/evidence identities, passing relevant guards and CI, pushed commits and reviewable changes | First checkpoint pushed in [draft PR #3](https://github.com/davidiach/adaptive-threshold-estimation/pull/3); baseline CI confirmed; current verification status must be checked per commit |

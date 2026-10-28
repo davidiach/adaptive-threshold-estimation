@@ -27,6 +27,9 @@ adaptive algorithms. Its matching upper and the other
 [rare-event results](paper/v5/rare-events.tex) retain paper-proof status.
 The [results guide](docs/RESULTS.md) records the precise rate, model and audit;
 the PDFs retain their stated earlier formal-reference checkpoint.
+The [upper-bound construction checkpoint](docs/BLIND_UPPER.md) checks the
+calibrated call-array bounds, independent seed law, and observable controller;
+the full distribution-blind upper theorem remains pending.
 [Verify locally](docs/VERIFY.md) · [CI](https://github.com/davidiach/adaptive-threshold-estimation/actions/workflows/checks.yml)
 
 <details>

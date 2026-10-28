@@ -81,6 +81,8 @@ jobs:
           if test -f tools/test_tier6_validation.py; then python -m unittest discover -s tools -p 'test_tier6_validation.py' -v; fi
       - name: Regression tests for the scoped critical component audit
         run: python -m unittest discover -s tools -p 'test_critical_components.py' -v
+      - name: Regression tests for the scoped upper construction audit
+        run: python -m unittest discover -s tools -p 'test_blind_upper_components.py' -v
       - run: python tools/check_targets_numeric.py
       - name: Tier 2 numeric truth checks when present
         run: |
@@ -135,6 +137,8 @@ jobs:
         run: python lean/ThresholdHC/ResearchRouteA/verify.py
       - name: Verify the critical single-coin lower bound and scoped components
         run: python tools/verify_critical_components.py
+      - name: Verify the observable upper construction components
+        run: python tools/verify_blind_upper_components.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -162,3 +166,4 @@ jobs:
             results/tier6_audit.log
             results/tier6_status.json
             .runtime/critical-components/
+            .runtime/blind-upper-components/

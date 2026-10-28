@@ -1,0 +1,10 @@
+{
+  "created_at": "2026-10-27T18:12:30.178037+00:00",
+  "source": "lean/ThresholdHC/BlindUpper/Specification.lean",
+  "sha256": "9531acd63300aa44359d293b84cc544d40977c6be79c0a87a1d24bcfe410ab15",
+  "specification_only": true,
+  "attaining_algorithm_proved": false,
+  "compiler_exit_code": 0,
+  "scope": "One budget-indexed family chosen before every magnitude law, in existing Tier6 experiment; frozen before implementation.",
+  "note": "Preserves the original draft bytes. A legal candidate exists; its uniform risk/budget theorem is pending."
+}
