@@ -1,0 +1,404 @@
+{
+  "valid": true,
+  "scope": "RMS lower coefficient 1/64 and confidence lower coefficient 15/(256 sqrt 2) for canonical revealed and adaptively selected magnitude experiments. Includes actual expected-flip budgets, arbitrary measurable seeds, fresh/revisit semantics, minimax statements and nonvacuity.",
+  "source_sha256": {
+    "lean/lake-manifest.json": "a7058b14db1034b58735d82f1cf9a82a938855e93decc1960ca7d21e786fdfe2",
+    "lean/lakefile.toml": "273cfe4674e97219b22f7de1428bdadfb45379c7fa582882c59624ab7fbc3189",
+    "lean/lean-toolchain": "d581a24b57a4ae9e0b2132ca8ac7cc3ac336a9fc2751fe6b29414e2d434d54c4",
+    "lean/ThresholdHC/Confidence/Information.lean": "3d5980c2eb086b8bf3778ac5a6de54df48018c7bc62f138eaa45a2348e660905",
+    "lean/ThresholdHC/Confidence/Lower.lean": "ebc694469135a192caef81dc248066f65ed7953bf5ef4a9e0ad6f363d9dcbd62",
+    "lean/ThresholdHC/Confidence/Model.lean": "ddcdab8c0b1a735e3b94f10765547458d4d772b19eddf519bc5be125d80eade5",
+    "lean/ThresholdHC/Confidence/Specification.lean": "5dcc70b098cecea79b05b0e5b56a9cdc8684fd8a3972bac8795da1e60fb0f312",
+    "lean/ThresholdHC/Confidence/Testing.lean": "afce538cb4c82100b7e6411f0f8acbb7b90a3055e35d74f219936a0d16f8240d",
+    "lean/ThresholdHC/OracleLower/Confidence.lean": "9dd75620dfada14f1c9627927c8f3ef9ee22c22fe5a1130db8aa65706da54f00",
+    "lean/ThresholdHC/OracleLower/Examples.lean": "f370af27509f085dabcc24736a35ea82ced19d50dd2bdd4d1b8329cb12aac745",
+    "lean/ThresholdHC/OracleLower/Full.lean": "e09436cb46adc6109f2dfb031f78c007a7a569d423b6c7efabacda1996429ddf",
+    "lean/ThresholdHC/OracleLower/Information.lean": "daf98271da1b190bd936b232bb6548d6248437f203dd084d2d394a35b2ed0ce1",
+    "lean/ThresholdHC/OracleLower/Model.lean": "9e82917375273cef2ab4f001a88cb1da232a72cb90a45140bb6323620b71fe92",
+    "lean/ThresholdHC/OracleLower/Nonvacuity.lean": "96a17ee387dedfce5c4497a8e37e625939fd231acdd6cb1b31fc110ee12fcc70",
+    "lean/ThresholdHC/OracleLower/Realization.lean": "7eb4c39de90eb1456964bd27db3183c184c4c3a98a22737b8f14460e58245c07",
+    "lean/ThresholdHC/OracleLower/RMS.lean": "19f9bc2dc7f5ed6f9f89b179bfc6abde01429b221075cc1a8d7aba074914dec4",
+    "lean/ThresholdHC/OracleLower/SelectedSemantics.lean": "b4def128146c7076dd83a9228ca6c7838a9aab8d23c5fe9080fa6bbb3197db46",
+    "lean/ThresholdHC/OracleLower/Specification.lean": "a58e3e76ae57b299956c76a7f156bfa958f9d86f16908b175dcbec4596b65136",
+    "lean/ThresholdHC/Proofs/Algebra.lean": "68efcc1bef2ab5407fa86b1e8fea52c2baeaf0001bfe5d548d0a58ee959fb155",
+    "lean/ThresholdHC/Proofs/Constants.lean": "702387511d6e4d86cf41a43f13a75f6fa7beff55286cb9d6fbd14d06957325d5",
+    "lean/ThresholdHC/Proofs/KL.lean": "ddf4b0067271296ea1836e44fe01fe55bf1143e14cf1f5b3473e38a196d966c3",
+    "lean/ThresholdHC/Proofs/Tier2/Information.lean": "4b62b5996af4e6c96cff51796745fc9b8dea356744b1ae7f0777ecc43b76fd16",
+    "lean/ThresholdHC/Proofs/Tier2/InformationCore.lean": "0a6a1af42b5b0af29db453982aabd1a4dbb615baf1284c8ecf6d14e5b0d58590",
+    "lean/ThresholdHC/Proofs/Tier2/Transcript.lean": "e8b8feca5af14a68f23fa9cdc57eb28259f87c18d3ff092ca732b353daf4e640",
+    "lean/ThresholdHC/Proofs/Tier2/TranscriptBase.lean": "ef06442bc824d756f959d0c9711edbf8b84a61359d8d1a10fedb8dbfe5c201d7",
+    "lean/ThresholdHC/Proofs/Tier2/TranscriptLikelihood.lean": "7d051a6f2f028d912910c9d18533b6db90863328a7bdc6c87c4181fade7c489f",
+    "lean/ThresholdHC/Proofs/Tier2/TranscriptScalar.lean": "dc691a74b9b1915377df80cd2caac4feec5d7bee3938480b906afbdb04630fee",
+    "lean/ThresholdHC/Statements.lean": "0873505b7c133561e82f63dcbba7f7a0a3da39d0c3692daee99d01882a757abf",
+    "lean/ThresholdHC/Statements2.lean": "51f85fee842aec2de331872b760ecd47e15715a84deaf5b8f08970bd9fa01414",
+    "lean/ThresholdHC/Tier3/Examples.lean": "d3c8da8c75721742709b56288caaeea9406c8ab2b22443ebe6fa5d68d69f0395",
+    "lean/ThresholdHC/Tier3/ExamplesModel.lean": "e03edb36c05e3e43601dddf4e8d510231f46bdb04a7b8b4f7bb884a2133e0cd5",
+    "lean/ThresholdHC/Tier3/IntegralLogSum.lean": "ecc8c3ca647b00fef691fbb2ecde8304c7f48e844a9c3a8a45a5fc9a948f94ff",
+    "lean/ThresholdHC/Tier3/Randomized.lean": "3e74e2a34d509b577730eb041447d6f63c54fde8d551860cd1cdbf8c6b5926ab",
+    "lean/ThresholdHC/Tier3/RandomizedBase.lean": "87af7b31ba2c3cc9ff623cf403d954ffd7b8844c1b3af6e9283b823921ed8285",
+    "lean/ThresholdHC/Tier3/RandomizedModel.lean": "3a61f9b034ee58e45e903356c60037e4808fdb1a711d96b24f3013ef95716f6b",
+    "lean/ThresholdHC/Tier3/Stopping.lean": "8490ec062f045c47f7aad53ece5b9ce6224f5a3978a8798c76a2c6765ac527b1",
+    "lean/ThresholdHC/Tier3/StoppingBase.lean": "0989b9b554ea0c056ec9f296e463c1767dc3509400960c266593c64e3daaa51d",
+    "lean/ThresholdHC/Tier3/StoppingModel.lean": "36aed19aa97432a9068952e5d389fe6a992faad0da71984b7412204940aa3892",
+    "lean/ThresholdHC/Tier3/TranscriptRatio.lean": "49b87fb8ece824fd69d52f2d83b40050529f3c7a295ed59e214cb18d1f139d4d",
+    "lean/ThresholdHC/Tier4/BoundReduction.lean": "0e0325bb1e4d18804437177eab78ab1741a0b387f31b7231b8a1826124d067c0",
+    "lean/ThresholdHC/Tier4/Entropy.lean": "f02035deb7d23182c83ef57b55fa13557e95d49682d741f33092589e61aa39ac",
+    "lean/ThresholdHC/Tier4/FiniteDensity.lean": "7b4216aebc1b247486233e4ea86de2e5b67301526bc3f5b730b4db4ebd53cba2",
+    "lean/ThresholdHC/Tier4/Model.lean": "2271691c5af1c4936accbb9a5c62b6ea5cbc3e6bdd718b0b44a958cd7a057214",
+    "lean/ThresholdHC/Tier4/StoppedReconstruction.lean": "dbda7538200c8460fda13cb6b8a13710164ee267874f88611a20059db8db2060",
+    "lean/ThresholdHC/Tier5/BoundReduction.lean": "c5f75679894a49d84d4d267957e45f1b01f1efe77c9a67ea8b24377d34916085",
+    "lean/ThresholdHC/Tier5/CreationBase.lean": "c77ca55ab89d3d286443be9699ebca100706851f2f33393c82770209362250ea",
+    "lean/ThresholdHC/Tier5/CreationExample.lean": "d47928e11a0b12f2bba93b9c52a32a15d5aac42d7f8aa7b0f5d317f8fc129b41",
+    "lean/ThresholdHC/Tier5/CreationFresh.lean": "c31a450f8f084400e123eb90ee5bfb0b70068f683b3873902f307e1697e4988f",
+    "lean/ThresholdHC/Tier5/CreationModel.lean": "b767058304f884582dc976a59b5d31671d417717097b60280d6b4533acae5871",
+    "lean/ThresholdHC/Tier5/CreationPadding.lean": "0749f9235601e37c0e141414b6347c9df8b3028c9c44924ef324739eb3e5cf68",
+    "lean/ThresholdHC/Tier5/CreationProduct.lean": "453b2c028190a1cddc2400a213a77b3c137436b64720531dbfec34a22d92bb9b",
+    "lean/ThresholdHC/Tier5/Entropy.lean": "23cdfaa93a43a1198ca09a2517add6045eff94dd5cc0b77bf05b60ffb4153eb6",
+    "lean/ThresholdHC/Tier5/EntropyPrefix.lean": "3372f0be782e5e776db8ef0ce0ce73f1dd22527d0f92994254d5d5d42942080e",
+    "lean/ThresholdHC/Tier5/FiniteCreation.lean": "382ea9fae97e5c8184a129f29b5004aa91416a26350445971315fcc28bd0d017",
+    "lean/ThresholdHC/Tier5/FiniteEnvironment.lean": "cdfd42cf5b704fd7577de9dc04fed2fcac94830cd7207240d704eb702f14b669",
+    "lean/ThresholdHC/Tier5/FiniteJoint.lean": "b8c826351070c9c8f8eb92ae68e9499c32e77e777c9438aa15ec1cb7db17956a",
+    "lean/ThresholdHC/Tier5/Full.lean": "21ffd3cbc7511e0dd7ab367c849498e0e4715722ad999d74a791c2b518aa21d2",
+    "lean/ThresholdHC/Tier5/Model.lean": "d0bd50268eb858d2acb14f0f220f228d6a1d8b211dd4359864c35faca6bf0fdd",
+    "lean/ThresholdHC/Tier5/PriorRatio.lean": "a116b733974fd4b0b1bddaf4c7eed5d161595b5a228fc59fbfcf68a5fbcc99d5",
+    "lean/ThresholdHC/Tier5/Specification.lean": "e8039a4b9277f0b59ffb36ca016d97020a5d3e6e5a6568c43be706c4f553fa12",
+    "lean/ThresholdHC/Tier5/StoppingBase.lean": "9ffc7fc2c7cf05885bbf88759ea62e436b525798378eee7abeb0dd4fb539815a",
+    "lean/ThresholdHC/Tier5/StoppingEntropy.lean": "4547b54ca46c146ff10e46c00d1edb5197c5e1e09bf80a6905a92c86248ad43c",
+    "lean/ThresholdHC/Tier5/StoppingFull.lean": "dfa01feebc73e7e56107b4d7efd4d28e5d56c95cce9045968596d00087e758d6",
+    "lean/ThresholdHC/Tier6/AlgorithmCore.lean": "ba81c4bbbcba907337a82b0350135c4f734239fcd2c5f4685d87d6ea72452ad8",
+    "lean/ThresholdHC/Tier6/AlgorithmModel.lean": "4494049e8205ca83eb635c8f82f0f7661f7ba61bc2ccc29966dcd9a5e47eeea5",
+    "lean/ThresholdHC/Tier6/AlgorithmNonempty.lean": "b1e09e11c164460e353770608783cd25a709ac39448f9a0a6fbb6f0d19bf7e73",
+    "lean/ThresholdHC/Tier6/AlgorithmRisk.lean": "52c7faee2d5c8cd8b56a8aa8f371d1ea40b7f4c8731b513c881891525ea5e89f",
+    "lean/ThresholdHC/Tier6/Full.lean": "1f6fb3dbd4a3171a6c2167c8b14c755624978705d82651ae8a88cacba839a0e7",
+    "lean/ThresholdHC/Tier6/HardPair.lean": "2ac5d16ae7e518d0079c141bf0660c10ae726b3f5274322d1257362a9650c24d",
+    "lean/ThresholdHC/Tier6/HardPairModel.lean": "003aa6f400fe62d6e0e074ef2df8b4d3afc5e79db73800d529ae11c0cd89e068",
+    "lean/ThresholdHC/Tier6/ModelReduction.lean": "93bab2a073295276f84fed9d093023b792431ff08d94b0c9b2a72731e52962a0",
+    "lean/ThresholdHC/Tier6/Process.lean": "8bdb6b9619ac8d351717be8adfe34361f4fca9c1881289d8733090982682eedf",
+    "lean/ThresholdHC/Tier6/ProcessIntegral.lean": "7ff9a0e3da430b2a2c6abda8cd783a5068acd8798dcb6580cf1f767cd20572cd",
+    "lean/ThresholdHC/Tier6/ProcessModel.lean": "c7da1211a83f0925da7f1ce0b573f155c08edbfaa0564cc6dc26e640d51a625b",
+    "lean/ThresholdHC/Tier6/ProcessWeights.lean": "280214be58ce854b84c13d424e570d5cd955f7c27ffe1afd3646e103edece733",
+    "lean/ThresholdHC/Tier6/RiskReduction.lean": "a00b61df019f1968cb688b16eb37a610e17cae610438a43045bb927e0028768b",
+    "lean/ThresholdHC/Tier6/Specification.lean": "17308c9cbaf3a8e45602723d2448515b73b1ddcdf157c417de16a13cc5f50148",
+    "lean/ThresholdHC/Tier6/Testing.lean": "da29bc8177fd0c139b49e3c52b169d402f82285e378822deb2d7422ca68793bb",
+    "lean/ThresholdHC/Tier6/TestingFinite.lean": "588e6f50a2dc9a227c941672d330d8e3b3f6582a4e41edca2be5fe2894f88fd2",
+    "lean/ThresholdHC/Tier6/TestingModel.lean": "941b5583b6a9d8776c38ac9de371b5f30a7a2c580b4cd627df7935665ca80944",
+    "tools/oracle_lower_specification_freeze.json": "6dc7d48987d143083ee0dee4b91da4f74a6939ee7b98f25d07dc6b4f933b080f",
+    "tools/verify_blind_upper_components.py": "ee01fa2cedbe2db008a21b3bae38dab2b4522fa4028d181ff7ec91ea759dab5d",
+    "tools/verify_oracle_lower.py": "31f241a5d761662cbfa726c5632fba710ea6f87325186fb67d6ed0f2e9aeed73",
+    "tools/verify_tier6.py": "7295c1609c57be9951fc46f3e210f7f7682083470cf94bbe2dd89a387b0f075e"
+  },
+  "exact_targets": {
+    "ThresholdHC.OracleLower.oracle_realization": "ThresholdHC.OracleLower.OracleRealizationStatement",
+    "ThresholdHC.OracleLower.selected_semantics": "ThresholdHC.OracleLower.SelectedSemanticsStatement",
+    "ThresholdHC.OracleLower.oracle_rms_lower": "ThresholdHC.OracleLower.OracleRMSLowerStatement",
+    "ThresholdHC.OracleLower.oracle_confidence_lower": "ThresholdHC.OracleLower.OracleConfidenceLowerStatement",
+    "ThresholdHC.OracleLower.revealed_lower_bounds": "ThresholdHC.OracleLower.RevealedLowerStatement",
+    "ThresholdHC.OracleLower.selected_lower_bounds": "ThresholdHC.OracleLower.SelectedLowerStatement",
+    "ThresholdHC.OracleLower.oracle_minimax_lower": "ThresholdHC.OracleLower.OracleMinimaxLowerStatement",
+    "ThresholdHC.OracleLower.oracle_nonvacuity": "ThresholdHC.OracleLower.OracleNonvacuityStatement"
+  },
+  "exact_targets_checked": 8,
+  "oracle_lower_verified": true,
+  "commands": [
+    {
+      "command": [
+        "lake",
+        "build",
+        "ThresholdHC.OracleLower.Model",
+        "ThresholdHC.OracleLower.Specification",
+        "ThresholdHC.OracleLower.Realization",
+        "ThresholdHC.OracleLower.SelectedSemantics",
+        "ThresholdHC.OracleLower.Information",
+        "ThresholdHC.OracleLower.RMS",
+        "ThresholdHC.OracleLower.Confidence",
+        "ThresholdHC.OracleLower.Nonvacuity",
+        "ThresholdHC.OracleLower.Examples",
+        "ThresholdHC.OracleLower.Full"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        ".audit\\OracleLower.lean"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "axioms": {
+    "ThresholdHC.OracleLower.OracleBudget": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.OracleConfidence": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.OracleConfidenceLowerStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.OracleEstimator": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.OracleMinimaxLowerStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.OracleNonvacuityStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.OracleRMSLowerStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.OracleRealizationStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.RevealedEstimator": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.RevealedLowerStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.SelectedEstimator": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.SelectedLowerStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.SelectedSemanticsStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.confidenceClipFactor": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.confidenceClipFactor_bounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.confidenceClipFactor_eighth": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.confidenceClipFactor_square": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.feedbackExample": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.feedbackExample_selects_and_revisits": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.hiddenOracle": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.hiddenOracle_budget": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.hiddenOracle_confidence": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.hiddenOracle_law": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.hiddenOracle_risk": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.hidden_confidence_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.idleRevealed": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.idleSelected": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.oracleLaw": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.oracleLaw_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.oracleRandomLaw_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.oracleRisk": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.oracleWork": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.oracle_confidence_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.oracle_hard_pair_information": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.oracle_minimax_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.oracle_nonvacuity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.oracle_realization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.oracle_rms_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.oracle_stops_of_budget": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.oracle_work_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.oracle_zero_output_bounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.revealedConfidenceRadius": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.revealedMinimaxRisk": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.revealedOracle": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.revealed_lower_bounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.selectedConfidenceRadius": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.selectedLabel": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.selectedMinimaxRisk": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.selectedOracle": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.selectedRequestMeasurableSpace": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.selected_gap_at_history": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.selected_label_prefix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.selected_lower_bounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.OracleLower.selected_semantics": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "audited_modules": 10,
+  "audited_declarations": 54
+}

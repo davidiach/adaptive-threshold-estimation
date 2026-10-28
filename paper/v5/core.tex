@@ -85,8 +85,11 @@ coefficients $1/64$ and $512$. The upper family is chosen before every
 gap law and satisfies the budget in the same experiment. The
 confidence law is proved by \confidenceleanref{confidence\_characterization},
 with coefficients $1/64$ and $8192$ for $B\ge1$ and $0<\delta\le1/4$.
-Its upper family depends only on $(B,\delta)$. Stronger
-revealed- or selected-magnitude claims retain paper-proof status.
+Its upper family depends only on $(B,\delta)$. The stronger revealed- and
+selected-magnitude lower bounds are proved by
+\oracleleanref{Full.lean}{oracle\_minimax\_lower}, with coefficients
+$1/64$ and $15/(256\sqrt2)$. An exact embedding also gives the latter
+confidence coefficient in the hidden-magnitude experiment.
 
 This is distribution-wise minimax optimality: the worst case is over all
 sign functions at a fixed magnitude law. It is not instance optimality

@@ -116,7 +116,9 @@ observable model. One 713 estimator is fixed before every gap law. The
 variational optimizer has its separate formal specification.
 The confidence characterization is also proved in that model, with
 coefficients $1/64$ and $8192$ and one upper family depending only on
-budget and failure probability. Other rare-event regimes
+budget and failure probability. The stronger revealed- and selected-magnitude
+RMS and confidence lower bounds are also proved, including the paper's
+confidence coefficient $15/(256\sqrt2)$. Other rare-event regimes
 retain paper-proof status. Section~\ref{sec:verification} gives the exact
 scope and links.
 """
@@ -144,8 +146,11 @@ scope and links.
         "gap law and satisfies the budget in the same experiment. The\n"
         "confidence law is proved by \\confidenceleanref{confidence\\_characterization},\n"
         "with coefficients $1/64$ and $8192$ for $B\\ge1$ and $0<\\delta\\le1/4$.\n"
-        "Its upper family depends only on $(B,\\delta)$. Stronger\n"
-        "revealed- or selected-magnitude claims retain paper-proof status.\n\n"
+        "Its upper family depends only on $(B,\\delta)$. The stronger revealed- and\n"
+        "selected-magnitude lower bounds are proved by\n"
+        "\\oracleleanref{Full.lean}{oracle\\_minimax\\_lower}, with coefficients\n"
+        "$1/64$ and $15/(256\\sqrt2)$. An exact embedding also gives the latter\n"
+        "confidence coefficient in the hidden-magnitude experiment.\n\n"
         "This is distribution-wise minimax optimality:")
     core = once(core, r"\subsection{Unknown magnitude laws under an envelope}",
         "\\noindent\\emph{Verification: Lean proves the full existence characterization,\n"
