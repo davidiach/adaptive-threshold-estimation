@@ -20,8 +20,13 @@ derivation. The unbiased converse now proves inverse-gap integrability and
 the `I²/16` variance-work lower bound for all uniformly unbiased observable
 adaptive estimators. Its [proof](../../lean/ThresholdHC/UnbiasedConverse/Full.lean)
 and [audit](../../results/unbiased_converse_001.json) are linked at
-`631886e16ddff5b8e93b73860bf6552b956128be`. The 713 upper construction retains
-its conditional-kernel scope. The confidence characterization and other
+`631886e16ddff5b8e93b73860bf6552b956128be`. The
+[713 realization](../../lean/ThresholdHC/Observable713/Full.lean) now supplies
+one law-independent observable algorithm with variance at most `23 I` and
+work at most `31 I`, and proves the full existence characterization in the
+same model; see its [audit](../../results/observable713_001.json).
+Its formal links use checkpoint `15dbbda98a31e27502e3caff991d3ea21d096d23`.
+The confidence characterization and other
 rare-event regimes retain paper-proof status. Earlier formal links are pinned to
 `eabf274cb42d4bff4daab6b58568ad6169e7f0a7`; the additive all-size proof links
 use `ebd36676693b66814bc2a379529499428ab98650`.

@@ -62,11 +62,34 @@ obtains `modulus μ h ^ 2 ≤ 16 * h ^ 2 * W * V`, then applies monotone converg
 to truncated inverse gaps. The [audit](../results/unbiased_converse_001.json)
 checks the exact target, all 10 modules and 38 declaration roots, transitive
 axioms, and source stability. This proves the necessity direction and lower
-coefficient in the original model. The 713 sufficiency result retains its
-conditional-kernel and separate-family scope below; this addition does not
-establish a new realization of that construction or a stronger oracle theorem.
+coefficient in the original model. The construction below now supplies the
+sufficiency direction in that same experiment. Their combination is the exact
+Lean theorem `observable_unbiased_iff`; stronger oracle claims retain their
+separate paper-proof scope.
 
 ## The 713 construction
+
+[`observable_713`](../lean/ThresholdHC/Observable713/Full.lean) inhabits the
+[frozen observable specification](../lean/ThresholdHC/Observable713/Specification.lean).
+It chooses one `AdaptiveEstimator ℕ` before every gap law. Whenever
+$I=\mathbb E_\mu[D^{-1}]<\infty$, its output is integrable and unbiased for every
+measurable sign law, with extended variance at most $23I$ and actual expected
+flips at most $31I$. The product of the **two separate extended-real suprema**
+is at most $713I^2$.
+
+The seed is a geometric level. The policy reads coin zero until its fine
+classifier stops; the adjacent coarse classifier reuses the same observed
+prefix. Exact path identities identify both output and work with the analyzed
+call. The policy never uses the gap law, hidden magnitude, or sign, and every
+seed and tape stops after finitely many flips. The existing simulation theorem
+transfers the analysis to the original infinite experiment. Together with the
+converse, `observable_unbiased_iff` proves that uniformly finite variance/work
+unbiased estimation exists exactly when the inverse gap is integrable. The
+[audit](../results/observable713_001.json) checks both full targets, every new
+declaration, transitive axioms, and the target/dependency freeze made before
+these supporting proofs.
+
+The earlier, more general conditional-observation theorem remains unchanged:
 
 `ThresholdHC.Uniform713.full_bound_713` in [FullBound.lean](../lean/ThresholdHC/Uniform713/FullBound.lean) inhabits [FullBound713Statement](../lean/ThresholdHC/Uniform713/Specification.lean). For classifier parameters $(k_1,k_2)=(1/4,1)$ and the geometric single-term estimator, it proves square integrability, finite expected actual work, unbiasedness, and
 

@@ -4,6 +4,8 @@ part of each result's scope. Most theorem links use the completed critical-law
 and Psi checkpoint \nolinkurl{eabf274cb42d4bff4daab6b58568ad6169e7f0a7}.
 The unbiased converse uses its later checkpoint
 \nolinkurl{631886e16ddff5b8e93b73860bf6552b956128be}.
+The observable 713 construction and existence characterization use
+\nolinkurl{15dbbda98a31e27502e3caff991d3ea21d096d23}.
 All theorem links point to fixed source revisions.
 The preceding all-size addendum has its own linked checkpoint and audit;
 its stronger domain and explicit single-coin constants supplement this table.
@@ -33,13 +35,15 @@ Unbiased characterization &
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/631886e16ddff5b8e93b73860bf6552b956128be/lean/ThresholdHC/UnbiasedConverse/Full.lean}{\texttt{unbiased\_converse}}
 proves the necessity of $I_\mu<\infty$ and $V\overline W\ge I_\mu^2/16$
 for all uniformly unbiased observable adaptive estimators. Integrability,
-extended variance, and actual work are explicit. The constructive upper
-bound retains the coverage in the next row.\\[5pt]
+extended variance, and actual work are explicit.
+\observableleanref{observable\_unbiased\_iff} combines this converse with
+the next construction to prove the full existence characterization.\\[5pt]
 713 construction &
-\leanref{Uniform713/FullBound.lean}{full\_bound\_713} proves the
-untruncated estimator theorem in a conditional observation-kernel
-model. \leanref{ResearchRouteA/SeparateBounds.lean}{uniform\_family\_bounds}
-proves the separate-supremum bridge with a fixed kernel and estimator.\\[5pt]
+\observableleanref{observable\_713} chooses one observable algorithm
+before every gap law, and proves unbiasedness, extended variance at most
+$23I_\mu$, actual work at most $31I_\mu$, and the product of separate
+suprema at most $713I_\mu^2$. The earlier conditional-kernel theorem
+and separate-family bridge remain unchanged.\\[5pt]
 Variational optimizer &
 \leanref{Tier3/Optimizer.lean}{arbitrary\_law\_optimizer}
 proves the optimizer and value formula for arbitrary laws. It does
@@ -138,8 +142,26 @@ truncated inverse gaps then proves both integrability and the lower product
 bound; finite $I_\mu$ is not assumed. The exact target has no KL or
 differentiability premise. The model and target were written and compiled
 before the supporting proofs; the dependency snapshot was recorded after
-the proof drafts. This addition does not extend the 713 construction's
-realization or the stronger oracle claims.
+the proof drafts. Stronger oracle claims retain their separate scope.
+
+\paragraph{Realizing the 713 estimator.}
+A geometric natural-number seed selects a fine classifier and its adjacent
+coarse classifier on the same coin. Monotonicity of their stopping levels
+means that the coarse output is already determined by the fine classifier's
+observed prefix. The controller requests coin zero until that stopping rule
+fires, then returns the scaled difference (the base output at level zero).
+Every seed and tape has finite actual work, bounded by its dyadic cap.
+No hidden magnitude, sign, or gap law enters the policy or output.
+
+The pointwise execution proof identifies the entire stopped transcript,
+output and flip count. The existing population simulation law transfers
+the conditional Bernoulli analysis to the original adaptive experiment.
+Integrating over every measurable sign law gives unbiasedness and the
+separate bounds $23I_\mu$ and $31I_\mu$. Extended variance retains the
+possibility of infinite values until square integrability is proved.
+The two full targets and their transitive model definitions were compiled
+and frozen before this controller and its supporting proofs. The audit
+checks both targets and all 47 new declaration roots.
 
 \paragraph{Numerical evidence and its limits.}
 Exact finite certificates, floating-point recursions, and held-out

@@ -18,11 +18,22 @@ passed: the general two-distribution variance inequality, the information
 bound in the existing observable adaptive experiment, and the inverse-moment
 limit. The [full theorem](../lean/ThresholdHC/UnbiasedConverse/Full.lean) and
 [audit](../results/unbiased_converse_001.json) cover the exact target and all
-38 declarations. The 713 construction retains its conditional-kernel scope;
-this converse does not supply a new realization of that upper construction.
+38 declarations. It was reviewed and merged in
+[PR #13](https://github.com/davidiach/adaptive-threshold-estimation/pull/13)
+at `d3dc500`, after all six branch/PR checks passed and no blocking findings
+remained.
 
-The next formalization priorities are the confidence characterization,
-the 713 realization in the common observable model, and other paper-only
+The 713 construction is now realized in the same observable model by
+[one law-independent estimator](../lean/ThresholdHC/Observable713/Full.lean),
+with uniform extended variance at most `23 I`, actual expected work at most
+`31 I`, and product of separate suprema at most `713 I²`. Its second full
+target combines the upper construction with the converse to prove unbiased
+existence iff the inverse gap is integrable. The
+[new audit](../results/observable713_001.json) checks both frozen targets and
+all 47 declarations at proof checkpoint `15dbbda`.
+The new realization is a separate review unit from PR #13.
+
+The next formalization priorities are the confidence characterization and other paper-only
 rare-event results. A corrected arbitrary-law rare-event characterization
 remains open research. Publication and CI for this addition are recorded
 on its focused PR; the local audit alone does not establish CI success.
