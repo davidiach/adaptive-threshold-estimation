@@ -15,7 +15,7 @@ from pathlib import Path
 import re
 import subprocess
 
-from verify_tier6 import ALLOWED, FORBIDDEN, REPORT, strip_comments
+from verify_tier6 import ALLOWED, FORBIDDEN as TIER6_FORBIDDEN, strip_comments
 
 ROOT = Path(__file__).resolve().parents[1]
 LEAN = ROOT / "lean"
@@ -27,6 +27,14 @@ DECLARATION = re.compile(
     r"(?:def|abbrev|structure|theorem|lemma|instance|inductive)\s+"
     r"([A-Za-z_][\w']*(?:\.[A-Za-z_][\w']*)*)", re.M)
 IMPORT = re.compile(r"^import\s+([\w.]+)\s*$", re.M)
+# The frozen Tier 6 pattern misses the `admit` tactic, which is Lean's synonym
+# for `sorry`. Audited sources also contain no string literals: strip_comments
+# does not parse strings, so "/-" or "--" inside one could hide the code after
+# it, and a printed string could forge an axiom report in the audit output.
+FORBIDDEN = re.compile(TIER6_FORBIDDEN.pattern + r'|\badmit\b|"', TIER6_FORBIDDEN.flags)
+# Unlike the frozen Tier 6 pattern, this also reads primed names such as foo'.
+REPORT = re.compile(
+    r"'(\S+?)'\s+(depends on axioms:\s*\[(.*?)\]|does not depend on any axioms)", re.S)
 EXACT_TARGETS = {
     "ThresholdHC.BlindUpper.distribution_blind_upper":
         "ThresholdHC.BlindUpper.DistributionBlindUpperStatement",
@@ -71,6 +79,8 @@ def validate_dependency_freeze(specification: Path, freeze: dict) -> None:
 def validate_reports(output: str, returncode: int, expected: set[str]) -> dict[str, list[str]]:
     if returncode:
         raise ValueError("Lean audit exited unsuccessfully")
+    if "declaration uses 'sorry'" in output:
+        raise ValueError("Lean audit reported a declaration that uses sorry")
     reports: dict[str, list[str]] = {}
     for name, _kind, axioms in REPORT.findall(output):
         if name in reports:
