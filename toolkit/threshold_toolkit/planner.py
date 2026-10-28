@@ -301,9 +301,10 @@ def score_blocks(counts: np.ndarray, level: int) -> Tuple[np.ndarray, np.ndarray
 # Simulated calls are drawn at most this many at a time, so memory stays
 # bounded however large the budget is.
 MAX_CHUNK = 2 ** 22
-# Each simulated run makes about 2 * budget / 4 calls or more, so larger
-# budgets would not finish in practice.
-MAX_SIMULATED_BUDGET = 2.0 ** 40
+# A simulated run makes about budget / c calls, where c is the mean flips per
+# call, so time grows with budget x runs. At 2^32 flips one run can already take
+# several minutes, and the default 200 runs most of a day.
+MAX_SIMULATED_BUDGET = 2.0 ** 32
 
 
 def _calls(population: Population, level_cap: int, count: int,

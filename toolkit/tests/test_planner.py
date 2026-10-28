@@ -227,10 +227,11 @@ class SimulationTests(unittest.TestCase):
 
     def test_budgets_too_large_to_simulate_are_rejected(self):
         population = GuessedRates([0.9, 0.3])
+        for budget in (1e10, 1e300):
+            with self.subTest(budget=budget), self.assertRaises(ValueError):
+                simulate(population, budget, runs=2)
         with self.assertRaises(ValueError):
-            simulate(population, 1e300, runs=2)
-        with self.assertRaises(ValueError):
-            plan_target(population, 0.1, runs=2, max_budget=1e300)
+            plan_target(population, 0.1, runs=2, max_budget=1e10)
 
 
 class CommandLineTests(unittest.TestCase):
