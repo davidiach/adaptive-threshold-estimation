@@ -11,14 +11,14 @@ The mathematical source is the four-file
 [locked critical bundle](../../research/2026-10-27-nonlinear-critical/)
 at commit `b3f88e6bc02b3d59ec9fe99529688e2bd911e1db`.
 The [source audit](../../docs/CRITICAL_AUDIT.md) records the follow-up review
-and formalization boundary. In particular, the full statistical critical
-theorem is not Lean-checked.
+and formalization boundary. The critical lower bound is now Lean-checked;
+the matching upper and explicit comparison with Psi remain paper proofs.
 
-The verification table includes the single-coin variance and raw-moment
-base-cost lower bounds at `625da11cae0aeef00d36202b6eaf55f9ec04e256`. Activation normalization,
-observable restarts, good gaps and the scale count are all derived. The
-common-hard-pair instantiation, unrestricted population transfer and critical
-upper construction remain paper proofs. The mathematical proof bundle itself
+The verification table is pinned to
+`236eb2d4f286f8987f74f293c129258f517f2ec4`. It includes the single-coin base cost,
+one common hard pair, unrestricted population transfer, separate endpoint
+termination and the full critical minimax lower rate. It also records the
+completed original distribution-blind RMS upper theorem. The mathematical proof bundle itself
 remains the original four-file source identified above.
 
 ## Reproduce the packet
@@ -34,13 +34,13 @@ tectonic paper/critical-review/main.tex --outdir .runtime/review-pdf --keep-logs
 ```
 
 The assembler checks the original SHA-256 source lock before expanding the
-proof inputs. It changes the title, authorship/provenance line, and layout;
+proof inputs. It changes the title, date, authorship/provenance line, and layout;
 source paths and hashes receive line-breaking markup. It preserves the
 mathematical content. Edit the brief, not the generated `main.tex` or the
 locked originals. CI checks that the generated source matches its inputs;
 CI does not compile or mathematically certify this PDF.
 
-The checked-in PDF was compiled on Windows with Tectonic 0.17.0 on 27 October
+The checked-in PDF was compiled on Windows with Tectonic 0.17.0 on 28 October
 2026. It has 16 A4 pages. All pages were rendered and checked as a contact
 sheet, with the metadata-heavy final pages inspected at readable resolution.
 The final TeX log has no overfull/underfull boxes or unresolved references.

@@ -18,7 +18,7 @@
 \newcommand{\Xrho}{\mathcal X_\rho}
 \title{An iterated-log phase transition in rare-event threshold estimation\\[4pt]\large Specialist review packet}
 \author{Project lead: David Iach\\\small AI-assisted research draft}
-\date{27 October 2026}
+\date{28 October 2026}
 \begin{document}
 \maketitle
 \section*{Review brief: a possible iterated-log phase transition}
@@ -130,19 +130,20 @@ application should be assessed separately.
 \toprule
 Claim or component & Verification boundary\\
 \midrule
-Original arbitrary-law minimax lower bound & Lean-checked in Tier 6,
-with a constructed infinite experiment and uniform expected budget.
-It is a different theorem from the critical rare-event result.\\[5pt]
+Original arbitrary-law RMS law & Both directions are Lean-checked,
+with coefficients $1/64$ and $512$. One budget-indexed upper family
+works for every gap law in the original observable experiment.\\[5pt]
 Single-coin base cost & The BC1 variance/null-work bound and its raw-moment
 version are Lean-checked for all rarities. The proof derives activation,
 good gaps, observable restarts and the BC2 entropy bound from actual
 seeded Bernoulli experiments.\\[5pt]
-Common-point quantifier interchange & A compact-convex theorem for all
-finite mixtures is Lean-checked. The statistical population set and its
-mixture-information bounds remain hypotheses to be established.\\[5pt]
-Critical minimax theorem & Paper proof with agent review. Its full
-statistical dependency chain is not Lean-checked and has no external
-specialist review.\\[5pt]
+Critical minimax lower bound & Lean-checked for the full rare-prior class.
+The proof constructs one common pair, transfers it to unrestricted
+population algorithms, and proves endpoint termination and testing.
+Budget nonemptiness and a trivial upper bound are also proved.\\[5pt]
+Critical upper and $\Psi$ comparison & Paper proofs with agent review.
+The matching upper construction and explicit unbounded ratio to $\Psi$
+remain unformalized; no external specialist review is claimed.\\[5pt]
 Numerical and exact finite checks & Sanity and reproducibility evidence.
 They do not certify the continuum theorem or distinguish its asymptotic
 rate from the proposed Psi rate.\\
@@ -165,11 +166,13 @@ The accompanying build script verifies their existing SHA-256 lock before
 assembly. Editorial changes in this packet concern the title, this brief,
 and layout. The inherited mathematical statements and arguments are preserved;
 monospaced source paths and hashes are made line-breakable for typesetting.
+The verification table refers to the later formal checkpoint
+\nolinkurl{236eb2d4f286f8987f74f293c129258f517f2ec4}.
 
 \begin{itemize}
-\item \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/625da11cae0aeef00d36202b6eaf55f9ec04e256/docs/CRITICAL_AUDIT.md}{Follow-up dependency audit and formalization boundary}.
+\item \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/236eb2d4f286f8987f74f293c129258f517f2ec4/docs/CRITICAL_AUDIT.md}{Follow-up dependency audit and formalization boundary}.
 \item \href{https://github.com/davidiach/adaptive-threshold-estimation/tree/b3f88e6bc02b3d59ec9fe99529688e2bd911e1db/research/2026-10-27-nonlinear-critical}{Original proof bundle, source lock, and scoped reviews}.
-\item \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/625da11cae0aeef00d36202b6eaf55f9ec04e256/docs/process/METHOD.md}{Process note and limits of the evidence}.
+\item \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/236eb2d4f286f8987f74f293c129258f517f2ec4/docs/process/METHOD.md}{Process note and limits of the evidence}.
 \end{itemize}
 
 \noindent A matching characterization for arbitrary magnitude laws remains

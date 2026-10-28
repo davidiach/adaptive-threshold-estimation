@@ -28,6 +28,7 @@ def assemble() -> str:
                             r"\title{An iterated-log phase transition in rare-event threshold estimation\\[4pt]\large Specialist review packet}")
     source = source.replace(r"\author{Research continuation: independent construction and adversarial review roles}",
                             r"\author{Project lead: David Iach\\\small AI-assisted research draft}")
+    source = source.replace(r"\date{27 October 2026}", r"\date{28 October 2026}")
     source = source.replace(r"\maketitle", "\\maketitle\n" +
                             (PACKET / "overview.tex").read_text(encoding="utf-8"))
     for name in ("base_cost.tex", "affine_comparison.tex", "upper_bound.tex"):

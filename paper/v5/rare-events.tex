@@ -121,8 +121,9 @@ The lower bound covers every observable randomized population algorithm,
 including nonlinear outputs, unbounded stopping, and arbitrary creation
 and interleaving. The upper construction may know $\mu,\rho,B$.
 \end{theorem}
-\noindent\emph{Evidence: complete paper argument in
-\cref{app:critical}; its full statistical chain remains unformalized.}
+\noindent The complete paper argument is in \cref{app:critical}.
+The lower bound is Lean-checked; see \cref{sec:verification} for its exact
+scope. The matching upper bound remains a paper proof.
 
 The proof has three substantive transitions. First, sequential testing
 at many possible gaps forces a scale-entropy cost. Conditional moments,
@@ -164,9 +165,8 @@ rarity. The variational optimizer remains valid. A sharp replacement
 for arbitrary laws must account for additional statistical difficulty
 across scales; no such replacement is established here.
 
-\subsection{The formal single-coin lower bound}
-The formal development reaches the critical single-coin base-cost
-theorem through the following statistical finite-gap result.
+\subsection{The formal critical lower bound}
+The formal lower proof starts with the following statistical finite-gap result.
 Let $0<d_j\le1/128$, $d_j/d_{j+1}\ge2$, and $\log K\ge32$.
 One measurable test with an independent seed and observable stopping
 time $T$ is run on iid Bernoulli flips of mean $1/2\pm d_j$.
@@ -193,6 +193,18 @@ and expected work is finite under each such prior. The proof derives
 square integrability, positive activation, the conditioned procedure,
 good gaps, iid restarts, and a sufficient number of scales. A raw
 second-moment version is also proved. Neither conditional moment
-bounds nor an information inequality is assumed. The common population
-pair, population transfer, and critical upper construction remain paper
-arguments; this does not formalize the full critical minimax rate.
+bounds nor an information inequality is assumed.
+
+The proof then constructs the compact population set, realizes finite
+policy mixtures, and obtains one separated pair valid for every capped
+policy. Exact finite-prefix simulation laws and work charging transfer
+the pair to arbitrary population seeds, coin creation, revisiting and
+interleaving. Finite expected work under each endpoint yields termination
+and the terminal affinity bound without a continuity assumption on the
+output. Thus
+\leanref{CriticalEntropy/CriticalMinimax.lean}{critical\_minimax\_lower\_bound}
+proves the displayed lower rate for the full $[0,1]$-valued rare-prior
+class, including saturation. Separate zero-work results prove that the
+budget class is nonempty and its minimax risk is at most $\rho$.
+The matching critical upper and the explicit comparison with $\Psi$
+remain unformalized.

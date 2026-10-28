@@ -78,9 +78,12 @@ $\int q\,\mathrm d\mu$.
 \end{theorem}
 
 \paragraph{Formal scope.}
-The RMS lower bound in the ordinary hidden-magnitude experiment is
-proved by \leanref{Tier6/Full.lean}{minimax\_lower\_bound}.
-The matching upper bound, confidence statement, and stronger
+The RMS law in the ordinary hidden-magnitude experiment is proved by
+\leanref{Tier6/Full.lean}{minimax\_lower\_bound} and
+\leanref{BlindUpper/Full.lean}{distribution\_blind\_upper}, with
+coefficients $1/64$ and $512$. The upper family is chosen before every
+gap law and satisfies the budget in the same experiment. The
+confidence statement and stronger
 revealed- or selected-magnitude claims retain paper-proof status.
 
 This is distribution-wise minimax optimality: the worst case is over all

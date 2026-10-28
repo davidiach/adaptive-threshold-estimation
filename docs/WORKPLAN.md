@@ -12,8 +12,9 @@ unchanged specification: one observable family satisfies the budget and RMS
 bound for every gap law. The [full audit](../results/blind_upper_components_002.json)
 includes almost-sure execution identities and every budget. The matching
 critical rare-event upper and explicit Psi comparison remain unfinished in
-Lean. Manuscript synchronization and final review of the full requested scope
-remain; elapsed time and component counts do not establish their completion.
+Lean. The manuscript and review packet now reference the completed-upper
+checkpoint `236eb2d`; final review of the full requested scope remains.
+Elapsed time and component counts do not establish completion.
 
 | Work | Completion evidence | Current state |
 |---|---|---|

@@ -105,11 +105,13 @@ Section~\ref{sec:rare} states the current results together; the full
 rare-event proofs appear in the appendices. This corrects the earlier
 matching-$\Psi$ conjecture rather than assuming it.
 
-The original RMS lower bound is proved in Lean for the actual
-hidden-magnitude experiment. The untruncated 713 estimator, variational
-optimizer, and critical single-coin base-cost theorem have separate formal
-specifications. The matching budget-only upper algorithm, unbiased
-converse, and full critical theorem remain paper proofs.
+Both directions of the original RMS law are proved in Lean for the actual
+hidden-magnitude experiment, with coefficients $1/64$ and $512$ and one
+upper algorithm independent of the gap law. The critical minimax lower
+bound is also proved in that observable model. The untruncated 713 estimator
+and variational optimizer have separate formal specifications. The
+confidence characterization, unbiased converse, critical upper construction,
+and explicit comparison with $\Psi$ retain paper-proof status.
 Section~\ref{sec:verification} records the exact scope and links.
 """
     core = between(original, r"\section{Model,", r"\section{Computational verification")
@@ -129,9 +131,12 @@ Section~\ref{sec:verification} records the exact scope and links.
         "characterization for every magnitude law remains open.")
     core = once(core, "This is distribution-wise minimax optimality:",
         "\\paragraph{Formal scope.}\n"
-        "The RMS lower bound in the ordinary hidden-magnitude experiment is\n"
-        "proved by \\leanref{Tier6/Full.lean}{minimax\\_lower\\_bound}.\n"
-        "The matching upper bound, confidence statement, and stronger\n"
+        "The RMS law in the ordinary hidden-magnitude experiment is proved by\n"
+        "\\leanref{Tier6/Full.lean}{minimax\\_lower\\_bound} and\n"
+        "\\leanref{BlindUpper/Full.lean}{distribution\\_blind\\_upper}, with\n"
+        "coefficients $1/64$ and $512$. The upper family is chosen before every\n"
+        "gap law and satisfies the budget in the same experiment. The\n"
+        "confidence statement and stronger\n"
         "revealed- or selected-magnitude claims retain paper-proof status.\n\n"
         "This is distribution-wise minimax optimality:")
     core = once(core, r"\subsection{Unknown magnitude laws under an envelope}",
@@ -204,11 +209,12 @@ different construction.""")
         "and the inherited proof identities are recorded in the v5 source manifest.")
     critical = appendix(critical, "crit:", "C.", r"""\section{The full critical quadratic law}\label{app:critical}
 This appendix gives the full paper argument, including the upper bound.
-Its single-coin variance--null-work theorem, including activation,
-observable restarts and scale selection, is Lean-checked in the model
-stated in \cref{sec:rare}. The statistical common pair, population
-transfer and critical upper construction remain unformalized. Existing
-agent review is not independent specialist verification.""")
+The full critical minimax lower bound is Lean-checked in the observable
+model stated in \cref{sec:rare}, including the single-coin base cost,
+one common population pair, unrestricted population transfer and endpoint
+termination. The matching upper construction and explicit $\Psi$
+comparison remain paper proofs. Existing agent review is not independent
+specialist verification.""")
 
     bibliography = between(original, r"\begin{thebibliography}", r"\end{thebibliography}")
     def bibitems(text: str) -> dict[str, str]:

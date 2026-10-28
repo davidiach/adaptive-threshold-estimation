@@ -1,7 +1,7 @@
 \section{Verification, provenance, and remaining questions}\label{sec:verification}
 The distinction between a checked theorem and a checked ingredient is
 part of each result's scope. The following table records the boundary
-at the base-cost checkpoint \nolinkurl{625da11cae0aeef00d36202b6eaf55f9ec04e256}.
+at the completed-upper checkpoint \nolinkurl{236eb2d4f286f8987f74f293c129258f517f2ec4}.
 Links point to that source revision rather than a moving branch.
 
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.28\textwidth}>{\raggedright\arraybackslash}p{0.67\textwidth}@{}}
@@ -16,11 +16,15 @@ fresh-coin model, for arbitrary measurable seeds, natural-number coin
 labels, revisits, interleaving, and unbounded stopping. It constructs
 the experiment and retains infinite risk. The stronger revealed- or
 selected-magnitude paper statement is not the exact Lean target.\\[5pt]
-Original upper and confidence laws &
-The budget-only algorithm and confidence characterization in
-\cref{thm:main} remain paper proofs. Classifier estimates and
-inverse-binomial identities alone do not establish their realization
-in the full algorithm model.\\[5pt]
+Original RMS upper bound &
+\leanref{BlindUpper/Full.lean}{distribution\_blind\_upper} chooses one
+budget-indexed observable family before every gap law and proves
+$R_\mu(B)\le512\omega_\mu(B^{-1/2})$. Actual cost/output identities,
+almost-sure termination and every budget are included. The unchanged
+frozen specification has no additional statistical premise.\\[5pt]
+Confidence and stronger oracle laws &
+The confidence characterization and revealed/selected-magnitude claims
+in \cref{thm:main} retain paper-proof status.\\[5pt]
 Unbiased characterization &
 The necessity of $I_\mu<\infty$ and lower product coefficient $1/16$
 in \cref{thm:unbiased} remain paper proofs. The constructive upper
@@ -35,10 +39,10 @@ Variational optimizer &
 proves the optimizer and value formula for arbitrary laws. It does
 not assert a matching rare-event statistical upper bound.\\[5pt]
 Rare-event rates &
-The rates in \cref{sec:rare} remain paper theorems. The arbitrary-law
-lower bound and the above-two matching lower bound use the cited
-Lee--Valiant input. The critical argument has the formal components
-in the next three rows.\\[5pt]
+The below/above-two rates and general statistical $\Psi$ lower bound
+remain paper theorems. The arbitrary-law lower bound and above-two
+matching lower bound use the cited Lee--Valiant input. The critical
+lower theorem has the separate formal coverage below.\\[5pt]
 Finite-gap sign entropy &
 \leanref{CriticalEntropy/FiniteGap.lean}{finite\_gap\_sign\_entropy}
 proves the statistical bound with actual stopping and flip costs.
@@ -48,13 +52,17 @@ Critical single-coin base cost &
 $V\E_0T\ge c\rho L(1+\log L)$ for one universal $c>0$ and all
 $0<\rho\le1/4$. Extended variance, actual work and the global capped
 prior class are explicit. Activation and the full entropy chain are
-derived. Twenty exact targets and all 290 public declarations are
-audited; the full critical minimax law remains a paper theorem.\\[5pt]
-Common-point step &
-\leanref{CriticalEntropy/CommonPoint.lean}{common\_point\_of\_finite\_mixtures}
-proves an abstract compact-convex theorem. Statistical compactness,
-mixture information, and the hypothesis needed to instantiate it
-are not supplied by that theorem.\\
+derived. It is an input to the full critical lower theorem below.\\[5pt]
+Critical minimax lower bound &
+\leanref{CriticalEntropy/CriticalMinimax.lean}{critical\_minimax\_lower\_bound}
+proves the saturated lower rate in \cref{thm:v5-critical} for the full
+rare-prior class. Statistical compactness, finite mixtures, one common
+pair, population transfer, endpoint termination and terminal testing
+are proved, including unrestricted creation and arbitrary seeds.\\[5pt]
+Critical upper and $\Psi$ comparison &
+The attaining rare-event algorithm and the explicit unbounded ratio
+to $\Psi$ remain paper proofs. The complete two-sided critical law is
+therefore not claimed as a Lean theorem.\\
 \bottomrule
 \end{longtable}
 
@@ -64,8 +72,26 @@ The exact specifications and model definitions are necessary to interpret
 that fact: absence of proof holes does not show that a statement matches
 an intended experiment. The finite-gap targets were introduced with their
 proofs and are not described as specifications frozen before the proof work.
-The repository's \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/625da11cae0aeef00d36202b6eaf55f9ec04e256/docs/VERIFY.md}{verification guide}
+The repository's \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/236eb2d4f286f8987f74f293c129258f517f2ec4/docs/VERIFY.md}{verification guide}
 gives reproduction commands and the source-specific audit records.
+
+\paragraph{Realizing the distribution-blind upper algorithm.}
+The formal construction follows the two-pilot calibration strategy in
+\cref{sec:minimax-proof}. A stopped cutoff call with cap $N=2^\ell$ is
+padded by one unused flip when its original work is zero. Its output
+is unchanged, and every call advances the observed history. Two independent
+first-success pilots select the number of fresh production calls. The
+calibrated quantities have expected work at most $4N$ and mean-square
+error at most $12751\omega_\mu(N^{-1/2})^2$.
+
+These estimates are transferred to a measurable controller in the original
+experiment by exact seed and population path identities. Positive mean
+marked cost proves almost-sure pilot termination. For $B\ge4$, choosing
+$4N\le B<8N$ and comparing moduli yields coefficient $512$; for $1\le B<4$
+a zero-work estimator on the same seed space suffices. The coefficient
+includes padding and conservative rounding and is not claimed optimal.
+The full audit checks the unchanged specification and all transitive axioms;
+the earlier component records retain their historical incomplete status.
 
 \paragraph{Numerical evidence and its limits.}
 Exact finite certificates, floating-point recursions, and held-out
@@ -86,15 +112,13 @@ AI agents performed the work under David Iach's direction. No external
 specialist review or model diversity is established. One critical
 reviewer authored part of the argument, precluding two independent
 validations of the full proof. The
-\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/625da11cae0aeef00d36202b6eaf55f9ec04e256/docs/process/METHOD.md}{process note}
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/236eb2d4f286f8987f74f293c129258f517f2ec4/docs/process/METHOD.md}{process note}
 records the workflow, failed approaches, and these limits.
 
 \paragraph{Remaining mathematical work.}
-The statistical common-pair construction, interacting-population
-transfer, and critical upper construction remain verification targets. The original distribution-blind upper theorem
-still needs one observable budget-indexed algorithm realized in the
-same full experiment as the formal lower bound. The unbiased converse
-and confidence characterization also remain unformalized.
+The matching critical upper construction and explicit comparison with
+$\Psi$ remain verification targets. The unbiased converse, confidence
+characterization and stronger oracle claims also remain unformalized.
 A corrected arbitrary-law rare-event functional is open.
 
 The model requires independent fresh coins and conditionally independent
