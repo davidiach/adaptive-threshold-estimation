@@ -17,8 +17,9 @@ declared order; no subsequent tuning used held-out results.
 The winner reduces the dev proxy by 36.84% and held-out proxy by 36.77%.
 Both candidates have maximum grid bias ratio 0.717774 and telescoping
 residual below 3.2e-15. The grid covers caps through 4096 only.
-`constants/candidate.json` contains the finite-grid winner;
-`constants/candidate_theory.json` preserves the theorem-compatible candidate.
+`constants/candidate_finite_grid.json` contains the finite-grid winner;
+`constants/candidate_theory.json` and `constants/candidate.json` hold the
+theorem-compatible candidate.
 There is no proof that these are globally optimal parameters, even for the
 finite-grid objective: this was a coarse grid plus two local refinements.
 

@@ -224,11 +224,11 @@ ignored directories so it cannot overwrite a published checkpoint by accident.
 The [active completion ledger](../WORKPLAN.md) and
 [critical follow-up audit](../CRITICAL_AUDIT.md) distinguish completed components
 from remaining work. The original upper theorem, matching critical upper,
-exact Psi comparison, unbiasedness converse, and observable 713 construction
-are now formally proved. The converse and construction also give the full
-unbiased-existence characterization in the same model. The confidence
-characterization, stronger magnitude-oracle claims, and other rare-event
-regimes retain their stated paper-proof scopes. More proof
+exact Psi comparison, unbiasedness converse, observable 713 construction, and
+confidence characterization are now formally proved. The converse and
+construction also give the full unbiased-existence characterization in the same
+model. Stronger magnitude-oracle claims and other rare-event regimes retain
+their stated paper-proof scopes. More proof
 lines or larger logs would not change those boundaries on their own.
 
 Large changes should be divided by mathematical result. The follow-up initially
