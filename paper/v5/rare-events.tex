@@ -122,8 +122,12 @@ including nonlinear outputs, unbounded stopping, and arbitrary creation
 and interleaving. The upper construction may know $\mu,\rho,B$.
 \end{theorem}
 \noindent The complete paper argument is in \cref{app:critical}.
-The lower bound is Lean-checked; see \cref{sec:verification} for its exact
-scope. The matching upper bound remains a paper proof.
+Both bounds are Lean-checked in the original observable experiment:
+\par\noindent
+\leanref{CriticalEntropy/CriticalMinimax.lean}{critical\_minimax\_lower\_bound}
+and \leanref{CriticalUpper/Full.lean}{critical\_minimax\_upper\_bound}.
+The formal upper uses $C=100000$ and an alternative observable construction;
+see \cref{sec:verification} for its exact scope.
 
 The proof has three substantive transitions. First, sequential testing
 at many possible gaps forces a scale-entropy cost. Conditional moments,
@@ -150,10 +154,16 @@ For this fixed law, the optimizer identity is
  \end{cases}
  \quad a=1/4.
 \]
-It follows that
-$\Psi_{\mu,\rho}(B^{-1/2})\asymp
-\min\{\rho,\sqrt{\rho L/B}\}$.
-Taking $\rho_n=\exp(-\exp n)$ and $B_n=\rho_n^{-2}$ gives
+The exact formula is proved by
+\leanref{CriticalPsi/Full.lean}{critical\_psi\_formula} for the actual supremum
+over all measurable feasible allocations. Moreover,
+\leanref{CriticalPsi/Full.lean}{critical\_psi\_rate} proves, for $h>0$,
+\[
+ \min\{\rho,h\sqrt{\rho L}\}\le\Psi_{\mu,\rho}(h)
+ \le16\min\{\rho,h\sqrt{\rho L}\}.
+\]
+Thus $\Psi_{\mu,\rho}(B^{-1/2})\asymp\min\{\rho,\sqrt{\rho L/B}\}$.
+For the paper's explicit sequence, taking $\rho_n=\exp(-\exp n)$ and $B_n=\rho_n^{-2}$ gives
 \[
  \frac{R_{\mu,\rho_n}(B_n)}
       {\Psi_{\mu,\rho_n}(B_n^{-1/2})}
@@ -161,7 +171,13 @@ Taking $\rho_n=\exp(-\exp n)$ and $B_n=\rho_n^{-2}$ gives
 \]
 Thus the proposed universal matching-$\Psi$ upper bound is false
 according to \cref{thm:v5-critical}, even for one known law and known
-rarity. The variational optimizer remains valid. A sharp replacement
+rarity. Independently of that particular sequence,
+\leanref{CriticalPsi/Full.lean}{critical\_matching\_psi\_refuted} proves that
+for every $C>0$ there are $0<\rho\le1/4$ and $B\ge1$ with
+$C\Psi_{\mu,\rho}(B^{-1/2})<R_{\mu,\rho}(B)$.
+Its formal witness uses $\rho=\exp(-\exp M)$ and $B=LH/\rho$;
+the preceding $B=\rho^{-2}$ sequence remains a paper derivation.
+The variational optimizer remains valid. A sharp replacement
 for arbitrary laws must account for additional statistical difficulty
 across scales; no such replacement is established here.
 
@@ -206,5 +222,5 @@ output. Thus
 proves the displayed lower rate for the full $[0,1]$-valued rare-prior
 class, including saturation. Separate zero-work results prove that the
 budget class is nonempty and its minimax risk is at most $\rho$.
-The matching critical upper and the explicit comparison with $\Psi$
-remain unformalized.
+The matching upper and explicit $\Psi$ comparison have the separate formal
+proofs cited above; their constructions are described in \cref{sec:verification}.

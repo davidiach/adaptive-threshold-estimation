@@ -11,14 +11,18 @@ The mathematical source is the four-file
 [locked critical bundle](../../research/2026-10-27-nonlinear-critical/)
 at commit `b3f88e6bc02b3d59ec9fe99529688e2bd911e1db`.
 The [source audit](../../docs/CRITICAL_AUDIT.md) records the follow-up review
-and formalization boundary. The critical lower bound is now Lean-checked;
-the matching upper and explicit comparison with Psi remain paper proofs.
+and formalization boundary. Both critical minimax bounds and the actual Psi
+formula, rate and universal matching-Psi counterexample are now Lean-checked.
+The formal upper uses coefficient 100000 and an alternative observable
+construction. The formal counterexample budget is `L*(1+log L)/rho`; the
+preserved paper's `rho^(-2)` sequence remains a paper derivation.
 
 The verification table is pinned to
-`236eb2d4f286f8987f74f293c129258f517f2ec4`. It includes the single-coin base cost,
+`eabf274cb42d4bff4daab6b58568ad6169e7f0a7`. It includes the single-coin base cost,
 one common hard pair, unrestricted population transfer, separate endpoint
-termination and the full critical minimax lower rate. It also records the
-completed original distribution-blind RMS upper theorem. The mathematical proof bundle itself
+termination, both critical minimax rates, and the exact Psi counterexample.
+It also records the completed original distribution-blind RMS upper theorem.
+The mathematical proof bundle itself
 remains the original four-file source identified above.
 
 ## Reproduce the packet
@@ -35,8 +39,9 @@ tectonic paper/critical-review/main.tex --outdir .runtime/review-pdf --keep-logs
 
 The assembler checks the original SHA-256 source lock before expanding the
 proof inputs. It changes the title, date, authorship/provenance line, and layout;
-source paths and hashes receive line-breaking markup. It preserves the
-mathematical content. Edit the brief, not the generated `main.tex` or the
+source paths and hashes receive line-breaking markup. The inherited status
+paragraph is explicitly dated to distinguish it from the current verification
+table. Mathematical content is preserved. Edit the brief, not the generated `main.tex` or the
 locked originals. CI checks that the generated source matches its inputs;
 CI does not compile or mathematically certify this PDF.
 

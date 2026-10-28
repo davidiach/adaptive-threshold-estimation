@@ -107,11 +107,12 @@ matching-$\Psi$ conjecture rather than assuming it.
 
 Both directions of the original RMS law are proved in Lean for the actual
 hidden-magnitude experiment, with coefficients $1/64$ and $512$ and one
-upper algorithm independent of the gap law. The critical minimax lower
-bound is also proved in that observable model. The untruncated 713 estimator
-and variational optimizer have separate formal specifications. The
-confidence characterization, unbiased converse, critical upper construction,
-and explicit comparison with $\Psi$ retain paper-proof status.
+upper algorithm independent of the gap law. Both critical minimax bounds,
+the exact $\Psi$ formula and rate, and the failure of every universal
+matching-$\Psi$ upper are also proved in that observable model. The
+untruncated 713 estimator and variational optimizer have separate formal
+specifications. The confidence characterization, unbiased converse and
+other rare-event regimes retain their stated paper-proof scopes.
 Section~\ref{sec:verification} records the exact scope and links.
 """
     core = between(original, r"\section{Model,", r"\section{Computational verification")
@@ -209,11 +210,12 @@ different construction.""")
         "and the inherited proof identities are recorded in the v5 source manifest.")
     critical = appendix(critical, "crit:", "C.", r"""\section{The full critical quadratic law}\label{app:critical}
 This appendix gives the full paper argument, including the upper bound.
-The full critical minimax lower bound is Lean-checked in the observable
-model stated in \cref{sec:rare}, including the single-coin base cost,
-one common population pair, unrestricted population transfer and endpoint
-termination. The matching upper construction and explicit $\Psi$
-comparison remain paper proofs. Existing agent review is not independent
+Both critical minimax bounds and the exact $\Psi$ comparison are
+Lean-checked in the observable model stated in \cref{sec:rare}.
+The formal upper uses an alternative dyadic-classifier construction,
+and the formal counterexample uses budget $LH/\rho$ rather than the
+paper's $\rho^{-2}$ sequence. The inherited arguments below retain
+their mathematical content. Existing agent review is not independent
 specialist verification.""")
 
     bibliography = between(original, r"\begin{thebibliography}", r"\end{thebibliography}")

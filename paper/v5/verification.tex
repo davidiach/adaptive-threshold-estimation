@@ -1,8 +1,8 @@
 \section{Verification, provenance, and remaining questions}\label{sec:verification}
 The distinction between a checked theorem and a checked ingredient is
 part of each result's scope. The following table records the boundary
-at the completed-upper checkpoint \nolinkurl{236eb2d4f286f8987f74f293c129258f517f2ec4}.
-Links point to that source revision rather than a moving branch.
+at the completed critical-law and Psi checkpoint \nolinkurl{eabf274cb42d4bff4daab6b58568ad6169e7f0a7}.
+Theorem links point to that source revision rather than a moving branch.
 
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.28\textwidth}>{\raggedright\arraybackslash}p{0.67\textwidth}@{}}
 \toprule
@@ -42,7 +42,7 @@ Rare-event rates &
 The below/above-two rates and general statistical $\Psi$ lower bound
 remain paper theorems. The arbitrary-law lower bound and above-two
 matching lower bound use the cited Lee--Valiant input. The critical
-lower theorem has the separate formal coverage below.\\[5pt]
+law has the separate formal coverage below.\\[5pt]
 Finite-gap sign entropy &
 \leanref{CriticalEntropy/FiniteGap.lean}{finite\_gap\_sign\_entropy}
 proves the statistical bound with actual stopping and flip costs.
@@ -59,10 +59,17 @@ proves the saturated lower rate in \cref{thm:v5-critical} for the full
 rare-prior class. Statistical compactness, finite mixtures, one common
 pair, population transfer, endpoint termination and terminal testing
 are proved, including unrestricted creation and arbitrary seeds.\\[5pt]
-Critical upper and $\Psi$ comparison &
-The attaining rare-event algorithm and the explicit unbounded ratio
-to $\Psi$ remain paper proofs. The complete two-sided critical law is
-therefore not claimed as a Lean theorem.\\
+Critical minimax upper bound &
+\leanref{CriticalUpper/Full.lean}{critical\_upper\_bound} constructs one
+rarity- and budget-indexed observable family with uniform expected work
+at most $B$ and the matching RMS rate with coefficient $100000$.
+Its actual execution and work/output identities are proved.\\[5pt]
+Exact $\Psi$ comparison and counterexample &
+\leanref{CriticalPsi/Full.lean}{critical\_psi\_formula} evaluates the actual
+variational supremum; \leanref{CriticalPsi/Full.lean}{critical\_psi\_rate}
+proves its two-sided rate. \leanref{CriticalPsi/Full.lean}{critical\_matching\_psi\_refuted}
+rules out every universal matching-$\Psi$ upper bound in the original
+minimax model. Its budget is $LH/\rho$, not the paper sequence $\rho^{-2}$.\\
 \bottomrule
 \end{longtable}
 
@@ -72,7 +79,7 @@ The exact specifications and model definitions are necessary to interpret
 that fact: absence of proof holes does not show that a statement matches
 an intended experiment. The finite-gap targets were introduced with their
 proofs and are not described as specifications frozen before the proof work.
-The repository's \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/236eb2d4f286f8987f74f293c129258f517f2ec4/docs/VERIFY.md}{verification guide}
+The repository's \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/eabf274cb42d4bff4daab6b58568ad6169e7f0a7/docs/VERIFY.md}{verification guide}
 gives reproduction commands and the source-specific audit records.
 
 \paragraph{Realizing the distribution-blind upper algorithm.}
@@ -93,6 +100,26 @@ includes padding and conservative rounding and is not claimed optimal.
 The full audit checks the unchanged specification and all transitive axioms;
 the earlier component records retain their historical incomplete status.
 
+\paragraph{Realizing the critical upper algorithm.}
+The formal construction uses asymmetric classifiers at dyadic flip counts,
+an alternative to the likelihood-bank construction in \cref{app:critical}.
+An independent geometric level selects two adjacent classifiers on one
+coin's shared prefix. Their scaled difference, with the base classifier
+at level zero, has mean $\theta$, extended second moment at most $28\rho$,
+and expected actual flips at most $W=112000000LH$.
+An average of $n+1$ independent fresh-coin calls therefore has MSE at most
+$28\rho/(n+1)$ and expected work at most $(n+1)W$.
+
+The measurable controller requests only observed flips, stops each call
+from its prefix, and realizes these exact cost/output quantities in the
+original experiment. For $B\ge W/\rho$, it uses
+$\lfloor B/(2W)\rfloor+1$ calls; otherwise it returns zero without flipping.
+Both regimes satisfy the budget and the RMS bound with coefficient $100000$.
+Neither hidden magnitudes nor signs enter the policy. The full upper target
+was frozen before this construction. The Psi model and full types are
+separately hash-locked: the formula had a checked draft at freezing, while
+the rate and separation targets were fixed before their proofs.
+
 \paragraph{Numerical evidence and its limits.}
 Exact finite certificates, floating-point recursions, and held-out
 simulations do not certify the continuum theorems or the iterated-log
@@ -112,13 +139,12 @@ AI agents performed the work under David Iach's direction. No external
 specialist review or model diversity is established. One critical
 reviewer authored part of the argument, precluding two independent
 validations of the full proof. The
-\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/236eb2d4f286f8987f74f293c129258f517f2ec4/docs/process/METHOD.md}{process note}
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/6009662a5581b31de17c8956b6fd93e4279ba087/docs/process/METHOD.md}{process note}
 records the workflow, failed approaches, and these limits.
 
 \paragraph{Remaining mathematical work.}
-The matching critical upper construction and explicit comparison with
-$\Psi$ remain verification targets. The unbiased converse, confidence
-characterization and stronger oracle claims also remain unformalized.
+The unbiased converse, confidence characterization, stronger oracle claims,
+and other rare-event regimes retain their stated paper-proof scopes.
 A corrected arbitrary-law rare-event functional is open.
 
 The model requires independent fresh coins and conditionally independent

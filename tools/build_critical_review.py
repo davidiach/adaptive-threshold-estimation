@@ -31,6 +31,8 @@ def assemble() -> str:
     source = source.replace(r"\date{27 October 2026}", r"\date{28 October 2026}")
     source = source.replace(r"\maketitle", "\\maketitle\n" +
                             (PACKET / "overview.tex").read_text(encoding="utf-8"))
+    source = source.replace(r"\textbf{Status.}",
+                            r"\textbf{Inherited paper status (27 October 2026).}")
     for name in ("base_cost.tex", "affine_comparison.tex", "upper_bound.tex"):
         directive = "\\input{" + name + "}"
         if source.count(directive) != 1:

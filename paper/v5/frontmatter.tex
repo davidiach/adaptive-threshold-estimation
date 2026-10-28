@@ -14,8 +14,7 @@ With the additional global rarity constraint $\theta\le\rho$, the
 variational quantity $\Psi_{\mu,\rho}$ gives a general lower bound and
 has an explicit optimizer. It characterizes the power-margin regimes
 below and above exponent two, but fails at the boundary. For the fixed
-quadratic law $F(d)=(4d)^2$, put $L=1+\log(1/\rho)$. A paper proof gives
-the sharp RMS order
+quadratic law $F(d)=(4d)^2$, put $L=1+\log(1/\rho)$. The sharp RMS order is
 $\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}$,
 whereas $\Psi$ gives only $\min\{\rho,\sqrt{\rho L/B}\}$.
 The extra factor comes from sign testing across hidden difficulty scales.
@@ -25,11 +24,12 @@ algorithms.
 
 The original RMS law is Lean-checked in both directions, with coefficients
 $1/64$ and $512$ and one distribution-blind upper algorithm. The critical
-minimax lower bound, untruncated 713 construction, and variational optimizer
-are also Lean-checked in their stated models. The confidence characterization,
-unbiased converse, critical upper bound, and explicit $\Psi$ comparison
-remain paper proofs. This manuscript consolidates their statements, proofs,
-dependencies, and verification boundaries.
+minimax law, exact $\Psi$ comparison and counterexample, untruncated 713
+construction, and variational optimizer are also Lean-checked in their
+stated models. The critical upper coefficient is $100000$, without a claim
+of optimality. The confidence characterization, unbiased converse and other
+rare-event regimes retain paper-proof status. This manuscript consolidates
+the statements, proofs, dependencies, and verification boundaries.
 \end{abstract}
 \begin{center}\small
 Research draft; no independent specialist review of the consolidated

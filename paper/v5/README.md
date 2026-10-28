@@ -11,11 +11,14 @@ proofs, including their published external inputs.
 
 The original RMS law is Lean-checked in both directions, with lower coefficient
 1/64 and upper coefficient 512 and one distribution-blind algorithm. The full
-critical minimax lower bound is also proved in Lean, including the common pair,
-population transfer and endpoint termination. The matching critical upper and
-explicit Psi comparison remain paper proofs, as do the confidence characterization
-and unbiased converse. Formal links are pinned to
-`236eb2d4f286f8987f74f293c129258f517f2ec4`.
+critical minimax law is also proved in Lean in both directions, including the
+common pair, population transfer, endpoint termination and observable upper
+construction with coefficient 100000. The exact Psi formula, rate and failure
+of every universal matching-Psi upper are formalized. The formal counterexample
+uses budget `L*(1+log L)/rho`; the paper's `rho^(-2)` sequence remains a paper
+derivation. The confidence characterization, unbiased converse and other
+rare-event regimes retain their stated paper-proof scopes. Formal links are pinned to
+`eabf274cb42d4bff4daab6b58568ad6169e7f0a7`.
 The manuscript has no independent external specialist review, and
 the new consolidation itself has not had a separate agent review.
 For a narrower critical-result review, use the
@@ -62,7 +65,7 @@ tectonic paper/v5/main.tex --outdir /path/to/disposable-output --keep-logs --unt
 The project also compiles in the desktop LaTeX editor. The published PDF was
 exported with Tectonic 0.17.0 on 28 October 2026, rendered with Poppler,
 and visually inspected.
-It has 56 pages, no unresolved references or overfull boxes. The source check
+It has 57 pages, no unresolved references or overfull boxes. The source check
 resolves 141 unique labels and 19 bibliography citations. Typesetting and source
 identity checks do not constitute a new mathematical proof or independent review.
 
