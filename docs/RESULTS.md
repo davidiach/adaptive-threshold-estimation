@@ -45,7 +45,26 @@ $$R_\mu(B)\ge\frac1{64}\omega_\mu(B^{-1/2})\qquad(B\ge1).$$
 
 The [algorithm model](../lean/ThresholdHC/Tier6/AlgorithmModel.lean) takes the infimum over all measurable random-seed spaces and adaptive estimators, with expected work uniformly bounded over every measurable sign law. It permits unrestricted natural-number coin creation, revisits, interleaving, and unbounded stopping. The iid hidden magnitude environment is independent of algorithm randomness and is not visible to policy or output. Squared error and RMS use extended-real values, retaining infinite risk. `process_realization` constructs the infinite probability laws and proves their cylinder identities; realization, KL, absolute continuity, and testing bounds are not assumptions of the final minimax theorem. An immediate-stopping estimator proves the class nonempty and its minimax RMS risk at most one. See the [exact specification](../lean/ThresholdHC/Tier6/Specification.lean), [complete audit](../results/tier6_status.json), and [verification record](TIER6.md). Optimality of the coefficient $1/64$ is not asserted.
 
-[Theorem 2 and §6](../paper/paper.tex#L272) quantify over every measurable sign function $q$ at a fixed $\mu$. Put $I=\mathbb E_\mu[D^{-1}]$, $V=\sup_q\operatorname{Var}_{\mu,q}(Y)$, and $\overline W=\sup_q\mathbb E_{\mu,q}W$. An estimator unbiased for all such $q$ can have $V,\overline W<\infty$ exactly when $I<\infty$, and every such estimator satisfies $V\overline W\ge I^2/16$. These are uniform bounds, not a lower bound for each individual population. The theorem and converse remain paper proofs. The fixed-gap example attaining the lower coefficient is in §6, equation `eq:fixed-gap-sharp`; it does not identify the optimum for every nondegenerate law.
+[Theorem 2 and §6](../paper/paper.tex#L272) quantify over every measurable sign function $q$ at a fixed $\mu$. Put $I=\mathbb E_\mu[D^{-1}]$, $V=\sup_q\operatorname{Var}_{\mu,q}(Y)$, and $\overline W=\sup_q\mathbb E_{\mu,q}W$. An estimator unbiased for all such $q$ can have $V,\overline W<\infty$ exactly when $I<\infty$, and every such estimator satisfies $V\overline W\ge I^2/16$. These are uniform bounds, not a lower bound for each individual population. The fixed-gap example attaining the lower coefficient is in §6, equation `eq:fixed-gap-sharp`; it does not identify the optimum for every nondegenerate law.
+
+The converse is now proved in Lean: [`unbiased_converse`](../lean/ThresholdHC/UnbiasedConverse/Full.lean)
+inhabits the [full specification](../lean/ThresholdHC/UnbiasedConverse/Specification.lean)
+in the unchanged Tier 6 observable adaptive experiment. For every measurable
+seed space and estimator, unbiasedness for every measurable sign law and finite
+uniform bounds on extended variance and actual expected flips imply inverse-gap
+integrability and the product bound with coefficient 1/16. Unbiasedness explicitly
+requires integrability; the conclusion does not assume a finite inverse moment.
+No information bound, differentiability, bounded horizon, or finite coin supply
+is an assumption of the final theorem.
+
+The proof derives symmetric information bounds for vanishing clipped tilts,
+obtains `modulus μ h ^ 2 ≤ 16 * h ^ 2 * W * V`, then applies monotone convergence
+to truncated inverse gaps. The [audit](../results/unbiased_converse_001.json)
+checks the exact target, all 10 modules and 38 declaration roots, transitive
+axioms, and source stability. This proves the necessity direction and lower
+coefficient in the original model. The 713 sufficiency result retains its
+conditional-kernel and separate-family scope below; this addition does not
+establish a new realization of that construction or a stronger oracle theorem.
 
 ## The 713 construction
 

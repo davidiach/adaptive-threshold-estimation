@@ -1,8 +1,10 @@
 \section{Verification, provenance, and remaining questions}\label{sec:verification}
 The distinction between a checked theorem and a checked ingredient is
-part of each result's scope. The following table records the boundary
-at the completed critical-law and Psi checkpoint \nolinkurl{eabf274cb42d4bff4daab6b58568ad6169e7f0a7}.
-Theorem links point to that source revision rather than a moving branch.
+part of each result's scope. Most theorem links use the completed critical-law
+and Psi checkpoint \nolinkurl{eabf274cb42d4bff4daab6b58568ad6169e7f0a7}.
+The unbiased converse uses its later checkpoint
+\nolinkurl{631886e16ddff5b8e93b73860bf6552b956128be}.
+All theorem links point to fixed source revisions.
 The preceding all-size addendum has its own linked checkpoint and audit;
 its stronger domain and explicit single-coin constants supplement this table.
 
@@ -28,9 +30,11 @@ Confidence and stronger oracle laws &
 The confidence characterization and revealed/selected-magnitude claims
 in \cref{thm:main} retain paper-proof status.\\[5pt]
 Unbiased characterization &
-The necessity of $I_\mu<\infty$ and lower product coefficient $1/16$
-in \cref{thm:unbiased} remain paper proofs. The constructive upper
-bound has the formal coverage described in the next row.\\[5pt]
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/631886e16ddff5b8e93b73860bf6552b956128be/lean/ThresholdHC/UnbiasedConverse/Full.lean}{\texttt{unbiased\_converse}}
+proves the necessity of $I_\mu<\infty$ and $V\overline W\ge I_\mu^2/16$
+for all uniformly unbiased observable adaptive estimators. Integrability,
+extended variance, and actual work are explicit. The constructive upper
+bound retains the coverage in the next row.\\[5pt]
 713 construction &
 \leanref{Uniform713/FullBound.lean}{full\_bound\_713} proves the
 untruncated estimator theorem in a conditional observation-kernel
@@ -124,6 +128,19 @@ was frozen before this construction. The Psi model and full types are
 separately hash-locked: the formula had a checked draft at freezing, while
 the rate and separation targets were fixed before their proofs.
 
+\paragraph{The unbiased converse.}
+The formal proof bounds the separation of two expectations by symmetric
+KL divergence and their variances. It uses the sign laws
+$q_\pm(d)=1/2\pm\varepsilon\min\{1,h/d\}$, charges information to actual
+flips in the infinite experiment, and sends $\varepsilon$ to zero. This
+gives $\omega_\mu(h)^2\le16h^2V\overline W$. Monotone convergence of
+truncated inverse gaps then proves both integrability and the lower product
+bound; finite $I_\mu$ is not assumed. The exact target has no KL or
+differentiability premise. The model and target were written and compiled
+before the supporting proofs; the dependency snapshot was recorded after
+the proof drafts. This addition does not extend the 713 construction's
+realization or the stronger oracle claims.
+
 \paragraph{Numerical evidence and its limits.}
 Exact finite certificates, floating-point recursions, and held-out
 simulations do not certify the continuum theorems or the iterated-log
@@ -147,7 +164,7 @@ validations of the full proof. The
 records the workflow, failed approaches, and these limits.
 
 \paragraph{Remaining mathematical work.}
-The unbiased converse, confidence characterization, stronger oracle claims,
+The confidence characterization, stronger oracle claims,
 and other rare-event regimes retain their stated paper-proof scopes.
 A corrected arbitrary-law rare-event functional is open.
 
