@@ -11,6 +11,12 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def require(condition, message):
+    # Explicit checks, unlike assert, still run under python -O.
+    if not condition:
+        raise RuntimeError(message)
+
+
 def digest(relative):
     return sha256((ROOT / relative).read_bytes()).hexdigest()
 
@@ -21,28 +27,34 @@ def main():
         if digest(name) != expected:
             raise SystemExit(f"Locked benchmark input changed: {name}")
     started = json.loads((ROOT / "results/real_test_started.json").read_text())
-    assert started["selection_sha256"] == digest("results/real_selection.json")
+    require(started["selection_sha256"] == digest("results/real_selection.json"),
+            "test start record does not match the locked selection")
     for copy, original in [("reference.py", "code/benchmark.py"),
                            ("data/training.json", "results/training.json"),
                            ("data/tuning.json", "results/tuning.json")]:
-        assert digest("benchmark/" + copy) == digest("inputs/next-phase/" + original)
+        require(digest("benchmark/" + copy) == digest("inputs/next-phase/" + original),
+                "benchmark copy differs from its original input")
     test = json.loads((ROOT / "results/real_test.json").read_text())
     raw = np.load(ROOT / "results/real_test_raw.npz")
     for row in test["rows"]:
         key = f"{row['method']}_{row['budget']}"
         values, work = raw[key + "_value"], raw[key + "_work"]
-        assert len(values) == row["n"] == lock["heldout_replications"]
+        require(len(values) == row["n"] == lock["heldout_replications"],
+                "held-out replication count changed")
         rmse = np.sqrt(np.mean((np.clip(values, 0, 1) - .025)**2))
-        assert np.isclose(rmse, row["rmse"], rtol=1e-12, atol=1e-14)
-        assert np.isclose(work.mean(), row["mean_work"], rtol=1e-12, atol=1e-12)
+        require(np.isclose(rmse, row["rmse"], rtol=1e-12, atol=1e-14),
+                "recorded RMSE does not match the raw held-out data")
+        require(np.isclose(work.mean(), row["mean_work"], rtol=1e-12, atol=1e-12),
+                "recorded mean work does not match the raw held-out data")
     constants = json.loads((ROOT / "results/constants_candidate_lock.json").read_text())
     for key, name in [("search_sha256", "results/constants_dev_search.jsonl"),
                       ("scorer_sha256", "constants/score_constants.py"),
                       ("evaluator_sha256", "constants/evaluator.py")]:
-        assert constants[key] == digest(name)
+        require(constants[key] == digest(name), "locked constants source changed")
     for field, filename in [("candidate", "constants/candidate_finite_grid.json"),
                             ("theory_compatible_candidate", "constants/candidate_theory.json")]:
-        assert constants[field]["config"] == json.loads((ROOT / filename).read_text())
+        require(constants[field]["config"] == json.loads((ROOT / filename).read_text()),
+                "accepted constants configuration changed")
     print(f"Verified {len(lock['hashes'])} benchmark locks, constants selections, and {len(test['rows'])} raw-data summaries.")
 
 
