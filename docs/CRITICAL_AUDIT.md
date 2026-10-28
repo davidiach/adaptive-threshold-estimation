@@ -78,8 +78,44 @@ was frozen before the construction and remains byte-identical.
 The [third record](../results/critical_upper_components_003.json) checks all
 26 modules, both exact frozen types, and every declaration's transitive axioms.
 Reproduce it with `python tools/verify_critical_upper_components.py`.
-The explicit comparison with the variational Psi objective is still unfinished;
-the record keeps `explicit_psi_comparison_verified=false`.
+That upper-only record preserves `explicit_psi_comparison_verified=false`;
+the actual Psi comparison now has the separate audit below.
+
+## Exact Psi comparison and minimax separation
+
+[Model.lean](../lean/ThresholdHC/CriticalPsi/Model.lean) defines Psi as the
+supremum of the existing `rareObjective` over every measurable
+`FeasibleAllocation` for `criticalGapLaw`. It uses the global mass constraint
+and is not a rate proxy. The model and
+[three full targets](../lean/ThresholdHC/CriticalPsi/Specification.lean) are
+hash-locked; the rate and separation targets were frozen before their proofs.
+
+[Formula.lean](../lean/ThresholdHC/CriticalPsi/Formula.lean) proves attainment
+using the existing arbitrary-law optimizer and evaluates the integrals exactly.
+For `0<rho<1` it obtains `0<t<1/4` with
+`rho=16*t^2*(1+2*log(1/(4*t)))`. For `0<h<t`,
+`Psi(rho,h)=16*(2*h*t*(1+log(1/(4*t)))-h^2)`; for `h>=t` it equals `rho`.
+All competing objectives are integrable under the feasible allocation bounds.
+
+[Rate.lean](../lean/ThresholdHC/CriticalPsi/Rate.lean) proves, for
+`0<rho<=1/4`, `h>0`, and `L=1+log(1/rho)`,
+`min(rho,h*sqrt(rho*L)) <= Psi(rho,h) <= 16*min(rho,h*sqrt(rho*L))`.
+This includes saturation and applies directly at `h=1/sqrt(B)`.
+
+[Separation.lean](../lean/ThresholdHC/CriticalPsi/Separation.lean) combines that
+bound with the existing unrestricted minimax lower theorem. For every `C>0`
+it constructs `0<rho<=1/4` and `B>=1` with
+`C*Psi(rho,1/sqrt(B)) < criticalMinimaxRisk(rho,B)`, interpreted in the
+extended nonnegative reals. The witness uses `rho=exp(-exp(M))` and
+`B=L*(1+log L)/rho`; its `M` depends on `C` and the universal lower constant.
+The preserved paper instead uses `B=rho^(-2)`. The formal proof establishes
+the same failure of every universal matching-Psi bound, without certifying
+that particular paper sequence or supplying an arbitrary-law replacement.
+
+[Full.lean](../lean/ThresholdHC/CriticalPsi/Full.lean) exports the exact formula,
+rate and separation targets. The [first Psi record](../results/critical_psi_001.json)
+checks all six modules, all declarations, and all three exact types, with only
+the standard axioms. Reproduce it with `python tools/verify_critical_psi.py`.
 
 ## Scope and source identity
 
@@ -418,8 +454,9 @@ exact targets and all 674 public declarations. The
 [fifteenth record](../results/critical_components_015.json) preserves the finite
 population checkpoint. Specifications were introduced alongside these proofs.
 The original [distribution-blind upper](BLIND_UPPER.md) is now fully formalized.
-The matching critical upper and the explicit comparison refuting the
-matching-Psi conjecture remain unfinished in Lean. The full critical minimax completion flag remains false.
+The matching critical upper and explicit comparison refuting the matching-Psi
+conjecture have the separate full audits above. The earlier lower-only record
+retains its original completion flags.
 
 All audited declarations use only the permitted standard axioms. The
 [fourteenth record](../results/critical_components_014.json) preserves the
@@ -440,9 +477,9 @@ the finite-repetition checkpoint; the [fourth record](../results/critical_compon
 preserves the six-target stopped-suffix checkpoint, and the
 [third record](../results/critical_components_003.json) the finite-gap checkpoint. These targets were
 introduced with their proofs, not retrospectively described as a pre-proof
-freeze. The single-coin continuum null-cost product is now verified. The
-full critical minimax law is **not**: the matching critical upper construction
-remains below.
+freeze. Those records certify the single-coin continuum null-cost product.
+The later full critical minimax and Psi audits above establish the current
+formal boundary; historical records retain their narrower scopes.
 
 ## Initial dependency audit
 
@@ -463,7 +500,7 @@ proof.
 | One pair for all policies | The separated-pair set is compact convex in the weak-star topology. Squared Hellinger is continuous convex. A revealed finite policy mixture has exactly averaged Hellinger and null work. Finite-simplex minimax supplies the finite intersection property. | Complete for every capped observable policy with an arbitrary measurable independent seed. Actual normalization, heterogeneous revealed-mixture identities and common-pair instantiation are proved; the pair is chosen before all policy and cap quantifiers. |
 | Interacting population transfer | Leaf likelihoods factor by genuine coin even with interleaving. The midpoint hybrid simulations use independent auxiliary tapes. Since midpoint `q<=1/2`, its one-coin law dominates half the null law, giving the required cost direction. | Complete for arbitrary measurable seeds and unrestricted natural-number coin creation. Exact finite likelihoods, local simulations, seed integration and midpoint work charging are proved in the existing creation experiment. |
 | Unbounded stopping | The same pair applies at every cap. Uniform work gives termination separately under both endpoints; terminal events are approximated by stopped-prefix events. | Complete: the budget proves finite work and termination separately under each endpoint. Eventual exact padded-prefix reconstruction and bounded-event convergence prove terminal affinity; no output continuity or cross-endpoint termination transfer is assumed. |
-| Upper construction | Wrong-sign likelihoods are supermartingales; forced-majority error is bounded on the complete iid tape. Positive work is integrated under a global mass constraint, not a pointwise bound on `q`. The random telescope and Poisson replication use separately finite moments. | Full probability and algorithm realization remain paper arguments. |
+| Upper construction | Wrong-sign likelihoods are supermartingales; forced-majority error is bounded on the complete iid tape. Positive work is integrated under a global mass constraint, not a pointwise bound on `q`. The random telescope and Poisson replication use separately finite moments. | This particular likelihood-bank/Poisson construction remains a paper proof. The alternative dyadic-classifier and fixed-count construction above proves the full upper theorem in Lean. |
 
 ## Specific constants and edge cases checked
 

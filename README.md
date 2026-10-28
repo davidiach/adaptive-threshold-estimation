@@ -25,9 +25,10 @@ components but no external specialist review. Lean checks the linked exact
 statements. The [critical minimax lower bound](lean/ThresholdHC/CriticalEntropy/CriticalMinimax.lean)
 and its [matching upper](lean/ThresholdHC/CriticalUpper/Full.lean) are now
 Lean-checked for the full rare-prior class in the original observable experiment.
-The upper coefficient is 100000, a coarse universal bound. The explicit Psi
-comparison and the other [rare-event results](paper/v5/rare-events.tex) retain
-paper-proof status.
+The upper coefficient is 100000, a coarse universal bound. The exact
+[Psi formula, rate and counterexample](lean/ThresholdHC/CriticalPsi/Full.lean)
+are also Lean-checked. The other [rare-event results](paper/v5/rare-events.tex)
+retain paper-proof status.
 The [results guide](docs/RESULTS.md) records the precise rate, model and audit;
 the PDFs retain their stated earlier formal-reference checkpoint.
 The [full distribution-blind upper theorem](docs/BLIND_UPPER.md) now includes
@@ -72,7 +73,7 @@ Paper proofs in v4 have component agent review, but the consolidated manuscript 
 ## What is not claimed
 
 - **713 is not asserted to be optimal.** The lower bound uses uniform bounds over $`q`$, not a pointwise bound for every population; see [paper §6](paper/paper.tex#L774).
-- **The proposed arbitrary-law matching-Psi upper bound is refuted at $`\alpha=2`$.** The [full critical note](research/2026-10-27-nonlinear-critical/unrestricted.tex) proves $`R_{\mu,\rho}(B)\asymp\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}`$, $`L=1+\log(1/\rho)`$, at $`F(d)=(4d)^2`$, for all observable fresh-coin algorithms with uniform expected work at most B, including interaction and nonlinear output. The critical minimax [lower](lean/ThresholdHC/CriticalEntropy/CriticalMinimax.lean) and [upper](lean/ThresholdHC/CriticalUpper/Full.lean) bounds are now Lean-checked; the explicit Psi comparison remains a paper argument. No external specialist verification is claimed. The [scope and evidence](research/2026-10-27-nonlinear-critical/CHECKPOINT.md) distinguish this from the preserved variational optimizer. A sharp replacement for arbitrary laws remains open; the earlier [power-margin note](research/2026-10-27-route-a/construction.tex) resolves $`\alpha>2`$.
+- **The proposed arbitrary-law matching-Psi upper bound is refuted at $`\alpha=2`$.** The [full critical note](research/2026-10-27-nonlinear-critical/unrestricted.tex) proves $`R_{\mu,\rho}(B)\asymp\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}`$, $`L=1+\log(1/\rho)`$, at $`F(d)=(4d)^2`$, for all observable fresh-coin algorithms with uniform expected work at most B, including interaction and nonlinear output. The critical minimax [lower](lean/ThresholdHC/CriticalEntropy/CriticalMinimax.lean) and [upper](lean/ThresholdHC/CriticalUpper/Full.lean) bounds are now Lean-checked; the exact [Psi comparison and refutation](lean/ThresholdHC/CriticalPsi/Full.lean) are also Lean-checked. No external specialist verification is claimed. The [scope and evidence](research/2026-10-27-nonlinear-critical/CHECKPOINT.md) distinguish this from the preserved variational optimizer. A sharp replacement for arbitrary laws remains open; the earlier [power-margin note](research/2026-10-27-route-a/construction.tex) resolves $`\alpha>2`$.
 - **Finite-grid proxies are not universal constants.** Truncated floating-point recursions give numerical evidence; the grid winner fails the original uniform bias bound off-grid. See the [counterexample](proposals/constants/BIAS_AUDIT.md) and [scores](results/constants_finite_grid.json).
 - **Numerical comparisons do not establish practical superiority or universal theorems.** See [benchmark limitations](docs/process/TRACK_C.md). Expected-work guarantees provide neither a deterministic work cap nor a data-observable confidence radius for every unknown law ([paper §10](paper/paper.tex#L1280)).
 

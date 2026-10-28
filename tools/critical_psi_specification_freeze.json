@@ -1,0 +1,8 @@
+{
+  "created_at": "2026-10-28T10:27:45.952749+00:00",
+  "scope": "Actual variational objective and exact formula, rate and unrestricted minimax separation targets. The formula has a checked local draft; rate and separation targets are frozen before those proofs.",
+  "source_sha256": {
+    "lean/ThresholdHC/CriticalPsi/Model.lean": "b660247a37ebb62cd94315cd932c4819d759767f764272ee6e6fdd41dec86f1f",
+    "lean/ThresholdHC/CriticalPsi/Specification.lean": "348a5e59928bfe6162b3882a6513293b6fea2bfa68dee462d9b5a159eaf1c911"
+  }
+}
