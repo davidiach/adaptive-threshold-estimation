@@ -62,8 +62,26 @@ with activation normalization, observable restarts, good-gap selection and a
 rarity-dependent scale count. Its exact specification quantifies one universal
 constant before the rarity and procedure, and charges all-negative population
 work. The common population pair, its unrestricted interactive transfer and
-the critical minimax lower rate are now proved. The matching upper remains
-open in Lean. The verification record keeps these completion flags separate.
+the critical minimax lower rate are now proved. The matching upper is also
+proved against its unchanged specification. It uses observable dyadic
+classifiers, a coupled random-level estimate, independent fresh-coin averages,
+and exact controller work/output identities. Its universal coefficient 100000
+is deliberately coarse. This is an alternative implementation of the paper's
+likelihood-bank/Poisson construction, not a claim that the two algorithms are
+identical. Their common full statistical target is what the audit checks.
+
+The critical Psi comparison received a separate semantic check. Its model is
+the actual supremum of the existing objective over all measurable feasible
+allocations, not a function defined to equal the expected rate. The proof
+derives attainment, evaluates the cutoff formula, bounds the rate in both
+directions, and combines it with the original minimax lower theorem. The
+model and public types are hash-locked. The formula had a checked local draft
+when frozen; the rate and separation types were fixed before their proofs.
+The final statement quantifies over every proposed universal constant and
+constructs a rarity and budget violating that bound. Its budget is
+`L*(1+log L)/rho`, whereas the preserved paper uses `rho^(-2)`. The two arguments
+prove the same impossibility; the formal audit does not certify the paper's
+particular sequence. Separate records preserve these exact scopes.
 
 The capped-observation reduction checks a further semantic boundary. Replacing
 the full transcript by stopping time and head count is justified by proving
@@ -204,7 +222,16 @@ ignored directories so it cannot overwrite a published checkpoint by accident.
 
 The [active completion ledger](../WORKPLAN.md) and
 [critical follow-up audit](../CRITICAL_AUDIT.md) distinguish completed components
-from remaining work. The original upper theorem is now formally proved. The
-matching critical upper and explicit Psi comparison remain incomplete in Lean;
-external specialist review remains pending. More proof lines or larger logs
-would not change those boundaries on their own.
+from remaining work. The original upper theorem, matching critical upper,
+and exact Psi comparison are now formally proved. External specialist review
+remains pending. The unbiasedness converse, confidence characterization, and
+other rare-event regimes retain their stated paper-proof scopes. More proof
+lines or larger logs would not change those boundaries on their own.
+
+Large changes should be divided by mathematical result. The follow-up initially
+accumulated too much in one consolidation PR. Later work separates the unbiased
+estimator, full critical upper, Psi comparison, and manuscript refresh into
+dependent PRs. Each carries its own statement, source identities and relevant
+checks. Progress reports should identify the proved result, the verification
+that passed, the published commit, and the next unresolved obligation. Elapsed
+time, commit counts and repeated statements of intent are not completion evidence.
