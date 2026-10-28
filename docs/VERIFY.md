@@ -8,6 +8,23 @@ its source hashes cover the full local import closure. The upper audits also
 check the review-time dependency snapshots in their specification freeze records.
 These additions preserve the original frozen statements and published evidence.
 
+The Psi verifier also rebuilds transitive imports with Lake and checks the
+review-time dependency snapshot of its variational model and specifications.
+
+The actual critical-law Psi formula, two-sided rate and unrestricted minimax
+counterexample have a separate audit. After the prerequisite builds below:
+
+```sh
+python tools/verify_critical_psi.py
+python -m unittest discover -s tools -p 'test_critical_psi.py' -v
+```
+
+The [Psi record](../results/critical_psi_001.json) checks the frozen variational
+model and all three exact target types, all six proof modules, every declaration's
+transitive axioms, and source stability during the run. The
+[scope](CRITICAL_AUDIT.md#exact-psi-comparison-and-minimax-separation) distinguishes
+the formal witness budget from the preserved paper's particular sequence.
+
 The full critical upper theorem has a dedicated audit, run after the
 critical and distribution-blind builds below:
 

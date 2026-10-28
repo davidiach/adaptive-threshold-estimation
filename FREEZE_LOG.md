@@ -71,3 +71,10 @@ Format, one entry per change:
   the separate full 713 audit remains 130/130. Independent Linux run
   [40468287646](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40468287646)
   passed both jobs with complete Tier 3 verification required.
+
+## Psi dependency checks — 28 October 2026 review
+
+The existing Psi model and specification hashes and original timestamp are
+unchanged. The freeze record now additionally checks their full local import
+closure at the `eabf274` checkpoint, including the variational objective and
+unrestricted minimax model. These dependency hashes were recorded during review.

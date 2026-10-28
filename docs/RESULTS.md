@@ -84,7 +84,7 @@ $$\Psi_{\mu,\rho}(h)=\sup_{\substack{v\text{ measurable},\ 0\le v\le1\\\mathbb E
 
 $$\Psi_{\mu,\rho}(h)=\Pr(D\le h)+h\mathbb E[D^{-1};h<D\le t]+ht\mathbb E[D^{-2};D>t].$$
 
-The [specification](../lean/ThresholdHC/Tier3/OptimizerModel.lean) permits atoms and singular laws and assumes no finite inverse moment. It formalizes the identity in [continuation §3.3](../inputs/next-phase/report/research_note.tex#L218). The proposed matching arbitrary-law statistical upper bound is refuted by the reviewed critical-law paper proof below; the variational identity remains valid. The matching rare-event construction in the preserved continuation's §4 covers power margins $F(d)=(d/a)^\alpha$ on $(0,a]$ for $0<\alpha<2$, not $\alpha\ge2$.
+The [specification](../lean/ThresholdHC/Tier3/OptimizerModel.lean) permits atoms and singular laws and assumes no finite inverse moment. It formalizes the identity in [continuation §3.3](../inputs/next-phase/report/research_note.tex#L218). The proposed matching arbitrary-law statistical upper bound is refuted by the Lean-checked critical-law counterexample below; the variational identity remains valid. The matching rare-event construction in the preserved continuation's §4 covers power margins $F(d)=(d/a)^\alpha$ on $(0,a]$ for $0<\alpha<2$, not $\alpha\ge2$.
 
 ## Rare-event power margins above two
 
@@ -123,7 +123,8 @@ forces R/Psi to diverge, refuting a universal C Psi upper even with known mu
 and rho. This supplies no characterization for arbitrary other laws.
 
 Status: **the critical minimax rate is Lean-checked in both directions**.
-The explicit comparison with Psi retains paper-proof status. The original
+The exact Psi formula, rate and failure of a universal matching-Psi upper are
+also Lean-checked. The original
 [paper checkpoint](../research/2026-10-27-nonlinear-critical/CHECKPOINT.md)
 preserves the four-file source bundle, independent adversarial agent review,
 replay evidence and attribution. The later formal proofs are detailed below.
@@ -245,8 +246,8 @@ exact targets and all 674 public declarations. The
 [fifteenth record](../results/critical_components_015.json) preserves the finite
 population checkpoint. Specifications were introduced alongside these proofs.
 That lower-bound record retains its original scope. The matching critical
-upper is now separately proved and audited below. The explicit comparison
-refuting the matching-Psi conjecture remains a paper proof. The original
+upper and explicit comparison refuting the matching-Psi conjecture are now
+separately proved and audited below. The original
 [distribution-blind upper](BLIND_UPPER.md) is also complete.
 
 The [critical upper component checkpoint](CRITICAL_AUDIT.md#upper-construction-checkpoint)
@@ -271,6 +272,19 @@ most `rho`. The coefficient is not optimized. The
 [third record](../results/critical_upper_components_003.json) certifies both
 unchanged frozen full statements and all declarations in 26 modules. It does
 not certify the explicit Psi comparison.
+
+That comparison is now proved separately in
+[CriticalPsi/Full.lean](../lean/ThresholdHC/CriticalPsi/Full.lean). Psi is the
+actual supremum of the existing objective over all measurable feasible
+allocations. Its exact attained formula gives
+`min(rho,h*sqrt(rho*L)) <= Psi(rho,h) <= 16*min(rho,h*sqrt(rho*L))`
+for every `0<rho<=1/4` and `h>0`. The separation theorem constructs a valid
+rarity and budget for every `C>0` at which the original unrestricted minimax
+risk exceeds `C*Psi(rho,1/sqrt(B))`. The
+[Psi audit](../results/critical_psi_001.json) checks the frozen model and three
+full targets. Its witness budget is `L*(1+log L)/rho`; the paper's specific
+`rho^(-2)` sequence remains a paper derivation. This proves the conjecture
+false for the fixed quadratic law and gives no arbitrary-law replacement.
 
 ## Population and nonlinear feedback follow-ups
 
