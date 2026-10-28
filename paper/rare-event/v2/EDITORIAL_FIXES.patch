@@ -1,0 +1,33 @@
+--- a/sections/matching_lower.tex
++++ b/sections/matching_lower.tex
+@@ -256,7 +256,7 @@
+ \[
+  \sum_i\theta_i\le\lambda^2F/1024=\rho/1024.
+ \]
+-Every retained component is supported below $1/128$, and parity gives
++Every retained component is supported on $(0,1/128]$; parity gives
+ endpoint ratios at least four. The normalized minimum band mass is
+ $w_{*,i}/\tau_i$, so \eqref{eq:packed-saturation} is exactly the
+ unnormalized saturation condition required by the annular proposition.
+--- a/sections/transfer_foundations.tex
++++ b/sections/transfer_foundations.tex
+@@ -544,15 +544,14 @@
+        \min\{r_i\Gamma_i^{\circ},w_{*,i}/a_i^2\},\qquad
+  c_{\mathrm{ann}}=\frac{e^{-28}}{2{,}000{,}000}.
+ \]
+-Consequently, writing the corresponding unnormalized quantities with
+-respect to $\sigma_i$ as $\Gamma_{\sigma_i}^{\circ}=\tau_i\Gamma_i^{\circ}$ and
+-$w_{*,\sigma_i}=\tau_iw_{*,i}$, we obtain
+-The conversion uses the exact identity, with $\theta=\tau r$,
++Write the corresponding unnormalized quantities with respect to
++$\sigma_i$ as $\Gamma_{\sigma_i}^{\circ}=\tau_i\Gamma_i^{\circ}$ and
++$w_{*,\sigma_i}=\tau_iw_{*,i}$. The conversion uses the exact identity, with $\theta=\tau r$,
+ \[
+  \tau^2\min\{r\Gamma^{\circ},w_*/a^2\}
+  =\min\{\theta\Gamma_{\sigma}^{\circ},\tau w_{*,\sigma}/a^2\}.
+ \]
+-In particular the second branch retains the factor $\tau$.
++In particular the second branch retains the factor $\tau$. Consequently,
+ \begin{equation}\label{eq:additive-annular}
+  R_{\mu,\rho}(B)\gtrsim
+  \sum_i\min\left\{\tau_i r_i,

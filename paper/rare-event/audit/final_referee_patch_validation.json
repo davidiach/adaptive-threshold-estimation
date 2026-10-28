@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-29",
+  "original_tex_files_identical_to_supplied_zip": [
+    "main.tex",
+    "sections/additive.tex",
+    "sections/computation.tex",
+    "sections/discussion.tex",
+    "sections/dual_transfer.tex",
+    "sections/flow_foundations.tex",
+    "sections/genie_brackets.tex",
+    "sections/identifiability.tex",
+    "sections/lower_foundations.tex",
+    "sections/matching_lower.tex",
+    "sections/overview.tex",
+    "sections/related_work.tex",
+    "sections/transfer_foundations.tex",
+    "sections/upper_foundations.tex"
+  ],
+  "patch_check": "git apply --check succeeded for both proposed patches against the unchanged source.",
+  "scratch_application": "Both patches applied successfully in tmp/final-referee-patchcheck-20261029.",
+  "scratch_compilation": {
+    "tool": "compile_latex_document",
+    "main_file": "main.tex",
+    "kind": "success",
+    "message": "The current source compiled successfully with the desktop editor's compiler."
+  },
+  "originals_modified": false
+}

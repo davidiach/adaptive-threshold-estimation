@@ -2,7 +2,9 @@
 
 For the current mathematical narrative and full proofs, start with the
 [consolidated v5 manuscript](../paper/v5/paper.pdf). The packages below preserve
-the detailed provenance and evidence behind its appendices.
+the detailed provenance and evidence behind its appendices. The separate
+[general-law rare-event manuscript](../paper/rare-event/README.md) adds the
+29 October entropy-tail characterization and its audit records.
 
 These packages preserve the reviewed sources, failed approaches, exact source
 locks, diagnostics and numerical evidence from separate research passes.
@@ -11,6 +13,7 @@ later results do not rewrite those historical records.
 
 | Package | Accepted scope | Evidence |
 |---|---|---|
+| [General-law rare-event manuscript v2](../paper/rare-event/README.md) | Arbitrary known-law entropy-tail characterization, stopping dual, and qualified genie certificates. | Audited paper proof with exact finite certificates; new general claims not Lean-formalized. Existing manuscripts and historical audit identities are preserved. |
 | [Power margins above two](2026-10-27-route-a/CHECKPOINT.md) | Known-rarity power-margin rate for alpha greater than two. | Reviewed paper proof; exact finite diagnostics; separate conditional-kernel Lean bridge. |
 | [Minimax audit](2026-10-27-minimax-audit/FINAL_REPORT.md) | Critical upper construction, scope audit and numerical comparison. | Reviewed paper components and explicitly limited numerical evidence. |
 | [Earlier critical result](2026-10-27-critical-two/CHECKPOINT.md) | Sharp critical rate for the specified noninteractive additive class. | Reviewed paper proof; its then-open interactive converse is addressed by the later full result. |
@@ -18,8 +21,9 @@ later results do not rewrite those historical records.
 | [Population step](2026-10-27-population-step/FINAL_REPORT.md) | Single-coin obstruction, conditional information reduction, radial counterexample and calibrated radial upper bound. | Reviewed paper proofs and exact finite experiments. The radial counterexample rules out one proposed proof route, not the later full critical theorem. |
 | [Nonlinear feedback](2026-10-27-nonlinear-population/FINAL_REPORT.md) | Strict feedback advantage at a deterministic two-flip cap, bounded-depth obstruction, finite approximation framework, and a synthetic feedback experiment. | Reviewed paper proofs, exact rational certificates, and numerical evidence. No general finite minimax program or arbitrary-law sharp rate was solved. |
 
-The full critical theorem concerns the fixed law F(d)=(4d)^2. A sharp replacement
-for Psi on arbitrary magnitude laws remains open. Earlier statements that the
+The full critical theorem concerns the fixed law F(d)=(4d)^2. The later
+[general-law manuscript](../paper/rare-event/README.md) supplies an entropy-tail
+replacement for Psi as an audited paper proof; its formalization remains open. Earlier statements that the
 matching-Psi conjecture itself remained open record the state before the full
 critical proof. The finite feedback advantage uses a deterministic cap and
 does not claim an asymptotic rate improvement under a uniform expected budget.

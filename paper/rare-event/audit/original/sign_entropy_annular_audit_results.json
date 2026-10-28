@@ -1,0 +1,113 @@
+{
+  "proof_constants": {
+    "weighted_constant": 257,
+    "same_proof_also_implies_constant": 214,
+    "sharper_coefficient_interval": [
+      213.27018048266788,
+      213.27018048266788
+    ],
+    "actual_window_probability_lower": "17/40",
+    "fair_weighted_overlap_bound": "25/3",
+    "annular_branch_constants_after_factoring_exp_minus_28": {
+      "large_information_product": "1/8192",
+      "too_much_removed_mass": "1/864",
+      "entropy_branch": "1/1603680"
+    }
+  },
+  "overlapping_windows": {
+    "construction": "Fixed odd horizon N=2/d_min^2+1, output the majority sign. Every E_j is exactly the same minus-output event.",
+    "endpoint_error_certificate": "Hoeffding <= exp(-4) < 1/10; exp(4)>1+4+8=13.",
+    "conclusion": "Unweighted window disjointness fails arbitrarily badly. The manuscript weighted-overlap bound holds.",
+    "rows": [
+      {
+        "gaps": 1,
+        "horizon": "32769",
+        "unweighted_pathwise_overlap": 1,
+        "sum_fair_window_probabilities": "1/2",
+        "weighted_pathwise_overlap": 0.33332655178727644
+      },
+      {
+        "gaps": 2,
+        "horizon": "131073",
+        "unweighted_pathwise_overlap": 2,
+        "sum_fair_window_probabilities": "1",
+        "weighted_pathwise_overlap": 0.44444199551672336
+      },
+      {
+        "gaps": 4,
+        "horizon": "2097153",
+        "unweighted_pathwise_overlap": 4,
+        "sum_fair_window_probabilities": "2",
+        "weighted_pathwise_overlap": 0.48249924199369026
+      },
+      {
+        "gaps": 8,
+        "horizon": "536870913",
+        "unweighted_pathwise_overlap": 8,
+        "sum_fair_window_probabilities": "4",
+        "weighted_pathwise_overlap": 0.4850893448067669
+      },
+      {
+        "gaps": 16,
+        "horizon": "35184372088833",
+        "unweighted_pathwise_overlap": 16,
+        "sum_fair_window_probabilities": "8",
+        "weighted_pathwise_overlap": 0.4850995177872534
+      },
+      {
+        "gaps": 32,
+        "horizon": "151115727451828646838273",
+        "unweighted_pathwise_overlap": 32,
+        "sum_fair_window_probabilities": "16",
+        "weighted_pathwise_overlap": 0.48509951794248407
+      },
+      {
+        "gaps": 64,
+        "horizon": "2787593149816327892691964784081045188247553",
+        "unweighted_pathwise_overlap": 64,
+        "sum_fair_window_probabilities": "32",
+        "weighted_pathwise_overlap": 0.48509951794248407
+      }
+    ]
+  },
+  "thin_annulus_counterexample": {
+    "law": "(1-1/2048) delta_(1/128) + (1/2048) delta_(2^-64)",
+    "rho": "1/8",
+    "one_flip_output": [
+      "-63/2",
+      "65/2"
+    ],
+    "uniform_bias_bound": "144115188075855871/590295810358705651712",
+    "allowed_bias": "1/512",
+    "null_work": 1,
+    "uniform_variance_upper": "1024",
+    "rigorous_entropy_only_RHS_lower": 453935740227327.2,
+    "actual_saturation_term": "8",
+    "conclusion": "Dropping min{rho*Gamma, w_min/a^2} gives a false lower bound even with the printed tiny constant. The stated saturated bound is not contradicted."
+  },
+  "trimming_counterexample": {
+    "bands": 64,
+    "equal_canonical_cost": true,
+    "lambda_definition": "b_min/(1+log n)",
+    "rho_interval": [
+      1.6070768960887975e-75,
+      1.6070768960887975e-75
+    ],
+    "genuine_optimal_retained_set": true,
+    "removed_cardinalities_checked": 64,
+    "optimality_proof": "For m retained bands, sqrt(n*m*(1+log m)/(1+log n)) >= m, since (1+log m)/m decreases for m>=1. Every removed band costs at least c*b_min.",
+    "untrimmed_actual_saturation_over_claimed_bound": 0.06666666666666667,
+    "untrimmed_allocated_entropy_over_saturation": 3.75,
+    "trimmed_bands": 3,
+    "retained_bands": 61,
+    "trimmed_actual_saturation_over_claimed_bound_lower": 300.5861506763415,
+    "entropy_fraction_retained_lower": 0.944255098066266,
+    "conclusion": "Even a genuinely optimal retained set can fail entropy-branch activation without trimming. The manuscript trimming restores the claimed margin."
+  },
+  "conditional_normalization": {
+    "exact_cases": 500,
+    "identity": "tau^2 min{(theta/tau)(Gamma/tau), (w_min/tau)/a^2} = min{theta Gamma, tau w_min/a^2}"
+  },
+  "status": "PASS",
+  "scope": "Exact proof-invariant checks and analytic counterexamples to omitted hypotheses/steps. No counterexample to the stated weighted-entropy or saturated-annular bounds was found."
+}

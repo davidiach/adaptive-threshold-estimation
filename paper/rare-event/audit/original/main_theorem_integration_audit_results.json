@@ -1,0 +1,269 @@
+{
+  "status": "PASS",
+  "arithmetic": "Floating point with 120-digit Decimal tie resolution for subset optimization; structured families also use exact rational calculations. All claims about every input require the analytic argument.",
+  "seed": 2026102809,
+  "integration_checks": {
+    "laws": 325,
+    "inputs": 5200,
+    "upper_branches": {
+      "outer_cap": 3068,
+      "finite_poisson": 2108,
+      "large_ignored": 24
+    },
+    "lower_branches": {
+      "no_retained": 1074,
+      "packed": 3404,
+      "high": 722
+    },
+    "max_exact_over_canonical": 1.999600079984004,
+    "max_upper_over_K": 58.96730962363563,
+    "min_lower_over_K": 6.877609942246257e-05,
+    "max_S_over_basis": 56.36804660395541,
+    "packed_components": 9175,
+    "max_levels": 40,
+    "mixed_three_piece_inputs": 586
+  },
+  "extremal_witnesses": {
+    "max_exact_over_canonical": {
+      "law_index": 123,
+      "law": [
+        [
+          76,
+          3.309384194702153e-24,
+          0.9999899653049785
+        ],
+        [
+          79,
+          4.136730243377691e-25,
+          1.0034695021450568e-05
+        ]
+      ],
+      "rho": 9.094947017729282e-13,
+      "h": 8.425173479387618e-44,
+      "K": 2.4351724725551978e-26,
+      "canonical_k": 1.217829753524854e-26,
+      "Psi": 2.4286726624091876e-26,
+      "lower": 2.9646883086049653e-30,
+      "upper": 3.660140932938245e-25,
+      "upper_detail": {
+        "branch": "finite_poisson",
+        "levels": 15,
+        "S_over_basis": 15.030314994852095,
+        "ignored_positive": false
+      },
+      "lower_detail": {
+        "branch": "packed",
+        "components": 2,
+        "z": 0.0
+      }
+    },
+    "max_upper_over_K": {
+      "law_index": 99,
+      "law": [
+        [
+          3,
+          0.0375,
+          1.0
+        ],
+        [
+          65,
+          8.131516293641283e-21,
+          5.550895935599583e-23
+        ]
+      ],
+      "rho": 9.094947017729282e-13,
+      "h": 7.671605523876741e-20,
+      "K": 5.745994953032158e-23,
+      "canonical_k": 5.667955346059128e-23,
+      "Psi": 5.745994953026204e-23,
+      "lower": 7.014153995393315e-27,
+      "upper": 3.388258634912949e-21,
+      "upper_detail": {
+        "branch": "finite_poisson",
+        "levels": 7,
+        "S_over_basis": 15.02734778739638,
+        "ignored_positive": true
+      },
+      "lower_detail": {
+        "branch": "high",
+        "components": 0,
+        "z": 5.550895935599583e-23
+      }
+    },
+    "min_lower_over_K": {
+      "law_index": 182,
+      "law": [
+        [
+          21,
+          2.1457672119140626e-07,
+          0.9630924620812558
+        ],
+        [
+          23,
+          5.3644180297851564e-08,
+          0.03690365804385668
+        ],
+        [
+          30,
+          4.1909515857696534e-10,
+          3.6345963119494737e-06
+        ],
+        [
+          31,
+          1.3969838619232177e-10,
+          2.452785719598688e-07
+        ],
+        [
+          45,
+          1.2789769243681804e-14,
+          3.655971088431526e-15
+        ],
+        [
+          54,
+          2.7755575615628914e-17,
+          2.0576519155256864e-20
+        ],
+        [
+          68,
+          1.0164395367051604e-21,
+          3.2019432863814215e-29
+        ],
+        [
+          71,
+          1.2705494208814505e-22,
+          4.5950844650250666e-31
+        ],
+        [
+          72,
+          9.529120656610879e-23,
+          2.9969965217424438e-31
+        ]
+      ],
+      "rho": 7.888609052210118e-31,
+      "h": 3.453591568560429e-32,
+      "K": 7.8618096498979e-40,
+      "canonical_k": 6.416737059065721e-40,
+      "Psi": 4.4294521005822246e-40,
+      "lower": 5.407046021218536e-44,
+      "upper": 1.1816536392329646e-38,
+      "upper_detail": {
+        "branch": "finite_poisson",
+        "levels": 11,
+        "S_over_basis": 15.030300806631741,
+        "ignored_positive": false
+      },
+      "lower_detail": {
+        "branch": "packed",
+        "components": 4,
+        "z": 0.0
+      }
+    }
+  },
+  "explicit_constants": {
+    "annular": 3.4572000534701013e-19,
+    "retained_lower": 1.6021172551550093e-16,
+    "main_lower": 8.010586275669911e-17,
+    "upper_entropy_coefficient": 97.59758671524307,
+    "upper_ordinary_coefficient": 25206.59361678901,
+    "rational_lower_denominator_bound": "52660718272675840",
+    "rational_upper_entropy_bound": "825/8",
+    "rational_upper_ordinary_bound": "854425/32",
+    "safe_main_comparison": [
+      1e-17,
+      33000
+    ]
+  },
+  "structured_stress": {
+    "many_band_family": {
+      "formula": "K/Psi=sqrt(1+log n), with a genuine all-retained optimum; no uniform Psi-only replacement is possible.",
+      "rows": [
+        {
+          "bands": 4,
+          "log10_rho": -3.416046068375997,
+          "K_over_Psi": 1.5447635291914068,
+          "trimmed_bands": 1,
+          "retained_entropy_fraction": 0.6595830096008866,
+          "allocated_entropy_over_saturation": 0.00039839720380417876
+        },
+        {
+          "bands": 16,
+          "log10_rho": -17.46234794291566,
+          "K_over_Psi": 1.9423152993887942,
+          "trimmed_bands": 2,
+          "retained_entropy_fraction": 0.8440292324054106,
+          "allocated_entropy_over_saturation": 0.0006522082627760619
+        },
+        {
+          "bands": 64,
+          "log10_rho": -74.79396334243512,
+          "K_over_Psi": 2.2713174774477634,
+          "trimmed_bands": 3,
+          "retained_entropy_fraction": 0.944255098066266,
+          "allocated_entropy_over_saturation": 0.0008163003755714113
+        },
+        {
+          "bands": 256,
+          "log10_rho": -305.4863057606321,
+          "K_over_Psi": 2.5583544407449805,
+          "trimmed_bands": 4,
+          "retained_entropy_fraction": 0.9820064944824625,
+          "allocated_entropy_over_saturation": 0.0008828766679740002
+        },
+        {
+          "bands": 1024,
+          "log10_rho": -1229.7318248087342,
+          "K_over_Psi": 2.8162868826878156,
+          "trimmed_bands": 5,
+          "retained_entropy_fraction": 0.9945030679216459,
+          "allocated_entropy_over_saturation": 0.0009054898243153984
+        }
+      ]
+    },
+    "nonuniform_prefix_example": {
+      "law": "(7/8) delta_(1/2)+(1/8) delta_(2^-100)",
+      "rho": "1/8",
+      "B": "1208925819614629174706176",
+      "full_K": 0.125,
+      "one_band_prefix_k": 6.01574199905506e-13,
+      "full_over_prefix": 207788166479.9367,
+      "status": "The manuscript tail-mass remainder protects its limit argument."
+    },
+    "infinite_moment_example": {
+      "law": "mass 1/[j(j+1)] at d=2^-j, j>=1",
+      "inverse_first_moment": "infinite",
+      "inverse_second_moment": "infinite",
+      "conclusion": "At B=4^J and fixed rho=1/8, the explicit upper functional and ignored-tail lower modulus both have order 1/J.",
+      "rows": [
+        {
+          "log2_budget": 16,
+          "ignored_mass": 0.1111111111111111,
+          "K_upper": 0.1562872023809524,
+          "Psi_lower": 0.1111111111111111,
+          "K_upper_over_Psi_lower": 1.4065848214285714
+        },
+        {
+          "log2_budget": 64,
+          "ignored_mass": 0.030303030303030304,
+          "K_upper": 0.03233345981290261,
+          "Psi_lower": 0.030303030303030304,
+          "K_upper_over_Psi_lower": 1.0670041738257863
+        },
+        {
+          "log2_budget": 256,
+          "ignored_mass": 0.007751937984496124,
+          "K_upper": 0.00787501641133589,
+          "Psi_lower": 0.007751937984496124,
+          "K_upper_over_Psi_lower": 1.0158771170623297
+        },
+        {
+          "log2_budget": 1024,
+          "ignored_mass": 0.001949317738791423,
+          "K_upper": 0.0019569622403444913,
+          "Psi_lower": 0.001949317738791423,
+          "K_upper_over_Psi_lower": 1.0039216292967241
+        }
+      ]
+    }
+  },
+  "scope": "Optimized exact and canonical selections, variational ordinary/ignored bounds, full conditional normalization and saturation, additive lower sum, and actual finite cap/Poisson certificates on the same inputs."
+}

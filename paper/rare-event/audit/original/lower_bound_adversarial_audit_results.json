@@ -1,0 +1,52 @@
+{
+  "gate": {
+    "rho": "1/10000000000000000000000",
+    "gap": "1/4",
+    "seed_activation": "1/7",
+    "upper_walk_boundary": 50,
+    "fair_acceptance_probability": "6995/229376",
+    "a_squared_P": "1.901117916920597593993716551272962675638061237360037409755599176076132E-23",
+    "c_g": "1.266064472706336000258651976087904529635289421938371076141653844296958E-16",
+    "necessary_local_rarity_for_small_branch": "8.102812625320550401655372646962588989665852300405574887306584603500531E-15",
+    "m_Z": "4.281746443479039354081281866514007193929240621046357593343692109333864E-14",
+    "states": {
+      "negative": {
+        "acceptance_probability": "10347847/7516192768",
+        "restarted_mean": "3.351047768235415866801814691896271854204542834748070237468788783677425E-20",
+        "restarted_second_moment": "1.188164872750489082792353725670756320491647192430280999492091977242348E-17",
+        "expected_restart_work": "207.5295129508582799880881785480168958879289973992623344121546287370182"
+      },
+      "positive": {
+        "acceptance_probability": "719277165/7516192768",
+        "restarted_mean": "349.4642499473887802455286357392336613070702629823320234836533764812458",
+        "restarted_second_moment": "122713.7337717852446796839982679653047785264842999682108192010241379291",
+        "expected_restart_work": "98.52524705688383698375859589809001235656576677598685037760105033664250"
+      }
+    },
+    "all_checks_passed": true
+  },
+  "compression": {
+    "trials": 500,
+    "seed": 20261029,
+    "arithmetic": "exact Fraction",
+    "largest_VarZ_over_n_r_squared": 1.008080352264745,
+    "claimed_coefficient": 2.3333333333333335,
+    "all_checks_passed": true
+  },
+  "packing": {
+    "laws": 2000,
+    "seed": 20261030,
+    "subsets_enumerated": 732838,
+    "laws_with_retained_low_bands": 1947,
+    "groups_checked": 7694,
+    "minimum_LHS_over_RHS": {
+      "retained_gap_ratio": 1.4381176744289619,
+      "entropy_tier_ratio": 3.733179724851955,
+      "trimmed_entropy_ratio": 3.273766993853911,
+      "saturation_ratio": 329.7134373561213,
+      "retained_total_entropy_ratio": 33.75675726653063
+    },
+    "arithmetic": "floating point; tolerance 1e-8",
+    "all_checks_passed": true
+  }
+}

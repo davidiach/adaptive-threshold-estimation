@@ -1,0 +1,189 @@
+{
+  "revision_date": "2026-10-29",
+  "status": "PASS",
+  "scope": "Separately revised manuscript; original PDF, source ZIP, and extracted TeX sources are unchanged.",
+  "original_input_sha256": {
+    "adaptive_rare_event_estimation_standalone.pdf": "be453bebf8b861d985bf62cbcc2f61eb93354b2f72c45846d411d5aa90b5600e",
+    "adaptive_rare_event_estimation_review_sources.zip": "979042f01760d132a613164aa17c6bfd8608ab91d0f0ab8a83beba5feac7dc5a"
+  },
+  "original_extracted_tex_sha256": {
+    "sections\\additive.tex": "ac423d9c4b78d3313335258449d9bff19254e9eeb0d65135b0f820f2ff693f61",
+    "sections\\computation.tex": "5a002e0a76a5e03af299a8a854762d122f2d3545c6a8bd633b27929eeae034c6",
+    "sections\\discussion.tex": "8eff3f3b7f8ee5c69c13a82b7647118cfc280630ab40698962a8cbc8a13f670c",
+    "sections\\dual_transfer.tex": "7b8905d6a9f20360e7e169f85528765f08df07485331dcc72dc0ceb465d6fc93",
+    "sections\\flow_foundations.tex": "686cb0fd2f289dff79276a3b1ce4ea1c89ecb235059388ea4b613e0afaac3591",
+    "sections\\genie_brackets.tex": "c850f233c57503fed16961b8ade354e21f8e0b34e617881bb64baea1bc954df0",
+    "sections\\identifiability.tex": "611a052f35a9ee3fc4f2935e6ed0eee3647a1abab1a51c690093eeb2dd6977e5",
+    "sections\\lower_foundations.tex": "0617ad9248c865dc5045fb16f2d1635ce1097ee09a50488ba7961fad78ddd582",
+    "sections\\matching_lower.tex": "18ddada9509146361d6389d228ca2cd14ee2524ecd52e9a0f4054e2637e4e6af",
+    "sections\\overview.tex": "152eecea041a177b132f4cdf4761ff8d13bee002e6f0a8aabdb62d4749122130",
+    "sections\\related_work.tex": "c664cfdff939708159c280dc46e7e3b35cbc8f7d84d03596aea4388b839a90e5",
+    "sections\\transfer_foundations.tex": "4af8dbf66e3f63927d3fad1f6fa23716472fccb2f023181ddcae6606b762564a",
+    "sections\\upper_foundations.tex": "54827258f589ed7722f37c00018516e0690b18d594f92f8522e15a37015fcfc4",
+    "main.tex": "7116da6931e06e00a8149c0a3a6a7cb4305776f5f873a9c48a884c166b454d96"
+  },
+  "manuscript_source_sha256": {
+    "main.tex": "006a0557184f812ad6b50fa5665b6bf433a55a5cf773ee5c18d7592e1dd900b0",
+    "sections/additive.tex": "5fb3c729c2bc4c6bcfc5ab002e2c5e574063bcbc317c6bcfe60a60d8b4d7163d",
+    "sections/computation.tex": "5a002e0a76a5e03af299a8a854762d122f2d3545c6a8bd633b27929eeae034c6",
+    "sections/discussion.tex": "807362a1bbc7e6860076ecf487e44460f8cc6fb2a5c53173b3f51c365c0e40fd",
+    "sections/dual_transfer.tex": "40f208683f0d58b693cbb9754c632b7db2f45341cc5f33dc15992efa982f8219",
+    "sections/flow_foundations.tex": "686cb0fd2f289dff79276a3b1ce4ea1c89ecb235059388ea4b613e0afaac3591",
+    "sections/genie_brackets.tex": "0d3a1aae1492d87a2108494a72e82741ae66f58beb85483b188d3616b4852691",
+    "sections/identifiability.tex": "70a682e02fe5fbc65daf0918577214457d8ce7dde1d0d1b253ac614c5f028a73",
+    "sections/lower_foundations.tex": "f2b10c7f27770a249f85530d0e5d4250038ae694b7e259d136a3e00a5def5361",
+    "sections/matching_lower.tex": "852aaf49170af08cd03ed8c27314cca886ef1a5a87c6b4c46577e3f6ee60361a",
+    "sections/overview.tex": "152eecea041a177b132f4cdf4761ff8d13bee002e6f0a8aabdb62d4749122130",
+    "sections/related_work.tex": "c664cfdff939708159c280dc46e7e3b35cbc8f7d84d03596aea4388b839a90e5",
+    "sections/transfer_foundations.tex": "fa15f8b2149e71ee615788e231c0e21feb4356a497bc279dd06c75f66b4ec3e0",
+    "sections/upper_foundations.tex": "810e67898efe604d340dccb2ab01e75d3a7a68bc665c51413b6779522dac225e"
+  },
+  "pdf": {
+    "file": "main.pdf",
+    "pages": 55,
+    "sha256": "b2079e934c86cba81298a8a666edf3b6041648b68ed97493f3ac1b8844dec7b6",
+    "bytes": 363526
+  },
+  "build": {
+    "engine": "Tectonic 0.17.0, Windows x86_64 MSVC",
+    "command": "tectonic --untrusted --keep-logs --keep-intermediates main.tex",
+    "exit_code": 0,
+    "log": "main.log",
+    "diagnostics": {
+      "errors": [],
+      "warnings": [],
+      "overfull_boxes": [],
+      "underfull_boxes": [],
+      "missing_characters": []
+    },
+    "unresolved_pdf_references": 0,
+    "compiler_release": "https://github.com/tectonic-typesetting/tectonic/releases/tag/tectonic%400.17.0",
+    "compiler_download_sha256": "f61ce51f0b0ade1015b7de7ef368541c5424e9756ecbd0d7af97d6d48030845f"
+  },
+  "visual_review": {
+    "status": "PASS",
+    "method": "Poppler rendered every page at 80 dpi; reviewed five contact sheets, then dense revised pages at 145 dpi.",
+    "pages_reviewed_in_contact_sheets": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55
+    ],
+    "pages_reviewed_at_detail_resolution": [
+      16,
+      17,
+      34,
+      47,
+      48,
+      49
+    ],
+    "findings": "No clipping, overlapping text, malformed equations, or unresolved references observed."
+  },
+  "checks": {
+    "python_version": "3.12.14",
+    "certificate_command": "python checks/self_check_certificates.py",
+    "certificate_result": "checks/certificate_self_check.json",
+    "certificate_summary": {
+      "exact_certificates_rechecked": {
+        "lower": 33,
+        "upper": 9
+      },
+      "exact_stopping_decisions_rechecked": 9,
+      "perfect_label_analytic_checks": [
+        {
+          "budget": "100",
+          "cap": 1,
+          "analytic_squared_value": "9/13600",
+          "contained_in_exact_bracket": true
+        },
+        {
+          "budget": "1000",
+          "cap": 1,
+          "analytic_squared_value": "9/103600",
+          "contained_in_exact_bracket": true
+        }
+      ],
+      "targeted_corruptions_rejected": [
+        "rarity constraint",
+        "Bellman work price",
+        "overstated lower value",
+        "genie boundary reward",
+        "actual policy budget",
+        "understated policy risk"
+      ]
+    },
+    "revision_command": "python checks/verify_revisions.py",
+    "revision_result": "checks/revision_checks.json",
+    "revision_summary": {
+      "status": "PASS",
+      "unique_noninterval_winner_mask": 5,
+      "sign_entropy_denominator": 214,
+      "main_constants": {
+        "lower": "1/100000000000000000",
+        "upper": 33000,
+        "upper_entropy_rational_bound": "825/8",
+        "upper_ordinary_rational_bound": "854425/32"
+      },
+      "tex_integrity": {
+        "labels": 162,
+        "references": 176,
+        "missing": 0,
+        "duplicates": 0
+      }
+    },
+    "scope": "Exact finite certificates, worked-example enclosures, constants, and source integrity; not formal verification of the general theorems."
+  },
+  "genie_scope": "Pointwise convergence is asserted under finite C_v. An explicit infinite-C_v counterexample is included. Optimized convergence retains its original scope through fixed-epsilon regularization before the cap limit.",
+  "review_record_correction": "M_0 in Appendix B.3 is a uniform second-moment bound, not the null second moment; W_0 is null work."
+}

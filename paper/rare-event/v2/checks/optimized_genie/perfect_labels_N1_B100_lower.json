@@ -1,0 +1,43 @@
+{
+  "description": "Exact rational four-prior Bellman certificate with a latent-genie terminal reward, bounding the unrestricted flow program. Mapping to a midpoint pair also certifies an unrestricted adaptive minimax RMS lower bound.",
+  "certificate_kind": "uncapped_four_prior_genie",
+  "gaps": [
+    "1/2"
+  ],
+  "weights": [
+    "1/1"
+  ],
+  "rho": "1/10",
+  "budget": "100/1",
+  "cap": 1,
+  "priors": {
+    "low": [
+      "3/500000000000"
+    ],
+    "high": [
+      "49999999997/500000000000"
+    ],
+    "variance": [
+      "9999999949300000007/100000000000000000000"
+    ],
+    "work": [
+      "2423117146868828539/50000000000000000000"
+    ]
+  },
+  "information_work_price": "111111112696296315851852000001/1000000000000000000000000000000",
+  "information_potentials": [
+    "0/1",
+    "880312916117974597224914147/79228162514264337593543950336",
+    "3961408144846818221163452423/39614081257132168796771975168"
+  ],
+  "certified_squared_lower_bound": "99999999976000000001440000/151111112696296315851852000001",
+  "certified_rms_lower_bound_decimal": "0.025724787633",
+  "repair": {
+    "dyadic_precision_bits": 96,
+    "backward_passes": 1,
+    "reference_regularization": "1/100000000",
+    "float_bisection_price": 0.11111111158518519
+  },
+  "certified_adaptive_squared_lower_bound": "399999999904000000005760000/27000000385200004752000036000243",
+  "certified_adaptive_rms_lower_bound_decimal": "0.003849001766"
+}

@@ -1,0 +1,117 @@
+{
+  "audit_date": "2026-10-28",
+  "scope": "Targeted primary-source comparison. This index records source locations and inspection limits; it does not certify priority or mathematical correctness.",
+  "sources": [
+    {
+      "key": "lv",
+      "authors": ["Jasper C. H. Lee", "Paul Valiant"],
+      "title": "Uncertainty about Uncertainty: Optimal Adaptive Algorithms for Estimating Mixtures of Unknown Coins",
+      "publication": "SODA 2021, pages 414-433; extended arXiv version 1904.09228v3",
+      "primary_urls": ["https://arxiv.org/html/1904.09228v3", "https://doi.org/10.1137/1.9781611976465.25"],
+      "locations": ["Section 4, triangular estimators", "Section 5.1, Lemmas 17-18, adaptive decomposition", "Section 5.2, true-bias revelation after a cap", "Theorems 4-5 and Section 7", "Section 7.1, Lemma 22 and Figure 4"],
+      "relevant_hypotheses": "Section 7 receives the two sign-conditional bias laws, a nominal mixture weight, and a per-coin cap. The robust known-magnitude class in the present paper does not fix those conditional laws.",
+      "inspection": "Relevant theorem statements and arguments inspected. Direct antecedent used in related work."
+    },
+    {
+      "key": "cl16",
+      "authors": ["Lijie Chen", "Jian Li"],
+      "title": "Open Problem: Best Arm Identification: Almost Instance-Wise Optimality and the Gap Entropy Conjecture",
+      "publication": "COLT, PMLR 49:1643-1646, 2016",
+      "primary_urls": ["https://proceedings.mlr.press/v49/chen16b.html", "https://proceedings.mlr.press/v49/chen16b.pdf"],
+      "locations": ["Definition 3.3", "Conjecture 3.5"],
+      "relevance": "Introduces entropy of normalized dyadic inverse-square gap costs in best-arm identification.",
+      "inspection": "Relevant definitions and conjecture inspected. Attribution of the cost-entropy structure."
+    },
+    {
+      "key": "clq",
+      "authors": ["Lijie Chen", "Jian Li", "Mingda Qiao"],
+      "title": "Towards Instance Optimal Bounds for Best Arm Identification",
+      "publication": "COLT, PMLR 65:535-592, 2017",
+      "primary_urls": ["https://proceedings.mlr.press/v65/chen17b.html", "https://proceedings.mlr.press/v65/chen17b/chen17b.pdf"],
+      "locations": ["Lemma 4.1, weighted Sign-xi entropy inequality", "Appendix D, stopping windows and Kraft argument", "Remark D.4, quadratic-KL and Bernoulli extension"],
+      "relevant_hypotheses": "The sign-testing argument treats separated gap scales; the Bernoulli extension uses means bounded away from zero and one.",
+      "inspection": "Relevant statement, proof mechanism, and Bernoulli extension inspected.",
+      "baseline_attribution": "The pinned version-5 critical appendix already cites Lemma 4.1 and disclaims novelty for the entropy mechanism."
+    },
+    {
+      "key": "jn",
+      "authors": ["Anatoli Juditsky", "Arkadi Nemirovski"],
+      "title": "Nonparametric estimation by convex programming",
+      "publication": "Annals of Statistics 37(5A):2278-2300, 2009",
+      "primary_urls": ["https://arxiv.org/pdf/0908.3108"],
+      "locations": ["Theorem 3.1", "Proposition 3.1", "Theorem 3.2", "Section 5"],
+      "relevant_hypotheses": "Good observation/function pairs, compact convex parameter set, affine observation parametrization. Product experiments are prescribed. Adaptation in Section 5 concerns parameter classes.",
+      "inspection": "Relevant statements and hypotheses inspected. Convex estimation/testing antecedent."
+    },
+    {
+      "key": "pw",
+      "authors": ["Yury Polyanskiy", "Yihong Wu"],
+      "title": "Dualizing Le Cam's method for functional estimation, with applications to estimating the unseens",
+      "publication": "arXiv:1902.05616v2, 2021",
+      "primary_urls": ["https://arxiv.org/html/1902.05616v2"],
+      "locations": ["Theorem 1, assumptions A1-A4 and iid risk bounds"],
+      "relevant_hypotheses": "Fixed iid observation kernel, affine functional, convex prior class, dense function space, and compactness/continuity assumptions.",
+      "inspection": "Theorem and hypotheses inspected. Fixed-kernel estimation/testing antecedent; does not itself supply the present policy/work optimization."
+    },
+    {
+      "key": "cs",
+      "authors": ["Moon Jung Cho", "Richard H. Stockbridge"],
+      "title": "Linear Programming Formulation for Optimal Stopping Problems",
+      "publication": "SIAM Journal on Control and Optimization 40(6):1965-1982, 2002",
+      "primary_urls": ["https://epubs.siam.org/doi/10.1137/S0363012900377663"],
+      "locations": ["Publisher abstract", "Publisher author and publication metadata"],
+      "relevance": "General occupation/stopping-measure linear-programming framework for continuous-time Markov optimal stopping.",
+      "inspection": "Primary abstract and metadata inspected; cited only for the general framework, not a theorem about the present population model."
+    },
+    {
+      "key": "tkv_background",
+      "authors": ["Kevin Tian", "Weihao Kong", "Gregory Valiant"],
+      "title": "Learning Populations of Parameters",
+      "publication": "NeurIPS 2017",
+      "primary_urls": ["https://proceedings.neurips.cc/paper/2017/file/bc4e356fee1972242c8f7eabf4dff517-Paper.pdf"],
+      "locations": ["Theorem 1", "Corollary 1", "Proposition 1"],
+      "relevant_hypotheses": "A fixed number of Bernoulli observations per unit; Wasserstein recovery of the population of parameters.",
+      "inspection": "Statements inspected as fixed-depth moment-method background. Not a dependency of the present proof."
+    },
+    {
+      "key": "vandermeulen_scott_background",
+      "authors": ["Robert A. Vandermeulen", "Clayton Scott"],
+      "title": "On The Identifiability of Mixture Models from Grouped Samples",
+      "publication": "arXiv:1502.06644",
+      "primary_urls": ["https://arxiv.org/abs/1502.06644"],
+      "locations": ["Abstract, grouped-sample identifiability statement"],
+      "inspection": "Abstract scope checked. The numerically similar threshold for arbitrary mixture components is not asserted to be equivalent to the present known paired-support result. Not a proof dependency."
+    },
+    {
+      "key": "aronow_kallus_lopatto_scope_check",
+      "authors": ["P. M. Aronow", "Nathan Kallus", "Patrick Lopatto"],
+      "title": "A positive resolution of the gap-entropy conjecture",
+      "publication": "arXiv:2609.10529v1, September 2026 preprint",
+      "primary_urls": ["https://arxiv.org/html/2609.10529v1"],
+      "locations": ["Abstract", "Theorems 1.1-1.2"],
+      "inspection": "Statement scope checked: Gaussian best-arm identification. Proof not audited; not used as a paper dependency or as evidence of verified correctness."
+    },
+    {
+      "key": "yao_zhao_zhou_scope_check",
+      "authors": ["Jiarui Yao", "Jiaxi Zhao", "Xiangxin Zhou"],
+      "title": "Gap Entropy and Almost Instance-Wise Optimal Best-Arm Identification",
+      "publication": "arXiv:2609.13703, September 2026 preprint",
+      "primary_urls": ["https://arxiv.org/abs/2609.13703"],
+      "locations": ["Indexed primary abstract"],
+      "inspection": "Abstract scope checked only. Full text not inspected; no theorem claim from this source is used in the paper."
+    },
+    {
+      "key": "repo",
+      "repository": "davidiach/adaptive-threshold-estimation",
+      "commit": "eabf274cb42d4bff4daab6b58568ad6169e7f0a7",
+      "primary_urls": [
+        "https://github.com/davidiach/adaptive-threshold-estimation/blob/eabf274cb42d4bff4daab6b58568ad6169e7f0a7/paper/v5/rare-events.tex",
+        "https://github.com/davidiach/adaptive-threshold-estimation/blob/eabf274cb42d4bff4daab6b58568ad6169e7f0a7/paper/v5/appendix-critical.tex",
+        "https://github.com/davidiach/adaptive-threshold-estimation/blob/eabf274cb42d4bff4daab6b58568ad6169e7f0a7/paper/v5/references.tex",
+        "https://github.com/davidiach/adaptive-threshold-estimation/blob/eabf274cb42d4bff4daab6b58568ad6169e7f0a7/paper/v5/introduction.tex"
+      ],
+      "locations": ["Rare events: general Psi lower bound, explicit optimizer, and fixed-power phases", "Critical quadratic-law theorem and the unresolved arbitrary-law replacement", "Critical appendix, finite-gap lemma preamble and existing Chen-Li-Qiao attribution"],
+      "inspection": "Pinned source contents inspected. Baseline formal-verification statements retain their own scope and are not extended to the new general theorems."
+    }
+  ]
+}
