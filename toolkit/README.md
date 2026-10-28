@@ -38,7 +38,7 @@ are to 50/50, while the proven method needs no guess at all.
 
 ## Install
 
-Python 3.9 or newer with NumPy. Either install it:
+Python 3.10 or newer with NumPy. Either install it:
 
 ```sh
 pip install ./toolkit
