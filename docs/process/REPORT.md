@@ -1,6 +1,12 @@
 # Research hill-climb report
 
-## Current checkpoint: full critical minimax law — 27 October 2026
+These entries preserve the status at each historical checkpoint. For the current
+Lean verification boundary, including the full critical minimax theorem and Psi
+comparison, see [WORKPLAN](../WORKPLAN.md) and [verification instructions](../VERIFY.md).
+The review claims below describe those earlier checkpoints, not a new independent
+review of the consolidated manuscript.
+
+## Historical paper checkpoint: full critical minimax law — 27 October 2026
 
 **The proposed arbitrary-law matching-Psi upper bound is refuted at the fixed
 quadratic law $F(d)=(4d)^2$.** The new

@@ -78,3 +78,34 @@ The existing Psi model and specification hashes and original timestamp are
 unchanged. The freeze record now additionally checks their full local import
 closure at the `eabf274` checkpoint, including the variational objective and
 unrestricted minimax model. These dependency hashes were recorded during review.
+
+## Distribution-blind and critical upper specifications — 28 October 2026
+
+- These are separate extension specifications. No previously frozen file,
+  lock manifest or score changed.
+- `lean/ThresholdHC/BlindUpper/Specification.lean`, SHA-256
+  `9531acd63300aa44359d293b84cc544d40977c6be79c0a87a1d24bcfe410ab15`, compiled
+  and was frozen at 2026-10-27T18:12:30Z, before the upper construction. The
+  record is `tools/blind_upper_specification_freeze.json`, committed in
+  `a4ab54a`. `tools/verify_blind_upper_components.py` pins the hash and requires
+  `distribution_blind_upper` to inhabit `DistributionBlindUpperStatement`
+  exactly; that proof was accepted at `236eb2d`
+  (`results/blind_upper_components_002.json`).
+- `lean/ThresholdHC/CriticalUpper/Specification.lean`, SHA-256
+  `2e6482ac338da26b5ceaf4bfac38cf63bff401aa934e43ea19f21368625a21ae`, compiled
+  and was frozen at 2026-10-28T07:36:44Z, before any critical-upper proof. The
+  record is `tools/critical_upper_specification_freeze.json`, committed in
+  `2162210`. At that historical checkpoint the statement was not yet proved; the full
+  theorem was subsequently accepted in `results/critical_upper_components_003.json`.
+- Authorization: neither freeze record names an approval, and none is claimed
+  here.
+- Dependency lock, added on 28 October 2026 for review finding 2 on
+  [PR 3](https://github.com/davidiach/adaptive-threshold-estimation/pull/3):
+  the critical-upper record now also lists the hashes of the specification's
+  137 transitive project imports (`dependency_sha256`), and
+  `tools/verify_critical_upper_components.py` rejects any change to them. The
+  statement bytes are unchanged. The hashes record the dependency state on that
+  date. The subsequent review restored the existing `CriticalRarePrior`
+  declaration so all Lean sources retain their published bytes; the dependency
+  snapshot now matches PR #3 at `2162210`, as recorded above. This is not a
+  retrospective dependency freeze at the original specification timestamp.

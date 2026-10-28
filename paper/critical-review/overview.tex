@@ -118,9 +118,12 @@ Critical minimax lower bound & Lean-checked for the full rare-prior class.
 The proof constructs one common pair, transfers it to unrestricted
 population algorithms, and proves endpoint termination and testing.
 Budget nonemptiness and a trivial upper bound are also proved.\\[5pt]
-Critical upper and $\Psi$ comparison & Paper proofs with agent review.
-The matching upper construction and explicit unbounded ratio to $\Psi$
-remain unformalized; no external specialist review is claimed.\\[5pt]
+Critical upper and $\Psi$ comparison &
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/eabf274cb42d4bff4daab6b58568ad6169e7f0a7/lean/ThresholdHC/CriticalUpper/Full.lean}{Lean-checked upper}
+with coefficient $100000$, plus the
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/eabf274cb42d4bff4daab6b58568ad6169e7f0a7/lean/ThresholdHC/CriticalPsi/Full.lean}{exact $\Psi$ formula, rate and counterexample}.
+The formal witness uses $B=LH/\rho$; the paper's $\rho^{-2}$ sequence
+is a separate derivation. No external specialist review is claimed.\\[5pt]
 Numerical and exact finite checks & Sanity and reproducibility evidence.
 They do not certify the continuum theorem or distinguish its asymptotic
 rate from the proposed Psi rate.\\
@@ -144,12 +147,12 @@ assembly. Editorial changes in this packet concern the title, this brief,
 and layout. The inherited mathematical statements and arguments are preserved;
 monospaced source paths and hashes are made line-breakable for typesetting.
 The verification table refers to the later formal checkpoint
-\nolinkurl{236eb2d4f286f8987f74f293c129258f517f2ec4}.
+\nolinkurl{eabf274cb42d4bff4daab6b58568ad6169e7f0a7}.
 
 \begin{itemize}
-\item \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/236eb2d4f286f8987f74f293c129258f517f2ec4/docs/CRITICAL_AUDIT.md}{Follow-up dependency audit and formalization boundary}.
+\item \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/eabf274cb42d4bff4daab6b58568ad6169e7f0a7/docs/CRITICAL_AUDIT.md}{Follow-up dependency audit and formalization boundary}.
 \item \href{https://github.com/davidiach/adaptive-threshold-estimation/tree/b3f88e6bc02b3d59ec9fe99529688e2bd911e1db/research/2026-10-27-nonlinear-critical}{Original proof bundle, source lock, and scoped reviews}.
-\item \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/236eb2d4f286f8987f74f293c129258f517f2ec4/docs/process/METHOD.md}{Process note and limits of the evidence}.
+\item \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/6009662a5581b31de17c8956b6fd93e4279ba087/docs/process/METHOD.md}{Process note and limits of the evidence}.
 \end{itemize}
 
 \noindent A matching characterization for arbitrary magnitude laws remains

@@ -28,9 +28,13 @@ upper conjecture in the preserved continuation. The variational optimizer
 theorem is unchanged. The critical minimax lower bound is now
 [Lean-checked](../lean/ThresholdHC/CriticalEntropy/CriticalMinimax.lean), including
 arbitrary measurable seeds, unrestricted creation and termination in the
-original observable experiment. The matching upper and explicit Psi comparison
-remain paper arguments. External specialist verification and novelty assessment
-remain pending. The
+original observable experiment. The matching
+[upper](../lean/ThresholdHC/CriticalUpper/Full.lean) and exact
+[Psi formula, rate and counterexample](../lean/ThresholdHC/CriticalPsi/Full.lean)
+are also Lean-checked. The formal upper uses an alternative observable
+construction; its counterexample uses budget `L*(1+log L)/rho` rather than
+the inherited paper's `rho^(-2)` sequence. External specialist verification
+and novelty assessment remain pending. The
 [checkpoint](../research/2026-10-27-nonlinear-critical/CHECKPOINT.md) records
 proof dependencies, exact source hashes and reproducible checks.
 
@@ -92,4 +96,4 @@ The frozen target names `lemma6_*` and `lemma7_*` retain earlier numbering; in t
 
 ## What remains unchanged in scope
 
-The unrestricted RMS minimax law is now Lean-checked in both directions: Tier 6 gives the lower coefficient 1/64, and [the distribution-blind upper](../docs/BLIND_UPPER.md) gives coefficient 512 with one observable family independent of the gap law. The confidence-radius statement and uniform unbiasedness converse retain paper-proof status. The separate [power-margin proof](../research/2026-10-27-route-a/construction.tex) resolves the known-rarity regime $\alpha>2$. The full critical-law paper theorem above resolves $\alpha=2$ at $F(d)=(4d)^2$ and refutes the proposed arbitrary-law matching-Psi upper bound. A sharp replacement for general magnitude laws remains open. The critical minimax lower side is now Lean-checked; the matching upper, explicit Psi comparison and other rare-event conclusions retain paper-proof status. The original expected-work, observation-independence, and confidence-radius limitations still apply; see [v4 §10](paper.tex#L1280) and the [current results guide](../docs/RESULTS.md).
+The unrestricted RMS minimax law is now Lean-checked in both directions: Tier 6 gives the lower coefficient 1/64, and [the distribution-blind upper](../docs/BLIND_UPPER.md) gives coefficient 512 with one observable family independent of the gap law. The confidence-radius statement and uniform unbiasedness converse retain paper-proof status. The separate [power-margin proof](../research/2026-10-27-route-a/construction.tex) resolves the known-rarity regime $\alpha>2$. The full critical-law paper theorem above resolves $\alpha=2$ at $F(d)=(4d)^2$ and refutes the proposed arbitrary-law matching-Psi upper bound. A sharp replacement for general magnitude laws remains open. Both critical minimax directions and the exact Psi comparison are now Lean-checked. Other rare-event regimes retain paper-proof status. The original expected-work, observation-independence, and confidence-radius limitations still apply; see [v4 §10](paper.tex#L1280) and the [current results guide](../docs/RESULTS.md).

@@ -10,7 +10,12 @@ focused unit on `research/critical-minimax-upper-20261028`, based on PR #4's
 verified checkpoint `678e81c`. It is published as
 [PR #5](https://github.com/davidiach/adaptive-threshold-estimation/pull/5) at
 `c127478`. The separate Psi comparison is on
-`research/critical-psi-comparison-20261028`, based on that checkpoint.
+`research/critical-psi-comparison-20261028`, published as
+[PR #7](https://github.com/davidiach/adaptive-threshold-estimation/pull/7) at
+`eabf274`. The final manuscript and process update is on
+`research/manuscript-completion-20261028`, published as
+[PR #8](https://github.com/davidiach/adaptive-threshold-estimation/pull/8)
+and based on PR #7.
 
 ## Current proof boundary
 
@@ -22,7 +27,7 @@ critical rare-event upper is also proved against its frozen specification,
 with coefficient 100000 in the original observable experiment. The exact
 Psi formula, two-sided rate and counterexample are also proved; see the
 [Psi audit](../results/critical_psi_001.json). The manuscript and review packet
-still reference checkpoint `236eb2d`; their final refresh and review remain.
+now reference checkpoint `eabf274`; both have been rebuilt and visually checked.
 Elapsed time and component counts do not establish completion.
 
 The critical upper construction now has calibrated observable classifiers and
@@ -36,19 +41,20 @@ experiment, and every budget regime are now proved. The unchanged
 [full upper specification](../lean/ThresholdHC/CriticalUpper/Specification.lean)
 is inhabited by [the final theorem](../lean/ThresholdHC/CriticalUpper/Full.lean).
 The explicit comparison with the actual variational Psi objective now also
-passes the frozen-target audit. The remaining work is the final manuscript,
-process-note and verification refresh, including CI for each new checkpoint
-and a requirement-by-requirement completion audit.
+passes the frozen-target audit. The manuscript, process note and verification
+guide now describe these completed proofs and their precise limits. Publication
+and CI are tracked per PR; a local proof audit is not a claim that a later
+GitHub Actions run has finished.
 
 | Work | Completion evidence | Current state |
 |---|---|---|
-| Adversarial audit of the critical quadratic theorem | Trace every proof dependency, record objections and their resolution, distinguish paper arguments from kernel checks | Initial source audit in [CRITICAL_AUDIT.md](CRITICAL_AUDIT.md); further verification in progress |
+| Adversarial audit of the critical quadratic theorem | Trace every proof dependency, record objections and their resolution, distinguish paper arguments from kernel checks | [CRITICAL_AUDIT.md](CRITICAL_AUDIT.md) records the source audit, dependency checks, resolved proof obligations and review dependence; the full lower, upper and Psi statements now have separate kernel audits. This is not external specialist review |
 | Specialist review package | Short overview, complete consolidated proof, precise questions, source and prior-art references | [Prepared](../paper/critical-review/README.md): three-page brief plus complete proof, 16-page PDF compiled and visually checked; external review itself remains pending |
 | Formal critical argument | Exact statistical specification, proved dependency chain, kernel and axiom audit; scalar lemmas alone do not satisfy this item | The base-cost theorem, common hard pair, unrestricted critical minimax lower bound, and matching upper bound are proved in the original observable experiment for the full rare-prior class. See the [lower audit](../results/critical_components_016.json) and [full upper audit](../results/critical_upper_components_003.json). The [exact Psi formula, rate and minimax separation](../results/critical_psi_001.json) are also proved |
 | Original distribution-blind upper bound | One budget-indexed observable algorithm independent of the magnitude/sign laws, realized in the original experiment; uniform work and RMS bounds; exact type and axiom audit | [Complete](BLIND_UPPER.md): the frozen full statement is inhabited by one budget-indexed observable family, with coefficient 512. Actual execution, almost-sure cost/output identities, uniform budget and RMS bounds are proved; exact-type and transitive-axiom audit passed |
-| Consolidated v5 manuscript | Original minimax law, unbiasedness, 713 bound, rare-event regimes, critical result and correction to the Psi conjecture; accurate verification labels; compiled and visually checked | [Written](../paper/v5/README.md): 56-page manuscript with complete source-derived proof appendices, explicit editorial changes, source checks, and rendered-page review. No separate review of the new consolidation is claimed |
-| Process note | Reproducible account of construction, frozen statements, semantic review, failed approaches, reviewer dependence, and limits | [Written](process/METHOD.md); update verification boundaries as further work lands |
-| Repository cleanup and publication | Clear current entry points, preserved source/evidence identities, passing relevant guards and CI, pushed commits and reviewable changes | First checkpoint pushed in [draft PR #3](https://github.com/davidiach/adaptive-threshold-estimation/pull/3); baseline CI confirmed; current verification status must be checked per commit |
+| Consolidated v5 manuscript | Original minimax law, unbiasedness, 713 bound, rare-event regimes, critical result and correction to the Psi conjecture; accurate verification labels; compiled and visually checked | [Written](../paper/v5/README.md): 57-page manuscript with complete source-derived proof appendices, explicit editorial changes, source checks, and rendered-page review. Both critical bounds and the actual Psi comparison are linked at `eabf274`. No separate review of the new consolidation is claimed |
+| Process note | Reproducible account of construction, frozen statements, semantic review, failed approaches, reviewer dependence, and limits | [Written](process/METHOD.md) and refreshed at `6009662`, including completed realization proofs, the formula's freeze chronology, and lessons from the long run and focused PRs |
+| Repository cleanup and publication | Clear current entry points, preserved source/evidence identities, passing relevant guards and CI, pushed commits and reviewable changes | README, results and verification guides lead to current evidence; historical bundles remain intact. Proof checkpoints are published in PRs #3, #4, #5 and #7; the final manuscript branch is separate. CI results belong to each exact commit and are recorded in the corresponding PR |
 
 ## Working rules
 
@@ -135,4 +141,6 @@ including the full Lean audit and the research and numerical evidence jobs.
 
 The unbiased-estimator checkpoint `678e81c` in PR #4 passed all three Linux
 jobs in [run 40667339241](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40667339241).
-The later full-upper branch requires its own CI result.
+The full-upper checkpoint `c127478` in PR #5 also passed all three jobs in
+[run 40672110946](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40672110946).
+The Psi and manuscript PRs report their own commit-specific CI results.
