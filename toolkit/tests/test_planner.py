@@ -216,8 +216,10 @@ class SimulationTests(unittest.TestCase):
         level_cap = 4
         exact = np.mean([exact_positive_probability(p, 2 ** level_cap) for p in population.rates])
         rng = np.random.default_rng(5)
-        with patch("threshold_toolkit.planner.MAX_CHUNK", 8):
+        with patch("threshold_toolkit.planner.MAX_CHUNK", 8), \
+                patch("threshold_toolkit.planner._calls", wraps=_calls) as calls:
             runs = np.array([_simulate_run(population, level_cap, rng) for _ in range(4000)])
+        self.assertEqual(max(call.args[2] for call in calls.call_args_list), 8)
         raw, flips = runs[:, 0], runs[:, 1]
         self.assertLess(abs(raw.mean() - exact), 5 * raw.std() / math.sqrt(raw.size))
         # Expected total flips are exactly 4 * cap - (mean flips per call).
@@ -230,8 +232,10 @@ class SimulationTests(unittest.TestCase):
         for budget in (1e10, 1e300):
             with self.subTest(budget=budget), self.assertRaises(ValueError):
                 simulate(population, budget, runs=2)
+        # A generous cap is fine when the search stops long before it.
+        self.assertLess(plan_target(population, 0.1, runs=2, max_budget=1e10).search_limit, 1e10)
         with self.assertRaises(ValueError):
-            plan_target(population, 0.1, runs=2, max_budget=1e10)
+            plan_target(population, 1e-4, runs=2, max_budget=1e10)
 
 
 class CommandLineTests(unittest.TestCase):

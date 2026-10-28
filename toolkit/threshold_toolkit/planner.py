@@ -330,7 +330,7 @@ def _simulate_run(population: Population, level_cap: int,
     flips = 0
     items = 0
     for _ in range(2):
-        chunk = 64
+        chunk = min(64, MAX_CHUNK)
         while True:
             _, costs = _calls(population, level_cap, chunk, rng)
             marks = rng.random(chunk) < costs / cap
@@ -456,14 +456,15 @@ def plan_target(population: Population, target: float, runs: int = 200,
     """
     _validate_target(target)
     budget_level(max_budget)
-    if max_budget > MAX_SIMULATED_BUDGET:
-        raise ValueError(f"budgets above {MAX_SIMULATED_BUDGET:,.0f} flips are too large to simulate")
     if not isinstance(runs, numbers.Integral) or runs < 2:
         raise ValueError("use at least 2 runs")
     majority = majority_plan_for_target(population, target)
+    limit = max_budget if majority is None else min(max_budget, SEARCH_FACTOR * majority.flips)
+    # Reject only a search that would reach a budget too large to simulate.
+    if 4 * 2 ** budget_level(limit) > MAX_SIMULATED_BUDGET:
+        raise ValueError(f"budgets above {MAX_SIMULATED_BUDGET:,.0f} flips are too large to simulate")
     if planned is not None:
         planned(majority)
-    limit = max_budget if majority is None else min(max_budget, SEARCH_FACTOR * majority.flips)
     rng = np.random.default_rng(seed)
     trials = []
     recommended = None
