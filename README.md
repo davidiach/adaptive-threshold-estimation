@@ -42,6 +42,8 @@ The [lower theorem](lean/ThresholdHC/Tier6/Full.lean),
 | Finite-gap entropy for every gap count; explicit single-coin base costs | Proved in Lean | [Proofs](lean/ThresholdHC/CriticalAllSizes/) · [Audit](results/critical_all_sizes_002.json) |
 | Confidence radii and other rare-event regimes | Paper proofs; formalization incomplete | [Full results guide](docs/RESULTS.md) |
 
+Here $I=\mathbb E_\mu[D^{-1}]$ is the inverse-gap moment.
+
 For the critical law $F(d)=(4d)^2$ on $(0,1/4]$, with known rarity bound
 $0<\rho\le1/4$, the minimax RMS rate is
 
@@ -98,8 +100,8 @@ coverage of the manuscript is recorded claim by claim. The work has received
 AI review and has not had independent external specialist review. Numerical
 experiments provide supporting evidence, not proofs of universal claims.
 
-The next formalization targets include confidence guarantees and the remaining
-rare-event regimes. The 713 construction retains its conditional-kernel scope.
+The next formalization targets include confidence guarantees, the remaining
+rare-event regimes, and stronger revealed- or selected-magnitude claims.
 General-law rare-event theory and tighter constants remain research
 directions. See the [completion ledger](docs/WORKPLAN.md) for the current boundary.
 

@@ -208,7 +208,8 @@ normalizations. A nearby theorem's title is insufficient. The source records
 credit established sign-entropy, convex-estimation and Hellinger-decomposition
 methods. A targeted literature check does not establish priority.
 
-A human specialist review remains a distinct step. A useful review package
+The project owner does not plan human specialist review; its absence is a
+review limitation, not a pending task or completion gate. A useful review package
 states the experiment, strongest claim, proof dependencies, and specific places
 where an objection would break the conclusion. No reviewer should have to infer
 the current theorem from chronological run logs.
@@ -223,9 +224,11 @@ ignored directories so it cannot overwrite a published checkpoint by accident.
 The [active completion ledger](../WORKPLAN.md) and
 [critical follow-up audit](../CRITICAL_AUDIT.md) distinguish completed components
 from remaining work. The original upper theorem, matching critical upper,
-and exact Psi comparison are now formally proved. External specialist review
-remains pending. The unbiasedness converse, confidence characterization, and
-other rare-event regimes retain their stated paper-proof scopes. More proof
+exact Psi comparison, unbiasedness converse, and observable 713 construction
+are now formally proved. The converse and construction also give the full
+unbiased-existence characterization in the same model. The confidence
+characterization, stronger magnitude-oracle claims, and other rare-event
+regimes retain their stated paper-proof scopes. More proof
 lines or larger logs would not change those boundaries on their own.
 
 Large changes should be divided by mathematical result. The follow-up initially
