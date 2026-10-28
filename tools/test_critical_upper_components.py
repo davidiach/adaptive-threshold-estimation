@@ -3,6 +3,7 @@ import unittest
 from unittest.mock import patch
 
 import verify_critical_upper_components as audit
+import verify_blind_upper_components as shared
 
 
 class CriticalUpperAuditTests(unittest.TestCase):
@@ -18,6 +19,13 @@ class CriticalUpperAuditTests(unittest.TestCase):
     def test_changed_frozen_target_rejected(self):
         with patch.object(audit, 'sha', return_value='0'*64):
             with self.assertRaisesRegex(ValueError, 'specification changed'):
+                audit.validate_sources()
+
+    def test_changed_specification_dependency_rejected(self):
+        real = audit.sha
+        rare = audit.LEAN / 'ThresholdHC/CriticalEntropy/CriticalRareModel.lean'
+        with patch.object(shared, 'sha', side_effect=lambda p: '0'*64 if p == rare else real(p)):
+            with self.assertRaisesRegex(ValueError, 'dependency changed'):
                 audit.validate_sources()
 
     def test_missing_module_rejected(self):
