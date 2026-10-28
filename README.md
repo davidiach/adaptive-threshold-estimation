@@ -41,7 +41,8 @@ The [lower theorem](lean/ThresholdHC/Tier6/Full.lean),
 | Unbiased converse: finite inverse moment is necessary and variance–work is at least $I^2/16$ | Proved in Lean in the observable adaptive model | [Theorem](lean/ThresholdHC/UnbiasedConverse/Full.lean) · [Audit](results/unbiased_converse_001.json) |
 | Finite-gap entropy for every gap count; explicit single-coin base costs | Proved in Lean | [Proofs](lean/ThresholdHC/CriticalAllSizes/) · [Audit](results/critical_all_sizes_002.json) |
 | Confidence radius $r_\mu(B,\delta)\asymp\omega_\mu(\sqrt{\log(1/\delta)/B})$ | Both bounds proved in Lean in the observable adaptive model | [Theorems](lean/ThresholdHC/Confidence/Full.lean) · [Audit](results/confidence_001.json) |
-| Other rare-event regimes and stronger oracle claims | Paper proofs; formalization incomplete | [Full results guide](docs/RESULTS.md) |
+| RMS and confidence lower bounds with revealed or adaptively selected magnitudes | Proved in Lean in canonical oracle models | [Theorems](lean/ThresholdHC/OracleLower/Full.lean) · [Audit](results/oracle_lower_001.json) |
+| Other rare-event regimes and auxiliary results | Paper proofs; formalization incomplete | [Full results guide](docs/RESULTS.md) |
 
 Here $I=\mathbb E_\mu[D^{-1}]$ is the inverse-gap moment.
 
@@ -106,7 +107,7 @@ AI review and has not had independent external specialist review. Numerical
 experiments provide supporting evidence, not proofs of universal claims.
 
 The next formalization targets include the remaining rare-event regimes
-and stronger revealed- or selected-magnitude claims.
+and auxiliary results on envelopes, smooth densities, and observed outer states.
 General-law rare-event theory and tighter constants remain research
 directions. See the [completion ledger](docs/WORKPLAN.md) for the current boundary.
 

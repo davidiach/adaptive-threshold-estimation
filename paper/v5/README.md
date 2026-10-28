@@ -36,6 +36,13 @@ work at most `31 I`, and proves the full existence characterization in the
 same model; see its [audit](../../results/observable713_001.json).
 Its formal links use checkpoint `15dbbda98a31e27502e3caff991d3ea21d096d23`.
 The confidence links use checkpoint `d6feb3069d1a399ab1a50de2b0e7bc13e6b21c23`.
+The stronger RMS and confidence lower bounds are proved for canonical revealed
+and adaptively selected magnitudes, with coefficients `1/64` and
+`15/(256 sqrt(2))`. The selected interface proves fresh creation and persistent
+gaps on reuse; the revealed interface grants the full iid magnitude array.
+See the [targets](../../lean/ThresholdHC/OracleLower/Specification.lean) and
+[audit](../../results/oracle_lower_001.json). Oracle links use checkpoint
+`4a5805c771e541f557848957e0a3ffada31dcb32`.
 Other rare-event regimes retain paper-proof status. Earlier formal links are pinned to
 `eabf274cb42d4bff4daab6b58568ad6169e7f0a7`; the additive all-size proof links
 use `ebd36676693b66814bc2a379529499428ab98650`.
@@ -70,8 +77,8 @@ and shares a single bibliography. Its editorial changes are explicit:
   is not replaced by a pointwise constraint, and the fixed quadratic theorem
   is not extended to all exponents or scales.
 - Current formal status appears next to the main results. The core Lean
-  theorems' hidden-magnitude model is distinguished from the stronger
-  revealed/selected-magnitude paper statements.
+  theorems' hidden-magnitude model and the separate proved
+  revealed/selected-magnitude lower bounds have explicit specifications.
 - Repeated diagnostics and priority commentary remain in the source archives.
   Mathematical proof dependencies are retained, with an explicit Sion citation.
 
@@ -95,9 +102,9 @@ tectonic paper/v5/main.tex --outdir /path/to/disposable-output --keep-logs --unt
 ```
 
 The project also compiles in the desktop LaTeX editor. The published PDF was
-exported with Tectonic 0.17.0 on 28 October 2026, rendered with Poppler,
+exported with Tectonic 0.17.0 on 29 October 2026, rendered with Poppler,
 and visually inspected.
-It has 61 pages, no unresolved references or overfull boxes. The source check
+It has 62 pages, no unresolved references or overfull boxes. The source check
 resolves 141 unique labels and 24 bibliography citations, and rejects uncited
 references. The PDF includes the corrected Chen--Li--Qiao citation in Appendix C.
 Typesetting and source

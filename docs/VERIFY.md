@@ -84,6 +84,26 @@ are proved; neither is assumed in the final target. CI runs this audit and
 its regression tests. The radius is a theoretical function of the gap law,
 not a data-computable confidence interval over all unknown laws.
 
+The magnitude-oracle lower bounds have a separate audit:
+
+```sh
+python tools/verify_oracle_lower.py
+python -m unittest discover -s tools -p 'test_oracle_lower.py' -v
+```
+
+Its [record](../results/oracle_lower_001.json) covers 10 modules and all 54
+public declaration roots. Eight exact targets cover canonical realization,
+fresh/revisit semantics, the general RMS and confidence lower bounds,
+both concrete oracle interfaces, their minimax bounds, and nonvacuity.
+The coefficients are `1/64` and `15/(256 sqrt(2))`, respectively. The model,
+eight statements, and 33 transitive model dependencies were compiled and
+frozen at `3474a37` before lower-bound and semantic-embedding proofs.
+The revealed model grants the full iid magnitude array; the selected model
+allows continuous-valued gap choices based on previous flips and preserves
+the gap on reuse. The audit checks the frozen types and all transitive axioms;
+CI runs both the audit and mutation tests for each required target. Only
+`propext`, `Classical.choice`, and `Quot.sound` are permitted.
+
 The actual critical-law Psi formula, two-sided rate and unrestricted minimax
 counterexample have a separate audit. After the prerequisite builds below:
 
@@ -316,6 +336,7 @@ separate from mathematical verification.
 | Full observable unbiased converse and 1/16 lower coefficient | [unbiased_converse_001.json](../results/unbiased_converse_001.json) |
 | Observable 713 construction and unbiased existence iff finite inverse moment | [observable713_001.json](../results/observable713_001.json) |
 | Full observable confidence characterization, upper family, and nonvacuity | [confidence_001.json](../results/confidence_001.json) |
+| Canonical revealed/selected-magnitude RMS and confidence lower bounds | [oracle_lower_001.json](../results/oracle_lower_001.json) |
 | Input preservation | [MANIFEST_SHA256.txt](../inputs/next-phase/MANIFEST_SHA256.txt) |
 | Frozen specifications and tools | [FROZEN.sha256](../FROZEN.sha256), [TIER3_FROZEN.sha256](../TIER3_FROZEN.sha256), [TIER4_FROZEN.sha256](../TIER4_FROZEN.sha256) |
 | Workflow definition | [checks.yml](../.github/workflows/checks.yml) |

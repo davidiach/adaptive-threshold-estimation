@@ -20,8 +20,8 @@ Original RMS minimax lower bound &
 $R_\mu(B)\ge\omega_\mu(B^{-1/2})/64$ in the hidden-magnitude iid
 fresh-coin model, for arbitrary measurable seeds, natural-number coin
 labels, revisits, interleaving, and unbounded stopping. It constructs
-the experiment and retains infinite risk. The stronger revealed- or
-selected-magnitude paper statement is not the exact Lean target.\\[5pt]
+the experiment and retains infinite risk. The separate oracle theorem
+below covers the stronger revealed- and selected-magnitude models.\\[5pt]
 Original RMS upper bound &
 \leanref{BlindUpper/Full.lean}{distribution\_blind\_upper} chooses one
 budget-indexed observable family before every gap law and proves
@@ -32,8 +32,15 @@ Confidence characterization &
 \confidenceleanref{confidence\_characterization} proves both minimax bounds
 with coefficients $1/64$ and $8192$ for $B\ge1$ and $0<\delta\le1/4$.
 \confidenceleanref{confidence\_upper} supplies one observable family
-depending only on $(B,\delta)$. Stronger revealed/selected-magnitude
-claims in \cref{thm:main} retain paper-proof status.\\[5pt]
+depending only on $(B,\delta)$. The next theorem sharpens the lower
+coefficient to $15/(256\sqrt2)$, including in this hidden model.\\[5pt]
+Magnitude-oracle lower bounds &
+\oracleleanref{Full.lean}{oracle\_minimax\_lower} proves RMS coefficient
+$1/64$ and confidence coefficient $15/(256\sqrt2)$ for $B\ge1$ and
+$0<\delta\le1/4$, both when the full iid magnitude array is revealed
+and when each new magnitude is selected adaptively. Fresh creation,
+persistent magnitudes on reuse, the actual process and expected flip
+budget, minimax bounds, and nonvacuity are proved.\\[5pt]
 Unbiased characterization &
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/631886e16ddff5b8e93b73860bf6552b956128be/lean/ThresholdHC/UnbiasedConverse/Full.lean}{\texttt{unbiased\_converse}}
 proves the necessity of $I_\mu<\infty$ and $V\overline W\ge I_\mu^2/16$
@@ -131,11 +138,41 @@ a confidence interval computed from the observations alone.
 
 The lower proof applies a binary confidence test to the same adaptive
 transcript information bound. It proves the conservative coefficient
-$1/64$; the paper's displayed lower coefficient remains a separate
-sharper calculation. The four full targets, model, and transitive model
+$1/64$; the oracle extension below also proves the paper's sharper
+coefficient. The four full targets, model, and transitive model
 dependencies were frozen before supporting proofs. The audit checks
 all 107 declarations and the exact targets at checkpoint
 \nolinkurl{d6feb3069d1a399ab1a50de2b0e7bc13e6b21c23}.
+
+\paragraph{Realizing the magnitude oracles.}
+The revealed model grants the entire iid magnitude array, together with an
+arbitrary independent random seed, to the policy and output. The selected
+model has explicit create, revisit, and stop requests. Each creation may
+choose any magnitude in $(0,1/2]$ as a measurable function of the seed and
+all previous flips; a revisit names a prior creation. Finite histories
+encode coin labels in the common process. The semantic proof shows that
+a fresh label has never been used on that path and that a revisited coin
+retains its original magnitude. Counterfactual histories do not restrict
+magnitudes to a deterministic discrete grid.
+
+Both models use the canonical infinite process and its proved finite-prefix
+law, actual expected flip counts, and extended risks. The adversary is one
+measurable sign function on the full magnitude domain, including any chosen
+magnitudes outside the support of the target law. The estimation target
+remains $\int q\,d\mu$. No information inequality or termination premise is
+assumed by the final lower bounds; finite budget implies almost-sure stopping.
+
+The clipped hard pair gives KL at most $(128/225)h^2B$ even with the common
+magnitude information revealed. The RMS argument gives coefficient $1/64$.
+For confidence, clipping at
+$h=15\sqrt{\log(1/\delta)/B}/(32\sqrt2)$ gives KL at most
+$\log(1/\delta)/16$; binary testing and modulus scaling give
+$15/(256\sqrt2)$. The original hidden experiment embeds with identical law,
+work, risk and confidence events. Zero-work estimators establish nonvacuity.
+The models, eight full target types and 33 transitive model dependencies
+were frozen at \nolinkurl{3474a37} before the new lower and semantic proofs.
+The audit covers ten modules, 54 declaration roots and all eight targets
+at \nolinkurl{4a5805c771e541f557848957e0a3ffada31dcb32}.
 
 \paragraph{Realizing the critical upper algorithm.}
 The formal construction uses asymmetric classifiers at dyadic flip counts,
@@ -167,7 +204,8 @@ truncated inverse gaps then proves both integrability and the lower product
 bound; finite $I_\mu$ is not assumed. The exact target has no KL or
 differentiability premise. The model and target were written and compiled
 before the supporting proofs; the dependency snapshot was recorded after
-the proof drafts. Stronger oracle claims retain their separate scope.
+the proof drafts. This unbiased converse is for the hidden-magnitude model;
+the new oracle results above concern the RMS and confidence lower bounds.
 
 \paragraph{Realizing the 713 estimator.}
 A geometric natural-number seed selects a fine classifier and its adjacent
@@ -211,8 +249,8 @@ validations of the full proof. The
 records the workflow, failed approaches, and these limits.
 
 \paragraph{Remaining mathematical work.}
-Stronger oracle claims and other rare-event regimes retain their
-stated paper-proof scopes.
+Other rare-event regimes and auxiliary envelope, smoothness, and observed-state
+results retain their stated paper-proof scopes.
 A corrected arbitrary-law rare-event functional is open.
 
 The model requires independent fresh coins and conditionally independent
