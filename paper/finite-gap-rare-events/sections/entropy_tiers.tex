@@ -1,0 +1,32 @@
+\begin{lemma}[Entropy tiers]\label{lem:entropy-tiers}
+For a finite positive vector $a$, let $M=\max_j a_j$ and group its
+coordinates by $a_j\in(M2^{-k-1},M2^{-k}]$, $k\ge0$.
+If $F_k$ is each group's entropy cost, then
+\begin{equation}\label{eq:entropy-tiers}
+ \mathcal G(a)\le7\sum_k F_k.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Let $A_k$ be the cost mass in group $k$, $n_k$ its cardinality, and
+$p_k=A_k/A$. Entropy decomposition gives
+$\mathcal G(a)=\sum_kF_k+A\Ent(p)$.
+Empty groups are omitted. For the comparison on $k\ge0$, the reference
+probability is $q_k=2^{-k/2}/(2+\sqrt2)$, so $\KL(p\Vert q)\ge0$
+applies even when the nonempty tier indices are sparse.
+Comparison with the probability vector proportional to $2^{-k/2}$ gives
+\[
+ A\Ent(p)\le A\log(2+\sqrt2)
+                 +\frac{\log2}{2}\sum_k kA_k.
+\]
+On groups with $n_k\ge2^{k/2}$, the second term is at most
+$\sum_kA_k\log n_k\le\sum_kF_k$; comparable weights imply
+$F_k\ge A_k[1+\log n_k-\log2]\ge A_k\log n_k$.
+On the other groups, $A_k\le M2^{-k/2}$, so their contribution is at most
+\[
+ \frac{\log2}{2}M\sum_{k\ge0}k2^{-k/2}
+ =\frac{(\log2)\sqrt2}{2(\sqrt2-1)^2}M<3M\le3A.
+ \]
+Finally $\log(2+\sqrt2)<2$ and $A\le\sum_kF_k$.
+Adding the initial $\sum_kF_k$ proves \eqref{eq:entropy-tiers}.
+\end{proof}
