@@ -12,12 +12,25 @@ The original RMS law and critical quadratic law are proved in Lean in both
 directions; the exact Psi comparison, all-size extension, consolidated v5
 manuscript, specialist packet, and process note are published.
 
-Remaining priorities are independent external specialist review; formalizing
-the unbiased-estimation converse and sharp lower coefficient, confidence
-guarantees, and other paper-only results; and research on a corrected
-arbitrary-law rare-event characterization. The four maintenance refactorings
-below are non-blocking follow-up work. The historical checkpoints and their
-original evidence scopes are retained below.
+The next contribution, the unbiased-estimation converse and its `I²/16`
+lower bound, is now proved in Lean at `631886e`. All three completion gates
+passed: the general two-distribution variance inequality, the information
+bound in the existing observable adaptive experiment, and the inverse-moment
+limit. The [full theorem](../lean/ThresholdHC/UnbiasedConverse/Full.lean) and
+[audit](../results/unbiased_converse_001.json) cover the exact target and all
+38 declarations. The 713 construction retains its conditional-kernel scope;
+this converse does not supply a new realization of that upper construction.
+
+The next formalization priorities are the confidence characterization,
+the 713 realization in the common observable model, and other paper-only
+rare-event results. A corrected arbitrary-law rare-event characterization
+remains open research. Publication and CI for this addition are recorded
+on its focused PR; the local audit alone does not establish CI success.
+
+The project owner does not plan human specialist review. Its absence remains
+a stated review limitation, not a pending task or completion gate. The four
+maintenance refactorings below are non-blocking follow-up work. Historical
+checkpoints and their original evidence scopes are retained below.
 
 The unbiased-estimator review unit is [PR #4](https://github.com/davidiach/adaptive-threshold-estimation/pull/4),
 based on that branch at `2162210`. The full critical upper proof is a further
@@ -88,7 +101,7 @@ GitHub Actions run has finished.
 | Work | Completion evidence | Current state |
 |---|---|---|
 | Adversarial audit of the critical quadratic theorem | Trace every proof dependency, record objections and their resolution, distinguish paper arguments from kernel checks | [CRITICAL_AUDIT.md](CRITICAL_AUDIT.md) records the source audit, dependency checks, resolved proof obligations and review dependence; the full lower, upper and Psi statements now have separate kernel audits. This is not external specialist review |
-| Specialist review package | Short overview, complete consolidated proof, precise questions, source and prior-art references | [Prepared](../paper/critical-review/README.md): four-page brief, two-page all-size addendum and complete proof, 20-page PDF compiled and visually checked; external specialist review itself remains pending |
+| Specialist review package | Short overview, complete consolidated proof, precise questions, source and prior-art references | [Prepared](../paper/critical-review/README.md): four-page brief, two-page all-size addendum and complete proof, 20-page PDF compiled and visually checked; external specialist review is not planned |
 | Formal critical argument | Exact statistical specification, proved dependency chain, kernel and axiom audit; scalar lemmas alone do not satisfy this item | The base-cost theorem, common hard pair, unrestricted critical minimax lower bound, and matching upper bound are proved in the original observable experiment for the full rare-prior class. See the [lower audit](../results/critical_components_016.json) and [full upper audit](../results/critical_upper_components_003.json). The [exact Psi formula, rate and minimax separation](../results/critical_psi_001.json) are also proved |
 | Original distribution-blind upper bound | One budget-indexed observable algorithm independent of the magnitude/sign laws, realized in the original experiment; uniform work and RMS bounds; exact type and axiom audit | [Complete](BLIND_UPPER.md): the frozen full statement is inhabited by one budget-indexed observable family, with coefficient 512. Actual execution, almost-sure cost/output identities, uniform budget and RMS bounds are proved; exact-type and transitive-axiom audit passed |
 | Consolidated v5 manuscript | Original minimax law, unbiasedness, 713 bound, rare-event regimes, critical result and correction to the Psi conjecture; accurate verification labels; compiled and visually checked | [Written](../paper/v5/README.md): 59-page manuscript including the all-size addendum, complete source-derived proof appendices, source checks and rendered-page review. Both critical bounds and Psi are linked at `eabf274`; the addendum's explicit constants are linked at `ebd3667`. No independent specialist review is claimed |
