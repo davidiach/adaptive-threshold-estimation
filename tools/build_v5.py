@@ -1,7 +1,7 @@
 """Assemble v5's inherited proofs with explicit editorial changes.
 
 The original sources are immutable inputs. New exposition lives in paper/v5;
-this script generates only the six named inherited-source files.
+this script generates the inherited-source files and local shared addendum.
 """
 from __future__ import annotations
 
@@ -244,7 +244,38 @@ Pacific Journal of Mathematics 8(1):171--176, 1958.
         "introduction.tex": intro, "core.tex": core,
         "appendix-localization.tex": local, "appendix-above-two.tex": above,
         "appendix-critical.tex": critical, "references.tex": bibliography,
+        "finite-gap-extension.tex": (ROOT / "paper/finite-gap-extension.tex").read_text(encoding="utf-8"),
     }.items()}
+
+
+def project_text(directory: Path) -> str:
+    """Read the actual input graph and reject missing or unused project sources."""
+    directory = directory.resolve()
+    visited = set()
+    pieces = []
+
+    def visit(path: Path) -> None:
+        path = path.resolve()
+        if not path.is_relative_to(directory):
+            raise ValueError("TeX input outside standalone project: " + str(path))
+        if not path.is_file():
+            raise ValueError("Missing TeX input: " + str(path))
+        if path in visited:
+            raise ValueError("Repeated or cyclic TeX input: " + str(path))
+        visited.add(path)
+        source = re.sub(r"(?<!\\)%[^\n]*", "", path.read_text(encoding="utf-8"))
+        pieces.append(source)
+        for name in re.findall(r"\\(?:input|include)\{([^}]+)\}", source):
+            target = directory / name
+            if not target.suffix:
+                target = target.with_suffix(".tex")
+            visit(target)
+
+    visit(directory / "main.tex")
+    unused = set(directory.glob("*.tex")) - visited
+    if unused:
+        raise ValueError("Unincluded TeX source: " + ", ".join(sorted(p.name for p in unused)))
+    return "\n".join(pieces)
 
 
 def main() -> None:
@@ -260,8 +291,7 @@ def main() -> None:
         else:
             target.write_text(text, encoding="utf-8", newline="\n")
     # Catch broken assembly references before invoking TeX.
-    all_tex = "\n".join(p.read_text(encoding="utf-8") for p in DEST.glob("*.tex"))
-    all_tex += "\n" + (ROOT / "paper/finite-gap-extension.tex").read_text(encoding="utf-8")
+    all_tex = project_text(DEST)
     labels = re.findall(r"\\label(?:\[[^]]+\])?\{([^}]+)\}", all_tex)
     if len(labels) != len(set(labels)):
         raise SystemExit("Duplicate v5 labels")

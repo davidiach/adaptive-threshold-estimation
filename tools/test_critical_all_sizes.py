@@ -1,4 +1,6 @@
 """Failure-path checks for the all-size theorem's target and model locks."""
+import copy
+import json
 import unittest
 from unittest.mock import patch
 
@@ -34,6 +36,28 @@ class AllSizesAuditTests(unittest.TestCase):
             def changed(path):
                 return '0'*64 if path == audit.ROOT/rel else real_sha(path)
             with self.subTest(path=rel), patch.object(shared, 'sha', side_effect=changed):
+                with self.assertRaisesRegex(ValueError, 'dependency changed'):
+                    audit.validate_sources()
+
+    def test_changed_lock_registration(self):
+        lock = json.loads((audit.ROOT/'tools/critical_all_sizes_specification_lock.json').read_text(encoding='utf-8'))
+        for field, value in (('source', 'lean/Other/Specification.lean'), ('sha256', '0'*64)):
+            changed = copy.deepcopy(lock)
+            changed[field] = value
+            with self.subTest(field=field), patch.object(audit.json, 'loads', return_value=changed):
+                with self.assertRaisesRegex(ValueError, 'specification changed'):
+                    audit.validate_sources()
+
+    def test_changed_lock_dependency_set(self):
+        lock = json.loads((audit.ROOT/'tools/critical_all_sizes_specification_lock.json').read_text(encoding='utf-8'))
+        for mutation in ('add', 'remove'):
+            changed = copy.deepcopy(lock)
+            dependencies = changed['dependency_sha256']
+            if mutation == 'add':
+                dependencies['lean/Unexpected.lean'] = '0'*64
+            else:
+                dependencies.pop(next(iter(dependencies)))
+            with self.subTest(mutation=mutation), patch.object(audit.json, 'loads', return_value=changed):
                 with self.assertRaisesRegex(ValueError, 'dependency changed'):
                     audit.validate_sources()
 

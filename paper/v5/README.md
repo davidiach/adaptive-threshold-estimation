@@ -18,9 +18,10 @@ of every universal matching-Psi upper are formalized. The formal counterexample
 uses budget `L*(1+log L)/rho`; the paper's `rho^(-2)` sequence remains a paper
 derivation. The confidence characterization, unbiased converse and other
 rare-event regimes retain their stated paper-proof scopes. Formal links are pinned to
-`eabf274cb42d4bff4daab6b58568ad6169e7f0a7`.
-The manuscript has no independent external specialist review, and
-the new consolidation itself has not had a separate agent review.
+`eabf274cb42d4bff4daab6b58568ad6169e7f0a7`; the additive all-size proof links
+use `ebd36676693b66814bc2a379529499428ab98650`.
+The manuscript has received AI review, but has no independent external
+specialist review.
 For a narrower critical-result review, use the
 [four-page brief and full-proof packet](../critical-review/review.pdf).
 
@@ -28,15 +29,16 @@ The shared addendum on pages 26–27 extends finite-gap entropy to every
 gap count with coefficient 1/4096 and gives explicit single-coin base-cost
 coefficients `1/10000000000` (raw moment) and `1/15000000000` (variance).
 The original coefficient 1/512 remains valid for `log K >= 32`.
-Its [audit](../../results/critical_all_sizes_001.json) is separate from the
+Its [current audit](../../results/critical_all_sizes_002.json) is separate from the
 original critical-law audit; no explicit population minimax constant is claimed.
 
 ## Source and editorial scope
 
 The original v4 and research packages remain unchanged. [sources.json](sources.json)
 records their identities after line-ending normalization, the starting commit,
-and the formal checkpoint linked from the manuscript.
-[build_v5.py](../../tools/build_v5.py) generates six inherited-source files,
+and both formal checkpoints linked from the manuscript.
+[build_v5.py](../../tools/build_v5.py) generates six inherited-source files
+and a local copy of the shared addendum,
 prefixes appendix labels and explicit equation tags, resolves their references,
 and shares a single bibliography. Its editorial changes are explicit:
 
@@ -56,7 +58,11 @@ and shares a single bibliography. Its editorial changes are explicit:
 
 The editable exposition is in `frontmatter.tex`, `constant713.tex`,
 `rare-events.tex`, and `verification.tex`; `main.tex` controls the layout.
-Do not edit the six generated files directly.
+Edit the shared addendum in [../finite-gap-extension.tex](../finite-gap-extension.tex)
+and regenerate its local copy. Do not edit the seven generated files directly.
+The generated folder is self-contained for compilation or upload to a TeX editor.
+The source check follows the actual inputs from `main.tex`, rejecting missing,
+external, repeated, or omitted project files before checking labels and citations.
 
 ## Reproduce
 

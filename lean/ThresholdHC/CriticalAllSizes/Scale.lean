@@ -87,7 +87,8 @@ theorem critical_scale_entropy_all {R : Type} [MeasurableSpace R]
 
 /-- The procedure and seed law are fixed across all population priors. The
 conditional moments, good gaps and sign tests are derived inside the proof.
-The explicit annulus mass and scale-count hypotheses still need to be supplied. -/
+Only the explicit annulus-mass hypothesis remains; there is no lower bound
+on the scale count. -/
 theorem critical_scale_product_all {R : Type} [MeasurableSpace R]
     (ν : Measure R) [IsProbabilityMeasure ν] (A : StoppedProcedure R ℝ)
     (ρ : unitInterval) (hρ : 0 < (ρ : ℝ)) (hρ' : (ρ : ℝ) ≤ 1/4)

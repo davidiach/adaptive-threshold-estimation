@@ -31,7 +31,7 @@ coefficient 1/4096 for every gap count; the earlier 1/512 coefficient is
 retained for `log K >= 32`. It also gives explicit raw-moment and variance
 base-cost coefficients `1/10000000000` and `1/15000000000`. These are
 single-coin constants, not explicit population minimax constants. The
-[separate audit](../../results/critical_all_sizes_001.json) checks four
+[current separate audit](../../results/critical_all_sizes_002.json) checks four
 complete target types and the extension's transitive axioms.
 
 ## Reproduce the packet
@@ -40,7 +40,7 @@ From the repository root:
 
 ```sh
 python tools/build_critical_review.py --check
-# After editing overview.tex, regenerate the standalone source:
+# After editing overview.tex or the shared addendum, regenerate the source:
 python tools/build_critical_review.py
 # Compile with Tectonic 0.17.0 into an existing output directory:
 tectonic paper/critical-review/main.tex --outdir .runtime/review-pdf --keep-logs --untrusted

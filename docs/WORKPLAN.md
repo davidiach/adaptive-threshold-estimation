@@ -18,12 +18,28 @@ verified checkpoint `678e81c`. It is published as
 and based on PR #7.
 
 The reviewer follow-up is split into [PR #9](https://github.com/davidiach/adaptive-threshold-estimation/pull/9)
-for manuscript clarity and attribution, and the branch
-`research/finite-gap-all-sizes-20261028` for the mathematical extension.
+for manuscript clarity and attribution, and
+[PR #10](https://github.com/davidiach/adaptive-threshold-estimation/pull/10)
+on `research/finite-gap-all-sizes-20261028` for the mathematical extension.
 The latter removes the gap-count restriction at coefficient 1/4096, retains
 the existing 1/512 large-count theorem, and supplies explicit single-coin
 raw-moment and variance constants. It does not claim the same 1/512 constant
 for all counts or an explicit final population minimax constant.
+
+### PR #10 review and maintenance follow-up
+
+The merge review repairs standalone v5 assembly and input-graph validation,
+tests lock-file registration and dependency-set mutations, and corrects
+notation, layout, scope and provenance in the manuscripts and current guides.
+The corrected Lean docstring has a fresh audit record; the earlier record
+and every target statement remain unchanged.
+
+Four non-blocking refactoring suggestions are deferred to a separate cleanup:
+parameterize the duplicated entropy-to-base-cost chain; parameterize the
+prefix-information/event-transfer lemmas; extract a shared audit runner;
+and remove the redundant scale-count lemma premise and unused intermediate
+facts. These changes would reorganize proofs or statements without changing
+the proved claims, and are not correctness defects in this PR.
 
 ## Current proof boundary
 

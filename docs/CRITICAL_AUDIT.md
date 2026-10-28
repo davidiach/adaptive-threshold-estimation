@@ -135,6 +135,25 @@ the upper claim must still cover the full class.
 
 ## Current formal boundary
 
+The additive [CriticalAllSizes extension](../lean/ThresholdHC/CriticalAllSizes/)
+proves finite-gap entropy with coefficient `1/4096` for every natural gap
+count, while preserving the original `1/512` theorem for `log K >= 32`.
+The sign test, gaps, error bounds and finite-work assumptions are exactly
+those of BC2 below; no fair-coin termination is introduced. Its one-gap floor
+is `d^2 E_-d T >= 1/128`, obtained from a deterministic-prefix information bound.
+
+For the same observable single-coin model, `0<rho<=1/4`, uniform bias at most
+`rho/64`, and finite work under every capped prior, the extension gives
+`M E_0 T >= rho L(1+log L)/10000000000` for a uniform raw second-moment bound,
+and `V E_0 T >= rho L(1+log L)/15000000000` for a uniform extended-variance
+bound. The scale cutoff is 16384. These constants are not propagated through
+the population minimax transfer. The
+[current audit](../results/critical_all_sizes_002.json) checks four exact
+types and all 16 declarations in eight modules; the
+[initial audit](../results/critical_all_sizes_001.json) is preserved.
+Targets and dependencies were locked during implementation, not before proof.
+Reproduce with `python tools/verify_critical_all_sizes.py`.
+
 The complete critical single-coin base-cost theorem (BC1) is proved in
 [BaseCost.lean](../lean/ThresholdHC/CriticalEntropy/BaseCost.lean): one universal
 positive constant gives `V E_0 T >= c rho L(1+log L)` for every

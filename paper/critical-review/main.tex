@@ -27,12 +27,11 @@
 \section*{Review brief: the quadratic rare-event law}
 \addcontentsline{toc}{section}{Review brief}
 
-\noindent\textbf{Purpose.} This packet asks for a correctness and prior-art
-assessment of a specific statistical claim. The opening brief gives the
-claim, its vulnerable dependencies, and the verification boundary. The
-remaining pages contain the complete existing paper argument with its three
-proof inputs expanded in place. This is an AI-assisted research draft; no
-external specialist review is claimed.
+\noindent\textbf{Purpose.} This packet requests correctness and prior-art review.
+The brief precedes a new all-size entropy/base-cost addendum, then the complete
+preserved argument with its three proof inputs. The addendum's references to
+the original BC2 theorem and reduction point forward to that argument.
+This AI-assisted draft has no external specialist review.
 
 \subsection*{The experiment and claimed rate}
 A fresh coin has hidden magnitude $D$ with density $32d$ on $(0,1/4]$ and
@@ -252,13 +251,15 @@ or practical superiority of an implementation.
 
 \endgroup
 \clearpage
-\subsection*{Addendum: all finite gap counts and explicit base costs}
+\section*{Addendum: all finite gap counts and explicit base costs}
+\phantomsection
+\addcontentsline{toc}{section}{All finite gap counts and explicit base costs}
 
 This extension supplements the preserved critical-law proof. For the same
 observable $1/10$-correct sign test and separated gaps $0<d_j\le1/128$,
 with finite expected work under both signs, every integer $K\ge1$ satisfies
 \[
- \sum_{j=1}^K d_j^2\E_{-d_j}\tau\ge\frac{K\log K}{4096}.
+ \sum_{j=1}^K d_j^2\E_{-d_j}T\ge\frac{K\log K}{4096}.
 \]
 The existing coefficient $1/512$ still applies when $\log K\ge32$.
 Thus the restriction on the number of gaps is removed with a uniform
@@ -277,18 +278,20 @@ If its negative-law probability exceeded $5/8$, binary data processing
 and Pinsker would give divergence at least
 $2(5/8-1/10)^2=441/800>8/15$. Consequently
 \[
- \Pp_{-d}(\tau>n)\ge1-1/10-5/8=11/40,
+ \Pp_{-d}(T>n)\ge1-1/10-5/8=11/40,
  \qquad
- d^2\E_{-d}\tau\ge\frac{11}{40}\left(\frac1{32}-\frac1{16384}\right)
+ d^2\E_{-d}T\ge\frac{11}{40}\left(\frac1{32}-\frac1{16384}\right)
  >\frac1{128}.
 \]
 Only finite expected work under the negative law is used for this floor;
 fair-coin termination is unnecessary. Summing gives $K/128$. For
 $\log K\le32$ this dominates $K\log K/4096$; for $\log K\ge32$ the
-previous entropy theorem supplies the stronger coefficient $1/512$.
+original entropy theorem (BC2 in the preserved critical-law argument)
+supplies the stronger coefficient $1/512$.
 
-\clearpage
 \subsection*{Explicit base costs for the same single-coin model}
+\phantomsection
+\addcontentsline{toc}{subsection}{Explicit single-coin base costs}
 Write $L=1+\log(1/\rho)$, $H=1+\log L$, and $W_0=\E_0T$.
 For any observable single-coin estimator with uniform bias at most
 $\rho/64$ on $\mathcal X_\rho$, finite work under each prior, and a
@@ -320,7 +323,7 @@ The variance claim follows from the existing bound $M\le3V/2$ in the
 uniform-bias reduction.
 
 The earlier constructive proof used
-$T=8192+16\log16+(16\log16)^2+16\log16\,e^{32}$ and a raw-moment
+$t_0=8192+16\log16+(16\log16)^2+16\log16\,e^{32}$ and a raw-moment
 constant about $1.29\cdot10^{-18}$. The new explicit constant is about
 $7.7\cdot10^7$ times larger. This numerical comparison concerns the
 constants produced by these proofs, not the optimal constant. No explicit

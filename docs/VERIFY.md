@@ -5,7 +5,9 @@ separate audit: `python tools/verify_critical_all_sizes.py` (optionally
 `--sequential`). It checks four exact target types, every new declaration's
 axioms, and the locked specification/dependency snapshot made during
 implementation. The saved local result is
-[`critical_all_sizes_001.json`](../results/critical_all_sizes_001.json).
+[`critical_all_sizes_002.json`](../results/critical_all_sizes_002.json).
+The [initial record](../results/critical_all_sizes_001.json) remains unchanged;
+the current record includes the reviewed source documentation correction.
 Its constants are 1/4096 for entropy at every gap count, 1/10000000000 for
 raw second moment times null work, and 1/15000000000 for variance times
 null work. The older 1/512 entropy coefficient retains its large-count
