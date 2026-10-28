@@ -21,18 +21,30 @@ def assemble() -> str:
             raise ValueError("Reviewed source identity mismatch: " + name)
         texts[name] = data.decode("utf-8").replace("\r\n", "\n")
     source = texts["unrestricted.tex"]
+    source = source.replace(r"\usepackage[a4paper,margin=25mm]{geometry}",
+                            r"\usepackage[a4paper,margin=25mm]{geometry}" + "\n"
+                            + r"\usepackage[T1]{fontenc}" + "\n" + r"\usepackage{lmodern}"
+                            + "\n" + r"\renewcommand{\labelitemi}{\(\bullet\)}")
     source = source.replace(r"\usepackage{amsmath,amssymb,amsthm,mathtools}",
                             r"\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,microtype,array,xurl}"
                             + "\n" + r"\setlength{\emergencystretch}{2em}")
     source = source.replace(r"\title{The critical quadratic margin: an unrestricted minimax characterization}",
-                            r"\title{An iterated-log phase transition in rare-event threshold estimation\\[4pt]\large Specialist review packet}")
+                            r"\title{\textbf{A sharp minimax law for rare-event threshold estimation under a quadratic margin}\\[4pt]\large Specialist review packet}")
     source = source.replace(r"\author{Research continuation: independent construction and adversarial review roles}",
                             r"\author{Project lead: David Iach\\\small AI-assisted research draft}")
     source = source.replace(r"\date{27 October 2026}", r"\date{28 October 2026}")
     source = source.replace(r"\maketitle", "\\maketitle\n" +
                             (PACKET / "overview.tex").read_text(encoding="utf-8"))
-    source = source.replace(r"\textbf{Status.}",
-                            r"\textbf{Inherited paper status (27 October 2026).}")
+    # Replace only the historical review-status paragraph, never its proof claims.
+    status_start = source.index(r"\noindent\textbf{Status.}")
+    status_end = source.index(r"\section{Experiment,", status_start)
+    source = source[:status_start] + (
+        "\\noindent\\textbf{Relation to formal verification.} The following is the\n"
+        "preserved paper argument. Both minimax bounds and the exact Psi comparison\n"
+        "have separate Lean proofs at the revision linked in the brief. The formal\n"
+        "upper uses a different algorithm; its RMS coefficient is 100000. Historical\n"
+        "source and review records remain in the original bundle.\n\n"
+    ) + source[status_end:]
     for name in ("base_cost.tex", "affine_comparison.tex", "upper_bound.tex"):
         directive = "\\input{" + name + "}"
         if source.count(directive) != 1:
@@ -41,6 +53,9 @@ def assemble() -> str:
                                 texts[name] + "\n% END LOCKED SOURCE: " + name)
     if "\\input{" in source:
         raise ValueError("Unexpanded source dependency")
+    source = source.replace(r"\end{thebibliography}",
+                            (ROOT / "paper/gap-entropy-references.tex").read_text(encoding="utf-8")
+                            + "\n" + r"\end{thebibliography}")
     # Source identifiers and paths are prose metadata, not mathematical terms.
     # Permit line breaking without changing their displayed characters.
     source = re.sub(r"\\texttt\{([^{}]+)\}", r"\\nolinkurl{\1}", source)

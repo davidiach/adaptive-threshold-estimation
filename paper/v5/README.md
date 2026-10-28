@@ -22,7 +22,7 @@ rare-event regimes retain their stated paper-proof scopes. Formal links are pinn
 The manuscript has no independent external specialist review, and
 the new consolidation itself has not had a separate agent review.
 For a narrower critical-result review, use the
-[three-page brief and full-proof packet](../critical-review/review.pdf).
+[four-page brief and full-proof packet](../critical-review/review.pdf).
 
 ## Source and editorial scope
 
@@ -66,7 +66,7 @@ The project also compiles in the desktop LaTeX editor. The published PDF was
 exported with Tectonic 0.17.0 on 28 October 2026, rendered with Poppler,
 and visually inspected.
 It has 57 pages, no unresolved references or overfull boxes. The source check
-resolves 141 unique labels and 19 bibliography citations. Typesetting and source
+resolves 141 unique labels and 24 bibliography citations. Typesetting and source
 identity checks do not constitute a new mathematical proof or independent review.
 
 The assembly regression checks preserve function arguments such as `q(D)`,
