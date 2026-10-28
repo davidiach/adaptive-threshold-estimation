@@ -24,6 +24,7 @@ on:
       - 'TIER6_FROZEN.sha256'
       - 'proposals/constants/*.lean'
       - 'proposals/constants/*.py'
+      - 'proposals/constants/*.md'
   pull_request:
   workflow_dispatch:
 concurrency:
@@ -199,6 +200,9 @@ jobs:
             results/tier6_build.log
             results/tier6_audit.log
             results/tier6_status.json
+            lean/ThresholdHC/ResearchRouteA/status.json
+            lean/ThresholdHC/ResearchRouteA/build.log
+            lean/ThresholdHC/ResearchRouteA/audit.log
             .runtime/critical-components/
             .runtime/blind-upper-components/
             .runtime/critical-upper-components/
