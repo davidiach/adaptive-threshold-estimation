@@ -14,7 +14,7 @@ theorem immediate_confidence (μ : Measure Gap) [IsProbabilityMeasure μ] (δ : 
   have he : {z | (1 : ℝ) < |populationOutput immediateEstimator z - signMean μ q.val|} = ∅ := by
     ext z
     simp only [populationOutput, immediateEstimator, zero_sub, abs_neg,
-      abs_of_nonneg hm.1, Set.mem_setOf_eq, Set.mem_empty_iff_false, iff_false]
+      abs_of_nonneg hm.1, Set.mem_ofPred_eq, Set.mem_empty_iff_false, iff_false]
     exact not_lt_of_ge hm.2
   unfold failureProbability
   rw [he, measure_empty]

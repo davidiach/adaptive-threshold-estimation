@@ -63,7 +63,9 @@ theorem confidence_algorithm_lower : ConfidenceAlgorithmLowerStatement := by
   have hscale := modulus_scaling μ (1/8) (confidenceScale B δ)
     (by norm_num) (by norm_num) hs0.le
   have hscale' : modulus μ (confidenceScale B δ)/8 ≤ modulus μ h := by
-    convert hscale using 1 <;> (try dsimp only [h]) <;> ring
+    have he : (1/8 : ℝ)*confidenceScale B δ = h := by dsimp [h]; ring
+    rw [he] at hscale
+    linarith
   have hsq : (confidenceScale B δ)^2 * B = Real.log (1/δ) := by
     rw [confidenceScale, Real.sq_sqrt (div_nonneg (confidence_log_pos hδ hδle).le hB0.le)]
     exact div_mul_cancel₀ _ (ne_of_gt hB0)

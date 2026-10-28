@@ -74,7 +74,7 @@ theorem median_interval (m : ℕ) (f : MedianIndex m → ℝ) (a b : ℝ)
     intro S _
     have hex : ∃ i ∈ S.val, i ∈ good := by
       by_contra hn
-      push_neg at hn
+      push Not at hn
       have hsub : S.val ⊆ bad := by
         intro i hi
         simp only [bad, Finset.mem_filter, Finset.mem_univ, true_and]
