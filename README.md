@@ -5,7 +5,7 @@
 [Version 5](paper/v5/README.md) brings the original law, the 713 construction,
 the rare-event regimes, and the Psi correction into one manuscript with complete
 proofs and explicit verification boundaries. The critical result also has a
-[specialist review packet](paper/critical-review/review.pdf) with a three-page
+[specialist review packet](paper/critical-review/review.pdf) with a four-page
 brief. The [original v4](paper/paper.pdf) and historical evidence remain preserved.
 
 **The problem.** A coin's hidden gap $`D\sim\mu`$ on $`(0,1/2]`$ and sign $`S\in\{0,1\}`$ determine $`P=\tfrac12+(2S-1)D`$. Estimate $`\theta=\Pr(P>1/2)`$ by adaptive flips, allowing revisits and interleaving; cost is expected flips.

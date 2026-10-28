@@ -21,6 +21,10 @@ does not impose $q(d)\le\rho$ pointwise, nor fix either conditional
 magnitude law given the sign. Returning $\rho/2$ costs nothing and has
 RMS error at most $\rho/2$.
 
+Two different boundaries occur in this manuscript. The unrestricted-sign
+inverse-moment criterion changes at power exponent $\alpha=1$; the
+rarity-dependent quadratic phenomenon below occurs at $\alpha=2$.
+
 \subsection{A variational lower modulus and its exact optimizer}
 For $h>0$ set
 \begin{equation}\label{eq:v5-psi}
@@ -144,6 +148,26 @@ pair works at every cap; finite expected work under both endpoints
 justifies passage to terminal outputs. The longer proof, including the
 upper construction, is in \cref{app:critical}.
 
+\paragraph{Relation to gap entropy.}
+The sign-testing mechanism follows the line from Farrell~\cite{farrell}
+and Chen--Li~\cite{chenli} to the distributional gap-entropy bound of
+Chen--Li--Qiao~\cite[Lemma 4.1 and Remark D.4]{clq}, which includes a
+Bernoulli extension. The finite-gap proof in \cref{app:critical} supplies
+the required one-sided cost bound at fixed error without fair-coin
+termination. Agrawal--Ram--Ramdas~\cite{agrawal} give general
+composite-test bounds in the Farrell regime. The recent
+Yao--Zhao--Zhou result~\cite{yao} resolves the gap-entropy conjecture for
+Gaussian best-arm identification and reports Lean proofs; its target and
+observation model differ from the population problem here.
+
+At the quadratic law, annular mass of order $16^{-j}$ balances testing
+cost of order $16^j$. Across order $L$ usable scales, comparable
+normalized weights have entropy of order $\log L$. This explains $H$;
+it does not supply a general-law theorem. The contribution being assessed
+is the null-cost obstruction and its transfer through one common hard
+pair to every adaptive population algorithm. No novelty is claimed for
+the underlying sign-entropy mechanism.
+
 For this fixed law, the optimizer identity is
 \[
  \rho=(t/a)^2[1+2\log(a/t)],\qquad
@@ -177,6 +201,10 @@ for every $C>0$ there are $0<\rho\le1/4$ and $B\ge1$ with
 $C\Psi_{\mu,\rho}(B^{-1/2})<R_{\mu,\rho}(B)$.
 Its formal witness uses $\rho=\exp(-\exp M)$ and $B=LH/\rho$;
 the preceding $B=\rho^{-2}$ sequence remains a paper derivation.
+The divergence is slow: $\sqrt H<2.54$ for $\rho\ge10^{-100}$ in the
+stated rarity range. Together with the loose proof constants, this
+precludes inferring a practically visible separation from the asymptotic
+claim alone.
 The variational optimizer remains valid. A sharp replacement
 for arbitrary laws must account for additional statistical difficulty
 across scales; no such replacement is established here.

@@ -238,6 +238,7 @@ specialist verification.""")
 Pacific Journal of Mathematics 8(1):171--176, 1958.
 \url{https://msp.org/pjm/1958/8-1/pjm-v8-n1-p14-s.pdf}.
 """
+    bibliography += "\n" + (ROOT / "paper/gap-entropy-references.tex").read_text(encoding="utf-8")
     bibliography += "\n\\end{thebibliography}\n"
     return {name: GENERATED + text.rstrip() + "\n" for name, text in {
         "introduction.tex": intro, "core.tex": core,
