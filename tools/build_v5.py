@@ -205,6 +205,8 @@ different construction.""")
     critical = critical.replace("\\appendix\n", "")
     critical = once(critical, "Sion's theorem now gives",
                     "Sion's theorem~\\cite{sion} now gives")
+    critical = once(critical, "follows Chen--Li--Qiao,\narXiv:1608.06031, Lemma~4.1;",
+                    "follows\nChen--Li--Qiao~\\cite[Lemma~4.1]{clq};")
     critical = once(critical,
         "The upper construction was already available in the separately owned critical\n"
         "note, now at commit \\texttt{a8a8dc49115aabdd1fba8d53d3390eb0a5eee864}; it is\n"
@@ -270,6 +272,8 @@ def main() -> None:
     bibs = set(re.findall(r"\\bibitem\{([^}]+)\}", all_tex))
     if cites - bibs:
         raise SystemExit("Missing v5 citations: " + str(sorted(cites - bibs)))
+    if bibs - cites:
+        raise SystemExit("Uncited v5 references: " + str(sorted(bibs - cites)))
     print(f"v5: {len(output)} assembled files, {len(labels)} unique labels, "
           f"{len(cites)} resolved citations; inherited source identities match.")
 

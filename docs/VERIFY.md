@@ -51,7 +51,8 @@ python tools/verify_blind_upper_components.py
 python -m unittest discover -s tools -p 'test_blind_upper_components.py' -v
 ```
 
-This rebuilds 45 modules plus three existing prerequisites and checks the
+Lake builds 45 modules plus three existing prerequisites, rebuilding any stale
+import, and the audit checks the
 final theorem against its unchanged frozen type, together with all 373
 declaration roots and their transitive axioms. It includes actual population
 cost/output identities, termination, budget selection and uniform RMS risk.
