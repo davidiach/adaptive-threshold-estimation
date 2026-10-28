@@ -16,6 +16,16 @@ Lean. The manuscript and review packet now reference the completed-upper
 checkpoint `236eb2d`; final review of the full requested scope remains.
 Elapsed time and component counts do not establish completion.
 
+The critical upper construction now has observable asymmetric classifiers and
+population error, expected-flip, bias, and second-moment bounds under the full
+global rarity constraint. This is a component checkpoint, described in
+[the critical audit](CRITICAL_AUDIT.md#upper-construction-checkpoint).
+The remaining gates are parameter calibration at the claimed rate, the unbiased
+random-level estimator, fresh-coin aggregation within every budget, realization
+in the original Tier 6 experiment, and the explicit Psi comparison. The unchanged
+[full upper specification](../lean/ThresholdHC/CriticalUpper/Specification.lean)
+is present but has no proof yet.
+
 | Work | Completion evidence | Current state |
 |---|---|---|
 | Adversarial audit of the critical quadratic theorem | Trace every proof dependency, record objections and their resolution, distinguish paper arguments from kernel checks | Initial source audit in [CRITICAL_AUDIT.md](CRITICAL_AUDIT.md); further verification in progress |

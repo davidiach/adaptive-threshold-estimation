@@ -1,0 +1,7 @@
+{
+  "path": "lean/ThresholdHC/CriticalUpper/Specification.lean",
+  "sha256": "2e6482ac338da26b5ceaf4bfac38cf63bff401aa934e43ea19f21368625a21ae",
+  "frozen_at": "2026-10-28T07:36:44.108008+00:00",
+  "status": "Specification only, compiled before any critical-upper proof; not a completion claim.",
+  "original_path": ".runtime/CriticalUpperSpecification.lean"
+}

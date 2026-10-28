@@ -242,9 +242,18 @@ The [sixteenth record](../results/critical_components_016.json) checks forty-thr
 exact targets and all 674 public declarations. The
 [fifteenth record](../results/critical_components_015.json) preserves the finite
 population checkpoint. Specifications were introduced alongside these proofs.
-The matching critical upper, the original distribution-blind upper, and the
-explicit comparison refuting the matching-Psi conjecture are not fully
-formalized. The full critical minimax completion flag remains false.
+The matching critical upper and the explicit comparison refuting the
+matching-Psi conjecture are not fully formalized. The original
+[distribution-blind upper](BLIND_UPPER.md) is complete. The full critical
+minimax completion flag remains false.
+
+The [critical upper component checkpoint](CRITICAL_AUDIT.md#upper-construction-checkpoint)
+adds an observable asymmetric classifier, its actual Bernoulli-tape error and
+flip bounds, integration under every measurable prior with total mass at most
+`rho`, and actual population bias and second-moment bounds. This dyadic
+classifier is an alternative to the paper's likelihood-bank construction.
+Parameter calibration, unbiased telescoping, and a budgeted estimator in the
+original model remain open; these components do not prove the critical upper.
 
 ## Population and nonlinear feedback follow-ups
 

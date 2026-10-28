@@ -50,7 +50,7 @@ In the information rows, $`\mathsf P_\pm`$ are transcript laws with sign priors 
 
 | Result | One-line statement | Status | Where |
 |---|---|---|---|
-| Minimax law | $`R_\mu(B)\asymp\omega_\mu(B^{-1/2})`$; universal constants, one algorithm independent of $`\mu`$. | paper proof | [Theorem 1; §§2, 5](paper/paper.tex#L239). Component agent review; [review scope](docs/RESULTS.md#paper-review-scope). |
+| Minimax RMS law | $`\omega_\mu(B^{-1/2})/64\le R_\mu(B)\le512\omega_\mu(B^{-1/2})`$; one upper algorithm independent of $`\mu`$. | Lean-checked | [Upper proof](lean/ThresholdHC/BlindUpper/Full.lean), [lower proof](lean/ThresholdHC/Tier6/Full.lean), [exact scope](docs/BLIND_UPPER.md). |
 | Minimax RMS lower bound, unrestricted adaptive algorithms | $`R_\mu(B)\ge\omega_\mu(B^{-1/2})/64`$. The infinite experiments are constructed, and the infimum ranges over arbitrary measurable randomized estimators with a uniform expected-work budget. | Lean-checked | `minimax_lower_bound` in [Full.lean](lean/ThresholdHC/Tier6/Full.lean); [algorithm model](lean/ThresholdHC/Tier6/AlgorithmModel.lean), [scope and verification](docs/TIER6.md). |
 | Unbiasedness criterion | Unbiased for every $`q`$ with $`V,\overline W<\infty`$ is possible iff $`I<\infty`$. | paper proof | [Theorem 2; §6](paper/paper.tex#L272). Same review scope. |
 | Uniform variance–work lower bound | $`V\overline W\ge I^2/16`$ for every unbiased estimator with both uniform bounds finite. | paper proof | [Theorem 2; §6](paper/paper.tex#L774). Same review scope. |

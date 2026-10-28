@@ -1,5 +1,42 @@
 # Critical quadratic theorem: follow-up audit
 
+## Upper construction checkpoint
+
+The [CriticalUpper modules](../lean/ThresholdHC/CriticalUpper/) prove an
+observable classifier using asymmetric boundaries at dyadic flip counts. This
+is an alternative to the paper's likelihood-bank construction. It receives
+only coin flips; the gap and sign enter the probability law and never the
+stopping rule or output.
+
+For cap `N=2^J` and thresholds `A0,A1>=1`, the classifier returns a binary `Z`.
+Its positive-coin error uses `A0`, while its negative-coin error uses `A1`.
+Expected work has the opposite dependence. The actual Bernoulli-tape proofs
+give error at gap `d` at most `exp(-2 N d^2)+J exp(-A_wrong)`, and expected
+flips at most `min(N,10 A_correct/d^2)`.
+
+For the quadratic gap law and **every** measurable `q` in `[0,1]` satisfying
+`integral q <= rho`, the integrated error is at most
+`e = 8/N + rho J exp(-A0) + J exp(-A1)`.
+With `Ks=160 As`, actual population expected work is at most
+`K0 (2+max(0,log(N/K0))) + K1 (2+max(0,log(N rho/K1)))`.
+No pointwise constraint `q<=rho` is assumed. The weighted reciprocal integral
+allows positive mass to concentrate on the smallest gaps.
+
+[ScreenMoments.lean](../lean/ThresholdHC/CriticalUpper/ScreenMoments.lean)
+connects the bounds to the actual population mean and extended second moment:
+`|E Z-theta|<=e` and `E Z^2<=rho+e`. Integrability is proved before the real
+expectation identities are used. The component audit is reproduced with
+`python tools/verify_critical_upper_components.py`; its
+[record](../results/critical_upper_components_001.json) retains source hashes
+and transitive axiom reports.
+
+The [full specification](../lean/ThresholdHC/CriticalUpper/Specification.lean)
+was frozen before this construction and is unchanged. It still has no proof.
+The remaining obligations are parameter calibration, an unbiased random-level
+estimator, independent fresh-coin aggregation within every budget, and realization
+in the original observable experiment. The explicit Psi comparison is also
+unfinished. The component record keeps `full_critical_upper_verified=false`.
+
 ## Scope and source identity
 
 This audit starts from the four-file proof bundle at published commit
