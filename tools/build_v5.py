@@ -261,6 +261,7 @@ def main() -> None:
             target.write_text(text, encoding="utf-8", newline="\n")
     # Catch broken assembly references before invoking TeX.
     all_tex = "\n".join(p.read_text(encoding="utf-8") for p in DEST.glob("*.tex"))
+    all_tex += "\n" + (ROOT / "paper/finite-gap-extension.tex").read_text(encoding="utf-8")
     labels = re.findall(r"\\label(?:\[[^]]+\])?\{([^}]+)\}", all_tex)
     if len(labels) != len(set(labels)):
         raise SystemExit("Duplicate v5 labels")

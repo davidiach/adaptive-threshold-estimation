@@ -1,5 +1,16 @@
 # Full verification commands
 
+The all-size finite-gap and explicit single-coin base-cost extension has a
+separate audit: `python tools/verify_critical_all_sizes.py` (optionally
+`--sequential`). It checks four exact target types, every new declaration's
+axioms, and the locked specification/dependency snapshot made during
+implementation. The saved local result is
+[`critical_all_sizes_001.json`](../results/critical_all_sizes_001.json).
+Its constants are 1/4096 for entropy at every gap count, 1/10000000000 for
+raw second moment times null work, and 1/15000000000 for variance times
+null work. The older 1/512 entropy coefficient retains its large-count
+hypothesis. No explicit population minimax constant is certified by this audit.
+
 The critical lower and both upper component verifiers use `lake build`, which
 rebuilds stale transitive imports before the kernel and axiom checks. Use
 `--sequential` to build one registered module at a time on constrained machines.

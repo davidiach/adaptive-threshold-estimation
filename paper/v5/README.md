@@ -24,6 +24,13 @@ the new consolidation itself has not had a separate agent review.
 For a narrower critical-result review, use the
 [four-page brief and full-proof packet](../critical-review/review.pdf).
 
+The shared addendum on pages 26–27 extends finite-gap entropy to every
+gap count with coefficient 1/4096 and gives explicit single-coin base-cost
+coefficients `1/10000000000` (raw moment) and `1/15000000000` (variance).
+The original coefficient 1/512 remains valid for `log K >= 32`.
+Its [audit](../../results/critical_all_sizes_001.json) is separate from the
+original critical-law audit; no explicit population minimax constant is claimed.
+
 ## Source and editorial scope
 
 The original v4 and research packages remain unchanged. [sources.json](sources.json)
@@ -65,7 +72,7 @@ tectonic paper/v5/main.tex --outdir /path/to/disposable-output --keep-logs --unt
 The project also compiles in the desktop LaTeX editor. The published PDF was
 exported with Tectonic 0.17.0 on 28 October 2026, rendered with Poppler,
 and visually inspected.
-It has 57 pages, no unresolved references or overfull boxes. The source check
+It has 59 pages, no unresolved references or overfull boxes. The source check
 resolves 141 unique labels and 24 bibliography citations, and rejects uncited
 references. The PDF includes the corrected Chen--Li--Qiao citation in Appendix C.
 Typesetting and source

@@ -35,8 +35,11 @@ def assemble() -> str:
     source = once(source, r"\author{Research continuation: independent construction and adversarial review roles}",
                             r"\author{Project lead: David Iach\\\small AI-assisted research draft}")
     source = once(source, r"\date{27 October 2026}", r"\date{28 October 2026}")
-    source = once(source, r"\maketitle", "\\maketitle\n" +
-                            (PACKET / "overview.tex").read_text(encoding="utf-8"))
+    overview = (PACKET / "overview.tex").read_text(encoding="utf-8")
+    overview = once(overview, r"\part*{Complete critical-law argument}",
+                    (ROOT / "paper/finite-gap-extension.tex").read_text(encoding="utf-8")
+                    + "\n\\clearpage\n" + r"\part*{Complete critical-law argument}")
+    source = once(source, r"\maketitle", "\\maketitle\n" + overview)
     # Replace only the historical review-status paragraph, never its proof claims.
     if source.count(r"\noindent\textbf{Status.}") != 1:
         raise ValueError("Unexpected inherited status occurrence")
