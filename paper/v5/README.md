@@ -9,6 +9,15 @@ The main statements are in sections 2, 7 and 11. Section 12 gives the exact
 formal verification boundary. Appendices A–C contain the longer rare-event
 proofs, including their published external inputs.
 
+The confidence law is Lean-checked in the observable adaptive model for
+`B >= 1` and `0 < delta <= 1/4`, with coefficients `1/64` and `8192`.
+One family depending only on budget and failure probability achieves the
+upper radius; independent repetitions, actual summed work, termination,
+and small budgets are included in the proof. See the
+[full targets](../../lean/ThresholdHC/Confidence/Specification.lean) and
+[audit](../../results/confidence_001.json). The radius depends on the gap law
+in the theorem and is not a data-computable confidence interval for unknown laws.
+
 The original RMS law is Lean-checked in both directions, with lower coefficient
 1/64 and upper coefficient 512 and one distribution-blind algorithm. The full
 critical minimax law is also proved in Lean in both directions, including the
@@ -26,8 +35,8 @@ one law-independent observable algorithm with variance at most `23 I` and
 work at most `31 I`, and proves the full existence characterization in the
 same model; see its [audit](../../results/observable713_001.json).
 Its formal links use checkpoint `15dbbda98a31e27502e3caff991d3ea21d096d23`.
-The confidence characterization and other
-rare-event regimes retain paper-proof status. Earlier formal links are pinned to
+The confidence links use checkpoint `d6feb3069d1a399ab1a50de2b0e7bc13e6b21c23`.
+Other rare-event regimes retain paper-proof status. Earlier formal links are pinned to
 `eabf274cb42d4bff4daab6b58568ad6169e7f0a7`; the additive all-size proof links
 use `ebd36676693b66814bc2a379529499428ab98650`.
 The manuscript has received AI review, but has no independent external
@@ -35,7 +44,7 @@ specialist review.
 For a narrower critical-result review, use the
 [four-page brief and full-proof packet](../critical-review/review.pdf).
 
-The shared addendum on pages 26–27 extends finite-gap entropy to every
+The shared addendum on pages 27–28 extends finite-gap entropy to every
 gap count with coefficient 1/4096 and gives explicit single-coin base-cost
 coefficients `1/10000000000` (raw moment) and `1/15000000000` (variance).
 The original coefficient 1/512 remains valid for `log K >= 32`.
@@ -88,7 +97,7 @@ tectonic paper/v5/main.tex --outdir /path/to/disposable-output --keep-logs --unt
 The project also compiles in the desktop LaTeX editor. The published PDF was
 exported with Tectonic 0.17.0 on 28 October 2026, rendered with Poppler,
 and visually inspected.
-It has 59 pages, no unresolved references or overfull boxes. The source check
+It has 61 pages, no unresolved references or overfull boxes. The source check
 resolves 141 unique labels and 24 bibliography citations, and rejects uncited
 references. The PDF includes the corrected Chen--Li--Qiao citation in Appendix C.
 Typesetting and source

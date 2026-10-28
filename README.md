@@ -40,7 +40,8 @@ The [lower theorem](lean/ThresholdHC/Tier6/Full.lean),
 | Unbiased estimation exists iff $I<\infty$; one universal construction has variance–work at most $713I^2$ | Proved in Lean in the observable adaptive model | [Theorems](lean/ThresholdHC/Observable713/Full.lean) · [Audit](results/observable713_001.json) |
 | Unbiased converse: finite inverse moment is necessary and variance–work is at least $I^2/16$ | Proved in Lean in the observable adaptive model | [Theorem](lean/ThresholdHC/UnbiasedConverse/Full.lean) · [Audit](results/unbiased_converse_001.json) |
 | Finite-gap entropy for every gap count; explicit single-coin base costs | Proved in Lean | [Proofs](lean/ThresholdHC/CriticalAllSizes/) · [Audit](results/critical_all_sizes_002.json) |
-| Confidence radii and other rare-event regimes | Paper proofs; formalization incomplete | [Full results guide](docs/RESULTS.md) |
+| Confidence radius $r_\mu(B,\delta)\asymp\omega_\mu(\sqrt{\log(1/\delta)/B})$ | Both bounds proved in Lean in the observable adaptive model | [Theorems](lean/ThresholdHC/Confidence/Full.lean) · [Audit](results/confidence_001.json) |
+| Other rare-event regimes and stronger oracle claims | Paper proofs; formalization incomplete | [Full results guide](docs/RESULTS.md) |
 
 Here $I=\mathbb E_\mu[D^{-1}]$ is the inverse-gap moment.
 
@@ -104,8 +105,8 @@ coverage of the manuscript is recorded claim by claim. The work has received
 AI review and has not had independent external specialist review. Numerical
 experiments provide supporting evidence, not proofs of universal claims.
 
-The next formalization targets include confidence guarantees, the remaining
-rare-event regimes, and stronger revealed- or selected-magnitude claims.
+The next formalization targets include the remaining rare-event regimes
+and stronger revealed- or selected-magnitude claims.
 General-law rare-event theory and tighter constants remain research
 directions. See the [completion ledger](docs/WORKPLAN.md) for the current boundary.
 

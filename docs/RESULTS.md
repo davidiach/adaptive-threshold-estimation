@@ -25,7 +25,34 @@ For every probability law $\mu$ on $(0,1/2]$, $B\ge1$, and $0<\delta\le1/4$, it 
 
 $$R_\mu(B)\asymp\omega_\mu(B^{-1/2}),\qquad r_\mu(B,\delta)\asymp\omega_\mu\!\left(\sqrt{\log(1/\delta)/B}\right),\qquad \omega_\mu(h)=\mathbb E_\mu\min\{1,h/D\}.$$
 
-Here $r_\mu(B,\delta)$ is the minimax uniform error radius at failure probability at most $\delta$, with the same expected-budget constraint. The constants are universal. The algorithms depend only on $B$, or on $(B,\delta)$, and observe neither magnitudes nor their law. The proof is in §5. The RMS characterization now has Lean proofs in both directions. The confidence-radius statement retains paper-proof status.
+Here $r_\mu(B,\delta)$ is the minimax uniform error radius at failure probability at most $\delta$, with the same expected-budget constraint. The constants are universal. The algorithms depend only on $B$, or on $(B,\delta)$, and observe neither magnitudes nor their law. The proof is in §5. Both the RMS and confidence characterizations now have Lean proofs in both directions in the original observable adaptive model.
+
+The confidence theorem [`confidence_characterization`](../lean/ThresholdHC/Confidence/Full.lean)
+proves the explicit bounds
+
+$$\frac{1}{64}\,\omega_\mu\!\left(\sqrt{\frac{\log(1/\delta)}{B}}\right)
+\le r_\mu(B,\delta)\le
+8192\,\omega_\mu\!\left(\sqrt{\frac{\log(1/\delta)}{B}}\right)$$
+
+for every probability law on positive gaps, $B\ge1$ and $0<\delta\le1/4$.
+The [frozen specification](../lean/ThresholdHC/Confidence/Specification.lean)
+also states the lower bound for every budget-admissible algorithm, one upper
+family chosen before every gap law, and a nonvacuity theorem. The failure
+event is $|\widehat\theta-\theta|>r$, uniformly over every measurable sign
+law; work is the original extended-real expectation of actual flips.
+
+The upper construction runs $2\lceil2\log(1/\delta)\rceil+1$ independent
+calibrated batches and takes their median. Pair-numbered coin labels and
+independent seed arrays realize those copies in the original observable
+experiment. Exact pathwise identities prove the output and summed cost;
+the independence and termination premises are derived. A zero-work rule
+handles small budgets. The constants are not optimized. This radius depends
+on $\mu$ in the theorem and does not supply a data-computable confidence
+interval when the magnitude law is unknown.
+
+The [audit](../results/confidence_001.json) checks all four full targets,
+18 modules, and all 107 declaration roots. The target, model, and transitive
+model dependencies were frozen at `76e9a8f` before supporting proofs.
 
 The [full upper theorem](BLIND_UPPER.md), `distribution_blind_upper` in
 [Full.lean](../lean/ThresholdHC/BlindUpper/Full.lean), proves one budget-indexed

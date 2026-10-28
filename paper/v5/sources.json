@@ -15,5 +15,6 @@
     "research/2026-10-27-nonlinear-critical/base_cost.tex": "6c02a467ac9a8b989ccb3e3618a9bb567e332ed1d3830d70fca27c01e5e3265a",
     "research/2026-10-27-nonlinear-critical/affine_comparison.tex": "c243a6ad355aeabb2fea3df195166faf066b95b4e5778e3bc02512d61a80f7c2",
     "research/2026-10-27-nonlinear-critical/upper_bound.tex": "24c9e5aa5232c6079b462fa0421885a51c38a2ac07eda87c7c28f2f660d495b2"
-  }
+  },
+  "confidence_formal_scope_commit": "d6feb3069d1a399ab1a50de2b0e7bc13e6b21c23"
 }

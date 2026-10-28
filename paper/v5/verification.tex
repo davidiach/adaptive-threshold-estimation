@@ -28,9 +28,12 @@ budget-indexed observable family before every gap law and proves
 $R_\mu(B)\le512\omega_\mu(B^{-1/2})$. Actual cost/output identities,
 almost-sure termination and every budget are included. The unchanged
 frozen specification has no additional statistical premise.\\[5pt]
-Confidence and stronger oracle laws &
-The confidence characterization and revealed/selected-magnitude claims
-in \cref{thm:main} retain paper-proof status.\\[5pt]
+Confidence characterization &
+\confidenceleanref{confidence\_characterization} proves both minimax bounds
+with coefficients $1/64$ and $8192$ for $B\ge1$ and $0<\delta\le1/4$.
+\confidenceleanref{confidence\_upper} supplies one observable family
+depending only on $(B,\delta)$. Stronger revealed/selected-magnitude
+claims in \cref{thm:main} retain paper-proof status.\\[5pt]
 Unbiased characterization &
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/631886e16ddff5b8e93b73860bf6552b956128be/lean/ThresholdHC/UnbiasedConverse/Full.lean}{\texttt{unbiased\_converse}}
 proves the necessity of $I_\mu<\infty$ and $V\overline W\ge I_\mu^2/16$
@@ -112,6 +115,28 @@ includes padding and conservative rounding and is not claimed optimal.
 The full audit checks the unchanged specification and all transitive axioms;
 the earlier component records retain their historical incomplete status.
 
+\paragraph{Realizing the confidence upper algorithm.}
+Put $m=\lceil2\log(1/\delta)\rceil$ and $k=2m+1$. Each of $k$ independent
+calibrated batches receives expected budget $B/k$. Its failure probability
+at radius $512\omega_\mu(N^{-1/2})$ is at most $1/8$. A union bound over
+majority subsets puts the median's failure probability below $2^{-m}\le\delta$.
+The controller uses disjoint pair-numbered coin labels and independent
+copies of the seed. Exact finite execution identities prove that its
+output is the median and that actual work is the sum of the batch costs.
+The product law and almost-sure termination are derived in the original
+experiment. Since $k\le7\log(1/\delta)$, budget rounding and modulus
+comparison give the coefficient $8192$. A zero-work rule handles the
+small-budget regime. The radius is a theoretical function of $\mu$, not
+a confidence interval computed from the observations alone.
+
+The lower proof applies a binary confidence test to the same adaptive
+transcript information bound. It proves the conservative coefficient
+$1/64$; the paper's displayed lower coefficient remains a separate
+sharper calculation. The four full targets, model, and transitive model
+dependencies were frozen before supporting proofs. The audit checks
+all 107 declarations and the exact targets at checkpoint
+\nolinkurl{d6feb3069d1a399ab1a50de2b0e7bc13e6b21c23}.
+
 \paragraph{Realizing the critical upper algorithm.}
 The formal construction uses asymmetric classifiers at dyadic flip counts,
 an alternative to the likelihood-bank construction in \cref{app:critical}.
@@ -186,8 +211,8 @@ validations of the full proof. The
 records the workflow, failed approaches, and these limits.
 
 \paragraph{Remaining mathematical work.}
-The confidence characterization, stronger oracle claims,
-and other rare-event regimes retain their stated paper-proof scopes.
+Stronger oracle claims and other rare-event regimes retain their
+stated paper-proof scopes.
 A corrected arbitrary-law rare-event functional is open.
 
 The model requires independent fresh coins and conditionally independent
