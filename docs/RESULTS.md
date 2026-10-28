@@ -122,11 +122,13 @@ Psi(B^-1/2) has order min{rho,sqrt(rho L/B)}. Taking rho=exp(-exp(n)), B=rho^-2
 forces R/Psi to diverge, refuting a universal C Psi upper even with known mu
 and rho. This supplies no characterization for arbitrary other laws.
 
-Status: **paper proof with independent adversarial agent review and scoped
-component cross-checks**. See the [checkpoint](../research/2026-10-27-nonlinear-critical/CHECKPOINT.md)
-for the exact four-file source bundle, replay evidence, attribution and
-limitations. The full minimax theorem is not Lean-checked; no explicit hard-pair
-formula, external specialist review or priority certification is claimed.
+Status: **the critical minimax rate is Lean-checked in both directions**.
+The explicit comparison with Psi retains paper-proof status. The original
+[paper checkpoint](../research/2026-10-27-nonlinear-critical/CHECKPOINT.md)
+preserves the four-file source bundle, independent adversarial agent review,
+replay evidence and attribution. The later formal proofs are detailed below.
+No explicit hard-pair formula, external specialist review or priority
+certification is claimed.
 
 The critical single-coin base-cost theorem (BC1) is Lean-checked in
 [BaseCost.lean](../lean/ThresholdHC/CriticalEntropy/BaseCost.lean):
@@ -242,10 +244,10 @@ The [sixteenth record](../results/critical_components_016.json) checks forty-thr
 exact targets and all 674 public declarations. The
 [fifteenth record](../results/critical_components_015.json) preserves the finite
 population checkpoint. Specifications were introduced alongside these proofs.
-The matching critical upper and the explicit comparison refuting the
-matching-Psi conjecture are not fully formalized. The original
-[distribution-blind upper](BLIND_UPPER.md) is complete. The full critical
-minimax completion flag remains false.
+That lower-bound record retains its original scope. The matching critical
+upper is now separately proved and audited below. The explicit comparison
+refuting the matching-Psi conjecture remains a paper proof. The original
+[distribution-blind upper](BLIND_UPPER.md) is also complete.
 
 The [critical upper component checkpoint](CRITICAL_AUDIT.md#upper-construction-checkpoint)
 adds an observable asymmetric classifier, its actual Bernoulli-tape error and
@@ -256,9 +258,19 @@ The [second component checkpoint](../results/critical_upper_components_002.json)
 adds rarity-dependent calibration and an observable unbiased random-level
 single-coin estimator. Its actual population mean is the sign mass, its
 extended second moment is at most `28*rho`, and its expected flip count is at
-most `112000000*criticalLogFactor(rho)`. Fresh-coin aggregation within every
-budget and realization of that aggregate in the original Tier 6 model remain
-open; these components do not prove the full critical upper theorem.
+most `112000000*criticalLogFactor(rho)`.
+
+The [full upper theorem](../lean/ThresholdHC/CriticalUpper/Full.lean) now adds
+independent fresh-coin aggregation, a measurable controller, exact actual
+work/output identities, and transfer to the original Tier 6 experiment. Its
+budget rule uses a fixed call count at large budgets and zero output at small
+budgets. One universal coefficient `100000` gives
+`R_{mu,rho}(B)<=100000*min(rho,sqrt(rho*L*(1+log L)/B))`
+for every `0<rho<=1/4`, `B>=1`, and all measurable priors with global mass at
+most `rho`. The coefficient is not optimized. The
+[third record](../results/critical_upper_components_003.json) certifies both
+unchanged frozen full statements and all declarations in 26 modules. It does
+not certify the explicit Psi comparison.
 
 ## Population and nonlinear feedback follow-ups
 

@@ -15,6 +15,7 @@ brief. The [original v4](paper/paper.pdf) and historical evidence remain preserv
 | Result | Statement | Status | Source |
 |---|---|---|---|
 | Minimax RMS law | $`\omega_\mu(B^{-1/2})/64\le R_\mu(B)\le512\omega_\mu(B^{-1/2})`$; one upper algorithm independent of $`\mu`$. | Lean-checked | [upper theorem](lean/ThresholdHC/BlindUpper/Full.lean) · [lower theorem](lean/ThresholdHC/Tier6/Full.lean) |
+| Critical quadratic rare-event law | For $`F(d)=(4d)^2`$, RMS risk has order $`\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}`$, $`L=1+\log(1/\rho)`$, $`0<\rho\le1/4`$, $`B\ge1`$. | Lean-checked in both directions | [lower theorem](lean/ThresholdHC/CriticalEntropy/CriticalMinimax.lean) · [upper theorem](lean/ThresholdHC/CriticalUpper/Full.lean) · [scope](docs/CRITICAL_AUDIT.md) |
 | Minimax RMS lower bound | $`R_\mu(B)\ge\omega_\mu(B^{-1/2})/64`$ for every gap law and $`B\ge1`$. | Lean-checked | [minimax_lower_bound](lean/ThresholdHC/Tier6/Full.lean) |
 | Uniform unbiasedness | Finite uniform variance and work are attainable iff $`I<\infty`$; their product is $`\ge I^2/16`$. | paper proof | [v5, Theorem 2](paper/v5/core.tex) |
 | Unbiased estimate $`Y`$, flip count $`W`$ | For $`(k_1,k_2)=(1/4,1)`$ and $`I<\infty`$:<br>$`\mathbb E Y=\theta`$, $`\mathrm{Var}(Y)\mathbb E W<713I^2`$. | Lean-checked | [full_bound_713](lean/ThresholdHC/Uniform713/FullBound.lean) |
@@ -22,9 +23,11 @@ brief. The [original v4](paper/paper.pdf) and historical evidence remain preserv
 Uniformity is over all conditional sign laws. The paper has agent-reviewed
 components but no external specialist review. Lean checks the linked exact
 statements. The [critical minimax lower bound](lean/ThresholdHC/CriticalEntropy/CriticalMinimax.lean)
-is now Lean-checked for the full rare-prior class and unrestricted observable
-adaptive algorithms. Its matching upper and the other
-[rare-event results](paper/v5/rare-events.tex) retain paper-proof status.
+and its [matching upper](lean/ThresholdHC/CriticalUpper/Full.lean) are now
+Lean-checked for the full rare-prior class in the original observable experiment.
+The upper coefficient is 100000, a coarse universal bound. The explicit Psi
+comparison and the other [rare-event results](paper/v5/rare-events.tex) retain
+paper-proof status.
 The [results guide](docs/RESULTS.md) records the precise rate, model and audit;
 the PDFs retain their stated earlier formal-reference checkpoint.
 The [full distribution-blind upper theorem](docs/BLIND_UPPER.md) now includes
@@ -69,7 +72,7 @@ Paper proofs in v4 have component agent review, but the consolidated manuscript 
 ## What is not claimed
 
 - **713 is not asserted to be optimal.** The lower bound uses uniform bounds over $`q`$, not a pointwise bound for every population; see [paper §6](paper/paper.tex#L774).
-- **The proposed arbitrary-law matching-Psi upper bound is refuted at $`\alpha=2`$.** The [full critical note](research/2026-10-27-nonlinear-critical/unrestricted.tex) proves $`R_{\mu,\rho}(B)\asymp\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}`$, $`L=1+\log(1/\rho)`$, at $`F(d)=(4d)^2`$, for all observable fresh-coin algorithms with uniform expected work at most B, including interaction and nonlinear output. The critical minimax lower bound is now [Lean-checked](lean/ThresholdHC/CriticalEntropy/CriticalMinimax.lean); the matching upper and explicit Psi comparison remain paper arguments. No external specialist verification is claimed. The [scope and evidence](research/2026-10-27-nonlinear-critical/CHECKPOINT.md) distinguish this from the preserved variational optimizer. A sharp replacement for arbitrary laws remains open; the earlier [power-margin note](research/2026-10-27-route-a/construction.tex) resolves $`\alpha>2`$.
+- **The proposed arbitrary-law matching-Psi upper bound is refuted at $`\alpha=2`$.** The [full critical note](research/2026-10-27-nonlinear-critical/unrestricted.tex) proves $`R_{\mu,\rho}(B)\asymp\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}`$, $`L=1+\log(1/\rho)`$, at $`F(d)=(4d)^2`$, for all observable fresh-coin algorithms with uniform expected work at most B, including interaction and nonlinear output. The critical minimax [lower](lean/ThresholdHC/CriticalEntropy/CriticalMinimax.lean) and [upper](lean/ThresholdHC/CriticalUpper/Full.lean) bounds are now Lean-checked; the explicit Psi comparison remains a paper argument. No external specialist verification is claimed. The [scope and evidence](research/2026-10-27-nonlinear-critical/CHECKPOINT.md) distinguish this from the preserved variational optimizer. A sharp replacement for arbitrary laws remains open; the earlier [power-margin note](research/2026-10-27-route-a/construction.tex) resolves $`\alpha>2`$.
 - **Finite-grid proxies are not universal constants.** Truncated floating-point recursions give numerical evidence; the grid winner fails the original uniform bias bound off-grid. See the [counterexample](proposals/constants/BIAS_AUDIT.md) and [scores](results/constants_finite_grid.json).
 - **Numerical comparisons do not establish practical superiority or universal theorems.** See [benchmark limitations](docs/process/TRACK_C.md). Expected-work guarantees provide neither a deterministic work cap nor a data-observable confidence radius for every unknown law ([paper §10](paper/paper.tex#L1280)).
 
