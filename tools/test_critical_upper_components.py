@@ -17,6 +17,13 @@ class CriticalUpperAuditTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'specification changed'):
                 audit.validate_sources()
 
+    def test_changed_specification_dependency_rejected(self):
+        real = audit.sha
+        rare = audit.LEAN / 'ThresholdHC/CriticalEntropy/CriticalRareModel.lean'
+        with patch.object(audit, 'sha', side_effect=lambda p: '0'*64 if p == rare else real(p)):
+            with self.assertRaisesRegex(ValueError, 'dependency changed'):
+                audit.validate_sources()
+
     def test_missing_module_rejected(self):
         with patch.object(audit, 'MODULES', audit.MODULES[:-1]):
             with self.assertRaisesRegex(ValueError, 'unregistered'):

@@ -1,8 +1,10 @@
 """Check critical-upper classifier components; the full upper theorem is pending.
 
-Run after the existing critical and distribution-blind builds. Every declaration
-in CriticalUpper is kernel checked and audited for transitive axioms. The final
-statement remains byte-identical to its pre-proof freeze; it is not yet inhabited.
+Lake rebuilds any stale prerequisite, so earlier critical and distribution-blind
+runs only save time. Every declaration in CriticalUpper is kernel checked and
+audited for transitive axioms. The final statement remains byte-identical to its
+pre-proof freeze, and every project source it imports matches its recorded hash;
+it is not yet inhabited. Use --sequential on memory-limited runners.
 """
 from __future__ import annotations
 
@@ -25,6 +27,7 @@ MODULES = ('Specification', 'GapIntegration', 'CappedCost', 'WeightedCost',
            'ScreenPopulation', 'ScreenMoments')
 PREFIX = 'ThresholdHC.CriticalUpper.'
 SPECIFICATION_SHA256 = '2e6482ac338da26b5ceaf4bfac38cf63bff401aa934e43ea19f21368625a21ae'
+FREEZE = ROOT / 'tools/critical_upper_specification_freeze.json'
 SCOPE = ('Observable asymmetric single-coin classifiers, exact quadratic-law '
          'integration, population error/work bounds under global rarity, and '
          'actual population bias and second moments. Parameter calibration, '
@@ -38,9 +41,15 @@ def validate_sources() -> tuple[list[Path], set[str]]:
         raise ValueError('Missing or unregistered critical-upper source')
     if sha(SOURCE / 'Specification.lean') != SPECIFICATION_SHA256:
         raise ValueError('Frozen critical-upper specification changed')
-    freeze = json.loads((ROOT / 'tools/critical_upper_specification_freeze.json').read_text())
+    freeze = json.loads(FREEZE.read_text())
     if freeze['sha256'] != SPECIFICATION_SHA256 or freeze['path'] != 'lean/ThresholdHC/CriticalUpper/Specification.lean':
         raise ValueError('Frozen specification registration changed')
+    # The statement's meaning lives in the definitions it imports; freeze those too.
+    specification = SOURCE / 'Specification.lean'
+    dependencies = project_dependencies([specification]) - {specification}
+    if freeze.get('dependency_sha256') != {p.relative_to(ROOT).as_posix(): sha(p)
+                                           for p in sorted(dependencies)}:
+        raise ValueError('Frozen critical-upper specification dependency changed')
     roots = []
     seen = set()
     all_modules = {PREFIX + name for name in MODULES}
@@ -68,11 +77,12 @@ def validate_sources() -> tuple[list[Path], set[str]]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output-dir', type=Path)
+    parser.add_argument('--sequential', action='store_true')
     args = parser.parse_args()
     paths, roots = validate_sources()
     protected = project_dependencies(paths) | {
         Path(__file__).resolve(), ROOT / 'tools/verify_blind_upper_components.py',
-        ROOT / 'tools/verify_tier6.py', ROOT / 'tools/critical_upper_specification_freeze.json',
+        ROOT / 'tools/verify_tier6.py', FREEZE,
         LEAN / 'lean-toolchain', LEAN / 'lake-manifest.json',
     }
     hashes = {p.relative_to(ROOT).as_posix(): sha(p) for p in sorted(protected)}
@@ -89,11 +99,8 @@ def main() -> int:
     audit.parent.mkdir(exist_ok=True)
     audit.write_text(''.join('import '+PREFIX+m+'\n' for m in MODULES)+'\n'+
                      ''.join('#print axioms '+r+'\n' for r in sorted(roots)), encoding='utf-8')
-    commands = []
-    for path, name in zip(paths, MODULES):
-        target = LEAN / '.lake/build/lib/lean/ThresholdHC/CriticalUpper' / (name+'.olean')
-        target.parent.mkdir(parents=True, exist_ok=True)
-        commands.append(['lake', 'env', 'lean', '-o', str(target), str(path.relative_to(LEAN))])
+    modules = [PREFIX+name for name in MODULES]
+    commands = [['lake', 'build', m] for m in modules] if args.sequential else [['lake', 'build', *modules]]
     commands.append(['lake', 'env', 'lean', str(audit.relative_to(LEAN))])
     for i, command in enumerate(commands):
         result = subprocess.run(command, cwd=LEAN, capture_output=True, text=True, encoding='utf-8')

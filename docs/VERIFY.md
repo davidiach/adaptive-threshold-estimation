@@ -9,7 +9,8 @@ python -m unittest discover -s tools -p 'test_critical_upper_components.py' -v
 ```
 
 It checks every declaration in the ten `CriticalUpper` modules, their
-transitive axioms, and the unchanged pre-proof full specification. The
+transitive axioms, the unchanged pre-proof full specification, and the recorded
+hashes of every project source that specification imports. The
 [component record](../results/critical_upper_components_001.json) does not
 certify the full upper theorem: calibration, unbiased telescoping, and
 budgeted realization remain pending. See the [exact scope](CRITICAL_AUDIT.md#upper-construction-checkpoint).
@@ -23,7 +24,8 @@ python tools/verify_blind_upper_components.py
 python -m unittest discover -s tools -p 'test_blind_upper_components.py' -v
 ```
 
-This rebuilds 45 modules plus three existing prerequisites and checks the
+Lake builds 45 modules plus three existing prerequisites, rebuilding any stale
+import, and the audit checks the
 final theorem against its unchanged frozen type, together with all 373
 declaration roots and their transitive axioms. It includes actual population
 cost/output identities, termination, budget selection and uniform RMS risk.
@@ -66,7 +68,7 @@ measurable population seeds, separate endpoint termination, eventual exact tape
 reconstruction, terminal affinity, algorithm and minimax lower rates, budget
 nonemptiness, and the trivial upper bound by rarity. The full rare-prior class
 is used in the budget and risk. The matching critical upper is still pending.
-It audits all 674
+It audits all 673
 declarations in these modules and writes fresh evidence under
 `.runtime/critical-components/`. The base-cost flag now certifies the actual
 single-coin theorem; the full critical minimax flag remains false. See the

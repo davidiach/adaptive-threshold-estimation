@@ -7,11 +7,9 @@ open MeasureTheory Set ThresholdHC.Tier3
 open scoped ENNReal
 set_option maxHeartbeats 2000000
 
-/-- The full rare class permits every measurable prior valued in [0,1].
+/-- The budget and the maximal risk below both range over the full rare class:
+every measurable prior valued in [0,1] with mean at most ρ under the gap law.
 The half-capped class is used only to construct a lower-bound pair. -/
-def CriticalRarePrior (ρ : ℝ) (q : ℝ → unitInterval) : Prop :=
-  Measurable q ∧ (∫ d, (q d : ℝ) ∂criticalGapLaw) ≤ ρ
-
 def CriticalUniformBudget {R : Type} [MeasurableSpace R]
     (A : Tier6.AdaptiveEstimator R) (ρ B : ℝ) : Prop :=
   ∀ (q : ℝ → unitInterval) (hq : Measurable q),

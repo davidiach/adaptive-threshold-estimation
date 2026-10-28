@@ -774,7 +774,6 @@ example : CriticalTrivialUpperStatement := critical_minimax_le_rarity
 #print axioms risk_event_markov
 #print axioms bool_affinity_le_half_of_errors
 #print axioms two_point_risk_lower_of_decision_affinity
-#print axioms CriticalRarePrior
 #print axioms CriticalUniformBudget
 #print axioms criticalMaximalRMSRisk
 #print axioms criticalMinimaxRisk

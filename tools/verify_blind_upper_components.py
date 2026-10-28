@@ -1,8 +1,9 @@
 """Kernel-check the full distribution-blind upper theorem and its construction.
 
-Run after the documented baseline/Tier 6 and critical-component builds. The
-final proof must inhabit the unchanged frozen specification. This audit does
-not certify the separate critical rare-event upper theorem.
+Lake rebuilds any stale prerequisite, so earlier baseline/Tier 6 and
+critical-component runs only save time. The final proof must inhabit the
+unchanged frozen specification. This audit does not certify the separate
+critical rare-event upper theorem. Use --sequential on memory-limited runners.
 """
 from __future__ import annotations
 
@@ -117,6 +118,7 @@ def project_dependencies(paths: list[Path]) -> set[Path]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", type=Path)
+    parser.add_argument("--sequential", action="store_true")
     args = parser.parse_args()
     registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
     paths, expected = validate_sources(registry)
@@ -153,12 +155,9 @@ def main() -> int:
                      "".join(f"example : {target} := {declaration}\n"
                              for declaration, target in EXACT_TARGETS.items()) + "\n" +
                      "".join("#print axioms " + r + "\n" for r in sorted(expected)), encoding="utf-8")
-    commands = []
-    for module in registry["extra_dependency_builds"] + registry["modules"]:
-        source = module_path(module)
-        target = (LEAN / ".lake/build/lib/lean").joinpath(*module.split(".")).with_suffix(".olean")
-        target.parent.mkdir(parents=True, exist_ok=True)
-        commands.append(["lake", "env", "lean", "-o", str(target), str(source.relative_to(LEAN))])
+    # Lake rebuilds any stale transitive import, so hashed sources are the compiled ones.
+    modules = registry["extra_dependency_builds"] + registry["modules"]
+    commands = [["lake", "build", m] for m in modules] if args.sequential else [["lake", "build", *modules]]
     commands.append(["lake", "env", "lean", str(audit.relative_to(LEAN))])
     for i, command in enumerate(commands):
         result = subprocess.run(command, cwd=LEAN, capture_output=True, text=True, encoding="utf-8")
