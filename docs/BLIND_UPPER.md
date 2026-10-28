@@ -55,8 +55,9 @@ python tools/verify_blind_upper_components.py
 python -m unittest discover -s tools -p 'test_blind_upper_components.py' -v
 ```
 
-The confidence-radius characterization and uniform unbiasedness converse
-remain paper proofs. The matching critical rare-event upper and exact Psi
-comparison now have separate completed audits in [VERIFY](VERIFY.md).
-The synchronized v5 and review packet pin their theorem references to
-`eabf274`, which contains all three completed developments.
+The confidence-radius characterization remains a paper proof. The uniform
+unbiasedness converse, observable 713 construction, matching critical
+rare-event upper, and exact Psi comparison have separate completed audits
+in [VERIFY](VERIFY.md). The original upper, critical upper, and Psi theorem
+links use checkpoint `eabf274`; the [current v5 guide](../paper/v5/README.md)
+records the later checkpoints for the converse and 713 realization.

@@ -43,6 +43,25 @@ before supporting proofs; the dependency snapshot was recorded after the proof
 drafts, as its [chronology](../tools/unbiased_converse_specification_freeze.json)
 states. This audit does not certify a new 713 realization or stronger oracle model.
 
+The 713 construction in the same observable model has its own audit:
+
+```sh
+python tools/verify_observable713.py --sequential
+python -m unittest discover -s tools -p 'test_observable713.py' -v
+```
+
+The [record](../results/observable713_001.json) covers all eight modules, 47 declarations, and
+both exact targets: `Observable713Statement` and `ObservableUnbiasedIffStatement`.
+It certifies one algorithm before every gap law, unbiasedness for every
+measurable sign law, uniform extended variance at most `23 I`, actual work
+at most `31 I`, and product of separate suprema at most `713 I²`. The second
+target combines this construction with the existing converse to prove the
+existence characterization. The specification and its transitive model
+dependencies were compiled and frozen before the new supporting proofs.
+The verifier rejects missing or weakened targets, unregistered modules,
+altered frozen dependencies, proof escapes, unexpected axioms, and source
+changes during the audit. CI runs the audit and its regression tests.
+
 The actual critical-law Psi formula, two-sided rate and unrestricted minimax
 counterexample have a separate audit. After the prerequisite builds below:
 
@@ -273,6 +292,7 @@ separate from mathematical verification.
 | Unrestricted adaptive-creation KL (9 targets, 109 declaration checks) | [tier5_status.json](../results/tier5_status.json) |
 | Canonical experiments and minimax RMS lower bound (11 targets) | [tier6_status.json](../results/tier6_status.json) |
 | Full observable unbiased converse and 1/16 lower coefficient | [unbiased_converse_001.json](../results/unbiased_converse_001.json) |
+| Observable 713 construction and unbiased existence iff finite inverse moment | [observable713_001.json](../results/observable713_001.json) |
 | Input preservation | [MANIFEST_SHA256.txt](../inputs/next-phase/MANIFEST_SHA256.txt) |
 | Frozen specifications and tools | [FROZEN.sha256](../FROZEN.sha256), [TIER3_FROZEN.sha256](../TIER3_FROZEN.sha256), [TIER4_FROZEN.sha256](../TIER4_FROZEN.sha256) |
 | Workflow definition | [checks.yml](../.github/workflows/checks.yml) |

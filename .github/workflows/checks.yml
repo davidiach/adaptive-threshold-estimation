@@ -91,6 +91,8 @@ jobs:
         run: python -m unittest discover -s tools -p 'test_critical_all_sizes.py' -v
       - name: Regression tests for the unbiased converse audit
         run: python -m unittest discover -s tools -p 'test_unbiased_converse.py' -v
+      - name: Regression tests for the observable 713 audit
+        run: python -m unittest discover -s tools -p 'test_observable713.py' -v
       - run: python tools/check_targets_numeric.py
       - name: Tier 2 numeric truth checks when present
         run: |
@@ -164,6 +166,8 @@ jobs:
         run: python tools/verify_critical_all_sizes.py
       - name: Verify the full observable unbiased converse
         run: python tools/verify_unbiased_converse.py
+      - name: Verify the observable 713 construction and unbiased existence theorem
+        run: python tools/verify_observable713.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -197,3 +201,4 @@ jobs:
             .runtime/critical-psi/
             .runtime/critical-all-sizes/
             .runtime/unbiased-converse/
+            .runtime/observable713/

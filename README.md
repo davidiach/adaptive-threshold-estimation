@@ -37,10 +37,12 @@ The [lower theorem](lean/ThresholdHC/Tier6/Full.lean),
 |---|---|---|
 | Critical quadratic rare-event law, including unrestricted adaptive algorithms | Both minimax bounds proved in Lean | [Statement and scope](docs/RESULTS.md#critical-power-margin-full-minimax-characterization) |
 | Exact critical-law Ψ formula and counterexample to a universal matching-Ψ upper bound | Proved in Lean | [Theorems](lean/ThresholdHC/CriticalPsi/Full.lean) |
-| Unbiased construction with variance–work coefficient 713 | Proved in Lean | [Theorem and assumptions](lean/ThresholdHC/Uniform713/FullBound.lean) |
+| Unbiased estimation exists iff $I<\infty$; one universal construction has variance–work at most $713I^2$ | Proved in Lean in the observable adaptive model | [Theorems](lean/ThresholdHC/Observable713/Full.lean) · [Audit](results/observable713_001.json) |
 | Unbiased converse: finite inverse moment is necessary and variance–work is at least $I^2/16$ | Proved in Lean in the observable adaptive model | [Theorem](lean/ThresholdHC/UnbiasedConverse/Full.lean) · [Audit](results/unbiased_converse_001.json) |
 | Finite-gap entropy for every gap count; explicit single-coin base costs | Proved in Lean | [Proofs](lean/ThresholdHC/CriticalAllSizes/) · [Audit](results/critical_all_sizes_002.json) |
 | Confidence radii and other rare-event regimes | Paper proofs; formalization incomplete | [Full results guide](docs/RESULTS.md) |
+
+Here $I=\mathbb E_\mu[D^{-1}]$ is the inverse-gap moment.
 
 For the critical law $F(d)=(4d)^2$ on $(0,1/4]$, with known rarity bound
 $0<\rho\le1/4$, the minimax RMS rate is
@@ -98,8 +100,8 @@ coverage of the manuscript is recorded claim by claim. The work has received
 AI review and has not had independent external specialist review. Numerical
 experiments provide supporting evidence, not proofs of universal claims.
 
-The next formalization targets include confidence guarantees and the remaining
-rare-event regimes. The 713 construction retains its conditional-kernel scope.
+The next formalization targets include confidence guarantees, the remaining
+rare-event regimes, and stronger revealed- or selected-magnitude claims.
 General-law rare-event theory and tighter constants remain research
 directions. See the [completion ledger](docs/WORKPLAN.md) for the current boundary.
 

@@ -111,9 +111,10 @@ matching-$\Psi$ conjecture rather than assuming it.
 Lean proves both directions of the original RMS law, with coefficients
 $1/64$ and $512$ and one distribution-blind upper algorithm. The critical
 minimax law, exact $\Psi$ comparison and counterexample, and unbiased
-converse with coefficient $1/16$ are also proved in the observable model.
-The untruncated 713 estimator and variational optimizer have separate
-formal specifications. Confidence guarantees and other rare-event regimes
+characterization with coefficients $1/16$ and $713$ are also proved in the
+observable model. One 713 estimator is fixed before every gap law. The
+variational optimizer has its separate formal specification.
+Confidence guarantees and other rare-event regimes
 retain paper-proof status. Section~\ref{sec:verification} gives the exact
 scope and links.
 """
@@ -143,9 +144,9 @@ scope and links.
         "revealed- or selected-magnitude claims retain paper-proof status.\n\n"
         "This is distribution-wise minimax optimality:")
     core = once(core, r"\subsection{Unknown magnitude laws under an envelope}",
-        "\\noindent\\emph{Verification: Lean proves the converse and $1/16$\n"
-        "bound in the observable model. The 713 upper construction retains\n"
-        "the conditional-kernel and separate-family scope in \\cref{sec:713}.}\n\n"
+        "\\noindent\\emph{Verification: Lean proves the full existence characterization,\n"
+        "the $1/16$ lower bound, and the 713 upper construction in the same\n"
+        "observable model; see \\cref{sec:713,sec:verification}.}\n\n"
         "\\subsection{Unknown magnitude laws under an envelope}")
 
     continuation = sources["inputs/next-phase/report/research_note.tex"]

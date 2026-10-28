@@ -126,11 +126,22 @@ constant in \cref{thm:unbiased}. No interchange of a supremum with a
 strict inequality is needed.
 
 \paragraph{Formal scope.}
+\observableleanref{observable\_713} realizes one geometric-seed estimator
+in the original observable adaptive experiment, before every gap law.
+Its separate extended variance and actual work bounds are $23I_\mu$ and
+$31I_\mu$, uniformly over every measurable sign law. The product of the
+two separate suprema is at most $713I_\mu^2$. Both classifiers read the
+same coin's observed prefix; exact execution identities transfer their
+output and flip count to the infinite experiment. Together with the
+converse, \observableleanref{observable\_unbiased\_iff} proves the full
+finite-variance/work existence characterization in this model.
+
+The earlier, more general
 \leanref{Uniform713/FullBound.lean}{full\_bound\_713} proves the
 untruncated estimator result in a conditional observation-kernel model,
 including bounded independent observations with means $1/2\pm D$.
 \leanref{ResearchRouteA/SeparateBounds.lean}{uniform\_family\_bounds}
 supplies the separate-supremum conclusion for a fixed kernel and
 estimator over a nonempty family of latent laws sharing $I_\mu$.
-These results do not yet realize the finite-budget calibration wrapper
-as a policy in the full fresh-coin experiment.
+The finite-budget calibration wrapper for the original RMS law has its
+separate realization in \cref{sec:verification}.
