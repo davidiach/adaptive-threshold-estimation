@@ -1,9 +1,24 @@
 # Verification and consolidation
 
-This is the active completion ledger for the follow-up authorized on 27 October
+This ledger records the follow-up authorized on 27 October
 2026. The starting published commit is `b3f88e6bc02b3d59ec9fe99529688e2bd911e1db`.
 It preserves the full requested scope; a partial formalization does not complete
 this plan. The original checkpoint is on `research/verification-consolidation-20261027`.
+
+**Current status (28 October 2026):** the core verification and consolidation
+package is complete and merged into `main`, through
+[PR #10](https://github.com/davidiach/adaptive-threshold-estimation/pull/10).
+The original RMS law and critical quadratic law are proved in Lean in both
+directions; the exact Psi comparison, all-size extension, consolidated v5
+manuscript, specialist packet, and process note are published.
+
+Remaining priorities are independent external specialist review; formalizing
+the unbiased-estimation converse and sharp lower coefficient, confidence
+guarantees, and other paper-only results; and research on a corrected
+arbitrary-law rare-event characterization. The four maintenance refactorings
+below are non-blocking follow-up work. The historical checkpoints and their
+original evidence scopes are retained below.
+
 The unbiased-estimator review unit is [PR #4](https://github.com/davidiach/adaptive-threshold-estimation/pull/4),
 based on that branch at `2162210`. The full critical upper proof is a further
 focused unit on `research/critical-minimax-upper-20261028`, based on PR #4's
@@ -16,6 +31,30 @@ verified checkpoint `678e81c`. It is published as
 `research/manuscript-completion-20261028`, published as
 [PR #8](https://github.com/davidiach/adaptive-threshold-estimation/pull/8)
 and based on PR #7.
+
+The reviewer follow-up is split into [PR #9](https://github.com/davidiach/adaptive-threshold-estimation/pull/9)
+for manuscript clarity and attribution, and
+[PR #10](https://github.com/davidiach/adaptive-threshold-estimation/pull/10)
+on `research/finite-gap-all-sizes-20261028` for the mathematical extension.
+The latter removes the gap-count restriction at coefficient 1/4096, retains
+the existing 1/512 large-count theorem, and supplies explicit single-coin
+raw-moment and variance constants. It does not claim the same 1/512 constant
+for all counts or an explicit final population minimax constant.
+
+### PR #10 review and maintenance follow-up
+
+The merge review repairs standalone v5 assembly and input-graph validation,
+tests lock-file registration and dependency-set mutations, and corrects
+notation, layout, scope and provenance in the manuscripts and current guides.
+The corrected Lean docstring has a fresh audit record; the earlier record
+and every target statement remain unchanged.
+
+Four non-blocking refactoring suggestions are deferred to a separate cleanup:
+parameterize the duplicated entropy-to-base-cost chain; parameterize the
+prefix-information/event-transfer lemmas; extract a shared audit runner;
+and remove the redundant scale-count lemma premise and unused intermediate
+facts. These changes would reorganize proofs or statements without changing
+the proved claims, and are not correctness defects in this PR.
 
 ## Current proof boundary
 
@@ -49,12 +88,12 @@ GitHub Actions run has finished.
 | Work | Completion evidence | Current state |
 |---|---|---|
 | Adversarial audit of the critical quadratic theorem | Trace every proof dependency, record objections and their resolution, distinguish paper arguments from kernel checks | [CRITICAL_AUDIT.md](CRITICAL_AUDIT.md) records the source audit, dependency checks, resolved proof obligations and review dependence; the full lower, upper and Psi statements now have separate kernel audits. This is not external specialist review |
-| Specialist review package | Short overview, complete consolidated proof, precise questions, source and prior-art references | [Prepared](../paper/critical-review/README.md): four-page brief plus complete proof, 18-page PDF compiled and visually checked; external specialist review itself remains pending |
+| Specialist review package | Short overview, complete consolidated proof, precise questions, source and prior-art references | [Prepared](../paper/critical-review/README.md): four-page brief, two-page all-size addendum and complete proof, 20-page PDF compiled and visually checked; external specialist review itself remains pending |
 | Formal critical argument | Exact statistical specification, proved dependency chain, kernel and axiom audit; scalar lemmas alone do not satisfy this item | The base-cost theorem, common hard pair, unrestricted critical minimax lower bound, and matching upper bound are proved in the original observable experiment for the full rare-prior class. See the [lower audit](../results/critical_components_016.json) and [full upper audit](../results/critical_upper_components_003.json). The [exact Psi formula, rate and minimax separation](../results/critical_psi_001.json) are also proved |
 | Original distribution-blind upper bound | One budget-indexed observable algorithm independent of the magnitude/sign laws, realized in the original experiment; uniform work and RMS bounds; exact type and axiom audit | [Complete](BLIND_UPPER.md): the frozen full statement is inhabited by one budget-indexed observable family, with coefficient 512. Actual execution, almost-sure cost/output identities, uniform budget and RMS bounds are proved; exact-type and transitive-axiom audit passed |
-| Consolidated v5 manuscript | Original minimax law, unbiasedness, 713 bound, rare-event regimes, critical result and correction to the Psi conjecture; accurate verification labels; compiled and visually checked | [Written](../paper/v5/README.md): 57-page manuscript with complete source-derived proof appendices, explicit editorial changes, source checks, and rendered-page review. Both critical bounds and the actual Psi comparison are linked at `eabf274`. No separate review of the new consolidation is claimed |
+| Consolidated v5 manuscript | Original minimax law, unbiasedness, 713 bound, rare-event regimes, critical result and correction to the Psi conjecture; accurate verification labels; compiled and visually checked | [Written](../paper/v5/README.md): 59-page manuscript including the all-size addendum, complete source-derived proof appendices, source checks and rendered-page review. Both critical bounds and Psi are linked at `eabf274`; the addendum's explicit constants are linked at `ebd3667`. No independent specialist review is claimed |
 | Process note | Reproducible account of construction, frozen statements, semantic review, failed approaches, reviewer dependence, and limits | [Written](process/METHOD.md) and refreshed at `6009662`, including completed realization proofs, the formula's freeze chronology, and lessons from the long run and focused PRs |
-| Repository cleanup and publication | Clear current entry points, preserved source/evidence identities, passing relevant guards and CI, pushed commits and reviewable changes | README, results and verification guides lead to current evidence; historical bundles remain intact. Proof checkpoints are published in PRs #3, #4, #5 and #7; the final manuscript branch is separate. CI results belong to each exact commit and are recorded in the corresponding PR |
+| Repository cleanup and publication | Clear current entry points, preserved source/evidence identities, passing relevant guards and CI, pushed commits and reviewable changes | The proof and manuscript stack through PR #10 is merged into main. README, results and verification guides lead to current evidence; historical bundles remain intact. CI results belong to each exact commit and are recorded in the corresponding PR |
 
 ## Working rules
 

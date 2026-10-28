@@ -1,10 +1,36 @@
 """Regression checks for mathematical fidelity during manuscript assembly."""
 import unittest
+from pathlib import Path
+from tempfile import TemporaryDirectory
 
-from build_v5 import assemble, between, prefix_equation_tags
+from build_v5 import assemble, between, prefix_equation_tags, project_text
 
 
 class ManuscriptAssemblyTests(unittest.TestCase):
+    def test_input_graph_rejects_missing_or_dropped_addendum(self):
+        for directive, error in ((r'\input{typo}', 'Missing TeX input'),
+                                 ('', 'Unincluded TeX source'),
+                                 (r'% \input{addendum}', 'Unincluded TeX source')):
+            with self.subTest(directive=directive), TemporaryDirectory() as tmp:
+                folder = Path(tmp)
+                (folder/'main.tex').write_text(directive, encoding='utf-8')
+                (folder/'addendum.tex').write_text('Mathematical result', encoding='utf-8')
+                with self.assertRaisesRegex(ValueError, error):
+                    project_text(folder)
+
+    def test_standalone_input_graph(self):
+        with TemporaryDirectory() as tmp:
+            folder = Path(tmp)
+            (folder/'main.tex').write_text(r'\input{addendum}', encoding='utf-8')
+            (folder/'addendum.tex').write_text('Mathematical result', encoding='utf-8')
+            self.assertIn('Mathematical result', project_text(folder))
+            for directive, error in ((r'\input{../external}', 'outside standalone project'),
+                                     (r'\input{main}', 'Repeated or cyclic')):
+                with self.subTest(directive=directive):
+                    (folder/'main.tex').write_text(directive, encoding='utf-8')
+                    with self.assertRaisesRegex(ValueError, error):
+                        project_text(folder)
+
     def test_line_break_is_not_display_math(self):
         source = "Row\\\\[4pt] see (B).\n\\[x\\tag{B}\\]"
         self.assertEqual(prefix_equation_tags(source, "C."),

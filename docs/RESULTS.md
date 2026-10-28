@@ -143,15 +143,30 @@ uniform extended-variance bound `V`, and finite expected work under each
 such prior. Finite extended variance implies square integrability; infinite
 work and moments are retained in the definitions. Per-prior finite work
 suffices, so the paper's stronger uniform finite-work hypothesis is covered.
-The raw-second-moment version is also proved.
+The raw-second-moment version is also proved. The additive
+[all-size extension](../lean/ThresholdHC/CriticalAllSizes/BaseCost.lean)
+now gives explicit coefficients: `M E_0 T >= rho L(1+log L)/10000000000`
+for a uniform raw second-moment bound `M`, and
+`V E_0 T >= rho L(1+log L)/15000000000` for a uniform extended-variance
+bound `V`, with the same bias, finite-work and capped-prior hypotheses.
+The [current extension audit](../results/critical_all_sizes_002.json) checks
+four exact targets and all 16 declarations in eight modules; the
+[first record](../results/critical_all_sizes_001.json) preserves the original
+proof checkpoint. No explicit population minimax coefficient is derived here.
 
 The proof derives activation normalization, population moment identities,
 good-gap selection, observable iid restarts, sign-testing entropy, and the
 rarity-dependent number of scales from those guarantees. In particular,
 [FiniteGap.lean](../lean/ThresholdHC/CriticalEntropy/FiniteGap.lean) proves
-the BC2 bound `sum_j d_j^2 E_-j T >= K log(K)/512` for one observable test
+the BC2 bound `sum_j d_j^2 E_-j T >= K log(K)/512` when `log K >= 32`, for one observable test
 serving every specified gap and sign. It constructs the information bounds
 and stopping windows and does not assume fair-coin termination.
+The [all-size entropy theorem](../lean/ThresholdHC/CriticalAllSizes/FiniteGap.lean)
+removes the count restriction with coefficient `1/4096`. The original sharper
+`1/512` theorem remains unchanged. A deterministic-prefix one-gap floor
+`d^2 E_-d T >= 1/128` handles the smaller counts, including the trivial
+zero-count case. The resulting explicit single-coin proof uses scale cutoff
+16384 instead of a threshold containing `exp(32)`.
 The [model and dependency audit](CRITICAL_AUDIT.md#current-formal-boundary)
 gives the exact intermediate hypotheses and source-specific evidence.
 The capped finite-observation reduction is also proved in
