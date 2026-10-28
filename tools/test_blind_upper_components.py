@@ -2,6 +2,9 @@
 import copy
 import json
 import unittest
+from unittest.mock import patch
+
+import verify_blind_upper_components as audit
 
 from verify_blind_upper_components import REGISTRY, validate_reports, validate_sources
 
@@ -16,6 +19,21 @@ class BlindUpperAuditTests(unittest.TestCase):
     def test_complete_standard_reports_and_registered_sources(self):
         self.assertEqual(set(validate_reports("\n".join(self.lines), 0, self.roots)), self.roots)
         self.assertEqual(validate_sources(self.registry)[1], self.roots)
+
+    def test_changed_specification_dependency_rejected(self):
+        original = audit.sha
+        model = audit.LEAN / 'ThresholdHC/Tier6/AlgorithmModel.lean'
+        with patch.object(audit, 'sha', side_effect=lambda p: '0'*64 if p == model else original(p)):
+            with self.assertRaisesRegex(ValueError, 'dependency changed'):
+                validate_sources(self.registry)
+
+    def test_imports_cannot_silently_escape_the_dependency_lock(self):
+        self.assertEqual(audit.imports('  import ThresholdHC.Tier6.AlgorithmModel\n'),
+                         ['ThresholdHC.Tier6.AlgorithmModel'])
+        for source in ('import Mathlib ThresholdHC.Tier6.AlgorithmModel\n',
+                       'import\n ThresholdHC.Tier6.AlgorithmModel\n'):
+            with self.subTest(source=source), self.assertRaisesRegex(ValueError, 'import syntax'):
+                audit.imports(source)
 
     def test_failed_command_cannot_supply_success_evidence(self):
         with self.assertRaises(ValueError):

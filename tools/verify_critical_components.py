@@ -1,6 +1,7 @@
 """Check critical base cost, statistical transfer and minimax lower bound.
 
-The matching critical upper and the original distribution-blind upper remain open.
+The matching critical upper remains open. The original distribution-blind upper
+is checked separately by tools/verify_blind_upper_components.py.
 
 This extension does not change existing frozen targets or scores. It reuses the
 frozen Tier 6 source and transitive-axiom guards. Specifications were introduced
@@ -10,13 +11,15 @@ from __future__ import annotations
 
 import argparse
 from datetime import datetime, timezone
-import hashlib
 import json
 from pathlib import Path
 import re
 import subprocess
 
-from verify_tier6 import ALLOWED, DECLARATION, FORBIDDEN, REPORT, strip_comments
+from verify_blind_upper_components import (
+    DECLARATION, FORBIDDEN, IMPORT, project_dependencies, sha, strip_comments,
+    validate_reports, imports as source_imports,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 LEAN = ROOT / "lean"
@@ -312,26 +315,49 @@ ROOTS = {
         "CriticalTrivialUpperStatement",
     )
 }
+# Every specification statement must be type-checked by an Audit.lean example.
+EXACT_TARGETS = {root.removeprefix(NAMESPACE) for root in ROOTS if root.endswith("Statement")}
+# Checkpoints certified together by the exact targets and the axiom audit.
+FLAGS = (
+    "base_cost_theorem_verified",
+    "capped_observation_reduction_verified",
+    "population_observation_geometry_verified",
+    "capped_policy_risk_and_pair_verified",
+    "common_capped_pair_verified",
+    "finite_horizon_population_transfer_verified",
+    "unrestricted_population_transfer_verified",
+    "endpoint_termination_limit_verified",
+    "critical_minimax_lower_bound_verified",
+    "finite_gap_sign_testing_theorem_verified",
+    "stopped_suffix_independence_verified",
+    "sequential_restart_law_and_work_verified",
+    "finite_repetition_iid_and_work_verified",
+    "repeated_sign_error_and_work_verified",
+    "finite_gap_estimation_entropy_verified",
+    "population_moment_disintegration_verified",
+    "population_conditional_finiteness_verified",
+    "population_extended_variance_floor_verified",
+    "population_moment_from_variance_verified",
+    "population_good_gap_selection_verified",
+    "critical_gap_law_verified",
+    "critical_scale_null_cost_product_verified",
+    "activation_normalization_verified",
+    "critical_raw_base_cost_verified",
+)
 
 
-def validate_reports(output: str, returncode: int) -> dict[str, list[str]]:
-    if returncode != 0:
-        raise ValueError("Lean audit exited unsuccessfully")
-    reports: dict[str, list[str]] = {}
-    for name, _kind, axioms in REPORT.findall(output):
-        if name in reports:
-            raise ValueError("Duplicate audit root: " + name)
-        reports[name] = [a.strip() for a in axioms.split(",") if a.strip()]
-    if set(reports) != ROOTS:
-        raise ValueError("Missing or unexpected audit roots")
-    if any(set(axioms) - ALLOWED for axioms in reports.values()):
-        raise ValueError("Disallowed transitive axiom")
-    return reports
+def exact_targets(audit: str) -> set[str]:
+    """Return the statements that Audit.lean type-checks, requiring each exactly once."""
+    checked = re.findall(r"^example\s*:\s*([A-Za-z_][\w']*)\s*:=", audit, re.M)
+    if len(checked) != len(set(checked)) or set(checked) != EXACT_TARGETS:
+        raise ValueError("Audit.lean must type-check every specification statement once")
+    return set(checked)
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", type=Path)
+    parser.add_argument("--sequential", action="store_true")
     args = parser.parse_args()
     output = args.output_dir or ROOT / ".runtime/critical-components" / datetime.now(
         timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
@@ -341,11 +367,13 @@ def main() -> int:
     if {p.name for p in sources} != expected_sources:
         raise ValueError("Unexpected or missing component module")
     declared = []
+    texts = {}
     for path in sources:
         source = strip_comments(path.read_text(encoding="utf-8"))
+        texts[path.stem] = source
         if FORBIDDEN.search(source):
             raise ValueError("Forbidden proof escape in " + path.name)
-        imports = re.findall(r"^import\s+([\w.]+)\s*$", source, re.M)
+        imports = source_imports(source)
         allowed_imports = {
             "Mathlib", "Mathlib.MeasureTheory.Integral.Prod",
             "Mathlib.InformationTheory.KullbackLeibler.DataProcessing",
@@ -366,48 +394,32 @@ def main() -> int:
         declared.extend(NAMESPACE + name for name in DECLARATION.findall(source))
     if len(declared) != len(ROOTS) or set(declared) != ROOTS:
         raise ValueError("Public declaration coverage mismatch")
-    protected = sources + [Path(__file__).resolve(), ROOT / "tools/verify_tier6.py",
-                           LEAN / "lean-toolchain", LEAN / "lake-manifest.json"]
-    hashes = {p.relative_to(ROOT).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
-              for p in protected}
+    seen = set()
+    for name in MODULES:
+        for dependency in source_imports(texts[name]):
+            if dependency.startswith(NAMESPACE) and dependency not in seen:
+                raise ValueError("Component dependency order is invalid: " + dependency)
+        seen.add(NAMESPACE + name)
+    targets = exact_targets(texts["Audit"])
+    protected = project_dependencies(sources) | {
+        Path(__file__).resolve(), ROOT / "tools/verify_blind_upper_components.py",
+        ROOT / "tools/verify_tier6.py", LEAN / "lean-toolchain", LEAN / "lake-manifest.json",
+        LEAN / "lakefile.toml",
+    }
+    hashes = {p.relative_to(ROOT).as_posix(): sha(p) for p in sorted(protected)}
     status = {
         "valid": False,
         "scope": "Critical quadratic single-coin variance and raw-moment base-cost bounds for all rarities, derived from actual observable population experiments; activation, scale selection, restarts, sign entropy, finite stopped-observation reconstruction, canonical affinity and work preservation, actual population compactness and affine/convex observation geometry, finite convex RMS comparison, actual observable one-run estimator and policy-specific separated pair, normalized Hellinger/work constraints, actual heterogeneous revealed mixtures, and one common separated pair for every capped observable policy, its transfer to arbitrary measurable seeds and unrestricted creation using exact population simulation laws and work charging, endpoint termination and observable affinity limits, and the critical minimax lower bound for the full rare-prior class",
         "full_critical_minimax_theorem_verified": False,
-        "base_cost_theorem_verified": False,
-        "capped_observation_reduction_verified": False,
-        "population_observation_geometry_verified": False,
-        "capped_policy_risk_and_pair_verified": False,
-        "common_capped_pair_verified": False,
-        "finite_horizon_population_transfer_verified": False,
-        "unrestricted_population_transfer_verified": False,
-        "endpoint_termination_limit_verified": False,
-        "critical_minimax_lower_bound_verified": False,
-        "finite_gap_sign_testing_theorem_verified": False,
-        "stopped_suffix_independence_verified": False,
-        "sequential_restart_law_and_work_verified": False,
-        "finite_repetition_iid_and_work_verified": False,
-        "repeated_sign_error_and_work_verified": False,
-        "finite_gap_estimation_entropy_verified": False,
-        "population_moment_disintegration_verified": False,
-        "population_conditional_finiteness_verified": False,
-        "population_extended_variance_floor_verified": False,
-        "population_moment_from_variance_verified": False,
-        "population_good_gap_selection_verified": False,
-        "critical_gap_law_verified": False,
-        "critical_scale_null_cost_product_verified": False,
-        "activation_normalization_verified": False,
-        "critical_raw_base_cost_verified": False,
+        **{flag: False for flag in FLAGS},
         "specifications_frozen_before_proofs": False,
         "source_sha256": hashes,
         "commands": [],
     }
     status_path = output / "status.json"
     status_path.write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
-    build = LEAN / ".lake/build/lib/lean/ThresholdHC/CriticalEntropy"
-    build.mkdir(parents=True, exist_ok=True)
-    commands = [["lake", "env", "lean", "-o", str(build / (name + ".olean")),
-                 "ThresholdHC/CriticalEntropy/" + name + ".lean"] for name in MODULES]
+    modules = [NAMESPACE + name for name in MODULES]
+    commands = [["lake", "build", m] for m in modules] if args.sequential else [["lake", "build", *modules]]
     commands.append(["lake", "env", "lean", "ThresholdHC/CriticalEntropy/Audit.lean"])
     for index, command in enumerate(commands):
         result = subprocess.run(command, cwd=LEAN, capture_output=True, text=True,
@@ -419,63 +431,16 @@ def main() -> int:
         if result.returncode:
             print(text)
             return result.returncode
-    status["axioms"] = validate_reports(text, result.returncode)
-    if any(hashlib.sha256((ROOT / rel).read_bytes()).hexdigest() != digest
-           for rel, digest in hashes.items()):
+    status["axioms"] = validate_reports(text, result.returncode, ROOTS)
+    if any(sha(ROOT / rel) != digest for rel, digest in hashes.items()):
         raise ValueError("Sources changed during audit")
-    status.update(valid=True, exact_component_targets=43, audited_declarations=len(ROOTS),
-                  finite_gap_sign_testing_theorem_verified=True,
-                  stopped_suffix_independence_verified=True,
-                  sequential_restart_law_and_work_verified=True,
-                  finite_repetition_iid_and_work_verified=True,
-                  repeated_sign_error_and_work_verified=True,
-                  finite_gap_estimation_entropy_verified=True,
-                  population_moment_disintegration_verified=True,
-                  population_conditional_finiteness_verified=True,
-                  population_extended_variance_floor_verified=True,
-                  population_moment_from_variance_verified=True,
-                  population_good_gap_selection_verified=True,
-                  critical_gap_law_verified=True,
-                  critical_scale_null_cost_product_verified=True,
-                  activation_normalization_verified=True,
-                  critical_raw_base_cost_verified=True,
-                  base_cost_theorem_verified=True,
-                  capped_observation_reduction_verified=True,
-                  population_observation_geometry_verified=True,
-                  capped_policy_risk_and_pair_verified=True,
-                  common_capped_pair_verified=True,
-                  finite_horizon_population_transfer_verified=True,
-                  unrestricted_population_transfer_verified=True,
-                  endpoint_termination_limit_verified=True,
-                  critical_minimax_lower_bound_verified=True)
+    verified = {flag: True for flag in FLAGS}
+    status.update(valid=True, exact_component_targets=len(targets),
+                  audited_declarations=len(ROOTS), **verified)
     status_path.write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"valid": True, "exact_component_targets": 43,
+    print(json.dumps({"valid": True, "exact_component_targets": len(targets),
                       "audited_declarations": len(ROOTS), "evidence": str(output),
-                      "finite_gap_sign_testing_theorem_verified": True,
-                      "stopped_suffix_independence_verified": True,
-                      "sequential_restart_law_and_work_verified": True,
-                      "finite_repetition_iid_and_work_verified": True,
-                      "repeated_sign_error_and_work_verified": True,
-                      "finite_gap_estimation_entropy_verified": True,
-                      "population_moment_disintegration_verified": True,
-                      "population_conditional_finiteness_verified": True,
-                      "population_extended_variance_floor_verified": True,
-                      "population_moment_from_variance_verified": True,
-                      "population_good_gap_selection_verified": True,
-                      "critical_gap_law_verified": True,
-                      "critical_scale_null_cost_product_verified": True,
-                      "activation_normalization_verified": True,
-                      "critical_raw_base_cost_verified": True,
-                      "base_cost_theorem_verified": True,
-                      "capped_observation_reduction_verified": True,
-                      "population_observation_geometry_verified": True,
-                      "capped_policy_risk_and_pair_verified": True,
-                      "common_capped_pair_verified": True,
-                      "finite_horizon_population_transfer_verified": True,
-                      "unrestricted_population_transfer_verified": True,
-                      "endpoint_termination_limit_verified": True,
-                      "critical_minimax_lower_bound_verified": True,
-                      "full_critical_minimax_theorem_verified": False}))
+                      **verified, "full_critical_minimax_theorem_verified": False}))
     return 0
 
 

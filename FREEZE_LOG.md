@@ -1,5 +1,14 @@
 # Freeze log
 
+## Upper specification dependency checks — 28 October 2026 review
+
+The original upper specification files and their freeze timestamps are unchanged.
+The two upper freeze records now also record the project imports at PR #3's
+`2162210` checkpoint: 31 distribution-blind dependencies and 137 critical-upper
+dependencies. These hashes were added during this review, not at the original
+freeze times. Both verifiers reject changes to that complete dependency set.
+No frozen Lean file or existing lock manifest was changed.
+
 Record every change made to a frozen file BEFORE `tools/freeze.py --init`
 (Phase 0 compile fixes only). After freezing, changes need David's approval
 and go here too, with the approval noted.
@@ -62,3 +71,10 @@ Format, one entry per change:
   the separate full 713 audit remains 130/130. Independent Linux run
   [40468287646](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40468287646)
   passed both jobs with complete Tier 3 verification required.
+
+## Psi dependency checks — 28 October 2026 review
+
+The existing Psi model and specification hashes and original timestamp are
+unchanged. The freeze record now additionally checks their full local import
+closure at the `eabf274` checkpoint, including the variational objective and
+unrestricted minimax model. These dependency hashes were recorded during review.

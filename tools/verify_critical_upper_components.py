@@ -1,9 +1,9 @@
 """Kernel-check the full critical upper theorem and its observable construction.
 
-Run after the existing critical and distribution-blind builds. Every declaration
-in CriticalUpper is kernel checked and audited for transitive axioms. The final
-statements remain byte-identical to their pre-proof freeze. Both full targets
-must be inhabited without additional hypotheses before completion is certified.
+Lake rebuilds stale prerequisites before checking every declaration and its
+transitive axioms. Both full targets must inhabit the unchanged frozen types,
+whose project dependencies are also checked against their recorded hashes.
+Use --sequential on memory-limited runners.
 """
 from __future__ import annotations
 
@@ -15,7 +15,7 @@ import subprocess
 
 from verify_blind_upper_components import (
     DECLARATION, FORBIDDEN, IMPORT, module_path, project_dependencies, sha,
-    strip_comments, validate_reports,
+    strip_comments, validate_reports, imports, validate_dependency_freeze,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -29,6 +29,7 @@ MODULES = ('Specification', 'GapIntegration', 'CappedCost', 'WeightedCost',
            'FixedExecution', 'FixedIdentities', 'FixedBounds', 'Budget', 'Full')
 PREFIX = 'ThresholdHC.CriticalUpper.'
 SPECIFICATION_SHA256 = '2e6482ac338da26b5ceaf4bfac38cf63bff401aa934e43ea19f21368625a21ae'
+FREEZE = ROOT / 'tools/critical_upper_specification_freeze.json'
 EXACT_TARGETS = {
     PREFIX+'critical_upper_bound': PREFIX+'CriticalUpperStatement',
     PREFIX+'critical_minimax_upper_bound': PREFIX+'CriticalMinimaxUpperStatement',
@@ -62,9 +63,11 @@ def validate_sources() -> tuple[list[Path], set[str]]:
         raise ValueError('Missing or unregistered critical-upper source')
     if sha(SOURCE / 'Specification.lean') != SPECIFICATION_SHA256:
         raise ValueError('Frozen critical-upper specification changed')
-    freeze = json.loads((ROOT / 'tools/critical_upper_specification_freeze.json').read_text())
+    freeze = json.loads(FREEZE.read_text(encoding='utf-8'))
     if freeze['sha256'] != SPECIFICATION_SHA256 or freeze['path'] != 'lean/ThresholdHC/CriticalUpper/Specification.lean':
         raise ValueError('Frozen specification registration changed')
+    # The statement's meaning lives in the definitions it imports; freeze those too.
+    validate_dependency_freeze(SOURCE / 'Specification.lean', freeze)
     roots = []
     seen = set()
     all_modules = {PREFIX + name for name in MODULES}
@@ -73,7 +76,7 @@ def validate_sources() -> tuple[list[Path], set[str]]:
         if FORBIDDEN.search(text):
             raise ValueError('Forbidden proof escape in ' + str(path))
         roots.extend(PREFIX + name for name in DECLARATION.findall(text))
-        for dependency in IMPORT.findall(text):
+        for dependency in imports(text):
             if dependency in all_modules and dependency not in seen:
                 raise ValueError('Invalid component dependency order: ' + dependency)
         seen.add(PREFIX + name)
@@ -99,12 +102,13 @@ def validate_sources() -> tuple[list[Path], set[str]]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output-dir', type=Path)
+    parser.add_argument('--sequential', action='store_true')
     args = parser.parse_args()
     paths, roots = validate_sources()
     protected = project_dependencies(paths) | {
         Path(__file__).resolve(), ROOT / 'tools/verify_blind_upper_components.py',
-        ROOT / 'tools/verify_tier6.py', ROOT / 'tools/critical_upper_specification_freeze.json',
-        LEAN / 'lean-toolchain', LEAN / 'lake-manifest.json',
+        ROOT / 'tools/verify_tier6.py', FREEZE,
+        LEAN / 'lean-toolchain', LEAN / 'lake-manifest.json', LEAN / 'lakefile.toml',
     }
     hashes = {p.relative_to(ROOT).as_posix(): sha(p) for p in sorted(protected)}
     output = args.output_dir or ROOT / '.runtime/critical-upper-components' / datetime.now(
@@ -124,11 +128,8 @@ def main() -> int:
                      ''.join(f'example : {target} := {declaration}\n'
                              for declaration, target in EXACT_TARGETS.items())+'\n'+
                      ''.join('#print axioms '+r+'\n' for r in sorted(roots)), encoding='utf-8')
-    commands = []
-    for path, name in zip(paths, MODULES):
-        target = LEAN / '.lake/build/lib/lean/ThresholdHC/CriticalUpper' / (name+'.olean')
-        target.parent.mkdir(parents=True, exist_ok=True)
-        commands.append(['lake', 'env', 'lean', '-o', str(target), str(path.relative_to(LEAN))])
+    modules = [PREFIX+name for name in MODULES]
+    commands = [['lake', 'build', m] for m in modules] if args.sequential else [['lake', 'build', *modules]]
     commands.append(['lake', 'env', 'lean', str(audit.relative_to(LEAN))])
     for i, command in enumerate(commands):
         result = subprocess.run(command, cwd=LEAN, capture_output=True, text=True, encoding='utf-8')

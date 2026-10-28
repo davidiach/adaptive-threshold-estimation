@@ -1,8 +1,9 @@
 """Check the actual critical-law Psi formula, rate and minimax counterexample.
 
-Run after the baseline, Tier 6, critical and distribution-blind upper builds.
-Every new declaration is kernel checked, and the full statements and variational
-model must match their freeze. This does not certify an arbitrary-law replacement.
+Lake rebuilds stale prerequisites before the kernel and axiom checks. The full
+statements, variational model and their local dependencies must match the recorded
+hashes. This does not certify an arbitrary-law replacement. Use --sequential to
+build one registered module at a time on constrained machines.
 """
 from __future__ import annotations
 
@@ -14,7 +15,7 @@ import subprocess
 
 from verify_blind_upper_components import (
     DECLARATION, FORBIDDEN, IMPORT, module_path, project_dependencies, sha,
-    strip_comments, validate_reports,
+    strip_comments, validate_reports, imports, validate_dependency_freeze,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -50,9 +51,10 @@ def validate_sources() -> tuple[list[Path], set[str]]:
     }
     if EXACT_TARGETS != required_targets:
         raise ValueError('Missing or changed exact full target')
-    freeze = json.loads((ROOT/'tools/critical_psi_specification_freeze.json').read_text())
+    freeze = json.loads((ROOT/'tools/critical_psi_specification_freeze.json').read_text(encoding='utf-8'))
     if freeze['source_sha256'] != FROZEN or any(sha(ROOT/p) != h for p,h in FROZEN.items()):
         raise ValueError('Frozen variational model or specification changed')
+    validate_dependency_freeze(SOURCE/'Specification.lean', freeze)
     paths = [module_path(PREFIX+m) for m in MODULES]
     if set(paths) != set(SOURCE.glob('*.lean')):
         raise ValueError('Missing or unregistered Psi module')
@@ -63,7 +65,7 @@ def validate_sources() -> tuple[list[Path], set[str]]:
         if FORBIDDEN.search(source):
             raise ValueError('Forbidden proof escape in '+str(path))
         roots.extend(PREFIX+n for n in DECLARATION.findall(source))
-        for dependency in IMPORT.findall(source):
+        for dependency in imports(source):
             if dependency in all_modules and dependency not in seen:
                 raise ValueError('Invalid dependency order: '+dependency)
         seen.add(PREFIX+name)
@@ -75,12 +77,13 @@ def validate_sources() -> tuple[list[Path], set[str]]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output-dir',type=Path)
+    parser.add_argument('--sequential',action='store_true')
     args = parser.parse_args()
     paths,roots = validate_sources()
     protected = project_dependencies(paths) | {
         Path(__file__).resolve(),ROOT/'tools/verify_blind_upper_components.py',
         ROOT/'tools/verify_tier6.py',ROOT/'tools/critical_psi_specification_freeze.json',
-        LEAN/'lean-toolchain',LEAN/'lake-manifest.json',
+        LEAN/'lean-toolchain',LEAN/'lake-manifest.json',LEAN/'lakefile.toml',
     }
     hashes = {p.relative_to(ROOT).as_posix():sha(p) for p in sorted(protected)}
     output = args.output_dir or ROOT/'.runtime/critical-psi'/datetime.now(
@@ -98,11 +101,8 @@ def main() -> int:
     audit.write_text(''.join('import '+PREFIX+m+'\n' for m in MODULES)+'\n'+
                     ''.join(f'example : {t} := {d}\n' for d,t in EXACT_TARGETS.items())+'\n'+
                     ''.join('#print axioms '+r+'\n' for r in sorted(roots)),encoding='utf-8')
-    commands=[]
-    for path,name in zip(paths,MODULES):
-        target=LEAN/'.lake/build/lib/lean/ThresholdHC/CriticalPsi'/(name+'.olean')
-        target.parent.mkdir(parents=True,exist_ok=True)
-        commands.append(['lake','env','lean','-o',str(target),str(path.relative_to(LEAN))])
+    modules=[PREFIX+name for name in MODULES]
+    commands=[['lake','build',m] for m in modules] if args.sequential else [['lake','build',*modules]]
     commands.append(['lake','env','lean',str(audit.relative_to(LEAN))])
     for i,command in enumerate(commands):
         result=subprocess.run(command,cwd=LEAN,capture_output=True,text=True,encoding='utf-8')
