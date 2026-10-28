@@ -30,6 +30,11 @@ The upper coefficient is 100000, a coarse universal bound. The exact
 are also Lean-checked. The other [rare-event results](paper/v5/rare-events.tex)
 retain paper-proof status.
 The [results guide](docs/RESULTS.md) records the precise rate, model and audit.
+The [all-size finite-gap extension](lean/ThresholdHC/CriticalAllSizes/FiniteGap.lean)
+removes the count restriction at coefficient 1/4096, preserving 1/512 for
+`log K >= 32`. Its [separate audit](results/critical_all_sizes_002.json) also
+checks explicit single-coin raw-moment and variance/null-work coefficients;
+these are not explicit population minimax constants.
 Both PDFs now link the completed formal results at checkpoint `eabf274` and
 explain the differences between the paper and formal constructions.
 The [full distribution-blind upper theorem](docs/BLIND_UPPER.md) now includes

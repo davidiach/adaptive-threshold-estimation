@@ -1,0 +1,192 @@
+{
+  "valid": true,
+  "scope": "Finite-gap sign entropy for all natural gap counts with coefficient 1/4096; estimator and population-scale consequences; raw second moment times null work at least rho*L*H/10000000000 and variance times null work at least rho*L*H/15000000000 for actual observable single-coin procedures. The original 1/512 large-count bound remains unchanged. No new explicit population minimax constant is asserted.",
+  "source_sha256": {
+    "lean/lake-manifest.json": "a7058b14db1034b58735d82f1cf9a82a938855e93decc1960ca7d21e786fdfe2",
+    "lean/lakefile.toml": "273cfe4674e97219b22f7de1428bdadfb45379c7fa582882c59624ab7fbc3189",
+    "lean/lean-toolchain": "d581a24b57a4ae9e0b2132ca8ac7cc3ac336a9fc2751fe6b29414e2d434d54c4",
+    "lean/ThresholdHC/CriticalAllSizes/Asymptotics.lean": "e918ee1e2023773a6e0fc3b02d432ff6bbd27e02af0ea2c229fe6911a64d962d",
+    "lean/ThresholdHC/CriticalAllSizes/BaseCost.lean": "2997e02bf9218d5cd35b4307aab18c24c92b3159f95bc600a4f71caa847949c4",
+    "lean/ThresholdHC/CriticalAllSizes/Estimation.lean": "4f273480b1b5e35e612c19fed2ef5aa2470f2e45724b741a70bcc78e35d94c8b",
+    "lean/ThresholdHC/CriticalAllSizes/FiniteGap.lean": "4a8956ff0d46259226d92873bfeb18653055426e0a3cbac43bbdf07f36ca0c36",
+    "lean/ThresholdHC/CriticalAllSizes/Product.lean": "454aa628c06cea1b8d1c824bcba9f2e25598261a79e5a601dd4bd0181ad58647",
+    "lean/ThresholdHC/CriticalAllSizes/Scale.lean": "ca1a1325a8c2f0d82218a367cf413374473f13524a035dd0c945b98cceac18ef",
+    "lean/ThresholdHC/CriticalAllSizes/SingleGap.lean": "1dcb34e15d624f20136ad070b7e6bdde156503041875a6227e089cf1de02e0d5",
+    "lean/ThresholdHC/CriticalAllSizes/Specification.lean": "8c908af5b0008ac17d9f87ea0b3228b6d4b24f0eaa4b68ffad8f68be14a1f17e",
+    "lean/ThresholdHC/CriticalEntropy/Activation.lean": "f672ce06ed0a648c90730a4d4ba6272730372f70c1e1da0130ebd7ec7c047b4f",
+    "lean/ThresholdHC/CriticalEntropy/ActivationCost.lean": "2fabd22ddf086c380d23792b0889874b5881f4a0c19a45238ff7e12ddd4d1a4f",
+    "lean/ThresholdHC/CriticalEntropy/ActivationModel.lean": "b2632bce6dda14e63fb6def05373cbd88259a1386cc010f0d171b7f33613f978",
+    "lean/ThresholdHC/CriticalEntropy/BaseCost.lean": "b8bcbdd53e3829d4f8d8ccd26d4666d4dd81f3d5323fc97e40ae8e836917043d",
+    "lean/ThresholdHC/CriticalEntropy/BernoulliPrefix.lean": "56a12478a7b94b06519f60a003819575e61ca18bd447d5734a770ba3f54b4708",
+    "lean/ThresholdHC/CriticalEntropy/ConditionalMoments.lean": "4d031b445e8a457a621620e656315ac8250360a04f91804e669e85b5a5367744",
+    "lean/ThresholdHC/CriticalEntropy/CriticalAnnuli.lean": "40ebdbc1e8324db9145b2422c05cbaa91a49223ae21b67cbbb68534b8b763316",
+    "lean/ThresholdHC/CriticalEntropy/CriticalLaw.lean": "61a07e9e35e3660979e918a4ba33e3b08ba3f0449241acda00ace49c8c2b6bb7",
+    "lean/ThresholdHC/CriticalEntropy/CriticalModel.lean": "66465b14833b77f3dddd3fe1cef2e40714613d9783d87c610e30be0745a8e685",
+    "lean/ThresholdHC/CriticalEntropy/CriticalScale.lean": "9e5112a2824d5a952b62aed55990e99595b2f40d4305b163821216c304f97fe3",
+    "lean/ThresholdHC/CriticalEntropy/EarlyDecision.lean": "87fe08199c0052318fef8a0c11e6ba8be2297a712fdfe86f7a17b0be0a45ba38",
+    "lean/ThresholdHC/CriticalEntropy/EstimationEntropy.lean": "25f05e3ed3a8b39aff00534ca1a6dee766012abf12a00c508de1074b48de4312",
+    "lean/ThresholdHC/CriticalEntropy/EventInformation.lean": "d2888a4291ca0423077dc6026fded8f4cdec9a821a1db5c4e848060e004bf71e",
+    "lean/ThresholdHC/CriticalEntropy/FiniteGap.lean": "e7a7094bd949b745b6603d3bb6f6f757d5fdc7e6c531028013d9aa2e109bb369",
+    "lean/ThresholdHC/CriticalEntropy/GapSelection.lean": "798d3d4b24bedb28375b3931578495531497440ce8cf331656ff37519d63a5dd",
+    "lean/ThresholdHC/CriticalEntropy/GeometricOverlap.lean": "5b782cc81f070a81b818be81acfab69f4fae9bd6ae27cc30d3b1501b41eca93f",
+    "lean/ThresholdHC/CriticalEntropy/GoodGapModel.lean": "6e8774ae05d6c09e93f91457e5ce0f21de9febc5eb5764aeca1663389944f64e",
+    "lean/ThresholdHC/CriticalEntropy/GoodGaps.lean": "245c07a0b986381ea4359cc3ac2f0c386965c7dc8eb1cdc7fe27b2925e42b93f",
+    "lean/ThresholdHC/CriticalEntropy/HalfPrior.lean": "70987dd4ac7631e55befa63d70436272ada328177a6888be7632752a723771b7",
+    "lean/ThresholdHC/CriticalEntropy/Packing.lean": "0819b363020bec3f9b82bbaf86387be6d78d3631381b590b640d587fea011a95",
+    "lean/ThresholdHC/CriticalEntropy/PopulationMixture.lean": "e1731a76df0e157101ec7013e01c21c854c4219a760c1e94371f06a6eba49525",
+    "lean/ThresholdHC/CriticalEntropy/PopulationModel.lean": "6563b8a07b6941cae10140c0611d6c13e63378bb9eae0009f1d03e987ac315fd",
+    "lean/ThresholdHC/CriticalEntropy/PopulationVariance.lean": "39ae6e240767e093a33bec7290e5daa16ae2dcf4c791f84f078ad5bff584f2e5",
+    "lean/ThresholdHC/CriticalEntropy/RepeatedModel.lean": "de43c043e98529ed9509400d0eb2f3ea4216c27343fd660f55e4320125e72f1e",
+    "lean/ThresholdHC/CriticalEntropy/RepeatedRestart.lean": "0451ca311f815b6a93876917db5527ba94aaf1e169e2b5f1fe6b47b9e336c231",
+    "lean/ThresholdHC/CriticalEntropy/RepeatedSignModel.lean": "660542041063023fc2d70962d777600ff60411007b25f76cf7e466968106a652",
+    "lean/ThresholdHC/CriticalEntropy/RestartPair.lean": "8c86a915636f670d1161a12e75d0a7ad18c5a4780f63e8c8a26064ec39c3ce5a",
+    "lean/ThresholdHC/CriticalEntropy/SampleMean.lean": "1befda118991d7f53aa696f75ce26c48cea9e48c302badb719ad7880e8833286",
+    "lean/ThresholdHC/CriticalEntropy/ScaleAsymptotics.lean": "6cae0e65bc2bce3dc390855869edfd9fa24aefde46ddac9bb03fc755c565d234",
+    "lean/ThresholdHC/CriticalEntropy/SequentialModel.lean": "f7e044ffb8ca3182c405730e3491fe1b813da85728fc8ee030aec5e97336bff4",
+    "lean/ThresholdHC/CriticalEntropy/SignReduction.lean": "3fadc6fcb4f89fe3b84e4d07447ea349acfb7f490bacaf337509270d26829cb9",
+    "lean/ThresholdHC/CriticalEntropy/SignTest.lean": "39842334c60c3b8d63e9bdd67d33496a12270eacf58375cb8c02fb583a3fe776",
+    "lean/ThresholdHC/CriticalEntropy/StoppedModel.lean": "0ea485349d3f2465044b1978f0dc544935a40cc764bf615a98a8ba9bfc734378",
+    "lean/ThresholdHC/CriticalEntropy/StoppedTape.lean": "3a856b343447fdcfc3633a59684804af603de9279cbfc4b30202992c2c9c1124",
+    "lean/ThresholdHC/CriticalEntropy/StoppingWindow.lean": "5c746a6415390eed76298153a03dae8ea42a38fd5a2a52cb1c16a2da6fa038ee",
+    "lean/ThresholdHC/CriticalEntropy/UniformCoin.lean": "0485ada581ebb1d3c551fb15b4b7fd0edf4b6f1b5901912420d0c7d53fbb4ee6",
+    "lean/ThresholdHC/Proofs/Algebra.lean": "68efcc1bef2ab5407fa86b1e8fea52c2baeaf0001bfe5d548d0a58ee959fb155",
+    "lean/ThresholdHC/Proofs/KL.lean": "ddf4b0067271296ea1836e44fe01fe55bf1143e14cf1f5b3473e38a196d966c3",
+    "lean/ThresholdHC/Proofs/Tier2/ClassifierProbability.lean": "bae7b6d3d3fc0f3e8fd32bf626a316b44fac61b4c05593da98148dbe1a0e11c3",
+    "lean/ThresholdHC/Proofs/Tier2/Information.lean": "4b62b5996af4e6c96cff51796745fc9b8dea356744b1ae7f0777ecc43b76fd16",
+    "lean/ThresholdHC/Proofs/Tier2/InformationCore.lean": "0a6a1af42b5b0af29db453982aabd1a4dbb615baf1284c8ecf6d14e5b0d58590",
+    "lean/ThresholdHC/Proofs/Tier2/Transcript.lean": "e8b8feca5af14a68f23fa9cdc57eb28259f87c18d3ff092ca732b353daf4e640",
+    "lean/ThresholdHC/Proofs/Tier2/TranscriptBase.lean": "ef06442bc824d756f959d0c9711edbf8b84a61359d8d1a10fedb8dbfe5c201d7",
+    "lean/ThresholdHC/Proofs/Tier2/TranscriptLikelihood.lean": "7d051a6f2f028d912910c9d18533b6db90863328a7bdc6c87c4181fade7c489f",
+    "lean/ThresholdHC/Proofs/Tier2/TranscriptScalar.lean": "dc691a74b9b1915377df80cd2caac4feec5d7bee3938480b906afbdb04630fee",
+    "lean/ThresholdHC/Statements.lean": "0873505b7c133561e82f63dcbba7f7a0a3da39d0c3692daee99d01882a757abf",
+    "lean/ThresholdHC/Statements2.lean": "51f85fee842aec2de331872b760ecd47e15715a84deaf5b8f08970bd9fa01414",
+    "lean/ThresholdHC/Tier3/RandomizedBase.lean": "87af7b31ba2c3cc9ff623cf403d954ffd7b8844c1b3af6e9283b823921ed8285",
+    "lean/ThresholdHC/Tier3/RandomizedModel.lean": "3a61f9b034ee58e45e903356c60037e4808fdb1a711d96b24f3013ef95716f6b",
+    "lean/ThresholdHC/Tier4/FiniteDensity.lean": "7b4216aebc1b247486233e4ea86de2e5b67301526bc3f5b730b4db4ebd53cba2",
+    "lean/ThresholdHC/Tier6/TestingFinite.lean": "588e6f50a2dc9a227c941672d330d8e3b3f6582a4e41edca2be5fe2894f88fd2",
+    "lean/ThresholdHC/Uniform713/Common.lean": "419b64d64f21f718214caabee9927b174d512f3c129139be26605400853e3dab",
+    "lean/ThresholdHC/Uniform713/Concentration.lean": "b494cc19ba348e05533c0a6f7715de8bda306c94e4ad613bb8515e5af6b7c149",
+    "tools/critical_all_sizes_specification_lock.json": "8200a8566d540547f7e4e9592e3c8f8b12d159cfcf00c76ee66347c6e7d8e010",
+    "tools/verify_blind_upper_components.py": "ee01fa2cedbe2db008a21b3bae38dab2b4522fa4028d181ff7ec91ea759dab5d",
+    "tools/verify_critical_all_sizes.py": "e62dabfa7ecc72253cfefcfb21f3dd38ebca1c779d2db79e24f2f46d9ede8f4f",
+    "tools/verify_tier6.py": "7295c1609c57be9951fc46f3e210f7f7682083470cf94bbe2dd89a387b0f075e"
+  },
+  "exact_targets": {
+    "ThresholdHC.CriticalAllSizes.finite_gap_sign_entropy_all": "ThresholdHC.CriticalAllSizes.AllGapStatement",
+    "ThresholdHC.CriticalAllSizes.finite_gap_estimation_entropy_all": "ThresholdHC.CriticalAllSizes.AllGapEstimationStatement",
+    "ThresholdHC.CriticalAllSizes.critical_raw_base_cost_explicit": "ThresholdHC.CriticalAllSizes.ExplicitRawBaseCostStatement",
+    "ThresholdHC.CriticalAllSizes.critical_base_cost_explicit": "ThresholdHC.CriticalAllSizes.ExplicitBaseCostStatement"
+  },
+  "exact_targets_checked": 4,
+  "specifications_frozen_before_proofs": false,
+  "commands": [
+    {
+      "command": [
+        "lake",
+        "build",
+        "ThresholdHC.CriticalAllSizes.Specification",
+        "ThresholdHC.CriticalAllSizes.SingleGap",
+        "ThresholdHC.CriticalAllSizes.FiniteGap",
+        "ThresholdHC.CriticalAllSizes.Estimation",
+        "ThresholdHC.CriticalAllSizes.Scale",
+        "ThresholdHC.CriticalAllSizes.Product",
+        "ThresholdHC.CriticalAllSizes.Asymptotics",
+        "ThresholdHC.CriticalAllSizes.BaseCost"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        ".audit\\CriticalAllSizes.lean"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "axioms": {
+    "ThresholdHC.CriticalAllSizes.AllGapEstimationStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalAllSizes.AllGapStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalAllSizes.ExplicitBaseCostStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalAllSizes.ExplicitRawBaseCostStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalAllSizes.critical_base_cost_explicit": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalAllSizes.critical_product_scale_all": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalAllSizes.critical_raw_base_cost_explicit": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalAllSizes.critical_scalar_base_cost_explicit": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalAllSizes.critical_scale_entropy_all": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalAllSizes.critical_scale_product_all": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalAllSizes.entropy_scale_count_all": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalAllSizes.finite_gap_estimation_entropy_all": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalAllSizes.finite_gap_sign_entropy_all": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalAllSizes.moderate_event_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalAllSizes.moderate_prefix_information": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.CriticalAllSizes.single_gap_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "audited_modules": 8,
+  "audited_declarations": 16
+}

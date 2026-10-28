@@ -27,12 +27,11 @@
 \section*{Review brief: the quadratic rare-event law}
 \addcontentsline{toc}{section}{Review brief}
 
-\noindent\textbf{Purpose.} This packet asks for a correctness and prior-art
-assessment of a specific statistical claim. The opening brief gives the
-claim, its vulnerable dependencies, and the verification boundary. The
-remaining pages contain the complete existing paper argument with its three
-proof inputs expanded in place. This is an AI-assisted research draft; no
-external specialist review is claimed.
+\noindent\textbf{Purpose.} This packet requests correctness and prior-art review.
+The brief precedes a new all-size entropy/base-cost addendum, then the complete
+preserved argument with its three proof inputs. The addendum's references to
+the original BC2 theorem and reduction point forward to that argument.
+This AI-assisted draft has no external specialist review.
 
 \subsection*{The experiment and claimed rate}
 A fresh coin has hidden magnitude $D$ with density $32d$ on $(0,1/4]$ and
@@ -251,6 +250,95 @@ uniformity as a power exponent approaches two, explicit useful constants,
 or practical superiority of an implementation.
 
 \endgroup
+\clearpage
+\section*{Addendum: all finite gap counts and explicit base costs}
+\phantomsection
+\addcontentsline{toc}{section}{All finite gap counts and explicit base costs}
+
+This extension supplements the preserved critical-law proof. For the same
+observable $1/10$-correct sign test and separated gaps $0<d_j\le1/128$,
+with finite expected work under both signs, every integer $K\ge1$ satisfies
+\[
+ \sum_{j=1}^K d_j^2\E_{-d_j}T\ge\frac{K\log K}{4096}.
+\]
+The existing coefficient $1/512$ still applies when $\log K\ge32$.
+Thus the restriction on the number of gaps is removed with a uniform
+coefficient eight times smaller. The all-$K$ extension with coefficient
+$1/512$ is not established here.
+
+\paragraph{The finite-prefix floor.}
+Fix one gap $d$ and put $n=\lfloor1/(32d^2)\rfloor$. The negative and
+positive laws of the seed and first $n$ flips have divergence at most
+\[
+ \frac{4nd^2}{(1/2+d)(1/2-d)}\le\frac8{15},
+\]
+since $d\le1/128<1/8$. Let $E$ be the event that the test stops by time
+$n$ and returns minus. Its positive-law probability is at most $1/10$.
+If its negative-law probability exceeded $5/8$, binary data processing
+and Pinsker would give divergence at least
+$2(5/8-1/10)^2=441/800>8/15$. Consequently
+\[
+ \Pp_{-d}(T>n)\ge1-1/10-5/8=11/40,
+ \qquad
+ d^2\E_{-d}T\ge\frac{11}{40}\left(\frac1{32}-\frac1{16384}\right)
+ >\frac1{128}.
+\]
+Only finite expected work under the negative law is used for this floor;
+fair-coin termination is unnecessary. Summing gives $K/128$. For
+$\log K\le32$ this dominates $K\log K/4096$; for $\log K\ge32$ the
+original entropy theorem (BC2 in the preserved critical-law argument)
+supplies the stronger coefficient $1/512$.
+
+\subsection*{Explicit base costs for the same single-coin model}
+\phantomsection
+\addcontentsline{toc}{subsection}{Explicit single-coin base costs}
+Write $L=1+\log(1/\rho)$, $H=1+\log L$, and $W_0=\E_0T$.
+For any observable single-coin estimator with uniform bias at most
+$\rho/64$ on $\mathcal X_\rho$, finite work under each prior, and a
+uniform raw second moment bound $M$, the new proof gives
+\[
+ M W_0\ge 10^{-10}\rho LH.
+\]
+If instead $V$ bounds the extended variance uniformly, it gives
+\[
+ V W_0\ge\frac{\rho LH}{15\cdot10^9}.
+\]
+These statements retain the original quantifiers over seed spaces,
+observable procedures, and priors; conditional moments and repeated
+sign tests are constructed inside the proof.
+
+Here is the constant calculation. Put $P=MW_0$. Activation still gives
+$P\ge\rho/6$. The all-size entropy inequality and the existing good-gap
+selection give, whenever all selected annuli have mass at least $560P$,
+\[
+ \rho K\log K\le(21004288/3)P.
+\]
+For $t=\log(1/\rho)\ge16384$ choose
+$K=\lfloor t/(8\log16)\rfloor$. If $P\ge e^{-t/2}$, the existing
+exponential bound already gives $P\ge\rho LH$. Otherwise the annulus
+mass condition holds and $LH\le256\log16\,K\log K$.
+Since $256\log16\,(21004288/3)<10^{10}$, this proves the raw-moment claim.
+For $t<16384$, $LH\le16385^2<10^{10}/6$, so the activation floor suffices.
+The variance claim follows from the existing bound $M\le3V/2$ in the
+uniform-bias reduction.
+
+The earlier constructive proof used
+$t_0=8192+16\log16+(16\log16)^2+16\log16\,e^{32}$ and a raw-moment
+constant about $1.29\cdot10^{-18}$. The new explicit constant is about
+$7.7\cdot10^7$ times larger. This numerical comparison concerns the
+constants produced by these proofs, not the optimal constant. No explicit
+constant is propagated through the common-pair and population-minimax
+steps here, and no practical improvement for an estimator is inferred.
+
+The separate
+\href{https://github.com/davidiach/adaptive-threshold-estimation/tree/ebd36676693b66814bc2a379529499428ab98650/lean/ThresholdHC/CriticalAllSizes}{\nolinkurl{CriticalAllSizes} Lean extension}
+checks the all-size
+sign and estimator statements and both explicit base-cost statements.
+Its target and dependency snapshot was made during implementation; it
+does not constitute an independent specification or independent review.
+The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/ebd36676693b66814bc2a379529499428ab98650/results/critical_all_sizes_001.json}{recorded audit}
+checks four exact targets and all 16 declarations in eight new modules.
+
 \clearpage
 \part*{Complete critical-law argument}
 \addcontentsline{toc}{part}{Complete critical-law argument}
