@@ -3,6 +3,7 @@ import unittest
 from unittest.mock import patch
 
 import verify_critical_psi as audit
+import verify_blind_upper_components as shared
 
 
 class CriticalPsiAuditTests(unittest.TestCase):
@@ -26,6 +27,16 @@ class CriticalPsiAuditTests(unittest.TestCase):
                 return '0'*64 if path==audit.ROOT/rel else real_sha(path)
             with self.subTest(path=rel),patch.object(audit,'sha',side_effect=changed):
                 with self.assertRaisesRegex(ValueError,'Frozen variational'):
+                    audit.validate_sources()
+
+    def test_changed_imported_objective_or_minimax_model_rejected(self):
+        real_sha=shared.sha
+        for rel in ('lean/ThresholdHC/Tier3/OptimizerModel.lean',
+                    'lean/ThresholdHC/CriticalEntropy/CriticalRareModel.lean'):
+            def changed(path):
+                return '0'*64 if path==audit.ROOT/rel else real_sha(path)
+            with self.subTest(path=rel),patch.object(shared,'sha',side_effect=changed):
+                with self.assertRaisesRegex(ValueError,'dependency changed'):
                     audit.validate_sources()
 
     def test_missing_module_rejected(self):

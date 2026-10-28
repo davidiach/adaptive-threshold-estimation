@@ -7,6 +7,8 @@ import json
 from pathlib import Path
 import re
 
+from build_v5 import once
+
 ROOT = Path(__file__).resolve().parents[1]
 ORIGINAL = ROOT / "research/2026-10-27-nonlinear-critical"
 PACKET = ROOT / "paper/critical-review"
@@ -21,18 +23,18 @@ def assemble() -> str:
             raise ValueError("Reviewed source identity mismatch: " + name)
         texts[name] = data.decode("utf-8").replace("\r\n", "\n")
     source = texts["unrestricted.tex"]
-    source = source.replace(r"\usepackage{amsmath,amssymb,amsthm,mathtools}",
-                            r"\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,microtype,array,xurl}"
-                            + "\n" + r"\setlength{\emergencystretch}{2em}")
-    source = source.replace(r"\title{The critical quadratic margin: an unrestricted minimax characterization}",
-                            r"\title{An iterated-log phase transition in rare-event threshold estimation\\[4pt]\large Specialist review packet}")
-    source = source.replace(r"\author{Research continuation: independent construction and adversarial review roles}",
-                            r"\author{Project lead: David Iach\\\small AI-assisted research draft}")
-    source = source.replace(r"\date{27 October 2026}", r"\date{28 October 2026}")
-    source = source.replace(r"\maketitle", "\\maketitle\n" +
-                            (PACKET / "overview.tex").read_text(encoding="utf-8"))
-    source = source.replace(r"\textbf{Status.}",
-                            r"\textbf{Inherited paper status (27 October 2026).}")
+    source = once(source, r"\usepackage{amsmath,amssymb,amsthm,mathtools}",
+                  r"\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,microtype,array,xurl}"
+                  + "\n" + r"\setlength{\emergencystretch}{2em}")
+    source = once(source, r"\title{The critical quadratic margin: an unrestricted minimax characterization}",
+                  r"\title{An iterated-log phase transition in rare-event threshold estimation\\[4pt]\large Specialist review packet}")
+    source = once(source, r"\author{Research continuation: independent construction and adversarial review roles}",
+                  r"\author{Project lead: David Iach\\\small AI-assisted research draft}")
+    source = once(source, r"\date{27 October 2026}", r"\date{28 October 2026}")
+    source = once(source, r"\maketitle", "\\maketitle\n" +
+                  (PACKET / "overview.tex").read_text(encoding="utf-8"))
+    source = once(source, r"\textbf{Status.}",
+                  r"\textbf{Inherited paper status (27 October 2026).}")
     for name in ("base_cost.tex", "affine_comparison.tex", "upper_bound.tex"):
         directive = "\\input{" + name + "}"
         if source.count(directive) != 1:

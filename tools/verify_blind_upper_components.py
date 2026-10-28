@@ -1,8 +1,9 @@
 """Kernel-check the full distribution-blind upper theorem and its construction.
 
-Run after the documented baseline/Tier 6 and critical-component builds. The
-final proof must inhabit the unchanged frozen specification. This audit does
-not certify the separate critical rare-event upper theorem.
+Lake rebuilds any stale prerequisite, so earlier baseline/Tier 6 and
+critical-component runs only save time. The final proof must inhabit the
+unchanged frozen specification. This audit does not certify the separate
+critical rare-event upper theorem. Use --sequential on memory-limited runners.
 """
 from __future__ import annotations
 
@@ -44,6 +45,29 @@ def module_path(module: str) -> Path:
     return LEAN.joinpath(*module.split(".")).with_suffix(".lean")
 
 
+def imports(source: str) -> list[str]:
+    """Accept the registered one-module-per-line format, failing closed otherwise.
+
+    Lean also accepts several modules on one import line. Silently ignoring such
+    a line would omit dependencies from the source hashes and specification lock.
+    """
+    result = []
+    for line in source.splitlines():
+        if re.match(r"\s*import\b", line):
+            match = re.fullmatch(r"\s*import[^\S\n]+([\w.]+)\s*", line)
+            if match is None:
+                raise ValueError("Unsupported import syntax: " + line.strip())
+            result.append(match[1])
+    return result
+
+
+def validate_dependency_freeze(specification: Path, freeze: dict) -> None:
+    dependencies = project_dependencies([specification]) - {specification}
+    actual = {p.relative_to(ROOT).as_posix(): sha(p) for p in sorted(dependencies)}
+    if freeze.get("dependency_sha256") != actual:
+        raise ValueError("Frozen specification dependency changed")
+
+
 def validate_reports(output: str, returncode: int, expected: set[str]) -> dict[str, list[str]]:
     if returncode:
         raise ValueError("Lean audit exited unsuccessfully")
@@ -72,6 +96,10 @@ def validate_sources(registry: dict) -> tuple[list[Path], set[str]]:
         raise ValueError("Frozen specification registration changed")
     if sha(ROOT / SPECIFICATION) != SPECIFICATION_SHA256:
         raise ValueError("Frozen distribution-blind specification changed")
+    freeze = json.loads((ROOT / "tools/blind_upper_specification_freeze.json").read_text(encoding="utf-8"))
+    if freeze.get("source") != SPECIFICATION or freeze.get("sha256") != SPECIFICATION_SHA256:
+        raise ValueError("Frozen specification registration changed")
+    validate_dependency_freeze(ROOT / SPECIFICATION, freeze)
     if registry["extra_dependency_builds"] != EXTRA_DEPENDENCIES:
         raise ValueError("Unregistered prerequisite build")
     paths = [module_path(m) for m in modules]
@@ -87,7 +115,7 @@ def validate_sources(registry: dict) -> tuple[list[Path], set[str]]:
             raise ValueError("Forbidden proof escape in " + str(path))
         namespace = module.rsplit(".", 1)[0] + "."
         declared.extend(namespace + name for name in DECLARATION.findall(source))
-        for dependency in IMPORT.findall(source):
+        for dependency in imports(source):
             if dependency in modules and dependency not in seen:
                 raise ValueError("Component dependency order is invalid: " + dependency)
         seen.add(module)
@@ -106,7 +134,7 @@ def project_dependencies(paths: list[Path]) -> set[Path]:
             continue
         source = strip_comments(path.read_text(encoding="utf-8"))
         found.add(path)
-        for dependency in IMPORT.findall(source):
+        for dependency in imports(source):
             if dependency.startswith("ThresholdHC."):
                 pending.append(module_path(dependency))
             elif dependency != "Mathlib" and not dependency.startswith("Mathlib."):
@@ -117,13 +145,14 @@ def project_dependencies(paths: list[Path]) -> set[Path]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", type=Path)
+    parser.add_argument("--sequential", action="store_true")
     args = parser.parse_args()
     registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
     paths, expected = validate_sources(registry)
     protected = project_dependencies(paths) | {
         Path(__file__).resolve(), REGISTRY, ROOT / "tools/verify_tier6.py",
         ROOT / "tools/blind_upper_specification_freeze.json",
-        LEAN / "lean-toolchain", LEAN / "lake-manifest.json",
+        LEAN / "lean-toolchain", LEAN / "lake-manifest.json", LEAN / "lakefile.toml",
     }
     hashes = {p.relative_to(ROOT).as_posix(): sha(p) for p in sorted(protected)}
     output = args.output_dir or ROOT / ".runtime/blind-upper-components" / datetime.now(
@@ -153,12 +182,9 @@ def main() -> int:
                      "".join(f"example : {target} := {declaration}\n"
                              for declaration, target in EXACT_TARGETS.items()) + "\n" +
                      "".join("#print axioms " + r + "\n" for r in sorted(expected)), encoding="utf-8")
-    commands = []
-    for module in registry["extra_dependency_builds"] + registry["modules"]:
-        source = module_path(module)
-        target = (LEAN / ".lake/build/lib/lean").joinpath(*module.split(".")).with_suffix(".olean")
-        target.parent.mkdir(parents=True, exist_ok=True)
-        commands.append(["lake", "env", "lean", "-o", str(target), str(source.relative_to(LEAN))])
+    # Lake rebuilds any stale transitive import, so hashed sources are the compiled ones.
+    modules = registry["extra_dependency_builds"] + registry["modules"]
+    commands = [["lake", "build", m] for m in modules] if args.sequential else [["lake", "build", *modules]]
     commands.append(["lake", "env", "lean", str(audit.relative_to(LEAN))])
     for i, command in enumerate(commands):
         result = subprocess.run(command, cwd=LEAN, capture_output=True, text=True, encoding="utf-8")
