@@ -1,6 +1,6 @@
 # Full verification commands
 
-The critical upper classifier checkpoint has a scoped audit, run after the
+The critical upper estimator checkpoint has a scoped audit, run after the
 critical and distribution-blind builds below:
 
 ```sh
@@ -8,11 +8,13 @@ python tools/verify_critical_upper_components.py
 python -m unittest discover -s tools -p 'test_critical_upper_components.py' -v
 ```
 
-It checks every declaration in the ten `CriticalUpper` modules, their
+It checks every declaration in the eighteen `CriticalUpper` modules, their
 transitive axioms, and the unchanged pre-proof full specification. The
-[component record](../results/critical_upper_components_001.json) does not
-certify the full upper theorem: calibration, unbiased telescoping, and
-budgeted realization remain pending. See the [exact scope](CRITICAL_AUDIT.md#upper-construction-checkpoint).
+[component record](../results/critical_upper_components_002.json) includes
+calibration and the actual population unbiased estimator, second moment and
+expected work. It does not certify the full upper theorem: budgeted fresh-coin
+aggregation and its Tier 6 realization remain pending. See the
+[exact scope](CRITICAL_AUDIT.md#upper-construction-checkpoint).
 
 The full distribution-blind upper theorem has a separate
 [verification record](BLIND_UPPER.md). After the baseline, Tier 6, and critical

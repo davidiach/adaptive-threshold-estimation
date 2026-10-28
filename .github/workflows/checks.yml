@@ -141,7 +141,7 @@ jobs:
         run: python tools/verify_critical_components.py
       - name: Verify the full distribution-blind upper theorem
         run: python tools/verify_blind_upper_components.py
-      - name: Verify critical upper classifier components
+      - name: Verify critical upper estimator components
         run: python tools/verify_critical_upper_components.py
       - uses: actions/upload-artifact@v4
         if: always()
