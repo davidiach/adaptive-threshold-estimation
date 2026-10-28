@@ -1,12 +1,12 @@
 # Consolidated version 5
 
-[Read the manuscript](paper.pdf) · [Open the LaTeX project](main.tex)
+[Read the manuscript](paper.pdf) Â· [Open the LaTeX project](main.tex)
 
 This is the current combined research draft: the original minimax law and
 unbiased characterization, the 713 construction, rare-event power regimes,
 and the critical quadratic result correcting the matching-Psi conjecture.
 The main statements are in sections 2, 7 and 11. Section 12 gives the exact
-formal verification boundary. Appendices A–C contain the longer rare-event
+formal verification boundary. Appendices Aâ€“C contain the longer rare-event
 proofs, including their published external inputs.
 
 The original RMS law is Lean-checked in both directions, with lower coefficient
@@ -66,7 +66,9 @@ The project also compiles in the desktop LaTeX editor. The published PDF was
 exported with Tectonic 0.17.0 on 28 October 2026, rendered with Poppler,
 and visually inspected.
 It has 57 pages, no unresolved references or overfull boxes. The source check
-resolves 141 unique labels and 24 bibliography citations. Typesetting and source
+resolves 141 unique labels and 24 bibliography citations, and rejects uncited
+references. The PDF includes the corrected Chen--Li--Qiao citation in Appendix C.
+Typesetting and source
 identity checks do not constitute a new mathematical proof or independent review.
 
 The assembly regression checks preserve function arguments such as `q(D)`,

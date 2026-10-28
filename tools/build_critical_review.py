@@ -7,6 +7,8 @@ import json
 from pathlib import Path
 import re
 
+from build_v5 import once
+
 ROOT = Path(__file__).resolve().parents[1]
 ORIGINAL = ROOT / "research/2026-10-27-nonlinear-critical"
 PACKET = ROOT / "paper/critical-review"
@@ -21,21 +23,23 @@ def assemble() -> str:
             raise ValueError("Reviewed source identity mismatch: " + name)
         texts[name] = data.decode("utf-8").replace("\r\n", "\n")
     source = texts["unrestricted.tex"]
-    source = source.replace(r"\usepackage[a4paper,margin=25mm]{geometry}",
+    source = once(source, r"\usepackage[a4paper,margin=25mm]{geometry}",
                             r"\usepackage[a4paper,margin=25mm]{geometry}" + "\n"
                             + r"\usepackage[T1]{fontenc}" + "\n" + r"\usepackage{lmodern}"
                             + "\n" + r"\renewcommand{\labelitemi}{\(\bullet\)}")
-    source = source.replace(r"\usepackage{amsmath,amssymb,amsthm,mathtools}",
+    source = once(source, r"\usepackage{amsmath,amssymb,amsthm,mathtools}",
                             r"\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,microtype,array,xurl}"
                             + "\n" + r"\setlength{\emergencystretch}{2em}")
-    source = source.replace(r"\title{The critical quadratic margin: an unrestricted minimax characterization}",
+    source = once(source, r"\title{The critical quadratic margin: an unrestricted minimax characterization}",
                             r"\title{\textbf{A sharp minimax law for rare-event threshold estimation under a quadratic margin}\\[4pt]\large Specialist review packet}")
-    source = source.replace(r"\author{Research continuation: independent construction and adversarial review roles}",
+    source = once(source, r"\author{Research continuation: independent construction and adversarial review roles}",
                             r"\author{Project lead: David Iach\\\small AI-assisted research draft}")
-    source = source.replace(r"\date{27 October 2026}", r"\date{28 October 2026}")
-    source = source.replace(r"\maketitle", "\\maketitle\n" +
+    source = once(source, r"\date{27 October 2026}", r"\date{28 October 2026}")
+    source = once(source, r"\maketitle", "\\maketitle\n" +
                             (PACKET / "overview.tex").read_text(encoding="utf-8"))
     # Replace only the historical review-status paragraph, never its proof claims.
+    if source.count(r"\noindent\textbf{Status.}") != 1:
+        raise ValueError("Unexpected inherited status occurrence")
     status_start = source.index(r"\noindent\textbf{Status.}")
     status_end = source.index(r"\section{Experiment,", status_start)
     source = source[:status_start] + (
@@ -49,11 +53,11 @@ def assemble() -> str:
         directive = "\\input{" + name + "}"
         if source.count(directive) != 1:
             raise ValueError("Unexpected input occurrence: " + name)
-        source = source.replace(directive, "% BEGIN LOCKED SOURCE: " + name + "\n" +
+        source = once(source, directive, "% BEGIN LOCKED SOURCE: " + name + "\n" +
                                 texts[name] + "\n% END LOCKED SOURCE: " + name)
     if "\\input{" in source:
         raise ValueError("Unexpanded source dependency")
-    source = source.replace(r"\end{thebibliography}",
+    source = once(source, r"\end{thebibliography}",
                             (ROOT / "paper/gap-entropy-references.tex").read_text(encoding="utf-8")
                             + "\n" + r"\end{thebibliography}")
     # Source identifiers and paths are prose metadata, not mathematical terms.

@@ -1,5 +1,16 @@
 # Full verification commands
 
+The critical lower and both upper component verifiers use `lake build`, which
+rebuilds stale transitive imports before the kernel and axiom checks. Use
+`--sequential` to build one registered module at a time on constrained machines.
+The lower audit checks that all 43 statement examples are present exactly once;
+its source hashes cover the full local import closure. The upper audits also
+check the review-time dependency snapshots in their specification freeze records.
+These additions preserve the original frozen statements and published evidence.
+
+The Psi verifier also rebuilds transitive imports with Lake and checks the
+review-time dependency snapshot of its variational model and specifications.
+
 The actual critical-law Psi formula, two-sided rate and unrestricted minimax
 counterexample have a separate audit. After the prerequisite builds below:
 
@@ -40,7 +51,8 @@ python tools/verify_blind_upper_components.py
 python -m unittest discover -s tools -p 'test_blind_upper_components.py' -v
 ```
 
-This rebuilds 45 modules plus three existing prerequisites and checks the
+Lake builds 45 modules plus three existing prerequisites, rebuilding any stale
+import, and the audit checks the
 final theorem against its unchanged frozen type, together with all 373
 declaration roots and their transitive axioms. It includes actual population
 cost/output identities, termination, budget selection and uniform RMS risk.
