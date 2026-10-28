@@ -28,7 +28,7 @@ specification. The [full record](../results/critical_upper_components_003.json)
 includes the unbiased estimator, independent fresh-coin aggregation, actual
 controller work/output identities, original-experiment realization, and every
 budget regime. The universal upper coefficient is 100000. The explicit Psi
-comparison is not certified. See the
+comparison is certified by the separate Psi audit above. See the
 [exact scope](CRITICAL_AUDIT.md#upper-construction-checkpoint).
 
 The full distribution-blind upper theorem has a separate
@@ -86,7 +86,9 @@ is used in the budget and risk. The matching critical upper has the separate aud
 It audits all 674
 declarations in these modules and writes fresh evidence under
 `.runtime/critical-components/`. The base-cost flag now certifies the actual
-single-coin theorem; the full critical minimax flag remains false. See the
+single-coin theorem. This lower-only record retains its historical
+`full_critical_minimax_theorem_verified=false` flag; the matching upper and Psi
+comparison have the separate completed records above. See the
 [follow-up audit](CRITICAL_AUDIT.md#current-formal-boundary).
 
 For the integrated research packages, including the full critical-law paper
@@ -106,10 +108,11 @@ a nonexistent directory to choose the destination. Published evidence stays
 unchanged. Run the guard regressions listed below as well. See the
 [checkpoint](../research/2026-10-27-nonlinear-critical/CHECKPOINT.md) and
 [validation record](../research/2026-10-27-nonlinear-critical/validation.json).
-These are reproducibility and sanity checks; the statistical theorem is a
-reviewed paper proof, not a Lean result. CI now runs this replay on research
-changes and checks the five locked Route A Lean roots after the complete
-Tier 6 audit. These checks do not certify the continuum paper proof.
+These are reproducibility and sanity checks for the preserved paper bundle.
+The completed statistical Lean theorems are checked by the separate audits
+above. CI runs this replay on research changes and checks the five locked
+Route A Lean roots after the complete Tier 6 audit. These replay checks do
+not themselves certify the continuum paper proof.
 
 Historical research `validate.py` and acceptance scripts preserve their original
 checkout snapshots, including the old CI workflow. Replay those at the source
@@ -187,8 +190,8 @@ The first command rebuilds the scored proof modules and runs the frozen scorer p
 
 ## Critical-regime paper checkpoint
 
-The critical note is a reviewed paper proof, not a new Lean target. Its
-preservation, exact scalar diagnostics, current 34 guard regressions and nine
+The earlier restricted-class critical note remains a reviewed paper proof.
+Its preservation, exact scalar diagnostics, current 34 guard regressions and nine
 finite Fisher-policy replays run with:
 
 ```sh

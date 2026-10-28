@@ -13,7 +13,9 @@ verified checkpoint `678e81c`. It is published as
 `research/critical-psi-comparison-20261028`, published as
 [PR #7](https://github.com/davidiach/adaptive-threshold-estimation/pull/7) at
 `eabf274`. The final manuscript and process update is on
-`research/manuscript-completion-20261028`, based on PR #7.
+`research/manuscript-completion-20261028`, published as
+[PR #8](https://github.com/davidiach/adaptive-threshold-estimation/pull/8)
+and based on PR #7.
 
 ## Current proof boundary
 
@@ -139,4 +141,6 @@ including the full Lean audit and the research and numerical evidence jobs.
 
 The unbiased-estimator checkpoint `678e81c` in PR #4 passed all three Linux
 jobs in [run 40667339241](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40667339241).
-The later full-upper branch requires its own CI result.
+The full-upper checkpoint `c127478` in PR #5 also passed all three jobs in
+[run 40672110946](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40672110946).
+The Psi and manuscript PRs report their own commit-specific CI results.

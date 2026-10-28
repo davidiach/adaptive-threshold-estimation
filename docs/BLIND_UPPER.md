@@ -56,7 +56,7 @@ python -m unittest discover -s tools -p 'test_blind_upper_components.py' -v
 ```
 
 The confidence-radius characterization and uniform unbiasedness converse
-remain paper proofs. The matching critical rare-event upper and the explicit
-Psi comparison remain unfinished in Lean. This result does not complete those
-separate claims. The synchronized v5 and review packet pin their formal
-references to the completed-upper checkpoint `236eb2d`.
+remain paper proofs. The matching critical rare-event upper and exact Psi
+comparison now have separate completed audits in [VERIFY](VERIFY.md).
+The synchronized v5 and review packet pin their theorem references to
+`eabf274`, which contains all three completed developments.
