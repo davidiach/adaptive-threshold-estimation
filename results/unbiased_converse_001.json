@@ -1,0 +1,375 @@
+{
+  "valid": true,
+  "scope": "For every observable adaptive estimator unbiased for every measurable sign law, finite uniform extended variance and work imply integrability of the inverse gap and variance-work product at least the squared inverse moment divided by 16.",
+  "source_sha256": {
+    "lean/lake-manifest.json": "a7058b14db1034b58735d82f1cf9a82a938855e93decc1960ca7d21e786fdfe2",
+    "lean/lakefile.toml": "273cfe4674e97219b22f7de1428bdadfb45379c7fa582882c59624ab7fbc3189",
+    "lean/lean-toolchain": "d581a24b57a4ae9e0b2132ca8ac7cc3ac336a9fc2751fe6b29414e2d434d54c4",
+    "lean/ThresholdHC/Proofs/Algebra.lean": "68efcc1bef2ab5407fa86b1e8fea52c2baeaf0001bfe5d548d0a58ee959fb155",
+    "lean/ThresholdHC/Proofs/Hellinger.lean": "40b38eabc4d965ee7c8787beb7141f4c25060916bf58fefdaa40695152ae9470",
+    "lean/ThresholdHC/Proofs/KL.lean": "ddf4b0067271296ea1836e44fe01fe55bf1143e14cf1f5b3473e38a196d966c3",
+    "lean/ThresholdHC/Proofs/Tier2/Information.lean": "4b62b5996af4e6c96cff51796745fc9b8dea356744b1ae7f0777ecc43b76fd16",
+    "lean/ThresholdHC/Proofs/Tier2/InformationCore.lean": "0a6a1af42b5b0af29db453982aabd1a4dbb615baf1284c8ecf6d14e5b0d58590",
+    "lean/ThresholdHC/Proofs/Tier2/Transcript.lean": "e8b8feca5af14a68f23fa9cdc57eb28259f87c18d3ff092ca732b353daf4e640",
+    "lean/ThresholdHC/Proofs/Tier2/TranscriptBase.lean": "ef06442bc824d756f959d0c9711edbf8b84a61359d8d1a10fedb8dbfe5c201d7",
+    "lean/ThresholdHC/Proofs/Tier2/TranscriptLikelihood.lean": "7d051a6f2f028d912910c9d18533b6db90863328a7bdc6c87c4181fade7c489f",
+    "lean/ThresholdHC/Proofs/Tier2/TranscriptScalar.lean": "dc691a74b9b1915377df80cd2caac4feec5d7bee3938480b906afbdb04630fee",
+    "lean/ThresholdHC/Statements.lean": "0873505b7c133561e82f63dcbba7f7a0a3da39d0c3692daee99d01882a757abf",
+    "lean/ThresholdHC/Statements2.lean": "51f85fee842aec2de331872b760ecd47e15715a84deaf5b8f08970bd9fa01414",
+    "lean/ThresholdHC/Tier3/Examples.lean": "d3c8da8c75721742709b56288caaeea9406c8ab2b22443ebe6fa5d68d69f0395",
+    "lean/ThresholdHC/Tier3/ExamplesModel.lean": "e03edb36c05e3e43601dddf4e8d510231f46bdb04a7b8b4f7bb884a2133e0cd5",
+    "lean/ThresholdHC/Tier3/IntegralLogSum.lean": "ecc8c3ca647b00fef691fbb2ecde8304c7f48e844a9c3a8a45a5fc9a948f94ff",
+    "lean/ThresholdHC/Tier3/Randomized.lean": "3e74e2a34d509b577730eb041447d6f63c54fde8d551860cd1cdbf8c6b5926ab",
+    "lean/ThresholdHC/Tier3/RandomizedBase.lean": "87af7b31ba2c3cc9ff623cf403d954ffd7b8844c1b3af6e9283b823921ed8285",
+    "lean/ThresholdHC/Tier3/RandomizedModel.lean": "3a61f9b034ee58e45e903356c60037e4808fdb1a711d96b24f3013ef95716f6b",
+    "lean/ThresholdHC/Tier3/Stopping.lean": "8490ec062f045c47f7aad53ece5b9ce6224f5a3978a8798c76a2c6765ac527b1",
+    "lean/ThresholdHC/Tier3/StoppingBase.lean": "0989b9b554ea0c056ec9f296e463c1767dc3509400960c266593c64e3daaa51d",
+    "lean/ThresholdHC/Tier3/StoppingModel.lean": "36aed19aa97432a9068952e5d389fe6a992faad0da71984b7412204940aa3892",
+    "lean/ThresholdHC/Tier3/TranscriptRatio.lean": "49b87fb8ece824fd69d52f2d83b40050529f3c7a295ed59e214cb18d1f139d4d",
+    "lean/ThresholdHC/Tier4/BoundReduction.lean": "0e0325bb1e4d18804437177eab78ab1741a0b387f31b7231b8a1826124d067c0",
+    "lean/ThresholdHC/Tier4/Entropy.lean": "f02035deb7d23182c83ef57b55fa13557e95d49682d741f33092589e61aa39ac",
+    "lean/ThresholdHC/Tier4/FiniteDensity.lean": "7b4216aebc1b247486233e4ea86de2e5b67301526bc3f5b730b4db4ebd53cba2",
+    "lean/ThresholdHC/Tier4/Model.lean": "2271691c5af1c4936accbb9a5c62b6ea5cbc3e6bdd718b0b44a958cd7a057214",
+    "lean/ThresholdHC/Tier4/StoppedReconstruction.lean": "dbda7538200c8460fda13cb6b8a13710164ee267874f88611a20059db8db2060",
+    "lean/ThresholdHC/Tier5/BoundReduction.lean": "c5f75679894a49d84d4d267957e45f1b01f1efe77c9a67ea8b24377d34916085",
+    "lean/ThresholdHC/Tier5/CreationBase.lean": "c77ca55ab89d3d286443be9699ebca100706851f2f33393c82770209362250ea",
+    "lean/ThresholdHC/Tier5/CreationExample.lean": "d47928e11a0b12f2bba93b9c52a32a15d5aac42d7f8aa7b0f5d317f8fc129b41",
+    "lean/ThresholdHC/Tier5/CreationFresh.lean": "c31a450f8f084400e123eb90ee5bfb0b70068f683b3873902f307e1697e4988f",
+    "lean/ThresholdHC/Tier5/CreationModel.lean": "b767058304f884582dc976a59b5d31671d417717097b60280d6b4533acae5871",
+    "lean/ThresholdHC/Tier5/CreationPadding.lean": "0749f9235601e37c0e141414b6347c9df8b3028c9c44924ef324739eb3e5cf68",
+    "lean/ThresholdHC/Tier5/CreationProduct.lean": "453b2c028190a1cddc2400a213a77b3c137436b64720531dbfec34a22d92bb9b",
+    "lean/ThresholdHC/Tier5/Entropy.lean": "23cdfaa93a43a1198ca09a2517add6045eff94dd5cc0b77bf05b60ffb4153eb6",
+    "lean/ThresholdHC/Tier5/EntropyPrefix.lean": "3372f0be782e5e776db8ef0ce0ce73f1dd22527d0f92994254d5d5d42942080e",
+    "lean/ThresholdHC/Tier5/FiniteCreation.lean": "382ea9fae97e5c8184a129f29b5004aa91416a26350445971315fcc28bd0d017",
+    "lean/ThresholdHC/Tier5/FiniteEnvironment.lean": "cdfd42cf5b704fd7577de9dc04fed2fcac94830cd7207240d704eb702f14b669",
+    "lean/ThresholdHC/Tier5/FiniteJoint.lean": "b8c826351070c9c8f8eb92ae68e9499c32e77e777c9438aa15ec1cb7db17956a",
+    "lean/ThresholdHC/Tier5/Full.lean": "21ffd3cbc7511e0dd7ab367c849498e0e4715722ad999d74a791c2b518aa21d2",
+    "lean/ThresholdHC/Tier5/Model.lean": "d0bd50268eb858d2acb14f0f220f228d6a1d8b211dd4359864c35faca6bf0fdd",
+    "lean/ThresholdHC/Tier5/PriorRatio.lean": "a116b733974fd4b0b1bddaf4c7eed5d161595b5a228fc59fbfcf68a5fbcc99d5",
+    "lean/ThresholdHC/Tier5/Specification.lean": "e8039a4b9277f0b59ffb36ca016d97020a5d3e6e5a6568c43be706c4f553fa12",
+    "lean/ThresholdHC/Tier5/StoppingBase.lean": "9ffc7fc2c7cf05885bbf88759ea62e436b525798378eee7abeb0dd4fb539815a",
+    "lean/ThresholdHC/Tier5/StoppingEntropy.lean": "4547b54ca46c146ff10e46c00d1edb5197c5e1e09bf80a6905a92c86248ad43c",
+    "lean/ThresholdHC/Tier5/StoppingFull.lean": "dfa01feebc73e7e56107b4d7efd4d28e5d56c95cce9045968596d00087e758d6",
+    "lean/ThresholdHC/Tier6/AlgorithmCore.lean": "ba81c4bbbcba907337a82b0350135c4f734239fcd2c5f4685d87d6ea72452ad8",
+    "lean/ThresholdHC/Tier6/AlgorithmModel.lean": "4494049e8205ca83eb635c8f82f0f7661f7ba61bc2ccc29966dcd9a5e47eeea5",
+    "lean/ThresholdHC/Tier6/AlgorithmNonempty.lean": "b1e09e11c164460e353770608783cd25a709ac39448f9a0a6fbb6f0d19bf7e73",
+    "lean/ThresholdHC/Tier6/AlgorithmRisk.lean": "52c7faee2d5c8cd8b56a8aa8f371d1ea40b7f4c8731b513c881891525ea5e89f",
+    "lean/ThresholdHC/Tier6/Full.lean": "1f6fb3dbd4a3171a6c2167c8b14c755624978705d82651ae8a88cacba839a0e7",
+    "lean/ThresholdHC/Tier6/HardPair.lean": "2ac5d16ae7e518d0079c141bf0660c10ae726b3f5274322d1257362a9650c24d",
+    "lean/ThresholdHC/Tier6/HardPairModel.lean": "003aa6f400fe62d6e0e074ef2df8b4d3afc5e79db73800d529ae11c0cd89e068",
+    "lean/ThresholdHC/Tier6/ModelReduction.lean": "93bab2a073295276f84fed9d093023b792431ff08d94b0c9b2a72731e52962a0",
+    "lean/ThresholdHC/Tier6/Process.lean": "8bdb6b9619ac8d351717be8adfe34361f4fca9c1881289d8733090982682eedf",
+    "lean/ThresholdHC/Tier6/ProcessIntegral.lean": "7ff9a0e3da430b2a2c6abda8cd783a5068acd8798dcb6580cf1f767cd20572cd",
+    "lean/ThresholdHC/Tier6/ProcessModel.lean": "c7da1211a83f0925da7f1ce0b573f155c08edbfaa0564cc6dc26e640d51a625b",
+    "lean/ThresholdHC/Tier6/ProcessWeights.lean": "280214be58ce854b84c13d424e570d5cd955f7c27ffe1afd3646e103edece733",
+    "lean/ThresholdHC/Tier6/RiskReduction.lean": "a00b61df019f1968cb688b16eb37a610e17cae610438a43045bb927e0028768b",
+    "lean/ThresholdHC/Tier6/Specification.lean": "17308c9cbaf3a8e45602723d2448515b73b1ddcdf157c417de16a13cc5f50148",
+    "lean/ThresholdHC/Tier6/Testing.lean": "da29bc8177fd0c139b49e3c52b169d402f82285e378822deb2d7422ca68793bb",
+    "lean/ThresholdHC/Tier6/TestingFinite.lean": "588e6f50a2dc9a227c941672d330d8e3b3f6582a4e41edca2be5fe2894f88fd2",
+    "lean/ThresholdHC/Tier6/TestingModel.lean": "941b5583b6a9d8776c38ac9de371b5f30a7a2c580b4cd627df7935665ca80944",
+    "lean/ThresholdHC/UnbiasedConverse/CreationInformation.lean": "c010b1208ca84eb7db2556b92b2c77626015457677597d4de03e6aefdc3bbd59",
+    "lean/ThresholdHC/UnbiasedConverse/ExperimentInformation.lean": "c2fde2b2e4537fe1c31c9c369625640e3abfad8f5d3bb540e5991c6d8d81f4dc",
+    "lean/ThresholdHC/UnbiasedConverse/Full.lean": "f9ac6ea4398af19d1ba399d8f94fc2ac294247fdc1a9e57a761568d17044ddb6",
+    "lean/ThresholdHC/UnbiasedConverse/InverseMoment.lean": "01bf3917e950ea5a36155705580e5ac5cdf7f138067e54e72979189d714672b2",
+    "lean/ThresholdHC/UnbiasedConverse/LocalConverse.lean": "77ed83d4e45e4db39787670ca0d9c0c8f798fa6757d860280f523128c3d0f2fb",
+    "lean/ThresholdHC/UnbiasedConverse/Model.lean": "c2ae79908c149df630d60033d3f51f0a03f18f1f58b8335bcaf4dbbdfe397f06",
+    "lean/ThresholdHC/UnbiasedConverse/Specification.lean": "d866accc5784593b92e6edcb7c628893244f07e0e59bcfc1a68a367aa342967c",
+    "lean/ThresholdHC/UnbiasedConverse/Tilt.lean": "5b74ba40e4c1f2ab76b63eb3b0d3db10ed93b0ad6228bbf8aa141990fa1df61d",
+    "lean/ThresholdHC/UnbiasedConverse/Transcript.lean": "0c7a22399e9551d2cfd7d5d6bb820951fd3d29512efa2d2416d0fa213f484a75",
+    "lean/ThresholdHC/UnbiasedConverse/TwoPoint.lean": "e2606eb5324c6dbc7c0aefccd69c3b22f04159bd4ed4f05036f36e02caa76911",
+    "tools/unbiased_converse_specification_freeze.json": "34b73f4d3638145d69879d908a3e8b2358b3003ac68ddb4bac06ee99212375bb",
+    "tools/verify_blind_upper_components.py": "ee01fa2cedbe2db008a21b3bae38dab2b4522fa4028d181ff7ec91ea759dab5d",
+    "tools/verify_tier6.py": "7295c1609c57be9951fc46f3e210f7f7682083470cf94bbe2dd89a387b0f075e",
+    "tools/verify_unbiased_converse.py": "4bd93d4c83e1b0d0e0f0129340584189be9960914f5c787591a963ad16b1f41b"
+  },
+  "exact_targets": {
+    "ThresholdHC.UnbiasedConverse.unbiased_converse": "ThresholdHC.UnbiasedConverse.UnbiasedConverseStatement"
+  },
+  "exact_targets_checked": 1,
+  "unbiased_converse_verified": true,
+  "commands": [
+    {
+      "command": [
+        "lake",
+        "build",
+        "ThresholdHC.UnbiasedConverse.Model"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "build",
+        "ThresholdHC.UnbiasedConverse.Specification"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "build",
+        "ThresholdHC.UnbiasedConverse.TwoPoint"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "build",
+        "ThresholdHC.UnbiasedConverse.Transcript"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "build",
+        "ThresholdHC.UnbiasedConverse.CreationInformation"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "build",
+        "ThresholdHC.UnbiasedConverse.Tilt"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "build",
+        "ThresholdHC.UnbiasedConverse.ExperimentInformation"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "build",
+        "ThresholdHC.UnbiasedConverse.LocalConverse"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "build",
+        "ThresholdHC.UnbiasedConverse.InverseMoment"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "build",
+        "ThresholdHC.UnbiasedConverse.Full"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        ".audit\\UnbiasedConverse.lean"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "axioms": {
+    "ThresholdHC.UnbiasedConverse.UnbiasedConverseStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.UniformVarianceBound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.UniformlyUnbiased": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.centered_second_moment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.comparisonDensity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.comparisonDensity_memLp": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.comparisonDensity_sum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.creation_finite_information": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.creation_information_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.creation_kl_limit": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.integrable_truncatedInverse": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.integral_mul_sq_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.inverse_integrable_of_modulus_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.local_tilt_information": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.measurable_tiltEta": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.measurable_truncatedInverse": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.modulus_square_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.no_finite_variance_work_of_inverse_not_integrable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.predict_pair": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.tiltCoefficient": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.tiltEta": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.tiltEta_bounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.tiltMinus": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.tiltPlus": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.tilt_denominator_pos": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.tilt_experiment_information": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.tilt_mean_separation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.tilted_modulus_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.transcript_kl_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.transcript_kl_step": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.triangle_integral_le_kl": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.triangle_le_symmetric_log": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.truncatedInverse": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.truncatedInverse_eq_scaled": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.truncatedInverse_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.two_point_uniform_variance": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.two_point_variance_kl": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.UnbiasedConverse.unbiased_converse": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "audited_modules": 10,
+  "audited_declarations": 38
+}

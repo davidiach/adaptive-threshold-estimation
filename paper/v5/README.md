@@ -16,8 +16,18 @@ common pair, population transfer, endpoint termination and observable upper
 construction with coefficient 100000. The exact Psi formula, rate and failure
 of every universal matching-Psi upper are formalized. The formal counterexample
 uses budget `L*(1+log L)/rho`; the paper's `rho^(-2)` sequence remains a paper
-derivation. The confidence characterization, unbiased converse and other
-rare-event regimes retain their stated paper-proof scopes. Formal links are pinned to
+derivation. The unbiased converse now proves inverse-gap integrability and
+the `I²/16` variance-work lower bound for all uniformly unbiased observable
+adaptive estimators. Its [proof](../../lean/ThresholdHC/UnbiasedConverse/Full.lean)
+and [audit](../../results/unbiased_converse_001.json) are linked at
+`631886e16ddff5b8e93b73860bf6552b956128be`. The
+[713 realization](../../lean/ThresholdHC/Observable713/Full.lean) now supplies
+one law-independent observable algorithm with variance at most `23 I` and
+work at most `31 I`, and proves the full existence characterization in the
+same model; see its [audit](../../results/observable713_001.json).
+Its formal links use checkpoint `15dbbda98a31e27502e3caff991d3ea21d096d23`.
+The confidence characterization and other
+rare-event regimes retain paper-proof status. Earlier formal links are pinned to
 `eabf274cb42d4bff4daab6b58568ad6169e7f0a7`; the additive all-size proof links
 use `ebd36676693b66814bc2a379529499428ab98650`.
 The manuscript has received AI review, but has no independent external
@@ -36,7 +46,7 @@ original critical-law audit; no explicit population minimax constant is claimed.
 
 The original v4 and research packages remain unchanged. [sources.json](sources.json)
 records their identities after line-ending normalization, the starting commit,
-and both formal checkpoints linked from the manuscript.
+and the formal checkpoints linked from the manuscript.
 [build_v5.py](../../tools/build_v5.py) generates six inherited-source files
 and a local copy of the shared addendum,
 prefixes appendix labels and explicit equation tags, resolves their references,

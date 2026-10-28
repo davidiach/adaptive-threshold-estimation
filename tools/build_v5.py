@@ -108,15 +108,15 @@ Section~\ref{sec:rare} states the current results together; the full
 rare-event proofs appear in the appendices. This corrects the earlier
 matching-$\Psi$ conjecture rather than assuming it.
 
-Both directions of the original RMS law are proved in Lean for the actual
-hidden-magnitude experiment, with coefficients $1/64$ and $512$ and one
-upper algorithm independent of the gap law. Both critical minimax bounds,
-the exact $\Psi$ formula and rate, and the failure of every universal
-matching-$\Psi$ upper are also proved in that observable model. The
-untruncated 713 estimator and variational optimizer have separate formal
-specifications. The confidence characterization, unbiased converse and
-other rare-event regimes retain their stated paper-proof scopes.
-Section~\ref{sec:verification} records the exact scope and links.
+Lean proves both directions of the original RMS law, with coefficients
+$1/64$ and $512$ and one distribution-blind upper algorithm. The critical
+minimax law, exact $\Psi$ comparison and counterexample, and unbiased
+characterization with coefficients $1/16$ and $713$ are also proved in the
+observable model. One 713 estimator is fixed before every gap law. The
+variational optimizer has its separate formal specification.
+Confidence guarantees and other rare-event regimes
+retain paper-proof status. Section~\ref{sec:verification} gives the exact
+scope and links.
 """
     core = between(original, r"\section{Model,", r"\section{Computational verification")
     core = once(core, r"\ \le\ 12665\Iinv^2,", r"\ \le\ 713\Iinv^2,")
@@ -144,9 +144,9 @@ Section~\ref{sec:verification} records the exact scope and links.
         "revealed- or selected-magnitude claims retain paper-proof status.\n\n"
         "This is distribution-wise minimax optimality:")
     core = once(core, r"\subsection{Unknown magnitude laws under an envelope}",
-        "\\noindent\\emph{Verification: the converse and sharp lower coefficient\n"
-        "remain paper proofs. The constructive upper bound has the conditional-kernel\n"
-        "and separate-family Lean coverage stated in \\cref{sec:713}.}\n\n"
+        "\\noindent\\emph{Verification: Lean proves the full existence characterization,\n"
+        "the $1/16$ lower bound, and the 713 upper construction in the same\n"
+        "observable model; see \\cref{sec:713,sec:verification}.}\n\n"
         "\\subsection{Unknown magnitude laws under an envelope}")
 
     continuation = sources["inputs/next-phase/report/research_note.tex"]
