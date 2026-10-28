@@ -18,8 +18,8 @@ unfair coin, and the tool uses the same word.
 ## Read this first: what building it showed
 
 The paper proves a method that needs no tuning. It never needs to know how close
-your items are to 50/50, and its guarantee is machine-checked. When we ran it at
-everyday budgets, though, it was **much less accurate than a simple plan**: try
+your items are to 50/50, and its mathematical guarantee is machine-checked.
+In the example below, it was **much less accurate than a simple plan**: try
 each item a fixed number of times and take a majority vote per item.
 
 For the ten-item guess used in the examples below:
@@ -27,25 +27,25 @@ For the ten-item guess used in the examples below:
 | | Simple plan | Proven no-tuning method |
 |---|---:|---:|
 | Typical error at 16,384 flips | 5.9 points | 28 points (simulated) |
-| Flips for a 3-point typical error | 258,153 | about 4.2 million (simulated) |
+| A plan found for a 3-point typical error | 258,153 flips | about 4.2 million flips (simulated) |
 
-In theory the proven method's error shrinks at the best possible rate as budgets
-grow. In every case we tried, though, the simple plan needed far fewer flips. So
-the calculator gives you the simple plan's numbers and shows the proven method
+In theory the proven method's error shrinks at the minimax rate as budgets
+grow. In this example, the simple plan uses far fewer flips. The calculator
+gives you the simple plan's numbers and shows the proven method
 beside them. The proven method's real advantage is
 robustness: the simple plan is only as good as your guess of how close the items
 are to 50/50, while the proven method needs no guess at all.
 
 ## Install
 
-Python 3.10 or newer with NumPy. Either install it:
+Python 3.10 or newer with NumPy and SciPy. Either install it:
 
 ```sh
 pip install ./toolkit
 ```
 
 or run from the `toolkit/` folder without installing. The estimators themselves
-need only the standard library; NumPy is used by the calculator.
+need only the standard library; NumPy and SciPy are used by the calculator.
 
 ## 1. Plan the budget
 
@@ -77,7 +77,7 @@ At an average budget of 16,384 flips:
 
   Proven no-tuning method, simulated 200 times on your guess:
     typical error: 0.277 (about 28 percentage points), give or take 0.012
-    flips used: 15,538 on average; 90% of runs used at most 31,091, 99% at most 46,572
+    flips used: 15,540 on average; 90% of runs used at most 31,091, 99% at most 46,572
 
   On your guess, the simple plan's typical error is 4.7x smaller.
 
@@ -92,13 +92,15 @@ At an average budget of 16,384 flips:
 
 How to read it:
 
-- **Hard to call** counts items so near 50/50 that even the whole budget spent
-  on one of them would leave about a 2% or larger chance of placing it on the
-  wrong side.
+- **Hard to call** counts items within $B^{-1/2}$ of 50/50. This is the gap
+  scale in the theorem's modulus, not a lower bound on misclassification probability.
 - **Typical error** is the root-mean-square error: roughly how far off the
   estimate usually is. 0.059 means about 6 percentage points.
-- **"at most … however these items fall"** is exact arithmetic, not simulation. It
-  holds for any items this close to 50/50, whichever side each one is on. You
+- **"at most … however these items fall"** evaluates an analytic bias–variance
+  bound using binomial tails (an analytic integral for `--evenly-spread`). The
+  evaluation uses floating-point arithmetic and is subject to roundoff; it is
+  not a certified interval bound. The formula covers items this close to 50/50,
+  whichever side each one is on. You
   could have the sides wrong in your guess and it still holds; only the
   closeness has to be right.
 - **The proven method's numbers are simulations** of the actual algorithm on your
@@ -111,8 +113,11 @@ How to read it:
 - **Returns on more flips**: when many items sit near 50/50, extra flips buy
   less.
 
-With `--target-error 0.03` instead of `--budget`, the calculator finds the
-cheapest simple plan whose worst case meets the target. It also simulates the
+The calculator searches a 1.25× grid of odd flip counts, so it does not promise
+the best plan among all possible counts. With `--target-error 0.03` instead of
+`--budget`, it finds the cheapest qualifying plan on that grid, up to $2^{24}$
+flips per item. A failed search means no plan was found in that search range;
+it is not an impossibility result. The calculator also simulates the
 proven method at doubling budgets until it meets the target too, giving up at 64
 times the simple plan's flips.
 
@@ -154,12 +159,16 @@ then takes a number `k` and returns how many of `k` fresh tries succeeded.
   not supported.
 - The simple plan's figures are only as good as your guess of how close items
   are to 50/50. If you build the guess from a small trial run, items can look
-  more clear-cut than they are, so lean towards guessing them closer. A guessed
-  rate of exactly 0.5 means a true coin toss that no amount of trying can place
-  on either side; if an item is only roughly even, guess 0.49 or 0.51.
+  more clear-cut than they are. Guessed rates of exactly 0.5 are rejected:
+  the cited theorems assume no mass at that rate. Do not change a genuine tie
+  just to pass validation; such populations need a model that includes ties.
 - The proven method uses at most the budget you give it on average, and often
   noticeably less, because it rounds the budget down to four times a power of
   two. A single run can use several times the average.
+- The execution API requires a finite budget of at least four flips. The
+  standalone `two_success_average` requires iid calls, independent of its
+  random generator, with finite values and strictly positive costs bounded by
+  a finite positive cap. Zero-cost calls are rejected to prevent a nonterminating pilot.
 - What is machine-checked is the mathematical guarantee of the proven method, in
   [`BlindUpper/Full.lean`](../lean/ThresholdHC/BlindUpper/Full.lean), and the
   floor, in [`Tier6/Full.lean`](../lean/ThresholdHC/Tier6/Full.lean). This Python

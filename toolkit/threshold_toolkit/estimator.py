@@ -6,7 +6,7 @@ capped dyadic classifiers, one random geometric level per call, and
 two-success cost calibration. It needs only the flip budget. It never
 needs to know how close the items are to 50/50.
 
-For every population, the checked theorem gives expected flips at most the
+For iid populations with nonzero gaps almost surely, the checked theorem gives expected flips at most the
 budget and root-mean-square error at most 512 * omega(1/sqrt(budget)) for
 the raw output; see planner.py for omega. Clipping to [0, 1] can only reduce
 the error. The budget is an average: a single run can use more.
@@ -32,9 +32,8 @@ def threshold(n: int, cap: int) -> float:
 
 def budget_level(budget: float) -> int:
     """Largest L with 4 * 2**L <= budget, as in BlindUpper/BudgetChoice.lean."""
-    if not budget >= 4:
-        raise ValueError(
-            "budget must be at least 4 flips; below that no estimate can beat a fixed guess")
+    if not math.isfinite(budget) or budget < 4:
+        raise ValueError("budget must be finite and at least 4 flips")
     level = 0
     while 4 * 2 ** (level + 1) <= budget:
         level += 1
@@ -93,8 +92,8 @@ def two_success_average(run_once: Callable[[], Tuple[float, float]], cap: float,
                         rng: random.Random) -> Tuple[float, float, int, int]:
     """Average fresh runs of a random-cost procedure without knowing its mean cost.
 
-    `run_once()` returns (value, cost) with 0 <= cost <= cap and a positive
-    average cost. Two pilot streams run until each marks a run, marking with
+    `run_once()` returns a finite (value, cost) with 0 < cost <= cap.
+    Calls must be iid and independent of `rng`. Two pilot streams run until each marks a run, marking with
     probability cost / cap; one more than the number of unmarked pilots sets
     how many fresh production runs to average. Pilot values are discarded.
     The average is unbiased, has variance Var(value) * c / cap, and expected
@@ -103,10 +102,15 @@ def two_success_average(run_once: Callable[[], Tuple[float, float]], cap: float,
 
     Returns (average, total cost, production runs, pilot runs).
     """
+    if not math.isfinite(cap) or cap <= 0:
+        raise ValueError("cap must be finite and positive")
+
     def checked_run() -> Tuple[float, float]:
         value, cost = run_once()
-        if not 0 <= cost <= cap:
-            raise ValueError(f"run cost {cost!r} is outside [0, {cap}]")
+        if not math.isfinite(cost) or not 0 < cost <= cap:
+            raise ValueError(f"run cost {cost!r} is outside (0, {cap}]")
+        if not math.isfinite(value):
+            raise ValueError("run value must be finite")
         return value, cost
 
     production = 1
@@ -152,9 +156,9 @@ def majority_vote_estimate(new_item: Callable[[], Callable], items: int,
     `items` and `flips_per_item` from a guess at the success rates; that
     choice is where this plan's accuracy comes from.
     """
-    if items < 1:
+    if not isinstance(items, int) or items < 1:
         raise ValueError("use at least one item")
-    if flips_per_item < 1 or flips_per_item % 2 == 0:
+    if not isinstance(flips_per_item, int) or flips_per_item < 1 or flips_per_item % 2 == 0:
         raise ValueError("flips_per_item must be odd, so every item has a majority")
     above = sum(2 * block_flipper(new_item(), batched)(flips_per_item) > flips_per_item
                 for _ in range(items))

@@ -93,9 +93,9 @@ Use a disposable checkout for reproduction: some checks write diagnostic files.
 - **Follow the research:** [remaining work](docs/WORKPLAN.md),
   [research index](research/README.md), and [process note](docs/process/METHOD.md).
 - **Use it on your own problem:** the [toolkit](toolkit/README.md) plans a flip
-  budget and runs the estimators. At everyday budgets a simple majority-vote
-  plan needs far fewer flips than the proven no-tuning algorithm; the
-  calculator compares the two.
+  budget and runs the estimators. It compares a majority-vote plan tuned to a
+  guessed gap law with the distribution-blind algorithm, including simulations
+  and their limits.
 
 ## Scope and review
 

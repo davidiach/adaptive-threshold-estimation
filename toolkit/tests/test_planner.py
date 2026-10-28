@@ -4,15 +4,17 @@ import math
 import sys
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from threshold_toolkit.__main__ import main, read_rates
-from threshold_toolkit.planner import (EvenlySpread, GuessedRates, _calls, binomial_tail,
+from threshold_toolkit.planner import (EvenlySpread, GuessedRates, _calls, _majority_plan,
+                                       _odd_flip_counts, binomial_tail,
                                        difficulty, floor_budget, majority_plan_for_budget,
-                                       majority_plan_for_target, simulate)
+                                       majority_plan_for_target, plan_target, simulate)
 
 
 def exact_positive_probability(p, cap):
@@ -53,6 +55,14 @@ class BinomialTailTests(unittest.TestCase):
         self.assertAlmostEqual(tail[0], 0.5, places=7)  # lgamma rounding at this size
         self.assertAlmostEqual(tail[1], 0.8413, places=3)
 
+    def test_large_vector_converges_and_is_symmetric(self):
+        m = 1_991_365
+        p = (np.arange(4096) + 0.5) / 4096
+        tail = binomial_tail(m, (m + 1) // 2, p)
+        self.assertTrue(np.isfinite(tail).all())
+        self.assertTrue((np.diff(tail) >= 0).all())
+        np.testing.assert_allclose(tail + tail[::-1], 1, atol=1e-14)
+
 
 class PopulationTests(unittest.TestCase):
     def test_fixed_gap_modulus(self):
@@ -75,6 +85,26 @@ class PopulationTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             GuessedRates([])
 
+    def test_zero_gaps_rejected(self):
+        for rates in ([0.5], [0.5, 0.9], [0.5, 0.5, 0.1]):
+            with self.subTest(rates=rates), self.assertRaisesRegex(ValueError, "positive-gap"):
+                GuessedRates(rates)
+
+    def test_uniform_majority_integral_matches_exact_formula(self):
+        spread = EvenlySpread()
+        for m in (1, 3, 7, 15, 101):
+            a = (m + 1) // 2
+            above, wrong = spread.majority_terms(m)
+            self.assertEqual(above, 0.5)
+            self.assertAlmostEqual(wrong, math.comb(2 * a, a) / 2 ** (2 * a + 1), places=14)
+        # Wallis bounds independently detect the old midpoint-grid underestimate.
+        m = 16_000_001
+        a = (m + 1) / 2
+        _, wrong = spread.majority_terms(m)
+        self.assertGreater(wrong, 1 / (2 * math.sqrt(math.pi * (a + 0.5))))
+        self.assertLess(wrong, 1 / (2 * math.sqrt(math.pi * a)))
+        self.assertGreater(wrong, 0.0000997)
+
 
 class FloorTests(unittest.TestCase):
     def test_floor_budget_inverts_the_floor(self):
@@ -85,9 +115,13 @@ class FloorTests(unittest.TestCase):
         self.assertGreater(difficulty(population, budget * 0.99) / 64, target)
         self.assertEqual(floor_budget(population, 0.1), 1.0)
 
-    def test_items_at_exactly_one_half_make_tight_targets_impossible(self):
-        population = GuessedRates([0.5, 0.9])
-        self.assertTrue(math.isinf(floor_budget(population, 0.5 / 64 * 0.9)))
+    def test_finite_floor_beyond_old_search_cap(self):
+        population = GuessedRates([0.5000000000000001, 0.1])
+        budget = floor_budget(population, 0.005)
+        self.assertTrue(math.isfinite(budget))
+        self.assertGreater(budget, 1e30)
+        self.assertLessEqual(difficulty(population, budget) / 64, 0.005 * (1 + 1e-14))
+        self.assertGreater(difficulty(population, budget * 0.99) / 64, 0.005)
 
 
 class MajorityPlanTests(unittest.TestCase):
@@ -124,8 +158,41 @@ class MajorityPlanTests(unittest.TestCase):
         self.assertGreater(smaller.worst_case_error, 0.04)
 
     def test_unreachable_target(self):
-        self.assertIsNone(majority_plan_for_target(GuessedRates([0.5, 0.9]), 0.1,
+        self.assertIsNone(majority_plan_for_target(GuessedRates([0.50001, 0.9]), 0.1,
                                                    max_flips_per_item=10_000))
+
+    def test_budget_pruning_preserves_grid_optimum(self):
+        for pop in (GuessedRates(self.rates), EvenlySpread()):
+            budget = 5000
+            exhaustive = min((_majority_plan(pop, m, budget // m)
+                              for m in _odd_flip_counts(budget)), key=lambda p: p.worst_case_error)
+            self.assertEqual(majority_plan_for_budget(pop, budget), exhaustive)
+
+    def test_uniform_large_searches(self):
+        plan = majority_plan_for_budget(EvenlySpread(), 3_000_000)
+        self.assertLessEqual(plan.flips, 3_000_000)
+        plan = majority_plan_for_target(EvenlySpread(), 0.0005)
+        self.assertIsNotNone(plan)
+        self.assertLessEqual(plan.worst_case_error, 0.0005)
+
+    def test_invalid_targets_and_budgets(self):
+        pop = GuessedRates(self.rates)
+        for target in (math.inf, math.nan, 1e200, 0, -1, 1e-200):
+            with self.subTest(target=target), self.assertRaises(ValueError):
+                majority_plan_for_target(pop, target)
+        for budget in (math.inf, math.nan, 0):
+            with self.subTest(budget=budget), self.assertRaises(ValueError):
+                majority_plan_for_budget(pop, budget)
+            with self.subTest(simulation_budget=budget), self.assertRaises(ValueError):
+                simulate(pop, budget, runs=2)
+        with self.assertRaises(ValueError):
+            plan_target(pop, 0.1, max_budget=math.inf)
+        with self.assertRaises(ValueError):
+            majority_plan_for_target(pop, 0.1, max_flips_per_item=math.inf)
+
+    def test_loose_target_still_uses_at_least_one_item(self):
+        plan = majority_plan_for_target(GuessedRates([0, 1]), 1)
+        self.assertEqual(plan.items, 1)
 
 
 class SimulationTests(unittest.TestCase):
@@ -163,6 +230,31 @@ class CommandLineTests(unittest.TestCase):
         self.assertEqual(code, 0)
         self.assertIn("meets the target however", text)
         self.assertIn("->", text)
+
+    def test_zero_simulated_errors_do_not_divide_by_zero(self):
+        for rates, budget in (("0,0.01", "4"), ("0", "100")):
+            code, text = self.run_cli("--rates", rates, "--budget", budget, "--runs", "2")
+            self.assertEqual(code, 0)
+            self.assertIn("No error was observed", text)
+            self.assertNotIn("infx", text)
+
+    def test_target_plan_is_searched_once(self):
+        with patch("threshold_toolkit.planner.majority_plan_for_target",
+                   wraps=majority_plan_for_target) as search:
+            code, _ = self.run_cli("--rates", "0.95,0.05", "--target-error", "0.1", "--runs", "2")
+        self.assertEqual(code, 0)
+        self.assertEqual(search.call_count, 1)
+
+    def test_invalid_cli_inputs_are_reported_without_tracebacks(self):
+        for args in (("--rates", "0.5", "--budget", "1000"),
+                     ("--rates", "0.9,0.3", "--budget", "inf"),
+                     ("--rates", "0.9,0.3", "--target-error", "inf"),
+                     ("--rates", "0.9,0.3", "--target-error", "1e200")):
+            with self.subTest(args=args), contextlib.redirect_stderr(io.StringIO()) as err:
+                code, text = self.run_cli(*args)
+                self.assertEqual(code, 2)
+                self.assertIn("error:", err.getvalue())
+                self.assertNotIn("no budget", text)
 
     def test_read_rates(self):
         self.assertEqual(read_rates("0.1, 0.2\n# note\n0.3 0.4;0.5"), [0.1, 0.2, 0.3, 0.4, 0.5])

@@ -19,10 +19,12 @@ at most 512 * difficulty for every placement (BlindUpper/Full.lean).
 """
 
 import math
+import sys
 from dataclasses import dataclass
 from typing import Callable, List, Optional, Sequence, Tuple
 
 import numpy as np
+from scipy.special import betainc, betaln
 
 from .estimator import R_LEVEL, budget_level, level_probability, threshold
 
@@ -53,8 +55,15 @@ class Population:
         raise NotImplementedError
 
     def points(self) -> Tuple[np.ndarray, np.ndarray]:
-        """Success probabilities and weights summing to one, for exact averages."""
+        """Exact discrete support and weights; continuous laws must override majority_terms."""
         raise NotImplementedError
+
+    def majority_terms(self, m: int) -> Tuple[float, float]:
+        """Mean majority decision and misclassification probability for odd m."""
+        rates, weights = self.points()
+        wrong = binomial_tail(m, (m + 1) // 2, np.minimum(rates, 1 - rates))
+        above = np.where(rates > 0.5, 1 - wrong, wrong)
+        return float(weights @ above), float(weights @ wrong)
 
 
 class GuessedRates(Population):
@@ -66,7 +75,10 @@ class GuessedRates(Population):
             raise ValueError("give at least one success probability")
         if not np.all((rates >= 0) & (rates <= 1)):
             raise ValueError("success probabilities must lie between 0 and 1")
-        self.rates = rates
+        if np.any(rates == 0.5):
+            raise ValueError("rates of exactly 0.5 are outside the positive-gap theorem's scope")
+        self.rates = rates.copy()
+        self.rates.flags.writeable = False
         self.gaps = np.abs(rates - 0.5)
 
     def describe(self) -> str:
@@ -112,75 +124,61 @@ class EvenlySpread(Population):
     def sample(self, rng: np.random.Generator, size: int) -> np.ndarray:
         return rng.random(size)
 
-    def points(self) -> Tuple[np.ndarray, np.ndarray]:
-        # Midpoint rule; the majority-vote error curves are smooth on this scale.
-        count = 4096
-        return (np.arange(count) + 0.5) / count, np.full(count, 1 / count)
+    def majority_terms(self, m: int) -> Tuple[float, float]:
+        # With a=(m+1)/2, integration by parts gives
+        # 2 integral_0^(1/2) I_p(a,a) dp = C(2a,a)/2^(2a+1)
+        # = 1/(2a Beta(a,1/2)). This avoids a grid missing the peak near 1/2.
+        a = (m + 1) / 2
+        wrong = 0.5 * math.exp(-math.log(a) - float(betaln(a, 0.5)))
+        return 0.5, wrong
+
+
+def _validate_target(target: float) -> None:
+    if not math.isfinite(target) or not 0 < target <= 1:
+        raise ValueError("target error must be finite and in (0, 1]")
+    if target * target == 0:
+        raise ValueError("target error is too small for floating-point planning")
 
 
 def difficulty(population: Population, budget: float) -> float:
+    if not math.isfinite(budget) or budget < 1:
+        raise ValueError("budget must be finite and at least 1 flip")
+    if population.share_within(0) != 0:
+        raise ValueError("the proven limits require zero mass at rate 0.5")
     return population.modulus(1 / math.sqrt(budget))
 
 
 def floor_budget(population: Population, target: float) -> float:
-    """Smallest budget at which the proven floor allows error `target`; inf if none."""
+    """Invert the proven floor numerically; inf means beyond float range, not impossible."""
+    _validate_target(target)
     def floor(budget: float) -> float:
         return FLOOR_FACTOR * difficulty(population, budget)
 
     if floor(1) <= target:
         return 1.0
-    high = 1e30
-    if floor(high) > target:
-        return math.inf
+    high = 1.0
+    while floor(high) > target:
+        if high == sys.float_info.max:
+            return math.inf
+        high = min(sys.float_info.max, high * 1024)
     low = 1.0
     for _ in range(200):
-        mid = math.sqrt(low * high)
+        mid = math.exp((math.log(low) + math.log(high)) / 2)
         if floor(mid) <= target:
             high = mid
         else:
             low = mid
-    return float(math.ceil(high))
-
-
-def _beta_fraction(a: float, b: float, x: np.ndarray) -> np.ndarray:
-    """Continued fraction for the incomplete beta function (modified Lentz)."""
-    tiny = 1e-300
-
-    def guard(v: np.ndarray) -> np.ndarray:
-        return np.where(np.abs(v) < tiny, tiny, v)
-
-    c = np.ones_like(x)
-    d = 1 / guard(1 - (a + b) * x / (a + 1))
-    h = d.copy()
-    for i in range(1, 200 + int(20 * math.sqrt(a + b))):
-        step = i * (b - i) * x / ((a - 1 + 2 * i) * (a + 2 * i))
-        d = 1 / guard(1 + step * d)
-        c = guard(1 + step / c)
-        h *= d * c
-        step = -(a + i) * (a + b + i) * x / ((a + 2 * i) * (a + 1 + 2 * i))
-        d = 1 / guard(1 + step * d)
-        c = guard(1 + step / c)
-        h *= d * c
-        if np.all(np.abs(d * c - 1) < 1e-15):
-            return h
-    raise ArithmeticError("binomial tail did not converge")
+    return high
 
 
 def binomial_tail(m: int, k: int, p: np.ndarray) -> np.ndarray:
     """P(Binomial(m, p) >= k) for 1 <= k <= m, via the regularized incomplete beta."""
     p = np.asarray(p, dtype=float)
-    out = np.where(p >= 1, 1.0, 0.0)
-    inner = (p > 0) & (p < 1)
-    x = p[inner]
-    a, b = float(k), float(m - k + 1)
-    front = np.exp(math.lgamma(a + b) - math.lgamma(a) - math.lgamma(b)
-                   + a * np.log(x) + b * np.log1p(-x))
-    direct = x < (a + 1) / (a + b + 2)
-    tail = np.empty_like(x)
-    tail[direct] = front[direct] * _beta_fraction(a, b, x[direct]) / a
-    tail[~direct] = 1 - front[~direct] * _beta_fraction(b, a, 1 - x[~direct]) / b
-    out[inner] = np.clip(tail, 0.0, 1.0)
-    return out
+    if not isinstance(m, int) or not isinstance(k, int) or not 1 <= k <= m:
+        raise ValueError("binomial counts must be integers with 1 <= k <= m")
+    if not np.all((0 <= p) & (p <= 1)):
+        raise ValueError("binomial probabilities must be in [0, 1]")
+    return betainc(k, m - k + 1, p)
 
 
 @dataclass(frozen=True)
@@ -189,7 +187,7 @@ class MajorityPlan:
     items: int
     flips_per_item: int
     error_on_guess: float
-    """Exact root-mean-square error if the items are exactly as guessed."""
+    """Analytic root-mean-square error on the guessed law, evaluated in floating point."""
     worst_case_error: float
     """Bound on the error for every way items this close to 50/50 could fall either side."""
 
@@ -199,22 +197,22 @@ class MajorityPlan:
 
 
 def _odd_flip_counts(limit: float) -> List[int]:
+    if not math.isfinite(limit) or limit < 1:
+        raise ValueError("flip-count search limit must be finite and at least 1")
     counts, x = [], 1.0
-    while True:
+    while math.isfinite(x):
         m = 2 * int(round(x) // 2) + 1
         if m > limit:
             return counts
         if not counts or m > counts[-1]:
             counts.append(m)
         x *= 1.25
+    return counts
 
 
 def _majority_terms(population: Population, m: int) -> Tuple[float, float]:
     """(share called above 50/50, average chance an item is called on the wrong side)."""
-    rates, weights = population.points()
-    above = binomial_tail(m, (m + 1) // 2, rates)
-    wrong = np.where(rates > 0.5, 1 - above, above)
-    return float(weights @ above), float(weights @ wrong)
+    return population.majority_terms(m)
 
 
 def _majority_plan(population: Population, m: int, items: int) -> MajorityPlan:
@@ -228,18 +226,24 @@ def _majority_plan(population: Population, m: int, items: int) -> MajorityPlan:
 
 
 def majority_plan_for_budget(population: Population, budget: float) -> MajorityPlan:
-    """The odd flips-per-item count with the best worst-case error at this budget."""
-    if not budget >= 1:
-        raise ValueError("budget must be at least 1 flip")
-    plans = [_majority_plan(population, m, int(budget // m)) for m in _odd_flip_counts(budget)]
-    return min(plans, key=lambda plan: plan.worst_case_error)
+    """Best bound on the 1.25x grid of odd flip counts, not a global optimum."""
+    if not math.isfinite(budget) or budget < 1:
+        raise ValueError("budget must be finite and at least 1 flip")
+    best = None
+    for m in _odd_flip_counts(budget):
+        items = int(budget // m)
+        if best is not None and math.sqrt(1 / (4 * items)) >= best.worst_case_error:
+            break  # the sampling term alone rules out every larger m
+        plan = _majority_plan(population, m, items)
+        if best is None or plan.worst_case_error < best.worst_case_error:
+            best = plan
+    return best
 
 
 def majority_plan_for_target(population: Population, target: float,
                              max_flips_per_item: float = 2 ** 24) -> Optional[MajorityPlan]:
-    """The cheapest plan whose worst-case error is at most `target`, if any."""
-    if not target > 0:
-        raise ValueError("target error must be positive")
+    """Cheapest qualifying plan on the bounded 1.25x grid, or None if not found."""
+    _validate_target(target)
     best = None
     for m in _odd_flip_counts(max_flips_per_item):
         if best is not None and m / (4 * target ** 2) >= best.flips:
@@ -247,7 +251,13 @@ def majority_plan_for_target(population: Population, target: float,
         _, wrong = _majority_terms(population, m)
         if wrong >= target:
             continue
-        plan = _majority_plan(population, m, math.ceil(1 / (4 * (target ** 2 - wrong ** 2))))
+        remainder = (target - wrong) * (target + wrong)
+        if remainder == 0:
+            continue
+        count = 1 / (4 * remainder)
+        if not math.isfinite(count):
+            raise ValueError("required item count exceeds floating-point planning range")
+        plan = _majority_plan(population, m, max(1, math.ceil(count)))
         while plan.worst_case_error > target:  # floating-point rounding only
             plan = _majority_plan(population, m, plan.items + 1)
         if best is None or plan.flips < best.flips:
@@ -349,7 +359,7 @@ def simulate(population: Population, budget: float, runs: int = 200,
              seed: Optional[int] = None,
              rng: Optional[np.random.Generator] = None) -> Simulation:
     """Run the estimator `runs` times on simulated items drawn from the guess."""
-    if runs < 2:
+    if not isinstance(runs, int) or runs < 2:
         raise ValueError("use at least 2 runs")
     if rng is None:
         rng = np.random.default_rng(seed)
@@ -373,8 +383,7 @@ def simulate(population: Population, budget: float, runs: int = 200,
 class BudgetPlan:
     budget: float
     resolution: float
-    """1/sqrt(budget): even all the flips on one item this close to 50/50 leave
-    roughly a 2% or larger chance of placing it on the wrong side."""
+    """1/sqrt(budget), the gap scale used in the modulus; not an error probability."""
     share_unresolved: float
     majority: MajorityPlan
     simulation: Simulation
@@ -409,7 +418,7 @@ SEARCH_FACTOR = 64
 class TargetPlan:
     target: float
     majority: Optional[MajorityPlan]
-    """Cheapest simple plan meeting the target in the worst case, or None."""
+    """Cheapest qualifying plan found on the bounded grid, or None."""
     trials: List[Simulation]
     recommended: Optional[Simulation]
     """First simulated budget at which the proven estimator meets the target, or None."""
@@ -419,7 +428,8 @@ class TargetPlan:
 
 def plan_target(population: Population, target: float, runs: int = 200,
                 seed: Optional[int] = 0, max_budget: float = 4 * 2 ** 22,
-                progress: Optional[Callable[[Simulation], None]] = None) -> TargetPlan:
+                progress: Optional[Callable[[Simulation], None]] = None,
+                planned: Optional[Callable[[Optional[MajorityPlan]], None]] = None) -> TargetPlan:
     """Find the flips needed for typical error `target`, for both methods.
 
     The proven estimator is simulated at doubling budgets 4, 8, 16, ...: it
@@ -427,7 +437,13 @@ def plan_target(population: Population, target: float, runs: int = 200,
     below 8N runs the same algorithm. The search stops at `max_budget` or at
     SEARCH_FACTOR times the simple plan's flips. `progress` sees each trial.
     """
+    _validate_target(target)
+    budget_level(max_budget)
+    if not isinstance(runs, int) or runs < 2:
+        raise ValueError("use at least 2 runs")
     majority = majority_plan_for_target(population, target)
+    if planned is not None:
+        planned(majority)
     limit = max_budget if majority is None else min(max_budget, SEARCH_FACTOR * majority.flips)
     rng = np.random.default_rng(seed)
     trials = []

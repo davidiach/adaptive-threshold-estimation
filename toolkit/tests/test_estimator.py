@@ -1,6 +1,7 @@
 import itertools
 import math
 import random
+import subprocess
 import sys
 import unittest
 from pathlib import Path
@@ -52,6 +53,19 @@ class BudgetTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             budget_level(3.9)
 
+    def test_nonfinite_budgets_rejected(self):
+        for budget in (math.inf, -math.inf, math.nan):
+            with self.subTest(budget=budget), self.assertRaises(ValueError):
+                estimate_fraction(lambda: (lambda: True), budget)
+
+    def test_execution_api_imports_without_numerical_dependencies(self):
+        root = str(Path(__file__).resolve().parents[1])
+        script = (f"import sys; sys.path.insert(0, {root!r}); "
+                  "from threshold_toolkit import estimate_fraction; "
+                  "assert 'numpy' not in sys.modules and 'scipy' not in sys.modules; "
+                  "assert estimate_fraction(lambda: (lambda: False), 4, seed=0).estimate == 0")
+        subprocess.run([sys.executable, "-S", "-c", script], check=True, timeout=10)
+
     def test_level_law(self):
         rng = random.Random(1)
         draws = [sample_level(rng) for _ in range(200_000)]
@@ -99,14 +113,14 @@ class CallTests(unittest.TestCase):
 
 class CalibrationTests(unittest.TestCase):
     def test_two_success_identities(self):
-        # Cost uniform on {0,...,8}, value correlated with cost: mean 4, variance 7.
+        # Cost uniform on {1,...,9}, value correlated with cost: mean 5, variance 7.
         rng = random.Random(3)
 
         def run_once():
-            cost = rng.randrange(9)
+            cost = rng.randrange(9) + 1
             return cost + rng.uniform(-1, 1), cost
 
-        cap, mean_cost, mean_value, variance = 8, 4.0, 4.0, 7.0
+        cap, mean_cost, mean_value, variance = 9, 5.0, 5.0, 7.0
         reps = 40_000
         results = [two_success_average(run_once, cap, rng) for _ in range(reps)]
         averages = np.array([r[0] for r in results])
@@ -118,6 +132,14 @@ class CalibrationTests(unittest.TestCase):
     def test_cost_outside_cap_rejected(self):
         with self.assertRaises(ValueError):
             two_success_average(lambda: (0.0, 9), 8, random.Random(0))
+
+    def test_zero_cost_and_invalid_caps_rejected(self):
+        for cost in (0, -1, math.inf, math.nan):
+            with self.subTest(cost=cost), self.assertRaises(ValueError):
+                two_success_average(lambda: (1.0, cost), 8, random.Random(0))
+        for cap in (0, -1, math.inf, math.nan):
+            with self.subTest(cap=cap), self.assertRaises(ValueError):
+                two_success_average(lambda: (1.0, 1), cap, random.Random(0))
 
 
 class Population:
