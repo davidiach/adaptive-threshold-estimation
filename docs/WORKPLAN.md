@@ -16,8 +16,8 @@ review, and CI history.
 
 The [consolidated v6 manuscript](../paper/v6/README.md) presents all of
 these results in one paper; the v5, general-law and finite-gap manuscripts
-remain preserved as its sources. Formalizing a paper-proof result does not
-require rebuilding v6, but its verification section should then be updated.
+remain preserved as its sources. When a paper-proof result is formalized,
+update the v6 verification section and rebuild the PDF.
 
 The original RMS law, critical quadratic law, unbiased existence
 characterization, confidence characterization, and canonical magnitude-oracle
