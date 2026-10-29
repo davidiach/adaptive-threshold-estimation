@@ -128,16 +128,17 @@ def two_success_average(run_once: Callable[[], Tuple[float, float]], cap: float,
             if rng.random() < cost / cap:
                 break
             production += 1
-    values = []
+    total = scaled = 0.0
     for _ in range(production):
         value, cost = checked_run()
-        values.append(value)
+        total += value
+        # Partial sums of value / production stay within the largest |value|,
+        # so this fallback survives when the plain sum overflows.
+        scaled += value / production
         total_cost += cost
-    average = sum(values) / production
+    average = total / production if math.isfinite(total) else scaled
     if not math.isfinite(average):
-        # The plain sum overflowed although every value is finite. The scaled
-        # values cannot: their exact sum is bounded by the largest |value|.
-        average = math.fsum(value / production for value in values)
+        raise OverflowError("the average of these finite values is not representable")
     return average, total_cost, production, pilots
 
 

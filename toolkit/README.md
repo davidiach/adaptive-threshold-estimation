@@ -27,7 +27,7 @@ For the ten-item guess used in the examples below:
 | | Simple plan | Proven no-tuning method |
 |---|---:|---:|
 | Typical error at 16,384 flips | 5.9 points | 28 points (simulated) |
-| A plan found for a 3-point typical error | 258,153 flips | about 4.2 million flips (simulated) |
+| A plan found for a 3-point typical error | 258,153 flips | none confirmed; simulated error first meets it at about 4.2 million flips |
 
 In theory the proven method's error shrinks at the minimax rate as budgets
 grow. In this example, the simple plan uses far fewer flips. The calculator

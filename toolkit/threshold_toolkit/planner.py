@@ -387,8 +387,9 @@ def rms_upper_bound(squared_errors: Sequence[float], confidence: float = 0.95) -
     while True:
         middle = (low + high) / 2
         if middle in (low, high):
-            # The margin absorbs rounding in the relative entropy near the root.
-            return min(1.0, math.sqrt(high) * (1 + 1e-12))
+            # A relative margin keeps the bound above the exact root despite
+            # rounding in the relative entropy, which is far smaller than 1e-9.
+            return min(1.0, math.sqrt(high) * (1 + 1e-9))
         if _bernoulli_kl(mean, middle) <= allowance:
             low = middle
         else:
@@ -543,13 +544,15 @@ def plan_target(population: Population, target: float, runs: int = 200,
     trial_confidence = 1 - (1 - confidence) / candidates
     # With no observed error, the bound is the q solving runs * -log(1 - q) = log(1 / delta);
     # every bound is at most 1, so target 1 needs no particular number of runs.
-    confirmable = (0 if target >= 1 else
-                   math.ceil(math.log(candidates / (1 - confidence)) / -math.log1p(-target * target)))
+    needed = 0.0 if target >= 1 else math.log(candidates / (1 - confidence)) / -math.log1p(-target * target)
+    confirmable = math.ceil(needed) if needed < sys.maxsize else sys.maxsize
     rng = np.random.default_rng(seed)
     trials = []
     recommended = hit = None
     level = 0
     while recommended is None and 4 * 2 ** level <= limit:
+        if hit is not None and 4 * 2 ** level > MAX_SIMULATED_BUDGET:
+            break  # keep the unconfirmed hit rather than fail on an unsimulatable budget
         trial = simulate(population, 4 * 2 ** level, runs, rng=rng, confidence=trial_confidence)
         trials.append(trial)
         if progress is not None:

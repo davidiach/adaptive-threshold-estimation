@@ -148,7 +148,32 @@ class CalibrationTests(unittest.TestCase):
         self.assertEqual(len(values), production)
         self.assertGreater(production, 2)
         self.assertTrue(math.isfinite(average))
-        self.assertEqual(average, math.fsum(value / production for value in values))
+        exact = math.fsum(value / production for value in values)
+        self.assertLessEqual(abs(average - exact), 1e-12 * abs(exact))
+        # At the largest float the average may be unrepresentable after
+        # rounding; that is reported, never returned as infinity.
+        try:
+            result = two_success_average(lambda: (sys.float_info.max, 1.0), 2.0, random.Random(0))[0]
+        except OverflowError:
+            pass
+        else:
+            self.assertTrue(math.isfinite(result))
+
+    def test_ordinary_values_are_summed_left_to_right(self):
+        # Python 3.12's sum() compensates rounding; the helper keeps the plain
+        # left-to-right loop, so seeded results agree across Python versions.
+        values, calls = itertools.cycle([1e16, 1.0, -1e16, 1.0, 1.0]), []
+
+        def run_once():
+            calls.append(next(values))
+            return calls[-1], 1.0
+
+        average, _, production, pilots = two_success_average(run_once, 4.0, random.Random(2))
+        self.assertGreater(production, 2)
+        total = 0.0
+        for value in calls[pilots:]:
+            total += value
+        self.assertEqual(average, total / production)
 
     def test_cost_too_small_to_mark_rejected(self):
         # From an external review: 1e-308 / 1e308 underflows to 0, so no run

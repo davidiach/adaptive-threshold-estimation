@@ -294,6 +294,21 @@ class ConfidenceBoundTests(unittest.TestCase):
         self.assertGreater(plan.confirmable_runs, 1_000_000)
         self.assertEqual([trial.budget for trial in plan.trials], [4])
 
+    def test_tiny_targets_and_oversized_ceilings_do_not_fail(self):
+        plan = plan_target(GuessedRates([0.0]), 1e-150, runs=2, max_budget=8)
+        self.assertGreater(plan.confirmable_runs, 10 ** 15)
+        self.assertIsNone(plan.recommended)
+        # With enough runs to continue past an unconfirmed hit, the search stops
+        # at the simulation limit and keeps that hit instead of raising.
+        real = simulate(GuessedRates([0.9, 0.2]), 4, runs=2, seed=0)
+        hit = dataclasses.replace(real, rms_error=0.1, rms_error_upper=0.5)
+        with patch("threshold_toolkit.planner.MAX_SIMULATED_BUDGET", 8), \
+                patch("threshold_toolkit.planner.simulate", side_effect=lambda *a, **k: hit):
+            plan = plan_target(GuessedRates([0.9, 0.2]), 0.3, runs=1000, max_budget=64)
+        self.assertEqual(len(plan.trials), 2)
+        self.assertIs(plan.first_simulated_hit, hit)
+        self.assertIsNone(plan.recommended)
+
     def test_search_continues_past_an_unconfirmed_hit_when_runs_suffice(self):
         real = simulate(GuessedRates([0.9, 0.2]), 4, runs=2, seed=0)
         fake = iter([dataclasses.replace(real, rms_error=0.1, rms_error_upper=0.5),
