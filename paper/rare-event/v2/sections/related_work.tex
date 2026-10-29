@@ -1,0 +1,82 @@
+\section{Related work and the scope of the contribution}
+\label{sec:related-work}
+
+\paragraph{Adaptive mixtures of coins.}
+Lee--Valiant is the closest direct antecedent \cite{lv}. In the extended
+version, Sections~4--5 develop triangular single-coin estimators and
+single-coin-to-population lower-bound decompositions. Section~7,
+Theorems~4--5 and Lemma~22, optimizes an unbiased estimator when both
+sign-conditional bias distributions, a nominal mixture weight, and a
+per-coin cap are supplied. Its linear program optimizes information per
+expected sample. Section~5.2 also reveals a coin's true bias after a cap
+in a strengthened experiment.
+
+Knowing our marginal magnitude law does not supply those conditional
+distributions. For $0<\theta(q)<1$, the corresponding magnitude laws are
+\[
+ \mu_q^+(dd)=\frac{q(d)}{\theta(q)}\,\mu(dd),\qquad
+ \mu_q^-(dd)=\frac{1-q(d)}{1-\theta(q)}\,\mu(dd).
+\]
+They change with the unknown function $q$. Our optimization must use one
+observable procedure whose bias, moment, and expected work bounds hold
+throughout $\mathcal Q_\rho$. The exact dual therefore retains separate
+endpoint, moment-reference, and work-reference populations. The
+additional statements concern that robust program, its comparison with
+the full population experiment, and convergent upper and lower
+certificates. Triangular flows, information/work optimization, adaptive
+decomposition, and latent revelation are credited to their antecedents.
+
+\paragraph{Gap entropy and sign testing.}
+Chen--Li introduced entropy of normalized dyadic inverse-square gap
+costs \cite[Definition~3.3]{cl16}. Chen--Li--Qiao proved the weighted
+Sign-$\xi$ entropy inequality \cite[Lemma~4.1]{clq}; Appendix~D develops
+its stopping-window argument, and Remark~D.4 explicitly covers Bernoulli
+families away from their boundary. Our weighted sign-testing lemma is
+an adaptation of this argument. In particular, the form
+$A[1+\Ent(\pi)]$ and the statistical origin of its entropy factor are
+established ideas.
+
+The additional issue here is how much of a known magnitude law should
+pay that entropy cost. The optimizing set in
+\eqref{eq:scalar-selection} depends jointly on the law, rarity, and
+budget. Its complement pays a truncated inverse-gap tail cost. The
+upper construction implements this decomposition without observing
+component membership; the lower construction respects both rarity
+and mass saturation while combining disjoint components. These steps
+are needed to obtain the all-law selection formula from the sign-testing
+ingredient. Best-arm identification and latent population-proportion
+estimation have different targets and sampling access.
+
+\paragraph{Convex estimation, testing, and stopping.}
+Juditsky--Nemirovski give constant-factor affine estimation under their
+good-pair assumptions, with a Hellinger-affinity characterization
+\cite[Theorem~3.1 and Proposition~3.1]{jn}. Polyanskiy--Wu characterize
+quadratic minimax risk for an affine functional over a convex prior
+class through a $\chi^2$ modulus for a fixed iid observation kernel
+\cite[Theorem~1]{pw}. These results provide the relevant
+estimation--testing duality. For a fixed capped one-unit policy, its
+transcript is a fixed observation kernel. Optimizing that policy while
+controlling expected work uniformly over $q$, and then comparing with
+arbitrarily interleaved population algorithms, requires the additional
+arguments given here. Strong convex duality and occupation-measure
+formulations of optimal stopping are standard tools \cite{bv,cs}; the
+four-prior formula is a specific application, not a new general duality
+principle.
+
+\paragraph{Baseline and narrower claims.}
+The supplied manuscript and pinned version-5 development already
+contain the balanced-law benchmark, rare-event phase results, the
+variational $\Psi$ lower bound, and the critical quadratic-law entropy
+correction \cite{original,repo}. The pinned critical proof also credits
+Chen--Li--Qiao for its sign-entropy mechanism. Those results remain baseline contributions. The specialized ingredients
+needed here are proved within this manuscript, with their attribution
+preserved.
+
+The principal added claim is the joint, arbitrary-law entropy--tail
+characterization, together with a robust stopping-program formulation
+that admits convergent certificates. The fixed-cap odd-moment
+identification result is a secondary consequence of this model and
+elementary moment interpolation; it is not presented as a general
+mixture-identification principle. The targeted primary-source comparison
+above identifies the closest checked statements and their hypotheses.
+It does not certify publication priority.

@@ -1,0 +1,181 @@
+{
+  "revision_date": "2026-10-29",
+  "edition": "revised_v2",
+  "status": "PASS",
+  "scope": "Two editorial fixes only; the original and first revised deliverables remain unchanged.",
+  "editorial_changes": [
+    "sections/matching_lower.tex",
+    "sections/transfer_foundations.tex"
+  ],
+  "exact_incremental_patch": "EDITORIAL_FIXES.patch",
+  "cumulative_original_diff": "REVISION_DIFF.patch",
+  "previous_pdf_sha256": "b2079e934c86cba81298a8a666edf3b6041648b68ed97493f3ac1b8844dec7b6",
+  "previous_source_zip_sha256": "d727c0d99f78a7679a8c3c8be5e2d46aec1d9598cea5e96a157bec7bd33dbf1b",
+  "original_input_sha256": {
+    "adaptive_rare_event_estimation_standalone.pdf": "be453bebf8b861d985bf62cbcc2f61eb93354b2f72c45846d411d5aa90b5600e",
+    "adaptive_rare_event_estimation_review_sources.zip": "979042f01760d132a613164aa17c6bfd8608ab91d0f0ab8a83beba5feac7dc5a"
+  },
+  "manuscript_source_sha256": {
+    "main.tex": "006a0557184f812ad6b50fa5665b6bf433a55a5cf773ee5c18d7592e1dd900b0",
+    "sections/additive.tex": "5fb3c729c2bc4c6bcfc5ab002e2c5e574063bcbc317c6bcfe60a60d8b4d7163d",
+    "sections/computation.tex": "5a002e0a76a5e03af299a8a854762d122f2d3545c6a8bd633b27929eeae034c6",
+    "sections/discussion.tex": "807362a1bbc7e6860076ecf487e44460f8cc6fb2a5c53173b3f51c365c0e40fd",
+    "sections/dual_transfer.tex": "40f208683f0d58b693cbb9754c632b7db2f45341cc5f33dc15992efa982f8219",
+    "sections/flow_foundations.tex": "686cb0fd2f289dff79276a3b1ce4ea1c89ecb235059388ea4b613e0afaac3591",
+    "sections/genie_brackets.tex": "0d3a1aae1492d87a2108494a72e82741ae66f58beb85483b188d3616b4852691",
+    "sections/identifiability.tex": "70a682e02fe5fbc65daf0918577214457d8ce7dde1d0d1b253ac614c5f028a73",
+    "sections/lower_foundations.tex": "f2b10c7f27770a249f85530d0e5d4250038ae694b7e259d136a3e00a5def5361",
+    "sections/matching_lower.tex": "458683f1b107c30dbb6ce731c5268f780d2dca247714e99dc8554c7452ca24dc",
+    "sections/overview.tex": "152eecea041a177b132f4cdf4761ff8d13bee002e6f0a8aabdb62d4749122130",
+    "sections/related_work.tex": "c664cfdff939708159c280dc46e7e3b35cbc8f7d84d03596aea4388b839a90e5",
+    "sections/transfer_foundations.tex": "fe674be285322efe89ad80f1b0fb24891a0457c490297f4c775877be8be874ee",
+    "sections/upper_foundations.tex": "810e67898efe604d340dccb2ab01e75d3a7a68bc665c51413b6779522dac225e"
+  },
+  "pdf": {
+    "file": "main.pdf",
+    "pages": 55,
+    "bytes": 363557,
+    "sha256": "1915a0eb4f2113291051ab9c1bfd8f50004a16e5736cc6eff8a80105f3924c52"
+  },
+  "build": {
+    "engine": "Tectonic 0.17.0, Windows x86_64 MSVC",
+    "command": "tectonic --only-cached --untrusted --keep-logs --keep-intermediates main.tex",
+    "exit_code": 0,
+    "log": "main.log",
+    "latex_diagnostics": [],
+    "desktop_editor_compile": "success",
+    "environment_notice": "Fontconfig reported an unavailable default configuration; compilation succeeded using embedded TeX fonts. All 21 PDF fonts are embedded and the 53 unchanged pages render identically to the prior PDF.",
+    "embedded_fonts": 21,
+    "all_fonts_embedded": true
+  },
+  "source_integrity": {
+    "labels": 162,
+    "references": 176,
+    "missing_references": 0,
+    "duplicate_labels": 0
+  },
+  "visual_review": {
+    "status": "PASS",
+    "method": "Poppler rendered every page at 80 dpi for pixel comparison; changed pages were visually inspected at 145 dpi.",
+    "changed_pages": [
+      15,
+      36
+    ],
+    "identical_to_previous_pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55
+    ],
+    "detail_pages_inspected": [
+      15,
+      36
+    ],
+    "findings": "The endpoint wording and normalization prose are corrected. No clipping, overlap, equation corruption, or pagination change."
+  },
+  "mathematical_checks": {
+    "status": "Previously passing results retained; numerical inputs and all check files are byte-for-byte unchanged.",
+    "unchanged_check_files": 59,
+    "previous_verification": "review/previous_revision_VERIFICATION_20261029.json",
+    "certificate_summary": {
+      "exact_certificates_rechecked": {
+        "lower": 33,
+        "upper": 9
+      },
+      "exact_stopping_decisions_rechecked": 9,
+      "perfect_label_analytic_checks": [
+        {
+          "budget": "100",
+          "cap": 1,
+          "analytic_squared_value": "9/13600",
+          "contained_in_exact_bracket": true
+        },
+        {
+          "budget": "1000",
+          "cap": 1,
+          "analytic_squared_value": "9/103600",
+          "contained_in_exact_bracket": true
+        }
+      ],
+      "targeted_corruptions_rejected": [
+        "rarity constraint",
+        "Bellman work price",
+        "overstated lower value",
+        "genie boundary reward",
+        "actual policy budget",
+        "understated policy risk"
+      ]
+    },
+    "revision_summary": {
+      "status": "PASS",
+      "unique_noninterval_winner_mask": 5,
+      "sign_entropy_denominator": 214,
+      "main_constants": {
+        "lower": "1/100000000000000000",
+        "upper": 33000,
+        "upper_entropy_rational_bound": "825/8",
+        "upper_ordinary_rational_bound": "854425/32"
+      },
+      "tex_integrity": {
+        "labels": 162,
+        "references": 176,
+        "missing": 0,
+        "duplicates": 0
+      }
+    }
+  },
+  "preservation": {
+    "original_inputs": "unchanged",
+    "previous_revision_manifest": "all entries verified unchanged",
+    "previous_pdf_and_source_zip": "hashes unchanged"
+  }
+}

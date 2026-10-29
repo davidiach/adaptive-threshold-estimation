@@ -1,0 +1,152 @@
+{
+  "seed": 2026102901,
+  "status": "PASS",
+  "new_examples_and_constants": {
+    "noninterval_costs_divided_by_h": [
+      "4.9990234375",
+      "4.706761429868665088290649322053622155205234686943817455478712122255781049352685937586223846170907907",
+      "5.057617187500000000000000000000000000000000000000000",
+      "4.721551453421017526089728664677679204961964726847702683003884492015375012842878841048699941441276648",
+      "3.829975406974660353162597288214488620820938747775269821914848489023124197410743750344895384683631628",
+      "3.227482808808320506103307969922133658095260354367166096670951401731530730780529960850976143287349234",
+      "3.832710224321123628637715474718202035564354836366903598791799003623013426053492593007186923214774305",
+      "3.229438944320903875388852102323529643922420522004202714121423964834072889984342182054838690681488587"
+    ],
+    "unique_winner_mask": 5,
+    "runner_up_mask": 7,
+    "winner_margin_over_h": "0.001956135512583369285544132401",
+    "fractional_grid_assignments": 2197,
+    "constants": {
+      "sign_entropy_coefficient": "213.2701804826678807707503123937313276587161620095238132278746859908115157626227541651553600183016950",
+      "annular_denominator_required": "1335360",
+      "upper_entropy_coefficient": "97.59758671524306048840399404730679895736191210142071082348458971231695690228532651831428139158589522",
+      "upper_ordinary_coefficient": "25206.59361678900253057040666352530582725976547671176377993209508309985510472384670500232763643382293",
+      "packed_lower_coefficient_cE": "1.602117255155009449910957934543435388908683346521557289954410880182547507200425740966333671210301877E-16",
+      "assembled_lower_coefficient": "8.010586275743506660610340358194683544814529537626660602031836500210073098766080814203992007485391114E-17",
+      "high_gap_multiplier_upper": "106.9347781872582054093864194807764000537864681358549861849236999052722167340895592448823839677986853"
+    },
+    "sharp_bias_example": [
+      {
+        "d": "1/4096",
+        "bias": "2047/8388608",
+        "c_3_false_lower_bound": "4206601/805306368",
+        "actual_V_times_W_upper": "1/4"
+      },
+      {
+        "d": "1/1048576",
+        "bias": "524287/2147483648",
+        "c_3_false_lower_bound": "274881052681/805306368",
+        "actual_V_times_W_upper": "1/4"
+      },
+      {
+        "d": "1/1099511627776",
+        "bias": "549755813887/2251799813685248",
+        "c_3_false_lower_bound": "302231454906955828559881/805306368",
+        "actual_V_times_W_upper": "1/4"
+      }
+    ],
+    "tail_proof": "For j<=J/2 the ordinary sum is <=2^(-floor(J/2)); for j>J/2 it is <=8/J^2. The tail allocation is feasible when 1/(J+1)<=rho and gives Psi>=1/(J+1)."
+  },
+  "selection_and_variational_optimizer": {
+    "laws": 700,
+    "enumerated_hard_assignments": 48356,
+    "max_ordinary_band_mass_over_rho": 0.9072272069373643,
+    "max_h_H_O_over_Psi": 1.058001321605846,
+    "suspicious_float_minimizers_rechecked_at_80_digits": 0,
+    "optimizer_dual_comparisons": 100,
+    "maximum_relative_primal_dual_gap": 4.3607635858164066e-16,
+    "exact_dyadic_factor_two_examples": [
+      {
+        "bands": 2,
+        "total_over_top_mass": "3/2"
+      },
+      {
+        "bands": 8,
+        "total_over_top_mass": "255/128"
+      },
+      {
+        "bands": 32,
+        "total_over_top_mass": "4294967295/2147483648"
+      },
+      {
+        "bands": 128,
+        "total_over_top_mass": "340282366920938463463374607431768211455/170141183460469231731687303715884105728"
+      }
+    ]
+  },
+  "continuous_genie_counterexample": {
+    "exact_ordered_prefix_inequalities": 2144,
+    "exact_bellman_certificates": [
+      {
+        "cap": 1,
+        "root_surplus_at_price_3_over_4": "-87/128",
+        "ordinary_optimal_ratio_numerical": 0.0703125
+      },
+      {
+        "cap": 2,
+        "root_surplus_at_price_3_over_4": "-87/128",
+        "ordinary_optimal_ratio_numerical": 0.08522727272727273
+      },
+      {
+        "cap": 4,
+        "root_surplus_at_price_3_over_4": "-87/128",
+        "ordinary_optimal_ratio_numerical": 0.09644070996978851
+      },
+      {
+        "cap": 8,
+        "root_surplus_at_price_3_over_4": "-87/128",
+        "ordinary_optimal_ratio_numerical": 0.10086506792733
+      },
+      {
+        "cap": 16,
+        "root_surplus_at_price_3_over_4": "-87/128",
+        "ordinary_optimal_ratio_numerical": 0.10301962590981598
+      },
+      {
+        "cap": 32,
+        "root_surplus_at_price_3_over_4": "-87/128",
+        "ordinary_optimal_ratio_numerical": 0.1051016034785148
+      },
+      {
+        "cap": 64,
+        "root_surplus_at_price_3_over_4": "-87/128",
+        "ordinary_optimal_ratio_numerical": 0.10702217736966932
+      }
+    ],
+    "regularization_nonuniformity": [
+      {
+        "epsilon": "2^-16",
+        "C_v": "1.646246574117333610354457123565587924933511508241610731105121420836465584979728845510774688718918974",
+        "cap_8_genie_ratio_lower": "0.2057808217646667012943071404456984906166889385302013413881401776045581981224661056888468360898648718",
+        "ordinary_infinite_ratio_upper": "0.7500114442664225223163195239185168230716411078049897001602197299153124284733348592355230029755092699"
+      },
+      {
+        "epsilon": "2^-64",
+        "C_v": "5.805107637189541966673003104485577596909326153606216515520855574641549528949417917220244236237645961",
+        "cap_8_genie_ratio_lower": "0.7256384546486927458341253880606971996136657692007770644401069468301936911186772396525305295297057451",
+        "ordinary_infinite_ratio_upper": "0.7500000000000000000406575814682064162774835319404146032560276597756266445666936410751965633217176332"
+      },
+      {
+        "epsilon": "2^-128",
+        "C_v": "11.35028508166910444170717598887764130226907325940846413953931254364695437056600806623097068683766108",
+        "cap_8_genie_ratio_lower": "1.418785635208638055213396998609705162783634157426058017442414067955869296320751008278871335854707635",
+        "ordinary_infinite_ratio_upper": "0.7500000000000000000000000000000000000022040519077917890774413810072917106459164750453639849362979492"
+      },
+      {
+        "epsilon": "2^-256",
+        "C_v": "22.44063997062822939238288993220846639144431684991326385215701530734861851126905846466735799298609976",
+        "cap_8_genie_ratio_lower": "2.80507999632852867404786124152605829893053960623915798151962691341857731390863230808341974912326247",
+        "ordinary_infinite_ratio_upper": "0.7500000000000000000000000000000000000000000000000000000000000000000000000000064771264163208334690399"
+      }
+    ],
+    "analytic_divergence": "At cutoff d=1/2-2^-m, partial C_v = log(2^m-1)/8 >= (m-1)log(2)/8."
+  },
+  "finite_divergence_genie": {
+    "quadruples": 36,
+    "cap_comparisons": 288,
+    "largest_scaled_residual_bound_violation": 0.0,
+    "method": "Floating-point Bellman optimization; includes deterministic perfect-label support and near-singular variance references."
+  },
+  "revised_pdf_sha256": "b2079e934c86cba81298a8a666edf3b6041648b68ed97493f3ac1b8844dec7b6",
+  "scope": "Independent arithmetic, exact finite-prefix certificates and numerical falsification searches. General conclusions additionally rely on the analytic derivations in the audit."
+}

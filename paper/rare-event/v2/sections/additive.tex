@@ -1,0 +1,368 @@
+\section{Entropy versus a truncated inverse-gap tail}\label{sec:additive}
+
+This section defines a scalar characterization that separates the part of
+the law handled by rare-event scale entropy from a part handled by the
+ordinary inverse-gap cost and a part left unresolved at the requested
+accuracy. We prove its observable upper bound here and its matching lower
+bound in Section~\ref{sec:matching-lower}. The decomposition is analytical:
+the algorithm never observes a coin's component label.
+
+\subsection{A homogeneous entropy and a selection functional}
+
+For a finite submeasure $\sigma\le\mu$, use the canonical bands
+$I_j=(b_j/2,b_j]$, $b_j=2^{-(j+1)}$, and put
+\[
+ a_j(\sigma)=\int_{I_j}d^{-2}\,\sigma(dd),\qquad
+ A_\sigma=\sum_j a_j(\sigma).
+\]
+For a finite nonnegative vector $a$, define
+\[
+ \mathcal G(a)=A+\sum_j a_j\log(A/a_j),\qquad A=\sum_j a_j,
+ \qquad \mathcal G(0)=0.
+\]
+Zero coordinates contribute zero. The functional $\mathcal G$ is concave, coordinatewise increasing,
+homogeneous of degree one, and superadditive. Indeed, on positive
+coordinates its derivative is $1+\log(A/a_j)$ and its Hessian is
+$A^{-1}\mathbf1\mathbf1^\top-\operatorname{diag}(a_j^{-1})$,
+which is negative semidefinite by Cauchy--Schwarz. Continuity gives the
+boundary cases, and concavity plus homogeneity gives superadditivity. Define
+\begin{equation}\label{eq:submeasure-entropy}
+ \Gamma_\sigma=\sup_J\mathcal G(a_0(\sigma),\ldots,a_J(\sigma)).
+\end{equation}
+Thus $\Gamma_0=0$, and, when $0<A_\sigma<\infty$,
+$\Gamma_\sigma=A_\sigma[1+\Ent((a_j/A_\sigma)_j)]$, with extended-value
+interpretation. Also write
+$H_\tau=\int d^{-1}\,\tau(dd)$ for any finite submeasure $\tau$.
+
+Let $h=B^{-1/2}$ and define
+\begin{equation}\label{eq:scalar-selection}
+ \boxed{\quad
+ \mathcal K_{\mu,\rho}(B)=
+ \min\left\{\rho,\inf_{0\le\sigma\le\mu}
+ \left[h\sqrt{\rho\Gamma_\sigma}
+       +\int\min\{1,h/d\}\,d(\mu-\sigma)\right]\right\}.
+ \quad}
+\end{equation}
+Equivalently,
+\begin{equation}\label{eq:three-piece-functional}
+ \mathcal K_{\mu,\rho}(B)=
+ \min\left\{\rho,\inf_{\sigma+\tau+\zeta=\mu}
+ \left[\zeta((0,1/2])
+       +\frac{\sqrt{\rho\Gamma_\sigma}+H_\tau}{\sqrt B}\right]\right\}.
+\end{equation}
+Indeed, at fixed $\sigma$, assign each remaining magnitude to the cheaper
+of the costs $1$ and $h/d$.
+
+\begin{lemma}[Hard assignments suffice]\label{lem:hard-selection}
+The infimum in \eqref{eq:scalar-selection} is unchanged if
+$\sigma=\mu|S$ for a measurable set $S$. In particular, for a finite
+atomic law a minimizing assignment can put each atom entirely in one of
+the three pieces in \eqref{eq:three-piece-functional}.
+\end{lemma}
+
+\begin{proof}
+Write $f=d\sigma/d\mu\in[0,1]$ and $S_t=\{f>t\}$, so
+$\sigma=\int_0^1\mu|S_t\,dt$. Concavity of the square root of every
+finite-fragment entropy gives
+\[
+ \sqrt{\Gamma_\sigma}\ge
+       \int_0^1\sqrt{\Gamma_{\mu|S_t}}\,dt
+\]
+after monotone convergence in the fragment size. For a finite-objective
+input the relevant entropies are finite for $t>0$, since
+$\mu|S_t\le\sigma/t$ and
+$\Gamma_{\mu|S_t}\le\Gamma_\sigma/t$. The remainder integral is linear,
+so the objective at $\sigma$ is at least the average of the hard-set
+objectives. Their infimum is therefore no larger. The reverse inequality
+is immediate. For a finite law the minimum is attained among the finitely
+many assignments. This is a selection problem, not a claim of convex
+minimization over its assignments.
+\end{proof}
+
+The definition immediately implies
+\[
+ \mathcal K_{\mu,\rho}(B)\le
+ \min\{\rho,\omega_\mu(B^{-1/2}),
+                  \sqrt{\rho\Gamma_\mu/B}\},
+ \qquad
+ \omega_\mu(h)=\int\min\{1,h/d\}\,\mu(dd).
+\]
+Infinite quantities are allowed in this display.
+
+\begin{theorem}[An entropy--tail law for the full joint problem]
+\label{thm:entropy-tail-law}
+There are universal constants $0<c<C<\infty$ such that, for every
+probability measure $\mu$ on $(0,1/2]$, every $0<\rho\le1/4$, and every
+$B>0$,
+\begin{equation}\label{eq:entropy-tail-law}
+ \boxed{\qquad
+ c\,\mathcal K_{\mu,\rho}(B)\le R_{\mu,\rho}(B)
+             \le C\,\mathcal K_{\mu,\rho}(B).
+ \qquad}
+\end{equation}
+The functional has the equivalent selection and three-piece forms
+\eqref{eq:scalar-selection}--\eqref{eq:three-piece-functional}, and hard
+measurable assignments suffice. No density, regular variation, finite
+inverse moment, or finite full-law entropy is required.
+\end{theorem}
+
+The upper half is Theorem~\ref{thm:three-piece-upper}; the lower half is
+Theorem~\ref{thm:entropy-tail-lower}. The comparison constants in
+\eqref{eq:entropy-tail-law} are universal but conservative. They are not
+the factor sixteen proved for the finite convex program; these are
+different representations and different comparison bounds.
+The proof also gives the explicit conservative constants in
+\eqref{eq:explicit-main-constants}.
+
+\begin{theorem}[Three-piece observable upper bound]\label{thm:three-piece-upper}
+There is a universal constant $C$ such that, for every magnitude law on
+$(0,1/2]$, every $0<\rho\le1/4$, and every $B>0$,
+\begin{equation}\label{eq:three-piece-upper}
+ R_{\mu,\rho}(B)\le C\mathcal K_{\mu,\rho}(B).
+\end{equation}
+No component label or magnitude is revealed to the algorithm.
+\end{theorem}
+
+\subsection{An uncapped reference bank with a capped observable race}
+
+Fix a decomposition $\mu=\sigma+\tau+\zeta$, put
+$z=\zeta((0,1/2])$, and assume $\Gamma_\sigma,H_\tau<\infty$.
+It suffices to treat $z\le\rho/128$: otherwise the constant $\rho/2$
+has risk at most $64z$. Write $A=A_\sigma$, $H=H_\tau$.
+If $\sigma\ne0$, use all its occupied bands, with weights
+$\pi_j=a_j(\sigma)/A$ and references $b_j/2$ and $b_j/4$.
+For an internal allowance $u<\rho$, set $\epsilon=u/\rho$.
+Stop negative if a negative reference likelihood against fair reaches
+$1/(\epsilon\pi_j)$; stop positive if
+\begin{equation}\label{eq:split-bank-ratio}
+ \frac{\sum_j\pi_jP_{1/2+b_j/4,n}}
+      {\int P_{1/2-d,n}\,\mu(dd)}\ge1/u.
+\end{equation}
+Give negative crossings priority. A zero denominator triggers a positive
+stop. The split $\sigma+\tau+\zeta=\mu$ specifies the references and the
+work analysis; membership in these submeasures is never observed.
+The known all-negative mixture in the denominator is the full law
+$\mu$, regardless of the decomposition.
+
+By Lemma~\ref{lem:uf-mixture-bank}, a wrong negative crossing has
+conditional positive-sign probability at most $\epsilon$, and a positive
+crossing has all-negative-mixture probability at most $u$. Thus the total
+probability of a wrong bank stop is at most $2u$ over $\mathcal Q_\rho$.
+Termination outside $\sigma$ is not assumed.
+
+Race this bank against the ordinary classifier of Lemma~\ref{lem:uf-ordinary}, using
+alternating observations of the same physical coin. At an ordinary cap
+$M$, its conditional work certificate is
+\[
+ o_M(d)=\min\{M,17d^{-2}[1+\log_+(Md^2)]\}.
+\]
+For any finite measure $\xi$, put
+\[
+ \eta_\xi(M)=\int\min\{1,(Md^2)^{-2}\}\,\xi(dd),\qquad
+ O_\xi(M)=\int o_M(d)\,\xi(dd).
+\]
+The ordinary error under $\mu$ is at most $\eta_\mu(M)$.
+Stop as soon as either component stops and return that output.
+On completed counterfactual streams, the physical work is at most
+\[
+ 2\min\{T_{\rm bank},T_{\rm ordinary}\}\le2M.
+\]
+A wrong output implies either a wrong bank stop or an ordinary error.
+When $\sigma=0$, omit the bank and use the ordinary classifier alone.
+
+On a $\sigma$-almost-every gap $d$ in band $j$, the matching negative
+reference has drift at least $4d^2/3$ and log overshoot below one.
+Its expected crossing time is at most
+\begin{equation}\label{eq:split-negative-work}
+ \frac3{4d^2}[1+\log(1/\epsilon)+\log(1/\pi_j)].
+\end{equation}
+On a positive gap, the event $\widehat p_n-1/2\ge d/2$ gives
+\begin{equation}\label{eq:split-null-laplace}
+ \frac{P_{-,\mu,n}}{P_{{\rm f},n}}
+ \le\int e^{-2nx^2}\,\mu(dx)
+ \le z+\frac A{2en}+\frac H{2\sqrt{en}}.
+\end{equation}
+The last two bounds use, respectively,
+$\sup_xx^2e^{-2nx^2}=1/(2en)$ and
+$\sup_xxe^{-2nx^2}=1/(2\sqrt{en})$.
+For $n\ge d^{-2}$ the denominator is at most $z+Ad^2+Hd$,
+while the matching positive reference contributes at least
+$\pi_je^{nd^2/3}$ relative to fair. Equation~\eqref{eq:uf-bank-positive} therefore bounds positive expected bank work by
+\begin{equation}\label{eq:split-positive-work}
+ \frac6{d^2}\left[
+ 1+\log(1/\epsilon)+\log(1/\pi_j)
+ +\log_+\frac{z+Ad^2+Hd}{\rho}\right].
+\end{equation}
+These arguments prove finite conditional bank work on $\sigma$.
+On $\tau+\zeta$, the ordinary cap guarantees termination of the race.
+
+Since $z/\rho\le1$,
+\[
+ \log_+\frac{z+Ad^2+Hd}{\rho}
+ \le\log3+\log_+(Ad^2/\rho)+\log_+(Hd/\rho).
+\]
+Using $\sup_{x\ge1}\log x/x=1/e$ and
+$\sup_{x\ge1}\log x/x^2=1/(2e)$ gives
+\begin{equation}\label{eq:split-surcharge}
+ \int q(d)d^{-2}\log_+\frac{z+Ad^2+Hd}{\rho}\,\sigma(dd)
+ \le(\log3+1/e)A+\frac{H^2}{2e\rho}.
+\end{equation}
+Here $\int q\,d\sigma\le\rho$ and $q\le1$ follow from the original
+global rarity class; no separate conditional rarity assumption is used.
+Integrating \eqref{eq:split-negative-work} and
+\eqref{eq:split-positive-work} therefore bounds the bank work on $\sigma$ by
+\begin{equation}\label{eq:split-bank-work}
+ 6\Gamma_\sigma+6A\log(1/\epsilon)
+       +6(\log3+1/e)A+\frac{3H^2}{e\rho}.
+\end{equation}
+
+\subsection{A resolved-law cap schedule}
+
+Let $\nu=\sigma+\tau$ and set
+\[
+ \delta_\ell=\rho16^{-(\ell+1)},\qquad
+ u_\ell=\delta_\ell/4,\qquad \epsilon_\ell=u_\ell/\rho.
+\]
+Choose $M_\ell$ as the least power of four, at least four, such that
+$\eta_\nu(M_\ell)\le\delta_\ell/8$.
+Every chosen cap has a predecessor because $\eta_\nu(4)=1-z$.
+The inequality $\eta_\nu(4M)\ge\eta_\nu(M)/16$ implies
+\begin{equation}\label{eq:split-cap-selection}
+ \delta_\ell/128<\eta_\nu(M_\ell)\le\delta_\ell/8.
+\end{equation}
+Thus the selected powers of four are distinct and increasing.
+
+If $z>0$, let $J$ be the largest integer with $\delta_J\ge8z$.
+Then
+\begin{equation}\label{eq:split-terminal-level}
+ 8z\le\delta_J<128z.
+\end{equation}
+For $\ell\le J$,
+$\eta_\mu(M_\ell)\le\eta_\nu(M_\ell)+z\le\delta_\ell/4=u_\ell$.
+The raced classifier has total error at most $3u_\ell\le\delta_\ell$
+and false-positive probability at most $2u_\ell\le\delta_\ell$.
+When $z=0$, these conclusions hold at every level.
+
+Since $\log(1/\epsilon_\ell)=\log64+\ell\log16$ and
+$A\le\Gamma_\sigma$, \eqref{eq:split-bank-work} is at most
+$40(\ell+1)\Gamma_\sigma+2H^2/\rho$.
+A uniform raced-work certificate is consequently
+\begin{equation}\label{eq:split-level-work}
+ C_\ell=80(\ell+1)\Gamma_\sigma+4H^2/\rho
+                  +2O_\tau(M_\ell)+2zM_\ell.
+\end{equation}
+It remains a valid, possibly loose, bound when $\sigma=0$ and the bank is
+omitted.
+
+The binary level-zero output has second moment at most
+$\rho+\delta_0=17\delta_0$. An adjacent difference, run on successive
+unused blocks of the same coin, has second moment at most
+$\delta_\ell+\delta_{\ell-1}=17\delta_\ell$.
+Set $v_\ell=17\delta_\ell$, $k_0=C_0$,
+$k_\ell=C_\ell+C_{\ell-1}$ for $\ell\ge1$, and
+$S_J=\sum_{\ell\le J}\sqrt{v_\ell k_\ell}$.
+Independent-Poisson allocation across these corrections
+(Lemma~\ref{lem:uf-poisson})
+gives RMS at most
+\begin{equation}\label{eq:split-poisson}
+ \sqrt{\delta_J^2+S_J^2/B}.
+\end{equation}
+The seed may choose zero replications, and the Poisson means may be
+below one. Every first and subsequent observation is charged.
+Every such finite-level procedure has finite deterministic local caps.
+The reference bank may be countable; its stopping events are measurable
+countable unions and its positive reference is a probability mixture.
+
+\subsection{Controlling mixed work without an extra logarithm}
+
+For every finite $\tau$, the following bounds hold:
+\begin{equation}\label{eq:split-elementary-kernels}
+ O_\tau(M)\le21H\sqrt M,\qquad
+ \eta_\sigma(M)\le A/M,\qquad
+ \eta_\tau(M)\le H/\sqrt M.
+\end{equation}
+The latter two are pointwise inequalities before integration.
+For the first, put $x=\sqrt M\,d$. The ratio of $o_M(d)$ to
+$\sqrt M/d$ is at most one for $x\le1$, and at most
+$17(1+2\log x)/x\le34/\sqrt e<21$ for $x\ge1$.
+Lemma~\ref{lem:uf-kernel} supplies the homogeneous ordinary kernel bound:
+\begin{equation}\label{eq:split-ordinary-kernel}
+ \sum_{k\ge1}\sqrt{\eta_\tau(4^k)O_\tau(4^k)}\le 208H.
+\end{equation}
+Its proof applies without normalization of $\tau$: dyadic binning yields
+the summable kernels $2^{k-j}$ for $j\ge k$, and
+$2^{3(j-k)}$, $2^{j-k}(1+k-j)$ for $j<k$.
+Apply $\sqrt{xy}\le(x+y)/2$ and sum these kernels.
+
+Split levels according to which term of
+$\eta_\nu=\eta_\sigma+\eta_\tau$ is at least half the total.
+On levels where $\eta_\tau$ dominates,
+$\delta_\ell\le256\eta_\tau(M_\ell)$, so distinctness of the caps and
+\eqref{eq:split-ordinary-kernel} give a total
+$\sum\sqrt{\delta_\ell O_\tau(M_\ell)}\le3328H$.
+On the other levels,
+\[
+ \delta_\ell\le256\eta_\sigma(M_\ell)\le256A/M_\ell,
+ \qquad M_\ell\le256A/\delta_\ell.
+\]
+Therefore
+\[
+ \sqrt{\delta_\ell O_\tau(M_\ell)}
+ \le4\sqrt{21}\,H^{1/2}A^{1/4}\delta_\ell^{1/4}.
+\]
+The sum of $\delta_\ell^{1/4}$ over all levels is $\rho^{1/4}$.
+The arithmetic--geometric mean inequality proves
+\begin{equation}\label{eq:split-mixed-sum}
+ \sum_{\ell\le J}\sqrt{\delta_\ell O_\tau(M_\ell)}
+ \le C_{\rm mix}[H+\sqrt{\rho A}].
+\end{equation}
+
+The work on the unresolved mass is controlled separately.
+On levels where $\eta_\sigma$ dominates,
+\begin{equation}\label{eq:split-unresolved-sigma}
+ \sum\sqrt{z\delta_\ell M_\ell}
+ \le16(J+1)\sqrt{zA}\le\sqrt{2\rho A}.
+\end{equation}
+The last inequality uses $z\le\delta_J/8$ and
+$(J+1)4^{-(J+1)}\le1/4$.
+On levels where $\eta_\tau$ dominates,
+$\sqrt{M_\ell}\le256H/\delta_\ell$, so
+\begin{equation}\label{eq:split-unresolved-tau}
+ \sum\sqrt{z\delta_\ell M_\ell}
+ \le256H\sqrt z\sum_{\ell=0}^J\delta_\ell^{-1/2}
+ \le\frac{1024}{3}H\sqrt{z/\delta_J}
+ \le\frac{1024}{3\sqrt8}H.
+\end{equation}
+When $z=0$ these contributions vanish.
+
+\begin{proof}[Completion of Theorem~\ref{thm:three-piece-upper}]
+The shifted adjacent-level sum has a factor $1/4$, so
+\[
+ S_J\le\frac{5\sqrt{17}}4
+                \sum_{\ell=0}^J\sqrt{\delta_\ell C_\ell}.
+\]
+Use \eqref{eq:split-level-work}, \eqref{eq:split-mixed-sum},
+\eqref{eq:split-unresolved-sigma}, \eqref{eq:split-unresolved-tau},
+and $A\le\Gamma_\sigma$. The elementary sums
+$\sum_{\ell\ge0}4^{-\ell}\sqrt{\ell+1}\le16/9$ and
+$\sum_{\ell\ge0}4^{-\ell}=4/3$ then give
+\[
+ S_J\le C_{\rm sum}[\sqrt{\rho\Gamma_\sigma}+H].
+\]
+For $z>0$, \eqref{eq:split-terminal-level} and
+\eqref{eq:split-poisson} imply
+$R(B)\le128z+C_{\rm sum}[\sqrt{\rho\Gamma_\sigma}+H]/\sqrt B$.
+For $z=0$, the bound on $S_J$ holds at every finite terminal level.
+Use \eqref{eq:split-poisson} and then $\delta_J\to0$; taking the infimum
+over these finite constructions gives the asserted bound.
+The constant estimator covers $z>\rho/128$.
+Finally take the infimum over decompositions and compare with $\rho/2$.
+All approximations are at fixed $(\mu,\rho,B)$. The comparison constant
+is independent of the chosen decomposition and terminal level; no
+attaining infinite-dimensional decomposition is required.
+No infinite-algorithm interchange is required. The same infimum can be
+approached with finite reference banks: finite $\Gamma_\sigma$ implies
+$H_\sigma<\infty$, so truncate $\sigma$ to finitely many bands and move its
+remainder to $\tau$. The entropy does not increase and the additional
+inverse-gap cost tends to zero. Then use the finite-level construction.
+\end{proof}

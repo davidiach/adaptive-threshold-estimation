@@ -1,0 +1,181 @@
+\section{Model and main results}\label{sec:overview}
+
+\subsection{The observable experiment}
+
+Let $\mu$ be a known probability measure on $(0,1/2]$.
+Each fresh unit independently samples a hidden magnitude $D\sim\mu$
+and a hidden sign $S\mid D=d\sim\operatorname{Ber}(q(d))$.
+Conditional on $(D,S)$, its observations are iid Bernoulli with mean
+$1/2+(2S-1)D$. Different units have independent latent states and
+observation tapes. The unknown measurable allocation belongs to
+\[
+ \mathcal Q_\rho=
+ \{q\in L^\infty(\mu):0\le q\le1,\ \theta(q):=\textstyle\int q\,d\mu\le\rho\},
+ \qquad 0<\rho\le1/4.
+\]
+The target is the positive-sign proportion $\theta(q)$.
+
+An algorithm knows $\mu,\rho,B$, but observes neither $D$ nor $S$.
+Using an independent random seed and the observed history, it may request
+an observation from a fresh or previously observed unit, interleave
+units, stop, and return a measurable real estimate. Every requested
+observation costs one, including the first on a unit. Units created but
+never observed have no statistical effect and may be sampled only when
+their first observation is requested. If $T_A$ is total work, define
+\begin{equation}\label{eq:model-risk}
+ R_{\mu,\rho}(B)=
+ \inf_{\substack{A:\ \sup_{q\in\mathcal Q_\rho}\E_qT_A\le B}}
+ \ \sup_{q\in\mathcal Q_\rho}
+       \{\E_q(\widehat\theta_A-\theta(q))^2\}^{1/2},
+ \qquad B>0.
+\end{equation}
+This is a uniform expected-budget criterion. Stopping may be unbounded;
+finite expected work gives almost-sure finite termination under every
+admissible population. Estimates may be clipped to $[0,\rho]$ without
+increasing risk. In particular, the constant $\rho/2$ has risk at most
+$\rho/2$, and randomization permits meaningful procedures even for $B<1$.
+
+\subsection{An entropy--tail selection law}
+
+For a submeasure $\sigma\le\mu$, let $\Gamma_\sigma$ be its homogeneous
+dyadic inverse-square cost entropy. With bands
+$I_j=(2^{-j-2},2^{-j-1}]$, put
+$a_j=\int_{I_j}d^{-2}\,\sigma(dd)$ and $A=\sum_j a_j$.
+When $0<A<\infty$,
+\[
+ \Gamma_\sigma=A[1+\Ent((a_j/A)_j)].
+\]
+The finite-fragment definition in Section~\ref{sec:additive} also covers
+infinite costs and entropies; $\Gamma_0=0$. All logarithms are natural.
+Our main result is the following uniform comparison:
+\begin{equation}\label{eq:overview-main}
+ \boxed{\qquad R_{\mu,\rho}(B)\asymp\mathcal K_{\mu,\rho}(B),\qquad}
+\end{equation}
+where
+\begin{equation}\label{eq:overview-selection}
+ \mathcal K_{\mu,\rho}(B)=
+ \min\left\{\rho,\inf_{E\ {\rm measurable}}
+ \left[\sqrt{\frac{\rho\Gamma_{\mu|E}}{B}}
+ +\int_{E^c}\min\left\{1,\frac1{d\sqrt B}\right\}\mu(dd)\right]\right\}.
+\end{equation}
+Theorem~\ref{thm:entropy-tail-law} states the result formally.
+Both comparison constants are universal, simultaneously for every
+probability law on $(0,1/2]$, every $0<\rho\le1/4$, and every $B>0$.
+No density, regular variation, positive lower support bound, finite
+inverse moment, or finite full-law entropy is assumed.
+
+The selected set pays rare-event cost entropy. Its complement pays an
+ordinary inverse-gap cost for $d>B^{-1/2}$ and only its probability mass
+below that scale. Equivalently, one minimizes
+\[
+ \zeta((0,1/2])+
+ \frac{\sqrt{\rho\Gamma_\sigma}+\int d^{-1}\tau(dd)}{\sqrt B}
+ \quad\text{over }\sigma+\tau+\zeta=\mu,
+\]
+and caps by $\rho$. Hard measurable assignments suffice; the optimizer
+need not be an interval. The split is analytical: the estimator never
+observes a unit's membership in a selected component.
+
+\subsection{Proof structure}
+
+The upper construction races a likelihood bank against an ordinary
+capped classifier on independent observation streams of the same latent
+unit. Its null likelihood uses the full law $\mu$. A mixed-work bound
+and finite Poisson multilevel allocation give the three-piece upper
+bound in Section~\ref{sec:additive}.
+
+The lower proof in Section~\ref{sec:matching-lower} begins with an optimal
+finite-band selection. Its ordinary and unresolved pieces are controlled
+by a variational null-work modulus. Optimality constrains the gaps of
+the retained bands. Grouping comparable costs and trimming a controlled
+number of the smallest gaps produces annular components with admissible
+conditional rarities and active mass-saturation constraints. Allocating
+rarity proportionally to retained entropy makes their lower bounds add
+at every budget. Finite-prefix approximation covers laws accumulating
+at zero.
+
+All specialized ingredients used in these arguments are proved in this
+manuscript. The appendices include the ordinary classifier, weighted
+likelihood bank, homogeneous work sum, multilevel allocation, weighted
+sign entropy, scale-sensitive gate, null-work transfer, and additive
+localization. Standard concentration, minimax, and convex-duality tools
+are cited where used. Section~\ref{sec:related-work} distinguishes these
+ingredients and their antecedents from the contribution of the joint
+selection law.
+
+\subsection{Quantitative stopping certificates}
+
+A complementary representation retains more quantitative information.
+The robust cap-$N$ stopping-flow program $P_N(B)$ has exact attained dual
+\[
+ P_N(B)^2=
+ \max_{q_L,q_H,q_v,q_w\in\mathcal Q_\rho}
+ \frac{[\theta(q_H)-\theta(q_L)]_+^2}
+ {4+B K_N(q_L,q_H;q_v,q_w)}.
+\]
+Here $K_N$ is optimal stopped signed-likelihood information relative to
+$q_v$ per expected observation under $q_w$.
+The four priors have separate endpoint, variance, and work roles.
+Theorem~\ref{thm:exact-dual} gives the identity and
+Proposition~\ref{prop:dual-bellman} gives its Bellman recursion.
+
+Reference absorption and affinity testing give the explicit comparison
+\begin{equation}\label{eq:overview-program}
+ R_{\mu,\rho}(B)\le P_{N_*}(B)\le16R_{\mu,\rho}(B),
+ \qquad
+ N_*=\left\lceil64\max\{B,\rho B^2\}\right\rceil.
+\end{equation}
+The factor sixteen is a program guarantee, distinct from the conservative
+constants in \eqref{eq:overview-main}.
+
+A strengthened lower experiment reveals a unit's latent state at its cap.
+Its dual value $G_N$ obeys
+\[
+ 0<G_N\uparrow P_\infty,\qquad
+ P_N\downarrow P_\infty,\qquad
+ G_N/8\le R_{\mu,\rho}(B)\le P_N.
+\]
+Thus a verified feasible upper policy $U$ and lower dual value $L$ with
+$U\le2L$ certify a factor-sixteen approximation. For every fixed input,
+sufficiently accurate program solutions eventually meet that criterion.
+No uniform convergence rate or bit-complexity claim is made.
+Finite-support inputs give genuine finite conic programs.
+The eight rational examples in Appendix~\ref{sec:computation} pass at
+caps $1$, $4$, or $8$; independent exact checkers verify their feasibility.
+
+The fixed-cap program also has an exact identification threshold:
+for $m$ distinct positive magnitudes its infinite-budget bias floor
+vanishes exactly when $N\ge2m-1$. Infinite-support laws have a positive
+floor at every fixed finite cap
+(Theorem~\ref{thm:cap-identifiability}). This is compatible with the
+unrestricted problem, whose cap may increase.
+
+\subsection{Reading guide}
+
+The main distributional proof is in
+Sections~\ref{sec:additive}--\ref{sec:matching-lower}.
+The supporting material is organized as follows.
+
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}p{0.48\textwidth}X@{}}
+\toprule
+Proof component & Location\\
+\midrule
+Observable classifiers and multilevel allocation
+ & Appendix~\ref{sec:uf-foundations}\\
+Weighted sign testing, scale gate, annular saturation
+ & Appendix~\ref{sec:lower-foundations}\\
+Common hard pairs, adaptive work accounting, additive localization
+ & Appendix~\ref{sec:transfer-foundations}\\
+Stopping-flow representation and observable realization
+ & Appendix~\ref{sec:flow-foundations}\\
+Exact robust dual and adaptive comparison
+ & Appendices~\ref{sec:exact-dual}--\ref{sec:midpoint-dual}\\
+Convergent finite certificates and fixed-cap identification
+ & Appendices~\ref{sec:genie}--\ref{sec:identifiability}\\
+Exact numerical certificates and reproduction
+ & Appendix~\ref{sec:computation}\\
+\bottomrule
+\end{tabularx}
+\end{center}

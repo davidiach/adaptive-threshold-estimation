@@ -1,0 +1,29 @@
+{
+  "exact_certificates_rechecked": {
+    "lower": 33,
+    "upper": 9
+  },
+  "exact_stopping_decisions_rechecked": 9,
+  "perfect_label_analytic_checks": [
+    {
+      "budget": "100",
+      "cap": 1,
+      "analytic_squared_value": "9/13600",
+      "contained_in_exact_bracket": true
+    },
+    {
+      "budget": "1000",
+      "cap": 1,
+      "analytic_squared_value": "9/103600",
+      "contained_in_exact_bracket": true
+    }
+  ],
+  "targeted_corruptions_rejected": [
+    "rarity constraint",
+    "Bellman work price",
+    "overstated lower value",
+    "genie boundary reward",
+    "actual policy budget",
+    "understated policy risk"
+  ]
+}

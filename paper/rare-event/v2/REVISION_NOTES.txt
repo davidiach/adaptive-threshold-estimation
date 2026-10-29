@@ -1,0 +1,34 @@
+Referee-audit revision, 29 October 2026
+
+Original PDF and source ZIP were preserved. This project is a separate copy.
+
+Implemented recommendations:
+- Genie theorem: explicit finite-C_v pointwise convergence scope; full counterexample; fixed-epsilon then increasing-cap limit order. Optimized convergence unchanged.
+- Midpoint rather than endpoint-average work; common pair before algorithms/caps; explicit endpoint tail coupling for unbounded stopping.
+- Conditional normalization and annular prerequisites; fixed bias and entropy constants have a common budget crossover.
+- Full-law bank denominator, hidden component membership, same-unit unused-block coupling, subunit Poisson means and every observation charged.
+- Fixed-input approximation and omitted-tail mass; infinite-dimensional optimum not required.
+- Program cap scope and certificate orientation; semicontinuity at infinite information; target identification versus allocation recovery.
+
+Implemented optional improvements:
+- Ordinary band mass <= rho; dyadic factor 2; hH_O <= 2 Psi; final 10 Psi replaced consistently by 3 Psi.
+- Explicit variational optimizer for every h, with proof and atomic allocation clarification.
+- Sign-entropy constant 257 -> 214; dependent factors 1028 -> 856 and 1,069,120 -> 890,240. Conservative annular constant unchanged.
+- Explicit conservative main constants 1e-17 and 33000, with derivation.
+- Certified noninterval optimizer example and infinite-moment tail example.
+
+Notation correction while implementing the report: M_0 in Appendix B.3 is a uniform second-moment bound, not the null second moment. W_0 is the null work. The revised text states this explicitly.
+
+No stronger novelty, practical complexity, or formal-verification claim is introduced.
+Historical original-version verification is kept in review/original_VERIFICATION_20261028.json.
+Current build and test results are recorded in VERIFICATION.json.
+
+
+Editorial update v2, 29 October 2026
+- Applied the endpoint correction to support on (0,1/128].
+- Repaired the prose introducing the conditional normalization identity.
+- No other manuscript TeX changes; prior versions remain preserved separately.
+- EDITORIAL_FIXES.patch is the exact diff from the first revised manuscript.
+- REVISION_DIFF.patch is the cumulative diff from the original manuscript.
+- Current build provenance is in VERIFICATION.json; the preceding revision record
+  is preserved in review/previous_revision_VERIFICATION_20261029.json.

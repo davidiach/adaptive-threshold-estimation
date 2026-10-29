@@ -1,0 +1,455 @@
+\section{One-unit null-work obstructions}\label{sec:lower-foundations}
+
+This appendix supplies the sign-testing and annular ingredients used in
+Section~\ref{sec:matching-lower}. The weighted sign-testing mechanism is
+an adaptation of Chen--Li--Qiao's gap-entropy argument, including their
+Bernoulli extension \cite[Lemma 4.1 and Remark D.4]{clq}. We give the full
+finite-gap version needed here, followed by the scale-sensitive gate and
+its actual minimum-band-mass constraint.
+
+\subsection{Weighted sign testing}
+
+\begin{lemma}[Weighted sign entropy]\label{lem:weighted-sign}
+Let $d_1>\cdots>d_K>0$, with $d_j/d_{j+1}\ge2$ and $d_1\le1/128$.
+One observable binary sign test, with the same independent seed law at all
+gaps, has error at most $1/10$ under every Bernoulli law $1/2\pm d_j$.
+Suppose its stopping time $\tau$ has finite expectation under both signs at
+every such gap.  Put $c_j=d_j^2\E_{-d_j}\tau$.
+For every probability vector $\pi$ on these gaps,
+\begin{equation}\label{eq:sc-weighted-sign}
+ \sum_{j=1}^K\pi_jc_j\ge
+ \frac{1+\operatorname{Ent}(\pi)}{214}.
+\end{equation}
+No termination or correctness assumption under the fair coin is required.
+\end{lemma}
+
+\begin{proof}
+First, the ordinary stopped change-of-measure inequality gives a uniform
+positive floor for each $c_j$.  The terminal sign decision has minus/plus
+KL divergence at least
+\[
+ \operatorname{kl}(9/10,1/10)=\frac45\log9>\frac85.
+\]
+One Bernoulli observation has divergence at most
+\[
+ \frac{(2d_j)^2}{(1/2+d_j)(1/2-d_j)}\le\frac{64}{3}d_j^2.
+\]
+The stopped chain rule, justified by finite expected endpoint work, implies
+$c_j>3/40>1/16$.
+
+Set $b_0=1/1024$ and
+\[
+ n_j=\left\lfloor b_0/d_j^2\right\rfloor,\qquad
+ u_j=\left\lceil4\E_{-d_j}\tau\right\rceil.
+\]
+Since $d_j\le1/128$, we have $n_j\ge b_0/(2d_j^2)\ge8$.
+The KL divergence between the complete prefixes of length $n_j$ at the
+minus and plus laws is at most $1/48$.  These prefixes include the
+independent seed and unused bits if the test has already stopped.
+Pinsker's inequality therefore gives total variation less than $1/8$.
+An early minus is a plus-law error, so its probability under the minus law
+is at most $1/10+1/8$.  Markov's inequality gives
+$\Pp_{-d_j}(\tau>u_j)\le1/4$.  Consequently the event
+\[
+ E_j=\{\text{output minus},\ n_j<\tau\le u_j\}
+\]
+has $\Pp_{-d_j}(E_j)>1/4$.
+
+Let $\Pp_0$ denote the fair-coin law with the same seed and policy.
+Comparing deterministic prefixes of length $u_j$ gives KL at most
+$4d_j^2u_j\le16c_j+1$.  Binary data processing and
+$\operatorname{kl}(p,z)\ge p\log(1/z)-\log2$ yield
+\begin{equation}\label{eq:sc-window-mass}
+ \Pp_0(E_j)\ge\exp(-64c_j-8).
+\end{equation}
+Only deterministic finite prefixes have been compared with the fair law.
+
+We next bound a weighted overlap pathwise.  On a path with finite terminal
+time $t$, participation in $E_j$ implies
+\[
+ t>n_j\ge\frac{b_0}{2d_j^2},\qquad
+ t\le4\E_{-d_j}\tau+1.
+\]
+In particular $t\ge2$ and
+$c_j\ge(t-1)d_j^2/4\ge td_j^2/8$.
+Order the participating gaps from smallest to largest.  Their squared
+values grow by at least a factor of four, and the smallest has
+$td_j^2>b_0/2$.  The corresponding costs are thus bounded below by
+$b_0 4^r/16=4^{r-7}$, for $r=0,1,\ldots$.  Hence
+\[
+ \sum_j\frac{\1_{E_j}}{1+c_j}
+ \le\sum_{r\ge0}\frac1{1+4^{r-7}}
+ \le7+\sum_{r\ge7}4^{7-r}=\frac{25}{3}.
+\]
+On a nonterminating fair path no $E_j$ occurs, so the same inequality
+holds.  Integrating and using \eqref{eq:sc-window-mass}, together with
+$1+c_j\le e^{c_j}$, gives
+\[
+ Z:=\sum_je^{-65c_j}\le(25/3)e^8,
+ \qquad \log Z<11.
+\]
+Gibbs' inequality for $\pi$ and the normalized masses $e^{-65c_j}/Z$
+implies
+\[
+ \operatorname{Ent}(\pi)\le65\sum_j\pi_jc_j+\log Z.
+\]
+Writing $\bar c=\sum_j\pi_jc_j$ and retaining the stronger floor
+$\bar c\ge3/40$, we obtain
+\[
+ 1+\operatorname{Ent}(\pi)
+ \le65\bar c+9+\log(25/3)
+ \le\left[65+\frac{40}{3}\{9+\log(25/3)\}\right]\bar c
+ <214\bar c.
+\]
+The windows need not be disjoint; only the displayed weighted-overlap
+bound is used.
+\end{proof}
+
+
+\subsection{A moment comparison on the half-prior class}
+
+Write $X_\rho=\{0\le q\le1/2:\int q\,d\mu\le\rho\}$.
+For an integrable observable one-unit output $Y$ with finite uniform
+variance and uniform bias at most $\rho/64$, put $V=\sup_{q\in X_\rho}\Var_qY$ and
+$M=\sup_{q\in X_\rho}\E_qY^2$.
+
+\begin{lemma}[Moment comparison]\label{lem:lf-moment}
+For $0<\rho\le1/4$, one has $V\ge2\rho/3$ and $M\le3V/2$.
+\end{lemma}
+\begin{proof}
+Let $f(d)=\E_{d,+}Y-\E_{d,-}Y$. Comparing the null population with
+the constant prior $q=\rho$ gives $\int f\,d\mu\ge31/32$.
+Conditional variance at this constant prior and Jensen's inequality yield
+\[
+ V\ge\rho(1-\rho)\int f^2\,d\mu
+ \ge\rho(1-\rho)(31/32)^2\ge2\rho/3.
+\]
+Every mean has absolute value at most $65\rho/64$, so
+$M\le V+(65\rho/64)^2\le3V/2$.
+The constant prior also gives integrability of both fixed-sign second
+moments; all conditional statements may be taken outside a common null set.
+\end{proof}
+
+\subsection{An activation gate that respects the magnitude scale}
+
+The new lower-bound ingredient charges activation at the information
+scale \(a^2\E_0T\).  In this subsection \(\mu\) is any probability law
+supported on \((0,a]\), \(a\le1/4\), and
+\[
+ \mathcal X_\rho=
+ \{q:0\le q\le\tfrac12,\ \textstyle\int q\,d\mu\le\rho\}.
+\]
+Let \((Y,T)\) be an observable one-coin procedure with uniform bias at
+most \(\rho/64\), finite uniform variance \(V\), and finite expected work
+under every \(q\in\mathcal X_\rho\).  Write
+\[
+ M_0=\sup_{q\in\mathcal X_\rho}\E_qY^2,\qquad
+ W_0=\E_0T,\qquad P=M_0W_0.
+\]
+Here $M_0$ is the uniform second-moment bound, whereas $W_0$ is
+null work; the subscript on $M_0$ does not restrict its supremum to the null.
+The moment comparison in Lemma~\ref{lem:lf-moment} gives
+\(M_0\le3V/2\).
+
+\begin{lemma}[A scale-sensitive baseline and gated activation]
+\label{lem:information-gate}
+Put
+\[
+ C_g=e^7,\qquad \kappa=64/3,\qquad
+ c_g=(256\kappa C_g^4)^{-1}.
+\]
+Every procedure above satisfies
+\begin{equation}
+ P\ge\frac{\rho}{64a^2}.
+ \label{eq:cross-baseline}
+\end{equation}
+If \(a^2P\le c_g\), there is an observable procedure \(Z\) on the same
+one-coin experiment, with moment bound \(m_Z\), null work \(W_0^Z\), and
+a measurable set \(\mathcal G\) of good magnitudes, such that
+\begin{equation}
+ \begin{gathered}
+ \sup_{q\in\mathcal X_\rho}\E_qZ^2\le m_Z,\qquad
+ \rho/16\le m_Z\le2C_g^4a^2P,\\
+ m_ZW_0^Z\le C_g^4P,\qquad
+ \mu(\mathcal G^c)\le144m_Z.
+ \end{gathered}
+ \label{eq:cross-gate-bounds}
+\end{equation}
+At every good gap, both signs have finite conditional expected work and
+\begin{equation}
+ \left|\E[Z\mid d,0]\right|\le\frac18,\qquad
+ \E[Z\mid d,1]\ge\frac12,\qquad
+ \E[Z^2\mid d,0]\le\frac{m_Z}{\rho},\qquad
+ \E[Z^2\mid d,1]\le\frac{3m_Z}{\rho}.
+ \label{eq:cross-gate-good}
+\end{equation}
+One common sign test with both errors below \(1/10\) on these gaps uses
+\begin{equation}
+ n=\left\lceil1024m_Z/\rho\right\rceil
+ \le1040m_Z/\rho
+ \label{eq:cross-gate-restarts}
+\end{equation}
+independent restarts of \(Z\) on unused observations of the same coin.
+Restart independence is conditional on its fixed latent magnitude and
+sign, not after averaging over the population.
+Its negative expected work is \(n\,\E[T_Z\mid d,0]\).
+\end{lemma}
+
+\begin{proof}
+We first prove \eqref{eq:cross-baseline}.  Let \(P_-\) and \(P_+\) be
+the full transcript laws with uniformly negative and uniformly positive
+signs, respectively.  The priors \(q=0\) and \(q\equiv\rho\) give
+\[
+ \E_+Y-\E_-Y\ge31/32,\qquad
+ \E_-Y^2\le M_0,\qquad \E_+Y^2\le M_0/\rho.
+\]
+The positive moment and expected work are finite because \(q\equiv\rho\)
+is admissible.  Revealing \(D\) for the information calculation, and
+using the stopped chain rule, gives
+\[
+ h(P_-,P_+)\le\tfrac12\kappa a^2W_0,
+\]
+where \(h=1-\operatorname{Aff}\).
+Indeed the one-observation endpoint divergence is at most
+\(\kappa d^2\) for \(d\le1/4\).
+For any square-integrable output \(F\),
+\begin{equation}
+ |\E_PF-\E_QF|^2
+ \le4(\E_PF^2+\E_QF^2)h(P,Q).
+ \label{eq:cross-hellinger-moment}
+\end{equation}
+Thus
+\[
+ (31/32)^2
+ \le(5\kappa/2)a^2P/\rho,
+\]
+which implies \eqref{eq:cross-baseline}.
+
+The decision to take a first observation is seed-only and precedes
+all data. The information gate below is instead an observable
+finite-prefix stopping rule; neither step reveals a latent magnitude.
+For the gate, on a full observation tape define
+\[
+ S_n=\sum_{i=1}^n(2X_i-1),\qquad
+ n_0=\lceil a^{-2}\rceil,\qquad H_0=\lceil a^{-1}\rceil,
+\]
+\begin{equation}
+ G=\min\{n_0,\inf\{n\ge1:|S_n|\ge H_0\}\},\qquad
+ \sigma=T\wedge G,\qquad E=\{T\ge G\}.
+ \label{eq:cross-gate}
+\end{equation}
+The event \(E\) is measurable at \(\sigma\), including the tie \(T=G\).
+Include the entire independent seed in the stopped prefix.
+At \(\sigma\), \(|S_\sigma|\le H_0\) and \(\sigma\le n_0\).
+For a fixed \(d\le a\) and sign \(s\), the likelihood relative to the
+fair stopped-prefix law is
+\[
+ \exp\left\{(2s-1)S_\sigma\operatorname{arctanh}(2d)
+       +\frac{\sigma}{2}\log(1-4d^2)\right\}.
+\]
+The inequalities
+\[
+ \operatorname{arctanh}(2d)\le8a/3,\qquad
+ -\tfrac12\log(1-4d^2)\le8a^2/3
+\]
+show that the absolute logarithm is at most \(37/6<7\).
+Every fixed-state prefix law, and the all-negative magnitude mixture,
+therefore has density in \([C_g^{-1},C_g]\) relative to fair.
+
+Let \(p=\Pp_{\rm fair}(E)\) and \(p_s(d)=\Pp_{d,s}(E)\).  Then
+\begin{equation}
+ p/C_g\le p_s(d)\le C_gp.
+ \label{eq:cross-gate-probabilities}
+\end{equation}
+Bounded fair stopping gives
+\(\E_{\rm fair}S_\sigma^2=\E_{\rm fair}\sigma\).
+A gate activation either reaches \(n_0\) or hits \(H_0\), so
+\begin{equation}
+ p\le\left(n_0^{-1}+H_0^{-2}\right)\E_{\rm fair}\sigma
+ \le2a^2\E_{\rm fair}\sigma
+ \le2C_ga^2W_0.
+ \label{eq:cross-gate-cost}
+\end{equation}
+
+Set \(Y_e=Y\1_{\{T<G\}}\), explicitly zero on \(E\).
+This is a function of the bounded prefix.
+Its second moment under either fixed state is at most \(C_g^2M_0\).
+The stopped endpoint divergence and the same prefix domination give
+\[
+ \KL(P_{-d}^{\sigma},P_{+d}^{\sigma})
+ \le\kappa d^2\E_{-d}\sigma
+ \le\kappa C_g^2a^2W_0.
+\]
+Since \(h\le\KL/2\), \eqref{eq:cross-hellinger-moment} implies
+\begin{equation}
+ |\E_{+d}Y_e-\E_{-d}Y_e|^2
+ \le4\kappa C_g^4a^2P.
+ \label{eq:cross-early-output}
+\end{equation}
+Under \(a^2P\le c_g\), every such early mean difference is at most
+\(1/8\) in absolute value.  In this branch \(p>0\): if \(p=0\), the
+gate never activates under any state, so \(Y=Y_e\), contradicting
+the integrated mean separation \(31/32\) from \(q=0,q\equiv\rho\).
+
+Here is an actual observable procedure realizing the conditioning.
+Keep the same genuine coin.  Repeatedly run the original procedure,
+using a fresh original seed and unused iid flips for each trial.
+Reject a trial if its original stopping time is before its gate.
+When a trial reaches the gate, accept it, continue that original trial
+to its original stopping time, and return
+\[
+ Z=C_gpY.
+\]
+Every rejected observation is charged.  Conditional on \(d,s\), trials
+are iid with acceptance probability \(p_s(d)>0\).
+Writing \(w_s(d)=\E[T\mid d,s]\), the renewal identity gives
+\begin{equation}
+ \E[T_Z\mid d,s]=\frac{w_s(d)}{p_s(d)}.
+ \label{eq:cross-renewal}
+\end{equation}
+This identity includes the work of all rejected trials and the final
+accepted trial.  Moreover,
+\[
+ \E[Z^2\mid d,s]
+ =\frac{C_g^2p^2}{p_s(d)}\E[Y^2\1_E\mid d,s]
+ \le C_g^3p\,\E[Y^2\mid d,s].
+\]
+With \(m_Z=C_g^3pM_0\), integration and
+\eqref{eq:cross-gate-cost}--\eqref{eq:cross-renewal} give
+\begin{equation}
+ \sup_q\E_qZ^2\le m_Z,\qquad
+ m_Z\le2C_g^4a^2P,\qquad
+ W_0^Z\le C_gW_0/p,\qquad
+ m_ZW_0^Z\le C_g^4P.
+ \label{eq:cross-gate-moments}
+\end{equation}
+Expected work under every \(q\) is finite by the same comparison.
+
+We establish conditional sign separation directly; conditioning has
+not preserved the estimator's means.  Write
+\[
+ f_s(d)=\E[Y\mid d,s],\quad
+ \ell_s(d)=\E[Y\1_E\mid d,s],\quad
+ z_s(d)=\E[Z\mid d,s].
+\]
+The set \(\{f_+-f_-<3/4\}\) has mass below \(2\rho\).
+Otherwise a fractional prior of total mass \(\rho\) on that set would
+contradict the bias guarantee and the mean separation \(31\rho/32\).
+Outside that set, \eqref{eq:cross-early-output} gives
+\(\ell_+-\ell_-\ge5/8\).
+Also
+\[
+ z_s(d)=\frac{C_gp}{p_s(d)}\ell_s(d),\qquad
+ 1\le\frac{C_gp}{p_s(d)}\le C_g^2.
+\]
+If \(|z_-(d)|\le1/8\), then \(|\ell_-(d)|\le1/8\),
+\(\ell_+(d)\ge1/2\), and \(z_+(d)\ge1/2\).
+The exceptional mass for \(|z_-|>1/8\) is at most \(64m_Z\).
+Since
+\[
+ m_Z\le2C_g^4c_g=1/(128\kappa)<1/256,
+\]
+this preliminary mean-good set has mass at least
+\(1-2\rho-64m_Z\ge1/4\).
+Taking \(q\equiv\rho\) in the second-moment bound yields
+\(m_Z\ge\rho/16\).
+
+Finally, put \(a_Z(d)=\E[Z^2\mid d,0]\) and
+\(b_Z(d)=\E[Z^2\mid d,1]\).
+The set \(\{a_Z>m_Z/\rho\}\) has mass at most \(\rho\).
+The set \(\{b_Z-a_Z>2m_Z/\rho\}\) has mass below \(2\rho\),
+again by using a fractional admissible prior on a set of mass
+at least \(2\rho\).  Removing these sets and null sets of infinite
+conditional work gives total exceptional mass
+\[
+ 5\rho+64m_Z\le144m_Z
+\]
+and proves \eqref{eq:cross-gate-good}.
+Average \(n\) independent restarts of \(Z\) on unused blocks of the
+same coin, and threshold at \(5/16\).
+Both mean margins are at least \(3/16\), so Chebyshev gives errors
+at most
+\[
+ \frac{3m_Z/\rho}{n(3/16)^2}\le1/12<1/10.
+\]
+The bound on \(n\) follows from \(m_Z\ge\rho/16\), and work adds,
+proving \eqref{eq:cross-gate-restarts}.
+\end{proof}
+
+\subsection{A scaled annular obstruction}
+
+For a positive vector \(v=(v_i)\), set
+\[
+ \mathcal G(v)=A[1+\Ent(v/A)],\qquad A=\sum_i v_i.
+\]
+A useful elementary identity is
+\begin{equation}
+ \frac{\partial\mathcal G}{\partial v_i}
+ =1+\log(A/v_i)\ge1.
+ \label{eq:cross-entropy-monotone}
+\end{equation}
+Thus this cost-entropy functional is coordinatewise increasing.
+In particular, if \(u\le v_i\le U\) for \(K\) coordinates, then
+\begin{equation}
+ uK(1+\log K)\le\mathcal G(v)\le UK(1+\log K).
+ \label{eq:cross-entropy-sandwich}
+\end{equation}
+
+\begin{proposition}[A gated annular lower bound]
+\label{prop:scaled-annular}
+Suppose \(\mu\) is supported on \((0,a]\), \(a\le1/4\).
+Take a nonempty finite annular family
+\[
+ I_j=(b_j/2,b_j],\qquad b_j/b_{j+1}\ge4,\qquad
+ b_1\le1/128,
+\]
+with positive masses \(w_j=\mu(I_j)\).  Define
+\[
+ w_*=\min_jw_j,\qquad
+ A=\sum_jw_j/b_j^2,\qquad
+ \pi_j=\frac{w_j/b_j^2}{A},\qquad
+ \Gamma^{\circ}=A[1+\Ent(\pi)].
+\]
+Every one-coin procedure with the assumptions above satisfies
+\begin{equation}
+ V\E_0T\ge
+ \frac{e^{-28}}{2\,000\,000}
+       \min\{\rho\Gamma^{\circ},w_*/a^2\}.
+ \label{eq:cross-scaled-annular}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+If \(a^2P\ge c_g\), use \(w_*\le1\) and \(M_0\le3V/2\).
+Otherwise apply Lemma~\ref{lem:information-gate}.
+If \(m_Z>w_*/288\), then
+\[
+ P>w_*/(576C_g^4a^2).
+\]
+If \(m_Z\le w_*/288\), at least half the mass of every annulus is
+good.  Averaging selects \(d_j\in I_j\cap\mathcal G\) with
+\[
+ w_-^Z(d_j)\le\frac4{w_j}\int_{I_j}w_-^Z(d)\,\mu(dd).
+\]
+The selected gaps are separated by a factor greater than two and
+bounded by \(1/128\).
+Apply Lemma~\ref{lem:weighted-sign} to the common restart test,
+with weights \(\pi_j\):
+\[
+ \frac{1+\Ent(\pi)}{214}
+ \le n\sum_j\pi_jd_j^2w_-^Z(d_j)
+ \le\frac{4n}{A}W_0^Z.
+\]
+Consequently,
+\[
+ \rho\Gamma^{\circ}
+ \le856\rho nW_0^Z
+ \le890\,240\,m_ZW_0^Z
+ \le890\,240\,C_g^4P.
+\]
+Converting \(P=M_0W_0\) to \(VW_0\) completes all branches with the
+displayed conservative constant.  No atomlessness is used.
+\end{proof}
+
+The entropy branch is available when $\rho a^2\Gamma^{\circ}\le w_*$.
+This condition is invariant under a common rescaling of all magnitudes.

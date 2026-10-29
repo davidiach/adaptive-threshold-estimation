@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-28",
+  "document": {
+    "filename": "adaptive_rare_event_estimation_standalone.pdf",
+    "pages": 51,
+    "bytes": 588563,
+    "sha256": "ffc6ab25b65b033d675ab3c772b44ca20cc797b5efc431124783530d9a423c7a"
+  },
+  "build": {
+    "command": "latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex",
+    "completed": true,
+    "latex_warnings": 0,
+    "unresolved_references_or_citations": 0,
+    "overfull_or_underfull_boxes": 0,
+    "page_geometry_issues": 0
+  },
+  "visual_review": {
+    "all_pages_rendered": 51,
+    "all_pages_reviewed_in_contact_sheets": true,
+    "selected_dense_pages_reviewed_at_full_size": true,
+    "blocking_layout_issue_found": false
+  },
+  "certificate_verification": {
+    "command": "cd checks && python3 -O self_check_certificates.py",
+    "status": "passed",
+    "lower_certificates": 33,
+    "upper_policies": 9,
+    "stopping_decisions": 9,
+    "analytic_perfect_label_checks": 2,
+    "targeted_corruptions_rejected": 6,
+    "arithmetic": "exact rational arithmetic",
+    "verification_dependencies": "Python standard library"
+  },
+  "proof_audit": {
+    "method": "separate model audits of upper and lower dependency chains",
+    "substantive_blocker_found_in_chains_examined": false,
+    "external_human_refereeing_completed": false,
+    "formal_verification_of_new_general_theorems": false,
+    "main_theorem_scope_changed_in_this_consolidation": false
+  },
+  "clarifications_applied": [
+    "Explicit finite uniform variance in the moment comparison.",
+    "Unit types chosen before the first observation and retained on revisits.",
+    "Oracle label revealed only when the first charged observation is requested.",
+    "Exact integral entropy distinguished from canonical endpoint entropy.",
+    "Classifier constants separated from level-work symbols.",
+    "Flow seed aggregation defined on a prefix-indexed disjoint union."
+  ],
+  "prior_art_review": {
+    "source_index": "review/novelty_sources.json",
+    "contribution_boundaries": "REVIEW_GUIDE.md",
+    "priority_certified": false
+  },
+  "baseline": {
+    "repository": "https://github.com/davidiach/adaptive-threshold-estimation",
+    "commit": "eabf274cb42d4bff4daab6b58568ad6169e7f0a7"
+  },
+  "limitations": [
+    "Numerical checks validate the stored finite certificates, not the general mathematical proofs.",
+    "The source comparison is targeted and does not certify priority.",
+    "Independent human mathematical review remains outstanding."
+  ]
+}

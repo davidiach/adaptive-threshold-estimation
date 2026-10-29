@@ -1,0 +1,490 @@
+\section{An exact dual for the robust stopping program}
+\label{sec:exact-dual}
+
+Triangular stopping representations and their adaptive comparison have
+close antecedents in Lee--Valiant \cite{lv}. Here the sign allocation
+ranges over the full convex rarity class, and bias, variance, and work
+are robust constraints. We derive the exact four-prior dual of this
+program and absorb its variance and work references into the endpoints.
+Appendix~\ref{sec:flow-foundations} proves the stopping-flow representation
+and its observable realization in full.
+
+Throughout this section, $\mu$ is any probability measure on $(0,1/2]$,
+$0<\rho\le1/4$, $B>0$, and $N\ge1$ is an integer. Put
+\[
+ \mathcal Q_\rho=\{q\in L^\infty(\mu):0\le q\le1,\
+                \theta(q)=\textstyle\int q\,d\mu\le\rho\}.
+\]
+For a state $s=(n,k)$, $0\le k\le n\le N$, define
+\begin{align}
+ m_{nk}(q)&=\int\binom nk\bigl[
+ (1-q(d))(1/2-d)^k(1/2+d)^{n-k}\notag\\[-2pt]
+ &\hspace{39mm}+q(d)(1/2+d)^k(1/2-d)^{n-k}\bigr]\,\mu(dd).
+ \label{eq:dual-count-coefficients}
+\end{align}
+In particular $m_{00}(q)=1$. These are probabilities of count states at
+fixed depth, before imposing a stopping rule.
+
+\subsection{The primal and its four-prior dual}
+
+For clarity, the finite program being dualized is recalled in compact
+form. Its nonnegative stopping and continuation arrays $a,c$, real output
+array $z$, and nonnegative moment array $t$ obey
+\begin{align}
+ &a_{00}=z_{00}=t_{00}=0,\qquad c_{00}=\lambda\ge0,
+       \qquad c_{Nk}=0,\notag\\
+ &a_{nk}+c_{nk}=\frac{n-k}{n}c_{n-1,k}
+                    +\frac{k}{n}c_{n-1,k-1},
+       \qquad 1\le n\le N,\notag\\
+ &z_{nk}^2\le a_{nk}t_{nk}.
+ \label{eq:dual-flow-cone}
+\end{align}
+Missing indices are zero. These are normalized prefix-weight flows, not
+unconditional state probabilities. Write $\mathcal C_N$ for this closed
+convex cone. The squared program value is
+\begin{equation}
+\begin{split}
+ P_N(B)^2=\min\;&b^2+v\quad
+       \text{over }(a,c,z,t,\lambda)\in\mathcal C_N,\ c_0\in\R,\ b,v\ge0,\\
+ \text{subject to }&
+ \sup_{q\in\mathcal Q_\rho}
+       \bigl|c_0+\langle m(q),z\rangle-\theta(q)\bigr|\le b,\\
+ &\sup_q\langle m(q),t\rangle\le v,\qquad
+   \sup_q\langle m(q),c\rangle\le B.
+\end{split}
+\label{eq:dual-primal}
+\end{equation}
+Stopping sums exclude the root and continuation sums exclude depth $N$.
+Every feasible point realizes a Poisson estimator with uniform RMS at
+most $\sqrt{b^2+v}$ and expected work at most $B$
+(Proposition~\ref{prop:ff-realization}).
+
+Use the closed perspective
+\[
+ \mathfrak r(x,y)=
+ \begin{cases}
+ x^2/y,&y>0,\\
+ 0,&x=y=0,\\
+ +\infty,&y=0, x\ne0.
+ \end{cases}
+\]
+Given four priors $q_L,q_H,q_v,q_w\in\mathcal Q_\rho$, put
+$d_s=m_s(q_H)-m_s(q_L)$, $v_s=m_s(q_v)$, $w_s=m_s(q_w)$, and define
+\begin{equation}
+ K_N(q_L,q_H;q_v,q_w)
+ =\sup_{A:\,1\le T_A\le N}
+ \frac{\displaystyle\sum_s a_s^A\mathfrak r(d_s,v_s)}
+      {\displaystyle\sum_s c_s^A w_s}.
+ \label{eq:dual-information-ratio}
+\end{equation}
+Here $A$ is a one-unit policy that always requests its first observation;
+its normalized flow has root intensity one. A zero stopping coefficient
+contributes zero even when the perspective is infinite. The denominator
+is $\E_{q_w}T_A\in[1,N]$.
+
+For a signed measure $P_H-P_L$, write
+\[
+ \mathcal I(P_H,P_L;P_v)
+ =\int\left(\frac{d(P_H-P_L)}{dP_v}\right)^2\,dP_v,
+\]
+with value infinity unless the signed measure is absolutely continuous.
+The numerator in \eqref{eq:dual-information-ratio} equals
+$\mathcal I(P_H^A,P_L^A;P_v^A)$. Include the independent seed in the
+transcript: its likelihood ratio depends only on the terminal count
+state, so this identity covers order-dependent stopping and randomized
+policies as well.
+
+\begin{theorem}[Exact four-prior dual]\label{thm:exact-dual}
+The minimum in \eqref{eq:dual-primal} is attained, and
+\begin{equation}
+ \boxed{
+ P_N(B)^2=
+ \max_{q_L,q_H,q_v,q_w\in\mathcal Q_\rho}
+ \frac{[\theta(q_H)-\theta(q_L)]_+^2}
+      {4+B K_N(q_L,q_H;q_v,q_w)}.}
+ \label{eq:exact-four-prior-dual}
+\end{equation}
+The ratio is zero when $K_N=\infty$. The maximum is attained with positive
+value, positive target separation, and finite $K_N$. Swapping the endpoints
+allows the positive part to be replaced by an absolute value.
+\end{theorem}
+
+\begin{proof}
+\emph{Compactness and constraint qualification.}
+The finite moment image
+$\{(\theta(q),m(q)):q\in\mathcal Q_\rho\}$ is compact and convex:
+$\mathcal Q_\rho$ is weak-star compact, and every coordinate is a bounded
+linear functional of $q$. All robust functions in the program are thus
+finite continuous convex functions.
+
+The zero-flow output $\rho/2$ gives objective $\rho^2/4$. On this objective
+sublevel, $b\le\rho/2$, $v\le\rho^2/4$, and the root work charge gives
+$\lambda\le B$. The normalized recursion implies $0\le a_s,c_s\le B$.
+For the constant prior $q_*=\rho/2$, $m_s(q_*)>0$ unless state $s$ is
+impossible under every prior. At every nonnull stopping state,
+\[
+ t_s\le\frac{\rho^2}{4m_s(q_*)},\qquad |z_s|\le\sqrt{Bt_s}.
+\]
+At universally null states set $z_s=t_s=0$, without changing any mean,
+moment, or cost. The bias constraint at $q=0$ then bounds $c_0$.
+Consequently this feasible sublevel, with null output coordinates removed,
+is compact. The primal minimum is attained.
+
+There is also a strict relative-interior feasible point. Choose
+$0<\lambda<B/4$, continue with probability $1/2$ at each nonterminal
+observed state, and stop at depth $N$. All free stopping and continuation
+flows are positive and expected work is less than $2\lambda<B$.
+Set $z=0$, take all free $t_s>0$, and choose sufficiently large $b,v$.
+Every perspective inequality and all four robust inequalities are strict.
+Finite-dimensional convex Slater duality therefore gives no duality gap,
+attained inequality multipliers, and KKT conditions at a primal optimum.
+
+\emph{Reduction to four priors.}
+Split the absolute bias constraint into its two one-sided inequalities.
+Each robust function is a maximum of affine functions over a compact
+convex set. A subgradient is a convex combination of active affine
+gradients. Since $q\mapsto(\theta(q),m(q))$ is affine and
+$\mathcal Q_\rho$ is convex, this combination is represented by one active
+prior. Thus the two bias subgradients, the variance subgradient, and the
+work subgradient may be represented respectively by
+$q_L,q_H,q_v,q_w$.
+
+Let their nonnegative multipliers be $\alpha_L,\alpha_H,\beta,\eta$.
+The free offset forces $\alpha_L=\alpha_H=\alpha$. Minimizing
+$b^2-2\alpha b$ over $b\ge0$ gives $-\alpha^2$, and minimizing
+$(1-\beta)v$ over $v\ge0$ requires $\beta\le1$. The remaining expression
+on the flow cone is
+\begin{equation}
+ \beta\langle m(q_v),t\rangle
+ -\alpha\langle m(q_H)-m(q_L),z\rangle
+ +\eta\langle m(q_w),c\rangle.
+ \label{eq:dual-cone-functional}
+\end{equation}
+Homogeneity requires this expression to be nonnegative everywhere on
+$\mathcal C_N$; otherwise scaling a negative point gives infimum minus
+infinity. When it is nonnegative its infimum is zero. The dual objective is
+\begin{equation}
+ \alpha[\theta(q_H)-\theta(q_L)]-\alpha^2-\eta B.
+ \label{eq:dual-price-objective}
+\end{equation}
+
+We may take $\beta=1$. Indeed, for any $q_0\in\mathcal Q_\rho$, replace
+$\beta m(q_v)$ by
+\[
+ m\bigl(\beta q_v+(1-\beta)q_0\bigr)
+ =\beta m(q_v)+(1-\beta)m(q_0).
+\]
+The additional coefficient on $t$ is nonnegative, so cone feasibility is
+preserved while the dual objective is unchanged. This also preserves
+attainment.
+
+\emph{Eliminating outputs and the work price.}
+For $\alpha>0$, the perspective constraint gives, at fixed stopping flow,
+\[
+ \inf_{z_s^2\le a_st_s}
+       \{v_st_s-\alpha d_sz_s\}
+ =-\frac{\alpha^2a_s}{4}\mathfrak r(d_s,v_s).
+\]
+For positive $v_s$ this is completion of the square. If $a_s=0$ the
+contribution is zero; if $a_s>0$, $v_s=0$, and $d_s\ne0$, the infimum is
+minus infinity. The remaining zero case has value zero.
+Every nonzero stopping/continuation flow scales to root intensity one.
+At $\lambda=0$, $a=c=z=0$ and surplus $t$ has a nonnegative contribution.
+Thus nonnegativity of
+\eqref{eq:dual-cone-functional} is exactly
+\[
+ \eta\ge\alpha^2 K_N/4.
+\]
+For finite $K_N$, optimizing \eqref{eq:dual-price-objective} yields
+\[
+ \sup_{\alpha\ge0}
+ \left\{\alpha\Delta\theta
+    -\alpha^2(1+BK_N/4)\right\}
+ =\frac{(\Delta\theta)_+^2}{4+BK_N}.
+\]
+When $K_N=\infty$, only the zero-value choice $\alpha=\eta=0$ remains.
+Weak duality applies to every quadruple, and the attained KKT dual above
+supplies an optimal quadruple. This proves the identity.
+
+Finally take $q_L=0$ and $q_H=q_v=\rho$ constant. The divergence of the
+latent sign contrast relative to $q_v$ is $\rho/(1-\rho)$. Data processing
+bounds every stopped-transcript numerator by this quantity, and work is
+at least one. Thus, for any $q_w$,
+\begin{equation}
+ P_N(B)^2\ge\frac{\rho^2}{4+B\rho/(1-\rho)}>0.
+ \label{eq:dual-positive-value}
+\end{equation}
+An attained optimal dual therefore has $\alpha>0$, finite $K_N$, and
+positive target separation, as asserted.
+\end{proof}
+
+\subsection{A Bellman recursion with explicit null-state conventions}
+
+Divide each coefficient in \eqref{eq:dual-count-coefficients} by
+$\binom nk$ and write $p_q(n,k)$ for the probability of one particular
+ordered prefix with that count. These coefficients satisfy
+\[
+ p_q(n,k)=p_q(n+1,k)+p_q(n+1,k+1).
+\]
+In this subsection let $d_s=p_H(s)-p_L(s)$, $v_s=p_v(s)$,
+$w_s=p_w(s)$, and $r_s=\mathfrak r(d_s,v_s)$ denote the corresponding
+\emph{prefix} coefficients. At the root $v_0=w_0=1$ and $d_0=r_0=0$.
+
+\begin{proposition}[Bellman representation]\label{prop:dual-bellman}
+Suppose $K_N<\infty$. For $\kappa\ge0$, set
+\begin{align}
+ U_{Nk}(\kappa)&=r_{Nk},\notag\\
+ U_{nk}(\kappa)&=\max\{r_{nk},
+ U_{n+1,k}(\kappa)+U_{n+1,k+1}(\kappa)-\kappa w_{nk}\},
+ \quad 1\le n<N.
+ \label{eq:dual-bellman}
+\end{align}
+Then
+\begin{equation}
+ \Phi_N(\kappa):=U_{10}(\kappa)+U_{11}(\kappa)-\kappa
+ =\max_{1\le T_A\le N}
+ \{\mathcal I(P_H^A,P_L^A;P_v^A)-\kappa\E_{q_w}T_A\}.
+ \label{eq:dual-price-value}
+\end{equation}
+It is finite, continuous, piecewise affine, and strictly decreasing, and
+its unique nonnegative zero is $K_N$. A deterministic count-state policy
+attains the maximum at every price. If some prefix has $v_s=0$ and
+$d_s\ne0$, then $K_N=\infty$ instead.
+\end{proposition}
+
+\begin{proof}
+At any observed prefix, stopping earns $r_s$ and continuation earns the
+two child values minus the work charge $\kappa w_s$. Backward induction
+therefore proves \eqref{eq:dual-bellman}. Root activation is compulsory,
+which gives the final charge $\kappa$. All coefficients depend only on
+the count, so the maximizing choice may be deterministic and depend only
+on $(n,k)$. Randomized or order-dependent choices cannot improve it.
+There are finitely many such deterministic policies, each with work in
+$[1,N]$. Their affine price values have slopes in $[-N,-1]$, proving the
+continuity and strict monotonicity claims. The zero-price value is
+nonnegative, the value tends to minus infinity, and the zero is precisely
+the maximal information-to-work ratio. If a prefix has zero reference
+likelihood and nonzero contrast, the policy stopping at its depth has
+infinite information.
+\end{proof}
+
+The recursion also admits an information-increment form. Put
+\begin{equation}
+ j_{nk}=r_{n+1,k}+r_{n+1,k+1}-r_{nk}\ge0.
+ \label{eq:dual-information-increment}
+\end{equation}
+Nonnegativity is Cauchy--Schwarz. At a zero-reference state, finite $K_N$
+forces both its contrast and its children's contrasts to vanish, so
+$j_s=0$ there. If $b_s^A$ is the unnormalized continuation-prefix flow,
+telescoping the flow identities gives
+\begin{equation}
+ \mathcal I(P_H^A,P_L^A;P_v^A)=\sum_{n<N,k}b_s^A j_s,
+ \qquad \E_{q_w}T_A=\sum_{n<N,k}b_s^A w_s.
+ \label{eq:dual-increment-telescope}
+\end{equation}
+Subtracting $r_s$ from the Bellman values gives terminal values $V_N=0$
+and
+\[
+ V_s(\kappa)=\max\{0,j_s-\kappa w_s+V_{s0}(\kappa)+V_{s1}(\kappa)\},
+ \qquad
+ \Phi_N(\kappa)=j_0-\kappa+V_{10}(\kappa)+V_{11}(\kappa).
+\]
+Thus the ratio accounts for both information gained at a state and the
+work needed to reach it. The pointwise inequalities $j_s\le\kappa w_s$
+are sufficient, though generally not necessary, for $K_N\le\kappa$.
+
+When $q_v$ dominates $q_w$ on all relevant prefixes, the posterior form is
+\[
+ \Phi_N(\kappa)=\sup_{1\le T\le N}
+ \E_{q_v}\left[L_T^2-\kappa\sum_{n<T}W_n\right],
+ \qquad L_n=d_n/v_n,\quad W_n=w_n/v_n.
+\]
+The process $L_n$ is a signed-likelihood martingale, initially zero. The
+unnormalized Bellman recursion itself requires no such domination
+assumption, and is the appropriate form at degenerate states.
+
+\section{A midpoint modulus and a sharper adaptive comparison}
+\label{sec:midpoint-dual}
+
+Define the two-prior quantity
+\begin{equation}
+ D_N(B)^2=
+ \sup_{q_-,q_+\in\mathcal Q_\rho}
+ \frac{|\theta(q_+)-\theta(q_-)|^2}
+ {4+B K_N(q_-,q_+;\bar q,\bar q)},
+ \qquad \bar q=(q_-+q_+)/2.
+ \label{eq:dual-midpoint-modulus}
+\end{equation}
+
+\begin{theorem}[Absorbing the two references]\label{thm:midpoint-modulus}
+For every law, budget, and finite cap in the stated range,
+\begin{equation}
+ D_N(B)\le P_N(B)\le3D_N(B).
+ \label{eq:dual-midpoint-comparison}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The first inequality restricts the four-prior dual. For the second, start
+with any quadruple of finite $K_N$ and set
+\[
+ q'_-=(q_L+q_v+q_w)/3,\qquad q'_+=(q_H+q_v+q_w)/3.
+\]
+Their midpoint dominates $q_v$ and $q_w$ in the following precise
+experiment sense: for every policy,
+$P_{\bar q'}^A\ge P_{q_v}^A/3$ and
+$\E_{\bar q'}T_A\ge\E_{q_w}T_A/3$.
+The signed transcript contrast is the old contrast divided by three.
+Consequently its information numerator is at most one third of the old
+numerator, and
+\[
+ K_N(q'_-,q'_+;\bar q',\bar q')
+ \le K_N(q_L,q_H;q_v,q_w).
+\]
+The target gap is divided by three. Substitution in
+\eqref{eq:dual-midpoint-modulus} and then
+\eqref{eq:exact-four-prior-dual} proves the result.
+\end{proof}
+
+For midpoint references, the numerator is twice triangular
+discrimination. With $h(P,Q)=1-\operatorname{Aff}(P,Q)$,
+\begin{equation}
+ 4h(P_+,P_-)
+ \le 2\int\frac{(p_+-p_-)^2}{p_++p_-}
+ =\mathcal I(P_+,P_-;(P_++P_-)/2)
+ \le8h(P_+,P_-).
+ \label{eq:dual-hellinger-comparison}
+\end{equation}
+These inequalities follow by factoring
+$(p_+-p_-)^2=(\sqrt{p_+}-\sqrt{p_-})^2
+(\sqrt{p_+}+\sqrt{p_-})^2$ and bounding the second factor divided by
+$p_++p_-$ between one and two. Hence the midpoint modulus is also a
+Hellinger-information-per-work modulus, up to universal constants. It
+still involves an optimal local stopping rule; it is not a closed
+tail-moment or entropy formula.
+
+\begin{lemma}[Squared-loss testing by affinity]\label{lem:affinity-testing}
+If two terminal laws have target gap $\Delta$, every estimator has worst
+RMS at least $\Delta\operatorname{Aff}(P_-,P_+)/2$.
+\end{lemma}
+
+\begin{proof}
+The maximum MSE is at least the average MSE for equally likely endpoints.
+The minimum average MSE is
+\[
+ \frac{\Delta^2}{2}\int\frac{p_-p_+}{p_-+p_+}.
+\]
+Cauchy--Schwarz gives
+$\operatorname{Aff}(P_-,P_+)^2
+\le2\int p_-p_+/(p_-+p_+)$, proving the claim.
+\end{proof}
+
+Let $R_N^{\mathrm{tot}}(B)$ denote population minimax RMS with at most
+$N$ total observations and uniform expected work at most $B$. This total
+cap is different from the per-unit cap used in $P_N$.
+
+\begin{theorem}[A direct adaptive comparison]\label{thm:dual-adaptive}
+\begin{equation}
+ R_N^{\mathrm{tot}}(B)\ge\frac38D_N(B),\qquad
+ P_N(B)\le8R_N^{\mathrm{tot}}(B).
+ \label{eq:dual-capped-adaptive}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Fix a pair in \eqref{eq:dual-midpoint-modulus}, with target gap $\Delta$
+and information ratio $K$. Interpolate its endpoints toward their
+midpoint by $s\in[0,1]$. The midpoint stays fixed, the target gap becomes
+$s\Delta$, and the information ratio becomes exactly $s^2K$.
+
+For every induced local policy of a cap-$N$ population algorithm,
+\eqref{eq:dual-hellinger-comparison} gives
+\[
+ h(P_-^A,P_+^A)\le\frac{s^2K}{4}\E_{\bar q}T_A.
+\]
+This inequality also covers policies that sometimes take zero
+observations. Their zero-work event depends only on the seed and has zero
+signed contrast; conditioning on activation gives a root-active policy,
+and both information and expected work scale by the activation
+probability. Suppressing the seed can only decrease information.
+
+Apply Lemma~\ref{lem:tf-midpoint}.
+It realizes each hybrid as a one-genuine-unit policy, simulating other
+units from independent midpoint tapes in its auxiliary seed. The hybrid
+global transcript is a function of that local transcript, so data
+processing applies even if the seed reveals the other tapes. Summing the
+midpoint local work counts every population observation exactly once.
+Therefore
+\[
+ h_{\mathrm{pop}}\le s^2BK/4.
+\]
+If $K=0$ take $s=1$; otherwise take $s=\min\{1,(BK)^{-1/2}\}$.
+Then $h_{\mathrm{pop}}\le1/4$. Lemma~\ref{lem:affinity-testing} yields
+\[
+ R_N^{\mathrm{tot}}(B)\ge\frac38s\Delta
+ \ge\frac38\frac\Delta{\sqrt{4+BK}}.
+\]
+Taking the pair supremum proves the first claim; the second follows from
+Theorem~\ref{thm:midpoint-modulus}.
+\end{proof}
+
+\begin{corollary}[An improved finite characterization]
+\label{cor:dual-finite-characterization}
+For every integer $N\ge1$,
+\begin{equation}
+ \left(\frac{P_N(B)}8-
+       \frac\rho2\sqrt{\frac B{N+1}}\right)_+
+ \le R_{\mu,\rho}(B)\le P_N(B).
+ \label{eq:dual-finite-certificate}
+\end{equation}
+At the explicit cap
+\[
+ N_*=\left\lceil64\max\{B,\rho B^2\}\right\rceil,
+\]
+this gives
+\begin{equation}
+ \boxed{R_{\mu,\rho}(B)\le P_{\mu,\rho,N_*}(B)
+                         \le16R_{\mu,\rho}(B).}
+ \label{eq:dual-factor-sixteen}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Clip any estimator to
+$[0,\rho]$ and, before requesting observation $N+1$, returns $\rho/2$.
+Markov's inequality and the $L^2$ triangle inequality give
+\[
+ R_N^{\mathrm{tot}}(B)
+ \le R_{\mu,\rho}(B)+\frac\rho2\sqrt{\frac B{N+1}}.
+\]
+Combining this with Theorem~\ref{thm:dual-adaptive} and the constructive
+flow upper bound proves \eqref{eq:dual-finite-certificate}.
+Lemma~\ref{lem:tf-floor} gives
+\[
+ R_{\mu,\rho}(B)\ge\frac1{16}
+                 \min\{\rho,\sqrt{\rho/B}\}.
+\]
+At $N=N_*$ the truncation remainder is at most that floor. Thus
+$P_{N_*}(B)\le8(R+R)=16R$.
+\end{proof}
+
+The program remains a uniform risk certificate rather than an exact formula
+for minimax risk, and its finite dimension does not imply an efficient
+algorithm at every budget. Theorem~\ref{thm:entropy-tail-law} supplies a
+complementary additive expression involving only the magnitude law, with
+its matching lower proof in Section~\ref{sec:matching-lower}. Its
+conservative scalar constants are distinct from this program factor.
+
+
+\begin{remark}[Scope of the factor-sixteen guarantee]
+The comparison uses the sufficient cap in
+Corollary~\ref{cor:dual-finite-characterization}, or a cap that passes
+the verified genie stopping condition in Section~\ref{sec:genie}.
+It is not a comparison for every fixed cap. In particular, an ordinary
+fixed-cap dual alone is not a lower certificate for unrestricted risk.
+With verified bounds $L\le G_N$ and $P_N\le U$, the orientation is
+\[
+ L\le G_N\le P_\infty\le P_N\le U,\qquad L/8\le R\le U.
+\]
+Thus $U\le2L$ implies $U\le16R$.
+\end{remark}

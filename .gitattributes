@@ -2,3 +2,7 @@
 * -text
 # Compiler output is retained verbatim, including diagnostic whitespace.
 *.log -whitespace
+# Delivered manuscript and historical patches are hash-locked verbatim imports.
+paper/rare-event/v2/** -whitespace
+paper/rare-event/audit/*.patch -whitespace
+paper/rare-event/audit/referee_genie_replacement.tex -whitespace

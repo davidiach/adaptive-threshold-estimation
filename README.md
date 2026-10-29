@@ -5,7 +5,7 @@
 Minimax theory for estimating a threshold probability from noisy coin flips,
 with a research manuscript, Lean 4 proofs built on Mathlib, and reproducible experiments.
 
-**[Paper](paper/v5/paper.pdf)** · **[Formal proofs](lean/ThresholdHC/)** · **[Verification guide](docs/VERIFY.md)** · **[Specialist review packet](paper/critical-review/review.pdf)**
+**[Paper](paper/v5/paper.pdf)** · **[General-law rare-event paper](paper/rare-event/README.md)** · **[Formal proofs](lean/ThresholdHC/)** · **[Verification guide](docs/VERIFY.md)** · **[Specialist review packet](paper/critical-review/review.pdf)**
 
 **[Finite-gap rare-event manuscript](paper/finite-gap-rare-events/README.md)** — a separate paper proof for known finite gap laws, prepared for external mathematical review.
 
@@ -37,6 +37,7 @@ The [lower theorem](lean/ThresholdHC/Tier6/Full.lean),
 
 | Result | Verification | Read more |
 |---|---|---|
+| General-law rare-event entropy-tail characterization, stopping dual, and sufficient-cap certificates | Paper proof with adversarial AI audits and exact finite certificates; new general claims not Lean-formalized | [Manuscript v2](paper/rare-event/README.md) · [Scope](docs/RESULTS.md#general-law-rare-event-characterization) |
 | Critical quadratic rare-event law, including unrestricted adaptive algorithms | Both minimax bounds proved in Lean | [Statement and scope](docs/RESULTS.md#critical-power-margin-full-minimax-characterization) |
 | Exact critical-law Ψ formula and counterexample to a universal matching-Ψ upper bound | Proved in Lean | [Theorems](lean/ThresholdHC/CriticalPsi/Full.lean) |
 | Unbiased estimation exists iff $I<\infty$; one universal construction has variance–work at most $713I^2$ | Proved in Lean in the observable adaptive model | [Theorems](lean/ThresholdHC/Observable713/Full.lean) · [Audit](results/observable713_001.json) |
@@ -59,10 +60,11 @@ R_{\mu,\rho}(B)\asymp
 ```
 
 The extra scale-entropy factor refutes the proposed matching-Ψ characterization.
-The separate manuscript below gives a replacement for known finite gap laws;
-extensions to arbitrary infinite-support or unknown laws remain outside its
-scope. The all-count entropy coefficient is 1/4096; the sharper 1/512 bound
-retains its large-count assumption.
+The separate [general-law manuscript](paper/rare-event/README.md) now gives an
+entropy-tail replacement for known gap law and rarity, as an audited paper
+proof. Its general characterization and stopping-program claims await Lean
+formalization. The finite-gap manuscript below gives a closed quantile formula
+for known finite laws, also as a paper proof. The existing all-count Lean entropy coefficient is 1/4096; the sharper 1/512 bound retains its large-count assumption.
 The explicit new base-cost constants apply to single-coin procedures.
 
 ## Finite-gap rare-event manuscript
@@ -120,6 +122,7 @@ Use a disposable checkout for reproduction: some checks write diagnostic files.
 
 - **Read the mathematics:** [consolidated v5 paper](paper/v5/README.md),
   [finite-gap rare-event manuscript](paper/finite-gap-rare-events/README.md),
+  [general-law rare-event manuscript](paper/rare-event/README.md),
   [critical-result review packet](paper/critical-review/README.md),
   and [claims with exact assumptions](docs/RESULTS.md).
 - **Inspect the formalization:** [Lean sources](lean/ThresholdHC/),
@@ -142,11 +145,12 @@ AI review and has not had independent external specialist review. Numerical
 experiments provide supporting evidence, not proofs of universal claims.
 
 The finite-gap closed quantile theorem is currently a paper proof, separate
-from the linked Lean-checked statements. The next formalization targets include
-the remaining rare-event regimes
-and auxiliary results on envelopes, smooth densities, and observed outer states.
-General-law rare-event theory and tighter constants remain research
-directions. See the [completion ledger](docs/WORKPLAN.md) for the current boundary.
+from the linked Lean-checked statements.
+The next formalization targets include the new general-law rare-event
+characterization and stopping-program arguments, the remaining paper-only
+regimes, and auxiliary results on envelopes, smooth densities, and observed
+outer states. Tighter constants and efficient selection algorithms remain
+research directions. See the [completion ledger](docs/WORKPLAN.md) for the current boundary.
 
 ## Attribution and license
 
