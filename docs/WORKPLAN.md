@@ -71,7 +71,9 @@ frozen targets, including an unbiased single-coin family with second moment
 at most 28 rho, a law-independent upper construction, the 1/256 supported-law
 lower bound, exact-power minimax and Psi rates, existence and nonvacuity.
 The [scope guide](RARE_ABOVE_TWO.md) explains the proof and its conservative
-constants. This contribution is on a separate feature branch; publication and
+constants. The [saved audit](../results/rare_above_two_001.json) passed at
+`637fb4a`, covering 54 modules, 322 declarations and all seven frozen targets.
+This contribution is on a separate feature branch; publication and
 CI status belong to its PR, and no merge is implied by the local proof result.
 
 The 29 October

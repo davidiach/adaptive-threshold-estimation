@@ -120,6 +120,8 @@ power-law existence, the observable unbiased single-coin construction, the
 supported-law lower bound, uniform upper bound, exact-power minimax rate,
 Psi comparison and nonvacuity. The [scope guide](RARE_ABOVE_TWO.md) records
 parameter ranges, constants, the original observable model and paper differences.
+The [saved audit](../results/rare_above_two_001.json) passed at `637fb4a`,
+covering all 322 declaration roots and their transitive axioms.
 
 The magnitude-oracle lower bounds have a separate audit:
 
@@ -382,6 +384,7 @@ separate from mathematical verification.
 | Observable 713 construction and unbiased existence iff finite inverse moment | [observable713_001.json](../results/observable713_001.json) |
 | Full observable confidence characterization, upper family, and nonvacuity | [confidence_001.json](../results/confidence_001.json) |
 | Canonical revealed/selected-magnitude RMS and confidence lower bounds | [oracle_lower_001.json](../results/oracle_lower_001.json) |
+| Observable alpha > 2 rare-event theory (7 targets, 54 modules, 322 declarations) | [rare_above_two_001.json](../results/rare_above_two_001.json) |
 | Input preservation | [MANIFEST_SHA256.txt](../inputs/next-phase/MANIFEST_SHA256.txt) |
 | Frozen specifications and tools | [FROZEN.sha256](../FROZEN.sha256), [TIER3_FROZEN.sha256](../TIER3_FROZEN.sha256), [TIER4_FROZEN.sha256](../TIER4_FROZEN.sha256) |
 | Workflow definition | [checks.yml](../.github/workflows/checks.yml) |

@@ -72,6 +72,10 @@ quadratic counterexample already rules out.
 
 ## Reproduction and remaining scope
 
+The [saved audit](../results/rare_above_two_001.json) passed at proof checkpoint
+`637fb4a`: 54 modules, 322 declaration roots and all seven frozen targets.
+Every protected source hash matched after the build and axiom checks.
+
 ```sh
 python tools/verify_rare_above_two.py --sequential
 python -m unittest discover -s tools -p 'test_rare_above_two.py' -v
