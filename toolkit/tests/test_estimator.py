@@ -133,6 +133,23 @@ class CalibrationTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             two_success_average(lambda: (0.0, 9), 8, random.Random(0))
 
+    def test_large_finite_values_average_without_overflow(self):
+        # From an external review: the plain sum of three 1e308 values overflows.
+        self.assertEqual(two_success_average(lambda: (1e308, 1.0), 2.0, random.Random(0))[0], 1e308)
+        signs = itertools.cycle([1e308, 1e308, -1e308, 1e308])
+        calls = []
+
+        def run_once():
+            calls.append(next(signs))
+            return calls[-1], 1.0
+
+        average, _, production, pilots = two_success_average(run_once, 4.0, random.Random(2))
+        values = calls[pilots:]
+        self.assertEqual(len(values), production)
+        self.assertGreater(production, 2)
+        self.assertTrue(math.isfinite(average))
+        self.assertEqual(average, math.fsum(value / production for value in values))
+
     def test_zero_cost_and_invalid_caps_rejected(self):
         for cost in (0, -1, math.inf, math.nan):
             with self.subTest(cost=cost), self.assertRaises(ValueError):

@@ -1,4 +1,5 @@
 import contextlib
+import dataclasses
 import io
 import math
 import sys
@@ -14,7 +15,8 @@ from threshold_toolkit.__main__ import main, read_rates
 from threshold_toolkit.planner import (EvenlySpread, GuessedRates, _calls, _majority_plan,
                                        _odd_flip_counts, _simulate_run, binomial_tail,
                                        difficulty, floor_budget, majority_plan_for_budget,
-                                       majority_plan_for_target, plan_target, simulate)
+                                       majority_plan_for_target, plan_target, rms_upper_bound,
+                                       simulate)
 
 
 def exact_positive_probability(p, cap):
@@ -236,9 +238,10 @@ class SimulationTests(unittest.TestCase):
         self.assertLess(plan_target(population, 0.1, runs=2, max_budget=1e10).search_limit, 1e10)
 
     def test_target_search_can_finish_before_an_oversized_ceiling(self):
-        # Every output is exactly zero, so even this tight target needs only the
-        # first trial, although the worst-case majority plan has a huge budget.
-        plan = plan_target(GuessedRates([0.0]), 1e-5, max_budget=1e10)
+        # Every output is exactly zero, so the first trial's bound confirms this
+        # target, and the search never reaches a budget too large to simulate.
+        with patch("threshold_toolkit.planner.majority_plan_for_target", return_value=None):
+            plan = plan_target(GuessedRates([0.0]), 0.2, max_budget=1e10)
         self.assertEqual(plan.search_limit, 1e10)
         self.assertEqual([trial.budget for trial in plan.trials], [4])
         self.assertEqual(plan.recommended.rms_error, 0.0)
@@ -253,6 +256,55 @@ class SimulationTests(unittest.TestCase):
                 plan_target(GuessedRates([1.0]), 1e-5, runs=2,
                             max_budget=16, progress=trials.append)
         self.assertEqual([trial.budget for trial in trials], [4, 8])
+
+
+class ConfidenceBoundTests(unittest.TestCase):
+    def test_zero_observed_errors_leave_uncertainty(self):
+        # 200 zero errors: 95% bound sqrt(1 - 0.05**(1/200)), about 0.122.
+        exact = math.sqrt(-math.expm1(math.log(0.05) / 200))
+        bound = rms_upper_bound(np.zeros(200), 0.95)
+        self.assertGreaterEqual(bound, exact)
+        self.assertAlmostEqual(bound, exact, places=9)
+
+    def test_bound_covers_the_true_rms_error(self):
+        rng = np.random.default_rng(11)
+        for p in (0.001, 0.05, 0.3):
+            losses = rng.random((2000, 200)) < p
+            covered = np.mean([rms_upper_bound(row, 0.95) >= math.sqrt(p) for row in losses])
+            with self.subTest(p=p):
+                self.assertGreaterEqual(covered, 0.93)
+        mixed = rng.random(500) ** 3
+        self.assertGreater(rms_upper_bound(mixed), math.sqrt(mixed.mean()))
+
+    def test_invalid_inputs_rejected(self):
+        for losses, confidence in (([], 0.95), ([0.1, 1.5], 0.95), ([-0.1], 0.95),
+                                   ([0.1], 0.0), ([0.1], 1.0), ([math.nan], 0.95)):
+            with self.subTest(losses=losses, confidence=confidence), self.assertRaises(ValueError):
+                rms_upper_bound(losses, confidence)
+
+    def test_external_review_witness_is_not_recommended(self):
+        # Exact RMS error at budget 4 is sqrt(0.01 * (1 - 1/sqrt(2))) = 0.0541, but all 200
+        # simulated errors are zero with probability 0.556. The old search recommended it.
+        plan = plan_target(GuessedRates([0.01]), 0.001, runs=200, seed=0, max_budget=64)
+        self.assertIsNone(plan.recommended)
+        hit = plan.first_simulated_hit
+        self.assertEqual((hit.budget, hit.rms_error), (4, 0.0))
+        self.assertGreater(hit.rms_error_upper, 0.122)
+        # 200 runs can never confirm 0.001, so the search stops at the first hit.
+        self.assertGreater(plan.confirmable_runs, 1_000_000)
+        self.assertEqual([trial.budget for trial in plan.trials], [4])
+
+    def test_search_continues_past_an_unconfirmed_hit_when_runs_suffice(self):
+        real = simulate(GuessedRates([0.9, 0.2]), 4, runs=2, seed=0)
+        fake = iter([dataclasses.replace(real, rms_error=0.1, rms_error_upper=0.5),
+                     dataclasses.replace(real, rms_error=0.05, rms_error_upper=0.25)])
+        with patch("threshold_toolkit.planner.simulate", side_effect=lambda *a, **k: next(fake)) as sim:
+            plan = plan_target(GuessedRates([0.9, 0.2]), 0.3, runs=1000, max_budget=64)
+        self.assertLessEqual(plan.confirmable_runs, 1000)
+        self.assertEqual(plan.first_simulated_hit.rms_error_upper, 0.5)
+        self.assertEqual(plan.recommended.rms_error_upper, 0.25)
+        # Each trial's bound is corrected for the five budgets 4, ..., 64.
+        self.assertAlmostEqual(sim.call_args.kwargs["confidence"], 1 - 0.05 / 5)
 
 
 class CommandLineTests(unittest.TestCase):
@@ -274,6 +326,13 @@ class CommandLineTests(unittest.TestCase):
         self.assertEqual(code, 0)
         self.assertIn("meets the target however", text)
         self.assertIn("->", text)
+
+    def test_unconfirmed_target_is_not_reported_as_met(self):
+        code, text = self.run_cli("--rates", "0.01", "--target-error", "0.001", "--max-budget", "64")
+        self.assertEqual(code, 0)
+        self.assertIn("do not confirm it", text)
+        self.assertIn("needs at least", text)
+        self.assertNotIn("confirmed at", text)
 
     def test_zero_simulated_errors_do_not_divide_by_zero(self):
         for rates, budget in (("0,0.01", "4"), ("0", "100")):

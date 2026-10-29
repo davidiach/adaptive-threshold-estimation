@@ -125,12 +125,17 @@ def two_success_average(run_once: Callable[[], Tuple[float, float]], cap: float,
             if rng.random() < cost / cap:
                 break
             production += 1
-    total = 0.0
+    values = []
     for _ in range(production):
         value, cost = checked_run()
-        total += value
+        values.append(value)
         total_cost += cost
-    return total / production, total_cost, production, pilots
+    average = sum(values) / production
+    if not math.isfinite(average):
+        # The plain sum overflowed although every value is finite. The scaled
+        # values cannot: their exact sum is bounded by the largest |value|.
+        average = math.fsum(value / production for value in values)
+    return average, total_cost, production, pilots
 
 
 @dataclass(frozen=True)

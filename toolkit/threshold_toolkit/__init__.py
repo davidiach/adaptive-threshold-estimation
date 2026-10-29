@@ -17,7 +17,7 @@ from .estimator import Estimate, estimate_fraction, majority_vote_estimate, two_
 _PLANNER_NAMES = {
     "BudgetPlan", "EvenlySpread", "GuessedRates", "MajorityPlan", "Population",
     "Simulation", "TargetPlan", "floor_budget", "majority_plan_for_budget",
-    "majority_plan_for_target", "plan_budget", "plan_target", "simulate",
+    "majority_plan_for_target", "plan_budget", "plan_target", "rms_upper_bound", "simulate",
 }
 
 
@@ -33,5 +33,5 @@ __all__ = [
     "BudgetPlan", "Estimate", "EvenlySpread", "GuessedRates", "MajorityPlan", "Population",
     "Simulation", "TargetPlan", "estimate_fraction", "floor_budget",
     "majority_plan_for_budget", "majority_plan_for_target", "majority_vote_estimate",
-    "plan_budget", "plan_target", "simulate", "two_success_average",
+    "plan_budget", "plan_target", "rms_upper_bound", "simulate", "two_success_average",
 ]
