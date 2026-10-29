@@ -175,6 +175,23 @@ are proved; neither is assumed in the final target. CI runs this audit and
 its regression tests. The radius is a theoretical function of the gap law,
 not a data-computable confidence interval over all unknown laws.
 
+## Observable rare events above alpha two
+
+The full observable rare-event theorem for alpha > 2 has a separate audit:
+
+```sh
+python tools/verify_rare_above_two.py --sequential
+python -m unittest discover -s tools -p 'test_rare_above_two.py' -v
+```
+
+It checks all 54 registered modules and seven frozen full statements: exact
+power-law existence, the observable unbiased single-coin construction, the
+supported-law lower bound, uniform upper bound, exact-power minimax rate,
+Psi comparison and nonvacuity. The [scope guide](RARE_ABOVE_TWO.md) records
+parameter ranges, constants, the original observable model and paper differences.
+The [saved audit](../results/rare_above_two_001.json) passed at `637fb4a`,
+covering all 322 declaration roots and their transitive axioms.
+
 ## Magnitude-oracle lower bounds
 
 The magnitude-oracle lower bounds have a separate audit:
@@ -349,7 +366,7 @@ python research/2026-10-27-route-a/check_construction.py
 python lean/ThresholdHC/ResearchRouteA/verify.py
 ```
 
-Both commands rewrite tracked records in their own directories (`construction-checks.json`; `status.json`, `build.log` and `audit.log`), so run them in a disposable checkout; `tools/verify_research.py` replays the first in a temporary copy. The first command checks exact rational finite-prefix experiments and retains unresolved tails; it does not certify the main theorem. The second checks the new locked formal specification, exact types, and all five public roots. See [formal replay details](../research/2026-10-27-route-a/formal-audit.md) for the local Windows environment. The main theorem remains a reviewed paper proof. [Baseline replay records](../research/2026-10-27-route-a/BASELINE.md) and the new `acceptance_check.py` keep diagnostics separate from published `results/`; the latter compares against this session's recorded source snapshot.
+Both commands rewrite tracked records in their own directories (`construction-checks.json`; `status.json`, `build.log` and `audit.log`), so run them in a disposable checkout; `tools/verify_research.py` replays the first in a temporary copy. The first command checks exact rational finite-prefix experiments and retains unresolved tails; it does not certify the main theorem. The second checks the new locked formal specification, exact types, and all five public roots. See [formal replay details](../research/2026-10-27-route-a/formal-audit.md) for the local Windows environment. The paper's own construction and constants remain a reviewed paper proof; the alpha > 2 rate itself is now proved in Lean by a different construction (see the [scope guide](RARE_ABOVE_TWO.md)). [Baseline replay records](../research/2026-10-27-route-a/BASELINE.md) and the new `acceptance_check.py` keep diagnostics separate from published `results/`; the latter compares against this session's recorded source snapshot.
 
 ## Integrity, numerics, and unit tests
 
@@ -437,6 +454,7 @@ separate from mathematical verification.
 | Observable 713 construction and unbiased existence iff finite inverse moment | [observable713_001.json](../results/observable713_001.json) |
 | Full observable confidence characterization, upper family, and nonvacuity | [confidence_001.json](../results/confidence_001.json) |
 | Canonical revealed/selected-magnitude RMS and confidence lower bounds | [oracle_lower_001.json](../results/oracle_lower_001.json) |
+| Observable alpha > 2 rare-event theory (7 targets, 54 modules, 322 declarations) | [rare_above_two_001.json](../results/rare_above_two_001.json) |
 | Input preservation | [MANIFEST_SHA256.txt](../inputs/next-phase/MANIFEST_SHA256.txt) |
 | Frozen specifications and tools | [FROZEN.sha256](../FROZEN.sha256), [TIER3_FROZEN.sha256](../TIER3_FROZEN.sha256), [TIER4_FROZEN.sha256](../TIER4_FROZEN.sha256) |
 | Workflow definition | [checks.yml](../.github/workflows/checks.yml) |

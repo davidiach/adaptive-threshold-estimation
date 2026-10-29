@@ -43,6 +43,7 @@ The [lower theorem](lean/ThresholdHC/Tier6/Full.lean),
 | Result | Verification | Read more |
 |---|---|---|
 | General-law rare-event entropy-tail characterization, stopping dual, and sufficient-cap certificates | Paper proof with adversarial AI audits and exact finite certificates; new general claims not Lean-formalized | [Manuscript v2](paper/rare-event/README.md) · [Scope](docs/RESULTS.md#general-law-rare-event-characterization) |
+| Rare-event power laws with $\alpha>2$ | Both minimax bounds proved in Lean in the observable model | [Scope and proof map](docs/RARE_ABOVE_TWO.md) |
 | Critical quadratic rare-event law, including unrestricted adaptive algorithms | Both minimax bounds proved in Lean | [Statement and scope](docs/RESULTS.md#critical-power-margin-full-minimax-characterization) |
 | Exact critical-law Ψ formula and counterexample to a universal matching-Ψ upper bound | Proved in Lean | [Theorems](lean/ThresholdHC/CriticalPsi/Full.lean) |
 | Unbiased estimation exists iff $I<\infty$; one universal construction has variance–work at most $713I^2$ | Proved in Lean in the observable adaptive model | [Theorems](lean/ThresholdHC/Observable713/Full.lean) · [Audit](results/observable713_001.json) |

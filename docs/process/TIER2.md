@@ -292,6 +292,7 @@ marginals, a stopping-rule identity, concentration bounds, and finite series.
 - The minimax lower and upper theorems as wholes, and the power-margin rates.
   Both minimax theorems are now proved separately, in
   [Tier 6](../../lean/ThresholdHC/Tier6/Full.lean) and
-  [BlindUpper](../../lean/ThresholdHC/BlindUpper/Full.lean), and the critical
-  power-margin rate is Lean-checked; the other power-margin rates remain paper proofs.
+  [BlindUpper](../../lean/ThresholdHC/BlindUpper/Full.lean). The critical and
+  [alpha > 2](../../lean/ThresholdHC/RareAboveTwo/Full.lean) power-margin rates are
+  Lean-checked; the alpha < 2 rates remain paper proofs.
 - Any optimality claim for 713. The lower bound remains 1/16.

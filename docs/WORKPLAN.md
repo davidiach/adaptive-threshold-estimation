@@ -100,6 +100,19 @@ Models and targets were compiled and frozen at `3474a37` before supporting
 lower-bound and semantic-embedding proofs. Publication and CI are recorded
 on the focused oracle PR; local checks alone do not establish CI success.
 
+The alpha > 2 rare-event RMS theorem is now proved in the same observable model.
+The [full package](../lean/ThresholdHC/RareAboveTwo/Full.lean) covers all seven
+frozen targets, including a single-coin family that is unbiased on every
+power-margin law (second moment at most 28 rho in the proof), a law-independent
+upper construction, a supported-law lower bound (coefficient 1/256 in the
+proof), exact-power minimax and Psi rates, existence and nonvacuity.
+The [scope guide](RARE_ABOVE_TWO.md) explains the proof and its conservative
+constants. The [saved audit](../results/rare_above_two_001.json) passed at
+`637fb4a`, covering 54 modules, 322 declarations and all seven frozen targets.
+Publication and CI are recorded on
+[PR #22](https://github.com/davidiach/adaptive-threshold-estimation/pull/22);
+local checks alone do not establish CI success.
+
 The 29 October
 [finite-gap manuscript](../paper/finite-gap-rare-events/README.md), introduced
 in [PR #18](https://github.com/davidiach/adaptive-threshold-estimation/pull/18),
@@ -111,7 +124,7 @@ not change the formal verification boundary above.
 
 The next formalization priorities are the new general-law rare-event
 characterization and stopping-program arguments, the remaining paper-only
-rare-event results, and auxiliary envelope, smooth-density and observed-state
+rare-event results below two, and auxiliary envelope, smooth-density and observed-state
 results. Sharp rare-event confidence rates at and above the quadratic boundary
 remain open research.
 
