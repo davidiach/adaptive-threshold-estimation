@@ -69,9 +69,18 @@ This verifies the immutable [v2 payload](../paper/rare-event/v2/MANIFEST.sha256)
 and [historical audit records](../paper/rare-event/audit/MANIFEST.sha256), then
 runs the certificate and revision verifiers in a temporary copy. It rechecks
 33 exact lower certificates, 9 upper policies, 9 stopping decisions, two
-perfect-label examples, and rejection of six targeted corruptions. It also
-replays the independent revision audit's finite computations, including the
-new examples, constants, and genie comparisons. Published files are unchanged.
+perfect-label examples, and rejection of six targeted corruptions. It then
+binds each of the nine genie-bracket rows to its lower and upper files. Both
+files must pass the payload's exact verifiers and state the row's law, rarity,
+budget and cap. The lower must be a verified four-prior genie dual, the
+uncapped scope the bracket needs. The stopping decision, ratios and displayed
+decimals are recomputed from the verified bounds. Each case's cap search must
+follow the generator's cap ladder at both budgets and stop at its first
+passing cap. Eight targeted substitutions must be rejected: seven altered file
+references, including an upper policy for another instance, a finite-cap lower
+and a file outside the checks, and one flipped stopping decision. It also replays the independent revision audit's finite
+computations, including the new examples, constants, and genie comparisons.
+Published files are unchanged.
 
 The [build record](../paper/rare-event/v2/VERIFICATION.json) covers the delivered
 55-page PDF and its visual review; [build instructions](../paper/rare-event/README.md#verify-and-build)
@@ -174,6 +183,23 @@ The statistical independence of the repetitions and their actual execution
 are proved; neither is assumed in the final target. CI runs this audit and
 its regression tests. The radius is a theoretical function of the gap law,
 not a data-computable confidence interval over all unknown laws.
+
+## Observable rare events above alpha two
+
+The full observable rare-event theorem for alpha > 2 has a separate audit:
+
+```sh
+python tools/verify_rare_above_two.py --sequential
+python -m unittest discover -s tools -p 'test_rare_above_two.py' -v
+```
+
+It checks all 54 registered modules and seven frozen full statements: exact
+power-law existence, the observable unbiased single-coin construction, the
+supported-law lower bound, uniform upper bound, exact-power minimax rate,
+Psi comparison and nonvacuity. The [scope guide](RARE_ABOVE_TWO.md) records
+parameter ranges, constants, the original observable model and paper differences.
+The [saved audit](../results/rare_above_two_001.json) passed at `637fb4a`,
+covering all 322 declaration roots and their transitive axioms.
 
 ## Magnitude-oracle lower bounds
 
@@ -349,7 +375,7 @@ python research/2026-10-27-route-a/check_construction.py
 python lean/ThresholdHC/ResearchRouteA/verify.py
 ```
 
-Both commands rewrite tracked records in their own directories (`construction-checks.json`; `status.json`, `build.log` and `audit.log`), so run them in a disposable checkout; `tools/verify_research.py` replays the first in a temporary copy. The first command checks exact rational finite-prefix experiments and retains unresolved tails; it does not certify the main theorem. The second checks the new locked formal specification, exact types, and all five public roots. See [formal replay details](../research/2026-10-27-route-a/formal-audit.md) for the local Windows environment. The main theorem remains a reviewed paper proof. [Baseline replay records](../research/2026-10-27-route-a/BASELINE.md) and the new `acceptance_check.py` keep diagnostics separate from published `results/`; the latter compares against this session's recorded source snapshot.
+Both commands rewrite tracked records in their own directories (`construction-checks.json`; `status.json`, `build.log` and `audit.log`), so run them in a disposable checkout; `tools/verify_research.py` replays the first in a temporary copy. The first command checks exact rational finite-prefix experiments and retains unresolved tails; it does not certify the main theorem. The second checks the new locked formal specification, exact types, and all five public roots. See [formal replay details](../research/2026-10-27-route-a/formal-audit.md) for the local Windows environment. The paper's own construction and constants remain a reviewed paper proof; the alpha > 2 rate itself is now proved in Lean by a different construction (see the [scope guide](RARE_ABOVE_TWO.md)). [Baseline replay records](../research/2026-10-27-route-a/BASELINE.md) and the new `acceptance_check.py` keep diagnostics separate from published `results/`; the latter compares against this session's recorded source snapshot.
 
 ## Integrity, numerics, and unit tests
 
@@ -357,6 +383,7 @@ Both commands rewrite tracked records in their own directories (`construction-ch
 python tools/verify_inputs.py
 python tools/verify_experiment_lock.py
 python tools/freeze.py --verify
+python tools/verify_lean_sources.py
 python tools/check_targets_numeric.py
 python tools/check_targets2_numeric.py
 python -m unittest discover -s tools -p 'test_validation.py' -v
@@ -369,9 +396,10 @@ python constants/score_constants.py constants/candidate_theory.json
 python constants/score_constants.py constants/candidate_finite_grid.json
 python constants/score_constants.py constants/candidate.json
 python benchmark/verify_real.py
+python benchmark/verify_production.py
 ```
 
-The shorter `python -m unittest discover -s tools -p 'test_*.py' -v` runs all validation test modules present in the checkout. Constant scoring without `--accept` evaluates the recorded configurations without changing the best-score ledger. `verify_experiment_lock.py` recomputes summaries from stored samples; it does not repeat the held-out experiment. Full benchmark resimulation is a separate procedure in [benchmark/README.md](../benchmark/README.md).
+The shorter `python -m unittest discover -s tools -p 'test_*.py' -v` runs all validation test modules present in the checkout. Constant scoring without `--accept` evaluates the recorded configurations without changing the best-score ledger. `verify_experiment_lock.py` requires the held-out record to hold exactly the locked selection's cells and recomputes every summary and the accept decision from the stored samples; it does not repeat the held-out experiment. CI runs it with `--strict`, before `verify_real.py` rewrites its locked record with the platform's line endings. `verify_lean_sources.py` scans every project Lean source with the strengthened proof-escape pattern: the frozen Tier 3–6 verifiers also scan unfrozen proof modules, with a pattern that misses `admit`, `#guard_msgs`, metaprogramming entry points such as `elab_rules`, and code hidden from its comment stripper by a string literal, an escaped identifier or the doc-comment opener `/--/`. The strengthened pattern rejects these forms; it is a textual guard, not a Lean parser. The locked `verify_real.py` compares tape copies of the benchmark's stopping state machines with an independent classifier; `verify_production.py` replays the production routines' exact draws across every recorded training and tuning configuration and checks them against the same kind of classifier. Full benchmark resimulation is a separate procedure in [benchmark/README.md](../benchmark/README.md).
 
 ## Lean kernel checks
 
@@ -435,6 +463,7 @@ separate from mathematical verification.
 | Observable 713 construction and unbiased existence iff finite inverse moment | [observable713_001.json](../results/observable713_001.json) |
 | Full observable confidence characterization, upper family, and nonvacuity | [confidence_001.json](../results/confidence_001.json) |
 | Canonical revealed/selected-magnitude RMS and confidence lower bounds | [oracle_lower_001.json](../results/oracle_lower_001.json) |
+| Observable alpha > 2 rare-event theory (7 targets, 54 modules, 322 declarations) | [rare_above_two_001.json](../results/rare_above_two_001.json) |
 | Input preservation | [MANIFEST_SHA256.txt](../inputs/next-phase/MANIFEST_SHA256.txt) |
 | Frozen specifications and tools | [FROZEN.sha256](../FROZEN.sha256), [TIER3_FROZEN.sha256](../TIER3_FROZEN.sha256), [TIER4_FROZEN.sha256](../TIER4_FROZEN.sha256) |
 | Workflow definition | [checks.yml](../.github/workflows/checks.yml) |

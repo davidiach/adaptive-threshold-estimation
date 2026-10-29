@@ -6,16 +6,22 @@ It compares two ways to spend the flips:
 - the simple plan: flip each of n fresh items m times and count majority
   successes. Its error has an exact formula, given the guess.
 - the proven no-tuning estimator in estimator.py, simulated on the guess.
-  Simulation is numerical evidence for that guess, not a guarantee.
+  Simulation is numerical evidence for that guess, not a guarantee. Each
+  simulation also gives a one-sided upper confidence bound on its error, and
+  plan_target recommends a budget only when that bound meets the target.
 
 The proven limits use only how close the items are to 50/50:
 
     difficulty(B) = omega(1/sqrt(B)),  omega(h) = average of min(1, h / |p - 1/2|).
 
-For any method with average budget B, some way of placing these items on
-either side of 50/50 forces root-mean-square error at least difficulty / 64
-(Tier6/Full.lean, `minimax_lower_bound`). The no-tuning estimator has error
-at most 512 * difficulty for every placement (BlindUpper/Full.lean).
+For any method with average budget B, some split of the population between
+the two sides forces root-mean-square error at least difficulty / 64
+(Tier6/Full.lean, `minimax_lower_bound`). A split sets any share of the items
+at each closeness to 50/50 above it, so the floor need not hold for one fixed
+list of items whose sides are only unknown: one item at 0.9 or 0.1, flipped
+101 times, gives error about 1e-12 either way, below its floor of 0.0039.
+The no-tuning estimator has error at most 512 * difficulty for every split
+(BlindUpper/Full.lean).
 """
 
 import math
@@ -352,6 +358,117 @@ def _simulate_run(population: Population, level_cap: int,
     return total / production, flips, items + production
 
 
+# Relative margin on every confidence bound; it keeps the bound above the exact
+# root despite rounding in the relative entropy, which is far smaller.
+BOUND_MARGIN = 1e-9
+
+
+def _bernoulli_kl(p: float, q: float) -> float:
+    """Relative entropy between Bernoulli(p) and Bernoulli(q), for p <= q < 1."""
+    # log1p keeps the rounding relative to q - p, even when q is tiny.
+    total = -(1 - p) * math.log1p(-(q - p) / (1 - p))
+    if p == 0:
+        return total
+    ratio = (q - p) / p
+    if math.isfinite(ratio):
+        return total - p * math.log1p(ratio)
+    # The ratio overflows only for a subnormal p far below q; the term is then
+    # negligible, and q / p would overflow too, so the logarithms are taken apart.
+    return total + p * (math.log(p) - math.log(q))
+
+
+def _kl_upper_root(mean: float, allowance: float) -> float:
+    """sqrt(q) for the largest q with kl(mean, q) <= allowance, raised by BOUND_MARGIN."""
+    if mean >= 1:
+        return 1.0
+    # kl(mean, q) increases from 0 to infinity as q rises from the mean to 1.
+    low, high = mean, 1.0
+    while True:
+        middle = (low + high) / 2
+        if middle in (low, high):
+            return min(1.0, math.sqrt(high) * (1 + BOUND_MARGIN))
+        if _bernoulli_kl(mean, middle) <= allowance:
+            low = middle
+        else:
+            high = middle
+
+
+def rms_upper_bound(squared_errors: Sequence[float], confidence: float = 0.95,
+                    comparisons: int = 1) -> float:
+    """One-sided upper confidence bound on the RMS error from iid squared errors in [0, 1].
+
+    Returns sqrt(q) for the largest q with runs * kl(mean, q) <= log(1 / delta),
+    where kl is the Bernoulli relative entropy and delta = (1 - confidence) / comparisons.
+    By the Chernoff-Hoeffding bound for iid variables in [0, 1], the true mean
+    squared error exceeds q with probability at most delta, so `comparisons`
+    such bounds all hold with probability at least `confidence`. The bound
+    stays positive when every observed error is zero: 200 zero errors give
+    about 0.122 at 95%.
+    """
+    if not 0 < confidence < 1:
+        raise ValueError("confidence must be strictly between 0 and 1")
+    if not isinstance(comparisons, numbers.Integral) or comparisons < 1:
+        raise ValueError("comparisons must be a positive integer")
+    losses = np.asarray(squared_errors, dtype=float)
+    if losses.size == 0 or not np.all((losses >= 0) & (losses <= 1)):
+        raise ValueError("squared errors must be a nonempty array of values in [0, 1]")
+    # log(1 / delta), computed without rounding delta's complement to 1.
+    return _kl_upper_root(float(losses.mean()),
+                          (math.log(comparisons) - math.log1p(-confidence)) / losses.size)
+
+
+def _confirmable_runs(target: float, confidence: float, comparisons: int) -> int:
+    """Fewest error-free runs whose `rms_upper_bound` meets `target`.
+
+    Returns sys.maxsize when that count does not fit, and 0 for targets of 1 or
+    more, which every bound meets.
+    """
+    if target >= 1:
+        return 0
+    log_inverse_delta = math.log(comparisons) - math.log1p(-confidence)
+    # With no observed error the exact root solves runs * -log(1 - q) = log(1 / delta);
+    # the bound is that root's square root raised by BOUND_MARGIN.
+    margined = target / (1 + BOUND_MARGIN)
+    denominator = -math.log1p(-margined * margined)  # zero once the square underflows
+    if denominator == 0:
+        return sys.maxsize
+    estimate = log_inverse_delta / denominator
+    runs = sys.maxsize if estimate >= sys.maxsize else max(1, math.ceil(estimate))
+
+    def meets(n: int) -> bool:
+        # The same arithmetic as rms_upper_bound on n zero errors; it can only
+        # turn true as n grows.
+        return _kl_upper_root(0.0, log_inverse_delta / n) <= target
+
+    if not meets(sys.maxsize):
+        return sys.maxsize
+    # Rounding puts the closed form near, but not always at, the bound's own
+    # count, and far from it when log(1 / delta) / n is subnormal. Gallop to
+    # counts low (0 or failing) and high (meeting), then bisect.
+    step = 1
+    if meets(runs):
+        high = runs
+        while True:
+            low = max(0, high - step)
+            if low == 0 or not meets(low):
+                break
+            high, step = low, 2 * step
+    else:
+        low = runs
+        while True:
+            high = min(sys.maxsize, low + step)
+            if meets(high):
+                break
+            low, step = high, 2 * step
+    while high - low > 1:
+        middle = (low + high) // 2
+        if meets(middle):
+            high = middle
+        else:
+            low = middle
+    return high
+
+
 @dataclass(frozen=True)
 class Simulation:
     budget: float
@@ -360,21 +477,32 @@ class Simulation:
     rms_error: float
     """Root-mean-square error of the clipped estimates."""
     rms_error_se: float
-    """Rough standard error of `rms_error` from the finite number of runs."""
+    """Rough delta-method standard error of `rms_error`; zero when no error was
+    observed, so use `rms_error_upper` to judge what the runs rule out."""
     raw_rms_error: float
     bias: float
     mean_flips: float
     flips_p90: float
     flips_p99: float
     mean_items: float
+    rms_error_upper: float
+    """Upper confidence bound on the true RMS error at this budget, on the guess
+    (`rms_upper_bound` at `confidence`, shared by `comparisons` bounds)."""
+    confidence: float
+    comparisons: int = 1
 
 
 def simulate(population: Population, budget: float, runs: int = 200,
              seed: Optional[int] = None,
-             rng: Optional[np.random.Generator] = None) -> Simulation:
+             rng: Optional[np.random.Generator] = None,
+             confidence: float = 0.95, comparisons: int = 1) -> Simulation:
     """Run the estimator `runs` times on simulated items drawn from the guess."""
     if not isinstance(runs, numbers.Integral) or runs < 2:
         raise ValueError("use at least 2 runs")
+    if not 0 < confidence < 1:
+        raise ValueError("confidence must be strictly between 0 and 1")
+    if not isinstance(comparisons, numbers.Integral) or comparisons < 1:
+        raise ValueError("comparisons must be a positive integer")
     runs = int(runs)
     level_cap = budget_level(budget)
     if budget > MAX_SIMULATED_BUDGET:
@@ -393,7 +521,9 @@ def simulate(population: Population, budget: float, runs: int = 200,
         raw_rms_error=math.sqrt(np.mean((raw - truth) ** 2)),
         bias=float(clipped.mean() - truth), mean_flips=float(flips.mean()),
         flips_p90=float(np.quantile(flips, 0.9)), flips_p99=float(np.quantile(flips, 0.99)),
-        mean_items=float(items.mean()))
+        mean_items=float(items.mean()),
+        rms_error_upper=rms_upper_bound(squared, confidence, comparisons),
+        confidence=confidence, comparisons=int(comparisons))
 
 
 @dataclass(frozen=True)
@@ -413,14 +543,14 @@ class BudgetPlan:
 
 
 def plan_budget(population: Population, budget: float, runs: int = 200,
-                seed: Optional[int] = 0) -> BudgetPlan:
+                seed: Optional[int] = 0, confidence: float = 0.95) -> BudgetPlan:
     budget_level(budget)
     h = 1 / math.sqrt(budget)
     score = population.modulus(h)
     return BudgetPlan(
         budget=budget, resolution=h, share_unresolved=population.share_within(h),
         majority=majority_plan_for_budget(population, budget),
-        simulation=simulate(population, budget, runs, seed),
+        simulation=simulate(population, budget, runs, seed, confidence=confidence),
         difficulty=score, proven_floor=FLOOR_FACTOR * score,
         proven_ceiling=CEILING_FACTOR * score,
         quadruple_ratio=population.modulus(h / 2) / score if score > 0 else 0.0)
@@ -438,15 +568,26 @@ class TargetPlan:
     """Cheapest qualifying plan found on the bounded grid, or None."""
     trials: List[Simulation]
     recommended: Optional[Simulation]
-    """First simulated budget at which the proven estimator meets the target, or None."""
+    """First simulated budget whose upper confidence bound meets the target, or None.
+
+    With probability at least `confidence` over the simulations, a recommended
+    budget's true RMS error on the guess is at most the target."""
     search_limit: float
     floor_budget: float
+    first_simulated_hit: Optional[Simulation]
+    """First simulated budget whose observed RMS error met the target, whether
+    or not its upper confidence bound confirms it."""
+    confidence: float
+    confirmable_runs: int
+    """Fewest runs per trial whose bound could meet the target. That many
+    suffice when no error is observed; observed errors usually raise the count."""
 
 
 def plan_target(population: Population, target: float, runs: int = 200,
                 seed: Optional[int] = 0, max_budget: float = 4 * 2 ** 22,
                 progress: Optional[Callable[[Simulation], None]] = None,
-                planned: Optional[Callable[[Optional[MajorityPlan]], None]] = None) -> TargetPlan:
+                planned: Optional[Callable[[Optional[MajorityPlan]], None]] = None,
+                confidence: float = 0.95) -> TargetPlan:
     """Find the flips needed for typical error `target`, for both methods.
 
     The proven estimator is simulated at doubling budgets 4, 8, 16, ...: it
@@ -455,26 +596,47 @@ def plan_target(population: Population, target: float, runs: int = 200,
     SEARCH_FACTOR times the simple plan's flips. `progress` sees each trial.
     The simulation budget limit is enforced per trial, allowing a larger search
     ceiling when the target is met before reaching that limit.
+
+    A budget is recommended only when its upper confidence bound meets the
+    target. Each trial's bound has error probability (1 - confidence) / K,
+    where K counts the budgets the search could try, so by a union bound the
+    recommendation holds with probability at least `confidence`. A run that
+    observes no error still leaves uncertainty: confirming target t needs at
+    least `confirmable_runs` runs. With fewer, the search stops at the first
+    simulated hit, which is reported but not recommended.
     """
     _validate_target(target)
     budget_level(max_budget)
     if not isinstance(runs, numbers.Integral) or runs < 2:
         raise ValueError("use at least 2 runs")
+    if not 0 < confidence < 1:
+        raise ValueError("confidence must be strictly between 0 and 1")
     majority = majority_plan_for_target(population, target)
     limit = max_budget if majority is None else min(max_budget, SEARCH_FACTOR * majority.flips)
     if planned is not None:
         planned(majority)
+    candidates = 1  # budgets 4 * 2**k <= limit the search could try (at least one)
+    while 4 * 2 ** candidates <= limit:
+        candidates += 1
+    confirmable = _confirmable_runs(target, confidence, candidates)
     rng = np.random.default_rng(seed)
     trials = []
-    recommended = None
+    recommended = hit = None
     level = 0
     while recommended is None and 4 * 2 ** level <= limit:
-        trial = simulate(population, 4 * 2 ** level, runs, rng=rng)
+        if hit is not None and 4 * 2 ** level > MAX_SIMULATED_BUDGET:
+            break  # keep the unconfirmed hit rather than fail on an unsimulatable budget
+        trial = simulate(population, 4 * 2 ** level, runs, rng=rng, confidence=confidence,
+                         comparisons=candidates)
         trials.append(trial)
         if progress is not None:
             progress(trial)
-        if trial.rms_error <= target:
+        if trial.rms_error_upper <= target:
             recommended = trial
+        if hit is None and trial.rms_error <= target:
+            hit = trial
+        if recommended is None and hit is not None and runs < confirmable:
+            break  # no outcome of this many runs can confirm the target
         level += 1
     return TargetPlan(target, majority, trials, recommended, limit,
-                      floor_budget(population, target))
+                      floor_budget(population, target), hit, confidence, confirmable)

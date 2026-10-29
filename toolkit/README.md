@@ -27,7 +27,7 @@ For the ten-item guess used in the examples below:
 | | Simple plan | Proven no-tuning method |
 |---|---:|---:|
 | Typical error at 16,384 flips | 5.9 points | 28 points (simulated) |
-| A plan found for a 3-point typical error | 258,153 flips | about 4.2 million flips (simulated) |
+| A plan found for a 3-point typical error | 258,153 flips | none confirmed; simulated error first meets it at about 4.2 million flips |
 
 In theory the proven method's error shrinks at the minimax rate as budgets
 grow. In this example, the simple plan uses far fewer flips. The calculator
@@ -77,11 +77,12 @@ At an average budget of 16,384 flips:
 
   Proven no-tuning method, simulated 200 times on your guess:
     typical error: 0.277 (about 28 percentage points), give or take 0.012
+    at most 0.363 with 95% confidence, given these 200 runs
     flips used: 15,540 on average; 90% of runs used at most 31,091, 99% at most 46,572
 
   On your guess, the simple plan's typical error is 4.7x smaller.
 
-  Proven limits, for every way items this close to 50/50 could fall:
+  Proven limits, over every split of items this close to 50/50 between the two sides:
     difficulty score: 0.0951
     no method can promise a typical error below 0.00149 (difficulty / 64)
     the no-tuning method is proven to stay within 48.7 (difficulty x 512), too loose to be useful here
@@ -105,9 +106,18 @@ How to read it:
   closeness has to be right.
 - **The proven method's numbers are simulations** of the actual algorithm on your
   guess. Its budget is an average, so single runs vary; the 90% and 99% figures
-  show by how much.
+  show by how much. The "at most … with 95% confidence" figure is a one-sided
+  upper confidence bound on the true typical error at that budget, on your
+  guess (a Chernoff bound for squared errors in [0, 1]). It stays well above
+  zero even when no simulated run made an error: 200 error-free runs only show
+  that the typical error is at most about 0.12. Use `--confidence` to change
+  the level.
 - **Proven limits** come from the paper's machine-checked theorems. The floor
-  says no method of any kind can do better in the worst case. Both limits are
+  says no method of any kind can do better in the worst case over splits of
+  your population between the two sides, where any share of the items at each
+  closeness to 50/50 may be above it. It is not a floor for a fixed list of
+  items whose sides are merely unknown: a single item at 90% or 10% is settled
+  far more accurately by flipping it repeatedly. Both limits are
   very loose (a factor of about 30,000 apart), which is why the simulation is
   there.
 - **Returns on more flips**: when many items sit near 50/50, extra flips buy
@@ -118,8 +128,20 @@ the best plan among all possible counts. With `--target-error 0.03` instead of
 `--budget`, it finds the cheapest qualifying plan on that grid, up to $2^{24}$
 flips per item. A failed search means no plan was found in that search range;
 it is not an impossibility result. The calculator also simulates the
-proven method at doubling budgets until it meets the target too, giving up at 64
-times the simple plan's flips.
+proven method at doubling budgets, giving up at 64 times the simple plan's
+flips. It reports a budget as confirmed only when the simulations' upper
+confidence bound meets the target. The confidence level holds across every
+budget the search could try. Confirming a target t needs at least about
+log(K / 0.05) / t² runs, where K counts the budgets the search could try
+(doubling from 4 up to its limit). That many suffice when no run makes an
+error, and errors in the runs usually raise the number needed: with the default
+200 runs and the full default search, only targets above roughly 0.17 can be
+confirmed. A shorter search, from a cheap simple plan or a smaller
+`--max-budget`, lowers this threshold. When the simulated error meets the target
+but the bound does not, the calculator says so rather than recommending that
+budget. If `--runs` is below this lower bound, it gives the bound; otherwise it
+says that no budget it searched was confirmed and that more runs may confirm
+one.
 
 Use `--runs` to change the number of simulated runs (default 200) and `--seed` to
 change the simulation's seed. With `--target-error`, `--max-budget` (default
@@ -172,7 +194,8 @@ then takes a number `k` and returns how many of `k` fresh tries succeeded.
 - The execution API requires a finite budget of at least four flips. The
   standalone `two_success_average` requires iid calls, independent of its
   random generator, with finite values and strictly positive costs bounded by
-  a finite positive cap. Zero-cost calls are rejected to prevent a nonterminating pilot.
+  a finite positive cap. Zero-cost calls are rejected to prevent a nonterminating
+  pilot, as are calls whose cost divided by the cap underflows to zero.
 - What is machine-checked is the mathematical guarantee of the proven method, in
   [`BlindUpper/Full.lean`](../lean/ThresholdHC/BlindUpper/Full.lean), and the
   floor, in [`Tier6/Full.lean`](../lean/ThresholdHC/Tier6/Full.lean). This Python

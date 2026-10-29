@@ -15,7 +15,7 @@ from pathlib import Path
 import re
 import subprocess
 
-from verify_tier6 import ALLOWED, FORBIDDEN as TIER6_FORBIDDEN, strip_comments
+from verify_tier6 import ALLOWED, FORBIDDEN as TIER6_FORBIDDEN, strip_comments as strip_frozen
 
 ROOT = Path(__file__).resolve().parents[1]
 LEAN = ROOT / "lean"
@@ -28,15 +28,41 @@ DECLARATION = re.compile(
     r"([A-Za-z_][\w']*(?:\.[A-Za-z_][\w']*)*)", re.M)
 IMPORT = re.compile(r"^import\s+([\w.]+)\s*$", re.M)
 # The frozen Tier 6 pattern misses the `admit` tactic, which is Lean's synonym
-# for `sorry`. Audited sources also contain no string literals: strip_comments
-# does not parse strings, so "/-" or "--" inside one could hide the code after
-# it, and a printed string could forge an axiom report in the audit output.
+# for `sorry`. Audited sources also contain no string literals or escaped
+# identifiers: strip_comments parses neither, so "/-" or «--» inside one could
+# hide the code after it, and a printed string could forge an axiom report in
+# the audit output.
 # (The frozen \bsorry\b alternative already rejects `set_option warn.sorry`, which
 # would silence SORRY_WARNING below.)
 # #guard_msgs can consume errors or sorry warnings from anonymous target
 # examples while Lean exits successfully, so audit sources must reject it too.
+# The frozen pattern also misses metaprograms that could add declarations
+# without kernel checking: it matches elab, macro and syntax only at the start
+# of a line and elaborator attributes only first in @[...], and it misses
+# elab_rules, by_elab, simprocs and direct calls into Lean's API. Proof sources
+# need none of these, so reject them anywhere, along with every `Lean` name.
+# (`_` is a word character, so each keyword family is spelled out.) The
+# `decide +native` form trusts compiled code, as native_decide does.
 FORBIDDEN = re.compile(
-    TIER6_FORBIDDEN.pattern + r'|\badmit\b|"|#guard_msgs\b', TIER6_FORBIDDEN.flags)
+    TIER6_FORBIDDEN.pattern + r'|\badmit\b|"|«|#guard_msgs\b'
+    r'|\bLean\b|\b(?:by_)?elab(?:_\w+)?\b|\b(?:builtin_)?d?simproc(?:_decl)?\b|\+\s*native\b'
+    r'|\b(?:macro|macro_rules|syntax|initialize|builtin_initialize)\b'
+    r'|(?:@|\battribute\s*)\[[^\]]*\b(?:command_elab|term_elab|tactic|macro|d?simproc)\b',
+    TIER6_FORBIDDEN.flags)
+
+
+def strip_comments(source: str) -> str:
+    """The frozen comment stripper, refusing the one opener it misreads.
+
+    Lean reads `/--` as a three-character doc-comment opener, so `/--/` opens a
+    comment that a later `-/` closes. The frozen stripper closes it at once, and
+    a `--` after it then hides from the scan code that Lean runs.
+    """
+    if "/--/" in source:
+        raise ValueError("Ambiguous doc-comment opener /--/")
+    return strip_frozen(source)
+
+
 # Lean warns "declaration uses `sorry`" (backticks in the pinned toolchain).
 SORRY_WARNING = re.compile(r"declaration uses [`']")
 # Unlike the frozen Tier 6 pattern, this also reads primed names such as foo'.

@@ -133,6 +133,55 @@ class CalibrationTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             two_success_average(lambda: (0.0, 9), 8, random.Random(0))
 
+    def test_large_finite_values_average_without_overflow(self):
+        # From an external review: the plain sum of three 1e308 values overflows.
+        self.assertEqual(two_success_average(lambda: (1e308, 1.0), 2.0, random.Random(0))[0], 1e308)
+        signs = itertools.cycle([1e308, 1e308, -1e308, 1e308])
+        calls = []
+
+        def run_once():
+            calls.append(next(signs))
+            return calls[-1], 1.0
+
+        average, _, production, pilots = two_success_average(run_once, 4.0, random.Random(2))
+        values = calls[pilots:]
+        self.assertEqual(len(values), production)
+        self.assertGreater(production, 2)
+        self.assertTrue(math.isfinite(average))
+        exact = math.fsum(value / production for value in values)
+        self.assertLessEqual(abs(average - exact), 1e-12 * abs(exact))
+        # From a review of the fix: at the largest float, rounded terms of the
+        # fallback sum can exceed it. The average of equal values is that value.
+        top, productions = sys.float_info.max, set()
+        for seed in range(40):
+            average, _, production, _ = two_success_average(lambda: (top, 1.0), 2.0, random.Random(seed))
+            productions.add(production)
+            with self.subTest(seed=seed, production=production):
+                self.assertEqual(average, top)
+        self.assertIn(3, productions)
+
+    def test_ordinary_values_are_summed_left_to_right(self):
+        # Python 3.12's sum() compensates rounding; the helper keeps the plain
+        # left-to-right loop, so seeded results agree across Python versions.
+        values, calls = itertools.cycle([1e16, 1.0, -1e16, 1.0, 1.0]), []
+
+        def run_once():
+            calls.append(next(values))
+            return calls[-1], 1.0
+
+        average, _, production, pilots = two_success_average(run_once, 4.0, random.Random(2))
+        self.assertGreater(production, 2)
+        total = 0.0
+        for value in calls[pilots:]:
+            total += value
+        self.assertEqual(average, total / production)
+
+    def test_cost_too_small_to_mark_rejected(self):
+        # From an external review: 1e-308 / 1e308 underflows to 0, so no run
+        # could ever be marked and the pilot loop would never end.
+        with self.assertRaisesRegex(ValueError, "too small"):
+            two_success_average(lambda: (1.0, 1e-308), 1e308, random.Random(0))
+
     def test_zero_cost_and_invalid_caps_rejected(self):
         for cost in (0, -1, math.inf, math.nan):
             with self.subTest(cost=cost), self.assertRaises(ValueError):

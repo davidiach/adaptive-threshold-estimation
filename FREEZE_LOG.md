@@ -109,3 +109,53 @@ unrestricted minimax model. These dependency hashes were recorded during review.
   declaration so all Lean sources retain their published bytes; the dependency
   snapshot now matches PR #3 at `2162210`, as recorded above. This is not a
   retrospective dependency freeze at the original specification timestamp.
+
+## Direct-real benchmark verification — 29 October 2026
+
+- Approved by: David, in this chat on 29 October 2026.
+- Approval quote: "go", in reply to a proposal to fix `benchmark/verify_real.py`
+  with a lock update and an entry here.
+- Change of approach: no locked file, lock manifest or test-start record
+  changed. Updating `results/real_selection.json` would also have broken
+  `results/real_test_started.json`, which pins that file's SHA-256 at the start
+  of the held-out test.
+- `benchmark/verify_production.py` is a separate post-hoc check, not part of the
+  pre-test selection. It replays the exact seeded draws of `real_pair`,
+  `antithetic_pair`, `sum_term` and `real_term` and compares every value and
+  cost with an independent scalar classifier, across every trained level and
+  every recorded tuning cell. It also checks that each call drew exactly the
+  observations it billed. Seeds chosen near the critical latent value give
+  nonzero increments at deep levels; random seeds almost never do. In the pair
+  modes they give increments at the deepest recorded levels (caps up to 16384).
+  In sum mode, three give increments at some level k >= 4, and two more have an
+  increment at the deepest level that runs to its cap of 16384. It checks `train_level`, `real_estimate` and `real_replicates` against
+  those routines, reproduces two recorded training rows from their seeds, and
+  rebuilds every recorded selected and tuning level law from its name and the
+  training moments.
+- `verify_real.py` compares only the tape copies (`tape_pair`,
+  `antithetic_tape`, `sum_tape`) with the classifier. Of the production routines
+  it checks only `level_count`'s budget bound and `real_replicates`' repeat
+  consistency. Three planted production bugs pass it: a wrong coarse cap in
+  `real_pair`, `real_term` weighting by the first level probability, and wrong
+  `sum_term` weights. All 30 single-line bugs in a planted sweep fail
+  `verify_production.py`, including these three and six that act only at deep
+  levels (three of them only at the deepest sum-mode level).
+- `tools/verify_experiment_lock.py` now accepts `results/real_verification.json`
+  when its line endings are LF or CRLF throughout and otherwise match the
+  locked bytes. `verify_real.py` rewrites that record with the platform's line
+  endings, and the locked copy has CRLF endings. CI passes `--strict`, which
+  requires the committed record's exact bytes. Every other locked file must
+  match byte for byte in either mode.
+- An external adversarial review of `2984835` showed that the lock check
+  recomputed RMSE and mean work only for whichever held-out rows were present.
+  It accepted a flipped `accept`, zero rows, a repeated row, and rows with zeroed
+  seeds and empty configurations. `tools/verify_experiment_lock.py` now requires
+  exactly the locked selection's four cells, in order, with their test-formula
+  seeds, configurations, level laws and GHA allocations, and exactly their raw
+  arrays. It recomputes every summary, both bootstrap intervals, the total
+  work and `accept` (false) from the raw data. It also pins the SHA-256 of
+  `results/real_test.json` and `results/real_test_raw.npz`, recorded after the
+  sealed run. `benchmark/summarize_real.py` applies the same check, and records
+  which locked file matched only after line-ending normalization.
+- `verify_real.py` is unchanged. It still uses `assert`, and its locked record
+  still describes what was verified before selection.
