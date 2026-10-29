@@ -9,7 +9,7 @@ AI agents should also read [AGENTS.md](AGENTS.md).
 
 | Task | Start here |
 |---|---|
-| Read the mathematics | [Consolidated v5 paper](paper/v5/README.md) and [general-law rare-event paper](paper/rare-event/README.md) |
+| Read the mathematics | [Consolidated v5 paper](paper/v5/README.md), [general-law rare-event paper](paper/rare-event/README.md) and [finite-gap rare-event paper](paper/finite-gap-rare-events/README.md) |
 | Work on a formal proof | [Lean module map](lean/README.md), then the relevant specification and audit |
 | Use or change the Python estimators | [Toolkit guide](toolkit/README.md) and `toolkit/tests/` |
 | Run or maintain verification | [Checks by task](docs/VERIFY.md#choose-checks-by-task) and [tool index](tools/README.md) |
@@ -60,7 +60,7 @@ each manuscript README gives its build command.
 | `paper/v5/` | Edit `frontmatter.tex`, `constant713.tex`, `rare-events.tex`, `verification.tex`, and layout in `main.tex`. Use the [source and regeneration guide](paper/v5/README.md#source-and-editorial-scope). |
 | `paper/critical-review/` | Edit the brief in `overview.tex`; regenerate `main.tex` with `tools/build_critical_review.py`. See the [packet guide](paper/critical-review/README.md). |
 | Shared manuscript additions | Edit `paper/finite-gap-extension.tex` for the shared addendum, then regenerate the affected projects. Do not edit generated copies directly. |
-| `inputs/`, sealed `research/` packages, and rare-event `v2/` and `audit/` | Preserve the imported or published payloads. Put new work or explicit corrections alongside them rather than rewriting their evidence. |
+| `inputs/`, sealed `research/` packages, rare-event `v2/` and `audit/`, and `paper/finite-gap-rare-events/` | Preserve the imported or published payloads; the finite-gap paper's `SHA256SUMS` lists its locked files. Put new work or explicit corrections alongside them rather than rewriting their evidence. |
 | `results/` | Preserve published records. Fresh runs belong in temporary output or a disposable checkout; see [evidence handling](results/README.md#fresh-runs-and-publication). |
 | `benchmark/` and `constants/` | Read the [benchmark protocol](benchmark/README.md) and applicable locks before changing experiments or scoring. Keep held-out data out of tuning. |
 
@@ -86,8 +86,11 @@ instead of revising a historical report to claim it verified them.
 
 Choose checks from [VERIFY.md](docs/VERIFY.md#choose-checks-by-task). For a
 documentation-only change, validate relative links and heading anchors, run
-`git diff --check` and `python tools/freeze.py --verify`, and confirm that the
-diff contains only intended documentation. Use the relevant proof, tool, toolkit,
+`git -c core.whitespace=cr-at-eol diff --check` and `python tools/freeze.py --verify`, and confirm that the
+diff contains only intended documentation. The `cr-at-eol` setting keeps
+CRLF files such as `docs/VERIFY.md` from being reported as trailing whitespace;
+`freeze.py --verify` covers only `FROZEN.sha256`, so run the matching verifier
+if the diff touches another locked path. Use the relevant proof, tool, toolkit,
 or manuscript checks when those areas change.
 
 Before submitting, inspect `git diff --stat` and `git status --short` for generated

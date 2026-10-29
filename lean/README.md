@@ -26,7 +26,9 @@ axioms; a successful build alone is not a substitute for that audit.
 
 The new general-law rare-event manuscript remains a paper proof; the existing
 critical-law and optimizer formalizations do not certify its general claims.
-See its [separate status](../paper/rare-event/README.md).
+See its [separate status](../paper/rare-event/README.md). The closed quantile law
+of the [finite-gap manuscript](../paper/finite-gap-rare-events/README.md) is also a
+paper proof; the Lean finite-gap entropy results above do not verify it.
 
 ## Foundations and supporting developments
 

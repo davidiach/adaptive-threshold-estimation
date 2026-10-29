@@ -27,7 +27,10 @@ or CI run passes.
 
 Rare-event manuscript evidence lives beside that publication, in its
 [build record](../paper/rare-event/v2/VERIFICATION.json) and
-[audit index](../paper/rare-event/audit/README.md). Sealed research checkpoints
+[audit index](../paper/rare-event/audit/README.md). The finite-gap manuscript
+keeps its file hashes and check scope in its own
+[SHA256SUMS](../paper/finite-gap-rare-events/SHA256SUMS) and
+[provenance note](../paper/finite-gap-rare-events/PROVENANCE.md). Sealed research checkpoints
 remain with their [research packages](../research/README.md).
 
 ## Interpret a record

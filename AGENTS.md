@@ -34,10 +34,12 @@ revert instruction. The frozen-source and held-out-data constraints remain in fo
   `tools/freeze.py --init`, or run `lake update` to make a check pass. Changes to
   frozen material require explicit owner authorization and a recorded explanation.
 - Preserve imported `inputs/`, sealed `research/` packages, published records in
-  `results/`, and `paper/rare-event/v2/` and `paper/rare-event/audit/` byte for byte.
+  `results/`, `paper/rare-event/v2/`, `paper/rare-event/audit/`, and the
+  hash-listed files of `paper/finite-gap-rare-events/` byte for byte.
   Add corrections or new evidence separately with a clear source/checkpoint identity.
 - Respect [.gitattributes](.gitattributes): manifests hash exact bytes. Avoid
-  repository-wide formatting or line-ending conversion.
+  repository-wide formatting or line-ending conversion. Some files, such as
+  `docs/VERIFY.md`, use CRLF line endings; keep them.
 - Edit manuscript sources through the entry points in
   [CONTRIBUTING.md](CONTRIBUTING.md#where-to-edit). Do not hand-edit generated TeX
   or rebuild a published PDF in place during an unrelated task.
@@ -51,15 +53,21 @@ Run commands from the repository root unless a guide says otherwise. Use the
 tests. Run the exact-type and transitive-axiom audit for affected Lean results;
 compilation alone does not establish the published verification claim.
 
-Some legacy verifiers overwrite tracked `results/` files. Run those in a disposable
-checkout containing the change under review. Newer audits use `.runtime/` or
+Some legacy verifiers overwrite tracked `results/` files, and the Route A replay
+commands rewrite tracked records under `research/2026-10-27-route-a/` and
+`lean/ThresholdHC/ResearchRouteA/`. Run those in a disposable checkout containing
+the change under review, or use `python tools/verify_research.py`, which replays
+the Route A construction checks in a temporary copy. Newer audits use `.runtime/` or
 temporary directories; see the [tool index](tools/README.md). Do not replace
 published evidence with a local rerun as a side effect of validation.
 
 For navigation-only edits, check relative links and heading anchors, run
-`git diff --check` and `python tools/freeze.py --verify`, and inspect the final
-file list. A full Lean rebuild is unnecessary when proof sources, specifications,
-tools, and dependencies are unchanged.
+`git -c core.whitespace=cr-at-eol diff --check` (plain `--check` reports the CR of CRLF files as trailing
+whitespace) and `python tools/freeze.py --verify`, and inspect the final file
+list. `freeze.py --verify` checks only `FROZEN.sha256`; if the diff touches any
+other locked path, run that lock's verifier too. A full Lean rebuild is
+unnecessary when proof sources, specifications, tools, and dependencies are
+unchanged.
 
 ## Report accurately
 

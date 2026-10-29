@@ -9,11 +9,12 @@ the [evidence index](../results/README.md) explains published checkpoints.
 
 | Task | Commands or command guide | Output and scope |
 |---|---|---|
-| Navigation or ordinary documentation | `git diff --check`; `python tools/freeze.py --verify`; check relative links and heading anchors | No proof rebuild needed when sources, specifications, tools, and dependencies are unchanged. Inspect the final diff for unintended files. |
+| Navigation or ordinary documentation | `git -c core.whitespace=cr-at-eol diff --check`; `python tools/freeze.py --verify`; check relative links and heading anchors | No proof rebuild needed when sources, specifications, tools, and dependencies are unchanged. This file and some others use CRLF line endings, which plain `--check` reports as trailing whitespace. `freeze.py --verify` covers only `FROZEN.sha256`; run the matching verifier for any other locked path. Inspect the final diff for unintended files. |
 | Python toolkit | `python -m pip install -e ./toolkit`; `python -m unittest discover -s toolkit/tests -v`; `python toolkit/examples/quickstart.py` | Python implementation tests and example; do not certify the implementation in Lean. |
 | Consolidated v5 manuscript | `python tools/build_v5.py --check`; `python -m unittest discover -s tools -p 'test_build_v5.py' -v` | Checks inherited source identities, assembly, references, and citations. [Build and visually review](../paper/v5/README.md#reproduce) the PDF when typeset content changes. |
 | Critical review packet | `python tools/build_critical_review.py --check` | Compares generated source to the locked proof and editable brief. [Compile and review](../paper/critical-review/README.md) changed typeset content separately. |
-| Published rare-event manuscript | `python tools/verify_rare_event_manuscript.py` | Hashes and finite checks in a temporary copy; preserves the payload. Does not formally verify the general theorems. |
+| General-law rare-event manuscript (v2) | `python tools/verify_rare_event_manuscript.py` | Hashes and finite checks in a temporary copy; preserves the payload. Does not formally verify the general theorems. |
+| Finite-gap rare-event manuscript | `cd paper/finite-gap-rare-events && sha256sum -c SHA256SUMS`; [build](../paper/finite-gap-rare-events/README.md) in a disposable copy | Checks the published source and PDF identity. The closed quantile theorem is a paper proof; no Lean or numerical certificate covers it. |
 | Imported inputs and research packages | `python tools/verify_inputs.py`; `python tools/verify_research.py`; `python tools/verify_population_research.py` | Input identities and maintained research replay. Research diagnostics use temporary output and `.runtime/`; original records remain intact. |
 | Main RMS law | `python tools/verify_tier6.py --sequential --require-complete`; `python tools/verify_blind_upper_components.py --sequential` | Exact formal audits of both directions. Tier 6 writes tracked `results/`; use a disposable checkout. The upper audit writes `.runtime/`. |
 | Another Lean result | [Theorem-to-audit map](../lean/README.md#main-theorem-entry-points), [baseline and tier sequence](#lean-kernel-checks) | Run the affected result's exact-target/axiom audit, including affected downstream results when shared dependencies change. Check locks first. |
@@ -94,6 +95,8 @@ Its constants are 1/4096 for entropy at every gap count, 1/10000000000 for
 raw second moment times null work, and 1/15000000000 for variance times
 null work. The older 1/512 entropy coefficient retains its large-count
 hypothesis. No explicit population minimax constant is certified by this audit.
+
+## Build behavior of the critical component audits
 
 The critical lower and both upper component verifiers use `lake build`, which
 rebuilds stale transitive imports before the kernel and axiom checks. Use
@@ -346,7 +349,7 @@ python research/2026-10-27-route-a/check_construction.py
 python lean/ThresholdHC/ResearchRouteA/verify.py
 ```
 
-The first command checks exact rational finite-prefix experiments and retains unresolved tails; it does not certify the main theorem. The second checks the new locked formal specification, exact types, and all five public roots. See [formal replay details](../research/2026-10-27-route-a/formal-audit.md) for the local Windows environment. The main theorem remains a reviewed paper proof. [Baseline replay records](../research/2026-10-27-route-a/BASELINE.md) and the new `acceptance_check.py` keep diagnostics separate from published `results/`; the latter compares against this session's recorded source snapshot.
+Both commands rewrite tracked records in their own directories (`construction-checks.json`; `status.json`, `build.log` and `audit.log`), so run them in a disposable checkout; `tools/verify_research.py` replays the first in a temporary copy. The first command checks exact rational finite-prefix experiments and retains unresolved tails; it does not certify the main theorem. The second checks the new locked formal specification, exact types, and all five public roots. See [formal replay details](../research/2026-10-27-route-a/formal-audit.md) for the local Windows environment. The main theorem remains a reviewed paper proof. [Baseline replay records](../research/2026-10-27-route-a/BASELINE.md) and the new `acceptance_check.py` keep diagnostics separate from published `results/`; the latter compares against this session's recorded source snapshot.
 
 ## Integrity, numerics, and unit tests
 
