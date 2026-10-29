@@ -1,0 +1,28 @@
+\subsection{Cost entropy and canonical band costs}\label{sec:entropy-preliminaries}
+For a finite nonnegative vector $a$, put $A=\sum_j a_j$ and define
+$\mathcal G(a)=A+\sum_{j:a_j>0}a_j\log(A/a_j)$, with
+$\mathcal G(0)=0$. This continuous function is homogeneous,
+coordinatewise increasing and concave. On the positive coordinates,
+its derivative is $1+\log(A/a_j)$ and its Hessian is
+$A^{-1}\mathbf1\mathbf1^\top-\operatorname{diag}(1/a_j)$.
+Cauchy--Schwarz makes the latter negative semidefinite, and continuity
+extends the inequalities to zero coordinates. Homogeneity and concavity
+imply superadditivity, and binary entropy gives
+\begin{equation}\label{eq:binary-mixture}
+ \mathcal G(a+b)\le(1+\log2)[\mathcal G(a)+\mathcal G(b)]
+                 \le2[\mathcal G(a)+\mathcal G(b)].
+\end{equation}
+Indeed, keep and then forget the label specifying which cost vector
+generated a coordinate. The extra entropy is at most $\log2$ times
+the total cost, which is at most $\mathcal G(a)+\mathcal G(b)$.
+
+In the lower bound we use canonical costs
+\[
+ v_j=\kappa(I_j),\quad a_j=v_j/b_j^2,\quad A=\sum_j a_j,
+ \quad F=\mathcal G(a),\quad \lambda=\sqrt{\rho/F}.
+\]
+The core has mass $1-\rho>0$, so $F>0$. Coordinatewise comparison yields
+\begin{equation}\label{eq:canonical-core}
+                      F\le\Gamma_\kappa\le4F.
+\end{equation}
+Only costs are rounded; the observation experiment retains its actual gaps.

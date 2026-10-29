@@ -1,0 +1,187 @@
+\section{Relation to the entropy--tail selection law}\label{sec:comparison}
+This section is deterministic: it compares the closed functional
+$\Q(B)$ with the selection functional of the companion general-law
+manuscript~\cite{gl}. It is not used in the proof of
+Theorem~\ref{thm:direct-main}.
+
+\subsection{The selection functional}
+Let $\mu$ be any probability law on $(0,1/2]$, not necessarily finite.
+For such $\mu$, define $R_{\mu,\rho}(B)$ by \eqref{eq:minimax-risk},
+with the model of Section~\ref{sec:model} unchanged except that
+$D_k\sim\mu$, $q$ ranges over measurable functions with $0\le q\le1$,
+and $\theta(q)=\int q\,d\mu$. Use the bands $I_j=(b_j/2,b_j]$, $b_j=2^{-j-1}$, of
+\eqref{eq:core-entropy} and the functional $\mathcal G$ of
+Section~\ref{sec:entropy-preliminaries}. For a finite measure
+$\sigma\le\mu$ put $a_j(\sigma)=\int_{I_j}d^{-2}\,\sigma(dd)$ and
+$A_\sigma=\sum_ja_j(\sigma)$, and define
+$\Gamma_\sigma=\sup_J\mathcal G(a_0(\sigma),\ldots,a_J(\sigma))$,
+with values in $[0,\infty]$. When only finitely many $a_j(\sigma)$ are
+positive this is $\mathcal G(a(\sigma))$; for $\sigma=\kappa$ and a finite
+law it is the core entropy of \eqref{eq:core-entropy}. Since $\mathcal G$
+is coordinatewise increasing, $\sigma\le\sigma'$ implies
+$\Gamma_\sigma\le\Gamma_{\sigma'}$, and $\Gamma_\sigma\ge A_\sigma$.
+Write $H_\sigma=\int d^{-1}\,\sigma(dd)$ and, with $h=B^{-1/2}$,
+\begin{equation}\label{eq:selection-functional}
+ \mathcal K(B)=\min\left\{\rho,\ \inf_{0\le\sigma\le\mu}
+ \left[h\sqrt{\rho\Gamma_\sigma}
+       +\int\min\{1,h/d\}\,(\mu-\sigma)(dd)\right]\right\}.
+\end{equation}
+This is the functional $\mathcal K_{\mu,\rho}(B)$ of~\cite{gl}. That
+manuscript states and proves $R_{\mu,\rho}(B)\asymp\mathcal K_{\mu,\rho}(B)$
+for every probability law on $(0,1/2]$, every $0<\rho\le1/4$ and every
+$B>0$, with explicit constants $10^{-17}$ and $33000$. Its proof has not
+been externally refereed or formally verified, and it is not assumed
+anywhere in this manuscript.
+
+For a general law, define the quantile split as in
+Section~\ref{sec:model}. Let $t=\min\{s:\mu((0,s])\ge\rho\}$, which
+exists and is positive. Let $\nu$ be $\mu$ on $(0,t)$ plus the fraction
+of the atom at $t$, if any, that gives $\nu$ total mass $\rho$, and let
+$\kappa=\mu-\nu$. Then $\nu$ is supported on $(0,t]$, $\kappa$ is
+supported on $[t,1/2]$, and only finitely many bands meet $[t,1/2]$.
+Define $T_h=\int\min\{1,h/d\}\,\nu(dd)$ and
+$\Q(B)=\min\{\rho,T_h+h\sqrt{\rho\Gamma_\kappa}\}$. For a finite law these
+are the quantities of \eqref{eq:quantile-split}
+and \eqref{eq:closed-functional}.
+
+\subsection{Scale-separated cost}
+Besides \eqref{eq:binary-mixture}, the comparison uses one more entropy
+bound.
+
+\begin{lemma}[Scale-separated cost]\label{lem:scale-separated}
+If $t>0$ and $\xi$ is a finite measure on $[t,1/2]$, then
+$\Gamma_\xi\le4H_\xi/t$.
+\end{lemma}
+
+\begin{proof}
+The bound is trivial for $\xi=0$, so let $\xi\ne0$. Let $j_0$ be the
+band containing $t$, so $t\le b_{j_0}$. A band
+meeting $[t,1/2]$ has index $j_0-r$ with $r\ge0$ and consists of gaps
+in $(b_{j_0}2^{r-1},b_{j_0}2^r]$. There every gap of $\xi$ satisfies
+$d\ge t$ and $d>b_{j_0}2^{r-1}\ge t2^{r-1}$, so $d^{-1}\le2^{1-r}/t$.
+Writing $c_r$ and $g_r$ for the inverse-square and inverse costs of
+$\xi$ in that band, indexed by the offset $r$, we get
+$c_r\le2^{1-r}g_r/t$, $\sum_rc_r=A_\xi$ and $\sum_rg_r=H_\xi$. Only
+finitely many bands are occupied, so
+$\Gamma_\xi=A_\xi(1+\Ent(c/A_\xi))$. Comparing the normalized costs
+with the probability vector $\pi_r=2^{-(r+1)}$ gives
+$\Ent(c/A_\xi)\le\sum_r(c_r/A_\xi)\log(1/\pi_r)$, whence
+\[
+ \Gamma_\xi\le\sum_{r\ge0}c_r[1+(r+1)\log2]
+ \le\frac1t\sum_{r\ge0}2^{1-r}[1+(r+1)\log2]\,g_r.
+\]
+The coefficient $2^{1-r}[1+(r+1)\log2]$ is largest at $r=0$, where it
+equals $2+2\log2<4$.
+\end{proof}
+
+\subsection{The comparison}
+\begin{proposition}[Quantile versus selection]\label{prop:quantile-selection}
+For every probability law $\mu$ on $(0,1/2]$, every $0<\rho\le1/4$ and
+every $B>0$,
+\[
+ \mathcal K(B)\le\Q(B)\le(1+2\sqrt2)\,\mathcal K(B)<4\,\mathcal K(B).
+\]
+If $h\ge t$, then $\mathcal K(B)=\Q(B)=\rho$.
+\end{proposition}
+
+\begin{proof}
+The measure $\sigma=\kappa$ is admissible in
+\eqref{eq:selection-functional}, and $\mu-\kappa=\nu$. Its objective is
+$h\sqrt{\rho\Gamma_\kappa}+T_h$, so $\mathcal K(B)\le\Q(B)$.
+
+For the upper comparison fix $0\le\sigma\le\mu$ with finite objective,
+let $f=d\sigma/d\mu\in[0,1]$, and write
+\[
+ x=h\sqrt{\rho\Gamma_\sigma},\qquad
+ y=\int\min\{1,h/d\}\,(\mu-\sigma)(dd),\qquad S=x+y.
+\]
+Since $\nu\le\mu$, we have $(1-f)\nu\le\mu-\sigma$ and $f\nu\le\sigma$,
+so $\int f\,d\nu\le\rho$ and $\int d^{-2}f\,\nu(dd)\le A_\sigma\le\Gamma_\sigma$.
+With Cauchy--Schwarz,
+\[
+ T_h\le y+h\int d^{-1}f\,\nu(dd)
+ \le y+h\sqrt{\rho\int d^{-2}f\,\nu(dd)}\le y+x=S.
+\]
+As $T_h\le\rho$ always, $T_h\le\mathcal K(B)$. If $h\ge t$, every gap of
+$\nu$ has $\min\{1,h/d\}=1$, so $T_h=\rho$ and therefore
+$\mathcal K(B)=\Q(B)=\rho$.
+
+Now let $h<t$, and split $\kappa=f\kappa+(1-f)\kappa$. Both parts live
+on the finitely many bands meeting $[t,1/2]$. By \eqref{eq:binary-mixture},
+monotonicity and Lemma~\ref{lem:scale-separated},
+\[
+ \Gamma_\kappa\le2\Gamma_{f\kappa}+2\Gamma_{(1-f)\kappa}
+ \le2\Gamma_\sigma+\frac8tH_{(1-f)\kappa}.
+\]
+Every gap of $\nu$ is at most $t$, so $\min\{1,h/d\}\ge h/t$ there and
+$h\rho/t\le T_h$. Every gap of $\kappa$ is at least $t>h$, so
+$hH_{(1-f)\kappa}=\int(h/d)\,(1-f)\kappa(dd)\le y$. Hence
+\[
+ h\sqrt{\rho\Gamma_\kappa}\le\sqrt2\,x
+ +\sqrt{8\,(h\rho/t)\,(hH_{(1-f)\kappa})}\le\sqrt2\,x+\sqrt{8T_hy},
+\]
+and, with $T_h\le S$,
+\[
+ \Q(B)\le T_h+\sqrt2\,x+\sqrt{8T_hy}\le S+\sqrt2\,x+\sqrt{8Sy}.
+\]
+If $S=0$ then $\Q(B)=0$. Otherwise put $u=y/S\in[0,1]$, so that
+$x=(1-u)S$ and
+\[
+ S+\sqrt2\,x+\sqrt{8Sy}=S\bigl[1+\sqrt2\,(1-u+2\sqrt u)\bigr]
+ \le(1+2\sqrt2)\,S,
+\]
+because $1-u+2\sqrt u\le2$ on $[0,1]$. Taking the infimum over
+$\sigma$, and using $\Q(B)\le\rho$, gives
+$\Q(B)\le(1+2\sqrt2)\min\{\rho,\inf_\sigma S\}=(1+2\sqrt2)\,\mathcal K(B)$.
+\end{proof}
+
+\subsection{Consequences}
+\begin{corollary}[Selection form for finite laws]\label{cor:selection-form}
+For every finite law, rarity and budget in Theorem~\ref{thm:direct-main},
+\[
+ 10^{-20}\,\mathcal K(B)\le R_{\mu,\rho}(B)
+ \le30001(1+2\sqrt2)\,\mathcal K(B)<1.2\cdot10^5\,\mathcal K(B).
+\]
+\end{corollary}
+
+\begin{proof}
+Combine Theorem~\ref{thm:direct-main} with
+Proposition~\ref{prop:quantile-selection}.
+\end{proof}
+
+Corollary~\ref{cor:selection-form} is the finite-law case of the
+characterization stated in~\cite{gl}; here it follows from
+Theorem~\ref{thm:direct-main}, whose proof does not invoke the theorem
+of~\cite{gl}. Conversely, that theorem, if granted, gives the rate
+$R\asymp\Q$ of Theorem~\ref{thm:direct-main} for finite laws through
+Proposition~\ref{prop:quantile-selection}, without the separate argument
+of this paper. Its explicit constants $10^{-17}$ and $33000$ then give
+$10^{-17}(1+2\sqrt2)^{-1}\Q\le R\le33000\,\Q$: a better lower constant
+than $10^{-20}$ and a slightly worse upper one than $30001$.
+
+The two results should be read as one rate established by two
+arguments, not as independent characterizations. Nor are the two
+arguments independent evidence: both manuscripts were developed from
+the same research notes. They share the observable upper construction
+(the upper bound here is the companion's construction applied to the
+fixed quantile split) and most appendix lemmas, and differ mainly in the
+lower-bound reduction.
+
+\begin{remark}[General laws, conditionally]\label{rem:general-laws}
+Proposition~\ref{prop:quantile-selection} holds for every probability
+law on $(0,1/2]$, and $\Q(B)$ is then still a closed expression: $\kappa$
+occupies finitely many bands. If $c\,\mathcal K\le R\le C\,\mathcal K$
+holds for every such law, as~\cite{gl} states with $c=10^{-17}$ and
+$C=33000$, then
+\[
+ \frac{c}{1+2\sqrt2}\,\Q(B)\le R_{\mu,\rho}(B)\le C\,\Q(B)
+\]
+for every probability law on $(0,1/2]$. This conditional extension is
+not a result of the present manuscript; it rests entirely on the
+theorem of~\cite{gl}.
+\end{remark}
+
+The comparison was supplied by an external adversarial review (Astra
+Pro) of revision~1 of this manuscript, at repository commit
+\texttt{2984835}. Its proof used hard selections; the proof above
+works directly with the selection over submeasures of~\cite{gl}.

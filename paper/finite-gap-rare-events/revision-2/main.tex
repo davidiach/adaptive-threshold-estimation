@@ -1,0 +1,70 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,booktabs}
+\usepackage[margin=25mm]{geometry}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={Adaptive estimation of rare signs with a known finite gap law},
+ pdfsubject={A closed quantile characterization under expected observation budgets}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Pp}{\mathbb P}
+\newcommand{\R}{\mathbb R}
+\newcommand{\1}{\mathbf 1}
+\newcommand{\Q}{\mathcal Q}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\KL}{KL}
+\DeclareMathOperator{\TV}{TV}
+\DeclareMathOperator{\Ent}{Ent}
+\DeclareMathOperator{\Aff}{Aff}
+\DeclareMathOperator{\kl}{kl}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{.35em}
+\setlength{\emergencystretch}{2em}
+\setcounter{tocdepth}{2}
+\title{\bfseries Adaptive estimation of rare signs\\with a known finite gap law}
+\author{}
+\date{29 October 2026\\[0.2em]\small Revision 2: Section~\ref{sec:comparison} added}
+\begin{document}
+\maketitle
+\begin{abstract}
+Each fresh coin has an unobserved, persistent Bernoulli bias
+$1/2+SD$, where the magnitude $D$ has a known finite law and the
+conditional positive-sign probability is unknown. We characterize the
+minimax root-mean-square error for estimating the population fraction
+of positive signs, bounded by a known rarity parameter $\rho$, under a
+uniform expected observation budget. Algorithms may create, revisit
+and interleave coins adaptively. The rate has a closed form: remove
+the smallest-gap mass $\rho$, retain its truncated inverse-gap cost,
+and add the square root of the dyadic inverse-square cost entropy
+of the remaining mass, scaled by rarity and budget. The lower bound
+combines a posterior-martingale tail obstruction, entropy packing,
+a one-coin activation argument and a common-pair reduction valid for
+fully adaptive population algorithms. The upper bound uses an
+observable likelihood-ratio classifier race and a finite multilevel
+Poisson allocation. All specialized ingredients are proved, and
+explicit universal comparison constants are given. A short
+deterministic comparison shows that the closed formula is within a
+factor $1+2\sqrt2$ of the entropy--tail selection functional of a
+companion general-law characterization, so the two rates agree.
+\end{abstract}
+\input{sections/model}
+\input{sections/overview}
+\input{sections/direct_lower}
+\input{sections/direct_upper}
+\input{sections/assembly}
+\input{sections/consequences}
+\input{sections/comparison}
+\clearpage
+\appendix
+\input{sections/upper_foundations}
+\input{sections/lower_foundations}
+\input{sections/transfer_foundations}
+\input{sections/references}
+\end{document}
