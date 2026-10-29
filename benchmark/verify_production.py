@@ -3,21 +3,26 @@
 verify_real.py, locked in results/real_selection.json, compares tape copies of
 the stopping state machines (tape_pair, antithetic_tape, sum_tape) with an
 independent classifier. Of the production routines it checks only level_count's
-budget bound and that real_replicates matches separately seeded real_estimate
-calls. This script checks the production routines in real_threshold.py. It
-reseeds Numba's generator, replays the exact draws each routine makes, and checks:
+budget bound and that real_replicates matches four consecutive real_estimate
+calls from the same seed. This script checks the production routines in
+real_threshold.py. It reseeds Numba's generator, replays the exact draws each
+routine makes, and checks:
 
 - real_pair, antithetic_pair, sum_term and real_term against an independent
   scalar classifier on the replayed tape: every value and cost, the level draw,
   real_term's 1/p_J weighting in the pair modes, sum_term's 1/P(J>=k) weights,
   and that each call drew exactly the observations it billed;
-- every recorded tuning cell in its own mode, at its deepest level, and every
-  trained level of every recorded training configuration;
+- every recorded tuning cell in its own mode, at its deepest and middle levels,
+  and every trained level of every recorded training configuration;
+- deep levels with nonzero increments: most seeds give every cap the same
+  decision, so seeds are chosen whose latent draw is near the critical value,
+  in the deepest recorded cell of each mode and the deepest trained levels;
 - train_level against consecutive production pair calls, and two recorded
   training rows reproduced exactly from their seeds;
 - real_estimate's two-success calibration and real_replicates' repeats,
   re-derived from the classifier-checked real_term;
-- level_count, and the level law of each selected configuration.
+- level_count, and every recorded selected and tuning law against its name and
+  the recorded training moments.
 
 It needs the locked results/ records. These are implementation checks, not
 statistical error guarantees.
@@ -32,14 +37,19 @@ ROOT = Path(__file__).resolve().parents[1]
 if (ROOT/'.runtime/python').exists():sys.path.insert(0, str(ROOT/'.runtime/python'))
 import numpy as np
 from numba import njit
+from scipy.special import ndtri
 import real_threshold as rt
-from reference import real_x, seed_rng
+from reference import THETA, real_x, seed_rng
 
 MINIMUM = 16  # the production default, and the value sum_term hard-codes
 # (start, ratio, threshold, deepest level) with caps up to 4096 flips.
 CONFIGS = [(16, 2, 1.0, 4), (64, 4, 0.5, 2), (256, 2, 1.5, 3), (1024, 4, 1.0, 1)]
 SEEDS = range(20261029, 20261029+120)
 LEVEL_SEEDS = range(20261200, 20261200+4000)  # searched for seeds that draw a given level
+DEEP_SEEDS = (20270000, 500_000)  # first seed and count searched for deep, nonzero increments
+# E[x | y] = 0 at |y| = CRITICAL, so only latent draws near it make caps disagree.
+CRITICAL = ndtri(1-THETA/2)
+LAW_NAMES = ['trained', 'geometric_half', 'geometric_three_quarters']  # run_real.py's order
 
 
 @njit
@@ -56,6 +66,19 @@ def normal():
 def sentinels():
     # Normals are generated in cached pairs, so check one of each kind.
     return np.random.normal(), np.random.random()
+
+
+@njit
+def first_draws(first_seed, count):
+    """Per seed: a term's level uniform and latent normal, and a pair's latent normal."""
+    us, ys, pair_ys = np.empty(count), np.empty(count), np.empty(count)
+    for i in range(count):
+        np.random.seed(first_seed+i)
+        us[i] = np.random.random()
+        ys[i] = np.random.normal()
+        np.random.seed(first_seed+i)
+        pair_ys[i] = np.random.normal()
+    return us, ys, pair_ys
 
 
 @njit
@@ -202,14 +225,37 @@ def check_terms(selected):
     return checks
 
 
-def check_tuning_cells(tuning):
+def expected_law(name, cfg, count, trained_levels):
+    """The level law named in a record, rebuilt from its documented formula."""
+    if name == 'trained':
+        # A positive finite-sample floor keeps rarely observed levels.
+        weights = np.array([np.sqrt(max(c['second'], 1/(4*c['n']))/c['work']) for c in trained_levels[:count]])
+    else:
+        exponent = {'geometric_half': .5, 'geometric_three_quarters': .75}[name]
+        weights = cfg['ratio']**(-exponent*np.arange(count, dtype=float))
+    return weights/weights.sum()
+
+
+def check_law(row, training_rows, what):
+    """A tuning-indexed record's law matches its name, configuration and training row."""
+    cfg, p = row['config'], np.array(row['probabilities'])
+    trained = training_rows[row['index']//3]
+    count = rt.level_count(row['budget']/cfg.get('repeats', 1), cfg['start'], cfg['ratio'])
+    require(row['law'] == LAW_NAMES[row['index'] % 3] and trained['config'] == cfg and len(p) == count
+            and np.allclose(p, expected_law(row['law'], cfg, count, trained['levels']), rtol=0, atol=1e-12),
+            f"{what} law {row['law']} does not match its formula")
+
+
+def check_tuning_cells(tuning, training):
     """Each distinct recorded tuning cell, in its own mode, at its deepest and middle levels."""
     first_uniform = []
     for seed in LEVEL_SEEDS:
         seed_rng(seed)
         first_uniform.append(uniform())
+    training_rows = {row['index']: row for row in training['rows']}
     cells = {}
     for row in tuning['rows']:
+        check_law(row, training_rows, f"tuning row {row['index']} at budget {row['budget']}")
         cfg = row['config']
         cells[(json.dumps(cfg, sort_keys=True), tuple(row['probabilities']))] = (cfg, np.array(row['probabilities']))
     checks = 0
@@ -219,6 +265,67 @@ def check_tuning_cells(tuning):
             require(seed is not None, f"no search seed draws level {level} of tuning cell {cfg}")
             check_term(cfg['start'], cfg['ratio'], cfg['threshold'], p, cfg.get('antithetic', False),
                        cfg.get('sum_mode', False), seed)
+            checks += 1
+    return checks
+
+
+def nonzero_deep(xs, j, start, ratio, threshold, antithetic, sum_mode):
+    """Whether level j's replay has a nonzero increment: at j, or in sum mode at some k >= 4."""
+    if sum_mode:
+        zs = [classify(xs, start*ratio**k, threshold)[0] for k in range(j+1)]
+        return any(zs[k] != zs[k-1] for k in range(4, j+1))
+    return expected_pair(xs, j, start, ratio, threshold, antithetic)[0] != 0
+
+
+def deep_seeds(candidates, replay, wanted=3):
+    """The first `wanted` candidate seeds whose replay has a nonzero deep increment."""
+    found = []
+    for seed in candidates:
+        if replay(int(seed)):
+            found.append(int(seed))
+            if len(found) == wanted:
+                return found
+    raise RuntimeError(f"only {len(found)} deep seeds with nonzero increments")
+
+
+def check_deep(tuning, training):
+    """Deepest recorded cell of each mode, and deepest trained levels, with nonzero increments."""
+    us, ys, pair_ys = first_draws(*DEEP_SEEDS)
+    seeds = np.arange(DEEP_SEEDS[0], DEEP_SEEDS[0]+DEEP_SEEDS[1])
+    deepest = {}
+    for row in tuning['rows']:
+        cfg, p = row['config'], np.array(row['probabilities'])
+        mode = (cfg.get('antithetic', False), cfg.get('sum_mode', False))
+        size = (cfg['start']*cfg['ratio']**(len(p)-1), len(p))
+        if mode not in deepest or size > deepest[mode][0]:
+            deepest[mode] = (size, cfg, p)
+    checks = 0
+    for (antithetic, sum_mode), (_, cfg, p) in sorted(deepest.items()):
+        start, ratio, threshold, j = cfg['start'], cfg['ratio'], cfg['threshold'], len(p)-1
+        levels = np.minimum(np.searchsorted(np.cumsum(p), us, side='right'), j)
+        near = np.abs(np.abs(ys)-CRITICAL) < 0.08
+
+        def replay(seed):
+            seed_rng(seed)
+            uniform()
+            return nonzero_deep(observations(normal(), start*ratio**j), j, start, ratio, threshold,
+                                antithetic, sum_mode)
+        for seed in deep_seeds(seeds[(levels == j) & near], replay):
+            check_term(start, ratio, threshold, p, antithetic, sum_mode, seed)
+            checks += 1
+    for antithetic in (False, True):
+        row = max((r for r in training['rows'] if r['levels'] and r['config'].get('antithetic', False) == antithetic),
+                  key=lambda r: r['config']['start']*r['config']['ratio']**(len(r['levels'])-1))
+        cfg, j = row['config'], len(row['levels'])-1
+        start, ratio, threshold = cfg['start'], cfg['ratio'], cfg['threshold']
+
+        def replay(seed):
+            seed_rng(seed)
+            return nonzero_deep(observations(normal(), start*ratio**j), j, start, ratio, threshold, antithetic, False)
+        for seed in deep_seeds(seeds[np.abs(np.abs(pair_ys)-CRITICAL) < 0.08], replay):
+            pair = pair_routine(antithetic)
+            check_call(f"deep {pair.__name__}{(j, start, ratio, threshold)} seed {seed}", seed, pair,
+                       (j, start, ratio, threshold), replay_pair(seed, j, start, ratio, threshold, antithetic), False)
             checks += 1
     return checks
 
@@ -298,7 +405,7 @@ def check_estimates(selected):
     return checks
 
 
-def check_levels(selection):
+def check_levels(selection, training):
     checks = 0
     for budget in (16384, 65536):
         for start in (16, 64, 256, 1024):
@@ -307,13 +414,14 @@ def check_levels(selection):
                 require(levels >= 1 and 4*start*ratio**(levels-1) <= budget < 4*start*ratio**levels,
                         f"level_count({budget}, {start}, {ratio}) = {levels} is not the largest fitting level")
                 checks += 1
+    training_rows = {row['index']: row for row in training['rows']}
     selected = {}
     for row in selection['rows']:
         candidate = row['candidate']
         cfg, p = candidate['config'], np.array(candidate['probabilities'])
-        levels = rt.level_count(row['budget']/cfg.get('repeats', 1), cfg['start'], cfg['ratio'])
-        require(len(p) == levels and abs(p.sum()-1) < 1e-12 and np.all(p > 0),
+        require(candidate['budget'] == row['budget'] and np.all(p > 0),
                 f"selected configuration at budget {row['budget']} has an invalid level law")
+        check_law(candidate, training_rows, f"selected configuration at budget {row['budget']}")
         # Both budgets selected the same law; replay each distinct one once.
         selected[(cfg['start'], cfg['ratio'], cfg['threshold'], tuple(p))] = p
         checks += 1
@@ -329,9 +437,10 @@ def load(name):
 def verify():
     selection, training, tuning = (load(name) for name in
                                    ('real_selection.json', 'real_training.json', 'real_tuning.json'))
-    level_checks, selected = check_levels(selection)
+    level_checks, selected = check_levels(selection, training)
     out = dict(passed=True, pair_replays=check_pairs(training), term_replays=check_terms(selected),
-               tuning_cell_replays=check_tuning_cells(tuning), training_checks=check_training(training),
+               tuning_cell_replays=check_tuning_cells(tuning, training), deep_replays=check_deep(tuning, training),
+               training_checks=check_training(training),
                estimate_replays=check_estimates(selected), level_checks=level_checks,
                selected_configurations=[[s, r, t, p.tolist()] for s, r, t, p in selected],
                scope='production routine replay against an independent scalar classifier; not a statistical error theorem')
