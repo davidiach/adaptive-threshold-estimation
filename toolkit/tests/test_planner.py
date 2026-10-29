@@ -13,8 +13,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from threshold_toolkit.__main__ import main, read_rates
 from threshold_toolkit.planner import (EvenlySpread, GuessedRates, _calls, _confirmable_runs,
-                                       _majority_plan, _odd_flip_counts, _simulate_run,
-                                       binomial_tail, difficulty, floor_budget,
+                                       _kl_upper_root, _majority_plan, _odd_flip_counts,
+                                       _simulate_run, binomial_tail, difficulty, floor_budget,
                                        majority_plan_for_budget, majority_plan_for_target,
                                        plan_target, rms_upper_bound, simulate)
 
@@ -357,6 +357,28 @@ class ConfidenceBoundTests(unittest.TestCase):
                 if n > 1:
                     self.assertGreater(rms_upper_bound(np.zeros(n - 1), confidence, k), t)
         self.assertEqual(_confirmable_runs(0.03, 0.95, 22), 6761)
+
+    def test_run_count_search_ends_when_the_allowance_is_subnormal(self):
+        # From a review: with K = 1 and an absurdly small confidence,
+        # log(1 / delta) / n is subnormal and the bound moves in coarse steps.
+        # Stepping one run at a time from the closed form took years, or never
+        # ended when no count could meet the target.
+        self.assertEqual(_confirmable_runs(2e-162, 1e-310, 1), sys.maxsize)
+        for target, confidence in ((1e-160, 1e-302), (1e-155, 1e-292)):
+            n = _confirmable_runs(target, confidence, 1)
+            allowance = -math.log1p(-confidence)
+            with self.subTest(target=target):
+                self.assertLess(n, sys.maxsize)
+                self.assertLessEqual(_kl_upper_root(0.0, allowance / n), target)
+                self.assertGreater(_kl_upper_root(0.0, allowance / (n - 1)), target)
+
+    def test_subnormal_mean_errors_keep_a_finite_bound(self):
+        # From a review: (q - p) / p overflowed for a subnormal mean p, and the
+        # bound jumped to 1.
+        zero = rms_upper_bound(np.zeros(200), 0.95)
+        for mean in (1e-310, 5e-324):
+            with self.subTest(mean=mean):
+                self.assertAlmostEqual(rms_upper_bound(np.full(200, mean), 0.95), zero, places=12)
 
     def test_extreme_confidence_levels_are_planned(self):
         # From a review: 1 - (1 - confidence) / K rounded to 1 or 0, so simulate

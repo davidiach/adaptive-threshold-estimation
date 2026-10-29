@@ -367,7 +367,13 @@ def _bernoulli_kl(p: float, q: float) -> float:
     """Relative entropy between Bernoulli(p) and Bernoulli(q), for p <= q < 1."""
     # log1p keeps the rounding relative to q - p, even when q is tiny.
     total = -(1 - p) * math.log1p(-(q - p) / (1 - p))
-    return total - p * math.log1p((q - p) / p) if p > 0 else total
+    if p == 0:
+        return total
+    ratio = (q - p) / p
+    if math.isfinite(ratio):
+        return total - p * math.log1p(ratio)
+    # For a subnormal p the ratio overflows; the term is then negligible anyway.
+    return total + p * (math.log(p) - math.log(q))
 
 
 def _kl_upper_root(mean: float, allowance: float) -> float:
@@ -428,17 +434,37 @@ def _confirmable_runs(target: float, confidence: float, comparisons: int) -> int
     runs = max(1, math.ceil(log_inverse_delta / denominator))
 
     def meets(n: int) -> bool:
-        # The same arithmetic as rms_upper_bound on n zero errors.
+        # The same arithmetic as rms_upper_bound on n zero errors; it can only
+        # turn true as n grows.
         return _kl_upper_root(0.0, log_inverse_delta / n) <= target
 
-    # Rounding can put the closed form one run off the bound's own count.
-    while runs > 1 and meets(runs - 1):
-        runs -= 1
-    while not meets(runs):
-        if runs >= sys.maxsize:
-            return sys.maxsize
-        runs += 1
-    return runs
+    if not meets(sys.maxsize):
+        return sys.maxsize
+    # Rounding puts the closed form near, but not always at, the bound's own
+    # count, and far from it when log(1 / delta) / n is subnormal. Gallop to
+    # counts low (0 or failing) and high (meeting), then bisect.
+    step = 1
+    if meets(runs):
+        high = runs
+        while True:
+            low = max(0, high - step)
+            if low == 0 or not meets(low):
+                break
+            high, step = low, 2 * step
+    else:
+        low = runs
+        while True:
+            high = min(sys.maxsize, low + step)
+            if meets(high):
+                break
+            low, step = high, 2 * step
+    while high - low > 1:
+        middle = (low + high) // 2
+        if meets(middle):
+            high = middle
+        else:
+            low = middle
+    return high
 
 
 @dataclass(frozen=True)
