@@ -16,7 +16,8 @@ routine makes, and checks:
   and every trained level of every recorded training configuration;
 - deep levels with nonzero increments: most seeds give every cap the same
   decision, so seeds are chosen whose latent draw is near the critical value,
-  in the deepest recorded cell of each mode and the deepest trained levels;
+  in the deepest recorded cell of each mode and the deepest trained levels; in
+  sum mode, two of them have an increment at the deepest level and run to its cap;
 - train_level against consecutive production pair calls, and two recorded
   training rows reproduced exactly from their seeds;
 - real_estimate's two-success calibration and real_replicates' repeats,
@@ -46,7 +47,7 @@ MINIMUM = 16  # the production default, and the value sum_term hard-codes
 CONFIGS = [(16, 2, 1.0, 4), (64, 4, 0.5, 2), (256, 2, 1.5, 3), (1024, 4, 1.0, 1)]
 SEEDS = range(20261029, 20261029+120)
 LEVEL_SEEDS = range(20261200, 20261200+4000)  # searched for seeds that draw a given level
-DEEP_SEEDS = (20270000, 500_000)  # first seed and count searched for deep, nonzero increments
+DEEP_SEEDS = (20270000, 2_000_000)  # first seed and count searched for deep, nonzero increments
 # E[x | y] = 0 at |y| = CRITICAL, so only latent draws near it make caps disagree.
 CRITICAL = ndtri(1-THETA/2)
 LAW_NAMES = ['trained', 'geometric_half', 'geometric_three_quarters']  # run_real.py's order
@@ -269,10 +270,13 @@ def check_tuning_cells(tuning, training):
     return checks
 
 
-def nonzero_deep(xs, j, start, ratio, threshold, antithetic, sum_mode):
-    """Whether level j's replay has a nonzero increment: at j, or in sum mode at some k >= 4."""
+def nonzero_deep(xs, j, start, ratio, threshold, antithetic, sum_mode, at_cap=False):
+    """Whether level j's replay has a nonzero increment: at j, or in sum mode at
+    some k >= 4. With at_cap, a sum-mode increment at j itself that runs to cap j."""
     if sum_mode:
-        zs = [classify(xs, start*ratio**k, threshold)[0] for k in range(j+1)]
+        zs, ns = zip(*(classify(xs, start*ratio**k, threshold) for k in range(j+1)))
+        if at_cap:
+            return zs[j] != zs[j-1] and max(ns) == start*ratio**j
         return any(zs[k] != zs[k-1] for k in range(4, j+1))
     return expected_pair(xs, j, start, ratio, threshold, antithetic)[0] != 0
 
@@ -289,7 +293,12 @@ def deep_seeds(candidates, replay, wanted=3):
 
 
 def check_deep(tuning, training):
-    """Deepest recorded cell of each mode, and deepest trained levels, with nonzero increments."""
+    """Deepest recorded cell of each mode, and deepest trained levels, with nonzero increments.
+
+    Sum mode also needs seeds whose increment at the deepest level runs to the
+    deepest cap: increments at intermediate levels leave that level's weight and
+    the last doublings of sum_term's shared loop unexercised.
+    """
     us, ys, pair_ys = first_draws(*DEEP_SEEDS)
     seeds = np.arange(DEEP_SEEDS[0], DEEP_SEEDS[0]+DEEP_SEEDS[1])
     deepest = {}
@@ -305,12 +314,15 @@ def check_deep(tuning, training):
         levels = np.minimum(np.searchsorted(np.cumsum(p), us, side='right'), j)
         near = np.abs(np.abs(ys)-CRITICAL) < 0.08
 
-        def replay(seed):
+        def replay(seed, at_cap=False):
             seed_rng(seed)
             uniform()
             return nonzero_deep(observations(normal(), start*ratio**j), j, start, ratio, threshold,
-                                antithetic, sum_mode)
-        for seed in deep_seeds(seeds[(levels == j) & near], replay):
+                                antithetic, sum_mode, at_cap)
+        chosen = deep_seeds(seeds[(levels == j) & near], replay)
+        if sum_mode:
+            chosen += deep_seeds(seeds[(levels == j) & near], lambda seed: replay(seed, True), 2)
+        for seed in chosen:
             check_term(start, ratio, threshold, p, antithetic, sum_mode, seed)
             checks += 1
     for antithetic in (False, True):

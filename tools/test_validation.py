@@ -11,6 +11,8 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
+import numpy as np
+
 import score
 import verify_uniform713 as uniform713
 import verify_experiment_lock as experiment_lock
@@ -224,6 +226,45 @@ class ExperimentLockTests(unittest.TestCase):
         data, expected = self.locked(name)
         self.assertTrue(experiment_lock.matches_lock(name, data, expected))
         self.assertFalse(experiment_lock.matches_lock(name, data.replace(b"\n", b"\r\n"), expected))
+
+    def heldout(self):
+        test = json.loads((ROOT / "results/real_test.json").read_text())
+        training = json.loads((ROOT / "benchmark/data/training.json").read_text())["training"]
+        with np.load(ROOT / "results/real_test_raw.npz") as raw:
+            return json.loads((ROOT / "results/real_selection.json").read_text()), test, dict(raw), training
+
+    def test_heldout_record_is_recomputed_from_raw_data(self):
+        lock, test, raw, training = self.heldout()
+        self.assertIs(experiment_lock.check_heldout(lock, test, raw, training), False)
+
+    def test_heldout_record_mutations_rejected(self):
+        # The external review's four mutations, each of which the old guard accepted.
+        def flipped(test, raw):
+            test["accept"] = True
+
+        def emptied(test, raw):
+            test["rows"], test["accept"] = [], True
+
+        def repeated(test, raw):
+            test["rows"] = [test["rows"][0]] * 4
+
+        def unseeded(test, raw):
+            for row in test["rows"]:
+                row["seed"], row["config"] = 0, {}
+
+        def extra_array(test, raw):
+            raw["extra_value"] = raw["gha_tuned_16384_value"]
+
+        def changed_value(test, raw):
+            raw["real_tuned_16384_value"] = raw["real_tuned_16384_value"].copy()
+            raw["real_tuned_16384_value"][0] += 0.5
+
+        lock, test, raw, training = self.heldout()
+        for mutate in (flipped, emptied, repeated, unseeded, extra_array, changed_value):
+            changed, changed_raw = copy.deepcopy(test), dict(raw)
+            mutate(changed, changed_raw)
+            with self.subTest(mutation=mutate.__name__), self.assertRaises(RuntimeError):
+                experiment_lock.check_heldout(lock, changed, changed_raw, training)
 
     def test_lock_check_passes_after_a_linux_rewrite(self):
         record = ROOT / "results/real_verification.json"

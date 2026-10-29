@@ -36,8 +36,17 @@ IMPORT = re.compile(r"^import\s+([\w.]+)\s*$", re.M)
 # would silence SORRY_WARNING below.)
 # #guard_msgs can consume errors or sorry warnings from anonymous target
 # examples while Lean exits successfully, so audit sources must reject it too.
+# The frozen pattern also misses metaprograms that could add declarations
+# without kernel checking: it matches elab, macro and syntax only at the start
+# of a line and elaborator attributes only first in @[...], and it misses
+# elab_rules, simprocs and direct calls into Lean's API. Proof sources need
+# none of these, so reject them anywhere, along with every `Lean` name.
 FORBIDDEN = re.compile(
-    TIER6_FORBIDDEN.pattern + r'|\badmit\b|"|«|#guard_msgs\b', TIER6_FORBIDDEN.flags)
+    TIER6_FORBIDDEN.pattern + r'|\badmit\b|"|«|#guard_msgs\b'
+    r'|\bLean\b|\belab_rules\b|\bd?simproc\b'
+    r'|\b(?:elab|macro|macro_rules|syntax|initialize|builtin_initialize)\b'
+    r'|(?:@|\battribute\s*)\[[^\]]*\b(?:command_elab|term_elab|tactic|macro|d?simproc)\b',
+    TIER6_FORBIDDEN.flags)
 # Lean warns "declaration uses `sorry`" (backticks in the pinned toolchain).
 SORRY_WARNING = re.compile(r"declaration uses [`']")
 # Unlike the frozen Tier 6 pattern, this also reads primed names such as foo'.

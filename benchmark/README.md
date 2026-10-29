@@ -60,8 +60,10 @@ seeded draws of `real_pair`, `antithetic_pair`, `sum_term` and `real_term` and
 compares every value and cost with an independent scalar classifier, across
 every trained level and every recorded tuning cell, and checks that each call
 drew exactly the observations it billed. Most seeds give every cap the same
-decision, so it also replays seeds chosen to give nonzero increments at the
-deepest recorded levels (caps up to 16384, 11-level randomized sums). It checks
+decision, so it also replays seeds chosen to give nonzero increments at deep
+levels: at the deepest recorded levels in the pair modes (caps up to 16384),
+and in sum mode at some level k >= 4 or at the deepest of 11 levels, run to its
+cap of 16384. It checks
 `train_level`, `real_estimate` and `real_replicates` against those routines,
 reproduces two recorded training rows from their seeds, and rebuilds every
 recorded level law from its name and the training moments. These are
