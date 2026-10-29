@@ -84,6 +84,19 @@ are proved; neither is assumed in the final target. CI runs this audit and
 its regression tests. The radius is a theoretical function of the gap law,
 not a data-computable confidence interval over all unknown laws.
 
+The full observable rare-event theorem for alpha > 2 has a separate audit:
+
+```sh
+python tools/verify_rare_above_two.py --sequential
+python -m unittest discover -s tools -p 'test_rare_above_two.py' -v
+```
+
+It checks all 54 registered modules and seven frozen full statements: exact
+power-law existence, the observable unbiased single-coin construction, the
+supported-law lower bound, uniform upper bound, exact-power minimax rate,
+Psi comparison and nonvacuity. The [scope guide](RARE_ABOVE_TWO.md) records
+parameter ranges, constants, the original observable model and paper differences.
+
 The magnitude-oracle lower bounds have a separate audit:
 
 ```sh

@@ -65,8 +65,17 @@ Models and targets were compiled and frozen at `3474a37` before supporting
 lower-bound and semantic-embedding proofs. Publication and CI are recorded
 on the focused oracle PR; local checks alone do not establish CI success.
 
+The alpha > 2 rare-event RMS theorem is now proved in the same observable model.
+The [full package](../lean/ThresholdHC/RareAboveTwo/Full.lean) covers all seven
+frozen targets, including an unbiased single-coin family with second moment
+at most 28 rho, a law-independent upper construction, the 1/256 supported-law
+lower bound, exact-power minimax and Psi rates, existence and nonvacuity.
+The [scope guide](RARE_ABOVE_TWO.md) explains the proof and its conservative
+constants. This contribution is on a separate feature branch; publication and
+CI status belong to its PR, and no merge is implied by the local proof result.
+
 The next formalization priorities are the remaining paper-only rare-event
-results and auxiliary envelope, smooth-density and observed-state results.
+results below two and auxiliary envelope, smooth-density and observed-state results.
 A corrected arbitrary-law rare-event characterization and sharp rare-event
 confidence rates at and above the quadratic boundary remain open research.
 
