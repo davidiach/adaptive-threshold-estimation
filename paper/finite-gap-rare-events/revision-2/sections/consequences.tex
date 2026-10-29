@@ -1,0 +1,59 @@
+\section{Consequences}\label{sec:consequences}
+Write $c_0=10^{-20}$ and $C_0=30001$ for the constants in
+Theorem~\ref{thm:direct-main}.
+
+\begin{corollary}[Mean-square form]\label{cor:mse}
+For every law, rarity and budget in Theorem~\ref{thm:direct-main},
+\[
+ c_0^2\min\{\rho^2,T_h^2+\rho\Gamma_\kappa/B\}
+ \le R(B)^2
+ \le2C_0^2\min\{\rho^2,T_h^2+\rho\Gamma_\kappa/B\}.
+\]
+If $B\ge d_1^{-2}$ and $J_\nu=\int d^{-1}\nu(dd)$, then
+\[
+ c_0^2\min\{\rho^2,(J_\nu^2+\rho\Gamma_\kappa)/B\}
+ \le R(B)^2
+ \le2C_0^2\min\{\rho^2,(J_\nu^2+\rho\Gamma_\kappa)/B\}.
+\]
+\end{corollary}
+\begin{proof}
+For $x,y\ge0$, $x^2+y^2\le(x+y)^2\le2(x^2+y^2)$.
+Taking the minimum with $\rho^2$ preserves these comparisons,
+with the same factor two. Apply this to $x=T_h$ and
+$y=h\sqrt{\rho\Gamma_\kappa}$ and square
+\eqref{eq:main-bounds}. If $B\ge d_1^{-2}$, then $h\le d_i$
+at every atom, so $T_h=hJ_\nu$ exactly, including at equality.
+\end{proof}
+
+\begin{corollary}[One-gap specialization]\label{cor:one-gap}
+For $\mu=\delta_d$, $0<d\le1/2$,
+\[
+ R_{\delta_d,\rho}(B)\asymp
+       \min\{\rho,\sqrt{\rho}/(d\sqrt B)\}.
+\]
+\end{corollary}
+\begin{proof}
+Here $\nu=\rho\delta_d$, $\kappa=(1-\rho)\delta_d$, and
+$\Gamma_\kappa=(1-\rho)/d^2$. Put $x=h/d$. If $x\ge1$,
+then $\Q(B)=\rho$. If $x<1$, the sum inside the minimum
+defining $\Q$ is $x[\rho+\sqrt{\rho(1-\rho)}]$.
+Since $0<\rho\le1/4$, the bracket lies between
+$(\sqrt3/2)\sqrt\rho$ and $(3/2)\sqrt\rho$.
+Taking the minimum with $\rho$ and applying the theorem proves
+the comparison with universal constants.
+\end{proof}
+
+For a general finite law the core entropy vanishes only in the
+normalized entropy term when a single band is occupied; its base
+cost $A^*$ is always positive. The quantile split can place part
+of one atom in both $\nu$ and $\kappa$. These cases are included
+in the theorem without any generic-position assumption.
+
+The formulas concern a uniform expected observation budget.
+They do not supply a deterministic total cap, a high-confidence
+guarantee, or an estimator that learns an unknown magnitude law.
+The finite support and strictly positive gaps ensure that all
+caps used in the upper construction exist. Extending these
+assumptions requires additional arguments; Remark~\ref{rem:general-laws}
+records the extension to general laws that follows, conditionally,
+from~\cite{gl}.

@@ -280,6 +280,20 @@ theorem. The manuscript does not establish an unknown-law guarantee, a
 general infinite-support extension, a deterministic budget or a
 high-confidence result.
 
+[Revision 2](../paper/finite-gap-rare-events/revision-2/README.md) of the
+manuscript (TeX sources; PDF pending) adds a deterministic comparison with the
+[general-law selection functional](#general-law-rare-event-characterization):
+$\mathcal K\le Q\le(1+2\sqrt2)\mathcal K$ for every law on $(0,1/2]$. So
+Theorem 1.1 is the finite-law case of the general-law characterization, with a
+closed functional, explicit constants and a self-contained proof that does not
+cite the general-law theorem. The two proofs share the observable upper
+construction and most appendix lemmas and differ mainly in the lower-bound
+reduction, so their agreement is not independent confirmation of the rate.
+Conditionally on the general-law theorem, $R\asymp Q$ also holds for general
+laws; that extension rests entirely on the general-law paper proof. The
+comparison came from an external adversarial review of revision 1, which is
+unchanged.
+
 ## Critical power margin: full minimax characterization
 
 For the one fixed law $F(d)=(4d)^2$ on $(0,1/4]$, the

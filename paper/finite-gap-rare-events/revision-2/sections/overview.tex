@@ -1,0 +1,91 @@
+\section{Proof strategy and entropy preliminaries}\label{sec:overview}
+The two terms in \eqref{eq:closed-functional} describe different
+obstructions. The removed mass $\nu$ may concentrate at gaps too
+small to resolve at the current budget. Its contribution is the
+truncated inverse-gap cost $T_h$. In the remaining mass $\kappa$,
+collective sign uncertainty and identifying the relevant scales
+produce the cost-entropy term $h\sqrt{\rho\Gamma_\kappa}$.
+
+\subsection{Organization of the proof}
+The lower proof in Section~\ref{sec:matching-lower} first obtains
+$R(B)\ge T_h/32$ by a posterior-martingale calculation and an
+adaptive midpoint decomposition. It then filters the dyadic core
+costs. Either the tail already controls the desired rate, or the
+filter preserves a constant fraction of the core entropy. Grouping
+and trimming the surviving bands produces conditional experiments
+that satisfy the required rarity and saturation constraints.
+Their lower bounds add through a common-pair argument.
+
+The upper proof in Section~\ref{sec:direct-upper} uses the same
+quantile split as a known design choice. A likelihood bank races
+an ordinary capped sign classifier on observations of the same
+coin. Coupled corrections at successive accuracies are replicated
+with independent Poisson counts. The resulting finite multilevel
+estimator has uniform expected work at most $B$. A homogeneous
+kernel estimate controls mixed work across scales.
+Section~\ref{sec:assembly-contract} assembles all branches and
+tracks the constants in Theorem~\ref{thm:direct-main}.
+Section~\ref{sec:comparison} compares $\Q$ with the selection
+functional of the companion general-law manuscript~\cite{gl}.
+
+Appendix~\ref{sec:uf-foundations} proves the classification, work
+and allocation bounds. Appendix~\ref{sec:lower-foundations}
+proves weighted sign testing, the activation gate and the annular
+one-coin obstruction. Appendix~\ref{sec:transfer-foundations}
+proves finite convex comparison, the common pair for all capped
+local policies, the adaptive midpoint decomposition and additive
+localization. No statistical selection theorem is assumed.
+
+\subsection{Relation to prior methods}
+Lee and Valiant~\cite{lv} study adaptive estimation for mixtures
+of unknown coins and provide a midpoint decomposition for
+fully adaptive observations. We reproduce the finite-prefix
+decomposition needed here, including observable types and the
+passage to uniform expected budgets. Their sample-complexity
+theorem is not used as a substitute for the RMS statement above.
+
+The weighted sign-testing argument follows the gap-entropy
+mechanism of Chen, Li and Qiao~\cite{clq}, including their
+Bernoulli extension. The specialized separated-gap lemma is
+proved in Appendix~\ref{sec:lower-foundations}.
+Aronow, Kallus and Lopatto~\cite{akl} prove the gap-entropy
+conjecture for fixed-confidence best-arm identification among
+independent unit-variance Gaussian arms with means in $[0,1]$ and a
+unique best arm. For algorithms that identify the best arm with
+probability at least $1-\delta$ on every such instance, in the range
+of $\delta$ treated there, the optimal expected sample count averaged
+over permutations of the arm labels is within constant factors of
+$\sum_i\gamma_i^{-2}\,(\log(1/\delta)+\Ent)$. Here $\gamma_i$ are the
+gaps to the best mean and $\Ent$ is the entropy of the distribution of
+$\sum_i\gamma_i^{-2}$ across dyadic gap ranges. The core term
+$\Gamma_\kappa$ has the same form. That problem identifies one of
+finitely many labelled arms with a confidence requirement; here the
+target is a population fraction under RMS loss and an expected
+budget, with fresh unlabelled coins and unknown signs. We do not use
+their result and do not claim that either result implies the other.
+
+The companion manuscript~\cite{gl} characterizes $R_{\mu,\rho}(B)$
+for every law on $(0,1/2]$ by a functional $\mathcal K$ that
+optimizes over submeasures of $\mu$. Section~\ref{sec:comparison}
+shows that $\Q$ and $\mathcal K$ agree within the factor $1+2\sqrt2$.
+Theorem~\ref{thm:direct-main} is therefore the finite-law case of
+that characterization, here with a closed functional and a
+self-contained proof that does not invoke the theorem of~\cite{gl}.
+Both manuscripts were developed from the same research notes: the two
+proofs share the observable upper construction and most appendix lemmas
+and differ mainly in the lower-bound reduction. The comparison itself uses
+neither statistical theorem.
+
+The finite
+convex comparison has methodological antecedents in
+Juditsky and Nemirovski~\cite{jn} and Polyanskiy and Wu~\cite{pw};
+its exact version and the simultaneous common-pair construction
+are proved in Appendix~\ref{sec:transfer-foundations}.
+We use Hoeffding's inequality~\cite{hoeffding} and Sion's convex
+minimax theorem~\cite{sion}, together with the standard probability
+and compactness facts indicated where applied. The resulting
+quantile formula and all specialized reductions are established
+within this manuscript. These attributions identify methodological
+dependencies and do not assert a comprehensive novelty comparison.
+
+\input{sections/entropy_preliminaries}

@@ -74,7 +74,11 @@ The explicit new base-cost constants apply to single-coin procedures.
 
 ## Finite-gap rare-event manuscript
 
-[Read the 32-page paper](paper/finite-gap-rare-events/paper.pdf) · [LaTeX sources and build instructions](paper/finite-gap-rare-events/README.md) · [Provenance](paper/finite-gap-rare-events/PROVENANCE.md)
+[Read the 32-page paper](paper/finite-gap-rare-events/paper.pdf) · [LaTeX sources and build instructions](paper/finite-gap-rare-events/README.md) · [Provenance](paper/finite-gap-rare-events/PROVENANCE.md) · [Revision 2 sources (PDF pending)](paper/finite-gap-rare-events/revision-2/README.md)
+
+Revision 2 adds a section showing that $Q$ is within a factor $1+2\sqrt2$ of
+the general-law selection functional, so this theorem is the finite-law case
+of the general-law characterization rather than an independent one.
 
 For a **known finite** magnitude law with strictly positive gaps, known global
 rarity bound $0<\rho\le1/4$, and any uniform expected observation budget $B>0$,
