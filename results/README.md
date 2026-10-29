@@ -22,6 +22,7 @@ or CI run passes.
 | Observable 713 and unbiased existence characterization | [observable713_001.json](observable713_001.json) |
 | Confidence characterization | [confidence_001.json](confidence_001.json) |
 | Magnitude-oracle lower bounds | [oracle_lower_001.json](oracle_lower_001.json) |
+| Observable rare-event rate above alpha two | [rare_above_two_001.json](rare_above_two_001.json) |
 | Constant search and scope | [constants_theory.json](constants_theory.json), [constants_finite_grid.json](constants_finite_grid.json), [process account](../docs/process/TRACK_B.md) |
 | Real-valued benchmark | [real_comparison.json](real_comparison.json), [real_verification.json](real_verification.json), [benchmark protocol](../benchmark/README.md) |
 

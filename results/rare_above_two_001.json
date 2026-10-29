@@ -1,0 +1,1987 @@
+{
+  "valid": true,
+  "scope": "Full observable alpha > 2 rare-event theory: a law-independent unbiased single-coin construction, the matching supported-law lower bound, upper and exact-power minimax rates, Psi equivalence, law existence and nonvacuity. Budgets count actual flips and rarity is global.",
+  "source_sha256": {
+    "lean/lake-manifest.json": "a7058b14db1034b58735d82f1cf9a82a938855e93decc1960ca7d21e786fdfe2",
+    "lean/lakefile.toml": "273cfe4674e97219b22f7de1428bdadfb45379c7fa582882c59624ab7fbc3189",
+    "lean/lean-toolchain": "d581a24b57a4ae9e0b2132ca8ac7cc3ac336a9fc2751fe6b29414e2d434d54c4",
+    "lean/ThresholdHC/BlindUpper/ActualBatch.lean": "17741cdf58a7da9a66705e0acedc47224321e9245de0de69aed678e398d72725",
+    "lean/ThresholdHC/BlindUpper/BatchMachine.lean": "c66313292e9d96759350848673ee20efc7f2f74893db5b09cdea8329eeee2dd5",
+    "lean/ThresholdHC/BlindUpper/BatchPath.lean": "cdbdeb2567e4c4722897fd5d0ac0dcb3535d04cf594b15e8e441bb48f77c0fd4",
+    "lean/ThresholdHC/BlindUpper/CalibrationBundle.lean": "19ce479815224dbba2ebd9079129dba55ff7d11f3b3bb96ea814b4c7a96c690b",
+    "lean/ThresholdHC/BlindUpper/CallConsumes.lean": "ad9c47f1b23035edb1f8e0f0746d1ba0ea68174703a86f5ce78b00cd9ca916f6",
+    "lean/ThresholdHC/BlindUpper/CallExecution.lean": "98edbbb1c2db136387927be1980547d57d0dee1378282967090e3660889f60da",
+    "lean/ThresholdHC/BlindUpper/CallLaw.lean": "783fdc1e0bc1760ef0d784f61d5ef9d1758de70d95eaa928be189885a1cc7f93",
+    "lean/ThresholdHC/BlindUpper/CallObservation.lean": "06b5c87565a675e55d1f2f224ce89e2c2f8ee13d59ca0fccaafe32a3b8981713",
+    "lean/ThresholdHC/BlindUpper/CallPlan.lean": "759b738c76b526de2739ac1a23e9f0aa740753a1a07a0b77790e9b45d1fe162a",
+    "lean/ThresholdHC/BlindUpper/ClassifierProcedure.lean": "540f3b31886337f57cedbebc087fd68f4c06425fc33d02e0ab2531446fd210bc",
+    "lean/ThresholdHC/BlindUpper/ControllerExecution.lean": "318b9ee1aabb0f859b4e2ac6f5b4cc13a3b9a72c441e3eccd4e6af83e3126b5a",
+    "lean/ThresholdHC/BlindUpper/ControllerOutput.lean": "cec1352b491ee8f3cd946ed143c72d6543e0d777d13572a76cedebdb14184ca0",
+    "lean/ThresholdHC/BlindUpper/CutoffBatch.lean": "6b0de26d37cc896163ac0140af53be29ac7e683a913f719202325dee8ab61918",
+    "lean/ThresholdHC/BlindUpper/CutoffBiasWork.lean": "8a626e041323255f8fce689b8829b8db8e5cc05c76cec15c6b7f720fda345e48",
+    "lean/ThresholdHC/BlindUpper/CutoffBounds.lean": "5ce4609722d3b87df654645f9183b1479b429c249f13ce0dc0d29e054b34abce",
+    "lean/ThresholdHC/BlindUpper/CutoffModulus.lean": "6c0a82ba38bd6bf1345ce469df574434e76cb9068d55314e9e54827fd96d536f",
+    "lean/ThresholdHC/BlindUpper/CutoffMoments.lean": "820d8d3434b42a84ce96c1bbf1e14ff391574e6d1f65d2949ec8329e195e74cb",
+    "lean/ThresholdHC/BlindUpper/CutoffProcedure.lean": "b440f4cd7a9b1556e23ded7aee8333dc0f41b37990444ad771702859377ec647",
+    "lean/ThresholdHC/BlindUpper/DoubleGeometric.lean": "b931109450ca0b95bfbdc71d97846c3a36ebf850e042f29e36509b88cd1e2621",
+    "lean/ThresholdHC/BlindUpper/FiniteProcedure.lean": "94bbcdf02fb40d759e72ddbd4d151a65b01a251e65cd07c3e379e067c10dd2db",
+    "lean/ThresholdHC/BlindUpper/FirstSuccess.lean": "819dbe638378ace3fc99ace139ae686578af62f4f954f18ff06878a86e548e59",
+    "lean/ThresholdHC/BlindUpper/InfiniteArrays.lean": "9439da8e51e1b26051b7a35ae1da4b0fe3828ef18302c1142a2c29f97a0341c2",
+    "lean/ThresholdHC/BlindUpper/MachinePath.lean": "4f7d96a88c1f5204026c2817e038b8d2eb78a96df9a742af6862378227c1bb3b",
+    "lean/ThresholdHC/BlindUpper/MarkedCall.lean": "812383ba89bd61628e2a582b375c56cb4c46cfa4515c0a8d520fa0a1e2a10d2e",
+    "lean/ThresholdHC/BlindUpper/MixedProduction.lean": "9e635b538f4e6453e8bec78abd1e946b4008056a61c123c025bbb112a7b63c5b",
+    "lean/ThresholdHC/BlindUpper/PaddedCall.lean": "e8c75bcc57605efcd0817a5e947b517322c3767497af7cff61c1fbca20b0c16c",
+    "lean/ThresholdHC/BlindUpper/PhasePlan.lean": "65fb8447981664e6be6ba0166a06cb8f3845277c17451f20c0c35d911bb3dcfc",
+    "lean/ThresholdHC/BlindUpper/PilotCost.lean": "66397d848092113b7f2e2c32c07eb72d3d179c8f61d775cdefd9a532da35490a",
+    "lean/ThresholdHC/BlindUpper/PilotCount.lean": "f9851efdb844a558f4f4aa3b416fed491f1f653b56232b49f943cb606d5c74e3",
+    "lean/ThresholdHC/BlindUpper/PilotWork.lean": "a8d7f0d42c899fe91507b138007ccac93a3de4206f5da929b6f9d972d5403ba4",
+    "lean/ThresholdHC/BlindUpper/PopulationBounds.lean": "f5c10aa4a5296986432361ccd2693b98d496e0d3a029b1149d142358df4453be",
+    "lean/ThresholdHC/BlindUpper/PopulationMean.lean": "e7422287c528be214b25e36c48f488f5d7a37817ffe9de52e87bd5ac930e6d38",
+    "lean/ThresholdHC/BlindUpper/ProductionAverage.lean": "f295d6fd588746fe9e715cde69c9f1eb7a294110e06cc4fed0a1d8b0baa84cef",
+    "lean/ThresholdHC/BlindUpper/ProductionCost.lean": "91deb31d199d6766205dc48c00cf61d8c254524335f3df54bfbe3a0926459407",
+    "lean/ThresholdHC/BlindUpper/SeedInput.lean": "f91e3bae0af4865fe8c4943a4f0bb8ef972c42dcd224dbeb35b6d12ad8c3162f",
+    "lean/ThresholdHC/BlindUpper/TerminalOutput.lean": "7457a8f6673d278a89dae0c705e3f7fc18dfa97da4283a9695d7391087bd5ca7",
+    "lean/ThresholdHC/CriticalEntropy/Activation.lean": "f672ce06ed0a648c90730a4d4ba6272730372f70c1e1da0130ebd7ec7c047b4f",
+    "lean/ThresholdHC/CriticalEntropy/ActivationCost.lean": "2fabd22ddf086c380d23792b0889874b5881f4a0c19a45238ff7e12ddd4d1a4f",
+    "lean/ThresholdHC/CriticalEntropy/ActivationModel.lean": "b2632bce6dda14e63fb6def05373cbd88259a1386cc010f0d171b7f33613f978",
+    "lean/ThresholdHC/CriticalEntropy/AffinityTesting.lean": "3085d579dc4cf7c83b19e2ab9266cfacdff3dbb013829f71699811afe74bf820",
+    "lean/ThresholdHC/CriticalEntropy/BaseCost.lean": "b8bcbdd53e3829d4f8d8ccd26d4666d4dd81f3d5323fc97e40ae8e836917043d",
+    "lean/ThresholdHC/CriticalEntropy/BernoulliPrefix.lean": "56a12478a7b94b06519f60a003819575e61ca18bd447d5734a770ba3f54b4708",
+    "lean/ThresholdHC/CriticalEntropy/CapInvariance.lean": "d050bdfb4010ab90a324f2a264c485e4769e1586c12fb7f26f7f6fa4e11a2928",
+    "lean/ThresholdHC/CriticalEntropy/CappedObservation.lean": "92ca17da2e1aa36e5822a9ce70021579701463daaf93b41dca9ed5b95464afdf",
+    "lean/ThresholdHC/CriticalEntropy/CommonPoint.lean": "e19f78d967948f5e5c3b2b3e8ef202e2ed5a8c6c7f65fb831789934a917b0026",
+    "lean/ThresholdHC/CriticalEntropy/ConditionalMoments.lean": "4d031b445e8a457a621620e656315ac8250360a04f91804e669e85b5a5367744",
+    "lean/ThresholdHC/CriticalEntropy/CreationPopulation.lean": "c4a0d8ae91bcfd623f253114c5389028881d223662b18bfeb4fabb57521d4b34",
+    "lean/ThresholdHC/CriticalEntropy/CriticalAlgorithmLower.lean": "094b60d0f060fa42a8d111c18c8a0df2bbabd2220429e0a0d11c488074478641",
+    "lean/ThresholdHC/CriticalEntropy/CriticalAnnuli.lean": "40ebdbc1e8324db9145b2422c05cbaa91a49223ae21b67cbbb68534b8b763316",
+    "lean/ThresholdHC/CriticalEntropy/CriticalCommonPair.lean": "c78f8633bfbca7766b5c01fa5f5219b01881f8c74c53ad78c500e7ff422a6dae",
+    "lean/ThresholdHC/CriticalEntropy/CriticalCreation.lean": "b38944a899a545b0114ee4d98a950476e45658cb1a0788895f419aada5db9b6f",
+    "lean/ThresholdHC/CriticalEntropy/CriticalExperiment.lean": "22df1a608814cc797a8d60d0c14d5c50ca92fb0aeea71ffd79b51381513b87f8",
+    "lean/ThresholdHC/CriticalEntropy/CriticalGeometry.lean": "b204193b923995a9fc7c1fc22e1ecf02ced7f45b854270889bd1e7344fe5382e",
+    "lean/ThresholdHC/CriticalEntropy/CriticalLaw.lean": "61a07e9e35e3660979e918a4ba33e3b08ba3f0449241acda00ace49c8c2b6bb7",
+    "lean/ThresholdHC/CriticalEntropy/CriticalModel.lean": "66465b14833b77f3dddd3fe1cef2e40714613d9783d87c610e30be0745a8e685",
+    "lean/ThresholdHC/CriticalEntropy/CriticalPopulationFinite.lean": "6557b3cd77779814cb20e19891a292dd2c7382942a0baa9cec7d7bf83afe2efe",
+    "lean/ThresholdHC/CriticalEntropy/CriticalRareModel.lean": "f6448a591f8287e24cef27a3276ad6bbb6f12b9f86cf1cd3975bcf243a783a13",
+    "lean/ThresholdHC/CriticalEntropy/CriticalRisk.lean": "25eff4fc55db1e7063126efd84a047fe85f3eca9c1a676d7e9a1e3899a5869c8",
+    "lean/ThresholdHC/CriticalEntropy/CriticalScale.lean": "9e5112a2824d5a952b62aed55990e99595b2f40d4305b163821216c304f97fe3",
+    "lean/ThresholdHC/CriticalEntropy/CriticalTerminalAffinity.lean": "6b6f87985ec315bf9633d4b938acb51f49f85dcdd85d817522bf6ff3b9fd8937",
+    "lean/ThresholdHC/CriticalEntropy/CriticalTermination.lean": "b6bde0bc0c6f65c60499c3368923900940d71c3eae2b869391cee22b990bee64",
+    "lean/ThresholdHC/CriticalEntropy/EarlyDecision.lean": "87fe08199c0052318fef8a0c11e6ba8be2297a712fdfe86f7a17b0be0a45ba38",
+    "lean/ThresholdHC/CriticalEntropy/EstimationEntropy.lean": "25f05e3ed3a8b39aff00534ca1a6dee766012abf12a00c508de1074b48de4312",
+    "lean/ThresholdHC/CriticalEntropy/EventInformation.lean": "d2888a4291ca0423077dc6026fded8f4cdec9a821a1db5c4e848060e004bf71e",
+    "lean/ThresholdHC/CriticalEntropy/EventualAffinity.lean": "cef4e3d71ffa436206252afe942255ca7938adc8ccab516354517e277d82bc95",
+    "lean/ThresholdHC/CriticalEntropy/ExponentialRisk.lean": "74833dac4120f11a46cf49c6dc41bac4af881d543c4fcc5d6a93eeb4246429e5",
+    "lean/ThresholdHC/CriticalEntropy/FiniteAffinity.lean": "0828eec78d3579a90d3530189d9b77a84cf771b2c5ca57f8291b3696a18190ac",
+    "lean/ThresholdHC/CriticalEntropy/FiniteCentering.lean": "ce0705f843de5861abd3a25435fdf33735286eedc2d2cb0f966b83200a1a69e0",
+    "lean/ThresholdHC/CriticalEntropy/FiniteGap.lean": "e7a7094bd949b745b6603d3bb6f6f757d5fdc7e6c531028013d9aa2e109bb369",
+    "lean/ThresholdHC/CriticalEntropy/FiniteGeometry.lean": "e5436d4149a3b6cc05eb6b7365f9161041c3fb13dccc2008668b42519077f31c",
+    "lean/ThresholdHC/CriticalEntropy/FiniteGeometryModel.lean": "80b129847b95fc576e9dc862c09faef9be060f73e77d8401c9de74c9b949a211",
+    "lean/ThresholdHC/CriticalEntropy/FiniteObservation.lean": "48023892a01fededd97c1235e5856796ee53bbabdd9a065f66c2853371fb6d21",
+    "lean/ThresholdHC/CriticalEntropy/FinitePopulation.lean": "790b778f93225b18266a67e8d2f23f22a3838077379b7459dbd99231de6e8228",
+    "lean/ThresholdHC/CriticalEntropy/FiniteRiskAnalytic.lean": "47b444213466fb778e5dc53df699efae7ed18d15d66886de366179d6494d8644",
+    "lean/ThresholdHC/CriticalEntropy/FiniteRiskModel.lean": "fd4643aeed2ee06031f3d52771d275c8a72769c275cc186298772c347d3f00f1",
+    "lean/ThresholdHC/CriticalEntropy/FiniteRMS.lean": "7de8c257c00e294edb45e122fa1a09cd708850508acfeb6ce2af4100b580435b",
+    "lean/ThresholdHC/CriticalEntropy/FiniteSaddle.lean": "7272c2a8ddeb2511d007a0c0f499004acc37191dd0bac6b97065b9a751128f46",
+    "lean/ThresholdHC/CriticalEntropy/FiniteSufficiency.lean": "0ab437a2cd3fbdd20589fcc4ced2132f55cc3791025bab6a672870d3112b9f93",
+    "lean/ThresholdHC/CriticalEntropy/FiniteSupport.lean": "b3f63d024ad64868c35d422f11da08f2429a82bd545d36e74f6bbc8e944c37ac",
+    "lean/ThresholdHC/CriticalEntropy/GapSelection.lean": "798d3d4b24bedb28375b3931578495531497440ce8cf331656ff37519d63a5dd",
+    "lean/ThresholdHC/CriticalEntropy/GeometricOverlap.lean": "5b782cc81f070a81b818be81acfab69f4fae9bd6ae27cc30d3b1501b41eca93f",
+    "lean/ThresholdHC/CriticalEntropy/GoodGapModel.lean": "6e8774ae05d6c09e93f91457e5ce0f21de9febc5eb5764aeca1663389944f64e",
+    "lean/ThresholdHC/CriticalEntropy/GoodGaps.lean": "245c07a0b986381ea4359cc3ac2f0c386965c7dc8eb1cdc7fe27b2925e42b93f",
+    "lean/ThresholdHC/CriticalEntropy/HalfPrior.lean": "70987dd4ac7631e55befa63d70436272ada328177a6888be7632752a723771b7",
+    "lean/ThresholdHC/CriticalEntropy/Hellinger.lean": "f34c15c6f8f475a838fb95f2045735184f22e8cb6a57955fe8c77541c9abab51",
+    "lean/ThresholdHC/CriticalEntropy/HellingerGeometry.lean": "79629a0920d02949a6ab847b121086509f2ae2b4404f4766aaa69100fda2c5b9",
+    "lean/ThresholdHC/CriticalEntropy/HellingerModel.lean": "5a4b8bb5bf4cd2645df2292a121741e4b8eb7abf62a4b627a8bbb77f54ccf422",
+    "lean/ThresholdHC/CriticalEntropy/LikelihoodAffine.lean": "6b33f2bc2089744151d7a8feaceb021bbf4fab523164da0381c5efc619d53cf3",
+    "lean/ThresholdHC/CriticalEntropy/LikelihoodBounds.lean": "ebd8e2d89d2bfee76560aac507ff4b6140b469999e88a024b825af5a5cfda9b1",
+    "lean/ThresholdHC/CriticalEntropy/LocalSimulation.lean": "79282d21006d0575b985ed300ed131bdc1052ec45b916da5a878af8d6dbd74c2",
+    "lean/ThresholdHC/CriticalEntropy/MidpointWork.lean": "3f3b69bfac3511713ed9569b7c45eb7cd8f03c5386a05454d89c3bcaf914a3b8",
+    "lean/ThresholdHC/CriticalEntropy/ObservablePopulation.lean": "ede2078b26808308d7d74dbfc516c1caba6eb87832e87a3e5a3f36c4dba24401",
+    "lean/ThresholdHC/CriticalEntropy/ObservationAffine.lean": "1a8a038c6ec2557da51a81f9612aea488a161d40fa90517e5251be4f71333ebe",
+    "lean/ThresholdHC/CriticalEntropy/ObservationGeometryModel.lean": "a36242357255714ad7b8517f105abc6fb818e931a0ff7a0a516459505cc61e4d",
+    "lean/ThresholdHC/CriticalEntropy/ObservationInformation.lean": "dc4a3a38802ef2a4fc8489766a38bdf372270bb076007e1e7c6dc1ea6f0f8907",
+    "lean/ThresholdHC/CriticalEntropy/ObservationModel.lean": "f6661ef822601181c09be8961cacf624d1cb2a8514eeb4c17b9a8a0ccd997bae",
+    "lean/ThresholdHC/CriticalEntropy/ObservationRisk.lean": "645615c417ceb827f296d60cc8bcc08dfbf3ecba2d203dc3b2f774538a0d468a",
+    "lean/ThresholdHC/CriticalEntropy/Packing.lean": "0819b363020bec3f9b82bbaf86387be6d78d3631381b590b640d587fea011a95",
+    "lean/ThresholdHC/CriticalEntropy/PolicyMixture.lean": "bd70670e38955cd6a412b7ab29988726450eab7201085735d9a81a86e9080505",
+    "lean/ThresholdHC/CriticalEntropy/PolicyNormalization.lean": "fce07cda2ed0ae77f3e715cbe3a04995482f6af6be89045a7a75b7f629567f95",
+    "lean/ThresholdHC/CriticalEntropy/PopulationCompactness.lean": "e86ebcbf2ce3cdeeaa35ca95b76516150509d34e768b212a72c7fadf4f095ae3",
+    "lean/ThresholdHC/CriticalEntropy/PopulationGeometryModel.lean": "30979c088ab1e746169485fa6792deacae84671b103ac6b4a46d4788aaf5f0ac",
+    "lean/ThresholdHC/CriticalEntropy/PopulationLocalWork.lean": "4d8bd799b203f9ab1359080521a7506973cdd54cd75366a4085c7a91e62fadf6",
+    "lean/ThresholdHC/CriticalEntropy/PopulationMixture.lean": "e1731a76df0e157101ec7013e01c21c854c4219a760c1e94371f06a6eba49525",
+    "lean/ThresholdHC/CriticalEntropy/PopulationModel.lean": "6563b8a07b6941cae10140c0611d6c13e63378bb9eae0009f1d03e987ac315fd",
+    "lean/ThresholdHC/CriticalEntropy/PopulationTapeLaw.lean": "f29394f00682af19e8f9fa519d5b4f7a8d21d063bcc2bb46b418000fa12fd9a8",
+    "lean/ThresholdHC/CriticalEntropy/PopulationTransfer.lean": "b754a6e27b01db66ff2e62f3ca0e7b61fdc603b88d40ec84f3dcd9f095c6ff4a",
+    "lean/ThresholdHC/CriticalEntropy/PopulationVariance.lean": "39ae6e240767e093a33bec7290e5daa16ae2dcf4c791f84f078ad5bff584f2e5",
+    "lean/ThresholdHC/CriticalEntropy/PopulationWorkLaw.lean": "21e692a2d5ccd1ab3d2c50d178b946828aabaaeb9e57afb82af92b68989655d1",
+    "lean/ThresholdHC/CriticalEntropy/RepeatedModel.lean": "de43c043e98529ed9509400d0eb2f3ea4216c27343fd660f55e4320125e72f1e",
+    "lean/ThresholdHC/CriticalEntropy/RepeatedRestart.lean": "0451ca311f815b6a93876917db5527ba94aaf1e169e2b5f1fe6b47b9e336c231",
+    "lean/ThresholdHC/CriticalEntropy/RepeatedSignModel.lean": "660542041063023fc2d70962d777600ff60411007b25f76cf7e466968106a652",
+    "lean/ThresholdHC/CriticalEntropy/RestartPair.lean": "8c86a915636f670d1161a12e75d0a7ad18c5a4780f63e8c8a26064ec39c3ce5a",
+    "lean/ThresholdHC/CriticalEntropy/SampleMean.lean": "1befda118991d7f53aa696f75ce26c48cea9e48c302badb719ad7880e8833286",
+    "lean/ThresholdHC/CriticalEntropy/ScaleAsymptotics.lean": "6cae0e65bc2bce3dc390855869edfd9fa24aefde46ddac9bb03fc755c565d234",
+    "lean/ThresholdHC/CriticalEntropy/SeedAdaptation.lean": "72be0dcbfb68c571d8eb13eeb804b9629fd855d3708be156c434232a561579a9",
+    "lean/ThresholdHC/CriticalEntropy/SeedAffinity.lean": "c664973c8b4e55f05e4cf1ead77e8f99d6d4f060e9e12bf666fa8b7ea268b635",
+    "lean/ThresholdHC/CriticalEntropy/SeededPopulationTransfer.lean": "5e1f486382cc27dc663833b4bacb62d440898f3033dff8b76950e6af4fef32bf",
+    "lean/ThresholdHC/CriticalEntropy/SelectedPolicy.lean": "d08bb2ada0d4d6c85779b97257eb06b3895d966f12fcfc8ea8d751de0ebfd625",
+    "lean/ThresholdHC/CriticalEntropy/SequentialModel.lean": "f7e044ffb8ca3182c405730e3491fe1b813da85728fc8ee030aec5e97336bff4",
+    "lean/ThresholdHC/CriticalEntropy/SignReduction.lean": "3fadc6fcb4f89fe3b84e4d07447ea349acfb7f490bacaf337509270d26829cb9",
+    "lean/ThresholdHC/CriticalEntropy/SignTest.lean": "39842334c60c3b8d63e9bdd67d33496a12270eacf58375cb8c02fb583a3fe776",
+    "lean/ThresholdHC/CriticalEntropy/StatisticProcedure.lean": "17c41e220816ac6384d30d0f045370b81efcc29d8b1ef83e601af0d971a40059",
+    "lean/ThresholdHC/CriticalEntropy/StoppedModel.lean": "0ea485349d3f2465044b1978f0dc544935a40cc764bf615a98a8ba9bfc734378",
+    "lean/ThresholdHC/CriticalEntropy/StoppedTape.lean": "3a856b343447fdcfc3633a59684804af603de9279cbfc4b30202992c2c9c1124",
+    "lean/ThresholdHC/CriticalEntropy/StoppingWindow.lean": "5c746a6415390eed76298153a03dae8ea42a38fd5a2a52cb1c16a2da6fa038ee",
+    "lean/ThresholdHC/CriticalEntropy/SymmetricReduction.lean": "83286a71a724fc55d96364f89eb1578517d5ea52cbcc4486d4ad5b3ca7ac0201",
+    "lean/ThresholdHC/CriticalEntropy/UniformCoin.lean": "0485ada581ebb1d3c551fb15b4b7fd0edf4b6f1b5901912420d0c7d53fbb4ee6",
+    "lean/ThresholdHC/CriticalUpper/Calibration.lean": "0c0c0e44c82d59be31b5739f66f1905f890dee73f7900309f07ef47d6c5b8523",
+    "lean/ThresholdHC/CriticalUpper/CappedCost.lean": "4d8c2974b2795e66f967fd307d695ee1f7cbc224e4f60f45a56434783460c9a7",
+    "lean/ThresholdHC/CriticalUpper/CoinLaw.lean": "1fefb12e8ff058cdcaca798dd9eb27cda3b9109e9fad4a3d10bffcb3d9a5443d",
+    "lean/ThresholdHC/CriticalUpper/CoupledModel.lean": "13689f0d7ecc3a51507190802d2b52b4ad646f70a7cfe1cb6567db715614aa10",
+    "lean/ThresholdHC/CriticalUpper/GapIntegration.lean": "33d80de975ebf4b5cc7a097e7da39a18fec27ae156897b63e5d5e2c45c25be70",
+    "lean/ThresholdHC/CriticalUpper/Increment.lean": "17135329e821838badecc2a31ec7710b86d02e54f3cfaf078d8df584b4ad2fed",
+    "lean/ThresholdHC/CriticalUpper/Parameters.lean": "d3121fa797ab05f07625ff0de3a7f2eb4ac55a0e5b8a35ba8c21d09eba48e8f7",
+    "lean/ThresholdHC/CriticalUpper/ScreenCoin.lean": "37819151546cf447f63c883c00117447ac99de8fe63160cafa33e092fc378586",
+    "lean/ThresholdHC/CriticalUpper/ScreenError.lean": "42ebf3f2907f14d171b7c5f0c1da98e3e9ff63832cfe7e51e8c4f20e840cc39c",
+    "lean/ThresholdHC/CriticalUpper/ScreenModel.lean": "2c9c7983f52c88f708e98dd797c2e829ad05af7d951a6ce6dbac0138a977d2f4",
+    "lean/ThresholdHC/CriticalUpper/ScreenMoments.lean": "f0e7d88f932bcaa009f38ee2a618a3b8c6fdbebbc98b99d8e77b9a9389870ab9",
+    "lean/ThresholdHC/CriticalUpper/ScreenPopulation.lean": "32a6b0808cab72e6f9e86aa37c3cbfa411e771d8be29eea04d85973489843caf",
+    "lean/ThresholdHC/CriticalUpper/ScreenWork.lean": "5bf94e41c9cc93cadca3d452c4099a968bea2e29f05890e6a194442f3a002d94",
+    "lean/ThresholdHC/CriticalUpper/Unbiased.lean": "ef3456104bcc35d89bb8452c6154a86622f2411ec200c9058753bc3fd249eef5",
+    "lean/ThresholdHC/CriticalUpper/UnbiasedWork.lean": "0ba0df46b8de98e8ccae9102e89523f9b9c2643011183dffac7a02ff298f47bb",
+    "lean/ThresholdHC/CriticalUpper/WeightedCost.lean": "d04b2f658052f0977f70ee71c0efa5e9dd75e72ed7382d085e356cad2ebd7c0f",
+    "lean/ThresholdHC/Observable713/Classifier.lean": "1eccd5e2035467c6900899a2a627aeb600a8464bc3b6df800d1c259114709cae",
+    "lean/ThresholdHC/Observable713/Controller.lean": "575f21ed973cba28f610584f0fe1bcbb0de26c0b785abe367f709650dcbd4d57",
+    "lean/ThresholdHC/Observable713/Execution.lean": "f9c337854fdf2bfbcfe123ed8d3cf4bd12147a9f5daa5b095f6c13175138df72",
+    "lean/ThresholdHC/Observable713/Specification.lean": "09318a0a0886e98c11e964456f8e333c85b2431dea2cd3e91ca5509214df0ff4",
+    "lean/ThresholdHC/ObservableSimulation/LawUniqueness.lean": "0fa4a181aa36c5f0b66038b255f65fed319af436ac42d2d779705d04ffd3dcde",
+    "lean/ThresholdHC/ObservableSimulation/OriginalExperiment.lean": "fdb786b2cff5837a1f0cbbb4effb483531a9221a53b93f19be7058625c2de097",
+    "lean/ThresholdHC/ObservableSimulation/PopulationLaw.lean": "592c379d5b85d6dc160137c7cc07e3feb5f8bb03b5aa6eb97ac8abad3120def1",
+    "lean/ThresholdHC/ObservableSimulation/PopulationPath.lean": "cb83bb886a8d049c8d14c6193cac932a57fc4ba3e04c44623c6b9a525a963be9",
+    "lean/ThresholdHC/ObservableSimulation/SimulationCap.lean": "0a59633fdc0c207d92f3a5c0ea38814f8bd97dc0f7f28862b870dc0ec8db4d4b",
+    "lean/ThresholdHC/Proofs/Algebra.lean": "68efcc1bef2ab5407fa86b1e8fea52c2baeaf0001bfe5d548d0a58ee959fb155",
+    "lean/ThresholdHC/Proofs/Calibration.lean": "97dbc17ac82968fd9e8c161ac9acf75c4c6c701946aa5b568913c4b05b8d3777",
+    "lean/ThresholdHC/Proofs/Classifier.lean": "9558e82d1c6714256642a96e4660c79e21b5594495a23e02bf6d1d545aa260dc",
+    "lean/ThresholdHC/Proofs/Constants.lean": "702387511d6e4d86cf41a43f13a75f6fa7beff55286cb9d6fbd14d06957325d5",
+    "lean/ThresholdHC/Proofs/KL.lean": "ddf4b0067271296ea1836e44fe01fe55bf1143e14cf1f5b3473e38a196d966c3",
+    "lean/ThresholdHC/Proofs/Tier2/ClassifierBridge.lean": "ceea2164d069abbfdd9675c7aebeeb049cd0803de30b4cf8075a9f61c7131c57",
+    "lean/ThresholdHC/Proofs/Tier2/ClassifierExpectations.lean": "a4bbb2a23df6b3c039d0745a5c192bfb65db36716fac5ecff627abb84c04a323",
+    "lean/ThresholdHC/Proofs/Tier2/ClassifierModel.lean": "8c736576d3067324193032efcad8bcc5ec85e93fbd5e27c5b5d877fc54ebf0dd",
+    "lean/ThresholdHC/Proofs/Tier2/ClassifierMoments.lean": "a12ccbd80321028c93c750bfb88c0afdd667134b445f057cf8ba99f05a7b449c",
+    "lean/ThresholdHC/Proofs/Tier2/ClassifierPrefix.lean": "83cd014055fd20931b028f3cbe2ec318bfb3c8017bfd55af94bc16ad0cc49f04",
+    "lean/ThresholdHC/Proofs/Tier2/ClassifierProb.lean": "b65f5c0a09a2cd37be81034dd40c707848727bc76d6754f1b52ac4efc68a46ea",
+    "lean/ThresholdHC/Proofs/Tier2/ClassifierProbability.lean": "bae7b6d3d3fc0f3e8fd32bf626a316b44fac61b4c05593da98148dbe1a0e11c3",
+    "lean/ThresholdHC/Proofs/Tier2/ClassifierTelescoping.lean": "5234114cd7b228e9002c6e5f863b7c80ea72a143ec0ac4b8be531785be897989",
+    "lean/ThresholdHC/Proofs/Tier2/Information.lean": "4b62b5996af4e6c96cff51796745fc9b8dea356744b1ae7f0777ecc43b76fd16",
+    "lean/ThresholdHC/Proofs/Tier2/InformationCore.lean": "0a6a1af42b5b0af29db453982aabd1a4dbb615baf1284c8ecf6d14e5b0d58590",
+    "lean/ThresholdHC/Proofs/Tier2/RareEvent.lean": "20b7edea08ff5a3586efcfa9bd7af18edd85d230d532d431cf4a6f8de985cca2",
+    "lean/ThresholdHC/Proofs/Tier2/Transcript.lean": "e8b8feca5af14a68f23fa9cdc57eb28259f87c18d3ff092ca732b353daf4e640",
+    "lean/ThresholdHC/Proofs/Tier2/TranscriptBase.lean": "ef06442bc824d756f959d0c9711edbf8b84a61359d8d1a10fedb8dbfe5c201d7",
+    "lean/ThresholdHC/Proofs/Tier2/TranscriptLikelihood.lean": "7d051a6f2f028d912910c9d18533b6db90863328a7bdc6c87c4181fade7c489f",
+    "lean/ThresholdHC/Proofs/Tier2/TranscriptScalar.lean": "dc691a74b9b1915377df80cd2caac4feec5d7bee3938480b906afbdb04630fee",
+    "lean/ThresholdHC/RareAboveTwo/Average.lean": "77603a592eae62db709d22416c302613cc12195332b1b374decb21b5ecfa24bc",
+    "lean/ThresholdHC/RareAboveTwo/BandError.lean": "4d8258f45468d5d0cb005b69a14e6942568e354b82e7a6e7e256a5cef4cac0da",
+    "lean/ThresholdHC/RareAboveTwo/BandModel.lean": "c8200017ef1d3c9c35fb6df030aa8b3ded372fff8774e91e8d89ae6a614763d2",
+    "lean/ThresholdHC/RareAboveTwo/BandWork.lean": "32e0fa39ffb4eae350bc1df73d59fe5474e3684f034e4b12bdf69bba07f8eb27",
+    "lean/ThresholdHC/RareAboveTwo/Bias.lean": "881d296ab92e2032fee7a479acfa8673be10436059c9ecfc82e30da64e2f9ff6",
+    "lean/ThresholdHC/RareAboveTwo/Budget.lean": "d3415d729c6429cc344cedf4b2386755cb324ef736dab9e10ec4c259b91162f5",
+    "lean/ThresholdHC/RareAboveTwo/BudgetMath.lean": "f0cf388661cec407a360919098a3ada2ded916b4c0ce838624ac68a62b38773d",
+    "lean/ThresholdHC/RareAboveTwo/ChargedPath.lean": "d19196e8479e2b179b891ee9a9bdd14cbc3afcb706a617d373a3e70700dd974c",
+    "lean/ThresholdHC/RareAboveTwo/ConditionalWork.lean": "f0b5a83d15e7c1e6e55a8923d2a0f673005436935deb6b2d2a16dc74f405cbdc",
+    "lean/ThresholdHC/RareAboveTwo/Controller.lean": "71669905014954ea17b7ebaa8c0214ecd16848b11ce172d92a1e248e9c660d05",
+    "lean/ThresholdHC/RareAboveTwo/CoupledModel.lean": "3932bbfda31788d0c7957cd57a7bc6cab3d3e364a892bb7dd3955202c6950e15",
+    "lean/ThresholdHC/RareAboveTwo/Execution.lean": "13a2fc50dff729d68d144f3d07fd6f3eb7ca78c063e73426c09bafff03c986e5",
+    "lean/ThresholdHC/RareAboveTwo/FiniteMixture.lean": "d0d7262ace00131aac0b7946bfd5f7e28d1442a4a6ea4268745750723f13ab8d",
+    "lean/ThresholdHC/RareAboveTwo/FixedBounds.lean": "d38b85dfb88e19fe0efff2504537b8589c99f73e2e1b28e646de0bba8a3dab04",
+    "lean/ThresholdHC/RareAboveTwo/FixedExecution.lean": "95a7accf9e890646315a77414878d9dee5b3ab5b2d443854b2079d2b5080890a",
+    "lean/ThresholdHC/RareAboveTwo/FixedIdentities.lean": "bf294e9f66600fe281e9d768103bb67eff971c113814799e33b6f676b8cb20c7",
+    "lean/ThresholdHC/RareAboveTwo/FixedModel.lean": "76e256db9deec46826b780049acba0a7c3504762f87aeff14fb562874d89a444",
+    "lean/ThresholdHC/RareAboveTwo/Full.lean": "f1c2fe53fea9ebfb6e22cd80d17541b5d037a83b99f8997db824f498fa456b80",
+    "lean/ThresholdHC/RareAboveTwo/GapDistance.lean": "1c3ab35e624e957a3fb0535575f1a2e44576847d8f75ecec089033b9baa68cd9",
+    "lean/ThresholdHC/RareAboveTwo/GapKernel.lean": "d89182c589514f3001901c0522b4664bbb2f09d5c5ec3182fd110b403ed0a992",
+    "lean/ThresholdHC/RareAboveTwo/Increment.lean": "298391e52b058361713c5cd5b949decc4f6f30a6c9bed2bee695c1f8d1af091d",
+    "lean/ThresholdHC/RareAboveTwo/KernelDistance.lean": "ddddde73f93b93fe398f5127d14a4f81d87a1d012b0405ee3e1443cfd17508e4",
+    "lean/ThresholdHC/RareAboveTwo/Lower.lean": "d901ee796f7cc9f6bcfb15abffd07facf22263c3e7301530a456e5d95a29a49b",
+    "lean/ThresholdHC/RareAboveTwo/LowerSeparation.lean": "6a911504b2c383ed9dd6fbcb0de3e26ae583a3cc0595a5521a22358a46f1be6a",
+    "lean/ThresholdHC/RareAboveTwo/Margin.lean": "c431ec579001a762118fe53a98fafe39b7fa27d8e8da1eead9304f193125ff96",
+    "lean/ThresholdHC/RareAboveTwo/Minimax.lean": "00c9a615df79712796b0c434a4f215f97d0850e26a61359de07fc8680898b479",
+    "lean/ThresholdHC/RareAboveTwo/MixtureInformation.lean": "b6cc60ab180ff656b2d1ee5c04b3277b73dee7bf89b9c8101b8486aa8e00ac80",
+    "lean/ThresholdHC/RareAboveTwo/Model.lean": "e73349c6b4297fde20d3b3038e9eda089c60df0af3cab001caf7c58e9b0aa6a7",
+    "lean/ThresholdHC/RareAboveTwo/Nonvacuity.lean": "ab3ccd54909175e0f58f40224c0195e2fdd36dca1d1bbd2358dc8d414b746946",
+    "lean/ThresholdHC/RareAboveTwo/Parameters.lean": "b053f2de3eedd5de537e7fcf8b24d50d9d2fed350907c446174199ac2b61de75",
+    "lean/ThresholdHC/RareAboveTwo/PathBase.lean": "c957fc774c9462a6fb57baa9a96046a2a4fbde0275bff3a571333ae0830ebfa2",
+    "lean/ThresholdHC/RareAboveTwo/PathInformation.lean": "fd1bf2ceaf6058a9d3eb101343878d5cb39c05dbaabc208450f2df9a21efbd5c",
+    "lean/ThresholdHC/RareAboveTwo/PathSign.lean": "d48526a4a2b27c4f4c88ac53aba4a7762f0541dde98a269c6d7d0d5dd6454e06",
+    "lean/ThresholdHC/RareAboveTwo/PathVariation.lean": "9dd2a53c8a28c4fe890cda14adcd43a139bb4fbdba0b01d9050ec13789aad46f",
+    "lean/ThresholdHC/RareAboveTwo/PopulationError.lean": "dad17aea9a167c6825e73d0b9feb7840c5c4882d8759ec649a74b963452fd472",
+    "lean/ThresholdHC/RareAboveTwo/PopulationInformation.lean": "e382cafcedc55ebaaaf7645dba20b782a422ca1ef96f88175b7db54d6abbab7e",
+    "lean/ThresholdHC/RareAboveTwo/PopulationWork.lean": "76bb0c9922bf4dcc696215ceb08e4a3ad9f0bb8c34edc967e1e21358d38b5637",
+    "lean/ThresholdHC/RareAboveTwo/PowerBounds.lean": "d6c827a3a3fc89d65a9b84b0c4289ece173878ebe310d3ac88aea9f4f0cf0be3",
+    "lean/ThresholdHC/RareAboveTwo/PowerLaw.lean": "e0b7343314d920735817dad584cbbaa103f9bfd97d3949be19fefd4166bee4ac",
+    "lean/ThresholdHC/RareAboveTwo/PrefixInformation.lean": "bd1d3c0816f10e9090d8247be98d295305f0cb75b03df6d8cbf5a56208799d45",
+    "lean/ThresholdHC/RareAboveTwo/Psi.lean": "088e65698c59ea2f4b90bb8b15b40196513e13cc62c0a54c1f9b4a2cab9a0a9b",
+    "lean/ThresholdHC/RareAboveTwo/Realization.lean": "6c3d200f0e7f8b56879587c4a62f369e8d2d448505391b130f8853d35e3bbdc6",
+    "lean/ThresholdHC/RareAboveTwo/SignDistance.lean": "0be0cef97bd3077988ee01154d660999f4e17e610c96d90ebcbf2e0da3ad807c",
+    "lean/ThresholdHC/RareAboveTwo/SignInformation.lean": "ae1076da1463d7c231802cf4155556576eef4d7a83a902ae5fbc5cb3084dd2f6",
+    "lean/ThresholdHC/RareAboveTwo/SignMixture.lean": "ef0ae35ad9c9548dc63e1574ce95a1444b5efa136beef613e424913a2a87b2c8",
+    "lean/ThresholdHC/RareAboveTwo/Single.lean": "1459f5d10aa64ca0974f19055a8ef1f714fdbd4226e7e570faa766b33e30241e",
+    "lean/ThresholdHC/RareAboveTwo/Specification.lean": "53bab4bca5662f60659db55d83a497530dd39a974dde45b3514f394aa9482143",
+    "lean/ThresholdHC/RareAboveTwo/StageWork.lean": "59a8179766bb42611e428c9056d5e961f225e69240b42243c4d6fc1bf82b12cc",
+    "lean/ThresholdHC/RareAboveTwo/Terminal.lean": "ff80fb1bb2ffda6af6b666c4234501f8ea0fa94c6cbedb154bea29b2cc487025",
+    "lean/ThresholdHC/RareAboveTwo/TerminalInformation.lean": "c46fd1e682d89e7ed5f0b25af759f65878756dd2eba6f1d8dd0daf87b3a4e8d2",
+    "lean/ThresholdHC/RareAboveTwo/Unbiased.lean": "86f1b98c14ef9ed944910a470a65916d45c014bec634783ea73b9e2bb8969172",
+    "lean/ThresholdHC/RareAboveTwo/UnbiasedWork.lean": "514ef4098d52b76914fd1a44261d7588d2991304af2dfeae54b6f125cdef0be7",
+    "lean/ThresholdHC/RareAboveTwo/UniformWork.lean": "c0a848fca5088e3ddef36832d1df5a8484a2c87f960bd0704fc7d6316e58f308",
+    "lean/ThresholdHC/RareAboveTwo/WeightedMoment.lean": "f1dc16747bbc4815c2b91de10c77ee373a12892d60bcde6e68d29e051cdb1c09",
+    "lean/ThresholdHC/Statements.lean": "0873505b7c133561e82f63dcbba7f7a0a3da39d0c3692daee99d01882a757abf",
+    "lean/ThresholdHC/Statements2.lean": "51f85fee842aec2de331872b760ecd47e15715a84deaf5b8f08970bd9fa01414",
+    "lean/ThresholdHC/Tier3/Examples.lean": "d3c8da8c75721742709b56288caaeea9406c8ab2b22443ebe6fa5d68d69f0395",
+    "lean/ThresholdHC/Tier3/ExamplesModel.lean": "e03edb36c05e3e43601dddf4e8d510231f46bdb04a7b8b4f7bb884a2133e0cd5",
+    "lean/ThresholdHC/Tier3/IntegralLogSum.lean": "ecc8c3ca647b00fef691fbb2ecde8304c7f48e844a9c3a8a45a5fc9a948f94ff",
+    "lean/ThresholdHC/Tier3/Optimizer.lean": "7cc4481368339e0a0ae9ad24bc0f547bcbc0c25883ca2982e38fdd0042977f68",
+    "lean/ThresholdHC/Tier3/OptimizerModel.lean": "36c085b6409b1355247d5127ab4ee9fdb94e621c1aac8379fb1f119d607cae49",
+    "lean/ThresholdHC/Tier3/Randomized.lean": "3e74e2a34d509b577730eb041447d6f63c54fde8d551860cd1cdbf8c6b5926ab",
+    "lean/ThresholdHC/Tier3/RandomizedBase.lean": "87af7b31ba2c3cc9ff623cf403d954ffd7b8844c1b3af6e9283b823921ed8285",
+    "lean/ThresholdHC/Tier3/RandomizedModel.lean": "3a61f9b034ee58e45e903356c60037e4808fdb1a711d96b24f3013ef95716f6b",
+    "lean/ThresholdHC/Tier3/Stopping.lean": "8490ec062f045c47f7aad53ece5b9ce6224f5a3978a8798c76a2c6765ac527b1",
+    "lean/ThresholdHC/Tier3/StoppingBase.lean": "0989b9b554ea0c056ec9f296e463c1767dc3509400960c266593c64e3daaa51d",
+    "lean/ThresholdHC/Tier3/StoppingModel.lean": "36aed19aa97432a9068952e5d389fe6a992faad0da71984b7412204940aa3892",
+    "lean/ThresholdHC/Tier3/TranscriptRatio.lean": "49b87fb8ece824fd69d52f2d83b40050529f3c7a295ed59e214cb18d1f139d4d",
+    "lean/ThresholdHC/Tier4/BoundReduction.lean": "0e0325bb1e4d18804437177eab78ab1741a0b387f31b7231b8a1826124d067c0",
+    "lean/ThresholdHC/Tier4/Entropy.lean": "f02035deb7d23182c83ef57b55fa13557e95d49682d741f33092589e61aa39ac",
+    "lean/ThresholdHC/Tier4/FiniteDensity.lean": "7b4216aebc1b247486233e4ea86de2e5b67301526bc3f5b730b4db4ebd53cba2",
+    "lean/ThresholdHC/Tier4/Model.lean": "2271691c5af1c4936accbb9a5c62b6ea5cbc3e6bdd718b0b44a958cd7a057214",
+    "lean/ThresholdHC/Tier4/StoppedReconstruction.lean": "dbda7538200c8460fda13cb6b8a13710164ee267874f88611a20059db8db2060",
+    "lean/ThresholdHC/Tier5/BoundReduction.lean": "c5f75679894a49d84d4d267957e45f1b01f1efe77c9a67ea8b24377d34916085",
+    "lean/ThresholdHC/Tier5/CreationBase.lean": "c77ca55ab89d3d286443be9699ebca100706851f2f33393c82770209362250ea",
+    "lean/ThresholdHC/Tier5/CreationExample.lean": "d47928e11a0b12f2bba93b9c52a32a15d5aac42d7f8aa7b0f5d317f8fc129b41",
+    "lean/ThresholdHC/Tier5/CreationFresh.lean": "c31a450f8f084400e123eb90ee5bfb0b70068f683b3873902f307e1697e4988f",
+    "lean/ThresholdHC/Tier5/CreationModel.lean": "b767058304f884582dc976a59b5d31671d417717097b60280d6b4533acae5871",
+    "lean/ThresholdHC/Tier5/CreationPadding.lean": "0749f9235601e37c0e141414b6347c9df8b3028c9c44924ef324739eb3e5cf68",
+    "lean/ThresholdHC/Tier5/CreationProduct.lean": "453b2c028190a1cddc2400a213a77b3c137436b64720531dbfec34a22d92bb9b",
+    "lean/ThresholdHC/Tier5/Entropy.lean": "23cdfaa93a43a1198ca09a2517add6045eff94dd5cc0b77bf05b60ffb4153eb6",
+    "lean/ThresholdHC/Tier5/EntropyPrefix.lean": "3372f0be782e5e776db8ef0ce0ce73f1dd22527d0f92994254d5d5d42942080e",
+    "lean/ThresholdHC/Tier5/FiniteCreation.lean": "382ea9fae97e5c8184a129f29b5004aa91416a26350445971315fcc28bd0d017",
+    "lean/ThresholdHC/Tier5/FiniteEnvironment.lean": "cdfd42cf5b704fd7577de9dc04fed2fcac94830cd7207240d704eb702f14b669",
+    "lean/ThresholdHC/Tier5/FiniteJoint.lean": "b8c826351070c9c8f8eb92ae68e9499c32e77e777c9438aa15ec1cb7db17956a",
+    "lean/ThresholdHC/Tier5/Full.lean": "21ffd3cbc7511e0dd7ab367c849498e0e4715722ad999d74a791c2b518aa21d2",
+    "lean/ThresholdHC/Tier5/Model.lean": "d0bd50268eb858d2acb14f0f220f228d6a1d8b211dd4359864c35faca6bf0fdd",
+    "lean/ThresholdHC/Tier5/PriorRatio.lean": "a116b733974fd4b0b1bddaf4c7eed5d161595b5a228fc59fbfcf68a5fbcc99d5",
+    "lean/ThresholdHC/Tier5/Specification.lean": "e8039a4b9277f0b59ffb36ca016d97020a5d3e6e5a6568c43be706c4f553fa12",
+    "lean/ThresholdHC/Tier5/StoppingBase.lean": "9ffc7fc2c7cf05885bbf88759ea62e436b525798378eee7abeb0dd4fb539815a",
+    "lean/ThresholdHC/Tier5/StoppingEntropy.lean": "4547b54ca46c146ff10e46c00d1edb5197c5e1e09bf80a6905a92c86248ad43c",
+    "lean/ThresholdHC/Tier5/StoppingFull.lean": "dfa01feebc73e7e56107b4d7efd4d28e5d56c95cce9045968596d00087e758d6",
+    "lean/ThresholdHC/Tier6/AlgorithmCore.lean": "ba81c4bbbcba907337a82b0350135c4f734239fcd2c5f4685d87d6ea72452ad8",
+    "lean/ThresholdHC/Tier6/AlgorithmModel.lean": "4494049e8205ca83eb635c8f82f0f7661f7ba61bc2ccc29966dcd9a5e47eeea5",
+    "lean/ThresholdHC/Tier6/AlgorithmNonempty.lean": "b1e09e11c164460e353770608783cd25a709ac39448f9a0a6fbb6f0d19bf7e73",
+    "lean/ThresholdHC/Tier6/AlgorithmRisk.lean": "52c7faee2d5c8cd8b56a8aa8f371d1ea40b7f4c8731b513c881891525ea5e89f",
+    "lean/ThresholdHC/Tier6/Full.lean": "1f6fb3dbd4a3171a6c2167c8b14c755624978705d82651ae8a88cacba839a0e7",
+    "lean/ThresholdHC/Tier6/HardPair.lean": "2ac5d16ae7e518d0079c141bf0660c10ae726b3f5274322d1257362a9650c24d",
+    "lean/ThresholdHC/Tier6/HardPairModel.lean": "003aa6f400fe62d6e0e074ef2df8b4d3afc5e79db73800d529ae11c0cd89e068",
+    "lean/ThresholdHC/Tier6/ModelReduction.lean": "93bab2a073295276f84fed9d093023b792431ff08d94b0c9b2a72731e52962a0",
+    "lean/ThresholdHC/Tier6/Process.lean": "8bdb6b9619ac8d351717be8adfe34361f4fca9c1881289d8733090982682eedf",
+    "lean/ThresholdHC/Tier6/ProcessIntegral.lean": "7ff9a0e3da430b2a2c6abda8cd783a5068acd8798dcb6580cf1f767cd20572cd",
+    "lean/ThresholdHC/Tier6/ProcessModel.lean": "c7da1211a83f0925da7f1ce0b573f155c08edbfaa0564cc6dc26e640d51a625b",
+    "lean/ThresholdHC/Tier6/ProcessWeights.lean": "280214be58ce854b84c13d424e570d5cd955f7c27ffe1afd3646e103edece733",
+    "lean/ThresholdHC/Tier6/RiskReduction.lean": "a00b61df019f1968cb688b16eb37a610e17cae610438a43045bb927e0028768b",
+    "lean/ThresholdHC/Tier6/Specification.lean": "17308c9cbaf3a8e45602723d2448515b73b1ddcdf157c417de16a13cc5f50148",
+    "lean/ThresholdHC/Tier6/Testing.lean": "da29bc8177fd0c139b49e3c52b169d402f82285e378822deb2d7422ca68793bb",
+    "lean/ThresholdHC/Tier6/TestingFinite.lean": "588e6f50a2dc9a227c941672d330d8e3b3f6582a4e41edca2be5fe2894f88fd2",
+    "lean/ThresholdHC/Tier6/TestingModel.lean": "941b5583b6a9d8776c38ac9de371b5f30a7a2c580b4cd627df7935665ca80944",
+    "lean/ThresholdHC/UnbiasedConverse/Model.lean": "c2ae79908c149df630d60033d3f51f0a03f18f1f58b8335bcaf4dbbdfe397f06",
+    "lean/ThresholdHC/Uniform713/Arithmetic.lean": "80ff25f6c52834b8374167cbafcf01acd08acabe7f4642fe04f195c77209fb05",
+    "lean/ThresholdHC/Uniform713/Classifier.lean": "432b97eeb99906269a89ec5688bb74c39f4eeb09029334335b32ef94275aef35",
+    "lean/ThresholdHC/Uniform713/ClassifierModel.lean": "d633c695062bb5b9a468e93a45ad7aeb4571d19efb87d9f3b38c6ecbf7ec1a77",
+    "lean/ThresholdHC/Uniform713/Common.lean": "419b64d64f21f718214caabee9927b174d512f3c129139be26605400853e3dab",
+    "lean/ThresholdHC/Uniform713/Concentration.lean": "b494cc19ba348e05533c0a6f7715de8bda306c94e4ad613bb8515e5af6b7c149",
+    "lean/ThresholdHC/Uniform713/CoupledWork.lean": "1c710be2d52c7815330a814aab3ca96e078caadafda04b7ae472a36d4a15bfa4",
+    "lean/ThresholdHC/Uniform713/Estimator.lean": "39a49e46489f73b73c2fdd418134edf41ae5a6dfd8cefd0bf39d765d6f50780e",
+    "lean/ThresholdHC/Uniform713/Series.lean": "e88d5540baff863c93de835cada6420cd76c759d88d6aa4435a4a4f991dcb2aa",
+    "lean/ThresholdHC/Uniform713/Specification.lean": "a3fd9513084b2168cf86fe74962c14df956970c28ff270795591cf45037d9a86",
+    "lean/ThresholdHC/Uniform713/WorkArithmetic.lean": "ac7482f757849fb39467917ba9f423e2ed5cd65c2b765be6279fd9016b5932a9",
+    "tools/rare_above_two_specification_freeze.json": "b8e9fb3ae2e2dc6a425bc40984d371f57b262212bdf064e82cbe91fa63296cba",
+    "tools/verify_blind_upper_components.py": "8181cd52a9dbd88120dd94785a0e6ccb35a8a5cb0e34e839bf8c8a1d69b00f8b",
+    "tools/verify_rare_above_two.py": "72d6b41d9d5c079e0defe8907b1bc44f40368044f0769761a37a7373aa9a6a53",
+    "tools/verify_tier6.py": "7295c1609c57be9951fc46f3e210f7f7682083470cf94bbe2dd89a387b0f075e"
+  },
+  "exact_targets": {
+    "ThresholdHC.RareAboveTwo.power_law_exists": "ThresholdHC.RareAboveTwo.PowerLawExistenceStatement",
+    "ThresholdHC.RareAboveTwo.rare_single_coin": "ThresholdHC.RareAboveTwo.RareSingleCoinStatement",
+    "ThresholdHC.RareAboveTwo.rare_supported_lower": "ThresholdHC.RareAboveTwo.RareSupportedLowerStatement",
+    "ThresholdHC.RareAboveTwo.above_two_upper": "ThresholdHC.RareAboveTwo.AboveTwoUpperStatement",
+    "ThresholdHC.RareAboveTwo.above_two_minimax": "ThresholdHC.RareAboveTwo.AboveTwoMinimaxStatement",
+    "ThresholdHC.RareAboveTwo.above_two_psi": "ThresholdHC.RareAboveTwo.AboveTwoPsiStatement",
+    "ThresholdHC.RareAboveTwo.rare_nonvacuity": "ThresholdHC.RareAboveTwo.RareNonvacuityStatement"
+  },
+  "exact_targets_checked": 7,
+  "rare_above_two_verified": true,
+  "commands": [
+    {
+      "command": [
+        "lake",
+        "build",
+        "ThresholdHC.RareAboveTwo.BandModel",
+        "ThresholdHC.RareAboveTwo.Model",
+        "ThresholdHC.RareAboveTwo.PathBase",
+        "ThresholdHC.RareAboveTwo.BandError",
+        "ThresholdHC.RareAboveTwo.BudgetMath",
+        "ThresholdHC.RareAboveTwo.ChargedPath",
+        "ThresholdHC.RareAboveTwo.PathInformation",
+        "ThresholdHC.RareAboveTwo.Specification",
+        "ThresholdHC.RareAboveTwo.TerminalInformation",
+        "ThresholdHC.RareAboveTwo.BandWork",
+        "ThresholdHC.RareAboveTwo.Margin",
+        "ThresholdHC.RareAboveTwo.MixtureInformation",
+        "ThresholdHC.RareAboveTwo.Nonvacuity",
+        "ThresholdHC.RareAboveTwo.PathVariation",
+        "ThresholdHC.RareAboveTwo.PowerLaw",
+        "ThresholdHC.RareAboveTwo.SignInformation",
+        "ThresholdHC.RareAboveTwo.FiniteMixture",
+        "ThresholdHC.RareAboveTwo.Parameters",
+        "ThresholdHC.RareAboveTwo.Psi",
+        "ThresholdHC.RareAboveTwo.WeightedMoment",
+        "ThresholdHC.RareAboveTwo.KernelDistance",
+        "ThresholdHC.RareAboveTwo.PathSign",
+        "ThresholdHC.RareAboveTwo.PowerBounds",
+        "ThresholdHC.RareAboveTwo.Terminal",
+        "ThresholdHC.RareAboveTwo.PopulationError",
+        "ThresholdHC.RareAboveTwo.SignMixture",
+        "ThresholdHC.RareAboveTwo.StageWork",
+        "ThresholdHC.RareAboveTwo.ConditionalWork",
+        "ThresholdHC.RareAboveTwo.CoupledModel",
+        "ThresholdHC.RareAboveTwo.SignDistance",
+        "ThresholdHC.RareAboveTwo.Bias",
+        "ThresholdHC.RareAboveTwo.Controller",
+        "ThresholdHC.RareAboveTwo.GapKernel",
+        "ThresholdHC.RareAboveTwo.PopulationWork",
+        "ThresholdHC.RareAboveTwo.Execution",
+        "ThresholdHC.RareAboveTwo.GapDistance",
+        "ThresholdHC.RareAboveTwo.Increment",
+        "ThresholdHC.RareAboveTwo.UniformWork",
+        "ThresholdHC.RareAboveTwo.PopulationInformation",
+        "ThresholdHC.RareAboveTwo.Unbiased",
+        "ThresholdHC.RareAboveTwo.PrefixInformation",
+        "ThresholdHC.RareAboveTwo.UnbiasedWork",
+        "ThresholdHC.RareAboveTwo.Average",
+        "ThresholdHC.RareAboveTwo.LowerSeparation",
+        "ThresholdHC.RareAboveTwo.Realization",
+        "ThresholdHC.RareAboveTwo.FixedModel",
+        "ThresholdHC.RareAboveTwo.Lower",
+        "ThresholdHC.RareAboveTwo.Single",
+        "ThresholdHC.RareAboveTwo.FixedExecution",
+        "ThresholdHC.RareAboveTwo.FixedIdentities",
+        "ThresholdHC.RareAboveTwo.FixedBounds",
+        "ThresholdHC.RareAboveTwo.Budget",
+        "ThresholdHC.RareAboveTwo.Minimax",
+        "ThresholdHC.RareAboveTwo.Full"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        ".audit\\RareAboveTwo.lean"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "axioms": {
+    "ThresholdHC.RareAboveTwo.AboveTwoMinimaxStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.AboveTwoPsiStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.AboveTwoUpperStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.ExactPowerLaw": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.FixedConsumes": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.FixedConsumes.append": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.FixedConsumes.path_eq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.FixedConsumes.state_eq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.FixedState": [],
+    "ThresholdHC.RareAboveTwo.PowerLawExistenceStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.PowerMargin": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.RareBudget": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.RareNonvacuityStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.RarePrior": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.RareSeed": [],
+    "ThresholdHC.RareAboveTwo.RareSingleCoinStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.RareSupportedLowerStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.aboveTwoRate": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.above_two_minimax": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.above_two_psi": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.above_two_theory": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.above_two_upper": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.bandBoundary": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.bandBoundary_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.bandBoundary_sq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.bandCost": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.bandCost_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.bandCost_pos": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.bandDecision": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.bandDecision_zero_or_one": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.bandProcedure": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.bandStop": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.bandStop_congr_until": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.bandStop_eq_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.bandStop_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.bandStop_min": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.bandStop_spec": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.bandValue": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.band_early_error": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.band_error_negative": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.band_error_positive": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.band_prefix_ext": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.band_survival_negative": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.band_survival_positive": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.band_work_power_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.band_work_survival_identity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.band_wrong_negative": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.band_wrong_positive": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.batchIndex": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.batchIndex_bounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.binary_difference_sq_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.binary_difference_sq_le_one": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.boolWordsMeasurableSpace": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.budgetEstimator": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.budget_guarantees": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.calibratedCost": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.calibratedCost_conditional_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.calibratedCost_integrable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.calibratedError": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.calibratedError_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.calibratedError_bounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.calibratedError_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.calibratedValue": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.calibratedValue_bias": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.calibratedValue_bias_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.calibratedValue_binary": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.calibratedValue_bounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.calibratedValue_integrable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.calibratedValue_mean_tendsto": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.calibrated_difference_coin_moment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.calibrated_difference_population_moment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.calibrated_difference_sq_integrable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.calibrated_increment_integrable_sq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.calibrated_increment_succ_moment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.calibrated_increment_zero_moment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.calibrated_normalized_moment_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.calibrated_normalized_moments_summable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.calibrated_prefix_ext": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.callCost": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.callValue": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.call_prefix_ext": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.call_projection_preserving": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.chargedWork": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.chargedWork_expectation_succ": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.chargedWork_scale": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.chargedWork_snoc": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.charged_kl_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.charged_kl_step": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.charged_variation_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.charged_variation_step": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.coinWork": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.coinWork_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.conditionalValueMean": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.conditionalValueMean_bias": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.conditionalValueMean_bounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.constantEstimator": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.constant_experiment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.constant_rare_budget": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.constant_risk": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.constant_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.coupledCost": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.coupledCost_population_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.coupledCost_pos": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.coupledCost_succ_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.coupledValue": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.coupledValue_observed": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.coupled_prefix_ext": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.creation_rare_information": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.exactPower_margin": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.exactPower_support": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.exp_neg_le_rpow": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.expectedWork_eq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.finite_distance_integrable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.finite_distance_integral_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.finite_distance_sum_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.finite_mixture_activation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.finite_mixture_distance": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.finite_mixture_kl": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.finite_population_rare_information": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixedCallWord": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixedCallWords": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixedCallWords_get": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixedCallWords_length": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixedCallWords_succ": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixedConsumes_call": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixedConsumes_call_prefix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixedConsumes_prefix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixedEstimator": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixedHaltTime": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixedLabel": [],
+    "ThresholdHC.RareAboveTwo.fixedOutput": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixedOutput_at_halt": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixedPolicy": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixedPolicy_measurable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixedRun": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixedRun_absorbs": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixedRun_append": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixedRun_call_complete": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixedRun_call_partial": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixedStatePolicy": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixedStep": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixedTranscript": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixedTranscript_length": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixedTranscript_succ": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixedWordsOutput": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixedWordsOutput_calls": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixed_expectedWork_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixed_populationPath_eq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixed_population_output": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixed_population_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.fixed_squaredRisk_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.flatSign": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.flatSign_mean": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.gapKernel": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.gapKernel_integrable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.gapKernel_measurable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.gapKernel_total": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.gapMixture": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.gapMixture_mix_update": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.gapMixture_total": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.gapMixture_zero_le_twice": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.gap_rare_distance": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.gap_sign_distance": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.half_rarity_risk": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.idleEstimator": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.idle_risk": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.idle_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.indicator_power_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.initialLevel": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.initialLevel_bounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.integrable_bandWork": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.inverse_gap_memLp": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.inverse_power_tail": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.large_budget_bounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.log_weighted_inverse_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.margin_gaussian_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.margin_inverse_integrable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.margin_inverse_integral": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.margin_inverse_moment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.margin_quadratic": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.mass_l1_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.measurable_bandCost": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.measurable_bandDecision": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.measurable_bandStop": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.measurable_bandValue": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.measurable_bandWork": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.measurable_calibratedCost": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.measurable_calibratedError": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.measurable_calibratedValue": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.measurable_callCost": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.measurable_callValue": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.measurable_conditionalValueMean": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.measurable_coupledCost": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.measurable_coupledValue": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.measurable_fixedHaltTime": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.measurable_fixedOutput": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.measurable_fixedPolicy": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.measurable_fixedRun": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.measurable_fixedStep": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.measurable_fixedWordsOutput": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.measurable_output": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.measurable_policy": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.measurable_powerQuantile": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.measurable_rareArrayWork": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.measurable_rareCalls": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.moment_of_power_tail": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.negativeThreshold": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.negativeThreshold_error": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.negativeThreshold_exp": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.negativeThreshold_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.observableDecisionLaw": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.observableEstimator": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.observablePrefixLaw": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.observablePrefixLaw_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.observable_eventual_tape_reconstruction": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.observable_tape_measurable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.observable_terminal_affinity_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.originalTape_integral_mixture": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.output": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.output_law": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.output_lintegral": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.output_mean": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.output_memLp": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.output_second_moment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.pathProb_zero_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.path_kl_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.path_kl_step": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.path_sign_distance": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.path_support_pair": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.path_work_succ": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.policy": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.policy_word": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.populationError": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.populationError_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.populationError_integrable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.population_output": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.population_path": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.population_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.population_work_moment_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.positiveThreshold": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.positiveThreshold_error": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.positiveThreshold_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.powerGapLaw": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.powerGapLaw_cdf": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.powerGapLaw_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.powerQuantile": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.powerQuantile_le_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.power_law_exists": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.priorMix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.priorMix_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.priorMix_sqrt_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.priorMix_total": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.probability_kernel_integrable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rareArrayWork": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rareArrayWork_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rareAverage": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rareAverage_mse": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rareCalls": [],
+    "ThresholdHC.RareAboveTwo.rareCalls_preserving": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rareMinimaxRisk": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rareObjective_le_rarity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rareObjective_margin_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rarePsi": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rarePsi_supported_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rareReady": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rareReady_word": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rareRisk": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rareSeedLaw": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rareSeedLaw_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rareUnbiasedProcedure": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rareUnbiasedProcedure_output": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rareUnbiasedProcedure_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rareUnbiased_mean": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rareUnbiased_memLp": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rareUnbiased_second_moment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rareUnbiased_work_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rare_lower_at_separation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rare_nonvacuity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rare_prefix_information": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rare_single_coin": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rare_supported_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rarity_log_power_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.rateCoefficient": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.scaled_inverse_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.scaled_work_kernel": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.signParameter": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.signParameter_bounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.signWeight": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.signWeight_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.sign_average_override": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.sign_kl_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.small_budget_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.sqrt_allocation_memLp": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.sqrt_square_le_abs": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.sqrt_square_le_kl": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.stepProb_zero_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.sum_coinWork_le_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.sum_sqrt_distance": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.summable_real_power_geometric": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.survival_power_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.terminalLevel": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.terminal_gaussian_error": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.threshold_envelopes": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.threshold_power_envelope": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.transcript_mix_update": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.transcript_sign_distance": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.uniformUnit_ae_positive": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.uniform_calibrated_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.uniform_unbiased_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.update_range": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.upperRate": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.upperRate_pos": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.upperRate_square": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.usedRareTapes": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.usedRareTapes_self": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.usedRareTapes_succ": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.weighted_inverse_moment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.workCoefficient": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.workCoefficient_pos": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.workKernel": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.workKernel_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.RareAboveTwo.workKernel_summable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "audited_modules": 54,
+  "audited_declarations": 322
+}

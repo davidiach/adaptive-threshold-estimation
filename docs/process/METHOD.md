@@ -225,8 +225,9 @@ The [active completion ledger](../WORKPLAN.md) and
 [critical follow-up audit](../CRITICAL_AUDIT.md) distinguish completed components
 from remaining work. The original upper theorem, matching critical upper,
 exact Psi comparison, unbiasedness converse, observable 713 construction,
-confidence characterization, and the RMS and confidence lower bounds with
-revealed or adaptively selected magnitudes are now formally proved. The converse
+confidence characterization, the RMS and confidence lower bounds with
+revealed or adaptively selected magnitudes, and the alpha > 2 rare-event
+minimax rate are now formally proved. The converse
 and construction also give the full unbiased-existence characterization in the
 same model. The other rare-event regimes and auxiliary results retain their
 stated paper-proof scopes. More proof
