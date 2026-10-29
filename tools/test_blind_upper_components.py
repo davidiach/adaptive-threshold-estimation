@@ -45,6 +45,38 @@ class BlindUpperAuditTests(unittest.TestCase):
             with self.subTest(lines=lines), self.assertRaises(ValueError):
                 validate_reports("\n".join(lines), 0, self.roots)
 
+    def test_sorry_warning_rejected(self):
+        # Anonymous examples are not axiom-audited, so the warning is the evidence.
+        for warning in ("Audit.lean:3:0: warning: declaration uses `sorry`",
+                        "Audit.lean:3:0: warning: declaration uses 'sorry'"):
+            output = "\n".join(self.lines + [warning])
+            with self.subTest(warning=warning), self.assertRaisesRegex(ValueError, "sorry"):
+                validate_reports(output, 0, self.roots)
+
+    def test_primed_root_names_are_read(self):
+        output = "'A.foo'' depends on axioms: [propext]\n'A.bar' does not depend on any axioms"
+        self.assertEqual(validate_reports(output, 0, {"A.foo'", "A.bar"}),
+                         {"A.foo'": ["propext"], "A.bar": []})
+
+    def test_proof_escapes_missed_by_the_frozen_pattern_rejected(self):
+        hidden = "set_option debug.skipKernelTC true\ntheorem hidden : False := by sorry\n"
+        for source in ("example : Statement := by admit\n",
+                       'def a : String := "/-"\n' + hidden + 'def b : String := "-/"\n',
+                       'def a : String := "--" ; run_cmd pure ()\n',
+                       '#print "\'A.foo\' does not depend on any axioms"\n'):
+            with self.subTest(source=source):
+                self.assertIsNotNone(audit.FORBIDDEN.search(audit.strip_comments(source)))
+        self.assertIsNone(audit.FORBIDDEN.search(audit.strip_comments(
+            "/- \"quoted\" admit -/\ntheorem admits_x' : True := trivial -- \"note\"\n")))
+
+    def test_sorry_warning_cannot_be_silenced(self):
+        # The frozen pattern's \bsorry\b also matches the option name.
+        for option in ("warn.sorry", "«warn.sorry»", "«warn».«sorry»"):
+            source = f"set_option {option} false in\nexample : Statement := by stop rfl\n"
+            with self.subTest(option=option):
+                self.assertIsNotNone(audit.TIER6_FORBIDDEN.search(audit.strip_comments(source)))
+                self.assertIsNotNone(audit.FORBIDDEN.search(audit.strip_comments(source)))
+
     def test_nonstandard_axioms_rejected(self):
         for axiom in ("sorryAx", "untrusted_assumption"):
             lines = self.lines.copy()

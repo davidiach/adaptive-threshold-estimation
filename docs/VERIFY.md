@@ -244,10 +244,14 @@ Route A Lean roots after the complete Tier 6 audit. These replay checks do
 not themselves certify the continuum paper proof.
 
 Historical research `validate.py` and acceptance scripts preserve their original
-checkout snapshots, including the old CI workflow. Replay those at the source
-commits named in their checkpoints. They may reject an integrated checkout
-because its workflow and completed formalization have advanced; their original
-locks and recorded evidence have not been rewritten.
+checkout snapshots, including the old CI workflow, so they may reject an
+integrated checkout whose workflow and formalization have advanced. The
+critical-two, nonlinear-critical, Route A and minimax-audit snapshots also
+captured an uncommitted `constants/candidate.json`, so their scripts reject
+every clean checkout, including their source commits; the minimax-audit
+acceptance records `valid: false` instead of stopping. Use
+`python tools/verify_research.py` to replay their locked identities and finite
+diagnostics. Their original locks and recorded evidence have not been rewritten.
 
 The population replay additionally checks both sealed research packages,
 recomputes exact single-coin and population arithmetic, finite Bayes policies,
@@ -315,20 +319,24 @@ python tools/verify_tier5.py --sequential --require-complete
 python tools/verify_tier6.py --sequential --require-complete
 ```
 
-The first command rebuilds the scored proof modules and runs the frozen scorer plus an independent audit. The arithmetic command checks the separate scalar lemmas. The final three commands enforce complete proofs of their exact specifications and check their source locks and transitive axioms. Passing arithmetic or numerical checks alone does not establish those probability theorems.
+The first command rebuilds the scored proof modules and runs the frozen scorer plus an independent audit. The arithmetic command checks the separate scalar lemmas. The final five commands enforce complete proofs of their exact specifications and check their source locks and transitive axioms. Passing arithmetic or numerical checks alone does not establish those probability theorems.
 
 ## Critical-regime paper checkpoint
 
 The earlier restricted-class critical note remains a reviewed paper proof.
-Its preservation, exact scalar diagnostics, current 34 guard regressions and nine
-finite Fisher-policy replays run with:
+Its source-lock preservation, exact scalar diagnostics and nine finite
+Fisher-policy replays are re-run by:
 
 ```sh
-python research/2026-10-27-critical-two/validate.py
+python tools/verify_research.py
 ```
 
-This writes only that research directory's diagnostics; it does not replace
-published results or rebuild unchanged Lean dependencies. The
+This writes fresh evidence to a temporary directory, or to `--output-dir`; it
+does not replace published results or rebuild Lean dependencies. The guard
+regressions are the `tools/test_*.py` suites listed above;
+`python -m unittest discover -s tools -p 'test_*.py' -v` runs them all.
+The package's own `validate.py` cannot be replayed from a clean checkout, as
+noted above. The
 [validation record](../research/2026-10-27-critical-two/validation.json) records
 exact commands, exit codes, source hashes and limits. The numerical checks do
 not prove the paper theorem. Compile the standalone

@@ -219,6 +219,12 @@ class MajorityVoteTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             majority_vote_estimate(lambda: (lambda: True), 10, 4)
 
+    def test_numpy_integer_counts_accepted(self):
+        share = majority_vote_estimate(lambda: (lambda: True), np.int64(10), np.int64(3))
+        self.assertEqual(share, 1.0)
+        with self.assertRaises(ValueError):
+            majority_vote_estimate(lambda: (lambda: True), 10, 3.0)
+
 
 if __name__ == "__main__":
     unittest.main()

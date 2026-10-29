@@ -290,5 +290,8 @@ marginals, a stopping-rule identity, concentration bounds, and finite series.
   uniformly; second-moment and work series have monotone limits. The untruncated 713 theorem is on the
   `Uniform713` track.
 - The minimax lower and upper theorems as wholes, and the power-margin rates.
-  These remain further work beyond the completed Tier 3 specification.
+  Both minimax theorems are now proved separately, in
+  [Tier 6](../../lean/ThresholdHC/Tier6/Full.lean) and
+  [BlindUpper](../../lean/ThresholdHC/BlindUpper/Full.lean), and the critical
+  power-margin rate is Lean-checked; the other power-margin rates remain paper proofs.
 - Any optimality claim for 713. The lower bound remains 1/16.

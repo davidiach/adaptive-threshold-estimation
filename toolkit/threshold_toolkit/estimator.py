@@ -13,6 +13,7 @@ the error. The budget is an average: a single run can use more.
 """
 
 import math
+import numbers
 import random
 from dataclasses import dataclass
 from typing import Callable, Optional, Tuple
@@ -156,10 +157,12 @@ def majority_vote_estimate(new_item: Callable[[], Callable], items: int,
     `items` and `flips_per_item` from a guess at the success rates; that
     choice is where this plan's accuracy comes from.
     """
-    if not isinstance(items, int) or items < 1:
+    if not isinstance(items, numbers.Integral) or items < 1:
         raise ValueError("use at least one item")
-    if not isinstance(flips_per_item, int) or flips_per_item < 1 or flips_per_item % 2 == 0:
+    if (not isinstance(flips_per_item, numbers.Integral) or flips_per_item < 1
+            or flips_per_item % 2 == 0):
         raise ValueError("flips_per_item must be odd, so every item has a majority")
+    items, flips_per_item = int(items), int(flips_per_item)
     above = sum(2 * block_flipper(new_item(), batched)(flips_per_item) > flips_per_item
                 for _ in range(items))
     return above / items

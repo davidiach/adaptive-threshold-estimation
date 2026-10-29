@@ -12,7 +12,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from threshold_toolkit.__main__ import main, read_rates
 from threshold_toolkit.planner import (EvenlySpread, GuessedRates, _calls, _majority_plan,
-                                       _odd_flip_counts, binomial_tail,
+                                       _odd_flip_counts, _simulate_run, binomial_tail,
                                        difficulty, floor_budget, majority_plan_for_budget,
                                        majority_plan_for_target, plan_target, simulate)
 
@@ -210,6 +210,50 @@ class SimulationTests(unittest.TestCase):
         self.assertGreater(sim.mean_flips, 256 * 0.7)
         self.assertLessEqual(sim.flips_p90, sim.flips_p99)
 
+    def test_chunked_runs_keep_the_calibration(self):
+        # Tiny chunks split both pilot streams and the production average.
+        population = GuessedRates([0.85, 0.6, 0.52, 0.4])
+        level_cap = 4
+        exact = np.mean([exact_positive_probability(p, 2 ** level_cap) for p in population.rates])
+        rng = np.random.default_rng(5)
+        with patch("threshold_toolkit.planner.MAX_CHUNK", 8), \
+                patch("threshold_toolkit.planner._calls", wraps=_calls) as calls:
+            runs = np.array([_simulate_run(population, level_cap, rng) for _ in range(4000)])
+        self.assertEqual(max(call.args[2] for call in calls.call_args_list), 8)
+        raw, flips = runs[:, 0], runs[:, 1]
+        self.assertLess(abs(raw.mean() - exact), 5 * raw.std() / math.sqrt(raw.size))
+        # Expected total flips are exactly 4 * cap - (mean flips per call).
+        _, costs = _calls(population, level_cap, 1_000_000, rng)
+        expected = 4 * 2 ** level_cap - costs.mean()
+        self.assertLess(abs(flips.mean() - expected), 5 * flips.std() / math.sqrt(flips.size))
+
+    def test_budgets_too_large_to_simulate_are_rejected(self):
+        population = GuessedRates([0.9, 0.3])
+        for budget in (1e10, 1e300):
+            with self.subTest(budget=budget), self.assertRaises(ValueError):
+                simulate(population, budget, runs=2)
+        # A generous cap is fine when the search stops long before it.
+        self.assertLess(plan_target(population, 0.1, runs=2, max_budget=1e10).search_limit, 1e10)
+
+    def test_target_search_can_finish_before_an_oversized_ceiling(self):
+        # Every output is exactly zero, so even this tight target needs only the
+        # first trial, although the worst-case majority plan has a huge budget.
+        plan = plan_target(GuessedRates([0.0]), 1e-5, max_budget=1e10)
+        self.assertEqual(plan.search_limit, 1e10)
+        self.assertEqual([trial.budget for trial in plan.trials], [4])
+        self.assertEqual(plan.recommended.rms_error, 0.0)
+        self.assertEqual(plan.recommended.runs, 200)
+
+    def test_target_search_rejects_only_the_first_oversized_trial(self):
+        trials = []
+        # This seeded population does not meet the target at either allowed
+        # budget. A small limit tests the failure without expensive simulations.
+        with patch("threshold_toolkit.planner.MAX_SIMULATED_BUDGET", 8):
+            with self.assertRaisesRegex(ValueError, "too large to simulate"):
+                plan_target(GuessedRates([1.0]), 1e-5, runs=2,
+                            max_budget=16, progress=trials.append)
+        self.assertEqual([trial.budget for trial in trials], [4, 8])
+
 
 class CommandLineTests(unittest.TestCase):
     def run_cli(self, *args):
@@ -249,12 +293,19 @@ class CommandLineTests(unittest.TestCase):
         for args in (("--rates", "0.5", "--budget", "1000"),
                      ("--rates", "0.9,0.3", "--budget", "inf"),
                      ("--rates", "0.9,0.3", "--target-error", "inf"),
-                     ("--rates", "0.9,0.3", "--target-error", "1e200")):
+                     ("--rates", "0.9,0.3", "--target-error", "1e200"),
+                     ("--rates", "0.9,0.3", "--budget", "1e300")):
             with self.subTest(args=args), contextlib.redirect_stderr(io.StringIO()) as err:
                 code, text = self.run_cli(*args)
                 self.assertEqual(code, 2)
                 self.assertIn("error:", err.getvalue())
                 self.assertNotIn("no budget", text)
+
+    def test_whole_percentages_are_not_written_as_exponents(self):
+        code, text = self.run_cli("--rates", "0.95,0.05", "--target-error", "1", "--runs", "2")
+        self.assertEqual(code, 0)
+        self.assertIn("about 100 percentage points", text)
+        self.assertNotIn("e+02", text)
 
     def test_read_rates(self):
         self.assertEqual(read_rates("0.1, 0.2\n# note\n0.3 0.4;0.5"), [0.1, 0.2, 0.3, 0.4, 0.5])
