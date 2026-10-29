@@ -8,16 +8,23 @@ import json
 from math import factorial
 from pathlib import Path
 
+
+def require(condition, message):
+    # Explicit checks, unlike assert, still run under python -O.
+    if not condition:
+        raise RuntimeError(message)
+
+
 q = F(7, 10)
 exp_lower = sum(q**k / factorial(k) for k in range(5))
-assert exp_lower > 2  # exp(7/10) > 2, hence log 2 < 7/10.
+require(exp_lower > 2, "exp(7/10) series bound fails")  # exp(7/10) > 2, hence log 2 < 7/10.
 n, L = 128, 97
 k1, k2, d = F(1, 4), F(1, 2), F(1, 10)
 threshold_numerator_upper = k1 + k2 * (L - 7) * q
-assert threshold_numerator_upper < n / F(4)
+require(threshold_numerator_upper < n / F(4), "threshold bound fails")
 event_probability = (F(1, 2) - d)**n
 bias_bound = 1 / ((2**L) * d**2)**2
-assert event_probability > bias_bound
+require(event_probability > bias_bound, "event probability does not exceed the claimed bias bound")
 report = {
     "status": "exact rational checks of paper counterexample",
     "config": {"k1": float(k1), "k2": float(k2)},

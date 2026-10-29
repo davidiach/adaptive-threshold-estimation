@@ -1,10 +1,16 @@
 # Results and verification scope
 
 Start with the [consolidated v5 manuscript](../paper/v5/paper.pdf) for the
-current theory in one document: main statements in sections 2, 7 and 11,
+original theory and its formalization: main statements in sections 2, 7 and 11,
 formal scope in section 12, and full rare-event arguments in appendices A–C.
 Its [source and editorial record](../paper/v5/README.md) preserves the original
-proofs and makes the Psi correction explicit.
+proofs and makes the Psi correction explicit. The separate
+[general-law rare-event manuscript](../paper/rare-event/README.md) adds an
+audited paper-level characterization and stopping-program framework.
+
+The later [finite-gap rare-event manuscript](../paper/finite-gap-rare-events/README.md)
+is a separate paper proof for known finite gap laws. It is not part of v5 or
+the Lean-checked results; its scope is recorded below.
 
 This guide gives the exact Lean specifications and remaining paper-proof
 boundaries. Historical source pointers below refer to the unchanged
@@ -193,6 +199,51 @@ $$\Psi_{\mu,\rho}(h)=\Pr(D\le h)+h\mathbb E[D^{-1};h<D\le t]+ht\mathbb E[D^{-2};
 
 The [specification](../lean/ThresholdHC/Tier3/OptimizerModel.lean) permits atoms and singular laws and assumes no finite inverse moment. It formalizes the identity in [continuation §3.3](../inputs/next-phase/report/research_note.tex#L218). The proposed matching arbitrary-law statistical upper bound is refuted by the Lean-checked critical-law counterexample below; the variational identity remains valid. The matching rare-event construction in the preserved continuation's §4 covers power margins $F(d)=(d/a)^\alpha$ on $(0,a]$ for $0<\alpha<2$, not $\alpha\ge2$.
 
+## General-law rare-event characterization
+
+The separate [55-page rare-event manuscript, revised v2](../paper/rare-event/README.md)
+provides a **paper proof with adversarial AI audits** for every known probability
+law $\mu$ on $(0,1/2]$, known $0<\rho\le1/4$, and every $B>0$. The parameter
+class is $0\le q\le1$ with $\int q\,d\mu\le\rho$. Every Bernoulli observation
+is charged under a uniform expected-work budget. Creation, revisiting,
+interleaving, nonlinear outputs, and unbounded stopping are allowed. The upper
+procedure knows $\mu,\rho,B$; magnitude and sign remain hidden.
+
+With $h=B^{-1/2}$, its entropy-tail selection functional is
+
+$$\mathcal K_{\mu,\rho}(B)=\min\left\{\rho,\inf_{0\le\sigma\le\mu}
+\left[h\sqrt{\rho\Gamma_\sigma}
++\int\min\{1,h/d\}\,(\mu-\sigma)(dd)\right]\right\}.$$
+
+Here $\Gamma_\sigma$ is the homogeneous entropy of the inverse-square masses
+in canonical dyadic bands, defined by increasing finite prefixes in Section
+3.1 of the [source](../paper/rare-event/v2/sections/additive.tex). Section 4.6
+records conservative universal constants:
+
+$$10^{-17}\mathcal K_{\mu,\rho}(B)\le R_{\mu,\rho}(B)
+\le33000\mathcal K_{\mu,\rho}(B).$$
+
+No finite inverse moment, density, or regularity assumption is imposed.
+The following scopes are all **paper-level claims**, not new Lean theorems:
+
+| Claim | Scope and qualification |
+|---|---|
+| Matching entropy-tail upper/lower bounds | Every law, known rarity, and positive expected budget in the model; hard measurable assignments suffice. |
+| Attained four-prior stopping dual | Exact identity for the robust certificate program; its connection to minimax risk is a comparison inequality. |
+| Factor-sixteen risk certificate | A sufficient theoretical cap or a cap passing the verified genie criterion; not every fixed cap. |
+| Genie convergence | Pointwise convergence assumes finite latent divergence. An explicit infinite-divergence counterexample is included. Optimized convergence first fixes a positive regularization, takes the cap limit, then removes regularization. |
+| Fixed-cap identification | For $m$ distinct positive magnitudes, the zero-bias threshold is $N\ge2m-1$. This identifies the target, not necessarily the full allocation $q$. Infinite support has a positive floor at every fixed cap; the cap may grow. |
+
+The [audit index](../paper/rare-event/audit/README.md) distinguishes the original
+source audits, final referee assessment, and revision audit, including corrected
+interpretations of historical findings. V2 resolves the revision audit's two
+minor editorial defects. The new general results have no Lean formalization
+or external specialist review. The exact stored certificates cover 33 lower
+bounds, 9 upper policies, 9 stopping decisions, and two perfect-label examples;
+they are not proofs of the continuum or compactness claims. The existing Lean
+variational-optimizer and critical-law results above and below retain their
+separate scopes. See [verification commands](VERIFY.md#general-law-rare-event-manuscript-v2).
+
 ## Rare-event power margins above two
 
 The [full observable Lean package](../lean/ThresholdHC/RareAboveTwo/Full.lean) now proves the rate first established in the separate [27 October research note](../research/2026-10-27-route-a/construction.tex):
@@ -203,7 +254,31 @@ for $F_\mu(d)=(d/a)^\alpha$ on $(0,a]$, all $0<a\le1/2$, $0<\rho\le1/4$, $B\ge1$
 
 The original paper construction uses asymmetric sign-test errors and a randomized telescope. Its unbiased single-coin output has $\mathbb E Y^2\le(153/56)\rho$ and separately $\mathbb E T\le w_\alpha/a^2$, with explicit finite $w_\alpha$ in the note. The central integration step is $\mathbb E[q(D)\min(D,a)^{-2}]\le[\alpha/(\alpha-2)]a^{-2}\rho^{1-2/\alpha}$; this uses the global constraint, not $q(d)\le\rho$. Compound-Poisson replication enforces the exact expected budget, and a constant estimate covers saturation. The matching lower proof imports Lee–Valiant Corollary 19 and Lemma 18, then gives an explicit fixed-gap simulation reduction.
 
-The [adversarial review](../research/2026-10-27-route-a/review.md), [second analytic review](../research/2026-10-27-route-a/second-review.md), [primary-source comparison](../research/2026-10-27-route-a/sources.md), and [baseline ledger](../research/2026-10-27-route-a/BASELINE.md) record the evidence. Reviewers did not author the main proof; model diversity is not guaranteed. The new Lean construction has second moment at most $28\rho$ and uses fixed-count averaging with the constant saturation estimator. Its matching lower coefficient is $1/256$ for every law supported below $a$, proved without importing an external statistical theorem. The [formal scope and proof map](RARE_ABOVE_TWO.md) distinguish these conservative constants and the formal algorithm from the paper construction. The seven frozen targets also cover exact-law existence, Psi equivalence and nonvacuity. External specialist review and worldwide novelty remain unverified. At that checkpoint, the arbitrary-law conjecture and $\alpha=2$ were unresolved. The later critical-law theorem below resolves the specified quadratic law and refutes the matching-Psi conjecture. A sharp replacement for arbitrary laws and a universal two-atom characterization remain open. Constants diverge as $\alpha\downarrow2$. The preserved paper and imported continuation are unchanged.
+The [adversarial review](../research/2026-10-27-route-a/review.md), [second analytic review](../research/2026-10-27-route-a/second-review.md), [primary-source comparison](../research/2026-10-27-route-a/sources.md), and [baseline ledger](../research/2026-10-27-route-a/BASELINE.md) record the evidence. Reviewers did not author the main proof; model diversity is not guaranteed. The new Lean construction has second moment at most $28\rho$ and uses fixed-count averaging with the constant saturation estimator. Its matching lower coefficient is $1/256$ for every law supported below $a$, proved without importing an external statistical theorem. The [formal scope and proof map](RARE_ABOVE_TWO.md) distinguish these conservative constants and the formal algorithm from the paper construction. The seven frozen targets also cover exact-law existence, Psi equivalence and nonvacuity. External specialist review and worldwide novelty remain unverified. At that checkpoint, the arbitrary-law conjecture and $\alpha=2$ were unresolved. The later critical-law theorem below resolves the specified quadratic law and refutes the matching-Psi conjecture. The [general-law manuscript](#general-law-rare-event-characterization) supplies an entropy-tail replacement as an audited paper proof. The separate finite-gap manuscript below gives a closed quantile formula for known finite laws, including two atoms; infinite-support and unknown-law guarantees remain outside that manuscript's scope. Constants diverge as $\alpha\downarrow2$. The preserved paper and imported continuation are unchanged.
+
+## Known finite-gap rare events: paper-proof characterization
+
+Theorem 1.1 of the [standalone manuscript](../paper/finite-gap-rare-events/paper.pdf)
+states, for every known finite positive-gap law, $0<\rho\le1/4$ and $B>0$,
+
+$$10^{-20}Q(B)\le R_{\mu,\rho}(B)\le30001Q(B),\qquad Q(B)=\min\{\rho,T_h+h\sqrt{\rho\Gamma_\kappa}\},\quad h=B^{-1/2}.$$
+
+Here $\nu$ is exactly the smallest-gap mass $\rho$, $\kappa=\mu-\nu$,
+$T_h=\int\min\{1,h/d\}\,\nu(dd)$, and $\Gamma_\kappa$ is the dyadic
+inverse-square cost entropy defined in the [paper guide](../paper/finite-gap-rare-events/README.md).
+Rarity is the global constraint $\int q\,d\mu\le\rho$, with $0\le q\le1$.
+Coins have iid complete persistent latent pairs; algorithms observe only
+their independent seed, coin identities and purchased flips. Both bounds
+use uniform expected physical-observation budgets and allow adaptive
+creation, revisiting and interleaving.
+
+Status: **paper proof, not Lean-checked or externally specialist-reviewed**.
+The precursor received fresh-context AI review; the
+[provenance note](../paper/finite-gap-rare-events/PROVENANCE.md) records its
+limits. Existing Lean entropy and critical-law results do not certify this
+theorem. The manuscript does not establish an unknown-law guarantee, a
+general infinite-support extension, a deterministic budget or a
+high-confidence result.
 
 ## Critical power margin: full minimax characterization
 
@@ -431,7 +506,9 @@ a uniform risk guarantee, practical superiority claim, or confidence result.
 These packages retain their original statements and source locks. Statements
 that the matching-Psi conjecture was unresolved describe their historical
 scope; the full critical-law paper result above supplies the counterexample.
-A sharp arbitrary-law replacement remains open. See the
+The later [general-law entropy-tail manuscript](#general-law-rare-event-characterization)
+provides the arbitrary-law replacement as an audited paper proof. The finite-gap manuscript above gives a separate
+closed quantile formula for known finite laws. See the
 [research index](../research/README.md) and [replay commands](VERIFY.md).
 
 ## Earlier critical power margin: additive-class obstruction

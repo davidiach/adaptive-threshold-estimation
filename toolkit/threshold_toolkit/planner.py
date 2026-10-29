@@ -19,6 +19,7 @@ at most 512 * difficulty for every placement (BlindUpper/Full.lean).
 """
 
 import math
+import numbers
 import sys
 from dataclasses import dataclass
 from typing import Callable, List, Optional, Sequence, Tuple
@@ -297,6 +298,15 @@ def score_blocks(counts: np.ndarray, level: int) -> Tuple[np.ndarray, np.ndarray
     return (fine - coarse) / level_probability(level), prefix[fine_stop]
 
 
+# Simulated calls are drawn at most this many at a time, so memory stays
+# bounded however large the budget is.
+MAX_CHUNK = 2 ** 22
+# A simulated run makes about budget / c calls, where c is the mean flips per
+# call, so time grows with budget x runs. At 2^32 flips one run can already take
+# several minutes, and the default 200 runs most of a day.
+MAX_SIMULATED_BUDGET = 2.0 ** 32
+
+
 def _calls(population: Population, level_cap: int, count: int,
            rng: np.random.Generator) -> Tuple[np.ndarray, np.ndarray]:
     """`count` independent estimator calls on fresh simulated items."""
@@ -320,7 +330,7 @@ def _simulate_run(population: Population, level_cap: int,
     flips = 0
     items = 0
     for _ in range(2):
-        chunk = 64
+        chunk = min(64, MAX_CHUNK)
         while True:
             _, costs = _calls(population, level_cap, chunk, rng)
             marks = rng.random(chunk) < costs / cap
@@ -333,9 +343,13 @@ def _simulate_run(population: Population, level_cap: int,
             flips += int(costs.sum())
             items += chunk
             production += chunk
-            chunk *= 2
-    values, costs = _calls(population, level_cap, production, rng)
-    return float(values.mean()), flips + int(costs.sum()), items + production
+            chunk = min(2 * chunk, MAX_CHUNK)
+    total = 0.0
+    for start in range(0, production, MAX_CHUNK):
+        values, costs = _calls(population, level_cap, min(MAX_CHUNK, production - start), rng)
+        total += float(values.sum())
+        flips += int(costs.sum())
+    return total / production, flips, items + production
 
 
 @dataclass(frozen=True)
@@ -359,11 +373,14 @@ def simulate(population: Population, budget: float, runs: int = 200,
              seed: Optional[int] = None,
              rng: Optional[np.random.Generator] = None) -> Simulation:
     """Run the estimator `runs` times on simulated items drawn from the guess."""
-    if not isinstance(runs, int) or runs < 2:
+    if not isinstance(runs, numbers.Integral) or runs < 2:
         raise ValueError("use at least 2 runs")
+    runs = int(runs)
+    level_cap = budget_level(budget)
+    if budget > MAX_SIMULATED_BUDGET:
+        raise ValueError(f"budgets above {MAX_SIMULATED_BUDGET:,.0f} flips are too large to simulate")
     if rng is None:
         rng = np.random.default_rng(seed)
-    level_cap = budget_level(budget)
     results = np.array([_simulate_run(population, level_cap, rng) for _ in range(runs)])
     raw, flips, items = results[:, 0], results[:, 1], results[:, 2]
     truth = population.true_fraction()
@@ -436,15 +453,17 @@ def plan_target(population: Population, target: float, runs: int = 200,
     only changes at these budgets, since every budget from 4N up to just
     below 8N runs the same algorithm. The search stops at `max_budget` or at
     SEARCH_FACTOR times the simple plan's flips. `progress` sees each trial.
+    The simulation budget limit is enforced per trial, allowing a larger search
+    ceiling when the target is met before reaching that limit.
     """
     _validate_target(target)
     budget_level(max_budget)
-    if not isinstance(runs, int) or runs < 2:
+    if not isinstance(runs, numbers.Integral) or runs < 2:
         raise ValueError("use at least 2 runs")
     majority = majority_plan_for_target(population, target)
+    limit = max_budget if majority is None else min(max_budget, SEARCH_FACTOR * majority.flips)
     if planned is not None:
         planned(majority)
-    limit = max_budget if majority is None else min(max_budget, SEARCH_FACTOR * majority.flips)
     rng = np.random.default_rng(seed)
     trials = []
     recommended = None

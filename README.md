@@ -5,7 +5,9 @@
 Minimax theory for estimating a threshold probability from noisy coin flips,
 with a research manuscript, Lean 4 proofs built on Mathlib, and reproducible experiments.
 
-**[Paper](paper/v5/paper.pdf)** · **[Formal proofs](lean/ThresholdHC/)** · **[Verification guide](docs/VERIFY.md)** · **[Specialist review packet](paper/critical-review/review.pdf)**
+**[Paper](paper/v5/paper.pdf)** · **[General-law rare-event paper](paper/rare-event/README.md)** · **[Formal proofs](lean/ThresholdHC/)** · **[Verification guide](docs/VERIFY.md)** · **[Specialist review packet](paper/critical-review/review.pdf)**
+
+**[Finite-gap rare-event manuscript](paper/finite-gap-rare-events/README.md)** — a separate paper proof for known finite gap laws, prepared for external mathematical review.
 
 ## Problem and main result
 
@@ -35,12 +37,14 @@ The [lower theorem](lean/ThresholdHC/Tier6/Full.lean),
 
 | Result | Verification | Read more |
 |---|---|---|
+| General-law rare-event entropy-tail characterization, stopping dual, and sufficient-cap certificates | Paper proof with adversarial AI audits and exact finite certificates; new general claims not Lean-formalized | [Manuscript v2](paper/rare-event/README.md) · [Scope](docs/RESULTS.md#general-law-rare-event-characterization) |
 | Rare-event power laws with $\alpha>2$ | Both minimax bounds proved in Lean in the observable model | [Scope and proof map](docs/RARE_ABOVE_TWO.md) |
 | Critical quadratic rare-event law, including unrestricted adaptive algorithms | Both minimax bounds proved in Lean | [Statement and scope](docs/RESULTS.md#critical-power-margin-full-minimax-characterization) |
 | Exact critical-law Ψ formula and counterexample to a universal matching-Ψ upper bound | Proved in Lean | [Theorems](lean/ThresholdHC/CriticalPsi/Full.lean) |
 | Unbiased estimation exists iff $I<\infty$; one universal construction has variance–work at most $713I^2$ | Proved in Lean in the observable adaptive model | [Theorems](lean/ThresholdHC/Observable713/Full.lean) · [Audit](results/observable713_001.json) |
 | Unbiased converse: finite inverse moment is necessary and variance–work is at least $I^2/16$ | Proved in Lean in the observable adaptive model | [Theorem](lean/ThresholdHC/UnbiasedConverse/Full.lean) · [Audit](results/unbiased_converse_001.json) |
 | Finite-gap entropy for every gap count; explicit single-coin base costs | Proved in Lean | [Proofs](lean/ThresholdHC/CriticalAllSizes/) · [Audit](results/critical_all_sizes_002.json) |
+| Closed quantile rare-event law for known finite gap laws | Paper proof; not Lean-checked | [Exact theorem, assumptions and complete proofs](paper/finite-gap-rare-events/README.md) |
 | Confidence radius $r_\mu(B,\delta)\asymp\omega_\mu(\sqrt{\log(1/\delta)/B})$ | Both bounds proved in Lean in the observable adaptive model | [Theorems](lean/ThresholdHC/Confidence/Full.lean) · [Audit](results/confidence_001.json) |
 | RMS and confidence lower bounds with revealed or adaptively selected magnitudes | Proved in Lean in canonical oracle models | [Theorems](lean/ThresholdHC/OracleLower/Full.lean) · [Audit](results/oracle_lower_001.json) |
 | Other rare-event regimes and auxiliary results | Paper proofs; formalization incomplete | [Full results guide](docs/RESULTS.md) |
@@ -57,9 +61,41 @@ R_{\mu,\rho}(B)\asymp
 ```
 
 The extra scale-entropy factor refutes the proposed matching-Ψ characterization.
-A sharp replacement for arbitrary gap laws remains open. The all-count entropy
-coefficient is 1/4096; the sharper 1/512 bound retains its large-count assumption.
+The separate [general-law manuscript](paper/rare-event/README.md) now gives an
+entropy-tail replacement for known gap law and rarity, as an audited paper
+proof. Its general characterization and stopping-program claims await Lean
+formalization. The finite-gap manuscript below gives a closed quantile formula
+for known finite laws, also as a paper proof. The existing all-count Lean entropy coefficient is 1/4096; the sharper 1/512 bound retains its large-count assumption.
 The explicit new base-cost constants apply to single-coin procedures.
+
+## Finite-gap rare-event manuscript
+
+[Read the 32-page paper](paper/finite-gap-rare-events/paper.pdf) · [LaTeX sources and build instructions](paper/finite-gap-rare-events/README.md) · [Provenance](paper/finite-gap-rare-events/PROVENANCE.md)
+
+For a **known finite** magnitude law with strictly positive gaps, known global
+rarity bound $0<\rho\le1/4$, and any uniform expected observation budget $B>0$,
+Theorem 1.1 gives
+
+```math
+10^{-20}\,Q(B)\le R_{\mu,\rho}(B)\le30001\,Q(B),\qquad
+Q(B)=\min\{\rho,T_h+h\sqrt{\rho\Gamma_\kappa}\},\quad h=B^{-1/2}.
+```
+
+Here $\nu$ is exactly the smallest-gap mass $\rho$, $\kappa=\mu-\nu$ is the
+remaining mass, $T_h=\int\min(1,h/d)\,\nu(dd)$, and $\Gamma_\kappa$ is its
+dyadic inverse-square cost entropy, defined in the paper. The unknown sign
+law satisfies $0\le q\le1$ and $\int q\,d\mu\le\rho$; rarity is not imposed
+separately at each gap. Fresh coins have iid complete latent pairs which
+persist on revisits, and the algorithm may create, revisit and interleave
+coins adaptively. Only physical observations are charged.
+
+**Verification status:** this is a complete paper-proof draft with a
+fresh-context AI review of its precursor. The closed quantile theorem and
+its full argument are **not Lean-checked** and have not received external
+specialist review. The Lean-checked finite-gap entropy and critical-law
+results above do not certify this new theorem. Its constants are not
+optimized; it does not assert a deterministic total budget, an unknown-law
+guarantee, an infinite-support extension or a high-confidence result.
 
 ## Check the proofs
 
@@ -86,6 +122,8 @@ Use a disposable checkout for reproduction: some checks write diagnostic files.
 ## Navigate the project
 
 - **Read the mathematics:** [consolidated v5 paper](paper/v5/README.md),
+  [finite-gap rare-event manuscript](paper/finite-gap-rare-events/README.md),
+  [general-law rare-event manuscript](paper/rare-event/README.md),
   [critical-result review packet](paper/critical-review/README.md),
   and [claims with exact assumptions](docs/RESULTS.md).
 - **Inspect the formalization:** [Lean sources](lean/ThresholdHC/),
@@ -107,10 +145,13 @@ coverage of the manuscript is recorded claim by claim. The work has received
 AI review and has not had independent external specialist review. Numerical
 experiments provide supporting evidence, not proofs of universal claims.
 
-The next formalization targets include the remaining rare-event regimes
-and auxiliary results on envelopes, smooth densities, and observed outer states.
-General-law rare-event theory and tighter constants remain research
-directions. See the [completion ledger](docs/WORKPLAN.md) for the current boundary.
+The finite-gap closed quantile theorem is currently a paper proof, separate
+from the linked Lean-checked statements.
+The next formalization targets include the new general-law rare-event
+characterization and stopping-program arguments, the remaining paper-only
+regimes, and auxiliary results on envelopes, smooth densities, and observed
+outer states. Tighter constants and efficient selection algorithms remain
+research directions. See the [completion ledger](docs/WORKPLAN.md) for the current boundary.
 
 ## Attribution and license
 

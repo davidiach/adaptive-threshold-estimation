@@ -1,0 +1,17 @@
+{
+  "checks": [
+    {
+      "budget": "100",
+      "cap": 1,
+      "analytic_squared_value": "9/13600",
+      "contained_in_exact_bracket": true
+    },
+    {
+      "budget": "1000",
+      "cap": 1,
+      "analytic_squared_value": "9/103600",
+      "contained_in_exact_bracket": true
+    }
+  ],
+  "all_nine_stopping_decisions_rechecked_exactly": true
+}

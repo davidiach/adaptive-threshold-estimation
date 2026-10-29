@@ -74,10 +74,29 @@ The [scope guide](RARE_ABOVE_TWO.md) explains the proof and its conservative
 constants. This contribution is on a separate feature branch; publication and
 CI status belong to its PR, and no merge is implied by the local proof result.
 
-The next formalization priorities are the remaining paper-only rare-event
-results below two and auxiliary envelope, smooth-density and observed-state results.
-A corrected arbitrary-law rare-event characterization and sharp rare-event
-confidence rates at and above the quadratic boundary remain open research.
+The 29 October
+[finite-gap manuscript](../paper/finite-gap-rare-events/README.md), introduced
+in [PR #18](https://github.com/davidiach/adaptive-threshold-estimation/pull/18),
+supplies a separate paper-proof closed quantile law for known finite positive-gap
+laws, global rarity and uniform expected observation budgets. It is not
+Lean-checked or externally specialist-reviewed. General infinite-support
+and unknown-law extensions remain outside its scope; this contribution does
+not change the formal verification boundary above.
+
+The next formalization priorities are the new general-law rare-event
+characterization and stopping-program arguments, the remaining paper-only
+rare-event results below two, and auxiliary envelope, smooth-density and observed-state
+results. Sharp rare-event confidence rates at and above the quadratic boundary
+remain open research.
+
+**Rare-event manuscript update (29 October 2026):** the separate
+[general-law manuscript, revised v2](../paper/rare-event/README.md), supplies an
+entropy-tail characterization, an attained four-prior stopping dual, and
+convergent genie certificates as audited paper proofs. The PDF, sources, exact
+finite checks, and audit records are preserved together. Formalizing these new
+general claims is follow-up work; finite certificates do not discharge it.
+The current [claim scopes](RESULTS.md#general-law-rare-event-characterization)
+record the pointwise finite-divergence qualification and sufficient-cap scope.
 
 The project owner does not plan human specialist review. Its absence remains
 a stated review limitation, not a pending task or completion gate. The four
@@ -157,6 +176,7 @@ GitHub Actions run has finished.
 | Formal critical argument | Exact statistical specification, proved dependency chain, kernel and axiom audit; scalar lemmas alone do not satisfy this item | The base-cost theorem, common hard pair, unrestricted critical minimax lower bound, and matching upper bound are proved in the original observable experiment for the full rare-prior class. See the [lower audit](../results/critical_components_016.json) and [full upper audit](../results/critical_upper_components_003.json). The [exact Psi formula, rate and minimax separation](../results/critical_psi_001.json) are also proved |
 | Original distribution-blind upper bound | One budget-indexed observable algorithm independent of the magnitude/sign laws, realized in the original experiment; uniform work and RMS bounds; exact type and axiom audit | [Complete](BLIND_UPPER.md): the frozen full statement is inhabited by one budget-indexed observable family, with coefficient 512. Actual execution, almost-sure cost/output identities, uniform budget and RMS bounds are proved; exact-type and transitive-axiom audit passed |
 | Consolidated v5 manuscript | Original minimax law, unbiasedness, 713 bound, rare-event regimes, critical result and correction to the Psi conjecture; accurate verification labels; compiled and visually checked | [Written](../paper/v5/README.md): 62-page manuscript including the all-size addendum, complete source-derived proof appendices, source checks and rendered-page review. Both critical bounds and Psi are linked at `eabf274`; the addendum's explicit constants are linked at `ebd3667`, the converse at `631886e`, the observable 713 construction at `15dbbda`, confidence at `d6feb30`, and the oracle lower bounds at `4a5805c`. No independent specialist review is claimed |
+| General-law rare-event manuscript v2 | Standalone PDF and source identity, exact finite certificate replay, revision audit, and explicit claim status | [Added separately](../paper/rare-event/README.md): 55-page audited paper proof with the two editorial fixes. Existing manuscripts are preserved. `python tools/verify_rare_event_manuscript.py` checks identities and finite evidence; the new general theorems are not Lean-formalized |
 | Process note | Reproducible account of construction, frozen statements, semantic review, failed approaches, reviewer dependence, and limits | [Written](process/METHOD.md) and refreshed at `6009662`, including completed realization proofs, the formula's freeze chronology, and lessons from the long run and focused PRs |
 | Repository cleanup and publication | Clear current entry points, preserved source/evidence identities, passing relevant guards and CI, pushed commits and reviewable changes | The proof and manuscript stack through PR #10 is merged into main. README, results and verification guides lead to current evidence; historical bundles remain intact. CI results belong to each exact commit and are recorded in the corresponding PR |
 

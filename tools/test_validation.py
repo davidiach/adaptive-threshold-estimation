@@ -13,6 +13,7 @@ from unittest.mock import patch
 
 import score
 import verify_uniform713 as uniform713
+import verify_uniform_arithmetic as arithmetic
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -158,6 +159,32 @@ class Uniform713LockTests(unittest.TestCase):
             for module in re.findall(r"^import\s+(ThresholdHC[\w.]*)\s*$", source, re.M):
                 pending.append("lean/" + module.replace(".", "/") + ".lean")
         self.assertEqual(visited, uniform713.DEFINITION_SOURCES | {uniform713.SPECIFICATION})
+
+
+class UniformArithmeticAuditTests(unittest.TestCase):
+    def setUp(self):
+        self.lines = [f"'ThresholdHC.PaperConstants.{name}' depends on axioms: [propext]"
+                      for name in sorted(arithmetic.NAMES)]
+
+    def test_recorded_audit_and_current_source_pass(self):
+        log = (ROOT / "results/constants_uniform_lean_audit.log").read_text(encoding="utf-8")
+        self.assertTrue(arithmetic.check(log, 0)[0])
+        source = arithmetic.SOURCE.read_text(encoding="utf-8")
+        self.assertIsNone(arithmetic.FORBIDDEN.search(arithmetic.strip_comments(source)))
+
+    def test_later_duplicate_cannot_overwrite_a_bad_report(self):
+        bad = [line.replace("[propext]", "[propext, sorryAx]") for line in self.lines]
+        clean = [line.replace("depends on axioms: [propext]", "does not depend on any axioms")
+                 for line in self.lines]
+        self.assertTrue(arithmetic.check("\n".join(clean), 0)[0])
+        self.assertFalse(arithmetic.check("\n".join(bad + clean), 0)[0])
+
+    def test_sorry_warning_failure_and_missing_lemma_rejected(self):
+        for output, returncode in (
+                ("\n".join(self.lines + ["warning: declaration uses `sorry`"]), 0),
+                ("\n".join(self.lines), 1), ("\n".join(self.lines[1:]), 0)):
+            with self.subTest(output=output[-40:], returncode=returncode):
+                self.assertFalse(arithmetic.check(output, returncode)[0])
 
 
 if __name__ == "__main__":

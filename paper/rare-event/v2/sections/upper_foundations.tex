@@ -1,0 +1,401 @@
+\section{Observable classification and finite Poisson allocation}
+\label{sec:uf-foundations}
+
+This section proves the specialized upper-bound tools used below. The
+ordinary classifier is the construction in the supplied manuscript
+\cite{original,repo}; the weighted reference bank and multilevel
+allocation are restated with their proofs so that the present paper
+does not depend on the preceding unpublished notes. All likelihoods
+refer to the actual observed binary prefix. A reference distribution
+is used to evaluate that prefix, and never reveals or redraw the
+latent state of a unit.
+
+\subsection{A capped classifier that does not know the gap}
+
+For a dyadic integer $M\ge1$, inspect prefix lengths
+$1,2,4,\ldots,M$. At a prefix $n<M$, stop if
+\[
+ \left|\widehat p_n-\frac12\right|>
+ t_{n,M}:=\sqrt{\frac{1+\log(M/n)}{n}},
+\]
+and output the side of $1/2$ containing $\widehat p_n$. At $M$, output
+$\1_{\{\widehat p_M>1/2\}}$, with a negative output on ties.
+Denote the output and work by $(Z_M^{\rm ord},T_M^{\rm ord})$.
+
+\begin{lemma}[Ordinary conditional error and work]\label{lem:uf-ordinary}
+For every $0<d\le1/2$ and either latent sign,
+\begin{align}
+ \Pp_{d,s}(Z_M^{\rm ord}\ne s)
+ &\le \min\{1,(Md^2)^{-2}\},\label{eq:uf-ordinary-error}\\
+ \E_{d,s}T_M^{\rm ord}
+ &\le o_M(d):=\min\{M,17d^{-2}[1+\log_+(Md^2)]\}.
+ \label{eq:uf-ordinary-work}
+\end{align}
+\end{lemma}
+
+\begin{proof}
+For independent Bernoulli observations of mean $p$, Hoeffding's
+inequality gives
+$\Pp(\widehat p_n-p\ge t)\le e^{-2nt^2}$ and the analogous lower-tail
+bound \cite{hoeffding}. A wrong early output at a fixed inspected prefix
+requires a deviation of at least $d+t_{n,M}$. Applying a union bound on
+the underlying full tape, without conditioning on the stopping event,
+therefore gives
+\[
+ \Pp_{d,s}(Z_M^{\rm ord}\ne s)
+ \le e^{-2Md^2}
+       +e^{-2}\sum_{\substack{n<M\\n\ {\rm dyadic}}}
+                    (n/M)^2e^{-2nd^2}.
+\]
+For any dyadic sequence of positive $u$ values, the intervals
+$[u/2,u]$ have disjoint interiors and
+\[
+ \int_{u/2}^{u}y e^{-2y}\,dy
+ \ge\frac38u^2e^{-2u}.
+\]
+Consequently $\sum_u u^2e^{-2u}\le2/3$.
+Writing $x=Md^2\ge1$ and using $x^2e^{-2x}\le e^{-2}$, the preceding
+error bound is at most $(5/3)e^{-2}x^{-2}<x^{-2}$. For $x<1$, the
+probability bound by one suffices.
+
+Since the stopping time takes dyadic values,
+\[
+ \E_{d,s}T_M^{\rm ord}
+ =1+\sum_{\substack{n<M\\n\ {\rm dyadic}}}
+                      n\,\Pp_{d,s}(T_M^{\rm ord}>n).
+\]
+If $d>2t_{n,M}$, survival implies a deviation from the true mean of
+at least $d/2$. Thus
+\[
+ \E_{d,s}T_M^{\rm ord}
+ \le1+\sum_{\substack{n<M\\n\ {\rm dyadic}}}
+       n\left[\1_{\{d\le2t_{n,M}\}}+2e^{-nd^2/2}\right].
+\]
+For $x=Md^2\ge1$, the first indicator implies
+$nd^2\le4(1+\log x)$. Indeed, this is immediate if $nd^2<1$; otherwise
+$\log(M/n)=\log(x/(nd^2))\le\log x$.
+The corresponding dyadic sum is at most
+$8d^{-2}(1+\log x)$.
+Also
+\[
+ \int_{u/2}^{u}e^{-y/2}\,dy\ge\frac12u e^{-u/2}
+ \quad\Longrightarrow\quad
+ \sum_u u e^{-u/2}\le4.
+\]
+The exponential part of the work bound is therefore at most $8d^{-2}$.
+Since $1\le d^{-2}$, total expected work is at most
+$17d^{-2}(1+\log x)$. Finally $T_M^{\rm ord}\le M$ deterministically;
+when $x<1$, the displayed minimum equals $M$.
+\end{proof}
+
+For any finite measure $\xi$ on $(0,1/2]$, write
+\[
+ \eta_\xi(M)=\int\min\{1,(Md^2)^{-2}\}\,\xi(dd),
+ \qquad
+ O_\xi(M)=\int o_M(d)\,\xi(dd).
+\]
+Both are homogeneous in $\xi$. The first is nonincreasing in $M$ and
+the second is nondecreasing. Pointwise comparison also gives
+$\eta_\xi(4M)\ge\eta_\xi(M)/16$.
+
+\begin{lemma}[A homogeneous dyadic kernel estimate]\label{lem:uf-kernel}
+For every finite measure $\xi$ and integer $K\ge1$,
+\[
+ \sum_{k=1}^{K}\sqrt{\eta_\xi(4^k)O_\xi(4^k)}
+ \le208\int\min\{2^K,d^{-1}\}\,\xi(dd).
+\]
+In particular,
+\begin{equation}\label{eq:uf-kernel-infinite}
+ \sum_{k\ge1}\sqrt{\eta_\xi(4^k)O_\xi(4^k)}
+ \le208\int d^{-1}\,\xi(dd),
+\end{equation}
+with extended-value interpretation.
+\end{lemma}
+
+\begin{proof}
+Use bands $(2^{-j-1},2^{-j}]$, $j\ge1$, with masses $w_j$, and put
+$c_j=2^jw_j$. Direct substitution into the two kernels yields
+\[
+ \eta_\xi(4^k)\le2^{-k}
+ \left[\sum_{j\ge k}c_j2^{k-j}
+              +16\sum_{j<k}c_j2^{3(j-k)}\right]=2^{-k}A_k,
+\]
+\[
+ O_\xi(4^k)\le2^k
+ \left[\sum_{j\ge k}c_j2^{k-j}
+        +136\sum_{j<k}c_j2^{j-k}(1+k-j)\right]=2^kD_k.
+\]
+For the second display on $j<k$, use
+$d^{-2}\le4\,2^{2j}$ and
+$1+\log(4^kd^2)\le2(1+k-j)$.
+On $j\ge k$, the deterministic cap gives the first sum exactly as
+an upper bound.
+
+Apply $\sqrt{A_kD_k}\le(A_k+D_k)/2$ and sum over $k\le K$.
+For a fixed $j\le K$, the three relevant geometric sums obey
+\[
+ \sum_{k\le j}2^{k-j}\le2,\qquad
+ \sum_{r\ge1}2^{-3r}=\frac17,\qquad
+ \sum_{r\ge1}2^{-r}(1+r)=3.
+\]
+The coefficient of $c_j$ is thus at most
+$2+8/7+204<208$. For $j>K$, only the first kernels occur, with
+coefficient at most $2\,2^{K-j}$. Hence the result is at most
+\[
+ 208\sum_{j\le K}2^jw_j+2\,2^K\sum_{j>K}w_j.
+\]
+For $j\le K$, $\min\{2^K,d^{-1}\}\ge2^j$ on the band; for $j>K$
+it equals $2^K$. This proves the finite bound. Increasing $K$ and
+using monotone convergence gives \eqref{eq:uf-kernel-infinite}.
+All rearrangements involve nonnegative terms, so normalization and
+moment assumptions are unnecessary.
+\end{proof}
+
+\subsection{A weighted bank compared with the full null mixture}
+
+For a binary prefix $x_{1:n}$, let $P_{p,n}(x_{1:n})$ be its probability
+under iid $\operatorname{Ber}(p)$ observations, and let
+$P_{{\rm f},n}=P_{1/2,n}$. Choose any nonempty finite or countable set
+of canonical bands
+\[
+ I_j=(b_j/2,b_j],\qquad b_j=2^{-j-1},
+\]
+and positive weights $\pi_j$ summing to one on these bands.
+Set $r_j^-=b_j/2$ and $r_j^+=b_j/4$, and define
+\[
+ L_{j,n}^-=\frac{P_{1/2-r_j^-,n}}{P_{{\rm f},n}},
+ \qquad
+ M_n=\frac{\sum_j\pi_jP_{1/2+r_j^+,n}}
+           {P_{-,\mu,n}},
+ \qquad
+ P_{-,\mu,n}=\int P_{1/2-d,n}\,\mu(dd).
+\]
+For $0<\epsilon<1$, stop negative when any
+$L_{j,n}^-\ge1/(\epsilon\pi_j)$, and stop positive when
+$M_n\ge1/(\rho\epsilon)$. Give negative crossings priority.
+A zero denominator triggers a positive stop. Denote the bank stopping
+time by $T_{\rm bank}$; it may be infinite outside its selected bands.
+
+\begin{lemma}[Full-mixture likelihood bank]\label{lem:uf-mixture-bank}
+The probability of a wrong bank stop is at most $2\rho\epsilon$
+uniformly over $q\in\mathcal Q_\rho$, and its false-positive probability
+is at most $\rho\epsilon$. These statements concern the event that the
+bank stops and do not assume termination at every magnitude.
+
+For $d\in I_j$ in a selected band,
+\begin{equation}\label{eq:uf-bank-negative}
+ \E_{d,-}T_{\rm bank}
+ \le\frac3{4d^2}
+       [1+\log(1/\epsilon)+\log(1/\pi_j)].
+\end{equation}
+Suppose a finite number $V(d)>0$ satisfies
+\[
+ \beta_\mu(n):=\int e^{-2nx^2}\,\mu(dx)\le V(d)
+ \qquad\text{for every integer }n\ge d^{-2}.
+\]
+Then
+\begin{equation}\label{eq:uf-bank-positive}
+ \E_{d,+}T_{\rm bank}
+ \le\frac6{d^2}
+ \left[1+\log(1/\epsilon)+\log(1/\pi_j)
+                   +\log_+\frac{V(d)}{\rho}\right].
+\end{equation}
+In particular the bank has finite conditional work on every selected
+band whenever such an envelope is supplied.
+\end{lemma}
+
+\begin{proof}
+A nonnegative supermartingale $Y_n$ with $Y_0=1$ has
+$\Pp(\sup_nY_n\ge a)\le1/a$: stopping at the first crossing or a fixed
+horizon gives $1\ge\E Y_{T\wedge m}\ge a\,\Pp(T\le m)$, and increasing
+the horizon proves the claim. This elementary maximal inequality also
+works when the process is a supermartingale only on supported prefixes.
+
+Under a positive coin of gap $d$, the next multiplier of $L_{j,n}^-$
+has mean $1-4r_j^-d\le1$. Its negative-crossing probability is at most
+$\epsilon\pi_j$. A countable union bound gives conditional
+negative-crossing probability at most $\epsilon$, so its positive-sign
+contribution under any admissible prior is at most $\rho\epsilon$.
+
+Under the full all-negative mixture, $M_n$ is a nonnegative
+supermartingale on supported prefixes. If a prefix $x$ has positive
+null probability, conditional expectation sums only children $xu$
+with positive null probability; their numerator probabilities sum to
+at most the numerator at $x$. This proves the supermartingale
+inequality even when $\mu$ has mass at $d=1/2$. A zero-denominator prefix
+has null probability zero. Thus a positive crossing has null-mixture
+probability at most $\rho\epsilon$. Its actual negative-sign
+contribution is no larger, since it multiplies the conditional
+crossing probabilities by $1-q(d)\le1$. The two error claims follow.
+
+For negative work, fix a selected-band gap $d\in I_j$ and
+$r=r_j^-\in[d/2,d]$, with $r\le1/4$. The matching log likelihood has
+mean increment
+\[
+ g(d,r)=\frac12\log(1-4r^2)
+          +d\log\frac{1+2r}{1-2r}
+ \ge-\frac83r^2+4dr\ge\frac43d^2.
+\]
+Here $\log(1-x)\ge-x/(1-x)$ and
+$\log((1+x)/(1-x))\ge2x$ establish the first lower bound; the
+concave quadratic takes the value $4d^2/3$ at both endpoints
+$r=d/2,d$. Every upward log increment is at most $\log(3/2)<1$.
+For the first correct-reference crossing $\tau$, the stopped-sum
+identity at $\tau\wedge m$ gives
+\[
+ g(d,r)\E(\tau\wedge m)
+ =\E\log L^-_{j,\tau\wedge m}
+ \le1+\log(1/(\epsilon\pi_j)).
+\]
+Monotone convergence proves integrability of $\tau$ and the stated
+work bound, since $T_{\rm bank}\le\tau$. No unbounded stopping identity
+is invoked before integrability is established.
+
+For positive work, let
+$E_n=\{\widehat p_n-1/2\ge d/2\}$. On this event, for $x<1/2$,
+\[
+ \log\frac{P_{1/2-x,n}}{P_{{\rm f},n}}
+ =\frac n2\log(1-4x^2)
+   -n(\widehat p_n-\tfrac12)
+                 \log\frac{1+2x}{1-2x}
+ \le-2nx^2.
+\]
+For $x=1/2$ the likelihood is zero, since $E_n$ entails at least one
+head. Therefore $P_{-,\mu,n}/P_{{\rm f},n}\le\beta_\mu(n)$.
+The matching positive reference $r=r_j^+\in[d/4,d/2]$ satisfies,
+on the same event,
+\[
+ \log\frac{P_{1/2+r,n}}{P_{{\rm f},n}}
+ \ge n\left[-\frac83r^2+2dr\right]\ge nd^2/3.
+\]
+Set
+\[
+ U=1+\log(1/\epsilon)+\log(1/\pi_j)
+                  +\log_+(V(d)/\rho),\qquad
+ n_0=\left\lceil3d^{-2}U\right\rceil.
+\]
+For every $n\ge n_0$, $E_n$ implies
+$M_n\ge\pi_je^{nd^2/3}/V(d)\ge1/(\rho\epsilon)$.
+Thus $T_{\rm bank}>n$ implies $E_n^c$, whose positive-coin probability
+is at most $e^{-nd^2/2}$. Summing the survival probabilities yields
+\[
+ \E_{d,+}T_{\rm bank}
+ \le3d^{-2}U+2+2d^{-2}\le6d^{-2}U.
+\]
+The last inequality uses $U\ge1$ and $d^2\le1/4$.
+
+For a countable bank, the positive mixture is a consistent probability
+law and the negative stopping event is a measurable countable union.
+At any fixed time only finitely many negative references can cross:
+$L^-_{j,n}\le(3/2)^n$ requires
+$\pi_j\ge1/[\epsilon(3/2)^n]$ for a crossing. All preceding arguments
+therefore apply to finite and countable banks alike.
+\end{proof}
+
+\subsection{Racing procedures and retaining a genuine unit}
+
+\begin{lemma}[Observable race]\label{lem:uf-race}
+Suppose two classifiers run on the odd and even subsequences of one
+unit's observation tape, with independent auxiliary seeds. Stop the
+physical procedure when either classifier stops and use its output.
+On completed counterfactual subsequences its work satisfies
+\[
+ T_{\rm race}\le2\min\{T_1,T_2\}.
+\]
+Its error event is contained in the union of the component wrong-stop
+events. If either component has a finite deterministic cap, the race
+terminates with a finite deterministic cap.
+\end{lemma}
+
+\begin{proof}
+By physical time $2n$, each component has received $n$ observations.
+If either component would stop after $n$ of its own observations, the
+race stops no later than $2n$. This proves the pathwise work bound,
+including an infinite stopping time for the other component.
+The selected output is wrong only if the component that produces it
+makes a wrong stop. Conditional on the latent $(D,S)$, both
+subsequences are iid Bernoulli tapes of the correct mean, so all
+component error and work bounds apply. The policy uses only the
+physical observed prefix and its seeds.
+\end{proof}
+
+\subsection{Finite multilevel allocation at every positive budget}
+
+\begin{lemma}[Independent Poisson allocation]\label{lem:uf-poisson}
+Let $Z_0,\ldots,Z_J\in\{0,1\}$ be observable single-unit classifiers,
+each with finite deterministic cap. Suppose uniformly over
+$q\in\mathcal Q_\rho$ that their error probabilities are at most
+$e_\ell$, their false-positive probabilities are at most $f_\ell$,
+and their expected work is at most $C_\ell>0$.
+Put
+\[
+ v_0=\rho+f_0,\qquad
+ v_\ell=e_\ell+e_{\ell-1}\quad(\ell\ge1),\qquad
+ k_0=C_0,\qquad k_\ell=C_\ell+C_{\ell-1}\quad(\ell\ge1).
+\]
+Assume $v_\ell>0$ and set $A_J=\sum_{\ell=0}^J\sqrt{v_\ell k_\ell}$.
+For every $B>0$ there is an observable population estimator of
+uniform expected work at most $B$ and worst RMS error at most
+\begin{equation}\label{eq:uf-poisson-risk}
+ \sqrt{e_J^2+A_J^2/B}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+A level-zero correction uses a fresh genuine unit and returns
+$\Delta_0=Z_0$. For $\ell\ge1$, a correction draws one fresh latent unit,
+runs $Z_\ell$ on its observations, then runs $Z_{\ell-1}$ with a fresh
+seed on the next unused observations of the same unit, and returns
+$\Delta_\ell=Z_\ell-Z_{\ell-1}$.
+
+Conditional on the latent state, the unused suffix after a finite
+stopping time is an iid tape with the same Bernoulli mean: for each
+possible stopped prefix, independence of its subsequent coordinates
+gives the claim, and summing over the stopped prefixes preserves it.
+This conditional argument is applied to successive unused blocks of
+the same latent unit, even though the first block has random length.
+The second classifier therefore has its original marginal distribution
+under the same latent state. No new magnitude or sign is drawn between
+the two classifiers. Their disagreement implies that at least one
+misclassifies that common sign, and hence
+\[
+ \E_q\Delta_\ell^2\le v_\ell,\qquad
+ \E_q W_\ell\le k_\ell,\qquad
+ \sum_{\ell=0}^J\E_q\Delta_\ell=\E_qZ_J.
+\]
+At level zero use
+$\Pp_q(Z_0=1)\le\Pp_q(S=1)+f_0\le\rho+f_0$.
+
+Independently across levels, draw Poisson replication counts with means
+\[
+ n_\ell=\frac B{A_J}\sqrt{\frac{v_\ell}{k_\ell}}.
+\]
+For each replication use an independent genuine unit, and return
+\[
+ \widehat\theta
+ =\sum_{\ell=0}^J\frac1{n_\ell}
+       \sum_{i=1}^{N_\ell}\Delta_{\ell,i},
+ \qquad N_\ell\sim\operatorname{Poisson}(n_\ell).
+\]
+Its mean is $\E_qZ_J$, so its absolute bias is at most $e_J$.
+The expected work is at most
+$\sum_\ell n_\ell k_\ell=B$.
+
+For independent marks $\Delta$ and a Poisson count of mean $n$,
+conditioning on the count gives
+$\Var(\sum_{i=1}^{N}\Delta_i)=n\E\Delta^2$.
+Consequently the independent level variances sum to at most
+\[
+ \sum_{\ell=0}^J\frac{v_\ell}{n_\ell}=\frac{A_J^2}{B}.
+\]
+Bias squared plus variance proves \eqref{eq:uf-poisson-risk}.
+All counts are almost surely finite, all component caps are finite,
+and all first and subsequent observations are included in $W_\ell$.
+\end{proof}
+
+The allocation may use Poisson means below one; this is valid for
+every $B>0$. The bound is uniform over the original rarity class.
+Finite-level bounds can be optimized by taking an infimum over
+finite constructions without asserting the existence of a single
+infinite-level algorithm.
+

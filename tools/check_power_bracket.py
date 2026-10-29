@@ -16,6 +16,12 @@ from scipy.optimize import brentq
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def require(condition, message):
+    # Explicit checks, unlike assert, still run under python -O.
+    if not condition:
+        raise RuntimeError(message)
+
+
 def error_bound(x: float, alpha: float) -> float:
     """E min(1,(nD^2)^-2), with x=n*a^2 and power-law D/a."""
     if x <= 1:
@@ -87,8 +93,10 @@ def main():
             if split < 1:
                 e += quad(lambda u: alpha * u**(alpha - 1) / (x*u*u)**2, split, 1, **tolerance)[0]
                 m += quad(lambda u: alpha * u**(alpha - 3) * (1 + math.log(x*u*u)), split, 1, **tolerance)[0]
-            assert math.isclose(e, error_bound(x, alpha), rel_tol=1e-10, abs_tol=1e-12)
-            assert math.isclose(m, work_bound_scaled(x, alpha), rel_tol=1e-10, abs_tol=1e-12)
+            require(math.isclose(e, error_bound(x, alpha), rel_tol=1e-10, abs_tol=1e-12),
+                    "error bound formula disagrees with quadrature")
+            require(math.isclose(m, work_bound_scaled(x, alpha), rel_tol=1e-10, abs_tol=1e-12),
+                    "work bound formula disagrees with quadrature")
             checks.append(dict(alpha=alpha, x=x, error=e, work_scaled=m))
     rows = [bracket(alpha, rho, .25, exponent)
             for alpha in [2., 3., 4.] for rho in [.01, .0001, .000001]

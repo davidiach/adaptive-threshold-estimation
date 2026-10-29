@@ -1,0 +1,137 @@
+{
+  "finite_trees": {
+    "policies": 300,
+    "cap": 7,
+    "types": 3,
+    "maximum_units": 3,
+    "terminal_leaves": 19812,
+    "certified_local_midpoint_ratio": "28146092921/2199023255552",
+    "certified_local_null_ratio": "35022120971/2199023255552",
+    "largest_population_h_over_midpoint_bound": 0.5091165100040975,
+    "largest_local_null_work_over_midpoint_work": 1.0758177542644778,
+    "arithmetic": "exact rational probabilities; certified rational square-root enclosures",
+    "all_checks_passed": true
+  },
+  "seed_realizations": {
+    "policies": 4,
+    "targets_per_policy": 2,
+    "cap": 5,
+    "independent_seeds_enumerated_per_target": 1024,
+    "conditional_terminal_branches": 50048,
+    "result": "Exact seed marginalization equals each hybrid leaf kernel; local work equals its slot work.",
+    "all_checks_passed": true
+  },
+  "endpoint_work_counterexample": {
+    "initial_fresh_labels": 2048,
+    "trigger_positive_count": 256,
+    "extra_observations_when_triggered": 1099511627776,
+    "populations": {
+      "minus": {
+        "prior": "1/16",
+        "trigger_probability": 1.1377833201061468e-25,
+        "expected_work": 2048.0
+      },
+      "midpoint": {
+        "prior": "1/8",
+        "trigger_probability": 0.026646621945476862,
+        "expected_work": 29298272718.00295
+      },
+      "plus": {
+        "prior": "3/16",
+        "trigger_probability": 6.761637391884846e-15,
+        "expected_work": 2048.0074344989353
+      }
+    },
+    "meaning": "Counterexample to replacing midpoint work by average endpoint work; NOT a counterexample to C.2."
+  },
+  "overlapping_localization": {
+    "overlapping_components": 2,
+    "prefix_kernel_identities": 90,
+    "stopped_policies_testing_direct_Hellinger_mixture_proof": 100,
+    "target_gap": "11/128",
+    "all_checks_passed": true
+  },
+  "unbounded_interleaving": {
+    "policy": "First bit selects second-unit type; alternate revisits until second unit first returns head.",
+    "stopping": "Unbounded, observation dependent; T=2*K.",
+    "uniform_expected_work_bound_for_all_component_priors": 16,
+    "exact_expected_work": {
+      "lo": "138843/14336",
+      "hi": "76443/8960",
+      "mid": "521337/57344"
+    },
+    "caps": [
+      {
+        "total_cap": 2,
+        "midpoint_expected_work": 2.0,
+        "Hellinger_h_upper": 0.011743530591455489,
+        "endpoint_tail_probabilities": {
+          "lo": 0.74212646484375,
+          "hi": 0.65185546875
+        },
+        "TV_coupling_error_bound": 1.39398193359375
+      },
+      {
+        "total_cap": 4,
+        "midpoint_expected_work": 3.391510009765625,
+        "Hellinger_h_upper": 0.016791960087708054,
+        "endpoint_tail_probabilities": {
+          "lo": 0.5731658935546875,
+          "hi": 0.48248291015625
+        },
+        "TV_coupling_error_bound": 1.0556488037109375
+      },
+      {
+        "total_cap": 8,
+        "midpoint_expected_work": 5.266712069511414,
+        "Hellinger_h_upper": 0.02060828660616685,
+        "endpoint_tail_probabilities": {
+          "lo": 0.35767292976379395,
+          "hi": 0.29618167877197266
+        },
+        "TV_coupling_error_bound": 0.6538546085357666
+      },
+      {
+        "total_cap": 16,
+        "midpoint_expected_work": 7.212571025680518,
+        "Hellinger_h_upper": 0.022721220144307375,
+        "endpoint_tail_probabilities": {
+          "lo": 0.1553828291944228,
+          "hi": 0.1306577653158456
+        },
+        "TV_coupling_error_bound": 0.2860405945102684
+      },
+      {
+        "total_cap": 32,
+        "midpoint_expected_work": 8.541292160560666,
+        "Hellinger_h_upper": 0.023326621261328017,
+        "endpoint_tail_probabilities": {
+          "lo": 0.039287681416629236,
+          "hi": 0.034367213955557155
+        },
+        "TV_coupling_error_bound": 0.07365489537218639
+      },
+      {
+        "total_cap": 64,
+        "midpoint_expected_work": 9.030502856250834,
+        "Hellinger_h_upper": 0.023385810885343323,
+        "endpoint_tail_probabilities": {
+          "lo": 0.00404398420057575,
+          "hi": 0.00362631198356202
+        },
+        "TV_coupling_error_bound": 0.00767029618413777
+      },
+      {
+        "total_cap": 128,
+        "midpoint_expected_work": 9.090552103011204,
+        "Hellinger_h_upper": 0.023386991560801883,
+        "endpoint_tail_probabilities": {
+          "lo": 5.561838850108726e-05,
+          "hi": 5.0006938661202194e-05
+        },
+        "TV_coupling_error_bound": 0.00010562532716228945
+      }
+    ],
+    "all_checks_passed": true
+  }
+}

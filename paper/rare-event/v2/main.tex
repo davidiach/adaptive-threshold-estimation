@@ -1,0 +1,171 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{iftex}
+\ifPDFTeX\usepackage[utf8]{inputenc}\fi
+\usepackage{lmodern}
+\usepackage[margin=25mm,headheight=15pt]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array,tabularx,enumitem,graphicx,float,needspace}
+\usepackage{microtype,xcolor,fancyhdr}
+\usepackage[hyphens]{url}
+\usepackage[colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!55!black]{hyperref}
+\hypersetup{pdftitle={A general entropy-tail law for adaptive rare-event estimation},pdfauthor={Consolidated working manuscript},pdfsubject={Standalone proof chain, entropy-tail selection, and exact finite certificates}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.4em}
+\setlength{\emergencystretch}{2em}
+\setlist{itemsep=0.2em,topsep=0.3em,leftmargin=1.5em}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small An entropy--tail law for rare-event estimation}
+\fancyhead[R]{\small Referee-audit revision, 29 October 2026}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Pp}{\mathbb P}
+\newcommand{\R}{\mathbb R}
+\newcommand{\1}{\mathbf 1}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\KL}{KL}
+\DeclareMathOperator{\TV}{TV}
+\DeclareMathOperator{\Ent}{Ent}
+\DeclareMathOperator{\Aff}{Aff}
+\DeclareMathOperator{\kl}{kl}
+\title{\textbf{A general entropy--tail law for\protect\\adaptive rare-event estimation}\protect\\[0.4em]
+\large Distributional characterization and certified stopping programs}
+\author{}
+\date{29 October 2026\protect\\Revised after consolidated referee audit}
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\begin{abstract}
+A population unit has a hidden positive magnitude drawn from a known law
+and a hidden sign whose conditional probability may vary arbitrarily with
+that magnitude, subject to a global rarity constraint. Repeated observations
+are Bernoulli, and every observation is charged. We characterize the minimax
+root-mean-square error under a uniform expected budget, allowing arbitrary
+creation, revisiting, interleaving, and stopping. Up to universal constants,
+the risk is an entropy--tail selection functional: a selected part of the
+law pays its rare-event inverse-square scale entropy, and the remainder
+pays a truncated inverse-gap cost. The result holds jointly for every
+magnitude law, every allowed rarity, and every positive budget without
+moment or regularity assumptions. The upper bound uses an observable
+classifier race; the lower bound combines optimal selection, entropy
+tiers, scale-sensitive annular saturation, and additive localization.
+We also derive an exact attained four-prior dual of the robust stopping-flow
+program, a factor-sixteen comparison with minimax risk, and convergent
+latent-reveal brackets that certify a sufficient finite cap. An odd-moment
+argument identifies the fixed-cap bias floor. All specialized proof inputs
+are included, with their methodological antecedents credited. Exact rational
+certificates accompany eight finite numerical instances.
+\end{abstract}
+\medskip
+\fbox{\begin{minipage}{0.94\textwidth}
+\textbf{Review status.} This revision incorporates the consolidated referee audit, including
+explicit genie-convergence scope, strengthened ordinary-mass and sign-entropy
+bounds, and clarifications of the adaptive proof interfaces. Its finite
+numerical bounds have exact rational certificates.
+External mathematical refereeing and proof-assistant verification of the
+general theorems remain outstanding. The comparison with prior work is
+explicit and targeted, without a publication-priority certification.
+\end{minipage}}
+\newpage
+\begingroup\small\setlength{\parskip}{0pt}\tableofcontents\endgroup
+\newpage
+\input{sections/overview}
+\input{sections/related_work}
+\input{sections/additive}
+\input{sections/matching_lower}
+\input{sections/discussion}
+\clearpage
+\appendix
+\input{sections/upper_foundations}
+\input{sections/lower_foundations}
+\input{sections/transfer_foundations}
+\input{sections/flow_foundations}
+\input{sections/dual_transfer}
+\input{sections/genie_brackets}
+\input{sections/identifiability}
+\input{sections/computation}
+\clearpage
+\begin{thebibliography}{99}
+\bibitem{original}
+Supplied manuscript. \emph{A Distributional Minimax Law for Adaptive
+Threshold Estimation}, version 4, 26 October 2026.
+User-supplied \texttt{paper.pdf}.
+
+\bibitem{repo}
+{\raggedright
+\emph{adaptive-threshold-estimation}, version-5 project baseline.
+Pinned commit:\par
+\texttt{eabf274cb42d4bff4daab6b58568ad6169e7f0a7}.\par
+\href{https://github.com/davidiach/adaptive-threshold-estimation/tree/eabf274cb42d4bff4daab6b58568ad6169e7f0a7/paper/v5}{Pinned version-5 manuscript source}.\par}
+
+\bibitem{lv}
+J. C. H. Lee and P. Valiant.
+\emph{Uncertainty about Uncertainty: Optimal Adaptive Algorithms for
+Estimating Mixtures of Unknown Coins}.
+Proceedings of SODA, 414--433, 2021.
+Extended version arXiv:1904.09228v3.
+\url{https://arxiv.org/html/1904.09228v3}.
+
+\bibitem{cl16}
+L. Chen and J. Li.
+\emph{Open Problem: Best Arm Identification: Almost Instance-Wise
+Optimality and the Gap Entropy Conjecture}.
+Proceedings of COLT, PMLR 49:1643--1646, 2016.
+\url{https://proceedings.mlr.press/v49/chen16b.html}.
+
+\bibitem{clq}
+L. Chen, J. Li, and M. Qiao.
+\emph{Towards Instance Optimal Bounds for Best Arm Identification}.
+Proceedings of COLT, PMLR 65:535--592, 2017.
+\url{https://proceedings.mlr.press/v65/chen17b.html}.
+
+\bibitem{jn}
+A. B. Juditsky and A. S. Nemirovski.
+\emph{Nonparametric estimation by convex programming}.
+The Annals of Statistics 37(5A):2278--2300, 2009.
+\url{https://arxiv.org/abs/0908.3108}.
+
+\bibitem{pw}
+Y. Polyanskiy and Y. Wu.
+\emph{Dualizing Le Cam's method for functional estimation, with applications
+to estimating the unseens}. arXiv:1902.05616v2, 2021.
+\url{https://arxiv.org/abs/1902.05616v2}.
+
+\bibitem{bv}
+S. Boyd and L. Vandenberghe. \emph{Convex Optimization}.
+Cambridge University Press, 2004. Chapter 5.
+\url{https://web.stanford.edu/~boyd/cvxbook/}.
+
+\bibitem{cs}
+M. J. Cho and R. H. Stockbridge.
+\emph{Linear Programming Formulation for Optimal Stopping Problems}.
+SIAM Journal on Control and Optimization 40(6):1965--1982, 2002.
+\url{https://doi.org/10.1137/S0363012900377663}.
+
+\bibitem{hoeffding}
+W. Hoeffding. \emph{Probability Inequalities for Sums of Bounded Random
+Variables}. Journal of the American Statistical Association 58(301):13--30,
+1963. \url{https://doi.org/10.1080/01621459.1963.10500830}.
+
+\bibitem{sion}
+M. Sion. \emph{On general minimax theorems}.
+Pacific Journal of Mathematics 8(1):171--176, 1958.
+\url{https://doi.org/10.2140/pjm.1958.8.171}.
+
+\bibitem{cvxpy}
+CVXPY documentation. \emph{Second-order cone program}.
+\url{https://www.cvxpy.org/examples/basic/socp.html}.
+The searches used CVXPY 1.9.3 and Clarabel 0.11.1;
+the exact certificate checkers use the Python standard library.
+\end{thebibliography}
+\end{document}

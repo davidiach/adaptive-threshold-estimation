@@ -28,7 +28,9 @@ def _flips(x: float) -> str:
 
 
 def _error(x: float) -> str:
-    return f"{x:.3g} (about {100 * x:.2g} percentage points)"
+    # Round to two significant figures without switching to exponent notation at 100.
+    points = float(f"{100 * x:.2g}")
+    return f"{x:.3g} (about {points:g} percentage points)"
 
 
 def _usage(sim: Simulation) -> str:

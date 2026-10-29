@@ -1,0 +1,95 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "name": "perfect_observation_atom",
+      "conditional_prefix_state_visits": 28512,
+      "bank_horizon": 96,
+      "race_caps": [
+        4,
+        16,
+        64
+      ],
+      "max_truncated_bank_fp_over_bound": 0.0,
+      "max_truncated_bank_error_over_bound": 0.0,
+      "max_truncated_bank_work_over_bound": 0.7107481614564497,
+      "max_ordinary_work_over_bound": 1.0,
+      "poisson_q_budget_checks": 12,
+      "minimum_poisson_mean": "2.510171347757679908669355181433268702425227108732519410262677070656266E-11",
+      "maximum_actual_variance_over_certificate": "0.7837396534740577533866536057054219161901345270914491885738405878043317"
+    },
+    {
+      "name": "selected_easy_hidden_hard",
+      "conditional_prefix_state_visits": 57024,
+      "bank_horizon": 96,
+      "race_caps": [
+        4,
+        16,
+        64
+      ],
+      "max_truncated_bank_fp_over_bound": 0.6680459153481393,
+      "max_truncated_bank_error_over_bound": 0.5856963770420933,
+      "max_truncated_bank_work_over_bound": 0.7107481614564497,
+      "max_ordinary_work_over_bound": 1.0,
+      "poisson_q_budget_checks": 16,
+      "minimum_poisson_mean": "5.739860017589088539181609380812631819982090877925343118023887343411893E-11",
+      "maximum_actual_variance_over_certificate": "0.6294854440770014454371579053631621238808353836169392665493561240591547"
+    },
+    {
+      "name": "rare_hard_component",
+      "conditional_prefix_state_visits": 57024,
+      "bank_horizon": 96,
+      "race_caps": [
+        4,
+        16,
+        64
+      ],
+      "max_truncated_bank_fp_over_bound": 0.6059451931266872,
+      "max_truncated_bank_error_over_bound": 0.3029725965633436,
+      "max_truncated_bank_work_over_bound": 0.7331076526723037,
+      "max_ordinary_work_over_bound": 1.0,
+      "poisson_q_budget_checks": 16,
+      "minimum_poisson_mean": "7.659874319475317342702229951080243289000548283615770110640719364160410E-11",
+      "maximum_actual_variance_over_certificate": "0.5739052430166609038086044260967398972863990751148855408802815295263655"
+    },
+    {
+      "name": "interior_and_boundary_gaps",
+      "conditional_prefix_state_visits": 114048,
+      "bank_horizon": 96,
+      "race_caps": [
+        4,
+        16,
+        64
+      ],
+      "max_truncated_bank_fp_over_bound": 0.22756352465547308,
+      "max_truncated_bank_error_over_bound": 0.11378176232773654,
+      "max_truncated_bank_work_over_bound": 0.6380307539291065,
+      "max_ordinary_work_over_bound": 1.0,
+      "poisson_q_budget_checks": 24,
+      "minimum_poisson_mean": "3.932734073421409292297252004261954821954546502816012427064301847592002E-11",
+      "maximum_actual_variance_over_certificate": "0.7332718374995117738431032079893433651196342117451507871991969412266152"
+    }
+  ],
+  "mixed_stress": {
+    "trials": 1500,
+    "random_seed": 319884,
+    "maximum_S_over_cost_basis": 44.245436480501624,
+    "explicit_proven_constant_checked": 33000,
+    "maximum_partial_kernel_over_208H": 0.027037560754422377,
+    "maximum_mixed_sum_over_bound": 0.004669740455666067,
+    "maximum_globally_optimized_surcharge_over_bound": 0.4017387896411325,
+    "scope": "Floating-point falsification checks; finite partial kernel sums only."
+  },
+  "shortcut_counterexamples": {
+    "selected_only_null_first_head_false_positive": "31/128",
+    "fresh_coin_difference_second_moment_with_perfect_classifiers": "7/32",
+    "correct_compound_Poisson_variance_perfect_label": "25/2",
+    "incorrect_centered_mark_variance": "175/16",
+    "note": "These counterexamples concern alterations the manuscript explicitly avoids."
+  },
+  "limitations": [
+    "Finite bank horizons do not certify infinite-horizon error or work bounds.",
+    "Exact race tests use finite caps, not the large Section 3 cap schedule.",
+    "Infinite-horizon validity and the constant 33000 require analytic inequalities."
+  ]
+}

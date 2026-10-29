@@ -1,0 +1,103 @@
+\section{Consequences and limits of the characterization}\label{sec:discussion}
+
+The selection formula recovers two immediate upper bounds by choosing
+the retained set to be all or none of the magnitude space:
+\[
+ R_{\mu,\rho}(B)\lesssim
+ \min\left\{\rho,\sqrt{\rho\Gamma_\mu/B},
+ \int\min\{1,(d\sqrt B)^{-1}\}\,\mu(dd)\right\}.
+\]
+The full formula additionally allows different regions of the same law
+to use different treatments. Its lower proof explains why contributions
+from several irregular components may need to be combined.
+
+For a single magnitude $\mu=\delta_d$, hard assignments leave two choices
+and give
+\[
+ R_{\delta_d,\rho}(B)\asymp
+       \min\{\rho,\sqrt{\rho/(Bd^2)}\}.
+\]
+For a general law, the finite-prefix selection values $k_J$ in
+\eqref{eq:canonical-selection-prefix} have an explicit tail-mass error
+bound \eqref{eq:canonical-prefix-limit}, and their limit lies between
+$\mathcal K/2$ and $\mathcal K$. This is a finite approximation using only
+known band masses. Exhaustive selection is possible, but an efficient
+general selection algorithm has not been established here.
+
+The scalar characterization concerns the full minimax risk, whereas
+$P_N$ bounds worst bias and worst variance separately. Accordingly, its
+exact dual is an identity for a certificate program, and the statistical
+connection is a comparison inequality. The convergent genie brackets
+can certify that a chosen cap suffices for a particular input without
+using the large universal cap. They do not give a uniform runtime bound.
+
+The remaining quantitative questions include sharp comparison constants,
+efficient selection for structured laws, and rates of cap convergence.
+The present theorem assumes known $\mu$, Bernoulli observations, and a
+uniform expected observation budget. Extensions to an unknown magnitude
+law, other observation kernels, or almost-sure budgets require separate
+arguments.
+
+This consolidated manuscript includes the specialized proof chain rather
+than relying on the earlier working notes. Separate model audits found
+no remaining substantive inconsistency in the reviewed chain; exact
+arithmetic verifies the finite numerical certificates. These checks do
+not constitute external refereeing or proof-assistant verification of the
+general theorems. The related-work comparison is targeted and does not
+certify publication priority.
+
+
+\subsection{Two scope examples}
+
+\paragraph{A noninterval optimal assignment.}
+Let $\varepsilon=1/1024$, put masses $(1-\varepsilon)/2$, $\varepsilon$,
+and $(1-\varepsilon)/2$ at $1/2$, $1/4$, and $1/8$, respectively, and
+take $\rho=1/4$, $h=B^{-1/2}=1/1024$.
+All three atoms lie above $h$. Enumerating the eight hard retained sets
+shows that the unique minimum retains $\{1/2,1/8\}$ and treats $1/4$
+ordinarily. The following rational enclosures for the inner cost divided
+by $h$ make the strict comparison explicit:
+\begin{center}
+\begin{tabular}{@{}lc@{}}
+\toprule
+Retained atoms & Enclosure for cost divided by $h$\\
+\midrule
+$\varnothing$ & $(4.99902,4.99903)$\\
+$\{1/2\}$ & $(4.70676,4.70677)$\\
+$\{1/4\}$ & $(5.05761,5.05762)$\\
+$\{1/2,1/4\}$ & $(4.72155,4.72156)$\\
+$\{1/8\}$ & $(3.82997,3.82998)$\\
+$\{1/2,1/8\}$ & $(3.22748,3.22749)$\\
+$\{1/4,1/8\}$ & $(3.83271,3.83272)$\\
+$\{1/2,1/4,1/8\}$ & $(3.22943,3.22944)$\\
+\bottomrule
+\end{tabular}
+\end{center}
+These follow by substituting the rational weights into $\mathcal G$.
+For example, after reducing each logarithm argument to $1\le x\le2$,
+use $y=(x-1)/(x+1)$ and
+\[
+ 0\le\log x-2\sum_{k=0}^{m-1}\frac{y^{2k+1}}{2k+1}
+ \le\frac{2y^{2m+1}}{(2m+1)(1-y^2)},
+\]
+together with rational bounds for $\log2$ from the same series and
+square-root bounds checked by squaring. Already $m=90$ gives intervals
+much narrower than those displayed. The companion verifier
+\texttt{checks/verify\_revisions.py} performs these exact calculations.
+Since the outer cap is inactive, the original functional has the same
+optimizer. No interval can contain both retained atoms while excluding
+the intervening positive-mass atom.
+
+\paragraph{Infinite inverse moments and a slow tail.}
+Let $\mu\{2^{-j}\}=1/[j(j+1)]$ for $j\ge1$. Both inverse moments
+of orders one and two are infinite. At $B=4^J$, ignore $j>J$ and
+treat the first $J$ atoms ordinarily. This gives
+\[
+ \mathcal K(B)\le\frac1{J+1}
+       +\sum_{j=1}^J\frac{2^{j-J}}{j(j+1)}
+       =\frac1{J+1}+O(J^{-2}).
+\]
+For fixed $\rho$ and sufficiently large $J$, the ignored-tail allocation
+gives $\Psi(2^{-J})\ge1/(J+1)$. Thus the upper and lower scales match
+even though the full-law inverse moments diverge. This example uses
+only the vanishing tail probability, not an integrable full-law cost.

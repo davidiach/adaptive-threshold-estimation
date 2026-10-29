@@ -1,0 +1,85 @@
+{
+  "variational_optimizer": {
+    "atomic_laws": 250,
+    "laws_with_saturated_atoms": 78,
+    "exact_pointwise_optimality_checks": 29724,
+    "optimizer": "w_*(d)=min(1,alpha^2/d^2), integral w_*=rho; same optimizer works for every h."
+  },
+  "conditional_response": {
+    "randomized_ordered_policies": 100,
+    "exact_gap_checks": 500,
+    "includes": "zero-observation decisions, d=1/2, and d=2^-20"
+  },
+  "full_null_product": {
+    "exact_unbiased_interpolation_policies": 45,
+    "bias_and_random_activation_cases": 405,
+    "full_h_supremum_checked": true,
+    "minimum_actual_product_over_lower_bound": 36.0
+  },
+  "sharp_bias_defect": {
+    "law": "(1-1/1024) delta_(1/2) + (1/1024) delta_(2^-20)",
+    "rho": "1/8",
+    "estimator": "Y=X-b, one flip",
+    "bias": "524287/2147483648",
+    "actual_uniform_variance": "126522726349275135/1152921504606846976",
+    "null_work": 1,
+    "wrong_2b_lower_at_h_equals_d": 1365.3385416716337,
+    "correct_4b_full_supremum_interval": [
+      0.0025956410391175314,
+      0.0025956410391175314
+    ],
+    "sharpness": "For any fixed c<4, keep eps fixed and let d->0: Psi(d)-c*b >= eps*(1-c/4)+O(d), so the putative product lower bound diverges while V<=1/4."
+  },
+  "stronger_ordinary_bound": {
+    "exact_dyadic_instances": 1000,
+    "factor_two_sharpness_ratio": "1048575/524288",
+    "ordinary_mass_improvement": "log(1+t)<=sqrt(t) implies sqrt(G(a appended x))<=sqrt(G(a))+sqrt(x); inner optimality therefore forces every ordinary w_j<=rho.",
+    "ordinary_bound_improvement": "h H_O <=2 Psi(h), replacing the printed factor 9."
+  },
+  "factor_one_counterexample": {
+    "law": "12 dyadic endpoint atoms d_j=2^(-j-1), each mass 1/12",
+    "rho": "1/4",
+    "h": "1/4096",
+    "all_ordinary_is_inner_optimal": true,
+    "subsets_checked": 4096,
+    "ordinary_contribution": "1365/8192",
+    "Psi_interval": [
+      0.14905624974531242,
+      0.14905624974531242
+    ],
+    "ordinary_over_Psi_lower": 1.1178731307624363,
+    "conclusion": "A universal factor 1 is false even for a genuine optimal ordinary set; factor 2 is valid."
+  },
+  "boundary_and_transfer_checks": {
+    "outer_cap_counterexample": {
+      "rho": "1/100",
+      "h": "1/4",
+      "gap": "1/2",
+      "ordinary_contribution": "1/2",
+      "Psi": "1/100",
+      "conclusion": "The empty retained set minimizes the OUTER-capped objective but violates the ordinary bound. The manuscript correctly selects an INNER minimizer."
+    },
+    "fractional_atom_counterexample": "For mu=delta_(1/8), rho=1/8, h=1/4, Psi=rho requires a fractional allocation. Restricting w to indicators gives zero.",
+    "canonical_factor_two_sharpness": [
+      {
+        "gap": "5/16",
+        "exact_over_canonical": "8/5"
+      },
+      {
+        "gap": "65/256",
+        "exact_over_canonical": "128/65"
+      },
+      {
+        "gap": "16385/65536",
+        "exact_over_canonical": "32768/16385"
+      },
+      {
+        "gap": "1073741825/4294967296",
+        "exact_over_canonical": "2147483648/1073741825"
+      }
+    ],
+    "transfer_branch_squared_ratio": "(J/B)/b^2 = 75/4 when b=Psi/64 and J=(15Psi/16)^2/(192h^2), h=B^-1/2"
+  },
+  "status": "PASS",
+  "scope": "Exact finite checks, explicit optimizing allocations, and analytic sharpness/counterexamples. No counterexample to the stated Appendix C.5 or Sections 4.1--4.3 bounds was found."
+}

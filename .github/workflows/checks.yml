@@ -24,6 +24,7 @@ on:
       - 'TIER6_FROZEN.sha256'
       - 'proposals/constants/*.lean'
       - 'proposals/constants/*.py'
+      - 'proposals/constants/*.md'
   pull_request:
   workflow_dispatch:
 concurrency:
@@ -49,6 +50,8 @@ jobs:
         run: python tools/build_critical_review.py --check
       - name: Verify the consolidated manuscript and its inherited sources
         run: python tools/build_v5.py --check
+      - name: Verify rare-event v2 identities and replay finite certificates
+        run: python tools/verify_rare_event_manuscript.py
       - name: Check manuscript assembly preserves mathematical expressions
         run: python -m unittest discover -s tools -p 'test_build_v5.py' -v
       - name: Replay population and nonlinear feedback checkpoints
@@ -207,6 +210,9 @@ jobs:
             results/tier6_build.log
             results/tier6_audit.log
             results/tier6_status.json
+            lean/ThresholdHC/ResearchRouteA/status.json
+            lean/ThresholdHC/ResearchRouteA/build.log
+            lean/ThresholdHC/ResearchRouteA/audit.log
             .runtime/critical-components/
             .runtime/blind-upper-components/
             .runtime/critical-upper-components/

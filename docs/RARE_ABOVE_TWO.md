@@ -84,9 +84,11 @@ specifications or imported models, omitted targets or modules, wrong dependency
 order, incomplete reports and nonstandard axioms. Fresh reports go under
 `.runtime/rare-above-two/`; CI runs the same audit.
 
-The paper-only rare-event regimes below two, sharp rare-event confidence rates
-at and above two, and a corrected arbitrary-law characterization remain outside
-this package. This formalization does not establish novelty or external
+The paper-only rare-event regimes below two and sharp rare-event confidence
+rates at and above two remain outside this package. The new
+[general-law manuscript](../paper/rare-event/README.md) and
+[finite-gap manuscript](../paper/finite-gap-rare-events/README.md) have separate
+paper-proof characterizations whose formalization is follow-up work. This formalization does not establish novelty or external
 specialist review. Historical manuscripts and research bundles retain their
 original proof constructions and checkpoint labels; this guide records the
 new formal coverage.
