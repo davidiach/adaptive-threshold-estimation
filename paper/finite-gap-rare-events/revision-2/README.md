@@ -37,7 +37,14 @@ Checks of revision 2:
   - Only finite atomic laws were tested numerically.
 - The sources pass static LaTeX checks: environments, braces, 97 unique labels, and every reference and all eight citations resolve.
 - The PDF builds without LaTeX warnings, undefined references or overfull boxes, and all its fonts are embedded. All 35 pages were visually inspected.
-- Its text was compared word by word with revision 1 built by the same engine. The only differences are the additions listed above and the renumbering they cause: page numbers after §6, equation numbers in the appendices, and citations after the two new entries.
+- That inspection found seven minor issues in the new material, all fixed before the PDF was committed:
+  - the §2.2 paragraph structure;
+  - the Aronow–Kallus–Lopatto sum, now over suboptimal arms only;
+  - a missing caveat that the companion's proof is unrefereed;
+  - notation in the proof of Lemma 7.1;
+  - spacing at the end of the proof of Proposition 7.2;
+  - the bibliography's label width and order.
+- The text was compared word by word with revision 1 built by the same engine. The only differences are the additions listed above, page numbers after §6 and equation numbers in the appendices. Revision 1's citation numbers are kept; the new entries are [7] and [8].
 
 Revision 2 is a paper proof, like revision 1. It is not Lean-checked and has not had external specialist review.
 

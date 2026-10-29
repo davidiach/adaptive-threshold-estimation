@@ -54,17 +54,21 @@ $\Gamma_\xi\le4H_\xi/t$.
 \end{lemma}
 
 \begin{proof}
-Let $j_0$ be the band containing $t$, so $t\le b_{j_0}$. A band
+The bound is trivial for $\xi=0$, so let $\xi\ne0$. Let $j_0$ be the
+band containing $t$, so $t\le b_{j_0}$. A band
 meeting $[t,1/2]$ has index $j_0-r$ with $r\ge0$ and consists of gaps
 in $(b_{j_0}2^{r-1},b_{j_0}2^r]$. There every gap of $\xi$ satisfies
 $d\ge t$ and $d>b_{j_0}2^{r-1}\ge t2^{r-1}$, so $d^{-1}\le2^{1-r}/t$.
-Writing $a_r$ and $H_r$ for the inverse-square and inverse costs of
-$\xi$ in that band, $a_r\le2^{1-r}H_r/t$. Comparing the normalized
-costs with the probability vector $\pi_r=2^{-(r+1)}$ gives
-$\Ent(a/A)\le\sum_r(a_r/A)\log(1/\pi_r)$, whence
+Writing $c_r$ and $g_r$ for the inverse-square and inverse costs of
+$\xi$ in that band, indexed by the offset $r$, we get
+$c_r\le2^{1-r}g_r/t$, $\sum_rc_r=A_\xi$ and $\sum_rg_r=H_\xi$. Only
+finitely many bands are occupied, so
+$\Gamma_\xi=A_\xi(1+\Ent(c/A_\xi))$. Comparing the normalized costs
+with the probability vector $\pi_r=2^{-(r+1)}$ gives
+$\Ent(c/A_\xi)\le\sum_r(c_r/A_\xi)\log(1/\pi_r)$, whence
 \[
- \Gamma_\xi\le\sum_{r\ge0}a_r[1+(r+1)\log2]
- \le\frac1t\sum_{r\ge0}2^{1-r}[1+(r+1)\log2]\,H_r.
+ \Gamma_\xi\le\sum_{r\ge0}c_r[1+(r+1)\log2]
+ \le\frac1t\sum_{r\ge0}2^{1-r}[1+(r+1)\log2]\,g_r.
 \]
 The coefficient $2^{1-r}[1+(r+1)\log2]$ is largest at $r=0$, where it
 equals $2+2\log2<4$.
@@ -120,11 +124,15 @@ and, with $T_h\le S$,
 \[
  \Q(B)\le T_h+\sqrt2\,x+\sqrt{8T_hy}\le S+\sqrt2\,x+\sqrt{8Sy}.
 \]
-If $S=0$ then $\Q(B)=0$. Otherwise put $u=y/S\in[0,1]$, so $x=(1-u)S$
-and the right side equals $S[1+\sqrt2(1-u+2\sqrt u)]$. Since
-$1-u+2\sqrt u\le2$ on $[0,1]$, it is at most $(1+2\sqrt2)S$. Taking the
-infimum over $\sigma$, and using $\Q(B)\le\rho$, gives
-$\Q(B)\le(1+2\sqrt2)\min\{\rho,\inf_\sigma S\}=(1+2\sqrt2)\mathcal K(B)$.
+If $S=0$ then $\Q(B)=0$. Otherwise put $u=y/S\in[0,1]$, so that
+$x=(1-u)S$ and
+\[
+ S+\sqrt2\,x+\sqrt{8Sy}=S\bigl[1+\sqrt2\,(1-u+2\sqrt u)\bigr]
+ \le(1+2\sqrt2)\,S,
+\]
+because $1-u+2\sqrt u\le2$ on $[0,1]$. Taking the infimum over
+$\sigma$, and using $\Q(B)\le\rho$, gives
+$\Q(B)\le(1+2\sqrt2)\min\{\rho,\inf_\sigma S\}=(1+2\sqrt2)\,\mathcal K(B)$.
 \end{proof}
 
 \subsection{Consequences}
