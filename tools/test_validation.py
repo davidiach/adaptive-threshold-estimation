@@ -197,12 +197,15 @@ class ExperimentLockTests(unittest.TestCase):
 
     def test_rewritten_record_may_differ_only_in_line_endings(self):
         name = "results/real_verification.json"
+        # CI runs verify_real.py first, so the checkout may already hold either form.
         data, expected = self.locked(name)
         lf = data.replace(b"\r\n", b"\n")
-        self.assertNotEqual(lf, data)
-        for form in (data, lf, lf.replace(b"\n", b"\r\n")):
+        crlf = lf.replace(b"\n", b"\r\n")
+        self.assertNotEqual(lf, crlf)
+        for form in (lf, crlf):
             self.assertTrue(experiment_lock.matches_lock(name, form, expected))
-        self.assertFalse(experiment_lock.matches_lock(name, lf.replace(b"true", b"false"), expected))
+            self.assertFalse(experiment_lock.matches_lock(
+                name, form.replace(b"true", b"false"), expected))
 
     def test_other_locked_files_must_match_byte_for_byte(self):
         name = "benchmark/verify_real.py"
