@@ -11,8 +11,11 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
+import numpy as np
+
 import score
 import verify_uniform713 as uniform713
+import verify_experiment_lock as experiment_lock
 import verify_uniform_arithmetic as arithmetic
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -185,6 +188,113 @@ class UniformArithmeticAuditTests(unittest.TestCase):
                 ("\n".join(self.lines), 1), ("\n".join(self.lines[1:]), 0)):
             with self.subTest(output=output[-40:], returncode=returncode):
                 self.assertFalse(arithmetic.check(output, returncode)[0])
+
+
+class ExperimentLockTests(unittest.TestCase):
+    def setUp(self):
+        self.hashes = json.loads((ROOT / "results/real_selection.json").read_text())["hashes"]
+
+    def locked(self, name):
+        return (ROOT / name).read_bytes(), self.hashes[name]
+
+    def test_rewritten_record_may_differ_only_in_line_endings(self):
+        name = "results/real_verification.json"
+        # CI runs verify_real.py first, so the checkout may already hold either form.
+        data, expected = self.locked(name)
+        lf = data.replace(b"\r\n", b"\n")
+        crlf = lf.replace(b"\n", b"\r\n")
+        self.assertNotEqual(lf, crlf)
+        for form in (lf, crlf):
+            self.assertTrue(experiment_lock.matches_lock(name, form, expected))
+            self.assertFalse(experiment_lock.matches_lock(
+                name, form.replace(b"true", b"false"), expected))
+        # Stray carriage returns are content, not a line-ending convention.
+        self.assertFalse(experiment_lock.matches_lock(name, lf.replace(b"\n", b"\r\r\n"), expected))
+        self.assertFalse(experiment_lock.matches_lock(name, lf.replace(b"\n", b"\r\n", 1), expected))
+
+    def test_strict_mode_requires_the_exact_committed_bytes(self):
+        # CI checks the committed tree with --strict, so a commit converting the
+        # locked record to LF fails there even though a local rewrite is tolerated.
+        name = "results/real_verification.json"
+        data, expected = self.locked(name)
+        crlf = data.replace(b"\r\n", b"\n").replace(b"\n", b"\r\n")
+        self.assertTrue(experiment_lock.matches_lock(name, crlf, expected, strict=True))
+        self.assertFalse(experiment_lock.matches_lock(name, crlf.replace(b"\r\n", b"\n"), expected, strict=True))
+
+    def test_other_locked_files_must_match_byte_for_byte(self):
+        name = "benchmark/verify_real.py"
+        data, expected = self.locked(name)
+        self.assertTrue(experiment_lock.matches_lock(name, data, expected))
+        self.assertFalse(experiment_lock.matches_lock(name, data.replace(b"\n", b"\r\n"), expected))
+
+    def heldout(self):
+        test = json.loads((ROOT / "results/real_test.json").read_text())
+        training = json.loads((ROOT / "benchmark/data/training.json").read_text())["training"]
+        with np.load(ROOT / "results/real_test_raw.npz") as raw:
+            return json.loads((ROOT / "results/real_selection.json").read_text()), test, dict(raw), training
+
+    def test_heldout_record_is_recomputed_from_raw_data(self):
+        lock, test, raw, training = self.heldout()
+        self.assertIs(experiment_lock.check_heldout(lock, test, raw, training), False)
+
+    def test_heldout_record_mutations_rejected(self):
+        # The external review's four mutations, each of which the old guard accepted.
+        def flipped(test, raw):
+            test["accept"] = True
+
+        def emptied(test, raw):
+            test["rows"], test["accept"] = [], True
+
+        def repeated(test, raw):
+            test["rows"] = [test["rows"][0]] * 4
+
+        def unseeded(test, raw):
+            for row in test["rows"]:
+                row["seed"], row["config"] = 0, {}
+
+        def extra_array(test, raw):
+            raw["extra_value"] = raw["gha_tuned_16384_value"]
+
+        def changed_value(test, raw):
+            raw["real_tuned_16384_value"] = raw["real_tuned_16384_value"].copy()
+            raw["real_tuned_16384_value"][0] += 0.5
+
+        def reshaped_interval(test, raw):
+            test["rows"][0]["rmse_interval"] = [test["rows"][0]["rmse_interval"]] * 2
+
+        lock, test, raw, training = self.heldout()
+        for mutate in (flipped, emptied, repeated, unseeded, extra_array, changed_value,
+                       reshaped_interval):
+            changed, changed_raw = copy.deepcopy(test), dict(raw)
+            mutate(changed, changed_raw)
+            with self.subTest(mutation=mutate.__name__), self.assertRaises(RuntimeError):
+                experiment_lock.check_heldout(lock, changed, changed_raw, training)
+
+    def test_sealed_results_and_start_record_are_pinned(self):
+        experiment_lock.check_sealed()
+        real = experiment_lock.digest
+        for name, message in (("results/real_test_raw.npz", "sealed held-out result changed"),
+                              ("results/real_test.json", "sealed held-out result changed"),
+                              ("results/real_selection.json", "test start record")):
+            def changed(path, name=name):
+                return "0" * 64 if path == name else real(path)
+            with self.subTest(name=name), patch.object(experiment_lock, "digest", changed), \
+                    self.assertRaisesRegex(RuntimeError, message):
+                experiment_lock.check_sealed()
+
+    def test_lock_check_passes_after_a_linux_rewrite(self):
+        record = ROOT / "results/real_verification.json"
+        read_bytes = Path.read_bytes
+
+        def rewritten(path):
+            data = read_bytes(path)
+            return data.replace(b"\r\n", b"\n") if path == record else data
+
+        with patch.object(Path, "read_bytes", rewritten), redirect_stdout(io.StringIO()) as output:
+            experiment_lock.main([])
+        self.assertIn("Verified 9 benchmark locks", output.getvalue())
+        with patch.object(Path, "read_bytes", rewritten), self.assertRaises(SystemExit):
+            experiment_lock.main(["--strict"])
 
 
 if __name__ == "__main__":

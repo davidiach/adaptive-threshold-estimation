@@ -63,11 +63,34 @@ class BlindUpperAuditTests(unittest.TestCase):
         for source in ("example : Statement := by admit\n",
                        'def a : String := "/-"\n' + hidden + 'def b : String := "-/"\n',
                        'def a : String := "--" ; run_cmd pure ()\n',
+                       'def \u00ab/-\u00bb : Nat := 0\n' + hidden + 'def \u00ab-/\u00bb : Nat := 0\n',
+                       'def \u00ab--\u00bb : Nat := 0 ; run_cmd pure ()\n',
                        '#print "\'A.foo\' does not depend on any axioms"\n'):
             with self.subTest(source=source):
                 self.assertIsNotNone(audit.FORBIDDEN.search(audit.strip_comments(source)))
         self.assertIsNone(audit.FORBIDDEN.search(audit.strip_comments(
             "/- \"quoted\" admit -/\ntheorem admits_x' : True := trivial -- \"note\"\n")))
+
+    def test_metaprograms_missed_by_the_frozen_pattern_rejected(self):
+        for source in ("elab_rules : tactic | `(tactic| trivial) => pure ()\n",
+                       "open Lean in macro_rules | `(tactic| trivial) => `(tactic| rfl)\n",
+                       "@[inline, tactic trivial] def t := 1\n",
+                       "attribute [tactic trivial] t\n",
+                       "simproc s (_) := fun _ => pure .continue\n",
+                       "def add := Lean.Environment.addDeclCore\n",
+                       "theorem t : 1 = 1 := by_elab pure ()\n",
+                       "simproc_decl s (_) := fun _ => pure .continue\n",
+                       "dsimproc_decl s (_) := fun _ => pure .continue\n",
+                       "theorem t : 2 + 2 = 4 := by decide +native\n"):
+            with self.subTest(source=source):
+                stripped = audit.strip_comments(source)
+                self.assertIsNone(audit.TIER6_FORBIDDEN.search(stripped))
+                self.assertIsNotNone(audit.FORBIDDEN.search(stripped))
+        for source in ("attribute [local irreducible] f g\n", "attribute [instance] I.measurable\n",
+                       "theorem syntax_free (elaborate : Nat) : elaborate = elaborate := rfl\n",
+                       "def relabel (n : Nat) : Nat := n + 1\n"):
+            with self.subTest(source=source):
+                self.assertIsNone(audit.FORBIDDEN.search(audit.strip_comments(source)))
 
     def test_sorry_warning_cannot_be_silenced(self):
         # The frozen pattern's \bsorry\b also matches the option name.
