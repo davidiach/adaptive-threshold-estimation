@@ -69,9 +69,18 @@ This verifies the immutable [v2 payload](../paper/rare-event/v2/MANIFEST.sha256)
 and [historical audit records](../paper/rare-event/audit/MANIFEST.sha256), then
 runs the certificate and revision verifiers in a temporary copy. It rechecks
 33 exact lower certificates, 9 upper policies, 9 stopping decisions, two
-perfect-label examples, and rejection of six targeted corruptions. It also
-replays the independent revision audit's finite computations, including the
-new examples, constants, and genie comparisons. Published files are unchanged.
+perfect-label examples, and rejection of six targeted corruptions. It then
+binds each of the nine genie-bracket rows to its lower and upper files. Both
+files must pass the payload's exact verifiers and state the row's law, rarity,
+budget and cap. The lower must be a verified four-prior genie dual, the
+uncapped scope the bracket needs. The stopping decision, ratios and displayed
+decimals are recomputed from the verified bounds. Each case's cap search must
+follow the generator's cap ladder at both budgets and stop at its first
+passing cap. Eight targeted substitutions must be rejected: seven altered file
+references, including an upper policy for another instance, a finite-cap lower
+and a file outside the checks, and one flipped stopping decision. It also replays the independent revision audit's finite
+computations, including the new examples, constants, and genie comparisons.
+Published files are unchanged.
 
 The [build record](../paper/rare-event/v2/VERIFICATION.json) covers the delivered
 55-page PDF and its visual review; [build instructions](../paper/rare-event/README.md#verify-and-build)

@@ -569,7 +569,9 @@ for every sign law, about $0.75\,\omega_\mu(B^{-1/2})$. On the listed signs, the
 distribution-blind algorithm's simulated RMS error is 0.277, with a standard
 error of about 0.012 over 200 runs. For RMS error 0.03, the planner finds a
 fixed plan using 258,153 flips for every sign law. In simulation, the blind algorithm first
-reaches 0.03 at budget 4,194,304.
+reaches 0.03 at budget 4,194,304 (0.0271 over 200 runs). That is an unconfirmed hit:
+the planner's 95% upper confidence bound there is 0.183, and confirming 0.03 would need
+at least 6,761 runs.
 
 This is numerical evidence for one law and, for the blind algorithm, one sign
 assignment. The fixed plan uses the gap law to choose $m$, as the
