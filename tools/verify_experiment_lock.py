@@ -57,7 +57,18 @@ def matches_lock(name, data, expected, strict=False):
 
 
 def close(actual, expected, what):
-    require(np.allclose(actual, expected, rtol=1e-12, atol=1e-14), f"{what} does not match the raw held-out data")
+    actual, expected = np.asarray(actual, dtype=float), np.asarray(expected, dtype=float)
+    require(actual.shape == expected.shape and np.allclose(actual, expected, rtol=1e-12, atol=1e-14),
+            f"{what} does not match the raw held-out data")
+
+
+def check_sealed():
+    """The test-start record pins the locked selection, and the sealed results are unchanged."""
+    started = json.loads((ROOT / "results/real_test_started.json").read_text())
+    require(started["selection_sha256"] == digest("results/real_selection.json"),
+            "test start record does not match the locked selection")
+    for name, expected in HELDOUT.items():
+        require(digest(name) == expected, f"sealed held-out result changed: {name}")
 
 
 def check_heldout(lock, test, raw, training):
@@ -123,16 +134,12 @@ def main(argv=None):
     for name, expected in lock["hashes"].items():
         if not matches_lock(name, (ROOT / name).read_bytes(), expected, strict):
             raise SystemExit(f"Locked benchmark input changed: {name}")
-    started = json.loads((ROOT / "results/real_test_started.json").read_text())
-    require(started["selection_sha256"] == digest("results/real_selection.json"),
-            "test start record does not match the locked selection")
     for copy, original in [("reference.py", "code/benchmark.py"),
                            ("data/training.json", "results/training.json"),
                            ("data/tuning.json", "results/tuning.json")]:
         require(digest("benchmark/" + copy) == digest("inputs/next-phase/" + original),
                 "benchmark copy differs from its original input")
-    for name, expected in HELDOUT.items():
-        require(digest(name) == expected, f"sealed held-out result changed: {name}")
+    check_sealed()
     test = json.loads((ROOT / "results/real_test.json").read_text())
     training = json.loads((ROOT / "benchmark/data/training.json").read_text())["training"]
     with np.load(ROOT / "results/real_test_raw.npz") as raw:

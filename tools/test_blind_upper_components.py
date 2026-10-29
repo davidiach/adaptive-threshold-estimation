@@ -77,13 +77,18 @@ class BlindUpperAuditTests(unittest.TestCase):
                        "@[inline, tactic trivial] def t := 1\n",
                        "attribute [tactic trivial] t\n",
                        "simproc s (_) := fun _ => pure .continue\n",
-                       "def add := Lean.Environment.addDeclCore\n"):
+                       "def add := Lean.Environment.addDeclCore\n",
+                       "theorem t : 1 = 1 := by_elab pure ()\n",
+                       "simproc_decl s (_) := fun _ => pure .continue\n",
+                       "dsimproc_decl s (_) := fun _ => pure .continue\n",
+                       "theorem t : 2 + 2 = 4 := by decide +native\n"):
             with self.subTest(source=source):
                 stripped = audit.strip_comments(source)
                 self.assertIsNone(audit.TIER6_FORBIDDEN.search(stripped))
                 self.assertIsNotNone(audit.FORBIDDEN.search(stripped))
         for source in ("attribute [local irreducible] f g\n", "attribute [instance] I.measurable\n",
-                       "theorem syntax_free (elaborate : Nat) : elaborate = elaborate := rfl\n"):
+                       "theorem syntax_free (elaborate : Nat) : elaborate = elaborate := rfl\n",
+                       "def relabel (n : Nat) : Nat := n + 1\n"):
             with self.subTest(source=source):
                 self.assertIsNone(audit.FORBIDDEN.search(audit.strip_comments(source)))
 

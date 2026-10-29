@@ -9,7 +9,7 @@ import numpy as np
 ROOT=Path(__file__).resolve().parents[1]
 RES=ROOT/'results'
 sys.path.insert(0,str(ROOT/'tools'))
-from verify_experiment_lock import check_heldout, matches_lock, require
+from verify_experiment_lock import check_heldout, check_sealed, matches_lock, require
 
 
 def integrity(rewritten):
@@ -25,6 +25,7 @@ def main():
         data=(ROOT/name).read_bytes()
         require(matches_lock(name,data,digest),'Locked benchmark input changed: '+name)
         if hashlib.sha256(data).hexdigest()!=digest:rewritten.append(name)
+    check_sealed()
     test=json.loads((RES/'real_test.json').read_text())
     with np.load(RES/'real_test_raw.npz') as stored:raw=dict(stored)
     check_heldout(selection,test,raw,json.loads((ROOT/'benchmark/data/training.json').read_text())['training'])

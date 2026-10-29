@@ -259,12 +259,28 @@ class ExperimentLockTests(unittest.TestCase):
             raw["real_tuned_16384_value"] = raw["real_tuned_16384_value"].copy()
             raw["real_tuned_16384_value"][0] += 0.5
 
+        def reshaped_interval(test, raw):
+            test["rows"][0]["rmse_interval"] = [test["rows"][0]["rmse_interval"]] * 2
+
         lock, test, raw, training = self.heldout()
-        for mutate in (flipped, emptied, repeated, unseeded, extra_array, changed_value):
+        for mutate in (flipped, emptied, repeated, unseeded, extra_array, changed_value,
+                       reshaped_interval):
             changed, changed_raw = copy.deepcopy(test), dict(raw)
             mutate(changed, changed_raw)
             with self.subTest(mutation=mutate.__name__), self.assertRaises(RuntimeError):
                 experiment_lock.check_heldout(lock, changed, changed_raw, training)
+
+    def test_sealed_results_and_start_record_are_pinned(self):
+        experiment_lock.check_sealed()
+        real = experiment_lock.digest
+        for name, message in (("results/real_test_raw.npz", "sealed held-out result changed"),
+                              ("results/real_test.json", "sealed held-out result changed"),
+                              ("results/real_selection.json", "test start record")):
+            def changed(path, name=name):
+                return "0" * 64 if path == name else real(path)
+            with self.subTest(name=name), patch.object(experiment_lock, "digest", changed), \
+                    self.assertRaisesRegex(RuntimeError, message):
+                experiment_lock.check_sealed()
 
     def test_lock_check_passes_after_a_linux_rewrite(self):
         record = ROOT / "results/real_verification.json"

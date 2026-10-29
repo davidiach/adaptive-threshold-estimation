@@ -3,11 +3,12 @@
 The frozen Tier 3-6 verifiers scan every module in their directories, including
 unfrozen proof modules, with the frozen Tier 6 pattern. That pattern misses the
 `admit` tactic, `#guard_msgs` and metaprogramming entry points such as
-`elab_rules`, and its comment stripper parses neither string literals nor
-escaped identifiers, so "/-" or «/-» could hide `run_cmd` or
-`set_option debug.skipKernelTC true` after it. This unfrozen check applies the
-strengthened shared pattern to every project Lean source, so those gaps are
-closed without changing frozen files. It needs no Lean build.
+`elab_rules`. Its comment stripper parses neither string literals nor escaped
+identifiers, and it closes the doc-comment opener `/--/` at once, so "/-", «/-»
+or `/--/ --` could hide `run_cmd` or `set_option debug.skipKernelTC true` from
+the scan. This unfrozen check applies the strengthened shared pattern, which
+rejects those forms, to every project Lean source without changing frozen
+files. It is a textual guard, not a parser, and needs no Lean build.
 """
 from __future__ import annotations
 
