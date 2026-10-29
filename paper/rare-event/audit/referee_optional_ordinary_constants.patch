@@ -1,0 +1,94 @@
+--- a/sections/matching_lower.tex
++++ b/sections/matching_lower.tex
+@@ -75,7 +75,7 @@
+ Zero-mass bands can be omitted.
+ 
+ \begin{lemma}[Optimal-band inequalities]\label{lem:optimal-band-inequalities}
+-Every ordinary band $j\in O$ has $w_j\le3\rho$.
++Every ordinary band $j\in O$ has $w_j\le\rho$.
+ If $F>0$ and $\lambda=\sqrt{\rho/F}$, every retained band satisfies
+ \begin{equation}\label{eq:retained-gap-condition}
+  b_j\ge\frac{\lambda}{2}[1+\log(A/a_j)].
+@@ -88,22 +88,14 @@
+ \[
+  xb_j\le\sqrt\rho[\sqrt{F+\Delta}-\sqrt F].
+ \]
+-If $F=0$, the squared bracket is $x$. Otherwise
++If $F=0$, the squared bracket is $x$. Otherwise use
++$\log(1+t)\le\sqrt t$ for $t\ge0$ to obtain
+ \[
+  \Delta=x+A\log(1+x/A)+x\log(1+A/x)
+-       \le x[2+\log(1+A/x)].
+-\]
+-If $x\ge F>0$, then $A\le F\le x$, so $\Delta<3x$ and the squared
+-bracket is at most $3x$. If $0<x<F$, set $u=x/F\in(0,1)$. The squared
+-bracket divided by $x$ is at most
+-\[
+- \frac u4[2+\log(1+1/u)]^2<2.
+-\]
+-For verification, $u[2+\log(1+1/u)]^2$ is increasing on $(0,1]$:
+-its derivative is $L[L-2/(1+u)]\ge0$, where
+-$L=2+\log(1+1/u)$. Its value at one is
+-$(2+\log2)^2<8$. Thus in every case
+-$x^2b_j^2\le3\rho x$, proving $w_j\le3\rho$.
++       \le x+2\sqrt{Ax}\le x+2\sqrt{Fx}.
++\]
++Thus $\sqrt{F+\Delta}-\sqrt F\le\sqrt x$, and optimality gives
++$x^2b_j^2\le\rho x$, proving $w_j\le\rho$.
+ 
+ For $j\in I$, removing the band and assigning it to ordinary work is
+ admissible even if ignoring it would be cheaper. Hence
+@@ -145,28 +137,29 @@
+ If masses $v_j$ satisfy $v_j\le s$ at values
+ $f_j=b_j^{-1}=2^{j+1}$, then
+ \begin{equation}\label{eq:dyadic-top-mass}
+- \sum_jv_jf_j\le3
++ \sum_jv_jf_j\le2
+  \sup_{\substack{0\le q_j\le1\\\sum_jv_jq_j\le s}}
+                  \sum_jv_jq_jf_j.
+ \end{equation}
+ If the total mass is at most $s$, this is immediate. Otherwise select
+ the largest $f_j$ up to mass $s$, allowing a fraction at the boundary
+-index $j_0$. The selected integral is at least $sf_{j_0}$.
+-The excluded smaller values contribute at most
+-$s\sum_{j<j_0}f_j\le sf_{j_0}$, and the excluded boundary fraction
+-also contributes at most $sf_{j_0}$. This proves
+-\eqref{eq:dyadic-top-mass}.
+-
+-Apply it to $O$ with $s=3\rho$, using
+-Lemma~\ref{lem:optimal-band-inequalities}.
+-Dividing any feasible $3\rho$ allocation by three shows that
+-$H_O$ is at most nine times the largest ordinary-band inverse-gap
+-integral at mass $\rho$. On these bands $h/b_j\le1$ and $d\le b_j$;
++index $j_0$. Let $r$ be the selected mass at the boundary index.
++The selected mass above it is $s-r$, at values at least $2f_{j_0}$,
++so the selected integral is at least $(2s-r)f_{j_0}$.
++The excluded smaller values contribute at most $sf_{j_0}$, and the
++excluded boundary mass contributes at most $(s-r)f_{j_0}$.
++Thus the excluded integral is no larger than the selected integral,
++proving \eqref{eq:dyadic-top-mass}.
++
++Apply it to $O$ with $s=\rho$, using
++Lemma~\ref{lem:optimal-band-inequalities}. It follows that $H_O$ is at
++most twice the largest ordinary-band inverse-gap integral at mass $\rho$.
++On these bands $h/b_j\le1$ and $d\le b_j$;
+ for every $0\le q\le1$,
+ $\min\{q,h\sqrt q/d\}\ge qh/b_j$.
+ Consequently
+ \begin{equation}\label{eq:ordinary-psi}
+- hH_O\le9\Psi_{\mu,\rho}(h).
++ hH_O\le2\Psi_{\mu,\rho}(h).
+ \end{equation}
+ 
+ \subsection{Packing entropy into comparable-cost groups}
+@@ -309,8 +302,8 @@
+ \eqref{eq:psi-budget-lower} already give $R\ge c k_J$.
+ Otherwise \eqref{eq:ignored-psi} and \eqref{eq:ordinary-psi} imply
+ \[
+- k_J\le\min\{\rho,10\Psi(h)+h\sqrt{\rho F}\}
+-       \le10\Psi(h)+\min\{\rho,h\sqrt{\rho F}\}.
++ k_J\le\min\{\rho,3\Psi(h)+h\sqrt{\rho F}\}
++       \le3\Psi(h)+\min\{\rho,h\sqrt{\rho F}\}.
+ \]
+ Apply \eqref{eq:psi-budget-lower} and either
+ \eqref{eq:high-entropy-psi} or \eqref{eq:retained-entropy-lower}.

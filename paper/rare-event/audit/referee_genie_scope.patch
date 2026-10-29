@@ -1,0 +1,92 @@
+--- a/sections/genie_brackets.tex
++++ b/sections/genie_brackets.tex
+@@ -98,16 +98,19 @@
+ \end{align}
+ 
+ \begin{theorem}[Monotone stopping-ratio brackets]\label{thm:genie-ratio}
+-For any four priors,
++For every admissible quadruple of priors, with information ratios
++interpreted in the extended nonnegative reals,
+ \begin{equation}\label{eq:genie-bracket}
+- K_N\le K_\infty\le K_N^+,
+- \qquad K_N\uparrow,\quad K_N^+\downarrow.
+-\end{equation}
+-If $C_v<\infty$, then
++ K_N\uparrow K_\infty\le K_N^+,
++ \qquad K_{N+1}^+\le K_N^+.
++\end{equation}
++If, in addition, $C_v<\infty$, then
+ \begin{equation}\label{eq:genie-error}
+  0\le K_N^+-K_N\le e_N^v,\qquad e_N^v\longrightarrow0.
+ \end{equation}
+-In particular both brackets converge to $K_\infty$.
++Consequently $K_N^+\downarrow K_\infty$ under this finite-divergence
++hypothesis. Without it, the monotone brackets remain valid, but
++pointwise convergence of the upper bracket need not hold.
+ \end{theorem}
+ 
+ \begin{proof}
+@@ -156,6 +159,43 @@
+ \eqref{eq:genie-residual}.
+ \end{proof}
+ 
++\begin{remark}[Pointwise convergence can fail at infinite latent divergence]
++Let $\mu(dd)=2\,dd$ on $(0,1/2]$, $\rho=1/4$, and take
++$q_L=0$, $q_H=q_w=1/4$, and $q_v(d)=1/2-d$. All four priors are
++admissible. Here
++\[
++ C_v=\frac18\int_0^{1/2}\frac{dd}{1/4-d^2}=\infty.
++\]
++The policy which always reaches depth $N$ and accepts the latent reveal
++has infinite information and work $N$, so $K_N^+=\infty$ for every
++finite $N$.
++
++Nevertheless $K_\infty\le3/4$. To verify this for every capped policy,
++parameterize the latent state by its Bernoulli mean $p$. The variance
++reference has density $2(1-p)$ on $(0,1)$, the work reference has density
++$3/2$ below $1/2$ and $1/2$ above $1/2$, and the signed endpoint
++difference has density $-1/2$ below $1/2$ and $1/2$ above $1/2$.
++For an ordered prefix $s$ of length $n\ge1$ with $k$ heads, put
++$u_s=\int_0^1p^k(1-p)^{n-k}\,dp$. Then
++\[
++ |p_H(s)-p_L(s)|\le u_s/2,\qquad
++ p_v(s)=\frac{2(n-k+1)}{n+2}u_s,
++\]
++and hence
++\[
++ r_s\le\frac{n+2}{8(n-k+1)}u_s\le\frac{3n}{8}u_s.
++\]
++Sum over stopped prefixes and the independent seed. If $U$ denotes the
++auxiliary uniform law of $p$, the information of any capped policy is
++at most $(3/8)\E_U T$. The work-reference density dominates half the
++uniform density, so this is at most $(3/4)\E_{q_w}T$. Taking suprema
++gives the claimed bound. The auxiliary law $U$ need not be admissible;
++it is used only for this domination calculation.
++
++This example does not contradict the optimized convergence in the next
++theorem, whose proof first regularizes the variance reference.
++\end{remark}
++
+ \subsection{A convergent lower program and a stopping rule}
+ 
+ Define the strengthened-experiment dual value
+@@ -200,13 +240,17 @@
+ Also $|\delta|\le2m$ and $|\delta|\le2(1-m)$, so the new latent score
+ has absolute value at most $2/\epsilon$. Its latent divergence is finite.
+ Theorem~\ref{thm:genie-ratio} now makes its genie ratio converge to its
+-ordinary infinite-cap ratio. Hence
++ordinary infinite-cap ratio. Keep $\epsilon>0$ fixed throughout
++this limit in $N$; no convergence of the unregularized
++quadruple is used. Hence
+ \[
+  \lim_NG_N(B)^2\ge
+  \frac{(\Delta\theta)^2}{4+B K_\infty/(1-\epsilon)}.
+ \]
+ Let $\epsilon\downarrow0$ and maximize using
+-Lemma~\ref{lem:infinite-dual}. This proves $G_N\uparrow P_\infty$.
++Lemma~\ref{lem:infinite-dual}. The limits are taken in this order;
++no convergence uniform in $\epsilon$ is asserted. This proves
++$G_N\uparrow P_\infty$.
+ Equation~\eqref{eq:infinite-comparison} gives the risk bracket.
+ Since $P_\infty>0$, the ratio $P_N/G_N$ tends to one. The stated stopping
+ criterion therefore succeeds at a finite cap, with no claimed uniform

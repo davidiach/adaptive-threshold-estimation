@@ -1,0 +1,342 @@
+{
+  "pointwise_genie_counterexample": {
+    "law": "mu(dd)=2 dd on (0,1/2]",
+    "rho": "1/4",
+    "priors": {
+      "low": "0",
+      "high": "1/4",
+      "variance": "1/2-d",
+      "work": "1/4"
+    },
+    "variance_prior_mass": "1/4",
+    "target_gap": "1/4",
+    "latent_divergence": "infinity",
+    "genie_ratio_every_finite_cap": "infinity",
+    "ordinary_infinite_cap_lower": "9/128",
+    "ordinary_infinite_cap_upper": "3/4",
+    "proof": "For every stopped prefix of length n>=1, r_s <= (3/8)*n*u_s. Thus I <= (3/8) E_U T <= (3/4) E_qw T, since the work-reference latent density dominates U/2.",
+    "finite_checks": [
+      {
+        "cap": 1,
+        "ordinary_ratio": 0.0703125,
+        "exact_ratio": "9/128",
+        "full_depth_information": 0.0703125,
+        "policy_iterations": 2
+      },
+      {
+        "cap": 2,
+        "ordinary_ratio": 0.08522727272727272,
+        "exact_ratio": "15/176",
+        "full_depth_information": 0.125,
+        "policy_iterations": 3
+      },
+      {
+        "cap": 4,
+        "ordinary_ratio": 0.09644070996978851,
+        "exact_ratio": "2043/21184",
+        "full_depth_information": 0.2021484375,
+        "policy_iterations": 4
+      },
+      {
+        "cap": 8,
+        "ordinary_ratio": 0.10086506792733,
+        "exact_ratio": "45568985/451781632",
+        "full_depth_information": 0.291797849867079,
+        "policy_iterations": 4
+      },
+      {
+        "cap": 16,
+        "ordinary_ratio": 0.10301962590981596,
+        "exact_ratio": "3040349593308885/29512333853458432",
+        "full_depth_information": 0.3840116941540535,
+        "policy_iterations": 4
+      },
+      {
+        "cap": 32,
+        "ordinary_ratio": 0.10510160347851479,
+        "exact_ratio": "3048723493782393989250209733634965/29007392778794514086107089779818496",
+        "full_depth_information": 0.476435943128468,
+        "policy_iterations": 5
+      },
+      {
+        "cap": 64,
+        "ordinary_ratio": 0.10702217736966928,
+        "exact_ratio": "527876523577296181899992056925072374188405116409761907691351005377/4932403138780650114829199233784408147648120674601225174236530737152",
+        "full_depth_information": 0.5686926596127627,
+        "policy_iterations": 5
+      }
+    ]
+  },
+  "regularization_and_nonuniformity": {
+    "rows": [
+      {
+        "epsilon": "2^-4",
+        "latent_divergence_interval": [
+          0.6333824441654582,
+          0.6333824441654582
+        ],
+        "ordinary_infinite_cap_upper": 0.8,
+        "caps": [
+          {
+            "cap": 1,
+            "ordinary_ratio": 0.07045063639490884,
+            "full_depth_information": 0.07045063639490884,
+            "residual_lower": 0.5629318077705494,
+            "genie_ratio_lower_from_always_reveal": 0.6333824441654582
+          },
+          {
+            "cap": 8,
+            "ordinary_ratio": 0.1001328142349287,
+            "full_depth_information": 0.2913922387979412,
+            "residual_lower": 0.341990205367517,
+            "genie_ratio_lower_from_always_reveal": 0.07917280552068227
+          },
+          {
+            "cap": 32,
+            "ordinary_ratio": 0.10015729781357945,
+            "full_depth_information": 0.4523712231535629,
+            "residual_lower": 0.18101122101189535,
+            "genie_ratio_lower_from_always_reveal": 0.01979320138017057
+          }
+        ]
+      },
+      {
+        "epsilon": "2^-16",
+        "latent_divergence_interval": [
+          1.6462465741173335,
+          1.6462465741173335
+        ],
+        "ordinary_infinite_cap_upper": 0.7500114442664225,
+        "caps": [
+          {
+            "cap": 1,
+            "ordinary_ratio": 0.07031253352766065,
+            "full_depth_information": 0.07031253352766065,
+            "residual_lower": 1.575934040589673,
+            "genie_ratio_lower_from_always_reveal": 1.6462465741173335
+          },
+          {
+            "cap": 8,
+            "ordinary_ratio": 0.10086488306633846,
+            "full_depth_information": 0.2917977313382908,
+            "residual_lower": 1.3544488427790429,
+            "genie_ratio_lower_from_always_reveal": 0.2057808217646667
+          },
+          {
+            "cap": 32,
+            "ordinary_ratio": 0.10509920053054767,
+            "full_depth_information": 0.47642888274173345,
+            "residual_lower": 1.1698176913756002,
+            "genie_ratio_lower_from_always_reveal": 0.05144520544116667
+          }
+        ]
+      },
+      {
+        "epsilon": "2^-64",
+        "latent_divergence_interval": [
+          5.805107637189542,
+          5.805107637189542
+        ],
+        "ordinary_infinite_cap_upper": 0.75,
+        "caps": [
+          {
+            "cap": 1,
+            "ordinary_ratio": 0.0703125,
+            "full_depth_information": 0.0703125,
+            "residual_lower": 5.734795137189542,
+            "genie_ratio_lower_from_always_reveal": 5.805107637189542
+          },
+          {
+            "cap": 8,
+            "ordinary_ratio": 0.10086506792733,
+            "full_depth_information": 0.291797849867079,
+            "residual_lower": 5.513309787322463,
+            "genie_ratio_lower_from_always_reveal": 0.7256384546486927
+          },
+          {
+            "cap": 32,
+            "ordinary_ratio": 0.10510160347851479,
+            "full_depth_information": 0.476435943128468,
+            "residual_lower": 5.328671694061074,
+            "genie_ratio_lower_from_always_reveal": 0.18140961366217317
+          }
+        ]
+      },
+      {
+        "epsilon": "2^-256",
+        "latent_divergence_interval": [
+          22.44063997062823,
+          22.44063997062823
+        ],
+        "ordinary_infinite_cap_upper": 0.75,
+        "caps": [
+          {
+            "cap": 1,
+            "ordinary_ratio": 0.0703125,
+            "full_depth_information": 0.0703125,
+            "residual_lower": 22.37032747062823,
+            "genie_ratio_lower_from_always_reveal": 22.44063997062823
+          },
+          {
+            "cap": 8,
+            "ordinary_ratio": 0.10086506792733,
+            "full_depth_information": 0.291797849867079,
+            "residual_lower": 22.14884212076115,
+            "genie_ratio_lower_from_always_reveal": 2.8050799963285287
+          },
+          {
+            "cap": 32,
+            "ordinary_ratio": 0.10510160347851479,
+            "full_depth_information": 0.476435943128468,
+            "residual_lower": 21.96420402749976,
+            "genie_ratio_lower_from_always_reveal": 0.7012699990821322
+          }
+        ]
+      }
+    ],
+    "conclusion": "For fixed N, C_v^eps/N and e_N^eps diverge as eps->0, although K_infinity^eps converges to finite K_infinity. The N and eps limits cannot be interchanged."
+  },
+  "infinite_support_identification": {
+    "law": "P(D=2^-j)=2^-j, j>=1",
+    "exact_moment": "E[D^r]=1/(2^(r+1)-1)",
+    "explicit_cap_1_and_2_witness": "h(d)=1-(7/3)d; q_H,L=1/16 +/- h(d)/32",
+    "explicit_cap_1_and_2_target_gap": "1/72",
+    "explicit_cap_1_and_2_bias_floor_lower": "1/144",
+    "rows": [
+      {
+        "cap": 2,
+        "L": 1,
+        "projection_coefficients": [
+          "7/3"
+        ],
+        "residual_norm_squared": "2/9",
+        "residual_sup_bound": "13/6",
+        "certified_positive_target_gap": "1/156",
+        "bias_floor_lower": 0.003205128205128205
+      },
+      {
+        "cap": 4,
+        "L": 2,
+        "projection_coefficients": [
+          "1519/270",
+          "-3937/270"
+        ],
+        "residual_norm_squared": "196/2025",
+        "residual_sup_bound": "12173/2160",
+        "certified_positive_target_gap": "28/26085",
+        "bias_floor_lower": 0.000536706919685643
+      },
+      {
+        "cap": 6,
+        "L": 3,
+        "projection_coefficients": [
+          "854329/72900",
+          "-8909431/58320",
+          "132844159/291600"
+        ],
+        "residual_norm_squared": "7688/164025",
+        "residual_sup_bound": "75008207/1866240",
+        "certified_positive_target_gap": "246016/3375369315",
+        "bias_floor_lower": 3.6442826997732544e-05
+      },
+      {
+        "cap": 8,
+        "L": 4,
+        "projection_coefficients": [
+          "7920484159/334611000",
+          "-2316175867639/1784592000",
+          "138192066308863/7138368000",
+          "-1243300200517417/21415104000"
+        ],
+        "residual_norm_squared": "247999504/10665725625",
+        "residual_sup_bound": "135259767969509/109645332480",
+        "certified_positive_target_gap": "7998472192/6789614337052125",
+        "bias_floor_lower": 5.890225714552684e-07
+      },
+      {
+        "cap": 10,
+        "L": 5,
+        "projection_coefficients": [
+          "267256808985313/5631503130000",
+          "-44675520865279567/4240190592000",
+          "74641266199207245601/113071749120000",
+          "-2686221512819722058167/271372197888000",
+          "684972021871268988615223/23066636820480000"
+        ],
+        "residual_norm_squared": "134771859488/11614975205625",
+        "residual_sup_bound": "4371206370923372568011/27788513063731200",
+        "certified_positive_target_gap": "2225488776921088/482725742930711025719325",
+        "bias_floor_lower": 2.3051275071946266e-09
+      },
+      {
+        "cap": 12,
+        "L": 6,
+        "projection_coefficients": [
+          "20650178660599706953/217432335849300000",
+          "-428081153659754867950969/5060243452492800000",
+          "408702574650743092695536113/19050328291737600000",
+          "-411842076349019682499969049809/304805252667801600000",
+          "420070648575536697447392432177233/20726757181410508800000",
+          "-13862313196203969033992399480865679/227994328995515596800000"
+        ],
+        "residual_norm_squared": "23049888105034816/3974934889745015625",
+        "residual_sup_bound": "88452598892908242914165715989827/1098664437136037511168000",
+        "certified_positive_target_gap": "380808925631840518144/84592883765946370123108721185875",
+        "bias_floor_lower": 2.2508331001309274e-12
+      },
+      {
+        "cap": 14,
+        "L": 7,
+        "projection_coefficients": [
+          "6234414302105502886386769/32817062449734849000000",
+          "-116735845284467195545942885657/172331651018094796800000",
+          "13820051703761360253495816253134223/20053137573014667264000000",
+          "-7957846937357200897463744462798839321/45296498988456660172800000",
+          "227271715854024702369958781571170926098223/20534412874767019278336000000",
+          "-29999829773094690514373455088315183702578417/180702833297949769649356800000",
+          "17549898978359182206797919177564000052094344519/35237052493100205081624576000000"
+        ],
+        "residual_norm_squared": "191763181814021253248/66146891500246805015625",
+        "residual_sup_bound": "1722793703959615000104669485234802553216219/10449300779130384797417865216000",
+        "certified_positive_target_gap": "3296075789879269935069358194688/2999213831594080608084026768109366511336174125",
+        "bias_floor_lower": 5.494899621957611e-16
+      },
+      {
+        "cap": 16,
+        "L": 8,
+        "projection_coefficients": [
+          "210831370842936662796672234175279/554871876411990318937470000000",
+          "-286491646112073535392147341758365747679/52854772227523542938787840000000",
+          "30634751159878746320746807810488060165897361/1387776583614977127418429440000000",
+          "-2187369293908215979083644557317989222093559258649/96892037837845675805213982720000000",
+          "35697180117965112274439698472875049614003527983084953/6201090421622123251533694894080000000",
+          "-131936619175276053885883390874714163298505760610562675953/363797304735164564089976767119360000000",
+          "308731665282673461826370634340193315245250098994923595570503/56752379538685671998036375670620160000000",
+          "-39826384617442838354883451228921014539283537315567843354238777/2440352320163483895915564153836666880000000"
+        ],
+        "residual_norm_squared": "411783162833821254708883673344/284090065786404574621617941015625",
+        "residual_sup_bound": "9198996070814669579597403301027468657862158368045468061/6811005787776804071449450620637308518400",
+        "certified_positive_target_gap": "219419638341054967109055116668147635060736/3271237859770114808601499396074148606462343815322078561578125",
+        "bias_floor_lower": 3.353770770378566e-20
+      }
+    ]
+  },
+  "finite_support_threshold": {
+    "exact_threshold_cases": 56,
+    "support_sizes": "2 through 8",
+    "explicit_three_atom_low": [
+      "31/512",
+      "21/256",
+      "1/32"
+    ],
+    "explicit_three_atom_high": [
+      "33/512",
+      "11/256",
+      "3/32"
+    ],
+    "explicit_three_atom_target_gap": "7/768",
+    "explicit_three_atom_result": "Positive identification floor at caps 3 and 4; zero floor begins at cap 5."
+  },
+  "status": "PASS",
+  "scope": "Exact finite checks and explicit analytic counterexamples. General weak-star compactness and martingale convergence are assessed analytically, not certified by computation."
+}

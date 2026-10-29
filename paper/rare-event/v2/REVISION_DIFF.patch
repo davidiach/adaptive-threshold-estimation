@@ -1,0 +1,655 @@
+--- a/main.tex
++++ b/main.tex
+@@ -1,6 +1,7 @@
+ \documentclass[11pt,a4paper]{article}
+ \usepackage[T1]{fontenc}
+-\usepackage[utf8]{inputenc}
++\usepackage{iftex}
++\ifPDFTeX\usepackage[utf8]{inputenc}\fi
+ \usepackage{lmodern}
+ \usepackage[margin=25mm,headheight=15pt]{geometry}
+ \usepackage{amsmath,amssymb,amsthm,mathtools}
+@@ -16,7 +17,7 @@
+ \pagestyle{fancy}
+ \fancyhf{}
+ \fancyhead[L]{\small An entropy--tail law for rare-event estimation}
+-\fancyhead[R]{\small Consolidated draft, 28 October 2026}
++\fancyhead[R]{\small Referee-audit revision, 29 October 2026}
+ \fancyfoot[C]{\thepage}
+ \renewcommand{\headrulewidth}{0.3pt}
+ \newtheorem{theorem}{Theorem}[section]
+@@ -40,7 +41,7 @@
+ \title{\textbf{A general entropy--tail law for\protect\\adaptive rare-event estimation}\protect\\[0.4em]
+ \large Distributional characterization and certified stopping programs}
+ \author{}
+-\date{28 October 2026\protect\\Consolidated review draft}
++\date{29 October 2026\protect\\Revised after consolidated referee audit}
+ \begin{document}
+ \maketitle
+ \thispagestyle{empty}
+@@ -67,9 +68,10 @@
+ \end{abstract}
+ \medskip
+ \fbox{\begin{minipage}{0.94\textwidth}
+-\textbf{Review status.} This manuscript consolidates the specialized proof
+-chain into one document. Its mathematical arguments received separate
+-model audits; its finite numerical bounds have exact rational certificates.
++\textbf{Review status.} This revision incorporates the consolidated referee audit, including
++explicit genie-convergence scope, strengthened ordinary-mass and sign-entropy
++bounds, and clarifications of the adaptive proof interfaces. Its finite
++numerical bounds have exact rational certificates.
+ External mathematical refereeing and proof-assistant verification of the
+ general theorems remain outstanding. The comparison with prior work is
+ explicit and targeted, without a publication-priority certification.
+--- a/sections/additive.tex
++++ b/sections/additive.tex
+@@ -111,6 +111,8 @@
+ \eqref{eq:entropy-tail-law} are universal but conservative. They are not
+ the factor sixteen proved for the finite convex program; these are
+ different representations and different comparison bounds.
++The proof also gives the explicit conservative constants in
++\eqref{eq:explicit-main-constants}.
+ 
+ \begin{theorem}[Three-piece observable upper bound]\label{thm:three-piece-upper}
+ There is a universal constant $C$ such that, for every magnitude law on
+@@ -137,7 +139,9 @@
+       {\int P_{1/2-d,n}\,\mu(dd)}\ge1/u.
+ \end{equation}
+ Give negative crossings priority. A zero denominator triggers a positive
+-stop. The known all-negative mixture in the denominator is the full law
++stop. The split $\sigma+\tau+\zeta=\mu$ specifies the references and the
++work analysis; membership in these submeasures is never observed.
++The known all-negative mixture in the denominator is the full law
+ $\mu$, regardless of the decomposition.
+ 
+ By Lemma~\ref{lem:uf-mixture-bank}, a wrong negative crossing has
+@@ -263,6 +267,8 @@
+ \begin{equation}\label{eq:split-poisson}
+  \sqrt{\delta_J^2+S_J^2/B}.
+ \end{equation}
++The seed may choose zero replications, and the Poisson means may be
++below one. Every first and subsequent observation is charged.
+ Every such finite-level procedure has finite deterministic local caps.
+ The reference bank may be countable; its stopping events are measurable
+ countable unions and its positive reference is a probability mixture.
+@@ -351,6 +357,9 @@
+ over these finite constructions gives the asserted bound.
+ The constant estimator covers $z>\rho/128$.
+ Finally take the infimum over decompositions and compare with $\rho/2$.
++All approximations are at fixed $(\mu,\rho,B)$. The comparison constant
++is independent of the chosen decomposition and terminal level; no
++attaining infinite-dimensional decomposition is required.
+ No infinite-algorithm interchange is required. The same infimum can be
+ approached with finite reference banks: finite $\Gamma_\sigma$ implies
+ $H_\sigma<\infty$, so truncate $\sigma$ to finitely many bands and move its
+--- a/sections/discussion.tex
++++ b/sections/discussion.tex
+@@ -45,3 +45,59 @@
+ not constitute external refereeing or proof-assistant verification of the
+ general theorems. The related-work comparison is targeted and does not
+ certify publication priority.
++
++
++\subsection{Two scope examples}
++
++\paragraph{A noninterval optimal assignment.}
++Let $\varepsilon=1/1024$, put masses $(1-\varepsilon)/2$, $\varepsilon$,
++and $(1-\varepsilon)/2$ at $1/2$, $1/4$, and $1/8$, respectively, and
++take $\rho=1/4$, $h=B^{-1/2}=1/1024$.
++All three atoms lie above $h$. Enumerating the eight hard retained sets
++shows that the unique minimum retains $\{1/2,1/8\}$ and treats $1/4$
++ordinarily. The following rational enclosures for the inner cost divided
++by $h$ make the strict comparison explicit:
++\begin{center}
++\begin{tabular}{@{}lc@{}}
++\toprule
++Retained atoms & Enclosure for cost divided by $h$\\
++\midrule
++$\varnothing$ & $(4.99902,4.99903)$\\
++$\{1/2\}$ & $(4.70676,4.70677)$\\
++$\{1/4\}$ & $(5.05761,5.05762)$\\
++$\{1/2,1/4\}$ & $(4.72155,4.72156)$\\
++$\{1/8\}$ & $(3.82997,3.82998)$\\
++$\{1/2,1/8\}$ & $(3.22748,3.22749)$\\
++$\{1/4,1/8\}$ & $(3.83271,3.83272)$\\
++$\{1/2,1/4,1/8\}$ & $(3.22943,3.22944)$\\
++\bottomrule
++\end{tabular}
++\end{center}
++These follow by substituting the rational weights into $\mathcal G$.
++For example, after reducing each logarithm argument to $1\le x\le2$,
++use $y=(x-1)/(x+1)$ and
++\[
++ 0\le\log x-2\sum_{k=0}^{m-1}\frac{y^{2k+1}}{2k+1}
++ \le\frac{2y^{2m+1}}{(2m+1)(1-y^2)},
++\]
++together with rational bounds for $\log2$ from the same series and
++square-root bounds checked by squaring. Already $m=90$ gives intervals
++much narrower than those displayed. The companion verifier
++\texttt{checks/verify\_revisions.py} performs these exact calculations.
++Since the outer cap is inactive, the original functional has the same
++optimizer. No interval can contain both retained atoms while excluding
++the intervening positive-mass atom.
++
++\paragraph{Infinite inverse moments and a slow tail.}
++Let $\mu\{2^{-j}\}=1/[j(j+1)]$ for $j\ge1$. Both inverse moments
++of orders one and two are infinite. At $B=4^J$, ignore $j>J$ and
++treat the first $J$ atoms ordinarily. This gives
++\[
++ \mathcal K(B)\le\frac1{J+1}
++       +\sum_{j=1}^J\frac{2^{j-J}}{j(j+1)}
++       =\frac1{J+1}+O(J^{-2}).
++\]
++For fixed $\rho$ and sufficiently large $J$, the ignored-tail allocation
++gives $\Psi(2^{-J})\ge1/(J+1)$. Thus the upper and lower scales match
++even though the full-law inverse moments diverge. This example uses
++only the vanishing tail probability, not an integrable full-law cost.
+--- a/sections/dual_transfer.tex
++++ b/sections/dual_transfer.tex
+@@ -474,3 +474,17 @@
+ complementary additive expression involving only the magnitude law, with
+ its matching lower proof in Section~\ref{sec:matching-lower}. Its
+ conservative scalar constants are distinct from this program factor.
++
++
++\begin{remark}[Scope of the factor-sixteen guarantee]
++The comparison uses the sufficient cap in
++Corollary~\ref{cor:dual-finite-characterization}, or a cap that passes
++the verified genie stopping condition in Section~\ref{sec:genie}.
++It is not a comparison for every fixed cap. In particular, an ordinary
++fixed-cap dual alone is not a lower certificate for unrestricted risk.
++With verified bounds $L\le G_N$ and $P_N\le U$, the orientation is
++\[
++ L\le G_N\le P_\infty\le P_N\le U,\qquad L/8\le R\le U.
++\]
++Thus $U\le2L$ implies $U\le16R$.
++\end{remark}
+--- a/sections/genie_brackets.tex
++++ b/sections/genie_brackets.tex
+@@ -44,7 +44,9 @@
+ closed-perspective numerator and a positive continuous work denominator,
+ and taking their supremum preserves lower semicontinuity. Its dual ratio
+ $f_N=(\Delta\theta)_+^2/(4+BK_N)$ is upper semicontinuous, with value zero
+-at an infinite denominator. The functions $f_N$ decrease with $N$.
++at an infinite denominator. Indeed, the numerator is continuous and
++bounded, and lower semicontinuity forces a diverging denominator when
++approaching a point with $K_N=\infty$. The functions $f_N$ decrease with $N$.
+ If $M=\inf_N\max f_N$, the nonempty compact sets $\{f_N\ge M\}$ are
+ nested. Their intersection gives a quadruple with $\inf_Nf_N\ge M$.
+ The reverse inequality is immediate. This proves \eqref{eq:infinite-dual}
+@@ -98,16 +100,19 @@
+ \end{align}
+ 
+ \begin{theorem}[Monotone stopping-ratio brackets]\label{thm:genie-ratio}
+-For any four priors,
++For every admissible quadruple of priors, with information ratios
++interpreted in the extended nonnegative reals,
+ \begin{equation}\label{eq:genie-bracket}
+- K_N\le K_\infty\le K_N^+,
+- \qquad K_N\uparrow,\quad K_N^+\downarrow.
+-\end{equation}
+-If $C_v<\infty$, then
++ K_N\uparrow K_\infty\le K_N^+,
++ \qquad K_{N+1}^+\le K_N^+.
++\end{equation}
++If, in addition, $C_v<\infty$, then
+ \begin{equation}\label{eq:genie-error}
+  0\le K_N^+-K_N\le e_N^v,\qquad e_N^v\longrightarrow0.
+ \end{equation}
+-In particular both brackets converge to $K_\infty$.
++Consequently $K_N^+\downarrow K_\infty$ under this finite-divergence
++hypothesis. Without it, the monotone brackets remain valid, but
++pointwise convergence of the upper bracket need not hold.
+ \end{theorem}
+ 
+ \begin{proof}
+@@ -156,6 +161,43 @@
+ \eqref{eq:genie-residual}.
+ \end{proof}
+ 
++\begin{remark}[Pointwise convergence can fail at infinite latent divergence]
++Let $\mu(dd)=2\,dd$ on $(0,1/2]$, $\rho=1/4$, and take
++$q_L=0$, $q_H=q_w=1/4$, and $q_v(d)=1/2-d$. All four priors are
++admissible. Here
++\[
++ C_v=\frac18\int_0^{1/2}\frac{dd}{1/4-d^2}=\infty.
++\]
++The policy which always reaches depth $N$ and accepts the latent reveal
++has infinite information and work $N$, so $K_N^+=\infty$ for every
++finite $N$.
++
++Nevertheless $K_\infty\le3/4$. To verify this for every capped policy,
++parameterize the latent state by its Bernoulli mean $p$. The variance
++reference has density $2(1-p)$ on $(0,1)$, the work reference has density
++$3/2$ below $1/2$ and $1/2$ above $1/2$, and the signed endpoint
++difference has density $-1/2$ below $1/2$ and $1/2$ above $1/2$.
++For an ordered prefix $s$ of length $n\ge1$ with $k$ heads, put
++$u_s=\int_0^1p^k(1-p)^{n-k}\,dp$. Then
++\[
++ |p_H(s)-p_L(s)|\le u_s/2,\qquad
++ p_v(s)=\frac{2(n-k+1)}{n+2}u_s,
++\]
++and hence
++\[
++ r_s\le\frac{n+2}{8(n-k+1)}u_s\le\frac{3n}{8}u_s.
++\]
++Sum over stopped prefixes and the independent seed. If $U$ denotes the
++auxiliary uniform law of $p$, the information of any capped policy is
++at most $(3/8)\E_U T$. The work-reference density dominates half the
++uniform density, so this is at most $(3/4)\E_{q_w}T$. Taking suprema
++gives the claimed bound. The auxiliary law $U$ need not be admissible;
++it is used only for this domination calculation.
++
++This example does not contradict the optimized convergence in the next
++theorem, whose proof first regularizes the variance reference.
++\end{remark}
++
+ \subsection{A convergent lower program and a stopping rule}
+ 
+ Define the strengthened-experiment dual value
+@@ -200,13 +242,17 @@
+ Also $|\delta|\le2m$ and $|\delta|\le2(1-m)$, so the new latent score
+ has absolute value at most $2/\epsilon$. Its latent divergence is finite.
+ Theorem~\ref{thm:genie-ratio} now makes its genie ratio converge to its
+-ordinary infinite-cap ratio. Hence
++ordinary infinite-cap ratio. Keep $\epsilon>0$ fixed throughout
++this limit in $N$; no convergence of the unregularized
++quadruple is used. Hence
+ \[
+  \lim_NG_N(B)^2\ge
+  \frac{(\Delta\theta)^2}{4+B K_\infty/(1-\epsilon)}.
+ \]
+ Let $\epsilon\downarrow0$ and maximize using
+-Lemma~\ref{lem:infinite-dual}. This proves $G_N\uparrow P_\infty$.
++Lemma~\ref{lem:infinite-dual}. The limits are taken in this order;
++no convergence uniform in $\epsilon$ is asserted. This proves
++$G_N\uparrow P_\infty$.
+ Equation~\eqref{eq:infinite-comparison} gives the risk bracket.
+ Since $P_\infty>0$, the ratio $P_N/G_N$ tends to one. The stated stopping
+ criterion therefore succeeds at a finite cap, with no claimed uniform
+--- a/sections/identifiability.tex
++++ b/sections/identifiability.tex
+@@ -83,6 +83,8 @@
+  \frac{\rho\|h\|_{L^2(\mu)}^2}{4\|h\|_{L^\infty(\mu)}}
+  \quad\text{when }1\notin\mathcal V_L.
+ \]
++This theorem identifies the target functional from cap-limited laws;
++it does not require recovery of the entire allocation $q$.
+ This theorem concerns the fixed-cap program and its infinite-budget limit.
+ It does not impose a bias floor on the unrestricted experiment. The
+ monotone brackets in Section~\ref{sec:genie} increase the cap when needed,
+--- a/sections/lower_foundations.tex
++++ b/sections/lower_foundations.tex
+@@ -18,7 +18,7 @@
+ For every probability vector $\pi$ on these gaps,
+ \begin{equation}\label{eq:sc-weighted-sign}
+  \sum_{j=1}^K\pi_jc_j\ge
+- \frac{1+\operatorname{Ent}(\pi)}{257}.
++ \frac{1+\operatorname{Ent}(\pi)}{214}.
+ \end{equation}
+ No termination or correctness assumption under the fair coin is required.
+ \end{lemma}
+@@ -93,8 +93,16 @@
+ \[
+  \operatorname{Ent}(\pi)\le65\sum_j\pi_jc_j+\log Z.
+ \]
+-Writing $\bar c=\sum_j\pi_jc_j$ and using $\bar c\ge1/16$, we obtain
+-$1+\operatorname{Ent}(\pi)\le65\bar c+12\le257\bar c$, as required.
++Writing $\bar c=\sum_j\pi_jc_j$ and retaining the stronger floor
++$\bar c\ge3/40$, we obtain
++\[
++ 1+\operatorname{Ent}(\pi)
++ \le65\bar c+9+\log(25/3)
++ \le\left[65+\frac{40}{3}\{9+\log(25/3)\}\right]\bar c
++ <214\bar c.
++\]
++The windows need not be disjoint; only the displayed weighted-overlap
++bound is used.
+ \end{proof}
+ 
+ 
+@@ -138,6 +146,8 @@
+  M_0=\sup_{q\in\mathcal X_\rho}\E_qY^2,\qquad
+  W_0=\E_0T,\qquad P=M_0W_0.
+ \]
++Here $M_0$ is the uniform second-moment bound, whereas $W_0$ is
++null work; the subscript on $M_0$ does not restrict its supremum to the null.
+ The moment comparison in Lemma~\ref{lem:lf-moment} gives
+ \(M_0\le3V/2\).
+ 
+@@ -180,6 +190,8 @@
+  \label{eq:cross-gate-restarts}
+ \end{equation}
+ independent restarts of \(Z\) on unused observations of the same coin.
++Restart independence is conditional on its fixed latent magnitude and
++sign, not after averaging over the population.
+ Its negative expected work is \(n\,\E[T_Z\mid d,0]\).
+ \end{lemma}
+ 
+@@ -213,6 +225,9 @@
+ \]
+ which implies \eqref{eq:cross-baseline}.
+ 
++The decision to take a first observation is seed-only and precedes
++all data. The information gate below is instead an observable
++finite-prefix stopping rule; neither step reveals a latent magnitude.
+ For the gate, on a full observation tape define
+ \[
+  S_n=\sum_{i=1}^n(2X_i-1),\qquad
+@@ -421,16 +436,16 @@
+ Apply Lemma~\ref{lem:weighted-sign} to the common restart test,
+ with weights \(\pi_j\):
+ \[
+- \frac{1+\Ent(\pi)}{257}
++ \frac{1+\Ent(\pi)}{214}
+  \le n\sum_j\pi_jd_j^2w_-^Z(d_j)
+  \le\frac{4n}{A}W_0^Z.
+ \]
+ Consequently,
+ \[
+  \rho\Gamma^{\circ}
+- \le1028\rho nW_0^Z
+- \le1\,069\,120\,m_ZW_0^Z
+- \le1\,069\,120\,C_g^4P.
++ \le856\rho nW_0^Z
++ \le890\,240\,m_ZW_0^Z
++ \le890\,240\,C_g^4P.
+ \]
+ Converting \(P=M_0W_0\) to \(VW_0\) completes all branches with the
+ displayed conservative constant.  No atomlessness is used.
+--- a/sections/matching_lower.tex
++++ b/sections/matching_lower.tex
+@@ -38,7 +38,9 @@
+  k_J\le k\le\min\{\rho,k_J+\sum_{j>J}w_j\}.
+ \end{equation}
+ Restriction proves the first inequality; assigning every omitted band to
+-ignored mass proves the second.
++ignored mass proves the second. The limit is at fixed $(\mu,\rho,B)$;
++no law-independent truncation depth or nested choice of minimizers is
++required. The omitted tail probability must be retained before the limit.
+ 
+ The exact and canonical functionals satisfy
+ \begin{equation}\label{eq:canonical-factor-two}
+@@ -75,7 +77,7 @@
+ Zero-mass bands can be omitted.
+ 
+ \begin{lemma}[Optimal-band inequalities]\label{lem:optimal-band-inequalities}
+-Every ordinary band $j\in O$ has $w_j\le3\rho$.
++Every ordinary band $j\in O$ has $w_j\le\rho$.
+ If $F>0$ and $\lambda=\sqrt{\rho/F}$, every retained band satisfies
+ \begin{equation}\label{eq:retained-gap-condition}
+  b_j\ge\frac{\lambda}{2}[1+\log(A/a_j)].
+@@ -88,22 +90,14 @@
+ \[
+  xb_j\le\sqrt\rho[\sqrt{F+\Delta}-\sqrt F].
+ \]
+-If $F=0$, the squared bracket is $x$. Otherwise
++If $F=0$, the squared bracket is $x$. Otherwise use
++$\log(1+t)\le\sqrt t$ for $t\ge0$ to obtain
+ \[
+  \Delta=x+A\log(1+x/A)+x\log(1+A/x)
+-       \le x[2+\log(1+A/x)].
+-\]
+-If $x\ge F>0$, then $A\le F\le x$, so $\Delta<3x$ and the squared
+-bracket is at most $3x$. If $0<x<F$, set $u=x/F\in(0,1)$. The squared
+-bracket divided by $x$ is at most
+-\[
+- \frac u4[2+\log(1+1/u)]^2<2.
+-\]
+-For verification, $u[2+\log(1+1/u)]^2$ is increasing on $(0,1]$:
+-its derivative is $L[L-2/(1+u)]\ge0$, where
+-$L=2+\log(1+1/u)$. Its value at one is
+-$(2+\log2)^2<8$. Thus in every case
+-$x^2b_j^2\le3\rho x$, proving $w_j\le3\rho$.
++       \le x+2\sqrt{Ax}\le x+2\sqrt{Fx}.
++\]
++Thus $\sqrt{F+\Delta}-\sqrt F\le\sqrt x$, and optimality gives
++$x^2b_j^2\le\rho x$, proving $w_j\le\rho$.
+ 
+ For $j\in I$, removing the band and assigning it to ordinary work is
+ admissible even if ignoring it would be cheaper. Hence
+@@ -145,28 +139,29 @@
+ If masses $v_j$ satisfy $v_j\le s$ at values
+ $f_j=b_j^{-1}=2^{j+1}$, then
+ \begin{equation}\label{eq:dyadic-top-mass}
+- \sum_jv_jf_j\le3
++ \sum_jv_jf_j\le2
+  \sup_{\substack{0\le q_j\le1\\\sum_jv_jq_j\le s}}
+                  \sum_jv_jq_jf_j.
+ \end{equation}
+ If the total mass is at most $s$, this is immediate. Otherwise select
+ the largest $f_j$ up to mass $s$, allowing a fraction at the boundary
+-index $j_0$. The selected integral is at least $sf_{j_0}$.
+-The excluded smaller values contribute at most
+-$s\sum_{j<j_0}f_j\le sf_{j_0}$, and the excluded boundary fraction
+-also contributes at most $sf_{j_0}$. This proves
+-\eqref{eq:dyadic-top-mass}.
+-
+-Apply it to $O$ with $s=3\rho$, using
+-Lemma~\ref{lem:optimal-band-inequalities}.
+-Dividing any feasible $3\rho$ allocation by three shows that
+-$H_O$ is at most nine times the largest ordinary-band inverse-gap
+-integral at mass $\rho$. On these bands $h/b_j\le1$ and $d\le b_j$;
++index $j_0$. Let $r$ be the selected mass at the boundary index.
++The selected mass above it is $s-r$, at values at least $2f_{j_0}$,
++so the selected integral is at least $(2s-r)f_{j_0}$.
++The excluded smaller values contribute at most $sf_{j_0}$, and the
++excluded boundary mass contributes at most $(s-r)f_{j_0}$.
++Thus the excluded integral is no larger than the selected integral,
++proving \eqref{eq:dyadic-top-mass}.
++
++Apply it to $O$ with $s=\rho$, using
++Lemma~\ref{lem:optimal-band-inequalities}. It follows that $H_O$ is at
++most twice the largest ordinary-band inverse-gap integral at mass $\rho$.
++On these bands $h/b_j\le1$ and $d\le b_j$;
+ for every $0\le q\le1$,
+ $\min\{q,h\sqrt q/d\}\ge qh/b_j$.
+ Consequently
+ \begin{equation}\label{eq:ordinary-psi}
+- hH_O\le9\Psi_{\mu,\rho}(h).
++ hH_O\le2\Psi_{\mu,\rho}(h).
+ \end{equation}
+ 
+ \subsection{Packing entropy into comparable-cost groups}
+@@ -261,6 +256,10 @@
+ \[
+  \sum_i\theta_i\le\lambda^2F/1024=\rho/1024.
+ \]
++Every retained component is supported on $(0,1/128]$; parity gives
++endpoint ratios at least four. The normalized minimum band mass is
++$w_{*,i}/\tau_i$, so \eqref{eq:packed-saturation} is exactly the
++unnormalized saturation condition required by the annular proposition.
+ Every component is therefore admissible, and every entropy branch of the
+ scale-uniform annular lower bound is active.
+ 
+@@ -291,7 +290,9 @@
+ \]
+ All conditional bias and annular constants here are fixed universal
+ constants. Crucially, the ratio $\theta_i/G_i=\lambda^2/1024$ is common
+-to every component. Therefore the displayed sum equals
++to every component. This remains true with the fixed conditional-bias
++and annular constants retained, so all components have the same budget
++crossover. Therefore the displayed sum equals
+ \[
+  \left(\sum_iG_i\right)
+        \min\{\lambda^2/1024,\lambda/(32\sqrt B)\}.
+@@ -309,8 +310,8 @@
+ \eqref{eq:psi-budget-lower} already give $R\ge c k_J$.
+ Otherwise \eqref{eq:ignored-psi} and \eqref{eq:ordinary-psi} imply
+ \[
+- k_J\le\min\{\rho,10\Psi(h)+h\sqrt{\rho F}\}
+-       \le10\Psi(h)+\min\{\rho,h\sqrt{\rho F}\}.
++ k_J\le\min\{\rho,3\Psi(h)+h\sqrt{\rho F}\}
++       \le3\Psi(h)+\min\{\rho,h\sqrt{\rho F}\}.
+ \]
+ Apply \eqref{eq:psi-budget-lower} and either
+ \eqref{eq:high-entropy-psi} or \eqref{eq:retained-entropy-lower}.
+@@ -321,3 +322,43 @@
+ This proves the theorem. The passage to every magnitude law uses only
+ vanishing omitted tail probability and finite-band lower constructions.
+ \end{proof}
++
++
++\subsection{Explicit conservative comparison constants}
++
++The preceding arguments provide, without optimizing constants,
++\begin{equation}\label{eq:explicit-main-constants}
++ 10^{-17}\mathcal K_{\mu,\rho}(B)
++ \le R_{\mu,\rho}(B)\le33000\mathcal K_{\mu,\rho}(B).
++\end{equation}
++For completeness, the work summation in Section~\ref{sec:additive} has
++entropy and ordinary coefficients at most, respectively,
++\[
++ \frac{5\sqrt{17}}4
++ \left(\frac{4\sqrt{80}}9+2\sqrt{42}+2\right)<104,
++\]
++\[
++ \frac{5\sqrt{17}}4
++ \left(\frac23+\sqrt2(3328+2\sqrt{21})+\frac{512}3\right)<27000.
++\]
++Together with the $128z$ bias term and the constant estimator, these
++give the rounded upper constant.
++
++For the lower bound let $c_{\rm ann}=e^{-28}/2000000$ and
++$c_E=\sqrt{c_{\rm ann}}/(896\cdot128\cdot32)$.
++Before suppressing constants, the packed contribution is at least
++\[
++ \frac{\sum_iG_i}{128}
++ \min\left\{\frac{\lambda^2}{65536},
++             \frac{\sqrt{c_{\rm ann}}\lambda}{32\sqrt B}\right\}
++ \ge c_E\min\{\rho,h\sqrt{\rho F}\}.
++\]
++The high-gap alternative gives
++$\min\{\rho,h\sqrt{\rho F}\}\le112\Psi(h)$ and has a stronger
++constant. Combining \eqref{eq:psi-budget-lower} with the final
++$3\Psi(h)$ assembly and $\mathcal K\le2k$ gives the coefficient
++$[2(24576+c_E^{-1})]^{-1}>10^{-17}$.
++For example, $e<3$ and $\sqrt{2000000}<1500$ imply
++$2(24576+896\cdot128\cdot32\cdot1500\cdot3^{14})<10^{17}$.
++These are constants for the scalar comparison, not the factor sixteen
++of the stopping-program certificate.
+--- a/sections/transfer_foundations.tex
++++ b/sections/transfer_foundations.tex
+@@ -140,6 +140,9 @@
+ midpoint local works sum to $\E_{\bar q}T_{\rm pop}$ because each
+ purchased observation belongs to exactly one slot. This proves the
+ first assertion, including after integrating the original seed.
++The charged expectation is under the midpoint population, admissible
++by convexity. It is not replaced by the average endpoint work, which
++can be much smaller under an adaptive stopping rule.
+ 
+ If $q_\pm\le1/2$, the midpoint latent law dominates half the null
+ latent law. The same measure inequality holds after passing through
+@@ -164,7 +167,10 @@
+ expectation to the likelihood densities under the dominating sum law.
+ Finite expected endpoint work ensures almost-sure finite termination.
+ A common pair valid for every cap therefore gives the same terminal
+-testing bound.
++testing bound. Equivalently, couple the stopped experiment with its
++cap-$L$ truncation under each endpoint. Their total coupling error is at
++most $\Pp_-(T>L)+\Pp_+(T>L)$, which tends to zero. This passage
++requires no common deterministic bound on stopping.
+ 
+ \subsection{The half-prior class and null work}
+ 
+@@ -284,6 +290,9 @@
+                  \theta(q_+)-\theta(q_-)\ge\delta\}.
+ \]
+ The finite intersection property supplies one pair for all experiments.
++For fixed $b$ and $\delta$, this pair is chosen before the adaptive
++population algorithm and its total-observation cap. The same pair
++works for every capped local policy and every cap.
+ Let \(\varepsilon\downarrow0\), then use that full squared Hellinger
+ distance is the supremum over finite measurable partitions.  This proves
+ \eqref{eq:bias-common-pair} for arbitrary transcript spaces.
+@@ -403,6 +412,50 @@
+ requires the annular argument.
+ 
+ 
++
++\begin{proposition}[An optimizer for the variational modulus]
++\label{prop:psi-optimizer}
++For $0<\rho<1$, there is a unique $\alpha>0$ satisfying
++\[
++ \int\min\{1,\alpha^2/d^2\}\,\mu(dd)=\rho.
++\]
++The allocation $w_*(d)=\min\{1,\alpha^2/d^2\}$ maximizes
++$\Psi_{\mu,\rho}(h)$ simultaneously for every $h>0$. In particular,
++$\Psi(h)=\rho$ when $h\ge\alpha$. Fractional allocation at an atom is
++permitted and may be essential; this is distinct from the hard
++assignment statement for the entropy-selection infimum.
++\end{proposition}
++\begin{proof}
++The mass on the left is continuous in $\alpha$, tends to zero at zero
++and to one at infinity, and is strictly increasing while it is below
++one. These assertions follow by dominated convergence and the positive
++mass of unsaturated magnitudes. Thus the stated root exists uniquely.
++If $h\ge\alpha$, the allocation attains the upper bound $\rho$.
++If $h<\alpha$, put $\lambda=h/(2\alpha)<1/2$. The function
++\[
++ \phi_d(w)=\min\{w,(h/d)\sqrt w\},\qquad 0\le w\le1,
++\]
++is concave. For $d>\alpha$, the point $w_*=(\alpha/d)^2$ is in its
++square-root branch and has derivative $\lambda$. For $h<d\le\alpha$,
++the left derivative at $w_*=1$ is $h/(2d)\ge\lambda$; for $d\le h$,
++$\phi_d(w)=w$. Hence $w_*$ maximizes $\phi_d(w)-\lambda w$
++pointwise. Integrating and using its mass $\rho$ proves optimality over
++all allocations of mass at most $\rho$, including atomic laws.
++\end{proof}
++
++\begin{remark}[The bias subtraction cannot be uniformly reduced]
++Let $\rho=1/8$, $\varepsilon=2^{-10}$, and
++$\mu=(1-\varepsilon)\delta_{1/2}+\varepsilon\delta_d$.
++The one-flip output $Y=X-b$, with $b=\varepsilon(1-2d)/4$, has bias
++at most $b$ on $X_\rho$, null work one, and variance at most $1/4$.
++Indeed its bias is
++$\varepsilon(1/2-d)(1-2q(d))-b\in[-b,b]$.
++Yet $\Psi(d)\ge\varepsilon$. Replacing $4b$ by $cb$ with any fixed
++$c<4$ in \eqref{eq:psi-null-product} would make its right-hand side
++diverge as $d\downarrow0$. The coefficient four cannot be reduced in
++this form of the bound, even if its denominator constant is changed.
++\end{remark}
++
+ \subsection{A direct sum of conditional experiments}
+ 
+ Let $\sigma_1,\ldots,\sigma_m$ be nonzero finite submeasures with
+@@ -432,7 +485,9 @@
+  \sum_{i=1}^m\tau_i\min\{b_i,\sqrt{J_i/B}\}.
+  \quad}
+ \end{equation}
+-The same total budget $B$ occurs in every summand.
++The same total budget $B$ occurs in every summand. The component label
++is chosen before the first observation and retained on every revisit;
++its conditional magnitude and sign remain hidden.
+ \end{theorem}
+ 
+ \begin{proof}
+@@ -489,9 +544,14 @@
+        \min\{r_i\Gamma_i^{\circ},w_{*,i}/a_i^2\},\qquad
+  c_{\mathrm{ann}}=\frac{e^{-28}}{2{,}000{,}000}.
+ \]
+-Consequently, writing the corresponding unnormalized quantities with
+-respect to $\sigma_i$ as $\Gamma_{\sigma_i}^{\circ}=\tau_i\Gamma_i^{\circ}$ and
+-$w_{*,\sigma_i}=\tau_iw_{*,i}$, we obtain
++Write the corresponding unnormalized quantities with respect to
++$\sigma_i$ as $\Gamma_{\sigma_i}^{\circ}=\tau_i\Gamma_i^{\circ}$ and
++$w_{*,\sigma_i}=\tau_iw_{*,i}$. The conversion uses the exact identity, with $\theta=\tau r$,
++\[
++ \tau^2\min\{r\Gamma^{\circ},w_*/a^2\}
++ =\min\{\theta\Gamma_{\sigma}^{\circ},\tau w_{*,\sigma}/a^2\}.
++\]
++In particular the second branch retains the factor $\tau$. Consequently,
+ \begin{equation}\label{eq:additive-annular}
+  R_{\mu,\rho}(B)\gtrsim
+  \sum_i\min\left\{\tau_i r_i,
+--- a/sections/upper_foundations.tex
++++ b/sections/upper_foundations.tex
+@@ -352,6 +352,8 @@
+ stopping time is an iid tape with the same Bernoulli mean: for each
+ possible stopped prefix, independence of its subsequent coordinates
+ gives the claim, and summing over the stopped prefixes preserves it.
++This conditional argument is applied to successive unused blocks of
++the same latent unit, even though the first block has random length.
+ The second classifier therefore has its original marginal distribution
+ under the same latent state. No new magnitude or sign is drawn between
+ the two classifiers. Their disagreement implies that at least one

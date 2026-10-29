@@ -1,5 +1,29 @@
 # Full verification commands
 
+## General-law rare-event manuscript v2
+
+From the repository root, using the Python standard library:
+
+```sh
+python tools/verify_rare_event_manuscript.py
+```
+
+This verifies the immutable [v2 payload](../paper/rare-event/v2/MANIFEST.sha256)
+and [historical audit records](../paper/rare-event/audit/MANIFEST.sha256), then
+runs the certificate and revision verifiers in a temporary copy. It rechecks
+33 exact lower certificates, 9 upper policies, 9 stopping decisions, two
+perfect-label examples, and rejection of six targeted corruptions. It also
+replays the independent revision audit's finite computations, including the
+new examples, constants, and genie comparisons. Published files are unchanged.
+
+The [build record](../paper/rare-event/v2/VERIFICATION.json) covers the delivered
+55-page PDF and its visual review; [build instructions](../paper/rare-event/README.md#verify-and-build)
+explain reproduction in a disposable copy. The current command verifies source
+and PDF identity, not bit-for-bit TeX rebuild reproducibility. These finite
+checks do not formally verify the manuscript's general statistical or limit
+theorems. See the [claim status](RESULTS.md#general-law-rare-event-characterization)
+and [audit qualifications](../paper/rare-event/audit/README.md).
+
 The all-size finite-gap and explicit single-coin base-cost extension has a
 separate audit: `python tools/verify_critical_all_sizes.py` (optionally
 `--sequential`). It checks four exact target types, every new declaration's

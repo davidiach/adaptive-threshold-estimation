@@ -1,0 +1,15 @@
+{
+  "edition": "standalone rare-event manuscript, revised v2",
+  "date": "2026-10-29",
+  "repository_base_commit": "3aba9eee3905700dc06ef219acf4a388bba72946",
+  "payload_directory": "v2",
+  "payload_manifest_sha256": "86befae37419490110fe4d1fb753d8776373e27e8fab2294696f4e83caed2612",
+  "delivered_pdf_sha256": "1915a0eb4f2113291051ab9c1bfd8f50004a16e5736cc6eff8a80105f3924c52",
+  "delivered_pdf_pages": 55,
+  "delivered_source_zip_sha256": "f70176ebb8364deb5033c435f3c234a7866b486cc9bcec0b834f99297c6d2409",
+  "audit_manifest_sha256": "27d741a487c45841b58bd14f392d78b6ce9adabf65e845cbc72b3d7a5f96c31e",
+  "preservation": "Existing repository manuscripts and the local original/previous deliveries are unchanged. The delivered v2 payload and historical audit records are imported byte for byte.",
+  "verification_status": "Audited paper proofs and exact finite certificates; new general theorems are not Lean-formalized or externally specialist-reviewed.",
+  "current_check": "python tools/verify_rare_event_manuscript.py",
+  "historical_record_qualifications": "audit/README.md"
+}

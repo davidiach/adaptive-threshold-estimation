@@ -1,0 +1,77 @@
+{
+  "one_atom_duality": {
+    "exact_matching_primal_dual_witnesses": 60,
+    "formula": "P_1(B)^2 = rho^2 / (4 + B*(2*d*rho)^2/[p_rho*(1-p_rho)])"
+  },
+  "flow_realization": {
+    "randomized_order_dependent_policies": 120,
+    "exact_conditional_realizations": 600
+  },
+  "stopping_ratios": {
+    "quartets": 100,
+    "ordered_stopping_trees_enumerated": 39040,
+    "genie_monotonicity_and_residual_checks": 600,
+    "absorption_checks": 100,
+    "largest_genie_gap_over_residual": "1",
+    "null_state_checks": "singular reference -> infinity; universally null state -> zero"
+  },
+  "factor_sixteen_cap": {
+    "exact_budget_rarity_cases": 21
+  },
+  "fixed_cap_counterexample": {
+    "mu": "(1/2) delta_(1/2) + (1/2) delta_(1/4)",
+    "rho": "1/8",
+    "budget": "300000",
+    "matching_pair": {
+      "low": [
+        "1/8",
+        "0"
+      ],
+      "high": [
+        "0",
+        "1/4"
+      ]
+    },
+    "cap_1_and_2_bias_floor": "1/32",
+    "exact_P1_squared": "3127/3200000",
+    "unbiased_three_flip_outputs": [
+      "0",
+      "-5/9",
+      "14/9",
+      "1"
+    ],
+    "units": 100000,
+    "unrestricted_risk_upper_squared": "203/57600000",
+    "unrestricted_risk_upper": 0.001877313387678135,
+    "P1_over_unrestricted_risk_lower": 16.651454469823083,
+    "exact_G1_squared": "7/19201792",
+    "P1_over_G1": 51.7738918209334,
+    "theoretical_N_star": 720000000000,
+    "interpretation": "Refutes P_N <= 16 R at arbitrary fixed N. Does not refute the stated theorem: the genie criterion fails and N_star is much larger."
+  },
+  "stored_certificates": {
+    "lower_certificates": 33,
+    "upper_policies": 9,
+    "lower_scopes": {
+      "finite_cap": 8,
+      "uncapped_midpoint_genie": 16,
+      "uncapped_four_prior_genie": 9
+    },
+    "factor_sixteen_stopping_passes": [
+      "one_gap_N4_B1000",
+      "one_gap_N4_B100",
+      "perfect_labels_N1_B1000",
+      "perfect_labels_N1_B100",
+      "rare_hard_atom_N4_B1000",
+      "rare_hard_atom_N4_B100",
+      "three_scales_N4_B100",
+      "three_scales_N8_B1000"
+    ],
+    "factor_sixteen_stopping_failures": [
+      "three_scales_N4_B1000"
+    ],
+    "method": "Recomputed prefix Bellman values and backward policy moments; no manuscript verifier or solver imported."
+  },
+  "status": "PASS",
+  "scope": "Exact finite checks and analytic witnesses; not a proof of the general compactness or adaptive comparison theorems."
+}

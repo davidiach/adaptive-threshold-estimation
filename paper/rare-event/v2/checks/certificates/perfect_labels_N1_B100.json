@@ -1,0 +1,40 @@
+{
+  "description": "Exact rational Bellman dual certificate for the finite-cap flow program; not an unscaled lower bound on unrestricted minimax risk.",
+  "gaps": [
+    "1/2"
+  ],
+  "weights": [
+    "1/1"
+  ],
+  "rho": "1/10",
+  "budget": "100/1",
+  "cap": 1,
+  "priors": {
+    "low": [
+      "9/500000000000"
+    ],
+    "high": [
+      "49999999991/500000000000"
+    ],
+    "variance": [
+      "9999999948300000017/100000000000000000000"
+    ],
+    "work": [
+      "986174846288251501/12500000000000000000"
+    ]
+  },
+  "information_work_price": "111111112652839525417284100001/1000000000000000000000000000000",
+  "information_potentials": [
+    "0/1",
+    "880312915685643142972879625/79228162514264337593543950336",
+    "7922816286682966248036307529/79228162514264337593543950336"
+  ],
+  "certified_squared_lower_bound": "99999999928000000012960000/151111112652839525417284100001",
+  "certified_rms_lower_bound_decimal": "0.025724787630",
+  "repair": {
+    "dyadic_precision_bits": 96,
+    "backward_passes": 1,
+    "reference_regularization": "1/100000000",
+    "float_bisection_price": 0.1111111115417284
+  }
+}

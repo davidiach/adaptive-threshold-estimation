@@ -1,0 +1,26 @@
+{
+  "gaps": [
+    "1/2"
+  ],
+  "weights": [
+    "1/1"
+  ],
+  "rho": "1/10",
+  "budget": "1000/1",
+  "cap": 1,
+  "poisson_intensity": "4999999991715277/5000000000000",
+  "offset": "1228198712741377/12500000000000000",
+  "stop_probability": [
+    "0/1",
+    "1/1",
+    "1/1"
+  ],
+  "terminal_output": [
+    "3861312484607583/100000000000000000000000000000",
+    "-603240263492501/6250000000000000000",
+    "8687324589485823/10000000000000000000"
+  ],
+  "description": "Exact rational observable cap-N Poisson policy, independently evaluated at every atomic sign and over the full rarity polytope.",
+  "certified_squared_upper_bound": "542953669188764891581806758613971192053942251575582376553747921/6250000000000000000000000000000000000000000000000000000000000000000",
+  "certified_rms_upper_bound_decimal": "0.009320546501"
+}
