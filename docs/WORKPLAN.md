@@ -67,14 +67,16 @@ on the focused oracle PR; local checks alone do not establish CI success.
 
 The alpha > 2 rare-event RMS theorem is now proved in the same observable model.
 The [full package](../lean/ThresholdHC/RareAboveTwo/Full.lean) covers all seven
-frozen targets, including an unbiased single-coin family with second moment
-at most 28 rho, a law-independent upper construction, the 1/256 supported-law
-lower bound, exact-power minimax and Psi rates, existence and nonvacuity.
+frozen targets, including a single-coin family that is unbiased on every
+power-margin law (second moment at most 28 rho in the proof), a law-independent
+upper construction, a supported-law lower bound (coefficient 1/256 in the
+proof), exact-power minimax and Psi rates, existence and nonvacuity.
 The [scope guide](RARE_ABOVE_TWO.md) explains the proof and its conservative
 constants. The [saved audit](../results/rare_above_two_001.json) passed at
 `637fb4a`, covering 54 modules, 322 declarations and all seven frozen targets.
-This contribution is on a separate feature branch; publication and
-CI status belong to its PR, and no merge is implied by the local proof result.
+Publication and CI are recorded on
+[PR #22](https://github.com/davidiach/adaptive-threshold-estimation/pull/22);
+local checks alone do not establish CI success.
 
 The 29 October
 [finite-gap manuscript](../paper/finite-gap-rare-events/README.md), introduced

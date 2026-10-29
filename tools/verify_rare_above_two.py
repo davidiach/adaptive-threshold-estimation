@@ -30,7 +30,7 @@ EXACT_TARGETS = {
     PREFIX+'above_two_psi': PREFIX+'AboveTwoPsiStatement',
     PREFIX+'rare_nonvacuity': PREFIX+'RareNonvacuityStatement',
 }
-SCOPE = ('Full observable alpha > 2 rare-event theory: a law-independent unbiased single-coin construction, '
+SCOPE = ('Full observable alpha > 2 rare-event theory: a law-independent single-coin construction, unbiased on every power-margin law, '
          'the matching supported-law lower bound, upper and exact-power minimax rates, Psi equivalence, '
          'law existence and nonvacuity. Budgets count actual flips and rarity is global.')
 
@@ -52,8 +52,13 @@ def validate_sources() -> tuple[list[Path], set[str]]:
         raise ValueError('Frozen rare-event specification changed')
     validate_dependency_freeze(SOURCE/'Specification.lean', freeze)
     paths = [module_path(PREFIX+m) for m in MODULES]
-    if set(paths) != set(SOURCE.glob('*.lean')):
+    if set(paths) != set(SOURCE.rglob('*.lean')):
         raise ValueError('Missing or unregistered rare-event module')
+    # Imported project modules outside the registered package are hashed below,
+    # but their sources must be free of proof escapes too.
+    for path in sorted(project_dependencies(paths) - set(paths)):
+        if FORBIDDEN.search(strip_comments(path.read_text(encoding='utf-8'))):
+            raise ValueError('Forbidden proof escape in imported module '+str(path))
     roots, seen = [], set()
     all_modules = {PREFIX+m for m in MODULES}
     for path,name in zip(paths,MODULES):

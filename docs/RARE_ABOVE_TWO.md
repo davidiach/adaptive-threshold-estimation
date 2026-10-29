@@ -10,7 +10,11 @@ $$\frac{1}{256}\min\!\left\{\rho,\frac{\sqrt\rho}{a\sqrt B}\right\}
 
 The parameter range is alpha > 2, 0 < a <= 1/2, 0 < rho <= 1/4, and B >= 1.
 The upper coefficient is finite for every fixed alpha > 2; no uniform bound
-as alpha approaches 2 is claimed.
+as alpha approaches 2 is claimed. The frozen targets assert positive constants.
+The kernel-checked proofs instantiate the lower coefficient as 1/256
+([Lower](../lean/ThresholdHC/RareAboveTwo/Lower.lean)) and the single-coin
+second-moment constant as 28 ([Realization](../lean/ThresholdHC/RareAboveTwo/Realization.lean)),
+but these values are not part of the audited exact types.
 
 ## Statements and observation model
 
@@ -22,8 +26,8 @@ and all 33 imported project dependencies are protected by the
 | Target | Formal result |
 |---|---|
 | `power_law_exists` | A probability law on actual gaps with the exact power CDF exists for every admissible exponent and scale. |
-| `rare_single_coin` | One observable family depending only on a and rho is unbiased, has second moment at most 28 rho, and actual expected work at most W(alpha)/a^2. It only queries coin 0. |
-| `rare_supported_lower` | The 1/256 lower bound holds for every gap law supported below a and every admissible adaptive estimator. No power-law assumption is needed here. |
+| `rare_single_coin` | One observable family depending only on a and rho is, for every law in the alpha-power-margin class (any alpha > 2), unbiased, with second moment at most K rho (the proof gives K = 28) and actual expected work at most W(alpha)/a^2. It only queries coin 0. |
+| `rare_supported_lower` | A positive lower coefficient (the proof gives 1/256) holds for every gap law supported below a and every admissible adaptive estimator. No power-law assumption is needed here. |
 | `above_two_upper` | For each alpha, one family depending on a, rho and B works uniformly over the whole power-margin class, with risk at most min(rho/2, C(alpha) sqrt(rho)/(a sqrt(B))). |
 | `above_two_minimax` | Matching minimax rates for the exact power law. |
 | `above_two_psi` | The actual variational Psi functional is comparable to min(rho, h sqrt(rho)/a) for the exact power law. |

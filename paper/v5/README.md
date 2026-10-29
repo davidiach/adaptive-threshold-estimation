@@ -9,6 +9,13 @@ The main statements are in sections 2, 7 and 11. Section 12 gives the exact
 formal verification boundary. Appendices A–C contain the longer rare-event
 proofs, including their published external inputs.
 
+Section 12 predates the alpha > 2 formalization: it still lists the above-two
+rates as paper theorems that use the cited Lee–Valiant input. The alpha > 2
+rare-event RMS rate is now proved in Lean in the observable model, by a
+different construction and without that input; see the
+[scope guide](../../docs/RARE_ABOVE_TWO.md). The manuscript and its PDF are
+unchanged.
+
 The confidence law is Lean-checked in the observable adaptive model for
 `B >= 1` and `0 < delta <= 1/4`, with coefficients `1/64` and `8192`.
 One family depending only on budget and failure probability achieves the

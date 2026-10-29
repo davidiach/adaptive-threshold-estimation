@@ -49,6 +49,26 @@ class RareAboveTwoAuditTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'unregistered'):
                 audit.validate_sources()
 
+    def test_unregistered_nested_module_rejected(self):
+        real_rglob = type(audit.SOURCE).rglob
+
+        def rglob(self, pattern):
+            found = list(real_rglob(self, pattern))
+            return found + [audit.SOURCE / 'Extra' / 'Hidden.lean'] if self == audit.SOURCE else found
+        with patch.object(type(audit.SOURCE), 'rglob', rglob):
+            with self.assertRaisesRegex(ValueError, 'unregistered'):
+                audit.validate_sources()
+
+    def test_proof_escape_in_registered_or_imported_module_rejected(self):
+        real_read = type(audit.SOURCE).read_text
+        for target in (audit.SOURCE / 'Full.lean', audit.ROOT / 'lean/ThresholdHC/Tier6/AlgorithmCore.lean'):
+            def planted(self, *args, **kwargs):
+                text = real_read(self, *args, **kwargs)
+                return text + '\nrun_cmd pure ()\n' if self == target else text
+            with self.subTest(path=target.name), patch.object(type(audit.SOURCE), 'read_text', planted):
+                with self.assertRaisesRegex(ValueError, 'Forbidden proof escape'):
+                    audit.validate_sources()
+
     def test_dependency_order_rejected(self):
         with patch.object(audit, 'MODULES', tuple(reversed(audit.MODULES))):
             with self.assertRaisesRegex(ValueError, 'dependency order'):
