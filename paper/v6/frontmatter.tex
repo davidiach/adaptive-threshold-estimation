@@ -1,0 +1,47 @@
+\begin{abstract}
+We estimate the fraction $\theta=\Prob(P>1/2)$ of a population of latent
+Bernoulli coins, charging one unit for each observed flip. Algorithms may
+create, revisit, and interleave coins and stop under a uniform expected
+budget. For any law $\mu$ of $D=|P-1/2|$ on $(0,1/2]$, the minimax RMS
+error is comparable to $\omega_\mu(B^{-1/2})$, where
+$\omega_\mu(h)=\E_\mu\min\{1,h/D\}$. One algorithm depending only on
+the budget attains this rate for every $\mu$. Unbiased estimation with
+uniformly finite variance and expected work is possible exactly when
+$I_\mu=\E_\mu D^{-1}<\infty$; the optimal uniform variance--work
+product lies between $I_\mu^2/16$ and $713I_\mu^2$.
+
+With the additional global rarity constraint $\theta\le\rho$, the
+variational quantity $\Psi_{\mu,\rho}$ gives a general lower bound and
+characterizes the power-margin regimes below and above exponent two, but
+fails at the boundary. For the fixed quadratic law $F(d)=(4d)^2$, put
+$L=1+\log(1/\rho)$. The sharp RMS order is
+$\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}$,
+whereas $\Psi$ gives only $\min\{\rho,\sqrt{\rho L/B}\}$.
+For every known magnitude law, rarity bound and positive budget, the
+risk is comparable to an entropy--tail selection functional: a selected
+part of the law pays its dyadic inverse-square cost entropy, and the
+remainder pays a truncated inverse-gap cost. Selecting all mass outside
+the smallest-gap quantile $\rho$ is optimal within a factor $1+2\sqrt2$,
+which gives a closed formula. For finite laws that formula is also
+proved directly, with explicit constants. A robust stopping program has
+an exact four-prior dual, a factor-sixteen comparison with minimax risk,
+and convergent finite certificates.
+
+The original RMS law is Lean-checked in both directions, with coefficients
+$1/64$ and $512$ and one distribution-blind upper algorithm. The critical
+minimax law, exact $\Psi$ comparison and counterexample, variational
+optimizer, unbiased characterization with coefficients $1/16$ and $713$,
+confidence characterization, magnitude-oracle lower bounds, and the
+rare-event rate above exponent two are also Lean-checked in their stated
+models. The entropy--tail law, the closed quantile form, the
+stopping-program results, and the remaining rare-event regimes are paper
+proofs. This manuscript consolidates the statements, proofs,
+dependencies, and verification boundaries.
+\end{abstract}
+\begin{center}\small
+Research draft. Version 6 combines the consolidated version 5 with the
+general-law rare-event manuscript (revised v2) and the finite-gap
+rare-event manuscript (revision 2).
+No independent specialist review; agent review and formal verification
+have different scopes. Priority and practical superiority are not established.
+\end{center}

@@ -1,0 +1,58 @@
+name: Manuscript build
+on:
+  push:
+    paths:
+      - '.github/workflows/manuscript.yml'
+      - 'paper/v6/**'
+      - 'tools/build_v6.py'
+  pull_request:
+    paths:
+      - '.github/workflows/manuscript.yml'
+      - 'paper/v6/**'
+      - 'tools/build_v6.py'
+  workflow_dispatch:
+concurrency:
+  group: manuscript-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  v6-pdf:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify generated v6 sources
+        run: python tools/build_v6.py --check
+      - name: Install TeX Live from the Ubuntu archive
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends latexmk lmodern \
+            texlive-latex-base texlive-latex-recommended texlive-latex-extra \
+            texlive-fonts-recommended poppler-utils
+      - name: Build the PDF in a scratch copy
+        env:
+          SOURCE_DATE_EPOCH: '1793232000'
+          FORCE_SOURCE_DATE: '1'
+        run: |
+          cp -r paper/v6 "$RUNNER_TEMP/v6"
+          cd "$RUNNER_TEMP/v6"
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+      - name: Reject unresolved or duplicate references
+        run: |
+          cd "$RUNNER_TEMP/v6"
+          pdfinfo main.pdf
+          grep -n "Overfull" main.log || echo "No overfull boxes"
+          if grep -n -E "undefined|multiply defined|Rerun to get" main.log; then
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v6-paper
+          path: |
+            ${{ runner.temp }}/v6/main.pdf
+            ${{ runner.temp }}/v6/main.log
+          if-no-files-found: warn

@@ -1,0 +1,106 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=27mm,headheight=14pt]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype,booktabs,tabularx,array,longtable,xurl}
+\usepackage{enumitem,needspace,fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Adaptive Threshold Estimation: Minimax Laws, Unbiased Estimation, and Rare Events},pdfauthor={David Iach; AI-assisted research},pdfsubject={Consolidated version 6: mathematical results and exact formal verification scope}}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\setlength{\parskip}{3pt}
+\setlength{\parindent}{1.3em}
+\setlength{\emergencystretch}{2em}
+\setcounter{tocdepth}{1}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Adaptive threshold estimation}
+\fancyhead[R]{\small Consolidated research draft, v6}
+\fancyfoot[C]{\thepage}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\Pp}{\mathbb P}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathcal Q}
+\newcommand{\1}{\mathbf 1}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\KL}{\operatorname{KL}}
+\newcommand{\kl}{\operatorname{kl}}
+\newcommand{\Ber}{\operatorname{Ber}}
+\newcommand{\ind}{\mathbf 1}
+\newcommand{\cG}{\mathcal G}
+\newcommand{\cA}{\mathcal A}
+\newcommand{\om}{\omega_\mu}
+\newcommand{\Am}{A_\mu}
+\newcommand{\Iinv}{I_\mu}
+\newcommand{\logp}{\log_+}
+\newcommand{\Aff}{\operatorname{Aff}}
+\newcommand{\Hsq}{\mathsf H^2}
+\newcommand{\Xrho}{\mathcal X_\rho}
+\DeclareMathOperator{\TV}{TV}
+\DeclareMathOperator{\Ent}{Ent}
+\newcommand{\leanref}[2]{\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/eabf274cb42d4bff4daab6b58568ad6169e7f0a7/lean/ThresholdHC/#1}{\textnormal{\texttt{#2}}}}
+\newcommand{\observableleanref}[1]{\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/15dbbda98a31e27502e3caff991d3ea21d096d23/lean/ThresholdHC/Observable713/Full.lean}{\textnormal{\texttt{#1}}}}
+\newcommand{\confidenceleanref}[1]{\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/d6feb3069d1a399ab1a50de2b0e7bc13e6b21c23/lean/ThresholdHC/Confidence/Full.lean}{\textnormal{\texttt{#1}}}}
+\newcommand{\oracleleanref}[2]{\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/4a5805c771e541f557848957e0a3ffada31dcb32/lean/ThresholdHC/OracleLower/#1}{\textnormal{\texttt{#2}}}}
+\newcommand{\abovetwoleanref}[1]{\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/637fb4a79d20e30415a2cb0e495752603077c0ee/lean/ThresholdHC/RareAboveTwo/Full.lean}{\textnormal{\texttt{#1}}}}
+\title{\vspace{-1.2em}\textbf{Adaptive Threshold Estimation}\\[0.4em]\large Minimax laws, unbiased estimation, and rare events}
+\author{Project lead: David Iach\\\small AI-assisted research and formalization}
+\date{Version 6 \quad\textbullet\quad 29 October 2026}
+\begin{document}
+\maketitle
+\thispagestyle{plain}
+\input{frontmatter}
+\clearpage
+\tableofcontents
+\clearpage
+\input{introduction}
+\input{core}
+\input{rare-events}
+\input{all-sizes}
+\input{entropy-tail}
+\input{finite-laws}
+\input{certificates}
+\input{rare-related-work}
+\input{rare-discussion}
+\clearpage
+\input{verification}
+\clearpage
+\appendix
+\input{appendix-localization}
+\clearpage
+\input{appendix-above-two}
+\clearpage
+\input{appendix-critical}
+\clearpage
+\input{appendix-entropy-tail-upper}
+\clearpage
+\input{appendix-entropy-tail-lower}
+\clearpage
+\input{appendix-upper-foundations}
+\clearpage
+\input{appendix-lower-foundations}
+\clearpage
+\input{appendix-transfer-foundations}
+\clearpage
+\input{appendix-flow}
+\clearpage
+\input{appendix-dual}
+\clearpage
+\input{appendix-genie}
+\clearpage
+\input{appendix-identifiability}
+\clearpage
+\input{appendix-computation}
+\clearpage
+\input{finite-proof}
+\clearpage
+\input{references}
+\end{document}
