@@ -2,6 +2,13 @@
 
 These documents record the workflow and historical verification checkpoints. For mathematical claims, start with the [repository README](../../README.md) and [results guide](../RESULTS.md).
 
+For new work, use [CONTRIBUTING.md](../../CONTRIBUTING.md) and
+[AGENTS.md](../../AGENTS.md). The original `BRIEF.md` remains unchanged: its
+overnight assignment, Phase 0 instructions, and blanket rollback command describe
+the original run, not the current contribution workflow. Preserve its frozen
+sources and held-out-data constraints; do not restart that initialization or
+discard unrelated work by replaying its commands.
+
 Start with [How this research was developed and checked](METHOD.md) for the
 concise process account. The documents below retain the chronological evidence.
 
