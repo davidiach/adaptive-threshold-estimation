@@ -372,7 +372,8 @@ def _bernoulli_kl(p: float, q: float) -> float:
     ratio = (q - p) / p
     if math.isfinite(ratio):
         return total - p * math.log1p(ratio)
-    # For a subnormal p the ratio overflows; the term is then negligible anyway.
+    # The ratio overflows only for a subnormal p far below q; the term is then
+    # negligible, and q / p would overflow too, so the logarithms are taken apart.
     return total + p * (math.log(p) - math.log(q))
 
 
@@ -429,9 +430,10 @@ def _confirmable_runs(target: float, confidence: float, comparisons: int) -> int
     # the bound is that root's square root raised by BOUND_MARGIN.
     margined = target / (1 + BOUND_MARGIN)
     denominator = -math.log1p(-margined * margined)  # zero once the square underflows
-    if denominator == 0 or log_inverse_delta / denominator >= sys.maxsize:
+    if denominator == 0:
         return sys.maxsize
-    runs = max(1, math.ceil(log_inverse_delta / denominator))
+    estimate = log_inverse_delta / denominator
+    runs = sys.maxsize if estimate >= sys.maxsize else max(1, math.ceil(estimate))
 
     def meets(n: int) -> bool:
         # The same arithmetic as rms_upper_bound on n zero errors; it can only

@@ -364,6 +364,9 @@ class ConfidenceBoundTests(unittest.TestCase):
         # Stepping one run at a time from the closed form took years, or never
         # ended when no count could meet the target.
         self.assertEqual(_confirmable_runs(2e-162, 1e-310, 1), sys.maxsize)
+        # Near 2**63 the closed form rounds past sys.maxsize although a count
+        # 511 runs below it already meets the target.
+        self.assertEqual(_confirmable_runs(5.699104706590443e-10, 0.95, 1), sys.maxsize - 511)
         for target, confidence in ((1e-160, 1e-302), (1e-155, 1e-292)):
             n = _confirmable_runs(target, confidence, 1)
             allowance = -math.log1p(-confidence)
@@ -372,9 +375,9 @@ class ConfidenceBoundTests(unittest.TestCase):
                 self.assertLessEqual(_kl_upper_root(0.0, allowance / n), target)
                 self.assertGreater(_kl_upper_root(0.0, allowance / (n - 1)), target)
 
-    def test_subnormal_mean_errors_keep_a_finite_bound(self):
-        # From a review: (q - p) / p overflowed for a subnormal mean p, and the
-        # bound jumped to 1.
+    def test_subnormal_mean_errors_keep_the_zero_error_bound(self):
+        # From a review: (q - p) / p overflowed for a subnormal mean p, the
+        # relative entropy became -inf, and the bound jumped to 1.
         zero = rms_upper_bound(np.zeros(200), 0.95)
         for mean in (1e-310, 5e-324):
             with self.subTest(mean=mean):
