@@ -61,7 +61,6 @@ class BlindUpperAuditTests(unittest.TestCase):
     def test_proof_escapes_missed_by_the_frozen_pattern_rejected(self):
         hidden = "set_option debug.skipKernelTC true\ntheorem hidden : False := by sorry\n"
         for source in ("example : Statement := by admit\n",
-                       "set_option warn.sorry false in\nexample : Statement := by stop rfl\n",
                        'def a : String := "/-"\n' + hidden + 'def b : String := "-/"\n',
                        'def a : String := "--" ; run_cmd pure ()\n',
                        '#print "\'A.foo\' does not depend on any axioms"\n'):
@@ -69,6 +68,14 @@ class BlindUpperAuditTests(unittest.TestCase):
                 self.assertIsNotNone(audit.FORBIDDEN.search(audit.strip_comments(source)))
         self.assertIsNone(audit.FORBIDDEN.search(audit.strip_comments(
             "/- \"quoted\" admit -/\ntheorem admits_x' : True := trivial -- \"note\"\n")))
+
+    def test_sorry_warning_cannot_be_silenced(self):
+        # The frozen pattern's \bsorry\b also matches the option name.
+        for option in ("warn.sorry", "«warn.sorry»", "«warn».«sorry»"):
+            source = f"set_option {option} false in\nexample : Statement := by stop rfl\n"
+            with self.subTest(option=option):
+                self.assertIsNotNone(audit.TIER6_FORBIDDEN.search(audit.strip_comments(source)))
+                self.assertIsNotNone(audit.FORBIDDEN.search(audit.strip_comments(source)))
 
     def test_nonstandard_axioms_rejected(self):
         for axiom in ("sorryAx", "untrusted_assumption"):
