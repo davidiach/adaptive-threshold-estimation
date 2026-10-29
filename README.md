@@ -5,7 +5,12 @@
 Minimax theory for estimating a threshold probability from noisy coin flips,
 with a research manuscript, Lean 4 proofs built on Mathlib, and reproducible experiments.
 
-**[Paper](paper/v5/paper.pdf)** · **[General-law rare-event paper](paper/rare-event/README.md)** · **[Formal proofs](lean/ThresholdHC/)** · **[Verification guide](docs/VERIFY.md)** · **[Specialist review packet](paper/critical-review/review.pdf)**
+**[Paper](paper/v5/paper.pdf)** · **[General-law rare-event paper](paper/rare-event/README.md)** · **[Formal proof map](lean/README.md)** · **[Verification guide](docs/VERIFY.md)** · **[Specialist review packet](paper/critical-review/review.pdf)**
+
+New contributors: start with [CONTRIBUTING.md](CONTRIBUTING.md).
+AI agents: read [AGENTS.md](AGENTS.md) for current entry points, preservation
+rules, and validation. The root [BRIEF.md](BRIEF.md) is the historical overnight
+assignment; it is preserved as part of the [process record](docs/process/README.md).
 
 **[Finite-gap rare-event manuscript](paper/finite-gap-rare-events/README.md)** — a separate paper proof for known finite gap laws, prepared for external mathematical review.
 
@@ -126,17 +131,20 @@ Use a disposable checkout for reproduction: some checks write diagnostic files.
   [general-law rare-event manuscript](paper/rare-event/README.md),
   [critical-result review packet](paper/critical-review/README.md),
   and [claims with exact assumptions](docs/RESULTS.md).
-- **Inspect the formalization:** [Lean sources](lean/ThresholdHC/),
+- **Inspect the formalization:** [theorem and module map](lean/README.md),
   [main upper-bound scope](docs/BLIND_UPPER.md), and
   [critical-law audit](docs/CRITICAL_AUDIT.md).
-- **Reproduce the evidence:** [verification commands](docs/VERIFY.md),
-  [recorded results](results/), and [benchmarks](benchmark/).
+- **Reproduce the evidence:** [checks by task](docs/VERIFY.md#choose-checks-by-task),
+  [verification tools](tools/README.md), [evidence index](results/README.md),
+  and [benchmarks](benchmark/).
 - **Follow the research:** [remaining work](docs/WORKPLAN.md),
   [research index](research/README.md), and [process note](docs/process/METHOD.md).
 - **Use it on your own problem:** the [toolkit](toolkit/README.md) plans a flip
   budget and runs the estimators. It compares a majority-vote plan tuned to a
   guessed gap law with the distribution-blind algorithm, including simulations
   and their limits.
+- **Contribute:** [setup and editing guide](CONTRIBUTING.md),
+  [agent instructions](AGENTS.md), and [current priorities](docs/WORKPLAN.md#current-priorities).
 
 ## Scope and review
 

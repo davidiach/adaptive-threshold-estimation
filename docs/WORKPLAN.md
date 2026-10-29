@@ -1,3 +1,38 @@
+# Current work and completion ledger
+
+Use this page to choose follow-up work. [RESULTS.md](RESULTS.md) records the
+current mathematical scope; [VERIFY.md](VERIFY.md#choose-checks-by-task) maps
+changes to checks. The detailed completion ledger is preserved below for source,
+review, and CI history.
+
+## Current priorities
+
+| Area | Next work | Starting point |
+|---|---|---|
+| General-law rare-event results | Formalize the new entropy-tail characterization and stopping-program arguments; the published general claims remain paper proofs. | [Manuscript and audit](../paper/rare-event/README.md), [claim scope](RESULTS.md#general-law-rare-event-characterization) |
+| Other paper-only results | Formalize the finite-gap closed quantile law, remaining rare-event regimes, and auxiliary envelope, smooth-density, and observed-state results. | [Finite-gap manuscript](../paper/finite-gap-rare-events/README.md), [results guide](RESULTS.md), [research index](../research/README.md) |
+| Open research | Sharp rare-event confidence rates at and above the quadratic boundary; tighter constants and efficient selection algorithms. | [Current claim boundaries](RESULTS.md), [main overview](../README.md#scope-and-review) |
+| Maintenance | Parameterize repeated entropy/base-cost and prefix-information/event-transfer arguments; extract shared audit code; simplify redundant premises and unused facts. These are non-blocking follow-ups. | [Recorded refactoring scope](#pr-10-review-and-maintenance-follow-up), [Lean map](../lean/README.md), [tool index](../tools/README.md) |
+
+The original RMS law, critical quadratic law, unbiased existence
+characterization, confidence characterization, and canonical magnitude-oracle
+lower bounds already have formal results with the scopes recorded in
+[RESULTS.md](RESULTS.md). Preserve their specifications and evidence when
+extending them. The Python toolkit remains outside the Lean proof.
+
+For a new contribution, follow [CONTRIBUTING.md](../CONTRIBUTING.md) and
+[AGENTS.md](../AGENTS.md). The project owner does not plan human specialist
+review; its absence remains a stated limitation, not a pending completion gate.
+
+## Completion ledger
+
+The expandable record retains the earlier status descriptions, working rules,
+source checkpoints, and CI outcomes. Read dates and commit identities with each
+entry; earlier references to pending work describe that checkpoint.
+
+<details>
+<summary>Open the preserved verification and consolidation ledger</summary>
+
 # Verification and consolidation
 
 This ledger records the follow-up authorized on 27 October
@@ -272,3 +307,5 @@ jobs in [run 40667339241](https://github.com/davidiach/adaptive-threshold-estima
 The full-upper checkpoint `c127478` in PR #5 also passed all three jobs in
 [run 40672110946](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40672110946).
 The Psi and manuscript PRs report their own commit-specific CI results.
+
+</details>
