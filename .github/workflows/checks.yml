@@ -52,6 +52,8 @@ jobs:
         run: python tools/build_v5.py --check
       - name: Verify rare-event v2 identities and replay finite certificates
         run: python tools/verify_rare_event_manuscript.py
+      - name: Check rare-event bracket rows bind verified certificate pairs
+        run: python -m unittest discover -s tools -p 'test_rare_event_manuscript.py' -v
       - name: Check manuscript assembly preserves mathematical expressions
         run: python -m unittest discover -s tools -p 'test_build_v5.py' -v
       - name: Replay population and nonlinear feedback checkpoints
