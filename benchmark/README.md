@@ -51,18 +51,21 @@ training/tuning invocation; prior tuning snapshots document the actual rounds.
 compiled coupling state machines (`tape_pair`, `antithetic_tape`, `sum_tape`)
 against independent scalar finite-tape classifiers and checks exact randomized
 telescoping. Of the production routines it checks only `level_count`'s budget
-bound and that four-repeat outputs/costs match four separately seeded
-`real_estimate` calls.
+bound and that four-repeat outputs/costs match four consecutive `real_estimate`
+calls from the same seed.
 
 `verify_production.py`, added after the held-out test, reads the training,
 tuning and selection records, so run it after `lock`. It replays the exact
 seeded draws of `real_pair`, `antithetic_pair`, `sum_term` and `real_term` and
 compares every value and cost with an independent scalar classifier, across
 every trained level and every recorded tuning cell, and checks that each call
-drew exactly the observations it billed. It checks `train_level`,
-`real_estimate` and `real_replicates` against those routines, and reproduces
-two recorded training rows from their seeds. These are implementation checks,
-not proofs of statistical performance.
+drew exactly the observations it billed. Most seeds give every cap the same
+decision, so it also replays seeds chosen to give nonzero increments at the
+deepest recorded levels (caps up to 16384, 11-level randomized sums). It checks
+`train_level`, `real_estimate` and `real_replicates` against those routines,
+reproduces two recorded training rows from their seeds, and rebuilds every
+recorded level law from its name and the training moments. These are
+implementation checks, not proofs of statistical performance.
 
 Seeds: training uses 12000+configuration index; tuning uses families 32000,
 33000, 34000 and 35000 with the original budget index and recorded candidate

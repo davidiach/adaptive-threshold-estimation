@@ -124,16 +124,20 @@ unrestricted minimax model. These dependency hashes were recorded during review.
   `antithetic_pair`, `sum_term` and `real_term` and compares every value and
   cost with an independent scalar classifier, across every trained level and
   every recorded tuning cell. It also checks that each call drew exactly the
-  observations it billed. It checks `train_level`, `real_estimate` and
-  `real_replicates` against those routines, reproduces two recorded training
-  rows from their seeds, and checks `level_count` and the selected level laws.
+  observations it billed. Seeds chosen near the critical latent value give
+  nonzero increments at the deepest recorded levels; random seeds almost never
+  do. It checks `train_level`, `real_estimate` and `real_replicates` against
+  those routines, reproduces two recorded training rows from their seeds, and
+  rebuilds every recorded selected and tuning level law from its name and the
+  training moments.
 - `verify_real.py` compares only the tape copies (`tape_pair`,
   `antithetic_tape`, `sum_tape`) with the classifier. Of the production routines
   it checks only `level_count`'s budget bound and `real_replicates`' repeat
   consistency. Three planted production bugs pass it: a wrong coarse cap in
   `real_pair`, `real_term` weighting by the first level probability, and wrong
-  `sum_term` weights. All 24 single-line bugs in a planted sweep, including
-  these three, fail `verify_production.py`.
+  `sum_term` weights. All 27 single-line bugs in a planted sweep, including
+  these three and three that act only at deep levels, fail
+  `verify_production.py`.
 - `tools/verify_experiment_lock.py` now accepts `results/real_verification.json`
   when its line endings are LF or CRLF throughout and otherwise match the
   locked bytes. `verify_real.py` rewrites that record with the platform's line
