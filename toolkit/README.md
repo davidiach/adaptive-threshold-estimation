@@ -77,6 +77,7 @@ At an average budget of 16,384 flips:
 
   Proven no-tuning method, simulated 200 times on your guess:
     typical error: 0.277 (about 28 percentage points), give or take 0.012
+    at most 0.363 with 95% confidence, given these 200 runs
     flips used: 15,540 on average; 90% of runs used at most 31,091, 99% at most 46,572
 
   On your guess, the simple plan's typical error is 4.7x smaller.
@@ -105,7 +106,12 @@ How to read it:
   closeness has to be right.
 - **The proven method's numbers are simulations** of the actual algorithm on your
   guess. Its budget is an average, so single runs vary; the 90% and 99% figures
-  show by how much.
+  show by how much. The "at most … with 95% confidence" figure is a one-sided
+  upper confidence bound on the true typical error at that budget, on your
+  guess (a Chernoff bound for squared errors in [0, 1]). It stays well above
+  zero even when no simulated run made an error: 200 error-free runs only show
+  that the typical error is at most about 0.12. Use `--confidence` to change
+  the level.
 - **Proven limits** come from the paper's machine-checked theorems. The floor
   says no method of any kind can do better in the worst case. Both limits are
   very loose (a factor of about 30,000 apart), which is why the simulation is
@@ -118,8 +124,14 @@ the best plan among all possible counts. With `--target-error 0.03` instead of
 `--budget`, it finds the cheapest qualifying plan on that grid, up to $2^{24}$
 flips per item. A failed search means no plan was found in that search range;
 it is not an impossibility result. The calculator also simulates the
-proven method at doubling budgets until it meets the target too, giving up at 64
-times the simple plan's flips.
+proven method at doubling budgets, giving up at 64 times the simple plan's
+flips. It reports a budget as confirmed only when the simulations' upper
+confidence bound meets the target. The confidence level holds across every
+budget the search could try. Confirming a target t needs at least about
+log(budgets tried / 0.05) / t² runs, even if no run makes an error: with the
+default 200 runs, only targets above roughly 0.17 can be confirmed. When the
+simulated error meets the target but the bound does not, the calculator says so
+and gives the number of runs needed, rather than recommending that budget.
 
 Use `--runs` to change the number of simulated runs (default 200) and `--seed` to
 change the simulation's seed. With `--target-error`, `--max-budget` (default
