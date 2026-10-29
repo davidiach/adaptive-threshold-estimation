@@ -1,5 +1,62 @@
 # Full verification commands
 
+Choose the checks for the area you changed, then follow the setup below.
+Commands run from the repository root unless a block explicitly changes directory.
+The [tool index](../tools/README.md) explains script families and output behavior;
+the [evidence index](../results/README.md) explains published checkpoints.
+
+## Choose checks by task
+
+| Task | Commands or command guide | Output and scope |
+|---|---|---|
+| Navigation or ordinary documentation | `git -c core.whitespace=cr-at-eol diff --check`; `python tools/freeze.py --verify`; check relative links and heading anchors | No proof rebuild needed when sources, specifications, tools, and dependencies are unchanged. This file and some others use CRLF line endings, which plain `--check` reports as trailing whitespace. `freeze.py --verify` covers only `FROZEN.sha256`; run the matching verifier for any other locked path. Inspect the final diff for unintended files. |
+| Python toolkit | `python -m pip install -e ./toolkit`; `python -m unittest discover -s toolkit/tests -v`; `python toolkit/examples/quickstart.py` | Python implementation tests and example; do not certify the implementation in Lean. |
+| Consolidated v5 manuscript | `python tools/build_v5.py --check`; `python -m unittest discover -s tools -p 'test_build_v5.py' -v` | Checks inherited source identities, assembly, references, and citations. [Build and visually review](../paper/v5/README.md#reproduce) the PDF when typeset content changes. |
+| Critical review packet | `python tools/build_critical_review.py --check` | Compares generated source to the locked proof and editable brief. [Compile and review](../paper/critical-review/README.md) changed typeset content separately. |
+| General-law rare-event manuscript (v2) | `python tools/verify_rare_event_manuscript.py` | Hashes and finite checks in a temporary copy; preserves the payload. Does not formally verify the general theorems. |
+| Finite-gap rare-event manuscript | `cd paper/finite-gap-rare-events && sha256sum -c SHA256SUMS`; [build](../paper/finite-gap-rare-events/README.md) in a disposable copy | Checks the published source and PDF identity. The closed quantile theorem is a paper proof; no Lean or numerical certificate covers it. |
+| Imported inputs and research packages | `python tools/verify_inputs.py`; `python tools/verify_research.py`; `python tools/verify_population_research.py` | Input identities and maintained research replay. Research diagnostics use temporary output and `.runtime/`; original records remain intact. |
+| Main RMS law | `python tools/verify_tier6.py --sequential --require-complete`; `python tools/verify_blind_upper_components.py --sequential` | Exact formal audits of both directions. Tier 6 writes tracked `results/`; use a disposable checkout. The upper audit writes `.runtime/`. |
+| Another Lean result | [Theorem-to-audit map](../lean/README.md#main-theorem-entry-points), [baseline and tier sequence](#lean-kernel-checks) | Run the affected result's exact-target/axiom audit, including affected downstream results when shared dependencies change. Check locks first. |
+| Verification logic or registration | Relevant audit plus its matching `test_*.py` module; `python -m unittest discover -s tools -p 'test_*.py' -v` for all guard tests | Tests exercise validation guards; they do not replace the mathematical kernel audits. Use a disposable checkout for audits that overwrite published files. |
+| Numerical checks and recorded benchmarks | [Integrity and numerical sequence](#integrity-numerics-and-unit-tests), [benchmark protocol](../benchmark/README.md) | Some commands write `results/`. Replaying stored samples is distinct from rerunning held-out experiments. |
+
+For complete integration coverage and ordering, follow
+[checks.yml](../.github/workflows/checks.yml) and the separate
+[toolkit workflow](../.github/workflows/toolkit.yml). Run only the relevant checks
+for a focused local change; report exactly what ran. The detailed sections below
+retain the scope and limitations of each audit.
+
+## Setup
+
+Use Python 3.12 for research checks. Toolkit-only work supports Python 3.10 or
+newer and uses the installation command in the table. Lean audits additionally
+need `elan` on `PATH`; the repository pins the
+[Lean toolchain](../lean/lean-toolchain) and
+[Mathlib revision](../lean/lake-manifest.json). Do not run `lake update` on the
+frozen checkout. The [environment notes](../proposals/lean-environment.md) retain
+historical Windows installation details; substitute your own tool locations.
+
+Several legacy verifiers write logs and summaries into tracked `results/` files.
+Run those in a disposable checkout containing the exact revision or changes
+being checked. For a fresh reproduction checkout:
+
+```sh
+git clone https://github.com/davidiach/adaptive-threshold-estimation.git
+cd adaptive-threshold-estimation
+python -m pip install -r requirements.txt
+cd lean
+lake exe cache get
+cd ..
+```
+
+If reviewing a branch or commit, check it out before installing dependencies and
+fetching the cache. Python-only checks do not need the `cd lean` / Lake steps.
+Newer audits use `.runtime/` or temporary directories as listed in the table.
+`--sequential` reduces build concurrency where supported; first-time Lean/cache
+setup and a full kernel run are substantially heavier than documentation checks.
+Keep published evidence unchanged and inspect the working tree after verification.
+
 ## General-law rare-event manuscript v2
 
 From the repository root, using the Python standard library:
@@ -24,6 +81,8 @@ checks do not formally verify the manuscript's general statistical or limit
 theorems. See the [claim status](RESULTS.md#general-law-rare-event-characterization)
 and [audit qualifications](../paper/rare-event/audit/README.md).
 
+## All-size finite-gap extension
+
 The all-size finite-gap and explicit single-coin base-cost extension has a
 separate audit: `python tools/verify_critical_all_sizes.py` (optionally
 `--sequential`). It checks four exact target types, every new declaration's
@@ -37,6 +96,8 @@ raw second moment times null work, and 1/15000000000 for variance times
 null work. The older 1/512 entropy coefficient retains its large-count
 hypothesis. No explicit population minimax constant is certified by this audit.
 
+## Build behavior of the critical component audits
+
 The critical lower and both upper component verifiers use `lake build`, which
 rebuilds stale transitive imports before the kernel and axiom checks. Use
 `--sequential` to build one registered module at a time on constrained machines.
@@ -47,6 +108,8 @@ These additions preserve the original frozen statements and published evidence.
 
 The Psi verifier also rebuilds transitive imports with Lake and checks the
 review-time dependency snapshot of its variational model and specifications.
+
+## Unbiased-estimation converse
 
 The full unbiased-estimation converse has a dedicated audit:
 
@@ -67,6 +130,8 @@ before supporting proofs; the dependency snapshot was recorded after the proof
 drafts, as its [chronology](../tools/unbiased_converse_specification_freeze.json)
 states. This audit does not certify a new 713 realization or stronger oracle model.
 
+## Observable 713 construction
+
 The 713 construction in the same observable model has its own audit:
 
 ```sh
@@ -85,6 +150,8 @@ dependencies were compiled and frozen before the new supporting proofs.
 The verifier rejects missing or weakened targets, unregistered modules,
 altered frozen dependencies, proof escapes, unexpected axioms, and source
 changes during the audit. CI runs the audit and its regression tests.
+
+## Confidence characterization
 
 The confidence characterization in the same observable model has a dedicated audit:
 
@@ -108,6 +175,8 @@ are proved; neither is assumed in the final target. CI runs this audit and
 its regression tests. The radius is a theoretical function of the gap law,
 not a data-computable confidence interval over all unknown laws.
 
+## Magnitude-oracle lower bounds
+
 The magnitude-oracle lower bounds have a separate audit:
 
 ```sh
@@ -128,6 +197,8 @@ the gap on reuse. The audit checks the frozen types and all transitive axioms;
 CI runs both the audit and mutation tests for each required target. Only
 `propext`, `Classical.choice`, and `Quot.sound` are permitted.
 
+## Critical Psi comparison
+
 The actual critical-law Psi formula, two-sided rate and unrestricted minimax
 counterexample have a separate audit. After the prerequisite builds below:
 
@@ -141,6 +212,8 @@ model and all three exact target types, all six proof modules, every declaration
 transitive axioms, and source stability during the run. The
 [scope](CRITICAL_AUDIT.md#exact-psi-comparison-and-minimax-separation) distinguishes
 the formal witness budget from the preserved paper's particular sequence.
+
+## Critical upper bound
 
 The full critical upper theorem has a dedicated audit, run after the
 critical and distribution-blind builds below:
@@ -159,6 +232,8 @@ budget regime. The universal upper coefficient is 100000. The explicit Psi
 comparison is certified by the separate Psi audit above. See the
 [exact scope](CRITICAL_AUDIT.md#upper-construction-checkpoint).
 
+## Distribution-blind upper bound
+
 The full distribution-blind upper theorem has a separate
 [verification record](BLIND_UPPER.md). After the baseline, Tier 6, and critical
 builds below, run:
@@ -174,6 +249,8 @@ final theorem against its unchanged frozen type, together with all 373
 declaration roots and their transitive axioms. It includes actual population
 cost/output identities, termination, budget selection and uniform RMS risk.
 The critical upper has its own full audit above; historical records retain their original completion flags.
+
+## Critical lower bound
 
 The follow-up's scoped critical-proof components have a separate check:
 
@@ -220,6 +297,8 @@ single-coin theorem. This lower-only record retains its historical
 comparison have the separate completed records above. See the
 [follow-up audit](CRITICAL_AUDIT.md#current-formal-boundary).
 
+## Integrated research replay
+
 For the integrated research packages, including the full critical-law paper
 theorem and Psi counterexample:
 
@@ -261,6 +340,8 @@ It runs in disposable copies under `.runtime/`; historical reports and source
 locks are unchanged. See the [research index](../research/README.md) for how the
 earlier checkpoints relate to the later full critical-law paper theorem.
 
+## Above-two paper checkpoint and formal bridge
+
 For the additive 27 October rare-event result and separate-supremum bridge:
 
 ```sh
@@ -268,22 +349,7 @@ python research/2026-10-27-route-a/check_construction.py
 python lean/ThresholdHC/ResearchRouteA/verify.py
 ```
 
-The first command checks exact rational finite-prefix experiments and retains unresolved tails; it does not certify the main theorem. The second checks the new locked formal specification, exact types, and all five public roots. See [formal replay details](../research/2026-10-27-route-a/formal-audit.md) for the local Windows environment. The main theorem remains a reviewed paper proof. [Baseline replay records](../research/2026-10-27-route-a/BASELINE.md) and the new `acceptance_check.py` keep diagnostics separate from published `results/`; the latter compares against this session's recorded source snapshot.
-
-Use Python 3.12 and the toolchain in [lean/lean-toolchain](../lean/lean-toolchain). The pinned package revisions are in [lean/lake-manifest.json](../lean/lake-manifest.json); do not run `lake update` on this frozen checkout. [Environment notes](../proposals/lean-environment.md) include the existing local Windows installation.
-
-Several verifiers write logs or summaries into `results/`. Run this sequence in a disposable checkout if you want the published evidence to remain byte-for-byte unchanged:
-
-```sh
-git clone https://github.com/davidiach/adaptive-threshold-estimation.git
-cd adaptive-threshold-estimation
-python -m pip install -r requirements.txt
-cd lean
-lake exe cache get
-cd ..
-```
-
-Run all remaining commands from that checkout's root. They retain every verifier from the former README's “Reproduce” section, plus the arithmetic and benchmark implementation checks.
+Both commands rewrite tracked records in their own directories (`construction-checks.json`; `status.json`, `build.log` and `audit.log`), so run them in a disposable checkout; `tools/verify_research.py` replays the first in a temporary copy. The first command checks exact rational finite-prefix experiments and retains unresolved tails; it does not certify the main theorem. The second checks the new locked formal specification, exact types, and all five public roots. See [formal replay details](../research/2026-10-27-route-a/formal-audit.md) for the local Windows environment. The main theorem remains a reviewed paper proof. [Baseline replay records](../research/2026-10-27-route-a/BASELINE.md) and the new `acceptance_check.py` keep diagnostics separate from published `results/`; the latter compares against this session's recorded source snapshot.
 
 ## Integrity, numerics, and unit tests
 
