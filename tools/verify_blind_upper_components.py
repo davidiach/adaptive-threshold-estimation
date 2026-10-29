@@ -33,7 +33,10 @@ IMPORT = re.compile(r"^import\s+([\w.]+)\s*$", re.M)
 # it, and a printed string could forge an axiom report in the audit output.
 # (The frozen \bsorry\b alternative already rejects `set_option warn.sorry`, which
 # would silence SORRY_WARNING below.)
-FORBIDDEN = re.compile(TIER6_FORBIDDEN.pattern + r'|\badmit\b|"', TIER6_FORBIDDEN.flags)
+# #guard_msgs can consume errors or sorry warnings from anonymous target
+# examples while Lean exits successfully, so audit sources must reject it too.
+FORBIDDEN = re.compile(
+    TIER6_FORBIDDEN.pattern + r'|\badmit\b|"|#guard_msgs\b', TIER6_FORBIDDEN.flags)
 # Lean warns "declaration uses `sorry`" (backticks in the pinned toolchain).
 SORRY_WARNING = re.compile(r"declaration uses [`']")
 # Unlike the frozen Tier 6 pattern, this also reads primed names such as foo'.

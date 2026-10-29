@@ -234,8 +234,25 @@ class SimulationTests(unittest.TestCase):
                 simulate(population, budget, runs=2)
         # A generous cap is fine when the search stops long before it.
         self.assertLess(plan_target(population, 0.1, runs=2, max_budget=1e10).search_limit, 1e10)
-        with self.assertRaises(ValueError):
-            plan_target(population, 1e-4, runs=2, max_budget=1e10)
+
+    def test_target_search_can_finish_before_an_oversized_ceiling(self):
+        # Every output is exactly zero, so even this tight target needs only the
+        # first trial, although the worst-case majority plan has a huge budget.
+        plan = plan_target(GuessedRates([0.0]), 1e-5, max_budget=1e10)
+        self.assertEqual(plan.search_limit, 1e10)
+        self.assertEqual([trial.budget for trial in plan.trials], [4])
+        self.assertEqual(plan.recommended.rms_error, 0.0)
+        self.assertEqual(plan.recommended.runs, 200)
+
+    def test_target_search_rejects_only_the_first_oversized_trial(self):
+        trials = []
+        # This seeded population does not meet the target at either allowed
+        # budget. A small limit tests the failure without expensive simulations.
+        with patch("threshold_toolkit.planner.MAX_SIMULATED_BUDGET", 8):
+            with self.assertRaisesRegex(ValueError, "too large to simulate"):
+                plan_target(GuessedRates([1.0]), 1e-5, runs=2,
+                            max_budget=16, progress=trials.append)
+        self.assertEqual([trial.budget for trial in trials], [4, 8])
 
 
 class CommandLineTests(unittest.TestCase):

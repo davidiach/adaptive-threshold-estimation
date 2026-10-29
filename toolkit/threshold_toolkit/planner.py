@@ -453,6 +453,8 @@ def plan_target(population: Population, target: float, runs: int = 200,
     only changes at these budgets, since every budget from 4N up to just
     below 8N runs the same algorithm. The search stops at `max_budget` or at
     SEARCH_FACTOR times the simple plan's flips. `progress` sees each trial.
+    The simulation budget limit is enforced per trial, allowing a larger search
+    ceiling when the target is met before reaching that limit.
     """
     _validate_target(target)
     budget_level(max_budget)
@@ -460,9 +462,6 @@ def plan_target(population: Population, target: float, runs: int = 200,
         raise ValueError("use at least 2 runs")
     majority = majority_plan_for_target(population, target)
     limit = max_budget if majority is None else min(max_budget, SEARCH_FACTOR * majority.flips)
-    # Reject only a search that would reach a budget too large to simulate.
-    if 4 * 2 ** budget_level(limit) > MAX_SIMULATED_BUDGET:
-        raise ValueError(f"budgets above {MAX_SIMULATED_BUDGET:,.0f} flips are too large to simulate")
     if planned is not None:
         planned(majority)
     rng = np.random.default_rng(seed)
