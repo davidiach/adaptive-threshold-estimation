@@ -9,6 +9,10 @@ from pathlib import Path
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
+# benchmark/verify_real.py rewrites this locked record with the platform's line
+# endings, and the locked copy was written with CRLF. Running it on Linux must
+# not break the lock, so only this file may differ from its lock in line endings.
+REWRITTEN = {"results/real_verification.json"}
 
 
 def require(condition, message):
@@ -21,10 +25,19 @@ def digest(relative):
     return sha256((ROOT / relative).read_bytes()).hexdigest()
 
 
+def matches_lock(name, data, expected):
+    """True if data hashes to its lock, allowing only REWRITTEN files to differ in line endings."""
+    forms = [data]
+    if name in REWRITTEN:
+        lf = data.replace(b"\r\n", b"\n")
+        forms += [lf, lf.replace(b"\n", b"\r\n")]
+    return any(sha256(form).hexdigest() == expected for form in forms)
+
+
 def main():
     lock = json.loads((ROOT / "results/real_selection.json").read_text())
     for name, expected in lock["hashes"].items():
-        if digest(name) != expected:
+        if not matches_lock(name, (ROOT / name).read_bytes(), expected):
             raise SystemExit(f"Locked benchmark input changed: {name}")
     started = json.loads((ROOT / "results/real_test_started.json").read_text())
     require(started["selection_sha256"] == digest("results/real_selection.json"),

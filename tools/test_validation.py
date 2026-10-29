@@ -13,6 +13,7 @@ from unittest.mock import patch
 
 import score
 import verify_uniform713 as uniform713
+import verify_experiment_lock as experiment_lock
 import verify_uniform_arithmetic as arithmetic
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -185,6 +186,41 @@ class UniformArithmeticAuditTests(unittest.TestCase):
                 ("\n".join(self.lines), 1), ("\n".join(self.lines[1:]), 0)):
             with self.subTest(output=output[-40:], returncode=returncode):
                 self.assertFalse(arithmetic.check(output, returncode)[0])
+
+
+class ExperimentLockTests(unittest.TestCase):
+    def setUp(self):
+        self.hashes = json.loads((ROOT / "results/real_selection.json").read_text())["hashes"]
+
+    def locked(self, name):
+        return (ROOT / name).read_bytes(), self.hashes[name]
+
+    def test_rewritten_record_may_differ_only_in_line_endings(self):
+        name = "results/real_verification.json"
+        data, expected = self.locked(name)
+        lf = data.replace(b"\r\n", b"\n")
+        self.assertNotEqual(lf, data)
+        for form in (data, lf, lf.replace(b"\n", b"\r\n")):
+            self.assertTrue(experiment_lock.matches_lock(name, form, expected))
+        self.assertFalse(experiment_lock.matches_lock(name, lf.replace(b"true", b"false"), expected))
+
+    def test_other_locked_files_must_match_byte_for_byte(self):
+        name = "benchmark/verify_real.py"
+        data, expected = self.locked(name)
+        self.assertTrue(experiment_lock.matches_lock(name, data, expected))
+        self.assertFalse(experiment_lock.matches_lock(name, data.replace(b"\n", b"\r\n"), expected))
+
+    def test_lock_check_passes_after_a_linux_rewrite(self):
+        record = ROOT / "results/real_verification.json"
+        read_bytes = Path.read_bytes
+
+        def rewritten(path):
+            data = read_bytes(path)
+            return data.replace(b"\r\n", b"\n") if path == record else data
+
+        with patch.object(Path, "read_bytes", rewritten), redirect_stdout(io.StringIO()) as output:
+            experiment_lock.main()
+        self.assertIn("Verified 9 benchmark locks", output.getvalue())
 
 
 if __name__ == "__main__":
