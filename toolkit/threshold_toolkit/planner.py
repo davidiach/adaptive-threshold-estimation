@@ -358,6 +358,11 @@ def _simulate_run(population: Population, level_cap: int,
     return total / production, flips, items + production
 
 
+# Relative margin on every confidence bound; it keeps the bound above the exact
+# root despite rounding in the relative entropy, which is far smaller.
+BOUND_MARGIN = 1e-9
+
+
 def _bernoulli_kl(p: float, q: float) -> float:
     """Relative entropy between Bernoulli(p) and Bernoulli(q), for p <= q < 1."""
     total = (1 - p) * math.log((1 - p) / (1 - q))
@@ -393,9 +398,7 @@ def rms_upper_bound(squared_errors: Sequence[float], confidence: float = 0.95,
     while True:
         middle = (low + high) / 2
         if middle in (low, high):
-            # A relative margin keeps the bound above the exact root despite
-            # rounding in the relative entropy, which is far smaller than 1e-9.
-            return min(1.0, math.sqrt(high) * (1 + 1e-9))
+            return min(1.0, math.sqrt(high) * (1 + BOUND_MARGIN))
         if _bernoulli_kl(mean, middle) <= allowance:
             low = middle
         else:
@@ -512,8 +515,8 @@ class TargetPlan:
     or not its upper confidence bound confirms it."""
     confidence: float
     confirmable_runs: int
-    """Fewest runs per trial whose bound could meet the target, reached only if
-    no error at all is observed; more are usually needed."""
+    """Fewest runs per trial whose bound could meet the target. That many
+    suffice when no error is observed; observed errors usually raise the count."""
 
 
 def plan_target(population: Population, target: float, runs: int = 200,
@@ -552,10 +555,12 @@ def plan_target(population: Population, target: float, runs: int = 200,
     while 4 * 2 ** candidates <= limit:
         candidates += 1
     # With no observed error, the bound is the q solving runs * -log(1 - q) = log(1 / delta),
-    # where delta = (1 - confidence) / candidates; every bound is at most 1, so
-    # target 1 needs no particular number of runs.
+    # where delta = (1 - confidence) / candidates, and the bound carries
+    # BOUND_MARGIN; every bound is at most 1, so target 1 needs no particular
+    # number of runs.
     log_inverse_delta = math.log(candidates) - math.log1p(-confidence)
-    needed = 0.0 if target >= 1 else log_inverse_delta / -math.log1p(-target * target)
+    margined = target / (1 + BOUND_MARGIN)
+    needed = 0.0 if target >= 1 else log_inverse_delta / -math.log1p(-margined * margined)
     confirmable = math.ceil(needed) if needed < sys.maxsize else sys.maxsize
     rng = np.random.default_rng(seed)
     trials = []

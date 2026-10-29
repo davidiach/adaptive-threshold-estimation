@@ -133,11 +133,13 @@ flips. It reports a budget as confirmed only when the simulations' upper
 confidence bound meets the target. The confidence level holds across every
 budget the search could try. Confirming a target t needs at least about
 log(K / 0.05) / t² runs, where K counts the budgets the search could try
-(doubling from 4 up to its limit). That many suffice only if no run makes an
-error: with the default 200 runs, only targets above roughly 0.17 can be
-confirmed. When the simulated error meets the target but the bound does not, the
-calculator says so and gives this lower bound on the runs needed, rather than
-recommending that budget.
+(doubling from 4 up to its limit). That many suffice when no run makes an
+error, and errors in the runs usually raise the number needed: with the default
+200 runs, only targets above roughly 0.17 can be confirmed. When the simulated
+error meets the target but the bound does not, the calculator says so rather
+than recommending that budget. If `--runs` is below this lower bound, it gives
+the bound; otherwise it says that no budget it searched was confirmed and that
+more runs may confirm one.
 
 Use `--runs` to change the number of simulated runs (default 200) and `--seed` to
 change the simulation's seed. With `--target-error`, `--max-budget` (default

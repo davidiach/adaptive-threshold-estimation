@@ -133,7 +133,7 @@ def _target_report(population: Population, target: float, runs: int, seed: int,
               "simulations do not confirm it.")
         if runs < plan.confirmable_runs:
             print(f"     Confirming this target needs at least {plan.confirmable_runs:,} runs "
-                  "(more unless the runs show no error at all); see --runs.")
+                  "(more if the runs show errors); see --runs.")
         elif 2 * plan.trials[-1].budget <= plan.search_limit:
             print(f"     No budget up to {_flips(plan.trials[-1].budget)} flips was confirmed; "
                   "more runs may confirm one. Budgets above "

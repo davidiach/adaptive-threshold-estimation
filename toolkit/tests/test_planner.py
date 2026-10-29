@@ -12,11 +12,11 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from threshold_toolkit.__main__ import main, read_rates
-from threshold_toolkit.planner import (EvenlySpread, GuessedRates, _calls, _majority_plan,
-                                       _odd_flip_counts, _simulate_run, binomial_tail,
-                                       difficulty, floor_budget, majority_plan_for_budget,
-                                       majority_plan_for_target, plan_target, rms_upper_bound,
-                                       simulate)
+from threshold_toolkit.planner import (BOUND_MARGIN, EvenlySpread, GuessedRates, _calls,
+                                       _majority_plan, _odd_flip_counts, _simulate_run,
+                                       binomial_tail, difficulty, floor_budget,
+                                       majority_plan_for_budget, majority_plan_for_target,
+                                       plan_target, rms_upper_bound, simulate)
 
 
 def exact_positive_probability(p, cap):
@@ -331,6 +331,22 @@ class ConfidenceBoundTests(unittest.TestCase):
         for comparisons in (0, 1.5):
             with self.subTest(comparisons=comparisons), self.assertRaises(ValueError):
                 rms_upper_bound([0.1], 0.95, comparisons=comparisons)
+
+    def test_confirmable_runs_match_the_zero_error_bound(self):
+        # From a review: the count ignored the bound's relative margin, so for
+        # this target 200 error-free runs could not confirm it.
+        target = 0.16667562365558541
+        plan = plan_target(GuessedRates([0.9, 0.6, 0.52, 0.3]), target, runs=2)
+        self.assertEqual(plan.confirmable_runs, 201)
+        rng = np.random.default_rng(5)
+        cases = [(target, 14)] + [(t, k) for t in rng.uniform(0.05, 0.9, 40) for k in (1, 5, 22)]
+        for t, k in cases:
+            n = math.ceil((math.log(k) - math.log1p(-0.95))
+                          / -math.log1p(-(t / (1 + BOUND_MARGIN)) ** 2))
+            with self.subTest(target=t, comparisons=k):
+                self.assertLessEqual(rms_upper_bound(np.zeros(n), 0.95, k), t)
+                if n > 1:
+                    self.assertGreater(rms_upper_bound(np.zeros(n - 1), 0.95, k), t)
 
     def test_extreme_confidence_levels_are_planned(self):
         # From a review: 1 - (1 - confidence) / K rounded to 1 or 0, so simulate
