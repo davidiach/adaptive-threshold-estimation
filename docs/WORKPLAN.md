@@ -65,6 +65,15 @@ Models and targets were compiled and frozen at `3474a37` before supporting
 lower-bound and semantic-embedding proofs. Publication and CI are recorded
 on the focused oracle PR; local checks alone do not establish CI success.
 
+The 29 October
+[finite-gap manuscript](../paper/finite-gap-rare-events/README.md), introduced
+in [PR #18](https://github.com/davidiach/adaptive-threshold-estimation/pull/18),
+supplies a separate paper-proof closed quantile law for known finite positive-gap
+laws, global rarity and uniform expected observation budgets. It is not
+Lean-checked or externally specialist-reviewed. General infinite-support
+and unknown-law extensions remain outside its scope; this contribution does
+not change the formal verification boundary above.
+
 The next formalization priorities are the new general-law rare-event
 characterization and stopping-program arguments, the remaining paper-only
 rare-event results, and auxiliary envelope, smooth-density and observed-state
