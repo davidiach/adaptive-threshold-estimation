@@ -365,8 +365,25 @@ BOUND_MARGIN = 1e-9
 
 def _bernoulli_kl(p: float, q: float) -> float:
     """Relative entropy between Bernoulli(p) and Bernoulli(q), for p <= q < 1."""
-    total = (1 - p) * math.log((1 - p) / (1 - q))
-    return total + p * math.log(p / q) if p > 0 else total
+    # log1p keeps the rounding relative to q - p, even when q is tiny.
+    total = -(1 - p) * math.log1p(-(q - p) / (1 - p))
+    return total - p * math.log1p((q - p) / p) if p > 0 else total
+
+
+def _kl_upper_root(mean: float, allowance: float) -> float:
+    """sqrt(q) for the largest q with kl(mean, q) <= allowance, raised by BOUND_MARGIN."""
+    if mean >= 1:
+        return 1.0
+    # kl(mean, q) increases from 0 to infinity as q rises from the mean to 1.
+    low, high = mean, 1.0
+    while True:
+        middle = (low + high) / 2
+        if middle in (low, high):
+            return min(1.0, math.sqrt(high) * (1 + BOUND_MARGIN))
+        if _bernoulli_kl(mean, middle) <= allowance:
+            low = middle
+        else:
+            high = middle
 
 
 def rms_upper_bound(squared_errors: Sequence[float], confidence: float = 0.95,
@@ -388,21 +405,40 @@ def rms_upper_bound(squared_errors: Sequence[float], confidence: float = 0.95,
     losses = np.asarray(squared_errors, dtype=float)
     if losses.size == 0 or not np.all((losses >= 0) & (losses <= 1)):
         raise ValueError("squared errors must be a nonempty array of values in [0, 1]")
-    mean = float(losses.mean())
-    if mean >= 1:
-        return 1.0
     # log(1 / delta), computed without rounding delta's complement to 1.
-    allowance = (math.log(comparisons) - math.log1p(-confidence)) / losses.size
-    # kl(mean, q) increases from 0 to infinity as q rises from the mean to 1.
-    low, high = mean, 1.0
-    while True:
-        middle = (low + high) / 2
-        if middle in (low, high):
-            return min(1.0, math.sqrt(high) * (1 + BOUND_MARGIN))
-        if _bernoulli_kl(mean, middle) <= allowance:
-            low = middle
-        else:
-            high = middle
+    return _kl_upper_root(float(losses.mean()),
+                          (math.log(comparisons) - math.log1p(-confidence)) / losses.size)
+
+
+def _confirmable_runs(target: float, confidence: float, comparisons: int) -> int:
+    """Fewest error-free runs whose `rms_upper_bound` meets `target`.
+
+    Returns sys.maxsize when that count does not fit, and 0 for targets of 1 or
+    more, which every bound meets.
+    """
+    if target >= 1:
+        return 0
+    log_inverse_delta = math.log(comparisons) - math.log1p(-confidence)
+    # With no observed error the exact root solves runs * -log(1 - q) = log(1 / delta);
+    # the bound is that root's square root raised by BOUND_MARGIN.
+    margined = target / (1 + BOUND_MARGIN)
+    denominator = -math.log1p(-margined * margined)  # zero once the square underflows
+    if denominator == 0 or log_inverse_delta / denominator >= sys.maxsize:
+        return sys.maxsize
+    runs = max(1, math.ceil(log_inverse_delta / denominator))
+
+    def meets(n: int) -> bool:
+        # The same arithmetic as rms_upper_bound on n zero errors.
+        return _kl_upper_root(0.0, log_inverse_delta / n) <= target
+
+    # Rounding can put the closed form one run off the bound's own count.
+    while runs > 1 and meets(runs - 1):
+        runs -= 1
+    while not meets(runs):
+        if runs >= sys.maxsize:
+            return sys.maxsize
+        runs += 1
+    return runs
 
 
 @dataclass(frozen=True)
@@ -554,14 +590,7 @@ def plan_target(population: Population, target: float, runs: int = 200,
     candidates = 1  # budgets 4 * 2**k <= limit the search could try (at least one)
     while 4 * 2 ** candidates <= limit:
         candidates += 1
-    # With no observed error, the bound is the q solving runs * -log(1 - q) = log(1 / delta),
-    # where delta = (1 - confidence) / candidates, and the bound carries
-    # BOUND_MARGIN; every bound is at most 1, so target 1 needs no particular
-    # number of runs.
-    log_inverse_delta = math.log(candidates) - math.log1p(-confidence)
-    margined = target / (1 + BOUND_MARGIN)
-    needed = 0.0 if target >= 1 else log_inverse_delta / -math.log1p(-margined * margined)
-    confirmable = math.ceil(needed) if needed < sys.maxsize else sys.maxsize
+    confirmable = _confirmable_runs(target, confidence, candidates)
     rng = np.random.default_rng(seed)
     trials = []
     recommended = hit = None

@@ -12,7 +12,7 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from threshold_toolkit.__main__ import main, read_rates
-from threshold_toolkit.planner import (BOUND_MARGIN, EvenlySpread, GuessedRates, _calls,
+from threshold_toolkit.planner import (EvenlySpread, GuessedRates, _calls, _confirmable_runs,
                                        _majority_plan, _odd_flip_counts, _simulate_run,
                                        binomial_tail, difficulty, floor_budget,
                                        majority_plan_for_budget, majority_plan_for_target,
@@ -298,6 +298,11 @@ class ConfidenceBoundTests(unittest.TestCase):
         plan = plan_target(GuessedRates([0.0]), 1e-150, runs=2, max_budget=8)
         self.assertGreater(plan.confirmable_runs, 10 ** 15)
         self.assertIsNone(plan.recommended)
+        # From a review: this target's square is the smallest subnormal, but
+        # the margined square underflowed to zero and the count divided by it.
+        plan = plan_target(GuessedRates([0.5000001]), 1.5717277847026288e-162, runs=2, max_budget=8)
+        self.assertEqual(plan.confirmable_runs, sys.maxsize)
+        self.assertIsNone(plan.recommended)
         # With enough runs to continue past an unconfirmed hit, the search stops
         # at the simulation limit and keeps that hit instead of raising.
         real = simulate(GuessedRates([0.9, 0.2]), 4, runs=2, seed=0)
@@ -338,15 +343,20 @@ class ConfidenceBoundTests(unittest.TestCase):
         target = 0.16667562365558541
         plan = plan_target(GuessedRates([0.9, 0.6, 0.52, 0.3]), target, runs=2)
         self.assertEqual(plan.confirmable_runs, 201)
+        # Further review witnesses: targets within rounding of a count boundary,
+        # and a tiny target at low confidence, where the old relative entropy
+        # lost precision and the closed form was 89 runs too many.
         rng = np.random.default_rng(5)
-        cases = [(target, 14)] + [(t, k) for t in rng.uniform(0.05, 0.9, 40) for k in (1, 5, 22)]
-        for t, k in cases:
-            n = math.ceil((math.log(k) - math.log1p(-0.95))
-                          / -math.log1p(-(t / (1 + BOUND_MARGIN)) ** 2))
-            with self.subTest(target=t, comparisons=k):
-                self.assertLessEqual(rms_upper_bound(np.zeros(n), 0.95, k), t)
+        cases = ([(target, 0.95, 14), (0.45367021678547953, 0.95, 1),
+                  (0.5087883168969028, 0.95, 1), (0.03, 0.95, 22), (1e-6, 1e-6, 1)]
+                 + [(t, 0.95, k) for t in rng.uniform(0.05, 0.9, 40) for k in (1, 5, 22)])
+        for t, confidence, k in cases:
+            n = _confirmable_runs(t, confidence, k)
+            with self.subTest(target=t, confidence=confidence, comparisons=k):
+                self.assertLessEqual(rms_upper_bound(np.zeros(n), confidence, k), t)
                 if n > 1:
-                    self.assertGreater(rms_upper_bound(np.zeros(n - 1), 0.95, k), t)
+                    self.assertGreater(rms_upper_bound(np.zeros(n - 1), confidence, k), t)
+        self.assertEqual(_confirmable_runs(0.03, 0.95, 22), 6761)
 
     def test_extreme_confidence_levels_are_planned(self):
         # From a review: 1 - (1 - confidence) / K rounded to 1 or 0, so simulate

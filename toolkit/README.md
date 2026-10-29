@@ -135,11 +135,13 @@ budget the search could try. Confirming a target t needs at least about
 log(K / 0.05) / t² runs, where K counts the budgets the search could try
 (doubling from 4 up to its limit). That many suffice when no run makes an
 error, and errors in the runs usually raise the number needed: with the default
-200 runs, only targets above roughly 0.17 can be confirmed. When the simulated
-error meets the target but the bound does not, the calculator says so rather
-than recommending that budget. If `--runs` is below this lower bound, it gives
-the bound; otherwise it says that no budget it searched was confirmed and that
-more runs may confirm one.
+200 runs and the full default search, only targets above roughly 0.17 can be
+confirmed. A shorter search, from a cheap simple plan or a smaller
+`--max-budget`, lowers this threshold. When the simulated error meets the target
+but the bound does not, the calculator says so rather than recommending that
+budget. If `--runs` is below this lower bound, it gives the bound; otherwise it
+says that no budget it searched was confirmed and that more runs may confirm
+one.
 
 Use `--runs` to change the number of simulated runs (default 200) and `--seed` to
 change the simulation's seed. With `--target-error`, `--max-budget` (default
