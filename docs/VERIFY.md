@@ -291,6 +291,7 @@ Run all remaining commands from that checkout's root. They retain every verifier
 python tools/verify_inputs.py
 python tools/verify_experiment_lock.py
 python tools/freeze.py --verify
+python tools/verify_lean_sources.py
 python tools/check_targets_numeric.py
 python tools/check_targets2_numeric.py
 python -m unittest discover -s tools -p 'test_validation.py' -v
@@ -306,7 +307,7 @@ python benchmark/verify_real.py
 python benchmark/verify_production.py
 ```
 
-The shorter `python -m unittest discover -s tools -p 'test_*.py' -v` runs all validation test modules present in the checkout. Constant scoring without `--accept` evaluates the recorded configurations without changing the best-score ledger. `verify_experiment_lock.py` recomputes summaries from stored samples; it does not repeat the held-out experiment. CI runs it with `--strict`, before `verify_real.py` rewrites its locked record with the platform's line endings. The locked `verify_real.py` compares tape copies of the benchmark's stopping state machines with an independent classifier; `verify_production.py` replays the production routines' exact draws across every recorded training and tuning configuration and checks them against the same kind of classifier. Full benchmark resimulation is a separate procedure in [benchmark/README.md](../benchmark/README.md).
+The shorter `python -m unittest discover -s tools -p 'test_*.py' -v` runs all validation test modules present in the checkout. Constant scoring without `--accept` evaluates the recorded configurations without changing the best-score ledger. `verify_experiment_lock.py` recomputes summaries from stored samples; it does not repeat the held-out experiment. CI runs it with `--strict`, before `verify_real.py` rewrites its locked record with the platform's line endings. `verify_lean_sources.py` scans every project Lean source with the strengthened proof-escape pattern: the frozen Tier 3–6 verifiers also scan unfrozen proof modules, with a pattern that misses `admit`, `#guard_msgs` and code hidden after a string literal. The locked `verify_real.py` compares tape copies of the benchmark's stopping state machines with an independent classifier; `verify_production.py` replays the production routines' exact draws across every recorded training and tuning configuration and checks them against the same kind of classifier. Full benchmark resimulation is a separate procedure in [benchmark/README.md](../benchmark/README.md).
 
 ## Lean kernel checks
 
