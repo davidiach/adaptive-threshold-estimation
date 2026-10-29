@@ -120,16 +120,25 @@ unrestricted minimax model. These dependency hashes were recorded during review.
   `results/real_test_started.json`, which pins that file's SHA-256 at the start
   of the held-out test.
 - `benchmark/verify_production.py` is a separate post-hoc check, not part of the
-  pre-test selection. It replays the exact seeded draws of the production
-  routines and compares every value and cost with an independent scalar
-  classifier. It covers `real_pair`, `antithetic_pair`, `sum_term`,
-  `real_term` weighting, `real_estimate` calibration, `real_replicates` and
-  `level_count`, including the selected start-1024 configurations.
-  `verify_real.py` checks only the tape copies of these state machines. Three
-  planted production bugs that passed it now fail the new check.
+  pre-test selection. It replays the exact seeded draws of `real_pair`,
+  `antithetic_pair`, `sum_term` and `real_term` and compares every value and
+  cost with an independent scalar classifier, across every trained level and
+  every recorded tuning cell. It also checks that each call drew exactly the
+  observations it billed. It checks `train_level`, `real_estimate` and
+  `real_replicates` against those routines, reproduces two recorded training
+  rows from their seeds, and checks `level_count` and the selected level laws.
+- `verify_real.py` compares only the tape copies (`tape_pair`,
+  `antithetic_tape`, `sum_tape`) with the classifier. Of the production routines
+  it checks only `level_count`'s budget bound and `real_replicates`' repeat
+  consistency. Three planted production bugs pass it: a wrong coarse cap in
+  `real_pair`, `real_term` weighting by the first level probability, and wrong
+  `sum_term` weights. All 24 single-line bugs in a planted sweep, including
+  these three, fail `verify_production.py`.
 - `tools/verify_experiment_lock.py` now accepts `results/real_verification.json`
-  when only its line endings differ from the locked bytes. `verify_real.py`
-  rewrites that record with the platform's line endings, and the locked copy
-  has CRLF endings. Every other locked file must still match byte for byte.
+  when its line endings are LF or CRLF throughout and otherwise match the
+  locked bytes. `verify_real.py` rewrites that record with the platform's line
+  endings, and the locked copy has CRLF endings. CI passes `--strict`, which
+  requires the committed record's exact bytes. Every other locked file must
+  match byte for byte in either mode.
 - `verify_real.py` is unchanged. It still uses `assert`, and its locked record
   still describes what was verified before selection.
