@@ -105,11 +105,60 @@ class BracketBindingTests(unittest.TestCase):
                     RuntimeError, rf'row {index}: stale: .*{field}'):
                 self.check(self.substituted(index, field, value))
 
-    def test_cap_search_must_stop_at_first_pass(self):
+    def test_caps_must_follow_the_ladder(self):
         table = copy.deepcopy(self.table)
         table['results'][3], table['results'][4] = table['results'][4], table['results'][3]
-        with self.assertRaisesRegex(RuntimeError, 'Caps do not increase'):
+        with self.assertRaisesRegex(RuntimeError, 'does not follow its cap ladder'):
             self.check(table)
+        # Dropping the failed cap-4 attempt leaves a search that skips a rung.
+        table = copy.deepcopy(self.table)
+        del table['results'][3]
+        with self.assertRaisesRegex(RuntimeError, 'does not follow its cap ladder'):
+            self.check(table)
+
+    def test_cap_search_must_stop_at_first_pass(self):
+        table = copy.deepcopy(self.table)
+        del table['results'][4]
+        with self.assertRaisesRegex(RuntimeError, 'does not stop at its first passing cap'):
+            self.check(table)
+
+    def test_every_case_and_budget_searched_once(self):
+        table = copy.deepcopy(self.table)
+        table['results'].append(table['results'].pop(3))
+        with self.assertRaisesRegex(RuntimeError, 'Interleaved cap search'):
+            self.check(table)
+        table = copy.deepcopy(self.table)
+        del table['results'][7:]
+        with self.assertRaisesRegex(RuntimeError, 'not every bracket case at every budget'):
+            self.check(table)
+
+    def test_row_schema_and_exact_types_enforced(self):
+        table = self.substituted(0, 'note', 'extra')
+        with self.assertRaisesRegex(RuntimeError, r'row 0: schema: row fields'):
+            self.check(table)
+        with self.assertRaisesRegex(RuntimeError, r'row 0: stale: .*exact_factor_two_stopping_test'):
+            self.check(self.substituted(0, 'exact_factor_two_stopping_test', 1))
+
+    def test_nested_undeclared_field_rejected(self):
+        path = self.checks / 'optimized_genie/one_gap_N4_B100_lower.json'
+        original = tool.read_json(path)
+        for key in ('priors', 'repair'):
+            certificate = copy.deepcopy(original)
+            certificate[key]['observation_model'] = 'erasure'
+            path.write_text(json.dumps(certificate), encoding='utf-8')
+            with self.subTest(key=key), self.assertRaisesRegex(
+                    RuntimeError, rf'row 0: schema: lower {key} fields'):
+                self.check(self.table)
+
+    def test_missing_optional_adaptive_fields_reported_not_crashing(self):
+        path = self.checks / 'optimized_genie/one_gap_N4_B100_lower.json'
+        certificate = tool.read_json(path)
+        del certificate['certified_adaptive_squared_lower_bound']
+        del certificate['certified_adaptive_rms_lower_bound_decimal']
+        path.write_text(json.dumps(certificate), encoding='utf-8')
+        with self.assertRaisesRegex(RuntimeError, r'row 0: schema: lower fields') as raised:
+            self.check(self.table)
+        self.assertRegex(str(raised.exception), r'row 0: stale: .*adaptive_risk_bracket_ratio')
 
     def test_registered_controls_include_both_witnesses_and_are_rejected(self):
         controls = {control[:3]: control[3] for control in tool.BRACKET_BINDING_CONTROLS}

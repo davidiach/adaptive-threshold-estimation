@@ -44,6 +44,10 @@ GENIE_LOWER_FIELDS = frozenset({
     'information_work_price', 'information_potentials', 'certified_squared_lower_bound',
     'certified_rms_lower_bound_decimal', 'certified_adaptive_squared_lower_bound',
     'certified_adaptive_rms_lower_bound_decimal', 'repair'})
+GENIE_NESTED_FIELDS = {
+    'priors': frozenset({'low', 'high', 'variance', 'work'}),
+    'repair': frozenset({'dyadic_precision_bits', 'backward_passes', 'reference_regularization',
+                         'float_bisection_price'})}
 POLICY_UPPER_FIELDS = frozenset({
     'description', 'gaps', 'weights', 'rho', 'budget', 'cap', 'poisson_intensity', 'offset',
     'stop_probability', 'terminal_output', 'certified_squared_upper_bound',
@@ -55,6 +59,16 @@ POLICY_UPPER_FIELDS = frozenset({
 # bounds adaptive risk, a different quantity from the program value.
 GENIE_LOWER_KIND = 'uncapped_four_prior_genie'
 GENIE_LOWER_SCOPE = 'unrestricted flow-program RMS value'
+# solve_genie_bracket.py searches every case at both budgets, raising the cap
+# along its ladder until the factor-two test passes (sections/computation.tex).
+BRACKET_BUDGETS = (100.0, 1000.0)
+BRACKET_PLAN_SOURCE = ('def run(output_dir, caps=(4, 8, 16, 32)):',
+                       'for budget in (100.0, 1000.0):',
+                       'for cap in ((1,) if name == "perfect_labels" else caps):')
+
+
+def cap_ladder(case):
+    return (1,) if case == 'perfect_labels' else (4, 8, 16, 32)
 # Substitutions in genie_bracket_results.json that must be rejected, each with
 # the rule that must reject it: (row, field, replacement, rule).
 BRACKET_BINDING_CONTROLS = (
@@ -143,6 +157,9 @@ def bracket_case_laws(checks, rational):
     tables = [node.value for node in ast.walk(tree) if isinstance(node, ast.Assign)
               and [getattr(target, 'id', None) for target in node.targets] == ['cases']]
     require(len(tables) == 1, 'Expected one case table in solve_genie_bracket.py')
+    source = (checks / 'solve_genie_bracket.py').read_text(encoding='utf-8')
+    require(all(line in source for line in BRACKET_PLAN_SOURCE),
+            'solve_genie_bracket.py no longer uses the recorded cap ladders and budgets')
     laws = {}
     for name, gaps, weights, rho in ast.literal_eval(tables[0]):
         require(name not in laws, f'Duplicate bracket case: {name}')
@@ -179,7 +196,6 @@ def sqrt_ratio(upper, lower):
 def bracket_pair_violations(checks, row, laws, verifiers):
     """Return every reason `row` fails to bind one verified genie lower and policy upper."""
     lower_module, upper_module = verifiers
-    rational = lower_module.rational
     if set(row) != BRACKET_ROW_FIELDS:
         return [f'schema: row fields differ by {sorted(set(row) ^ BRACKET_ROW_FIELDS)}']
     reasons, records, checked = [], {}, {}
@@ -196,6 +212,16 @@ def bracket_pair_violations(checks, row, laws, verifiers):
             reasons.append(f'verification: {role} file {row[field]!r} rejected: {error!r}')
     if len(checked) < 2:
         return reasons
+    try:
+        return reasons + verified_pair_violations(row, records, checked, laws, lower_module)
+    except (KeyError, TypeError, ValueError, AttributeError) as error:
+        # Verified files can still lack a field this binding reads.
+        return reasons + [f'schema: verified files lack a field the binding needs: {error!r}']
+
+
+def verified_pair_violations(row, records, checked, laws, lower_module):
+    """Scope, schema, identity and derived-field reasons for a verified pair."""
+    rational, reasons = lower_module.rational, []
     lower, upper = records['lower'], records['upper']
     lower_check, upper_check = checked['lower'], checked['upper']
     if (lower_check['certificate_kind'], lower_check['bound_scope']) != (
@@ -209,6 +235,10 @@ def bracket_pair_violations(checks, row, laws, verifiers):
                                  ('upper', upper, POLICY_UPPER_FIELDS)):
         if set(record) != fields:
             reasons.append(f'schema: {role} fields differ by {sorted(set(record) ^ fields)}')
+    for key, fields in GENIE_NESTED_FIELDS.items():
+        value = lower.get(key)
+        if not isinstance(value, dict) or set(value) != fields:
+            reasons.append(f'schema: lower {key} fields are not {sorted(fields)}')
     budget = row['budget']
     if not isinstance(row['case'], str) or row['case'] not in laws:
         reasons.append(f"identity: unknown bracket case {row['case']!r}")
@@ -230,9 +260,11 @@ def bracket_pair_violations(checks, row, laws, verifiers):
         'certified_rms_upper_decimal': upper_check['certified_rms_upper_bound_decimal'],
         'program_bracket_ratio': sqrt_ratio(upper_sq, lower_sq),
     }
-    if 'certified_adaptive_squared_lower_bound' in lower_check:
+    if ('certified_adaptive_squared_lower_bound' in lower_check
+            and 'certified_adaptive_squared_lower_bound' in lower):
         # Present only for a verified four-prior genie lower; the stored value
-        # was checked against the verifier's recomputed adaptive bound.
+        # was checked against the verifier's recomputed adaptive bound. If the
+        # file omits it, both adaptive row fields count as stale.
         adaptive_sq = rational(lower['certified_adaptive_squared_lower_bound'])
         expected['certified_adaptive_rms_lower_decimal'] = lower_module.sqrt_lower_decimal(adaptive_sq)
         expected['adaptive_risk_bracket_ratio'] = sqrt_ratio(upper_sq, adaptive_sq)
@@ -254,14 +286,17 @@ def check_bracket_table(checks, table, laws, verifiers):
                                if isinstance(row, dict) else ['schema: row is not an object'])]
     require(not failures, 'Bracket rows do not bind verified certificate pairs:\n'
             + '\n'.join(failures))
+    rational = verifiers[0].rational
     searches = {}
     for row in rows:
-        key = (row['case'], verifiers[0].rational(row['budget']))
+        key = (row['case'], rational(row['budget']))
         require(key not in searches or key == list(searches)[-1], f'Interleaved cap search: {key}')
         searches.setdefault(key, []).append(row)
+    require(set(searches) == {(case, rational(budget)) for case in laws for budget in BRACKET_BUDGETS},
+            'Cap searches are not every bracket case at every budget')
     for key, search in searches.items():
-        caps = [row['cap'] for row in search]
-        require(caps == sorted(set(caps)), f'Caps do not increase in cap search {key}')
+        caps, ladder = tuple(row['cap'] for row in search), cap_ladder(key[0])
+        require(caps == ladder[:len(caps)], f'Cap search {key} does not follow its cap ladder {ladder}')
         require([row['exact_factor_two_stopping_test'] for row in search]
                 == [False] * (len(search) - 1) + [True],
                 f'Cap search {key} does not stop at its first passing cap')

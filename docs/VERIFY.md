@@ -74,9 +74,11 @@ binds each of the nine genie-bracket rows to its lower and upper files. Both
 files must pass the payload's exact verifiers and state the row's law, rarity,
 budget and cap. The lower must be a verified four-prior genie dual, the
 uncapped scope the bracket needs. The stopping decision, ratios and displayed
-decimals are recomputed from the verified bounds, and eight substituted
-pairings must be rejected, including an upper policy for another instance and
-a finite-cap lower. It also replays the independent revision audit's finite
+decimals are recomputed from the verified bounds. Each case's cap search must
+follow the generator's cap ladder at both budgets and stop at its first
+passing cap. Eight targeted substitutions must be rejected: seven altered file
+references, including an upper policy for another instance, a finite-cap lower
+and a file outside the checks, and one flipped stopping decision. It also replays the independent revision audit's finite
 computations, including the new examples, constants, and genie comparisons.
 Published files are unchanged.
 
