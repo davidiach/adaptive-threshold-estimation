@@ -2,8 +2,8 @@
 
 The frozen Tier 3-6 verifiers scan every module in their directories, including
 unfrozen proof modules, with the frozen Tier 6 pattern. That pattern misses the
-`admit` tactic and `#guard_msgs`, and its comment stripper does not parse string
-literals, so a string such as "/-" could hide `run_cmd` or
+`admit` tactic and `#guard_msgs`, and its comment stripper parses neither string
+literals nor escaped identifiers, so "/-" or «/-» could hide `run_cmd` or
 `set_option debug.skipKernelTC true` after it. This unfrozen check applies the
 strengthened shared pattern to every project Lean source, so those gaps are
 closed without changing frozen files. It needs no Lean build.

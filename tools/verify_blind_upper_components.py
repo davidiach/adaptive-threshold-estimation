@@ -28,15 +28,16 @@ DECLARATION = re.compile(
     r"([A-Za-z_][\w']*(?:\.[A-Za-z_][\w']*)*)", re.M)
 IMPORT = re.compile(r"^import\s+([\w.]+)\s*$", re.M)
 # The frozen Tier 6 pattern misses the `admit` tactic, which is Lean's synonym
-# for `sorry`. Audited sources also contain no string literals: strip_comments
-# does not parse strings, so "/-" or "--" inside one could hide the code after
-# it, and a printed string could forge an axiom report in the audit output.
+# for `sorry`. Audited sources also contain no string literals or escaped
+# identifiers: strip_comments parses neither, so "/-" or «--» inside one could
+# hide the code after it, and a printed string could forge an axiom report in
+# the audit output.
 # (The frozen \bsorry\b alternative already rejects `set_option warn.sorry`, which
 # would silence SORRY_WARNING below.)
 # #guard_msgs can consume errors or sorry warnings from anonymous target
 # examples while Lean exits successfully, so audit sources must reject it too.
 FORBIDDEN = re.compile(
-    TIER6_FORBIDDEN.pattern + r'|\badmit\b|"|#guard_msgs\b', TIER6_FORBIDDEN.flags)
+    TIER6_FORBIDDEN.pattern + r'|\badmit\b|"|«|#guard_msgs\b', TIER6_FORBIDDEN.flags)
 # Lean warns "declaration uses `sorry`" (backticks in the pinned toolchain).
 SORRY_WARNING = re.compile(r"declaration uses [`']")
 # Unlike the frozen Tier 6 pattern, this also reads primed names such as foo'.

@@ -21,6 +21,7 @@ class LeanSourceGuardTests(unittest.TestCase):
         sources = {
             "admit.lean": "theorem t : 1 = 2 := by admit\n",
             "string.lean": 'def a : String := "/-"\n' + hidden + 'def b : String := "-/"\n',
+            "escaped.lean": "def \u00ab/-\u00bb : Nat := 0\n" + hidden + "def \u00ab-/\u00bb : Nat := 0\n",
             "guard.lean": "#guard_msgs (drop all) in\nexample : 1 = 2 := by stop rfl\n",
         }
         with tempfile.TemporaryDirectory() as directory:
@@ -32,7 +33,7 @@ class LeanSourceGuardTests(unittest.TestCase):
                 if name != "guard.lean":
                     self.assertIsNone(TIER6_FORBIDDEN.search(strip_comments(text)), name)
             found = guard.violations(paths)
-        self.assertEqual(len(found), 3, found)
+        self.assertEqual(len(found), 4, found)
 
     def test_unclosed_comment_is_reported(self):
         with tempfile.TemporaryDirectory() as directory:

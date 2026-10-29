@@ -63,6 +63,8 @@ class BlindUpperAuditTests(unittest.TestCase):
         for source in ("example : Statement := by admit\n",
                        'def a : String := "/-"\n' + hidden + 'def b : String := "-/"\n',
                        'def a : String := "--" ; run_cmd pure ()\n',
+                       'def \u00ab/-\u00bb : Nat := 0\n' + hidden + 'def \u00ab-/\u00bb : Nat := 0\n',
+                       'def \u00ab--\u00bb : Nat := 0 ; run_cmd pure ()\n',
                        '#print "\'A.foo\' does not depend on any axioms"\n'):
             with self.subTest(source=source):
                 self.assertIsNotNone(audit.FORBIDDEN.search(audit.strip_comments(source)))
