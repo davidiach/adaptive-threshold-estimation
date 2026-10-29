@@ -95,8 +95,46 @@ checks the exact target, all 10 modules and 38 declaration roots, transitive
 axioms, and source stability. This proves the necessity direction and lower
 coefficient in the original model. The construction below now supplies the
 sufficiency direction in that same experiment. Their combination is the exact
-Lean theorem `observable_unbiased_iff`; stronger oracle claims retain their
-separate paper-proof scope.
+Lean theorem `observable_unbiased_iff` in the hidden-magnitude model. The
+oracle results below concern RMS and confidence, not an extended unbiased converse.
+
+## Magnitude-oracle lower bounds
+
+Theorem 1's stronger RMS and confidence lower bounds are now Lean-checked
+for both revealed and adaptively selected magnitudes. For either oracle,
+
+$$R_\mu^{\mathrm{oracle}}(B)\ge\frac{\omega_\mu(B^{-1/2})}{64},\qquad
+r_\mu^{\mathrm{oracle}}(B,\delta)\ge
+\frac{15}{256\sqrt2}\,\omega_\mu\!\left(\sqrt{\frac{\log(1/\delta)}{B}}\right)$$
+
+for $B\ge1$ and $0<\delta\le1/4$. The [full theorems](../lean/ThresholdHC/OracleLower/Full.lean)
+include algorithm-level bounds, minimax bounds, and nonvacuity. Work is the
+extended-real expectation of actual flips, and all measurable sign laws are
+allowed. In the selected experiment, $q$ is defined on the entire gap domain,
+even outside the support of the target law $\mu$.
+
+The [model](../lean/ThresholdHC/OracleLower/Model.lean) gives the revealed
+algorithm the entire iid magnitude array for free, a stronger grant than
+revealing gaps only when coins are created. The selected interface explicitly
+creates a coin at a magnitude chosen from the seed and previous flips,
+revisits a previously created coin, or stops. Its
+[semantic theorem](../lean/ThresholdHC/OracleLower/SelectedSemantics.lean)
+proves that creation uses an unused label and revisits preserve the birth
+magnitude. Counterfactual histories supply a countable array of potential
+coins; they do not restrict magnitudes to a fixed deterministic grid.
+The canonical infinite experiment is proved to realize the explicit finite
+transcript laws. No KL bound, realization identity, or stopping assumption
+is a premise of the final lower bounds. Finite uniform work implies
+almost-sure stopping.
+
+The [audit](../results/oracle_lower_001.json) checks eight frozen targets,
+10 modules, and all 54 declaration roots. The model and targets were compiled
+and frozen at `3474a37` before the lower-bound and embedding proofs; the proof
+checkpoint is `4a5805c`. The hidden model embeds with identical law, cost,
+and risk, so the sharper confidence coefficient also applies there without
+changing the earlier frozen confidence theorem. This addition concerns
+RMS and confidence; it does not extend the unbiased converse or the
+observed-outer-state results to a new model.
 
 ## The 713 construction
 

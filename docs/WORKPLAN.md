@@ -5,7 +5,7 @@ This ledger records the follow-up authorized on 27 October
 It preserves the full requested scope; a partial formalization does not complete
 this plan. The original checkpoint is on `research/verification-consolidation-20261027`.
 
-**Current status (28 October 2026):** the core verification and consolidation
+**Current status (29 October 2026):** the core verification and consolidation
 package is complete and merged into `main`, through
 [PR #10](https://github.com/davidiach/adaptive-threshold-estimation/pull/10).
 The original RMS law and critical quadratic law are proved in Lean in both
@@ -44,16 +44,28 @@ median amplification, exact execution of independent observable batches,
 and the expected-work/radius comparison for every admissible budget.
 The [full theorem](../lean/ThresholdHC/Confidence/Full.lean) and
 [audit](../results/confidence_001.json) cover 18 modules, all 107 declaration
-roots, and four frozen targets. Publication and CI are recorded on its
-focused PR; the local audit alone does not establish CI success.
+roots, and four frozen targets. It was reviewed and merged in
+[PR #15](https://github.com/davidiach/adaptive-threshold-estimation/pull/15)
+at `3aba9ee`, after all six checks passed and no blocking findings remained.
 
 PR #12's toolkit was reviewed, repaired, and merged at `a7ed3b0` after all
 10 checks passed on `d1f2191`. All 13 review threads were resolved, covering
 numerical integration, binomial tails, invalid inputs, hangs, and overstated
 planning claims. Its Python implementation remains outside the Lean proof.
 
-The next formalization priorities are stronger revealed- or selected-magnitude
-claims and the remaining paper-only rare-event results. The 29 October
+The stronger RMS and confidence lower bounds are now proved for canonical
+revealed and adaptively selected magnitudes at `4a5805c`. Their coefficients
+are `1/64` and the paper's `15/(256 sqrt(2))`. The selected model has explicit
+creation, revisit and stop operations, and a proved fresh-label/persistent-gap
+interpretation; the revealed model grants the entire iid magnitude array.
+The hidden experiment embeds unchanged. The [full theorems](../lean/ThresholdHC/OracleLower/Full.lean)
+and [audit](../results/oracle_lower_001.json) cover eight frozen targets,
+10 modules and 54 declarations, including minimax bounds and nonvacuity.
+Models and targets were compiled and frozen at `3474a37` before supporting
+lower-bound and semantic-embedding proofs. Publication and CI are recorded
+on the focused oracle PR; local checks alone do not establish CI success.
+
+The 29 October
 [finite-gap manuscript](../paper/finite-gap-rare-events/README.md), introduced
 in [PR #18](https://github.com/davidiach/adaptive-threshold-estimation/pull/18),
 supplies a separate paper-proof closed quantile law for known finite positive-gap
@@ -61,6 +73,11 @@ laws, global rarity and uniform expected observation budgets. It is not
 Lean-checked or externally specialist-reviewed. General infinite-support
 and unknown-law extensions remain outside its scope; this contribution does
 not change the formal verification boundary above.
+
+The next formalization priorities are the remaining paper-only rare-event
+results and auxiliary envelope, smooth-density and observed-state results.
+General infinite-support and unknown-law rare-event characterizations and sharp rare-event
+confidence rates at and above the quadratic boundary remain open research.
 
 The project owner does not plan human specialist review. Its absence remains
 a stated review limitation, not a pending task or completion gate. The four
@@ -139,7 +156,7 @@ GitHub Actions run has finished.
 | Specialist review package | Short overview, complete consolidated proof, precise questions, source and prior-art references | [Prepared](../paper/critical-review/README.md): four-page brief, two-page all-size addendum and complete proof, 20-page PDF compiled and visually checked; external specialist review is not planned |
 | Formal critical argument | Exact statistical specification, proved dependency chain, kernel and axiom audit; scalar lemmas alone do not satisfy this item | The base-cost theorem, common hard pair, unrestricted critical minimax lower bound, and matching upper bound are proved in the original observable experiment for the full rare-prior class. See the [lower audit](../results/critical_components_016.json) and [full upper audit](../results/critical_upper_components_003.json). The [exact Psi formula, rate and minimax separation](../results/critical_psi_001.json) are also proved |
 | Original distribution-blind upper bound | One budget-indexed observable algorithm independent of the magnitude/sign laws, realized in the original experiment; uniform work and RMS bounds; exact type and axiom audit | [Complete](BLIND_UPPER.md): the frozen full statement is inhabited by one budget-indexed observable family, with coefficient 512. Actual execution, almost-sure cost/output identities, uniform budget and RMS bounds are proved; exact-type and transitive-axiom audit passed |
-| Consolidated v5 manuscript | Original minimax law, unbiasedness, 713 bound, rare-event regimes, critical result and correction to the Psi conjecture; accurate verification labels; compiled and visually checked | [Written](../paper/v5/README.md): 61-page manuscript including the all-size addendum, complete source-derived proof appendices, source checks and rendered-page review. Both critical bounds and Psi are linked at `eabf274`; the addendum's explicit constants are linked at `ebd3667`, the converse at `631886e`, the observable 713 construction at `15dbbda`, and confidence at `d6feb30`. No independent specialist review is claimed |
+| Consolidated v5 manuscript | Original minimax law, unbiasedness, 713 bound, rare-event regimes, critical result and correction to the Psi conjecture; accurate verification labels; compiled and visually checked | [Written](../paper/v5/README.md): 62-page manuscript including the all-size addendum, complete source-derived proof appendices, source checks and rendered-page review. Both critical bounds and Psi are linked at `eabf274`; the addendum's explicit constants are linked at `ebd3667`, the converse at `631886e`, the observable 713 construction at `15dbbda`, confidence at `d6feb30`, and the oracle lower bounds at `4a5805c`. No independent specialist review is claimed |
 | Process note | Reproducible account of construction, frozen statements, semantic review, failed approaches, reviewer dependence, and limits | [Written](process/METHOD.md) and refreshed at `6009662`, including completed realization proofs, the formula's freeze chronology, and lessons from the long run and focused PRs |
 | Repository cleanup and publication | Clear current entry points, preserved source/evidence identities, passing relevant guards and CI, pushed commits and reviewable changes | The proof and manuscript stack through PR #10 is merged into main. README, results and verification guides lead to current evidence; historical bundles remain intact. CI results belong to each exact commit and are recorded in the corresponding PR |
 
