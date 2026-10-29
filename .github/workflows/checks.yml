@@ -68,6 +68,7 @@ jobs:
       - run: python tools/verify_inputs.py
       - run: python tools/verify_experiment_lock.py
       - run: python benchmark/verify_real.py
+      - run: python benchmark/verify_production.py
       - name: Regression tests for validation guards
         run: python -m unittest discover -s tools -p 'test_validation.py' -v
       - name: Regression tests for the Tier 3 audit when present

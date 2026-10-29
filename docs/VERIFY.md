@@ -303,9 +303,10 @@ python constants/score_constants.py constants/candidate_theory.json
 python constants/score_constants.py constants/candidate_finite_grid.json
 python constants/score_constants.py constants/candidate.json
 python benchmark/verify_real.py
+python benchmark/verify_production.py
 ```
 
-The shorter `python -m unittest discover -s tools -p 'test_*.py' -v` runs all validation test modules present in the checkout. Constant scoring without `--accept` evaluates the recorded configurations without changing the best-score ledger. `verify_experiment_lock.py` recomputes summaries from stored samples; it does not repeat the held-out experiment. Full benchmark resimulation is a separate procedure in [benchmark/README.md](../benchmark/README.md).
+The shorter `python -m unittest discover -s tools -p 'test_*.py' -v` runs all validation test modules present in the checkout. Constant scoring without `--accept` evaluates the recorded configurations without changing the best-score ledger. `verify_experiment_lock.py` recomputes summaries from stored samples; it does not repeat the held-out experiment. The locked `verify_real.py` checks tape copies of the benchmark's stopping state machines; `verify_production.py` replays the production routines that generated the results against an independent classifier. Full benchmark resimulation is a separate procedure in [benchmark/README.md](../benchmark/README.md).
 
 ## Lean kernel checks
 

@@ -109,3 +109,27 @@ unrestricted minimax model. These dependency hashes were recorded during review.
   declaration so all Lean sources retain their published bytes; the dependency
   snapshot now matches PR #3 at `2162210`, as recorded above. This is not a
   retrospective dependency freeze at the original specification timestamp.
+
+## Direct-real benchmark verification — 29 October 2026
+
+- Approved by: David, in this chat on 29 October 2026.
+- Approval quote: "go", in reply to a proposal to fix `benchmark/verify_real.py`
+  with a lock update and an entry here.
+- Change of approach: no locked file, lock manifest or test-start record
+  changed. Updating `results/real_selection.json` would also have broken
+  `results/real_test_started.json`, which pins that file's SHA-256 at the start
+  of the held-out test.
+- `benchmark/verify_production.py` is a separate post-hoc check, not part of the
+  pre-test selection. It replays the exact seeded draws of the production
+  routines and compares every value and cost with an independent scalar
+  classifier. It covers `real_pair`, `antithetic_pair`, `sum_term`,
+  `real_term` weighting, `real_estimate` calibration, `real_replicates` and
+  `level_count`, including the selected start-1024 configurations.
+  `verify_real.py` checks only the tape copies of these state machines. Three
+  planted production bugs that passed it now fail the new check.
+- `tools/verify_experiment_lock.py` now accepts `results/real_verification.json`
+  when only its line endings differ from the locked bytes. `verify_real.py`
+  rewrites that record with the platform's line endings, and the locked copy
+  has CRLF endings. Every other locked file must still match byte for byte.
+- `verify_real.py` is unchanged. It still uses `assert`, and its locked record
+  still describes what was verified before selection.

@@ -33,6 +33,7 @@ Run commands from the repository root:
 
 ```
 python benchmark/verify_real.py
+python benchmark/verify_production.py
 python benchmark/run_real.py train --n 2000
 python benchmark/run_real.py tune --n 100
 python benchmark/run_real.py lock
@@ -46,10 +47,16 @@ a new directory with an empty `results/`. Do not remove the experiment's lock or
 test-start marker. The same final configuration set can be reproduced in one
 training/tuning invocation; prior tuning snapshots document the actual rounds.
 
-Verification compares compiled coupling state machines against independent
-scalar finite-tape classifiers, checks exact randomized telescoping, and checks
-that four-repeat outputs/costs match four separately seeded production calls.
-These are implementation checks, not proofs of statistical performance.
+`verify_real.py`, part of the locked selection, compares tape copies of the
+compiled coupling state machines against independent scalar finite-tape
+classifiers, checks exact randomized telescoping, and checks that four-repeat
+outputs/costs match four separately seeded production calls.
+`verify_production.py`, added after the held-out test, replays the exact seeded
+draws of the production routines themselves (`real_pair`, `antithetic_pair`,
+`sum_term`, `real_term`, `real_estimate`, `real_replicates`) and compares every
+value and cost with an independent scalar classifier, including the selected
+configurations. These are implementation checks, not proofs of statistical
+performance.
 
 Seeds: training uses 12000+configuration index; tuning uses families 32000,
 33000, 34000 and 35000 with the original budget index and recorded candidate
