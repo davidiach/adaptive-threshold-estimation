@@ -54,13 +54,16 @@ POLICY_UPPER_FIELDS = frozenset({
     'certified_rms_upper_bound_decimal'})
 # The bracket L_N <= G_N <= P_inf <= P_N <= U_N of sections/computation.tex
 # needs L_N from a verified four-prior genie dual. verify_finite_dual.py imposes
-# the latent-genie terminal inequality only on this kind. A finite_cap
-# certificate bounds the cap-N program alone, and a midpoint-genie certificate
-# bounds adaptive risk, a different quantity from the program value.
+# the latent-genie terminal inequality on both genie kinds, which makes them
+# uncapped, but only the four-prior kind's bound_scope is the program value. A
+# midpoint-genie certificate bounds adaptive minimax risk, a different
+# quantity, and a finite_cap certificate bounds the cap-N program alone.
 GENIE_LOWER_KIND = 'uncapped_four_prior_genie'
 GENIE_LOWER_SCOPE = 'unrestricted flow-program RMS value'
 # solve_genie_bracket.py searches every case at both budgets, raising the cap
 # along its ladder until the factor-two test passes (sections/computation.tex).
+# The payload manifest pins the generator's bytes; BRACKET_PLAN_SOURCE only
+# cross-references that pinned source with the ladder and budgets enforced here.
 BRACKET_BUDGETS = (100.0, 1000.0)
 BRACKET_PLAN_SOURCE = ('def run(output_dir, caps=(4, 8, 16, 32)):',
                        'for budget in (100.0, 1000.0):',
@@ -159,7 +162,7 @@ def bracket_case_laws(checks, rational):
     require(len(tables) == 1, 'Expected one case table in solve_genie_bracket.py')
     source = (checks / 'solve_genie_bracket.py').read_text(encoding='utf-8')
     require(all(line in source for line in BRACKET_PLAN_SOURCE),
-            'solve_genie_bracket.py no longer uses the recorded cap ladders and budgets')
+            'solve_genie_bracket.py does not contain the recorded cap ladder and budgets')
     laws = {}
     for name, gaps, weights, rho in ast.literal_eval(tables[0]):
         require(name not in laws, f'Duplicate bracket case: {name}')

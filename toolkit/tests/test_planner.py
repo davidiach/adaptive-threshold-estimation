@@ -319,7 +319,29 @@ class ConfidenceBoundTests(unittest.TestCase):
         self.assertEqual(plan.first_simulated_hit.rms_error_upper, 0.5)
         self.assertEqual(plan.recommended.rms_error_upper, 0.25)
         # Each trial's bound is corrected for the five budgets 4, ..., 64.
-        self.assertAlmostEqual(sim.call_args.kwargs["confidence"], 1 - 0.05 / 5)
+        self.assertEqual(sim.call_args.kwargs["confidence"], 0.95)
+        self.assertEqual(sim.call_args.kwargs["comparisons"], 5)
+
+    def test_comparisons_share_the_error_probability(self):
+        # Five bounds at 95% overall: each holds with probability 0.99.
+        exact = math.sqrt(-math.expm1(math.log(0.01) / 200))
+        bound = rms_upper_bound(np.zeros(200), 0.95, comparisons=5)
+        self.assertGreaterEqual(bound, exact)
+        self.assertAlmostEqual(bound, exact, places=9)
+        for comparisons in (0, 1.5):
+            with self.subTest(comparisons=comparisons), self.assertRaises(ValueError):
+                rms_upper_bound([0.1], 0.95, comparisons=comparisons)
+
+    def test_extreme_confidence_levels_are_planned(self):
+        # From a review: 1 - (1 - confidence) / K rounded to 1 or 0, so simulate
+        # rejected these valid levels as outside (0, 1).
+        population = GuessedRates([0.3, 0.7])
+        for confidence, max_budget in ((1 - 2e-16, 4 * 2 ** 22), (1e-20, 4)):
+            with self.subTest(confidence=confidence):
+                plan = plan_target(population, 0.5, runs=20, max_budget=max_budget,
+                                   confidence=confidence)
+                self.assertTrue(plan.trials)
+                self.assertTrue(all(0 < t.rms_error_upper <= 1 for t in plan.trials))
 
 
 class CommandLineTests(unittest.TestCase):
@@ -374,6 +396,32 @@ class CommandLineTests(unittest.TestCase):
                 self.assertEqual(code, 2)
                 self.assertIn("error:", err.getvalue())
                 self.assertNotIn("no budget", text)
+
+    def test_high_confidence_is_never_shown_as_certain(self):
+        # From a review: six significant digits printed 0.9999999 as "100%".
+        for mode, confidence, shown in ((("--budget", "2000"), "0.9999999", "99.99999%"),
+                                        (("--target-error", "0.5"), "0.9999999999999999",
+                                         "99.99999999999999%")):
+            with self.subTest(mode=mode):
+                code, text = self.run_cli("--rates", "0.3,0.7", *mode, "--runs", "20",
+                                          "--confidence", confidence)
+                self.assertEqual(code, 0)
+                self.assertIn(f"{shown} confidence", text)
+                self.assertNotIn("100% confidence", text)
+
+    def test_search_stopped_at_the_simulation_limit_is_reported(self):
+        real = simulate(GuessedRates([0.9, 0.2]), 4, runs=2, seed=0)
+        hit = dataclasses.replace(real, rms_error=0.1, rms_error_upper=0.5)
+        with patch("threshold_toolkit.planner.MAX_SIMULATED_BUDGET", 8), \
+                patch("threshold_toolkit.__main__.MAX_SIMULATED_BUDGET", 8), \
+                patch("threshold_toolkit.planner.simulate",
+                      side_effect=lambda _, budget, *a, **k: dataclasses.replace(hit, budget=budget)):
+            code, text = self.run_cli("--rates", "0.9,0.2", "--target-error", "0.3",
+                                      "--runs", "1000", "--max-budget", "64")
+        self.assertEqual(code, 0)
+        self.assertIn("No budget up to 8 flips was confirmed", text)
+        self.assertIn("Budgets above 8 flips are too large to simulate", text)
+        self.assertNotIn("up to 64 flips", text)
 
     def test_whole_percentages_are_not_written_as_exponents(self):
         code, text = self.run_cli("--rates", "0.95,0.05", "--target-error", "1", "--runs", "2")

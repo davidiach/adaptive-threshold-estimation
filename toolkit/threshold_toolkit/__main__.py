@@ -11,8 +11,9 @@ import re
 import sys
 from typing import List, Optional
 
-from .planner import (FLOOR_FACTOR, SEARCH_FACTOR, EvenlySpread, GuessedRates, MajorityPlan,
-                      Population, Simulation, plan_budget, plan_target)
+from .planner import (FLOOR_FACTOR, MAX_SIMULATED_BUDGET, SEARCH_FACTOR, EvenlySpread,
+                      GuessedRates, MajorityPlan, Population, Simulation, plan_budget,
+                      plan_target)
 
 
 def read_rates(text: str) -> List[float]:
@@ -45,7 +46,12 @@ def _simple_plan(plan: MajorityPlan, total: bool = False) -> str:
 
 
 def _confidence(x: float) -> str:
-    return f"{100 * x:g}%"
+    # Add digits until rounding no longer shows a level below 1 as 100%.
+    for digits in range(6, 18):
+        text = f"{100 * x:.{digits}g}"
+        if float(text) < 100:
+            return text + "%"
+    return f"{100 * x!r}%"
 
 
 def _budget_report(population: Population, budget: float, runs: int, seed: int,
@@ -128,6 +134,10 @@ def _target_report(population: Population, target: float, runs: int, seed: int,
         if runs < plan.confirmable_runs:
             print(f"     Confirming this target needs at least {plan.confirmable_runs:,} runs "
                   "(more unless the runs show no error at all); see --runs.")
+        elif 2 * plan.trials[-1].budget <= plan.search_limit:
+            print(f"     No budget up to {_flips(plan.trials[-1].budget)} flips was confirmed; "
+                  "more runs may confirm one. Budgets above "
+                  f"{_flips(MAX_SIMULATED_BUDGET)} flips are too large to simulate.")
         else:
             print(f"     No budget up to {_flips(plan.search_limit)} flips was confirmed; "
                   "more runs may confirm one.")

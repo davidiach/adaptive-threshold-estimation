@@ -93,8 +93,9 @@ def two_success_average(run_once: Callable[[], Tuple[float, float]], cap: float,
                         rng: random.Random) -> Tuple[float, float, int, int]:
     """Average fresh runs of a random-cost procedure without knowing its mean cost.
 
-    `run_once()` returns a finite (value, cost) with 0 < cost <= cap.
-    Calls must be iid and independent of `rng`. Two pilot streams run until each marks a run, marking with
+    `run_once()` returns a finite (value, cost) with 0 < cost <= cap, where
+    cost / cap must not underflow to zero: such a run could never be marked,
+    so it is rejected. Calls must be iid and independent of `rng`. Two pilot streams run until each marks a run, marking with
     probability cost / cap; one more than the number of unmarked pilots sets
     how many fresh production runs to average. Pilot values are discarded.
     The average is unbiased, has variance Var(value) * c / cap, and expected
@@ -111,7 +112,8 @@ def two_success_average(run_once: Callable[[], Tuple[float, float]], cap: float,
         if not math.isfinite(cost) or not 0 < cost <= cap:
             raise ValueError(f"run cost {cost!r} is outside (0, {cap}]")
         if cost / cap == 0:
-            # A run would then never be marked and the pilot loop would not end.
+            # Such a run is never marked; if every run were like it, the pilot
+            # loop would not end.
             raise ValueError(f"run cost {cost!r} is too small relative to cap {cap} to mark")
         if not math.isfinite(value):
             raise ValueError("run value must be finite")
@@ -129,16 +131,17 @@ def two_success_average(run_once: Callable[[], Tuple[float, float]], cap: float,
                 break
             production += 1
     total = scaled = 0.0
+    low, high = math.inf, -math.inf
     for _ in range(production):
         value, cost = checked_run()
         total += value
-        # Partial sums of value / production stay within the largest |value|,
-        # so this fallback survives when the plain sum overflows.
+        # Used only if the plain sum overflows. Rounding can carry this sum past
+        # the largest value, even to infinity, but the exact average lies
+        # between the smallest and largest values, so it is clamped there.
         scaled += value / production
+        low, high = min(low, value), max(high, value)
         total_cost += cost
-    average = total / production if math.isfinite(total) else scaled
-    if not math.isfinite(average):
-        raise OverflowError("the average of these finite values is not representable")
+    average = total / production if math.isfinite(total) else min(max(scaled, low), high)
     return average, total_cost, production, pilots
 
 

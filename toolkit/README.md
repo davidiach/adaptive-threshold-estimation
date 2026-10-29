@@ -132,10 +132,12 @@ proven method at doubling budgets, giving up at 64 times the simple plan's
 flips. It reports a budget as confirmed only when the simulations' upper
 confidence bound meets the target. The confidence level holds across every
 budget the search could try. Confirming a target t needs at least about
-log(budgets tried / 0.05) / t² runs, even if no run makes an error: with the
-default 200 runs, only targets above roughly 0.17 can be confirmed. When the
-simulated error meets the target but the bound does not, the calculator says so
-and gives the number of runs needed, rather than recommending that budget.
+log(K / 0.05) / t² runs, where K counts the budgets the search could try
+(doubling from 4 up to its limit). That many suffice only if no run makes an
+error: with the default 200 runs, only targets above roughly 0.17 can be
+confirmed. When the simulated error meets the target but the bound does not, the
+calculator says so and gives this lower bound on the runs needed, rather than
+recommending that budget.
 
 Use `--runs` to change the number of simulated runs (default 200) and `--seed` to
 change the simulation's seed. With `--target-error`, `--max-budget` (default
@@ -188,7 +190,8 @@ then takes a number `k` and returns how many of `k` fresh tries succeeded.
 - The execution API requires a finite budget of at least four flips. The
   standalone `two_success_average` requires iid calls, independent of its
   random generator, with finite values and strictly positive costs bounded by
-  a finite positive cap. Zero-cost calls are rejected to prevent a nonterminating pilot.
+  a finite positive cap. Zero-cost calls are rejected to prevent a nonterminating
+  pilot, as are calls whose cost divided by the cap underflows to zero.
 - What is machine-checked is the mathematical guarantee of the proven method, in
   [`BlindUpper/Full.lean`](../lean/ThresholdHC/BlindUpper/Full.lean), and the
   floor, in [`Tier6/Full.lean`](../lean/ThresholdHC/Tier6/Full.lean). This Python

@@ -364,24 +364,30 @@ def _bernoulli_kl(p: float, q: float) -> float:
     return total + p * math.log(p / q) if p > 0 else total
 
 
-def rms_upper_bound(squared_errors: Sequence[float], confidence: float = 0.95) -> float:
+def rms_upper_bound(squared_errors: Sequence[float], confidence: float = 0.95,
+                    comparisons: int = 1) -> float:
     """One-sided upper confidence bound on the RMS error from iid squared errors in [0, 1].
 
-    Returns sqrt(q) for the largest q with runs * kl(mean, q) <= log(1 / (1 - confidence)),
-    where kl is the Bernoulli relative entropy. By the Chernoff-Hoeffding bound
-    for iid variables in [0, 1], the true mean squared error exceeds q with
-    probability at most 1 - confidence. The bound stays positive when every
-    observed error is zero: 200 zero errors give about 0.122 at 95%.
+    Returns sqrt(q) for the largest q with runs * kl(mean, q) <= log(1 / delta),
+    where kl is the Bernoulli relative entropy and delta = (1 - confidence) / comparisons.
+    By the Chernoff-Hoeffding bound for iid variables in [0, 1], the true mean
+    squared error exceeds q with probability at most delta, so `comparisons`
+    such bounds all hold with probability at least `confidence`. The bound
+    stays positive when every observed error is zero: 200 zero errors give
+    about 0.122 at 95%.
     """
     if not 0 < confidence < 1:
         raise ValueError("confidence must be strictly between 0 and 1")
+    if not isinstance(comparisons, numbers.Integral) or comparisons < 1:
+        raise ValueError("comparisons must be a positive integer")
     losses = np.asarray(squared_errors, dtype=float)
     if losses.size == 0 or not np.all((losses >= 0) & (losses <= 1)):
         raise ValueError("squared errors must be a nonempty array of values in [0, 1]")
     mean = float(losses.mean())
     if mean >= 1:
         return 1.0
-    allowance = -math.log1p(-confidence) / losses.size
+    # log(1 / delta), computed without rounding delta's complement to 1.
+    allowance = (math.log(comparisons) - math.log1p(-confidence)) / losses.size
     # kl(mean, q) increases from 0 to infinity as q rises from the mean to 1.
     low, high = mean, 1.0
     while True:
@@ -414,19 +420,22 @@ class Simulation:
     mean_items: float
     rms_error_upper: float
     """Upper confidence bound on the true RMS error at this budget, on the guess
-    (`rms_upper_bound` at `confidence`)."""
+    (`rms_upper_bound` at `confidence`, shared by `comparisons` bounds)."""
     confidence: float
+    comparisons: int = 1
 
 
 def simulate(population: Population, budget: float, runs: int = 200,
              seed: Optional[int] = None,
              rng: Optional[np.random.Generator] = None,
-             confidence: float = 0.95) -> Simulation:
+             confidence: float = 0.95, comparisons: int = 1) -> Simulation:
     """Run the estimator `runs` times on simulated items drawn from the guess."""
     if not isinstance(runs, numbers.Integral) or runs < 2:
         raise ValueError("use at least 2 runs")
     if not 0 < confidence < 1:
         raise ValueError("confidence must be strictly between 0 and 1")
+    if not isinstance(comparisons, numbers.Integral) or comparisons < 1:
+        raise ValueError("comparisons must be a positive integer")
     runs = int(runs)
     level_cap = budget_level(budget)
     if budget > MAX_SIMULATED_BUDGET:
@@ -445,8 +454,9 @@ def simulate(population: Population, budget: float, runs: int = 200,
         raw_rms_error=math.sqrt(np.mean((raw - truth) ** 2)),
         bias=float(clipped.mean() - truth), mean_flips=float(flips.mean()),
         flips_p90=float(np.quantile(flips, 0.9)), flips_p99=float(np.quantile(flips, 0.99)),
-        mean_items=float(items.mean()), rms_error_upper=rms_upper_bound(squared, confidence),
-        confidence=confidence)
+        mean_items=float(items.mean()),
+        rms_error_upper=rms_upper_bound(squared, confidence, comparisons),
+        confidence=confidence, comparisons=int(comparisons))
 
 
 @dataclass(frozen=True)
@@ -541,10 +551,11 @@ def plan_target(population: Population, target: float, runs: int = 200,
     candidates = 1  # budgets 4 * 2**k <= limit the search could try (at least one)
     while 4 * 2 ** candidates <= limit:
         candidates += 1
-    trial_confidence = 1 - (1 - confidence) / candidates
-    # With no observed error, the bound is the q solving runs * -log(1 - q) = log(1 / delta);
-    # every bound is at most 1, so target 1 needs no particular number of runs.
-    needed = 0.0 if target >= 1 else math.log(candidates / (1 - confidence)) / -math.log1p(-target * target)
+    # With no observed error, the bound is the q solving runs * -log(1 - q) = log(1 / delta),
+    # where delta = (1 - confidence) / candidates; every bound is at most 1, so
+    # target 1 needs no particular number of runs.
+    log_inverse_delta = math.log(candidates) - math.log1p(-confidence)
+    needed = 0.0 if target >= 1 else log_inverse_delta / -math.log1p(-target * target)
     confirmable = math.ceil(needed) if needed < sys.maxsize else sys.maxsize
     rng = np.random.default_rng(seed)
     trials = []
@@ -553,7 +564,8 @@ def plan_target(population: Population, target: float, runs: int = 200,
     while recommended is None and 4 * 2 ** level <= limit:
         if hit is not None and 4 * 2 ** level > MAX_SIMULATED_BUDGET:
             break  # keep the unconfirmed hit rather than fail on an unsimulatable budget
-        trial = simulate(population, 4 * 2 ** level, runs, rng=rng, confidence=trial_confidence)
+        trial = simulate(population, 4 * 2 ** level, runs, rng=rng, confidence=confidence,
+                         comparisons=candidates)
         trials.append(trial)
         if progress is not None:
             progress(trial)

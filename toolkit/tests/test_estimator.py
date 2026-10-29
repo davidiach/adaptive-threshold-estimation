@@ -150,14 +150,15 @@ class CalibrationTests(unittest.TestCase):
         self.assertTrue(math.isfinite(average))
         exact = math.fsum(value / production for value in values)
         self.assertLessEqual(abs(average - exact), 1e-12 * abs(exact))
-        # At the largest float the average may be unrepresentable after
-        # rounding; that is reported, never returned as infinity.
-        try:
-            result = two_success_average(lambda: (sys.float_info.max, 1.0), 2.0, random.Random(0))[0]
-        except OverflowError:
-            pass
-        else:
-            self.assertTrue(math.isfinite(result))
+        # From a review of the fix: at the largest float, rounded terms of the
+        # fallback sum can exceed it. The average of equal values is that value.
+        top, productions = sys.float_info.max, set()
+        for seed in range(40):
+            average, _, production, _ = two_success_average(lambda: (top, 1.0), 2.0, random.Random(seed))
+            productions.add(production)
+            with self.subTest(seed=seed, production=production):
+                self.assertEqual(average, top)
+        self.assertIn(3, productions)
 
     def test_ordinary_values_are_summed_left_to_right(self):
         # Python 3.12's sum() compensates rounding; the helper keeps the plain
