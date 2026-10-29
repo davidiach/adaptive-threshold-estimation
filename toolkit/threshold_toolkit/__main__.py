@@ -84,7 +84,7 @@ def _budget_report(population: Population, budget: float, runs: int, seed: int,
                + (", too loose to be useful here" if plan.proven_ceiling >= 1 else ""))
     lines += [
         "",
-        "  Proven limits, for every way items this close to 50/50 could fall:",
+        "  Proven limits, over every split of items this close to 50/50 between the two sides:",
         f"    difficulty score: {plan.difficulty:.3g}",
         f"    no method can promise a typical error below {plan.proven_floor:.3g} (difficulty / 64)",
         f"    the no-tuning method is proven to stay within {ceiling}",
@@ -144,7 +144,7 @@ def _target_report(population: Population, target: float, runs: int, seed: int,
         print(f"Proven floor: too loose to rule out any budget for targets above {FLOOR_FACTOR:.3g}.")
     else:
         print(f"Proven floor: below approximately {_flips(plan.floor_budget)} flips, no method can promise this "
-              "accuracy for every way items this close to 50/50 could fall.")
+              "accuracy for every split of items this close to 50/50 between the two sides.")
 
 
 def main(argv: Optional[List[str]] = None) -> int:

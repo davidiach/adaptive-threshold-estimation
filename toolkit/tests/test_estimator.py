@@ -150,6 +150,12 @@ class CalibrationTests(unittest.TestCase):
         self.assertTrue(math.isfinite(average))
         self.assertEqual(average, math.fsum(value / production for value in values))
 
+    def test_cost_too_small_to_mark_rejected(self):
+        # From an external review: 1e-308 / 1e308 underflows to 0, so no run
+        # could ever be marked and the pilot loop would never end.
+        with self.assertRaisesRegex(ValueError, "too small"):
+            two_success_average(lambda: (1.0, 1e-308), 1e308, random.Random(0))
+
     def test_zero_cost_and_invalid_caps_rejected(self):
         for cost in (0, -1, math.inf, math.nan):
             with self.subTest(cost=cost), self.assertRaises(ValueError):

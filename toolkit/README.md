@@ -82,7 +82,7 @@ At an average budget of 16,384 flips:
 
   On your guess, the simple plan's typical error is 4.7x smaller.
 
-  Proven limits, for every way items this close to 50/50 could fall:
+  Proven limits, over every split of items this close to 50/50 between the two sides:
     difficulty score: 0.0951
     no method can promise a typical error below 0.00149 (difficulty / 64)
     the no-tuning method is proven to stay within 48.7 (difficulty x 512), too loose to be useful here
@@ -113,7 +113,11 @@ How to read it:
   that the typical error is at most about 0.12. Use `--confidence` to change
   the level.
 - **Proven limits** come from the paper's machine-checked theorems. The floor
-  says no method of any kind can do better in the worst case. Both limits are
+  says no method of any kind can do better in the worst case over splits of
+  your population between the two sides, where any share of the items at each
+  closeness to 50/50 may be above it. It is not a floor for a fixed list of
+  items whose sides are merely unknown: a single item at 90% or 10% is settled
+  far more accurately by flipping it repeatedly. Both limits are
   very loose (a factor of about 30,000 apart), which is why the simulation is
   there.
 - **Returns on more flips**: when many items sit near 50/50, extra flips buy

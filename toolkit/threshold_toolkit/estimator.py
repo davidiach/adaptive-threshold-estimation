@@ -110,6 +110,9 @@ def two_success_average(run_once: Callable[[], Tuple[float, float]], cap: float,
         value, cost = run_once()
         if not math.isfinite(cost) or not 0 < cost <= cap:
             raise ValueError(f"run cost {cost!r} is outside (0, {cap}]")
+        if cost / cap == 0:
+            # A run would then never be marked and the pilot loop would not end.
+            raise ValueError(f"run cost {cost!r} is too small relative to cap {cap} to mark")
         if not math.isfinite(value):
             raise ValueError("run value must be finite")
         return value, cost
