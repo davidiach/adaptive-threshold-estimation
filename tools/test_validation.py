@@ -206,6 +206,18 @@ class ExperimentLockTests(unittest.TestCase):
             self.assertTrue(experiment_lock.matches_lock(name, form, expected))
             self.assertFalse(experiment_lock.matches_lock(
                 name, form.replace(b"true", b"false"), expected))
+        # Stray carriage returns are content, not a line-ending convention.
+        self.assertFalse(experiment_lock.matches_lock(name, lf.replace(b"\n", b"\r\r\n"), expected))
+        self.assertFalse(experiment_lock.matches_lock(name, lf.replace(b"\n", b"\r\n", 1), expected))
+
+    def test_strict_mode_requires_the_exact_committed_bytes(self):
+        # CI checks the committed tree with --strict, so a commit converting the
+        # locked record to LF fails there even though a local rewrite is tolerated.
+        name = "results/real_verification.json"
+        data, expected = self.locked(name)
+        crlf = data.replace(b"\r\n", b"\n").replace(b"\n", b"\r\n")
+        self.assertTrue(experiment_lock.matches_lock(name, crlf, expected, strict=True))
+        self.assertFalse(experiment_lock.matches_lock(name, crlf.replace(b"\r\n", b"\n"), expected, strict=True))
 
     def test_other_locked_files_must_match_byte_for_byte(self):
         name = "benchmark/verify_real.py"
@@ -222,8 +234,10 @@ class ExperimentLockTests(unittest.TestCase):
             return data.replace(b"\r\n", b"\n") if path == record else data
 
         with patch.object(Path, "read_bytes", rewritten), redirect_stdout(io.StringIO()) as output:
-            experiment_lock.main()
+            experiment_lock.main([])
         self.assertIn("Verified 9 benchmark locks", output.getvalue())
+        with patch.object(Path, "read_bytes", rewritten), self.assertRaises(SystemExit):
+            experiment_lock.main(["--strict"])
 
 
 if __name__ == "__main__":
