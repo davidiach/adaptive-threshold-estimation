@@ -1,9 +1,10 @@
 # Results after the v4 paper
 
-The [consolidated v5 manuscript](v5/paper.pdf) now presents the current theory,
-including the 713 construction, rare-event regimes, critical correction, and
-formal verification boundaries. Its [source record](v5/README.md) describes the
-assembly and preserved inputs. This file remains a chronological guide to the
+The [consolidated v6 manuscript](v6/README.md) now presents the current theory
+in one paper: the [v5 manuscript](v5/README.md), including the 713 construction,
+rare-event regimes, critical correction, and formal verification boundaries,
+together with the general-law and finite-gap rare-event manuscripts. Its source
+record describes the assembly and preserved inputs. This file remains a chronological guide to the
 results that followed the unchanged v4.
 
 ## Critical quadratic margin: full characterization and Psi counterexample

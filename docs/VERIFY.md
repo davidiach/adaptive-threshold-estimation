@@ -11,6 +11,7 @@ the [evidence index](../results/README.md) explains published checkpoints.
 |---|---|---|
 | Navigation or ordinary documentation | `git -c core.whitespace=cr-at-eol diff --check`; `python tools/freeze.py --verify`; check relative links and heading anchors | No proof rebuild needed when sources, specifications, tools, and dependencies are unchanged. This file and some others use CRLF line endings, which plain `--check` reports as trailing whitespace. `freeze.py --verify` covers only `FROZEN.sha256`; run the matching verifier for any other locked path. Inspect the final diff for unintended files. |
 | Python toolkit | `python -m pip install -e ./toolkit`; `python -m unittest discover -s toolkit/tests -v`; `python toolkit/examples/quickstart.py` | Python implementation tests and example; do not certify the implementation in Lean. |
+| Consolidated v6 manuscript | `python tools/build_v6.py --check`; `python -m unittest discover -s tools -p 'test_build_v6.py' -v` | Checks inherited source identities, the merge of the shared rare-event appendices, assembly, references, and citations. The [manuscript workflow](../.github/workflows/manuscript.yml) compiles the PDF; [build and visually review](../paper/v6/README.md#reproduce) it when typeset content changes. |
 | Consolidated v5 manuscript | `python tools/build_v5.py --check`; `python -m unittest discover -s tools -p 'test_build_v5.py' -v` | Checks inherited source identities, assembly, references, and citations. [Build and visually review](../paper/v5/README.md#reproduce) the PDF when typeset content changes. |
 | Critical review packet | `python tools/build_critical_review.py --check` | Compares generated source to the locked proof and editable brief. [Compile and review](../paper/critical-review/README.md) changed typeset content separately. |
 | General-law rare-event manuscript (v2) | `python tools/verify_rare_event_manuscript.py` | Hashes and finite checks in a temporary copy; preserves the payload. Does not formally verify the general theorems. |
@@ -438,6 +439,14 @@ not prove the paper theorem. Compile the standalone
 compilation is also not mathematical verification.
 
 ## Evidence and CI
+
+The [consolidated v6 manuscript](../paper/v6/README.md) is checked with
+`python tools/build_v6.py --check` and its assembly tests. These verify the
+hash-locked v5, general-law and finite-gap inputs, the generated sources,
+unique labels, and resolved references and citations. The tests also show
+that the merged appendices keep every line of both rare-event papers'
+versions apart from listed replacements. A separate workflow compiles the
+PDF in a scratch copy; none of these checks extends the claims verified by Lean.
 
 The [consolidated v5 manuscript](../paper/v5/README.md) is checked with
 `python tools/build_v5.py --check`. This verifies the inherited source
