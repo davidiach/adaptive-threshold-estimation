@@ -814,9 +814,22 @@ def assemble() -> dict[str, str]:
     sources = load_sources()
     output = {}
     output.update(v5_material(sources))
-    output.update(general_law(sources))
-    output.update(finite_gap(sources))
+    general_law_files = general_law(sources)
+    finite_gap_files = finite_gap(sources)
+    output.update(general_law_files)
+    output.update(finite_gap_files)
     output["references.tex"] = bibliography(sources)
+    # Several former main-text sections of the rare-event papers are appendices here.
+    rare = set(general_law_files) | set(finite_gap_files)
+    in_appendix = {name for name in rare if name.startswith("appendix-")}
+    in_appendix |= {"finite-lower.tex", "finite-upper.tex", "finite-assembly.tex"}
+    appendices = {key for name in in_appendix
+                  for key in re.findall(r"\\(?:sub)?section\{[^}]*\}\\label\{([^}]+)\}", output[name])}
+    appendices |= {"sec:matching-lower", "fg:sec:matching-lower"}
+    for name in rare:
+        output[name] = re.sub(r"Section~\\ref\{([^}]+)\}",
+                              lambda m: ("Appendix" if m[1] in appendices else "Section")
+                              + "~\\ref{" + m[1] + "}", output[name])
     # Trailing spaces carry no meaning at a TeX line end.
     return {name: GENERATED + "\n".join(line.rstrip() for line in text.rstrip().split("\n")) + "\n"
             for name, text in output.items()}

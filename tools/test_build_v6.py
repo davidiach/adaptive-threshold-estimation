@@ -11,6 +11,8 @@ FG = ROOT / "paper/finite-gap-rare-events/revision-2/sections"
 
 def lines(text: str) -> list[str]:
     text = re.sub(r"(\\cite(?:\[[^]]+\])?)\{lv\}", r"\1{leevaliant}", text.replace("\r", ""))
+    # Former main-text sections are cited as appendices in the consolidated paper.
+    text = text.replace(r"Appendix~\ref{", r"Section~\ref{")
     return [" ".join(line.split()) for line in text.split("\n") if line.strip()]
 
 
@@ -120,7 +122,6 @@ GENERAL_LAW_REPLACED = {
         r"h(P_{i,-}^A,P_{i,+}^A)",
         r"Consider a stronger experiment that can select a component at no cost and",
         r"adaptively select, revisit, and interleave these coins. Under the conditional",
-        r"scale to be chosen separately. Section~\ref{sec:matching-lower} applies this expression to components",
         r"selected by the entropy--tail optimizer.",
     },
 }
