@@ -1,20 +1,23 @@
 """Summarize the sealed held-out run; never run or tune an estimator."""
 from __future__ import annotations
-import hashlib
 import json
 from pathlib import Path
+import sys
 import numpy as np
 
 ROOT=Path(__file__).resolve().parents[1]
 RES=ROOT/'results'
+sys.path.insert(0,str(ROOT/'tools'))
+from verify_experiment_lock import matches_lock, require
 
 
 def main():
     selection=json.loads((RES/'real_selection.json').read_text())
     for name,digest in selection['hashes'].items():
-        assert hashlib.sha256((ROOT/name).read_bytes()).hexdigest()==digest,name
+        # Tolerates verify_real.py's line-ending rewrite of its record, as the lock check does.
+        require(matches_lock(name,(ROOT/name).read_bytes(),digest),'Locked benchmark input changed: '+name)
     test=json.loads((RES/'real_test.json').read_text())
-    assert test['complete']
+    require(test['complete'],'held-out test record is incomplete')
     raw=np.load(RES/'real_test_raw.npz')
     comparisons=[]
     for bi,b in enumerate([16384,65536]):
