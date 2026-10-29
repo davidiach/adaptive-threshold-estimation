@@ -1,8 +1,8 @@
 # Revision 2: relation to the general-law characterization
 
-These are the TeX sources of revision 2 of the [finite-gap manuscript](../README.md). Revision 1 in the parent directory, including its reviewed 32-page PDF, is unchanged and remains the published version.
+[Read the 35-page PDF](paper.pdf) · [Build and integrity](#build-and-integrity)
 
-> **PDF pending.** Revision 2 has not been compiled or visually inspected. Build it as below, inspect every page, then add `paper.pdf` and its hash to [SHA256SUMS](SHA256SUMS) before treating this revision as published.
+This is revision 2 of the [finite-gap manuscript](../README.md). Revision 1 in the parent directory, including its reviewed 32-page PDF, is unchanged.
 
 ## What changed
 
@@ -36,6 +36,8 @@ Checks of revision 2:
   - An adversarial search found $Q/\mathcal K$ approaching about 1.461, so the constant $1+2\sqrt2$ is valid but loose.
   - Only finite atomic laws were tested numerically.
 - The sources pass static LaTeX checks: environments, braces, 97 unique labels, and every reference and all eight citations resolve.
+- The PDF builds without LaTeX warnings, undefined references or overfull boxes, and all its fonts are embedded. All 35 pages were visually inspected.
+- Its text was compared word by word with revision 1 built by the same engine. The only differences are the additions listed above and the renumbering they cause: page numbers after §6, equation numbers in the appendices, and citations after the two new entries.
 
 Revision 2 is a paper proof, like revision 1. It is not Lean-checked and has not had external specialist review.
 
@@ -46,6 +48,14 @@ From this directory, with standard TeX Live or MiKTeX packages:
 ```sh
 latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
 ```
+
+The committed `paper.pdf` was built this way with pdfTeX 1.40.25 (TeX Live 2023, Ubuntu 24.04 packages) and a fixed source date:
+
+```sh
+SOURCE_DATE_EPOCH=1793232000 FORCE_SOURCE_DATE=1 latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+```
+
+With that engine the build reproduces `paper.pdf` byte for byte; another engine or TeX Live release may differ in bytes. Revision 1's PDF was exported with Tectonic instead; built with the same pdfTeX, its sources also give 32 pages.
 
 Check the revision-2 sources with GNU coreutils:
 

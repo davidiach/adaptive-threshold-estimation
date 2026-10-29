@@ -281,7 +281,7 @@ general infinite-support extension, a deterministic budget or a
 high-confidence result.
 
 [Revision 2](../paper/finite-gap-rare-events/revision-2/README.md) of the
-manuscript (TeX sources; PDF pending) adds a deterministic comparison with the
+manuscript ([PDF](../paper/finite-gap-rare-events/revision-2/paper.pdf)) adds a deterministic comparison with the
 [general-law selection functional](#general-law-rare-event-characterization):
 $\mathcal K\le Q\le(1+2\sqrt2)\mathcal K$ for every law on $(0,1/2]$. So
 Theorem 1.1 is the finite-law case of the general-law characterization, with a
