@@ -22,7 +22,8 @@ ROOT = Path(__file__).resolve().parents[1]
 LEAN = ROOT / 'lean'
 SOURCE = LEAN / 'ThresholdHC/EntropyTail'
 FREEZE = ROOT / 'tools/entropy_tail_specification_freeze.json'
-MODULES = ('Model', 'Specification')
+MODULES = ('Model', 'Specification', 'Band', 'Entropy', 'Gamma', 'Objective', 'Bounds',
+           'SingleAtom', 'Nonvacuity', 'Superadditive', 'HardSelection')
 PREFIX = 'ThresholdHC.EntropyTail.'
 FROZEN = {'lean/ThresholdHC/EntropyTail/Specification.lean': '8440d8853dd20cfcb4d0123fd30de0fae82ee970a0577f5e4ba0ebe041a1cbeb'}
 TARGETS = {
@@ -36,7 +37,8 @@ TARGETS = {
     PREFIX+'entropy_tail_nonvacuity': PREFIX+'EntropyTailNonvacuityStatement',
 }
 # Targets whose proofs are present. A target is proved only by its registered name.
-PROVED = ()
+PROVED = (PREFIX+'selection_bounds', PREFIX+'single_atom', PREFIX+'small_budget',
+          PREFIX+'entropy_tail_nonvacuity', PREFIX+'hard_selection')
 SCOPE = ('Entropy-tail law (v6 Theorem 13.2) in the observable rare-event experiment: '
          'universal two-sided comparison with the selection functional for every law on (0,1/2], '
          '0 < rho <= 1/4 and B > 0, the separate upper and lower halves, hard selections, '
