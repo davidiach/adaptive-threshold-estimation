@@ -1,0 +1,1388 @@
+{
+  "valid": true,
+  "scope": "Arbitrary probability laws on positive gaps up to one half; fractional boundary atoms; finite core entropy; K <= Q <= (1+2*sqrt(2))*K; saturation when B^(-1/2) >= the quantile threshold. All positive budgets and rho in (0,1/4]. No statistical minimax upper or lower theorem is certified by this audit.",
+  "source_sha256": {
+    "lean/lake-manifest.json": "a7058b14db1034b58735d82f1cf9a82a938855e93decc1960ca7d21e786fdfe2",
+    "lean/lakefile.toml": "273cfe4674e97219b22f7de1428bdadfb45379c7fa582882c59624ab7fbc3189",
+    "lean/lean-toolchain": "d581a24b57a4ae9e0b2132ca8ac7cc3ac336a9fc2751fe6b29414e2d434d54c4",
+    "lean/ThresholdHC/EntropyTail/BandGeometry.lean": "b3415e49884cbc4ff53ba6ff4176764a562128b9c845b474e73652c86f3bb25a",
+    "lean/ThresholdHC/EntropyTail/CostEntropy.lean": "a181ce583335a26df67275b4c37a37d21b7f7e7e625f779feb7a08faefb23af1",
+    "lean/ThresholdHC/EntropyTail/CostEntropySeries.lean": "7ba0edb5383681ff439b9360468ea8a3f0a8d4d60bce01dda61dfa8207c323e0",
+    "lean/ThresholdHC/EntropyTail/CutDecomposition.lean": "3f35b543aa212d104d46014675229d0195ae8845307bd281690b2681a0aa0e15",
+    "lean/ThresholdHC/EntropyTail/EntropyMixture.lean": "ae5e4217afe5776207ae393e9e5f1ec20d68de7b9d6487465abc60a53779a3ca",
+    "lean/ThresholdHC/EntropyTail/EntropyMoment.lean": "3251ff8d2677e560093b1c847a8bad4a75db165512d3141f24610db4a8a05cfb",
+    "lean/ThresholdHC/EntropyTail/MeasureEntropy.lean": "0e3cea7fcbb0389442ee77d076e8bfe71e492ece0dbfa638aa6110c4a47856b5",
+    "lean/ThresholdHC/EntropyTail/Model.lean": "280a32ef8977d223a92ff0e42a039b0fd16ec3fbd80d6fbd369991dfe2b42079",
+    "lean/ThresholdHC/EntropyTail/QuantileAlgebra.lean": "d7eb99cdbcecfec342f36de1d014e6ddeb420ca7423d4cddf117aa35b0ca2434",
+    "lean/ThresholdHC/EntropyTail/QuantileComparison.lean": "aa83fbe970919d90491839c467a3fba24a29d58c8e47d1fb1e6ad1c86b4aca36",
+    "lean/ThresholdHC/EntropyTail/QuantileCoreBound.lean": "3088619e2e28c6f87fb65a69e10a434eb1c55c87e5c843f551a0a95f124c443f",
+    "lean/ThresholdHC/EntropyTail/QuantileFeasible.lean": "e303a5db34aca32331011b39f462f40321f2217c99be0c652f08372b4b558e83",
+    "lean/ThresholdHC/EntropyTail/QuantileRootBound.lean": "b194e14e910b42612bdfb3f244fbe58de1d79032f22a30b9bd144a9b09022ef9",
+    "lean/ThresholdHC/EntropyTail/QuantileSplit.lean": "3aaef7781e570a7e2c3be41b5b6376e811f6578c7c820d8b8d1d46bb0ae0c91b",
+    "lean/ThresholdHC/EntropyTail/QuantileSplitFull.lean": "646809d101df8f44fa2f82ba3bb59f9a83126afdc002ca8afebb72dc85563671",
+    "lean/ThresholdHC/EntropyTail/QuantileTailBound.lean": "6980f866d214623fb9fea618eb697d4c5b9c5b59bb3a5d3ecc8846a51927899e",
+    "lean/ThresholdHC/EntropyTail/QuantileThreshold.lean": "f3cd1cf70a93860984a54914a6ded4f82f983cf695c1cb1a874b42c99cbd47d3",
+    "lean/ThresholdHC/EntropyTail/ScaleSeparated.lean": "20c508acca48c343f9a6a2140751f8cd04c3652c1c65afbab545111036d88ee6",
+    "lean/ThresholdHC/EntropyTail/Specification.lean": "3bac177a1dbef212f2849b1c043c0b9ae1fdff1c8421ecd5fbc4afe65360a81a",
+    "lean/ThresholdHC/EntropyTail/TailModulus.lean": "d28bc6fe601ff8c5ce276be0510b0bdddcd0e3dacb51c9ea31eb3dbd0d96a04c",
+    "lean/ThresholdHC/Proofs/Algebra.lean": "68efcc1bef2ab5407fa86b1e8fea52c2baeaf0001bfe5d548d0a58ee959fb155",
+    "lean/ThresholdHC/Proofs/KL.lean": "ddf4b0067271296ea1836e44fe01fe55bf1143e14cf1f5b3473e38a196d966c3",
+    "lean/ThresholdHC/Proofs/Tier2/Information.lean": "4b62b5996af4e6c96cff51796745fc9b8dea356744b1ae7f0777ecc43b76fd16",
+    "lean/ThresholdHC/Proofs/Tier2/InformationCore.lean": "0a6a1af42b5b0af29db453982aabd1a4dbb615baf1284c8ecf6d14e5b0d58590",
+    "lean/ThresholdHC/Proofs/Tier2/Transcript.lean": "e8b8feca5af14a68f23fa9cdc57eb28259f87c18d3ff092ca732b353daf4e640",
+    "lean/ThresholdHC/Proofs/Tier2/TranscriptBase.lean": "ef06442bc824d756f959d0c9711edbf8b84a61359d8d1a10fedb8dbfe5c201d7",
+    "lean/ThresholdHC/Proofs/Tier2/TranscriptLikelihood.lean": "7d051a6f2f028d912910c9d18533b6db90863328a7bdc6c87c4181fade7c489f",
+    "lean/ThresholdHC/Proofs/Tier2/TranscriptScalar.lean": "dc691a74b9b1915377df80cd2caac4feec5d7bee3938480b906afbdb04630fee",
+    "lean/ThresholdHC/RareAboveTwo/Model.lean": "e73349c6b4297fde20d3b3038e9eda089c60df0af3cab001caf7c58e9b0aa6a7",
+    "lean/ThresholdHC/Statements.lean": "0873505b7c133561e82f63dcbba7f7a0a3da39d0c3692daee99d01882a757abf",
+    "lean/ThresholdHC/Statements2.lean": "51f85fee842aec2de331872b760ecd47e15715a84deaf5b8f08970bd9fa01414",
+    "lean/ThresholdHC/Tier3/OptimizerModel.lean": "36c085b6409b1355247d5127ab4ee9fdb94e621c1aac8379fb1f119d607cae49",
+    "lean/ThresholdHC/Tier3/RandomizedBase.lean": "87af7b31ba2c3cc9ff623cf403d954ffd7b8844c1b3af6e9283b823921ed8285",
+    "lean/ThresholdHC/Tier3/RandomizedModel.lean": "3a61f9b034ee58e45e903356c60037e4808fdb1a711d96b24f3013ef95716f6b",
+    "lean/ThresholdHC/Tier3/StoppingBase.lean": "0989b9b554ea0c056ec9f296e463c1767dc3509400960c266593c64e3daaa51d",
+    "lean/ThresholdHC/Tier3/StoppingModel.lean": "36aed19aa97432a9068952e5d389fe6a992faad0da71984b7412204940aa3892",
+    "lean/ThresholdHC/Tier3/TranscriptRatio.lean": "49b87fb8ece824fd69d52f2d83b40050529f3c7a295ed59e214cb18d1f139d4d",
+    "lean/ThresholdHC/Tier4/FiniteDensity.lean": "7b4216aebc1b247486233e4ea86de2e5b67301526bc3f5b730b4db4ebd53cba2",
+    "lean/ThresholdHC/Tier4/Model.lean": "2271691c5af1c4936accbb9a5c62b6ea5cbc3e6bdd718b0b44a958cd7a057214",
+    "lean/ThresholdHC/Tier5/CreationBase.lean": "c77ca55ab89d3d286443be9699ebca100706851f2f33393c82770209362250ea",
+    "lean/ThresholdHC/Tier5/CreationModel.lean": "b767058304f884582dc976a59b5d31671d417717097b60280d6b4533acae5871",
+    "lean/ThresholdHC/Tier5/CreationPadding.lean": "0749f9235601e37c0e141414b6347c9df8b3028c9c44924ef324739eb3e5cf68",
+    "lean/ThresholdHC/Tier5/FiniteCreation.lean": "382ea9fae97e5c8184a129f29b5004aa91416a26350445971315fcc28bd0d017",
+    "lean/ThresholdHC/Tier5/FiniteEnvironment.lean": "cdfd42cf5b704fd7577de9dc04fed2fcac94830cd7207240d704eb702f14b669",
+    "lean/ThresholdHC/Tier5/FiniteJoint.lean": "b8c826351070c9c8f8eb92ae68e9499c32e77e777c9438aa15ec1cb7db17956a",
+    "lean/ThresholdHC/Tier5/Model.lean": "d0bd50268eb858d2acb14f0f220f228d6a1d8b211dd4359864c35faca6bf0fdd",
+    "lean/ThresholdHC/Tier5/PriorRatio.lean": "a116b733974fd4b0b1bddaf4c7eed5d161595b5a228fc59fbfcf68a5fbcc99d5",
+    "lean/ThresholdHC/Tier6/AlgorithmCore.lean": "ba81c4bbbcba907337a82b0350135c4f734239fcd2c5f4685d87d6ea72452ad8",
+    "lean/ThresholdHC/Tier6/AlgorithmModel.lean": "4494049e8205ca83eb635c8f82f0f7661f7ba61bc2ccc29966dcd9a5e47eeea5",
+    "lean/ThresholdHC/Tier6/HardPairModel.lean": "003aa6f400fe62d6e0e074ef2df8b4d3afc5e79db73800d529ae11c0cd89e068",
+    "lean/ThresholdHC/Tier6/ProcessModel.lean": "c7da1211a83f0925da7f1ce0b573f155c08edbfaa0564cc6dc26e640d51a625b",
+    "lean/ThresholdHC/Tier6/ProcessWeights.lean": "280214be58ce854b84c13d424e570d5cd955f7c27ffe1afd3646e103edece733",
+    "lean/ThresholdHC/Tier6/TestingModel.lean": "941b5583b6a9d8776c38ac9de371b5f30a7a2c580b4cd627df7935665ca80944",
+    "tools/entropy_tail_specification_freeze.json": "1a0e02ebc7312b99f16f56ec8ce40a34e0a9779a082209c1d428d628746cf352",
+    "tools/verify_blind_upper_components.py": "08faf54b212914db25f1c65c8455ab9d918d70e9366a8fef2b7622a6ce5325e7",
+    "tools/verify_entropy_tail_components.py": "fe6b77797eeb0676265c96269210ae85827e14484809c56185259aaa534c8bf7",
+    "tools/verify_tier6.py": "7295c1609c57be9951fc46f3e210f7f7682083470cf94bbe2dd89a387b0f075e"
+  },
+  "exact_targets": {
+    "ThresholdHC.EntropyTail.quantile_split": "ThresholdHC.EntropyTail.QuantileSplitStatement",
+    "ThresholdHC.EntropyTail.quantile_comparison": "ThresholdHC.EntropyTail.QuantileComparisonStatement"
+  },
+  "exact_targets_checked": 2,
+  "quantile_split_verified": true,
+  "quantile_comparison_verified": true,
+  "entropy_tail_upper_verified": false,
+  "entropy_tail_lower_verified": false,
+  "closed_quantile_minimax_verified": false,
+  "commands": [
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\EntropyTail\\CostEntropy.olean",
+        "ThresholdHC\\EntropyTail\\CostEntropy.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\EntropyTail\\CostEntropySeries.olean",
+        "ThresholdHC\\EntropyTail\\CostEntropySeries.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Tier6\\HardPairModel.olean",
+        "ThresholdHC\\Tier6\\HardPairModel.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Statements.olean",
+        "ThresholdHC\\Statements.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Statements2.olean",
+        "ThresholdHC\\Statements2.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Tier3\\RandomizedModel.olean",
+        "ThresholdHC\\Tier3\\RandomizedModel.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Tier3\\StoppingModel.olean",
+        "ThresholdHC\\Tier3\\StoppingModel.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Tier4\\Model.olean",
+        "ThresholdHC\\Tier4\\Model.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Tier5\\CreationModel.olean",
+        "ThresholdHC\\Tier5\\CreationModel.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Tier5\\Model.olean",
+        "ThresholdHC\\Tier5\\Model.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Tier6\\TestingModel.olean",
+        "ThresholdHC\\Tier6\\TestingModel.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Tier6\\AlgorithmCore.olean",
+        "ThresholdHC\\Tier6\\AlgorithmCore.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Proofs\\Tier2\\TranscriptBase.olean",
+        "ThresholdHC\\Proofs\\Tier2\\TranscriptBase.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Proofs\\Tier2\\TranscriptLikelihood.olean",
+        "ThresholdHC\\Proofs\\Tier2\\TranscriptLikelihood.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Tier5\\CreationPadding.olean",
+        "ThresholdHC\\Tier5\\CreationPadding.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Tier5\\CreationBase.olean",
+        "ThresholdHC\\Tier5\\CreationBase.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Proofs\\Algebra.olean",
+        "ThresholdHC\\Proofs\\Algebra.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Proofs\\KL.olean",
+        "ThresholdHC\\Proofs\\KL.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Proofs\\Tier2\\TranscriptScalar.olean",
+        "ThresholdHC\\Proofs\\Tier2\\TranscriptScalar.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Proofs\\Tier2\\InformationCore.olean",
+        "ThresholdHC\\Proofs\\Tier2\\InformationCore.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Proofs\\Tier2\\Transcript.olean",
+        "ThresholdHC\\Proofs\\Tier2\\Transcript.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Proofs\\Tier2\\Information.olean",
+        "ThresholdHC\\Proofs\\Tier2\\Information.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Tier3\\RandomizedBase.olean",
+        "ThresholdHC\\Tier3\\RandomizedBase.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Tier4\\FiniteDensity.olean",
+        "ThresholdHC\\Tier4\\FiniteDensity.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Tier3\\TranscriptRatio.olean",
+        "ThresholdHC\\Tier3\\TranscriptRatio.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Tier5\\FiniteEnvironment.olean",
+        "ThresholdHC\\Tier5\\FiniteEnvironment.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Tier5\\FiniteJoint.olean",
+        "ThresholdHC\\Tier5\\FiniteJoint.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Tier5\\PriorRatio.olean",
+        "ThresholdHC\\Tier5\\PriorRatio.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Tier3\\StoppingBase.olean",
+        "ThresholdHC\\Tier3\\StoppingBase.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Tier5\\FiniteCreation.olean",
+        "ThresholdHC\\Tier5\\FiniteCreation.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Tier6\\ProcessWeights.olean",
+        "ThresholdHC\\Tier6\\ProcessWeights.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Tier6\\ProcessModel.olean",
+        "ThresholdHC\\Tier6\\ProcessModel.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Tier6\\AlgorithmModel.olean",
+        "ThresholdHC\\Tier6\\AlgorithmModel.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\Tier3\\OptimizerModel.olean",
+        "ThresholdHC\\Tier3\\OptimizerModel.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\RareAboveTwo\\Model.olean",
+        "ThresholdHC\\RareAboveTwo\\Model.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\EntropyTail\\Model.olean",
+        "ThresholdHC\\EntropyTail\\Model.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\EntropyTail\\Specification.olean",
+        "ThresholdHC\\EntropyTail\\Specification.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\EntropyTail\\QuantileAlgebra.olean",
+        "ThresholdHC\\EntropyTail\\QuantileAlgebra.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\EntropyTail\\QuantileThreshold.olean",
+        "ThresholdHC\\EntropyTail\\QuantileThreshold.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\EntropyTail\\QuantileSplit.olean",
+        "ThresholdHC\\EntropyTail\\QuantileSplit.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\EntropyTail\\MeasureEntropy.olean",
+        "ThresholdHC\\EntropyTail\\MeasureEntropy.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\EntropyTail\\QuantileSplitFull.olean",
+        "ThresholdHC\\EntropyTail\\QuantileSplitFull.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\EntropyTail\\QuantileFeasible.olean",
+        "ThresholdHC\\EntropyTail\\QuantileFeasible.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\EntropyTail\\TailModulus.olean",
+        "ThresholdHC\\EntropyTail\\TailModulus.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\EntropyTail\\BandGeometry.olean",
+        "ThresholdHC\\EntropyTail\\BandGeometry.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\EntropyTail\\ScaleSeparated.olean",
+        "ThresholdHC\\EntropyTail\\ScaleSeparated.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\EntropyTail\\CutDecomposition.olean",
+        "ThresholdHC\\EntropyTail\\CutDecomposition.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\EntropyTail\\EntropyMixture.olean",
+        "ThresholdHC\\EntropyTail\\EntropyMixture.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\EntropyTail\\EntropyMoment.olean",
+        "ThresholdHC\\EntropyTail\\EntropyMoment.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\EntropyTail\\QuantileTailBound.olean",
+        "ThresholdHC\\EntropyTail\\QuantileTailBound.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\EntropyTail\\QuantileRootBound.olean",
+        "ThresholdHC\\EntropyTail\\QuantileRootBound.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\EntropyTail\\QuantileCoreBound.olean",
+        "ThresholdHC\\EntropyTail\\QuantileCoreBound.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\EntropyTail\\QuantileComparison.olean",
+        "ThresholdHC\\EntropyTail\\QuantileComparison.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        ".audit\\EntropyTail.lean"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "axioms": {
+    "ThresholdHC.EntropyTail.ClosedQuantileUpperStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.EntropyTailUpperStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.QuantileComparisonStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.QuantileSplitStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.band": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.bandCost": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.bandCost_add": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.bandCost_eq_zero_of_support": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.bandCost_mono": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.bandCost_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.bandEdge": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.bandEdge_antitone": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.bandEdge_pos": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.bandEdge_succ": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.band_inverseSquare_integrable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.bands_disjoint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.binary_entropy_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.budgetScale": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.budgetScale_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.budgetScale_pos": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.closedQuantileValue": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.continuous_costEntropy": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.costEntropy": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.costEntropy_add_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.costEntropy_add_le_two": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.costEntropy_eq_log_sum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.costEntropy_le_reference": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.costEntropy_mono": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.costEntropy_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.costEntropy_normalized": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.costEntropy_prefix_eq_of_eventually_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.costEntropy_prefix_le_of_eventually_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.costEntropy_prefix_monotone": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.costEntropy_prefix_succ": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.costEntropy_smul": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.costEntropy_superadditive": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.costEntropy_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.costTotal": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.costTotal_add": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.costTotal_le_costEntropy": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.costTotal_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.costTotal_smul": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.costTotal_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.dyadic_reference_coefficient": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.dyadic_reference_sum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.dyadic_reference_sum_le_one": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.entropy_root_eq_ofReal": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.eq_zero_of_costTotal_eq_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.exists_band_cutoff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.gapCDF": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.gapCDF_eq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.gapCDF_half": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.gapCDF_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.gap_mass_le_eq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.homogeneous_negMulLog_add": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.iUnion_band": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.inverseSquare_lintegral_le_entropy": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.inverse_integrable_of_support": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.inverse_lintegral_le_sqrt_moment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.le_costTotal": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.levelThreshold": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.lowerCut": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.lowerCut_add": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.lowerCut_add_upperCut": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.lowerCut_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.lowerCut_mono": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.measurableSet_band": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.measureCostEntropy": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.measureCostEntropy_add_le_two": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.measureCostEntropy_eq_prefix_of_support": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.measureCostEntropy_lt_top_of_support": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.measureCostEntropy_mono": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.negMulLog_add_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.quantileBoundaryFraction": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.quantileBoundaryFraction_properties": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.quantileCore": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.quantileCore_entropy_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.quantileCore_eq_upperCut": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.quantileCore_residual_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.quantileCore_support": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.quantileTail": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.quantileTail_add_core": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.quantileTail_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.quantileTail_le_selectionCost": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.quantileTail_le_selectionValue": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.quantileTail_mass": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.quantileTail_real_mass": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.quantileTail_support": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.quantileTail_threshold_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.quantileThreshold": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.quantileThreshold_eq_levelThreshold": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.quantileThreshold_mass_below": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.quantileThreshold_properties": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.quantile_comparison": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.quantile_comparison_algebra": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.quantile_comparison_factor_lt_four": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.quantile_comparison_pointwise": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.quantile_root_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.quantile_saturation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.quantile_split": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.scaleSeparated_entropy": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.selectionCost": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.selectionValue": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.selectionValue_le_closedQuantileValue": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.stieltjes_threshold_properties": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.sub_quantileCore": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.tailKernel_integrable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.tailKernel_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.tailModulus": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.tailModulus_add": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.tailModulus_eq_inverseCost": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.tailModulus_eq_mass": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.tailModulus_le_mass": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.tailModulus_le_sqrt_entropy": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.tailModulus_mono": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.tailModulus_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.upperCut": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.upperCut_add": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.upperCut_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.upperCut_mono": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.EntropyTail.upperCut_support": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "audited_modules": 20,
+  "rebuilt_local_modules": 53,
+  "audited_declarations": 121
+}

@@ -1,0 +1,7 @@
+ThresholdHC\Proofs\Tier2\TranscriptLikelihood.lean:35:15: warning: This simp argument is unused:
+  he
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Option.some_ne_none, ↓reduceIte, one_mul, Option.some.injEq]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
