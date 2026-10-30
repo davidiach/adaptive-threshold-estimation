@@ -228,6 +228,26 @@ Five deterministic targets are proved. The law and its two halves are not, so th
 status reports `entropy_tail_law_verified: false`, and `--require-complete`
 fails. No result record is published for this partial audit.
 
+## Quantile-selection comparison: scalar Lemma 3
+
+The scalar inequality of Lemma 3 in the
+[certified-selection package](../research/2026-10-30-certified-selection/README.md)
+has a locked specification and a complete audit:
+
+```sh
+python tools/verify_quantile_comparison.py --sequential --require-complete
+python -m unittest discover -s tools -p 'test_quantile_comparison.py' -v
+```
+
+The [freeze record](../tools/quantile_comparison_specification_freeze.json) hashes
+the specification, which imports only Mathlib, and fixes one full target type:
+for real $T,v,c\ge0$,
+$T+\sqrt{v^2+2Tc+2v\sqrt{Tc}}\le\frac85(\sqrt{T^2+v^2}+c)$. The audit checks
+its exact type and transitive axioms and writes its status under
+`.runtime/quantile-comparison/`. The comparison
+$\mathcal K\le Q\le\frac85\mathcal K$, Lemmas 1–2 and the suffix theorem are not
+targets.
+
 ## Magnitude-oracle lower bounds
 
 The magnitude-oracle lower bounds have a separate audit:

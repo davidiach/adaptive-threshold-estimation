@@ -337,8 +337,11 @@ and a band-preserving rounding bound, and adds an exact-rational evaluator of
 $\mathcal K$ to the toolkit. Composed with the results above, the comparison gives
 $R\le30001\cdot\frac85\mathcal K$ for finite laws and, conditionally on the
 general-law theorem, $\frac58\cdot10^{-17}Q\le R$ for every law. Status:
-**paper proofs, not Lean-checked**; the certificates rely on unverified Python.
-The manuscripts above still state $1+2\sqrt2$ and are unchanged.
+**paper proofs**, except that the comparison's scalar Lemma 3 is **Lean-checked**
+with its exact type and only the standard axioms
+([audit](VERIFY.md#quantile-selection-comparison-scalar-lemma-3)). The comparison
+itself is not Lean-checked, and the certificates rely on unverified Python. The
+manuscripts above still state $1+2\sqrt2$ and are unchanged.
 
 ## Critical power margin: full minimax characterization
 

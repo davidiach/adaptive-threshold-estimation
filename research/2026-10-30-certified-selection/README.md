@@ -1,7 +1,8 @@
 # Certified selection: a sharper quantile comparison and exact evaluation of K
 
-Status: **paper proofs and exact finite computations, not Lean-checked or
-externally specialist-reviewed.** An external contribution delivered on
+Status: **paper proofs and exact finite computations, not externally
+specialist-reviewed.** Only the scalar Lemma 3 is Lean-checked. An external
+contribution delivered on
 30 October 2026 against `6ad675e`, integrated with the changes recorded below.
 
 The package concerns the deterministic selection functional $\mathcal K$ and
@@ -14,7 +15,7 @@ the values as minimax rates still rests on that separate paper theorem.
 
 | Result | Where | Status |
 |---|---|---|
-| $\mathcal K\le Q\le\frac85\mathcal K$ for every law on $(0,1/2]$, replacing $1+2\sqrt2$ | [NOTE.md](NOTE.md) Theorem 4 | Paper proof; four polynomial identities in Lemma 3 checked exactly |
+| $\mathcal K\le Q\le\frac85\mathcal K$ for every law on $(0,1/2]$, replacing $1+2\sqrt2$ | [NOTE.md](NOTE.md) Theorem 4 | Paper proof. Its scalar Lemma 3 is Lean-checked ([audit](../../docs/VERIFY.md#quantile-selection-comparison-scalar-lemma-3)) |
 | Finite laws: some optimal hard selection is an upper-gap suffix in every dyadic band, so $\prod_j(n_j+1)$ candidates suffice | Theorem 5 | Paper proof |
 | The best of the $n+1$ global upper-gap cuts satisfies $\mathcal K\le V\le Q$; it is not exact in general | Corollary 6 | Paper proof; exact counterexample to exactness |
 | $\lvert\mathcal K_\mu-\mathcal K_{\tilde\mu}\rvert\le d_{\rm TV}(\mu,\tilde\mu)$, sharp as $h\to0$ | Theorem 7 | Paper proof |
@@ -82,6 +83,13 @@ only the standard library. `independent_check.py` needs mpmath.
 explorations that need numpy and scipy. They write only to `.runtime/` and have
 no certificate status.
 
+The Lean audit of Lemma 3 needs elan and the pinned Mathlib cache
+([setup](../../docs/VERIFY.md#setup)):
+
+```sh
+python tools/verify_quantile_comparison.py --sequential --require-complete
+```
+
 ## Integration record
 
 **Delivery.** The archive was `adaptive_threshold_improvements_2026-10-30.zip`,
@@ -118,9 +126,11 @@ the delivery.
 
 ## Limitations
 
-- Nothing here is Lean-checked; the v6 comparison with $1+2\sqrt2$ is not
-  formalized either. In order, the natural targets are the scalar Lemma 3,
-  Lemmas 1–2, Theorem 4, the finite suffix reduction, and Theorems 7–8.
+- Only Lemma 3 is Lean-checked:
+  [`scalar_comparison`](../../lean/ThresholdHC/QuantileComparison/Scalar.lean)
+  proves the locked statement with only the standard axioms. The v6 comparison
+  with $1+2\sqrt2$ is not formalized. In order, the remaining natural targets
+  are Lemmas 1–2, Theorem 4, the finite suffix reduction, and Theorems 7–8.
 - The proofs were checked by the contributing session and by the integration
   review, both AI. There is no specialist review, consistent with the
   [project's stated preference](../../docs/WORKPLAN.md#current-priorities).
