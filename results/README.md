@@ -26,6 +26,7 @@ or CI run passes.
 | Arbitrary-law deterministic quantile comparison | [entropy-tail-quantile-20261030](entropy-tail-quantile-20261030/README.md) |
 | Observable entropy-tail and closed-quantile upper bounds | [entropy-tail-upper-20261030](entropy-tail-upper-20261030/README.md) |
 | Fixed-cap identification and infinite-budget floor | [cap-identification-20261030](cap-identification-20261030/README.md) |
+| Infinite-divergence counterexample | [genie-counterexample-20261030](genie-counterexample-20261030/README.md) |
 | Direct risk and finite genie SOCP | [genie-conic-20261030](genie-conic-20261030/README.md) |
 | Convergent genie certificates | [genie-convergence-20261030](genie-convergence-20261030/README.md) |
 | Monotone genie brackets and Bellman certificates | [genie-brackets-20261030](genie-brackets-20261030/README.md) |

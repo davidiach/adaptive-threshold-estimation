@@ -319,8 +319,12 @@ now proves the optimized direct squared lower certificate for the original
 minimax risk and an exact finite atom SOCP for G_N^2, including zero scales
 and singular references. Its variable count is at most 3 + 6m + (N+1)^2.
 Eleven new modules were rebuilt; 230 declarations, 35 Genie modules and nine
-exact types were audited. The explicit infinite-divergence example remains
-separate work.
+exact types were audited. The [counterexample audit](../results/genie-counterexample-20261030/README.md)
+now verifies the paper's uniform-gap example: C_v and every positive-cap
+K_N^+ are infinite, but every finite stopping flow satisfies I <= 3W/4
+and K_infinity <= 3/4. Its unregularized genie sequence does not converge.
+Eight modules were rebuilt; 89 declarations and three exact types passed.
+The final combined full dependency rebuild is in progress.
 
 The [audit index](../paper/rare-event/audit/README.md) distinguishes the original
 source audits, final referee assessment, and revision audit, including corrected

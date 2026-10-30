@@ -1,0 +1,13 @@
+ThresholdHC\Genie\UniformPrefixes.lean:38:12: warning: This simp argument is unused:
+  prefixCoefficient
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [uniformSignPrior, constantPrior, prefixLikelihood, uniformMonomial]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ThresholdHC\Genie\UniformPrefixes.lean:39:6: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+ThresholdHC\Genie\UniformPrefixes.lean:39:6: warning: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`

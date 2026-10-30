@@ -373,5 +373,11 @@ realization as globally admissible priors. Eleven new modules were rebuilt;
 230 declarations in 35 Genie modules and nine exact types passed the audit.
 Other dependencies were cached with source hashes.
 
-The explicit infinite-divergence counterexample, manuscript integration and
-final full audit remain in progress. Earlier checkpoints retain their scope.
+The [counterexample checkpoint](../results/genie-counterexample-20261030/README.md)
+verifies the exact uniform-gap example, including its admissibility, infinite
+latent divergence, infinite genie ratios, K_infinity <= 3/4 for arbitrary
+stopping flows, and failure of pointwise convergence. Eight new modules,
+89 declarations and three exact types passed; other dependencies were cached.
+
+Manuscript integration and the final full audit remain in progress.
+Earlier checkpoints retain their original scope.
