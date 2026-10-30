@@ -326,17 +326,40 @@ entropy–tail theorem in the same paper; its status is unchanged. The
 comparison came from an external adversarial review of revision 1, which is
 unchanged.
 
+The additive [computation note](RARE_EVENT_COMPUTATION.md) improves the
+deterministic comparison to $\mathcal K\le Q\le(5/3)\mathcal K$ for every
+probability law on positive gaps, including infinite support. Its proof
+retains the selected tail and core costs separately, uses superadditivity
+and a square-root triangle inequality for the entropy, and proves the sharper
+scale-separated estimate $\Gamma_\xi\le2H_\xi/t$ on $[t,1/2]$.
+This is a new paper proof, not a Lean theorem or a completed formalization of
+the statistical rare-event law. The note also gives a slightly smaller
+algebraic coefficient without claiming optimality.
+
+The [toolkit](../toolkit/README.md#3-compute-the-rare-event-rate-for-a-known-finite-law)
+now computes the finite-law $Q$ and its inverse with $O(n\log n)$
+preprocessing and $O(\log n)$ queries. It returns the comparison
+$\mathcal K\in[\max\{T_h,3Q/5\},Q]$, evaluated in floating point, alongside the tail and
+entropy terms. This implementation is not Lean-checked or interval certified;
+its target-value inverse is not an achieved-error or estimator-budget guarantee.
+
 The 30 October [certified-selection package](../research/2026-10-30-certified-selection/README.md)
-sharpens the factor to $\mathcal K\le Q\le\frac85\mathcal K$ for every law on
-$(0,1/2]$. The best factor lies in $(1.4604,8/5]$, by exact rational
-certificates for a six-atom law ($Q/\mathcal K>1.42132$) and an eight-atom law
+sharpens the comparison further, to $\mathcal K\le Q\le\frac85\mathcal K$ for
+every law on $(0,1/2]$. That is below both $5/3$ and the computation note's
+algebraic coefficient $\lambda_*\approx1.6435$. Besides the same
+scale-separated estimate, it replaces the square-root triangle inequality by
+the entropy interaction bound
+$\mathcal G(a+b)\le\mathcal G(a)+\mathcal G(b)+\sqrt{2\mathcal G(a)\mathcal G(b)}$.
+The best factor lies in $(1.4604,8/5]$, by exact rational certificates for a
+six-atom law ($Q/\mathcal K>1.42132$) and an eight-atom law
 ($Q/\mathcal K>1.4604$, from the integration review). For finite laws, the
 package also proves that some optimal hard selection is an upper-gap suffix in
 every dyadic band. It proves $|\mathcal K_\mu-\mathcal K_{\tilde\mu}|\le d_{\rm TV}(\mu,\tilde\mu)$
 and a band-preserving rounding bound, and adds an exact-rational evaluator of
 $\mathcal K$ to the toolkit. Composed with the results above, the comparison gives
 $R\le30001\cdot\frac85\mathcal K$ for finite laws and, conditionally on the
-general-law theorem, $\frac58\cdot10^{-17}Q\le R$ for every law. Status:
+general-law theorem, $\frac58\cdot10^{-17}Q\le R$ for every law. The
+floating-point calculator above still reports the $5/3$ interval. Status:
 **paper proofs**, except that the comparison's scalar Lemma 3 is **Lean-checked**
 with its exact type and only the standard axioms
 ([audit](VERIFY.md#quantile-selection-comparison-scalar-lemma-3)). The comparison

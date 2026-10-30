@@ -15,7 +15,7 @@ the values as minimax rates still rests on that separate paper theorem.
 
 | Result | Where | Status |
 |---|---|---|
-| $\mathcal K\le Q\le\frac85\mathcal K$ for every law on $(0,1/2]$, replacing $1+2\sqrt2$ | [NOTE.md](NOTE.md) Theorem 4 | Paper proof. Its scalar Lemma 3 is Lean-checked ([audit](../../docs/VERIFY.md#quantile-selection-comparison-scalar-lemma-3)) |
+| $\mathcal K\le Q\le\frac85\mathcal K$ for every law on $(0,1/2]$, sharper than the $1+2\sqrt2$ of finite-gap revision 2 and the $5/3$ (and $\lambda_*\approx1.6435$) of the [computation note](../../docs/RARE_EVENT_COMPUTATION.md) | [NOTE.md](NOTE.md) Theorem 4 | Paper proof. Its scalar Lemma 3 is Lean-checked ([audit](../../docs/VERIFY.md#quantile-selection-comparison-scalar-lemma-3)) |
 | Finite laws: some optimal hard selection is an upper-gap suffix in every dyadic band, so $\prod_j(n_j+1)$ candidates suffice | Theorem 5 | Paper proof |
 | The best of the $n+1$ global upper-gap cuts satisfies $\mathcal K\le V\le Q$; it is not exact in general | Corollary 6 | Paper proof; exact counterexample to exactness |
 | $\lvert\mathcal K_\mu-\mathcal K_{\tilde\mu}\rvert\le d_{\rm TV}(\mu,\tilde\mu)$, sharp as $h\to0$ | Theorem 7 | Paper proof |

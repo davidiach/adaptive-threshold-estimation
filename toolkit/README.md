@@ -15,6 +15,11 @@ it, with each try costing something. Some examples:
 The research in this repository calls a try a "flip", as in flipping a slightly
 unfair coin, and the tool uses the same word.
 
+For a **known finite gap law and a known bound on the positive fraction**, the
+[rare-event calculator](#3-compute-the-rare-event-rate-for-a-known-finite-law)
+evaluates the paper's quantile rate functional and its inverse. This is a
+separate calculation from the two executable estimators below.
+
 ## Read this first: what building it showed
 
 The paper proves a method that needs no tuning. It never needs to know how close
@@ -177,6 +182,91 @@ then takes a number `k` and returns how many of `k` fresh tries succeeded.
 
 `toolkit/examples/quickstart.py` runs the whole flow on simulated questions.
 
+## 3. Compute the rare-event rate for a known finite law
+
+The rare-event model assumes a known law of the magnitudes
+$D=|p-1/2|$ and a known global bound $\theta\le\rho\le1/4$ on the
+positive fraction. The signs remain unknown. Give the calculator gaps and
+relative masses directly:
+
+```sh
+python -m threshold_toolkit rare-event --gaps 0.01,0.1,0.4 --weights 1,2,7 --rarity 0.05 --budget 100000
+```
+
+This law has masses 0.1, 0.2 and 0.7. Removing the smallest-gap mass
+$\rho=0.05$ splits the atom at gap 0.01. The calculation gives:
+
+| Quantity | Value at $B=100{,}000$ |
+|---|---:|
+| Tail contribution $T_h$ | 0.0158113883 |
+| Core entropy contribution $h\sqrt{\rho\Gamma_\kappa}$ | 0.0178107278 |
+| Quantile functional $Q(B)$ | 0.0336221161 |
+| Comparison interval for the selection functional $\mathcal K(B)$ | [0.0201732697, 0.0336221161] |
+
+The interval comes from the new deterministic paper proof
+$3Q/5\le\mathcal K\le Q$ in the
+[computation note](../docs/RARE_EVENT_COMPUTATION.md). It improves the
+previous comparison factor $1+2\sqrt2$ to $5/3$. The proof applies to every
+positive-gap law; the executable calculator accepts finite laws.
+It also uses $T_h\le\mathcal K$, so the returned interval is
+$[\max\{T_h,3Q/5\},Q]$ and collapses to $\{\rho\}$ when $h\ge t$.
+
+**These are rate-functional values, not achieved RMS errors.** The statistical
+comparison between the rate and minimax risk is a paper proof with loose
+constants. This calculator does not implement the rare-event estimator or
+certify its execution budget. It does not infer a gap law from data or provide
+an unknown-law confidence interval. Numerical values, including the comparison
+endpoints, use floating-point arithmetic and are not interval certified.
+
+To invert $Q$, replace `--budget` with `--target-rate`:
+
+```sh
+python -m threshold_toolkit rare-event --gaps 0.01,0.1,0.4 --weights 1,2,7 --rarity 0.05 --target-rate 0.01
+```
+
+For this example, $Q(B)$ reaches 0.01 at approximately
+$B=1{,}130{,}446.692$. This is the threshold of the displayed functional;
+it is not a recommendation that an implemented estimator will achieve
+one percentage point of RMS error at that budget. Add `--json` for a
+structured report, or use the Python API:
+
+```python
+from threshold_toolkit import FiniteGapLaw, RareEventProfile
+
+law = FiniteGapLaw(gaps=[0.01, 0.1, 0.4], weights=[1, 2, 7])
+profile = RareEventProfile(law, rho=0.05)
+result = profile.evaluate(100_000)
+print(result.value, result.selection_lower, result.selection_upper)
+print(profile.tail_weights, profile.core_weights)
+
+inverse = profile.budget_for_rate(0.01)
+print(inverse.budget, inverse.status)
+```
+
+`FiniteGapLaw` normalizes relative weights, removes zero-mass entries and
+merges duplicate gaps. Gaps must lie in $(0,1/2]$; weights must be finite and
+nonnegative, with positive total mass. Positive weights that would disappear
+during normalization are rejected. Omitting `weights` gives equal masses.
+The entropy sums inverse-square costs **by dyadic band**, using the actual
+gaps; it does not treat every atom as a separate scale.
+
+The preprocessing takes $O(n\log n)$ operations, followed by $O(\log n)$
+queries for either evaluation or inversion. Inversion uses the piecewise
+linear expression in $h=B^{-1/2}$, without subset search or simulation.
+Logarithmic costs keep the computation usable when an inverse-square cost
+overflows an ordinary float. A target at least $\rho$ returns budget infimum
+zero with status `saturated`. A required budget beyond the floating-point
+range returns infinity with status `overflow` and a finite `log_budget`;
+that is a representation limit, not an impossibility result. Finite returned
+budgets approximate the threshold and can differ by roundoff.
+
+The new API and its direct command need only the standard library:
+
+```sh
+python -m threshold_toolkit.rare_event_cli --gaps 0.01,0.1,0.4 --weights 1,2,7 --rarity 0.05 --budget 100000
+python toolkit/examples/rare_events.py
+```
+
 ## Assumptions and limits
 
 - Items are drawn independently at random, and repeated tries of one item are
@@ -206,11 +296,17 @@ then takes a number `k` and returns how many of `k` fresh tries succeeded.
 ## Research module: the rare-event selection functional
 
 `threshold_toolkit.rare_event_functional` is a separate research computation,
-not part of the calculator or the estimators. For a known finite gap law, it
-encloses the entropy-tail selection functional, the rate functional of the
-general-law rare-event theorem, between exact rational bounds. It uses only the
-standard library, rejects floats as inputs, and is not imported by the package
-itself. Its bounds rest on paper proofs that are not Lean-checked. See the
+not part of the calculators or the estimators. For a known finite gap law, the
+calculator in section 3 evaluates $Q$ in floating point and brackets the
+selection functional $\mathcal K$ by the $5/3$ comparison. This module instead
+encloses $\mathcal K$ itself between exact rational bounds, by bandwise-suffix
+enumeration whose cost grows exponentially with the number of occupied bands.
+It also gives the cheaper bound $\frac58Q\le\mathcal K\le Q$. It uses only
+the standard library and rejects floats as inputs. It is not imported by the
+package itself, and its `FiniteGapLaw` is a different class from the
+package-level one in section 3, so import it from
+`threshold_toolkit.rare_event_functional`. Its bounds rest on paper proofs that
+are not Lean-checked. See the
 [certified-selection package](../research/2026-10-30-certified-selection/README.md)
 for the mathematics and status; its
 [note](../research/2026-10-30-certified-selection/NOTE.md#example-use) has a

@@ -248,3 +248,5 @@ jobs:
             .runtime/confidence/
             .runtime/oracle-lower/
             .runtime/rare-above-two/
+            .runtime/entropy-tail/
+            .runtime/quantile-comparison/

@@ -81,10 +81,19 @@ This standalone manuscript is §14 and Appendix O of the [consolidated v6 paper]
 
 Revision 2 adds a section showing that $Q$ is within a factor $1+2\sqrt2$ of
 the general-law selection functional, so this theorem is the finite-law case
-of the general-law characterization rather than an independent one. The
+of the general-law characterization rather than an independent one.
+
+The new [computation note](docs/RARE_EVENT_COMPUTATION.md) tightens that
+deterministic comparison to $\mathcal K\le Q\le(5/3)\mathcal K$ for every
+positive-gap law, with a complete paper proof. The
+[finite-law calculator](toolkit/README.md#3-compute-the-rare-event-rate-for-a-known-finite-law)
+evaluates $Q$, its tail and entropy contributions, and its target-value
+inverse without subset search. The new comparison and Python implementation
+are not Lean-checked; the calculator reports a rate functional, not achieved
+estimation error. The
 [certified-selection package](research/2026-10-30-certified-selection/README.md)
-sharpens that factor to $8/5$, also as a paper proof whose scalar Lemma 3 is
-Lean-checked; the best factor lies between $1.4604$ and $8/5$.
+sharpens the comparison further to $8/5$, also as a paper proof whose scalar
+Lemma 3 is Lean-checked; the best factor lies between $1.4604$ and $8/5$.
 
 For a **known finite** magnitude law with strictly positive gaps, known global
 rarity bound $0<\rho\le1/4$, and any uniform expected observation budget $B>0$,

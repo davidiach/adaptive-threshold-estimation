@@ -158,9 +158,14 @@ def _target_report(population: Population, target: float, runs: int, seed: int,
 
 
 def main(argv: Optional[List[str]] = None) -> int:
+    argv = list(sys.argv[1:] if argv is None else argv)
+    if argv and argv[0] == "rare-event":
+        from .rare_event_cli import main as rare_event_main
+        return rare_event_main(argv[1:])
     parser = argparse.ArgumentParser(
         prog="python -m threshold_toolkit",
-        description="Plan a flip budget for estimating the share of items above 50/50.")
+        description="Plan a flip budget for estimating the share of items above 50/50.",
+        epilog="For the finite-law rare-event rate calculator, use: rare-event --help")
     guess = parser.add_mutually_exclusive_group(required=True)
     guess.add_argument("--rates", help="guessed success probabilities, comma separated")
     guess.add_argument("--rates-file", help="file of guessed success probabilities")
