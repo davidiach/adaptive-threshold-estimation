@@ -1,0 +1,12 @@
+{
+  "scope": "exact rational polynomial identities; not full theorem formalization",
+  "checks_passed": 4,
+  "coefficient_method": "sparse bivariate polynomials with Fraction arithmetic",
+  "identities": [
+    "Young lower polynomial = (64/25)(z^2+(181-260s)/256)^2 + p(s)/3072",
+    "p(s) = 2048w^3+2640w^2-80w+180, w=s-3/4",
+    "1104w^2-80w+180 = 1104(w-5/138)^2+12320/69",
+    "p(s)-(1104w^2-80w+180) = 2048w^2(w+3/4)"
+  ],
+  "remaining_human_readable_inference": "For s in [0,1], w+3/4=s>=0, so every remainder is nonnegative and 12320/69>0."
+}

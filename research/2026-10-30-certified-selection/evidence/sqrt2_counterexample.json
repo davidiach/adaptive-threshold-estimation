@@ -1,0 +1,20 @@
+{
+  "scope": "exact finite counterexample to Q <= sqrt(2) K",
+  "supporting_instance_file": "stress_near_max.json",
+  "Q_lower": "115912429526837575001/36893488147419103232000",
+  "feasible_objective_upper": "10194081549472270741751/4611686018427387904000000",
+  "feasible_selection": [
+    1,
+    0,
+    1,
+    1,
+    1,
+    1
+  ],
+  "certified_Q_over_K_strict_lower_bound": "35533/25000",
+  "rational_checks": [
+    "Q_lower > (142132/100000)*feasible_upper",
+    "(142132/100000)^2 > 2"
+  ],
+  "depends_on_band_suffix_lemma": false
+}
