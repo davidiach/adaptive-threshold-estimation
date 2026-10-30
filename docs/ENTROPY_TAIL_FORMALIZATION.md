@@ -287,7 +287,17 @@ cached objects with recorded source identities. Run
 `python tools/verify_reference_absorption.py`; its four regression tests use
 `test_reference_absorption.py`.
 
-The factor-sixteen risk certificate, information-ratio Bellman attainment,
-and genie convergence remain in progress. Run
+The [Bellman checkpoint](../results/information-bellman-20261030/README.md)
+connects the recurrence to the actual count-flow information/work ratio. It
+proves deterministic attainment, the unique price zero, continuity and strict
+monotonicity, the exact singular-state criterion, and nonnegative information
+increments with the exact continuation-flow identity. The audit rebuilt seven
+modules, checked 189 declarations in 22 modules and five exact types, and used
+only the standard axioms. Other dependencies used cached objects with recorded
+identities. Run `python tools/verify_information_bellman.py`; its four regression
+tests use `test_information_bellman.py`.
+
+Arbitrary seeded ordered-procedure aggregation, the factor-sixteen risk
+certificate, and genie convergence remain in progress. Run
 `python tools/verify_stopping_components.py`; the published checkpoint used
 `--cached-dependencies`. The full stopping and genie flags remain false.

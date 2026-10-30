@@ -271,8 +271,12 @@ with cached dependencies and only the standard axioms. The
 proves `D_N <= P_N <= 3 D_N` for the two-prior midpoint modulus, including
 null reference states and infinite information ratios. It rebuilt five modules
 and checked 225 declarations and three exact types, with cached dependencies.
-The factor-sixteen
-risk comparison, information-ratio Bellman attainment, and genie convergence
+The [Bellman audit](../results/information-bellman-20261030/README.md)
+proves deterministic attainment of the actual count-flow information ratio,
+its unique Bellman price zero, the exact infinite-ratio criterion, and the
+information-increment identity. It rebuilt seven modules and checked 189
+declarations and five exact types, with cached dependencies. Arbitrary ordered
+procedure aggregation, the factor-sixteen risk comparison, and genie convergence
 remain unfinished.
 
 The [audit index](../paper/rare-event/audit/README.md) distinguishes the original
