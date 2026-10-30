@@ -1,6 +1,10 @@
-import json, math, time
+"""Floating-point exploration of Q/K; not a proof or certificate."""
+import json, math, sys, time
 from pathlib import Path
 import numpy as np
+sys.path.insert(0,str(Path(__file__).resolve().parent))
+from runtime_output import output_directory
+out,_=output_directory(__doc__)
 rng=np.random.default_rng(731924)
 cache={}
 maxcase=None;maxratio=0.; checked=0;subset_count=0
@@ -38,5 +42,6 @@ for trial in range(20000):
  if ratio>1.6+1e-10: raise AssertionError(maxcase)
  checked+=1;subset_count+=len(masks)
 result={'scope':'floating_point_exploration_not_proof_or_certificate','seed':731924,'laws_checked':checked,'subsets_evaluated':subset_count,'elapsed_seconds':time.perf_counter()-start,'largest_ratio':maxcase}
-open(Path(__file__).resolve().parent/'evidence'/'float_exploration.json','w').write(json.dumps(result,indent=2))
+(out/'float_exploration.json').write_text(json.dumps(result,indent=2))
 print(json.dumps(result,indent=2))
+print(f'wrote {out/"float_exploration.json"}; timing differs between runs, so it is not compared')

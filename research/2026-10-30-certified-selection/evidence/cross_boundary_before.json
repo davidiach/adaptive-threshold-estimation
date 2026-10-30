@@ -1,8 +1,7 @@
 {
   "exhaustive": {
-    "schema": "ate-rare-functional-v1",
+    "schema": "ate-rare-functional-v2",
     "scope": "deterministic_entropy_tail_functional_not_statistical_risk",
-    "base_commit": "6ad675e04570cc1ef6bece8e26beb81e1a176471",
     "method": "band_suffix_exhaustive",
     "instance": {
       "law": [
@@ -24,8 +23,8 @@
       "log_terms": 24
     },
     "K_interval": {
-      "lower": "960137404056783/18446744073709551616",
-      "upper": "60008587753549/1152921504606846976"
+      "lower": "7865445614033173871/151115727451828646838272",
+      "upper": "31461782456132695485/604462909807314587353088"
     },
     "details": {
       "states_evaluated": 4,
@@ -39,9 +38,8 @@
     }
   },
   "quantile": {
-    "schema": "ate-rare-functional-v1",
+    "schema": "ate-rare-functional-v2",
     "scope": "deterministic_entropy_tail_functional_not_statistical_risk",
-    "base_commit": "6ad675e04570cc1ef6bece8e26beb81e1a176471",
     "method": "quantile",
     "instance": {
       "law": [
@@ -63,17 +61,17 @@
       "log_terms": 24
     },
     "K_interval": {
-      "lower": "25734444243999527/737869762948382064640",
-      "upper": "60008587753549/1152921504606846976"
+      "lower": "210816567246844269641/6044629098073145873530880",
+      "upper": "31461782456132695485/604462909807314587353088"
     },
     "details": {
       "Q_interval": {
-        "lower": "25734444243999527/461168601842738790400",
-        "upper": "102937776975998209/1844674407370955161600"
+        "lower": "210816567246844269641/3777893186295716170956800",
+        "upper": "843266268987377078591/15111572745182864683827200"
       },
       "tail_interval": {
-        "lower": "463020684581063/115292150460684697600",
-        "upper": "7408330953297009/1844674407370955161600"
+        "lower": "30344523584704547557/7555786372591432341913600",
+        "upper": "15172261792352273779/3777893186295716170956800"
       },
       "quantile_gap": "249/1000",
       "core_fractions": [
@@ -84,9 +82,8 @@
     }
   },
   "global_threshold": {
-    "schema": "ate-rare-functional-v1",
+    "schema": "ate-rare-functional-v2",
     "scope": "deterministic_entropy_tail_functional_not_statistical_risk",
-    "base_commit": "6ad675e04570cc1ef6bece8e26beb81e1a176471",
     "method": "global_threshold_upper",
     "instance": {
       "law": [
@@ -108,8 +105,8 @@
       "log_terms": 24
     },
     "K_interval": {
-      "lower": "25734444243999527/737869762948382064640",
-      "upper": "60008587753549/1152921504606846976"
+      "lower": "210816567246844269641/6044629098073145873530880",
+      "upper": "31461782456132695485/604462909807314587353088"
     },
     "details": {
       "states_evaluated": 3,

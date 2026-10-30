@@ -48,6 +48,14 @@ class ExactArithmeticTests(unittest.TestCase):
             self.assertLessEqual(v.width, F(1, 2**64))
         self.assertEqual(sqrt_interval(F(4)).width, 0)
 
+    def test_sqrt_precision_is_relative_below_one(self):
+        for x in [F(1, 10**100), F(3, 2**1001), F(1, 2**161), F(1, 2**162), F(999, 1000)]:
+            v = sqrt_interval(x, 64)
+            self.assertLessEqual(v.lower**2, x)
+            self.assertGreaterEqual(v.upper**2, x)
+            self.assertGreater(v.lower, 0)
+            self.assertLessEqual(v.width, v.upper / 2**64)
+
     def test_log_enclosures_independent_decimal(self):
         with localcontext() as c:
             c.prec = 110
@@ -169,6 +177,19 @@ class FunctionalTests(unittest.TestCase):
         self.assertLessEqual(lo*lo,target_squared)
         self.assertGreaterEqual(hi*hi,target_squared)
 
+    def test_huge_budget_keeps_relative_precision(self):
+        # Absolute 2**-bits square roots made these enclosures [0, 2**-bits].
+        law=FiniteGapLaw([('1/4',1)])
+        lo,hi=bounds(exhaustive_certificate(law,rho='1/4',budget=10**60,precision=P))
+        self.assertLessEqual(lo*lo,F(4,10**60))
+        self.assertGreaterEqual(hi*hi,F(4,10**60))
+        two=FiniteGapLaw([('1/4','1/2'),('1/3','1/2')])
+        exact=exhaustive_certificate(two,rho='1/4',budget=10**60,precision=P)
+        q=quantile_certificate(two,rho='1/4',budget=10**60,precision=P)
+        for lo,hi in [bounds(exact),[F(q['details']['Q_interval'][k]) for k in ('lower','upper')]]:
+            self.assertGreater(lo,0)
+            self.assertLessEqual(hi-lo,hi/2**40)
+
     def test_budget_monotonicity(self):
         law=FiniteGapLaw([('1/64','1/10'),('1/4','9/10')])
         for b in [100,10000,10**6]:
@@ -248,6 +269,14 @@ class CertificateIntegrityTests(unittest.TestCase):
         for fn in [quantile_certificate,threshold_certificate,exhaustive_certificate]:
             c=json.loads(json.dumps(fn(self.law,**self.kw)))
             self.assertTrue(verify_certificate(c,self.law,rho='1/20',budget=10**6))
+
+    def test_schema_v2_has_no_fixed_commit_and_rejects_v1(self):
+        c=quantile_certificate(self.law,**self.kw)
+        self.assertEqual(c['schema'],'ate-rare-functional-v2')
+        self.assertNotIn('base_commit',c)
+        legacy=deepcopy(c)
+        legacy.update(schema='ate-rare-functional-v1',base_commit='6ad675e04570cc1ef6bece8e26beb81e1a176471')
+        self.assertFalse(verify_certificate(legacy,self.law,rho='1/20',budget=10**6))
 
     def test_rejects_wrong_external_instance(self):
         c=quantile_certificate(self.law,**self.kw)

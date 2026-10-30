@@ -10,12 +10,13 @@ import time
 
 ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT/'toolkit'))
+sys.path.insert(0,str(Path(__file__).resolve().parent))
+from runtime_output import compare, output_directory
 from threshold_toolkit.rare_event_functional import (
     FiniteGapLaw, Precision, evaluate_selection, exhaustive_certificate,
     quantile_certificate, suffix_search_size, verify_certificate, threshold_certificate,
 )
 
-OUT=Path(__file__).resolve().parent/'evidence'
 P=Precision(bits=64,log_terms=24)
 
 def bounds(c):
@@ -28,7 +29,7 @@ def summarize(c):
             'scope':'decimal displays only; exact endpoints are in the certificate'}
 
 def main():
-    OUT.mkdir(exist_ok=True)
+    out,writing=output_directory(__doc__)
     cases={
       'selection_essential':(FiniteGapLaw([('1/10000000000','1/100000000'),('1/4','99999999/100000000')]),F(1,10**6),F(10**12)),
       'not_one_global_threshold':(FiniteGapLaw([('1/4','9999/10000'),('1/2','1/10000')]),F(1,4),F(10**8)),
@@ -49,7 +50,7 @@ def main():
         assert verify_certificate(v,law,rho=rho,budget=B)
         assert verify_certificate(c,law,rho=rho,budget=B)
         assert verify_certificate(q,law,rho=rho,budget=B)
-        (OUT/(name+'.json')).write_text(json.dumps({'exhaustive':c,'quantile':q,'global_threshold':v},indent=2)+'\n')
+        (out/(name+'.json')).write_text(json.dumps({'exhaustive':c,'quantile':q,'global_threshold':v},indent=2)+'\n')
         kl,ku=bounds(c)
         ql,qu=[F(q['details']['Q_interval'][s]) for s in ('lower','upper')]
         summary[name]={**summarize(c),'states':c['details']['states_evaluated'],
@@ -67,7 +68,7 @@ def main():
     qlower=F(q['details']['Q_interval']['lower'])
     gap=F(142132,100000)
     assert qlower>gap*feasible.upper and gap*gap>2
-    (OUT/'sqrt2_counterexample.json').write_text(json.dumps({
+    (out/'sqrt2_counterexample.json').write_text(json.dumps({
         'scope':'exact finite counterexample to Q <= sqrt(2) K',
         'supporting_instance_file':'stress_near_max.json',
         'Q_lower':str(qlower),'feasible_objective_upper':str(feasible.upper),
@@ -100,8 +101,13 @@ def main():
     record={'scope':'finite rational-interval regression evidence; not a proof of universal claims',
             'seed':604219,'laws_checked':comparisons,'full_subsets_evaluated':full_states,
             'band_suffix_candidates_evaluated':suffix_states,'counterexamples_found':0,
-            'elapsed_seconds_including_examples':time.perf_counter()-start,'examples':summary}
-    (OUT/'summary.json').write_text(json.dumps(record,indent=2)+'\n')
+            'examples':summary}
+    (out/'summary.json').write_text(json.dumps(record,indent=2)+'\n')
     print(json.dumps(record,indent=2))
+    # Wall-clock time stays out of the record so replays are byte-stable.
+    print(f'elapsed seconds including examples: {time.perf_counter()-start:.1f}')
+    if writing:
+        return 0
+    return compare(out,[name+'.json' for name in cases]+['sqrt2_counterexample.json','summary.json'])
 
-if __name__=='__main__':main()
+if __name__=='__main__':sys.exit(main())

@@ -6,6 +6,10 @@ All arithmetic is rational. No CAS or floating-point dependencies. Apache-2.0.
 from fractions import Fraction as F
 from pathlib import Path
 import json
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from runtime_output import compare, output_directory
 
 # Sparse bivariate polynomials in (s,z).
 def add(*polys):
@@ -33,6 +37,7 @@ def power(p,n):
     return answer
 
 def main():
+    out_dir, writing = output_directory(__doc__)
     one = {(0,0):F(1)}
     s = {(1,0):F(1)}
     z2 = {(0,2):F(1)}
@@ -66,9 +71,9 @@ def main():
         ],
         'remaining_human_readable_inference': 'For s in [0,1], w+3/4=s>=0, so every remainder is nonnegative and 12320/69>0.'
     }
-    out = Path(__file__).resolve().parent/'evidence'/'algebra.json'
-    out.write_text(json.dumps(record,indent=2)+'\n')
+    (out_dir/'algebra.json').write_text(json.dumps(record,indent=2)+'\n')
     print(json.dumps(record,indent=2))
+    return 0 if writing else compare(out_dir, ['algebra.json'])
 
 if __name__=='__main__':
-    main()
+    sys.exit(main())

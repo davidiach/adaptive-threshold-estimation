@@ -6,8 +6,8 @@ the deterministic lemmas in the accompanying research note. No floating-point
 arithmetic is used in any bound. Inputs are exact integers, decimal/rational
 strings, or Fraction objects; floats are deliberately rejected.
 
-Additive contribution against repository commit
-6ad675e04570cc1ef6bece8e26beb81e1a176471. Apache-2.0.
+Developed against repository commit 6ad675e04570cc1ef6bece8e26beb81e1a176471;
+see research/2026-10-30-certified-selection/. Apache-2.0.
 """
 from __future__ import annotations
 
@@ -22,8 +22,8 @@ import json
 
 Rational = Union[int, str, Fraction]
 SCOPE = "deterministic_entropy_tail_functional_not_statistical_risk"
-SCHEMA = "ate-rare-functional-v1"
-BASE_COMMIT = "6ad675e04570cc1ef6bece8e26beb81e1a176471"
+# v2 drops v1's fixed base_commit field, which misdated certificates made by later code.
+SCHEMA = "ate-rare-functional-v2"
 ZERO = Fraction(0)
 ONE = Fraction(1)
 
@@ -94,15 +94,20 @@ def _floor_log2(x: Fraction) -> int:
 
 @lru_cache(maxsize=8192)
 def sqrt_interval(x: Fraction, bits: int = 80) -> Interval:
-    """Enclose sqrt(x) in a dyadic interval of width at most 2**(-bits)."""
+    """Enclose sqrt(x) in a dyadic interval of width at most 2**(-bits)*min(1, sqrt(x)).
+
+    Below 1 the grid is refined with the magnitude of x, so tiny values keep
+    `bits` relative bits instead of collapsing to [0, 2**(-bits)].
+    """
     if not isinstance(x, Fraction):
         raise TypeError("sqrt_interval expects a Fraction.")
     if x < 0 or type(bits) is not int or not 16 <= bits <= 512:
         raise ValueError("Need x>=0 and integer bits in [16,512].")
-    scale = 1 << bits
-    k = isqrt((x.numerator << (2 * bits)) // x.denominator)
-    lo = Fraction(k, scale)
-    hi = lo if lo * lo == x else Fraction(k + 1, scale)
+    # x >= 2**e gives sqrt(x) >= 2**(e/2), so 2**(-shift) <= 2**(-bits)*sqrt(x).
+    shift = bits + (max(0, (1 - _floor_log2(x)) // 2) if x else 0)
+    k = isqrt((x.numerator << (2 * shift)) // x.denominator)
+    lo = Fraction(k, 1 << shift)
+    hi = lo if lo * lo == x else Fraction(k + 1, 1 << shift)
     return Interval(lo, hi)
 
 
@@ -259,8 +264,8 @@ def _hash(value: Mapping) -> str:
 def _certificate(law: FiniteGapLaw, rho: Fraction, budget: Fraction, p: Precision,
                  method: str, interval: Interval, **details) -> dict:
     instance = _instance(law, rho, budget)
-    return {"schema": SCHEMA, "scope": SCOPE, "base_commit": BASE_COMMIT,
-            "method": method, "instance": instance, "instance_sha256": _hash(instance),
+    return {"schema": SCHEMA, "scope": SCOPE, "method": method,
+            "instance": instance, "instance_sha256": _hash(instance),
             "precision": {"bits": p.bits, "log_terms": p.log_terms},
             "K_interval": interval.as_dict(), "details": details}
 
@@ -413,7 +418,7 @@ def verify_certificate(certificate: object, law: FiniteGapLaw, *, rho: Rational,
     try:
         if type(certificate) is not dict:
             return False
-        expected_keys = {"schema", "scope", "base_commit", "method", "instance",
+        expected_keys = {"schema", "scope", "method", "instance",
                          "instance_sha256", "precision", "K_interval", "details"}
         if set(certificate) != expected_keys:
             return False
