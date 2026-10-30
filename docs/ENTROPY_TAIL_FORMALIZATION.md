@@ -67,6 +67,27 @@ statistical theorem.
   counts. This does not yet realize the marked Poisson estimator.
 - `SurvivalWork.lean`, `LogSurcharge.lean`: geometric survival-work and scalar
   logarithmic surcharge estimates used in the remaining assembly.
+- `ThresholdHC/EntropyTailAssembly/BandWeights.lean`, `BandEntropy.lean`,
+  `IntegratedSurcharge.lean`, `SelectedWork.lean`: normalized selected-band
+  weights, zero-mass bands, exact entropy sums and integrated selected work.
+- `OrdinaryKernels.lean`, `ErrorCaps.lean`, `AccuracySchedule.lean`: ordinary
+  error convergence for arbitrary finite laws, least successful caps, strictly
+  increasing caps, geometric accuracy and finite terminal levels.
+- `KernelMoments.lean`, `DyadicKernelPointwise.lean`, `DyadicKernelSum.lean`:
+  component moment estimates and the homogeneous kernel bound with constant
+  208, including bounded truncations and infinite extended-value sums.
+- `ConditionalWork.lean`, `LevelCertificates.lean`: actual raced population
+  error and three-piece work, including zero selected mass. The work estimate
+  uses the original globally rare prior and observes no component labels.
+- `MixedWork.lean`, `UnresolvedWork.lean`, `CertificateAlgebra.lean`,
+  `BudgetCertificate.lean`: a finite multilevel allocation certificate bounded
+  by `28000 * (sqrt(rho * Gamma) + H)`, uniformly in the terminal level.
+  Intermediate constants are conservative: ordinary inverse-moment work uses
+  34 instead of 21, and selected level work uses `128*(l+1)*Gamma + 6*H^2/rho`.
+  This certificate is not yet a realized estimator or a minimax risk bound.
+- `FiniteApproximation.lean`: finite entropy implies the selected measure's
+  inverse-square and inverse moments are integrable; finite-band truncation
+  preserves the entropy upper bound and its discarded inverse moment vanishes.
 
 The full deterministic quantile comparison passed the exact-target and
 transitive-axiom audit on 30 October 2026: 20 modules, 121 declarations, two
@@ -83,9 +104,18 @@ checks cover the population error theorem and Poisson second moment. Its
 evidence is `.runtime/entropy-tail-upper-checkpoint-20261030/`; it used the
 already compiled dependencies, recording all 184 local source hashes, and
 did not rebuild that whole dependency closure. It is not the final upper
-theorem audit. Remaining work includes integrating band costs and surcharge,
-the cap schedule and mixed kernel sum, marked Poisson sampling in the actual
-observable population experiment, and the approximation/minimax steps.
+theorem audit.
+
+The assembly checkpoint in
+`.runtime/entropy-tail-assembly-checkpoint-20261030/` rebuilt all 17 assembly
+modules and checked four independent exact types and the transitive axioms of
+all 338 declarations across the 39 upper/assembly modules. Only
+`Classical.choice`, `Quot.sound` and `propext` occur. It recorded the local
+dependency sources but used cached objects for dependencies outside the
+assembly. The full statistical upper theorem remains unverified. Remaining
+work includes marked Poisson sampling in the actual observable population
+experiment, its output-risk bound, and connecting the proved approximation
+lemmas to the minimax infimum.
 
 ## Verification
 
@@ -100,3 +130,9 @@ The deterministic audit is `python tools/verify_entropy_tail_components.py`.
 It recompiles every local dependency and reports the unproved statistical
 targets as unverified. Its regression tests are
 `python -m unittest discover -s tools -p test_entropy_tail_components.py -v`.
+
+The analytic assembly audit is `python tools/verify_entropy_tail_assembly.py`.
+Its default rebuilds the complete local dependency closure. The explicit
+`--cached-dependencies` checkpoint mode rebuilds the assembly and records its
+more limited rebuild scope. Both modes keep the unproved statistical targets
+marked unverified.
