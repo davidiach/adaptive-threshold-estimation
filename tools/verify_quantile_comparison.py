@@ -24,13 +24,13 @@ ROOT = Path(__file__).resolve().parents[1]
 LEAN = ROOT / 'lean'
 SOURCE = LEAN / 'ThresholdHC/QuantileComparison'
 FREEZE = ROOT / 'tools/quantile_comparison_specification_freeze.json'
-MODULES = ('Specification',)
+MODULES = ('Specification', 'Scalar')
 PREFIX = 'ThresholdHC.QuantileComparison.'
 FROZEN = {'lean/ThresholdHC/QuantileComparison/Specification.lean':
           '434b95f79d8464596cf52c34bbbdda9c90f65b274d55874c5f4ab404bd88a6b2'}
 TARGETS = {PREFIX+'scalar_comparison': PREFIX+'ScalarComparisonStatement'}
 # Targets whose proofs are present. A target is proved only by its registered name.
-PROVED: tuple[str, ...] = ()
+PROVED: tuple[str, ...] = (PREFIX+'scalar_comparison',)
 # Any declaration form of a target name, including modifiers such as `protected` and
 # fully qualified names, which the shared root pattern does not report.
 TARGET_DECLARATION = (r"\b(?:def|abbrev|structure|theorem|lemma|instance|inductive)\s+"
