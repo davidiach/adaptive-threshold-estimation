@@ -1,0 +1,59 @@
+\section{Stopping programs and finite certificates}\label{sec:certificates}
+The selection law is a comparison up to conservative universal constants.
+A complementary representation retains more quantitative information.
+The robust cap-$N$ stopping-flow program $P_N(B)$ of
+\cref{sec:flow-foundations} has exact attained dual
+\[
+ P_N(B)^2=
+ \max_{q_L,q_H,q_v,q_w\in\mathcal Q_\rho}
+ \frac{[\theta(q_H)-\theta(q_L)]_+^2}
+ {4+B K_N(q_L,q_H;q_v,q_w)}.
+\]
+Here $K_N$ is optimal stopped signed-likelihood information relative to
+$q_v$ per expected observation under $q_w$.
+The four priors have separate endpoint, variance, and work roles.
+Theorem~\ref{thm:exact-dual} gives the identity and
+Proposition~\ref{prop:dual-bellman} gives its Bellman recursion.
+
+Reference absorption and affinity testing give the explicit comparison
+\begin{equation}\label{eq:certificate-program}
+ R_{\mu,\rho}(B)\le P_{N_*}(B)\le16R_{\mu,\rho}(B),
+ \qquad
+ N_*=\left\lceil64\max\{B,\rho B^2\}\right\rceil,
+\end{equation}
+proved in \cref{sec:midpoint-dual}.
+The factor sixteen is a program guarantee, distinct from the conservative
+constants in Theorem~\ref{thm:entropy-tail-law}.
+
+A strengthened lower experiment reveals a unit's latent state at its cap.
+Its dual value $G_N$ obeys
+\[
+ 0<G_N\uparrow P_\infty,\qquad
+ P_N\downarrow P_\infty,\qquad
+ G_N/8\le R_{\mu,\rho}(B)\le P_N.
+\]
+Thus a verified feasible upper policy $U$ and lower dual value $L$ with
+$U\le2L$ certify a factor-sixteen approximation. For every fixed input,
+sufficiently accurate program solutions eventually meet that criterion.
+Pointwise convergence of the genie brackets assumes finite latent
+divergence, and \cref{sec:genie} includes an infinite-divergence
+counterexample; optimized convergence first fixes a positive
+regularization, takes the cap limit, and then removes the regularization.
+No uniform convergence rate or bit-complexity claim is made.
+Finite-support inputs give genuine finite conic programs.
+The eight rational examples in \cref{sec:computation} pass at caps
+$1$, $4$, or $8$; independent exact checkers verify their feasibility.
+
+The fixed-cap program also has an exact identification threshold:
+for $m$ distinct positive magnitudes its infinite-budget bias floor
+vanishes exactly when $N\ge2m-1$. Infinite-support laws have a positive
+floor at every fixed finite cap (Theorem~\ref{thm:cap-identifiability}
+in \cref{sec:identifiability}). This identifies the target, not
+necessarily the full allocation $q$, and is compatible with the
+unrestricted problem, whose cap may increase.
+
+\paragraph{Status.}
+These are paper proofs from the standalone general-law manuscript.
+The stored rational certificates are exact for their finite instances;
+they do not prove the continuum or compactness claims. None of these
+results is Lean-formalized.

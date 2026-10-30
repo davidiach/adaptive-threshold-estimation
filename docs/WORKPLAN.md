@@ -14,6 +14,11 @@ review, and CI history.
 | Open research | Sharp rare-event confidence rates at and above the quadratic boundary; tighter constants and efficient selection algorithms. | [Current claim boundaries](RESULTS.md), [main overview](../README.md#scope-and-review) |
 | Maintenance | Parameterize repeated entropy/base-cost and prefix-information/event-transfer arguments; extract shared audit code; simplify redundant premises and unused facts. These are non-blocking follow-ups. | [Recorded refactoring scope](#pr-10-review-and-maintenance-follow-up), [Lean map](../lean/README.md), [tool index](../tools/README.md) |
 
+The [consolidated v6 manuscript](../paper/v6/README.md) presents all of
+these results in one paper; the v5, general-law and finite-gap manuscripts
+remain preserved as its sources. When a paper-proof result is formalized,
+update the v6 verification section and rebuild the PDF.
+
 The original RMS law, critical quadratic law, unbiased existence
 characterization, confidence characterization, and canonical magnitude-oracle
 lower bounds already have formal results with the scopes recorded in

@@ -1,0 +1,44 @@
+\section{The entropy--tail law for every magnitude law}\label{sec:entropy-tail}
+The variational modulus $\Psi$ of \cref{sec:rare} is a valid lower
+bound, but \cref{thm:v5-critical} shows that it cannot be matched in
+general. This section states the replacement. The experiment is that of
+\cref{sec:rare-model}, with every budget $B>0$ allowed. The upper
+procedure may know $\mu,\rho,B$; magnitudes and signs remain hidden. No
+density, regular variation, positive lower support bound, finite inverse
+moment, or finite full-law entropy is assumed.
+
+\input{entropy-tail-statement}
+
+\subsection{Proof structure}
+The upper construction in \cref{sec:entropy-tail-upper} races a
+likelihood bank against an ordinary capped classifier on independent
+observation streams of the same latent unit. Its null likelihood uses
+the full law $\mu$. A mixed-work bound and finite Poisson multilevel
+allocation give the three-piece upper bound.
+
+The lower proof in \cref{sec:matching-lower} begins with an optimal
+finite-band selection. Its ordinary and unresolved pieces are controlled
+by a variational null-work modulus. Optimality constrains the gaps of
+the retained bands. Grouping comparable costs and trimming a controlled
+number of the smallest gaps produces annular components with admissible
+conditional rarities and active mass-saturation constraints. Allocating
+rarity proportionally to retained entropy makes their lower bounds add
+at every budget. Finite-prefix approximation covers laws accumulating
+at zero.
+
+All specialized ingredients are proved in
+\cref{sec:uf-foundations,sec:lower-foundations,sec:transfer-foundations}:
+the ordinary classifier, weighted likelihood bank, homogeneous work sum,
+multilevel allocation, weighted sign entropy, scale-sensitive gate,
+null-work transfer, and additive localization. Standard concentration,
+minimax, and convex-duality tools are cited where used.
+\Cref{sec:related-work} distinguishes these ingredients and their
+antecedents from the contribution of the joint selection law.
+
+\paragraph{Status.}
+Theorem~\ref{thm:entropy-tail-law} is a paper proof. The standalone
+general-law manuscript received adversarial AI audits of its proof
+chain and a revision audit; exact rational checks certify only its
+finite numerical instances. It is not Lean-formalized and has not
+received external specialist review. The Lean-checked critical-law and
+above-two results in \cref{sec:rare} do not certify it.

@@ -1,0 +1,40 @@
+\section{The closed quantile form}\label{fg:sec:model}
+The selection in \eqref{eq:scalar-selection} ranges over submeasures of
+$\mu$. This section shows that one explicit choice is optimal up to the
+factor $1+2\sqrt2$: remove exactly the smallest-gap mass $\rho$, keep its
+truncated inverse-gap cost, and charge the remaining core its cost
+entropy. For finite laws, Theorem~\ref{fg:thm:direct-main} proves the
+resulting closed formula with explicit constants, by an argument that does
+not invoke Theorem~\ref{thm:entropy-tail-law}.
+Corollary~\ref{fg:cor:general-laws} extends the formula to every law
+through that theorem.
+
+The direct lower proof in \cref{fg:sec:matching-lower} first obtains
+$R(B)\ge T_h/32$ by a posterior-martingale calculation and an adaptive
+midpoint decomposition. It then filters the dyadic core costs. Either
+the tail already controls the desired rate, or the filter preserves a
+constant fraction of the core entropy. Grouping and trimming the
+surviving bands produces conditional experiments that satisfy the
+required rarity and saturation constraints; their lower bounds add
+through a common-pair argument. The upper bound in
+\cref{fg:sec:direct-upper} applies the construction of
+\cref{sec:entropy-tail-upper} to the quantile split as a known design
+choice. \Cref{fg:sec:assembly-contract} assembles all branches and
+tracks the constants. Both directions use the single-unit and transfer
+results of
+\cref{sec:uf-foundations,sec:lower-foundations,sec:transfer-foundations};
+no statistical selection theorem is assumed.
+
+\paragraph{Status.}
+Theorem~\ref{fg:thm:direct-main} is a paper proof. The precursor of the
+standalone finite-gap manuscript received a fresh-context AI review, and
+an external adversarial review supplied the comparison in
+\cref{fg:sec:comparison}. It is not Lean-checked and has not received
+external specialist review. The Lean-checked finite-gap sign entropy of
+\cref{sec:rare,sec:all-sizes} concerns the critical law and does not
+certify this theorem.
+
+\input{finite-model}
+\input{finite-entropy}
+\input{finite-comparison}
+\input{finite-consequences}

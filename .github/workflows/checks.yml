@@ -56,6 +56,10 @@ jobs:
         run: python -m unittest discover -s tools -p 'test_rare_event_manuscript.py' -v
       - name: Check manuscript assembly preserves mathematical expressions
         run: python -m unittest discover -s tools -p 'test_build_v5.py' -v
+      - name: Verify the consolidated v6 manuscript and its inherited sources
+        run: python tools/build_v6.py --check
+      - name: Check v6 assembly keeps both rare-event papers' proof text
+        run: python -m unittest discover -s tools -p 'test_build_v6.py' -v
       - name: Replay population and nonlinear feedback checkpoints
         run: python tools/verify_population_research.py
   numerical-evidence:

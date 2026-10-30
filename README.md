@@ -5,14 +5,14 @@
 Minimax theory for estimating a threshold probability from noisy coin flips,
 with a research manuscript, Lean 4 proofs built on Mathlib, and reproducible experiments.
 
-**[Paper](paper/v5/paper.pdf)** · **[General-law rare-event paper](paper/rare-event/README.md)** · **[Formal proof map](lean/README.md)** · **[Verification guide](docs/VERIFY.md)** · **[Specialist review packet](paper/critical-review/review.pdf)**
+**[Paper (v6)](paper/v6/README.md)** · **[Formal proof map](lean/README.md)** · **[Verification guide](docs/VERIFY.md)** · **[Specialist review packet](paper/critical-review/review.pdf)**
 
 New contributors: start with [CONTRIBUTING.md](CONTRIBUTING.md).
 AI agents: read [AGENTS.md](AGENTS.md) for current entry points, preservation
 rules, and validation. The root [BRIEF.md](BRIEF.md) is the historical overnight
 assignment; it is preserved as part of the [process record](docs/process/README.md).
 
-**[Finite-gap rare-event manuscript](paper/finite-gap-rare-events/README.md)** — a separate paper proof for known finite gap laws, prepared for external mathematical review.
+The [consolidated v6 paper](paper/v6/README.md) combines the [v5 paper](paper/v5/README.md) with the [general-law](paper/rare-event/README.md) and [finite-gap](paper/finite-gap-rare-events/README.md) rare-event manuscripts, which are preserved unchanged.
 
 ## Problem and main result
 
@@ -42,14 +42,14 @@ The [lower theorem](lean/ThresholdHC/Tier6/Full.lean),
 
 | Result | Verification | Read more |
 |---|---|---|
-| General-law rare-event entropy-tail characterization, stopping dual, and sufficient-cap certificates | Paper proof with adversarial AI audits and exact finite certificates; new general claims not Lean-formalized | [Manuscript v2](paper/rare-event/README.md) · [Scope](docs/RESULTS.md#general-law-rare-event-characterization) |
+| General-law rare-event entropy-tail characterization, stopping dual, and sufficient-cap certificates | Paper proof with adversarial AI audits and exact finite certificates; new general claims not Lean-formalized | [v6 §13](paper/v6/README.md#reading-guide) · [Standalone v2](paper/rare-event/README.md) · [Scope](docs/RESULTS.md#general-law-rare-event-characterization) |
 | Rare-event power laws with $\alpha>2$ | Both minimax bounds proved in Lean in the observable model | [Scope and proof map](docs/RARE_ABOVE_TWO.md) |
 | Critical quadratic rare-event law, including unrestricted adaptive algorithms | Both minimax bounds proved in Lean | [Statement and scope](docs/RESULTS.md#critical-power-margin-full-minimax-characterization) |
 | Exact critical-law Ψ formula and counterexample to a universal matching-Ψ upper bound | Proved in Lean | [Theorems](lean/ThresholdHC/CriticalPsi/Full.lean) |
 | An estimator unbiased for every sign law, with uniformly finite variance and expected work, exists iff $I<\infty$; one universal construction has variance–work at most $713I^2$ | Proved in Lean in the observable adaptive model | [Theorems](lean/ThresholdHC/Observable713/Full.lean) · [Audit](results/observable713_001.json) |
 | Unbiased converse: for such estimators, finite inverse moment is necessary and variance–work is at least $I^2/16$ | Proved in Lean in the observable adaptive model | [Theorem](lean/ThresholdHC/UnbiasedConverse/Full.lean) · [Audit](results/unbiased_converse_001.json) |
 | Finite-gap entropy for every gap count; explicit single-coin base costs | Proved in Lean | [Proofs](lean/ThresholdHC/CriticalAllSizes/) · [Audit](results/critical_all_sizes_002.json) |
-| Closed quantile rare-event law for known finite gap laws | Paper proof; not Lean-checked | [Exact theorem, assumptions and complete proofs](paper/finite-gap-rare-events/README.md) |
+| Closed quantile rare-event law: direct proof for known finite gap laws, and for every law through the entropy-tail theorem | Paper proofs; not Lean-checked | [v6 §14](paper/v6/README.md#reading-guide) · [Standalone manuscript](paper/finite-gap-rare-events/README.md) |
 | Confidence radius $r_\mu(B,\delta)\asymp\omega_\mu(\sqrt{\log(1/\delta)/B})$ | Both bounds proved in Lean in the observable adaptive model | [Theorems](lean/ThresholdHC/Confidence/Full.lean) · [Audit](results/confidence_001.json) |
 | RMS and confidence lower bounds with revealed or adaptively selected magnitudes | Proved in Lean in canonical oracle models | [Theorems](lean/ThresholdHC/OracleLower/Full.lean) · [Audit](results/oracle_lower_001.json) |
 | Other rare-event regimes and auxiliary results | Paper proofs; formalization incomplete | [Full results guide](docs/RESULTS.md) |
@@ -74,6 +74,8 @@ for known finite laws, also as a paper proof. The existing all-count Lean entrop
 The explicit new base-cost constants apply to single-coin procedures.
 
 ## Finite-gap rare-event manuscript
+
+This standalone manuscript is §14 and Appendix O of the [consolidated v6 paper](paper/v6/README.md).
 
 [Read the 32-page paper](paper/finite-gap-rare-events/paper.pdf) · [LaTeX sources and build instructions](paper/finite-gap-rare-events/README.md) · [Provenance](paper/finite-gap-rare-events/PROVENANCE.md) · [Revision 2 (35-page PDF)](paper/finite-gap-rare-events/revision-2/paper.pdf) · [Revision 2 notes](paper/finite-gap-rare-events/revision-2/README.md)
 
@@ -130,10 +132,11 @@ Use a disposable checkout for reproduction: some checks write diagnostic files.
 
 ## Navigate the project
 
-- **Read the mathematics:** [consolidated v5 paper](paper/v5/README.md),
-  [finite-gap rare-event manuscript](paper/finite-gap-rare-events/README.md),
-  [general-law rare-event manuscript](paper/rare-event/README.md),
-  [critical-result review packet](paper/critical-review/README.md),
+- **Read the mathematics:** [consolidated v6 paper](paper/v6/README.md);
+  its preserved sources, the [v5 paper](paper/v5/README.md),
+  [general-law rare-event manuscript](paper/rare-event/README.md) and
+  [finite-gap rare-event manuscript](paper/finite-gap-rare-events/README.md);
+  the [critical-result review packet](paper/critical-review/README.md);
   and [claims with exact assumptions](docs/RESULTS.md).
 - **Inspect the formalization:** [theorem and module map](lean/README.md),
   [main upper-bound scope](docs/BLIND_UPPER.md), and

@@ -1,16 +1,18 @@
 # Results and verification scope
 
-Start with the [consolidated v5 manuscript](../paper/v5/paper.pdf) for the
-original theory and its formalization: main statements in sections 2, 7 and 11,
-formal scope in section 12, and full rare-event arguments in appendices A–C.
-Its [source and editorial record](../paper/v5/README.md) preserves the original
-proofs and makes the Psi correction explicit. The separate
-[general-law rare-event manuscript](../paper/rare-event/README.md) adds an
-audited paper-level characterization and stopping-program framework.
+Start with the [consolidated v6 manuscript](../paper/v6/README.md), which
+combines the [v5 manuscript](../paper/v5/README.md) with the
+[general-law rare-event manuscript](../paper/rare-event/README.md) and the
+[finite-gap rare-event manuscript](../paper/finite-gap-rare-events/README.md).
+Its [reading guide](../paper/v6/README.md#reading-guide) locates the original
+theory, the rare-event results and the formal scope section; its
+[editorial record](../paper/v6/README.md#source-and-editorial-scope) explains
+which shared proofs appear once. The three source manuscripts are preserved
+unchanged. The v5 source record preserves the original proofs and makes the
+Psi correction explicit.
 
-The later [finite-gap rare-event manuscript](../paper/finite-gap-rare-events/README.md)
-is a separate paper proof for known finite gap laws. It is not part of v5 or
-the Lean-checked results; its scope is recorded below.
+The general-law and finite-gap results are paper proofs, not Lean-checked;
+their scopes are recorded below.
 
 This guide gives the exact Lean specifications and remaining paper-proof
 boundaries. Historical source pointers below refer to the unchanged
@@ -291,6 +293,8 @@ construction and most appendix lemmas and differ mainly in the lower-bound
 reduction, so their agreement is not independent confirmation of the rate.
 Conditionally on the general-law theorem, $R\asymp Q$ also holds for general
 laws; that extension rests entirely on the general-law paper proof. The
+consolidated v6 manuscript states this extension as a corollary of the
+entropy–tail theorem in the same paper; its status is unchanged. The
 comparison came from an external adversarial review of revision 1, which is
 unchanged.
 

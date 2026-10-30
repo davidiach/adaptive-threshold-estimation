@@ -1,0 +1,322 @@
+\section{Verification, provenance, and remaining questions}\label{sec:verification}
+The distinction between a checked theorem and a checked ingredient is
+part of each result's scope. Most theorem links use the completed critical-law
+and Psi checkpoint \nolinkurl{eabf274cb42d4bff4daab6b58568ad6169e7f0a7}.
+The unbiased converse uses its later checkpoint
+\nolinkurl{631886e16ddff5b8e93b73860bf6552b956128be}.
+The observable 713 construction and existence characterization use
+\nolinkurl{15dbbda98a31e27502e3caff991d3ea21d096d23}.
+The rare-event theory above exponent two uses
+\nolinkurl{637fb4a79d20e30415a2cb0e495752603077c0ee}.
+All theorem links point to fixed source revisions.
+The preceding all-size addendum has its own linked checkpoint and audit;
+its stronger domain and explicit single-coin constants supplement this table.
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.28\textwidth}>{\raggedright\arraybackslash}p{0.67\textwidth}@{}}
+\toprule
+Claim & Verification scope\\
+\midrule
+\endhead
+Original RMS minimax lower bound &
+\leanref{Tier6/Full.lean}{minimax\_lower\_bound} proves
+$R_\mu(B)\ge\omega_\mu(B^{-1/2})/64$ in the hidden-magnitude iid
+fresh-coin model, for arbitrary measurable seeds, natural-number coin
+labels, revisits, interleaving, and unbounded stopping. It constructs
+the experiment and retains infinite risk. The separate oracle theorem
+below covers the stronger revealed- and selected-magnitude models.\\[5pt]
+Original RMS upper bound &
+\leanref{BlindUpper/Full.lean}{distribution\_blind\_upper} chooses one
+budget-indexed observable family before every gap law and proves
+$R_\mu(B)\le512\omega_\mu(B^{-1/2})$. Actual cost/output identities,
+almost-sure termination and every budget are included. The unchanged
+frozen specification has no additional statistical premise.\\[5pt]
+Confidence characterization &
+\confidenceleanref{confidence\_characterization} proves both minimax bounds
+with coefficients $1/64$ and $8192$ for $B\ge1$ and $0<\delta\le1/4$.
+\confidenceleanref{confidence\_upper} supplies one observable family
+depending only on $(B,\delta)$. The next theorem sharpens the lower
+coefficient to $15/(256\sqrt2)$, including in this hidden model.\\[5pt]
+Magnitude-oracle lower bounds &
+\oracleleanref{Full.lean}{oracle\_minimax\_lower} proves RMS coefficient
+$1/64$ and confidence coefficient $15/(256\sqrt2)$ for $B\ge1$ and
+$0<\delta\le1/4$, both when the full iid magnitude array is revealed
+and when each new magnitude is selected adaptively. Fresh creation,
+persistent magnitudes on reuse, the actual process and expected flip
+budget, minimax bounds, and nonvacuity are proved.\\[5pt]
+Unbiased characterization &
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/631886e16ddff5b8e93b73860bf6552b956128be/lean/ThresholdHC/UnbiasedConverse/Full.lean}{\texttt{unbiased\_converse}}
+proves the necessity of $I_\mu<\infty$ and $V\overline W\ge I_\mu^2/16$
+for all uniformly unbiased observable adaptive estimators. Integrability,
+extended variance, and actual work are explicit.
+\observableleanref{observable\_unbiased\_iff} combines this converse with
+the next construction to prove the full existence characterization.\\[5pt]
+713 construction &
+\observableleanref{observable\_713} chooses one observable algorithm
+before every gap law, and proves unbiasedness, extended variance at most
+$23I_\mu$, actual work at most $31I_\mu$, and the product of separate
+suprema at most $713I_\mu^2$. The earlier conditional-kernel theorem
+and separate-family bridge remain unchanged.\\[5pt]
+Variational optimizer &
+\leanref{Tier3/Optimizer.lean}{arbitrary\_law\_optimizer}
+proves the optimizer and value formula for arbitrary laws. It does
+not assert a matching rare-event statistical upper bound.\\[5pt]
+Rare-event rates below two &
+The below-two rates and the general statistical $\Psi$ lower bound
+remain paper theorems. The arbitrary-law $\Psi$ lower bound in
+\cref{app:localization} uses the cited Lee--Valiant input. The critical
+law has the separate formal coverage below.\\[5pt]
+Rare-event rate above two &
+\abovetwoleanref{above\_two\_theory} proves both minimax bounds for the
+exact power law with $\alpha>2$, $0<a\le1/2$, $0<\rho\le1/4$ and $B\ge1$,
+together with law existence, a $\Psi$ comparison and nonvacuity. One
+single-coin family depending only on $(a,\rho)$ is unbiased on every
+power-margin law. The lower bound holds for every law supported below
+$a$ and uses no Lee--Valiant input. The frozen targets assert positive
+constants; the proofs instantiate $1/256$ and second moment $28\rho$.
+The paper construction of \cref{app:above-two}, with its constant
+$153/56$ and compound-Poisson calibration, is not the formal one.\\[5pt]
+Finite-gap sign entropy &
+\leanref{CriticalEntropy/FiniteGap.lean}{finite\_gap\_sign\_entropy}
+proves the statistical bound with actual stopping and flip costs.
+The same test serves every specified gap and sign.\\[5pt]
+Critical single-coin base cost &
+\leanref{CriticalEntropy/BaseCost.lean}{critical\_base\_cost} proves
+$V\E_0T\ge c\rho L(1+\log L)$ for one universal $c>0$ and all
+$0<\rho\le1/4$. Extended variance, actual work and the global capped
+prior class are explicit. Activation and the full entropy chain are
+derived. It is an input to the full critical lower theorem below.\\[5pt]
+Critical minimax lower bound &
+\leanref{CriticalEntropy/CriticalMinimax.lean}{critical\_minimax\_lower\_bound}
+proves the saturated lower rate in \cref{thm:v5-critical} for the full
+rare-prior class. Statistical compactness, finite mixtures, one common
+pair, population transfer, endpoint termination and terminal testing
+are proved, including unrestricted creation and arbitrary seeds.\\[5pt]
+Critical minimax upper bound &
+\leanref{CriticalUpper/Full.lean}{critical\_upper\_bound} constructs one
+rarity- and budget-indexed observable family with uniform expected work
+at most $B$ and the matching RMS rate with coefficient $100000$.
+Its actual execution and work/output identities are proved.\\[5pt]
+Exact $\Psi$ comparison and counterexample &
+\leanref{CriticalPsi/Full.lean}{critical\_psi\_formula} evaluates the actual
+variational supremum; \leanref{CriticalPsi/Full.lean}{critical\_psi\_rate}
+proves its two-sided rate. \leanref{CriticalPsi/Full.lean}{critical\_matching\_psi\_refuted}
+rules out every universal matching-$\Psi$ upper bound in the original
+minimax model. Its budget is $LH/\rho$, not the paper sequence $\rho^{-2}$.\\[5pt]
+Entropy--tail law &
+Theorem~\ref{thm:entropy-tail-law} and its constants
+\eqref{eq:explicit-main-constants} are paper proofs with adversarial AI
+audits of the standalone manuscript. They are not Lean-formalized; the
+critical and above-two formal results do not certify them.\\[5pt]
+Closed quantile form &
+Theorem~\ref{fg:thm:direct-main} for finite laws is a paper proof; the
+deterministic comparison \cref{fg:prop:quantile-selection} is a paper proof
+checked numerically on random finite laws. The extension
+Corollary~\ref{fg:cor:general-laws} rests on
+Theorem~\ref{thm:entropy-tail-law}. None is Lean-checked.\\[5pt]
+Stopping programs and certificates &
+The four-prior dual, factor-sixteen comparison, genie limits and
+fixed-cap identification of \cref{sec:certificates} are paper proofs.
+Exact rational checks certify only the stored finite instances.\\
+\bottomrule
+\end{longtable}
+
+The audits permit three standard Lean axioms: \texttt{propext},
+\texttt{Classical.choice}, and \texttt{Quot.sound}.
+The exact specifications and model definitions are necessary to interpret
+that fact: absence of proof holes does not show that a statement matches
+an intended experiment. The finite-gap targets were introduced with their
+proofs and are not described as specifications frozen before the proof work.
+The repository's \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/eabf274cb42d4bff4daab6b58568ad6169e7f0a7/docs/VERIFY.md}{verification guide}
+gives reproduction commands and the source-specific audit records.
+The toolchain is Lean \texttt{v4.36.0-rc1} with Mathlib revision
+\nolinkurl{9bdd0bc71aaae0fd83889f9aacd70c32fccd1bcd}.
+
+\paragraph{Realizing the distribution-blind upper algorithm.}
+The formal construction follows the two-pilot calibration strategy in
+\cref{sec:minimax-proof}. A stopped cutoff call with cap $N=2^\ell$ is
+padded by one unused flip when its original work is zero. Its output
+is unchanged, and every call advances the observed history. Two independent
+first-success pilots select the number of fresh production calls. The
+calibrated quantities have expected work at most $4N$ and mean-square
+error at most $12751\omega_\mu(N^{-1/2})^2$.
+
+These estimates are transferred to a measurable controller in the original
+experiment by exact seed and population path identities. Positive mean
+marked cost proves almost-sure pilot termination. For $B\ge4$, choosing
+$4N\le B<8N$ and comparing moduli yields coefficient $512$; for $1\le B<4$
+a zero-work estimator on the same seed space suffices. The coefficient
+includes padding and conservative rounding and is not claimed optimal.
+The full audit checks the unchanged specification and all transitive axioms;
+the earlier component records retain their historical incomplete status.
+
+\paragraph{Realizing the confidence upper algorithm.}
+Put $m=\lceil2\log(1/\delta)\rceil$ and $k=2m+1$. Each of $k$ independent
+calibrated batches receives expected budget $B/k$. Its failure probability
+at radius $512\omega_\mu(N^{-1/2})$ is at most $1/8$. A union bound over
+majority subsets puts the median's failure probability below $2^{-m}\le\delta$.
+The controller uses disjoint pair-numbered coin labels and independent
+copies of the seed. Exact finite execution identities prove that its
+output is the median and that actual work is the sum of the batch costs.
+The product law and almost-sure termination are derived in the original
+experiment. Since $k\le7\log(1/\delta)$, budget rounding and modulus
+comparison give the coefficient $8192$. A zero-work rule handles the
+small-budget regime. The radius is a theoretical function of $\mu$, not
+a confidence interval computed from the observations alone.
+
+The lower proof applies a binary confidence test to the same adaptive
+transcript information bound. It proves the conservative coefficient
+$1/64$; the oracle extension below also proves the paper's sharper
+coefficient. The four full targets, model, and transitive model
+dependencies were frozen before supporting proofs. The audit checks
+all 107 declarations and the exact targets at checkpoint
+\nolinkurl{d6feb3069d1a399ab1a50de2b0e7bc13e6b21c23}.
+
+\paragraph{Realizing the magnitude oracles.}
+The revealed model grants the entire iid magnitude array, together with an
+arbitrary independent random seed, to the policy and output. The selected
+model has explicit create, revisit, and stop requests. Each creation may
+choose any magnitude in $(0,1/2]$ as a measurable function of the seed and
+all previous flips; a revisit names a prior creation. Finite histories
+encode coin labels in the common process. The semantic proof shows that
+a fresh label has never been used on that path and that a revisited coin
+retains its original magnitude. Counterfactual histories do not restrict
+magnitudes to a deterministic discrete grid.
+
+Both models use the canonical infinite process and its proved finite-prefix
+law, actual expected flip counts, and extended risks. The adversary is one
+measurable sign function on the full magnitude domain, including any chosen
+magnitudes outside the support of the target law. The estimation target
+remains $\int q\,d\mu$. No information inequality or termination premise is
+assumed by the final lower bounds; finite budget implies almost-sure stopping.
+
+The clipped hard pair gives KL at most $(128/225)h^2B$ even with the common
+magnitude information revealed. The RMS argument gives coefficient $1/64$.
+For confidence, clipping at
+$h=15\sqrt{\log(1/\delta)/B}/(32\sqrt2)$ gives KL at most
+$\log(1/\delta)/16$; binary testing and modulus scaling give
+$15/(256\sqrt2)$. The original hidden experiment embeds with identical law,
+work, risk and confidence events. Zero-work estimators establish nonvacuity.
+The models, eight full target types and 33 transitive model dependencies
+were frozen at \nolinkurl{3474a37} before the new lower and semantic proofs.
+The audit covers ten modules, 54 declaration roots and all eight targets
+at \nolinkurl{4a5805c771e541f557848957e0a3ffada31dcb32}.
+
+\paragraph{Realizing the above-two rare-event rate.}
+The formal upper construction uses asymmetric, stage-dependent dyadic
+boundaries whose wrong-positive error is scaled by $\rho$. Power-tail and
+weighted-moment estimates turn the global rarity restriction into a
+uniform work bound, and a geometric random-level telescope gives an
+integrable unbiased single-coin output with second moment at most
+$28\rho$. Its output and work are identified in the actual observable
+experiment, and independent fixed-count repetitions or the zero-work
+estimator $\rho/2$ meet every budget. The rule is chosen before $\mu$ and
+$q$ and uses $\alpha$ only for budget calibration. The lower proof charges
+a finite-path information bound to each queried label, controls gaps
+below $1/4$ by Bernoulli KL and the remaining range by a variation bound,
+and combines a quadratic rare-mixture inequality with the midpoint hybrid
+decomposition. The seven full targets were compiled and frozen before
+the supporting proofs; the audit covers 54 modules, 322 declaration roots
+and all seven targets at
+\nolinkurl{637fb4a79d20e30415a2cb0e495752603077c0ee}.
+
+\paragraph{Realizing the critical upper algorithm.}
+The formal construction uses asymmetric classifiers at dyadic flip counts,
+an alternative to the likelihood-bank construction in \cref{app:critical}.
+An independent geometric level selects two adjacent classifiers on one
+coin's shared prefix. Their scaled difference, with the base classifier
+at level zero, has mean $\theta$, extended second moment at most $28\rho$,
+and expected actual flips at most $W=112000000LH$.
+An average of $n+1$ independent fresh-coin calls therefore has MSE at most
+$28\rho/(n+1)$ and expected work at most $(n+1)W$.
+
+The measurable controller requests only observed flips, stops each call
+from its prefix, and realizes these exact cost/output quantities in the
+original experiment. For $B\ge W/\rho$, it uses
+$\lfloor B/(2W)\rfloor+1$ calls; otherwise it returns zero without flipping.
+Both regimes satisfy the budget and the RMS bound with coefficient $100000$.
+Neither hidden magnitudes nor signs enter the policy. The full upper target
+was frozen before this construction. The Psi model and full types are
+separately hash-locked: the formula had a checked draft at freezing, while
+the rate and separation targets were fixed before their proofs.
+
+\paragraph{The unbiased converse.}
+The formal proof bounds the separation of two expectations by symmetric
+KL divergence and their variances. It uses the sign laws
+$q_\pm(d)=1/2\pm\varepsilon\min\{1,h/d\}$, charges information to actual
+flips in the infinite experiment, and sends $\varepsilon$ to zero. This
+gives $\omega_\mu(h)^2\le16h^2V\overline W$. Monotone convergence of
+truncated inverse gaps then proves both integrability and the lower product
+bound; finite $I_\mu$ is not assumed. The exact target has no KL or
+differentiability premise. The model and target were written and compiled
+before the supporting proofs; the dependency snapshot was recorded after
+the proof drafts. This unbiased converse is for the hidden-magnitude model;
+the new oracle results above concern the RMS and confidence lower bounds.
+
+\paragraph{Realizing the 713 estimator.}
+A geometric natural-number seed selects a fine classifier and its adjacent
+coarse classifier on the same coin. Monotonicity of their stopping levels
+means that the coarse output is already determined by the fine classifier's
+observed prefix. The controller requests coin zero until that stopping rule
+fires, then returns the scaled difference (the base output at level zero).
+Every seed and tape has finite actual work, bounded by its dyadic cap.
+No hidden magnitude, sign, or gap law enters the policy or output.
+
+The pointwise execution proof identifies the entire stopped transcript,
+output and flip count. The existing population simulation law transfers
+the conditional Bernoulli analysis to the original adaptive experiment.
+Integrating over every measurable sign law gives unbiasedness and the
+separate bounds $23I_\mu$ and $31I_\mu$. Extended variance retains the
+possibility of infinite values until square integrability is proved.
+The two full targets and their transitive model definitions were compiled
+and frozen before this controller and its supporting proofs. The audit
+checks both targets and all 47 new declaration roots.
+
+\paragraph{Numerical evidence and its limits.}
+Exact finite certificates, floating-point recursions, and held-out
+simulations do not certify the continuum theorems or the iterated-log
+separation. Finite-grid constants do not replace 713: the grid-winning
+logarithmic threshold coefficient $1/2$ fails the uniform error envelope
+at an explicit large cap, whereas this construction retains coefficient
+one. The finite-budget feedback advantage and practical experiments
+remain supporting research with their original limited scopes.
+
+\paragraph{Provenance and review.}
+This version incorporates the original law, the 713 argument, and the
+rare-event continuations, with full proofs in the main text and
+\cref{app:localization,app:above-two,app:critical}. It adds the
+general-law rare-event manuscript (revised v2) in
+\cref{sec:entropy-tail,sec:certificates,sec:related-work} and
+\cref{sec:entropy-tail-upper,sec:matching-lower,sec:uf-foundations,sec:lower-foundations,sec:transfer-foundations,sec:flow-foundations,sec:exact-dual,sec:midpoint-dual,sec:genie,sec:identifiability,sec:computation},
+and the finite-gap rare-event manuscript (revision 2) in
+\cref{fg:sec:model} and \cref{app:finite-direct}. Proofs that appeared
+in both rare-event manuscripts in substantially identical form appear
+once: the shared appendices follow the general-law version, with the
+finite-gap manuscript's clarifications added, and the finite-gap upper
+bound cites the general construction. The two proofs of the finite-law
+rate share that construction and those appendices, so they are not
+independent confirmations.
+The assembly script checks source identities and records editorial
+changes; historical sources and reviews remain unchanged.
+AI agents performed the work under David Iach's direction. No external
+specialist review or model diversity is established. One critical
+reviewer authored part of the argument, precluding two independent
+validations of the full proof. The
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/6009662a5581b31de17c8956b6fd93e4279ba087/docs/process/METHOD.md}{process note}
+records the workflow, failed approaches, and these limits.
+
+\paragraph{Remaining mathematical work.}
+The entropy--tail law, the closed quantile form, the stopping-program
+results, the rare-event regimes below two, and auxiliary envelope,
+smoothness, and observed-state results retain their stated paper-proof
+scopes; their formalization is the next verification target. Sharp
+comparison constants, efficient selection for structured laws, rates of
+cap convergence, and sharp rare-event confidence rates at and above the
+quadratic boundary remain open. The rare-event results assume a known
+magnitude law; unknown laws, other observation kernels and almost-sure
+budgets require separate arguments.
+
+The model requires independent fresh coins and conditionally independent
+flips, without drift or additional smooth structure linking states.
+Expected-work optimality supplies no deterministic latency bound or
+data-computable confidence radius over all unknown laws. Neither useful
+finite critical constants nor practical superiority is established.
