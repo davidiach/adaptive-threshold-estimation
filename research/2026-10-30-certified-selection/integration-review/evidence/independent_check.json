@@ -1,0 +1,55 @@
+{
+  "scope": "independent high-precision cross-check, not interval arithmetic or a proof",
+  "decimal_digits_shown": 15,
+  "examples": {
+    "sqrt2_counterexample": {
+      "K": "0.00221048907248645",
+      "Q": "0.00314181269777676",
+      "Q_over_K": "1.42132016705367",
+      "argmin": [
+        1,
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      "exceeds_sqrt2": true
+    },
+    "obstruction_1_4604": {
+      "K": "0.000319172949877675",
+      "Q": "0.00046613604418534",
+      "Q_over_K": "1.46044971656899",
+      "argmin": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "exceeds_1_4604": true
+    },
+    "not_one_global_threshold": {
+      "K": "0.000200009999749987",
+      "argmin": [
+        1,
+        0
+      ],
+      "best_global_cut": "0.0002000214902135"
+    },
+    "cross_boundary": {
+      "K_before": "5.20491529681479e-5",
+      "K_after": "3.98406374501992e-5",
+      "ratio": "1.30643373950051"
+    }
+  },
+  "random_sweep": {
+    "seed": 20261030,
+    "laws": 1000,
+    "chain_failures": 0,
+    "max_Q_over_K": "1.41390418228369"
+  }
+}

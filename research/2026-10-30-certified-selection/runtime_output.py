@@ -15,7 +15,8 @@ ROOT = PACKAGE.parents[1]
 EVIDENCE = PACKAGE / 'evidence'
 
 
-def output_directory(description: str | None) -> tuple[Path, bool]:
+def output_directory(description: str | None,
+                     evidence: Path = EVIDENCE) -> tuple[Path, bool]:
     """Return the directory to write and whether it is the tracked evidence."""
     parser = argparse.ArgumentParser(description=description)
     parser.add_argument('--output-dir', type=Path,
@@ -24,20 +25,20 @@ def output_directory(description: str | None) -> tuple[Path, bool]:
                         help='rewrite the tracked evidence/ files instead of comparing with them')
     args = parser.parse_args()
     if args.write_evidence:
-        return EVIDENCE, True
+        return evidence, True
     out = args.output_dir or ROOT / '.runtime/certified-selection' / datetime.now(
         timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')
     out.mkdir(parents=True, exist_ok=False)
     return out, False
 
 
-def compare(out: Path, names: list[str]) -> int:
+def compare(out: Path, names: list[str], evidence: Path = EVIDENCE) -> int:
     """Return 0 when every regenerated record matches its tracked bytes."""
     different = [name for name in names
-                 if not (EVIDENCE / name).is_file()
-                 or (out / name).read_bytes() != (EVIDENCE / name).read_bytes()]
+                 if not (evidence / name).is_file()
+                 or (out / name).read_bytes() != (evidence / name).read_bytes()]
     for name in different:
         print(f'DIFFERS from tracked evidence: {name}')
-    print(f'{len(names) - len(different)}/{len(names)} records match evidence/; '
+    print(f'{len(names) - len(different)}/{len(names)} records match {evidence.relative_to(ROOT).as_posix()}/; '
           f'regenerated copies are in {out}')
     return 1 if different else 0
