@@ -326,6 +326,20 @@ entropy–tail theorem in the same paper; its status is unchanged. The
 comparison came from an external adversarial review of revision 1, which is
 unchanged.
 
+The 30 October [certified-selection package](../research/2026-10-30-certified-selection/README.md)
+sharpens the factor to $\mathcal K\le Q\le\frac85\mathcal K$ for every law on
+$(0,1/2]$. The best factor lies in $(1.4604,8/5]$, by exact rational
+certificates for a six-atom law ($Q/\mathcal K>1.42132$) and an eight-atom law
+($Q/\mathcal K>1.4604$, from the integration review). For finite laws, the
+package also proves that some optimal hard selection is an upper-gap suffix in
+every dyadic band. It proves $|\mathcal K_\mu-\mathcal K_{\tilde\mu}|\le d_{\rm TV}(\mu,\tilde\mu)$
+and a band-preserving rounding bound, and adds an exact-rational evaluator of
+$\mathcal K$ to the toolkit. Composed with the results above, the comparison gives
+$R\le30001\cdot\frac85\mathcal K$ for finite laws and, conditionally on the
+general-law theorem, $\frac58\cdot10^{-17}Q\le R$ for every law. Status:
+**paper proofs, not Lean-checked**; the certificates rely on unverified Python.
+The manuscripts above still state $1+2\sqrt2$ and are unchanged.
+
 ## Critical power margin: full minimax characterization
 
 For the one fixed law $F(d)=(4d)^2$ on $(0,1/4]$, the

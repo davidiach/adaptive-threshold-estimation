@@ -62,6 +62,12 @@ jobs:
         run: python -m unittest discover -s tools -p 'test_build_v6.py' -v
       - name: Replay population and nonlinear feedback checkpoints
         run: python tools/verify_population_research.py
+      - name: Replay certified-selection evidence and compare with tracked records
+        run: |
+          python research/2026-10-30-certified-selection/verify_algebra.py
+          python research/2026-10-30-certified-selection/reproduce.py
+          python research/2026-10-30-certified-selection/integration-review/certify_obstruction.py
+          python research/2026-10-30-certified-selection/integration-review/independent_check.py
   numerical-evidence:
     runs-on: ubuntu-latest
     steps:

@@ -203,6 +203,19 @@ then takes a number `k` and returns how many of `k` fresh tries succeeded.
   implementation of the paper's definitions, exact enumeration and the
   calibration identities.
 
+## Research module: the rare-event selection functional
+
+`threshold_toolkit.rare_event_functional` is a separate research computation,
+not part of the calculator or the estimators. For a known finite gap law, it
+encloses the entropy-tail selection functional, the rate functional of the
+general-law rare-event theorem, between exact rational bounds. It uses only the
+standard library, rejects floats as inputs, and is not imported by the package
+itself. Its bounds rest on paper proofs that are not Lean-checked. See the
+[certified-selection package](../research/2026-10-30-certified-selection/README.md)
+for the mathematics and status; its
+[note](../research/2026-10-30-certified-selection/NOTE.md#example-use) has a
+usage example.
+
 ## Tests
 
 ```sh
