@@ -26,6 +26,7 @@ or CI run passes.
 | Arbitrary-law deterministic quantile comparison | [entropy-tail-quantile-20261030](entropy-tail-quantile-20261030/README.md) |
 | Observable entropy-tail and closed-quantile upper bounds | [entropy-tail-upper-20261030](entropy-tail-upper-20261030/README.md) |
 | Fixed-cap identification and infinite-budget floor | [cap-identification-20261030](cap-identification-20261030/README.md) |
+| Reference absorption and midpoint modulus | [reference-absorption-20261030](reference-absorption-20261030/README.md) |
 | Observable stopping-program upper bound | [stopping-program-upper-20261030](stopping-program-upper-20261030/README.md) |
 | Finite flow mixtures and observable calls | [stopping-flow-mixture-20261030](stopping-flow-mixture-20261030/README.md) |
 | Exact finite-law stopping program | [finite-stopping-program-20261030](finite-stopping-program-20261030/README.md) |

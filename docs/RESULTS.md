@@ -266,7 +266,12 @@ cached dependencies. The [observable stopping-program upper audit](../results/st
 proves every feasible certificate has an actual observable estimator with its
 work and risk bounds, and proves `R <= P_N` in the original model. It rebuilt
 14 modules and checked 304 declarations in 45 modules and three exact types,
-with cached dependencies and only the standard axioms. The factor-sixteen
+with cached dependencies and only the standard axioms. The
+[reference-absorption audit](../results/reference-absorption-20261030/README.md)
+proves `D_N <= P_N <= 3 D_N` for the two-prior midpoint modulus, including
+null reference states and infinite information ratios. It rebuilt five modules
+and checked 225 declarations and three exact types, with cached dependencies.
+The factor-sixteen
 risk comparison, information-ratio Bellman attainment, and genie convergence
 remain unfinished.
 

@@ -278,6 +278,15 @@ the standard axioms. Dependencies used cached objects with recorded identities.
 Run `python tools/verify_stopping_program_upper.py`; its four regression tests
 use `test_stopping_program_upper.py`.
 
+The [reference-absorption checkpoint](../results/reference-absorption-20261030/README.md)
+proves `D_N <= P_N <= 3 D_N` for the actual globally rare two-prior midpoint
+modulus. It includes null reference states and infinite information ratios.
+The audit rebuilt five modules, checked 225 declarations in 36 modules and
+three exact types, and used only the standard axioms. Other dependencies used
+cached objects with recorded source identities. Run
+`python tools/verify_reference_absorption.py`; its four regression tests use
+`test_reference_absorption.py`.
+
 The factor-sixteen risk certificate, information-ratio Bellman attainment,
 and genie convergence remain in progress. Run
 `python tools/verify_stopping_components.py`; the published checkpoint used
