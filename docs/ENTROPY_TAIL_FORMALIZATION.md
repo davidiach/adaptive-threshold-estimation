@@ -333,5 +333,16 @@ found only standard axioms. Other dependencies used cached objects with
 recorded identities. Run `python tools/verify_finite_risk_certificate.py`;
 its four regression tests use `test_finite_risk_certificate.py`.
 
-Infinite-cap duality and genie convergence remain in progress. Earlier
-component checkpoint flags describe their original, narrower scope.
+The [infinite-cap checkpoint](../results/infinite-cap-dual-20261030/README.md)
+proves the exact attained four-prior dual, factor-three midpoint comparison,
+factor-eight original minimax comparison, and monotone limits of ordinary
+information and primal values. Its common compact moment image handles
+singular reference states and infinite information. Positivity for rho <= 1/4
+uses the Bernoulli-label floor. The audit rebuilt 14 modules and checked
+68 declarations, eight exact types and only standard transitive axioms.
+Other dependencies used cached objects with recorded hashes. Run
+`python tools/verify_infinite_cap_dual.py`; regressions use
+`test_infinite_cap_dual.py`.
+
+Latent-reveal brackets and convergence remain in progress. Earlier component
+checkpoint flags describe their original, narrower scope.

@@ -294,8 +294,14 @@ and B > 0. It proves the sharp truncation comparison and universal Bernoulli-lab
 risk floor, independently of the entropy-tail statistical lower bound. The audit
 rebuilt nine modules and checked 559 declarations and eight exact types, including
 all three original finite stopping-program targets. Dependencies were cached
-with recorded source identities. Infinite-cap duality and genie convergence
-remain unfinished.
+with recorded source identities. The
+[infinite-cap audit](../results/infinite-cap-dual-20261030/README.md) proves the
+exact attained four-prior dual, D_infinity <= P_infinity <= 3 D_infinity and
+R <= P_infinity <= 8R, for 0 < rho <= 1/2 and B > 0. For rho <= 1/4 the
+attained value is positive with finite information ratio. It also proves
+monotone cap convergence. The audit rebuilt 14 modules, checked 68 declarations
+and eight exact types, with other dependencies cached and source-hashed.
+Latent-reveal brackets and convergence remain unfinished.
 
 The [audit index](../paper/rare-event/audit/README.md) distinguishes the original
 source audits, final referee assessment, and revision audit, including corrected
