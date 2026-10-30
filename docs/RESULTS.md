@@ -226,7 +226,9 @@ $$10^{-17}\mathcal K_{\mu,\rho}(B)\le R_{\mu,\rho}(B)
 \le33000\mathcal K_{\mu,\rho}(B).$$
 
 No finite inverse moment, density, or regularity assumption is imposed.
-The following scopes are all **paper-level claims**, not new Lean theorems:
+The following scopes are **paper-level claims**. Only the hard-selection
+reduction and the elementary properties of $\mathcal K$ listed below are
+Lean-checked:
 
 | Claim | Scope and qualification |
 |---|---|
@@ -239,12 +241,38 @@ The following scopes are all **paper-level claims**, not new Lean theorems:
 The [audit index](../paper/rare-event/audit/README.md) distinguishes the original
 source audits, final referee assessment, and revision audit, including corrected
 interpretations of historical findings. V2 resolves the revision audit's two
-minor editorial defects. The new general results have no Lean formalization
-or external specialist review. The exact stored certificates cover 33 lower
+minor editorial defects. The new general results have no complete Lean
+formalization and no external specialist review. The exact stored certificates cover 33 lower
 bounds, 9 upper policies, 9 stopping decisions, and two perfect-label examples;
 they are not proofs of the continuum or compactness claims. The existing Lean
 variational-optimizer and critical-law results above and below retain their
 separate scopes. See [verification commands](VERIFY.md#general-law-rare-event-manuscript-v2).
+
+**Partial Lean formalization.** The [EntropyTail specification](../lean/ThresholdHC/EntropyTail/Specification.lean)
+locks eight target types in the unchanged observable experiment of the
+above-two package:
+
+- the two-sided law $c\mathcal K\le R\le C\mathcal K$ with universal constants
+  (v6 Theorem 13.2; the explicit constants above are not targets);
+- its upper and lower halves;
+- five properties of $\mathcal K$.
+
+The five properties are **Lean-checked** with exact types and only the standard
+axioms:
+
+- restricting to hard measurable assignments $\sigma=\mu|_S$ leaves the infimum
+  over submeasures unchanged (v6 Lemma 13.1; no minimizer is claimed);
+- $\mathcal K\le\min\{\rho,\int\min\{1,h/d\}\,d\mu,h\sqrt{\rho\Gamma_\mu}\}$;
+- $\mathcal K=\min\{\rho,\sqrt\rho/(d\sqrt B)\}$ on a point mass at $d$;
+- $\mathcal K=\rho$ when $B\le1$;
+- $\mathcal K$ is positive and finite, and below $\rho$ for some law.
+
+The law and both halves are **not** Lean-proved. They remain paper proofs, and
+the audit reports the law as unverified until all eight targets are registered.
+The local audit of these proofs passed at `49877f3`, and CI reruns
+`python tools/verify_entropy_tail.py --sequential` on every change
+([details](VERIFY.md#entropy-tail-selection-functional)). No result record is
+published for this partial audit.
 
 ## Rare-event power margins above two
 

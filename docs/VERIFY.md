@@ -202,6 +202,31 @@ parameter ranges, constants, the original observable model and paper differences
 The [saved audit](../results/rare_above_two_001.json) passed at `637fb4a`,
 covering all 322 declaration roots and their transitive axioms.
 
+## Entropy-tail selection functional
+
+The general-law entropy-tail law (v6 Theorem 13.2) has a locked specification
+and a partial audit:
+
+```sh
+python tools/verify_entropy_tail.py --sequential
+python -m unittest discover -s tools -p 'test_entropy_tail.py' -v
+```
+
+The [freeze record](../tools/entropy_tail_specification_freeze.json) hashes the
+specification and its project dependencies. It fixes eight full target types:
+
+- the two-sided law and its upper and lower halves;
+- hard selection;
+- the elementary bounds;
+- the single-atom and small-budget values;
+- nonvacuity.
+
+The audit checks every registered target for its exact type and transitive
+axioms. It rejects any declaration that carries an unregistered target's name.
+Five deterministic targets are proved. The law and its two halves are not, so the
+status reports `entropy_tail_law_verified: false`, and `--require-complete`
+fails. No result record is published for this partial audit.
+
 ## Magnitude-oracle lower bounds
 
 The magnitude-oracle lower bounds have a separate audit:
