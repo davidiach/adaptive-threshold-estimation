@@ -354,5 +354,17 @@ types, with only standard axioms. Other dependencies used cached objects
 with recorded hashes. Run `python tools/verify_genie_brackets.py`; regressions
 use `test_genie_brackets.py`.
 
-Residual and optimized genie convergence remain in progress. Earlier
-component checkpoint flags describe their original, narrower scope.
+The [genie-convergence checkpoint](../results/genie-convergence-20261030/README.md)
+proves actual finite-prefix posterior information, latent-score reconstruction,
+vanishing residual at finite latent divergence, and optimized convergence using
+variance-reference regularization. It proves positive minimax brackets and
+finite termination of the factor-sixteen stopping test for arbitrary laws,
+0 < rho <= 1/2 and B > 0. It rebuilt twelve modules and checked
+223 declarations in 33 Genie modules, twelve exact types and only standard
+transitive axioms. Other dependencies used cached objects with source hashes.
+Run `python tools/verify_genie_convergence.py`; its four regressions use
+`test_genie_convergence.py`.
+
+The finite-support genie SOCP, direct squared certificate, explicit
+infinite-divergence counterexample, manuscript integration and final full
+audit remain in progress. Earlier checkpoint flags retain their original scope.

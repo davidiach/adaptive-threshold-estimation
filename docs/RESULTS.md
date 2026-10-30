@@ -306,7 +306,16 @@ K_N <= K_infinity <= K_N^+ and decreasing K_N^+, retaining infinite values.
 It proves the finite-divergence residual error bound and exact modified
 Bellman certificate with deterministic attainment. The audit rebuilt nine
 modules and checked 101 declarations and eight exact types with cached
-dependencies. Residual and optimized genie convergence remain unfinished.
+dependencies. The [convergence audit](../results/genie-convergence-20261030/README.md)
+now proves the actual posterior second-moment identity, e_N -> 0 for finite
+latent divergence, K_N^+ -> K_infinity under that hypothesis, and optimized
+G_N -> P_infinity for arbitrary probability gap laws, 0 < rho <= 1/2 and
+B > 0. Variance-reference regularization precedes the cap limit. The positive
+brackets eventually pass P_N <= 2 G_N, certifying R <= P_N <= 16R.
+It rebuilt twelve modules, checked 223 declarations in 33 Genie modules and
+twelve exact types; other dependencies were cached with source hashes.
+The finite-support genie SOCP, sharper direct certificate and explicit
+infinite-divergence counterexample remain separate work.
 
 The [audit index](../paper/rare-event/audit/README.md) distinguishes the original
 source audits, final referee assessment, and revision audit, including corrected
