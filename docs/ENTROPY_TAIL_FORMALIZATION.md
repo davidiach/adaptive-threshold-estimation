@@ -262,6 +262,15 @@ two exact types, and found only the three standard axioms. Dependencies used
 cached objects with recorded identities. Run `python tools/verify_finite_stopping_program.py`;
 the four regression tests use `test_finite_stopping_program.py`.
 
+The [flow-mixture checkpoint](../results/stopping-flow-mixture-20261030/README.md)
+proves exact finite decision-table weights for every cone flow, total stopping
+mass, Bellman upper bounds, and actual bounded observable calls for the tables.
+It rebuilt ten modules and audited 158 declarations in 17 modules and five
+exact types, with cached dependencies and only the standard axioms. Statistical
+moment identities for those calls and Poisson certificate realization remain
+unfinished. Run `python tools/verify_stopping_flow_mixture.py`; its four
+regression tests use `test_stopping_flow_mixture.py`.
+
 Statistical flow realization, the factor-sixteen risk certificate, and genie
 convergence remain in progress. Run
 `python tools/verify_stopping_components.py`; the published checkpoint used
