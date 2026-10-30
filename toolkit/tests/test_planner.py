@@ -182,6 +182,28 @@ class MajorityPlanTests(unittest.TestCase):
             plan = _majority_plan(CustomPopulation(), 3, 10 ** 100)
             self.assertAlmostEqual(plan.error_on_guess / 1e-200, 1, delta=1e-15)
 
+    def test_custom_discrete_population_keeps_tiny_majority_error(self):
+        # A population defined only by points() uses the same separated error
+        # masses as GuessedRates. Its normalized weights sum above one in
+        # floating point, which once made the rounded mean decision exceed 1.
+        class CustomPoints(Population):
+            def __init__(self, rates, weights):
+                self.rates, self.weights = np.array(rates), np.array(weights)
+
+            def points(self):
+                return self.rates, self.weights / self.weights.sum()
+
+            def true_fraction(self):
+                return float(self.weights[self.rates > 0.5].sum() / self.weights.sum())
+
+        custom = CustomPoints([0.875, 0.9375, 0.96875], [0.1, 0.4, 0.1])
+        self.assertGreater(float(np.sum(custom.points()[1])), 1)
+        expected = _majority_plan(GuessedRates([0.875] + [0.9375] * 4 + [0.96875]), 101, 13)
+        plan = _majority_plan(custom, 101, 13)
+        self.assertGreater(plan.error_on_guess, 0)
+        self.assertAlmostEqual(plan.error_on_guess / expected.error_on_guess, 1, delta=2e-13)
+        self.assertAlmostEqual(plan.worst_case_error / expected.worst_case_error, 1, delta=2e-13)
+
     def test_error_on_guess_matches_simulation(self):
         population = GuessedRates(self.rates)
         plan = majority_plan_for_budget(population, 5000)

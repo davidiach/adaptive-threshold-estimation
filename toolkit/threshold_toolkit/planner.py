@@ -75,10 +75,21 @@ class Population:
     def majority_error_terms(self, m: int) -> Tuple[float, float, float]:
         """Bias, decision variance and misclassification probability for odd m.
 
-        This default preserves custom populations that implement majority_terms.
-        Populations with extremely small error probabilities should override it
-        to avoid subtracting decision probabilities rounded to zero or one.
+        A discrete law, given by points(), keeps its two error masses apart:
+        (1 - tiny) can round to 1, even though the tiny misclassification
+        probability and its RMS are representable. Custom populations that
+        override majority_terms keep that interface; those with extremely
+        small error probabilities should override this method instead.
         """
+        if type(self).majority_terms is Population.majority_terms:
+            rates, weights = self.points()
+            positive = rates > 0.5
+            wrong = binomial_tail(m, (m + 1) // 2, np.minimum(rates, 1 - rates))
+            false_positive = float(weights[~positive] @ wrong[~positive])
+            false_negative = float(weights[positive] @ wrong[positive])
+            above = float(weights @ np.where(positive, 1 - wrong, wrong))
+            below = float(weights @ np.where(positive, wrong, 1 - wrong))
+            return false_positive - false_negative, above * below, false_positive + false_negative
         above, wrong = self.majority_terms(m)
         truth = self.true_fraction()
         if not all(math.isfinite(p) and 0 <= p <= 1 for p in (above, wrong, truth)):
@@ -120,19 +131,6 @@ class GuessedRates(Population):
     def points(self) -> Tuple[np.ndarray, np.ndarray]:
         rates, counts = np.unique(self.rates, return_counts=True)
         return rates, counts / counts.sum()
-
-    def majority_error_terms(self, m: int) -> Tuple[float, float, float]:
-        rates, weights = self.points()
-        positive = rates > 0.5
-        wrong = binomial_tail(m, (m + 1) // 2, np.minimum(rates, 1 - rates))
-        # Retain the two error masses: (1 - tiny) can round to 1, even though
-        # the tiny misclassification probability and its RMS are representable.
-        false_positive = float(weights[~positive] @ wrong[~positive])
-        false_negative = float(weights[positive] @ wrong[positive])
-        bias = false_positive - false_negative
-        above = float(weights @ np.where(positive, 1 - wrong, wrong))
-        below = float(weights @ np.where(positive, wrong, 1 - wrong))
-        return bias, above * below, false_positive + false_negative
 
 
 class EvenlySpread(Population):

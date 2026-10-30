@@ -80,7 +80,9 @@ def main(argv=None):
         print(json.dumps(_json_safe(payload), indent=2, allow_nan=False))
         return 0
 
-    print(f"Known finite law: {len(law.gaps)} distinct positive gaps; global rarity rho = {profile.rho:.6g}.")
+    count = len(law.gaps)
+    print(f"Known finite law: {count} distinct positive gap{'' if count == 1 else 's'}; "
+          f"global rarity rho = {profile.rho:.6g}.")
     print(f"Smallest-gap mass rho ends at gap {profile.quantile_gap:.6g}.\n")
     if inversion is not None:
         print(f"Target Q: {inversion.target:.6g}")
@@ -94,7 +96,7 @@ def main(argv=None):
         print()
     if result is not None:
         print(f"At expected budget B = {result.budget:.10g}:")
-        print(f"  Tail contribution:       {result.tail:.10g}")
+        print(f"  Tail contribution:         {result.tail:.10g}")
         print(f"  Core entropy contribution: {result.entropy_term:.10g}")
         print(f"  Q(B), capped at rho:       {result.value:.10g}")
         print(f"  Selection K(B) comparison: [{result.selection_lower:.10g}, {result.selection_upper:.10g}]")
