@@ -1,0 +1,92 @@
+{
+  "baseline_commit": "6ad675e04570cc1ef6bece8e26beb81e1a176471",
+  "new_Lean_claims": [],
+  "priority_claim": false,
+  "claims": [
+    {
+      "id": "smoothing",
+      "status": "paper_proof_here",
+      "dependencies": [
+        "elementary KL <= chi-square",
+        "exact square identity"
+      ]
+    },
+    {
+      "id": "adaptive_KL_transfer",
+      "status": "paper_proof_here",
+      "dependencies": [
+        "smoothing",
+        "persistent independent latent coins",
+        "half-prior domination"
+      ]
+    },
+    {
+      "id": "confidence_null_work",
+      "status": "paper_proof_here_with_imported_premise",
+      "dependencies": [
+        "adaptive_KL_transfer",
+        "pinned common-pair theorem CP"
+      ]
+    },
+    {
+      "id": "confidence_additive_localization",
+      "status": "paper_proof_here_with_imported_premise",
+      "dependencies": [
+        "typed adaptive_KL_transfer",
+        "conditional common pairs"
+      ]
+    },
+    {
+      "id": "hard_budget_amplification",
+      "status": "paper_proof_here",
+      "dependencies": [
+        "uniform expected work and MSE of base",
+        "independent runs"
+      ]
+    },
+    {
+      "id": "general_law_confidence",
+      "status": "paper_proof_extension",
+      "dependencies": [
+        "confidence_null_work",
+        "confidence_additive_localization",
+        "pinned null-work obstructions",
+        "pinned entropy packing",
+        "pinned RMS upper family"
+      ]
+    },
+    {
+      "id": "critical_confidence",
+      "status": "paper_proof_extension",
+      "dependencies": [
+        "confidence_null_work",
+        "hard_budget_amplification",
+        "existing critical null-work obstruction and RMS upper bound"
+      ]
+    },
+    {
+      "id": "closed_Q_confidence",
+      "status": "optional_paper_corollary",
+      "dependencies": [
+        "general_law_confidence",
+        "round-one deterministic 8/5 comparison"
+      ]
+    },
+    {
+      "id": "runtime_driver",
+      "status": "tested_code_not_formally_verified",
+      "dependencies": [
+        "caller supplied valid base estimator",
+        "caller supplied independent source"
+      ]
+    },
+    {
+      "id": "finite_audits",
+      "status": "finite_rational_evidence_only",
+      "dependencies": [
+        "exact probability enumeration",
+        "rational log/sqrt enclosures"
+      ]
+    }
+  ]
+}

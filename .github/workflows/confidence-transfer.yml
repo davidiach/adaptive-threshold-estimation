@@ -1,0 +1,35 @@
+name: Confidence-transfer checks
+on:
+  push:
+    paths:
+      - '.github/workflows/confidence-transfer.yml'
+      - 'toolkit/threshold_toolkit/confidence*.py'
+      - 'toolkit/threshold_toolkit/budget_ladders.py'
+      - 'toolkit/tests/test_confidence*.py'
+      - 'research/2026-10-30-confidence-transfer/**'
+  pull_request:
+    paths:
+      - '.github/workflows/confidence-transfer.yml'
+      - 'toolkit/threshold_toolkit/confidence*.py'
+      - 'toolkit/threshold_toolkit/budget_ladders.py'
+      - 'toolkit/tests/test_confidence*.py'
+      - 'research/2026-10-30-confidence-transfer/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  transfer:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.12']
+    env:
+      PYTHONPATH: toolkit
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m unittest discover -s toolkit/tests -p 'test_confidence*.py' -v
+      - run: python research/2026-10-30-confidence-transfer/verify_transfer.py --output .runtime/confidence-transfer/transfer.json
+      - run: python research/2026-10-30-confidence-transfer/verify_anytime.py
