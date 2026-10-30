@@ -436,7 +436,11 @@ complemented by an independently written
 [rational/Decimal oracle](../toolkit/tests/test_rare_events_oracle.py).
 The oracle evaluates mass and cost sums with exact rational arithmetic and
 logarithms at 90 decimal digits; it also enumerates all 1,472 hard selections
-across 13 small laws and four budgets per law. Its inverse check uses an
+across 13 small laws and four budgets per law. For a finite law this
+enumeration evaluates $\mathcal K$ exactly: $G$ is concave and nonnegative,
+so $\sqrt G$ is concave, and the band costs are linear in the selection
+density $f\in[0,1]^n$. The objective is therefore concave on that box and
+attains its infimum at a vertex. Its inverse check uses an
 independent monotone search. These are finite implementation checks, separate
 from the general proof. The
 [command tests](../toolkit/tests/test_rare_event_cli.py) check installed-style

@@ -84,7 +84,12 @@ def quantile_value(atoms, rho, budget):
 
 
 def hard_selection(atoms, rho, budget):
-    """Enumerate every vertex of the finite submeasure box."""
+    """Enumerate every vertex of the finite submeasure box.
+
+    G is concave and nonnegative, and the band costs are linear in the
+    selection density f, so the objective is concave on the box [0, 1]^n.
+    Its infimum is a vertex value: this returns the selection functional K.
+    """
     h = Decimal(1) / decimal(budget).sqrt()
     best = decimal(rho)
     for mask in range(1 << len(atoms)):
