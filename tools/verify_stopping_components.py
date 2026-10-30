@@ -19,7 +19,7 @@ LEAN = ROOT / "lean"
 GROUPS = {"StoppingProgram", "CapIdentification"}
 EXACT = r"""
 open MeasureTheory
-open scoped BigOperators
+open scoped BigOperators ENNReal
 open ThresholdHC.StoppingProgram ThresholdHC.CapIdentification
 example : ∀ (r w : ℕ → ℕ → ℝ) (κ : ℝ) (d : ℕ),
     (∀ a : StopTree d × StopTree d,
@@ -34,6 +34,37 @@ example : ∀ {m : ℕ} (d : Fin m → ℝ) (N : ℕ), (∀ i, 0 < d i) → Func
     ((∀ g : Fin m → ℝ,
       (∀ j : Fin ((N+1)/2), (∑ i, g i*(d i)^(2*j.val+1)) = 0) → (∑ i, g i) = 0) ↔
         2*m-1 ≤ N) := moments_cap_threshold
+example : ∀ (μ : Measure ThresholdHC.Tier6.Gap) [IsFiniteMeasure μ]
+    (qH qL : ThresholdHC.Tier6.SignLaw) (N : ℕ),
+    (∀ j : Fin ((N+1)/2), ∫ d, (qH.val d-qL.val d)*(d:ℝ)^(2*j.val+1) ∂μ = 0) ↔
+      ∀ s : CountState N, countCoefficient μ qH s = countCoefficient μ qL s :=
+  odd_moments_iff_count_match
+example : ∀ (μ : Measure ThresholdHC.Tier6.Gap) [IsProbabilityMeasure μ] (N : ℕ) (Q : FourPriors),
+    informationRatio μ N Q = 0 ↔
+      ∀ j : Fin ((N+1)/2), ∫ d, (Q.high.val d-Q.low.val d)*(d:ℝ)^(2*j.val+1) ∂μ = 0 :=
+  informationRatio_zero_iff_moments
+example : ∀ (μ : Measure ThresholdHC.Tier6.Gap) [IsProbabilityMeasure μ]
+    (ρ : ℝ), 0 < ρ → ρ ≤ 1 → ∀ (N : ℕ) (S : Finset ThresholdHC.Tier6.Gap),
+    μ.support = (S:Set ThresholdHC.Tier6.Gap) → 0 < S.card →
+    ((∀ qH qL : ThresholdHC.Tier6.SignLaw,
+      ThresholdHC.RareAboveTwo.RarePrior μ ρ qH → ThresholdHC.RareAboveTwo.RarePrior μ ρ qL →
+      (∀ s : CountState N, countCoefficient μ qH s = countCoefficient μ qL s) →
+      ThresholdHC.Tier6.signMean μ qH.val = ThresholdHC.Tier6.signMean μ qL.val) ↔
+      2*S.card-1 ≤ N) := finite_support_target_threshold
+example : ∀ (μ : Measure ThresholdHC.Tier6.Gap) [IsProbabilityMeasure μ],
+    μ.support.Infinite → ∀ (ρ : ℝ), 0 < ρ → ρ ≤ 1 → ∀ N : ℕ,
+    ∃ c : ℝ≥0∞, 0 < c ∧ ∀ B : ℝ, c ≤ programSquared μ ρ B N := infinite_support_program_floor
+example : ∀ {R E : Type} [MeasurableSpace R] [MeasurableSpace E]
+    (μ : Measure ThresholdHC.Tier6.Gap) [IsProbabilityMeasure μ]
+    (ν : Measure R) [IsProbabilityMeasure ν] (qH qL : ThresholdHC.Tier6.SignLaw) (N : ℕ),
+    (∀ j : Fin ((N+1)/2), ∫ d, (qH.val d-qL.val d)*(d:ℝ)^(2*j.val+1) ∂μ = 0) →
+    ∀ (A : ThresholdHC.CriticalEntropy.StoppedProcedure R E), (∀ z, A.stop z ≤ N) →
+    ThresholdHC.CriticalEntropy.cappedTranscriptLaw μ ν
+      (ThresholdHC.ObservableSimulation.gapParameter false) (ThresholdHC.ObservableSimulation.gapParameter true)
+      (ThresholdHC.ObservableSimulation.signUnit qH) A N =
+    ThresholdHC.CriticalEntropy.cappedTranscriptLaw μ ν
+      (ThresholdHC.ObservableSimulation.gapParameter false) (ThresholdHC.ObservableSimulation.gapParameter true)
+      (ThresholdHC.ObservableSimulation.signUnit qL) A N := stopped_law_eq_of_odd_moments
 """
 
 
@@ -70,7 +101,7 @@ def main() -> int:
     audit.parent.mkdir(exist_ok=True)
     audit.write_text(source, encoding="utf-8")
     audit_hash = sha(audit)
-    status = dict(valid=False, scope="Bellman, price-ratio, perspective, flow bounds and finite odd-moment algebra only.",
+    status = dict(valid=False, scope="Bellman, price-ratio, perspective, flow bounds, exact count/stopped-law moment equivalence, support target thresholds and the primal bias-floor lower direction.",
         full_stopping_program_verified=False, four_prior_duality_verified=False,
         full_cap_identification_verified=False, full_genie_convergence_verified=False,
         local_dependency_rebuild_performed=not args.cached_dependencies,
@@ -102,7 +133,9 @@ def main() -> int:
     status["axioms"] = validate_reports(report,result.returncode,roots)
     if any(sha(ROOT / p) != h for p,h in hashes.items()) or sha(audit) != audit_hash:
         raise ValueError("Source changed during audit")
-    status.update(valid=True,exact_types_checked=4)
+    status.update(valid=True,exact_types_checked=9,
+        count_law_equivalence_verified=True, stopped_law_equivalence_verified=True,
+        support_target_threshold_verified=True, zero_information_characterization_verified=True)
     save()
     print(json.dumps(dict(valid=True,modules=len(paths),declarations=len(roots),evidence=str(output))),flush=True)
     return 0

@@ -197,8 +197,31 @@ occur. Its scope is deliberately narrower than the full paper statements:
   `N >= 2*m-1` for determining the target from odd moments on `m` distinct
   positive magnitudes.
 
-The connection to Bernoulli count laws, the program's infinite-budget bias
-floor, infinite support, full four-prior duality, the factor-sixteen risk
-certificate, and genie convergence remain in progress. Run the ingredient
-audit with `python tools/verify_stopping_components.py`; the checkpoint used
-`--cached-dependencies` and keeps all those full theorem flags false.
+At that checkpoint the connection to Bernoulli count laws and the support
+claims were still unproved. The later checkpoint
+`.runtime/cap-identification-checkpoint-20261030/` rebuilt 23 modules, checked
+177 declarations and nine independent exact types, and found only
+`Classical.choice`, `Quot.sound`, and `propext` in their transitive axioms.
+It also used cached dependency objects and recorded their source identities.
+The added results are:
+
+- Exact equivalence between the first `ceil(N/2)` odd moments and all capped
+  count coefficients, for arbitrary finite gap laws.
+- Equality of the actual seed-and-stopped-word law for every independently
+  randomized single-unit procedure with cap `N` under matching priors.
+- A proved full-depth flow, and `K_N = 0` exactly when the endpoint priors
+  match those odd moments.
+- The statistical target-identification threshold `N >= 2*m-1` for a law
+  with exactly `m` support points, using actual globally rare sign priors.
+- For infinite support, actual rare priors with matching capped laws and a
+  strictly positive target gap; consequently the primal program has a positive
+  bias floor uniform over all budgets at each fixed cap. The construction uses
+  the orthogonal polynomial residual in `L2`, with all boundedness and
+  integrability obligations proved.
+
+The exact infinite-budget limit `P_N(B) -> Delta_N/2`, full four-prior duality,
+the factor-sixteen risk certificate, and genie convergence remain in progress.
+Diameter attainment and compact moment images are subsequent work, outside
+the 177-declaration checkpoint. Run the ingredient audit with
+`python tools/verify_stopping_components.py`; the recorded checkpoint used
+`--cached-dependencies` and keeps the full theorem flags false.
