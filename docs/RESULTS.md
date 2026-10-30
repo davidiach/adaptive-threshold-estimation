@@ -255,8 +255,12 @@ objects with recorded source identities. The later [attained four-prior dual](..
 proves the exact conic-program identity, both optimizers, positive value, and a
 finite optimal information ratio. Its audit checks 188 declarations and two
 exact types, rebuilding six attainment modules with cached dependencies and
-recorded source hashes. Statistical flow realization, the factor-sixteen
-certificate, and genie convergence remain unfinished.
+recorded source hashes. The [rarity-support audit](../results/rarity-support-20261030/README.md)
+proves the scalar minimum formula and an explicit fractional cutoff optimizer,
+including atoms and a bounded cutoff. It rebuilt six modules and checked 41
+declarations and two exact types, with cached dependency objects. Statistical
+flow realization, the factor-sixteen certificate, and genie convergence remain
+unfinished.
 
 The [audit index](../paper/rare-event/audit/README.md) distinguishes the original
 source audits, final referee assessment, and revision audit, including corrected

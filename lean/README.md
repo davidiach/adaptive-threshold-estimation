@@ -27,6 +27,7 @@ axioms; a successful build alone is not a substitute for that audit.
 | Arbitrary-law entropy-tail and closed-quantile upper bounds | [EntropyTail specification](ThresholdHC/EntropyTail/Specification.lean), [UpperTheorem](ThresholdHC/EntropyTailExecution/UpperTheorem.lean), [scope guide](../docs/ENTROPY_TAIL_FORMALIZATION.md) | `python tools/verify_entropy_tail_upper.py` |
 | Arbitrary-law deterministic quantile comparison | [QuantileComparison](ThresholdHC/EntropyTail/QuantileComparison.lean), [published audit](../results/entropy-tail-quantile-20261030/README.md) | `python tools/verify_entropy_tail_components.py` |
 | Fixed-cap identification and infinite-budget floor | [CapIdentification Full](ThresholdHC/CapIdentification/Full.lean), [checkpoint scope](../results/cap-identification-20261030/README.md) | `python tools/verify_stopping_components.py` |
+| Rarity support and fractional cutoff | [RarityTheorem](ThresholdHC/StoppingProgram/RarityTheorem.lean), [checkpoint scope](../results/rarity-support-20261030/README.md) | `python tools/verify_rarity_support.py` |
 | Attained four-prior stopping dual | [StoppingProgram specification](ThresholdHC/StoppingProgram/Specification.lean), [DualTheorem](ThresholdHC/StoppingProgram/DualTheorem.lean), [checkpoint scope](../results/stopping-dual-20261030/README.md) | `python tools/verify_stopping_dual.py` |
 
 The arbitrary-law entropy-tail upper bound and closed-quantile upper formula

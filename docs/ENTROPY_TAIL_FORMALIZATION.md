@@ -243,6 +243,16 @@ objects with recorded source identities. Reproduce with
 `python tools/verify_stopping_dual.py`; its four regression tests are
 `python -m unittest discover -s tools -p test_stopping_dual.py -v`.
 
+The [rarity-support checkpoint](../results/rarity-support-20261030/README.md)
+proves the scalar minimum formula and an actual fractional cutoff optimizer
+for measurable L2 functions bounded above almost everywhere. The cutoff lies
+in the supplied nonnegative upper bound; a positive cutoff saturates rarity.
+It includes null cutoff sets and atoms. The audit rebuilt six modules, checked
+41 declarations in nine modules and two independently stated types, and found
+only the three standard axioms. It used cached dependencies with recorded
+source identities. Run `python tools/verify_rarity_support.py`; the four
+regression tests are `python -m unittest discover -s tools -p test_rarity_support.py -v`.
+
 Statistical flow realization, the factor-sixteen risk certificate, and genie
 convergence remain in progress. Run
 `python tools/verify_stopping_components.py`; the published checkpoint used

@@ -1,0 +1,65 @@
+.audit\RaritySupport.lean:29:10: warning: Variable name `ρ` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _ρ
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+.audit\RaritySupport.lean:29:12: warning: Variable name `M` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _M
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+'ThresholdHC.StoppingProgram.bounded_rarity_support_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.compactMaximum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.compactMaximum_attained' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.compactMaximum_convex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.compactMaximum_le_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.cutoff_prior_decomposition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.finite_slater_multipliers' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.fractionalUpperPrior' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.fractionalUpperPrior_decomposition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.StoppingProgram.fractional_cutoff_preserves' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.fractional_rarity_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.fractional_rarity_support_explicit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.StoppingProgram.fractional_rarity_support_of_memLp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.StoppingProgram.functionMomentImage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.functionMomentImage_compact_convex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.StoppingProgram.functionMomentImage_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.integrable_prior_function' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.integrable_sign_prior' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.le_compactMaximum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.levelAverage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.levelAverage_properties' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.levelPriorMass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.levelPriorMass_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.linear_pi_expansion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.prior_excess_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.prior_excess_le_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.prior_function_le_rareFunctional' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.StoppingProgram.prior_function_upper_tail' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.rareFunctional' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.rareFunctional_attained' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.rareFunctional_eq_sSup' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.rareFunctional_upper_tail' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.rareMomentSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.rareMomentSet_compact_convex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.rareMomentSet_eq_half_image' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.rarity_function_multiplier' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.rarity_support_formula' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.rarity_support_formula_bounded_above' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.StoppingProgram.upperLevelPrior' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.upperLevelPrior_excess' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.upper_tail_equality_cutoff' depends on axioms: [propext, Classical.choice, Quot.sound]
