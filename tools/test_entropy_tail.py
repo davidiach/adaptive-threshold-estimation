@@ -1,4 +1,7 @@
 """Reject weakened entropy-tail targets and altered observable experiment definitions."""
+import json
+from pathlib import Path
+import tempfile
 import unittest
 from unittest.mock import patch
 
@@ -41,6 +44,40 @@ class EntropyTailAuditTests(unittest.TestCase):
             with patch.object(audit, 'PROVED', audit.PROVED + (unproved[0],)):
                 with self.assertRaisesRegex(ValueError, 'missing declaration root'):
                     audit.validate_sources()
+
+    def test_hidden_unregistered_target_declaration_rejected(self):
+        real_read = type(audit.SOURCE).read_text
+        target = audit.SOURCE / (audit.MODULES[-1] + '.lean')
+        for short in sorted(t.removeprefix(audit.PREFIX) for t in set(audit.TARGETS) - set(audit.PROVED)):
+            for planted_line in (f'protected theorem {short} : True := trivial',
+                                 f'theorem {audit.PREFIX}{short} : True := trivial',
+                                 f'@[simp] private lemma {short} : True := trivial'):
+                def planted(self, *args, **kwargs):
+                    text = real_read(self, *args, **kwargs)
+                    return text + '\n' + planted_line + '\n' if self == target else text
+                with self.subTest(line=planted_line), \
+                        patch.object(type(audit.SOURCE), 'read_text', planted):
+                    with self.assertRaisesRegex(ValueError, 'Unregistered proof'):
+                        audit.validate_sources()
+
+    def test_changed_freeze_record_rejected(self):
+        record = json.loads(audit.FREEZE.read_text(encoding='utf-8'))
+        name = sorted(record['targets'])[0]
+        mutations = [
+            ('exact full target', {**record, 'targets': {k: v for k, v in record['targets'].items()
+                                                         if k != name}}),
+            ('exact full target', {**record, 'targets': {**record['targets'], name: 'True'}}),
+            ('Frozen entropy-tail', {**record, 'source_sha256': {
+                k: '0' * 64 for k in record['source_sha256']}}),
+            ('Frozen entropy-tail', {**record, 'source_sha256': {}}),
+        ]
+        with tempfile.TemporaryDirectory() as directory:
+            for message, changed in mutations:
+                path = Path(directory) / 'freeze.json'
+                path.write_text(json.dumps(changed), encoding='utf-8')
+                with self.subTest(message=message), patch.object(audit, 'FREEZE', path):
+                    with self.assertRaisesRegex(ValueError, message):
+                        audit.validate_sources()
 
     def test_changed_specification_rejected(self):
         real_sha = audit.sha

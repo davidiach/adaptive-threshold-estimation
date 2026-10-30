@@ -260,8 +260,8 @@ above-two package:
 The five properties are **Lean-checked** with exact types and only the standard
 axioms:
 
-- hard measurable restrictions $\sigma=\mu|_S$ attain the infimum over
-  submeasures (v6 Lemma 13.1);
+- restricting to hard measurable assignments $\sigma=\mu|_S$ leaves the infimum
+  over submeasures unchanged (v6 Lemma 13.1; no minimizer is claimed);
 - $\mathcal K\le\min\{\rho,\int\min\{1,h/d\}\,d\mu,h\sqrt{\rho\Gamma_\mu}\}$;
 - $\mathcal K=\min\{\rho,\sqrt\rho/(d\sqrt B)\}$ on a point mass at $d$;
 - $\mathcal K=\rho$ when $B\le1$;
@@ -269,8 +269,10 @@ axioms:
 
 The law and both halves are **not** Lean-proved. They remain paper proofs, and
 the audit reports the law as unverified until all eight targets are registered.
-Run `python tools/verify_entropy_tail.py --sequential`
-([details](VERIFY.md#entropy-tail-selection-functional)).
+The local audit of these proofs passed at `49877f3`, and CI reruns
+`python tools/verify_entropy_tail.py --sequential` on every change
+([details](VERIFY.md#entropy-tail-selection-functional)). No result record is
+published for this partial audit.
 
 ## Rare-event power margins above two
 

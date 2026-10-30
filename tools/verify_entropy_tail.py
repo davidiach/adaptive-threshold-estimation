@@ -11,6 +11,7 @@ import argparse
 from datetime import datetime, timezone
 import json
 from pathlib import Path
+import re
 import subprocess
 
 from verify_blind_upper_components import (
@@ -39,6 +40,10 @@ TARGETS = {
 # Targets whose proofs are present. A target is proved only by its registered name.
 PROVED = (PREFIX+'selection_bounds', PREFIX+'single_atom', PREFIX+'small_budget',
           PREFIX+'entropy_tail_nonvacuity', PREFIX+'hard_selection')
+# Any declaration form of a target name, including modifiers such as `protected` and
+# fully qualified names, which the shared root pattern does not report.
+TARGET_DECLARATION = (r"\b(?:def|abbrev|structure|theorem|lemma|instance|inductive)\s+"
+                      r"(?:_root_\.)?(?:" + re.escape(PREFIX) + r")?{}(?![\w'.])")
 SCOPE = ('Entropy-tail law (v6 Theorem 13.2) in the observable rare-event experiment: '
          'universal two-sided comparison with the selection functional for every law on (0,1/2], '
          '0 < rho <= 1/4 and B > 0, the separate upper and lower halves, hard selections, '
@@ -77,10 +82,11 @@ def validate_sources() -> tuple[list[Path], set[str]]:
     for path in sorted(project_dependencies(paths) - set(paths)):
         if FORBIDDEN.search(strip_comments(path.read_text(encoding='utf-8'))):
             raise ValueError('Forbidden proof escape in imported module '+str(path))
-    roots, seen = [], set()
+    roots, seen, sources = [], set(), []
     all_modules = {PREFIX+m for m in MODULES}
     for path, name in zip(paths, MODULES):
         source = strip_comments(path.read_text(encoding='utf-8'))
+        sources.append(source)
         if FORBIDDEN.search(source):
             raise ValueError('Forbidden proof escape in '+str(path))
         roots.extend(PREFIX+n for n in DECLARATION.findall(source))
@@ -90,8 +96,10 @@ def validate_sources() -> tuple[list[Path], set[str]]:
         seen.add(PREFIX+name)
     if len(roots) != len(set(roots)) or not set(PROVED) <= set(roots):
         raise ValueError('Duplicate or missing declaration root')
-    if (set(TARGETS) - set(PROVED)) & set(roots):
-        raise ValueError('Unregistered proof of a full target')
+    for target in set(TARGETS) - set(PROVED):
+        pattern = re.compile(TARGET_DECLARATION.format(re.escape(target.removeprefix(PREFIX))))
+        if target in roots or any(pattern.search(source) for source in sources):
+            raise ValueError('Unregistered proof of a full target')
     return paths, set(roots)
 
 
