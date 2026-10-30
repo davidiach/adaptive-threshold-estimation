@@ -262,8 +262,13 @@ declarations and two exact types, with cached dependency objects. The
 [finite-program audit](../results/finite-stopping-program-20261030/README.md)
 proves exact finite-law equivalence to cone and linear cutoff/excess constraints;
 it rebuilt two modules and checked 119 declarations and two exact types, using
-cached dependencies. Statistical flow realization, the factor-sixteen certificate, and genie convergence remain
-unfinished.
+cached dependencies. The [observable stopping-program upper audit](../results/stopping-program-upper-20261030/README.md)
+proves every feasible certificate has an actual observable estimator with its
+work and risk bounds, and proves `R <= P_N` in the original model. It rebuilt
+14 modules and checked 304 declarations in 45 modules and three exact types,
+with cached dependencies and only the standard axioms. The factor-sixteen
+risk comparison, information-ratio Bellman attainment, and genie convergence
+remain unfinished.
 
 The [audit index](../paper/rare-event/audit/README.md) distinguishes the original
 source audits, final referee assessment, and revision audit, including corrected

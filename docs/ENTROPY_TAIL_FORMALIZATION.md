@@ -266,12 +266,19 @@ The [flow-mixture checkpoint](../results/stopping-flow-mixture-20261030/README.m
 proves exact finite decision-table weights for every cone flow, total stopping
 mass, Bellman upper bounds, and actual bounded observable calls for the tables.
 It rebuilt ten modules and audited 158 declarations in 17 modules and five
-exact types, with cached dependencies and only the standard axioms. Statistical
-moment identities for those calls and Poisson certificate realization remain
-unfinished. Run `python tools/verify_stopping_flow_mixture.py`; its four
+exact types, with cached dependencies and only the standard axioms. At that
+checkpoint, the statistical moments and Poisson realization were still open. Run `python tools/verify_stopping_flow_mixture.py`; its four
 regression tests use `test_stopping_flow_mixture.py`.
 
-Statistical flow realization, the factor-sixteen risk certificate, and genie
-convergence remain in progress. Run
+The [program-upper checkpoint](../results/stopping-program-upper-20261030/README.md)
+now proves actual stopped-table moments, Poisson certificate realization, and
+the unchanged `ProgramUpperStatement`: `R <= P_N`. It rebuilt fourteen modules,
+checked 304 declarations in 45 modules and three exact types, and found only
+the standard axioms. Dependencies used cached objects with recorded identities.
+Run `python tools/verify_stopping_program_upper.py`; its four regression tests
+use `test_stopping_program_upper.py`.
+
+The factor-sixteen risk certificate, information-ratio Bellman attainment,
+and genie convergence remain in progress. Run
 `python tools/verify_stopping_components.py`; the published checkpoint used
 `--cached-dependencies`. The full stopping and genie flags remain false.
