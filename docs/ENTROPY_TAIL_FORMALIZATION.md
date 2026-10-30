@@ -344,5 +344,15 @@ Other dependencies used cached objects with recorded hashes. Run
 `python tools/verify_infinite_cap_dual.py`; regressions use
 `test_infinite_cap_dual.py`.
 
-Latent-reveal brackets and convergence remain in progress. Earlier component
-checkpoint flags describe their original, narrower scope.
+The [genie-bracket checkpoint](../results/genie-brackets-20261030/README.md)
+proves extended-value monotone ratio brackets, the finite-divergence residual
+error bound, exact Bellman price certification and deterministic attainment.
+Its full-cap reveal has exactly the latent divergence, so infinite latent
+divergence makes every positive-cap genie ratio infinite. The audit rebuilt
+nine modules, checked 101 declarations in twelve modules and eight exact
+types, with only standard axioms. Other dependencies used cached objects
+with recorded hashes. Run `python tools/verify_genie_brackets.py`; regressions
+use `test_genie_brackets.py`.
+
+Residual and optimized genie convergence remain in progress. Earlier
+component checkpoint flags describe their original, narrower scope.

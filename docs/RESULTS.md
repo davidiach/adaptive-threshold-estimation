@@ -301,7 +301,12 @@ R <= P_infinity <= 8R, for 0 < rho <= 1/2 and B > 0. For rho <= 1/4 the
 attained value is positive with finite information ratio. It also proves
 monotone cap convergence. The audit rebuilt 14 modules, checked 68 declarations
 and eight exact types, with other dependencies cached and source-hashed.
-Latent-reveal brackets and convergence remain unfinished.
+The [genie-bracket audit](../results/genie-brackets-20261030/README.md) proves
+K_N <= K_infinity <= K_N^+ and decreasing K_N^+, retaining infinite values.
+It proves the finite-divergence residual error bound and exact modified
+Bellman certificate with deterministic attainment. The audit rebuilt nine
+modules and checked 101 declarations and eight exact types with cached
+dependencies. Residual and optimized genie convergence remain unfinished.
 
 The [audit index](../paper/rare-event/audit/README.md) distinguishes the original
 source audits, final referee assessment, and revision audit, including corrected
