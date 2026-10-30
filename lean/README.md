@@ -24,9 +24,14 @@ axioms; a successful build alone is not a substitute for that audit.
 | Confidence characterization | [Confidence specification](ThresholdHC/Confidence/Specification.lean), [Full](ThresholdHC/Confidence/Full.lean) | `python tools/verify_confidence.py --sequential` |
 | Revealed/selected magnitude-oracle lower bounds | [OracleLower specification](ThresholdHC/OracleLower/Specification.lean), [Full](ThresholdHC/OracleLower/Full.lean) | `python tools/verify_oracle_lower.py --sequential` |
 | Observable rare-event rate above alpha two | [RareAboveTwo specification](ThresholdHC/RareAboveTwo/Specification.lean), [Full](ThresholdHC/RareAboveTwo/Full.lean), [scope guide](../docs/RARE_ABOVE_TWO.md) | `python tools/verify_rare_above_two.py --sequential` |
+| Entropy-tail selection functional (partial; the law itself is unproved) | [EntropyTail specification](ThresholdHC/EntropyTail/Specification.lean), [HardSelection](ThresholdHC/EntropyTail/HardSelection.lean) | `python tools/verify_entropy_tail.py --sequential` |
 
-The new general-law rare-event manuscript remains a paper proof; the existing
-critical-law and optimizer formalizations do not certify its general claims.
+The general-law entropy-tail law (v6 Theorem 13.2) remains a paper proof. Its
+two-sided comparison, both halves and five properties of the selection functional
+are locked as Lean target types. Only those five properties are proved: hard
+selection, the elementary bounds, the single-atom and small-budget values and
+nonvacuity. The existing critical-law and optimizer formalizations do not
+certify its general claims.
 See its [separate status](../paper/rare-event/README.md). The closed quantile law
 of the [finite-gap manuscript](../paper/finite-gap-rare-events/README.md) is also a
 paper proof; the Lean finite-gap entropy results above do not verify it.
