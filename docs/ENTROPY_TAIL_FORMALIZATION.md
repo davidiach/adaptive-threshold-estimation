@@ -26,10 +26,10 @@ remain unchanged.
    paper-only claims as separate developments, with exact statement and
    transitive-axiom audits for each completed result.
 
-The general-law corollary's constants do not automatically give the separate
-finite-law theorem's upper coefficient `30001`; that exact claim requires its
-own derivation. Compiling deterministic ingredients does not establish any
-statistical theorem.
+The construction now compiles a bound with coefficient `28000`, and separately
+derives both the frozen general-law upper coefficient `33000` and the finite-law
+upper coefficient `30001`. The full dependency and axiom audit is running;
+compilation alone is not the completed verification record.
 
 ## Modules and current boundary
 
@@ -64,7 +64,7 @@ statistical theorem.
 - `PopulationErrors.lean`: the raced error bound
   `rho*epsilon + u + eta_mu(M)` under every globally rare measurable prior.
 - `PoissonMoments.lean`: exact first and second moments of actual Poisson
-  counts. This does not yet realize the marked Poisson estimator.
+  counts, used by the marked construction described below.
 - `SurvivalWork.lean`, `LogSurcharge.lean`: geometric survival-work and scalar
   logarithmic surcharge estimates used in the remaining assembly.
 - `ThresholdHC/EntropyTailAssembly/BandWeights.lean`, `BandEntropy.lean`,
@@ -84,19 +84,41 @@ statistical theorem.
   by `28000 * (sqrt(rho * Gamma) + H)`, uniformly in the terminal level.
   Intermediate constants are conservative: ordinary inverse-moment work uses
   34 instead of 21, and selected level work uses `128*(l+1)*Gamma + 6*H^2/rho`.
-  This certificate is not yet a realized estimator or a minimax risk bound.
+  The sampling and execution modules below now connect this certificate to
+  an actual estimator and the minimax risk.
 - `FiniteApproximation.lean`: finite entropy implies the selected measure's
   inverse-square and inverse moments are integrable; finite-band truncation
   preserves the entropy upper bound and its discarded inverse moment vanishes.
+- `ThresholdHC/EntropyTailSampling/`: genuine marked Poisson laws, their exact
+  first and second moments, coupled population moments, and positivity of the
+  scheduled stopping costs.
+- `ThresholdHC/EntropyTailExecution/CallMachine.lean`, `PlanExecution.lean`,
+  `ActualPlan.lean`: an observable controller storing only observed words and
+  coin labels, with pointwise execution, output, and charged-work identities.
+- `PoissonPlan.lean`, `RealizedPoisson.lean`: distinct population labels realize
+  the independent marked Poisson law, including zero counts; exact work and
+  squared-risk identities hold in the original population experiment.
+- `CoupledCall.lean`, `IncrementBounds.lean`, `AllocatedEstimator.lean`,
+  `ScheduledFamily.lean`: adjacent decisions share a coin's prefix, their cost
+  is the maximum of the stopping times, and positive Poisson rates realize the
+  optimal allocation under the expected-work constraint.
+- `FiniteRisk.lean`, `ThreePiece.lean`, `EntropyLimit.lean`: the finite-level
+  minimax bound, terminal-level selection, the zero-unresolved-mass limit of
+  finite estimators, and removal of the selected-measure support cutoff.
+- `UpperTheorem.lean`: the full frozen `EntropyTailUpperStatement` and
+  `ClosedQuantileUpperStatement`, plus explicitly typed stronger `28000`
+  selection and `30001` quantile upper bounds. No statistical lower theorem
+  is imported or assumed.
 
 The full deterministic quantile comparison passed the exact-target and
 transitive-axiom audit on 30 October 2026: 20 modules, 121 declarations, two
 frozen targets, and a rebuild of all 53 local dependency modules. The evidence
-is in `results/entropy-tail-quantile-20261030/`. The observable statistical upper theorem and stopping-program
-results are not yet proved by this branch. In particular, the comparison
-alone is not a minimax characterization. No published verification claim has
-been upgraded. The statistical lower bound remains assigned to the separate
-cloud session.
+is in `results/entropy-tail-quantile-20261030/`. The observable statistical upper
+theorems now compile, with their full audit pending. The stopping-program
+results remain unfinished; separate Bellman ingredients are in progress.
+The statistical lower bound remains assigned to the separate cloud session.
+Neither an upper bound nor the deterministic comparison alone establishes
+the two-sided minimax characterization.
 
 An additional local checkpoint checked all 22 upper-construction modules and
 the transitive axioms of all 188 declarations. Two independent exact-type
@@ -112,10 +134,13 @@ modules and checked four independent exact types and the transitive axioms of
 all 338 declarations across the 39 upper/assembly modules. Only
 `Classical.choice`, `Quot.sound` and `propext` occur. It recorded the local
 dependency sources but used cached objects for dependencies outside the
-assembly. The full statistical upper theorem remains unverified. Remaining
-work includes marked Poisson sampling in the actual observable population
-experiment, its output-risk bound, and connecting the proved approximation
-lemmas to the minimax infimum.
+assembly. At that historical checkpoint the full statistical upper theorem
+was unverified. The later sampling/execution construction completes those
+proof obligations at the compilation level. Its new full audit is rebuilding
+306 local dependency modules, checking six exact targets and the transitive
+axioms of 611 declarations across 77 modules. The running evidence directory
+is `.runtime/entropy-tail-full-upper-20261030/`; its `valid` field must be true
+before treating that audit as successful.
 
 ## Verification
 
@@ -136,3 +161,11 @@ Its default rebuilds the complete local dependency closure. The explicit
 `--cached-dependencies` checkpoint mode rebuilds the assembly and records its
 more limited rebuild scope. Both modes keep the unproved statistical targets
 marked unverified.
+
+The full upper audit is `python tools/verify_entropy_tail_upper.py`. Its default
+rebuilds the entire local dependency closure and checks the frozen targets.
+`--cached-dependencies` explicitly records a narrower checkpoint rebuild.
+Run its regression checks with
+`python -m unittest discover -s tools -p test_entropy_tail_upper.py -v`.
+The audit never marks the statistical lower bound, two-sided minimax
+characterization, or stopping-program theorems as verified.
