@@ -169,3 +169,36 @@ Run its regression checks with
 `python -m unittest discover -s tools -p test_entropy_tail_upper.py -v`.
 The audit never marks the statistical lower bound, two-sided minimax
 characterization, or stopping-program theorems as verified.
+
+## Stopping and identification ingredients
+
+The separate checkpoint `.runtime/stopping-components-checkpoint-20261030/`
+rebuilds 10 new modules and checks 108 declarations, four independently stated
+types, and all transitive axioms. It uses cached dependency objects and records
+their source identities. Only `Classical.choice`, `Quot.sound`, and `propext`
+occur. Its scope is deliberately narrower than the full paper statements:
+
+- `StoppingProgram/Bellman.lean` and `PriceRatio.lean`: finite stopping trees,
+  deterministic maximizers, work bounds, continuity, strict price monotonicity,
+  and a unique zero equal to the maximal information/work ratio. Randomized
+  finite mixtures cannot improve the price objective.
+- `Perspective.lean`: the closed quadratic perspective, null references,
+  subadditivity, scaling, and exact scalar output elimination.
+- `Model.lean` and `Specification.lean`: the actual normalized flow cone,
+  robust certificate program, four-prior information ratio, and explicit
+  unproved full theorem targets. Definitions are not counted as proofs of
+  strong duality or statistical realization.
+- `FlowBasics.lean` and `FlowBounds.lean`: coefficient positivity, the first
+  observation's root charge, a finite constant certificate, intensity bounds,
+  and vanishing stopping/continuation/output weights at zero intensity.
+- `CapIdentification/Interpolation.lean`, `OddPolynomials.lean`, and
+  `FiniteSeparation.lean`: interpolation and the converse root-count bound,
+  a separating moment contrast, and the exact algebraic threshold
+  `N >= 2*m-1` for determining the target from odd moments on `m` distinct
+  positive magnitudes.
+
+The connection to Bernoulli count laws, the program's infinite-budget bias
+floor, infinite support, full four-prior duality, the factor-sixteen risk
+certificate, and genie convergence remain in progress. Run the ingredient
+audit with `python tools/verify_stopping_components.py`; the checkpoint used
+`--cached-dependencies` and keeps all those full theorem flags false.
