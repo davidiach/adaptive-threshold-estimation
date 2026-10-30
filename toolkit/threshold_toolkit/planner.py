@@ -72,6 +72,19 @@ class Population:
         above = np.where(rates > 0.5, 1 - wrong, wrong)
         return float(weights @ above), float(weights @ wrong)
 
+    def majority_error_terms(self, m: int) -> Tuple[float, float, float]:
+        """Bias, decision variance and misclassification probability for odd m.
+
+        This default preserves custom populations that implement majority_terms.
+        Populations with extremely small error probabilities should override it
+        to avoid subtracting decision probabilities rounded to zero or one.
+        """
+        above, wrong = self.majority_terms(m)
+        truth = self.true_fraction()
+        if not all(math.isfinite(p) and 0 <= p <= 1 for p in (above, wrong, truth)):
+            raise ValueError("majority decision, misclassification and population probabilities must be in [0, 1]")
+        return above - truth, above * (1 - above), wrong
+
 
 class GuessedRates(Population):
     """Items drawn at random, with replacement, from a list of success probabilities."""
@@ -107,6 +120,19 @@ class GuessedRates(Population):
     def points(self) -> Tuple[np.ndarray, np.ndarray]:
         rates, counts = np.unique(self.rates, return_counts=True)
         return rates, counts / counts.sum()
+
+    def majority_error_terms(self, m: int) -> Tuple[float, float, float]:
+        rates, weights = self.points()
+        positive = rates > 0.5
+        wrong = binomial_tail(m, (m + 1) // 2, np.minimum(rates, 1 - rates))
+        # Retain the two error masses: (1 - tiny) can round to 1, even though
+        # the tiny misclassification probability and its RMS are representable.
+        false_positive = float(weights[~positive] @ wrong[~positive])
+        false_negative = float(weights[positive] @ wrong[positive])
+        bias = false_positive - false_negative
+        above = float(weights @ np.where(positive, 1 - wrong, wrong))
+        below = float(weights @ np.where(positive, wrong, 1 - wrong))
+        return bias, above * below, false_positive + false_negative
 
 
 class EvenlySpread(Population):
@@ -223,11 +249,13 @@ def _majority_terms(population: Population, m: int) -> Tuple[float, float]:
 
 
 def _majority_plan(population: Population, m: int, items: int) -> MajorityPlan:
-    above, wrong = _majority_terms(population, m)
-    truth = population.true_fraction()
+    bias, variance, wrong = population.majority_error_terms(m)
+    if (not all(math.isfinite(x) for x in (bias, variance, wrong))
+            or not -1 <= bias <= 1 or variance < 0 or not 0 <= wrong <= 1):
+        raise ValueError("majority error terms must have finite bias, nonnegative variance and probability")
     # Indicators are independent Bernoulli(above); bias is at most the mean
     # misclassification chance, whichever side each item is on.
-    on_guess = math.sqrt((above - truth) ** 2 + above * (1 - above) / items)
+    on_guess = math.hypot(bias, math.sqrt(variance) / math.sqrt(items))
     worst = math.sqrt(wrong ** 2 + 1 / (4 * items))
     return MajorityPlan(items, m, on_guess, worst)
 

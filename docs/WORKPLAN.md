@@ -25,6 +25,16 @@ lower bounds already have formal results with the scopes recorded in
 [RESULTS.md](RESULTS.md). Preserve their specifications and evidence when
 extending them. The Python toolkit remains outside the Lean proof.
 
+Finite-law rate computation is now available in the
+[rare-event calculator](../toolkit/README.md#3-compute-the-rare-event-rate-for-a-known-finite-law):
+$O(n\log n)$ preprocessing and $O(\log n)$ evaluation or target-value
+inversion, without subset search. The accompanying
+[deterministic paper proof](RARE_EVENT_COMPUTATION.md) strengthens the
+comparison to $\mathcal K\le Q\le(5/3)\mathcal K$ for all positive-gap laws.
+Neither this comparison nor the Python calculation is Lean-checked. Exact
+selection optimization, the executable general-law rare-event estimator and
+the statistical formalization remain separate work.
+
 For a new contribution, follow [CONTRIBUTING.md](../CONTRIBUTING.md) and
 [AGENTS.md](../AGENTS.md). The project owner does not plan human specialist
 review; its absence remains a stated limitation, not a pending completion gate.

@@ -4,6 +4,7 @@ import io
 import math
 import sys
 import unittest
+from fractions import Fraction
 from pathlib import Path
 from unittest.mock import patch
 
@@ -12,7 +13,7 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from threshold_toolkit.__main__ import main, read_rates
-from threshold_toolkit.planner import (EvenlySpread, GuessedRates, _calls, _confirmable_runs,
+from threshold_toolkit.planner import (EvenlySpread, GuessedRates, Population, _calls, _confirmable_runs,
                                        _kl_upper_root, _majority_plan, _odd_flip_counts,
                                        _simulate_run, binomial_tail, difficulty, floor_budget,
                                        majority_plan_for_budget, majority_plan_for_target,
@@ -128,6 +129,58 @@ class FloorTests(unittest.TestCase):
 
 class MajorityPlanTests(unittest.TestCase):
     rates = [0.9, 0.7, 0.58, 0.53, 0.46, 0.2]
+
+    def test_tiny_majority_error_matches_exact_binomial_law(self):
+        # Compute the decision law with exact rational arithmetic, without
+        # complementing a rounded floating-point tail. The old calculation
+        # reported zero error for all-positive populations in these cases.
+        cases = (([Fraction(7, 8)], 101, 1),
+                 ([Fraction(7, 8)], 101, 10_000),
+                 ([Fraction(7, 8), Fraction(15, 16), Fraction(31, 32)], 101, 13))
+        for rates, m, items in cases:
+            for reflected in (False, True):
+                law = [1 - p for p in rates] if reflected else rates
+                above = sum(sum(Fraction(math.comb(m, k)) * p ** k * (1 - p) ** (m - k)
+                                for k in range((m + 1) // 2, m + 1))
+                            for p in law) / len(law)
+                truth = Fraction(sum(p > Fraction(1, 2) for p in law), len(law))
+                squared = (above - truth) ** 2 + above * (1 - above) / items
+                expected = math.sqrt(float(squared))
+                plan = _majority_plan(GuessedRates([float(p) for p in law]), m, items)
+                with self.subTest(rates=law, items=items):
+                    self.assertGreater(plan.error_on_guess, 0)
+                    self.assertAlmostEqual(plan.error_on_guess / expected, 1, delta=2e-13)
+
+    def test_majority_error_is_symmetric_under_complementing_rates(self):
+        for rates in ([0.125], [0.125, 0.0625, 0.03125], [0.125, 0.875, 0.9375]):
+            with self.subTest(rates=rates):
+                original = _majority_plan(GuessedRates(rates), 101, 13)
+                reflected = _majority_plan(GuessedRates([1 - p for p in rates]), 101, 13)
+                self.assertEqual(original.error_on_guess, reflected.error_on_guess)
+                self.assertEqual(original.worst_case_error, reflected.worst_case_error)
+
+    def test_custom_population_majority_terms_remain_supported(self):
+        class CustomPopulation(Population):
+            def majority_terms(self, m):
+                return 0.75, 0.25
+
+            def true_fraction(self):
+                return 0.5
+
+        plan = _majority_plan(CustomPopulation(), 3, 4)
+        self.assertEqual(plan.error_on_guess, math.sqrt(7 / 64))
+        self.assertEqual(plan.worst_case_error, math.sqrt(1 / 8))
+        for above, wrong in ((math.nan, 0.25), (1.1, 0.25), (0.75, math.inf)):
+            with self.subTest(above=above, wrong=wrong), \
+                    patch.object(CustomPopulation, 'majority_terms', return_value=(above, wrong)):
+                with self.assertRaisesRegex(ValueError, 'probabilities'):
+                    _majority_plan(CustomPopulation(), 3, 4)
+        # Dividing a representable variance before taking its square root can
+        # underflow even when the standard deviation of the mean is nonzero.
+        with patch.object(CustomPopulation, 'majority_error_terms',
+                          return_value=(0.0, 1e-300, 0.0)):
+            plan = _majority_plan(CustomPopulation(), 3, 10 ** 100)
+            self.assertAlmostEqual(plan.error_on_guess / 1e-200, 1, delta=1e-15)
 
     def test_error_on_guess_matches_simulation(self):
         population = GuessedRates(self.rates)
