@@ -286,9 +286,16 @@ proves sharp affinity testing, transfers the bound to the original arbitrary-see
 adaptive population experiment, proves exact quadratic contraction of the
 information ratio, and establishes P_N <= 8T for any actual finite-prefix
 estimate with uniform rare-prior RMS risk T. It rebuilt nine modules and checked
-498 declarations and seven exact types, with cached dependencies. Truncation,
-the universal rarity floor, the factor-sixteen risk certificate, and genie
-convergence remain unfinished.
+498 declarations and seven exact types, with cached dependencies. The
+[finite-certificate audit](../results/finite-risk-certificate-20261030/README.md)
+proves the unchanged `FiniteCertificateStatement`: R <= P_N <= 16R at
+N = ceil(64 max(B, rho B^2)), for arbitrary probability gap laws, 0 < rho <= 1/4
+and B > 0. It proves the sharp truncation comparison and universal Bernoulli-label
+risk floor, independently of the entropy-tail statistical lower bound. The audit
+rebuilt nine modules and checked 559 declarations and eight exact types, including
+all three original finite stopping-program targets. Dependencies were cached
+with recorded source identities. Infinite-cap duality and genie convergence
+remain unfinished.
 
 The [audit index](../paper/rare-event/audit/README.md) distinguishes the original
 source audits, final referee assessment, and revision audit, including corrected

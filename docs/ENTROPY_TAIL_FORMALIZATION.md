@@ -321,7 +321,17 @@ standard axioms. Other dependencies used cached objects with recorded hashes.
 Run `python tools/verify_adaptive_information.py`; its four regression tests
 use `test_adaptive_information.py`.
 
-Truncation, the universal rarity floor, the factor-sixteen risk certificate,
-and genie convergence remain in progress. Run
-`python tools/verify_stopping_components.py`; the published checkpoint used
-`--cached-dependencies`. The full stopping and genie flags remain false.
+The [finite-certificate checkpoint](../results/finite-risk-certificate-20261030/README.md)
+proves all three unchanged finite stopping-program targets, including
+`FiniteCertificateStatement`: R <= P_N <= 16R at the prescribed
+N = ceil(64 max(B, rho B^2)). It includes the exact truncation penalty
+rho sqrt(B/(N+1))/2 and the universal Bernoulli-label floor
+min(rho, sqrt(rho/B))/16. The floor uses constant sign priors and does not
+depend on the separate entropy-tail lower theorem. The audit rebuilt nine
+modules, checked 559 declarations in 96 modules and eight exact types, and
+found only standard axioms. Other dependencies used cached objects with
+recorded identities. Run `python tools/verify_finite_risk_certificate.py`;
+its four regression tests use `test_finite_risk_certificate.py`.
+
+Infinite-cap duality and genie convergence remain in progress. Earlier
+component checkpoint flags describe their original, narrower scope.
