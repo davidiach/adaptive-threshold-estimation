@@ -8,9 +8,13 @@
 - `estimate_fraction` runs the paper's distribution-blind estimator on real items.
 - `two_success_average` is that estimator's cost calibration on its own, for
   iid procedures with finite values and strictly positive bounded costs.
+- `FiniteGapLaw` and `RareEventProfile` evaluate the known-law rare-event
+  rate functional and invert its targets; they do not run an estimator.
 """
 
 from .estimator import Estimate, estimate_fraction, majority_vote_estimate, two_success_average
+from .rare_events import (EntropyBand, FiniteGapLaw, RareEventEvaluation,
+                          RareEventProfile, RateBudget)
 
 # Keep the execution API usable with only the standard library. Import the
 # numerical planning dependencies only when a planning name is requested.
@@ -30,7 +34,8 @@ def __getattr__(name):
     return value
 
 __all__ = [
-    "BudgetPlan", "Estimate", "EvenlySpread", "GuessedRates", "MajorityPlan", "Population",
+    "BudgetPlan", "EntropyBand", "Estimate", "EvenlySpread", "FiniteGapLaw", "GuessedRates",
+    "MajorityPlan", "Population", "RareEventEvaluation", "RareEventProfile", "RateBudget",
     "Simulation", "TargetPlan", "estimate_fraction", "floor_budget",
     "majority_plan_for_budget", "majority_plan_for_target", "majority_vote_estimate",
     "plan_budget", "plan_target", "rms_upper_bound", "simulate", "two_success_average",

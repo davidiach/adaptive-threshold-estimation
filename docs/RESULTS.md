@@ -326,6 +326,23 @@ entropy–tail theorem in the same paper; its status is unchanged. The
 comparison came from an external adversarial review of revision 1, which is
 unchanged.
 
+The additive [computation note](RARE_EVENT_COMPUTATION.md) improves the
+deterministic comparison to $\mathcal K\le Q\le(5/3)\mathcal K$ for every
+probability law on positive gaps, including infinite support. Its proof
+retains the selected tail and core costs separately, uses superadditivity
+and a square-root triangle inequality for the entropy, and proves the sharper
+scale-separated estimate $\Gamma_\xi\le2H_\xi/t$ on $[t,1/2]$.
+This is a new paper proof, not a Lean theorem or a completed formalization of
+the statistical rare-event law. The note also gives a slightly smaller
+algebraic coefficient without claiming optimality.
+
+The [toolkit](../toolkit/README.md#3-compute-the-rare-event-rate-for-a-known-finite-law)
+now computes the finite-law $Q$ and its inverse with $O(n\log n)$
+preprocessing and $O(\log n)$ queries. It returns the comparison
+$\mathcal K\in[\max\{T_h,3Q/5\},Q]$, evaluated in floating point, alongside the tail and
+entropy terms. This implementation is not Lean-checked or interval certified;
+its target-value inverse is not an achieved-error or estimator-budget guarantee.
+
 ## Critical power margin: full minimax characterization
 
 For the one fixed law $F(d)=(4d)^2$ on $(0,1/4]$, the
