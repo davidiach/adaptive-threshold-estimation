@@ -281,8 +281,14 @@ aggregates arbitrary measurable seeded, order-dependent capped procedures to
 count flows, with exact expected physical work. It proves 4h <= I <= 8h and
 h <= K_N E_midpoint[T]/4, including zero-work procedures and null prefixes.
 It rebuilt eleven modules and checked 359 declarations and four exact types,
-with cached dependencies. Adaptive population testing transfer, the
-factor-sixteen risk comparison, and genie convergence remain unfinished.
+with cached dependencies. The [adaptive-information audit](../results/adaptive-information-20261030/README.md)
+proves sharp affinity testing, transfers the bound to the original arbitrary-seed
+adaptive population experiment, proves exact quadratic contraction of the
+information ratio, and establishes P_N <= 8T for any actual finite-prefix
+estimate with uniform rare-prior RMS risk T. It rebuilt nine modules and checked
+498 declarations and seven exact types, with cached dependencies. Truncation,
+the universal rarity floor, the factor-sixteen risk certificate, and genie
+convergence remain unfinished.
 
 The [audit index](../paper/rare-event/audit/README.md) distinguishes the original
 source audits, final referee assessment, and revision audit, including corrected

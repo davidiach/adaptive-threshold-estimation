@@ -308,7 +308,20 @@ dependencies used cached objects with recorded identities. Run
 `python tools/verify_ordered_information.py`; its four regression tests use
 `test_ordered_information.py`.
 
-Adaptive population testing transfer, the factor-sixteen risk certificate,
+The [adaptive-information checkpoint](../results/adaptive-information-20261030/README.md)
+proves sharp squared-loss and RMS testing from affinity, including infinite
+risk and zero endpoint densities. It transfers the midpoint bound to the
+original arbitrary-seed, unrestricted-label adaptive population experiment,
+with each physical flip charged once. Symmetric prior contraction scales
+the target gap by s and the actual information ratio by s squared. The
+resulting finite-prefix comparison is P_N <= 8T for a measurable prefix
+estimate of uniform rare-prior RMS risk T. The audit rebuilt nine modules,
+checked 498 declarations in 78 modules and seven exact types, and used only
+standard axioms. Other dependencies used cached objects with recorded hashes.
+Run `python tools/verify_adaptive_information.py`; its four regression tests
+use `test_adaptive_information.py`.
+
+Truncation, the universal rarity floor, the factor-sixteen risk certificate,
 and genie convergence remain in progress. Run
 `python tools/verify_stopping_components.py`; the published checkpoint used
 `--cached-dependencies`. The full stopping and genie flags remain false.
