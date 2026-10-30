@@ -26,6 +26,7 @@ or CI run passes.
 | Arbitrary-law deterministic quantile comparison | [entropy-tail-quantile-20261030](entropy-tail-quantile-20261030/README.md) |
 | Observable entropy-tail and closed-quantile upper bounds | [entropy-tail-upper-20261030](entropy-tail-upper-20261030/README.md) |
 | Fixed-cap identification and infinite-budget floor | [cap-identification-20261030](cap-identification-20261030/README.md) |
+| Ordered stopping and local information | [ordered-information-20261030](ordered-information-20261030/README.md) |
 | Actual information-ratio Bellman characterization | [information-bellman-20261030](information-bellman-20261030/README.md) |
 | Reference absorption and midpoint modulus | [reference-absorption-20261030](reference-absorption-20261030/README.md) |
 | Observable stopping-program upper bound | [stopping-program-upper-20261030](stopping-program-upper-20261030/README.md) |

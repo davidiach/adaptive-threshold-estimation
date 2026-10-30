@@ -275,9 +275,14 @@ The [Bellman audit](../results/information-bellman-20261030/README.md)
 proves deterministic attainment of the actual count-flow information ratio,
 its unique Bellman price zero, the exact infinite-ratio criterion, and the
 information-increment identity. It rebuilt seven modules and checked 189
-declarations and five exact types, with cached dependencies. Arbitrary ordered
-procedure aggregation, the factor-sixteen risk comparison, and genie convergence
-remain unfinished.
+declarations and five exact types, with cached dependencies. The
+[ordered-stopping audit](../results/ordered-information-20261030/README.md)
+aggregates arbitrary measurable seeded, order-dependent capped procedures to
+count flows, with exact expected physical work. It proves 4h <= I <= 8h and
+h <= K_N E_midpoint[T]/4, including zero-work procedures and null prefixes.
+It rebuilt eleven modules and checked 359 declarations and four exact types,
+with cached dependencies. Adaptive population testing transfer, the
+factor-sixteen risk comparison, and genie convergence remain unfinished.
 
 The [audit index](../paper/rare-event/audit/README.md) distinguishes the original
 source audits, final referee assessment, and revision audit, including corrected

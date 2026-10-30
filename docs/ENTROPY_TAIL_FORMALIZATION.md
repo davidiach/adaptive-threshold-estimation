@@ -297,7 +297,18 @@ only the standard axioms. Other dependencies used cached objects with recorded
 identities. Run `python tools/verify_information_bellman.py`; its four regression
 tests use `test_information_bellman.py`.
 
-Arbitrary seeded ordered-procedure aggregation, the factor-sixteen risk
-certificate, and genie convergence remain in progress. Run
+The [ordered-stopping checkpoint](../results/ordered-information-20261030/README.md)
+proves aggregation of arbitrary measurable seeded, order-dependent capped
+procedures into count flows with exact actual work. Midpoint information and
+actual stopped-transcript Hellinger distance satisfy 4h <= I <= 8h, yielding
+h <= K_N E_midpoint[T]/4, including null prefixes and procedures that take no
+observations. The audit rebuilt eleven modules, checked 359 declarations in
+47 modules and four exact types, and used only the standard axioms. Other
+dependencies used cached objects with recorded identities. Run
+`python tools/verify_ordered_information.py`; its four regression tests use
+`test_ordered_information.py`.
+
+Adaptive population testing transfer, the factor-sixteen risk certificate,
+and genie convergence remain in progress. Run
 `python tools/verify_stopping_components.py`; the published checkpoint used
 `--cached-dependencies`. The full stopping and genie flags remain false.
