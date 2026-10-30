@@ -253,6 +253,15 @@ only the three standard axioms. It used cached dependencies with recorded
 source identities. Run `python tools/verify_rarity_support.py`; the four
 regression tests are `python -m unittest discover -s tools -p test_rarity_support.py -v`.
 
+The [finite-program checkpoint](../results/finite-stopping-program-20261030/README.md)
+proves the four-cutoff reduction for arbitrary laws and the exact finite conic
+representation for finitely supported laws. It includes both bias signs,
+variance and work, with zero weights and repeated support points allowed.
+Its audit rebuilt two new modules, checked 119 declarations in 17 modules and
+two exact types, and found only the three standard axioms. Dependencies used
+cached objects with recorded identities. Run `python tools/verify_finite_stopping_program.py`;
+the four regression tests use `test_finite_stopping_program.py`.
+
 Statistical flow realization, the factor-sixteen risk certificate, and genie
 convergence remain in progress. Run
 `python tools/verify_stopping_components.py`; the published checkpoint used

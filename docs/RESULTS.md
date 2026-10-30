@@ -258,8 +258,11 @@ exact types, rebuilding six attainment modules with cached dependencies and
 recorded source hashes. The [rarity-support audit](../results/rarity-support-20261030/README.md)
 proves the scalar minimum formula and an explicit fractional cutoff optimizer,
 including atoms and a bounded cutoff. It rebuilt six modules and checked 41
-declarations and two exact types, with cached dependency objects. Statistical
-flow realization, the factor-sixteen certificate, and genie convergence remain
+declarations and two exact types, with cached dependency objects. The
+[finite-program audit](../results/finite-stopping-program-20261030/README.md)
+proves exact finite-law equivalence to cone and linear cutoff/excess constraints;
+it rebuilt two modules and checked 119 declarations and two exact types, using
+cached dependencies. Statistical flow realization, the factor-sixteen certificate, and genie convergence remain
 unfinished.
 
 The [audit index](../paper/rare-event/audit/README.md) distinguishes the original
