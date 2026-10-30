@@ -1,11 +1,6 @@
 # Consolidated version 6
 
-[Open the LaTeX project](main.tex) · [Latest PDF builds](https://github.com/davidiach/adaptive-threshold-estimation/actions/workflows/manuscript.yml)
-
-No PDF is committed yet. The manuscript workflow compiles these sources on
-every change and uploads the PDF and log as the `v6-paper` artifact; the
-first build has 134 pages, no undefined or duplicate references, and one
-small overfull line. The pages have not yet been visually reviewed.
+[Read the manuscript](paper.pdf) · [Open the LaTeX project](main.tex) · [Build record](#build-record)
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -114,9 +109,35 @@ python tools/build_v6.py --check
 python -m unittest discover -s tools -p 'test_build_v6.py' -v
 ```
 
-To build the PDF, copy `paper/v6/` to a disposable directory and run
-`latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex` there.
+To build the PDF, copy `paper/v6/` to a disposable directory and run there:
+
+```sh
+SOURCE_DATE_EPOCH=1793232000 FORCE_SOURCE_DATE=1 latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+```
+
 The [manuscript workflow](../../.github/workflows/manuscript.yml) builds it
-with TeX Live from the Ubuntu 24.04 archive and uploads the PDF and log.
-Typesetting and source checks do not constitute a new mathematical proof or
-independent review.
+the same way with TeX Live from the Ubuntu 24.04 archive and uploads the PDF
+and log as the `v6-paper` artifact. Typesetting and source checks do not
+constitute a new mathematical proof or independent review.
+
+## Build record
+
+`paper.pdf` was built from the v6 sources at `main` commit
+`b45a8eef4e8d174de756e803a8acf0cc9699d489` with pdfTeX 1.40.25
+(TeX Live 2023/Debian, Ubuntu 24.04 packages) and the fixed source date
+above. Its SHA-256 is
+`7ae803532ccc7946ac0d6c586a2f420dac5626066f613d3caed3963c20aa7a28`.
+
+- Two consecutive builds were byte-identical. The manuscript workflow's build
+  on that commit reported the same page count (134), file size
+  (1,103,171 bytes) and creation date; its artifact itself was not compared.
+- The log has no LaTeX or package warnings and no undefined or duplicate
+  references. One line in the inherited proof of Theorem C.1 (page 72) is
+  5.2 pt too wide.
+- All 29 fonts are embedded, and the extracted text has no unresolved `??`
+  references.
+- All 134 pages were inspected as rendered contact sheets for layout. Pages
+  with new or rewritten text (25–26, 30–32, 37–38, 43, 126 and 129) and the
+  overfull line on page 72 were also read at higher resolution.
+
+A fresh build with another engine or TeX Live release may differ in bytes.
