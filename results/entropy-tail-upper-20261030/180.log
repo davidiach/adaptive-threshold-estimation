@@ -1,0 +1,6 @@
+ThresholdHC\CriticalUpper\WeightedCost.lean:59:12: warning: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [f, criticalCappedCost]
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`

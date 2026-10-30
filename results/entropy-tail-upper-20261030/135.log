@@ -1,0 +1,44 @@
+ThresholdHC\CriticalEntropy\CommonPoint.lean:28:11: warning: `stdSimplex` has been deprecated: Use `Convexity.StdSimplex` instead
+
+Note: The updated constant has a different type:
+  (R : Type u) → [LE R] → [AddCommMonoid R] → [One R] → Type v → Type (max u v)
+instead of
+  (𝕜 : Type u_2) → (ι : Type u_1) → [Semiring 𝕜] → [PartialOrder 𝕜] → [Fintype ι] → Set (ι → 𝕜)
+ThresholdHC\CriticalEntropy\CommonPoint.lean:30:26: warning: `convex_stdSimplex` has been deprecated: Use `Convexity.StdSimplex.instConvexSpace` instead
+
+Note: The updated constant has a different type:
+  {R : Type u_1} →
+    {I : Type u_5} →
+      [inst : PartialOrder R] →
+        [inst_1 : Semiring R] → [inst_2 : IsStrictOrderedRing R] → Convexity.ConvexSpace R (Convexity.StdSimplex R I)
+instead of
+  ∀ (𝕜 : Type u_2) (ι : Type u_1) [inst : Semiring 𝕜] [inst_1 : PartialOrder 𝕜] [inst_2 : Fintype ι] [IsOrderedRing 𝕜],
+    Convex 𝕜 (stdSimplex 𝕜 ι)
+ThresholdHC\CriticalEntropy\CommonPoint.lean:31:28: warning: `isCompact_stdSimplex` has been deprecated: Use `Convexity.StdSimplex.compactSpace` instead
+
+Note: The updated constant has a different type:
+  ∀ (R : Type u_1) (M : Type u_2) [inst : Ring R] [inst_1 : TopologicalSpace R] [IsTopologicalRing R]
+    [inst_3 : PartialOrder R] [inst_4 : IsStrictOrderedRing R] [CompactIccSpace R] [OrderClosedTopology R] [Finite M],
+    CompactSpace (Convexity.StdSimplex R M)
+instead of
+  ∀ (𝕜 : Type u_1) (ι : Type u_2) [inst : Fintype ι] [inst_1 : TopologicalSpace 𝕜] [inst_2 : Semiring 𝕜]
+    [inst_3 : PartialOrder 𝕜] [OrderClosedTopology 𝕜] [ContinuousAdd 𝕜] [CompactIccSpace 𝕜] [IsOrderedAddMonoid 𝕜],
+    IsCompact (stdSimplex 𝕜 ι)
+ThresholdHC\CriticalEntropy\CommonPoint.lean:33:42: warning: `single_mem_stdSimplex` has been deprecated: Use `Convexity.StdSimplex.single` instead
+
+Note: The updated constant has a different type:
+  {X : Type u_2} →
+    {R : Type u} →
+      [inst : PartialOrder R] → [inst_1 : Semiring R] → [IsStrictOrderedRing R] → X → Convexity.StdSimplex R X
+instead of
+  ∀ (𝕜 : Type u_2) {ι : Type u_1} [inst : Semiring 𝕜] [inst_1 : PartialOrder 𝕜] [inst_2 : Fintype ι]
+    [inst_3 : DecidableEq ι] [ZeroLEOneClass 𝕜] (i : ι), Pi.single i 1 ∈ stdSimplex 𝕜 ι
+ThresholdHC\CriticalEntropy\CommonPoint.lean:72:44: warning: `single_mem_stdSimplex` has been deprecated: Use `Convexity.StdSimplex.single` instead
+
+Note: The updated constant has a different type:
+  {X : Type u_2} →
+    {R : Type u} →
+      [inst : PartialOrder R] → [inst_1 : Semiring R] → [IsStrictOrderedRing R] → X → Convexity.StdSimplex R X
+instead of
+  ∀ (𝕜 : Type u_2) {ι : Type u_1} [inst : Semiring 𝕜] [inst_1 : PartialOrder 𝕜] [inst_2 : Fintype ι]
+    [inst_3 : DecidableEq ι] [ZeroLEOneClass 𝕜] (i : ι), Pi.single i 1 ∈ stdSimplex 𝕜 ι

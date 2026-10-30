@@ -1,0 +1,80 @@
+ThresholdHC\Tier6\ProcessIntegral.lean:21:2: warning: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+ThresholdHC\Tier6\ProcessIntegral.lean:28:30: warning: This simp argument is unused:
+  creationStepKernel
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [measureReal_def, Kernel.comap_apply, creationNextKernel, Kernel.coe_mk, Measure.finsetSum_apply,
+    Measure.smul_apply, smul_eq_mul, Measure.dirac_apply' _ (measurableSet_singleton o)]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ThresholdHC\Tier6\ProcessIntegral.lean:28:50: warning: This simp argument is unused:
+  Kernel.comap_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [measureReal_def, creationStepKernel, creationNextKernel, Kernel.coe_mk, Measure.finsetSum_apply,
+    Measure.smul_apply, smul_eq_mul, Measure.dirac_apply' _ (measurableSet_singleton o)]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ThresholdHC\Tier6\ProcessIntegral.lean:32:4: warning: This simp argument is unused:
+  ite_mul
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Set.indicator_apply, Set.mem_singleton_iff, Pi.one_apply, mul_ite, mul_one, mul_zero,
+    Finset.sum_ite_eq', Finset.mem_univ, ite_true]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ThresholdHC\Tier6\ProcessIntegral.lean:72:2: warning: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+ThresholdHC\Tier6\ProcessIntegral.lean:74:2: warning: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+ThresholdHC\Tier6\ProcessIntegral.lean:107:2: warning: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+ThresholdHC\Tier6\ProcessIntegral.lean:109:2: warning: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+ThresholdHC\Tier6\ProcessIntegral.lean:114:2: warning: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+ThresholdHC\Tier6\ProcessIntegral.lean:116:2: warning: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`

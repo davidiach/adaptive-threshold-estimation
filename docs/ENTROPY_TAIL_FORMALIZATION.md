@@ -26,10 +26,11 @@ remain unchanged.
    paper-only claims as separate developments, with exact statement and
    transitive-axiom audits for each completed result.
 
-The construction now compiles a bound with coefficient `28000`, and separately
+The construction proves a bound with coefficient `28000`, and separately
 derives both the frozen general-law upper coefficient `33000` and the finite-law
-upper coefficient `30001`. The full dependency and axiom audit is running;
-compilation alone is not the completed verification record.
+upper coefficient `30001` (also for arbitrary laws). The full dependency and
+axiom audit passed: 306 rebuilt local modules, 611 audited declarations, and six
+exact types. See the [published record](../results/entropy-tail-upper-20261030/README.md).
 
 ## Modules and current boundary
 
@@ -136,11 +137,11 @@ all 338 declarations across the 39 upper/assembly modules. Only
 dependency sources but used cached objects for dependencies outside the
 assembly. At that historical checkpoint the full statistical upper theorem
 was unverified. The later sampling/execution construction completes those
-proof obligations at the compilation level. Its new full audit is rebuilding
-306 local dependency modules, checking six exact targets and the transitive
-axioms of 611 declarations across 77 modules. The running evidence directory
-is `.runtime/entropy-tail-full-upper-20261030/`; its `valid` field must be true
-before treating that audit as successful.
+proof obligations. The subsequent full audit rebuilt 306 local dependency
+modules and passed six exact targets and the transitive-axiom checks for 611
+declarations across 77 modules. Its `valid` field is true and only the three
+standard axioms occur. The [published evidence](../results/entropy-tail-upper-20261030/README.md)
+preserves `.runtime/entropy-tail-full-upper-20261030/` with all 307 command logs.
 
 ## Verification
 

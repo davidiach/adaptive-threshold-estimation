@@ -1,0 +1,7 @@
+ThresholdHC\BlindUpper\PilotWork.lean:63:53: warning: This simp argument is unused:
+  Set.indicator_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [failureWeight, h]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

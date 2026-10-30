@@ -24,12 +24,15 @@ axioms; a successful build alone is not a substitute for that audit.
 | Confidence characterization | [Confidence specification](ThresholdHC/Confidence/Specification.lean), [Full](ThresholdHC/Confidence/Full.lean) | `python tools/verify_confidence.py --sequential` |
 | Revealed/selected magnitude-oracle lower bounds | [OracleLower specification](ThresholdHC/OracleLower/Specification.lean), [Full](ThresholdHC/OracleLower/Full.lean) | `python tools/verify_oracle_lower.py --sequential` |
 | Observable rare-event rate above alpha two | [RareAboveTwo specification](ThresholdHC/RareAboveTwo/Specification.lean), [Full](ThresholdHC/RareAboveTwo/Full.lean), [scope guide](../docs/RARE_ABOVE_TWO.md) | `python tools/verify_rare_above_two.py --sequential` |
+| Arbitrary-law entropy-tail and closed-quantile upper bounds | [EntropyTail specification](ThresholdHC/EntropyTail/Specification.lean), [UpperTheorem](ThresholdHC/EntropyTailExecution/UpperTheorem.lean), [scope guide](../docs/ENTROPY_TAIL_FORMALIZATION.md) | `python tools/verify_entropy_tail_upper.py` |
+| Arbitrary-law deterministic quantile comparison | [QuantileComparison](ThresholdHC/EntropyTail/QuantileComparison.lean), [published audit](../results/entropy-tail-quantile-20261030/README.md) | `python tools/verify_entropy_tail_components.py` |
 
-The new general-law rare-event manuscript remains a paper proof; the existing
-critical-law and optimizer formalizations do not certify its general claims.
-See its [separate status](../paper/rare-event/README.md). The closed quantile law
-of the [finite-gap manuscript](../paper/finite-gap-rare-events/README.md) is also a
-paper proof; the Lean finite-gap entropy results above do not verify it.
+The arbitrary-law entropy-tail upper bound and closed-quantile upper formula
+now have a [full local audit](../results/entropy-tail-upper-20261030/README.md).
+The matching statistical lower bound remains separate work, so this does not
+yet verify the two-sided minimax characterization. The stopping-program and
+identification development has its own [current scope](../docs/ENTROPY_TAIL_FORMALIZATION.md#stopping-and-identification-ingredients).
+Preserved manuscript verification sections describe their earlier checkpoints.
 
 ## Foundations and supporting developments
 

@@ -226,7 +226,7 @@ $$10^{-17}\mathcal K_{\mu,\rho}(B)\le R_{\mu,\rho}(B)
 \le33000\mathcal K_{\mu,\rho}(B).$$
 
 No finite inverse moment, density, or regularity assumption is imposed.
-The following scopes are all **paper-level claims**, not new Lean theorems:
+The table records the manuscript claims; the later formal status follows it.
 
 | Claim | Scope and qualification |
 |---|---|
@@ -236,11 +236,27 @@ The following scopes are all **paper-level claims**, not new Lean theorems:
 | Genie convergence | Pointwise convergence assumes finite latent divergence. An explicit infinite-divergence counterexample is included. Optimized convergence first fixes a positive regularization, takes the cap limit, then removes regularization. |
 | Fixed-cap identification | For $m$ distinct positive magnitudes, the zero-bias threshold is $N\ge2m-1$. This identifies the target, not necessarily the full allocation $q$. Infinite support has a positive floor at every fixed cap; the cap may grow. |
 
+The later additive Lean development proves the **observable arbitrary-law
+upper bound** $R\le28000\mathcal K$, the closed-quantile upper bound
+$R\le30001Q$, and the deterministic comparison
+$\mathcal K\le Q\le(1+2\sqrt2)\mathcal K$, including fractional boundary
+atoms. Its [full local audit](../results/entropy-tail-upper-20261030/README.md)
+rebuilt 306 local modules and checked 611 declarations, six exact targets, and
+all transitive axioms; only the three standard Lean axioms occur. It covers
+the original observable estimator, expected physical work, and risk, without
+an inverse-moment or finite-support assumption. The statistical entropy-tail
+lower bound is separate work, so the two-sided characterization remains
+unverified. The [formalization guide](ENTROPY_TAIL_FORMALIZATION.md) records
+the separate stopping and fixed-cap identification checkpoints; four-prior
+strong duality, the factor-sixteen certificate, and genie convergence remain
+unfinished.
+
 The [audit index](../paper/rare-event/audit/README.md) distinguishes the original
 source audits, final referee assessment, and revision audit, including corrected
 interpretations of historical findings. V2 resolves the revision audit's two
-minor editorial defects. The new general results have no Lean formalization
-or external specialist review. The exact stored certificates cover 33 lower
+minor editorial defects. Those publication audits predate the additive Lean
+development and do not establish its formal status; external specialist review
+remains unverified. The exact stored certificates cover 33 lower
 bounds, 9 upper policies, 9 stopping decisions, and two perfect-label examples;
 they are not proofs of the continuum or compactness claims. The existing Lean
 variational-optimizer and critical-law results above and below retain their
@@ -274,11 +290,14 @@ their independent seed, coin identities and purchased flips. Both bounds
 use uniform expected physical-observation budgets and allow adaptive
 creation, revisiting and interleaving.
 
-Status: **paper proof, not Lean-checked or externally specialist-reviewed**.
+Status: the **two-sided characterization remains a paper proof**. The upper
+coefficient `30001` and arbitrary-law deterministic comparison now have the
+[Lean audit above](../results/entropy-tail-upper-20261030/README.md); the matching
+statistical lower bound and external specialist review remain unverified.
 The precursor received fresh-context AI review; the
 [provenance note](../paper/finite-gap-rare-events/PROVENANCE.md) records its
-limits. Existing Lean entropy and critical-law results do not certify this
-theorem. The manuscript does not establish an unknown-law guarantee, a
+limits. The earlier Lean entropy and critical-law results have separate scopes.
+The manuscript does not establish an unknown-law guarantee, a
 general infinite-support extension, a deterministic budget or a
 high-confidence result.
 
