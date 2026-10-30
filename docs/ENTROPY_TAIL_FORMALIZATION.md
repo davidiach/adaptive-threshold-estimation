@@ -230,7 +230,20 @@ axioms occur. Dependencies outside the two groups used cached objects, with
 their source identities recorded. The `full_cap_identification_verified`
 field is true for this checkpoint.
 
-Full four-prior duality, statistical flow realization, the factor-sixteen
-risk certificate, and genie convergence remain in progress. Run
+The subsequent [attained-duality checkpoint](../results/stopping-dual-20261030/README.md)
+proves the unchanged `StoppingProgram/Specification.lean:AttainedDualStatement`.
+It establishes the exact four-prior value identity, primal and dual attainment,
+positive value, and a finite optimal information ratio. The proof uses the
+actual global rarity class, geometric separation, compact minimax, explicit
+output elimination, and compact primal sublevels with null coordinates removed.
+It checks 188 declarations in 30 modules, both the specification and an
+independently expanded exact type, and only the three standard axioms. This
+checkpoint rebuilt the six attainment modules and used cached dependency
+objects with recorded source identities. Reproduce with
+`python tools/verify_stopping_dual.py`; its four regression tests are
+`python -m unittest discover -s tools -p test_stopping_dual.py -v`.
+
+Statistical flow realization, the factor-sixteen risk certificate, and genie
+convergence remain in progress. Run
 `python tools/verify_stopping_components.py`; the published checkpoint used
-`--cached-dependencies`. Its full stopping and genie flags remain false.
+`--cached-dependencies`. The full stopping and genie flags remain false.

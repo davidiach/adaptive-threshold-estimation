@@ -251,9 +251,12 @@ the separate stopping development. The [fixed-cap identification checkpoint](../
 proves attained matching diameter, `P_N(B) -> Delta_N/2`, the exact finite-support
 threshold, and the positive infinite-support floor. It rebuilt 36 new modules
 and checked 245 declarations and ten exact types, using cached dependency
-objects with recorded source identities. Four-prior strong duality, statistical
-flow realization, the factor-sixteen certificate, and genie convergence remain
-unfinished.
+objects with recorded source identities. The later [attained four-prior dual](../results/stopping-dual-20261030/README.md)
+proves the exact conic-program identity, both optimizers, positive value, and a
+finite optimal information ratio. Its audit checks 188 declarations and two
+exact types, rebuilding six attainment modules with cached dependencies and
+recorded source hashes. Statistical flow realization, the factor-sixteen
+certificate, and genie convergence remain unfinished.
 
 The [audit index](../paper/rare-event/audit/README.md) distinguishes the original
 source audits, final referee assessment, and revision audit, including corrected

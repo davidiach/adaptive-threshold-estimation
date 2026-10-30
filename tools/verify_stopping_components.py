@@ -1,7 +1,8 @@
 """Audit stopping-program ingredients and the full fixed-cap identification theorem.
 
 The default rebuilds the local closure. --cached-dependencies rebuilds only
-the two ingredient groups and records the narrower checkpoint scope.
+the two ingredient groups. --audit-only uses existing objects throughout.
+Both narrower modes record their actual rebuild scope and source identities.
 """
 from __future__ import annotations
 
@@ -10,6 +11,7 @@ from datetime import datetime, timezone
 import json
 from pathlib import Path
 import subprocess
+import sys
 
 from verify_blind_upper_components import DECLARATION, FORBIDDEN, sha, strip_comments, validate_reports
 from verify_entropy_tail_components import dependency_order
@@ -79,15 +81,27 @@ example : ∀ (μ : Measure ThresholdHC.Tier6.Gap) [IsProbabilityMeasure μ]
     (∀ S : Finset ThresholdHC.Tier6.Gap, μ.support = (S:Set ThresholdHC.Tier6.Gap) → 0 < S.card →
       (capDiameter μ ρ N = 0 ↔ 2*S.card-1 ≤ N)) ∧
     (μ.support.Infinite → 0 < capDiameter μ ρ N) := fixed_cap_identification
+example : ∀ (μ : Measure ThresholdHC.Tier6.Gap) [IsProbabilityMeasure μ]
+    (ρ B : ℝ), 0 < B → ∀ N : ℕ,
+    dualValue μ ρ B N ≤ programSquared μ ρ B N := fun μ _ ρ B hB N => weak_duality μ hB N
+example : ∀ (N : ℕ) (μ : Measure ThresholdHC.Tier6.Gap) [IsProbabilityMeasure μ]
+    (ρ B : ℝ), 0 < ρ → ρ ≤ 1/2 → 0 < B →
+    programSquared μ ρ B N = dualValue μ ρ B N ∧
+      ∃ Q : FourPriors, Admissible μ ρ Q ∧ dualRatio μ B N Q = programSquared μ ρ B N ∧
+        0 < programSquared μ ρ B N ∧ informationRatio μ N Q < ⊤ :=
+  fun N μ _ ρ B hρ hρhalf hB => strong_four_prior_duality N μ hρ hρhalf hB
 """
 
+REQUIRED = {
+    "ThresholdHC.CapIdentification.fixed_cap_identification",
+    "ThresholdHC.StoppingProgram.weak_duality",
+    "ThresholdHC.StoppingProgram.strong_four_prior_duality",
+    "ThresholdHC.StoppingProgram.four_prior_multipliers",
+    "ThresholdHC.StoppingProgram.conePrice_ratio_finite",
+}
 
-def main() -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--lake", default="lake")
-    parser.add_argument("--output-dir", type=Path)
-    parser.add_argument("--cached-dependencies", action="store_true")
-    args = parser.parse_args()
+
+def validate_sources():
     paths = [p for g in sorted(GROUPS) for p in sorted((LEAN / "ThresholdHC" / g).glob("*.lean"))]
     roots = set()
     for path in paths:
@@ -99,8 +113,25 @@ def main() -> int:
             if root in roots:
                 raise ValueError("Duplicate root: " + root)
             roots.add(root)
+    missing = REQUIRED - roots
+    if missing:
+        raise ValueError("Missing required target: " + ", ".join(sorted(missing)))
+    return paths, roots
+
+
+def main() -> int:
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--lake", default="lake")
+    parser.add_argument("--output-dir", type=Path)
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--cached-dependencies", action="store_true")
+    mode.add_argument("--audit-only", action="store_true", help="Check exact types and axioms using existing objects; rebuild no proof modules")
+    args = parser.parse_args()
+    paths, roots = validate_sources()
     ordered = dependency_order(paths)
-    rebuilt = [p for p in ordered if p.parent.name in GROUPS] if args.cached_dependencies else ordered
+    rebuilt = [] if args.audit_only else ([p for p in ordered if p.parent.name in GROUPS] if args.cached_dependencies else ordered)
     protected = set(ordered) | {Path(__file__).resolve(), ROOT / "tools/verify_blind_upper_components.py",
         ROOT / "tools/verify_entropy_tail_components.py", ROOT / "tools/verify_tier6.py",
         LEAN / "lean-toolchain", LEAN / "lake-manifest.json", LEAN / "lakefile.toml"}
@@ -115,10 +146,12 @@ def main() -> int:
     audit.parent.mkdir(exist_ok=True)
     audit.write_text(source, encoding="utf-8")
     audit_hash = sha(audit)
-    status = dict(valid=False, scope="Full fixed-cap identification: attained diameter, exact infinite-budget floor, support thresholds and count/stopped-law equivalence; stopping-program ingredients only.",
+    status = dict(valid=False, scope="Exact four-prior value identity and positive finite-ratio dual attainment; full fixed-cap identification. Primal attainment and statistical stopping-program realization remain separate.",
         full_stopping_program_verified=False, four_prior_duality_verified=False,
+        four_prior_value_identity_verified=False, dual_attainment_verified=False,
         full_cap_identification_verified=False, full_genie_convergence_verified=False,
-        local_dependency_rebuild_performed=not args.cached_dependencies,
+        local_dependency_rebuild_performed=not args.cached_dependencies and not args.audit_only,
+        rebuild_mode="cached-objects" if args.audit_only else ("group-modules" if args.cached_dependencies else "full-local-closure"),
         module_count=len(paths), declaration_count=len(roots), exact_types_checked=0,
         rebuilt_local_modules=len(rebuilt), source_sha256=hashes, roots=sorted(roots), commands=[],
         audit_source_sha256=audit_hash)
@@ -147,7 +180,8 @@ def main() -> int:
     status["axioms"] = validate_reports(report,result.returncode,roots)
     if any(sha(ROOT / p) != h for p,h in hashes.items()) or sha(audit) != audit_hash:
         raise ValueError("Source changed during audit")
-    status.update(valid=True,exact_types_checked=10, full_cap_identification_verified=True,
+    status.update(valid=True,exact_types_checked=12, full_cap_identification_verified=True,
+        four_prior_value_identity_verified=True, dual_attainment_verified=True,
         count_law_equivalence_verified=True, stopped_law_equivalence_verified=True,
         support_target_threshold_verified=True, zero_information_characterization_verified=True)
     save()
