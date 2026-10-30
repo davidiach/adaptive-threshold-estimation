@@ -1,0 +1,12 @@
+{
+  "created_at": "2026-10-30T17:31:30.958636+00:00",
+  "scope": "Scalar inequality of Lemma 3 in the certified-selection research package (research/2026-10-30-certified-selection/NOTE.md): for all real T, v, c >= 0, T + sqrt(v^2 + 2Tc + 2v sqrt(Tc)) <= (8/5)(sqrt(T^2 + v^2) + c). The comparison K <= Q <= (8/5)K and Lemmas 1-2 are not targets.",
+  "chronology": "The target type compiled and was hash-locked before any Lean proof was written or compiled. The only earlier proof work was an exact polynomial certificate for the squared inequality, computed outside Lean with sympy.",
+  "source_sha256": {
+    "lean/ThresholdHC/QuantileComparison/Specification.lean": "434b95f79d8464596cf52c34bbbdda9c90f65b274d55874c5f4ab404bd88a6b2"
+  },
+  "dependency_sha256": {},
+  "targets": {
+    "ThresholdHC.QuantileComparison.scalar_comparison": "ThresholdHC.QuantileComparison.ScalarComparisonStatement"
+  }
+}
