@@ -1,4 +1,4 @@
-"""Audit stopping-program and cap-identification ingredients, not full targets.
+"""Audit stopping-program ingredients and the full fixed-cap identification theorem.
 
 The default rebuilds the local closure. --cached-dependencies rebuilds only
 the two ingredient groups and records the narrower checkpoint scope.
@@ -18,8 +18,8 @@ ROOT = Path(__file__).resolve().parents[1]
 LEAN = ROOT / "lean"
 GROUPS = {"StoppingProgram", "CapIdentification"}
 EXACT = r"""
-open MeasureTheory
-open scoped BigOperators ENNReal
+open MeasureTheory Filter
+open scoped BigOperators ENNReal Topology
 open ThresholdHC.StoppingProgram ThresholdHC.CapIdentification
 example : ∀ (r w : ℕ → ℕ → ℝ) (κ : ℝ) (d : ℕ),
     (∀ a : StopTree d × StopTree d,
@@ -65,6 +65,20 @@ example : ∀ {R E : Type} [MeasurableSpace R] [MeasurableSpace E]
     ThresholdHC.CriticalEntropy.cappedTranscriptLaw μ ν
       (ThresholdHC.ObservableSimulation.gapParameter false) (ThresholdHC.ObservableSimulation.gapParameter true)
       (ThresholdHC.ObservableSimulation.signUnit qL) A N := stopped_law_eq_of_odd_moments
+example : ∀ (μ : Measure ThresholdHC.Tier6.Gap) [IsProbabilityMeasure μ]
+    (ρ : ℝ), 0 < ρ → ρ ≤ 1 → ∀ N : ℕ, 0 < N →
+    (∃ qH qL : ThresholdHC.Tier6.SignLaw,
+      ThresholdHC.RareAboveTwo.RarePrior μ ρ qH ∧ ThresholdHC.RareAboveTwo.RarePrior μ ρ qL ∧
+      (∀ j : Fin ((N+1)/2), ∫ d, (qH.val d-qL.val d)*(d:ℝ)^(2*j.val+1) ∂μ = 0) ∧
+      capDiameter μ ρ N = ThresholdHC.Tier6.signMean μ qH.val-ThresholdHC.Tier6.signMean μ qL.val ∧
+      ∀ rH rL : ThresholdHC.Tier6.SignLaw,
+        ThresholdHC.RareAboveTwo.RarePrior μ ρ rH → ThresholdHC.RareAboveTwo.RarePrior μ ρ rL →
+        (∀ j : Fin ((N+1)/2), ∫ d, (rH.val d-rL.val d)*(d:ℝ)^(2*j.val+1) ∂μ = 0) →
+        ThresholdHC.Tier6.signMean μ rH.val-ThresholdHC.Tier6.signMean μ rL.val ≤ capDiameter μ ρ N) ∧
+    Tendsto (fun B : ℝ => programValue μ ρ B N) atTop (𝓝 (ENNReal.ofReal (capDiameter μ ρ N/2))) ∧
+    (∀ S : Finset ThresholdHC.Tier6.Gap, μ.support = (S:Set ThresholdHC.Tier6.Gap) → 0 < S.card →
+      (capDiameter μ ρ N = 0 ↔ 2*S.card-1 ≤ N)) ∧
+    (μ.support.Infinite → 0 < capDiameter μ ρ N) := fixed_cap_identification
 """
 
 
@@ -101,7 +115,7 @@ def main() -> int:
     audit.parent.mkdir(exist_ok=True)
     audit.write_text(source, encoding="utf-8")
     audit_hash = sha(audit)
-    status = dict(valid=False, scope="Bellman, price-ratio, perspective, flow bounds, exact count/stopped-law moment equivalence, support target thresholds and the primal bias-floor lower direction.",
+    status = dict(valid=False, scope="Full fixed-cap identification: attained diameter, exact infinite-budget floor, support thresholds and count/stopped-law equivalence; stopping-program ingredients only.",
         full_stopping_program_verified=False, four_prior_duality_verified=False,
         full_cap_identification_verified=False, full_genie_convergence_verified=False,
         local_dependency_rebuild_performed=not args.cached_dependencies,
@@ -133,7 +147,7 @@ def main() -> int:
     status["axioms"] = validate_reports(report,result.returncode,roots)
     if any(sha(ROOT / p) != h for p,h in hashes.items()) or sha(audit) != audit_hash:
         raise ValueError("Source changed during audit")
-    status.update(valid=True,exact_types_checked=9,
+    status.update(valid=True,exact_types_checked=10, full_cap_identification_verified=True,
         count_law_equivalence_verified=True, stopped_law_equivalence_verified=True,
         support_target_threshold_verified=True, zero_information_characterization_verified=True)
     save()

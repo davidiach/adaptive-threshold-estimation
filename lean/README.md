@@ -26,6 +26,7 @@ axioms; a successful build alone is not a substitute for that audit.
 | Observable rare-event rate above alpha two | [RareAboveTwo specification](ThresholdHC/RareAboveTwo/Specification.lean), [Full](ThresholdHC/RareAboveTwo/Full.lean), [scope guide](../docs/RARE_ABOVE_TWO.md) | `python tools/verify_rare_above_two.py --sequential` |
 | Arbitrary-law entropy-tail and closed-quantile upper bounds | [EntropyTail specification](ThresholdHC/EntropyTail/Specification.lean), [UpperTheorem](ThresholdHC/EntropyTailExecution/UpperTheorem.lean), [scope guide](../docs/ENTROPY_TAIL_FORMALIZATION.md) | `python tools/verify_entropy_tail_upper.py` |
 | Arbitrary-law deterministic quantile comparison | [QuantileComparison](ThresholdHC/EntropyTail/QuantileComparison.lean), [published audit](../results/entropy-tail-quantile-20261030/README.md) | `python tools/verify_entropy_tail_components.py` |
+| Fixed-cap identification and infinite-budget floor | [CapIdentification Full](ThresholdHC/CapIdentification/Full.lean), [checkpoint scope](../results/cap-identification-20261030/README.md) | `python tools/verify_stopping_components.py` |
 
 The arbitrary-law entropy-tail upper bound and closed-quantile upper formula
 now have a [full local audit](../results/entropy-tail-upper-20261030/README.md).

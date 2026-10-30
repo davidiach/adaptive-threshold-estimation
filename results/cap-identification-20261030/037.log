@@ -1,0 +1,311 @@
+'ThresholdHC.CapIdentification.CapDeterminesTarget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.CountMatch' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.MomentsDetermineTarget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.OddMomentMatch' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.affine_bias_approximation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.annihilates_prefix_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.annihilates_prefixes_below' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.approximate_diameter_program_upper' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.arrayAt_const_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.capDiameter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.capDiameter_antitone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.capDiameter_attained' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.capDiameter_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.capDiameter_program_floor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.capDiameter_zero_iff_target' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.cap_threshold_equivalence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.centeredPower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.centeredPower_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.centeredPower_eval_minus' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.centeredPower_eval_plus' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.centered_annihilation_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.compact_affine_bias' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.compact_affine_recovery' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.constant_not_in_oddL2Span' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.constant_not_in_oddL2Span_infinite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.constant_not_in_odd_span' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.countCoefficient_difference' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.countCoefficient_eq_iff_contrast' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.countCoefficient_le_choose' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.countCoefficient_polynomial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.countEnvelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.countEnvelope_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.countMean_eq_of_count_match' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.countMean_le_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.countMean_terminal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.count_match_of_terminal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.derivativeCore' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.derivativeCore_degree_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.exists_count_coefficients' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.exists_max_matching_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.exists_odd_moment_contrast' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.exists_polynomial_moment_contrast' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.exists_prefix_coefficients' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.finite_moment_target_identified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.finite_support_diameter_zero_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.finite_support_target_of_moments' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.finite_support_target_threshold' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.finset_odd_interpolation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.fixed_cap_identification' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.fullOutputFlow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.fullOutputFlow_cone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.fullOutputFlow_variance_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.fullOutputFlow_work_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.full_output_program_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.functional_eq_coordinate_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.gap_wordLikelihood' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.infinite_support_diameter_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.infinite_support_program_floor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.infinite_support_rare_indistinguishable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.infinite_support_target_not_identified' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.informationRatio_pos_of_not_count_match' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.informationRatio_zero_iff_moments' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.informationRatio_zero_of_count_match' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.integrable_polynomial_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.integrable_prefixLikelihood' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.integrable_sign_polynomial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.integrable_weighted_prefix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.liftTerminalOutput' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.matchingCoordinatePairs' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.matchingCoordinatePairs_compact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.matchingCoordinatePairs_nonempty' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.matchingTargetGaps' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.matching_pair_certificate_floor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.matching_pair_program_floor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.matching_target_gap_le_twice_bias' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.mem_oddL2Span' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.momentCoordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.momentCoordinates_match_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.momentCoordinates_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.momentCoordinates_none' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.momentCoordinates_some' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.momentPolynomial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.moments_cap_threshold' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.moments_determine_target_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.nullPolynomialMean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.nullSignLaw' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.oddL2Span' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.oddL2Span_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.oddMomentMatch_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.oddMomentRepresentative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.oddMomentRepresentative_degree' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.oddMomentRepresentative_difference' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.oddPolynomial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.oddPolynomial_derivative_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.oddPolynomial_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.oddPolynomial_eval_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.oddVector' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.odd_centered_prefix_equivalence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.odd_interpolation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.odd_level_card_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.odd_moments_iff_count_match' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.odd_moments_iff_prefix_contrast' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.original_wordLikelihood_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.outputSquareSum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.outputSquareSum_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.outputSquareSum_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.perspective_strict_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.perspective_zero_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.polynomialL2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.polynomialL2_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.polynomialL2_inner' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.polynomialL2_odd' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.polynomialMomentSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.polynomialMomentSet_compact_convex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.polynomialMomentSet_coordinates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.polynomialMomentSet_eq_rareMomentSet' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.polynomial_gap_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.polynomial_gap_memLp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.polynomial_mem_prefix_span' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.polynomial_moment_difference' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.populationPolynomialMean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.populationPolynomialMean_odd' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.populationPolynomialMean_prefix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.positive_square_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.prefixLikelihood_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.prefixPolynomial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.prefixPolynomial_degree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.prefixPolynomial_diagonal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.prefixPolynomial_elevation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.prefixPolynomial_eval_minus' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.prefixPolynomial_eval_plus' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.programSquared_budget_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.programValue_budget_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.rare_indistinguishable_of_large_support' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.rare_indistinguishable_of_not_in_span' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.rare_priors_of_bounded_contrast' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.signContrast' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.signContrast_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.signContrast_even' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.signContrast_odd' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.signDifference_norm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.stopped_law_eq_of_odd_moments' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.sum_terminal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.terminalArray' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.terminal_polynomial_representation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CapIdentification.topState' depends on axioms: [propext, Quot.sound]
+'ThresholdHC.CapIdentification.weightedPolynomialIntegral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CapIdentification.wordLikelihood_eq_of_count_match' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.StoppingProgram.Admissible' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.AttainedDualStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.Certificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.CountState' does not depend on any axioms
+'ThresholdHC.StoppingProgram.Feasible' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.FiniteCertificateStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.Flow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.FlowCone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.FourPriors' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.ProgramUpperStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.StopTree' does not depend on any axioms
+'ThresholdHC.StoppingProgram.arrayAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.arrayAt_le_of' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.arrayAt_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.bellman' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.certificateCap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.certificateSquared' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.constantCertificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.constantCertificate_feasible' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.continuous_bellman' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.continuous_rootBellman' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.countCoefficient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.countCoefficient_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.countCoefficient_root' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.countMean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.countMean_ge_root' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.countMean_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.dualRatio' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.dualValue' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.flowInformation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.flow_continue_le_intensity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.flow_output_zero_of_stop_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.flow_stop_le_intensity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.flow_total_le_intensity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.flow_work_ge_intensity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.flow_zero_intensity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.fullCapFlow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.fullCapFlow_cone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.fullCapFlow_intensity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.fullCap_arrayAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.informationRatio' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.intensity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.le_priceValue' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.le_ratioValue' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.optimalTree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.optimalTree_score' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.pascal_weights_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.perspective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.perspective_add_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.perspective_cone_attains' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.perspective_cone_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.perspective_finite_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.perspective_nonzero_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.perspective_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.perspective_scale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.perspective_zero_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.prefixLikelihood' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.prefixLikelihood_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.priceValue' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.priceValue_at_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.priceValue_attained' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.priceValue_le_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.priceValue_strictAnti' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.priceValue_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.programSquared' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.programSquared_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.programSquared_le_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.programValue' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.quadratic_div_add_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.randomized_price_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.rareMomentSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.rareMomentSet_compact_convex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.rareMomentSet_eq_half_image' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.ratioValue' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.ratioValue_attained' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.ratioValue_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.rootBellman' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.rootBellman_eq_priceValue' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.rootBellman_maximum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.rootBellman_strictAnti' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.rootBellman_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.rootInformation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.rootState' depends on axioms: [propext, Quot.sound]
+'ThresholdHC.StoppingProgram.rootWork' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.rootWork_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.state_eq_root' depends on axioms: [propext, Quot.sound]
+'ThresholdHC.StoppingProgram.stopTree_fintype' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.stopTree_nonempty' does not depend on any axioms
+'ThresholdHC.StoppingProgram.treeInformation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.treeScore' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.treeScore_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.treeScore_le_bellman' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.treeWork' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.treeWork_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.treeWork_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.zeroFlow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.StoppingProgram.zeroFlow_cone' depends on axioms: [propext, Classical.choice, Quot.sound]

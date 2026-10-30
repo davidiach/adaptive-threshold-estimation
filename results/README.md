@@ -25,6 +25,7 @@ or CI run passes.
 | Observable rare-event rate above alpha two | [rare_above_two_001.json](rare_above_two_001.json) |
 | Arbitrary-law deterministic quantile comparison | [entropy-tail-quantile-20261030](entropy-tail-quantile-20261030/README.md) |
 | Observable entropy-tail and closed-quantile upper bounds | [entropy-tail-upper-20261030](entropy-tail-upper-20261030/README.md) |
+| Fixed-cap identification and infinite-budget floor | [cap-identification-20261030](cap-identification-20261030/README.md) |
 | Constant search and scope | [constants_theory.json](constants_theory.json), [constants_finite_grid.json](constants_finite_grid.json), [process account](../docs/process/TRACK_B.md) |
 | Real-valued benchmark | [real_comparison.json](real_comparison.json), [real_verification.json](real_verification.json), [benchmark protocol](../benchmark/README.md) |
 

@@ -115,8 +115,8 @@ The full deterministic quantile comparison passed the exact-target and
 transitive-axiom audit on 30 October 2026: 20 modules, 121 declarations, two
 frozen targets, and a rebuild of all 53 local dependency modules. The evidence
 is in `results/entropy-tail-quantile-20261030/`. The observable statistical upper
-theorems now compile, with their full audit pending. The stopping-program
-results remain unfinished; separate Bellman ingredients are in progress.
+theorems passed the full audit described below. The stopping-program
+results remain unfinished; their separate ingredients are described below.
 The statistical lower bound remains assigned to the separate cloud session.
 Neither an upper bound nor the deterministic comparison alone establishes
 the two-sided minimax characterization.
@@ -220,9 +220,17 @@ The added results are:
   the orthogonal polynomial residual in `L2`, with all boundedness and
   integrability obligations proved.
 
-The exact infinite-budget limit `P_N(B) -> Delta_N/2`, full four-prior duality,
-the factor-sixteen risk certificate, and genie convergence remain in progress.
-Diameter attainment and compact moment images are subsequent work, outside
-the 177-declaration checkpoint. Run the ingredient audit with
-`python tools/verify_stopping_components.py`; the recorded checkpoint used
-`--cached-dependencies` and keeps the full theorem flags false.
+The later [fixed-cap checkpoint](../results/cap-identification-20261030/README.md)
+rebuilt 36 modules and checked 245 declarations and ten exact types. It proves
+diameter attainment, compact actual-prior moment images, affine recovery,
+explicit full-depth certificates, and the exact infinite-budget limit
+`P_N(B) -> Delta_N/2`. The combined theorem is
+`CapIdentification/Full.lean:fixed_cap_identification`. Only the three standard
+axioms occur. Dependencies outside the two groups used cached objects, with
+their source identities recorded. The `full_cap_identification_verified`
+field is true for this checkpoint.
+
+Full four-prior duality, statistical flow realization, the factor-sixteen
+risk certificate, and genie convergence remain in progress. Run
+`python tools/verify_stopping_components.py`; the published checkpoint used
+`--cached-dependencies`. Its full stopping and genie flags remain false.

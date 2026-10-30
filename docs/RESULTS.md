@@ -247,8 +247,12 @@ the original observable estimator, expected physical work, and risk, without
 an inverse-moment or finite-support assumption. The statistical entropy-tail
 lower bound is separate work, so the two-sided characterization remains
 unverified. The [formalization guide](ENTROPY_TAIL_FORMALIZATION.md) records
-the separate stopping and fixed-cap identification checkpoints; four-prior
-strong duality, the factor-sixteen certificate, and genie convergence remain
+the separate stopping development. The [fixed-cap identification checkpoint](../results/cap-identification-20261030/README.md)
+proves attained matching diameter, `P_N(B) -> Delta_N/2`, the exact finite-support
+threshold, and the positive infinite-support floor. It rebuilt 36 new modules
+and checked 245 declarations and ten exact types, using cached dependency
+objects with recorded source identities. Four-prior strong duality, statistical
+flow realization, the factor-sixteen certificate, and genie convergence remain
 unfinished.
 
 The [audit index](../paper/rare-event/audit/README.md) distinguishes the original
