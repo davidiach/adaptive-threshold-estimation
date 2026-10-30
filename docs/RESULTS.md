@@ -314,8 +314,13 @@ B > 0. Variance-reference regularization precedes the cap limit. The positive
 brackets eventually pass P_N <= 2 G_N, certifying R <= P_N <= 16R.
 It rebuilt twelve modules, checked 223 declarations in 33 Genie modules and
 twelve exact types; other dependencies were cached with source hashes.
-The finite-support genie SOCP, sharper direct certificate and explicit
-infinite-divergence counterexample remain separate work.
+The [direct-certificate/conic audit](../results/genie-conic-20261030/README.md)
+now proves the optimized direct squared lower certificate for the original
+minimax risk and an exact finite atom SOCP for G_N^2, including zero scales
+and singular references. Its variable count is at most 3 + 6m + (N+1)^2.
+Eleven new modules were rebuilt; 230 declarations, 35 Genie modules and nine
+exact types were audited. The explicit infinite-divergence example remains
+separate work.
 
 The [audit index](../paper/rare-event/audit/README.md) distinguishes the original
 source audits, final referee assessment, and revision audit, including corrected

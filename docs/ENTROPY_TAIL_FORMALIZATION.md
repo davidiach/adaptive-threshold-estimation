@@ -365,6 +365,13 @@ transitive axioms. Other dependencies used cached objects with source hashes.
 Run `python tools/verify_genie_convergence.py`; its four regressions use
 `test_genie_convergence.py`.
 
-The finite-support genie SOCP, direct squared certificate, explicit
-infinite-divergence counterexample, manuscript integration and final full
-audit remain in progress. Earlier checkpoint flags retain their original scope.
+The [direct/conic checkpoint](../results/genie-conic-20261030/README.md)
+proves the optimized piecewise direct squared-risk certificate, and the
+finite atom SOCP with value exactly G_N^2 and at most 3 + 6m + (N+1)^2
+variables. It includes zero scales, zero prices, singular references and
+realization as globally admissible priors. Eleven new modules were rebuilt;
+230 declarations in 35 Genie modules and nine exact types passed the audit.
+Other dependencies were cached with source hashes.
+
+The explicit infinite-divergence counterexample, manuscript integration and
+final full audit remain in progress. Earlier checkpoints retain their scope.
