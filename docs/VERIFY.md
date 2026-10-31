@@ -224,9 +224,37 @@ specification and its project dependencies. It fixes eight full target types:
 
 The audit checks every registered target for its exact type and transitive
 axioms. It rejects any declaration that carries an unregistered target's name.
-Five deterministic targets are proved. The law and its two halves are not, so the
-status reports `entropy_tail_law_verified: false`, and `--require-complete`
-fails. No result record is published for this partial audit.
+Six targets are proved: the upper half and the five deterministic targets. The
+law and its lower half are not, so the status reports
+`entropy_tail_law_verified: false`, and `--require-complete` fails. No result
+record is published for this partial audit.
+
+The upper half imports the observable upper-bound development of
+[#33](https://github.com/davidiach/adaptive-threshold-estimation/pull/33), about
+240 modules, so this audit takes much longer than the other theorem audits. CI
+runs it in the separate `entropy-tail-upper` job, followed by that
+development's own audit:
+
+```sh
+python tools/verify_entropy_tail_upper.py --cached-dependencies
+python -m unittest discover -s tools -p 'test_entropy_tail_upper.py' -v
+python -m unittest discover -s tools -p 'test_entropy_tail_components.py' -v
+```
+
+`verify_entropy_tail_upper.py` checks the four targets of the
+[quantile-model specification](../lean/ThresholdHC/EntropyTailQuantile/Specification.lean):
+the quantile split, $\mathcal K\le Q\le(1+2\sqrt2)\mathcal K$, and the two
+upper bounds with constant 33000. It also checks the explicit theorems
+`entropy_tail_upper_28000` and `closed_quantile_upper_30001`, and the transitive
+axioms of every declaration in the five upper-bound module groups. Without
+`--cached-dependencies` it recompiles every local dependency sequentially, which
+takes much longer. With the flag it recompiles only the sampling and execution
+groups and reuses objects built earlier, so run it after the first audit.
+`verify_entropy_tail_components.py` audits the quantile model alone, and
+`verify_entropy_tail_assembly.py` an intermediate stage. Their
+[lock](../tools/entropy_tail_quantile_specification_freeze.json) records the
+rename of #33's namespace and the superseded lock's hashes. All three write
+timestamped evidence under `.runtime/`.
 
 ## Quantile-selection comparison: scalar Lemma 3
 

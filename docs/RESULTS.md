@@ -11,8 +11,9 @@ which shared proofs appear once. The three source manuscripts are preserved
 unchanged. The v5 source record preserves the original proofs and makes the
 Psi correction explicit.
 
-The general-law and finite-gap results are paper proofs, not Lean-checked;
-their scopes are recorded below.
+The general-law and finite-gap results are paper proofs, except that their
+upper bounds and the $1+2\sqrt2$ quantile comparison are Lean-checked; their
+scopes are recorded below.
 
 This guide gives the exact Lean specifications and remaining paper-proof
 boundaries. Historical source pointers below refer to the unchanged
@@ -226,9 +227,9 @@ $$10^{-17}\mathcal K_{\mu,\rho}(B)\le R_{\mu,\rho}(B)
 \le33000\mathcal K_{\mu,\rho}(B).$$
 
 No finite inverse moment, density, or regularity assumption is imposed.
-The following scopes are **paper-level claims**. Only the hard-selection
-reduction and the elementary properties of $\mathcal K$ listed below are
-Lean-checked:
+The following scopes are **paper-level claims**. The upper half of the first
+row, the hard-selection reduction and the elementary properties of
+$\mathcal K$ are Lean-checked, as described below:
 
 | Claim | Scope and qualification |
 |---|---|
@@ -241,8 +242,8 @@ Lean-checked:
 The [audit index](../paper/rare-event/audit/README.md) distinguishes the original
 source audits, final referee assessment, and revision audit, including corrected
 interpretations of historical findings. V2 resolves the revision audit's two
-minor editorial defects. The new general results have no complete Lean
-formalization and no external specialist review. The exact stored certificates cover 33 lower
+minor editorial defects. Apart from the upper half below, the new general
+results have no Lean formalization, and none has external specialist review. The exact stored certificates cover 33 lower
 bounds, 9 upper policies, 9 stopping decisions, and two perfect-label examples;
 they are not proofs of the continuum or compactness claims. The existing Lean
 variational-optimizer and critical-law results above and below retain their
@@ -257,8 +258,9 @@ above-two package:
 - its upper and lower halves;
 - five properties of $\mathcal K$.
 
-The five properties are **Lean-checked** with exact types and only the standard
-axioms:
+Six targets are **Lean-checked** with exact types and only the standard axioms.
+The first is the upper half $R\le C\mathcal K$, with $C=28000$ (described
+below). The other five are properties of $\mathcal K$:
 
 - restricting to hard measurable assignments $\sigma=\mu|_S$ leaves the infimum
   over submeasures unchanged (v6 Lemma 13.1; no minimizer is claimed);
@@ -267,12 +269,40 @@ axioms:
 - $\mathcal K=\rho$ when $B\le1$;
 - $\mathcal K$ is positive and finite, and below $\rho$ for some law.
 
-The law and both halves are **not** Lean-proved. They remain paper proofs, and
-the audit reports the law as unverified until all eight targets are registered.
-The local audit of these proofs passed at `49877f3`, and CI reruns
-`python tools/verify_entropy_tail.py --sequential` on every change
-([details](VERIFY.md#entropy-tail-selection-functional)). No result record is
-published for this partial audit.
+The lower half and the law are **not** Lean-proved. They remain paper proofs,
+and the audit reports the law as unverified until all eight targets are
+registered. The local audit of the five properties passed at `49877f3`.
+
+**Upper half.** The upper bound comes from the additive formalization of
+[#33](https://github.com/davidiach/adaptive-threshold-estimation/pull/33), in
+the [EntropyTailQuantile](../lean/ThresholdHC/EntropyTailQuantile/),
+EntropyTailUpper, EntropyTailAssembly, EntropyTailSampling and
+[EntropyTailExecution](../lean/ThresholdHC/EntropyTailExecution/UpperTheorem.lean)
+modules. It builds an observable estimator in the unchanged experiment and
+proves $R\le28000\,\mathcal K'$ for every probability law on $(0,1/2]$,
+$0<\rho\le1/4$ and $B>0$, with no inverse-moment or finite-support assumption.
+Here $\mathcal K'$ is that development's own definition of the selection
+functional, with Bochner band costs. The
+[bridge](../lean/ThresholdHC/EntropyTail/Bridge.lean) proves
+$\mathcal K'\le\mathcal K$ always and $\mathcal K'=\mathcal K$ for every
+finite law, so [Upper.lean](../lean/ThresholdHC/EntropyTail/Upper.lean)
+proves the locked upper target. The same development also proves the following,
+for its closed quantile functional $Q$ with a fractional boundary atom:
+
+- the quantile split;
+- $\mathcal K\le Q\le(1+2\sqrt2)\mathcal K$, restated for the locked
+  $\mathcal K$ as `selection_quantile_comparison`;
+- $R\le30001\,Q$ for every law.
+
+Its own [locked specification](../lean/ThresholdHC/EntropyTailQuantile/Specification.lean)
+states the two upper bounds with the coarser constant 33000. Its
+[lock](../tools/entropy_tail_quantile_specification_freeze.json) records the
+mechanical rename from #33's namespace, needed because `main` had locked a
+different model at the same paths. CI runs
+`python tools/verify_entropy_tail.py --sequential` and
+`python tools/verify_entropy_tail_upper.py --cached-dependencies` in the
+`entropy-tail-upper` job ([details](VERIFY.md#entropy-tail-selection-functional)).
+No result record is published for these audits.
 
 ## Rare-event power margins above two
 
@@ -302,18 +332,23 @@ their independent seed, coin identities and purchased flips. Both bounds
 use uniform expected physical-observation budgets and allow adaptive
 creation, revisiting and interleaving.
 
-Status: **paper proof, not Lean-checked or externally specialist-reviewed**.
+Status: **the two-sided theorem is a paper proof**, not externally
+specialist-reviewed. Its upper bound is Lean-checked in a stronger form:
+$R\le30001\,Q$ for every probability law on $(0,1/2]$, not only finite ones,
+with the same $Q$ ([upper half](#general-law-rare-event-characterization)).
+The lower bound $10^{-20}Q\le R$ is not Lean-checked.
 The precursor received fresh-context AI review; the
 [provenance note](../paper/finite-gap-rare-events/PROVENANCE.md) records its
-limits. Existing Lean entropy and critical-law results do not certify this
-theorem. The manuscript does not establish an unknown-law guarantee, a
+limits. The earlier Lean finite-gap entropy and critical-law results do not
+certify this theorem. The manuscript does not establish an unknown-law guarantee, a
 general infinite-support extension, a deterministic budget or a
 high-confidence result.
 
 [Revision 2](../paper/finite-gap-rare-events/revision-2/README.md) of the
 manuscript ([PDF](../paper/finite-gap-rare-events/revision-2/paper.pdf)) adds a deterministic comparison with the
 [general-law selection functional](#general-law-rare-event-characterization):
-$\mathcal K\le Q\le(1+2\sqrt2)\mathcal K$ for every law on $(0,1/2]$. So
+$\mathcal K\le Q\le(1+2\sqrt2)\mathcal K$ for every law on $(0,1/2]$. This
+comparison is now Lean-checked ([upper half](#general-law-rare-event-characterization)). So
 Theorem 1.1 is the finite-law case of the general-law characterization, with a
 closed functional, explicit constants and a self-contained proof that does not
 cite the general-law theorem. The two proofs share the observable upper
@@ -362,8 +397,10 @@ general-law theorem, $\frac58\cdot10^{-17}Q\le R$ for every law. The
 floating-point calculator above still reports the $5/3$ interval. Status:
 **paper proofs**, except that the comparison's scalar Lemma 3 is **Lean-checked**
 with its exact type and only the standard axioms
-([audit](VERIFY.md#quantile-selection-comparison-scalar-lemma-3)). The comparison
-itself is not Lean-checked, and the certificates rely on unverified Python. The
+([audit](VERIFY.md#quantile-selection-comparison-scalar-lemma-3)). The $8/5$
+comparison itself is not Lean-checked, though the weaker factor $1+2\sqrt2$ is
+([upper half](#general-law-rare-event-characterization)). The certificates rely
+on unverified Python. The
 manuscripts above still state $1+2\sqrt2$ and are unchanged.
 
 ## Critical power margin: full minimax characterization
