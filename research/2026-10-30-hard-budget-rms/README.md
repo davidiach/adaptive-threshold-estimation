@@ -2,7 +2,8 @@
 
 This focused change extracts the RMS component of the 30 October round-three
 contribution. The confidence and optional-stopping component is deliberately
-not included; it is integrated separately.
+not included; it is in the
+[confidence-transfer package](../2026-10-30-confidence-transfer/README.md).
 
 - [Full paper proof and dependency boundaries](NOTE.md)
 - [Observation-budget driver](../../toolkit/threshold_toolkit/budget_ladders.py)
@@ -14,8 +15,10 @@ not included; it is integrated separately.
 ## Verification status
 
 The new controller and theorem are not Lean-checked. The ordinary and critical
-applications inherit formalized premises; the arbitrary-law rare-event
-application depends on the paper-only entropy-tail theorem. The Python driver
+applications inherit formalized premises. The arbitrary-law rare-event
+application inherits the Lean-checked entropy-tail upper bound,
+`R <= 28000 K`, and the paper-only lower bound; its coefficient
+190000 was derived from the paper's upper constant 33000. The Python driver
 cannot check the caller's statistical work, error or independence assumptions.
 It preserves the most recent successful estimate on timeout and separately
 reports reserved allowance and actual observations.

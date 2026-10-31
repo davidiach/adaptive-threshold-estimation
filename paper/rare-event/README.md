@@ -17,11 +17,17 @@ variance reference. The factor-sixteen statement applies to a sufficient cap
 or a cap passing the verified genie criterion.
 
 **Verification status:** paper proofs with adversarial AI audits. Exact rational
-checks certify the stored finite instances. The new general characterization,
-stopping-program comparison, and genie limits are not Lean-formalized, and no
-external specialist review is claimed. Existing Lean results, including the
-variational optimizer and fixed critical-law results, retain their own precise
-scopes. These checks do not establish practical efficiency or publication priority.
+checks certify the stored finite instances. When v2 was published, the new
+general characterization, stopping-program comparison, and genie limits were not
+Lean-formalized. Since then the observable entropy-tail upper bound, the
+stopping-program results, the factor-sixteen certificate, fixed-cap
+identification and the genie results have been Lean-checked, with the scopes
+recorded in the [claim status](../../docs/RESULTS.md#general-law-rare-event-characterization).
+The matching entropy-tail lower bound, and hence the two-sided
+characterization, remains a paper proof. No external specialist review is
+claimed. Existing Lean results, including the variational optimizer and fixed
+critical-law results, retain their own precise scopes. These checks do not
+establish practical efficiency or publication priority.
 
 ## Contents and preservation
 

@@ -668,7 +668,7 @@ essential.
 |---|---|---|
 | Distribution-blind RMS law | $\frac1{64}\omega_\mu(B^{-1/2})\le R^{\rm hard}_\mu(B)\le3000\,\omega_\mu(B^{-1/2})$ for $B\ge1$, with one family for every $\mu$ | Both expected-budget bounds Lean-checked |
 | Critical quadratic law | $R^{\rm hard}_{\mu,\rho}(B)\asymp\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}$, upper coefficient $570000$ | Both expected-budget bounds Lean-checked |
-| Known general law, known rarity | $10^{-17}\mathcal K_{\mu,\rho}(B)\le R^{\rm hard}_{\mu,\rho}(B)\le190000\,\mathcal K_{\mu,\rho}(B)$ for $B>0$ | The paper-only [entropy-tail theorem](#general-law-rare-event-characterization) |
+| Known general law, known rarity | $10^{-17}\mathcal K_{\mu,\rho}(B)\le R^{\rm hard}_{\mu,\rho}(B)\le190000\,\mathcal K_{\mu,\rho}(B)$ for $B>0$ | Lower: the paper-only entropy-tail lower bound. Upper: $R\le C\mathcal K$, [Lean-checked](#general-law-rare-event-characterization) with $C=28000$; the coefficient $190000$ was derived from the paper's $33000$ |
 
 **Status and limits.** The reduction, its observable realization and all three
 hard-cap conclusions are **paper proofs, not Lean-checked**. Lean-checked premises
