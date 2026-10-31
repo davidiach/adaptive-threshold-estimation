@@ -1,0 +1,8 @@
+'ThresholdHC.Uniform713.summable_secondMomentEnvelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Uniform713.tsum_secondMomentEnvelope_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Uniform713.summable_weightedWorkEnvelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Uniform713.tsum_weightedWorkEnvelope_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Uniform713.secondMomentSeries_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Uniform713.workSeries_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Uniform713.sum_secondMomentEnvelope_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Uniform713.sum_weightedWorkEnvelope_lt' depends on axioms: [propext, Classical.choice, Quot.sound]

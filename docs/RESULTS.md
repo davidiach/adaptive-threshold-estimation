@@ -11,8 +11,10 @@ which shared proofs appear once. The three source manuscripts are preserved
 unchanged. The v5 source record preserves the original proofs and makes the
 Psi correction explicit.
 
-The general-law and finite-gap results are paper proofs, not Lean-checked;
-their scopes are recorded below.
+The general-law observable upper bounds, deterministic quantile comparison,
+stopping programs and genie certificates now have Lean proofs. The matching
+statistical entropy–tail lower bound remains separate work; the two-sided
+general-law and finite-gap characterizations retain their paper-proof scope.
 
 This guide gives the exact Lean specifications and remaining paper-proof
 boundaries. Historical source pointers below refer to the unchanged
@@ -226,9 +228,7 @@ $$10^{-17}\mathcal K_{\mu,\rho}(B)\le R_{\mu,\rho}(B)
 \le33000\mathcal K_{\mu,\rho}(B).$$
 
 No finite inverse moment, density, or regularity assumption is imposed.
-The following scopes are **paper-level claims**. Only the hard-selection
-reduction and the elementary properties of $\mathcal K$ listed below are
-Lean-checked:
+The table records the manuscript claims; the later formal status follows it.
 
 | Claim | Scope and qualification |
 |---|---|
@@ -238,11 +238,102 @@ Lean-checked:
 | Genie convergence | Pointwise convergence assumes finite latent divergence. An explicit infinite-divergence counterexample is included. Optimized convergence first fixes a positive regularization, takes the cap limit, then removes regularization. |
 | Fixed-cap identification | For $m$ distinct positive magnitudes, the zero-bias threshold is $N\ge2m-1$. This identifies the target, not necessarily the full allocation $q$. Infinite support has a positive floor at every fixed cap; the cap may grow. |
 
+The later additive Lean development proves the **observable arbitrary-law
+upper bound** $R\le28000\mathcal K$, the closed-quantile upper bound
+$R\le30001Q$, and the deterministic comparison
+$\mathcal K\le Q\le(1+2\sqrt2)\mathcal K$, including fractional boundary
+atoms. Its [full local audit](../results/entropy-tail-upper-20261030/README.md)
+rebuilt 306 local modules and checked 611 declarations, six exact targets, and
+all transitive axioms; only the three standard Lean axioms occur. It covers
+the original observable estimator, expected physical work, and risk, without
+an inverse-moment or finite-support assumption. The statistical entropy-tail
+lower bound is separate work, so the two-sided characterization remains
+unverified. The [formalization guide](ENTROPY_TAIL_FORMALIZATION.md) records
+the separate stopping development. The [fixed-cap identification checkpoint](../results/cap-identification-20261030/README.md)
+proves attained matching diameter, `P_N(B) -> Delta_N/2`, the exact finite-support
+threshold, and the positive infinite-support floor. It rebuilt 36 new modules
+and checked 245 declarations and ten exact types, using cached dependency
+objects with recorded source identities. The later [attained four-prior dual](../results/stopping-dual-20261030/README.md)
+proves the exact conic-program identity, both optimizers, positive value, and a
+finite optimal information ratio. Its audit checks 188 declarations and two
+exact types, rebuilding six attainment modules with cached dependencies and
+recorded source hashes. The [rarity-support audit](../results/rarity-support-20261030/README.md)
+proves the scalar minimum formula and an explicit fractional cutoff optimizer,
+including atoms and a bounded cutoff. It rebuilt six modules and checked 41
+declarations and two exact types, with cached dependency objects. The
+[finite-program audit](../results/finite-stopping-program-20261030/README.md)
+proves exact finite-law equivalence to cone and linear cutoff/excess constraints;
+it rebuilt two modules and checked 119 declarations and two exact types, using
+cached dependencies. The [observable stopping-program upper audit](../results/stopping-program-upper-20261030/README.md)
+proves every feasible certificate has an actual observable estimator with its
+work and risk bounds, and proves `R <= P_N` in the original model. It rebuilt
+14 modules and checked 304 declarations in 45 modules and three exact types,
+with cached dependencies and only the standard axioms. The
+[reference-absorption audit](../results/reference-absorption-20261030/README.md)
+proves `D_N <= P_N <= 3 D_N` for the two-prior midpoint modulus, including
+null reference states and infinite information ratios. It rebuilt five modules
+and checked 225 declarations and three exact types, with cached dependencies.
+The [Bellman audit](../results/information-bellman-20261030/README.md)
+proves deterministic attainment of the actual count-flow information ratio,
+its unique Bellman price zero, the exact infinite-ratio criterion, and the
+information-increment identity. It rebuilt seven modules and checked 189
+declarations and five exact types, with cached dependencies. The
+[ordered-stopping audit](../results/ordered-information-20261030/README.md)
+aggregates arbitrary measurable seeded, order-dependent capped procedures to
+count flows, with exact expected physical work. It proves 4h <= I <= 8h and
+h <= K_N E_midpoint[T]/4, including zero-work procedures and null prefixes.
+It rebuilt eleven modules and checked 359 declarations and four exact types,
+with cached dependencies. The [adaptive-information audit](../results/adaptive-information-20261030/README.md)
+proves sharp affinity testing, transfers the bound to the original arbitrary-seed
+adaptive population experiment, proves exact quadratic contraction of the
+information ratio, and establishes P_N <= 8T for any actual finite-prefix
+estimate with uniform rare-prior RMS risk T. It rebuilt nine modules and checked
+498 declarations and seven exact types, with cached dependencies. The
+[finite-certificate audit](../results/finite-risk-certificate-20261030/README.md)
+proves the unchanged `FiniteCertificateStatement`: R <= P_N <= 16R at
+N = ceil(64 max(B, rho B^2)), for arbitrary probability gap laws, 0 < rho <= 1/4
+and B > 0. It proves the sharp truncation comparison and universal Bernoulli-label
+risk floor, independently of the entropy-tail statistical lower bound. The audit
+rebuilt nine modules and checked 559 declarations and eight exact types, including
+all three original finite stopping-program targets. Dependencies were cached
+with recorded source identities. The
+[infinite-cap audit](../results/infinite-cap-dual-20261030/README.md) proves the
+exact attained four-prior dual, D_infinity <= P_infinity <= 3 D_infinity and
+R <= P_infinity <= 8R, for 0 < rho <= 1/2 and B > 0. For rho <= 1/4 the
+attained value is positive with finite information ratio. It also proves
+monotone cap convergence. The audit rebuilt 14 modules, checked 68 declarations
+and eight exact types, with other dependencies cached and source-hashed.
+The [genie-bracket audit](../results/genie-brackets-20261030/README.md) proves
+K_N <= K_infinity <= K_N^+ and decreasing K_N^+, retaining infinite values.
+It proves the finite-divergence residual error bound and exact modified
+Bellman certificate with deterministic attainment. The audit rebuilt nine
+modules and checked 101 declarations and eight exact types with cached
+dependencies. The [convergence audit](../results/genie-convergence-20261030/README.md)
+now proves the actual posterior second-moment identity, e_N -> 0 for finite
+latent divergence, K_N^+ -> K_infinity under that hypothesis, and optimized
+G_N -> P_infinity for arbitrary probability gap laws, 0 < rho <= 1/2 and
+B > 0. Variance-reference regularization precedes the cap limit. The positive
+brackets eventually pass P_N <= 2 G_N, certifying R <= P_N <= 16R.
+It rebuilt twelve modules, checked 223 declarations in 33 Genie modules and
+twelve exact types; other dependencies were cached with source hashes.
+The [direct-certificate/conic audit](../results/genie-conic-20261030/README.md)
+now proves the optimized direct squared lower certificate for the original
+minimax risk and an exact finite atom SOCP for G_N^2, including zero scales
+and singular references. Its variable count is at most 3 + 6m + (N+1)^2.
+Eleven new modules were rebuilt; 230 declarations, 35 Genie modules and nine
+exact types were audited. The [counterexample audit](../results/genie-counterexample-20261030/README.md)
+now verifies the paper's uniform-gap example: C_v and every positive-cap
+K_N^+ are infinite, but every finite stopping flow satisfies I <= 3W/4
+and K_infinity <= 3/4. Its unregularized genie sequence does not converge.
+Eight modules were rebuilt; 89 declarations and three exact types passed.
+The final combined full dependency rebuild is in progress.
+
 The [audit index](../paper/rare-event/audit/README.md) distinguishes the original
 source audits, final referee assessment, and revision audit, including corrected
 interpretations of historical findings. V2 resolves the revision audit's two
-minor editorial defects. The new general results have no complete Lean
-formalization and no external specialist review. The exact stored certificates cover 33 lower
+minor editorial defects. Those publication audits predate the additive Lean
+development and do not establish its formal status; external specialist review
+remains unverified. The exact stored certificates cover 33 lower
 bounds, 9 upper policies, 9 stopping decisions, and two perfect-label examples;
 they are not proofs of the continuum or compactness claims. The existing Lean
 variational-optimizer and critical-law results above and below retain their
@@ -267,8 +358,12 @@ axioms:
 - $\mathcal K=\rho$ when $B\le1$;
 - $\mathcal K$ is positive and finite, and below $\rho$ for some law.
 
-The law and both halves are **not** Lean-proved. They remain paper proofs, and
-the audit reports the law as unverified until all eight targets are registered.
+The matching lower bound and two-sided law remain **unproved**. The new
+[compatibility bridge](../lean/ThresholdHC/EntropyTailBridge/Upper.lean) inhabits
+the unchanged upper statement using the observable construction above. The
+original partial audit still checks its five registered deterministic targets;
+the [combined audit](VERIFY.md#combined-rare-event-formalization) checks the
+bridge and canonical upper target as well.
 The local audit of these proofs passed at `49877f3`, and CI reruns
 `python tools/verify_entropy_tail.py --sequential` on every change
 ([details](VERIFY.md#entropy-tail-selection-functional)). No result record is
@@ -302,11 +397,14 @@ their independent seed, coin identities and purchased flips. Both bounds
 use uniform expected physical-observation budgets and allow adaptive
 creation, revisiting and interleaving.
 
-Status: **paper proof, not Lean-checked or externally specialist-reviewed**.
+Status: the **two-sided characterization remains a paper proof**. The upper
+coefficient `30001` and arbitrary-law deterministic comparison now have the
+[Lean audit above](../results/entropy-tail-upper-20261030/README.md); the matching
+statistical lower bound and external specialist review remain unverified.
 The precursor received fresh-context AI review; the
 [provenance note](../paper/finite-gap-rare-events/PROVENANCE.md) records its
-limits. Existing Lean entropy and critical-law results do not certify this
-theorem. The manuscript does not establish an unknown-law guarantee, a
+limits. The earlier Lean entropy and critical-law results have separate scopes.
+The manuscript does not establish an unknown-law guarantee, a
 general infinite-support extension, a deterministic budget or a
 high-confidence result.
 

@@ -8,6 +8,8 @@ The observable 713 construction and existence characterization use
 \nolinkurl{15dbbda98a31e27502e3caff991d3ea21d096d23}.
 The rare-event theory above exponent two uses
 \nolinkurl{637fb4a79d20e30415a2cb0e495752603077c0ee}.
+The rare-event additions use proof checkpoint
+\nolinkurl{4e116018f0c1651382452aa9317fecc971edaec7}.
 All theorem links point to fixed source revisions.
 The preceding all-size addendum has its own linked checkpoint and audit;
 its stronger domain and explicit single-coin constants supplement this table.
@@ -102,21 +104,30 @@ variational supremum; \leanref{CriticalPsi/Full.lean}{critical\_psi\_rate}
 proves its two-sided rate. \leanref{CriticalPsi/Full.lean}{critical\_matching\_psi\_refuted}
 rules out every universal matching-$\Psi$ upper bound in the original
 minimax model. Its budget is $LH/\rho$, not the paper sequence $\rho^{-2}$.\\[5pt]
-Entropy--tail law &
-Theorem~\ref{thm:entropy-tail-law} and its constants
-\eqref{eq:explicit-main-constants} are paper proofs with adversarial AI
-audits of the standalone manuscript. They are not Lean-formalized; the
-critical and above-two formal results do not certify them.\\[5pt]
+Entropy--tail upper bound &
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/4e116018f0c1651382452aa9317fecc971edaec7/lean/ThresholdHC/EntropyTailExecution/UpperTheorem.lean}{\texttt{UpperTheorem}}
+proves $R\le28000\mathcal K$ in the original observable experiment,
+for every probability gap law, $0<\rho\le1/4$ and $B>0$.
+Actual work, risk, marked Poisson execution and the approximation limits
+are included. The matching statistical lower bound remains unverified.\\[5pt]
 Closed quantile form &
-Theorem~\ref{fg:thm:direct-main} for finite laws is a paper proof; the
-deterministic comparison \cref{fg:prop:quantile-selection} is a paper proof
-checked numerically on random finite laws. The extension
-Corollary~\ref{fg:cor:general-laws} rests on
-Theorem~\ref{thm:entropy-tail-law}. None is Lean-checked.\\[5pt]
-Stopping programs and certificates &
-The four-prior dual, factor-sixteen comparison, genie limits and
-fixed-cap identification of \cref{sec:certificates} are paper proofs.
-Exact rational checks certify only the stored finite instances.\\
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/4e116018f0c1651382452aa9317fecc971edaec7/lean/ThresholdHC/EntropyTail/QuantileComparison.lean}{\texttt{QuantileComparison}}
+proves $\mathcal K\le Q\le(1+2\sqrt2)\mathcal K$, including atoms.
+\texttt{UpperTheorem} proves $R\le30001Q$ for arbitrary laws.
+The matching lower bound and direct finite-law lower proof retain
+their paper-proof status.\\[5pt]
+Stopping programs and identification &
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/4e116018f0c1651382452aa9317fecc971edaec7/lean/ThresholdHC/StoppingProgram/FiniteCertificate.lean}{\texttt{FiniteCertificate}}
+proves $R\le P_N\le16R$ at the prescribed sufficient cap.
+The attained four-prior dual, factor-three midpoint comparison,
+actual stopped-flow realization, finite atom formulation, matching
+diameter and $2m-1$ identification threshold are also checked.\\[5pt]
+Infinite-cap and genie certificates &
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/4e116018f0c1651382452aa9317fecc971edaec7/lean/ThresholdHC/Genie/OptimizedConvergence.lean}{\texttt{OptimizedConvergence}}
+proves positive brackets and finite termination using variance-reference
+regularization. Separate checked results give the attained infinite-cap
+dual, direct squared-risk certificate, exact finite atom genie SOCP,
+and the explicit infinite-divergence counterexample.\\
 \bottomrule
 \end{longtable}
 
@@ -130,6 +141,21 @@ The repository's \href{https://github.com/davidiach/adaptive-threshold-estimatio
 gives reproduction commands and the source-specific audit records.
 The toolchain is Lean \texttt{v4.36.0-rc1} with Mathlib revision
 \nolinkurl{9bdd0bc71aaae0fd83889f9aacd70c32fccd1bcd}.
+
+\paragraph{Rare-event formalization boundary.}
+The added proofs establish upper risk bounds and the deterministic
+selection--quantile comparison without importing the entropy--tail
+statistical lower theorem. The finite stopping certificate instead uses
+the separate Bernoulli-label lower floor. The genie proof constructs the
+actual latent score and Bernoulli tape, identifies the latent state from
+the full tape, and proves finite-prefix posterior moment convergence.
+Regularization is removed only after the cap limit. The finite atom SOCP
+has at most $3+6m+(N+1)^2$ variables and includes zero scales and singular
+reference states. None of these statements supplies the missing matching
+entropy--tail lower bound. Component audits check exact statements and
+transitive axioms; their source hashes and rebuild scopes are recorded
+separately in the repository. A fresh combined local-dependency rebuild
+is recorded in the current verification guide when completed.
 
 \paragraph{Realizing the distribution-blind upper algorithm.}
 The formal construction follows the two-pilot calibration strategy in
@@ -305,10 +331,11 @@ validations of the full proof. The
 records the workflow, failed approaches, and these limits.
 
 \paragraph{Remaining mathematical work.}
-The entropy--tail law, the closed quantile form, the stopping-program
-results, the rare-event regimes below two, and auxiliary envelope,
-smoothness, and observed-state results retain their stated paper-proof
-scopes; their formalization is the next verification target. Sharp
+The matching entropy--tail statistical lower bound, the direct finite-law
+quantile lower proof, the remaining rare-event regimes below two, and
+auxiliary envelope, smoothness, and observed-state results retain their
+paper-proof scopes. The two-sided general quantile characterization
+still depends on the missing lower theorem. Sharp
 comparison constants, efficient selection for structured laws, rates of
 cap convergence, and sharp rare-event confidence rates at and above the
 quadratic boundary remain open. The rare-event results assume a known

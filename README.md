@@ -42,14 +42,14 @@ The [lower theorem](lean/ThresholdHC/Tier6/Full.lean),
 
 | Result | Verification | Read more |
 |---|---|---|
-| General-law rare-event entropy-tail characterization, stopping dual, and sufficient-cap certificates | Paper proof with adversarial AI audits and exact finite certificates; new general claims not Lean-formalized | [v6 §13](paper/v6/README.md#reading-guide) · [Standalone v2](paper/rare-event/README.md) · [Scope](docs/RESULTS.md#general-law-rare-event-characterization) |
+| General-law rare-event entropy-tail characterization, stopping dual, and sufficient-cap certificates | Observable upper bound and stopping/certificate results proved in Lean; matching entropy-tail lower bound pending | [v6 §13](paper/v6/README.md#reading-guide) · [Standalone v2](paper/rare-event/README.md) · [Scope](docs/RESULTS.md#general-law-rare-event-characterization) |
 | Rare-event power laws with $\alpha>2$ | Both minimax bounds proved in Lean in the observable model | [Scope and proof map](docs/RARE_ABOVE_TWO.md) |
 | Critical quadratic rare-event law, including unrestricted adaptive algorithms | Both minimax bounds proved in Lean | [Statement and scope](docs/RESULTS.md#critical-power-margin-full-minimax-characterization) |
 | Exact critical-law Ψ formula and counterexample to a universal matching-Ψ upper bound | Proved in Lean | [Theorems](lean/ThresholdHC/CriticalPsi/Full.lean) |
 | An estimator unbiased for every sign law, with uniformly finite variance and expected work, exists iff $I<\infty$; one universal construction has variance–work at most $713I^2$ | Proved in Lean in the observable adaptive model | [Theorems](lean/ThresholdHC/Observable713/Full.lean) · [Audit](results/observable713_001.json) |
 | Unbiased converse: for such estimators, finite inverse moment is necessary and variance–work is at least $I^2/16$ | Proved in Lean in the observable adaptive model | [Theorem](lean/ThresholdHC/UnbiasedConverse/Full.lean) · [Audit](results/unbiased_converse_001.json) |
 | Finite-gap entropy for every gap count; explicit single-coin base costs | Proved in Lean | [Proofs](lean/ThresholdHC/CriticalAllSizes/) · [Audit](results/critical_all_sizes_002.json) |
-| Closed quantile rare-event law: direct proof for known finite gap laws, and for every law through the entropy-tail theorem | Paper proofs; not Lean-checked | [v6 §14](paper/v6/README.md#reading-guide) · [Standalone manuscript](paper/finite-gap-rare-events/README.md) |
+| Closed quantile rare-event law: direct proof for known finite gap laws, and for every law through the entropy-tail theorem | Deterministic comparison and observable upper bound proved in Lean; matching lower bound pending | [v6 §14](paper/v6/README.md#reading-guide) · [Standalone manuscript](paper/finite-gap-rare-events/README.md) |
 | Confidence radius $r_\mu(B,\delta)\asymp\omega_\mu(\sqrt{\log(1/\delta)/B})$ | Both bounds proved in Lean in the observable adaptive model | [Theorems](lean/ThresholdHC/Confidence/Full.lean) · [Audit](results/confidence_001.json) |
 | RMS and confidence lower bounds with revealed or adaptively selected magnitudes | Proved in Lean in canonical oracle models | [Theorems](lean/ThresholdHC/OracleLower/Full.lean) · [Audit](results/oracle_lower_001.json) |
 | Other rare-event regimes and auxiliary results | Paper proofs; formalization incomplete | [Full results guide](docs/RESULTS.md) |
@@ -68,9 +68,10 @@ R_{\mu,\rho}(B)\asymp
 The extra scale-entropy factor refutes the proposed matching-Ψ characterization.
 The separate [general-law manuscript](paper/rare-event/README.md) now gives an
 entropy-tail replacement for known gap law and rarity, as an audited paper
-proof. Its general characterization and stopping-program claims await Lean
-formalization. The finite-gap manuscript below gives a closed quantile formula
-for known finite laws, also as a paper proof. The existing all-count Lean entropy coefficient is 1/4096; the sharper 1/512 bound retains its large-count assumption.
+proof. The observable upper bounds, deterministic quantile comparison and
+stopping-program claims now have Lean proofs. The matching statistical lower
+bound is being formalized separately, so the two-sided entropy-tail and
+quantile characterizations retain their paper-proof status. The existing all-count Lean entropy coefficient is 1/4096; the sharper 1/512 bound retains its large-count assumption.
 The explicit new base-cost constants apply to single-coin procedures.
 
 ## Finite-gap rare-event manuscript
@@ -110,10 +111,11 @@ persist on revisits, and the algorithm may create, revisit and interleave
 coins adaptively. Only physical observations are charged.
 
 **Verification status:** this is a complete paper-proof draft with a
-fresh-context AI review of its precursor. The closed quantile theorem and
-its full argument are **not Lean-checked** and have not received external
-specialist review. The Lean-checked finite-gap entropy and critical-law
-results above do not certify this new theorem. Its constants are not
+fresh-context AI review of its precursor. The deterministic quantile
+comparison and observable upper bound with coefficient `30001` are now
+Lean-checked for arbitrary laws. The matching statistical lower bound and
+direct finite-law lower argument are **not yet Lean-checked**. There has
+been no external specialist review. Its constants are not
 optimized; it does not assert a deterministic total budget, an unknown-law
 guarantee, an infinite-support extension or a high-confidence result.
 
@@ -169,12 +171,12 @@ coverage of the manuscript is recorded claim by claim. The work has received
 AI review and has not had independent external specialist review. Numerical
 experiments provide supporting evidence, not proofs of universal claims.
 
-The finite-gap closed quantile theorem is currently a paper proof, separate
-from the linked Lean-checked statements.
-The next formalization targets include the new general-law rare-event
-characterization and stopping-program arguments, the remaining paper-only
-regimes, and auxiliary results on envelopes, smooth densities, and observed
-outer states. Tighter constants and efficient selection algorithms remain
+The two-sided entropy-tail and closed quantile characterizations still
+await the matching statistical lower bound. Their upper bounds and
+deterministic comparison, together with stopping-program and genie results,
+now have Lean proofs. Remaining formalization includes the direct finite-law
+lower argument, other paper-only regimes, and auxiliary results on envelopes,
+smooth densities, and observed outer states. Tighter constants and efficient selection algorithms remain
 research directions. See the [completion ledger](docs/WORKPLAN.md) for the current boundary.
 
 ## Attribution and license

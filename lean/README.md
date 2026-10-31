@@ -24,17 +24,33 @@ axioms; a successful build alone is not a substitute for that audit.
 | Confidence characterization | [Confidence specification](ThresholdHC/Confidence/Specification.lean), [Full](ThresholdHC/Confidence/Full.lean) | `python tools/verify_confidence.py --sequential` |
 | Revealed/selected magnitude-oracle lower bounds | [OracleLower specification](ThresholdHC/OracleLower/Specification.lean), [Full](ThresholdHC/OracleLower/Full.lean) | `python tools/verify_oracle_lower.py --sequential` |
 | Observable rare-event rate above alpha two | [RareAboveTwo specification](ThresholdHC/RareAboveTwo/Specification.lean), [Full](ThresholdHC/RareAboveTwo/Full.lean), [scope guide](../docs/RARE_ABOVE_TWO.md) | `python tools/verify_rare_above_two.py --sequential` |
-| Entropy-tail selection functional (partial; the law itself is unproved) | [EntropyTail specification](ThresholdHC/EntropyTail/Specification.lean), [HardSelection](ThresholdHC/EntropyTail/HardSelection.lean) | `python tools/verify_entropy_tail.py --sequential` |
+| Canonical entropy-tail selection properties | [Frozen specification](ThresholdHC/EntropyTail/Specification.lean), [HardSelection](ThresholdHC/EntropyTail/HardSelection.lean) | `python tools/verify_entropy_tail.py --sequential` |
+| Both entropy-tail interfaces, stopping and genie results | [Compatibility](ThresholdHC/EntropyTailBridge/Compatibility.lean), [canonical upper](ThresholdHC/EntropyTailBridge/Upper.lean) | `python tools/verify_rare_event_completion.py --jobs 2` |
+| Arbitrary-law entropy-tail and closed-quantile upper bounds | [EntropyTail specification](ThresholdHC/EntropyTailQuantile/Specification.lean), [UpperTheorem](ThresholdHC/EntropyTailExecution/UpperTheorem.lean), [scope guide](../docs/ENTROPY_TAIL_FORMALIZATION.md) | `python tools/verify_entropy_tail_upper.py` |
+| Arbitrary-law deterministic quantile comparison | [QuantileComparison](ThresholdHC/EntropyTailQuantile/QuantileComparison.lean), [published audit](../results/entropy-tail-quantile-20261030/README.md) | `python tools/verify_entropy_tail_components.py` |
+| Fixed-cap identification and infinite-budget floor | [CapIdentification Full](ThresholdHC/CapIdentification/Full.lean), [checkpoint scope](../results/cap-identification-20261030/README.md) | `python tools/verify_stopping_components.py` |
+| Infinite-divergence counterexample | [InfiniteDivergenceExample](ThresholdHC/Genie/InfiniteDivergenceExample.lean), [checkpoint scope](../results/genie-counterexample-20261030/README.md) | `python tools/verify_genie_counterexample.py` |
+| Direct risk and finite genie SOCP | [DirectRisk](ThresholdHC/Genie/DirectRisk.lean), [AtomConicRealization](ThresholdHC/Genie/AtomConicRealization.lean), [checkpoint scope](../results/genie-conic-20261030/README.md) | `python tools/verify_genie_conic.py` |
+| Posterior information and convergent genie certificates | [RevealConvergence](ThresholdHC/Genie/RevealConvergence.lean), [OptimizedConvergence](ThresholdHC/Genie/OptimizedConvergence.lean), [checkpoint scope](../results/genie-convergence-20261030/README.md) | `python tools/verify_genie_convergence.py` |
+| Monotone genie brackets and Bellman certificates | [RevealTruncation](ThresholdHC/Genie/RevealTruncation.lean), [RevealBellman](ThresholdHC/Genie/RevealBellman.lean), [RevealResidual](ThresholdHC/Genie/RevealResidual.lean), [checkpoint scope](../results/genie-brackets-20261030/README.md) | `python tools/verify_genie_brackets.py` |
+| Exact attained infinite-cap dual | [InfiniteDuality](ThresholdHC/Genie/InfiniteDuality.lean), [InfiniteMidpoint](ThresholdHC/Genie/InfiniteMidpoint.lean), [checkpoint scope](../results/infinite-cap-dual-20261030/README.md) | `python tools/verify_infinite_cap_dual.py` |
+| Exact factor-sixteen finite certificate | [FiniteCertificate](ThresholdHC/StoppingProgram/FiniteCertificate.lean), [checkpoint scope](../results/finite-risk-certificate-20261030/README.md) | `python tools/verify_finite_risk_certificate.py` |
+| Adaptive information and finite-prefix risk | [PrefixModulus](ThresholdHC/StoppingProgram/PrefixModulus.lean), [checkpoint scope](../results/adaptive-information-20261030/README.md) | `python tools/verify_adaptive_information.py` |
+| Ordered stopping and local information | [OrderedInformationBound](ThresholdHC/StoppingProgram/OrderedInformationBound.lean), [checkpoint scope](../results/ordered-information-20261030/README.md) | `python tools/verify_ordered_information.py` |
+| Actual information-ratio Bellman characterization | [BellmanTheorem](ThresholdHC/StoppingProgram/BellmanTheorem.lean), [checkpoint scope](../results/information-bellman-20261030/README.md) | `python tools/verify_information_bellman.py` |
+| Reference absorption and midpoint modulus | [MidpointComparison](ThresholdHC/StoppingProgram/MidpointComparison.lean), [checkpoint scope](../results/reference-absorption-20261030/README.md) | `python tools/verify_reference_absorption.py` |
+| Observable stopping-program upper bound | [ProgramUpper](ThresholdHC/StoppingProgram/ProgramUpper.lean), [CertificateRealization](ThresholdHC/StoppingProgram/CertificateRealization.lean), [checkpoint scope](../results/stopping-program-upper-20261030/README.md) | `python tools/verify_stopping_program_upper.py` |
+| Finite flow mixtures and observable calls | [FlowMixture](ThresholdHC/StoppingProgram/FlowMixture.lean), [TableCall](ThresholdHC/StoppingProgram/TableCall.lean), [checkpoint scope](../results/stopping-flow-mixture-20261030/README.md) | `python tools/verify_stopping_flow_mixture.py` |
+| Exact finite-law stopping program | [FiniteProgram](ThresholdHC/StoppingProgram/FiniteProgram.lean), [checkpoint scope](../results/finite-stopping-program-20261030/README.md) | `python tools/verify_finite_stopping_program.py` |
+| Rarity support and fractional cutoff | [RarityTheorem](ThresholdHC/StoppingProgram/RarityTheorem.lean), [checkpoint scope](../results/rarity-support-20261030/README.md) | `python tools/verify_rarity_support.py` |
+| Attained four-prior stopping dual | [StoppingProgram specification](ThresholdHC/StoppingProgram/Specification.lean), [DualTheorem](ThresholdHC/StoppingProgram/DualTheorem.lean), [checkpoint scope](../results/stopping-dual-20261030/README.md) | `python tools/verify_stopping_dual.py` |
 
-The general-law entropy-tail law (v6 Theorem 13.2) remains a paper proof. Its
-two-sided comparison, both halves and five properties of the selection functional
-are locked as Lean target types. Only those five properties are proved: hard
-selection, the elementary bounds, the single-atom and small-budget values and
-nonvacuity. The existing critical-law and optimizer formalizations do not
-certify its general claims.
-See its [separate status](../paper/rare-event/README.md). The closed quantile law
-of the [finite-gap manuscript](../paper/finite-gap-rare-events/README.md) is also a
-paper proof; the Lean finite-gap entropy results above do not verify it.
+The arbitrary-law entropy-tail upper bound and closed-quantile upper formula
+now have a [full local audit](../results/entropy-tail-upper-20261030/README.md).
+The matching statistical lower bound remains separate work, so this does not
+yet verify the two-sided minimax characterization. The stopping-program and
+identification development has its own [current scope](../docs/ENTROPY_TAIL_FORMALIZATION.md#stopping-and-identification-ingredients).
+Preserved manuscript verification sections describe their earlier checkpoints.
 
 ## Foundations and supporting developments
 

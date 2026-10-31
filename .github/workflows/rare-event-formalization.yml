@@ -1,0 +1,43 @@
+name: Rare-event formal proofs
+on:
+  pull_request:
+    paths: ['lean/**', 'tools/**', '.github/workflows/rare-event-formalization.yml']
+  push:
+    branches: [main]
+    paths: ['lean/**', 'tools/**', '.github/workflows/rare-event-formalization.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: rare-event-proofs-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  kernel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned Lean tool manager
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/v4.2.4/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download pinned Mathlib cache
+        working-directory: lean
+        run: lake exe cache get
+      - name: Check audit guards
+        run: |
+          python -m unittest discover -s tools -p 'test_entropy_tail*.py' -v
+          python -m unittest discover -s tools -p 'test_rare_event_completion.py' -v
+          python tools/verify_lean_sources.py
+      - name: Rebuild all local dependencies and audit exact types and axioms
+        working-directory: lean
+        run: lake env python ../tools/verify_rare_event_completion.py --lean lean --jobs 2 --output-dir ../.runtime/rare-event-ci
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rare-event-proof-audit
+          path: .runtime/rare-event-ci
+          if-no-files-found: ignore

@@ -1,0 +1,2340 @@
+{
+  "valid": true,
+  "scope": "Every feasible certificate has an actual observable estimator in the original experiment, with its expected-work and squared-risk bounds; the original minimax risk is at most the stopping-program value.",
+  "full_stopping_program_verified": false,
+  "program_upper_verified": true,
+  "certificate_realization_verified": true,
+  "statistical_flow_realization_verified": true,
+  "finite_risk_certificate_verified": false,
+  "full_genie_convergence_verified": false,
+  "entropy_tail_lower_verified": false,
+  "local_dependency_rebuild_performed": false,
+  "module_count": 45,
+  "declaration_count": 304,
+  "exact_types_checked": 3,
+  "rebuilt_local_modules": 14,
+  "source_sha256": {
+    "lean/lake-manifest.json": "a7058b14db1034b58735d82f1cf9a82a938855e93decc1960ca7d21e786fdfe2",
+    "lean/lakefile.toml": "273cfe4674e97219b22f7de1428bdadfb45379c7fa582882c59624ab7fbc3189",
+    "lean/lean-toolchain": "d581a24b57a4ae9e0b2132ca8ac7cc3ac336a9fc2751fe6b29414e2d434d54c4",
+    "lean/ThresholdHC/BlindUpper/ActualBatch.lean": "17741cdf58a7da9a66705e0acedc47224321e9245de0de69aed678e398d72725",
+    "lean/ThresholdHC/BlindUpper/BatchMachine.lean": "c66313292e9d96759350848673ee20efc7f2f74893db5b09cdea8329eeee2dd5",
+    "lean/ThresholdHC/BlindUpper/BatchPath.lean": "cdbdeb2567e4c4722897fd5d0ac0dcb3535d04cf594b15e8e441bb48f77c0fd4",
+    "lean/ThresholdHC/BlindUpper/CalibrationBundle.lean": "19ce479815224dbba2ebd9079129dba55ff7d11f3b3bb96ea814b4c7a96c690b",
+    "lean/ThresholdHC/BlindUpper/CallConsumes.lean": "ad9c47f1b23035edb1f8e0f0746d1ba0ea68174703a86f5ce78b00cd9ca916f6",
+    "lean/ThresholdHC/BlindUpper/CallExecution.lean": "98edbbb1c2db136387927be1980547d57d0dee1378282967090e3660889f60da",
+    "lean/ThresholdHC/BlindUpper/CallLaw.lean": "783fdc1e0bc1760ef0d784f61d5ef9d1758de70d95eaa928be189885a1cc7f93",
+    "lean/ThresholdHC/BlindUpper/CallObservation.lean": "06b5c87565a675e55d1f2f224ce89e2c2f8ee13d59ca0fccaafe32a3b8981713",
+    "lean/ThresholdHC/BlindUpper/CallPlan.lean": "759b738c76b526de2739ac1a23e9f0aa740753a1a07a0b77790e9b45d1fe162a",
+    "lean/ThresholdHC/BlindUpper/ClassifierProcedure.lean": "540f3b31886337f57cedbebc087fd68f4c06425fc33d02e0ab2531446fd210bc",
+    "lean/ThresholdHC/BlindUpper/ControllerExecution.lean": "318b9ee1aabb0f859b4e2ac6f5b4cc13a3b9a72c441e3eccd4e6af83e3126b5a",
+    "lean/ThresholdHC/BlindUpper/ControllerOutput.lean": "cec1352b491ee8f3cd946ed143c72d6543e0d777d13572a76cedebdb14184ca0",
+    "lean/ThresholdHC/BlindUpper/CutoffBatch.lean": "6b0de26d37cc896163ac0140af53be29ac7e683a913f719202325dee8ab61918",
+    "lean/ThresholdHC/BlindUpper/CutoffBiasWork.lean": "8a626e041323255f8fce689b8829b8db8e5cc05c76cec15c6b7f720fda345e48",
+    "lean/ThresholdHC/BlindUpper/CutoffBounds.lean": "5ce4609722d3b87df654645f9183b1479b429c249f13ce0dc0d29e054b34abce",
+    "lean/ThresholdHC/BlindUpper/CutoffModulus.lean": "6c0a82ba38bd6bf1345ce469df574434e76cb9068d55314e9e54827fd96d536f",
+    "lean/ThresholdHC/BlindUpper/CutoffMoments.lean": "820d8d3434b42a84ce96c1bbf1e14ff391574e6d1f65d2949ec8329e195e74cb",
+    "lean/ThresholdHC/BlindUpper/CutoffProcedure.lean": "b440f4cd7a9b1556e23ded7aee8333dc0f41b37990444ad771702859377ec647",
+    "lean/ThresholdHC/BlindUpper/DoubleGeometric.lean": "b931109450ca0b95bfbdc71d97846c3a36ebf850e042f29e36509b88cd1e2621",
+    "lean/ThresholdHC/BlindUpper/FiniteProcedure.lean": "94bbcdf02fb40d759e72ddbd4d151a65b01a251e65cd07c3e379e067c10dd2db",
+    "lean/ThresholdHC/BlindUpper/FirstSuccess.lean": "819dbe638378ace3fc99ace139ae686578af62f4f954f18ff06878a86e548e59",
+    "lean/ThresholdHC/BlindUpper/InfiniteArrays.lean": "9439da8e51e1b26051b7a35ae1da4b0fe3828ef18302c1142a2c29f97a0341c2",
+    "lean/ThresholdHC/BlindUpper/MachinePath.lean": "4f7d96a88c1f5204026c2817e038b8d2eb78a96df9a742af6862378227c1bb3b",
+    "lean/ThresholdHC/BlindUpper/MarkedCall.lean": "812383ba89bd61628e2a582b375c56cb4c46cfa4515c0a8d520fa0a1e2a10d2e",
+    "lean/ThresholdHC/BlindUpper/MixedProduction.lean": "9e635b538f4e6453e8bec78abd1e946b4008056a61c123c025bbb112a7b63c5b",
+    "lean/ThresholdHC/BlindUpper/PaddedCall.lean": "e8c75bcc57605efcd0817a5e947b517322c3767497af7cff61c1fbca20b0c16c",
+    "lean/ThresholdHC/BlindUpper/PhasePlan.lean": "65fb8447981664e6be6ba0166a06cb8f3845277c17451f20c0c35d911bb3dcfc",
+    "lean/ThresholdHC/BlindUpper/PilotCost.lean": "66397d848092113b7f2e2c32c07eb72d3d179c8f61d775cdefd9a532da35490a",
+    "lean/ThresholdHC/BlindUpper/PilotCount.lean": "f9851efdb844a558f4f4aa3b416fed491f1f653b56232b49f943cb606d5c74e3",
+    "lean/ThresholdHC/BlindUpper/PilotWork.lean": "a8d7f0d42c899fe91507b138007ccac93a3de4206f5da929b6f9d972d5403ba4",
+    "lean/ThresholdHC/BlindUpper/PopulationBounds.lean": "f5c10aa4a5296986432361ccd2693b98d496e0d3a029b1149d142358df4453be",
+    "lean/ThresholdHC/BlindUpper/PopulationMean.lean": "e7422287c528be214b25e36c48f488f5d7a37817ffe9de52e87bd5ac930e6d38",
+    "lean/ThresholdHC/BlindUpper/ProductionAverage.lean": "f295d6fd588746fe9e715cde69c9f1eb7a294110e06cc4fed0a1d8b0baa84cef",
+    "lean/ThresholdHC/BlindUpper/ProductionCost.lean": "91deb31d199d6766205dc48c00cf61d8c254524335f3df54bfbe3a0926459407",
+    "lean/ThresholdHC/BlindUpper/SeedInput.lean": "f91e3bae0af4865fe8c4943a4f0bb8ef972c42dcd224dbeb35b6d12ad8c3162f",
+    "lean/ThresholdHC/BlindUpper/TerminalOutput.lean": "7457a8f6673d278a89dae0c705e3f7fc18dfa97da4283a9695d7391087bd5ca7",
+    "lean/ThresholdHC/CapIdentification/CenteredBasis.lean": "3521b12f9d6d9d3312a04f0b44ed7a2251a3a052c6bc6e43c8d348b1d269f3e7",
+    "lean/ThresholdHC/CapIdentification/ContrastFunctional.lean": "d1eb1050b2da1dd26f128509afb6549d48f3b9fae494967b1140c2944b9d123f",
+    "lean/ThresholdHC/CapIdentification/CountBounds.lean": "a97ae7995e77f53257f3b9f061d00fc2b7e69e2881a8e80684874a4449a0d41a",
+    "lean/ThresholdHC/CapIdentification/CountMatching.lean": "e292c749b89044ce55222d86beb224a5b6e6a3b8ba41df862c4ad42076e7d53a",
+    "lean/ThresholdHC/CapIdentification/FullCapCertificate.lean": "42d8b8f9a2d3a4fdf3ddee390ec96985836449c8489ec5e0a4a6d09fb881bc37",
+    "lean/ThresholdHC/CapIdentification/Interpolation.lean": "44c88912ecea85e61b4aa5c74e9937530d92ec6e84aa522985c45132ca1460ce",
+    "lean/ThresholdHC/CapIdentification/MomentCoordinates.lean": "bd93a1a02bd189f762b3df77aba6e38d8f7600320f29392a41ee186a17076c8d",
+    "lean/ThresholdHC/CapIdentification/OddPolynomials.lean": "9ef01310e5473ed4d540fae9fa35d79ed46de6c7ff1bc30a57c0683bb1c28ddc",
+    "lean/ThresholdHC/CapIdentification/PolynomialL2.lean": "ac1519992d1d1a08475ef1895aebd101ab1119af67a670f749662fbe8e7a3c98",
+    "lean/ThresholdHC/CapIdentification/PrefixBasis.lean": "8cc7c315b53acc783d5204d51fcb8ceff7eca8732ff565da9680f712deca2c96",
+    "lean/ThresholdHC/CapIdentification/PrefixRepresentation.lean": "17af2f7adbcad203ac7ae80c4240c68d1dc3e3be8de47cbbf5f810666f927fb0",
+    "lean/ThresholdHC/CapIdentification/TerminalMoments.lean": "275521fd4c32e5d1c6f95eb9feaa5fbdc02931306ebdf7b87a3ce8b00d28ab16",
+    "lean/ThresholdHC/CriticalEntropy/Activation.lean": "f672ce06ed0a648c90730a4d4ba6272730372f70c1e1da0130ebd7ec7c047b4f",
+    "lean/ThresholdHC/CriticalEntropy/ActivationCost.lean": "2fabd22ddf086c380d23792b0889874b5881f4a0c19a45238ff7e12ddd4d1a4f",
+    "lean/ThresholdHC/CriticalEntropy/ActivationModel.lean": "b2632bce6dda14e63fb6def05373cbd88259a1386cc010f0d171b7f33613f978",
+    "lean/ThresholdHC/CriticalEntropy/BaseCost.lean": "b8bcbdd53e3829d4f8d8ccd26d4666d4dd81f3d5323fc97e40ae8e836917043d",
+    "lean/ThresholdHC/CriticalEntropy/BernoulliPrefix.lean": "56a12478a7b94b06519f60a003819575e61ca18bd447d5734a770ba3f54b4708",
+    "lean/ThresholdHC/CriticalEntropy/CapInvariance.lean": "d050bdfb4010ab90a324f2a264c485e4769e1586c12fb7f26f7f6fa4e11a2928",
+    "lean/ThresholdHC/CriticalEntropy/CappedObservation.lean": "92ca17da2e1aa36e5822a9ce70021579701463daaf93b41dca9ed5b95464afdf",
+    "lean/ThresholdHC/CriticalEntropy/CommonPoint.lean": "e19f78d967948f5e5c3b2b3e8ef202e2ed5a8c6c7f65fb831789934a917b0026",
+    "lean/ThresholdHC/CriticalEntropy/ConditionalMoments.lean": "4d031b445e8a457a621620e656315ac8250360a04f91804e669e85b5a5367744",
+    "lean/ThresholdHC/CriticalEntropy/CreationPopulation.lean": "c4a0d8ae91bcfd623f253114c5389028881d223662b18bfeb4fabb57521d4b34",
+    "lean/ThresholdHC/CriticalEntropy/CriticalAnnuli.lean": "40ebdbc1e8324db9145b2422c05cbaa91a49223ae21b67cbbb68534b8b763316",
+    "lean/ThresholdHC/CriticalEntropy/CriticalCommonPair.lean": "c78f8633bfbca7766b5c01fa5f5219b01881f8c74c53ad78c500e7ff422a6dae",
+    "lean/ThresholdHC/CriticalEntropy/CriticalGeometry.lean": "b204193b923995a9fc7c1fc22e1ecf02ced7f45b854270889bd1e7344fe5382e",
+    "lean/ThresholdHC/CriticalEntropy/CriticalLaw.lean": "61a07e9e35e3660979e918a4ba33e3b08ba3f0449241acda00ace49c8c2b6bb7",
+    "lean/ThresholdHC/CriticalEntropy/CriticalModel.lean": "66465b14833b77f3dddd3fe1cef2e40714613d9783d87c610e30be0745a8e685",
+    "lean/ThresholdHC/CriticalEntropy/CriticalRisk.lean": "25eff4fc55db1e7063126efd84a047fe85f3eca9c1a676d7e9a1e3899a5869c8",
+    "lean/ThresholdHC/CriticalEntropy/CriticalScale.lean": "9e5112a2824d5a952b62aed55990e99595b2f40d4305b163821216c304f97fe3",
+    "lean/ThresholdHC/CriticalEntropy/EarlyDecision.lean": "87fe08199c0052318fef8a0c11e6ba8be2297a712fdfe86f7a17b0be0a45ba38",
+    "lean/ThresholdHC/CriticalEntropy/EstimationEntropy.lean": "25f05e3ed3a8b39aff00534ca1a6dee766012abf12a00c508de1074b48de4312",
+    "lean/ThresholdHC/CriticalEntropy/EventInformation.lean": "d2888a4291ca0423077dc6026fded8f4cdec9a821a1db5c4e848060e004bf71e",
+    "lean/ThresholdHC/CriticalEntropy/ExponentialRisk.lean": "74833dac4120f11a46cf49c6dc41bac4af881d543c4fcc5d6a93eeb4246429e5",
+    "lean/ThresholdHC/CriticalEntropy/FiniteAffinity.lean": "0828eec78d3579a90d3530189d9b77a84cf771b2c5ca57f8291b3696a18190ac",
+    "lean/ThresholdHC/CriticalEntropy/FiniteCentering.lean": "ce0705f843de5861abd3a25435fdf33735286eedc2d2cb0f966b83200a1a69e0",
+    "lean/ThresholdHC/CriticalEntropy/FiniteGap.lean": "e7a7094bd949b745b6603d3bb6f6f757d5fdc7e6c531028013d9aa2e109bb369",
+    "lean/ThresholdHC/CriticalEntropy/FiniteGeometry.lean": "e5436d4149a3b6cc05eb6b7365f9161041c3fb13dccc2008668b42519077f31c",
+    "lean/ThresholdHC/CriticalEntropy/FiniteGeometryModel.lean": "80b129847b95fc576e9dc862c09faef9be060f73e77d8401c9de74c9b949a211",
+    "lean/ThresholdHC/CriticalEntropy/FiniteObservation.lean": "48023892a01fededd97c1235e5856796ee53bbabdd9a065f66c2853371fb6d21",
+    "lean/ThresholdHC/CriticalEntropy/FinitePopulation.lean": "790b778f93225b18266a67e8d2f23f22a3838077379b7459dbd99231de6e8228",
+    "lean/ThresholdHC/CriticalEntropy/FiniteRiskAnalytic.lean": "47b444213466fb778e5dc53df699efae7ed18d15d66886de366179d6494d8644",
+    "lean/ThresholdHC/CriticalEntropy/FiniteRiskModel.lean": "fd4643aeed2ee06031f3d52771d275c8a72769c275cc186298772c347d3f00f1",
+    "lean/ThresholdHC/CriticalEntropy/FiniteRMS.lean": "7de8c257c00e294edb45e122fa1a09cd708850508acfeb6ce2af4100b580435b",
+    "lean/ThresholdHC/CriticalEntropy/FiniteSaddle.lean": "7272c2a8ddeb2511d007a0c0f499004acc37191dd0bac6b97065b9a751128f46",
+    "lean/ThresholdHC/CriticalEntropy/FiniteSufficiency.lean": "0ab437a2cd3fbdd20589fcc4ced2132f55cc3791025bab6a672870d3112b9f93",
+    "lean/ThresholdHC/CriticalEntropy/FiniteSupport.lean": "b3f63d024ad64868c35d422f11da08f2429a82bd545d36e74f6bbc8e944c37ac",
+    "lean/ThresholdHC/CriticalEntropy/GapSelection.lean": "798d3d4b24bedb28375b3931578495531497440ce8cf331656ff37519d63a5dd",
+    "lean/ThresholdHC/CriticalEntropy/GeometricOverlap.lean": "5b782cc81f070a81b818be81acfab69f4fae9bd6ae27cc30d3b1501b41eca93f",
+    "lean/ThresholdHC/CriticalEntropy/GoodGapModel.lean": "6e8774ae05d6c09e93f91457e5ce0f21de9febc5eb5764aeca1663389944f64e",
+    "lean/ThresholdHC/CriticalEntropy/GoodGaps.lean": "245c07a0b986381ea4359cc3ac2f0c386965c7dc8eb1cdc7fe27b2925e42b93f",
+    "lean/ThresholdHC/CriticalEntropy/HalfPrior.lean": "70987dd4ac7631e55befa63d70436272ada328177a6888be7632752a723771b7",
+    "lean/ThresholdHC/CriticalEntropy/Hellinger.lean": "f34c15c6f8f475a838fb95f2045735184f22e8cb6a57955fe8c77541c9abab51",
+    "lean/ThresholdHC/CriticalEntropy/HellingerGeometry.lean": "79629a0920d02949a6ab847b121086509f2ae2b4404f4766aaa69100fda2c5b9",
+    "lean/ThresholdHC/CriticalEntropy/HellingerModel.lean": "5a4b8bb5bf4cd2645df2292a121741e4b8eb7abf62a4b627a8bbb77f54ccf422",
+    "lean/ThresholdHC/CriticalEntropy/LikelihoodAffine.lean": "6b33f2bc2089744151d7a8feaceb021bbf4fab523164da0381c5efc619d53cf3",
+    "lean/ThresholdHC/CriticalEntropy/LikelihoodBounds.lean": "ebd8e2d89d2bfee76560aac507ff4b6140b469999e88a024b825af5a5cfda9b1",
+    "lean/ThresholdHC/CriticalEntropy/LocalSimulation.lean": "79282d21006d0575b985ed300ed131bdc1052ec45b916da5a878af8d6dbd74c2",
+    "lean/ThresholdHC/CriticalEntropy/ObservablePopulation.lean": "ede2078b26808308d7d74dbfc516c1caba6eb87832e87a3e5a3f36c4dba24401",
+    "lean/ThresholdHC/CriticalEntropy/ObservationAffine.lean": "1a8a038c6ec2557da51a81f9612aea488a161d40fa90517e5251be4f71333ebe",
+    "lean/ThresholdHC/CriticalEntropy/ObservationGeometryModel.lean": "a36242357255714ad7b8517f105abc6fb818e931a0ff7a0a516459505cc61e4d",
+    "lean/ThresholdHC/CriticalEntropy/ObservationInformation.lean": "dc4a3a38802ef2a4fc8489766a38bdf372270bb076007e1e7c6dc1ea6f0f8907",
+    "lean/ThresholdHC/CriticalEntropy/ObservationModel.lean": "f6661ef822601181c09be8961cacf624d1cb2a8514eeb4c17b9a8a0ccd997bae",
+    "lean/ThresholdHC/CriticalEntropy/ObservationRisk.lean": "645615c417ceb827f296d60cc8bcc08dfbf3ecba2d203dc3b2f774538a0d468a",
+    "lean/ThresholdHC/CriticalEntropy/Packing.lean": "0819b363020bec3f9b82bbaf86387be6d78d3631381b590b640d587fea011a95",
+    "lean/ThresholdHC/CriticalEntropy/PolicyMixture.lean": "bd70670e38955cd6a412b7ab29988726450eab7201085735d9a81a86e9080505",
+    "lean/ThresholdHC/CriticalEntropy/PolicyNormalization.lean": "fce07cda2ed0ae77f3e715cbe3a04995482f6af6be89045a7a75b7f629567f95",
+    "lean/ThresholdHC/CriticalEntropy/PopulationCompactness.lean": "e86ebcbf2ce3cdeeaa35ca95b76516150509d34e768b212a72c7fadf4f095ae3",
+    "lean/ThresholdHC/CriticalEntropy/PopulationGeometryModel.lean": "30979c088ab1e746169485fa6792deacae84671b103ac6b4a46d4788aaf5f0ac",
+    "lean/ThresholdHC/CriticalEntropy/PopulationLocalWork.lean": "4d8bd799b203f9ab1359080521a7506973cdd54cd75366a4085c7a91e62fadf6",
+    "lean/ThresholdHC/CriticalEntropy/PopulationMixture.lean": "e1731a76df0e157101ec7013e01c21c854c4219a760c1e94371f06a6eba49525",
+    "lean/ThresholdHC/CriticalEntropy/PopulationModel.lean": "6563b8a07b6941cae10140c0611d6c13e63378bb9eae0009f1d03e987ac315fd",
+    "lean/ThresholdHC/CriticalEntropy/PopulationTapeLaw.lean": "f29394f00682af19e8f9fa519d5b4f7a8d21d063bcc2bb46b418000fa12fd9a8",
+    "lean/ThresholdHC/CriticalEntropy/PopulationVariance.lean": "39ae6e240767e093a33bec7290e5daa16ae2dcf4c791f84f078ad5bff584f2e5",
+    "lean/ThresholdHC/CriticalEntropy/RepeatedModel.lean": "de43c043e98529ed9509400d0eb2f3ea4216c27343fd660f55e4320125e72f1e",
+    "lean/ThresholdHC/CriticalEntropy/RepeatedRestart.lean": "0451ca311f815b6a93876917db5527ba94aaf1e169e2b5f1fe6b47b9e336c231",
+    "lean/ThresholdHC/CriticalEntropy/RepeatedSignModel.lean": "660542041063023fc2d70962d777600ff60411007b25f76cf7e466968106a652",
+    "lean/ThresholdHC/CriticalEntropy/RestartPair.lean": "8c86a915636f670d1161a12e75d0a7ad18c5a4780f63e8c8a26064ec39c3ce5a",
+    "lean/ThresholdHC/CriticalEntropy/SampleMean.lean": "1befda118991d7f53aa696f75ce26c48cea9e48c302badb719ad7880e8833286",
+    "lean/ThresholdHC/CriticalEntropy/ScaleAsymptotics.lean": "6cae0e65bc2bce3dc390855869edfd9fa24aefde46ddac9bb03fc755c565d234",
+    "lean/ThresholdHC/CriticalEntropy/SeedAdaptation.lean": "72be0dcbfb68c571d8eb13eeb804b9629fd855d3708be156c434232a561579a9",
+    "lean/ThresholdHC/CriticalEntropy/SeedAffinity.lean": "c664973c8b4e55f05e4cf1ead77e8f99d6d4f060e9e12bf666fa8b7ea268b635",
+    "lean/ThresholdHC/CriticalEntropy/SelectedPolicy.lean": "d08bb2ada0d4d6c85779b97257eb06b3895d966f12fcfc8ea8d751de0ebfd625",
+    "lean/ThresholdHC/CriticalEntropy/SequentialModel.lean": "f7e044ffb8ca3182c405730e3491fe1b813da85728fc8ee030aec5e97336bff4",
+    "lean/ThresholdHC/CriticalEntropy/SignReduction.lean": "3fadc6fcb4f89fe3b84e4d07447ea349acfb7f490bacaf337509270d26829cb9",
+    "lean/ThresholdHC/CriticalEntropy/SignTest.lean": "39842334c60c3b8d63e9bdd67d33496a12270eacf58375cb8c02fb583a3fe776",
+    "lean/ThresholdHC/CriticalEntropy/StatisticProcedure.lean": "17c41e220816ac6384d30d0f045370b81efcc29d8b1ef83e601af0d971a40059",
+    "lean/ThresholdHC/CriticalEntropy/StoppedModel.lean": "0ea485349d3f2465044b1978f0dc544935a40cc764bf615a98a8ba9bfc734378",
+    "lean/ThresholdHC/CriticalEntropy/StoppedTape.lean": "3a856b343447fdcfc3633a59684804af603de9279cbfc4b30202992c2c9c1124",
+    "lean/ThresholdHC/CriticalEntropy/StoppingWindow.lean": "5c746a6415390eed76298153a03dae8ea42a38fd5a2a52cb1c16a2da6fa038ee",
+    "lean/ThresholdHC/CriticalEntropy/SymmetricReduction.lean": "83286a71a724fc55d96364f89eb1578517d5ea52cbcc4486d4ad5b3ca7ac0201",
+    "lean/ThresholdHC/CriticalEntropy/UniformCoin.lean": "0485ada581ebb1d3c551fb15b4b7fd0edf4b6f1b5901912420d0c7d53fbb4ee6",
+    "lean/ThresholdHC/CriticalUpper/Calibration.lean": "0c0c0e44c82d59be31b5739f66f1905f890dee73f7900309f07ef47d6c5b8523",
+    "lean/ThresholdHC/CriticalUpper/CappedCost.lean": "4d8c2974b2795e66f967fd307d695ee1f7cbc224e4f60f45a56434783460c9a7",
+    "lean/ThresholdHC/CriticalUpper/CoinLaw.lean": "1fefb12e8ff058cdcaca798dd9eb27cda3b9109e9fad4a3d10bffcb3d9a5443d",
+    "lean/ThresholdHC/CriticalUpper/CoupledModel.lean": "13689f0d7ecc3a51507190802d2b52b4ad646f70a7cfe1cb6567db715614aa10",
+    "lean/ThresholdHC/CriticalUpper/GapIntegration.lean": "33d80de975ebf4b5cc7a097e7da39a18fec27ae156897b63e5d5e2c45c25be70",
+    "lean/ThresholdHC/CriticalUpper/Parameters.lean": "d3121fa797ab05f07625ff0de3a7f2eb4ac55a0e5b8a35ba8c21d09eba48e8f7",
+    "lean/ThresholdHC/CriticalUpper/ScreenCoin.lean": "37819151546cf447f63c883c00117447ac99de8fe63160cafa33e092fc378586",
+    "lean/ThresholdHC/CriticalUpper/ScreenError.lean": "42ebf3f2907f14d171b7c5f0c1da98e3e9ff63832cfe7e51e8c4f20e840cc39c",
+    "lean/ThresholdHC/CriticalUpper/ScreenModel.lean": "2c9c7983f52c88f708e98dd797c2e829ad05af7d951a6ce6dbac0138a977d2f4",
+    "lean/ThresholdHC/CriticalUpper/ScreenMoments.lean": "f0e7d88f932bcaa009f38ee2a618a3b8c6fdbebbc98b99d8e77b9a9389870ab9",
+    "lean/ThresholdHC/CriticalUpper/ScreenPopulation.lean": "32a6b0808cab72e6f9e86aa37c3cbfa411e771d8be29eea04d85973489843caf",
+    "lean/ThresholdHC/CriticalUpper/ScreenWork.lean": "5bf94e41c9cc93cadca3d452c4099a968bea2e29f05890e6a194442f3a002d94",
+    "lean/ThresholdHC/CriticalUpper/WeightedCost.lean": "d04b2f658052f0977f70ee71c0efa5e9dd75e72ed7382d085e356cad2ebd7c0f",
+    "lean/ThresholdHC/EntropyTail/CostEntropy.lean": "a181ce583335a26df67275b4c37a37d21b7f7e7e625f779feb7a08faefb23af1",
+    "lean/ThresholdHC/EntropyTail/CostEntropySeries.lean": "7ba0edb5383681ff439b9360468ea8a3f0a8d4d60bce01dda61dfa8207c323e0",
+    "lean/ThresholdHC/EntropyTail/MeasureEntropy.lean": "0e3cea7fcbb0389442ee77d076e8bfe71e492ece0dbfa638aa6110c4a47856b5",
+    "lean/ThresholdHC/EntropyTail/Model.lean": "280a32ef8977d223a92ff0e42a039b0fd16ec3fbd80d6fbd369991dfe2b42079",
+    "lean/ThresholdHC/EntropyTailExecution/ActualPlan.lean": "a7f54595fd439b7217f4e7e5009eaf0fdf795afcf1310d5aefcd6e5db6c4f143",
+    "lean/ThresholdHC/EntropyTailExecution/CallMachine.lean": "3d75afa9a5c2516f0b74b7e2c2fc71c88614f9ff887bee1067b687df72a9b16d",
+    "lean/ThresholdHC/EntropyTailExecution/PlanExecution.lean": "45109a7ef5dc3a7f6f017f9557d46d7b18415830d236ccad8fd8677c1f5bba23",
+    "lean/ThresholdHC/EntropyTailExecution/PoissonPlan.lean": "31d07313de7eba61ed3b3cac2c50e80126216939da11da1d792690b45d218447",
+    "lean/ThresholdHC/EntropyTailExecution/RealizedPoisson.lean": "e4beaec465c1ab5c9663babf08edc0fa293c9931cb860b19434a29c5a1d24998",
+    "lean/ThresholdHC/EntropyTailSampling/CountedMarks.lean": "b6a0d5c71c2f3ca0500bff5f0055da8dcbf6c24fd6885c27b8ad744bdc69b648",
+    "lean/ThresholdHC/EntropyTailSampling/MultilevelPoisson.lean": "3b77fcc93c71bd1a1b3a3eaa4ce49dda3794f7dd500d24a806cca8ad85891648",
+    "lean/ThresholdHC/EntropyTailSampling/PoissonEstimator.lean": "07a63260a8143bfbf8abec7802ceae4484100d95b8f4436e73296045f5470927",
+    "lean/ThresholdHC/EntropyTailUpper/Allocation.lean": "be6e4fdcddb58232cb9e060380d22d24d20fbb2a96b37308af972dd9b191b7d9",
+    "lean/ThresholdHC/EntropyTailUpper/BankErrors.lean": "34697a88c5b7cf68fa57495b6ab7b3c9771ab80c74ee5c720a65f70fb9d4145d",
+    "lean/ThresholdHC/EntropyTailUpper/BankRace.lean": "7e9d199d3afd0b548d3916f78c1cd648bdd46c298608be2169f4f240a869dfe0",
+    "lean/ThresholdHC/EntropyTailUpper/BernoulliTilt.lean": "406f772c0e2d5d7640762c79312ecf3bd80ed06ecd896cb8e2e0f4e1da771ec1",
+    "lean/ThresholdHC/EntropyTailUpper/BoundedSearch.lean": "ee8fd74c32399ed1e96defe7521e0c4100cc3adfbe1d70635e6c2d7eea77e17c",
+    "lean/ThresholdHC/EntropyTailUpper/Ordinary.lean": "e53e6594d0dc15cb7d99a71e3a361fb3cb3901e04926e36d08bc55b66221ceeb",
+    "lean/ThresholdHC/EntropyTailUpper/ParityRace.lean": "f11a7d4ff5ab595dcb965ac61711f362a1a6fbb1fa9da2cb9b68c4b1eff2a0a9",
+    "lean/ThresholdHC/EntropyTailUpper/PoissonMoments.lean": "801ac471e51600b940339f4fbabeaca0aed367c522a670cb27abf56497551a89",
+    "lean/ThresholdHC/EntropyTailUpper/PopulationErrors.lean": "f239a835bb754da4377c3ecd766b32c33c819897de27dca33f98218ad6e95903",
+    "lean/ThresholdHC/EntropyTailUpper/PredictableWald.lean": "725659cbdb3bdae57675acff3f5a84605e5bc6c8bfd2dae3d1d77218a0addbe1",
+    "lean/ThresholdHC/EntropyTailUpper/PrefixCrossing.lean": "fcaaf841f6b120a957452e8beea27899a40851ecde4ce4ae1e2475e410614a29",
+    "lean/ThresholdHC/EntropyTailUpper/ReferenceDrift.lean": "00761048f7314c7ea8124b93f89d6721136984cd8a9d97433cb268505be30604",
+    "lean/ThresholdHC/EntropyTailUpper/ReferenceLikelihood.lean": "4a4c02646a4a629aaeae0900d80f76b52475011496aff676022d83d9d8d3afb3",
+    "lean/ThresholdHC/EntropyTailUpper/ScoreHitting.lean": "223e7f72fe091ee36e565d351492208a304b7cd8f673a29c468e2e991400c7ee",
+    "lean/ThresholdHC/ObservableSimulation/LawUniqueness.lean": "0fa4a181aa36c5f0b66038b255f65fed319af436ac42d2d779705d04ffd3dcde",
+    "lean/ThresholdHC/ObservableSimulation/OriginalExperiment.lean": "fdb786b2cff5837a1f0cbbb4effb483531a9221a53b93f19be7058625c2de097",
+    "lean/ThresholdHC/ObservableSimulation/PopulationLaw.lean": "592c379d5b85d6dc160137c7cc07e3feb5f8bb03b5aa6eb97ac8abad3120def1",
+    "lean/ThresholdHC/ObservableSimulation/PopulationPath.lean": "cb83bb886a8d049c8d14c6193cac932a57fc4ba3e04c44623c6b9a525a963be9",
+    "lean/ThresholdHC/ObservableSimulation/SimulationCap.lean": "0a59633fdc0c207d92f3a5c0ea38814f8bd97dc0f7f28862b870dc0ec8db4d4b",
+    "lean/ThresholdHC/Proofs/Algebra.lean": "68efcc1bef2ab5407fa86b1e8fea52c2baeaf0001bfe5d548d0a58ee959fb155",
+    "lean/ThresholdHC/Proofs/Calibration.lean": "97dbc17ac82968fd9e8c161ac9acf75c4c6c701946aa5b568913c4b05b8d3777",
+    "lean/ThresholdHC/Proofs/Classifier.lean": "9558e82d1c6714256642a96e4660c79e21b5594495a23e02bf6d1d545aa260dc",
+    "lean/ThresholdHC/Proofs/Constants.lean": "702387511d6e4d86cf41a43f13a75f6fa7beff55286cb9d6fbd14d06957325d5",
+    "lean/ThresholdHC/Proofs/KL.lean": "ddf4b0067271296ea1836e44fe01fe55bf1143e14cf1f5b3473e38a196d966c3",
+    "lean/ThresholdHC/Proofs/Tier2/ClassifierBridge.lean": "ceea2164d069abbfdd9675c7aebeeb049cd0803de30b4cf8075a9f61c7131c57",
+    "lean/ThresholdHC/Proofs/Tier2/ClassifierExpectations.lean": "a4bbb2a23df6b3c039d0745a5c192bfb65db36716fac5ecff627abb84c04a323",
+    "lean/ThresholdHC/Proofs/Tier2/ClassifierModel.lean": "8c736576d3067324193032efcad8bcc5ec85e93fbd5e27c5b5d877fc54ebf0dd",
+    "lean/ThresholdHC/Proofs/Tier2/ClassifierMoments.lean": "a12ccbd80321028c93c750bfb88c0afdd667134b445f057cf8ba99f05a7b449c",
+    "lean/ThresholdHC/Proofs/Tier2/ClassifierPrefix.lean": "83cd014055fd20931b028f3cbe2ec318bfb3c8017bfd55af94bc16ad0cc49f04",
+    "lean/ThresholdHC/Proofs/Tier2/ClassifierProb.lean": "b65f5c0a09a2cd37be81034dd40c707848727bc76d6754f1b52ac4efc68a46ea",
+    "lean/ThresholdHC/Proofs/Tier2/ClassifierProbability.lean": "bae7b6d3d3fc0f3e8fd32bf626a316b44fac61b4c05593da98148dbe1a0e11c3",
+    "lean/ThresholdHC/Proofs/Tier2/ClassifierTelescoping.lean": "5234114cd7b228e9002c6e5f863b7c80ea72a143ec0ac4b8be531785be897989",
+    "lean/ThresholdHC/Proofs/Tier2/Information.lean": "4b62b5996af4e6c96cff51796745fc9b8dea356744b1ae7f0777ecc43b76fd16",
+    "lean/ThresholdHC/Proofs/Tier2/InformationCore.lean": "0a6a1af42b5b0af29db453982aabd1a4dbb615baf1284c8ecf6d14e5b0d58590",
+    "lean/ThresholdHC/Proofs/Tier2/Transcript.lean": "e8b8feca5af14a68f23fa9cdc57eb28259f87c18d3ff092ca732b353daf4e640",
+    "lean/ThresholdHC/Proofs/Tier2/TranscriptBase.lean": "ef06442bc824d756f959d0c9711edbf8b84a61359d8d1a10fedb8dbfe5c201d7",
+    "lean/ThresholdHC/Proofs/Tier2/TranscriptLikelihood.lean": "7d051a6f2f028d912910c9d18533b6db90863328a7bdc6c87c4181fade7c489f",
+    "lean/ThresholdHC/Proofs/Tier2/TranscriptScalar.lean": "dc691a74b9b1915377df80cd2caac4feec5d7bee3938480b906afbdb04630fee",
+    "lean/ThresholdHC/RareAboveTwo/BandError.lean": "4d8258f45468d5d0cb005b69a14e6942568e354b82e7a6e7e256a5cef4cac0da",
+    "lean/ThresholdHC/RareAboveTwo/BandModel.lean": "c8200017ef1d3c9c35fb6df030aa8b3ded372fff8774e91e8d89ae6a614763d2",
+    "lean/ThresholdHC/RareAboveTwo/Margin.lean": "c431ec579001a762118fe53a98fafe39b7fa27d8e8da1eead9304f193125ff96",
+    "lean/ThresholdHC/RareAboveTwo/Model.lean": "e73349c6b4297fde20d3b3038e9eda089c60df0af3cab001caf7c58e9b0aa6a7",
+    "lean/ThresholdHC/RareAboveTwo/Nonvacuity.lean": "ab3ccd54909175e0f58f40224c0195e2fdd36dca1d1bbd2358dc8d414b746946",
+    "lean/ThresholdHC/RareAboveTwo/Parameters.lean": "b053f2de3eedd5de537e7fcf8b24d50d9d2fed350907c446174199ac2b61de75",
+    "lean/ThresholdHC/RareAboveTwo/PopulationError.lean": "dad17aea9a167c6825e73d0b9feb7840c5c4882d8759ec649a74b963452fd472",
+    "lean/ThresholdHC/RareAboveTwo/Specification.lean": "53bab4bca5662f60659db55d83a497530dd39a974dde45b3514f394aa9482143",
+    "lean/ThresholdHC/RareAboveTwo/Terminal.lean": "ff80fb1bb2ffda6af6b666c4234501f8ea0fa94c6cbedb154bea29b2cc487025",
+    "lean/ThresholdHC/Statements.lean": "0873505b7c133561e82f63dcbba7f7a0a3da39d0c3692daee99d01882a757abf",
+    "lean/ThresholdHC/Statements2.lean": "51f85fee842aec2de331872b760ecd47e15715a84deaf5b8f08970bd9fa01414",
+    "lean/ThresholdHC/StoppingProgram/CertificateRealization.lean": "7f838439571a956bd120b797cf2a6eb32eec7e4eff0373e0a3dd5c9604ddc87e",
+    "lean/ThresholdHC/StoppingProgram/ClosedProgram.lean": "0e8da1490d278e9e9b2dc5185062441d63db3792aefccfb050ad643123c6ebc9",
+    "lean/ThresholdHC/StoppingProgram/CompactMaximum.lean": "388a92142ff4de04e1bdeb0923a9f3b2f7faccd70df7d692974cffc75a423f2c",
+    "lean/ThresholdHC/StoppingProgram/ConeLagrange.lean": "337c96db0ea222b337da4120da4f76b8beca10e21fb30f4f157ff8f18826845e",
+    "lean/ThresholdHC/StoppingProgram/DecisionIndependence.lean": "9fe3b82bd306906da3c036a8aa94c8061ff8a4bcfaf9b96c2c11cb60f80f034b",
+    "lean/ThresholdHC/StoppingProgram/DecisionMixture.lean": "376a21ae85ec2ddcff5faa37216ab93eeff705d90111d997cb0723e20df54718",
+    "lean/ThresholdHC/StoppingProgram/FlowBasics.lean": "fd4b1077a3287f5b81729ed1d763ddb01d4b20445e3292d8b9d441894fac72c6",
+    "lean/ThresholdHC/StoppingProgram/FlowBounds.lean": "4f00e28fcb02d41044eb64a6abcb2edb209471538d0e860821a791166b95c9d1",
+    "lean/ThresholdHC/StoppingProgram/FlowConservation.lean": "530c1271876273609699739358ba2f8839bc687232be87f06ce0b56570bcbaea",
+    "lean/ThresholdHC/StoppingProgram/FlowMixture.lean": "9cc5d15e7ba7384ab1b3fbcb3bbdf8a5c33d63dcd2cef1260762e39d1c50d970",
+    "lean/ThresholdHC/StoppingProgram/FlowOperations.lean": "9ecaf2dd56f731ee7d5091cbf3557da2b4d25c41629e05fc57d3105575ae2849",
+    "lean/ThresholdHC/StoppingProgram/FlowPoisson.lean": "4013c57da25d463bb5ea8fce46ae71f92e10c5440358474f488279ece93f1476",
+    "lean/ThresholdHC/StoppingProgram/FlowTableRates.lean": "8cf78824962178077e2bd86528c1e72aab633aea963e2ec3ceff7ab6cf116e31",
+    "lean/ThresholdHC/StoppingProgram/FullCapFlow.lean": "81e1f9684745bd5a8807583843a2b2f2484dd6cff037e2e0e96ef7b20bf62dd3",
+    "lean/ThresholdHC/StoppingProgram/InformationBound.lean": "b610d67611dcb2c9481a118057e2601741d2ff0fe0f4a72e8f5aef8b675eb78b",
+    "lean/ThresholdHC/StoppingProgram/MixtureStatistics.lean": "19f88bddcf4718e242523ffdfa1ba215fc4bbc4bad46e174408ad9865ea221b7",
+    "lean/ThresholdHC/StoppingProgram/Model.lean": "ce07fb73fa56263a3f68ad3a26dc178889f20e7c8c8ee72004608f08c649d1a5",
+    "lean/ThresholdHC/StoppingProgram/MomentImage.lean": "c18ff95791e6fccd5f8a229e97cf67c53a0163bfa0fa2df25de285d9fcf3bf93",
+    "lean/ThresholdHC/StoppingProgram/NullPruning.lean": "f7d75c788dfc3bd2f8e4ed7e442cdb7fb464cbcd7ad223e5734d59111a1ab9ab",
+    "lean/ThresholdHC/StoppingProgram/OutputChoices.lean": "4d8457148f4d4ddf23224627bd6673cf8cc814ab8f933bcc816b57dfa3dfab1c",
+    "lean/ThresholdHC/StoppingProgram/PascalFlow.lean": "fa6c1ecb4670237e2ee313723b307a8eff570ce6efe9add6b8a2363b76d149b9",
+    "lean/ThresholdHC/StoppingProgram/Perspective.lean": "aab8ffc2a469eb2c08610a45a9bef98dbcd964213cbc22ed978653111f814581",
+    "lean/ThresholdHC/StoppingProgram/PoissonMoments.lean": "aa4d408fad79698b68dd28c0ae7f326d2f338b5840639d3dc4446faeb210a425",
+    "lean/ThresholdHC/StoppingProgram/PolicyMixture.lean": "8933983a44baf873b1f94afedc631ef9fc7ad48ffb8548e65fed74a5b7da8c05",
+    "lean/ThresholdHC/StoppingProgram/PolicyWeights.lean": "3fad3a983c3e33b6e8efa6a2bec98a005b7f2cb51c453cdd04c9564bf9a05485",
+    "lean/ThresholdHC/StoppingProgram/PositiveTables.lean": "c8f02721b2b2908d8afe02aa85083750be68f3483faeeca1ed9dfcd0637c9832",
+    "lean/ThresholdHC/StoppingProgram/PositiveValue.lean": "4f953b8a1d7288bad9ec81188de5d9f4e034f46ccbd8f5d146f634e2e7cde7f4",
+    "lean/ThresholdHC/StoppingProgram/PrefixCoefficients.lean": "b999ea3ecfd7160acc9249fdc71be4a3713b6dc907a085c312d183288b9a2d79",
+    "lean/ThresholdHC/StoppingProgram/PrimalAttainment.lean": "ab1d56b2a041212931cbe4346daba34cf06f3e33726e735cb68daae8dc52c498",
+    "lean/ThresholdHC/StoppingProgram/PrimalCompactness.lean": "69167946812a9730eb0505779b8956f3b423ee8c5f27817138f9681640b0dbd9",
+    "lean/ThresholdHC/StoppingProgram/ProgramGeometry.lean": "02f687c5a44a3ef7c8e4662ba15297db8c57df7ac62b970b1bcaa9a6ab6dc2ff",
+    "lean/ThresholdHC/StoppingProgram/ProgramUpper.lean": "e5064c9483638cb5def6d560702dead66532f26d8f8f661e51dc26686d364f51",
+    "lean/ThresholdHC/StoppingProgram/RareCompactness.lean": "d265e8af98fcfeeab55bf82f2de89e8b88597e9218fc46dfa4c3d1254365e29a",
+    "lean/ThresholdHC/StoppingProgram/RealizedOutputs.lean": "265d18c4d928f13e839a641a76f7a40dacf11e26a7cb2138c143c4560556ffef",
+    "lean/ThresholdHC/StoppingProgram/RobustConstraints.lean": "5c5a793abbad1cb0e2f4ba3380d2c51af03168614628cf2a7d597366bc0bb7f1",
+    "lean/ThresholdHC/StoppingProgram/ShiftEstimator.lean": "eee40d66e6af7719e5443cf3818ceb3425649515ed37ca6181efe67bf0633efa",
+    "lean/ThresholdHC/StoppingProgram/Specification.lean": "c9eb621ce2bde7507c2e662fbf5d5d1c29815393cf925444590cab5c0ebec871",
+    "lean/ThresholdHC/StoppingProgram/SublevelBounds.lean": "25cc3af8c2dc713ecb6b459493b720dda67eefe44f96e929af1bb569f5b73345",
+    "lean/ThresholdHC/StoppingProgram/TableCall.lean": "23e206ad1c2402d244ed2cb971e1ffe9ccfc6a19fdb143e629fd0eceb64d108a",
+    "lean/ThresholdHC/StoppingProgram/TableExpansion.lean": "0c07be67520dbe6a2e254a4a1829d87fe3db8a1424d0e8e2049309ea98a6b3e4",
+    "lean/ThresholdHC/StoppingProgram/TableStatistics.lean": "141c29d96f360a8f39aa5cbe31b1aaf3f446e6810b99a7db0266c19aee9359dc",
+    "lean/ThresholdHC/StoppingProgram/TapeMoments.lean": "def7458099d7ad80510c48bb8cfff9e55b6c8d1a0227a180fc135f152fd55dca",
+    "lean/ThresholdHC/StoppingProgram/WeakDuality.lean": "0d147a1b5775f5f0cfca5e19b2ae51b268b8e51ec524b34930c00005fbd98ef2",
+    "lean/ThresholdHC/StoppingProgram/WordFlow.lean": "5e770117b709cd512acc748359798642d6d7f7ed73ae2e14e3984593f1b9e133",
+    "lean/ThresholdHC/StoppingProgram/WordStopping.lean": "8ed5b370f76415dc100b4846daa97d49a8c54ef21ed266c25c22729abf30bd55",
+    "lean/ThresholdHC/Tier3/Examples.lean": "d3c8da8c75721742709b56288caaeea9406c8ab2b22443ebe6fa5d68d69f0395",
+    "lean/ThresholdHC/Tier3/ExamplesModel.lean": "e03edb36c05e3e43601dddf4e8d510231f46bdb04a7b8b4f7bb884a2133e0cd5",
+    "lean/ThresholdHC/Tier3/IntegralLogSum.lean": "ecc8c3ca647b00fef691fbb2ecde8304c7f48e844a9c3a8a45a5fc9a948f94ff",
+    "lean/ThresholdHC/Tier3/OptimizerModel.lean": "36c085b6409b1355247d5127ab4ee9fdb94e621c1aac8379fb1f119d607cae49",
+    "lean/ThresholdHC/Tier3/Randomized.lean": "3e74e2a34d509b577730eb041447d6f63c54fde8d551860cd1cdbf8c6b5926ab",
+    "lean/ThresholdHC/Tier3/RandomizedBase.lean": "87af7b31ba2c3cc9ff623cf403d954ffd7b8844c1b3af6e9283b823921ed8285",
+    "lean/ThresholdHC/Tier3/RandomizedModel.lean": "3a61f9b034ee58e45e903356c60037e4808fdb1a711d96b24f3013ef95716f6b",
+    "lean/ThresholdHC/Tier3/Stopping.lean": "8490ec062f045c47f7aad53ece5b9ce6224f5a3978a8798c76a2c6765ac527b1",
+    "lean/ThresholdHC/Tier3/StoppingBase.lean": "0989b9b554ea0c056ec9f296e463c1767dc3509400960c266593c64e3daaa51d",
+    "lean/ThresholdHC/Tier3/StoppingModel.lean": "36aed19aa97432a9068952e5d389fe6a992faad0da71984b7412204940aa3892",
+    "lean/ThresholdHC/Tier3/TranscriptRatio.lean": "49b87fb8ece824fd69d52f2d83b40050529f3c7a295ed59e214cb18d1f139d4d",
+    "lean/ThresholdHC/Tier4/BoundReduction.lean": "0e0325bb1e4d18804437177eab78ab1741a0b387f31b7231b8a1826124d067c0",
+    "lean/ThresholdHC/Tier4/Entropy.lean": "f02035deb7d23182c83ef57b55fa13557e95d49682d741f33092589e61aa39ac",
+    "lean/ThresholdHC/Tier4/FiniteDensity.lean": "7b4216aebc1b247486233e4ea86de2e5b67301526bc3f5b730b4db4ebd53cba2",
+    "lean/ThresholdHC/Tier4/Model.lean": "2271691c5af1c4936accbb9a5c62b6ea5cbc3e6bdd718b0b44a958cd7a057214",
+    "lean/ThresholdHC/Tier4/StoppedReconstruction.lean": "dbda7538200c8460fda13cb6b8a13710164ee267874f88611a20059db8db2060",
+    "lean/ThresholdHC/Tier5/BoundReduction.lean": "c5f75679894a49d84d4d267957e45f1b01f1efe77c9a67ea8b24377d34916085",
+    "lean/ThresholdHC/Tier5/CreationBase.lean": "c77ca55ab89d3d286443be9699ebca100706851f2f33393c82770209362250ea",
+    "lean/ThresholdHC/Tier5/CreationExample.lean": "d47928e11a0b12f2bba93b9c52a32a15d5aac42d7f8aa7b0f5d317f8fc129b41",
+    "lean/ThresholdHC/Tier5/CreationFresh.lean": "c31a450f8f084400e123eb90ee5bfb0b70068f683b3873902f307e1697e4988f",
+    "lean/ThresholdHC/Tier5/CreationModel.lean": "b767058304f884582dc976a59b5d31671d417717097b60280d6b4533acae5871",
+    "lean/ThresholdHC/Tier5/CreationPadding.lean": "0749f9235601e37c0e141414b6347c9df8b3028c9c44924ef324739eb3e5cf68",
+    "lean/ThresholdHC/Tier5/CreationProduct.lean": "453b2c028190a1cddc2400a213a77b3c137436b64720531dbfec34a22d92bb9b",
+    "lean/ThresholdHC/Tier5/Entropy.lean": "23cdfaa93a43a1198ca09a2517add6045eff94dd5cc0b77bf05b60ffb4153eb6",
+    "lean/ThresholdHC/Tier5/EntropyPrefix.lean": "3372f0be782e5e776db8ef0ce0ce73f1dd22527d0f92994254d5d5d42942080e",
+    "lean/ThresholdHC/Tier5/FiniteCreation.lean": "382ea9fae97e5c8184a129f29b5004aa91416a26350445971315fcc28bd0d017",
+    "lean/ThresholdHC/Tier5/FiniteEnvironment.lean": "cdfd42cf5b704fd7577de9dc04fed2fcac94830cd7207240d704eb702f14b669",
+    "lean/ThresholdHC/Tier5/FiniteJoint.lean": "b8c826351070c9c8f8eb92ae68e9499c32e77e777c9438aa15ec1cb7db17956a",
+    "lean/ThresholdHC/Tier5/Full.lean": "21ffd3cbc7511e0dd7ab367c849498e0e4715722ad999d74a791c2b518aa21d2",
+    "lean/ThresholdHC/Tier5/Model.lean": "d0bd50268eb858d2acb14f0f220f228d6a1d8b211dd4359864c35faca6bf0fdd",
+    "lean/ThresholdHC/Tier5/PriorRatio.lean": "a116b733974fd4b0b1bddaf4c7eed5d161595b5a228fc59fbfcf68a5fbcc99d5",
+    "lean/ThresholdHC/Tier5/Specification.lean": "e8039a4b9277f0b59ffb36ca016d97020a5d3e6e5a6568c43be706c4f553fa12",
+    "lean/ThresholdHC/Tier5/StoppingBase.lean": "9ffc7fc2c7cf05885bbf88759ea62e436b525798378eee7abeb0dd4fb539815a",
+    "lean/ThresholdHC/Tier5/StoppingEntropy.lean": "4547b54ca46c146ff10e46c00d1edb5197c5e1e09bf80a6905a92c86248ad43c",
+    "lean/ThresholdHC/Tier5/StoppingFull.lean": "dfa01feebc73e7e56107b4d7efd4d28e5d56c95cce9045968596d00087e758d6",
+    "lean/ThresholdHC/Tier6/AlgorithmCore.lean": "ba81c4bbbcba907337a82b0350135c4f734239fcd2c5f4685d87d6ea72452ad8",
+    "lean/ThresholdHC/Tier6/AlgorithmModel.lean": "4494049e8205ca83eb635c8f82f0f7661f7ba61bc2ccc29966dcd9a5e47eeea5",
+    "lean/ThresholdHC/Tier6/AlgorithmNonempty.lean": "b1e09e11c164460e353770608783cd25a709ac39448f9a0a6fbb6f0d19bf7e73",
+    "lean/ThresholdHC/Tier6/AlgorithmRisk.lean": "52c7faee2d5c8cd8b56a8aa8f371d1ea40b7f4c8731b513c881891525ea5e89f",
+    "lean/ThresholdHC/Tier6/Full.lean": "1f6fb3dbd4a3171a6c2167c8b14c755624978705d82651ae8a88cacba839a0e7",
+    "lean/ThresholdHC/Tier6/HardPair.lean": "2ac5d16ae7e518d0079c141bf0660c10ae726b3f5274322d1257362a9650c24d",
+    "lean/ThresholdHC/Tier6/HardPairModel.lean": "003aa6f400fe62d6e0e074ef2df8b4d3afc5e79db73800d529ae11c0cd89e068",
+    "lean/ThresholdHC/Tier6/ModelReduction.lean": "93bab2a073295276f84fed9d093023b792431ff08d94b0c9b2a72731e52962a0",
+    "lean/ThresholdHC/Tier6/Process.lean": "8bdb6b9619ac8d351717be8adfe34361f4fca9c1881289d8733090982682eedf",
+    "lean/ThresholdHC/Tier6/ProcessIntegral.lean": "7ff9a0e3da430b2a2c6abda8cd783a5068acd8798dcb6580cf1f767cd20572cd",
+    "lean/ThresholdHC/Tier6/ProcessModel.lean": "c7da1211a83f0925da7f1ce0b573f155c08edbfaa0564cc6dc26e640d51a625b",
+    "lean/ThresholdHC/Tier6/ProcessWeights.lean": "280214be58ce854b84c13d424e570d5cd955f7c27ffe1afd3646e103edece733",
+    "lean/ThresholdHC/Tier6/RiskReduction.lean": "a00b61df019f1968cb688b16eb37a610e17cae610438a43045bb927e0028768b",
+    "lean/ThresholdHC/Tier6/Specification.lean": "17308c9cbaf3a8e45602723d2448515b73b1ddcdf157c417de16a13cc5f50148",
+    "lean/ThresholdHC/Tier6/Testing.lean": "da29bc8177fd0c139b49e3c52b169d402f82285e378822deb2d7422ca68793bb",
+    "lean/ThresholdHC/Tier6/TestingFinite.lean": "588e6f50a2dc9a227c941672d330d8e3b3f6582a4e41edca2be5fe2894f88fd2",
+    "lean/ThresholdHC/Tier6/TestingModel.lean": "941b5583b6a9d8776c38ac9de371b5f30a7a2c580b4cd627df7935665ca80944",
+    "lean/ThresholdHC/Uniform713/Arithmetic.lean": "80ff25f6c52834b8374167cbafcf01acd08acabe7f4642fe04f195c77209fb05",
+    "lean/ThresholdHC/Uniform713/Classifier.lean": "432b97eeb99906269a89ec5688bb74c39f4eeb09029334335b32ef94275aef35",
+    "lean/ThresholdHC/Uniform713/ClassifierModel.lean": "d633c695062bb5b9a468e93a45ad7aeb4571d19efb87d9f3b38c6ecbf7ec1a77",
+    "lean/ThresholdHC/Uniform713/Common.lean": "419b64d64f21f718214caabee9927b174d512f3c129139be26605400853e3dab",
+    "lean/ThresholdHC/Uniform713/Concentration.lean": "b494cc19ba348e05533c0a6f7715de8bda306c94e4ad613bb8515e5af6b7c149",
+    "lean/ThresholdHC/Uniform713/Estimator.lean": "39a49e46489f73b73c2fdd418134edf41ae5a6dfd8cefd0bf39d765d6f50780e",
+    "lean/ThresholdHC/Uniform713/Series.lean": "e88d5540baff863c93de835cada6420cd76c759d88d6aa4435a4a4f991dcb2aa",
+    "lean/ThresholdHC/Uniform713/WorkArithmetic.lean": "ac7482f757849fb39467917ba9f423e2ed5cd65c2b765be6279fd9016b5932a9",
+    "tools/verify_blind_upper_components.py": "08faf54b212914db25f1c65c8455ab9d918d70e9366a8fef2b7622a6ce5325e7",
+    "tools/verify_entropy_tail_components.py": "fe6b77797eeb0676265c96269210ae85827e14484809c56185259aaa534c8bf7",
+    "tools/verify_stopping_program_upper.py": "3cfef609f59cc7280a9eb883d6771032242b85bbec21f4ca7d502439861f84a8",
+    "tools/verify_tier6.py": "7295c1609c57be9951fc46f3e210f7f7682083470cf94bbe2dd89a387b0f075e"
+  },
+  "roots": [
+    "ThresholdHC.StoppingProgram.Admissible",
+    "ThresholdHC.StoppingProgram.AttainedDualStatement",
+    "ThresholdHC.StoppingProgram.Certificate",
+    "ThresholdHC.StoppingProgram.CountState",
+    "ThresholdHC.StoppingProgram.Feasible",
+    "ThresholdHC.StoppingProgram.FiniteCertificateStatement",
+    "ThresholdHC.StoppingProgram.Flow",
+    "ThresholdHC.StoppingProgram.FlowCone",
+    "ThresholdHC.StoppingProgram.FlowCone.add",
+    "ThresholdHC.StoppingProgram.FlowCone.scale",
+    "ThresholdHC.StoppingProgram.FlowCone.withOutputs",
+    "ThresholdHC.StoppingProgram.FourPriors",
+    "ThresholdHC.StoppingProgram.NullPruned",
+    "ThresholdHC.StoppingProgram.PositiveTable",
+    "ThresholdHC.StoppingProgram.ProgramPoint",
+    "ThresholdHC.StoppingProgram.ProgramUpperStatement",
+    "ThresholdHC.StoppingProgram.abs_le_square_bound",
+    "ThresholdHC.StoppingProgram.addFlow",
+    "ThresholdHC.StoppingProgram.arrayAt",
+    "ThresholdHC.StoppingProgram.arrayAt_add_flow",
+    "ThresholdHC.StoppingProgram.arrayAt_continuous",
+    "ThresholdHC.StoppingProgram.arrayAt_le_of",
+    "ThresholdHC.StoppingProgram.arrayAt_nonneg",
+    "ThresholdHC.StoppingProgram.arrayAt_scale_flow",
+    "ThresholdHC.StoppingProgram.arrayAt_sq",
+    "ThresholdHC.StoppingProgram.arrayAt_state",
+    "ThresholdHC.StoppingProgram.arrayAt_zero",
+    "ThresholdHC.StoppingProgram.arrival_independent_current",
+    "ThresholdHC.StoppingProgram.boundedFirst_eq_iff",
+    "ThresholdHC.StoppingProgram.certificateCap",
+    "ThresholdHC.StoppingProgram.certificatePoint",
+    "ThresholdHC.StoppingProgram.certificatePoint_mem_domain",
+    "ThresholdHC.StoppingProgram.certificateSquared",
+    "ThresholdHC.StoppingProgram.certificate_lagrange",
+    "ThresholdHC.StoppingProgram.certificate_realization",
+    "ThresholdHC.StoppingProgram.choose_pascal_high",
+    "ThresholdHC.StoppingProgram.choose_pascal_low",
+    "ThresholdHC.StoppingProgram.compactMaximum",
+    "ThresholdHC.StoppingProgram.compactMaximum_attained",
+    "ThresholdHC.StoppingProgram.compactMaximum_convex",
+    "ThresholdHC.StoppingProgram.compactMaximum_le_iff",
+    "ThresholdHC.StoppingProgram.constantCertificate",
+    "ThresholdHC.StoppingProgram.constantCertificate_feasible",
+    "ThresholdHC.StoppingProgram.constantPrior",
+    "ThresholdHC.StoppingProgram.constantPrior_mean",
+    "ThresholdHC.StoppingProgram.constantPrior_null_state",
+    "ThresholdHC.StoppingProgram.coordinateMean",
+    "ThresholdHC.StoppingProgram.coordinateMean_combo_left",
+    "ThresholdHC.StoppingProgram.coordinateMean_combo_right",
+    "ThresholdHC.StoppingProgram.countCoefficient",
+    "ThresholdHC.StoppingProgram.countCoefficient_affine",
+    "ThresholdHC.StoppingProgram.countCoefficient_dominated",
+    "ThresholdHC.StoppingProgram.countCoefficient_nonneg",
+    "ThresholdHC.StoppingProgram.countCoefficient_root",
+    "ThresholdHC.StoppingProgram.countContrastPolynomial",
+    "ThresholdHC.StoppingProgram.countContrastPolynomial_eval",
+    "ThresholdHC.StoppingProgram.countDecision",
+    "ThresholdHC.StoppingProgram.countDecision_binary",
+    "ThresholdHC.StoppingProgram.countDecision_complement_hit",
+    "ThresholdHC.StoppingProgram.countDecision_state",
+    "ThresholdHC.StoppingProgram.countMean",
+    "ThresholdHC.StoppingProgram.countMean_ge_root",
+    "ThresholdHC.StoppingProgram.countMean_nonneg",
+    "ThresholdHC.StoppingProgram.countMean_pruneArray",
+    "ThresholdHC.StoppingProgram.countMean_raw",
+    "ThresholdHC.StoppingProgram.countMean_scale",
+    "ThresholdHC.StoppingProgram.countMean_single",
+    "ThresholdHC.StoppingProgram.countMean_stop_eq_intensity",
+    "ThresholdHC.StoppingProgram.countStopProbability",
+    "ThresholdHC.StoppingProgram.countStopProbability_bounds",
+    "ThresholdHC.StoppingProgram.countStopProbability_root",
+    "ThresholdHC.StoppingProgram.decisionFactor",
+    "ThresholdHC.StoppingProgram.decisionFactor_nonneg",
+    "ThresholdHC.StoppingProgram.decisionFactor_sum",
+    "ThresholdHC.StoppingProgram.decisionWeight",
+    "ThresholdHC.StoppingProgram.decisionWeight_join",
+    "ThresholdHC.StoppingProgram.decisionWeight_match",
+    "ThresholdHC.StoppingProgram.decisionWeight_nonneg",
+    "ThresholdHC.StoppingProgram.decisionWeight_product",
+    "ThresholdHC.StoppingProgram.decisionWeight_single",
+    "ThresholdHC.StoppingProgram.decisionWeight_sum",
+    "ThresholdHC.StoppingProgram.decisionWeight_sum_split",
+    "ThresholdHC.StoppingProgram.dualRatio",
+    "ThresholdHC.StoppingProgram.dualRatio_le_certificate",
+    "ThresholdHC.StoppingProgram.dualValue",
+    "ThresholdHC.StoppingProgram.enumeratedTable_sum",
+    "ThresholdHC.StoppingProgram.feasible_points_closed",
+    "ThresholdHC.StoppingProgram.feasible_sublevel_bounds",
+    "ThresholdHC.StoppingProgram.flowDecisionParameters",
+    "ThresholdHC.StoppingProgram.flowDecisionParameters_before",
+    "ThresholdHC.StoppingProgram.flowInformation",
+    "ThresholdHC.StoppingProgram.flowInformation_finite_of_ratio_finite",
+    "ThresholdHC.StoppingProgram.flowInformation_le_ratio_budget",
+    "ThresholdHC.StoppingProgram.flowInformation_le_ratio_work",
+    "ThresholdHC.StoppingProgram.flowInformation_scale",
+    "ThresholdHC.StoppingProgram.flowInformation_toReal_le",
+    "ThresholdHC.StoppingProgram.flowInformation_zero_of_intensity_zero",
+    "ThresholdHC.StoppingProgram.flowPoissonCalls",
+    "ThresholdHC.StoppingProgram.flowPoissonEstimator",
+    "ThresholdHC.StoppingProgram.flowPoissonRates",
+    "ThresholdHC.StoppingProgram.flowPoisson_squaredRisk",
+    "ThresholdHC.StoppingProgram.flowPoisson_work",
+    "ThresholdHC.StoppingProgram.flowTableOutput",
+    "ThresholdHC.StoppingProgram.flowTableOutput_mean",
+    "ThresholdHC.StoppingProgram.flowTableOutput_moment",
+    "ThresholdHC.StoppingProgram.flowTableRate",
+    "ThresholdHC.StoppingProgram.flowTableRate_continue",
+    "ThresholdHC.StoppingProgram.flowTableRate_nonneg",
+    "ThresholdHC.StoppingProgram.flowTableRate_stop",
+    "ThresholdHC.StoppingProgram.flowTableRate_sum",
+    "ThresholdHC.StoppingProgram.flowTableRate_supported",
+    "ThresholdHC.StoppingProgram.flow_cone_lagrange",
+    "ThresholdHC.StoppingProgram.flow_continue_le_intensity",
+    "ThresholdHC.StoppingProgram.flow_mixture_arrival",
+    "ThresholdHC.StoppingProgram.flow_mixture_mean",
+    "ThresholdHC.StoppingProgram.flow_mixture_probability",
+    "ThresholdHC.StoppingProgram.flow_mixture_second_moment",
+    "ThresholdHC.StoppingProgram.flow_mixture_supported_tables",
+    "ThresholdHC.StoppingProgram.flow_mixture_weights",
+    "ThresholdHC.StoppingProgram.flow_mixture_work",
+    "ThresholdHC.StoppingProgram.flow_output_mean",
+    "ThresholdHC.StoppingProgram.flow_output_second_moment",
+    "ThresholdHC.StoppingProgram.flow_output_zero_of_stop_zero",
+    "ThresholdHC.StoppingProgram.flow_stop_le_intensity",
+    "ThresholdHC.StoppingProgram.flow_total_le_intensity",
+    "ThresholdHC.StoppingProgram.flow_work_ge_intensity",
+    "ThresholdHC.StoppingProgram.flow_zero_intensity",
+    "ThresholdHC.StoppingProgram.fullCapFlow",
+    "ThresholdHC.StoppingProgram.fullCapFlow_cone",
+    "ThresholdHC.StoppingProgram.fullCapFlow_intensity",
+    "ThresholdHC.StoppingProgram.fullCap_arrayAt",
+    "ThresholdHC.StoppingProgram.gap_tape_prefix_real",
+    "ThresholdHC.StoppingProgram.independent_decision_factor",
+    "ThresholdHC.StoppingProgram.informationRatio",
+    "ThresholdHC.StoppingProgram.informationRatio_finite_of_statewise",
+    "ThresholdHC.StoppingProgram.integrable_count_mixture",
+    "ThresholdHC.StoppingProgram.intensity",
+    "ThresholdHC.StoppingProgram.intensity_scale",
+    "ThresholdHC.StoppingProgram.joinDecision",
+    "ThresholdHC.StoppingProgram.joinDecision_other",
+    "ThresholdHC.StoppingProgram.joinDecision_self",
+    "ThresholdHC.StoppingProgram.joinDecision_update",
+    "ThresholdHC.StoppingProgram.le_compactMaximum",
+    "ThresholdHC.StoppingProgram.minimax_le_certificate",
+    "ThresholdHC.StoppingProgram.minimax_le_program",
+    "ThresholdHC.StoppingProgram.mixture_arrival_continue",
+    "ThresholdHC.StoppingProgram.mixture_arrival_stop",
+    "ThresholdHC.StoppingProgram.mixture_policyArrival",
+    "ThresholdHC.StoppingProgram.momentCoordinateBound",
+    "ThresholdHC.StoppingProgram.normalized_flow",
+    "ThresholdHC.StoppingProgram.nullPruned_points_closed",
+    "ThresholdHC.StoppingProgram.offsetCoordinateBound",
+    "ThresholdHC.StoppingProgram.optimizedOutput",
+    "ThresholdHC.StoppingProgram.optimizedOutput_cone",
+    "ThresholdHC.StoppingProgram.optimizedOutput_lagrange",
+    "ThresholdHC.StoppingProgram.optimized_perspective_identity",
+    "ThresholdHC.StoppingProgram.outputCoordinateBound",
+    "ThresholdHC.StoppingProgram.pascal_weights_sum",
+    "ThresholdHC.StoppingProgram.perspective",
+    "ThresholdHC.StoppingProgram.perspectiveCone_add",
+    "ThresholdHC.StoppingProgram.perspective_add_le",
+    "ThresholdHC.StoppingProgram.perspective_cone_attains",
+    "ThresholdHC.StoppingProgram.perspective_cone_lower",
+    "ThresholdHC.StoppingProgram.perspective_cone_lower_toReal",
+    "ThresholdHC.StoppingProgram.perspective_finite_iff",
+    "ThresholdHC.StoppingProgram.perspective_nonzero_zero",
+    "ThresholdHC.StoppingProgram.perspective_pos",
+    "ThresholdHC.StoppingProgram.perspective_scale",
+    "ThresholdHC.StoppingProgram.perspective_zero_zero",
+    "ThresholdHC.StoppingProgram.pointCertificate",
+    "ThresholdHC.StoppingProgram.pointCertificate_certificatePoint",
+    "ThresholdHC.StoppingProgram.pointFlow",
+    "ThresholdHC.StoppingProgram.pointFlow_combo",
+    "ThresholdHC.StoppingProgram.pointFlow_cone_closed",
+    "ThresholdHC.StoppingProgram.pointFlow_cone_iff",
+    "ThresholdHC.StoppingProgram.pointObjective",
+    "ThresholdHC.StoppingProgram.pointObjective_continuous",
+    "ThresholdHC.StoppingProgram.pointObjective_convex",
+    "ThresholdHC.StoppingProgram.pointResidual",
+    "ThresholdHC.StoppingProgram.pointResidual_combo_point",
+    "ThresholdHC.StoppingProgram.pointResidual_combo_prior",
+    "ThresholdHC.StoppingProgram.pointResidual_continuous_point",
+    "ThresholdHC.StoppingProgram.pointResidual_continuous_prior",
+    "ThresholdHC.StoppingProgram.point_feasible_iff",
+    "ThresholdHC.StoppingProgram.poissonPlan_unscaled_squaredRisk",
+    "ThresholdHC.StoppingProgram.policyArrival",
+    "ThresholdHC.StoppingProgram.policyArrival_congr_before",
+    "ThresholdHC.StoppingProgram.policyArrival_eq_raw",
+    "ThresholdHC.StoppingProgram.policyArrival_mul",
+    "ThresholdHC.StoppingProgram.policyArrival_outside",
+    "ThresholdHC.StoppingProgram.policy_weights_realize_flow",
+    "ThresholdHC.StoppingProgram.population_prefix_integrable",
+    "ThresholdHC.StoppingProgram.population_prefix_integral",
+    "ThresholdHC.StoppingProgram.population_tape_prefix_real",
+    "ThresholdHC.StoppingProgram.population_word_integral",
+    "ThresholdHC.StoppingProgram.positiveTable_enumeration",
+    "ThresholdHC.StoppingProgram.positiveTable_nonempty",
+    "ThresholdHC.StoppingProgram.positiveTable_sum",
+    "ThresholdHC.StoppingProgram.positive_decision_one",
+    "ThresholdHC.StoppingProgram.positive_decision_zero",
+    "ThresholdHC.StoppingProgram.positive_dual_witness",
+    "ThresholdHC.StoppingProgram.prefixCoefficient",
+    "ThresholdHC.StoppingProgram.prefixCoefficient_add",
+    "ThresholdHC.StoppingProgram.prefixCoefficient_nonneg",
+    "ThresholdHC.StoppingProgram.prefixCoefficient_root",
+    "ThresholdHC.StoppingProgram.prefixLikelihood",
+    "ThresholdHC.StoppingProgram.prefixLikelihood_add",
+    "ThresholdHC.StoppingProgram.prefixLikelihood_nonneg",
+    "ThresholdHC.StoppingProgram.priorCoordinates",
+    "ThresholdHC.StoppingProgram.priorMomentImage",
+    "ThresholdHC.StoppingProgram.priorMomentImage_compact_convex",
+    "ThresholdHC.StoppingProgram.priorMomentImage_mem",
+    "ThresholdHC.StoppingProgram.priorMomentImage_nonempty",
+    "ThresholdHC.StoppingProgram.programDomain",
+    "ThresholdHC.StoppingProgram.programDomain_closed",
+    "ThresholdHC.StoppingProgram.programDomain_convex",
+    "ThresholdHC.StoppingProgram.programSquared",
+    "ThresholdHC.StoppingProgram.programSquared_attained",
+    "ThresholdHC.StoppingProgram.programSquared_finite",
+    "ThresholdHC.StoppingProgram.programSquared_le_constant",
+    "ThresholdHC.StoppingProgram.programSquared_pos",
+    "ThresholdHC.StoppingProgram.programValue",
+    "ThresholdHC.StoppingProgram.program_upper",
+    "ThresholdHC.StoppingProgram.pruneArray",
+    "ThresholdHC.StoppingProgram.pruneCertificate",
+    "ThresholdHC.StoppingProgram.pruneCertificate_feasible",
+    "ThresholdHC.StoppingProgram.pruneCertificate_pruned",
+    "ThresholdHC.StoppingProgram.pruneFlow",
+    "ThresholdHC.StoppingProgram.pruneFlow_cone",
+    "ThresholdHC.StoppingProgram.prunedSublevel",
+    "ThresholdHC.StoppingProgram.prunedSublevel_box",
+    "ThresholdHC.StoppingProgram.prunedSublevel_closed",
+    "ThresholdHC.StoppingProgram.prunedSublevel_compact",
+    "ThresholdHC.StoppingProgram.quadratic_div_add_le",
+    "ThresholdHC.StoppingProgram.rareMomentSet",
+    "ThresholdHC.StoppingProgram.rareMomentSet_compact_convex",
+    "ThresholdHC.StoppingProgram.rareMomentSet_eq_half_image",
+    "ThresholdHC.StoppingProgram.rawArray",
+    "ThresholdHC.StoppingProgram.rawArray_mul",
+    "ThresholdHC.StoppingProgram.rawArray_outside",
+    "ThresholdHC.StoppingProgram.rawArray_terminal",
+    "ThresholdHC.StoppingProgram.rawChildren",
+    "ThresholdHC.StoppingProgram.rawLayer",
+    "ThresholdHC.StoppingProgram.rawLayer_countMean",
+    "ThresholdHC.StoppingProgram.raw_continue_fraction",
+    "ThresholdHC.StoppingProgram.raw_flow_recursion",
+    "ThresholdHC.StoppingProgram.raw_layer_conservation",
+    "ThresholdHC.StoppingProgram.raw_root_total",
+    "ThresholdHC.StoppingProgram.raw_stop_fraction",
+    "ThresholdHC.StoppingProgram.raw_weighted_telescope",
+    "ThresholdHC.StoppingProgram.robustResidual",
+    "ThresholdHC.StoppingProgram.robustResidual_convex",
+    "ThresholdHC.StoppingProgram.robustResidual_nonpos_iff",
+    "ThresholdHC.StoppingProgram.rootState",
+    "ThresholdHC.StoppingProgram.scaleFlow",
+    "ThresholdHC.StoppingProgram.shiftEstimator",
+    "ThresholdHC.StoppingProgram.shiftEstimator_experiment",
+    "ThresholdHC.StoppingProgram.shiftEstimator_squaredRisk",
+    "ThresholdHC.StoppingProgram.shiftEstimator_work",
+    "ThresholdHC.StoppingProgram.shortWord",
+    "ThresholdHC.StoppingProgram.shortWord_self",
+    "ThresholdHC.StoppingProgram.shortWord_snoc",
+    "ThresholdHC.StoppingProgram.shortWord_tapePrefix",
+    "ThresholdHC.StoppingProgram.singleOutput",
+    "ThresholdHC.StoppingProgram.singleOutput_cone",
+    "ThresholdHC.StoppingProgram.squared_bias_bound",
+    "ThresholdHC.StoppingProgram.state_eq_root",
+    "ThresholdHC.StoppingProgram.sum_words_by_heads",
+    "ThresholdHC.StoppingProgram.tableCall",
+    "ThresholdHC.StoppingProgram.tableCall_cost_le",
+    "ThresholdHC.StoppingProgram.tableCost",
+    "ThresholdHC.StoppingProgram.tableCost_eq_iff",
+    "ThresholdHC.StoppingProgram.tableCost_ge_iff",
+    "ThresholdHC.StoppingProgram.tableCost_integral",
+    "ThresholdHC.StoppingProgram.tableCost_positive",
+    "ThresholdHC.StoppingProgram.tableCost_word_expansion",
+    "ThresholdHC.StoppingProgram.tableDecision_at_stop",
+    "ThresholdHC.StoppingProgram.tableHit",
+    "ThresholdHC.StoppingProgram.tableStoppedState",
+    "ThresholdHC.StoppingProgram.tableValue",
+    "ThresholdHC.StoppingProgram.tableValue_bounded",
+    "ThresholdHC.StoppingProgram.tableValue_eq",
+    "ThresholdHC.StoppingProgram.tableValue_full_prefix",
+    "ThresholdHC.StoppingProgram.tableValue_integral",
+    "ThresholdHC.StoppingProgram.tableValue_integral_full_prefix",
+    "ThresholdHC.StoppingProgram.tableValue_second_moment",
+    "ThresholdHC.StoppingProgram.tableValue_sq",
+    "ThresholdHC.StoppingProgram.tableValue_word_expansion",
+    "ThresholdHC.StoppingProgram.weak_duality",
+    "ThresholdHC.StoppingProgram.withOutputs",
+    "ThresholdHC.StoppingProgram.wordArrival",
+    "ThresholdHC.StoppingProgram.wordArrivalCount",
+    "ThresholdHC.StoppingProgram.wordArrivalCount_eq_policyArrival",
+    "ThresholdHC.StoppingProgram.wordArrivalCount_succ",
+    "ThresholdHC.StoppingProgram.wordArrivalCount_zero",
+    "ThresholdHC.StoppingProgram.wordArrival_snoc",
+    "ThresholdHC.StoppingProgram.wordArrival_tape_indicator",
+    "ThresholdHC.StoppingProgram.wordContinue_tape_indicator",
+    "ThresholdHC.StoppingProgram.wordHeads_le_length",
+    "ThresholdHC.StoppingProgram.wordHeads_snoc",
+    "ThresholdHC.StoppingProgram.wordHeads_sum",
+    "ThresholdHC.StoppingProgram.wordStop_tape_indicator",
+    "ThresholdHC.StoppingProgram.zeroFlow",
+    "ThresholdHC.StoppingProgram.zeroFlow_cone"
+  ],
+  "commands": [
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\StoppingProgram\\TapeMoments.olean",
+        "ThresholdHC\\StoppingProgram\\TapeMoments.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\StoppingProgram\\WordFlow.olean",
+        "ThresholdHC\\StoppingProgram\\WordFlow.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\StoppingProgram\\WordStopping.olean",
+        "ThresholdHC\\StoppingProgram\\WordStopping.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\StoppingProgram\\TableExpansion.olean",
+        "ThresholdHC\\StoppingProgram\\TableExpansion.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\StoppingProgram\\TableStatistics.olean",
+        "ThresholdHC\\StoppingProgram\\TableStatistics.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\StoppingProgram\\FlowTableRates.olean",
+        "ThresholdHC\\StoppingProgram\\FlowTableRates.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\StoppingProgram\\MixtureStatistics.olean",
+        "ThresholdHC\\StoppingProgram\\MixtureStatistics.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\StoppingProgram\\PositiveTables.olean",
+        "ThresholdHC\\StoppingProgram\\PositiveTables.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\StoppingProgram\\RealizedOutputs.olean",
+        "ThresholdHC\\StoppingProgram\\RealizedOutputs.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\StoppingProgram\\ShiftEstimator.olean",
+        "ThresholdHC\\StoppingProgram\\ShiftEstimator.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\StoppingProgram\\PoissonMoments.olean",
+        "ThresholdHC\\StoppingProgram\\PoissonMoments.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\StoppingProgram\\FlowPoisson.olean",
+        "ThresholdHC\\StoppingProgram\\FlowPoisson.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\StoppingProgram\\CertificateRealization.olean",
+        "ThresholdHC\\StoppingProgram\\CertificateRealization.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        "-o",
+        ".lake\\build\\lib\\lean\\ThresholdHC\\StoppingProgram\\ProgramUpper.olean",
+        "ThresholdHC\\StoppingProgram\\ProgramUpper.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "C:/Users/User/Desktop/Projects/math/threshold-hillclimb/.runtime/elan/bin/lake.exe",
+        "env",
+        "lean",
+        "-j",
+        "1",
+        ".audit\\StoppingProgramUpper.lean"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "audit_source_sha256": "d36ffb5aec75028b1f42d36006c0f92cc6df77c7d772a28f065401803893491d",
+  "axioms": {
+    "ThresholdHC.StoppingProgram.Admissible": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.AttainedDualStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.Certificate": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.CountState": [],
+    "ThresholdHC.StoppingProgram.Feasible": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.FiniteCertificateStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.Flow": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.FlowCone": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.FlowCone.add": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.FlowCone.scale": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.FlowCone.withOutputs": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.FourPriors": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.NullPruned": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.PositiveTable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.ProgramPoint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.ProgramUpperStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.abs_le_square_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.addFlow": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.arrayAt": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.arrayAt_add_flow": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.arrayAt_continuous": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.arrayAt_le_of": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.arrayAt_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.arrayAt_scale_flow": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.arrayAt_sq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.arrayAt_state": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.arrayAt_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.arrival_independent_current": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.boundedFirst_eq_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.certificateCap": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.certificatePoint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.certificatePoint_mem_domain": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.certificateSquared": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.certificate_lagrange": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.certificate_realization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.choose_pascal_high": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.choose_pascal_low": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.compactMaximum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.compactMaximum_attained": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.compactMaximum_convex": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.compactMaximum_le_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.constantCertificate": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.constantCertificate_feasible": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.constantPrior": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.constantPrior_mean": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.constantPrior_null_state": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.coordinateMean": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.coordinateMean_combo_left": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.coordinateMean_combo_right": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.countCoefficient": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.countCoefficient_affine": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.countCoefficient_dominated": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.countCoefficient_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.countCoefficient_root": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.countContrastPolynomial": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.countContrastPolynomial_eval": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.countDecision": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.countDecision_binary": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.countDecision_complement_hit": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.countDecision_state": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.countMean": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.countMean_ge_root": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.countMean_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.countMean_pruneArray": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.countMean_raw": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.countMean_scale": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.countMean_single": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.countMean_stop_eq_intensity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.countStopProbability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.countStopProbability_bounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.countStopProbability_root": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.decisionFactor": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.decisionFactor_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.decisionFactor_sum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.decisionWeight": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.decisionWeight_join": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.decisionWeight_match": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.decisionWeight_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.decisionWeight_product": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.decisionWeight_single": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.decisionWeight_sum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.decisionWeight_sum_split": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.dualRatio": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.dualRatio_le_certificate": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.dualValue": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.enumeratedTable_sum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.feasible_points_closed": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.feasible_sublevel_bounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flowDecisionParameters": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flowDecisionParameters_before": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flowInformation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flowInformation_finite_of_ratio_finite": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flowInformation_le_ratio_budget": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flowInformation_le_ratio_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flowInformation_scale": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flowInformation_toReal_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flowInformation_zero_of_intensity_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flowPoissonCalls": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flowPoissonEstimator": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flowPoissonRates": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flowPoisson_squaredRisk": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flowPoisson_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flowTableOutput": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flowTableOutput_mean": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flowTableOutput_moment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flowTableRate": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flowTableRate_continue": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flowTableRate_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flowTableRate_stop": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flowTableRate_sum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flowTableRate_supported": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flow_cone_lagrange": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flow_continue_le_intensity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flow_mixture_arrival": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flow_mixture_mean": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flow_mixture_probability": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flow_mixture_second_moment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flow_mixture_supported_tables": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flow_mixture_weights": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flow_mixture_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flow_output_mean": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flow_output_second_moment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flow_output_zero_of_stop_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flow_stop_le_intensity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flow_total_le_intensity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flow_work_ge_intensity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.flow_zero_intensity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.fullCapFlow": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.fullCapFlow_cone": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.fullCapFlow_intensity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.fullCap_arrayAt": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.gap_tape_prefix_real": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.independent_decision_factor": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.informationRatio": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.informationRatio_finite_of_statewise": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.integrable_count_mixture": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.intensity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.intensity_scale": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.joinDecision": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.joinDecision_other": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.joinDecision_self": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.joinDecision_update": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.le_compactMaximum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.minimax_le_certificate": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.minimax_le_program": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.mixture_arrival_continue": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.mixture_arrival_stop": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.mixture_policyArrival": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.momentCoordinateBound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.normalized_flow": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.nullPruned_points_closed": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.offsetCoordinateBound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.optimizedOutput": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.optimizedOutput_cone": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.optimizedOutput_lagrange": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.optimized_perspective_identity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.outputCoordinateBound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.pascal_weights_sum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.perspective": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.perspectiveCone_add": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.perspective_add_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.perspective_cone_attains": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.perspective_cone_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.perspective_cone_lower_toReal": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.perspective_finite_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.perspective_nonzero_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.perspective_pos": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.perspective_scale": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.perspective_zero_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.pointCertificate": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.pointCertificate_certificatePoint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.pointFlow": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.pointFlow_combo": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.pointFlow_cone_closed": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.pointFlow_cone_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.pointObjective": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.pointObjective_continuous": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.pointObjective_convex": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.pointResidual": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.pointResidual_combo_point": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.pointResidual_combo_prior": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.pointResidual_continuous_point": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.pointResidual_continuous_prior": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.point_feasible_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.poissonPlan_unscaled_squaredRisk": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.policyArrival": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.policyArrival_congr_before": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.policyArrival_eq_raw": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.policyArrival_mul": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.policyArrival_outside": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.policy_weights_realize_flow": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.population_prefix_integrable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.population_prefix_integral": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.population_tape_prefix_real": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.population_word_integral": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.positiveTable_enumeration": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.positiveTable_nonempty": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.positiveTable_sum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.positive_decision_one": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.positive_decision_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.positive_dual_witness": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.prefixCoefficient": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.prefixCoefficient_add": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.prefixCoefficient_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.prefixCoefficient_root": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.prefixLikelihood": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.prefixLikelihood_add": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.prefixLikelihood_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.priorCoordinates": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.priorMomentImage": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.priorMomentImage_compact_convex": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.priorMomentImage_mem": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.priorMomentImage_nonempty": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.programDomain": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.programDomain_closed": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.programDomain_convex": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.programSquared": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.programSquared_attained": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.programSquared_finite": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.programSquared_le_constant": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.programSquared_pos": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.programValue": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.program_upper": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.pruneArray": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.pruneCertificate": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.pruneCertificate_feasible": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.pruneCertificate_pruned": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.pruneFlow": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.pruneFlow_cone": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.prunedSublevel": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.prunedSublevel_box": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.prunedSublevel_closed": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.prunedSublevel_compact": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.quadratic_div_add_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.rareMomentSet": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.rareMomentSet_compact_convex": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.rareMomentSet_eq_half_image": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.rawArray": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.rawArray_mul": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.rawArray_outside": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.rawArray_terminal": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.rawChildren": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.rawLayer": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.rawLayer_countMean": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.raw_continue_fraction": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.raw_flow_recursion": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.raw_layer_conservation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.raw_root_total": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.raw_stop_fraction": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.raw_weighted_telescope": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.robustResidual": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.robustResidual_convex": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.robustResidual_nonpos_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.rootState": [
+      "propext",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.scaleFlow": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.shiftEstimator": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.shiftEstimator_experiment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.shiftEstimator_squaredRisk": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.shiftEstimator_work": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.shortWord": [],
+    "ThresholdHC.StoppingProgram.shortWord_self": [
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.shortWord_snoc": [
+      "propext",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.shortWord_tapePrefix": [
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.singleOutput": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.singleOutput_cone": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.squared_bias_bound": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.state_eq_root": [
+      "propext",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.sum_words_by_heads": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.tableCall": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.tableCall_cost_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.tableCost": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.tableCost_eq_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.tableCost_ge_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.tableCost_integral": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.tableCost_positive": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.tableCost_word_expansion": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.tableDecision_at_stop": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.tableHit": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.tableStoppedState": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.tableValue": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.tableValue_bounded": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.tableValue_eq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.tableValue_full_prefix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.tableValue_integral": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.tableValue_integral_full_prefix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.tableValue_second_moment": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.tableValue_sq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.tableValue_word_expansion": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.weak_duality": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.withOutputs": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.wordArrival": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.wordArrivalCount": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.wordArrivalCount_eq_policyArrival": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.wordArrivalCount_succ": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.wordArrivalCount_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.wordArrival_snoc": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.wordArrival_tape_indicator": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.wordContinue_tape_indicator": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.wordHeads_le_length": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.wordHeads_snoc": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.wordHeads_sum": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.wordStop_tape_indicator": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.zeroFlow": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.StoppingProgram.zeroFlow_cone": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  }
+}

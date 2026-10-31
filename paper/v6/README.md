@@ -44,10 +44,16 @@ characterization, the magnitude-oracle lower bounds, and the rare-event
 rate above exponent two. Section 18 states each formal scope and links the
 fixed source revisions.
 
-The entropy–tail law, the closed quantile form (including its direct proof
-for finite laws), the stopping-program results, and the rare-event regimes
-below two are **paper proofs**. They are not Lean-formalized and have not
-had external specialist review. The general-law and finite-gap proofs share
+The observable entropy–tail upper bound, closed-quantile upper bound,
+deterministic quantile comparison, stopping-program results, fixed-cap
+identification and genie certificates now have Lean proofs at
+`4e116018f0c1651382452aa9317fecc971edaec7`. The matching statistical lower
+bound, direct finite-law lower proof and remaining rare-event regimes
+below two retain their **paper-proof** scope. Thus the two-sided general
+entropy–tail and quantile laws are not yet fully Lean-checked. See the
+[formalization guide](../../docs/ENTROPY_TAIL_FORMALIZATION.md) for the
+separate audits and current rebuild status. No external specialist review
+has been performed. The general-law and finite-gap proofs share
 their upper construction and Appendices F–H, so they are one rate
 established by two arguments, not two independent confirmations. The remark
 in §11 on agreement of the power-margin table with the closed quantile form is

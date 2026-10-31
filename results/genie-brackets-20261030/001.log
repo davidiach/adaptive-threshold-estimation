@@ -1,0 +1,12 @@
+ThresholdHC\Genie\PerspectiveIntegral.lean:39:12: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+ThresholdHC\Genie\PerspectiveIntegral.lean:53:10: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+ThresholdHC\Genie\PerspectiveIntegral.lean:39:12: warning: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+ThresholdHC\Genie\PerspectiveIntegral.lean:53:10: warning: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`

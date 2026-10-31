@@ -9,8 +9,8 @@ review, and CI history.
 
 | Area | Next work | Starting point |
 |---|---|---|
-| General-law rare-event results | Prove the locked entropy-tail law and its upper and lower halves (the deterministic selection-functional targets are Lean-checked), then formalize the stopping-program arguments. The published general claims remain paper proofs. | [Manuscript and audit](../paper/rare-event/README.md), [claim scope](RESULTS.md#general-law-rare-event-characterization) |
-| Other paper-only results | Formalize the finite-gap closed quantile law, remaining rare-event regimes, and auxiliary envelope, smooth-density, and observed-state results. | [Finite-gap manuscript](../paper/finite-gap-rare-events/README.md), [results guide](RESULTS.md), [research index](../research/README.md) |
+| General-law rare-event results | Integrate the separately developed entropy-tail statistical lower theorem, then derive and audit the two-sided quantile characterization. Upper bounds, deterministic comparison, stopping programs and genie certificates have proofs; the final combined rebuild is in progress. | [Manuscript and audit](../paper/rare-event/README.md), [claim scope](RESULTS.md#general-law-rare-event-characterization) |
+| Other paper-only results | Formalize the direct finite-gap lower argument, remaining rare-event regimes, and auxiliary envelope, smooth-density, and observed-state results. | [Finite-gap manuscript](../paper/finite-gap-rare-events/README.md), [results guide](RESULTS.md), [research index](../research/README.md) |
 | Open research | Sharp rare-event confidence rates at and above the quadratic boundary; tighter constants and efficient selection algorithms. | [Current claim boundaries](RESULTS.md), [main overview](../README.md#scope-and-review) |
 | Maintenance | Parameterize repeated entropy/base-cost and prefix-information/event-transfer arguments; extract shared audit code; simplify redundant premises and unused facts. These are non-blocking follow-ups. | [Recorded refactoring scope](#pr-10-review-and-maintenance-follow-up), [Lean map](../lean/README.md), [tool index](../tools/README.md) |
 

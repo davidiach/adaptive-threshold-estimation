@@ -15,6 +15,13 @@ the [evidence index](../results/README.md) explains published checkpoints.
 | Consolidated v5 manuscript | `python tools/build_v5.py --check`; `python -m unittest discover -s tools -p 'test_build_v5.py' -v` | Checks inherited source identities, assembly, references, and citations. [Build and visually review](../paper/v5/README.md#reproduce) the PDF when typeset content changes. |
 | Critical review packet | `python tools/build_critical_review.py --check` | Compares generated source to the locked proof and editable brief. [Compile and review](../paper/critical-review/README.md) changed typeset content separately. |
 | General-law rare-event manuscript (v2) | `python tools/verify_rare_event_manuscript.py` | Hashes and finite checks in a temporary copy; preserves the payload. Does not formally verify the general theorems. |
+| Infinite-divergence counterexample | `python tools/verify_genie_counterexample.py`; regressions: `python -m unittest discover -s tools -p test_genie_counterexample.py -v` | Three exact statements: admissible singular example, all-flow information/work bound and stopping-depth identity. |
+| Direct risk and finite genie SOCP | `python tools/verify_genie_conic.py`; regressions: `python -m unittest discover -s tools -p test_genie_conic.py -v` | Nine exact targets: optimized direct risk, Bellman price, finite conic realization/value and variable count. Default rebuilds all dependencies. |
+| Convergent genie certificates | `python tools/verify_genie_convergence.py`; regressions: `python -m unittest discover -s tools -p test_genie_convergence.py -v` | Twelve exact targets: actual posterior moments, finite-divergence convergence, regularization, optimized brackets and termination. Default rebuilds every dependency; cached mode rebuilds twelve new modules. |
+| Monotone genie brackets and Bellman certificates | `python tools/verify_genie_brackets.py`; regressions: `python -m unittest discover -s tools -p test_genie_brackets.py -v` | Extended ratio brackets, finite-divergence residual bound and exact Bellman certificate. Default rebuilds all dependencies; `--cached-dependencies` rebuilds nine modules. Convergence remains separate. |
+| Exact attained infinite-cap dual | `python tools/verify_infinite_cap_dual.py`; regressions: `python -m unittest discover -s tools -p test_infinite_cap_dual.py -v` | Attained infinite-cap dual, factor-three midpoint and factor-eight original minimax comparisons, monotone limits. Default rebuilds all local dependencies; `--cached-dependencies` rebuilds 14 modules. Exact types, transitive axioms, source hashes; fresh `.runtime/` output. |
+| Exact finite stopping-program certificate | `python tools/verify_finite_risk_certificate.py`; regressions: `python -m unittest discover -s tools -p test_finite_risk_certificate.py -v` | Checks all three unchanged finite targets, original minimax risk, sharp truncation, and Bernoulli-label floor. Default rebuilds all local dependencies; `--cached-dependencies` rebuilds nine modules. Exact types, transitive axioms, source hashes; fresh `.runtime/` output. |
+| Observable stopping-program upper bound | `python tools/verify_stopping_program_upper.py`; regressions: `python -m unittest discover -s tools -p test_stopping_program_upper.py -v` | Checks actual certificate realization, the original minimax upper theorem, exact types, transitive axioms and source identities. Default rebuilds all local dependencies; `--cached-dependencies` rebuilds fourteen new modules. Fresh `.runtime/` output. |
 | Finite-gap rare-event manuscript | `cd paper/finite-gap-rare-events && sha256sum -c SHA256SUMS`; for the [revision 2](../paper/finite-gap-rare-events/revision-2/README.md) sources, the same command in `revision-2/`; [build](../paper/finite-gap-rare-events/README.md) in a disposable copy | Checks the source and PDF identity of revision 1 and of revision 2. The closed quantile theorem is a paper proof; no Lean or numerical certificate covers it. |
 | Imported inputs and research packages | `python tools/verify_inputs.py`; `python tools/verify_research.py`; `python tools/verify_population_research.py` | Input identities and maintained research replay. Research diagnostics use temporary output and `.runtime/`; original records remain intact. |
 | Main RMS law | `python tools/verify_tier6.py --sequential --require-complete`; `python tools/verify_blind_upper_components.py --sequential` | Exact formal audits of both directions. Tier 6 writes tracked `results/`; use a disposable checkout. The upper audit writes `.runtime/`. |
@@ -202,6 +209,30 @@ parameter ranges, constants, the original observable model and paper differences
 The [saved audit](../results/rare_above_two_001.json) passed at `637fb4a`,
 covering all 322 declaration roots and their transitive axioms.
 
+## Combined rare-event formalization
+
+```sh
+python tools/verify_rare_event_completion.py --jobs 2
+python -m unittest discover -s tools -p 'test_rare_event_completion.py' -v
+python -m unittest discover -s tools -p 'test_entropy_tail*.py' -v
+```
+
+The default rebuilds all local dependencies before checking 111 exact types
+and the transitive axioms of 1,789 declarations in 276 target modules.
+It covers the observable upper bounds, deterministic quantile comparison,
+stopping programs, identification, infinite-cap dual and genie certificates.
+The canonical frozen selection functional is proved equal to the ported one;
+the unchanged canonical upper target is checked through that equality.
+The statistical entropy-tail lower bound and two-sided quantile law remain
+excluded. The workflow `Rare-event formal proofs` runs the full rebuild.
+
+The explicit `--cached-dependencies` mode rebuilds both entropy-tail interfaces
+and **every transitive dependent** (110 modules), while recording hashes for
+the other 408 cached dependency sources. Its evidence reports that narrower
+scope; it is not described as a full dependency rebuild. Both modes write a
+fresh output directory and reject source changes during the audit.
+The current integration audit is in progress.
+
 ## Entropy-tail selection functional
 
 The general-law entropy-tail law (v6 Theorem 13.2) has a locked specification
@@ -223,9 +254,11 @@ specification and its project dependencies. It fixes eight full target types:
 
 The audit checks every registered target for its exact type and transitive
 axioms. It rejects any declaration that carries an unregistered target's name.
-Five deterministic targets are proved. The law and its two halves are not, so the
-status reports `entropy_tail_law_verified: false`, and `--require-complete`
-fails. No result record is published for this partial audit.
+This preserved audit registers five deterministic targets. The upper statement
+is also inhabited through the separate compatibility bridge checked by the
+combined audit below. The lower and two-sided law remain unproved, so
+`entropy_tail_law_verified` remains false and `--require-complete` fails.
+No result record is published for the original partial audit.
 
 ## Magnitude-oracle lower bounds
 
