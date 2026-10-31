@@ -606,6 +606,48 @@ full targets. Its witness budget is `L*(1+log L)/rho`; the paper's specific
 `rho^(-2)` sequence remains a paper derivation. This proves the conjecture
 false for the fixed quadratic law and gives no arbitrary-law replacement.
 
+## Hard observation caps for the RMS rates
+
+The results above charge a uniform *expected* budget, so a single run may use
+many more observations than $B$. The
+[hard-budget RMS package](../research/2026-10-30-hard-budget-rms/README.md)
+gives a **paper proof** that the RMS rates survive a pathwise cap at a constant
+cost. Write $R^{\rm hard}(B)$ for the minimax RMS risk over algorithms that make
+at most $\lfloor B\rfloor$ observations on every path. Such algorithms also meet
+the expected budget, so $R(B)\le R^{\rm hard}(B)$ and every expected-budget
+lower bound carries over unchanged.
+
+**Reduction.** Let $\theta\in[0,M]$ with $0<M\le1$. Suppose that for every
+dyadic $b\ge1$ an observable procedure has $\mathbb E T_b\le b$ and RMS at most
+$Cf(b)$ uniformly over the parameter class, where $C\ge1/2$, $f(1/2)=M$ and
+$f(b)\le\sqrt{B/b}\,f(B)$ for $B\ge b\ge1/2$. Stage $j$ runs a fresh,
+independent copy at $b=2^j$, stops it after $4\cdot2^j$ observations, and keeps
+the last completed estimate, clipped to $[0,M]$. At $B\ge4$ the controller runs
+every stage whose cap still fits in $\lfloor B\rfloor$ and has RMS at most
+$\sqrt{32}\,Cf(B)$. At $B<4$ it returns $M/2$ without observing. Markov's
+inequality bounds each timeout probability by $1/4$. No independence between a
+run's error and its runtime is assumed; independence *between* complete runs is
+essential.
+
+| Application | Hard-cap conclusion (paper proof) | Inherited premises |
+|---|---|---|
+| Distribution-blind RMS law | $\frac1{64}\omega_\mu(B^{-1/2})\le R^{\rm hard}_\mu(B)\le3000\,\omega_\mu(B^{-1/2})$ for $B\ge1$, with one family for every $\mu$ | Both expected-budget bounds Lean-checked |
+| Critical quadratic law | $R^{\rm hard}_{\mu,\rho}(B)\asymp\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}$, upper coefficient $570000$ | Both expected-budget bounds Lean-checked |
+| Known general law, known rarity | $10^{-17}\mathcal K_{\mu,\rho}(B)\le R^{\rm hard}_{\mu,\rho}(B)\le190000\,\mathcal K_{\mu,\rho}(B)$ for $B>0$ | The paper-only [entropy-tail theorem](#general-law-rare-event-characterization) |
+
+**Status and limits.** The reduction, its observable realization and all three
+hard-cap conclusions are **paper proofs, not Lean-checked**. Lean-checked premises
+do not make these conclusions formal theorems. The guarantee holds at every
+deterministic allowance. It does not cover an allowance or stopping time chosen
+from the data, and it does not preserve unbiasedness. The
+[toolkit driver](../toolkit/README.md#research-module-hard-observation-caps)
+implements the controller for a caller-supplied estimator. It caps
+observations, not CPU time, and cannot check the statistical premises. The
+package's exact finite audits (56 recurrence instances with 26,232 enumerated
+paths, and 10,301 schedules) and its counterexamples are finite evidence, not
+proofs. The counterexamples show that a single timeout fallback, or randomness
+shared across stages, leaves a nonvanishing error floor.
+
 ## Population and nonlinear feedback follow-ups
 
 The [population-step report](../research/2026-10-27-population-step/FINAL_REPORT.md)

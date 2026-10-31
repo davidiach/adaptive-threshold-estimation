@@ -68,6 +68,8 @@ jobs:
           python research/2026-10-30-certified-selection/reproduce.py
           python research/2026-10-30-certified-selection/integration-review/certify_obstruction.py
           python research/2026-10-30-certified-selection/integration-review/independent_check.py
+      - name: Replay the exact hard-budget RMS fallback audits
+        run: python research/2026-10-30-hard-budget-rms/verify.py
   numerical-evidence:
     runs-on: ubuntu-latest
     steps:
