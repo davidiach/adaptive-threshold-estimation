@@ -26,13 +26,15 @@ results of
 no statistical selection theorem is assumed.
 
 \paragraph{Status.}
-Theorem~\ref{fg:thm:direct-main} is a paper proof. The precursor of the
-standalone finite-gap manuscript received a fresh-context AI review, and
-an external adversarial review supplied the comparison in
-\cref{fg:sec:comparison}. It is not Lean-checked and has not received
-external specialist review. The Lean-checked finite-gap sign entropy of
-\cref{sec:rare,sec:all-sizes} concerns the critical law and does not
-certify this theorem.
+The deterministic comparison in \cref{fg:sec:comparison}, including
+fractional boundary atoms, is now Lean-checked for arbitrary probability
+laws. The original observable minimax risk satisfies $R\le30001Q$ in
+Lean on that same domain. The matching statistical lower bound and the
+direct finite-law lower argument remain paper proofs; thus
+Theorem~\ref{fg:thm:direct-main} is not yet fully Lean-checked.
+The precursor received a fresh-context AI review, and an external
+adversarial review supplied the deterministic comparison. There has been
+no external specialist review. See \cref{sec:verification}.
 
 \input{finite-model}
 \input{finite-entropy}
