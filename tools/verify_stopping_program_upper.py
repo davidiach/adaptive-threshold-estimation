@@ -15,6 +15,7 @@ import sys
 
 from verify_blind_upper_components import DECLARATION, FORBIDDEN, sha, strip_comments, validate_reports
 from verify_entropy_tail_components import dependency_order
+from stopping_program_lock import validate_stopping_specification
 
 ROOT = Path(__file__).resolve().parents[1]
 LEAN = ROOT / "lean"
@@ -44,6 +45,7 @@ example : ∀ {N : ℕ} (μ : Measure Gap) [IsProbabilityMeasure μ] (ρ B : ℝ
 
 
 def validate_sources():
+    validate_stopping_specification()
     ordered = dependency_order(MAINS)
     paths = [p for p in ordered if p.parent.name == "StoppingProgram"]
     roots = set()
