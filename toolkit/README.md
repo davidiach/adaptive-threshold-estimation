@@ -312,6 +312,45 @@ for the mathematics and status; its
 [note](../research/2026-10-30-certified-selection/NOTE.md#example-use) has a
 usage example.
 
+## Research module: hard observation caps
+
+`threshold_toolkit.budget_ladders` is a research driver, not a ready-made
+estimator. It turns *your* estimator, which uses at most `b` flips on average,
+into one that never uses more than a fixed number of flips. Stage `j` runs a
+fresh, independent copy of your estimator with average budget `2^j`, stops it
+after `4·2^j` flips, and keeps the last estimate that finished. An allowance of
+`B` flips runs every stage whose cap still fits, so the total never exceeds `B`.
+
+```python
+from fractions import Fraction
+from threshold_toolkit.budget_ladders import RMSLadder
+
+def program(b, rng):              # your estimator at average budget b
+    heads = 0
+    for coin in range(b):         # yield a coin ID, receive its flip
+        heads += yield coin
+    return Fraction(heads, b)
+
+def coin_factory(rng):            # simulated coin: gap 1/2, so flips equal the sign
+    sign = int(rng.random() < 0.3)
+    return lambda: sign
+
+state = RMSLadder(program, coin_factory, seed=1).advance_to(1000)
+print(state.estimate, state.flips, state.reserved_budget)   # 19/64 127 508
+```
+
+The paper proof behind it says the capped root-mean-square error is at most
+$\sqrt{32}$ times the bound your estimator has at the full allowance as an
+average budget. That needs conditions the driver cannot check: your estimator
+really meets its average-budget and error bounds, its error bound shrinks no
+faster than $1/\sqrt{\text{budget}}$, and separate stages are independent. The driver supplies separate coin namespaces and random
+streams, but trusts your callbacks. It caps flips, not CPU time. It leaves any
+allowance that does not fit the next stage unused. The guarantee holds at a
+fixed allowance, not at an allowance chosen after looking at the results. The
+result is a paper proof, not Lean-checked; see the
+[hard-budget RMS package](../research/2026-10-30-hard-budget-rms/README.md).
+The module is not imported by the package itself.
+
 ## Tests
 
 ```sh
