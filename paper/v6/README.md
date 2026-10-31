@@ -41,13 +41,16 @@ Lean checks both directions of the original RMS law, the critical quadratic
 law, the exact Ψ comparison and counterexample, the variational optimizer,
 the unbiased characterization with constants 1/16 and 713, the confidence
 characterization, the magnitude-oracle lower bounds, and the rare-event
-rate above exponent two. Section 18 states each formal scope and links the
-fixed source revisions.
+rate above exponent two. It also checks the upper half of the entropy–tail
+law, the closed quantile upper bound for every law, the comparison
+$K\le Q\le(1+2\sqrt2)K$, and the stopping-program, fixed-cap
+identification and genie results of §15, each in the scope stated in §18.
+Section 18 states each formal scope and links the fixed source revisions.
 
-The entropy–tail law, the closed quantile form (including its direct proof
-for finite laws), the stopping-program results, and the rare-event regimes
-below two are **paper proofs**. They are not Lean-formalized and have not
-had external specialist review. The general-law and finite-gap proofs share
+The lower half of the entropy–tail law, and hence the two-sided law and the
+two-sided closed quantile form (including its direct proof for finite laws),
+and the rare-event regimes below two are **paper proofs**. They are not
+Lean-formalized and have not had external specialist review. The general-law and finite-gap proofs share
 their upper construction and Appendices F–H, so they are one rate
 established by two arguments, not two independent confirmations. The remark
 in §11 on agreement of the power-margin table with the closed quantile form is
@@ -89,7 +92,9 @@ The editorial changes are explicit in the generator:
 - **Superseded statements.** v5 passages saying that an arbitrary-law
   rare-event characterization remains open now point to §13. The
   verification section adds the above-two Lean result at
-  `637fb4a79d20e30415a2cb0e495752603077c0ee`.
+  `637fb4a79d20e30415a2cb0e495752603077c0ee`, and the entropy–tail upper
+  half, closed quantile upper bound and stopping-program results at
+  `8fb16244ded0d6cebf4ba78e1ad9adae09ef293d`.
 
 [test_build_v6.py](../../tools/test_build_v6.py) checks that every line of
 the finite-gap and general-law versions of the shared appendices is present
