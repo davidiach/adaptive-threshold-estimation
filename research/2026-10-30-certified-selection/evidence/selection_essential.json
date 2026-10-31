@@ -1,0 +1,118 @@
+{
+  "exhaustive": {
+    "schema": "ate-rare-functional-v2",
+    "scope": "deterministic_entropy_tail_functional_not_statistical_risk",
+    "method": "band_suffix_exhaustive",
+    "instance": {
+      "law": [
+        {
+          "gap": "1/10000000000",
+          "mass": "1/100000000"
+        },
+        {
+          "gap": "1/4",
+          "mass": "99999999/100000000"
+        }
+      ],
+      "rho": "1/1000000",
+      "budget": "1000000000000"
+    },
+    "instance_sha256": "1aa6c38ce52036ce5fe49f347fe9000fa5ce28f55c4fa6b856e7ee9ce026107f",
+    "precision": {
+      "bits": 64,
+      "log_terms": 24
+    },
+    "K_interval": {
+      "lower": "27079938320682067188658191/1934281311383406679529881600000000",
+      "upper": "1692496145042629199315551/120892581961462917470617600000000"
+    },
+    "details": {
+      "states_evaluated": 4,
+      "original_subset_count": "4",
+      "all_states_evaluated": true,
+      "best_hard_witness": [
+        "0",
+        "1"
+      ],
+      "witness_claim": "feasible upper bound, not unique optimizer"
+    }
+  },
+  "quantile": {
+    "schema": "ate-rare-functional-v2",
+    "scope": "deterministic_entropy_tail_functional_not_statistical_risk",
+    "method": "quantile",
+    "instance": {
+      "law": [
+        {
+          "gap": "1/10000000000",
+          "mass": "1/100000000"
+        },
+        {
+          "gap": "1/4",
+          "mass": "99999999/100000000"
+        }
+      ],
+      "rho": "1/1000000",
+      "budget": "1000000000000"
+    },
+    "instance_sha256": "1aa6c38ce52036ce5fe49f347fe9000fa5ce28f55c4fa6b856e7ee9ce026107f",
+    "precision": {
+      "bits": 64,
+      "log_terms": 24
+    },
+    "K_interval": {
+      "lower": "4837618216956786271437409/483570327845851669882470400000000",
+      "upper": "27087594244797181896296907/1934281311383406679529881600000000"
+    },
+    "details": {
+      "Q_interval": {
+        "lower": "13543797122398590947952943/967140655691703339764940800000000",
+        "upper": "27087594244797181896296907/1934281311383406679529881600000000"
+      },
+      "tail_interval": {
+        "lower": "4837618216956786271437409/483570327845851669882470400000000",
+        "upper": "1209404554239196567859377/120892581961462917470617600000000"
+      },
+      "quantile_gap": "1/4",
+      "core_fractions": [
+        "0",
+        "1010100/1010101"
+      ],
+      "comparison_constant": "8/5"
+    }
+  },
+  "global_threshold": {
+    "schema": "ate-rare-functional-v2",
+    "scope": "deterministic_entropy_tail_functional_not_statistical_risk",
+    "method": "global_threshold_upper",
+    "instance": {
+      "law": [
+        {
+          "gap": "1/10000000000",
+          "mass": "1/100000000"
+        },
+        {
+          "gap": "1/4",
+          "mass": "99999999/100000000"
+        }
+      ],
+      "rho": "1/1000000",
+      "budget": "1000000000000"
+    },
+    "instance_sha256": "1aa6c38ce52036ce5fe49f347fe9000fa5ce28f55c4fa6b856e7ee9ce026107f",
+    "precision": {
+      "bits": 64,
+      "log_terms": 24
+    },
+    "K_interval": {
+      "lower": "4837618216956786271437409/483570327845851669882470400000000",
+      "upper": "1692496145042629199315551/120892581961462917470617600000000"
+    },
+    "details": {
+      "states_evaluated": 3,
+      "best_selected_count": 1,
+      "globally_exact": false,
+      "comparison_constant": "8/5"
+    }
+  }
+}

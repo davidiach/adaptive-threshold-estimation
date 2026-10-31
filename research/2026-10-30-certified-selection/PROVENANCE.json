@@ -1,0 +1,74 @@
+{
+  "base_repository": "https://github.com/davidiach/adaptive-threshold-estimation",
+  "base_commit": "6ad675e04570cc1ef6bece8e26beb81e1a176471",
+  "prepared_date": "2026-10-30",
+  "provenance": "Developed and self-checked by the assistant in this user-requested session; no independent reviewer or formal proof assistant used.",
+  "upstream_access": "GitHub connector reads of selected sources; full network clone failed.",
+  "upstream_files_read": [
+    "README.md",
+    "AGENTS.md",
+    "docs/WORKPLAN.md",
+    "paper/v6/README.md",
+    "paper/v6/entropy-tail.tex",
+    "paper/v6/entropy-tail-statement.tex",
+    "paper/v6/finite-laws.tex",
+    "paper/v6/finite-comparison.tex",
+    "toolkit/README.md"
+  ],
+  "python_version": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "unit_tests": {
+    "count": 29,
+    "status": "passed",
+    "record": "evidence/unit_tests.log"
+  },
+  "rational_regression": {
+    "laws": 128,
+    "full_subsets": 9604,
+    "band_suffix_candidates": 5211,
+    "discrepancies": 0,
+    "record": "evidence/summary.json"
+  },
+  "algebra": {
+    "coefficientwise_identities": 4,
+    "status": "passed",
+    "record": "evidence/algebra.json"
+  },
+  "float_exploration": {
+    "laws": 20000,
+    "subsets": 1439604,
+    "status": "numerical exploration only",
+    "record": "evidence/float_exploration.json"
+  },
+  "pdf_review": {
+    "pages": 11,
+    "renderer": "pdftoppm via render_pdf.py, 130 dpi",
+    "review": "All pages inspected in contact sheets; scalar proof page also inspected at full rendered size."
+  },
+  "not_performed": [
+    "Lean compilation",
+    "full upstream toolkit suite",
+    "upstream freeze verifier",
+    "GitHub CI",
+    "GitHub push or PR",
+    "complete literature novelty survey",
+    "independent specialist review"
+  ],
+  "statistical_scope": "No new coin-flipping estimator or general minimax theorem is supplied; new claims concern deterministic K and Q.",
+  "license": {
+    "code": "Apache-2.0",
+    "note_and_docs": "CC-BY-4.0"
+  },
+  "saved_certificate_replay": {
+    "count": 18,
+    "status": "passed"
+  },
+  "patch_validation": {
+    "context": "clean empty temporary Git repository, not full upstream checkout",
+    "checks": [
+      "git apply --check",
+      "git apply",
+      "29 additive unit tests after application"
+    ],
+    "status": "passed"
+  }
+}

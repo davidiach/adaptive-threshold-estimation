@@ -24,6 +24,7 @@ axioms; a successful build alone is not a substitute for that audit.
 | Confidence characterization | [Confidence specification](ThresholdHC/Confidence/Specification.lean), [Full](ThresholdHC/Confidence/Full.lean) | `python tools/verify_confidence.py --sequential` |
 | Revealed/selected magnitude-oracle lower bounds | [OracleLower specification](ThresholdHC/OracleLower/Specification.lean), [Full](ThresholdHC/OracleLower/Full.lean) | `python tools/verify_oracle_lower.py --sequential` |
 | Observable rare-event rate above alpha two | [RareAboveTwo specification](ThresholdHC/RareAboveTwo/Specification.lean), [Full](ThresholdHC/RareAboveTwo/Full.lean), [scope guide](../docs/RARE_ABOVE_TWO.md) | `python tools/verify_rare_above_two.py --sequential` |
+| Scalar inequality (Lemma 3) of the 8/5 quantile-selection comparison | [QuantileComparison specification](ThresholdHC/QuantileComparison/Specification.lean), [Scalar](ThresholdHC/QuantileComparison/Scalar.lean) | `python tools/verify_quantile_comparison.py --sequential --require-complete` |
 | Entropy-tail selection functional (partial; the law itself is unproved) | [EntropyTail specification](ThresholdHC/EntropyTail/Specification.lean), [HardSelection](ThresholdHC/EntropyTail/HardSelection.lean) | `python tools/verify_entropy_tail.py --sequential` |
 
 The general-law entropy-tail law (v6 Theorem 13.2) remains a paper proof. Its
@@ -35,6 +36,10 @@ certify its general claims.
 See its [separate status](../paper/rare-event/README.md). The closed quantile law
 of the [finite-gap manuscript](../paper/finite-gap-rare-events/README.md) is also a
 paper proof; the Lean finite-gap entropy results above do not verify it.
+The [certified-selection package](../research/2026-10-30-certified-selection/README.md)
+sharpens its comparison with the selection functional to $\mathcal K\le Q\le\frac85\mathcal K$.
+Only that comparison's scalar Lemma 3 is Lean-checked. The comparison itself,
+Lemmas 1–2 and the bandwise-suffix theorem remain paper proofs.
 
 ## Foundations and supporting developments
 

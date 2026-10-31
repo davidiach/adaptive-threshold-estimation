@@ -293,6 +293,25 @@ python toolkit/examples/rare_events.py
   implementation of the paper's definitions, exact enumeration and the
   calibration identities.
 
+## Research module: the rare-event selection functional
+
+`threshold_toolkit.rare_event_functional` is a separate research computation,
+not part of the calculators or the estimators. For a known finite gap law, the
+calculator in section 3 evaluates $Q$ in floating point and brackets the
+selection functional $\mathcal K$ by the $5/3$ comparison. This module instead
+encloses $\mathcal K$ itself between exact rational bounds, by bandwise-suffix
+enumeration whose cost grows exponentially with the number of occupied bands.
+It also gives the cheaper bound $\frac58Q\le\mathcal K\le Q$. It uses only
+the standard library and rejects floats as inputs. It is not imported by the
+package itself, and its `FiniteGapLaw` is a different class from the
+package-level one in section 3, so import it from
+`threshold_toolkit.rare_event_functional`. Its bounds rest on paper proofs that
+are not Lean-checked. See the
+[certified-selection package](../research/2026-10-30-certified-selection/README.md)
+for the mathematics and status; its
+[note](../research/2026-10-30-certified-selection/NOTE.md#example-use) has a
+usage example.
+
 ## Tests
 
 ```sh

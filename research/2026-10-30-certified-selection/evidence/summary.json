@@ -1,0 +1,168 @@
+{
+  "scope": "finite rational-interval regression evidence; not a proof of universal claims",
+  "seed": 604219,
+  "laws_checked": 128,
+  "full_subsets_evaluated": 9604,
+  "band_suffix_candidates_evaluated": 5211,
+  "counterexamples_found": 0,
+  "examples": {
+    "selection_essential": {
+      "lower_decimal_display": 1.399999998e-08,
+      "upper_decimal_display": 1.399999998e-08,
+      "width_decimal_display": 2.0194839173657902e-28,
+      "scope": "decimal displays only; exact endpoints are in the certificate",
+      "states": 4,
+      "Q_over_K_interval_decimal_display": [
+        1.0002827157146539,
+        1.0002827157146539
+      ],
+      "best_hard_witness": [
+        "0",
+        "1"
+      ],
+      "global_threshold_upper_decimal_display": 1.399999998e-08,
+      "no_selection_baseline_over_K_lower": 71.42857153061225
+    },
+    "not_one_global_threshold": {
+      "lower_decimal_display": 0.0002000099997499875,
+      "upper_decimal_display": 0.0002000099997499875,
+      "width_decimal_display": 6.618106644914264e-24,
+      "scope": "decimal displays only; exact endpoints are in the certificate",
+      "states": 4,
+      "Q_over_K_interval_decimal_display": [
+        1.3660770210557316,
+        1.3660770210557316
+      ],
+      "best_hard_witness": [
+        "1",
+        "0"
+      ],
+      "global_threshold_upper_decimal_display": 0.0002000214902134999
+    },
+    "cross_boundary_before": {
+      "lower_decimal_display": 5.204915296814788e-05,
+      "upper_decimal_display": 5.204915296814788e-05,
+      "width_decimal_display": 1.6543612251060553e-24,
+      "scope": "decimal displays only; exact endpoints are in the certificate",
+      "states": 4,
+      "Q_over_K_interval_decimal_display": [
+        1.0721150591682427,
+        1.0721150591682427
+      ],
+      "best_hard_witness": [
+        "1",
+        "1"
+      ],
+      "global_threshold_upper_decimal_display": 5.204915296814788e-05
+    },
+    "cross_boundary_after": {
+      "lower_decimal_display": 3.9840637450199205e-05,
+      "upper_decimal_display": 3.9840637450199205e-05,
+      "width_decimal_display": 1.6543612251060553e-24,
+      "scope": "decimal displays only; exact endpoints are in the certificate",
+      "states": 2,
+      "Q_over_K_interval_decimal_display": [
+        1.09498743710662,
+        1.09498743710662
+      ],
+      "best_hard_witness": [
+        "1"
+      ],
+      "global_threshold_upper_decimal_display": 3.9840637450199205e-05
+    },
+    "sixty_atoms_one_band": {
+      "lower_decimal_display": 0.0007042402263950644,
+      "upper_decimal_display": 0.0007042402263950644,
+      "width_decimal_display": 2.6469779601696886e-23,
+      "scope": "decimal displays only; exact endpoints are in the certificate",
+      "states": 61,
+      "Q_over_K_interval_decimal_display": [
+        1.2388934065474762,
+        1.2388934065474762
+      ],
+      "best_hard_witness": [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "global_threshold_upper_decimal_display": 0.0007042402263950644
+    },
+    "stress_near_max": {
+      "lower_decimal_display": 0.0022104890724864465,
+      "upper_decimal_display": 0.0022104890724864465,
+      "width_decimal_display": 1.0887994438067272e-22,
+      "scope": "decimal displays only; exact endpoints are in the certificate",
+      "states": 48,
+      "Q_over_K_interval_decimal_display": [
+        1.4213201670536735,
+        1.4213201670536735
+      ],
+      "best_hard_witness": [
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "global_threshold_upper_decimal_display": 0.0022398941158707822
+    }
+  }
+}

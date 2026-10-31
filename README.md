@@ -90,7 +90,10 @@ positive-gap law, with a complete paper proof. The
 evaluates $Q$, its tail and entropy contributions, and its target-value
 inverse without subset search. The new comparison and Python implementation
 are not Lean-checked; the calculator reports a rate functional, not achieved
-estimation error.
+estimation error. The
+[certified-selection package](research/2026-10-30-certified-selection/README.md)
+sharpens the comparison further to $8/5$, also as a paper proof whose scalar
+Lemma 3 is Lean-checked; the best factor lies between $1.4604$ and $8/5$.
 
 For a **known finite** magnitude law with strictly positive gaps, known global
 rarity bound $0<\rho\le1/4$, and any uniform expected observation budget $B>0$,
@@ -175,7 +178,8 @@ The next formalization targets include the new general-law rare-event
 characterization and stopping-program arguments, the remaining paper-only
 regimes, and auxiliary results on envelopes, smooth densities, and observed
 outer states. Tighter constants and efficient selection algorithms remain
-research directions. See the [completion ledger](docs/WORKPLAN.md) for the current boundary.
+research directions; the quantile-to-selection factor is now known to lie in
+$(1.4604,8/5]$. See the [completion ledger](docs/WORKPLAN.md) for the current boundary.
 
 ## Attribution and license
 
