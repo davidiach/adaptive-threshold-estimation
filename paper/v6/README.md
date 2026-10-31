@@ -127,22 +127,25 @@ constitute a new mathematical proof or independent review.
 
 ## Build record
 
-`paper.pdf` was built from the v6 sources at `main` commit
-`b45a8eef4e8d174de756e803a8acf0cc9699d489` with pdfTeX 1.40.25
+`paper.pdf` was built from the v6 sources at commit
+`e5593ba3b550634047cb85d773ffff36ca6b168a` with pdfTeX 1.40.25
 (TeX Live 2023/Debian, Ubuntu 24.04 packages) and the fixed source date
 above. Its SHA-256 is
-`7ae803532ccc7946ac0d6c586a2f420dac5626066f613d3caed3963c20aa7a28`.
+`07f7b3a1b1cec9f27c6200e2ee9c122a88d753b16cb17c3deea6e0b713d44617`.
 
-- Two consecutive builds were byte-identical. The manuscript workflow's build
-  on that commit reported the same page count (134), file size
-  (1,103,171 bytes) and creation date; its artifact itself was not compared.
+- Two consecutive builds in separate scratch copies were byte-identical:
+  134 pages, 1,106,450 bytes. In the same environment, rebuilding `main`'s
+  unchanged v6 sources reproduced the previously published PDF
+  (`7ae803532ccc7946ac0d6c586a2f420dac5626066f613d3caed3963c20aa7a28`)
+  byte for byte.
 - The log has no LaTeX or package warnings and no undefined or duplicate
-  references. One line in the inherited proof of Theorem C.1 (page 72) is
-  5.2 pt too wide.
+  references. The one overfull line, 5.2 pt in the inherited proof of
+  Theorem C.1 (page 72), is unchanged.
 - All 29 fonts are embedded, and the extracted text has no unresolved `??`
   references.
-- All 134 pages were inspected as rendered contact sheets for layout. Pages
-  with new or rewritten text (25–26, 30–32, 37–38, 43, 126 and 129) and the
-  overfull line on page 72 were also read at higher resolution.
+- Only pages 42–47 (§18) differ in extracted text from the previous PDF. They
+  were read as rendered pages. The seven new theorem links point to files at
+  `8fb16244ded0d6cebf4ba78e1ad9adae09ef293d` that contain the named theorems.
+- The manuscript workflow's artifact for this commit was not compared.
 
 A fresh build with another engine or TeX Live release may differ in bytes.
