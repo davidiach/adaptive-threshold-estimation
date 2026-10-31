@@ -14,6 +14,7 @@ later results do not rewrite those historical records.
 | Package | Accepted scope | Evidence |
 |---|---|---|
 | [General-law rare-event manuscript v2](../paper/rare-event/README.md) | Arbitrary known-law entropy-tail characterization, stopping dual, and qualified genie certificates. | Audited paper proof with exact finite certificates; new general claims not Lean-formalized. Existing manuscripts and historical audit identities are preserved. |
+| [Certified selection](2026-10-30-certified-selection/README.md) | Quantile-to-selection factor 8/5 (1 + 2 sqrt 2 in finite-gap revision 2, 5/3 in the [computation note](../docs/RARE_EVENT_COMPUTATION.md)), bandwise-suffix exact finite selection, total-variation and band-preserving rounding stability of the selection functional, and an exact-rational evaluator in the toolkit. The best factor lies in (1.4604, 8/5]. | Paper proofs; only the scalar Lemma 3 is Lean-checked. Exact rational certificates from unverified Python. An integration review adds the 1.4604 obstruction and a separately written high-precision cross-check. |
 | [Power margins above two](2026-10-27-route-a/CHECKPOINT.md) | Known-rarity power-margin rate for alpha greater than two. | Reviewed paper proof; exact finite diagnostics; separate conditional-kernel Lean bridge. |
 | [Minimax audit](2026-10-27-minimax-audit/FINAL_REPORT.md) | Critical upper construction, scope audit and numerical comparison. | Reviewed paper components and explicitly limited numerical evidence. |
 | [Earlier critical result](2026-10-27-critical-two/CHECKPOINT.md) | Sharp critical rate for the specified noninteractive additive class. | Reviewed paper proof; its then-open interactive converse is addressed by the later full result. |
@@ -43,3 +44,6 @@ and policy certificates in disposable copies, audits the 7,680 recorded
 experiment rows, and replays the predesignated replicate in each of 240 cells.
 It creates fresh evidence under the ignored `.runtime/` directory and preserves
 all original checkpoints. Neither command certifies the continuum paper proofs.
+The certified-selection package has its own
+[replay commands](2026-10-30-certified-selection/README.md#replay), which also
+write to `.runtime/` and compare with its tracked evidence.
