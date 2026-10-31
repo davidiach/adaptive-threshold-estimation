@@ -256,6 +256,51 @@ groups and reuses objects built earlier, so run it after the first audit.
 rename of #33's namespace and the superseded lock's hashes. All three write
 timestamped evidence under `.runtime/`.
 
+## Stopping program, identification and genie certificates
+
+The StoppingProgram, CapIdentification and Genie modules come from
+[#33](https://github.com/davidiach/adaptive-threshold-estimation/pull/33). Each
+of the sixteen audits checks its exact statements, rejects proof escapes and
+reports the transitive axioms of every declaration it covers:
+
+| Audit | Scope |
+|---|---|
+| `verify_stopping_components.py` | Four-prior value identity, positive finite-ratio dual attainment, full fixed-cap identification |
+| `verify_stopping_flow_mixture.py` | Count-flow conservation, Bellman potential bounds, finite decision-table mixtures, bounded observable calls |
+| `verify_finite_stopping_program.py` | Finite cone, cutoff and excess representation for finitely supported laws |
+| `verify_rarity_support.py` | Rarity-support minimum and fractional cutoff optimizer |
+| `verify_stopping_dual.py` | `AttainedDualStatement` |
+| `verify_information_bellman.py` | Bellman attainment of the information/work ratio and its unique price zero |
+| `verify_reference_absorption.py` | Program value between the midpoint modulus and three times it |
+| `verify_ordered_information.py` | Count-flow aggregation of seeded, order-dependent capped procedures; Hellinger bounds |
+| `verify_adaptive_information.py` | Affinity testing and transfer to the adaptive population experiment |
+| `verify_stopping_program_upper.py` | `ProgramUpperStatement`: observable realization of certificates, $R\le P_N$ |
+| `verify_finite_risk_certificate.py` | `FiniteCertificateStatement`: $R\le P_N\le16R$ at the prescribed cap |
+| `verify_infinite_cap_dual.py` | Infinite-cap attained dual, factor-three and factor-eight comparisons, cap limits |
+| `verify_genie_brackets.py` | Latent-reveal brackets and exact Bellman certificates |
+| `verify_genie_convergence.py` | Residual and optimized genie convergence, risk brackets, finite termination |
+| `verify_genie_conic.py` | Direct squared-risk certificate and the finite-atom SOCP |
+| `verify_genie_counterexample.py` | The uniform-gap infinite-divergence counterexample |
+
+Each has a guard-test file of the same name with a `test_` prefix. By default
+an audit recompiles every local dependency sequentially; `--cached-dependencies`
+recompiles only its own new modules and uses objects built earlier.
+`verify_stopping_components.py` also accepts `--audit-only`. CI's
+`stopping-program` job builds the eight top-level modules with `lake` and then
+runs all sixteen audits with `--cached-dependencies`:
+
+```sh
+cd lean && lake build ThresholdHC.StoppingProgram.BellmanTheorem ThresholdHC.StoppingProgram.FiniteCertificate ThresholdHC.CapIdentification.FiniteSeparation ThresholdHC.CapIdentification.Full ThresholdHC.Genie.AtomConicRealization ThresholdHC.Genie.DirectRisk ThresholdHC.Genie.InfiniteDivergenceExample ThresholdHC.Genie.OptimizedConvergence && cd ..
+python tools/verify_finite_risk_certificate.py --cached-dependencies
+python -m unittest discover -s tools -p 'test_stopping_program_lock.py' -v
+```
+
+The [specification lock](../tools/stopping_program_specification_freeze.json)
+hashes `StoppingProgram/Specification.lean` and its 35 project dependencies.
+The three audits of its targets check it first. Each audit writes
+timestamped evidence under `.runtime/`, and none of them certifies the
+entropy-tail lower bound.
+
 ## Quantile-selection comparison: scalar Lemma 3
 
 The scalar inequality of Lemma 3 in the
