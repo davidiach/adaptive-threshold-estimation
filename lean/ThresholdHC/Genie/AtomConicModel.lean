@@ -91,7 +91,7 @@ theorem atomConicFeasible_of_priors {N : ℕ} (μ : Measure Gap) [IsProbabilityM
   · intro n k hn hnN hk
     have hs := hcone.2.1 n k hn hnN hk
     refine ⟨hs.1,?_⟩
-    change (if n = N then finiteRevealBound w d rp rm n k/4 ≤ arrayAt X n k else _) 
+    change (if n = N then finiteRevealBound w d rp rm n k/4 ≤ arrayAt X n k else _)
     by_cases he : n = N
     · simpa only [he,ite_true] using hs.2
     · simp only [he,ite_false,atomPointOfPriors] at *
