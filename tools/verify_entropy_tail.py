@@ -24,7 +24,7 @@ LEAN = ROOT / 'lean'
 SOURCE = LEAN / 'ThresholdHC/EntropyTail'
 FREEZE = ROOT / 'tools/entropy_tail_specification_freeze.json'
 MODULES = ('Model', 'Specification', 'Band', 'Entropy', 'Gamma', 'Objective', 'Bounds',
-           'SingleAtom', 'Nonvacuity', 'Superadditive', 'HardSelection')
+           'SingleAtom', 'Nonvacuity', 'Superadditive', 'HardSelection', 'Bridge', 'Upper')
 PREFIX = 'ThresholdHC.EntropyTail.'
 FROZEN = {'lean/ThresholdHC/EntropyTail/Specification.lean': '8440d8853dd20cfcb4d0123fd30de0fae82ee970a0577f5e4ba0ebe041a1cbeb'}
 TARGETS = {
@@ -39,7 +39,7 @@ TARGETS = {
 }
 # Targets whose proofs are present. A target is proved only by its registered name.
 PROVED = (PREFIX+'selection_bounds', PREFIX+'single_atom', PREFIX+'small_budget',
-          PREFIX+'entropy_tail_nonvacuity', PREFIX+'hard_selection')
+          PREFIX+'entropy_tail_nonvacuity', PREFIX+'hard_selection', PREFIX+'entropy_tail_upper')
 # Any declaration form of a target name, including modifiers such as `protected` and
 # fully qualified names, which the shared root pattern does not report.
 TARGET_DECLARATION = (r"\b(?:def|abbrev|structure|theorem|lemma|instance|inductive)\s+"
