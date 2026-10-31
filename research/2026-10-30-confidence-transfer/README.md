@@ -56,8 +56,10 @@ python research/2026-10-30-confidence-transfer/verify_transfer.py --output .runt
 python research/2026-10-30-confidence-transfer/verify_anytime.py
 ```
 
-The workflow repeats these on Python 3.10 and 3.12. Replays write only under
-`.runtime/`, not over supplied evidence. Existing full-toolkit CI still applies.
+In CI, the toolkit workflow runs the unit tests with the rest of the toolkit
+suite on Python 3.10 and 3.12, and the `research-evidence` job of
+`checks.yml` runs both audits on Python 3.12. Replays write only under
+`.runtime/`; the package has no tracked evidence records.
 
 ## Review gates
 

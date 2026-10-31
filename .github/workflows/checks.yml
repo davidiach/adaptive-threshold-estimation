@@ -70,6 +70,10 @@ jobs:
           python research/2026-10-30-certified-selection/integration-review/independent_check.py
       - name: Replay the exact hard-budget RMS fallback audits
         run: python research/2026-10-30-hard-budget-rms/verify.py
+      - name: Replay the exact confidence-transfer and sequential-coverage audits
+        run: |
+          python research/2026-10-30-confidence-transfer/verify_transfer.py --output .runtime/confidence-transfer/transfer.json
+          python research/2026-10-30-confidence-transfer/verify_anytime.py
   numerical-evidence:
     runs-on: ubuntu-latest
     steps:
