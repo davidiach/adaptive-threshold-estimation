@@ -127,6 +127,11 @@ jobs:
         run: |
           python -m unittest discover -s tools -p 'test_entropy_tail_components.py' -v
           python -m unittest discover -s tools -p 'test_entropy_tail_upper.py' -v
+      - name: Regression tests for the stopping-program, cap-identification and genie audits
+        run: |
+          for test in stopping_program_lock stopping_components stopping_flow_mixture finite_stopping_program rarity_support stopping_dual information_bellman reference_absorption ordered_information adaptive_information stopping_program_upper finite_risk_certificate infinite_cap_dual genie_brackets genie_convergence genie_conic genie_counterexample; do
+            python -m unittest discover -s tools -p "test_${test}.py" -v
+          done
       - run: python tools/check_targets_numeric.py
       - name: Tier 2 numeric truth checks when present
         run: |
@@ -287,3 +292,59 @@ jobs:
           path: |
             .runtime/entropy-tail/
             .runtime/entropy-tail-upper/
+  stopping-program:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Lean tool manager
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/v4.2.4/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Download pinned Mathlib cache
+        working-directory: lean
+        run: |
+          for attempt in 1 2 3; do
+            if lake exe cache get; then
+              exit 0
+            fi
+            if [ "$attempt" -eq 3 ]; then
+              exit 1
+            fi
+            sleep 10
+          done
+      - name: Build the stopping-program, cap-identification and genie modules
+        working-directory: lean
+        run: lake build ThresholdHC.StoppingProgram.BellmanTheorem ThresholdHC.StoppingProgram.FiniteCertificate ThresholdHC.CapIdentification.FiniteSeparation ThresholdHC.CapIdentification.Full ThresholdHC.Genie.AtomConicRealization ThresholdHC.Genie.DirectRisk ThresholdHC.Genie.InfiniteDivergenceExample ThresholdHC.Genie.OptimizedConvergence
+      - name: Audit the stopping-program, cap-identification and genie theorems
+        run: |
+          for audit in stopping_components stopping_flow_mixture finite_stopping_program rarity_support stopping_dual information_bellman reference_absorption ordered_information adaptive_information stopping_program_upper finite_risk_certificate infinite_cap_dual genie_brackets genie_convergence genie_conic genie_counterexample; do
+            echo "::group::verify_${audit}.py"
+            python tools/verify_${audit}.py --cached-dependencies
+            echo "::endgroup::"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stopping-program-verification
+          include-hidden-files: true
+          path: |
+            .runtime/stopping-components/
+            .runtime/stopping-flow-mixture/
+            .runtime/finite-stopping-program/
+            .runtime/rarity-support/
+            .runtime/stopping-dual/
+            .runtime/information-bellman/
+            .runtime/reference-absorption/
+            .runtime/ordered-information/
+            .runtime/adaptive-information/
+            .runtime/stopping-program-upper/
+            .runtime/finite-risk-certificate/
+            .runtime/infinite-cap-dual/
+            .runtime/genie-brackets/
+            .runtime/genie-convergence/
+            .runtime/genie-conic/
+            .runtime/genie-counterexample/
