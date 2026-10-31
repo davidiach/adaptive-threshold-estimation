@@ -227,9 +227,10 @@ $$10^{-17}\mathcal K_{\mu,\rho}(B)\le R_{\mu,\rho}(B)
 \le33000\mathcal K_{\mu,\rho}(B).$$
 
 No finite inverse moment, density, or regularity assumption is imposed.
-The following scopes are **paper-level claims**. The upper half of the first
-row, the hard-selection reduction and the elementary properties of
-$\mathcal K$ are Lean-checked, as described below:
+The following scopes are **paper-level claims**. Lean versions now cover the
+upper half of the first row and the other four rows, as described below, as
+well as the hard-selection reduction and the elementary properties of
+$\mathcal K$:
 
 | Claim | Scope and qualification |
 |---|---|
@@ -242,8 +243,9 @@ $\mathcal K$ are Lean-checked, as described below:
 The [audit index](../paper/rare-event/audit/README.md) distinguishes the original
 source audits, final referee assessment, and revision audit, including corrected
 interpretations of historical findings. V2 resolves the revision audit's two
-minor editorial defects. Apart from the upper half below, the new general
-results have no Lean formalization, and none has external specialist review. The exact stored certificates cover 33 lower
+minor editorial defects. Apart from the upper half and the stopping-program
+results below, the new general results have no Lean formalization, and none
+has external specialist review. The exact stored certificates cover 33 lower
 bounds, 9 upper policies, 9 stopping decisions, and two perfect-label examples;
 they are not proofs of the continuum or compactness claims. The existing Lean
 variational-optimizer and critical-law results above and below retain their
@@ -302,7 +304,40 @@ different model at the same paths. CI runs
 `python tools/verify_entropy_tail.py --sequential` and
 `python tools/verify_entropy_tail_upper.py --cached-dependencies` in the
 `entropy-tail-upper` job ([details](VERIFY.md#entropy-tail-selection-functional)).
-No result record is published for these audits.
+A parallel integration of #33 published a full-rebuild record,
+[rare-event-full-20261031](../results/rare-event-full-20261031/README.md):
+518 rebuilt modules and 1,789 audited declarations at its own proof commit.
+Its imported proof modules are byte-identical to these, but it audited a
+different bridge; see the [results index](../results/README.md).
+
+**Stopping program, identification and genie certificates.** The same
+development of #33 formalizes the robust stopping program for every
+probability law on $(0,1/2]$, with the actual globally rare sign priors and
+the unrestricted observable experiment, in the
+[StoppingProgram](../lean/ThresholdHC/StoppingProgram/),
+[CapIdentification](../lean/ThresholdHC/CapIdentification/) and
+[Genie](../lean/ThresholdHC/Genie/) modules. Its
+[specification](../lean/ThresholdHC/StoppingProgram/Specification.lean) fixes
+three full targets. They now have a
+[lock](../tools/stopping_program_specification_freeze.json), added in this
+integration; its chronology records that the specification predates their
+proofs. Here $P_N$ is the program value at observation cap $N$ and $R$ the
+minimax risk.
+
+| Paper claim | Lean result |
+|---|---|
+| Attained four-prior stopping dual | `AttainedDualStatement`: exact value identity, primal and dual optimizers, positive value and finite optimal information ratio, for $0<\rho\le1/4$, $B>0$, $N>0$. `ProgramUpperStatement`: every feasible certificate is realized by an observable estimator, so $R\le P_N$. The finite-cap value lies between the two-prior midpoint modulus and three times it. At infinite cap the dual is attained, with factor-three midpoint and factor-eight minimax comparisons and monotone cap limits, for $0<\rho\le1/2$. |
+| Factor-sixteen risk certificate | `FiniteCertificateStatement`: $R\le P_N\le16R$ at $N=\lceil64\max(B,\rho B^2)\rceil$, through the exact truncation penalty and a universal Bernoulli-label floor. It does not use the entropy-tail lower bound. Also: exact finite cone/cutoff representation for finitely supported laws, the rarity-support optimizer, Bellman attainment of the information/work ratio, and information bounds for arbitrary seeded, order-dependent capped procedures. |
+| Genie convergence | Monotone latent-reveal brackets and exact Bellman certificates. Residual convergence assumes finite latent divergence. Optimized convergence uses variance-reference regularization before the cap limit. Risk brackets give finite termination of the factor-sixteen test, for $0<\rho\le1/2$ and $B>0$. The direct squared-risk certificate and an exact finite-atom SOCP for $G_N^2$ are included. So is the uniform-gap counterexample: infinite latent divergence, infinite genie ratios and failure of pointwise convergence. |
+| Fixed-cap identification | `fixed_cap_identification`: on $m$ distinct positive magnitudes the target is identified exactly when $N\ge2m-1$, via odd moments and count coefficients. For infinite support, every fixed cap has a positive bias floor uniform in the budget, and $P_N(B)\to\Delta_N/2$ as $B\to\infty$, where $\Delta_N$ is the largest target gap between rare priors whose capped count laws agree. |
+
+These results are **Lean-checked** with exact statements and only the
+standard axioms, subject to the CI audit in the `stopping-program` job
+([details](VERIFY.md#stopping-program-identification-and-genie-certificates)).
+The full-rebuild record cited above also covers these modules. The scopes
+and constants are those of the Lean statements, which can differ from the
+manuscript's. None of them proves the entropy-tail lower bound or the
+two-sided law.
 
 ## Rare-event power margins above two
 

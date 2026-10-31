@@ -1,0 +1,14 @@
+ThresholdHC/BlindUpper/CutoffBiasWork.lean:26:67: warning: This simp argument is unused:
+  Set.indicator_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [h, Tier2.bit]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ThresholdHC/BlindUpper/CutoffBiasWork.lean:71:16: warning: This simp argument is unused:
+  Set.indicator_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [hz]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

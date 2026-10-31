@@ -42,7 +42,7 @@ The [lower theorem](lean/ThresholdHC/Tier6/Full.lean),
 
 | Result | Verification | Read more |
 |---|---|---|
-| General-law rare-event entropy-tail characterization, stopping dual, and sufficient-cap certificates | Paper proof with adversarial AI audits and exact finite certificates. The upper half $R\le28000\,\mathcal K$ is proved in Lean; the lower half and the stopping-program claims are not | [v6 §13](paper/v6/README.md#reading-guide) · [Standalone v2](paper/rare-event/README.md) · [Scope](docs/RESULTS.md#general-law-rare-event-characterization) |
+| General-law rare-event entropy-tail characterization, stopping dual, and sufficient-cap certificates | Paper proof with adversarial AI audits and exact finite certificates. The upper half $R\le28000\,\mathcal K$ and the stopping-dual, certificate, genie and fixed-cap identification results are proved in Lean; the lower half is not | [v6 §13](paper/v6/README.md#reading-guide) · [Standalone v2](paper/rare-event/README.md) · [Scope](docs/RESULTS.md#general-law-rare-event-characterization) |
 | Rare-event power laws with $\alpha>2$ | Both minimax bounds proved in Lean in the observable model | [Scope and proof map](docs/RARE_ABOVE_TWO.md) |
 | Critical quadratic rare-event law, including unrestricted adaptive algorithms | Both minimax bounds proved in Lean | [Statement and scope](docs/RESULTS.md#critical-power-margin-full-minimax-characterization) |
 | Exact critical-law Ψ formula and counterexample to a universal matching-Ψ upper bound | Proved in Lean | [Theorems](lean/ThresholdHC/CriticalPsi/Full.lean) |
@@ -69,8 +69,8 @@ R_{\mu,\rho}(B)\asymp
 The extra scale-entropy factor refutes the proposed matching-Ψ characterization.
 The separate [general-law manuscript](paper/rare-event/README.md) now gives an
 entropy-tail replacement for known gap law and rarity, as an audited paper
-proof. Its upper half is now proved in Lean; the lower half and the
-stopping-program claims await formalization. The finite-gap manuscript below gives a closed quantile formula
+proof. Its upper half and its stopping-program, identification and genie
+results are now proved in Lean; the lower half awaits formalization. The finite-gap manuscript below gives a closed quantile formula
 for known finite laws, also as a paper proof. The existing all-count Lean entropy coefficient is 1/4096; the sharper 1/512 bound retains its large-count assumption.
 The explicit new base-cost constants apply to single-coin procedures.
 
@@ -180,7 +180,7 @@ experiments provide supporting evidence, not proofs of universal claims.
 The two-sided finite-gap closed quantile theorem is currently a paper proof;
 only its upper bound is Lean-checked.
 The next formalization targets include the lower half of the general-law
-rare-event characterization, the stopping-program arguments, the remaining paper-only
+rare-event characterization, the remaining paper-only
 regimes, and auxiliary results on envelopes, smooth densities, and observed
 outer states. Tighter constants and efficient selection algorithms remain
 research directions; the quantile-to-selection factor is now known to lie in

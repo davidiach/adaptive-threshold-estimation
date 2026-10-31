@@ -8,6 +8,8 @@ The observable 713 construction and existence characterization use
 \nolinkurl{15dbbda98a31e27502e3caff991d3ea21d096d23}.
 The rare-event theory above exponent two uses
 \nolinkurl{637fb4a79d20e30415a2cb0e495752603077c0ee}.
+The entropy--tail upper half, the closed-quantile upper bound and the
+stopping-program results use \nolinkurl{8fb16244ded0d6cebf4ba78e1ad9adae09ef293d}.
 All theorem links point to fixed source revisions.
 The preceding all-size addendum has its own linked checkpoint and audit;
 its stronger domain and explicit single-coin constants supplement this table.
@@ -103,20 +105,41 @@ proves its two-sided rate. \leanref{CriticalPsi/Full.lean}{critical\_matching\_p
 rules out every universal matching-$\Psi$ upper bound in the original
 minimax model. Its budget is $LH/\rho$, not the paper sequence $\rho^{-2}$.\\[5pt]
 Entropy--tail law &
-Theorem~\ref{thm:entropy-tail-law} and its constants
-\eqref{eq:explicit-main-constants} are paper proofs with adversarial AI
-audits of the standalone manuscript. They are not Lean-formalized; the
-critical and above-two formal results do not certify them.\\[5pt]
+\tailleanref{EntropyTail/Upper.lean}{entropy\_tail\_upper} proves the
+upper half of Theorem~\ref{thm:entropy-tail-law} against its locked
+specification, with constant $28000$ in place of $33000$, for every
+probability law on $(0,1/2]$, $0<\rho\le1/4$ and $B>0$. The construction of
+\cref{sec:entropy-tail-upper} is realized in the original observable
+experiment, without an inverse-moment or finite-support assumption.
+The lower half (\cref{sec:matching-lower}), and hence the two-sided law
+and its lower constant in \eqref{eq:explicit-main-constants}, remain paper
+proofs with adversarial AI audits of the standalone manuscript.\\[5pt]
 Closed quantile form &
-Theorem~\ref{fg:thm:direct-main} for finite laws is a paper proof; the
-deterministic comparison \cref{fg:prop:quantile-selection} is a paper proof
-checked numerically on random finite laws. The extension
-Corollary~\ref{fg:cor:general-laws} rests on
-Theorem~\ref{thm:entropy-tail-law}. None is Lean-checked.\\[5pt]
+\tailleanref{EntropyTail/Upper.lean}{selection\_quantile\_comparison}
+proves the deterministic comparison \cref{fg:prop:quantile-selection},
+$K_{\mu,\rho}\le Q\le(1+2\sqrt2)K_{\mu,\rho}$, for every probability
+law, including fractional boundary atoms.
+\tailleanref{EntropyTailExecution/UpperTheorem.lean}{closed\_quantile\_upper\_30001}
+proves the upper half of Theorem~\ref{fg:thm:direct-main}, $R\le30001\,Q(B)$,
+for every law rather than only finite ones. The lower half of that theorem
+is a paper proof, and Corollary~\ref{fg:cor:general-laws} rests on
+Theorem~\ref{thm:entropy-tail-law}.\\[5pt]
 Stopping programs and certificates &
-The four-prior dual, factor-sixteen comparison, genie limits and
-fixed-cap identification of \cref{sec:certificates} are paper proofs.
-Exact rational checks certify only the stored finite instances.\\
+For every probability law, $0<\rho\le1/4$, $B>0$ and cap $N>0$,
+\tailleanref{StoppingProgram/DualTheorem.lean}{attained\_four\_prior\_dual}
+proves the attained four-prior dual with positive value and finite optimal
+information ratio. \tailleanref{StoppingProgram/ProgramUpper.lean}{program\_upper}
+realizes every feasible certificate in the observable experiment, so
+$R\le P_N$, and \tailleanref{StoppingProgram/FiniteCertificate.lean}{finite\_certificate}
+proves $R\le P_N\le16R$ at $N=\lceil64\max(B,\rho B^2)\rceil$ without the
+entropy--tail lower bound. The infinite-cap dual and its factor-eight
+comparison are proved for $0<\rho\le1/2$. The genie modules prove the
+brackets, residual convergence under finite latent divergence, optimized
+convergence, finite termination of the factor-sixteen test, the finite-atom
+second-order cone program and the uniform-gap counterexample.
+\tailleanref{CapIdentification/Full.lean}{fixed\_cap\_identification}
+proves the threshold $N\ge2m-1$ and the positive infinite-support floor.
+Exact rational checks additionally certify the stored finite instances.\\
 \bottomrule
 \end{longtable}
 
@@ -126,6 +149,11 @@ The exact specifications and model definitions are necessary to interpret
 that fact: absence of proof holes does not show that a statement matches
 an intended experiment. The finite-gap targets were introduced with their
 proofs and are not described as specifications frozen before the proof work.
+The entropy--tail specification was frozen before the proof of its upper
+target. The upper construction's own quantile specification records a
+freezing time before its proofs. The stopping-program specification was
+committed before the proofs of its three targets, but it was hash-locked
+only afterwards.
 The repository's \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/eabf274cb42d4bff4daab6b58568ad6169e7f0a7/docs/VERIFY.md}{verification guide}
 gives reproduction commands and the source-specific audit records.
 The toolchain is Lean \texttt{v4.36.0-rc1} with Mathlib revision
@@ -219,6 +247,18 @@ the supporting proofs; the audit covers 54 modules, 322 declaration roots
 and all seven targets at
 \nolinkurl{637fb4a79d20e30415a2cb0e495752603077c0ee}.
 
+\paragraph{Realizing the entropy--tail upper algorithm.}
+The formal construction follows \cref{sec:entropy-tail-upper}:
+likelihood-bank classifiers raced on a shared prefix, a multilevel
+allocation with a finite terminal level, and marked Poisson counts realized
+by distinct population labels in the original experiment. Its multilevel
+allocation certificate is bounded by $28000(\sqrt{\rho\Gamma}+H)$ uniformly in
+the terminal level, and finite-band approximation removes the support cutoff. This gives
+$R\le28000K'$ for the development's own functional $K'$, whose band costs
+are Bochner integrals. A separate bridge proves $K'\le K_{\mu,\rho}$ for every
+measure and $K'=K_{\mu,\rho}$ for every finite law. No component label, hidden
+magnitude or sign enters the policy.
+
 \paragraph{Realizing the critical upper algorithm.}
 The formal construction uses asymmetric classifiers at dyadic flip counts,
 an alternative to the likelihood-bank construction in \cref{app:critical}.
@@ -305,10 +345,10 @@ validations of the full proof. The
 records the workflow, failed approaches, and these limits.
 
 \paragraph{Remaining mathematical work.}
-The entropy--tail law, the closed quantile form, the stopping-program
-results, the rare-event regimes below two, and auxiliary envelope,
-smoothness, and observed-state results retain their stated paper-proof
-scopes; their formalization is the next verification target. Sharp
+The lower half of the entropy--tail law, and with it the two-sided law and
+closed quantile form, the rare-event regimes below two, and auxiliary
+envelope, smoothness, and observed-state results retain their stated
+paper-proof scopes; their formalization is the next verification target. Sharp
 comparison constants, efficient selection for structured laws, rates of
 cap convergence, and sharp rare-event confidence rates at and above the
 quadratic boundary remain open. The rare-event results assume a known

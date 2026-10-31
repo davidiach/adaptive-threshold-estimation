@@ -1,0 +1,7 @@
+ThresholdHC/CriticalUpper/ScreenMoments.lean:94:26: warning: This simp argument is unused:
+  Pi.sub_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Pi.add_apply, m] at hsplit
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

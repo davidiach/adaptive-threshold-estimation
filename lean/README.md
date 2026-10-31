@@ -27,6 +27,7 @@ axioms; a successful build alone is not a substitute for that audit.
 | Scalar inequality (Lemma 3) of the 8/5 quantile-selection comparison | [QuantileComparison specification](ThresholdHC/QuantileComparison/Specification.lean), [Scalar](ThresholdHC/QuantileComparison/Scalar.lean) | `python tools/verify_quantile_comparison.py --sequential --require-complete` |
 | Entropy-tail law: upper half and selection-functional properties (the lower half and the law are unproved) | [EntropyTail specification](ThresholdHC/EntropyTail/Specification.lean), [Upper](ThresholdHC/EntropyTail/Upper.lean), [Bridge](ThresholdHC/EntropyTail/Bridge.lean), [HardSelection](ThresholdHC/EntropyTail/HardSelection.lean) | `python tools/verify_entropy_tail.py --sequential` |
 | Observable entropy-tail and closed-quantile upper theorems ($R\le28000\,\mathcal K$, $R\le30001\,Q$), quantile split and $\mathcal K\le Q\le(1+2\sqrt2)\mathcal K$ | [EntropyTailQuantile specification](ThresholdHC/EntropyTailQuantile/Specification.lean), [UpperTheorem](ThresholdHC/EntropyTailExecution/UpperTheorem.lean), [QuantileComparison](ThresholdHC/EntropyTailQuantile/QuantileComparison.lean) | `python tools/verify_entropy_tail_upper.py` |
+| Robust stopping program ($R\le P_N$, attained four-prior dual, $R\le P_N\le16R$), fixed-cap identification and genie certificates | [StoppingProgram specification](ThresholdHC/StoppingProgram/Specification.lean), [FiniteCertificate](ThresholdHC/StoppingProgram/FiniteCertificate.lean), [CapIdentification](ThresholdHC/CapIdentification/Full.lean), [Genie](ThresholdHC/Genie/) | [Sixteen audits](../docs/VERIFY.md#stopping-program-identification-and-genie-certificates), e.g. `python tools/verify_finite_risk_certificate.py` |
 
 The general-law entropy-tail law (v6 Theorem 13.2) remains a paper proof. Its
 two-sided comparison, both halves and five properties of the selection functional
@@ -35,6 +36,8 @@ additive EntropyTailQuantile development and a bridge showing that its
 selection functional equals the locked one on every finite law, and the five
 properties (hard selection, the elementary bounds, the single-atom and
 small-budget values and nonvacuity). The lower half and the law are not.
+Its stopping-program, fixed-cap identification and genie results are also
+proved, in the StoppingProgram, CapIdentification and Genie modules.
 The existing critical-law and optimizer formalizations do not certify its
 general claims.
 See its [separate status](../paper/rare-event/README.md). The two-sided closed

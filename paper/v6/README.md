@@ -41,13 +41,16 @@ Lean checks both directions of the original RMS law, the critical quadratic
 law, the exact Ψ comparison and counterexample, the variational optimizer,
 the unbiased characterization with constants 1/16 and 713, the confidence
 characterization, the magnitude-oracle lower bounds, and the rare-event
-rate above exponent two. Section 18 states each formal scope and links the
-fixed source revisions.
+rate above exponent two. It also checks the upper half of the entropy–tail
+law, the closed quantile upper bound for every law, the comparison
+$K\le Q\le(1+2\sqrt2)K$, and the stopping-program, fixed-cap
+identification and genie results of §15, each in the scope stated in §18.
+Section 18 states each formal scope and links the fixed source revisions.
 
-The entropy–tail law, the closed quantile form (including its direct proof
-for finite laws), the stopping-program results, and the rare-event regimes
-below two are **paper proofs**. They are not Lean-formalized and have not
-had external specialist review. The general-law and finite-gap proofs share
+The lower half of the entropy–tail law, and hence the two-sided law and the
+two-sided closed quantile form (including its direct proof for finite laws),
+and the rare-event regimes below two are **paper proofs**. They are not
+Lean-formalized and have not had external specialist review. The general-law and finite-gap proofs share
 their upper construction and Appendices F–H, so they are one rate
 established by two arguments, not two independent confirmations. The remark
 in §11 on agreement of the power-margin table with the closed quantile form is
@@ -89,7 +92,9 @@ The editorial changes are explicit in the generator:
 - **Superseded statements.** v5 passages saying that an arbitrary-law
   rare-event characterization remains open now point to §13. The
   verification section adds the above-two Lean result at
-  `637fb4a79d20e30415a2cb0e495752603077c0ee`.
+  `637fb4a79d20e30415a2cb0e495752603077c0ee`, and the entropy–tail upper
+  half, closed quantile upper bound and stopping-program results at
+  `8fb16244ded0d6cebf4ba78e1ad9adae09ef293d`.
 
 [test_build_v6.py](../../tools/test_build_v6.py) checks that every line of
 the finite-gap and general-law versions of the shared appendices is present
@@ -122,22 +127,30 @@ constitute a new mathematical proof or independent review.
 
 ## Build record
 
-`paper.pdf` was built from the v6 sources at `main` commit
-`b45a8eef4e8d174de756e803a8acf0cc9699d489` with pdfTeX 1.40.25
+`paper.pdf` was built from the v6 sources at commit
+`ac1fbb75c94f97c90cc0887c4695eae7aece82db` with pdfTeX 1.40.25
 (TeX Live 2023/Debian, Ubuntu 24.04 packages) and the fixed source date
 above. Its SHA-256 is
-`7ae803532ccc7946ac0d6c586a2f420dac5626066f613d3caed3963c20aa7a28`.
+`adfd7eec0af169f61a59839287604747b3503e8514b0102fba9cd3af1e4f7897`.
 
-- Two consecutive builds were byte-identical. The manuscript workflow's build
-  on that commit reported the same page count (134), file size
-  (1,103,171 bytes) and creation date; its artifact itself was not compared.
+- Two consecutive builds in separate scratch copies were byte-identical:
+  134 pages, 1,107,405 bytes. In the same environment, rebuilding `main`'s
+  previous v6 sources reproduced the previously published PDF
+  (`7ae803532ccc7946ac0d6c586a2f420dac5626066f613d3caed3963c20aa7a28`)
+  byte for byte.
 - The log has no LaTeX or package warnings and no undefined or duplicate
-  references. One line in the inherited proof of Theorem C.1 (page 72) is
-  5.2 pt too wide.
+  references. The one overfull line, 5.2 pt in the inherited proof of
+  Theorem C.1 (page 72), is unchanged.
 - All 29 fonts are embedded, and the extracted text has no unresolved `??`
   references.
-- All 134 pages were inspected as rendered contact sheets for layout. Pages
-  with new or rewritten text (25–26, 30–32, 37–38, 43, 126 and 129) and the
-  overfull line on page 72 were also read at higher resolution.
+- Compared with the previous PDF, the extracted text differs on pages 1,
+  31–33 and 38–47:
+  - the abstract and the status paragraphs of §§13–15;
+  - §§16–17, which reflow;
+  - the verification section, §18.
+
+  These pages were read as rendered pages. The seven new theorem links point
+  to files at `8fb16244ded0d6cebf4ba78e1ad9adae09ef293d` that contain the
+  named theorems.
 
 A fresh build with another engine or TeX Live release may differ in bytes.
