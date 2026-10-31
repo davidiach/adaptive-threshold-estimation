@@ -19,6 +19,18 @@ class UpperAuditTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "Missing exact target"):
                 audit.validate_sources()
 
+    def test_old_short_and_full_namespaces_are_rejected(self):
+        original = Path.read_text
+        target = audit.LEAN / "ThresholdHC/EntropyTailUpper/BankErrors.lean"
+        for reference in ("EntropyTail.band", "ThresholdHC.EntropyTail.band"):
+            with self.subTest(reference=reference):
+                def altered(path, *args, **kwargs):
+                    source = original(path, *args, **kwargs)
+                    return source + "\n#check " + reference if path == target else source
+                with patch.object(Path, "read_text", altered):
+                    with self.assertRaisesRegex(ValueError, "Unported entropy-tail namespace"):
+                        audit.validate_sources()
+
     def test_execution_proof_escape_fails_closed(self):
         original = Path.read_text
         target = audit.LEAN / "ThresholdHC/EntropyTailExecution/UpperTheorem.lean"

@@ -55,7 +55,7 @@ theorem bank_race_positive_work (σ τ ζ : Measure Gap)
     (hτ : Integrable (fun x : Gap => (x:ℝ)⁻¹) τ)
     (weights : ℕ → ℝ≥0) {ε ρ : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) (hρ : 0 < ρ)
     (j L : ℕ) (hw : 0 < (weights j:ℝ)) (hw1 : (weights j:ℝ) ≤ 1)
-    (d : Gap) (hd : d ∈ EntropyTail.band j) :
+    (d : Gap) (hd : d ∈ EntropyTailQuantile.band j) :
     (∫ ω, (raceCost (negativeBankTest weights ε) (positiveBankTest (σ+τ+ζ) weights (ρ*ε)) L ω : ℝ)
       ∂tapeMeasure (gapParameter true d)) ≤
       12*positiveAllowance ε (weights j:ℝ) ρ (threePieceEnvelope σ τ ζ d)/(d:ℝ)^2 := by

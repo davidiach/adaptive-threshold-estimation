@@ -30,7 +30,7 @@ theorem prefix_count_eq (n : ℕ) (hn : 0 < n) (ω : ℕ → Bool) :
 
 theorem positive_race_survival (μ : Measure Gap) [IsProbabilityMeasure μ]
     (weights : ℕ → ℝ≥0) (ε : ℝ) {u V U : ℝ} (hu : 0 ≤ u)
-    (j L : ℕ) (d : Gap) (hd : d ∈ EntropyTail.band j)
+    (j L : ℕ) (d : Gap) (hd : d ∈ EntropyTailQuantile.band j)
     {n : ℕ} (hn : 0 < n) (hU : U ≤ n*(d:ℝ)^2/3)
     (hLap : nullLaplace μ n ≤ V) (hV : V ≤ u*(weights j:ℝ)*exp U) :
     (tapeMeasure (gapParameter true d)).real
@@ -49,7 +49,7 @@ theorem positive_race_survival (μ : Measure Gap) [IsProbabilityMeasure μ]
       rw [prefix_count_eq n hn]
       nlinarith [mul_nonneg (Nat.cast_nonneg n : (0:ℝ) ≤ n) d.property.1.le]
     have hscore := positive_prefix_score_lower d.property.1.le
-      (r := EntropyTail.bandEdge j/4) (by positivity [EntropyTail.bandEdge_pos j])
+      (r := EntropyTailQuantile.bandEdge j/4) (by positivity [EntropyTailQuantile.bandEdge_pos j])
       (by linarith [bandEdge_le_half j]) (by linarith [hd.2]) (by linarith [hd.1]) hn (parityTape 0 ω) hm
     have hnull := (null_prefix_gaussian_ennreal μ (tapePrefix n (parityTape 0 ω)) hc).trans
       (ENNReal.ofReal_le_ofReal (mul_le_mul_of_nonneg_left hLap
@@ -69,7 +69,7 @@ theorem positive_race_survival (μ : Measure Gap) [IsProbabilityMeasure μ]
 
 theorem positive_raceRounds_work (μ : Measure Gap) [IsProbabilityMeasure μ]
     (weights : ℕ → ℝ≥0) (ε : ℝ) {u V U : ℝ} (hu : 0 ≤ u) (hU : 1 ≤ U)
-    (j L : ℕ) (d : Gap) (hd : d ∈ EntropyTail.band j)
+    (j L : ℕ) (d : Gap) (hd : d ∈ EntropyTailQuantile.band j)
     (hLap : ∀ n : ℕ, 1 ≤ n*(d:ℝ)^2 → nullLaplace μ n ≤ V)
     (hV : V ≤ u*(weights j:ℝ)*exp U) :
     (∫ ω, (raceRounds (negativeBankTest weights ε) (positiveBankTest μ weights u) L ω : ℝ)

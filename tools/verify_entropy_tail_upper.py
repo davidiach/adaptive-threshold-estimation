@@ -11,6 +11,7 @@ import argparse
 from datetime import datetime, timezone
 import json
 from pathlib import Path
+import re
 import subprocess
 
 from verify_blind_upper_components import DECLARATION, FORBIDDEN, sha, strip_comments, validate_reports
@@ -51,6 +52,8 @@ def validate_sources() -> tuple[list[Path], set[str]]:
         source = strip_comments(path.read_text(encoding="utf-8"))
         if FORBIDDEN.search(source):
             raise ValueError("Forbidden proof escape in " + str(path))
+        if re.search(r"\bEntropyTail\b", source):
+            raise ValueError("Unported entropy-tail namespace in " + str(path))
         for name in DECLARATION.findall(source):
             root = "ThresholdHC." + path.parent.name + "." + name
             if root in roots:
