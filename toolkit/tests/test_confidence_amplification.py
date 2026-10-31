@@ -3,9 +3,12 @@ from __future__ import annotations
 from fractions import Fraction as F
 import math
 import json
+from pathlib import Path
 import random
+import sys
 import unittest
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from threshold_toolkit.confidence_amplification import (
     MedianSchedule, median_block_count, run_capped_median, verify_schedule_record,
 )
