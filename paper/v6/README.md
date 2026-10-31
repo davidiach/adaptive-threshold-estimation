@@ -128,14 +128,14 @@ constitute a new mathematical proof or independent review.
 ## Build record
 
 `paper.pdf` was built from the v6 sources at commit
-`e5593ba3b550634047cb85d773ffff36ca6b168a` with pdfTeX 1.40.25
+`ac1fbb75c94f97c90cc0887c4695eae7aece82db` with pdfTeX 1.40.25
 (TeX Live 2023/Debian, Ubuntu 24.04 packages) and the fixed source date
 above. Its SHA-256 is
-`07f7b3a1b1cec9f27c6200e2ee9c122a88d753b16cb17c3deea6e0b713d44617`.
+`adfd7eec0af169f61a59839287604747b3503e8514b0102fba9cd3af1e4f7897`.
 
 - Two consecutive builds in separate scratch copies were byte-identical:
-  134 pages, 1,106,450 bytes. In the same environment, rebuilding `main`'s
-  unchanged v6 sources reproduced the previously published PDF
+  134 pages, 1,107,405 bytes. In the same environment, rebuilding `main`'s
+  previous v6 sources reproduced the previously published PDF
   (`7ae803532ccc7946ac0d6c586a2f420dac5626066f613d3caed3963c20aa7a28`)
   byte for byte.
 - The log has no LaTeX or package warnings and no undefined or duplicate
@@ -143,9 +143,14 @@ above. Its SHA-256 is
   Theorem C.1 (page 72), is unchanged.
 - All 29 fonts are embedded, and the extracted text has no unresolved `??`
   references.
-- Only pages 42–47 (§18) differ in extracted text from the previous PDF. They
-  were read as rendered pages. The seven new theorem links point to files at
-  `8fb16244ded0d6cebf4ba78e1ad9adae09ef293d` that contain the named theorems.
-- The manuscript workflow's artifact for this commit was not compared.
+- Compared with the previous PDF, the extracted text differs on pages 1,
+  31–33 and 38–47:
+  - the abstract and the status paragraphs of §§13–15;
+  - §§16–17, which reflow;
+  - the verification section, §18.
+
+  These pages were read as rendered pages. The seven new theorem links point
+  to files at `8fb16244ded0d6cebf4ba78e1ad9adae09ef293d` that contain the
+  named theorems.
 
 A fresh build with another engine or TeX Live release may differ in bytes.
