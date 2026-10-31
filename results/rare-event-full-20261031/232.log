@@ -1,0 +1,13 @@
+ThresholdHC/CriticalUpper/ScreenPopulation.lean:33:44: warning: This simp argument is unused:
+  Set.indicator_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [h, Tier2.bit]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ThresholdHC/CriticalUpper/ScreenPopulation.lean:123:12: warning: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [criticalCappedCost]
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`

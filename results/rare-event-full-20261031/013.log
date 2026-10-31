@@ -1,0 +1,23 @@
+ThresholdHC/Proofs/Tier2/TranscriptBase.lean:51:39: warning: This simp argument is unused:
+  Bool.false_eq_true
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [↓reduceIte]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ThresholdHC/Proofs/Tier2/TranscriptBase.lean:51:59: warning: This simp argument is unused:
+  ↓reduceIte
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Bool.false_eq_true]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ThresholdHC/Proofs/Tier2/TranscriptBase.lean:55:67: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+ThresholdHC/Proofs/Tier2/TranscriptBase.lean:55:63: warning: Unused tactic linter: `<;>` can be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+ThresholdHC/Proofs/Tier2/TranscriptBase.lean:55:67: warning: Unused tactic linter: `ring` is never executed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`

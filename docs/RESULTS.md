@@ -304,7 +304,11 @@ different model at the same paths. CI runs
 `python tools/verify_entropy_tail.py --sequential` and
 `python tools/verify_entropy_tail_upper.py --cached-dependencies` in the
 `entropy-tail-upper` job ([details](VERIFY.md#entropy-tail-selection-functional)).
-No result record is published for these audits.
+A parallel integration of #33 published a full-rebuild record,
+[rare-event-full-20261031](../results/rare-event-full-20261031/README.md):
+518 rebuilt modules and 1,789 audited declarations at its own proof commit.
+Its imported proof modules are byte-identical to these, but it audited a
+different bridge; see the [results index](../results/README.md).
 
 **Stopping program, identification and genie certificates.** The same
 development of #33 formalizes the robust stopping program for every
@@ -330,8 +334,9 @@ minimax risk.
 These results are **Lean-checked** with exact statements and only the
 standard axioms, subject to the CI audit in the `stopping-program` job
 ([details](VERIFY.md#stopping-program-identification-and-genie-certificates)).
-The scopes and constants are those of the Lean statements, which can differ
-from the manuscript's. None of them proves the entropy-tail lower bound or the
+The full-rebuild record cited above also covers these modules. The scopes
+and constants are those of the Lean statements, which can differ from the
+manuscript's. None of them proves the entropy-tail lower bound or the
 two-sided law.
 
 ## Rare-event power margins above two

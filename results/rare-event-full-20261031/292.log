@@ -1,0 +1,18 @@
+ThresholdHC/BlindUpper/DoubleGeometric.lean:72:34: warning: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [h] at hp
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+ThresholdHC/BlindUpper/DoubleGeometric.lean:87:34: warning: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [h] at hp
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+ThresholdHC/BlindUpper/DoubleGeometric.lean:104:34: warning: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [h] at hp
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`

@@ -1,0 +1,3 @@
+ThresholdHC/Genie/ReferenceRegularization.lean:115:4: warning: Unused tactic linter: `change _ ≤ (2 / ε) * v` does not change the goal.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`

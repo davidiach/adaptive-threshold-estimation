@@ -1,0 +1,3 @@
+ThresholdHC/Tier5/FiniteJoint.lean:100:2: warning: Unused tactic linter: `change |p u a * w a| ≤ |w a|` does not change the goal.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`

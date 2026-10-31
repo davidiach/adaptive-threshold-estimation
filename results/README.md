@@ -23,8 +23,24 @@ or CI run passes.
 | Confidence characterization | [confidence_001.json](confidence_001.json) |
 | Magnitude-oracle lower bounds | [oracle_lower_001.json](oracle_lower_001.json) |
 | Observable rare-event rate above alpha two | [rare_above_two_001.json](rare_above_two_001.json) |
+| Rare-event upper bounds, quantile comparison, stopping program, identification and genie certificates (full rebuild; see the note below) | [rare-event-full-20261031](rare-event-full-20261031/README.md) |
 | Constant search and scope | [constants_theory.json](constants_theory.json), [constants_finite_grid.json](constants_finite_grid.json), [process account](../docs/process/TRACK_B.md) |
 | Real-valued benchmark | [real_comparison.json](real_comparison.json), [real_verification.json](real_verification.json), [benchmark protocol](../benchmark/README.md) |
+
+The `rare-event-full-20261031` record was produced by a parallel integration
+of #33, on branch `feat/rare-event-verified-integration-20261030` (commit
+`fc099bb`), and is imported here unchanged. It certifies that branch's proof
+commit `2036bd1`: a rebuild of all 518 local dependency modules and an
+exact-type and transitive-axiom audit of 1,789 declarations. Of the 263
+modules imported from #33, 262 are byte-identical in `main`. The other,
+`Genie/AtomConicModel.lean`, differs only by a removed trailing space. The
+record audited that branch's own bridge to the frozen interface
+(`EntropyTailBridge/`), not `main`'s
+[`EntropyTail/Bridge.lean`](../lean/ThresholdHC/EntropyTail/Bridge.lean) and
+[`Upper.lean`](../lean/ThresholdHC/EntropyTail/Upper.lean). `main`'s bridge is
+checked by `verify_entropy_tail.py` in the `entropy-tail-upper` CI job. The
+record's reproduction tool, `tools/verify_rare_event_completion.py`, exists
+only on that branch.
 
 Rare-event manuscript evidence lives beside that publication, in its
 [build record](../paper/rare-event/v2/VERIFICATION.json) and
