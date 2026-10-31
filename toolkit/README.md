@@ -293,6 +293,64 @@ python toolkit/examples/rare_events.py
   implementation of the paper's definitions, exact enumeration and the
   calibration identities.
 
+## Research module: the rare-event selection functional
+
+`threshold_toolkit.rare_event_functional` is a separate research computation,
+not part of the calculators or the estimators. For a known finite gap law, the
+calculator in section 3 evaluates $Q$ in floating point and brackets the
+selection functional $\mathcal K$ by the $5/3$ comparison. This module instead
+encloses $\mathcal K$ itself between exact rational bounds, by bandwise-suffix
+enumeration whose cost grows exponentially with the number of occupied bands.
+It also gives the cheaper bound $\frac58Q\le\mathcal K\le Q$. It uses only
+the standard library and rejects floats as inputs. It is not imported by the
+package itself, and its `FiniteGapLaw` is a different class from the
+package-level one in section 3, so import it from
+`threshold_toolkit.rare_event_functional`. Its bounds rest on paper proofs that
+are not Lean-checked. See the
+[certified-selection package](../research/2026-10-30-certified-selection/README.md)
+for the mathematics and status; its
+[note](../research/2026-10-30-certified-selection/NOTE.md#example-use) has a
+usage example.
+
+## Research module: hard observation caps
+
+`threshold_toolkit.budget_ladders` is a research driver, not a ready-made
+estimator. It turns *your* estimator, which uses at most `b` flips on average,
+into one that never uses more than a fixed number of flips. Stage `j` runs a
+fresh, independent copy of your estimator with average budget `2^j`, stops it
+after `4·2^j` flips, and keeps the last estimate that finished. An allowance of
+`B` flips runs every stage whose cap still fits, so the total never exceeds `B`.
+
+```python
+from fractions import Fraction
+from threshold_toolkit.budget_ladders import RMSLadder
+
+def program(b, rng):              # your estimator at average budget b
+    heads = 0
+    for coin in range(b):         # yield a coin ID, receive its flip
+        heads += yield coin
+    return Fraction(heads, b)
+
+def coin_factory(rng):            # simulated coin: gap 1/2, so flips equal the sign
+    sign = int(rng.random() < 0.3)
+    return lambda: sign
+
+state = RMSLadder(program, coin_factory, seed=1).advance_to(1000)
+print(state.estimate, state.flips, state.reserved_budget)   # 19/64 127 508
+```
+
+The paper proof behind it says the capped root-mean-square error is at most
+$\sqrt{32}$ times the bound your estimator has at the full allowance as an
+average budget. That needs conditions the driver cannot check: your estimator
+really meets its average-budget and error bounds, its error bound shrinks no
+faster than $1/\sqrt{\text{budget}}$, and separate stages are independent. The driver supplies separate coin namespaces and random
+streams, but trusts your callbacks. It caps flips, not CPU time. It leaves any
+allowance that does not fit the next stage unused. The guarantee holds at a
+fixed allowance, not at an allowance chosen after looking at the results. The
+result is a paper proof, not Lean-checked; see the
+[hard-budget RMS package](../research/2026-10-30-hard-budget-rms/README.md).
+The module is not imported by the package itself.
+
 ## Tests
 
 ```sh

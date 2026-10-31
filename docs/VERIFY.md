@@ -16,6 +16,8 @@ the [evidence index](../results/README.md) explains published checkpoints.
 | Critical review packet | `python tools/build_critical_review.py --check` | Compares generated source to the locked proof and editable brief. [Compile and review](../paper/critical-review/README.md) changed typeset content separately. |
 | General-law rare-event manuscript (v2) | `python tools/verify_rare_event_manuscript.py` | Hashes and finite checks in a temporary copy; preserves the payload. Does not formally verify the general theorems. |
 | Finite-gap rare-event manuscript | `cd paper/finite-gap-rare-events && sha256sum -c SHA256SUMS`; for the [revision 2](../paper/finite-gap-rare-events/revision-2/README.md) sources, the same command in `revision-2/`; [build](../paper/finite-gap-rare-events/README.md) in a disposable copy | Checks the source and PDF identity of revision 1 and of revision 2. The closed quantile theorem is a paper proof; no Lean or numerical certificate covers it. |
+| Certified-selection research package | The [package replay commands](../research/2026-10-30-certified-selection/README.md#replay) | Unit tests, exact polynomial identities and exact rational certificates, written to `.runtime/certified-selection/` and compared byte for byte with the tracked evidence. They check finite computations, not the paper proofs; `--write-evidence` rewrites the tracked files. |
+| Hard-budget RMS research package | `python -m unittest discover -s toolkit/tests -p 'test_budget_ladders.py' -v`; `python research/2026-10-30-hard-budget-rms/verify.py` | Driver unit tests and exact rational recurrence, schedule and timeout-counterexample audits, written to `.runtime/hard-budget-rms/validation.json`. There are no tracked evidence records to compare with. They check finite computations, not the [paper proof](../research/2026-10-30-hard-budget-rms/NOTE.md). |
 | Imported inputs and research packages | `python tools/verify_inputs.py`; `python tools/verify_research.py`; `python tools/verify_population_research.py` | Input identities and maintained research replay. Research diagnostics use temporary output and `.runtime/`; original records remain intact. |
 | Main RMS law | `python tools/verify_tier6.py --sequential --require-complete`; `python tools/verify_blind_upper_components.py --sequential` | Exact formal audits of both directions. Tier 6 writes tracked `results/`; use a disposable checkout. The upper audit writes `.runtime/`. |
 | Another Lean result | [Theorem-to-audit map](../lean/README.md#main-theorem-entry-points), [baseline and tier sequence](#lean-kernel-checks) | Run the affected result's exact-target/axiom audit, including affected downstream results when shared dependencies change. Check locks first. |
@@ -223,9 +225,102 @@ specification and its project dependencies. It fixes eight full target types:
 
 The audit checks every registered target for its exact type and transitive
 axioms. It rejects any declaration that carries an unregistered target's name.
-Five deterministic targets are proved. The law and its two halves are not, so the
-status reports `entropy_tail_law_verified: false`, and `--require-complete`
-fails. No result record is published for this partial audit.
+Six targets are proved: the upper half and the five deterministic targets. The
+law and its lower half are not, so the status reports
+`entropy_tail_law_verified: false`, and `--require-complete` fails. No result
+record is published for this partial audit.
+
+The upper half imports the observable upper-bound development of
+[#33](https://github.com/davidiach/adaptive-threshold-estimation/pull/33), about
+240 modules, so this audit takes much longer than the other theorem audits. CI
+runs it in the separate `entropy-tail-upper` job, followed by that
+development's own audit:
+
+```sh
+python tools/verify_entropy_tail_upper.py --cached-dependencies
+python -m unittest discover -s tools -p 'test_entropy_tail_upper.py' -v
+python -m unittest discover -s tools -p 'test_entropy_tail_components.py' -v
+```
+
+`verify_entropy_tail_upper.py` checks the four targets of the
+[quantile-model specification](../lean/ThresholdHC/EntropyTailQuantile/Specification.lean):
+the quantile split, $\mathcal K\le Q\le(1+2\sqrt2)\mathcal K$, and the two
+upper bounds with constant 33000. It also checks the explicit theorems
+`entropy_tail_upper_28000` and `closed_quantile_upper_30001`, and the transitive
+axioms of every declaration in the five upper-bound module groups. Without
+`--cached-dependencies` it recompiles every local dependency sequentially, which
+takes much longer. With the flag it recompiles only the sampling and execution
+groups and reuses objects built earlier, so run it after the first audit.
+`verify_entropy_tail_components.py` audits the quantile model alone, and
+`verify_entropy_tail_assembly.py` an intermediate stage. Their
+[lock](../tools/entropy_tail_quantile_specification_freeze.json) records the
+rename of #33's namespace and the superseded lock's hashes. All three write
+timestamped evidence under `.runtime/`.
+
+## Stopping program, identification and genie certificates
+
+The StoppingProgram, CapIdentification and Genie modules come from
+[#33](https://github.com/davidiach/adaptive-threshold-estimation/pull/33). Each
+of the sixteen audits checks its exact statements, rejects proof escapes and
+reports the transitive axioms of every declaration it covers:
+
+| Audit | Scope |
+|---|---|
+| `verify_stopping_components.py` | Four-prior value identity, positive finite-ratio dual attainment, full fixed-cap identification |
+| `verify_stopping_flow_mixture.py` | Count-flow conservation, Bellman potential bounds, finite decision-table mixtures, bounded observable calls |
+| `verify_finite_stopping_program.py` | Finite cone, cutoff and excess representation for finitely supported laws |
+| `verify_rarity_support.py` | Rarity-support minimum and fractional cutoff optimizer |
+| `verify_stopping_dual.py` | `AttainedDualStatement` |
+| `verify_information_bellman.py` | Bellman attainment of the information/work ratio and its unique price zero |
+| `verify_reference_absorption.py` | Program value between the midpoint modulus and three times it |
+| `verify_ordered_information.py` | Count-flow aggregation of seeded, order-dependent capped procedures; Hellinger bounds |
+| `verify_adaptive_information.py` | Affinity testing and transfer to the adaptive population experiment |
+| `verify_stopping_program_upper.py` | `ProgramUpperStatement`: observable realization of certificates, $R\le P_N$ |
+| `verify_finite_risk_certificate.py` | `FiniteCertificateStatement`: $R\le P_N\le16R$ at the prescribed cap |
+| `verify_infinite_cap_dual.py` | Infinite-cap attained dual, factor-three and factor-eight comparisons, cap limits |
+| `verify_genie_brackets.py` | Latent-reveal brackets and exact Bellman certificates |
+| `verify_genie_convergence.py` | Residual and optimized genie convergence, risk brackets, finite termination |
+| `verify_genie_conic.py` | Direct squared-risk certificate and the finite-atom SOCP |
+| `verify_genie_counterexample.py` | The uniform-gap infinite-divergence counterexample |
+
+Each has a guard-test file of the same name with a `test_` prefix. By default
+an audit recompiles every local dependency sequentially; `--cached-dependencies`
+recompiles only its own new modules and uses objects built earlier.
+`verify_stopping_components.py` also accepts `--audit-only`. CI's
+`stopping-program` job builds the eight top-level modules with `lake` and then
+runs all sixteen audits with `--cached-dependencies`:
+
+```sh
+cd lean && lake build ThresholdHC.StoppingProgram.BellmanTheorem ThresholdHC.StoppingProgram.FiniteCertificate ThresholdHC.CapIdentification.FiniteSeparation ThresholdHC.CapIdentification.Full ThresholdHC.Genie.AtomConicRealization ThresholdHC.Genie.DirectRisk ThresholdHC.Genie.InfiniteDivergenceExample ThresholdHC.Genie.OptimizedConvergence && cd ..
+python tools/verify_finite_risk_certificate.py --cached-dependencies
+python -m unittest discover -s tools -p 'test_stopping_program_lock.py' -v
+```
+
+The [specification lock](../tools/stopping_program_specification_freeze.json)
+hashes `StoppingProgram/Specification.lean` and its 35 project dependencies.
+The three audits of its targets check it first. Each audit writes
+timestamped evidence under `.runtime/`, and none of them certifies the
+entropy-tail lower bound.
+
+## Quantile-selection comparison: scalar Lemma 3
+
+The scalar inequality of Lemma 3 in the
+[certified-selection package](../research/2026-10-30-certified-selection/README.md)
+has a locked specification and a complete audit:
+
+```sh
+python tools/verify_quantile_comparison.py --sequential --require-complete
+python -m unittest discover -s tools -p 'test_quantile_comparison.py' -v
+```
+
+The [freeze record](../tools/quantile_comparison_specification_freeze.json) hashes
+the specification, which imports only Mathlib, and fixes one full target type:
+for real $T,v,c\ge0$,
+$T+\sqrt{v^2+2Tc+2v\sqrt{Tc}}\le\frac85(\sqrt{T^2+v^2}+c)$. The audit checks
+its exact type and transitive axioms and writes its status under
+`.runtime/quantile-comparison/`. The comparison
+$\mathcal K\le Q\le\frac85\mathcal K$, Lemmas 1–2 and the suffix theorem are not
+targets.
 
 ## Magnitude-oracle lower bounds
 

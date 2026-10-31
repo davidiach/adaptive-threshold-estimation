@@ -215,8 +215,9 @@ The verifier writes only `.runtime/hard-budget-rms/`. Its 56 recurrence
 instances, 26,232 independent paths, 224 work-premise checks, 112 risk bounds
 and 10,301 schedules are finite evidence, not universal proofs. Local
 integration tests used an additive checkout because a full network clone
-was unavailable. Full upstream tests and CI must be checked at the uploaded
-commit. No new Lean kernel build was run.
+was unavailable. GitHub CI later passed on the extraction commit `e552729`;
+the package [README](README.md#verification-status) records the jobs and where
+the checks now run. No new Lean kernel build was run.
 
 First lock the full observable controller statement. Then prove cap and
 persistent-label semantics, independent stage execution, the risk recursion,

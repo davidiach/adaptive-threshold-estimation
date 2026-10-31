@@ -9,9 +9,9 @@ review, and CI history.
 
 | Area | Next work | Starting point |
 |---|---|---|
-| General-law rare-event results | Prove the locked entropy-tail law and its upper and lower halves (the deterministic selection-functional targets are Lean-checked), then formalize the stopping-program arguments. The published general claims remain paper proofs. | [Manuscript and audit](../paper/rare-event/README.md), [claim scope](RESULTS.md#general-law-rare-event-characterization) |
-| Other paper-only results | Formalize the finite-gap closed quantile law, remaining rare-event regimes, and auxiliary envelope, smooth-density, and observed-state results. | [Finite-gap manuscript](../paper/finite-gap-rare-events/README.md), [results guide](RESULTS.md), [research index](../research/README.md) |
-| Open research | Sharp rare-event confidence rates at and above the quadratic boundary; tighter constants and efficient selection algorithms. | [Current claim boundaries](RESULTS.md), [main overview](../README.md#scope-and-review) |
+| General-law rare-event results | Prove the lower half of the locked entropy-tail law, which then completes the law; the upper half and the deterministic selection-functional targets are Lean-checked. The stopping-program, cap-identification and genie results are Lean-checked as well. The published lower half remains a paper proof. | [Manuscript and audit](../paper/rare-event/README.md), [claim scope](RESULTS.md#general-law-rare-event-characterization), [audits](VERIFY.md#entropy-tail-selection-functional) |
+| Other paper-only results | Formalize the finite-gap closed quantile law, remaining rare-event regimes, and auxiliary envelope, smooth-density, and observed-state results. For the 8/5 comparison, scalar Lemma 3 is Lean-checked; Lemmas 1–2, the comparison itself and the bandwise-suffix theorem remain. For the hard-cap fallback reduction, first lock the full observable controller statement, then prove cap and persistent-label semantics, independent stage execution, the risk recursion and the ordinary and critical instantiations; a scalar recursion lemma alone would not establish it. | [Finite-gap manuscript](../paper/finite-gap-rare-events/README.md), [certified-selection package](../research/2026-10-30-certified-selection/README.md#limitations), [hard-cap scope](RESULTS.md#hard-observation-caps-for-the-rms-rates), [results guide](RESULTS.md), [research index](../research/README.md) |
+| Open research | Sharp rare-event confidence rates at and above the quadratic boundary; tighter constants, including the best quantile-to-selection factor in (1.4604, 8/5]; efficient exact selection when many dyadic bands are occupied. | [Current claim boundaries](RESULTS.md), [main overview](../README.md#scope-and-review), [certified-selection package](../research/2026-10-30-certified-selection/README.md) |
 | Maintenance | Parameterize repeated entropy/base-cost and prefix-information/event-transfer arguments; extract shared audit code; simplify redundant premises and unused facts. These are non-blocking follow-ups. | [Recorded refactoring scope](#pr-10-review-and-maintenance-follow-up), [Lean map](../lean/README.md), [tool index](../tools/README.md) |
 
 The [consolidated v6 manuscript](../paper/v6/README.md) presents all of
@@ -31,9 +31,12 @@ $O(n\log n)$ preprocessing and $O(\log n)$ evaluation or target-value
 inversion, without subset search. The accompanying
 [deterministic paper proof](RARE_EVENT_COMPUTATION.md) strengthens the
 comparison to $\mathcal K\le Q\le(5/3)\mathcal K$ for all positive-gap laws.
-Neither this comparison nor the Python calculation is Lean-checked. Exact
-selection optimization, the executable general-law rare-event estimator and
-the statistical formalization remain separate work.
+Neither this comparison nor the Python calculation is Lean-checked. The
+[certified-selection package](../research/2026-10-30-certified-selection/README.md)
+sharpens the factor to $8/5$ and encloses the finite-law $\mathcal K$ exactly by
+bandwise-suffix enumeration, which is exponential in the number of occupied
+bands. Efficient exact selection, the executable general-law rare-event
+estimator and the statistical formalization remain separate work.
 
 For a new contribution, follow [CONTRIBUTING.md](../CONTRIBUTING.md) and
 [AGENTS.md](../AGENTS.md). The project owner does not plan human specialist

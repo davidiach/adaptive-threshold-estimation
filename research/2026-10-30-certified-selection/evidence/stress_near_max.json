@@ -1,0 +1,174 @@
+{
+  "exhaustive": {
+    "schema": "ate-rare-functional-v2",
+    "scope": "deterministic_entropy_tail_functional_not_statistical_risk",
+    "method": "band_suffix_exhaustive",
+    "instance": {
+      "law": [
+        {
+          "gap": "107641/500000000",
+          "mass": "413943/1000000"
+        },
+        {
+          "gap": "31603/100000000",
+          "mass": "14171/1000000"
+        },
+        {
+          "gap": "1250871/1000000000",
+          "mass": "23739/250000"
+        },
+        {
+          "gap": "22545179/1000000000",
+          "mass": "10939/500000"
+        },
+        {
+          "gap": "12478343/500000000",
+          "mass": "450979/1000000"
+        },
+        {
+          "gap": "164302533/500000000",
+          "mass": "4073/1000000"
+        }
+      ],
+      "rho": "2113/10000",
+      "budget": "10000000000000000000000/23191330369"
+    },
+    "instance_sha256": "f0b246360e745e3adbc34b6825dbb4622cd034e36a921a54812e0b3b3d7faaa9",
+    "precision": {
+      "bits": 64,
+      "log_terms": 24
+    },
+    "K_interval": {
+      "lower": "10438739506659605116670407/4722366482869645213696000000",
+      "upper": "5219369753329802558592289/2361183241434822606848000000"
+    },
+    "details": {
+      "states_evaluated": 48,
+      "original_subset_count": "64",
+      "all_states_evaluated": true,
+      "best_hard_witness": [
+        "1",
+        "0",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "witness_claim": "feasible upper bound, not unique optimizer"
+    }
+  },
+  "quantile": {
+    "schema": "ate-rare-functional-v2",
+    "scope": "deterministic_entropy_tail_functional_not_statistical_risk",
+    "method": "quantile",
+    "instance": {
+      "law": [
+        {
+          "gap": "107641/500000000",
+          "mass": "413943/1000000"
+        },
+        {
+          "gap": "31603/100000000",
+          "mass": "14171/1000000"
+        },
+        {
+          "gap": "1250871/1000000000",
+          "mass": "23739/250000"
+        },
+        {
+          "gap": "22545179/1000000000",
+          "mass": "10939/500000"
+        },
+        {
+          "gap": "12478343/500000000",
+          "mass": "450979/1000000"
+        },
+        {
+          "gap": "164302533/500000000",
+          "mass": "4073/1000000"
+        }
+      ],
+      "rho": "2113/10000",
+      "budget": "10000000000000000000000/23191330369"
+    },
+    "instance_sha256": "f0b246360e745e3adbc34b6825dbb4622cd034e36a921a54812e0b3b3d7faaa9",
+    "precision": {
+      "bits": 64,
+      "log_terms": 24
+    },
+    "K_interval": {
+      "lower": "37091977448588024706893/18889465931478580854784000",
+      "upper": "2644400224491279753/1180591620717411303424"
+    },
+    "details": {
+      "Q_interval": {
+        "lower": "37091977448588024706893/11805916207174113034240000",
+        "upper": "29673581958870419766437/9444732965739290427392000"
+      },
+      "tail_interval": {
+        "lower": "8823163147236614608759/5902958103587056517120000",
+        "upper": "14117061035578583374437/9444732965739290427392000"
+      },
+      "quantile_gap": "107641/500000000",
+      "core_fractions": [
+        "202643/413943",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "comparison_constant": "8/5"
+    }
+  },
+  "global_threshold": {
+    "schema": "ate-rare-functional-v2",
+    "scope": "deterministic_entropy_tail_functional_not_statistical_risk",
+    "method": "global_threshold_upper",
+    "instance": {
+      "law": [
+        {
+          "gap": "107641/500000000",
+          "mass": "413943/1000000"
+        },
+        {
+          "gap": "31603/100000000",
+          "mass": "14171/1000000"
+        },
+        {
+          "gap": "1250871/1000000000",
+          "mass": "23739/250000"
+        },
+        {
+          "gap": "22545179/1000000000",
+          "mass": "10939/500000"
+        },
+        {
+          "gap": "12478343/500000000",
+          "mass": "450979/1000000"
+        },
+        {
+          "gap": "164302533/500000000",
+          "mass": "4073/1000000"
+        }
+      ],
+      "rho": "2113/10000",
+      "budget": "10000000000000000000000/23191330369"
+    },
+    "instance_sha256": "f0b246360e745e3adbc34b6825dbb4622cd034e36a921a54812e0b3b3d7faaa9",
+    "precision": {
+      "bits": 64,
+      "log_terms": 24
+    },
+    "K_interval": {
+      "lower": "37091977448588024706893/18889465931478580854784000",
+      "upper": "2644400224491279753/1180591620717411303424"
+    },
+    "details": {
+      "states_evaluated": 7,
+      "best_selected_count": 6,
+      "globally_exact": false,
+      "comparison_constant": "8/5"
+    }
+  }
+}

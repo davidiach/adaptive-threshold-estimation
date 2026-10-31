@@ -11,8 +11,9 @@ which shared proofs appear once. The three source manuscripts are preserved
 unchanged. The v5 source record preserves the original proofs and makes the
 Psi correction explicit.
 
-The general-law and finite-gap results are paper proofs, not Lean-checked;
-their scopes are recorded below.
+The general-law and finite-gap results are paper proofs, except that their
+upper bounds and the $1+2\sqrt2$ quantile comparison are Lean-checked; their
+scopes are recorded below.
 
 This guide gives the exact Lean specifications and remaining paper-proof
 boundaries. Historical source pointers below refer to the unchanged
@@ -226,9 +227,10 @@ $$10^{-17}\mathcal K_{\mu,\rho}(B)\le R_{\mu,\rho}(B)
 \le33000\mathcal K_{\mu,\rho}(B).$$
 
 No finite inverse moment, density, or regularity assumption is imposed.
-The following scopes are **paper-level claims**. Only the hard-selection
-reduction and the elementary properties of $\mathcal K$ listed below are
-Lean-checked:
+The following scopes are **paper-level claims**. Lean versions now cover the
+upper half of the first row and the other four rows, as described below, as
+well as the hard-selection reduction and the elementary properties of
+$\mathcal K$:
 
 | Claim | Scope and qualification |
 |---|---|
@@ -241,8 +243,9 @@ Lean-checked:
 The [audit index](../paper/rare-event/audit/README.md) distinguishes the original
 source audits, final referee assessment, and revision audit, including corrected
 interpretations of historical findings. V2 resolves the revision audit's two
-minor editorial defects. The new general results have no complete Lean
-formalization and no external specialist review. The exact stored certificates cover 33 lower
+minor editorial defects. Apart from the upper half and the stopping-program
+results below, the new general results have no Lean formalization, and none
+has external specialist review. The exact stored certificates cover 33 lower
 bounds, 9 upper policies, 9 stopping decisions, and two perfect-label examples;
 they are not proofs of the continuum or compactness claims. The existing Lean
 variational-optimizer and critical-law results above and below retain their
@@ -257,8 +260,9 @@ above-two package:
 - its upper and lower halves;
 - five properties of $\mathcal K$.
 
-The five properties are **Lean-checked** with exact types and only the standard
-axioms:
+Six targets are **Lean-checked** with exact types and only the standard axioms.
+The first is the upper half $R\le C\mathcal K$, with $C=28000$ (described
+below). The other five are properties of $\mathcal K$:
 
 - restricting to hard measurable assignments $\sigma=\mu|_S$ leaves the infimum
   over submeasures unchanged (v6 Lemma 13.1; no minimizer is claimed);
@@ -267,12 +271,73 @@ axioms:
 - $\mathcal K=\rho$ when $B\le1$;
 - $\mathcal K$ is positive and finite, and below $\rho$ for some law.
 
-The law and both halves are **not** Lean-proved. They remain paper proofs, and
-the audit reports the law as unverified until all eight targets are registered.
-The local audit of these proofs passed at `49877f3`, and CI reruns
-`python tools/verify_entropy_tail.py --sequential` on every change
-([details](VERIFY.md#entropy-tail-selection-functional)). No result record is
-published for this partial audit.
+The lower half and the law are **not** Lean-proved. They remain paper proofs,
+and the audit reports the law as unverified until all eight targets are
+registered. The local audit of the five properties passed at `49877f3`.
+
+**Upper half.** The upper bound comes from the additive formalization of
+[#33](https://github.com/davidiach/adaptive-threshold-estimation/pull/33), in
+the [EntropyTailQuantile](../lean/ThresholdHC/EntropyTailQuantile/),
+EntropyTailUpper, EntropyTailAssembly, EntropyTailSampling and
+[EntropyTailExecution](../lean/ThresholdHC/EntropyTailExecution/UpperTheorem.lean)
+modules. It builds an observable estimator in the unchanged experiment and
+proves $R\le28000\,\mathcal K'$ for every probability law on $(0,1/2]$,
+$0<\rho\le1/4$ and $B>0$, with no inverse-moment or finite-support assumption.
+Here $\mathcal K'$ is that development's own definition of the selection
+functional, with Bochner band costs. The
+[bridge](../lean/ThresholdHC/EntropyTail/Bridge.lean) proves
+$\mathcal K'\le\mathcal K$ always and $\mathcal K'=\mathcal K$ for every
+finite law, so [Upper.lean](../lean/ThresholdHC/EntropyTail/Upper.lean)
+proves the locked upper target. The same development also proves the following,
+for its closed quantile functional $Q$ with a fractional boundary atom:
+
+- the quantile split;
+- $\mathcal K\le Q\le(1+2\sqrt2)\mathcal K$, restated for the locked
+  $\mathcal K$ as `selection_quantile_comparison`;
+- $R\le30001\,Q$ for every law.
+
+Its own [locked specification](../lean/ThresholdHC/EntropyTailQuantile/Specification.lean)
+states the two upper bounds with the coarser constant 33000. Its
+[lock](../tools/entropy_tail_quantile_specification_freeze.json) records the
+mechanical rename from #33's namespace, needed because `main` had locked a
+different model at the same paths. CI runs
+`python tools/verify_entropy_tail.py --sequential` and
+`python tools/verify_entropy_tail_upper.py --cached-dependencies` in the
+`entropy-tail-upper` job ([details](VERIFY.md#entropy-tail-selection-functional)).
+A parallel integration of #33 published a full-rebuild record,
+[rare-event-full-20261031](../results/rare-event-full-20261031/README.md):
+518 rebuilt modules and 1,789 audited declarations at its own proof commit.
+Its imported proof modules are byte-identical to these, but it audited a
+different bridge; see the [results index](../results/README.md).
+
+**Stopping program, identification and genie certificates.** The same
+development of #33 formalizes the robust stopping program for every
+probability law on $(0,1/2]$, with the actual globally rare sign priors and
+the unrestricted observable experiment, in the
+[StoppingProgram](../lean/ThresholdHC/StoppingProgram/),
+[CapIdentification](../lean/ThresholdHC/CapIdentification/) and
+[Genie](../lean/ThresholdHC/Genie/) modules. Its
+[specification](../lean/ThresholdHC/StoppingProgram/Specification.lean) fixes
+three full targets. They now have a
+[lock](../tools/stopping_program_specification_freeze.json), added in this
+integration; its chronology records that the specification predates their
+proofs. Here $P_N$ is the program value at observation cap $N$ and $R$ the
+minimax risk.
+
+| Paper claim | Lean result |
+|---|---|
+| Attained four-prior stopping dual | `AttainedDualStatement`: exact value identity, primal and dual optimizers, positive value and finite optimal information ratio, for $0<\rho\le1/4$, $B>0$, $N>0$. `ProgramUpperStatement`: every feasible certificate is realized by an observable estimator, so $R\le P_N$. The finite-cap value lies between the two-prior midpoint modulus and three times it. At infinite cap the dual is attained, with factor-three midpoint and factor-eight minimax comparisons and monotone cap limits, for $0<\rho\le1/2$. |
+| Factor-sixteen risk certificate | `FiniteCertificateStatement`: $R\le P_N\le16R$ at $N=\lceil64\max(B,\rho B^2)\rceil$, through the exact truncation penalty and a universal Bernoulli-label floor. It does not use the entropy-tail lower bound. Also: exact finite cone/cutoff representation for finitely supported laws, the rarity-support optimizer, Bellman attainment of the information/work ratio, and information bounds for arbitrary seeded, order-dependent capped procedures. |
+| Genie convergence | Monotone latent-reveal brackets and exact Bellman certificates. Residual convergence assumes finite latent divergence. Optimized convergence uses variance-reference regularization before the cap limit. Risk brackets give finite termination of the factor-sixteen test, for $0<\rho\le1/2$ and $B>0$. The direct squared-risk certificate and an exact finite-atom SOCP for $G_N^2$ are included. So is the uniform-gap counterexample: infinite latent divergence, infinite genie ratios and failure of pointwise convergence. |
+| Fixed-cap identification | `fixed_cap_identification`: on $m$ distinct positive magnitudes the target is identified exactly when $N\ge2m-1$, via odd moments and count coefficients. For infinite support, every fixed cap has a positive bias floor uniform in the budget, and $P_N(B)\to\Delta_N/2$ as $B\to\infty$, where $\Delta_N$ is the largest target gap between rare priors whose capped count laws agree. |
+
+These results are **Lean-checked** with exact statements and only the
+standard axioms, subject to the CI audit in the `stopping-program` job
+([details](VERIFY.md#stopping-program-identification-and-genie-certificates)).
+The full-rebuild record cited above also covers these modules. The scopes
+and constants are those of the Lean statements, which can differ from the
+manuscript's. None of them proves the entropy-tail lower bound or the
+two-sided law.
 
 ## Rare-event power margins above two
 
@@ -302,18 +367,23 @@ their independent seed, coin identities and purchased flips. Both bounds
 use uniform expected physical-observation budgets and allow adaptive
 creation, revisiting and interleaving.
 
-Status: **paper proof, not Lean-checked or externally specialist-reviewed**.
+Status: **the two-sided theorem is a paper proof**, not externally
+specialist-reviewed. Its upper bound is Lean-checked in a stronger form:
+$R\le30001\,Q$ for every probability law on $(0,1/2]$, not only finite ones,
+with the same $Q$ ([upper half](#general-law-rare-event-characterization)).
+The lower bound $10^{-20}Q\le R$ is not Lean-checked.
 The precursor received fresh-context AI review; the
 [provenance note](../paper/finite-gap-rare-events/PROVENANCE.md) records its
-limits. Existing Lean entropy and critical-law results do not certify this
-theorem. The manuscript does not establish an unknown-law guarantee, a
+limits. The earlier Lean finite-gap entropy and critical-law results do not
+certify this theorem. The manuscript does not establish an unknown-law guarantee, a
 general infinite-support extension, a deterministic budget or a
 high-confidence result.
 
 [Revision 2](../paper/finite-gap-rare-events/revision-2/README.md) of the
 manuscript ([PDF](../paper/finite-gap-rare-events/revision-2/paper.pdf)) adds a deterministic comparison with the
 [general-law selection functional](#general-law-rare-event-characterization):
-$\mathcal K\le Q\le(1+2\sqrt2)\mathcal K$ for every law on $(0,1/2]$. So
+$\mathcal K\le Q\le(1+2\sqrt2)\mathcal K$ for every law on $(0,1/2]$. This
+comparison is now Lean-checked ([upper half](#general-law-rare-event-characterization)). So
 Theorem 1.1 is the finite-law case of the general-law characterization, with a
 closed functional, explicit constants and a self-contained proof that does not
 cite the general-law theorem. The two proofs share the observable upper
@@ -342,6 +412,31 @@ preprocessing and $O(\log n)$ queries. It returns the comparison
 $\mathcal K\in[\max\{T_h,3Q/5\},Q]$, evaluated in floating point, alongside the tail and
 entropy terms. This implementation is not Lean-checked or interval certified;
 its target-value inverse is not an achieved-error or estimator-budget guarantee.
+
+The 30 October [certified-selection package](../research/2026-10-30-certified-selection/README.md)
+sharpens the comparison further, to $\mathcal K\le Q\le\frac85\mathcal K$ for
+every law on $(0,1/2]$. That is below both $5/3$ and the computation note's
+algebraic coefficient $\lambda_*\approx1.6435$. Besides the same
+scale-separated estimate, it replaces the square-root triangle inequality by
+the entropy interaction bound
+$\mathcal G(a+b)\le\mathcal G(a)+\mathcal G(b)+\sqrt{2\mathcal G(a)\mathcal G(b)}$.
+The best factor lies in $(1.4604,8/5]$, by exact rational certificates for a
+six-atom law ($Q/\mathcal K>1.42132$) and an eight-atom law
+($Q/\mathcal K>1.4604$, from the integration review). For finite laws, the
+package also proves that some optimal hard selection is an upper-gap suffix in
+every dyadic band. It proves $|\mathcal K_\mu-\mathcal K_{\tilde\mu}|\le d_{\rm TV}(\mu,\tilde\mu)$
+and a band-preserving rounding bound, and adds an exact-rational evaluator of
+$\mathcal K$ to the toolkit. Composed with the results above, the comparison gives
+$R\le30001\cdot\frac85\mathcal K$ for finite laws and, conditionally on the
+general-law theorem, $\frac58\cdot10^{-17}Q\le R$ for every law. The
+floating-point calculator above still reports the $5/3$ interval. Status:
+**paper proofs**, except that the comparison's scalar Lemma 3 is **Lean-checked**
+with its exact type and only the standard axioms
+([audit](VERIFY.md#quantile-selection-comparison-scalar-lemma-3)). The $8/5$
+comparison itself is not Lean-checked, though the weaker factor $1+2\sqrt2$ is
+([upper half](#general-law-rare-event-characterization)). The certificates rely
+on unverified Python. The
+manuscripts above still state $1+2\sqrt2$ and are unchanged.
 
 ## Critical power margin: full minimax characterization
 
@@ -545,6 +640,48 @@ risk exceeds `C*Psi(rho,1/sqrt(B))`. The
 full targets. Its witness budget is `L*(1+log L)/rho`; the paper's specific
 `rho^(-2)` sequence remains a paper derivation. This proves the conjecture
 false for the fixed quadratic law and gives no arbitrary-law replacement.
+
+## Hard observation caps for the RMS rates
+
+The results above charge a uniform *expected* budget, so a single run may use
+many more observations than $B$. The
+[hard-budget RMS package](../research/2026-10-30-hard-budget-rms/README.md)
+gives a **paper proof** that the RMS rates survive a pathwise cap at a constant
+cost. Write $R^{\rm hard}(B)$ for the minimax RMS risk over algorithms that make
+at most $\lfloor B\rfloor$ observations on every path. Such algorithms also meet
+the expected budget, so $R(B)\le R^{\rm hard}(B)$ and every expected-budget
+lower bound carries over unchanged.
+
+**Reduction.** Let $\theta\in[0,M]$ with $0<M\le1$. Suppose that for every
+dyadic $b\ge1$ an observable procedure has $\mathbb E T_b\le b$ and RMS at most
+$Cf(b)$ uniformly over the parameter class, where $C\ge1/2$, $f(1/2)=M$ and
+$f(b)\le\sqrt{B/b}\,f(B)$ for $B\ge b\ge1/2$. Stage $j$ runs a fresh,
+independent copy at $b=2^j$, stops it after $4\cdot2^j$ observations, and keeps
+the last completed estimate, clipped to $[0,M]$. At $B\ge4$ the controller runs
+every stage whose cap still fits in $\lfloor B\rfloor$ and has RMS at most
+$\sqrt{32}\,Cf(B)$. At $B<4$ it returns $M/2$ without observing. Markov's
+inequality bounds each timeout probability by $1/4$. No independence between a
+run's error and its runtime is assumed; independence *between* complete runs is
+essential.
+
+| Application | Hard-cap conclusion (paper proof) | Inherited premises |
+|---|---|---|
+| Distribution-blind RMS law | $\frac1{64}\omega_\mu(B^{-1/2})\le R^{\rm hard}_\mu(B)\le3000\,\omega_\mu(B^{-1/2})$ for $B\ge1$, with one family for every $\mu$ | Both expected-budget bounds Lean-checked |
+| Critical quadratic law | $R^{\rm hard}_{\mu,\rho}(B)\asymp\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}$, upper coefficient $570000$ | Both expected-budget bounds Lean-checked |
+| Known general law, known rarity | $10^{-17}\mathcal K_{\mu,\rho}(B)\le R^{\rm hard}_{\mu,\rho}(B)\le190000\,\mathcal K_{\mu,\rho}(B)$ for $B>0$ | The paper-only [entropy-tail theorem](#general-law-rare-event-characterization) |
+
+**Status and limits.** The reduction, its observable realization and all three
+hard-cap conclusions are **paper proofs, not Lean-checked**. Lean-checked premises
+do not make these conclusions formal theorems. The guarantee holds at every
+deterministic allowance. It does not cover an allowance or stopping time chosen
+from the data, and it does not preserve unbiasedness. The
+[toolkit driver](../toolkit/README.md#research-module-hard-observation-caps)
+implements the controller for a caller-supplied estimator. It caps
+observations, not CPU time, and cannot check the statistical premises. The
+package's exact finite audits (56 recurrence instances with 26,232 enumerated
+paths, and 10,301 schedules) and its counterexamples are finite evidence, not
+proofs. The counterexamples show that a single timeout fallback, or randomness
+shared across stages, leaves a nonvanishing error floor.
 
 ## Population and nonlinear feedback follow-ups
 

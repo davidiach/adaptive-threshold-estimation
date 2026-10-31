@@ -1,0 +1,34 @@
+test_recheck_cap (test_rare_event_functional.CertificateIntegrityTests.test_recheck_cap) ... ok
+test_rejects_missing_and_malformed_fields (test_rare_event_functional.CertificateIntegrityTests.test_rejects_missing_and_malformed_fields) ... ok
+test_rejects_tampering (test_rare_event_functional.CertificateIntegrityTests.test_rejects_tampering) ... ok
+test_rejects_wrong_external_instance (test_rare_event_functional.CertificateIntegrityTests.test_rejects_wrong_external_instance) ... ok
+test_roundtrip_both_methods (test_rare_event_functional.CertificateIntegrityTests.test_roundtrip_both_methods) ... ok
+test_band_boundaries_exact (test_rare_event_functional.ExactArithmeticTests.test_band_boundaries_exact) ... ok
+test_entropy_zero_single_and_scaling (test_rare_event_functional.ExactArithmeticTests.test_entropy_zero_single_and_scaling) ... ok
+test_log_enclosures_independent_decimal (test_rare_event_functional.ExactArithmeticTests.test_log_enclosures_independent_decimal) ... ok
+test_precision_validation (test_rare_event_functional.ExactArithmeticTests.test_precision_validation) ... ok
+test_rational_validation (test_rare_event_functional.ExactArithmeticTests.test_rational_validation) ... ok
+test_scalar_8_over_5_polynomial_identity (test_rare_event_functional.ExactArithmeticTests.test_scalar_8_over_5_polynomial_identity) ... ok
+test_sqrt_enclosures_by_exact_squaring (test_rare_event_functional.ExactArithmeticTests.test_sqrt_enclosures_by_exact_squaring) ... ok
+test_band_preserving_rounding_examples (test_rare_event_functional.FunctionalTests.test_band_preserving_rounding_examples) ... ok
+test_budget_monotonicity (test_rare_event_functional.FunctionalTests.test_budget_monotonicity) ... ok
+test_cross_band_rounding_is_not_safe (test_rare_event_functional.FunctionalTests.test_cross_band_rounding_is_not_safe) ... ok
+test_global_threshold_is_upper_not_exact (test_rare_event_functional.FunctionalTests.test_global_threshold_is_upper_not_exact) ... ok
+test_invalid_parameters (test_rare_event_functional.FunctionalTests.test_invalid_parameters) ... ok
+test_law_validation_and_duplicate_merge (test_rare_event_functional.FunctionalTests.test_law_validation_and_duplicate_merge) ... ok
+test_quantile_atom_is_split_exactly (test_rare_event_functional.FunctionalTests.test_quantile_atom_is_split_exactly) ... ok
+test_rounding_helper_enforces_premises (test_rare_event_functional.FunctionalTests.test_rounding_helper_enforces_premises) ... ok
+test_same_band_search_collapse (test_rare_event_functional.FunctionalTests.test_same_band_search_collapse) ... ok
+test_saturation_exact (test_rare_event_functional.FunctionalTests.test_saturation_exact) ... ok
+test_search_cap_fails_without_partial_certificate (test_rare_event_functional.FunctionalTests.test_search_cap_fails_without_partial_certificate) ... ok
+test_single_atom_closed_form (test_rare_event_functional.FunctionalTests.test_single_atom_closed_form) ... ok
+test_suffix_against_all_subsets_and_quantile_bound (test_rare_event_functional.FunctionalTests.test_suffix_against_all_subsets_and_quantile_bound) ... ok
+test_threshold_scan_improves_point_atom_quantile (test_rare_event_functional.FunctionalTests.test_threshold_scan_improves_point_atom_quantile) ... ok
+test_total_variation_stability_examples (test_rare_event_functional.FunctionalTests.test_total_variation_stability_examples) ... ok
+test_transfer_enclosure (test_rare_event_functional.FunctionalTests.test_transfer_enclosure) ... ok
+test_very_small_positive_gap_no_underflow (test_rare_event_functional.FunctionalTests.test_very_small_positive_gap_no_underflow) ... ok
+
+----------------------------------------------------------------------
+Ran 29 tests in 0.667s
+
+OK

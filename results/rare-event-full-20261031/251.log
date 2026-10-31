@@ -1,0 +1,12 @@
+ThresholdHC/BlindUpper/CutoffProcedure.lean:22:4: warning: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [cutoffCost, h]
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+ThresholdHC/BlindUpper/CutoffProcedure.lean:32:4: warning: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [cutoffValue, h]
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`

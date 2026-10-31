@@ -1,0 +1,54 @@
+ThresholdHC/Proofs/KL.lean:22:4: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+ThresholdHC/Proofs/KL.lean:22:4: warning: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+ThresholdHC/Proofs/KL.lean:39:4: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+ThresholdHC/Proofs/KL.lean:39:4: warning: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+ThresholdHC/Proofs/KL.lean:103:6: warning: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [← h, hvf]
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+ThresholdHC/Proofs/KL.lean:78:10: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+ThresholdHC/Proofs/KL.lean:78:6: warning: Unused tactic linter: `<;>` can be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+ThresholdHC/Proofs/KL.lean:78:10: warning: Unused tactic linter: `ring` is never executed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+ThresholdHC/Proofs/KL.lean:121:10: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+ThresholdHC/Proofs/KL.lean:124:4: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+ThresholdHC/Proofs/KL.lean:125:4: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+ThresholdHC/Proofs/KL.lean:158:2: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+ThresholdHC/Proofs/KL.lean:121:6: warning: Unused tactic linter: `<;>` can be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+ThresholdHC/Proofs/KL.lean:121:10: warning: Unused tactic linter: `ring` is never executed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+ThresholdHC/Proofs/KL.lean:124:4: warning: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+ThresholdHC/Proofs/KL.lean:125:4: warning: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+ThresholdHC/Proofs/KL.lean:158:2: warning: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
