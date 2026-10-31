@@ -683,6 +683,53 @@ paths, and 10,301 schedules) and its counterexamples are finite evidence, not
 proofs. The counterexamples show that a single timeout fallback, or randomness
 shared across stages, leaves a nonvanishing error floor.
 
+## Confidence rates and sequential stopping
+
+The [confidence-transfer package](../research/2026-10-30-confidence-transfer/README.md)
+gives a **paper proof**, not Lean-checked, that the high-confidence error radius
+follows the same rates with the budget divided by $\ell=\log(1/\delta)$. Write
+$r^{\rm exp}_{\mu,\rho}(B,\delta)$ for the smallest radius achievable with failure
+probability at most $\delta$ under a uniform expected budget $B$, and
+$r^{\rm hard}_{\mu,\rho}(B,\delta)\ge r^{\rm exp}_{\mu,\rho}(B,\delta)$ for the
+same under a cap of $\lfloor B\rfloor$ observations on every path. Let
+$0<\delta\le1/4$.
+
+**Transfer.** Smoothing a hard pair of priors coin by coin, at weights $3/4$
+and $1/4$, turns a Hellinger bound into a Kullback–Leibler bound for the whole
+adaptive population at a factor $16/3$ and half the separation. A
+variance–null-work obstruction $(b,J)$ then gives
+$r^{\rm exp}(B,\delta)\ge\frac1{128}\min\{b,\sqrt{J\ell/B}\}$. This is the RMS
+transfer with $B$ replaced by $B/\ell$, and additive localization carries over
+with the same coefficient.
+
+**Amplification.** If a procedure has $\mathbb ET\le b$ and RMS at most $R(b)$,
+the median of $m$ independent copies, with $m$ the least odd integer such that
+$(3/4)^m\le\delta^2$, each run at expected budget $B/(8m)$ and stopped after
+$\lfloor B/m\rfloor$ observations, never exceeds $B$ observations. Its radius
+is $\sqrt8\,R(B/(8m))$ at failure probability $\delta$. No independence between
+a run's cost and its error is assumed.
+
+| Application | Conclusion (paper proof) | Inherited premises |
+|---|---|---|
+| Known general law, known rarity | $10^{-17}\mathcal K(B/\ell)\le r^{\rm exp}(B,\delta)\le r^{\rm hard}(B,\delta)\le840000\,\mathcal K(B/\ell)$ | Lower: the policy-uniform common pair, both null-work obstructions and the entropy packing of v6 Appendix E, all paper proofs. Upper: $R\le C\mathcal K$, [Lean-checked](#general-law-rare-event-characterization) with $C=28000$ |
+| Critical quadratic law | $r^{\rm exp}\asymp r^{\rm hard}\asymp\min\{\rho,\sqrt{\rho L(1+\log L)\ell/B}\}$ | The [critical common pair and RMS upper bound](#critical-power-margin-full-minimax-characterization), both Lean-checked |
+| Sequential coverage | Stage $j$ has cap $4\cdot2^j$ and failure probability $\delta/((j+1)(j+2))$. The running intersection of stage intervals contains $\theta$ at every budget simultaneously with probability at least $1-\delta$, so stopping on the data is valid. For a known law and $B\ge1$, its half-width on that event is at most $1700000\,\mathcal K(B/\Lambda)$, where $\Lambda=\ell+2\log(2+\log_2(1+B))$ | Valid stage intervals; the width bound uses the general-law row |
+
+**Status and limits.** The transfer, the amplification and every row above are
+**paper proofs, not Lean-checked**, even where the inherited premises are. The
+algorithms may know $\mu$, $\rho$, $B$ and $\delta$; nothing here gives an
+interval computable from data for an unknown law. The sequential construction
+is standard error spending. Its width is an upper bound only; no matching
+time-uniform lower bound is proved. An exact path count shows that repeatedly
+checking a fixed-time interval fails: a check with fixed-time failure at most
+$1/4$ fails with probability about $0.428$ when checked at every step up to
+512. The [toolkit drivers](../toolkit/README.md#research-modules-high-confidence-and-sequential-stopping)
+implement the median and the sequential intervals for a caller-supplied
+estimator. They cap observations, not CPU time, and cannot check the
+statistical premises. An AI integration review, recorded in the
+[package](../research/2026-10-30-confidence-transfer/README.md#integration-review),
+found no error; there is no specialist review.
+
 ## Population and nonlinear feedback follow-ups
 
 The [population-step report](../research/2026-10-27-population-step/FINAL_REPORT.md)

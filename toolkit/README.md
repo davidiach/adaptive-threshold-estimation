@@ -351,6 +351,83 @@ result is a paper proof, not Lean-checked; see the
 [hard-budget RMS package](../research/2026-10-30-hard-budget-rms/README.md).
 The module is not imported by the package itself.
 
+## Research modules: high confidence and sequential stopping
+
+Two more research drivers use the same interface: your estimator is a
+generator that yields coin IDs and returns its estimate.
+
+`threshold_toolkit.confidence_amplification` turns an estimator with an average
+budget and a mean-squared-error bound into one that is accurate with
+probability at least $1-\delta$ and never uses more than a fixed number of
+flips. It runs $m$ independent copies, $m$ the least odd number with
+$(3/4)^m\le\delta^2$, each at average budget $B/(8m)$ and stopped after
+$\lfloor B/m\rfloor$ flips, and returns the median of their outputs clipped
+to $[0,\rho]$.
+
+```python
+from fractions import Fraction
+from threshold_toolkit.confidence_amplification import MedianSchedule, run_capped_median
+
+def program(b, rng):              # your estimator at average budget b
+    n = max(1, int(b))
+    heads = 0
+    for coin in range(n):         # yield a coin ID, receive its flip
+        heads += yield coin
+    return Fraction(heads, n)
+
+def coin_factory(rng):            # simulated coin: gap 1/2, so flips equal the sign
+    sign = int(rng.random() < 0.1)
+    return lambda: sign
+
+schedule = MedianSchedule(100000, rho=Fraction(1, 4), delta=Fraction(1, 100))
+result = run_capped_median(schedule, program, coin_factory, seed=1)
+print(schedule.blocks, schedule.per_block_cap, result.estimate, result.flips)
+# 33 3030 37/378 12474
+```
+
+The paper proof behind it says the error exceeds $\sqrt8$ times your
+estimator's root-mean-square error bound at average budget $B/(8m)$ with
+probability at most $\delta$. The driver cannot check that your estimator
+meets its average-budget and error bounds, or that the copies are independent.
+
+`threshold_toolkit.confidence_ladders` keeps a confidence interval that remains
+valid however long you keep going and whenever you decide to stop. Stage $j$
+gets at most $4\cdot2^j$ flips and failure probability
+$\delta/((j+1)(j+2))$, these failure probabilities sum to $\delta$, and the
+reported interval is the intersection of every finished stage's interval.
+`bernoulli_interval` is a Hoeffding interval for independent fresh Bernoulli
+samples, which gap-$1/2$ coins provide. It is not valid for repeated flips of
+coins with hidden, differing gaps.
+
+```python
+from threshold_toolkit.confidence_ladders import ConfidenceLadder, bernoulli_interval
+
+def stage_program(cap, delta, rng):   # one stage: at most cap flips, failure delta
+    heads = 0
+    for coin in range(cap):
+        heads += yield coin
+    return bernoulli_interval(heads, cap, delta)
+
+ladder = ConfidenceLadder(stage_program, coin_factory, delta=Fraction(1, 20), seed=1)
+for budget in (1000, 10000, 100000):
+    state = ladder.advance_to(budget)
+    print(budget, round(float(state.interval.lower), 4),
+          round(float(state.interval.upper), 4), state.flips)
+# 1000 0.0 0.236 508
+# 10000 0.0663 0.131 8188
+# 100000 0.0907 0.1142 65532
+```
+
+With probability at least $1-\delta$ every reported interval contains the
+true value, provided each stage interval has its stated coverage. A stage that
+runs out of flips leaves the interval unchanged. An empty intersection stays
+empty: it signals a coverage failure and is not replaced by a wider interval.
+
+Both modules cap flips, not CPU time, and trust your callbacks. The
+results they rely on are paper proofs, not Lean-checked; see the
+[confidence-transfer package](../research/2026-10-30-confidence-transfer/README.md).
+Neither module is imported by the package itself.
+
 ## Tests
 
 ```sh
