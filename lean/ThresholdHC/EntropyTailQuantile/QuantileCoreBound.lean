@@ -1,12 +1,12 @@
-import ThresholdHC.EntropyTail.CutDecomposition
-import ThresholdHC.EntropyTail.EntropyMixture
-import ThresholdHC.EntropyTail.ScaleSeparated
+import ThresholdHC.EntropyTailQuantile.CutDecomposition
+import ThresholdHC.EntropyTailQuantile.EntropyMixture
+import ThresholdHC.EntropyTailQuantile.ScaleSeparated
 
 noncomputable section
 open MeasureTheory Set Real
 open scoped ENNReal
 
-namespace ThresholdHC.EntropyTail
+namespace ThresholdHC.EntropyTailQuantile
 open ThresholdHC.Tier6
 
 theorem quantileCore_entropy_bound (μ : Measure Gap) [IsProbabilityMeasure μ]
@@ -67,4 +67,4 @@ theorem quantileCore_residual_work (μ : Measure Gap) [IsProbabilityMeasure μ]
     (fun _ hd => hht.le.trans hd))]
   exact tailModulus_mono (upperCut_le _ hr.1 hr.2.1 (μ-σ)) hh
 
-end ThresholdHC.EntropyTail
+end ThresholdHC.EntropyTailQuantile

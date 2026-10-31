@@ -9,7 +9,7 @@ open MeasureTheory Set Real
 open scoped BigOperators
 
 namespace ThresholdHC.EntropyTailAssembly
-open ThresholdHC.Tier6 ThresholdHC.EntropyTailUpper ThresholdHC.EntropyTail
+open ThresholdHC.Tier6 ThresholdHC.EntropyTailUpper ThresholdHC.EntropyTailQuantile
 
 theorem dyadic_power_sum (n : ℕ) : ∑ k ∈ Finset.range n, (2:ℝ)^k = 2^n-1 := by
   induction n with

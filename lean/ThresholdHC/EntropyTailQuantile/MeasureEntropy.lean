@@ -1,5 +1,5 @@
-import ThresholdHC.EntropyTail.Model
-import ThresholdHC.EntropyTail.CostEntropySeries
+import ThresholdHC.EntropyTailQuantile.Model
+import ThresholdHC.EntropyTailQuantile.CostEntropySeries
 
 /-! Band integrability and countable cost entropy for finite gap measures. -/
 
@@ -7,7 +7,7 @@ noncomputable section
 open MeasureTheory Set Real
 open scoped ENNReal BigOperators
 
-namespace ThresholdHC.EntropyTail
+namespace ThresholdHC.EntropyTailQuantile
 open ThresholdHC.Tier6
 
 theorem bandEdge_pos (j : ℕ) : 0 < bandEdge j := by
@@ -68,4 +68,4 @@ theorem measureCostEntropy_lt_top_of_support (σ : Measure Gap) {t : ℝ}
       (costEntropy_prefix_le_of_eventually_zero (bandCost_nonneg σ) hzero n)
   · exact ENNReal.ofReal_lt_top
 
-end ThresholdHC.EntropyTail
+end ThresholdHC.EntropyTailQuantile

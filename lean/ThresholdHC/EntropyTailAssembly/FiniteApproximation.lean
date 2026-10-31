@@ -1,4 +1,4 @@
-import ThresholdHC.EntropyTail.EntropyMoment
+import ThresholdHC.EntropyTailQuantile.EntropyMoment
 import ThresholdHC.EntropyTailAssembly.BandWeights
 
 /-! Finite-band approximation for every selected measure of finite entropy.
@@ -10,7 +10,7 @@ open MeasureTheory Set Real Filter
 open scoped ENNReal Topology
 
 namespace ThresholdHC.EntropyTailAssembly
-open ThresholdHC.Tier6 ThresholdHC.EntropyTail
+open ThresholdHC.Tier6 ThresholdHC.EntropyTailQuantile
 
 theorem inverseSquare_integrable_of_entropy (σ : Measure Gap) [IsFiniteMeasure σ]
     (hΓ : measureCostEntropy σ < ⊤) : Integrable (fun d : Gap => (d:ℝ)⁻¹^2) σ := by

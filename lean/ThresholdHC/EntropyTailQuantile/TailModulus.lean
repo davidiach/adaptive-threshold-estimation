@@ -1,11 +1,11 @@
-import ThresholdHC.EntropyTail.Model
+import ThresholdHC.EntropyTailQuantile.Model
 
 /-! Boundedness and measure linearity of the tail part of the functional. -/
 
 noncomputable section
 open MeasureTheory Set Real
 
-namespace ThresholdHC.EntropyTail
+namespace ThresholdHC.EntropyTailQuantile
 open ThresholdHC.Tier6
 
 theorem tailKernel_nonneg {h : ℝ} (hh : 0 ≤ h) (d : Gap) :
@@ -67,4 +67,4 @@ theorem tailModulus_eq_inverseCost (ν : Measure Gap) {h : ℝ}
       rw [min_eq_right ((div_le_one d.property.1).2 hd), div_eq_mul_inv]
     _ = _ := integral_const_mul _ _
 
-end ThresholdHC.EntropyTail
+end ThresholdHC.EntropyTailQuantile

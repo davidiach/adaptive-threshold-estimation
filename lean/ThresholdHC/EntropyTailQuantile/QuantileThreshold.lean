@@ -8,7 +8,7 @@ noncomputable section
 open Set Filter
 open scoped Topology
 
-namespace ThresholdHC.EntropyTail
+namespace ThresholdHC.EntropyTailQuantile
 
 def levelThreshold (f : StieltjesFunction ℝ) (ρ : ℝ) : ℝ :=
   sInf {t : ℝ | ρ ≤ f t}
@@ -44,4 +44,4 @@ theorem stieltjes_threshold_properties (f : StieltjesFunction ℝ) {ρ a : ℝ}
   have hs : r ∈ S := le_of_not_gt h
   exact (not_le_of_gt hr) (csInf_le hb hs)
 
-end ThresholdHC.EntropyTail
+end ThresholdHC.EntropyTailQuantile

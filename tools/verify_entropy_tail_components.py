@@ -20,8 +20,8 @@ from verify_blind_upper_components import (
 
 ROOT = Path(__file__).resolve().parents[1]
 LEAN = ROOT / "lean"
-SOURCE = LEAN / "ThresholdHC/EntropyTail"
-PREFIX = "ThresholdHC.EntropyTail."
+SOURCE = LEAN / "ThresholdHC/EntropyTailQuantile"
+PREFIX = "ThresholdHC.EntropyTailQuantile."
 MODULES = (
     "CostEntropy", "CostEntropySeries", "Model", "Specification", "QuantileAlgebra",
     "QuantileThreshold", "QuantileSplit", "MeasureEntropy", "QuantileSplitFull",
@@ -30,10 +30,10 @@ MODULES = (
     "QuantileRootBound", "QuantileCoreBound", "QuantileComparison",
 )
 FROZEN = {
-    "lean/ThresholdHC/EntropyTail/Model.lean":
-        "280a32ef8977d223a92ff0e42a039b0fd16ec3fbd80d6fbd369991dfe2b42079",
-    "lean/ThresholdHC/EntropyTail/Specification.lean":
-        "3bac177a1dbef212f2849b1c043c0b9ae1fdff1c8421ecd5fbc4afe65360a81a",
+    "lean/ThresholdHC/EntropyTailQuantile/Model.lean":
+        "9ace9b713b268d085c6eb281c424410987dfb37177e704d4b5c6e4c7fcb5f5c9",
+    "lean/ThresholdHC/EntropyTailQuantile/Specification.lean":
+        "ef13e8b2117cc2760d7553a023b39d84cd5482a97e26c304eac417f172998a6e",
 }
 EXACT_TARGETS = {
     PREFIX + "quantile_split": PREFIX + "QuantileSplitStatement",
@@ -48,7 +48,7 @@ SCOPE = (
 
 
 def validate_sources() -> tuple[list[Path], set[str]]:
-    freeze = json.loads((ROOT / "tools/entropy_tail_specification_freeze.json").read_text(encoding="utf-8"))
+    freeze = json.loads((ROOT / "tools/entropy_tail_quantile_specification_freeze.json").read_text(encoding="utf-8"))
     if freeze["source_sha256"] != FROZEN or any(sha(ROOT / p) != h for p, h in FROZEN.items()):
         raise ValueError("Frozen entropy-tail model or specification changed")
     validate_dependency_freeze(SOURCE / "Specification.lean", freeze)
@@ -101,11 +101,11 @@ def main() -> int:
     assert set(ordered) == project_dependencies(paths)
     protected = set(ordered) | {
         Path(__file__).resolve(), ROOT / "tools/verify_blind_upper_components.py",
-        ROOT / "tools/verify_tier6.py", ROOT / "tools/entropy_tail_specification_freeze.json",
+        ROOT / "tools/verify_tier6.py", ROOT / "tools/entropy_tail_quantile_specification_freeze.json",
         LEAN / "lean-toolchain", LEAN / "lake-manifest.json", LEAN / "lakefile.toml",
     }
     hashes = {p.relative_to(ROOT).as_posix(): sha(p) for p in sorted(protected)}
-    output = args.output_dir or ROOT / ".runtime/entropy-tail" / datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+    output = args.output_dir or ROOT / ".runtime/entropy-tail-quantile" / datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     output.mkdir(parents=True, exist_ok=False)
     status = dict(valid=False, scope=SCOPE, source_sha256=hashes, exact_targets=EXACT_TARGETS,
                   exact_targets_checked=0, quantile_split_verified=False,
@@ -117,7 +117,7 @@ def main() -> int:
         (output / "status.json").write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
 
     save()
-    audit = LEAN / ".audit/EntropyTail.lean"
+    audit = LEAN / ".audit/EntropyTailQuantile.lean"
     audit.parent.mkdir(exist_ok=True)
     audit.write_text("".join("import " + PREFIX + m + "\n" for m in MODULES) + "\n" +
                      "".join(f"example : {t} := {d}\n" for d, t in EXACT_TARGETS.items()) + "\n" +

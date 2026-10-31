@@ -14,7 +14,7 @@ noncomputable section
 open scoped BigOperators
 open Real
 
-namespace ThresholdHC.EntropyTail
+namespace ThresholdHC.EntropyTailQuantile
 
 variable {ι : Type*} [Fintype ι]
 
@@ -235,4 +235,4 @@ theorem continuous_costEntropy : Continuous (costEntropy : (ι → ℝ) → ℝ)
   unfold costEntropy costTotal
   fun_prop
 
-end ThresholdHC.EntropyTail
+end ThresholdHC.EntropyTailQuantile

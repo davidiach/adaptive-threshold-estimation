@@ -1,8 +1,8 @@
-import ThresholdHC.EntropyTail.Specification
-import ThresholdHC.EntropyTail.QuantileSplit
-import ThresholdHC.EntropyTail.MeasureEntropy
+import ThresholdHC.EntropyTailQuantile.Specification
+import ThresholdHC.EntropyTailQuantile.QuantileSplit
+import ThresholdHC.EntropyTailQuantile.MeasureEntropy
 
-namespace ThresholdHC.EntropyTail
+namespace ThresholdHC.EntropyTailQuantile
 
 /-- The frozen arbitrary-law quantile split, with a fractional boundary atom. -/
 theorem quantile_split : QuantileSplitStatement := by
@@ -13,4 +13,4 @@ theorem quantile_split : QuantileSplitStatement := by
     quantileTail_add_core μ hρ hρ1, quantileTail_support μ ρ, quantileCore_support μ ρ,
     measureCostEntropy_lt_top_of_support _ ht.1 (quantileCore_support μ ρ)⟩
 
-end ThresholdHC.EntropyTail
+end ThresholdHC.EntropyTailQuantile

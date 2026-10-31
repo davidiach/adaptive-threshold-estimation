@@ -71,7 +71,7 @@ theorem bank_mixture_work_bound (σ τ ζ : Measure Gap)
     (hτ : Integrable (fun x : Gap => (x:ℝ)⁻¹) τ)
     (weights : ℕ → ℝ≥0) {ε ρ : ℝ} (hε : 0 < ε) (hε1 : ε ≤ 1) (hρ : 0 < ρ)
     (j L : ℕ) (hw : 0 < (weights j:ℝ)) (hw1 : (weights j:ℝ) ≤ 1)
-    (q : SignLaw) (d : Gap) (hd : d ∈ EntropyTail.band j) :
+    (q : SignLaw) (d : Gap) (hd : d ∈ EntropyTailQuantile.band j) :
     mixtureRaceWork q (negativeBankTest weights ε) (positiveBankTest (σ+τ+ζ) weights (ρ*ε)) L d ≤
       12*(d:ℝ)⁻¹^2*(1+log (ε⁻¹)+log ((weights j:ℝ)⁻¹))+
       12*q.val d*(d:ℝ)⁻¹^2*logPlus (threePieceEnvelope σ τ ζ d/ρ) := by

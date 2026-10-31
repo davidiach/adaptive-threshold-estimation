@@ -1,13 +1,13 @@
-import ThresholdHC.EntropyTail.QuantileSplitFull
-import ThresholdHC.EntropyTail.QuantileTailBound
-import ThresholdHC.EntropyTail.QuantileCoreBound
-import ThresholdHC.EntropyTail.QuantileRootBound
+import ThresholdHC.EntropyTailQuantile.QuantileSplitFull
+import ThresholdHC.EntropyTailQuantile.QuantileTailBound
+import ThresholdHC.EntropyTailQuantile.QuantileCoreBound
+import ThresholdHC.EntropyTailQuantile.QuantileRootBound
 
 noncomputable section
 open MeasureTheory Set Real
 open scoped ENNReal
 
-namespace ThresholdHC.EntropyTail
+namespace ThresholdHC.EntropyTailQuantile
 open ThresholdHC.Tier6
 
 theorem entropy_root_eq_ofReal {G : ℝ≥0∞} (hG : G ≠ ⊤) {ρ h : ℝ}
@@ -108,4 +108,4 @@ theorem quantile_comparison : QuantileComparisonStatement := by
       apply le_iInf
       exact quantile_comparison_pointwise μ hρ hρ1 hB hht σ
 
-end ThresholdHC.EntropyTail
+end ThresholdHC.EntropyTailQuantile

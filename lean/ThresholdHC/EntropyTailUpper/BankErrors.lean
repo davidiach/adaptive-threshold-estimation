@@ -1,6 +1,6 @@
 import ThresholdHC.EntropyTailUpper.PrefixCrossing
 import ThresholdHC.EntropyTailUpper.BernoulliTilt
-import ThresholdHC.EntropyTail.MeasureEntropy
+import ThresholdHC.EntropyTailQuantile.MeasureEntropy
 import ThresholdHC.ObservableSimulation.OriginalExperiment
 
 /-! Error bounds for the weighted reference bank, using the full null mixture.
@@ -31,12 +31,12 @@ theorem negative_reference_error (p : unitInterval) {r c : ℝ}
   rw [tape_prefix_mass, tape_prefix_mass, ← ENNReal.ofReal_mul hc]
   exact ENNReal.ofReal_le_ofReal (negative_reference_crossing_dominates p hp hr0 hr1 hc w hcross)
 
-theorem bandEdge_le_half (j : ℕ) : EntropyTail.bandEdge j ≤ 1/2 := by
-  simpa [EntropyTail.bandEdge] using EntropyTail.bandEdge_antitone (Nat.zero_le j)
+theorem bandEdge_le_half (j : ℕ) : EntropyTailQuantile.bandEdge j ≤ 1/2 := by
+  simpa [EntropyTailQuantile.bandEdge] using EntropyTailQuantile.bandEdge_antitone (Nat.zero_le j)
 
 def negativeBankEvent (weights : ℕ → ℝ≥0) (ε : ℝ) : Set (ℕ → Bool) :=
   ⋃ j : ℕ, everPrefixHit (fun _ w => streamProb (1/2) w ≤
-    (ε*(weights j:ℝ)) * streamProb (1/2-EntropyTail.bandEdge j/2) w)
+    (ε*(weights j:ℝ)) * streamProb (1/2-EntropyTailQuantile.bandEdge j/2) w)
 
 theorem negative_bank_error (weights : ℕ → ℝ≥0) (hweights : HasSum weights 1) {ε : ℝ} (hε : 0 ≤ ε)
     (p : unitInterval) (hp : 1/2 ≤ (p:ℝ)) :
@@ -47,15 +47,15 @@ theorem negative_bank_error (weights : ℕ → ℝ≥0) (hweights : HasSum weigh
       apply ENNReal.tsum_le_tsum
       intro j
       exact negative_reference_error p hp
-        (div_nonneg (EntropyTail.bandEdge_pos j).le (by norm_num))
+        (div_nonneg (EntropyTailQuantile.bandEdge_pos j).le (by norm_num))
         (by linarith [bandEdge_le_half j]) (mul_nonneg hε (weights j).property)
     _ = ENNReal.ofReal ε * ∑' j, (weights j:ℝ≥0∞) := by
       simp only [ENNReal.ofReal_mul hε, ENNReal.ofReal_coe_nnreal, ENNReal.tsum_mul_left]
     _ = ENNReal.ofReal ε := by rw [ENNReal.tsum_coe_eq hweights]; simp
 
 def positiveReference (j : ℕ) : unitInterval :=
-  ⟨1/2+EntropyTail.bandEdge j/4, by
-    have hp := EntropyTail.bandEdge_pos j
+  ⟨1/2+EntropyTailQuantile.bandEdge j/4, by
+    have hp := EntropyTailQuantile.bandEdge_pos j
     have hb := bandEdge_le_half j
     constructor <;> linarith⟩
 

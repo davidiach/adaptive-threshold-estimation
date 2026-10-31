@@ -9,7 +9,7 @@ open MeasureTheory Set Real Filter
 open scoped ENNReal Topology
 
 namespace ThresholdHC.EntropyTailExecution
-open ThresholdHC.Tier6 ThresholdHC.EntropyTail ThresholdHC.EntropyTailAssembly ThresholdHC.RareAboveTwo
+open ThresholdHC.Tier6 ThresholdHC.EntropyTailQuantile ThresholdHC.EntropyTailAssembly ThresholdHC.RareAboveTwo
 
 theorem minimax_half_rarity (μ : Measure Gap) [IsProbabilityMeasure μ] {ρ B : ℝ} (hρ : 0 ≤ ρ) :
     rareMinimaxRisk μ ρ B ≤ ENNReal.ofReal (ρ/2) := by

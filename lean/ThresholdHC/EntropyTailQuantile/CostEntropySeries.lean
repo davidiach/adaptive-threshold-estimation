@@ -1,4 +1,4 @@
-import ThresholdHC.EntropyTail.CostEntropy
+import ThresholdHC.EntropyTailQuantile.CostEntropy
 
 /-! Increasing prefixes of the countable homogeneous cost entropy. -/
 
@@ -6,7 +6,7 @@ noncomputable section
 open Real
 open scoped BigOperators
 
-namespace ThresholdHC.EntropyTail
+namespace ThresholdHC.EntropyTailQuantile
 
 theorem costEntropy_prefix_succ {a : ℕ → ℝ} (n : ℕ) :
     costEntropy (fun i : Fin (n+1) => a i) =
@@ -39,4 +39,4 @@ theorem costEntropy_prefix_le_of_eventually_zero {a : ℕ → ℝ} {N : ℕ}
   · exact costEntropy_prefix_monotone ha hn
   · exact (costEntropy_prefix_eq_of_eventually_zero hz hn).le
 
-end ThresholdHC.EntropyTail
+end ThresholdHC.EntropyTailQuantile

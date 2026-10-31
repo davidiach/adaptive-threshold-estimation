@@ -1,5 +1,5 @@
 import ThresholdHC.EntropyTailAssembly.KernelMoments
-import ThresholdHC.EntropyTail.EntropyMoment
+import ThresholdHC.EntropyTailQuantile.EntropyMoment
 
 /-! Pointwise dyadic envelopes for the homogeneous kernel sum. -/
 
@@ -8,7 +8,7 @@ open MeasureTheory Set Real
 open scoped BigOperators
 
 namespace ThresholdHC.EntropyTailAssembly
-open ThresholdHC.Tier6 ThresholdHC.EntropyTailUpper ThresholdHC.EntropyTail
+open ThresholdHC.Tier6 ThresholdHC.EntropyTailUpper ThresholdHC.EntropyTailQuantile
 
 def scaledKernel (k : ℕ) (d : ℝ) : ℝ :=
   ((2:ℝ)^k * ordinaryErrorKernel (4^k) d + (2:ℝ)⁻¹^k * ordinaryWorkKernel (4^k) d)/2

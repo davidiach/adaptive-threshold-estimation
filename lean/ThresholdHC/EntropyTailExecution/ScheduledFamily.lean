@@ -81,14 +81,14 @@ theorem bankFamily_second (μ ν ζ : Measure Gap) [IsProbabilityMeasure μ]
 theorem bankFamily_work (σ τ ζ : Measure Gap)
     [IsFiniteMeasure σ] [IsFiniteMeasure τ] [IsFiniteMeasure ζ] [IsProbabilityMeasure (σ+τ+ζ)]
     {t ρ : ℝ} {N : ℕ} (ht : 0 < t) (hs : ∀ᵐ d : Gap ∂σ, t ≤ (d:ℝ))
-    (hN : ThresholdHC.EntropyTail.bandEdge N < t) (hτ : Integrable (fun d : Gap => (d:ℝ)⁻¹) τ)
+    (hN : ThresholdHC.EntropyTailQuantile.bandEdge N < t) (hτ : Integrable (fun d : Gap => (d:ℝ)⁻¹) τ)
     (hρ : 0 < ρ) (hρ1 : ρ ≤ 1/4) (hz : ζ.real Set.univ ≤ ρ) (q : SignLaw)
     (hq : RarePrior (σ+τ+ζ) ρ q) (l : ℕ) :
     (∫ ω, ((bankFamily (σ+τ+ζ) (σ+τ) (referenceWeights σ)
       (referenceWeights_probability σ ht hs hN) hρ hρ1 l).cost ω:ℝ)
       ∂originalPopulationTapeLaw (σ+τ+ζ) q) ≤
-      levelWorkCertificate σ τ ρ (ThresholdHC.EntropyTail.costEntropy
-        (fun j : Fin N => ThresholdHC.EntropyTail.bandCost σ j.val)) (ζ.real Set.univ) hρ l := by
+      levelWorkCertificate σ τ ρ (ThresholdHC.EntropyTailQuantile.costEntropy
+        (fun j : Fin N => ThresholdHC.EntropyTailQuantile.bandCost σ j.val)) (ζ.real Set.univ) hρ l := by
   rw [show (fun ω => ((bankFamily (σ+τ+ζ) (σ+τ) (referenceWeights σ)
       (referenceWeights_probability σ ht hs hN) hρ hρ1 l).cost ω:ℝ)) =
       fun ω => (raceCost (negativeBankTest (referenceWeights σ) (levelEpsilon l))

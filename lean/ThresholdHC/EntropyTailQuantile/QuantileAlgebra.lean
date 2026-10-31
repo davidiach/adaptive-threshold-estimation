@@ -4,7 +4,7 @@ import Mathlib.Tactic
 /-! The scalar step producing the manuscript's exact `1 + 2√2` comparison
 factor. The integral and entropy premises must be established separately. -/
 
-namespace ThresholdHC.EntropyTail
+namespace ThresholdHC.EntropyTailQuantile
 open Real
 
 theorem quantile_comparison_algebra {x y T Q : ℝ}
@@ -25,4 +25,4 @@ theorem quantile_comparison_factor_lt_four : 1+2*sqrt 2 < (4:ℝ) := by
   have hp := sqrt_nonneg (2:ℝ)
   nlinarith
 
-end ThresholdHC.EntropyTail
+end ThresholdHC.EntropyTailQuantile

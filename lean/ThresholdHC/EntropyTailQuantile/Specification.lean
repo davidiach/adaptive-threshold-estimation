@@ -1,4 +1,4 @@
-import ThresholdHC.EntropyTail.Model
+import ThresholdHC.EntropyTailQuantile.Model
 
 /-!
 Unproved full targets: definitions of propositions, not inhabitants.
@@ -11,7 +11,7 @@ noncomputable section
 open MeasureTheory Set Real
 open scoped ENNReal
 
-namespace ThresholdHC.EntropyTail
+namespace ThresholdHC.EntropyTailQuantile
 open ThresholdHC.Tier6 ThresholdHC.RareAboveTwo
 
 def QuantileSplitStatement : Prop :=
@@ -40,4 +40,4 @@ def ClosedQuantileUpperStatement : Prop :=
     0 < ρ → ρ ≤ 1/4 → 0 < B →
     rareMinimaxRisk μ ρ B ≤ ENNReal.ofReal 33000 * closedQuantileValue μ ρ B
 
-end ThresholdHC.EntropyTail
+end ThresholdHC.EntropyTailQuantile

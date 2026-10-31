@@ -1,4 +1,4 @@
-import ThresholdHC.EntropyTail.MeasureEntropy
+import ThresholdHC.EntropyTailQuantile.MeasureEntropy
 
 /-! Dyadic partition geometry and the geometric reference probabilities. -/
 
@@ -6,7 +6,7 @@ noncomputable section
 open MeasureTheory Set Real
 open scoped BigOperators ENNReal
 
-namespace ThresholdHC.EntropyTail
+namespace ThresholdHC.EntropyTailQuantile
 open ThresholdHC.Tier6
 
 theorem bandEdge_succ (j : ℕ) : bandEdge (j+1) = bandEdge j / 2 := by
@@ -76,4 +76,4 @@ theorem dyadic_reference_coefficient {t : ℝ} (ht : 0 < t) (j : ℕ) (d : Gap)
     linarith
   linarith
 
-end ThresholdHC.EntropyTail
+end ThresholdHC.EntropyTailQuantile

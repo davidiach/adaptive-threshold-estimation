@@ -1,4 +1,4 @@
-import ThresholdHC.EntropyTail.QuantileSplit
+import ThresholdHC.EntropyTailQuantile.QuantileSplit
 
 /-! The actual quantile core is a feasible selection submeasure. -/
 
@@ -6,7 +6,7 @@ noncomputable section
 open MeasureTheory
 open scoped ENNReal
 
-namespace ThresholdHC.EntropyTail
+namespace ThresholdHC.EntropyTailQuantile
 open ThresholdHC.Tier6
 
 theorem sub_quantileCore (μ : Measure Gap) [IsProbabilityMeasure μ]
@@ -28,4 +28,4 @@ theorem selectionValue_le_closedQuantileValue (μ : Measure Gap) [IsProbabilityM
   apply le_trans (iInf_le_of_le (quantileCore μ ρ) (iInf_le _ hc))
   simp only [selectionCost, sub_quantileCore μ hρ hρ1, add_comm, le_refl]
 
-end ThresholdHC.EntropyTail
+end ThresholdHC.EntropyTailQuantile

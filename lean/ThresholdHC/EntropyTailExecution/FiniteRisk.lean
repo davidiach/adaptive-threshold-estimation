@@ -9,7 +9,7 @@ open MeasureTheory Set Real
 open scoped ENNReal BigOperators
 
 namespace ThresholdHC.EntropyTailExecution
-open ThresholdHC.Tier6 ThresholdHC.EntropyTail ThresholdHC.EntropyTailUpper
+open ThresholdHC.Tier6 ThresholdHC.EntropyTailQuantile ThresholdHC.EntropyTailUpper
 open ThresholdHC.EntropyTailAssembly ThresholdHC.ObservableSimulation ThresholdHC.RareAboveTwo
 
 theorem finite_level_minimax (σ τ ζ : Measure Gap)

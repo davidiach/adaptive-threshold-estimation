@@ -13,7 +13,7 @@ open ThresholdHC.BlindUpper ThresholdHC.CriticalEntropy
 
 def negativeBankTest (weights : ℕ → ℝ≥0) (ε : ℝ) : PrefixTest :=
   fun _ w => ∃ j, streamProb (1/2) w ≤
-    (ε*(weights j:ℝ))*streamProb (1/2-EntropyTail.bandEdge j/2) w
+    (ε*(weights j:ℝ))*streamProb (1/2-EntropyTailQuantile.bandEdge j/2) w
 
 def positiveBankTest (μ : Measure Gap) (weights : ℕ → ℝ≥0) (u : ℝ) : PrefixTest :=
   fun n w => allNegativeLaw μ (tapePrefix n ⁻¹' {w}) ≤
@@ -69,15 +69,15 @@ theorem race_expected_work_le_ordinary (neg pos : PrefixTest) (L : ℕ) (d : Gap
 theorem bank_raceRounds_le_score (μ : Measure Gap) (weights : ℕ → ℝ≥0) {ε : ℝ}
     (hε : 0 < ε) (u : ℝ) (j L : ℕ) (hw : 0 < (weights j:ℝ)) (ω : ℕ → Bool) :
     raceRounds (negativeBankTest weights ε) (positiveBankTest μ weights u) L ω ≤
-      scoreStop (negativeBitScore (EntropyTail.bandEdge j/2)) (log (ε*(weights j:ℝ))⁻¹)
+      scoreStop (negativeBitScore (EntropyTailQuantile.bandEdge j/2)) (log (ε*(weights j:ℝ))⁻¹)
         (2^L) (parityTape 0 ω) := by
-  let f := negativeBitScore (EntropyTail.bandEdge j/2)
+  let f := negativeBitScore (EntropyTailQuantile.bandEdge j/2)
   let b := log (ε*(weights j:ℝ))⁻¹
   rcases (boundedFirst_spec (fun n => scoreTest f b n (tapePrefix n (parityTape 0 ω))) (2^L)).2 with h | h
   · apply raceRounds_le_bank
     apply Or.inl
     refine ⟨j, ?_⟩
-    exact negative_score_crossing (by positivity [EntropyTail.bandEdge_pos j])
+    exact negative_score_crossing (by positivity [EntropyTailQuantile.bandEdge_pos j])
       (by linarith [bandEdge_le_half j]) (mul_pos hε hw) _ h
   · change scoreStop f b (2^L) (parityTape 0 ω) = 2^L at h
     change _ ≤ scoreStop f b (2^L) (parityTape 0 ω)
@@ -86,11 +86,11 @@ theorem bank_raceRounds_le_score (μ : Measure Gap) (weights : ℕ → ℝ≥0) 
 
 theorem bank_race_negative_work (μ : Measure Gap) (weights : ℕ → ℝ≥0) {ε : ℝ}
     (hε : 0 < ε) (hε1 : ε ≤ 1) (u : ℝ) (j L : ℕ) (hw : 0 < (weights j:ℝ))
-    (hw1 : (weights j:ℝ) ≤ 1) (d : Gap) (hd : d ∈ EntropyTail.band j) :
+    (hw1 : (weights j:ℝ) ≤ 1) (d : Gap) (hd : d ∈ EntropyTailQuantile.band j) :
     (∫ ω, (raceCost (negativeBankTest weights ε) (positiveBankTest μ weights u) L ω : ℝ)
       ∂tapeMeasure (gapParameter false d)) ≤
       (3/(2*(d:ℝ)^2))*(1+log (ε*(weights j:ℝ))⁻¹) := by
-  let f := negativeBitScore (EntropyTail.bandEdge j/2)
+  let f := negativeBitScore (EntropyTailQuantile.bandEdge j/2)
   let b := log (ε*(weights j:ℝ))⁻¹
   have hi := (parityTape_measurePreserving 0 (gapParameter false d)).integrable_comp_of_integrable
     (integrable_scoreStop (gapParameter false d) f b (2^L))
@@ -104,8 +104,8 @@ theorem bank_race_negative_work (μ : Measure Gap) (weights : ℕ → ℝ≥0) {
   have hprod : ε*(weights j:ℝ) ≤ 1 :=
     (mul_le_mul_of_nonneg_right hε1 hw.le).trans (by simpa using hw1)
   have hb : 0 ≤ b := log_nonneg (one_le_inv₀ (mul_pos hε hw) |>.mpr hprod)
-  have hwk := negative_scoreStop_work d (r := EntropyTail.bandEdge j/2)
-    (by positivity [EntropyTail.bandEdge_pos j]) (by linarith [bandEdge_le_half j])
+  have hwk := negative_scoreStop_work d (r := EntropyTailQuantile.bandEdge j/2)
+    (by positivity [EntropyTailQuantile.bandEdge_pos j]) (by linarith [bandEdge_le_half j])
     (by linarith [hd.2]) hd.1.le hb (2^L)
   calc
     _ ≤ 2*(∫ ω, (scoreStop f b (2^L) ω : ℝ) ∂tapeMeasure (gapParameter false d)) := h

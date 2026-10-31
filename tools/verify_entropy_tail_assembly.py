@@ -28,7 +28,7 @@ UPPER = LEAN / "ThresholdHC/EntropyTailUpper"
 EXACT_CHECKS = r"""
 open MeasureTheory Filter Set Real
 open scoped ENNReal Topology BigOperators
-open ThresholdHC.Tier6 ThresholdHC.EntropyTail ThresholdHC.EntropyTailAssembly
+open ThresholdHC.Tier6 ThresholdHC.EntropyTailQuantile ThresholdHC.EntropyTailAssembly
 example : ∀ (ξ : Measure Gap) [IsFiniteMeasure ξ] (K : ℕ),
     (∑ k ∈ Finset.range (K+1), sqrt (eta ξ (4^k)*ordinaryCost ξ (4^k))) ≤
       208*(∫ d : Gap, min ((2:ℝ)^K) (d:ℝ)⁻¹ ∂ξ) := dyadic_kernel_sum
@@ -77,7 +77,7 @@ def main() -> int:
     protected = set(ordered) | {
         Path(__file__).resolve(), ROOT / "tools/verify_entropy_tail_components.py",
         ROOT / "tools/verify_blind_upper_components.py", ROOT / "tools/verify_tier6.py",
-        ROOT / "tools/entropy_tail_specification_freeze.json", LEAN / "lean-toolchain",
+        ROOT / "tools/entropy_tail_quantile_specification_freeze.json", LEAN / "lean-toolchain",
         LEAN / "lake-manifest.json", LEAN / "lakefile.toml",
     }
     hashes = {p.relative_to(ROOT).as_posix(): sha(p) for p in sorted(protected)}

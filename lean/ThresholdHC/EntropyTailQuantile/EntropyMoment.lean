@@ -1,5 +1,5 @@
-import ThresholdHC.EntropyTail.BandGeometry
-import ThresholdHC.EntropyTail.TailModulus
+import ThresholdHC.EntropyTailQuantile.BandGeometry
+import ThresholdHC.EntropyTailQuantile.TailModulus
 
 /-! The full inverse-square moment is dominated by cost entropy. All moment
 bounds retain extended values, including nonintegrable gap laws. -/
@@ -8,7 +8,7 @@ noncomputable section
 open MeasureTheory Set Real
 open scoped ENNReal BigOperators
 
-namespace ThresholdHC.EntropyTail
+namespace ThresholdHC.EntropyTailQuantile
 open ThresholdHC.Tier6
 
 theorem iUnion_band : (⋃ j : ℕ, band j) = univ := by
@@ -81,4 +81,4 @@ theorem tailModulus_le_sqrt_entropy {ξ σ : Measure Gap} [IsFiniteMeasure σ]
       gcongr
       exact (lintegral_mono' hξ le_rfl).trans (inverseSquare_lintegral_le_entropy σ)
 
-end ThresholdHC.EntropyTail
+end ThresholdHC.EntropyTailQuantile

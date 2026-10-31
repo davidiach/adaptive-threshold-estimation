@@ -1,5 +1,5 @@
-import ThresholdHC.EntropyTail.ScaleSeparated
-import ThresholdHC.EntropyTail.EntropyMoment
+import ThresholdHC.EntropyTailQuantile.ScaleSeparated
+import ThresholdHC.EntropyTailQuantile.EntropyMoment
 import ThresholdHC.EntropyTailUpper.BankWork
 
 /-! Finite active-band normalization for a selected submeasure supported away
@@ -10,7 +10,7 @@ open MeasureTheory Set Real
 open scoped NNReal ENNReal BigOperators
 
 namespace ThresholdHC.EntropyTailAssembly
-open ThresholdHC.Tier6 ThresholdHC.EntropyTail
+open ThresholdHC.Tier6 ThresholdHC.EntropyTailQuantile
 
 theorem inverseSquare_integrable_of_support (σ : Measure Gap) [IsFiniteMeasure σ]
     {t : ℝ} (ht : 0 < t) (hs : ∀ᵐ d : Gap ∂σ, t ≤ (d:ℝ)) :

@@ -1,5 +1,5 @@
-import ThresholdHC.EntropyTail.Model
-import ThresholdHC.EntropyTail.QuantileThreshold
+import ThresholdHC.EntropyTailQuantile.Model
+import ThresholdHC.EntropyTailQuantile.QuantileThreshold
 
 /-! The quantile cut for an arbitrary gap law, including boundary atoms. -/
 
@@ -7,7 +7,7 @@ noncomputable section
 open MeasureTheory Set Real ProbabilityTheory
 open scoped ENNReal Topology
 
-namespace ThresholdHC.EntropyTail
+namespace ThresholdHC.EntropyTailQuantile
 open ThresholdHC.Tier6
 
 def gapCDF (μ : Measure Gap) : StieltjesFunction ℝ := cdf (μ.map Subtype.val)
@@ -170,4 +170,4 @@ theorem quantileCore_support (μ : Measure Gap) (ρ : ℝ) :
     · exact measurableSet_lt measurable_subtype_coe measurable_const
   · exact measurableSet_lt measurable_subtype_coe measurable_const
 
-end ThresholdHC.EntropyTail
+end ThresholdHC.EntropyTailQuantile

@@ -58,7 +58,7 @@ theorem null_prefix_gaussian_ennreal (μ : Measure Gap) [IsProbabilityMeasure μ
   exact ENNReal.ofReal_le_ofReal (null_prefix_gaussian μ w hw)
 
 theorem positiveBankLaw_lower (weights : ℕ → ℝ≥0) (j : ℕ) {n : ℕ} (w : Fin n → Bool) :
-    ENNReal.ofReal ((weights j:ℝ)*streamProb (1/2+EntropyTail.bandEdge j/4) w) ≤
+    ENNReal.ofReal ((weights j:ℝ)*streamProb (1/2+EntropyTailQuantile.bandEdge j/4) w) ≤
       positiveBankLaw weights (tapePrefix n ⁻¹' {w}) := by
   have h := Measure.le_sum (fun k => (weights k:ℝ≥0∞) • tapeMeasure (positiveReference k)) j
   have hs := h (tapePrefix n ⁻¹' {w})
@@ -68,17 +68,17 @@ theorem positiveBankLaw_lower (weights : ℕ → ℝ≥0) (j : ℕ) {n : ℕ} (w
 theorem positive_bank_of_score (μ : Measure Gap) (weights : ℕ → ℝ≥0) {u V : ℝ} (hu : 0 ≤ u)
     (j : ℕ) {n : ℕ} (w : Fin n → Bool)
     (hnull : allNegativeLaw μ (tapePrefix n ⁻¹' {w}) ≤ ENNReal.ofReal (streamProb (1/2) w*V))
-    (hscore : V ≤ u*(weights j:ℝ)*exp (∑ i, positiveBitScore (EntropyTail.bandEdge j/4) (w i))) :
+    (hscore : V ≤ u*(weights j:ℝ)*exp (∑ i, positiveBitScore (EntropyTailQuantile.bandEdge j/4) (w i))) :
     positiveBankTest μ weights u n w := by
   apply hnull.trans
   calc
-    _ ≤ ENNReal.ofReal (u*((weights j:ℝ)*streamProb (1/2+EntropyTail.bandEdge j/4) w)) := by
+    _ ≤ ENNReal.ofReal (u*((weights j:ℝ)*streamProb (1/2+EntropyTailQuantile.bandEdge j/4) w)) := by
       apply ENNReal.ofReal_le_ofReal
-      rw [positive_score_likelihood (by positivity [EntropyTail.bandEdge_pos j])
+      rw [positive_score_likelihood (by positivity [EntropyTailQuantile.bandEdge_pos j])
         (by linarith [bandEdge_le_half j])]
       have h := mul_le_mul_of_nonneg_left hscore (streamProb_pos (1/2) (by norm_num) (by norm_num) w).le
       nlinarith only [h]
-    _ = ENNReal.ofReal u * ENNReal.ofReal ((weights j:ℝ)*streamProb (1/2+EntropyTail.bandEdge j/4) w) :=
+    _ = ENNReal.ofReal u * ENNReal.ofReal ((weights j:ℝ)*streamProb (1/2+EntropyTailQuantile.bandEdge j/4) w) :=
       ENNReal.ofReal_mul hu
     _ ≤ _ := mul_le_mul_right (positiveBankLaw_lower weights j w) (ENNReal.ofReal u)
 

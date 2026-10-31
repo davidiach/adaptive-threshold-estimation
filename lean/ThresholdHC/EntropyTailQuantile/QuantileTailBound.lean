@@ -1,6 +1,6 @@
-import ThresholdHC.EntropyTail.CutDecomposition
-import ThresholdHC.EntropyTail.EntropyMoment
-import ThresholdHC.EntropyTail.QuantileFeasible
+import ThresholdHC.EntropyTailQuantile.CutDecomposition
+import ThresholdHC.EntropyTailQuantile.EntropyMoment
+import ThresholdHC.EntropyTailQuantile.QuantileFeasible
 
 /-! The quantile tail is a lower bound for every selection objective. This is
 a deterministic comparison, not the separately assigned statistical lower bound. -/
@@ -9,7 +9,7 @@ noncomputable section
 open MeasureTheory Set Real
 open scoped ENNReal
 
-namespace ThresholdHC.EntropyTail
+namespace ThresholdHC.EntropyTailQuantile
 open ThresholdHC.Tier6
 
 theorem quantileTail_real_mass (μ : Measure Gap) [IsProbabilityMeasure μ]
@@ -69,4 +69,4 @@ theorem quantile_saturation (μ : Measure Gap) [IsProbabilityMeasure μ]
   rw [← hK]
   exact selectionValue_le_closedQuantileValue μ hρ hρ1 B
 
-end ThresholdHC.EntropyTail
+end ThresholdHC.EntropyTailQuantile

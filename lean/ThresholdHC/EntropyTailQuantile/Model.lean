@@ -1,4 +1,4 @@
-import ThresholdHC.EntropyTail.CostEntropy
+import ThresholdHC.EntropyTailQuantile.CostEntropy
 import ThresholdHC.RareAboveTwo.Model
 
 /-!
@@ -15,7 +15,7 @@ noncomputable section
 open MeasureTheory Set Real
 open scoped ENNReal BigOperators
 
-namespace ThresholdHC.EntropyTail
+namespace ThresholdHC.EntropyTailQuantile
 open ThresholdHC.Tier6
 
 def bandEdge (j : ℕ) : ℝ := (2:ℝ)⁻¹ ^ (j+1)
@@ -65,4 +65,4 @@ def closedQuantileValue (μ : Measure Gap) (ρ B : ℝ) : ℝ≥0∞ :=
       ENNReal.ofReal (budgetScale B) *
         (ENNReal.ofReal ρ * measureCostEntropy (quantileCore μ ρ)) ^ (1/(2:ℝ)))
 
-end ThresholdHC.EntropyTail
+end ThresholdHC.EntropyTailQuantile

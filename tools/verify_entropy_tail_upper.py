@@ -18,18 +18,18 @@ from verify_entropy_tail_components import dependency_order, validate_sources as
 
 ROOT = Path(__file__).resolve().parents[1]
 LEAN = ROOT / "lean"
-GROUPS = ("EntropyTail", "EntropyTailUpper", "EntropyTailAssembly", "EntropyTailSampling", "EntropyTailExecution")
+GROUPS = ("EntropyTailQuantile", "EntropyTailUpper", "EntropyTailAssembly", "EntropyTailSampling", "EntropyTailExecution")
 NEW_GROUPS = {"EntropyTailSampling", "EntropyTailExecution"}
 TARGETS = {
-    "ThresholdHC.EntropyTail.quantile_split": "ThresholdHC.EntropyTail.QuantileSplitStatement",
-    "ThresholdHC.EntropyTail.quantile_comparison": "ThresholdHC.EntropyTail.QuantileComparisonStatement",
-    "ThresholdHC.EntropyTailExecution.entropy_tail_upper": "ThresholdHC.EntropyTail.EntropyTailUpperStatement",
-    "ThresholdHC.EntropyTailExecution.closed_quantile_upper": "ThresholdHC.EntropyTail.ClosedQuantileUpperStatement",
+    "ThresholdHC.EntropyTailQuantile.quantile_split": "ThresholdHC.EntropyTailQuantile.QuantileSplitStatement",
+    "ThresholdHC.EntropyTailQuantile.quantile_comparison": "ThresholdHC.EntropyTailQuantile.QuantileComparisonStatement",
+    "ThresholdHC.EntropyTailExecution.entropy_tail_upper": "ThresholdHC.EntropyTailQuantile.EntropyTailUpperStatement",
+    "ThresholdHC.EntropyTailExecution.closed_quantile_upper": "ThresholdHC.EntropyTailQuantile.ClosedQuantileUpperStatement",
 }
 EXACT_CHECKS = r"""
 open MeasureTheory
 open scoped ENNReal
-open ThresholdHC.Tier6 ThresholdHC.EntropyTail ThresholdHC.RareAboveTwo
+open ThresholdHC.Tier6 ThresholdHC.EntropyTailQuantile ThresholdHC.RareAboveTwo
 example : ∀ (μ : Measure Gap) [IsProbabilityMeasure μ] (ρ B : ℝ),
     0 < ρ → ρ ≤ 1/4 → 0 < B →
     rareMinimaxRisk μ ρ B ≤ ENNReal.ofReal 28000*selectionValue μ ρ B :=
@@ -76,7 +76,7 @@ def main() -> int:
     protected = set(ordered) | {
         Path(__file__).resolve(), ROOT / "tools/verify_entropy_tail_components.py",
         ROOT / "tools/verify_blind_upper_components.py", ROOT / "tools/verify_tier6.py",
-        ROOT / "tools/entropy_tail_specification_freeze.json", LEAN / "lean-toolchain",
+        ROOT / "tools/entropy_tail_quantile_specification_freeze.json", LEAN / "lean-toolchain",
         LEAN / "lake-manifest.json", LEAN / "lakefile.toml",
     }
     hashes = {p.relative_to(ROOT).as_posix(): sha(p) for p in sorted(protected)}

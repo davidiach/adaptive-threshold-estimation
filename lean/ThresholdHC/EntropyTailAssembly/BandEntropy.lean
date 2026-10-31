@@ -7,7 +7,7 @@ open MeasureTheory Real
 open scoped NNReal BigOperators
 
 namespace ThresholdHC.EntropyTailAssembly
-open ThresholdHC.Tier6 ThresholdHC.EntropyTail
+open ThresholdHC.Tier6 ThresholdHC.EntropyTailQuantile
 
 theorem bandWeights_log (σ : Measure Gap) (j : ℕ) :
     log ((bandWeights σ j:ℝ)⁻¹) = log ((∫ d : Gap, (d:ℝ)⁻¹^2 ∂σ)/bandCost σ j) := by

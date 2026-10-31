@@ -12,7 +12,7 @@ open MeasureTheory Set Real
 open scoped NNReal BigOperators
 
 namespace ThresholdHC.EntropyTailAssembly
-open ThresholdHC ThresholdHC.Tier6 ThresholdHC.EntropyTail ThresholdHC.EntropyTailUpper
+open ThresholdHC ThresholdHC.Tier6 ThresholdHC.EntropyTailQuantile ThresholdHC.EntropyTailUpper
 
 def referenceWeights (σ : Measure Gap) (j : ℕ) : ℝ≥0 := by
   classical

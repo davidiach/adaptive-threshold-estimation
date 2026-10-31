@@ -1,5 +1,5 @@
-import ThresholdHC.EntropyTail.BandGeometry
-import ThresholdHC.EntropyTail.TailModulus
+import ThresholdHC.EntropyTailQuantile.BandGeometry
+import ThresholdHC.EntropyTailQuantile.TailModulus
 
 /-! The scale-separated bound Γ(ξ) ≤ 4 H(ξ)/t for a measure on [t, 1/2]. -/
 
@@ -7,7 +7,7 @@ noncomputable section
 open MeasureTheory Set Real
 open scoped BigOperators ENNReal
 
-namespace ThresholdHC.EntropyTail
+namespace ThresholdHC.EntropyTailQuantile
 open ThresholdHC.Tier6
 
 theorem bandCost_eq_zero_of_support (σ : Measure Gap) {t : ℝ} {j : ℕ}
@@ -67,4 +67,4 @@ theorem scaleSeparated_entropy (σ : Measure Gap) [IsFiniteMeasure σ] {t : ℝ}
       exact setIntegral_le_integral hH
         (Filter.Eventually.of_forall (fun d : Gap => inv_nonneg.mpr d.property.1.le))
 
-end ThresholdHC.EntropyTail
+end ThresholdHC.EntropyTailQuantile

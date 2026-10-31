@@ -1,5 +1,5 @@
 import ThresholdHC.EntropyTailExecution.EntropyLimit
-import ThresholdHC.EntropyTail.QuantileComparison
+import ThresholdHC.EntropyTailQuantile.QuantileComparison
 
 /-! The arbitrary-law entropy-tail upper theorem in the frozen observable
 experiment, and its closed-quantile upper corollary. -/
@@ -10,7 +10,7 @@ open scoped ENNReal
 
 namespace ThresholdHC.EntropyTailExecution
 open ThresholdHC.Tier6 (Gap)
-open ThresholdHC.EntropyTail ThresholdHC.EntropyTailAssembly ThresholdHC.RareAboveTwo
+open ThresholdHC.EntropyTailQuantile ThresholdHC.EntropyTailAssembly ThresholdHC.RareAboveTwo
 
 theorem minimax_le_selectionCost (μ : Measure Gap) [IsProbabilityMeasure μ]
     {ρ B : ℝ} (hρ : 0 < ρ) (hρ1 : ρ ≤ 1/4) (hB : 0 < B)

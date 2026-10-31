@@ -1,6 +1,6 @@
-import ThresholdHC.EntropyTail.QuantileAlgebra
+import ThresholdHC.EntropyTailQuantile.QuantileAlgebra
 
-namespace ThresholdHC.EntropyTail
+namespace ThresholdHC.EntropyTailQuantile
 open Real
 
 theorem quantile_root_bound {h ρ t A C H T y : ℝ}
@@ -22,4 +22,4 @@ theorem quantile_root_bound {h ρ t A C H T y : ℝ}
   have hcross : 0 ≤ sqrt 2 * (h * sqrt (ρ*A)) * sqrt (8*T*y) := by positivity
   nlinarith only [hscaled, hprod, hcross]
 
-end ThresholdHC.EntropyTail
+end ThresholdHC.EntropyTailQuantile

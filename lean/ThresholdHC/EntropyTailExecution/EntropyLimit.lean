@@ -8,7 +8,7 @@ open MeasureTheory Set Real Filter
 open scoped ENNReal Topology
 
 namespace ThresholdHC.EntropyTailExecution
-open ThresholdHC.Tier6 ThresholdHC.EntropyTail ThresholdHC.EntropyTailAssembly ThresholdHC.RareAboveTwo
+open ThresholdHC.Tier6 ThresholdHC.EntropyTailQuantile ThresholdHC.EntropyTailAssembly ThresholdHC.RareAboveTwo
 
 theorem finite_entropy_three_piece (σ τ ζ : Measure Gap)
     [IsFiniteMeasure σ] [IsFiniteMeasure τ] [IsFiniteMeasure ζ] [IsProbabilityMeasure (σ+τ+ζ)]

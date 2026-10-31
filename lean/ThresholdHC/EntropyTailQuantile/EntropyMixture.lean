@@ -1,10 +1,10 @@
-import ThresholdHC.EntropyTail.MeasureEntropy
+import ThresholdHC.EntropyTailQuantile.MeasureEntropy
 
 noncomputable section
 open MeasureTheory
 open scoped ENNReal
 
-namespace ThresholdHC.EntropyTail
+namespace ThresholdHC.EntropyTailQuantile
 open ThresholdHC.Tier6
 
 theorem bandCost_add (σ τ : Measure Gap) [IsFiniteMeasure σ] [IsFiniteMeasure τ] (j : ℕ) :
@@ -36,4 +36,4 @@ theorem measureCostEntropy_add_le_two (σ τ : Measure Gap)
       (mul_le_mul_right (le_iSup (fun k => ENNReal.ofReal
         (costEntropy (fun i : Fin k => bandCost τ i))) n) (2 : ℝ≥0∞))
 
-end ThresholdHC.EntropyTail
+end ThresholdHC.EntropyTailQuantile

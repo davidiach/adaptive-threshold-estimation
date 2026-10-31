@@ -1,4 +1,4 @@
-import ThresholdHC.EntropyTail.QuantileSplit
+import ThresholdHC.EntropyTailQuantile.QuantileSplit
 
 /-! Positive linear fractional cuts. They decompose any submeasure using the
 same threshold and boundary fraction, without introducing latent labels. -/
@@ -7,7 +7,7 @@ noncomputable section
 open MeasureTheory Set
 open scoped ENNReal
 
-namespace ThresholdHC.EntropyTail
+namespace ThresholdHC.EntropyTailQuantile
 open ThresholdHC.Tier6
 
 def lowerCut (t r : ℝ) (σ : Measure Gap) : Measure Gap :=
@@ -109,4 +109,4 @@ theorem quantileCore_eq_upperCut (μ : Measure Gap) [IsProbabilityMeasure μ]
   conv_lhs => lhs; rw [← lowerCut_add_upperCut (quantileThreshold μ ρ) hr.1 hr.2.1 μ]
   rw [add_comm, Measure.add_sub_cancel]
 
-end ThresholdHC.EntropyTail
+end ThresholdHC.EntropyTailQuantile
