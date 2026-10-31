@@ -12,7 +12,7 @@ open MeasureTheory
 open scoped ENNReal BigOperators
 namespace ThresholdHC.EntropyTailBridge
 open ThresholdHC.EntropyTailQuantile
-open ThresholdHC.Tier6
+open ThresholdHC.Tier6 (Gap)
 
 theorem canonical_band_eq (j : ℕ) : ThresholdHC.EntropyTail.band j = band j := by
   ext d
