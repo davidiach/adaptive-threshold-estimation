@@ -1,0 +1,1589 @@
+{
+  "original_checkpoint": "4e116018f0c1651382452aa9317fecc971edaec7",
+  "main_checkpoint": "2bc506d62387c511bac8fecbd07ec0e4026b10ce",
+  "substitution": "EntropyTail -> EntropyTailQuantile (complete identifier, including short qualified references)",
+  "copied_modules": 263,
+  "changed_bytes": 38,
+  "original_lock_byte_identical": true,
+  "canonical_interface_unchanged": true,
+  "modules": [
+    {
+      "original": "lean/ThresholdHC/CapIdentification/AffineCentering.lean",
+      "ported": "lean/ThresholdHC/CapIdentification/AffineCentering.lean",
+      "original_sha256": "00150bf5432894a207e2c913711ee935b2201bb7b17a7e05751fdd24828d24ba",
+      "ported_sha256": "00150bf5432894a207e2c913711ee935b2201bb7b17a7e05751fdd24828d24ba"
+    },
+    {
+      "original": "lean/ThresholdHC/CapIdentification/AffineRecovery.lean",
+      "ported": "lean/ThresholdHC/CapIdentification/AffineRecovery.lean",
+      "original_sha256": "7fc30f5b0d489af56496e96f2610d5df34dcec3dabbde3f7d2f6ed25b64dd007",
+      "ported_sha256": "7fc30f5b0d489af56496e96f2610d5df34dcec3dabbde3f7d2f6ed25b64dd007"
+    },
+    {
+      "original": "lean/ThresholdHC/CapIdentification/BiasApproximation.lean",
+      "ported": "lean/ThresholdHC/CapIdentification/BiasApproximation.lean",
+      "original_sha256": "bb647307d8e671e105ecd8af0f4b50657e8d5479c015b52c76fa9e59553179f4",
+      "ported_sha256": "bb647307d8e671e105ecd8af0f4b50657e8d5479c015b52c76fa9e59553179f4"
+    },
+    {
+      "original": "lean/ThresholdHC/CapIdentification/BiasFloor.lean",
+      "ported": "lean/ThresholdHC/CapIdentification/BiasFloor.lean",
+      "original_sha256": "4c2d1fd2f342378f49a0a8454f156548296d692c66684a91329cec32a883b508",
+      "ported_sha256": "4c2d1fd2f342378f49a0a8454f156548296d692c66684a91329cec32a883b508"
+    },
+    {
+      "original": "lean/ThresholdHC/CapIdentification/BudgetLimit.lean",
+      "ported": "lean/ThresholdHC/CapIdentification/BudgetLimit.lean",
+      "original_sha256": "122ed5dadaaeac5ab420731d7abbfbfa50f9a74ae79a1af4aa6823999e2b3704",
+      "ported_sha256": "122ed5dadaaeac5ab420731d7abbfbfa50f9a74ae79a1af4aa6823999e2b3704"
+    },
+    {
+      "original": "lean/ThresholdHC/CapIdentification/CenteredBasis.lean",
+      "ported": "lean/ThresholdHC/CapIdentification/CenteredBasis.lean",
+      "original_sha256": "3521b12f9d6d9d3312a04f0b44ed7a2251a3a052c6bc6e43c8d348b1d269f3e7",
+      "ported_sha256": "3521b12f9d6d9d3312a04f0b44ed7a2251a3a052c6bc6e43c8d348b1d269f3e7"
+    },
+    {
+      "original": "lean/ThresholdHC/CapIdentification/ContrastFunctional.lean",
+      "ported": "lean/ThresholdHC/CapIdentification/ContrastFunctional.lean",
+      "original_sha256": "d1eb1050b2da1dd26f128509afb6549d48f3b9fae494967b1140c2944b9d123f",
+      "ported_sha256": "d1eb1050b2da1dd26f128509afb6549d48f3b9fae494967b1140c2944b9d123f"
+    },
+    {
+      "original": "lean/ThresholdHC/CapIdentification/CountBounds.lean",
+      "ported": "lean/ThresholdHC/CapIdentification/CountBounds.lean",
+      "original_sha256": "a97ae7995e77f53257f3b9f061d00fc2b7e69e2881a8e80684874a4449a0d41a",
+      "ported_sha256": "a97ae7995e77f53257f3b9f061d00fc2b7e69e2881a8e80684874a4449a0d41a"
+    },
+    {
+      "original": "lean/ThresholdHC/CapIdentification/CountMatching.lean",
+      "ported": "lean/ThresholdHC/CapIdentification/CountMatching.lean",
+      "original_sha256": "e292c749b89044ce55222d86beb224a5b6e6a3b8ba41df862c4ad42076e7d53a",
+      "ported_sha256": "e292c749b89044ce55222d86beb224a5b6e6a3b8ba41df862c4ad42076e7d53a"
+    },
+    {
+      "original": "lean/ThresholdHC/CapIdentification/DiameterAttainment.lean",
+      "ported": "lean/ThresholdHC/CapIdentification/DiameterAttainment.lean",
+      "original_sha256": "bc4bd1dee7fd33acf7c3c7786df1d20b0779a4a5ccf0b834682e4896e3649b94",
+      "ported_sha256": "bc4bd1dee7fd33acf7c3c7786df1d20b0779a4a5ccf0b834682e4896e3649b94"
+    },
+    {
+      "original": "lean/ThresholdHC/CapIdentification/DiameterConsequences.lean",
+      "ported": "lean/ThresholdHC/CapIdentification/DiameterConsequences.lean",
+      "original_sha256": "3ad880316c5f39036ee90f18eb712cfb4ca931f65537cd0cb8bddb3071a68512",
+      "ported_sha256": "3ad880316c5f39036ee90f18eb712cfb4ca931f65537cd0cb8bddb3071a68512"
+    },
+    {
+      "original": "lean/ThresholdHC/CapIdentification/FiniteSeparation.lean",
+      "ported": "lean/ThresholdHC/CapIdentification/FiniteSeparation.lean",
+      "original_sha256": "3dd3b445927d634621d615e0b4a627985113e31875c43d84820e3a4fdbb1fb01",
+      "ported_sha256": "3dd3b445927d634621d615e0b4a627985113e31875c43d84820e3a4fdbb1fb01"
+    },
+    {
+      "original": "lean/ThresholdHC/CapIdentification/FiniteSupportTarget.lean",
+      "ported": "lean/ThresholdHC/CapIdentification/FiniteSupportTarget.lean",
+      "original_sha256": "3f77e25085b94cd59c0ec937d976b43f07fc608df99a5a49360c77d9b88fd795",
+      "ported_sha256": "3f77e25085b94cd59c0ec937d976b43f07fc608df99a5a49360c77d9b88fd795"
+    },
+    {
+      "original": "lean/ThresholdHC/CapIdentification/Full.lean",
+      "ported": "lean/ThresholdHC/CapIdentification/Full.lean",
+      "original_sha256": "0c222975293d5bc52c4fa54e11b32d585b96e32e52eef932658ba3acc8f73423",
+      "ported_sha256": "0c222975293d5bc52c4fa54e11b32d585b96e32e52eef932658ba3acc8f73423"
+    },
+    {
+      "original": "lean/ThresholdHC/CapIdentification/FullCapCertificate.lean",
+      "ported": "lean/ThresholdHC/CapIdentification/FullCapCertificate.lean",
+      "original_sha256": "42d8b8f9a2d3a4fdf3ddee390ec96985836449c8489ec5e0a4a6d09fb881bc37",
+      "ported_sha256": "42d8b8f9a2d3a4fdf3ddee390ec96985836449c8489ec5e0a4a6d09fb881bc37"
+    },
+    {
+      "original": "lean/ThresholdHC/CapIdentification/InformationZero.lean",
+      "ported": "lean/ThresholdHC/CapIdentification/InformationZero.lean",
+      "original_sha256": "915403b88cf1cd77a9f32282a154cff22f95b2f72225c5c71728e65c8e833107",
+      "ported_sha256": "915403b88cf1cd77a9f32282a154cff22f95b2f72225c5c71728e65c8e833107"
+    },
+    {
+      "original": "lean/ThresholdHC/CapIdentification/Interpolation.lean",
+      "ported": "lean/ThresholdHC/CapIdentification/Interpolation.lean",
+      "original_sha256": "44c88912ecea85e61b4aa5c74e9937530d92ec6e84aa522985c45132ca1460ce",
+      "ported_sha256": "44c88912ecea85e61b4aa5c74e9937530d92ec6e84aa522985c45132ca1460ce"
+    },
+    {
+      "original": "lean/ThresholdHC/CapIdentification/MomentCoordinates.lean",
+      "ported": "lean/ThresholdHC/CapIdentification/MomentCoordinates.lean",
+      "original_sha256": "bd93a1a02bd189f762b3df77aba6e38d8f7600320f29392a41ee186a17076c8d",
+      "ported_sha256": "bd93a1a02bd189f762b3df77aba6e38d8f7600320f29392a41ee186a17076c8d"
+    },
+    {
+      "original": "lean/ThresholdHC/CapIdentification/OddPolynomials.lean",
+      "ported": "lean/ThresholdHC/CapIdentification/OddPolynomials.lean",
+      "original_sha256": "9ef01310e5473ed4d540fae9fa35d79ed46de6c7ff1bc30a57c0683bb1c28ddc",
+      "ported_sha256": "9ef01310e5473ed4d540fae9fa35d79ed46de6c7ff1bc30a57c0683bb1c28ddc"
+    },
+    {
+      "original": "lean/ThresholdHC/CapIdentification/OrthogonalContrast.lean",
+      "ported": "lean/ThresholdHC/CapIdentification/OrthogonalContrast.lean",
+      "original_sha256": "3eb5513032c0eba5d4ebf0913efafe852f2f0e517a5a4a7d9a4031315abef9b3",
+      "ported_sha256": "3eb5513032c0eba5d4ebf0913efafe852f2f0e517a5a4a7d9a4031315abef9b3"
+    },
+    {
+      "original": "lean/ThresholdHC/CapIdentification/PolynomialL2.lean",
+      "ported": "lean/ThresholdHC/CapIdentification/PolynomialL2.lean",
+      "original_sha256": "ac1519992d1d1a08475ef1895aebd101ab1119af67a670f749662fbe8e7a3c98",
+      "ported_sha256": "ac1519992d1d1a08475ef1895aebd101ab1119af67a670f749662fbe8e7a3c98"
+    },
+    {
+      "original": "lean/ThresholdHC/CapIdentification/PrefixBasis.lean",
+      "ported": "lean/ThresholdHC/CapIdentification/PrefixBasis.lean",
+      "original_sha256": "8cc7c315b53acc783d5204d51fcb8ceff7eca8732ff565da9680f712deca2c96",
+      "ported_sha256": "8cc7c315b53acc783d5204d51fcb8ceff7eca8732ff565da9680f712deca2c96"
+    },
+    {
+      "original": "lean/ThresholdHC/CapIdentification/PrefixRepresentation.lean",
+      "ported": "lean/ThresholdHC/CapIdentification/PrefixRepresentation.lean",
+      "original_sha256": "17af2f7adbcad203ac7ae80c4240c68d1dc3e3be8de47cbbf5f810666f927fb0",
+      "ported_sha256": "17af2f7adbcad203ac7ae80c4240c68d1dc3e3be8de47cbbf5f810666f927fb0"
+    },
+    {
+      "original": "lean/ThresholdHC/CapIdentification/RareContrast.lean",
+      "ported": "lean/ThresholdHC/CapIdentification/RareContrast.lean",
+      "original_sha256": "3d41cfce6142d4fc9689490fb71de889dba67f1432614cac7ebb6013f433354e",
+      "ported_sha256": "3d41cfce6142d4fc9689490fb71de889dba67f1432614cac7ebb6013f433354e"
+    },
+    {
+      "original": "lean/ThresholdHC/CapIdentification/StoppedMatching.lean",
+      "ported": "lean/ThresholdHC/CapIdentification/StoppedMatching.lean",
+      "original_sha256": "76ee3baccfc8d1cf198e7a8bc999fe61709abd1bff73ce23f6adf223b079c7cf",
+      "ported_sha256": "76ee3baccfc8d1cf198e7a8bc999fe61709abd1bff73ce23f6adf223b079c7cf"
+    },
+    {
+      "original": "lean/ThresholdHC/CapIdentification/SupportIdentification.lean",
+      "ported": "lean/ThresholdHC/CapIdentification/SupportIdentification.lean",
+      "original_sha256": "9f8bdef04d4a807589785a3040e4c8e9933f8fa8e073f5cbf14967a8be07cf3b",
+      "ported_sha256": "9f8bdef04d4a807589785a3040e4c8e9933f8fa8e073f5cbf14967a8be07cf3b"
+    },
+    {
+      "original": "lean/ThresholdHC/CapIdentification/TerminalMoments.lean",
+      "ported": "lean/ThresholdHC/CapIdentification/TerminalMoments.lean",
+      "original_sha256": "275521fd4c32e5d1c6f95eb9feaa5fbdc02931306ebdf7b87a3ce8b00d28ab16",
+      "ported_sha256": "275521fd4c32e5d1c6f95eb9feaa5fbdc02931306ebdf7b87a3ce8b00d28ab16"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTail/BandGeometry.lean",
+      "ported": "lean/ThresholdHC/EntropyTailQuantile/BandGeometry.lean",
+      "original_sha256": "b3415e49884cbc4ff53ba6ff4176764a562128b9c845b474e73652c86f3bb25a",
+      "ported_sha256": "bfe5a7362790066cae5f599354aecc23c1e246d0750b1835113190ca8c3f63a8"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTail/CostEntropy.lean",
+      "ported": "lean/ThresholdHC/EntropyTailQuantile/CostEntropy.lean",
+      "original_sha256": "a181ce583335a26df67275b4c37a37d21b7f7e7e625f779feb7a08faefb23af1",
+      "ported_sha256": "cfd71fb622f3e2a794de5ecb5f087ae0c96e65af5335beb44040aa690c483939"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTail/CostEntropySeries.lean",
+      "ported": "lean/ThresholdHC/EntropyTailQuantile/CostEntropySeries.lean",
+      "original_sha256": "7ba0edb5383681ff439b9360468ea8a3f0a8d4d60bce01dda61dfa8207c323e0",
+      "ported_sha256": "0fd8973ee918b402c63bb423a0c939f3ddef56d5b0257c14937ecc6e08a595b4"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTail/CutDecomposition.lean",
+      "ported": "lean/ThresholdHC/EntropyTailQuantile/CutDecomposition.lean",
+      "original_sha256": "3f35b543aa212d104d46014675229d0195ae8845307bd281690b2681a0aa0e15",
+      "ported_sha256": "c7c40129d873e275136e646cdb57f4a437e2df36d63ff4eaa05eae456b7f6cb7"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTail/EntropyMixture.lean",
+      "ported": "lean/ThresholdHC/EntropyTailQuantile/EntropyMixture.lean",
+      "original_sha256": "ae5e4217afe5776207ae393e9e5f1ec20d68de7b9d6487465abc60a53779a3ca",
+      "ported_sha256": "e08dcadaaef953fb3b872ba3ba3c6278e8350bd544a48da8c682d87ca32c81e5"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTail/EntropyMoment.lean",
+      "ported": "lean/ThresholdHC/EntropyTailQuantile/EntropyMoment.lean",
+      "original_sha256": "3251ff8d2677e560093b1c847a8bad4a75db165512d3141f24610db4a8a05cfb",
+      "ported_sha256": "a1f1724767d56b5c717a1aadef60d86ef37ed04306ad44cbf31ebba9cc2f9b73"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTail/MeasureEntropy.lean",
+      "ported": "lean/ThresholdHC/EntropyTailQuantile/MeasureEntropy.lean",
+      "original_sha256": "0e3cea7fcbb0389442ee77d076e8bfe71e492ece0dbfa638aa6110c4a47856b5",
+      "ported_sha256": "1724e3dc2f22e44e32e47c129e4e6a781c97a7a936b56baf51b0fd2e01e3bf2b"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTail/Model.lean",
+      "ported": "lean/ThresholdHC/EntropyTailQuantile/Model.lean",
+      "original_sha256": "280a32ef8977d223a92ff0e42a039b0fd16ec3fbd80d6fbd369991dfe2b42079",
+      "ported_sha256": "9ace9b713b268d085c6eb281c424410987dfb37177e704d4b5c6e4c7fcb5f5c9"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTail/QuantileAlgebra.lean",
+      "ported": "lean/ThresholdHC/EntropyTailQuantile/QuantileAlgebra.lean",
+      "original_sha256": "d7eb99cdbcecfec342f36de1d014e6ddeb420ca7423d4cddf117aa35b0ca2434",
+      "ported_sha256": "504eaaa7d5c7741c17c3f42d0857b9f15763b7f0d6379116f6ea4da38ca99f50"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTail/QuantileComparison.lean",
+      "ported": "lean/ThresholdHC/EntropyTailQuantile/QuantileComparison.lean",
+      "original_sha256": "aa83fbe970919d90491839c467a3fba24a29d58c8e47d1fb1e6ad1c86b4aca36",
+      "ported_sha256": "0e7f235d96a9ebd200b748a6a8bdc51eb3a1384cd7262154b8b79508b0a3b80c"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTail/QuantileCoreBound.lean",
+      "ported": "lean/ThresholdHC/EntropyTailQuantile/QuantileCoreBound.lean",
+      "original_sha256": "3088619e2e28c6f87fb65a69e10a434eb1c55c87e5c843f551a0a95f124c443f",
+      "ported_sha256": "1d042ea16c299027a1d8974e9a7b203fd0b09e208dc11a97ba9eacce9449ba84"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTail/QuantileFeasible.lean",
+      "ported": "lean/ThresholdHC/EntropyTailQuantile/QuantileFeasible.lean",
+      "original_sha256": "e303a5db34aca32331011b39f462f40321f2217c99be0c652f08372b4b558e83",
+      "ported_sha256": "3c316ddd4ee6b0d98405a8aa6b384ec0aeefa5e19d503f64082e594445996228"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTail/QuantileRootBound.lean",
+      "ported": "lean/ThresholdHC/EntropyTailQuantile/QuantileRootBound.lean",
+      "original_sha256": "b194e14e910b42612bdfb3f244fbe58de1d79032f22a30b9bd144a9b09022ef9",
+      "ported_sha256": "dba4f817578bfa0a66f10f9df98cef26ed9c5d528e7bc2d492a830203f1dc336"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTail/QuantileSplit.lean",
+      "ported": "lean/ThresholdHC/EntropyTailQuantile/QuantileSplit.lean",
+      "original_sha256": "3aaef7781e570a7e2c3be41b5b6376e811f6578c7c820d8b8d1d46bb0ae0c91b",
+      "ported_sha256": "f597bbd2df7d32defc0002fee63682f96863517d315a9d3de8d68a6c38af9908"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTail/QuantileSplitFull.lean",
+      "ported": "lean/ThresholdHC/EntropyTailQuantile/QuantileSplitFull.lean",
+      "original_sha256": "646809d101df8f44fa2f82ba3bb59f9a83126afdc002ca8afebb72dc85563671",
+      "ported_sha256": "89bfd56bb4b753a516bf1d9b4536ce017ab95550bcb7180d21c3c797a409f494"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTail/QuantileTailBound.lean",
+      "ported": "lean/ThresholdHC/EntropyTailQuantile/QuantileTailBound.lean",
+      "original_sha256": "6980f866d214623fb9fea618eb697d4c5b9c5b59bb3a5d3ecc8846a51927899e",
+      "ported_sha256": "b80f68f49edb31165bcb81eb566ccec34ab0a0ea64da68435585e9d9df990da6"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTail/QuantileThreshold.lean",
+      "ported": "lean/ThresholdHC/EntropyTailQuantile/QuantileThreshold.lean",
+      "original_sha256": "f3cd1cf70a93860984a54914a6ded4f82f983cf695c1cb1a874b42c99cbd47d3",
+      "ported_sha256": "a17e0fa03be08d78c0b7f5c1a2ab65a43279f37100dae6a7c44f260d60a72ab3"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTail/ScaleSeparated.lean",
+      "ported": "lean/ThresholdHC/EntropyTailQuantile/ScaleSeparated.lean",
+      "original_sha256": "20c508acca48c343f9a6a2140751f8cd04c3652c1c65afbab545111036d88ee6",
+      "ported_sha256": "7aa42a910f774707a50be4948d185bd0523afcc34043807c8eddc68340119263"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTail/Specification.lean",
+      "ported": "lean/ThresholdHC/EntropyTailQuantile/Specification.lean",
+      "original_sha256": "3bac177a1dbef212f2849b1c043c0b9ae1fdff1c8421ecd5fbc4afe65360a81a",
+      "ported_sha256": "ef13e8b2117cc2760d7553a023b39d84cd5482a97e26c304eac417f172998a6e"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTail/TailModulus.lean",
+      "ported": "lean/ThresholdHC/EntropyTailQuantile/TailModulus.lean",
+      "original_sha256": "d28bc6fe601ff8c5ce276be0510b0bdddcd0e3dacb51c9ea31eb3dbd0d96a04c",
+      "ported_sha256": "fe0fb5da0bd0ad2045ae05a5a7ca95e8e003112194a9b0fd2a24ab7dc36dbde9"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailAssembly/AccuracySchedule.lean",
+      "ported": "lean/ThresholdHC/EntropyTailAssembly/AccuracySchedule.lean",
+      "original_sha256": "273661faabd47b6042fbec73bdd7daffa297122376785d410b10c6d9533353ee",
+      "ported_sha256": "273661faabd47b6042fbec73bdd7daffa297122376785d410b10c6d9533353ee"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailAssembly/BandEntropy.lean",
+      "ported": "lean/ThresholdHC/EntropyTailAssembly/BandEntropy.lean",
+      "original_sha256": "af394f788208cc59c5133230482a21468947148094be1dbf9e796e0d1fffe6a4",
+      "ported_sha256": "a53d6fb485bea77586217a3e84b0f7a73036d794cf354d3973c85d8fe39d2b09"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailAssembly/BandWeights.lean",
+      "ported": "lean/ThresholdHC/EntropyTailAssembly/BandWeights.lean",
+      "original_sha256": "ed269d08433faddd1f19410cc2b788b49c64b8c4b0e9eb630956a5d29937b679",
+      "ported_sha256": "912c22b85f46819fc8d8c4593396cd0c4a9090b07d488e652dad47d54c13d7ef"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailAssembly/BudgetCertificate.lean",
+      "ported": "lean/ThresholdHC/EntropyTailAssembly/BudgetCertificate.lean",
+      "original_sha256": "9c1f3f92e5d67c1c2d155eb5491876f8dc79440d71d3164fc11a7037217ffa8d",
+      "ported_sha256": "9c1f3f92e5d67c1c2d155eb5491876f8dc79440d71d3164fc11a7037217ffa8d"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailAssembly/CertificateAlgebra.lean",
+      "ported": "lean/ThresholdHC/EntropyTailAssembly/CertificateAlgebra.lean",
+      "original_sha256": "ec370298417ae56bb743e3f1f51eb22bf30c6bcc01055e8dddedc94e08fc75b3",
+      "ported_sha256": "ec370298417ae56bb743e3f1f51eb22bf30c6bcc01055e8dddedc94e08fc75b3"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailAssembly/ConditionalWork.lean",
+      "ported": "lean/ThresholdHC/EntropyTailAssembly/ConditionalWork.lean",
+      "original_sha256": "a466d6d7e24da487878b6d5d05b845d43edb35f8fd78411d782641ead0b7cc7a",
+      "ported_sha256": "3e91203a75b43bdbb185acf15cf9c68f0b8f1d75d0a7725f32d9395e3e2b4345"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailAssembly/DyadicKernelPointwise.lean",
+      "ported": "lean/ThresholdHC/EntropyTailAssembly/DyadicKernelPointwise.lean",
+      "original_sha256": "e7ca7dde6bdf87090ea5a2bb03347f15bfdaf588a933c3f563d286c75b2792d0",
+      "ported_sha256": "d239f72dcd601b215db01a7290c60066cc6bfecc2f03f4ff9775fe67fd4c0e2f"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailAssembly/DyadicKernelSum.lean",
+      "ported": "lean/ThresholdHC/EntropyTailAssembly/DyadicKernelSum.lean",
+      "original_sha256": "e6d715fbd0062463e8d0c3ee7845cd3b4f71a780beaca79592959d16fa91af42",
+      "ported_sha256": "89288befae3c9ad16431bdc566cdb593e48b3d0e26b338ad7e15c2ed257bfe37"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailAssembly/ErrorCaps.lean",
+      "ported": "lean/ThresholdHC/EntropyTailAssembly/ErrorCaps.lean",
+      "original_sha256": "0475303c3f4d0cdd2ec2d9a7530910dee1d90a0c60d72d342f6582370d9179f5",
+      "ported_sha256": "0475303c3f4d0cdd2ec2d9a7530910dee1d90a0c60d72d342f6582370d9179f5"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailAssembly/FiniteApproximation.lean",
+      "ported": "lean/ThresholdHC/EntropyTailAssembly/FiniteApproximation.lean",
+      "original_sha256": "e9643fe211baf473d6ccaf4326c6beded1649808c3f671f4b448f934228247d5",
+      "ported_sha256": "f59a1a306089cfac6b2b140bc818d65c197a12966bb2192a8b01877448662e62"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailAssembly/IntegratedSurcharge.lean",
+      "ported": "lean/ThresholdHC/EntropyTailAssembly/IntegratedSurcharge.lean",
+      "original_sha256": "a1ad46a3778fa2a15dfc7e0947a60f8c7330bb6c465fb10f5d54b43adaab3cc9",
+      "ported_sha256": "a1ad46a3778fa2a15dfc7e0947a60f8c7330bb6c465fb10f5d54b43adaab3cc9"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailAssembly/KernelMoments.lean",
+      "ported": "lean/ThresholdHC/EntropyTailAssembly/KernelMoments.lean",
+      "original_sha256": "257bfefacec9e8f9b1157747b791b70dd83f121316f9bf2edf5128ae2ec57d28",
+      "ported_sha256": "257bfefacec9e8f9b1157747b791b70dd83f121316f9bf2edf5128ae2ec57d28"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailAssembly/LevelCertificates.lean",
+      "ported": "lean/ThresholdHC/EntropyTailAssembly/LevelCertificates.lean",
+      "original_sha256": "744a9f5fb3c00a6a31db656c009f72af2a99d5d7030a1d45e5662e5ce706cea3",
+      "ported_sha256": "5f7eb6338f2470bc57ddfa3cdb0fc446e25ade9bbee441823ed4aedff816b6d6"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailAssembly/MixedWork.lean",
+      "ported": "lean/ThresholdHC/EntropyTailAssembly/MixedWork.lean",
+      "original_sha256": "b7710d5a602d7642a95af0a083f146bf59a69d71a4941fdc32143e8ab3d5e9b8",
+      "ported_sha256": "b7710d5a602d7642a95af0a083f146bf59a69d71a4941fdc32143e8ab3d5e9b8"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailAssembly/OrdinaryKernels.lean",
+      "ported": "lean/ThresholdHC/EntropyTailAssembly/OrdinaryKernels.lean",
+      "original_sha256": "ac9888a00ecf898bfc0e1424bb86e745cefd59f9022228cd9cbde9bd92d683c7",
+      "ported_sha256": "ac9888a00ecf898bfc0e1424bb86e745cefd59f9022228cd9cbde9bd92d683c7"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailAssembly/SelectedWork.lean",
+      "ported": "lean/ThresholdHC/EntropyTailAssembly/SelectedWork.lean",
+      "original_sha256": "bae8e50216a6b76103d695811f8df2d7c0e3b5fd9ea0acb0a5126b04063a273f",
+      "ported_sha256": "68eb3857890dfa58edccac329d53eff688f7088fc3cce06ba8013cb12558e0fc"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailAssembly/UnresolvedWork.lean",
+      "ported": "lean/ThresholdHC/EntropyTailAssembly/UnresolvedWork.lean",
+      "original_sha256": "5f5b2afce1dcaac3ee19afe93873cc4cf8711448c3b30586afdd3c93b20e6a54",
+      "ported_sha256": "5f5b2afce1dcaac3ee19afe93873cc4cf8711448c3b30586afdd3c93b20e6a54"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailExecution/ActualPlan.lean",
+      "ported": "lean/ThresholdHC/EntropyTailExecution/ActualPlan.lean",
+      "original_sha256": "a7f54595fd439b7217f4e7e5009eaf0fdf795afcf1310d5aefcd6e5db6c4f143",
+      "ported_sha256": "a7f54595fd439b7217f4e7e5009eaf0fdf795afcf1310d5aefcd6e5db6c4f143"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailExecution/AllocatedEstimator.lean",
+      "ported": "lean/ThresholdHC/EntropyTailExecution/AllocatedEstimator.lean",
+      "original_sha256": "acce27fa71ca867e6ef808ec8eead913af30ba2f1e304cf055fc608b55fef80d",
+      "ported_sha256": "acce27fa71ca867e6ef808ec8eead913af30ba2f1e304cf055fc608b55fef80d"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailExecution/CallMachine.lean",
+      "ported": "lean/ThresholdHC/EntropyTailExecution/CallMachine.lean",
+      "original_sha256": "3d75afa9a5c2516f0b74b7e2c2fc71c88614f9ff887bee1067b687df72a9b16d",
+      "ported_sha256": "3d75afa9a5c2516f0b74b7e2c2fc71c88614f9ff887bee1067b687df72a9b16d"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailExecution/CoupledCall.lean",
+      "ported": "lean/ThresholdHC/EntropyTailExecution/CoupledCall.lean",
+      "original_sha256": "f676f1c9aa4cae986942af56f48cc50e38f1d7bc49a1a4574f039c4b11e467b9",
+      "ported_sha256": "f676f1c9aa4cae986942af56f48cc50e38f1d7bc49a1a4574f039c4b11e467b9"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailExecution/EntropyLimit.lean",
+      "ported": "lean/ThresholdHC/EntropyTailExecution/EntropyLimit.lean",
+      "original_sha256": "9f47c5d3a710c0c2500ea39cad4888d9ecfb86d4d9b3b2c7b0db02a8438a5c38",
+      "ported_sha256": "c96d69d6bb6c959f07d36e61ff73358ebb54e603094cfbef77fe94a555e19d0c"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailExecution/FiniteRisk.lean",
+      "ported": "lean/ThresholdHC/EntropyTailExecution/FiniteRisk.lean",
+      "original_sha256": "0d89a6539b791b4a829b56f573ca67f2267583edc4e9fa7473a7627f59b69b6a",
+      "ported_sha256": "83d643e7d7c01c2450986a8ac8311f01eb532529923551151cf91016b90d9528"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailExecution/IncrementBounds.lean",
+      "ported": "lean/ThresholdHC/EntropyTailExecution/IncrementBounds.lean",
+      "original_sha256": "4626fc639e5325ebebae21f7095c8957a3ac3793a5bd1f9319b147cf4693939c",
+      "ported_sha256": "4626fc639e5325ebebae21f7095c8957a3ac3793a5bd1f9319b147cf4693939c"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailExecution/PlanExecution.lean",
+      "ported": "lean/ThresholdHC/EntropyTailExecution/PlanExecution.lean",
+      "original_sha256": "45109a7ef5dc3a7f6f017f9557d46d7b18415830d236ccad8fd8677c1f5bba23",
+      "ported_sha256": "45109a7ef5dc3a7f6f017f9557d46d7b18415830d236ccad8fd8677c1f5bba23"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailExecution/PoissonPlan.lean",
+      "ported": "lean/ThresholdHC/EntropyTailExecution/PoissonPlan.lean",
+      "original_sha256": "31d07313de7eba61ed3b3cac2c50e80126216939da11da1d792690b45d218447",
+      "ported_sha256": "31d07313de7eba61ed3b3cac2c50e80126216939da11da1d792690b45d218447"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailExecution/RealizedPoisson.lean",
+      "ported": "lean/ThresholdHC/EntropyTailExecution/RealizedPoisson.lean",
+      "original_sha256": "e4beaec465c1ab5c9663babf08edc0fa293c9931cb860b19434a29c5a1d24998",
+      "ported_sha256": "e4beaec465c1ab5c9663babf08edc0fa293c9931cb860b19434a29c5a1d24998"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailExecution/ScheduledFamily.lean",
+      "ported": "lean/ThresholdHC/EntropyTailExecution/ScheduledFamily.lean",
+      "original_sha256": "ce7780d8e537ae260b68b7f446e45ca7083e1be377c36e4efd0a560352583b54",
+      "ported_sha256": "98505ed891c37a6be0fa88f77c10687c09c5a737d5188a860aeded37f4dd6da9"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailExecution/ThreePiece.lean",
+      "ported": "lean/ThresholdHC/EntropyTailExecution/ThreePiece.lean",
+      "original_sha256": "6102ce1e70ce3773ad54b91c7cf53fdc9020840edd6e2ecf3ce1656cad66a707",
+      "ported_sha256": "dc766133ef424e9f06cafb849554709b4ddf7684af91009c11b4c1df0980c335"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailExecution/UpperTheorem.lean",
+      "ported": "lean/ThresholdHC/EntropyTailExecution/UpperTheorem.lean",
+      "original_sha256": "75c8c7566c6afb962dbd1d692bae416542ac96b11a512996bbe101bcd73ce212",
+      "ported_sha256": "8ac7b8c42034648373f0fc625bd4d917e6b98210df4fec1ff5a244f0fa5f6d4a"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailSampling/CountedMarks.lean",
+      "ported": "lean/ThresholdHC/EntropyTailSampling/CountedMarks.lean",
+      "original_sha256": "b6a0d5c71c2f3ca0500bff5f0055da8dcbf6c24fd6885c27b8ad744bdc69b648",
+      "ported_sha256": "b6a0d5c71c2f3ca0500bff5f0055da8dcbf6c24fd6885c27b8ad744bdc69b648"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailSampling/MultilevelPoisson.lean",
+      "ported": "lean/ThresholdHC/EntropyTailSampling/MultilevelPoisson.lean",
+      "original_sha256": "3b77fcc93c71bd1a1b3a3eaa4ce49dda3794f7dd500d24a806cca8ad85891648",
+      "ported_sha256": "3b77fcc93c71bd1a1b3a3eaa4ce49dda3794f7dd500d24a806cca8ad85891648"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailSampling/PoissonEstimator.lean",
+      "ported": "lean/ThresholdHC/EntropyTailSampling/PoissonEstimator.lean",
+      "original_sha256": "07a63260a8143bfbf8abec7802ceae4484100d95b8f4436e73296045f5470927",
+      "ported_sha256": "07a63260a8143bfbf8abec7802ceae4484100d95b8f4436e73296045f5470927"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailSampling/PositiveRace.lean",
+      "ported": "lean/ThresholdHC/EntropyTailSampling/PositiveRace.lean",
+      "original_sha256": "75b15b634465791d3a970b752c43890403ce7752cb754b579708a3ce47b53214",
+      "ported_sha256": "75b15b634465791d3a970b752c43890403ce7752cb754b579708a3ce47b53214"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailSampling/RaceMoments.lean",
+      "ported": "lean/ThresholdHC/EntropyTailSampling/RaceMoments.lean",
+      "original_sha256": "29cce6c309ae1923c54efd057d6b285a4648cd6b41bef15ffb570b654f640a19",
+      "ported_sha256": "29cce6c309ae1923c54efd057d6b285a4648cd6b41bef15ffb570b654f640a19"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailUpper/Allocation.lean",
+      "ported": "lean/ThresholdHC/EntropyTailUpper/Allocation.lean",
+      "original_sha256": "be6e4fdcddb58232cb9e060380d22d24d20fbb2a96b37308af972dd9b191b7d9",
+      "ported_sha256": "be6e4fdcddb58232cb9e060380d22d24d20fbb2a96b37308af972dd9b191b7d9"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailUpper/BankErrors.lean",
+      "ported": "lean/ThresholdHC/EntropyTailUpper/BankErrors.lean",
+      "original_sha256": "34697a88c5b7cf68fa57495b6ab7b3c9771ab80c74ee5c720a65f70fb9d4145d",
+      "ported_sha256": "b62a0ecdbfc23385dfe5a379b8d926b2892427c5fbdb28ac0ccb373671369ceb"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailUpper/BankRace.lean",
+      "ported": "lean/ThresholdHC/EntropyTailUpper/BankRace.lean",
+      "original_sha256": "7e9d199d3afd0b548d3916f78c1cd648bdd46c298608be2169f4f240a869dfe0",
+      "ported_sha256": "2e52a7aedfe307ae19ab35f8459cf592b25b2dc152e7034aad56338a4f98e9ea"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailUpper/BankWork.lean",
+      "ported": "lean/ThresholdHC/EntropyTailUpper/BankWork.lean",
+      "original_sha256": "a079bca624b1fb669bf4d83a8a147e299f15ccb07295ab5ad9f161e1ce4ba76a",
+      "ported_sha256": "2e78934915c6c6d5c951c4466415c8b3314d74e7575226bedcecf6c5b99205e2"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailUpper/BernoulliTilt.lean",
+      "ported": "lean/ThresholdHC/EntropyTailUpper/BernoulliTilt.lean",
+      "original_sha256": "406f772c0e2d5d7640762c79312ecf3bd80ed06ecd896cb8e2e0f4e1da771ec1",
+      "ported_sha256": "406f772c0e2d5d7640762c79312ecf3bd80ed06ecd896cb8e2e0f4e1da771ec1"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailUpper/BoundedSearch.lean",
+      "ported": "lean/ThresholdHC/EntropyTailUpper/BoundedSearch.lean",
+      "original_sha256": "ee8fd74c32399ed1e96defe7521e0c4100cc3adfbe1d70635e6c2d7eea77e17c",
+      "ported_sha256": "ee8fd74c32399ed1e96defe7521e0c4100cc3adfbe1d70635e6c2d7eea77e17c"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailUpper/LaplaceEnvelope.lean",
+      "ported": "lean/ThresholdHC/EntropyTailUpper/LaplaceEnvelope.lean",
+      "original_sha256": "258a1db916de8a790e35439f788e7fe72d27fc8b303b6dac69df26a12e1aa66a",
+      "ported_sha256": "258a1db916de8a790e35439f788e7fe72d27fc8b303b6dac69df26a12e1aa66a"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailUpper/LogSurcharge.lean",
+      "ported": "lean/ThresholdHC/EntropyTailUpper/LogSurcharge.lean",
+      "original_sha256": "a0807226dbd84862f5afbe26ca00b9bbe05a0796f5a5fee2b87d9269f0287c04",
+      "ported_sha256": "a0807226dbd84862f5afbe26ca00b9bbe05a0796f5a5fee2b87d9269f0287c04"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailUpper/NullMixture.lean",
+      "ported": "lean/ThresholdHC/EntropyTailUpper/NullMixture.lean",
+      "original_sha256": "12ef59be8c16e3edfe43a1127229fae8c64c725330de964eaa6733413ba2e293",
+      "ported_sha256": "e12b6e9560353a6eb23cc11278ef361312a63c8c2e05e1d17096d84d6e2efc82"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailUpper/NullPrefix.lean",
+      "ported": "lean/ThresholdHC/EntropyTailUpper/NullPrefix.lean",
+      "original_sha256": "aa59859491d20f4bd669d25155c34d4f5bb9cecc7a5e3709e82154136d8b8839",
+      "ported_sha256": "aa59859491d20f4bd669d25155c34d4f5bb9cecc7a5e3709e82154136d8b8839"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailUpper/Ordinary.lean",
+      "ported": "lean/ThresholdHC/EntropyTailUpper/Ordinary.lean",
+      "original_sha256": "e53e6594d0dc15cb7d99a71e3a361fb3cb3901e04926e36d08bc55b66221ceeb",
+      "ported_sha256": "e53e6594d0dc15cb7d99a71e3a361fb3cb3901e04926e36d08bc55b66221ceeb"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailUpper/ParityRace.lean",
+      "ported": "lean/ThresholdHC/EntropyTailUpper/ParityRace.lean",
+      "original_sha256": "f11a7d4ff5ab595dcb965ac61711f362a1a6fbb1fa9da2cb9b68c4b1eff2a0a9",
+      "ported_sha256": "f11a7d4ff5ab595dcb965ac61711f362a1a6fbb1fa9da2cb9b68c4b1eff2a0a9"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailUpper/PoissonMoments.lean",
+      "ported": "lean/ThresholdHC/EntropyTailUpper/PoissonMoments.lean",
+      "original_sha256": "801ac471e51600b940339f4fbabeaca0aed367c522a670cb27abf56497551a89",
+      "ported_sha256": "801ac471e51600b940339f4fbabeaca0aed367c522a670cb27abf56497551a89"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailUpper/PopulationErrors.lean",
+      "ported": "lean/ThresholdHC/EntropyTailUpper/PopulationErrors.lean",
+      "original_sha256": "f239a835bb754da4377c3ecd766b32c33c819897de27dca33f98218ad6e95903",
+      "ported_sha256": "f239a835bb754da4377c3ecd766b32c33c819897de27dca33f98218ad6e95903"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailUpper/PositiveRaceWork.lean",
+      "ported": "lean/ThresholdHC/EntropyTailUpper/PositiveRaceWork.lean",
+      "original_sha256": "91d443d4582a40a75dd232634ce4829de6ad81d746ab00d16d28d36f9a6b1769",
+      "ported_sha256": "03d2083094709e8e179eaefb8014666214d8bef4567125f6781ac13539fec2a6"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailUpper/PredictableWald.lean",
+      "ported": "lean/ThresholdHC/EntropyTailUpper/PredictableWald.lean",
+      "original_sha256": "725659cbdb3bdae57675acff3f5a84605e5bc6c8bfd2dae3d1d77218a0addbe1",
+      "ported_sha256": "725659cbdb3bdae57675acff3f5a84605e5bc6c8bfd2dae3d1d77218a0addbe1"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailUpper/PrefixConcentration.lean",
+      "ported": "lean/ThresholdHC/EntropyTailUpper/PrefixConcentration.lean",
+      "original_sha256": "52abf55b3f1904be025d8f6984102be9782184e1ebcd427fdd74dcde4ab0caf0",
+      "ported_sha256": "52abf55b3f1904be025d8f6984102be9782184e1ebcd427fdd74dcde4ab0caf0"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailUpper/PrefixCrossing.lean",
+      "ported": "lean/ThresholdHC/EntropyTailUpper/PrefixCrossing.lean",
+      "original_sha256": "fcaaf841f6b120a957452e8beea27899a40851ecde4ce4ae1e2475e410614a29",
+      "ported_sha256": "fcaaf841f6b120a957452e8beea27899a40851ecde4ce4ae1e2475e410614a29"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailUpper/ReferenceDrift.lean",
+      "ported": "lean/ThresholdHC/EntropyTailUpper/ReferenceDrift.lean",
+      "original_sha256": "00761048f7314c7ea8124b93f89d6721136984cd8a9d97433cb268505be30604",
+      "ported_sha256": "00761048f7314c7ea8124b93f89d6721136984cd8a9d97433cb268505be30604"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailUpper/ReferenceLikelihood.lean",
+      "ported": "lean/ThresholdHC/EntropyTailUpper/ReferenceLikelihood.lean",
+      "original_sha256": "4a4c02646a4a629aaeae0900d80f76b52475011496aff676022d83d9d8d3afb3",
+      "ported_sha256": "4a4c02646a4a629aaeae0900d80f76b52475011496aff676022d83d9d8d3afb3"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailUpper/ScoreHitting.lean",
+      "ported": "lean/ThresholdHC/EntropyTailUpper/ScoreHitting.lean",
+      "original_sha256": "223e7f72fe091ee36e565d351492208a304b7cd8f673a29c468e2e991400c7ee",
+      "ported_sha256": "223e7f72fe091ee36e565d351492208a304b7cd8f673a29c468e2e991400c7ee"
+    },
+    {
+      "original": "lean/ThresholdHC/EntropyTailUpper/SurvivalWork.lean",
+      "ported": "lean/ThresholdHC/EntropyTailUpper/SurvivalWork.lean",
+      "original_sha256": "bc87896ae8b81e1cc7ce980f59a6a8e85d1dbacb46fb3f2adcca5fe1ef53f876",
+      "ported_sha256": "bc87896ae8b81e1cc7ce980f59a6a8e85d1dbacb46fb3f2adcca5fe1ef53f876"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/AtomConicModel.lean",
+      "ported": "lean/ThresholdHC/Genie/AtomConicModel.lean",
+      "original_sha256": "4426608ad6cc97c17557ef39b0aff5cd54edb1533265f942ca4543d0984212f5",
+      "ported_sha256": "4426608ad6cc97c17557ef39b0aff5cd54edb1533265f942ca4543d0984212f5"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/AtomConicRealization.lean",
+      "ported": "lean/ThresholdHC/Genie/AtomConicRealization.lean",
+      "original_sha256": "d28360c3fc269ad2bf20f3b26d16a6eabc4f02346d7e0382642128201dc75558",
+      "ported_sha256": "d28360c3fc269ad2bf20f3b26d16a6eabc4f02346d7e0382642128201dc75558"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/BellmanEnvelope.lean",
+      "ported": "lean/ThresholdHC/Genie/BellmanEnvelope.lean",
+      "original_sha256": "a6ba39e0d4a6dd5c3404dde104a89184d0879ff02fd499cd39fd2194185909df",
+      "ported_sha256": "a6ba39e0d4a6dd5c3404dde104a89184d0879ff02fd499cd39fd2194185909df"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/CapLimits.lean",
+      "ported": "lean/ThresholdHC/Genie/CapLimits.lean",
+      "original_sha256": "a93fa60802ffb96d0048e50d4aec1e2ab4fb9a0be2d868f89e2588918a7c62d9",
+      "ported_sha256": "a93fa60802ffb96d0048e50d4aec1e2ab4fb9a0be2d868f89e2588918a7c62d9"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/CapMonotonicity.lean",
+      "ported": "lean/ThresholdHC/Genie/CapMonotonicity.lean",
+      "original_sha256": "b50dae2269242c19ebdffe41d6669e7b9a077ab301978ca48e3a4a18b0c072ce",
+      "ported_sha256": "b50dae2269242c19ebdffe41d6669e7b9a077ab301978ca48e3a4a18b0c072ce"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/CompactDecreasingMaximum.lean",
+      "ported": "lean/ThresholdHC/Genie/CompactDecreasingMaximum.lean",
+      "original_sha256": "d78a3c9375d53b4cc1831c8ab565f82c147026188abb5322bf23b4d6363b5e84",
+      "ported_sha256": "d78a3c9375d53b4cc1831c8ab565f82c147026188abb5322bf23b4d6363b5e84"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/CompactPriorDomain.lean",
+      "ported": "lean/ThresholdHC/Genie/CompactPriorDomain.lean",
+      "original_sha256": "88c1374890ee980d4e2525d98d01437d886eaafbfa87856a48ef13a76390ad6f",
+      "ported_sha256": "88c1374890ee980d4e2525d98d01437d886eaafbfa87856a48ef13a76390ad6f"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/DirectRisk.lean",
+      "ported": "lean/ThresholdHC/Genie/DirectRisk.lean",
+      "original_sha256": "92603c321c2c87881bdff8e63b6d256a47be071e7df60b3f4999082bf07d9c59",
+      "ported_sha256": "92603c321c2c87881bdff8e63b6d256a47be071e7df60b3f4999082bf07d9c59"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/DirectRiskOptimization.lean",
+      "ported": "lean/ThresholdHC/Genie/DirectRiskOptimization.lean",
+      "original_sha256": "2c8dd345433de7c18b3c4c7fcbdb6eaf173ac1bb61095c557ca0bd0f927842bb",
+      "ported_sha256": "2c8dd345433de7c18b3c4c7fcbdb6eaf173ac1bb61095c557ca0bd0f927842bb"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/DualTopology.lean",
+      "ported": "lean/ThresholdHC/Genie/DualTopology.lean",
+      "original_sha256": "621ed768cf3550d6ba44dfff35c6bb06b6a3194d124f5abab11a4d96a0ee54e0",
+      "ported_sha256": "621ed768cf3550d6ba44dfff35c6bb06b6a3194d124f5abab11a4d96a0ee54e0"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/ExtendedFlowConservation.lean",
+      "ported": "lean/ThresholdHC/Genie/ExtendedFlowConservation.lean",
+      "original_sha256": "3b37f01f2126b2f670a5cb69b860fd54762f91143a4b95bb876fdacd6ce39a8c",
+      "ported_sha256": "3b37f01f2126b2f670a5cb69b860fd54762f91143a4b95bb876fdacd6ce39a8c"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/FiniteConicEnvelope.lean",
+      "ported": "lean/ThresholdHC/Genie/FiniteConicEnvelope.lean",
+      "original_sha256": "bf0f84dbd494a99f7ac01c6e100325dc52b5d0366e5bc400e40c82acba47bd77",
+      "ported_sha256": "bf0f84dbd494a99f7ac01c6e100325dc52b5d0366e5bc400e40c82acba47bd77"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/FiniteConicPrice.lean",
+      "ported": "lean/ThresholdHC/Genie/FiniteConicPrice.lean",
+      "original_sha256": "93d243ead99d94b1fa580addbde170d2763035b866acc96412f7c18b59645603",
+      "ported_sha256": "93d243ead99d94b1fa580addbde170d2763035b866acc96412f7c18b59645603"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/FiniteConicValue.lean",
+      "ported": "lean/ThresholdHC/Genie/FiniteConicValue.lean",
+      "original_sha256": "7e19121b42e03265c61637a901961fa5f54128360498a04d2bf6938dbb22d210",
+      "ported_sha256": "7e19121b42e03265c61637a901961fa5f54128360498a04d2bf6938dbb22d210"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/FinitePosterior.lean",
+      "ported": "lean/ThresholdHC/Genie/FinitePosterior.lean",
+      "original_sha256": "28224d0365cf90f4d2419d95ad15b9a081a84a65c2154cc11eeda48831b02454",
+      "ported_sha256": "28224d0365cf90f4d2419d95ad15b9a081a84a65c2154cc11eeda48831b02454"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/FinitePriors.lean",
+      "ported": "lean/ThresholdHC/Genie/FinitePriors.lean",
+      "original_sha256": "6073a11d65ef6ab69245074bae5b386e9694c1f20d0abaf3ef838de59898ad89",
+      "ported_sha256": "6073a11d65ef6ab69245074bae5b386e9694c1f20d0abaf3ef838de59898ad89"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/FiniteReveal.lean",
+      "ported": "lean/ThresholdHC/Genie/FiniteReveal.lean",
+      "original_sha256": "56ad11a96ff0463f1c3ded54bbd6150d3c1deb26731e2d8d10e2ddcfa4f9ef7a",
+      "ported_sha256": "56ad11a96ff0463f1c3ded54bbd6150d3c1deb26731e2d8d10e2ddcfa4f9ef7a"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/FlowDepth.lean",
+      "ported": "lean/ThresholdHC/Genie/FlowDepth.lean",
+      "original_sha256": "31fd1b1c55e69e1f6e1d0edae42b30ca0df59e98ec6c506f5ed85033904e94de",
+      "ported_sha256": "31fd1b1c55e69e1f6e1d0edae42b30ca0df59e98ec6c506f5ed85033904e94de"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/FlowExtension.lean",
+      "ported": "lean/ThresholdHC/Genie/FlowExtension.lean",
+      "original_sha256": "490d7e1bf43190f7b8089b2238af4c6bdb57a449568234ca438bfc1daf63e135",
+      "ported_sha256": "490d7e1bf43190f7b8089b2238af4c6bdb57a449568234ca438bfc1daf63e135"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/FlowTruncation.lean",
+      "ported": "lean/ThresholdHC/Genie/FlowTruncation.lean",
+      "original_sha256": "d2634479c9ad8b959d2beb9ebac76e66eac905c9d73141693046ce9ae1c1991d",
+      "ported_sha256": "d2634479c9ad8b959d2beb9ebac76e66eac905c9d73141693046ce9ae1c1991d"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/InfiniteComparison.lean",
+      "ported": "lean/ThresholdHC/Genie/InfiniteComparison.lean",
+      "original_sha256": "98bc42e9d2d28c113640ea8b06885163db8dee746eeb40f1f27acbadd73c3475",
+      "ported_sha256": "98bc42e9d2d28c113640ea8b06885163db8dee746eeb40f1f27acbadd73c3475"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/InfiniteCoordinates.lean",
+      "ported": "lean/ThresholdHC/Genie/InfiniteCoordinates.lean",
+      "original_sha256": "62fa548c553175c9a9c35929ce3be6581643112c7b700de85c220f6f4d0561e1",
+      "ported_sha256": "62fa548c553175c9a9c35929ce3be6581643112c7b700de85c220f6f4d0561e1"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/InfiniteDivergence.lean",
+      "ported": "lean/ThresholdHC/Genie/InfiniteDivergence.lean",
+      "original_sha256": "b3dd01355df3cfe001e5df92b04ad074cc7be71770448b77dace0bb2ea36873e",
+      "ported_sha256": "b3dd01355df3cfe001e5df92b04ad074cc7be71770448b77dace0bb2ea36873e"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/InfiniteDivergenceExample.lean",
+      "ported": "lean/ThresholdHC/Genie/InfiniteDivergenceExample.lean",
+      "original_sha256": "36a3066dc629135734fa88660e2db51b595a546e46b692540bf58e809b06689b",
+      "ported_sha256": "36a3066dc629135734fa88660e2db51b595a546e46b692540bf58e809b06689b"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/InfiniteDualLimit.lean",
+      "ported": "lean/ThresholdHC/Genie/InfiniteDualLimit.lean",
+      "original_sha256": "f19feeb5c7e80e160644bee8d005816a2ea9e54fb0869083d7fdb6b1ba8a66b4",
+      "ported_sha256": "f19feeb5c7e80e160644bee8d005816a2ea9e54fb0869083d7fdb6b1ba8a66b4"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/InfiniteDuality.lean",
+      "ported": "lean/ThresholdHC/Genie/InfiniteDuality.lean",
+      "original_sha256": "2b2c393e92b2829a7f2b219e93465b1933781f038afdb920017876f3e861e1a4",
+      "ported_sha256": "2b2c393e92b2829a7f2b219e93465b1933781f038afdb920017876f3e861e1a4"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/InfiniteMidpoint.lean",
+      "ported": "lean/ThresholdHC/Genie/InfiniteMidpoint.lean",
+      "original_sha256": "e051ad5cf9d25c57e7dc0461fd7ffb41137b34ef0f85a7a9e8dfaecc0e8355bc",
+      "ported_sha256": "e051ad5cf9d25c57e7dc0461fd7ffb41137b34ef0f85a7a9e8dfaecc0e8355bc"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/InformationTopology.lean",
+      "ported": "lean/ThresholdHC/Genie/InformationTopology.lean",
+      "original_sha256": "5a16c5c364df002c2665ef4e0c02d54b9b8cdf83753d657923b61b9cb4e44902",
+      "ported_sha256": "5a16c5c364df002c2665ef4e0c02d54b9b8cdf83753d657923b61b9cb4e44902"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/LatentModel.lean",
+      "ported": "lean/ThresholdHC/Genie/LatentModel.lean",
+      "original_sha256": "d685813c0a605a8507141e6964edbaeb19b20707add7a9b6152df476a80abcfc",
+      "ported_sha256": "d685813c0a605a8507141e6964edbaeb19b20707add7a9b6152df476a80abcfc"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/LatentMoments.lean",
+      "ported": "lean/ThresholdHC/Genie/LatentMoments.lean",
+      "original_sha256": "2810303c50e7acc966c55e5aa634ba7c8a890e84c37d50f01e5ce9e5aed651df",
+      "ported_sha256": "2810303c50e7acc966c55e5aa634ba7c8a890e84c37d50f01e5ce9e5aed651df"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/LatentPrefix.lean",
+      "ported": "lean/ThresholdHC/Genie/LatentPrefix.lean",
+      "original_sha256": "90c508705e6383a6776b1f86e9d7df276ae3c4d2803bd0be38da21aad6e67b1a",
+      "ported_sha256": "90c508705e6383a6776b1f86e9d7df276ae3c4d2803bd0be38da21aad6e67b1a"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/LatentScore.lean",
+      "ported": "lean/ThresholdHC/Genie/LatentScore.lean",
+      "original_sha256": "44e78e38949eb1b77df838b61e1de41230dcc07109b5341132f14b46a501e862",
+      "ported_sha256": "44e78e38949eb1b77df838b61e1de41230dcc07109b5341132f14b46a501e862"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/LatentTape.lean",
+      "ported": "lean/ThresholdHC/Genie/LatentTape.lean",
+      "original_sha256": "6f262ee6348677083eea18c14fe6d23156508d2f22fe05f20e7dee2167471398",
+      "ported_sha256": "6f262ee6348677083eea18c14fe6d23156508d2f22fe05f20e7dee2167471398"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/Model.lean",
+      "ported": "lean/ThresholdHC/Genie/Model.lean",
+      "original_sha256": "01172b773df127f9b993328e9a72c33d40c880fc20b5bb598b4c51454694ffe2",
+      "ported_sha256": "01172b773df127f9b993328e9a72c33d40c880fc20b5bb598b4c51454694ffe2"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/ObservationFiltration.lean",
+      "ported": "lean/ThresholdHC/Genie/ObservationFiltration.lean",
+      "original_sha256": "0562f1168499d78a052dddc183f51aba0328a12b549252b78b15c099e8e6d4ab",
+      "ported_sha256": "0562f1168499d78a052dddc183f51aba0328a12b549252b78b15c099e8e6d4ab"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/OptimizedBrackets.lean",
+      "ported": "lean/ThresholdHC/Genie/OptimizedBrackets.lean",
+      "original_sha256": "6252eba9ae9efdb106d846769e33fca990a2ce050633db613797990d3d664d75",
+      "ported_sha256": "6252eba9ae9efdb106d846769e33fca990a2ce050633db613797990d3d664d75"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/OptimizedConvergence.lean",
+      "ported": "lean/ThresholdHC/Genie/OptimizedConvergence.lean",
+      "original_sha256": "5740d058f5cc7e5abe83e6c82d1b7cf186a81b0d398e6b4e5b27a80835eb596d",
+      "ported_sha256": "5740d058f5cc7e5abe83e6c82d1b7cf186a81b0d398e6b4e5b27a80835eb596d"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/PerspectiveIntegral.lean",
+      "ported": "lean/ThresholdHC/Genie/PerspectiveIntegral.lean",
+      "original_sha256": "11fd8db4335f76fa010c217d66a6810307c8c19d84c8a0933516aac420e1f212",
+      "ported_sha256": "11fd8db4335f76fa010c217d66a6810307c8c19d84c8a0933516aac420e1f212"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/PerspectiveTopology.lean",
+      "ported": "lean/ThresholdHC/Genie/PerspectiveTopology.lean",
+      "original_sha256": "e750e1c036cee3ed48f1e959acc3d2bd26059ec0fde45879651d98eba24c6eda",
+      "ported_sha256": "e750e1c036cee3ed48f1e959acc3d2bd26059ec0fde45879651d98eba24c6eda"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/ReferenceRegularization.lean",
+      "ported": "lean/ThresholdHC/Genie/ReferenceRegularization.lean",
+      "original_sha256": "f7b2a99e30d6649101e509b24127d0d522b8a0d42ac87f4734ee627b1a0eb1c1",
+      "ported_sha256": "f7b2a99e30d6649101e509b24127d0d522b8a0d42ac87f4734ee627b1a0eb1c1"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/RevealBellman.lean",
+      "ported": "lean/ThresholdHC/Genie/RevealBellman.lean",
+      "original_sha256": "ce23bea0e033437aa44226322032142262e51bdf93fcf3de6e74559a434133d2",
+      "ported_sha256": "ce23bea0e033437aa44226322032142262e51bdf93fcf3de6e74559a434133d2"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/RevealConvergence.lean",
+      "ported": "lean/ThresholdHC/Genie/RevealConvergence.lean",
+      "original_sha256": "cdde6962731e3f4e35d9771399d9d7965e9bd6d6d471f392fac4e3af2cf1b44c",
+      "ported_sha256": "cdde6962731e3f4e35d9771399d9d7965e9bd6d6d471f392fac4e3af2cf1b44c"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/RevealFiniteness.lean",
+      "ported": "lean/ThresholdHC/Genie/RevealFiniteness.lean",
+      "original_sha256": "d61f51abe3422477da6b25af4f25a11cf99e3f3e7fea5914008f212418064113",
+      "ported_sha256": "d61f51abe3422477da6b25af4f25a11cf99e3f3e7fea5914008f212418064113"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/RevealProgram.lean",
+      "ported": "lean/ThresholdHC/Genie/RevealProgram.lean",
+      "original_sha256": "26f01e2508224711388887c09002fd1bc5822ee1898653d9d3acd7eaa92353c1",
+      "ported_sha256": "26f01e2508224711388887c09002fd1bc5822ee1898653d9d3acd7eaa92353c1"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/RevealResidual.lean",
+      "ported": "lean/ThresholdHC/Genie/RevealResidual.lean",
+      "original_sha256": "90562d04e4fbce95e18fc467b9fd519cb377a15118aa3e00e27f927166fcaa63",
+      "ported_sha256": "90562d04e4fbce95e18fc467b9fd519cb377a15118aa3e00e27f927166fcaa63"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/RevealReward.lean",
+      "ported": "lean/ThresholdHC/Genie/RevealReward.lean",
+      "original_sha256": "077fccfa515485cb2188e51b389bef97f8cd75883456b0f9633d78d2281929a9",
+      "ported_sha256": "077fccfa515485cb2188e51b389bef97f8cd75883456b0f9633d78d2281929a9"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/RevealTruncation.lean",
+      "ported": "lean/ThresholdHC/Genie/RevealTruncation.lean",
+      "original_sha256": "a3765c05d7f7cecd4816e42d0a0ca6c9a4277d04d89a3a89bbdb3f76fe582d66",
+      "ported_sha256": "a3765c05d7f7cecd4816e42d0a0ca6c9a4277d04d89a3a89bbdb3f76fe582d66"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/ScalarPrice.lean",
+      "ported": "lean/ThresholdHC/Genie/ScalarPrice.lean",
+      "original_sha256": "1c98e25a8f309cfa9244691eb27d01dab1d218edd63e261af6897eddf8422cf8",
+      "ported_sha256": "1c98e25a8f309cfa9244691eb27d01dab1d218edd63e261af6897eddf8422cf8"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/SingularFlowBound.lean",
+      "ported": "lean/ThresholdHC/Genie/SingularFlowBound.lean",
+      "original_sha256": "c5f16130b9ed6d5c16ed9d743465a607ce00fc8bfc1a16f0f14a5a0fda91c0da",
+      "ported_sha256": "c5f16130b9ed6d5c16ed9d743465a607ce00fc8bfc1a16f0f14a5a0fda91c0da"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/SingularPrefixBound.lean",
+      "ported": "lean/ThresholdHC/Genie/SingularPrefixBound.lean",
+      "original_sha256": "b0d24770d554217f2a6cf4341e4bb59cb4e7595e87e608f6a7f49f4678ceef2c",
+      "ported_sha256": "b0d24770d554217f2a6cf4341e4bb59cb4e7595e87e608f6a7f49f4678ceef2c"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/TapeIdentification.lean",
+      "ported": "lean/ThresholdHC/Genie/TapeIdentification.lean",
+      "original_sha256": "9a4bc50406ee8dda928403d7a6b53052261d30acfab1a55f2ab3c84e77302dc3",
+      "ported_sha256": "9a4bc50406ee8dda928403d7a6b53052261d30acfab1a55f2ab3c84e77302dc3"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/UniformGapModel.lean",
+      "ported": "lean/ThresholdHC/Genie/UniformGapModel.lean",
+      "original_sha256": "645cf9420ad30551f563b957794dbfbdd0ee954b2ffcead2cfc383800091a455",
+      "ported_sha256": "645cf9420ad30551f563b957794dbfbdd0ee954b2ffcead2cfc383800091a455"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/UniformMoments.lean",
+      "ported": "lean/ThresholdHC/Genie/UniformMoments.lean",
+      "original_sha256": "9ec7a5dd95300e107514df5c784ed5ade66d02955f93bf993ae48d9b13a4b132",
+      "ported_sha256": "9ec7a5dd95300e107514df5c784ed5ade66d02955f93bf993ae48d9b13a4b132"
+    },
+    {
+      "original": "lean/ThresholdHC/Genie/UniformPrefixes.lean",
+      "ported": "lean/ThresholdHC/Genie/UniformPrefixes.lean",
+      "original_sha256": "725e62644d939342d88ebdc193458f449c4c1e4a5eadca071db6093fbf4e9b0e",
+      "ported_sha256": "725e62644d939342d88ebdc193458f449c4c1e4a5eadca071db6093fbf4e9b0e"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/AbsorbedPriors.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/AbsorbedPriors.lean",
+      "original_sha256": "9dda1b1a6d2106d66f6eceddce21a16f742e91a6f9d42b79437b08bcdbce6cbf",
+      "ported_sha256": "9dda1b1a6d2106d66f6eceddce21a16f742e91a6f9d42b79437b08bcdbce6cbf"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/AbsorptionRatio.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/AbsorptionRatio.lean",
+      "original_sha256": "8ed80811170209d1d5eea3a8d6b4166a61cb30a99cc378e93fcb60b6e30bfe4a",
+      "ported_sha256": "8ed80811170209d1d5eea3a8d6b4166a61cb30a99cc378e93fcb60b6e30bfe4a"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/AffinityOverlap.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/AffinityOverlap.lean",
+      "original_sha256": "784a2620c5bab658d445082c62d17edf01d44ec393e5cbe0b1b2d8ef9d2f169f",
+      "ported_sha256": "784a2620c5bab658d445082c62d17edf01d44ec393e5cbe0b1b2d8ef9d2f169f"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/AffinityRisk.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/AffinityRisk.lean",
+      "original_sha256": "3c83a1fb2c4f4042ce0054d5e66d192d18af3fdb86867c5deee8c6e22a6a9880",
+      "ported_sha256": "3c83a1fb2c4f4042ce0054d5e66d192d18af3fdb86867c5deee8c6e22a6a9880"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/Bellman.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/Bellman.lean",
+      "original_sha256": "317ce71a3d2a2ffd7a1e19637b80cbc432c3519dc6034de2e77725daf534e6a4",
+      "ported_sha256": "317ce71a3d2a2ffd7a1e19637b80cbc432c3519dc6034de2e77725daf534e6a4"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/BellmanFlow.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/BellmanFlow.lean",
+      "original_sha256": "99fca4312052ba2bcf30ead525497e3d8f74fe8db18abea437d3b28cde40440d",
+      "ported_sha256": "99fca4312052ba2bcf30ead525497e3d8f74fe8db18abea437d3b28cde40440d"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/BellmanTheorem.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/BellmanTheorem.lean",
+      "original_sha256": "60133dacaae732bea24d18c83d632a1f4658867c09ccf0e8d728d2e02ee65dd3",
+      "ported_sha256": "60133dacaae732bea24d18c83d632a1f4658867c09ccf0e8d728d2e02ee65dd3"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/BernoulliFloor.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/BernoulliFloor.lean",
+      "original_sha256": "3a2bac96301ec08a03a60cfd1f8fef3609844f769ddc598e12ad6c41c70a3e66",
+      "ported_sha256": "3a2bac96301ec08a03a60cfd1f8fef3609844f769ddc598e12ad6c41c70a3e66"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/CertificateCap.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/CertificateCap.lean",
+      "original_sha256": "a8b5793c026e7884710dd3315414a695633e339ab898e7491a6ac83782228a31",
+      "ported_sha256": "a8b5793c026e7884710dd3315414a695633e339ab898e7491a6ac83782228a31"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/CertificateRealization.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/CertificateRealization.lean",
+      "original_sha256": "7f838439571a956bd120b797cf2a6eb32eec7e4eff0373e0a3dd5c9604ddc87e",
+      "ported_sha256": "7f838439571a956bd120b797cf2a6eb32eec7e4eff0373e0a3dd5c9604ddc87e"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/ClosedProgram.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/ClosedProgram.lean",
+      "original_sha256": "0e8da1490d278e9e9b2dc5185062441d63db3792aefccfb050ad643123c6ebc9",
+      "ported_sha256": "0e8da1490d278e9e9b2dc5185062441d63db3792aefccfb050ad643123c6ebc9"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/CompactMaximum.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/CompactMaximum.lean",
+      "original_sha256": "388a92142ff4de04e1bdeb0923a9f3b2f7faccd70df7d692974cffc75a423f2c",
+      "ported_sha256": "388a92142ff4de04e1bdeb0923a9f3b2f7faccd70df7d692974cffc75a423f2c"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/ConeLagrange.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/ConeLagrange.lean",
+      "original_sha256": "337c96db0ea222b337da4120da4f76b8beca10e21fb30f4f157ff8f18826845e",
+      "ported_sha256": "337c96db0ea222b337da4120da4f76b8beca10e21fb30f4f157ff8f18826845e"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/ConePriceRatio.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/ConePriceRatio.lean",
+      "original_sha256": "0ab6f982baabb990be931e1212fb11768c1253fc7117cdd77944ed1163371c5a",
+      "ported_sha256": "0ab6f982baabb990be931e1212fb11768c1253fc7117cdd77944ed1163371c5a"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/ConstantInformation.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/ConstantInformation.lean",
+      "original_sha256": "08ddfd07463a5cfa00124af78cc0f66aa9adb2096c6f7bae0318d0adc9cd4adf",
+      "ported_sha256": "08ddfd07463a5cfa00124af78cc0f66aa9adb2096c6f7bae0318d0adc9cd4adf"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/ContractionScale.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/ContractionScale.lean",
+      "original_sha256": "d9d45a0685aa235f328d5e7a03c6aeee6ac641803d37beae5471eb824f021a14",
+      "ported_sha256": "d9d45a0685aa235f328d5e7a03c6aeee6ac641803d37beae5471eb824f021a14"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/CreationInformation.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/CreationInformation.lean",
+      "original_sha256": "f4829e5f7ad30dea6953f24ff5f502a8ebaee1f344e9f5efd054fb7583b61203",
+      "ported_sha256": "f4829e5f7ad30dea6953f24ff5f502a8ebaee1f344e9f5efd054fb7583b61203"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/DecisionIndependence.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/DecisionIndependence.lean",
+      "original_sha256": "9fe3b82bd306906da3c036a8aa94c8061ff8a4bcfaf9b96c2c11cb60f80f034b",
+      "ported_sha256": "9fe3b82bd306906da3c036a8aa94c8061ff8a4bcfaf9b96c2c11cb60f80f034b"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/DecisionMixture.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/DecisionMixture.lean",
+      "original_sha256": "376a21ae85ec2ddcff5faa37216ab93eeff705d90111d997cb0723e20df54718",
+      "ported_sha256": "376a21ae85ec2ddcff5faa37216ab93eeff705d90111d997cb0723e20df54718"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/DualTheorem.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/DualTheorem.lean",
+      "original_sha256": "397ec1962712b2d747c51734033175e370923502cf3ab2c49500cb8eaf226fa4",
+      "ported_sha256": "397ec1962712b2d747c51734033175e370923502cf3ab2c49500cb8eaf226fa4"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/FiniteCertificate.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/FiniteCertificate.lean",
+      "original_sha256": "cd3e2cb57da61289ce6af42f1b83ef047a5ccc9e431b30a3916df8df7a59b13a",
+      "ported_sha256": "cd3e2cb57da61289ce6af42f1b83ef047a5ccc9e431b30a3916df8df7a59b13a"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/FinitePopulationInformation.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/FinitePopulationInformation.lean",
+      "original_sha256": "4bfa84f49d449f05e6988564cdc8cd7a93d7b039daa9e220c50d4876868ae971",
+      "ported_sha256": "4bfa84f49d449f05e6988564cdc8cd7a93d7b039daa9e220c50d4876868ae971"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/FiniteProgram.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/FiniteProgram.lean",
+      "original_sha256": "39664c8a54eade7e354289d75a3415252a8bea74d61a5bc4e7c3c13476f8a245",
+      "ported_sha256": "39664c8a54eade7e354289d75a3415252a8bea74d61a5bc4e7c3c13476f8a245"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/FlowBasics.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/FlowBasics.lean",
+      "original_sha256": "fd4b1077a3287f5b81729ed1d763ddb01d4b20445e3292d8b9d441894fac72c6",
+      "ported_sha256": "fd4b1077a3287f5b81729ed1d763ddb01d4b20445e3292d8b9d441894fac72c6"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/FlowBounds.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/FlowBounds.lean",
+      "original_sha256": "4f00e28fcb02d41044eb64a6abcb2edb209471538d0e860821a791166b95c9d1",
+      "ported_sha256": "4f00e28fcb02d41044eb64a6abcb2edb209471538d0e860821a791166b95c9d1"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/FlowConservation.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/FlowConservation.lean",
+      "original_sha256": "530c1271876273609699739358ba2f8839bc687232be87f06ce0b56570bcbaea",
+      "ported_sha256": "530c1271876273609699739358ba2f8839bc687232be87f06ce0b56570bcbaea"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/FlowCostMoment.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/FlowCostMoment.lean",
+      "original_sha256": "e75cacd9b06598445b895916258c12eab68b3b0a0b22d23fbd680fe7deec7084",
+      "ported_sha256": "e75cacd9b06598445b895916258c12eab68b3b0a0b22d23fbd680fe7deec7084"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/FlowMixture.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/FlowMixture.lean",
+      "original_sha256": "9cc5d15e7ba7384ab1b3fbcb3bbdf8a5c33d63dcd2cef1260762e39d1c50d970",
+      "ported_sha256": "9cc5d15e7ba7384ab1b3fbcb3bbdf8a5c33d63dcd2cef1260762e39d1c50d970"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/FlowOperations.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/FlowOperations.lean",
+      "original_sha256": "9ecaf2dd56f731ee7d5091cbf3557da2b4d25c41629e05fc57d3105575ae2849",
+      "ported_sha256": "9ecaf2dd56f731ee7d5091cbf3557da2b4d25c41629e05fc57d3105575ae2849"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/FlowPoisson.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/FlowPoisson.lean",
+      "original_sha256": "4013c57da25d463bb5ea8fce46ae71f92e10c5440358474f488279ece93f1476",
+      "ported_sha256": "4013c57da25d463bb5ea8fce46ae71f92e10c5440358474f488279ece93f1476"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/FlowPotential.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/FlowPotential.lean",
+      "original_sha256": "51446e5e471399ad85f50f0afea00a450c9eb0ed11db3a5a4d8d6240a464917c",
+      "ported_sha256": "51446e5e471399ad85f50f0afea00a450c9eb0ed11db3a5a4d8d6240a464917c"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/FlowTableRates.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/FlowTableRates.lean",
+      "original_sha256": "8cf78824962178077e2bd86528c1e72aab633aea963e2ec3ceff7ab6cf116e31",
+      "ported_sha256": "8cf78824962178077e2bd86528c1e72aab633aea963e2ec3ceff7ab6cf116e31"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/FourPriorMultipliers.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/FourPriorMultipliers.lean",
+      "original_sha256": "ad090611cdc5d342e38ed451441da793854532898dff4b28d9441aa825025e45",
+      "ported_sha256": "ad090611cdc5d342e38ed451441da793854532898dff4b28d9441aa825025e45"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/FractionalCutoff.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/FractionalCutoff.lean",
+      "original_sha256": "e0cf765f18c16d9c19e0eaa583c3f530752a6f13fdb4bd16c1c4e0995315e9c4",
+      "ported_sha256": "e0cf765f18c16d9c19e0eaa583c3f530752a6f13fdb4bd16c1c4e0995315e9c4"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/FullCapFlow.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/FullCapFlow.lean",
+      "original_sha256": "81e1f9684745bd5a8807583843a2b2f2484dd6cff037e2e0e96ef7b20bf62dd3",
+      "ported_sha256": "81e1f9684745bd5a8807583843a2b2f2484dd6cff037e2e0e96ef7b20bf62dd3"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/FunctionMomentImage.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/FunctionMomentImage.lean",
+      "original_sha256": "b131a9e620dc184d22c802c7d80fd18698b1a95ed882b23feea355cf6db256a5",
+      "ported_sha256": "b131a9e620dc184d22c802c7d80fd18698b1a95ed882b23feea355cf6db256a5"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/InformationBellman.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/InformationBellman.lean",
+      "original_sha256": "a901a7be0d24375247de64aabae1a6d31231114289d036a2a805525b4c92ffbb",
+      "ported_sha256": "a901a7be0d24375247de64aabae1a6d31231114289d036a2a805525b4c92ffbb"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/InformationBound.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/InformationBound.lean",
+      "original_sha256": "b610d67611dcb2c9481a118057e2601741d2ff0fe0f4a72e8f5aef8b675eb78b",
+      "ported_sha256": "b610d67611dcb2c9481a118057e2601741d2ff0fe0f4a72e8f5aef8b675eb78b"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/InformationFiniteness.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/InformationFiniteness.lean",
+      "original_sha256": "a45c885b7d54a19d38c0f69e1f80364df7481a6b0f9bf8042abf7849b58b23e5",
+      "ported_sha256": "a45c885b7d54a19d38c0f69e1f80364df7481a6b0f9bf8042abf7849b58b23e5"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/InformationIncrement.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/InformationIncrement.lean",
+      "original_sha256": "e4f6df8f596562432d743b94c9fb1641d28079b54fafcdea42c2228db0028b81",
+      "ported_sha256": "e4f6df8f596562432d743b94c9fb1641d28079b54fafcdea42c2228db0028b81"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/LabelPerspective.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/LabelPerspective.lean",
+      "original_sha256": "0047fefbba0f831e4e2daa8723c305a839c94c0778844948713ce4022a17b460",
+      "ported_sha256": "0047fefbba0f831e4e2daa8723c305a839c94c0778844948713ce4022a17b460"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/MidpointComparison.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/MidpointComparison.lean",
+      "original_sha256": "d7d016bd41591cc9fd84df4f784f4e2df8dba9de58b4f46b98c94216ae43bbd3",
+      "ported_sha256": "d7d016bd41591cc9fd84df4f784f4e2df8dba9de58b4f46b98c94216ae43bbd3"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/MidpointInformation.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/MidpointInformation.lean",
+      "original_sha256": "a75ea9aee1330c97dda0496328ec8dcd24c644848136249380db1986859b9bab",
+      "ported_sha256": "a75ea9aee1330c97dda0496328ec8dcd24c644848136249380db1986859b9bab"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/MinimaxSelection.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/MinimaxSelection.lean",
+      "original_sha256": "4344ea06592b06a77cb9b05647df038df3b2fc7106b3c3b37d4ce4b3e66ca8bd",
+      "ported_sha256": "4344ea06592b06a77cb9b05647df038df3b2fc7106b3c3b37d4ce4b3e66ca8bd"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/MixtureStatistics.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/MixtureStatistics.lean",
+      "original_sha256": "19f88bddcf4718e242523ffdfa1ba215fc4bbc4bad46e174408ad9865ea221b7",
+      "ported_sha256": "19f88bddcf4718e242523ffdfa1ba215fc4bbc4bad46e174408ad9865ea221b7"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/Model.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/Model.lean",
+      "original_sha256": "ce07fb73fa56263a3f68ad3a26dc178889f20e7c8c8ee72004608f08c649d1a5",
+      "ported_sha256": "ce07fb73fa56263a3f68ad3a26dc178889f20e7c8c8ee72004608f08c649d1a5"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/MomentImage.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/MomentImage.lean",
+      "original_sha256": "c18ff95791e6fccd5f8a229e97cf67c53a0163bfa0fa2df25de285d9fcf3bf93",
+      "ported_sha256": "c18ff95791e6fccd5f8a229e97cf67c53a0163bfa0fa2df25de285d9fcf3bf93"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/NullPruning.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/NullPruning.lean",
+      "original_sha256": "f7d75c788dfc3bd2f8e4ed7e442cdb7fb464cbcd7ad223e5734d59111a1ab9ab",
+      "ported_sha256": "f7d75c788dfc3bd2f8e4ed7e442cdb7fb464cbcd7ad223e5734d59111a1ab9ab"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/ObservableInformation.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/ObservableInformation.lean",
+      "original_sha256": "a2e48fadf49b21250ee3696ac38a9938c614ff0a3fe10a1116cecd2e95715d19",
+      "ported_sha256": "a2e48fadf49b21250ee3696ac38a9938c614ff0a3fe10a1116cecd2e95715d19"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/OrderedAffinity.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/OrderedAffinity.lean",
+      "original_sha256": "26b8cf0b9ae9b0a6b0fcef99dcb504e0b842bf20f75dfea47b549deb68cbc618",
+      "ported_sha256": "26b8cf0b9ae9b0a6b0fcef99dcb504e0b842bf20f75dfea47b549deb68cbc618"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/OrderedHellinger.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/OrderedHellinger.lean",
+      "original_sha256": "6607a4f7641e82d9c88a9628edf4191f7d30a87594b0879b963b414856eb8358",
+      "ported_sha256": "6607a4f7641e82d9c88a9628edf4191f7d30a87594b0879b963b414856eb8358"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/OrderedInformationBound.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/OrderedInformationBound.lean",
+      "original_sha256": "f6b8c62ea4b7bd4a1e019fbd155061bff046eee780c1ff49770916274e618fcf",
+      "ported_sha256": "f6b8c62ea4b7bd4a1e019fbd155061bff046eee780c1ff49770916274e618fcf"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/OrderedPrefix.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/OrderedPrefix.lean",
+      "original_sha256": "106890c0a1ae17f33b1ffec041da3460f9d0f115e154f5b29f9371ba20f3ec0b",
+      "ported_sha256": "106890c0a1ae17f33b1ffec041da3460f9d0f115e154f5b29f9371ba20f3ec0b"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/OrderedRewards.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/OrderedRewards.lean",
+      "original_sha256": "a84dd2afc5accd8dfc91a454acc83ed7700633fe44ebafdff0389a8a8c388bb5",
+      "ported_sha256": "a84dd2afc5accd8dfc91a454acc83ed7700633fe44ebafdff0389a8a8c388bb5"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/OrderedStoppedLaw.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/OrderedStoppedLaw.lean",
+      "original_sha256": "3e99e152d682990a3f2885c70dce1146ccb7bd66ae2539ad747c9bf4e68125af",
+      "ported_sha256": "3e99e152d682990a3f2885c70dce1146ccb7bd66ae2539ad747c9bf4e68125af"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/OrderedWeights.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/OrderedWeights.lean",
+      "original_sha256": "3c11b4827d9f1c75d41e282fe7d8455cd3d008555e394c1d596171adad6da486",
+      "ported_sha256": "3c11b4827d9f1c75d41e282fe7d8455cd3d008555e394c1d596171adad6da486"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/OrderedWork.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/OrderedWork.lean",
+      "original_sha256": "8c5f1059b4850585b05035bd1d1572a162a15386bc47c0e7dbe73f33fc9cbae3",
+      "ported_sha256": "8c5f1059b4850585b05035bd1d1572a162a15386bc47c0e7dbe73f33fc9cbae3"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/OutputChoices.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/OutputChoices.lean",
+      "original_sha256": "4d8457148f4d4ddf23224627bd6673cf8cc814ab8f933bcc816b57dfa3dfab1c",
+      "ported_sha256": "4d8457148f4d4ddf23224627bd6673cf8cc814ab8f933bcc816b57dfa3dfab1c"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/PascalFlow.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/PascalFlow.lean",
+      "original_sha256": "fa6c1ecb4670237e2ee313723b307a8eff570ce6efe9add6b8a2363b76d149b9",
+      "ported_sha256": "fa6c1ecb4670237e2ee313723b307a8eff570ce6efe9add6b8a2363b76d149b9"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/Perspective.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/Perspective.lean",
+      "original_sha256": "aab8ffc2a469eb2c08610a45a9bef98dbcd964213cbc22ed978653111f814581",
+      "ported_sha256": "aab8ffc2a469eb2c08610a45a9bef98dbcd964213cbc22ed978653111f814581"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/PerspectiveMonotonic.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/PerspectiveMonotonic.lean",
+      "original_sha256": "d2524b48acc7890a8695841273d63f213eed31f9beaebc2ea0d3237eee7df97f",
+      "ported_sha256": "d2524b48acc7890a8695841273d63f213eed31f9beaebc2ea0d3237eee7df97f"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/PoissonMoments.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/PoissonMoments.lean",
+      "original_sha256": "aa4d408fad79698b68dd28c0ae7f326d2f338b5840639d3dc4446faeb210a425",
+      "ported_sha256": "aa4d408fad79698b68dd28c0ae7f326d2f338b5840639d3dc4446faeb210a425"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/PolicyFlow.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/PolicyFlow.lean",
+      "original_sha256": "8abc104aacef9e2adc7f4bf740e7cbfedf5f1a77766d56ad581a2b94afc654ae",
+      "ported_sha256": "8abc104aacef9e2adc7f4bf740e7cbfedf5f1a77766d56ad581a2b94afc654ae"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/PolicyMixture.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/PolicyMixture.lean",
+      "original_sha256": "8933983a44baf873b1f94afedc631ef9fc7ad48ffb8548e65fed74a5b7da8c05",
+      "ported_sha256": "8933983a44baf873b1f94afedc631ef9fc7ad48ffb8548e65fed74a5b7da8c05"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/PolicyWeights.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/PolicyWeights.lean",
+      "original_sha256": "3fad3a983c3e33b6e8efa6a2bec98a005b7f2cb51c453cdd04c9564bf9a05485",
+      "ported_sha256": "3fad3a983c3e33b6e8efa6a2bec98a005b7f2cb51c453cdd04c9564bf9a05485"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/PositiveTables.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/PositiveTables.lean",
+      "original_sha256": "c8f02721b2b2908d8afe02aa85083750be68f3483faeeca1ed9dfcd0637c9832",
+      "ported_sha256": "c8f02721b2b2908d8afe02aa85083750be68f3483faeeca1ed9dfcd0637c9832"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/PositiveValue.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/PositiveValue.lean",
+      "original_sha256": "4f953b8a1d7288bad9ec81188de5d9f4e034f46ccbd8f5d146f634e2e7cde7f4",
+      "ported_sha256": "4f953b8a1d7288bad9ec81188de5d9f4e034f46ccbd8f5d146f634e2e7cde7f4"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/PrefixCoefficients.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/PrefixCoefficients.lean",
+      "original_sha256": "b999ea3ecfd7160acc9249fdc71be4a3713b6dc907a085c312d183288b9a2d79",
+      "ported_sha256": "b999ea3ecfd7160acc9249fdc71be4a3713b6dc907a085c312d183288b9a2d79"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/PrefixInformation.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/PrefixInformation.lean",
+      "original_sha256": "24b23d1cc9f232d297bec7c3e6015e70481e70aacf5fb1315cec62f55642402e",
+      "ported_sha256": "24b23d1cc9f232d297bec7c3e6015e70481e70aacf5fb1315cec62f55642402e"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/PrefixModulus.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/PrefixModulus.lean",
+      "original_sha256": "697809b0825facf237809a67b6837f02b000b639104a1ec0694d5bb6400ef9f1",
+      "ported_sha256": "697809b0825facf237809a67b6837f02b000b639104a1ec0694d5bb6400ef9f1"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/PrefixRisk.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/PrefixRisk.lean",
+      "original_sha256": "428500150b76d12d39bb7d1137988d8f2b32b249cb3765867a07f1454fa04b87",
+      "ported_sha256": "428500150b76d12d39bb7d1137988d8f2b32b249cb3765867a07f1454fa04b87"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/PriceMultipliers.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/PriceMultipliers.lean",
+      "original_sha256": "b4e96d1510b3302cd0ae8a896460fb3abd3d2b9a7d09c4b6f1462406eead8bc3",
+      "ported_sha256": "b4e96d1510b3302cd0ae8a896460fb3abd3d2b9a7d09c4b6f1462406eead8bc3"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/PriceRatio.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/PriceRatio.lean",
+      "original_sha256": "61c09803caaad4d1e6572c83e26d3a0926e3726afa2ba66e5f54dd66d9bbc550",
+      "ported_sha256": "61c09803caaad4d1e6572c83e26d3a0926e3726afa2ba66e5f54dd66d9bbc550"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/PrimalAttainment.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/PrimalAttainment.lean",
+      "original_sha256": "ab1d56b2a041212931cbe4346daba34cf06f3e33726e735cb68daae8dc52c498",
+      "ported_sha256": "ab1d56b2a041212931cbe4346daba34cf06f3e33726e735cb68daae8dc52c498"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/PrimalCompactness.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/PrimalCompactness.lean",
+      "original_sha256": "69167946812a9730eb0505779b8956f3b423ee8c5f27817138f9681640b0dbd9",
+      "ported_sha256": "69167946812a9730eb0505779b8956f3b423ee8c5f27817138f9681640b0dbd9"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/PriorContraction.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/PriorContraction.lean",
+      "original_sha256": "c00c6a5799320e8b78a6a404f5aeddd7656cd7764e6b98286123879eb99e095b",
+      "ported_sha256": "c00c6a5799320e8b78a6a404f5aeddd7656cd7764e6b98286123879eb99e095b"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/PriorMixtures.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/PriorMixtures.lean",
+      "original_sha256": "2652feb7baf2508695439728eca874d7181d913e0f57f3898bed086289e68fbf",
+      "ported_sha256": "2652feb7baf2508695439728eca874d7181d913e0f57f3898bed086289e68fbf"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/ProgramGeometry.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/ProgramGeometry.lean",
+      "original_sha256": "02f687c5a44a3ef7c8e4662ba15297db8c57df7ac62b970b1bcaa9a6ab6dc2ff",
+      "ported_sha256": "02f687c5a44a3ef7c8e4662ba15297db8c57df7ac62b970b1bcaa9a6ab6dc2ff"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/ProgramMultipliers.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/ProgramMultipliers.lean",
+      "original_sha256": "4ecf77dc398ec19096a48dc34dc5929be0272e4208b5101f2589ac199c167646",
+      "ported_sha256": "4ecf77dc398ec19096a48dc34dc5929be0272e4208b5101f2589ac199c167646"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/ProgramUpper.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/ProgramUpper.lean",
+      "original_sha256": "e5064c9483638cb5def6d560702dead66532f26d8f8f661e51dc26686d364f51",
+      "ported_sha256": "e5064c9483638cb5def6d560702dead66532f26d8f8f661e51dc26686d364f51"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/RareCompactness.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/RareCompactness.lean",
+      "original_sha256": "d265e8af98fcfeeab55bf82f2de89e8b88597e9218fc46dfa4c3d1254365e29a",
+      "ported_sha256": "d265e8af98fcfeeab55bf82f2de89e8b88597e9218fc46dfa4c3d1254365e29a"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/RarityMultiplier.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/RarityMultiplier.lean",
+      "original_sha256": "644af74509a4f34ac0d5556bad35397807d6ce0871ddcf2029ca383132e79c7b",
+      "ported_sha256": "644af74509a4f34ac0d5556bad35397807d6ce0871ddcf2029ca383132e79c7b"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/RarityOptimality.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/RarityOptimality.lean",
+      "original_sha256": "451b59d8d8dcf85d4426cf5158448ccc48a8b138f015aa0bcad87f70d9b8eab8",
+      "ported_sha256": "451b59d8d8dcf85d4426cf5158448ccc48a8b138f015aa0bcad87f70d9b8eab8"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/RaritySupport.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/RaritySupport.lean",
+      "original_sha256": "68183bed79d949aadfb57480a243a95efc4cba7b7e62933812e6c6be24cafed1",
+      "ported_sha256": "68183bed79d949aadfb57480a243a95efc4cba7b7e62933812e6c6be24cafed1"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/RarityTheorem.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/RarityTheorem.lean",
+      "original_sha256": "96c738b714895a22ca10644caf391c48e3a425e07cf0e9774197e988db43145b",
+      "ported_sha256": "96c738b714895a22ca10644caf391c48e3a425e07cf0e9774197e988db43145b"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/RawFlowConstruction.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/RawFlowConstruction.lean",
+      "original_sha256": "3bc17ffb15b8bc952984796f74476921599a3d424e87017755e310acbf60a095",
+      "ported_sha256": "3bc17ffb15b8bc952984796f74476921599a3d424e87017755e310acbf60a095"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/RealizedOutputs.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/RealizedOutputs.lean",
+      "original_sha256": "265d18c4d928f13e839a641a76f7a40dacf11e26a7cb2138c143c4560556ffef",
+      "ported_sha256": "265d18c4d928f13e839a641a76f7a40dacf11e26a7cb2138c143c4560556ffef"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/RobustConstraints.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/RobustConstraints.lean",
+      "original_sha256": "5c5a793abbad1cb0e2f4ba3380d2c51af03168614628cf2a7d597366bc0bb7f1",
+      "ported_sha256": "5c5a793abbad1cb0e2f4ba3380d2c51af03168614628cf2a7d597366bc0bb7f1"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/RobustRarity.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/RobustRarity.lean",
+      "original_sha256": "7fdca282b959a6c31956ab3ebf906e4b247b508cb0e0f963f6a72856d1fb413e",
+      "ported_sha256": "7fdca282b959a6c31956ab3ebf906e4b247b508cb0e0f963f6a72856d1fb413e"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/ShiftEstimator.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/ShiftEstimator.lean",
+      "original_sha256": "eee40d66e6af7719e5443cf3818ceb3425649515ed37ca6181efe67bf0633efa",
+      "ported_sha256": "eee40d66e6af7719e5443cf3818ceb3425649515ed37ca6181efe67bf0633efa"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/Slater.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/Slater.lean",
+      "original_sha256": "bbe53f0ed86f25284c4c27a82e11ff42aa56500e3cd0452d42f2e551320aed83",
+      "ported_sha256": "bbe53f0ed86f25284c4c27a82e11ff42aa56500e3cd0452d42f2e551320aed83"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/Specification.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/Specification.lean",
+      "original_sha256": "c9eb621ce2bde7507c2e662fbf5d5d1c29815393cf925444590cab5c0ebec871",
+      "ported_sha256": "c9eb621ce2bde7507c2e662fbf5d5d1c29815393cf925444590cab5c0ebec871"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/StrongDuality.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/StrongDuality.lean",
+      "original_sha256": "76803678b2bf78519453612c62dec01440cb303dfc78c6f2abd490f2404134f8",
+      "ported_sha256": "76803678b2bf78519453612c62dec01440cb303dfc78c6f2abd490f2404134f8"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/SublevelBounds.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/SublevelBounds.lean",
+      "original_sha256": "25cc3af8c2dc713ecb6b459493b720dda67eefe44f96e929af1bb569f5b73345",
+      "ported_sha256": "25cc3af8c2dc713ecb6b459493b720dda67eefe44f96e929af1bb569f5b73345"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/TableCall.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/TableCall.lean",
+      "original_sha256": "23e206ad1c2402d244ed2cb971e1ffe9ccfc6a19fdb143e629fd0eceb64d108a",
+      "ported_sha256": "23e206ad1c2402d244ed2cb971e1ffe9ccfc6a19fdb143e629fd0eceb64d108a"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/TableExpansion.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/TableExpansion.lean",
+      "original_sha256": "0c07be67520dbe6a2e254a4a1829d87fe3db8a1424d0e8e2049309ea98a6b3e4",
+      "ported_sha256": "0c07be67520dbe6a2e254a4a1829d87fe3db8a1424d0e8e2049309ea98a6b3e4"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/TableStatistics.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/TableStatistics.lean",
+      "original_sha256": "141c29d96f360a8f39aa5cbe31b1aaf3f446e6810b99a7db0266c19aee9359dc",
+      "ported_sha256": "141c29d96f360a8f39aa5cbe31b1aaf3f446e6810b99a7db0266c19aee9359dc"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/TapeMoments.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/TapeMoments.lean",
+      "original_sha256": "def7458099d7ad80510c48bb8cfff9e55b6c8d1a0227a180fc135f152fd55dca",
+      "ported_sha256": "def7458099d7ad80510c48bb8cfff9e55b6c8d1a0227a180fc135f152fd55dca"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/TruncatedPrefix.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/TruncatedPrefix.lean",
+      "original_sha256": "63422f2c048c93b3a4405eac2559f19ee83024e91b15aa2f07676f78104b6886",
+      "ported_sha256": "63422f2c048c93b3a4405eac2559f19ee83024e91b15aa2f07676f78104b6886"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/TruncationComparison.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/TruncationComparison.lean",
+      "original_sha256": "459419d85b565bfdd815b1b230d308220e087b0b56145c032538e2ea048460be",
+      "ported_sha256": "459419d85b565bfdd815b1b230d308220e087b0b56145c032538e2ea048460be"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/TruncationLimit.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/TruncationLimit.lean",
+      "original_sha256": "435a01f2663a8d158579e7843a4be4cacaf52321f3d5802d9958490a75d31ab9",
+      "ported_sha256": "435a01f2663a8d158579e7843a4be4cacaf52321f3d5802d9958490a75d31ab9"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/TruncationRisk.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/TruncationRisk.lean",
+      "original_sha256": "9ceef357e7343a4f5c7600cc082f9021f5b4e0ef678f87bd725d72272a54844d",
+      "ported_sha256": "9ceef357e7343a4f5c7600cc082f9021f5b4e0ef678f87bd725d72272a54844d"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/WeakDuality.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/WeakDuality.lean",
+      "original_sha256": "0d147a1b5775f5f0cfca5e19b2ae51b268b8e51ec524b34930c00005fbd98ef2",
+      "ported_sha256": "0d147a1b5775f5f0cfca5e19b2ae51b268b8e51ec524b34930c00005fbd98ef2"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/WordFlow.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/WordFlow.lean",
+      "original_sha256": "5e770117b709cd512acc748359798642d6d7f7ed73ae2e14e3984593f1b9e133",
+      "ported_sha256": "5e770117b709cd512acc748359798642d6d7f7ed73ae2e14e3984593f1b9e133"
+    },
+    {
+      "original": "lean/ThresholdHC/StoppingProgram/WordStopping.lean",
+      "ported": "lean/ThresholdHC/StoppingProgram/WordStopping.lean",
+      "original_sha256": "8ed5b370f76415dc100b4846daa97d49a8c54ef21ed266c25c22729abf30bd55",
+      "ported_sha256": "8ed5b370f76415dc100b4846daa97d49a8c54ef21ed266c25c22729abf30bd55"
+    }
+  ]
+}

@@ -16,12 +16,16 @@ assumes finite latent divergence; optimized convergence first regularizes the
 variance reference. The factor-sixteen statement applies to a sufficient cap
 or a cap passing the verified genie criterion.
 
-**Verification status:** paper proofs with adversarial AI audits. Exact rational
-checks certify the stored finite instances. The new general characterization,
-stopping-program comparison, and genie limits are not Lean-formalized, and no
-external specialist review is claimed. Existing Lean results, including the
-variational optimizer and fixed critical-law results, retain their own precise
-scopes. These checks do not establish practical efficiency or publication priority.
+**Current verification status:** the observable entropy-tail upper bound,
+deterministic quantile comparison, stopping-program results, fixed-cap
+identification and genie certificates have additive Lean proofs and component
+audits. The matching statistical entropy-tail lower bound remains separate
+work, so the two-sided characterization is not yet fully Lean-checked. See the
+[formalization guide](../../docs/ENTROPY_TAIL_FORMALIZATION.md) for exact scope,
+source checkpoints and the combined audit status. The preserved v2 manuscript
+and its adversarial AI audits retain their original paper-proof scope. Exact
+rational checks certify only the stored finite instances; no external specialist
+review, practical efficiency or publication priority is claimed.
 
 ## Contents and preservation
 

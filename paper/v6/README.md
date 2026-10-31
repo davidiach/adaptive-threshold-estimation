@@ -47,12 +47,12 @@ fixed source revisions.
 The observable entropy–tail upper bound, closed-quantile upper bound,
 deterministic quantile comparison, stopping-program results, fixed-cap
 identification and genie certificates now have Lean proofs at
-`4e116018f0c1651382452aa9317fecc971edaec7`. The matching statistical lower
+`2036bd111432dd020003c29c31f6dd41c960de55`. The matching statistical lower
 bound, direct finite-law lower proof and remaining rare-event regimes
 below two retain their **paper-proof** scope. Thus the two-sided general
 entropy–tail and quantile laws are not yet fully Lean-checked. See the
 [formalization guide](../../docs/ENTROPY_TAIL_FORMALIZATION.md) for the
-separate audits and current rebuild status. No external specialist review
+component and combined full audits. No external specialist review
 has been performed. The general-law and finite-gap proofs share
 their upper construction and Appendices F–H, so they are one rate
 established by two arguments, not two independent confirmations. The remark
@@ -128,7 +128,33 @@ constitute a new mathematical proof or independent review.
 
 ## Build record
 
-`paper.pdf` was built from the v6 sources at `main` commit
+The current `paper.pdf` includes the rare-event formalization update and
+fixed proof links to `2036bd111432dd020003c29c31f6dd41c960de55`.
+It was built in a disposable directory with Tectonic 0.17.0 and
+`SOURCE_DATE_EPOCH=1793404800` (31 October 2026, 00:00 UTC).
+Its SHA-256 is
+`f2277cb8e3385f69a9dbfad45556a8048f1c15216facfc54b4f8f213650d583b`.
+
+- Two consecutive builds were byte-identical: 135 pages and 783,515 bytes.
+- All 29 fonts are embedded; all extracted text is free of unresolved `??`
+  references, and the four new proof links resolve to files at the fixed commit.
+- All 135 pages were reviewed as rendered contact sheets in the initial
+  formalization build. The final changed pages 43 and 45–48 were rendered and
+  read at higher resolution; the last wording adjustment changes only page 45,
+  and the final proof-pointer update changes only page 43.
+- The final TeX pass has no undefined references. It retains the inherited
+  9.25 pt overfull line on page 73 and an underfull bibliography line on page
+  135; both were visually checked and remain legible without overlap or clipping.
+
+To reproduce this engine-specific build in a disposable copy:
+
+```sh
+SOURCE_DATE_EPOCH=1793404800 tectonic --keep-logs --keep-intermediates main.tex
+```
+
+### Previous published build
+
+The preceding PDF was built from the v6 sources at `main` commit
 `b45a8eef4e8d174de756e803a8acf0cc9699d489` with pdfTeX 1.40.25
 (TeX Live 2023/Debian, Ubuntu 24.04 packages) and the fixed source date
 above. Its SHA-256 is

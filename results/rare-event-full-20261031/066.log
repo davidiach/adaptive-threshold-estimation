@@ -1,0 +1,30 @@
+ThresholdHC/Tier5/CreationFresh.lean:27:18: warning: This simp argument is unused:
+  freshTruncatedPrefix
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [fullHist]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+ThresholdHC/Tier5/CreationFresh.lean:61:10: warning: `if_pos` has been deprecated: Use `ite_eq_left` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲
+ThresholdHC/Tier5/CreationFresh.lean:61:10: warning: `if_pos` has been deprecated: Use `ite_eq_left` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲
+ThresholdHC/Tier5/CreationFresh.lean:64:10: warning: `if_neg` has been deprecated: Use `ite_eq_right` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲
+ThresholdHC/Tier5/CreationFresh.lean:64:10: warning: `if_neg` has been deprecated: Use `ite_eq_right` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲
+ThresholdHC/Tier5/CreationFresh.lean:63:54: warning: This simp argument is unused:
+  Fintype.sum_bool
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [stepProb, hpol, hs, Fintype.sum_option]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

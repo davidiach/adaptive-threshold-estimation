@@ -22,7 +22,7 @@ the [evidence index](../results/README.md) explains published checkpoints.
 | Exact attained infinite-cap dual | `python tools/verify_infinite_cap_dual.py`; regressions: `python -m unittest discover -s tools -p test_infinite_cap_dual.py -v` | Attained infinite-cap dual, factor-three midpoint and factor-eight original minimax comparisons, monotone limits. Default rebuilds all local dependencies; `--cached-dependencies` rebuilds 14 modules. Exact types, transitive axioms, source hashes; fresh `.runtime/` output. |
 | Exact finite stopping-program certificate | `python tools/verify_finite_risk_certificate.py`; regressions: `python -m unittest discover -s tools -p test_finite_risk_certificate.py -v` | Checks all three unchanged finite targets, original minimax risk, sharp truncation, and Bernoulli-label floor. Default rebuilds all local dependencies; `--cached-dependencies` rebuilds nine modules. Exact types, transitive axioms, source hashes; fresh `.runtime/` output. |
 | Observable stopping-program upper bound | `python tools/verify_stopping_program_upper.py`; regressions: `python -m unittest discover -s tools -p test_stopping_program_upper.py -v` | Checks actual certificate realization, the original minimax upper theorem, exact types, transitive axioms and source identities. Default rebuilds all local dependencies; `--cached-dependencies` rebuilds fourteen new modules. Fresh `.runtime/` output. |
-| Finite-gap rare-event manuscript | `cd paper/finite-gap-rare-events && sha256sum -c SHA256SUMS`; for the [revision 2](../paper/finite-gap-rare-events/revision-2/README.md) sources, the same command in `revision-2/`; [build](../paper/finite-gap-rare-events/README.md) in a disposable copy | Checks the source and PDF identity of revision 1 and of revision 2. The closed quantile theorem is a paper proof; no Lean or numerical certificate covers it. |
+| Finite-gap rare-event manuscript | `cd paper/finite-gap-rare-events && sha256sum -c SHA256SUMS`; for the [revision 2](../paper/finite-gap-rare-events/revision-2/README.md) sources, the same command in `revision-2/`; [build](../paper/finite-gap-rare-events/README.md) in a disposable copy | Checks source and PDF identities. The separate combined Lean audit covers the upper bound and deterministic quantile comparison; the matching statistical lower bound remains unverified. |
 | Imported inputs and research packages | `python tools/verify_inputs.py`; `python tools/verify_research.py`; `python tools/verify_population_research.py` | Input identities and maintained research replay. Research diagnostics use temporary output and `.runtime/`; original records remain intact. |
 | Main RMS law | `python tools/verify_tier6.py --sequential --require-complete`; `python tools/verify_blind_upper_components.py --sequential` | Exact formal audits of both directions. Tier 6 writes tracked `results/`; use a disposable checkout. The upper audit writes `.runtime/`. |
 | Another Lean result | [Theorem-to-audit map](../lean/README.md#main-theorem-entry-points), [baseline and tier sequence](#lean-kernel-checks) | Run the affected result's exact-target/axiom audit, including affected downstream results when shared dependencies change. Check locks first. |
@@ -231,7 +231,10 @@ and **every transitive dependent** (110 modules), while recording hashes for
 the other 408 cached dependency sources. Its evidence reports that narrower
 scope; it is not described as a full dependency rebuild. Both modes write a
 fresh output directory and reject source changes during the audit.
-The current integration audit is in progress.
+The published [combined full audit](../results/rare-event-full-20261031/README.md) passed on proof commit
+`2036bd111432dd020003c29c31f6dd41c960de55`. It uses the full rebuild mode,
+not cached dependencies. Its source hashes also match the publication
+checkout; later documentation changes do not change the proof sources.
 
 ## Entropy-tail selection functional
 

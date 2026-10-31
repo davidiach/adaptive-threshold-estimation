@@ -30,7 +30,16 @@ measures. `EntropyTailBridge/Upper.lean` transfers the upper theorem to
 comparison using the canonical `selection`. A lower proof against main's
 frozen `EntropyTailLowerStatement` can therefore use this upper theorem
 without changing its definitions. The bridge assumes no statistical lower bound.
-The exact-type/axiom integration audit is in progress.
+The [combined full audit](../results/rare-event-full-20261031/README.md) passed: 518 rebuilt local dependencies,
+111 exact types, and 1,789 declarations in 276 target modules. Only the
+three standard Lean axioms occur. The unchanged canonical upper target
+and both selection-functional definitions are included.
+
+Once a canonical lower theorem supplies a universal `c > 0` with `c*K <= R`,
+the checked comparison `Q <= (1+2*sqrt 2)*K` gives the remaining lower factor
+`c/(1+2*sqrt 2)` for the quantile expression. The matching upper factor `30001`
+is already proved. This describes the remaining integration step; it is not
+counted as a proved two-sided statistical theorem before that lower proof exists.
 
 Historical audit records retain their original paths and source hashes. They
 describe their original checkpoints, not the namespace port. The combined
@@ -144,7 +153,7 @@ frozen targets, and a rebuild of all 53 local dependency modules. The evidence
 is in `results/entropy-tail-quantile-20261030/`. The observable statistical upper
 theorems passed the full audit described below. The stopping-program,
 identification and genie results now have the separate completed proofs
-and component audits described below; the combined rebuild is in progress.
+and component audits described below; the combined full rebuild has passed.
 The statistical lower bound remains assigned to the separate cloud session.
 Neither an upper bound nor the deterministic comparison alone establishes
 the two-sided minimax characterization.
@@ -407,5 +416,7 @@ latent divergence, infinite genie ratios, K_infinity <= 3/4 for arbitrary
 stopping flows, and failure of pointwise convergence. Eight new modules,
 89 declarations and three exact types passed; other dependencies were cached.
 
-Manuscript integration and the final full audit remain in progress.
+Manuscript integration and the [combined full audit](../results/rare-event-full-20261031/README.md) are complete.
+The statistical entropy-tail lower bound and two-sided quantile law remain
+excluded. The updated 135-page v6 PDF records the exact boundary.
 Earlier checkpoints retain their original scope.

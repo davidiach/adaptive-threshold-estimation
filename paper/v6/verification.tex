@@ -9,7 +9,7 @@ The observable 713 construction and existence characterization use
 The rare-event theory above exponent two uses
 \nolinkurl{637fb4a79d20e30415a2cb0e495752603077c0ee}.
 The rare-event additions use proof checkpoint
-\nolinkurl{4e116018f0c1651382452aa9317fecc971edaec7}.
+\nolinkurl{2036bd111432dd020003c29c31f6dd41c960de55}.
 All theorem links point to fixed source revisions.
 The preceding all-size addendum has its own linked checkpoint and audit;
 its stronger domain and explicit single-coin constants supplement this table.
@@ -105,25 +105,25 @@ proves its two-sided rate. \leanref{CriticalPsi/Full.lean}{critical\_matching\_p
 rules out every universal matching-$\Psi$ upper bound in the original
 minimax model. Its budget is $LH/\rho$, not the paper sequence $\rho^{-2}$.\\[5pt]
 Entropy--tail upper bound &
-\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/4e116018f0c1651382452aa9317fecc971edaec7/lean/ThresholdHC/EntropyTailExecution/UpperTheorem.lean}{\texttt{UpperTheorem}}
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/2036bd111432dd020003c29c31f6dd41c960de55/lean/ThresholdHC/EntropyTailExecution/UpperTheorem.lean}{\texttt{UpperTheorem}}
 proves $R\le28000\mathcal K$ in the original observable experiment,
 for every probability gap law, $0<\rho\le1/4$ and $B>0$.
 Actual work, risk, marked Poisson execution and the approximation limits
 are included. The matching statistical lower bound remains unverified.\\[5pt]
 Closed quantile form &
-\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/4e116018f0c1651382452aa9317fecc971edaec7/lean/ThresholdHC/EntropyTail/QuantileComparison.lean}{\texttt{QuantileComparison}}
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/2036bd111432dd020003c29c31f6dd41c960de55/lean/ThresholdHC/EntropyTailQuantile/QuantileComparison.lean}{\texttt{QuantileComparison}}
 proves $\mathcal K\le Q\le(1+2\sqrt2)\mathcal K$, including atoms.
 \texttt{UpperTheorem} proves $R\le30001Q$ for arbitrary laws.
 The matching lower bound and direct finite-law lower proof retain
 their paper-proof status.\\[5pt]
 Stopping programs and identification &
-\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/4e116018f0c1651382452aa9317fecc971edaec7/lean/ThresholdHC/StoppingProgram/FiniteCertificate.lean}{\texttt{FiniteCertificate}}
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/2036bd111432dd020003c29c31f6dd41c960de55/lean/ThresholdHC/StoppingProgram/FiniteCertificate.lean}{\texttt{FiniteCertificate}}
 proves $R\le P_N\le16R$ at the prescribed sufficient cap.
 The attained four-prior dual, factor-three midpoint comparison,
 actual stopped-flow realization, finite atom formulation, matching
 diameter and $2m-1$ identification threshold are also checked.\\[5pt]
 Infinite-cap and genie certificates &
-\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/4e116018f0c1651382452aa9317fecc971edaec7/lean/ThresholdHC/Genie/OptimizedConvergence.lean}{\texttt{OptimizedConvergence}}
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/2036bd111432dd020003c29c31f6dd41c960de55/lean/ThresholdHC/Genie/OptimizedConvergence.lean}{\texttt{OptimizedConvergence}}
 proves positive brackets and finite termination using variance-reference
 regularization. Separate checked results give the attained infinite-cap
 dual, direct squared-risk certificate, exact finite atom genie SOCP,
@@ -154,8 +154,12 @@ has at most $3+6m+(N+1)^2$ variables and includes zero scales and singular
 reference states. None of these statements supplies the missing matching
 entropy--tail lower bound. Component audits check exact statements and
 transitive axioms; their source hashes and rebuild scopes are recorded
-separately in the repository. A fresh combined local-dependency rebuild
-is recorded in the current verification guide when completed.
+separately in the repository. The original pre-proof lock is retained
+unchanged under the ported namespace. A separate Lean bridge proves equality
+with the independently frozen selection functional on main and transfers
+the upper statement to that interface. The combined exact-type and axiom
+audit, including this bridge, has a separate source-specific record in the
+repository verification guide.
 
 \paragraph{Realizing the distribution-blind upper algorithm.}
 The formal construction follows the two-pilot calibration strategy in

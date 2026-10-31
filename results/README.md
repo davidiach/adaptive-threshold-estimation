@@ -10,6 +10,7 @@ or CI run passes.
 
 | Claim or check | Published record |
 |---|---|
+| Combined rare-event formalization (lower bound excluded) | [Full rebuild and exact audit](rare-event-full-20261031/README.md) |
 | Original frozen Lean target audit | [lean_checkpoint.json](lean_checkpoint.json), [lean_score.json](lean_score.json) |
 | Uniform713 and information milestones | [uniform713_status.json](uniform713_status.json), [tier3_status.json](tier3_status.json), [tier4_status.json](tier4_status.json), [tier5_status.json](tier5_status.json) |
 | Main RMS lower bound | [tier6_status.json](tier6_status.json) |

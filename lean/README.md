@@ -45,6 +45,11 @@ axioms; a successful build alone is not a substitute for that audit.
 | Rarity support and fractional cutoff | [RarityTheorem](ThresholdHC/StoppingProgram/RarityTheorem.lean), [checkpoint scope](../results/rarity-support-20261030/README.md) | `python tools/verify_rarity_support.py` |
 | Attained four-prior stopping dual | [StoppingProgram specification](ThresholdHC/StoppingProgram/Specification.lean), [DualTheorem](ThresholdHC/StoppingProgram/DualTheorem.lean), [checkpoint scope](../results/stopping-dual-20261030/README.md) | `python tools/verify_stopping_dual.py` |
 
+The [combined full audit](../results/rare-event-full-20261031/README.md)
+checks the current integrated proof sources, both frozen interfaces and
+the canonical upper target: 518 rebuilt dependencies, 111 exact types and
+1,789 declarations, with only the three standard axioms.
+
 The arbitrary-law entropy-tail upper bound and closed-quantile upper formula
 now have a [full local audit](../results/entropy-tail-upper-20261030/README.md).
 The matching statistical lower bound remains separate work, so this does not

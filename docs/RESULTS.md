@@ -326,7 +326,11 @@ now verifies the paper's uniform-gap example: C_v and every positive-cap
 K_N^+ are infinite, but every finite stopping flow satisfies I <= 3W/4
 and K_infinity <= 3/4. Its unregularized genie sequence does not converge.
 Eight modules were rebuilt; 89 declarations and three exact types passed.
-The final combined full dependency rebuild is in progress.
+The [combined full audit](../results/rare-event-full-20261031/README.md) rebuilt all 518 local dependencies and checked
+111 exact types and 1,789 declarations across 276 target modules, including
+the equality with main's frozen selection functional and its unchanged upper
+statement. Only `propext`, `Classical.choice` and `Quot.sound` occur. The
+matching statistical entropy-tail lower bound remains excluded.
 
 The [audit index](../paper/rare-event/audit/README.md) distinguishes the original
 source audits, final referee assessment, and revision audit, including corrected
