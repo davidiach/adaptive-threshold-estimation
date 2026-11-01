@@ -288,9 +288,11 @@ now proves activation positivity under a small scale/moment/work condition
 and gives actual gated good gaps. The gated moment floor absorbs the rarity
 term, giving excluded mass at most `72 mZ`. The saturated annular bound now
 holds for arbitrary small-gap laws with coefficient `2^30 exp(48)`, without
-a small-work premise. The certificate connection, additive localization,
-selection/packing, and canonical finite-prefix limit remain, so this does
-not change the six-of-eight completion status.
+a small-work premise. Feasible finite certificates with bias at most
+`rho/128` now give an actual one-coin guarantee with `m W0 <= 4 B variance`;
+larger bias directly bounds the capped selection cost. Component
+restriction/localization, selection/packing, and the canonical finite-prefix
+limit remain, so this does not change the six-of-eight completion status.
 
 **Upper half.** The upper bound comes from the additive formalization of
 [#33](https://github.com/davidiach/adaptive-threshold-estimation/pull/33), in

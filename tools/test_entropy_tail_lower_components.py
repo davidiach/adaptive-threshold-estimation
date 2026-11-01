@@ -9,8 +9,8 @@ import verify_entropy_tail_lower_components as audit
 class LowerComponentAuditTests(unittest.TestCase):
     def test_registry_and_dependency_order(self):
         paths, ordered, roots = audit.validate_sources()
-        self.assertEqual(len(paths), 24)
-        self.assertEqual(len(roots), 155)
+        self.assertEqual(len(paths), 27)
+        self.assertEqual(len(roots), 181)
         self.assertTrue(set(audit.EXACT_TARGETS) <= roots)
         self.assertEqual([p for p in ordered if p in paths], paths)
 
@@ -30,6 +30,9 @@ class LowerComponentAuditTests(unittest.TestCase):
         self.assertTrue(status["gated_good_gaps_verified"])
         self.assertTrue(status["gated_moment_floor_verified"])
         self.assertTrue(status["gated_annular_saturation_verified"])
+        self.assertTrue(status["certificate_centering_verified"])
+        self.assertTrue(status["certificate_one_coin_verified"])
+        self.assertTrue(status["large_bias_certificate_lower_verified"])
         for flag in ("full_information_gate_verified", "gate_restart_renewal_verified",
                      "entropy_tail_lower_verified", "entropy_tail_law_verified",
                      "closed_quantile_minimax_verified"):

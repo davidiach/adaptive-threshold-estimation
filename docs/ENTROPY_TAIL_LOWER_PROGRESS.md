@@ -35,6 +35,9 @@ six proved targets.
 | [GatedGoodGaps](../lean/ThresholdHC/EntropyTailLower/GatedGoodGaps.lean) | Under the stronger small-work condition with right side `1/64`, derives positive activation and actual good gaps for the finite-average estimator. Their excluded mass is at most `64 mZ + 4 rho`. The transformed bias guarantee is not assumed. |
 | [GateMomentFloor](../lean/ThresholdHC/EntropyTailLower/GateMomentFloor.lean) | Proves `rho/2 <= mZ` under the same small-work condition, using actual integrated mean separation and the population variance inequality. This absorbs the additive rarity term and gives excluded mass at most `72 mZ`. |
 | [GatedAnnular](../lean/ThresholdHC/EntropyTailLower/GatedAnnular.lean) | For arbitrary probability laws on `EntropyGap` supported below `a <= 1/4`, proves `min(s/a^2, rho Gamma) <= 2^30 exp(48) m W0`, where the separated annuli each have mass at least `s <= 1`. No small-work premise remains. The original capped population guarantee is still required. |
+| [CertificateCentering](../lean/ThresholdHC/EntropyTailLower/CertificateCentering.lean) | Centers a feasible finite stopping certificate at its null mean while preserving work, doubling its bias allowance, and quadrupling its variance allowance. Zero intensity forces bias at least `rho/2`. |
+| [FlowOneCoin](../lean/ThresholdHC/EntropyTailLower/FlowOneCoin.lean) | Realizes a cone flow as an actual capped one-coin procedure with an independent finite decision-table seed. Its population mean is the flow output count mean, its second moment is at most intensity times the moment count mean, and its work is the continuation count mean divided by positive intensity. |
+| [CertificateOneCoin](../lean/ThresholdHC/EntropyTailLower/CertificateOneCoin.lean) | Proves the required selection lower bound directly when certificate bias is at least `rho/128`. For smaller bias, constructs the actual capped one-coin guarantee and proves `m W0 <= 4 B variance`. Component localization and packing remain separate. |
 
 The supporting weighted-sign target and its dependency hashes were recorded
 before accepting its proof in
@@ -44,14 +47,17 @@ No existing specification, manuscript, or published evidence is changed.
 
 ## Remaining mathematical work
 
-1. Connect an arbitrary feasible finite certificate to the required one-coin
-   guarantees and the gate construction. Prove the bias-dependent transfer
-   and additive localization needed to combine component laws under the
-   global rarity constraint. The saturated one-coin annular bound does not
-   provide this connection by itself.
+1. Prove the restriction/rescaling and bias-dependent additive localization
+   needed to apply the annular bound to component laws and combine them
+   under the global rarity constraint. The finite-certificate connection now
+   supplies the actual one-coin guarantee on the original whole law; it does
+   not by itself supply the component guarantees or their rarity allocation.
 2. Prove the deterministic selection and packing steps: split retained bands
    by scale and cost, allocate rarity across the families, and combine their
    lower bounds with the ordinary and ignored parts of the selection cost.
+   This also needs the variational lower bound under the global rarity
+   constraint; the existing unrestricted magnitude-oracle lower bound does
+   not supply that statement.
 3. Handle arbitrary laws through canonical finite-prefix approximation,
    maintaining the original selection functional and global rarity budget.
 4. Prove `CertificateLowerStatement`, apply the checked equivalence, and
@@ -97,9 +103,25 @@ entropy bound when all annular masses exceed
 `288 exp(12) (1 + exp(12)) a^2 m W0`. Splitting off the complementary
 small-mass and large-work cases proves the saturated minimum bound in the
 table. Its coefficient is conservative; it is not the paper's coefficient.
-The certificate connection and additive localization remain.
+The whole-law certificate connection below is proved; component localization
+remains.
 Rejection-loop renewal has not been formalized and is not used by this
 fixed-repeat construction.
+
+### Finite-certificate connection
+
+For a feasible certificate with bias at most `rho/128`, the root intensity
+`i` is positive. Centering its flow at the null mean preserves the work
+bound. The independent finite decision-table mixture gives an actual
+one-coin procedure with the original capped population bias guarantee,
+moment allowance `m = 4 i variance`, and work at most `B/i` under every
+capped prior. Thus `m W0 <= 4 B variance`. All flips of the selected table
+are charged, and the procedure observes only its independent seed and tape.
+
+If the certificate bias is at least `rho/128`, the outer rarity cap of the
+original selection functional gives the desired certificate inequality
+with coefficient `1/128` directly. The remaining lower-bound work concerns
+small-bias certificates and the combination of component obstructions.
 
 ## Verification
 
@@ -111,10 +133,10 @@ python -m unittest discover -s tools -p 'test_entropy_tail_lower_components.py' 
 ```
 
 The default rebuilds the entire local dependency closure. With
-`--cached-dependencies`, it rebuilds the twenty-four supporting modules, records the source
+`--cached-dependencies`, it rebuilds the twenty-seven supporting modules, records the source
 hashes and reused local artifact hashes, and explicitly reports that a full
-dependency rebuild was not performed. Both modes check twenty-eight exact types and
-all 155 declaration roots, permitting only `propext`, `Classical.choice`,
+dependency rebuild was not performed. Both modes check thirty-seven exact types and
+all 181 declaration roots, permitting only `propext`, `Classical.choice`,
 and `Quot.sound`. Fresh logs and status go under
 `.runtime/entropy-tail-lower-components/`; published historical records are
 preserved. The success report always keeps `entropy_tail_lower_verified`,
@@ -233,3 +255,21 @@ bound, and the saturated annular lower bound with coefficient `2^30 exp(48)`.
 The certificate connection, component localization, selection/packing, and
 canonical finite-prefix limit remain outside this checkpoint. The canonical
 lower and two-sided laws remain unproved.
+
+### Actual one-coin certificate checkpoint, 1 November 2026
+
+The cached-dependency audit passed in
+`.runtime/entropy-tail-lower-components/20261101T144512840210Z/`: all twenty-seven
+supporting modules were rebuilt, all thirty-seven exact types checked, and
+all 181 declaration roots had only the permitted axioms. The closure contains
+405 local modules, with 378 dependencies reused and hashed. The reused local
+dependency sources match the `entropy-tail-integrated` cache checkout byte
+for byte. This is not a full dependency rebuild. The nine audit regression
+tests, frozen-source check, project-wide proof-escape scan, documentation
+file links, and whitespace check passed.
+
+This checkpoint proves certificate centering, actual finite decision-table
+realization, the small-bias capped guarantee with `m W0 <= 4 B variance`, and
+the large-bias selection bound with coefficient `1/128`. Component
+localization, selection/packing, and the canonical finite-prefix limit remain
+open. The canonical lower and two-sided laws remain unproved.

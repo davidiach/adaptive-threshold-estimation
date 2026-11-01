@@ -1,7 +1,7 @@
 """Audit supporting lemmas for the unfinished entropy-tail lower bound.
 
 Default: rebuild the entire local dependency closure. --cached-dependencies
-rebuilds only the twenty-four supporting modules and records the reused artifact hashes.
+rebuilds only the twenty-seven supporting modules and records the reused artifact hashes.
 Both modes check the frozen weighted-sign target, the exact certificate
 reduction, and every new declaration's transitive axioms. Neither mode proves
 the statistical lower bound or the two-sided entropy-tail/quantile laws.
@@ -32,7 +32,7 @@ MODULES = ("Specification", "WeightedOverlap", "WeightedSign", "WeightedEstimati
            "GeneralGoodGaps", "PopulationAnnular", "ActivationGate", "GateLikelihood", "FairGateWork",
            "GateMeasure", "GatedOutput", "FiniteAverageProcedure", "GateAverage",
            "PopulationGateAverage", "EarlyLikelihood", "EarlyOutput", "EarlyMean", "GatedGoodGaps",
-           "GateMomentFloor", "GatedAnnular")
+           "GateMomentFloor", "GatedAnnular", "CertificateCentering", "FlowOneCoin", "CertificateOneCoin")
 FREEZE = ROOT / "tools/entropy_tail_lower_specification_freeze.json"
 FROZEN = {"lean/ThresholdHC/EntropyTailLower/Specification.lean":
           "dfa2367c933f1cdbeeb82ecca9e92ca8a512d98de28a54cdee9c741b7acd3461"}
@@ -369,6 +369,81 @@ EXACT_TARGETS = {
             (fun d => CriticalEntropy.signParameter d false)
             (fun d => CriticalEntropy.signParameter d true) (fun _ => 0) A).toReal
         """,
+    PREFIX + "centeredCertificate_feasible": """
+        ∀ {N : ℕ} (μ : MeasureTheory.Measure Tier6.Gap) [MeasureTheory.IsProbabilityMeasure μ]
+        (ρ B : ℝ), 0 ≤ ρ → ∀ (C : StoppingProgram.Certificate N),
+        StoppingProgram.Feasible μ ρ B C → 0 < StoppingProgram.intensity C.flow →
+        StoppingProgram.Feasible μ ρ B (EntropyTailLower.centeredCertificate μ C)
+        """,
+    PREFIX + "centeredCertificate_squared": """
+        ∀ {N : ℕ} (μ : MeasureTheory.Measure Tier6.Gap) (C : StoppingProgram.Certificate N),
+        StoppingProgram.certificateSquared (EntropyTailLower.centeredCertificate μ C) =
+          4*StoppingProgram.certificateSquared C
+        """,
+    PREFIX + "certificate_large_bias_or_positive_intensity": """
+        ∀ {N : ℕ} (μ : MeasureTheory.Measure Tier6.Gap) [MeasureTheory.IsProbabilityMeasure μ]
+        (ρ B : ℝ), 0 ≤ ρ → ρ ≤ 1 → ∀ (C : StoppingProgram.Certificate N),
+        StoppingProgram.Feasible μ ρ B C → ρ/2 ≤ C.bias ∨ 0 < StoppingProgram.intensity C.flow
+        """,
+    PREFIX + "flowCoinProcedure_population_mean": """
+        ∀ {N : ℕ} (μ : MeasureTheory.Measure Tier6.Gap) [MeasureTheory.IsProbabilityMeasure μ]
+        (q : Tier6.SignLaw) (hN : 0 < N) (f : StoppingProgram.Flow N),
+        StoppingProgram.FlowCone f →
+        CriticalEntropy.populationMean μ (EntropyTailLower.flowCoinSeedLaw f)
+          (ObservableSimulation.gapParameter false) (ObservableSimulation.gapParameter true)
+          (ObservableSimulation.signUnit q) (EntropyTailLower.flowCoinProcedure hN f) =
+            StoppingProgram.countMean μ q f.outputWeight
+        """,
+    PREFIX + "flowCoinProcedure_population_moment": """
+        ∀ {N : ℕ} (μ : MeasureTheory.Measure Tier6.Gap) [MeasureTheory.IsProbabilityMeasure μ]
+        (q : Tier6.SignLaw) (hN : 0 < N) (f : StoppingProgram.Flow N),
+        StoppingProgram.FlowCone f →
+        CriticalEntropy.populationSecondMoment μ (EntropyTailLower.flowCoinSeedLaw f)
+          (ObservableSimulation.gapParameter false) (ObservableSimulation.gapParameter true)
+          (ObservableSimulation.signUnit q) (EntropyTailLower.flowCoinProcedure hN f) ≤
+            ENNReal.ofReal (StoppingProgram.intensity f*StoppingProgram.countMean μ q f.momentWeight)
+        """,
+    PREFIX + "flowCoinProcedure_population_work": """
+        ∀ {N : ℕ} (μ : MeasureTheory.Measure Tier6.Gap) [MeasureTheory.IsProbabilityMeasure μ]
+        (q : Tier6.SignLaw) (hN : 0 < N) (f : StoppingProgram.Flow N),
+        StoppingProgram.FlowCone f → 0 < StoppingProgram.intensity f →
+        CriticalEntropy.populationExpectedWork μ (EntropyTailLower.flowCoinSeedLaw f)
+          (ObservableSimulation.gapParameter false) (ObservableSimulation.gapParameter true)
+          (ObservableSimulation.signUnit q) (EntropyTailLower.flowCoinProcedure hN f) =
+            ENNReal.ofReal (StoppingProgram.countMean μ q f.continueWeight/StoppingProgram.intensity f)
+        """,
+    PREFIX + "certificate_large_bias_lower": """
+        ∀ {N : ℕ} (μ : MeasureTheory.Measure Tier6.Gap) (ρ B : ℝ) (C : StoppingProgram.Certificate N),
+        0 ≤ C.bias → 0 ≤ C.variance → ρ/128 ≤ C.bias →
+        ENNReal.ofReal (1/128:ℝ)*EntropyTail.selection μ ρ B ≤
+          StoppingProgram.certificateSquared C ^ (1/2:ℝ)
+        """,
+    PREFIX + "certificate_one_coin_guarantee": """
+        ∀ {N : ℕ} (μ : MeasureTheory.Measure Tier6.Gap) [MeasureTheory.IsProbabilityMeasure μ]
+        (ρ B : ℝ), 0 < ρ → ρ ≤ 1 → ∀ (hN : 0 < N) (C : StoppingProgram.Certificate N),
+        StoppingProgram.Feasible μ ρ B C → C.bias ≤ ρ/128 →
+        0 < StoppingProgram.intensity C.flow ∧
+        let f := (EntropyTailLower.centeredCertificate μ C).flow
+        let ν := EntropyTailLower.flowCoinSeedLaw f
+        let A := EntropyTailLower.flowCoinProcedure hN f
+        MeasureTheory.IsProbabilityMeasure ν ∧
+          CriticalEntropy.CappedPopulationGuarantee μ ν (ObservableSimulation.gapParameter false)
+            (ObservableSimulation.gapParameter true) A ρ (4*StoppingProgram.intensity C.flow*C.variance) ∧
+          ∀ q, CriticalEntropy.CappedPrior μ ρ q →
+            CriticalEntropy.populationExpectedWork μ ν (ObservableSimulation.gapParameter false)
+              (ObservableSimulation.gapParameter true) q A ≤ ENNReal.ofReal (B/StoppingProgram.intensity C.flow)
+        """,
+    PREFIX + "certificate_one_coin_tradeoff": """
+        ∀ {N : ℕ} (μ : MeasureTheory.Measure Tier6.Gap) [MeasureTheory.IsProbabilityMeasure μ]
+        (ρ B : ℝ), 0 < ρ → ρ ≤ 1 → ∀ (hN : 0 < N) (C : StoppingProgram.Certificate N),
+        StoppingProgram.Feasible μ ρ B C → C.bias ≤ ρ/128 →
+        let f := (EntropyTailLower.centeredCertificate μ C).flow
+        let ν := EntropyTailLower.flowCoinSeedLaw f
+        let A := EntropyTailLower.flowCoinProcedure hN f
+        (4*StoppingProgram.intensity C.flow*C.variance)*
+          (CriticalEntropy.populationExpectedWork μ ν (ObservableSimulation.gapParameter false)
+            (ObservableSimulation.gapParameter true) (fun _ => 0) A).toReal ≤ 4*B*C.variance
+        """,
 }
 SCOPE = (
     "Weighted observable sign-testing entropy (coefficient 4096), actual restart "
@@ -389,8 +464,11 @@ SCOPE = (
     "with exceptional mass at most 64 mZ + 4 rho. The gated moment floor absorbs "
     "this to 72 mZ. A saturated annular bound holds for arbitrary probability "
     "laws on EntropyGap supported at scale a, with coefficient 2^30 exp(48), "
-    "without a small-work premise. The finite-certificate connection, selection "
-    "and localization, and final statistical lower bound remain obligations."
+    "without a small-work premise. Finite certificate centering and an actual "
+    "one-coin procedure now give capped guarantees for certificate bias at "
+    "most rho/128, with moment/work product at most 4 B variance. The large-bias "
+    "case directly bounds selection with coefficient 1/128. Component localization, "
+    "selection and packing, the canonical limit, and the final lower bound remain obligations."
 )
 
 
@@ -413,6 +491,9 @@ def scope_status(verified: bool = False) -> dict:
                 gated_good_gaps_verified=verified,
                 gated_moment_floor_verified=verified,
                 gated_annular_saturation_verified=verified,
+                certificate_centering_verified=verified,
+                certificate_one_coin_verified=verified,
+                large_bias_certificate_lower_verified=verified,
                 full_information_gate_verified=False, gate_restart_renewal_verified=False,
                 entropy_tail_lower_verified=False, entropy_tail_law_verified=False,
                 closed_quantile_minimax_verified=False)

@@ -36,9 +36,11 @@ fixed-repeat masked moment/work bounds, including population integration,
 conditional on positive activation. The integrated early-mean estimate now
 derives positive activation and gated good gaps under explicit small-work
 conditions. A moment floor improves the excluded mass to `72 mZ`, and the
-saturated annular lower bound now holds across all work regimes. Certificate
-connection, additive localization, selection/packing, and the canonical
-finite-prefix limit remain; the full lower
+saturated annular lower bound now holds across all work regimes. The finite
+certificate connection now gives the actual one-coin guarantee and
+`m W0 <= 4 B variance` for small certificate bias; larger bias is handled
+directly. Component restriction/localization, selection/packing, and the
+canonical finite-prefix limit remain; the full lower
 target is still unproved. Verified increments are in
 [draft PR #38](https://github.com/davidiach/adaptive-threshold-estimation/pull/38).
 
