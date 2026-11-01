@@ -44,6 +44,10 @@ six proved targets.
 | [ComponentLocalization](../lean/ThresholdHC/EntropyTailLower/ComponentLocalization.lean) | Normalizes arbitrary positive-mass restrictions and constructs actual feasible component certificates using attained worst-case priors. Their mass-weighted biases total at most `2 bias`; mass-weighted variance and work stay within the original allowances. |
 | [LocalizationAlgebra](../lean/ThresholdHC/EntropyTailLower/LocalizationAlgebra.lean) | Splits components by bias accuracy and combines the accurate components by finite Cauchy--Schwarz. Its budget premises are supplied by the component certificate construction. |
 | [LocalizedAnnular](../lean/ThresholdHC/EntropyTailLower/LocalizedAnnular.lean) | Combines the actual component certificates with annular saturation, giving total eligible component cost at most `256 bias + sqrt(2^32 exp(48) variance)`. The single-band specialization also proves the finite rarity-allocation obstruction directly. The component families and canonical cost comparison remain explicit obligations. |
+| [CanonicalBands](../lean/ThresholdHC/EntropyTailLower/CanonicalBands.lean) | Constructs normalized small-gap laws from the original canonical bands and proves their finite rarity-allocation bound for indices at least six, including zero allocations and empty bands. It also proves the scalar allocation comparison. The original experiment is unchanged. |
+| [DyadicMass](../lean/ThresholdHC/EntropyTailLower/DyadicMass.lean) | Constructs a fractional upper-tail mass cut and proves the factor-two dyadic top-mass inequality for arbitrary nonnegative finite mass vectors whose entries are bounded by the mass budget. |
+| [EntropyIncrement](../lean/ThresholdHC/EntropyTailLower/EntropyIncrement.lean) | Proves a square-root entropy increment bound with coefficient two, and a binary entropy decrement bound. These deterministic estimates allow zero coordinates. |
+| [FiniteSelection](../lean/ThresholdHC/EntropyTailLower/FiniteSelection.lean) | Proves existence of finite selection minimizers and derives ordinary-band mass at most `4 rho` from their optimality. This conservative constant is weaker than the paper's `rho` bound and suffices for the proposed route. It does not yet bound the complete selection objective. |
 
 The supporting weighted-sign target and its dependency hashes were recorded
 before accepting its proof in
@@ -54,9 +58,10 @@ No existing specification, manuscript, or published evidence is changed.
 ## Remaining mathematical work
 
 1. Compare the ordinary and ignored selection costs with the checked finite
-   single-band rarity-allocation bound. This needs dyadic top-mass selection,
-   construction of the normalized small-gap band laws, and treatment of the
-   finitely many larger-gap bands. The full continuous variational modulus
+   single-band rarity-allocation bound. The dyadic top-mass cut, ordinary-band
+   mass bound, and normalized canonical small-gap laws are now proved; the
+   remaining work is to assemble their cost comparison and treat the finitely
+   many larger-gap bands. The full continuous variational modulus
    is not yet a claimed theorem. Finite-certificate restriction,
    normalization, joint budgets, and localized annular costs are proved.
 2. Prove the deterministic selection and packing steps: split retained bands
@@ -185,10 +190,10 @@ python -m unittest discover -s tools -p 'test_entropy_tail_lower_components.py' 
 ```
 
 The default rebuilds the entire local dependency closure. With
-`--cached-dependencies`, it rebuilds the thirty-three supporting modules, records the source
+`--cached-dependencies`, it rebuilds the thirty-seven supporting modules, records the source
 hashes and reused local artifact hashes, and explicitly reports that a full
-dependency rebuild was not performed. Both modes check forty-nine exact types and
-all 216 declaration roots, permitting only `propext`, `Classical.choice`,
+dependency rebuild was not performed. Both modes check fifty-seven exact types and
+all 254 declaration roots, permitting only `propext`, `Classical.choice`,
 and `Quot.sound`. Fresh logs and status go under
 `.runtime/entropy-tail-lower-components/`; published historical records are
 preserved. The success report always keeps `entropy_tail_lower_verified`,
@@ -367,3 +372,28 @@ obstructions. It also derives finite single-band rarity-allocation costs.
 The ordinary/ignored cost comparison, deterministic packing, canonical
 finite-prefix limit, and final lower/law assembly remain open. The canonical
 completeness check still rejects `entropy_tail_lower` and `entropy_tail_law`.
+
+
+### Canonical bands and finite selection checkpoint, 1 November 2026
+
+The cached-dependency audit passed in
+`.runtime/entropy-tail-lower-components/20261101T154903206923Z/`: all thirty-seven
+supporting modules were rebuilt, all fifty-seven exact types checked, and
+all 254 declaration roots had only the permitted axioms. The closure contains
+421 local modules, with 384 dependencies reused and hashed. The reused local
+dependency sources match the `entropy-tail-integrated` cache checkout byte
+for byte. This is not a full dependency rebuild. The nine audit regression
+tests, frozen-source check, proof-escape scan of all 707 Lean sources,
+documentation file links, and whitespace check passed.
+
+This checkpoint constructs the canonical small-gap component laws and
+derives their finite allocation bound, including zero masses and allocations.
+It proves fractional dyadic top-mass selection, the square-root entropy
+increment estimate, existence of finite selection minimizers, and their
+ordinary-band mass bound `w <= 4 rho`. The weaker constant is stated
+explicitly; the sharper paper constant is not claimed.
+
+The ordinary/ignored cost assembly, larger-gap treatment, retained entropy
+packing, canonical finite-prefix comparison/limit, and final lower/law
+assembly remain outside this checkpoint. The canonical completeness check
+still rejects `entropy_tail_lower` and `entropy_tail_law`.

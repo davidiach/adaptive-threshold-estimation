@@ -45,9 +45,10 @@ coefficient `2^32 exp(48)` times `B variance`. Additive finite-certificate
 localization now constructs normalized component certificates with joint
 bias, variance, and work budgets and combines their eligible annular costs.
 The single-band specialization also supplies finite rarity-allocation costs.
-Their comparison with the ordinary and ignored costs, deterministic
-selection/packing, and canonical finite-prefix limit remain; the full
-lower target is still unproved. Verified increments are in
+Canonical small-gap band laws, fractional dyadic top-mass selection, and
+the ordinary-band mass bound `w <= 4 rho` are now proved. Assembling the
+ordinary/ignored cost comparison, retained-band packing, and canonical
+finite-prefix limit remain; the full lower target is still unproved. Verified increments are in
 [draft PR #38](https://github.com/davidiach/adaptive-threshold-estimation/pull/38).
 
 Finite-law rate computation is now available in the

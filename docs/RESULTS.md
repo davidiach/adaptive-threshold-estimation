@@ -297,9 +297,12 @@ times `B variance`. Additive finite-certificate localization now supplies
 normalized component certificates with joint weighted bias, variance, and
 work budgets. Their eligible annular costs sum to at most
 `256 bias + sqrt(2^32 exp(48) variance)`. A single-band specialization supplies
-finite rarity-allocation costs directly. Their comparison with the ordinary
-and ignored costs, deterministic component selection/packing, and the
-canonical finite-prefix limit remain. The registry therefore stays at
+finite rarity-allocation costs directly. The canonical small-gap bands now
+instantiate this bound, including zero allocations and empty bands. A
+fractional dyadic top-mass theorem and the ordinary-band mass bound
+`w <= 4 rho` are also proved. Assembling the ordinary and ignored cost
+comparison, retained-band packing, and the canonical finite-prefix limit
+remain. The registry therefore stays at
 six of eight proved targets.
 
 **Upper half.** The upper bound comes from the additive formalization of

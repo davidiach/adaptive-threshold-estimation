@@ -1,7 +1,7 @@
 """Audit supporting lemmas for the unfinished entropy-tail lower bound.
 
 Default: rebuild the entire local dependency closure. --cached-dependencies
-rebuilds only the thirty-three supporting modules and records the reused artifact hashes.
+rebuilds only the thirty-seven supporting modules and records the reused artifact hashes.
 Both modes check the frozen weighted-sign target, the exact certificate
 reduction, and every new declaration's transitive axioms. Neither mode proves
 the statistical lower bound or the two-sided entropy-tail/quantile laws.
@@ -34,7 +34,8 @@ MODULES = ("Specification", "WeightedOverlap", "WeightedSign", "WeightedEstimati
            "PopulationGateAverage", "EarlyLikelihood", "EarlyOutput", "EarlyMean", "GatedGoodGaps",
            "GateMomentFloor", "GatedAnnular", "CertificateCentering", "FlowOneCoin", "CertificateOneCoin",
            "PopulationPullback", "CertificateAnnular",
-           "ComponentPriors", "ComponentLocalization", "LocalizationAlgebra", "LocalizedAnnular")
+           "ComponentPriors", "ComponentLocalization", "LocalizationAlgebra", "LocalizedAnnular",
+           "CanonicalBands", "DyadicMass", "EntropyIncrement", "FiniteSelection")
 FREEZE = ROOT / "tools/entropy_tail_lower_specification_freeze.json"
 FROZEN = {"lean/ThresholdHC/EntropyTailLower/Specification.lean":
           "dfa2367c933f1cdbeeb82ecca9e92ca8a512d98de28a54cdee9c741b7acd3461"}
@@ -566,6 +567,56 @@ EXACT_TARGETS = {
           (r i*EntropyTailQuantile.costEntropy (fun j => (ν i).real (J i j)/(b i j)^2))) →
         (∑ i, u i) ≤ 256*C.bias+Real.sqrt ((4294967296*Real.exp 48)*C.variance)
         """,
+    PREFIX + 'certificate_canonical_band_allocation_nonneg': """
+      ∀ {T : Type} [Fintype T] {N : ℕ} (μ : MeasureTheory.Measure Tier6.Gap)
+      [MeasureTheory.IsProbabilityMeasure μ] (ρ B : ℝ), 0 < B → 0 < N →
+      ∀ C : StoppingProgram.Certificate N, StoppingProgram.Feasible μ ρ B C →
+      ∀ j : T → ℕ, Function.Injective j → (∀ i, 6 ≤ j i) →
+      ∀ r : T → ℝ, (∀ i, 0 ≤ r i) → (∀ i, r i ≤ 1/4) →
+      (∑ i, μ.real (EntropyTail.band (j i))*r i) ≤ ρ →
+      (∑ i, μ.real (EntropyTail.band (j i))*
+        min (r i) (Real.sqrt (r i/(B*((1/2:ℝ)^(j i+1))^2)))) ≤
+        256*C.bias+Real.sqrt ((4294967296*Real.exp 48)*C.variance)
+      """,
+    PREFIX + 'smallGapLaw_map': """
+      ∀ (μ : MeasureTheory.Measure Tier6.Gap),
+      (∀ᵐ (d : Tier6.Gap) ∂μ, (d:ℝ) ≤ 1/128) →
+      (EntropyTailLower.smallGapLaw μ).map EntropyTailLower.entropyGapInclusion = μ
+      """,
+    PREFIX + 'allocation_min_linear': """
+      ∀ r t : ℝ, 0 ≤ r → r ≤ 1 → 0 ≤ t →
+      r*min 1 t ≤ min r (t*Real.sqrt r)
+      """,
+    PREFIX + 'dyadic_top_mass': """
+      ∀ {n : ℕ} (v : Fin n → ℝ) (s : ℝ), (∀ i, 0 ≤ v i) → 0 < s →
+      (∀ i, v i ≤ s) → ∃ q : Fin n → ℝ, (∀ i, 0 ≤ q i ∧ q i ≤ 1) ∧
+      (∑ i, v i*q i) ≤ s ∧
+      (∑ i, v i*(2:ℝ)^(i.val+1)) ≤ 2*∑ i, v i*q i*(2:ℝ)^(i.val+1)
+      """,
+    PREFIX + 'sqrt_costEntropy_add': """
+      ∀ {I : Type} [Fintype I] (a b : I → ℝ), (∀ i, 0 ≤ a i) → (∀ i, 0 ≤ b i) →
+      Real.sqrt (EntropyTailQuantile.costEntropy (fun i => a i+b i)) ≤
+      Real.sqrt (EntropyTailQuantile.costEntropy a)+2*Real.sqrt (EntropyTailQuantile.costEntropy b)
+      """,
+    PREFIX + 'binary_entropy_lower_right': """
+      ∀ x y : ℝ, 0 ≤ x → 0 < y →
+      y*Real.log ((x+y)/y) ≤ Real.negMulLog x+Real.negMulLog y-Real.negMulLog (x+y)
+      """,
+    PREFIX + 'exists_finiteSelection_minimizer': """
+      ∀ {I : Type} [Fintype I] [DecidableEq I] (k : ℝ) (a e : I → ℝ),
+      ∃ S : Finset I, ∀ T, EntropyTailLower.finiteSelectionScore k a e S ≤
+        EntropyTailLower.finiteSelectionScore k a e T
+      """,
+    PREFIX + 'optimal_ordinary_band_mass': """
+      ∀ {I : Type} [Fintype I] [DecidableEq I] (w b : I → ℝ),
+      (∀ i, 0 ≤ w i) → (∀ i, 0 < b i) → ∀ ρ h : ℝ, 0 ≤ ρ → 0 < h →
+      ∀ S : Finset I,
+      (∀ T, EntropyTailLower.finiteSelectionScore (h*Real.sqrt ρ) (fun i => w i/(b i)^2)
+        (fun i => w i*min 1 (h/b i)) S ≤
+        EntropyTailLower.finiteSelectionScore (h*Real.sqrt ρ) (fun i => w i/(b i)^2)
+        (fun i => w i*min 1 (h/b i)) T) →
+      ∀ j : I, j ∉ S → h ≤ b j → w j ≤ 4*ρ
+      """,
 }
 SCOPE = (
     "Weighted observable sign-testing entropy (coefficient 4096), actual restart "
@@ -599,8 +650,13 @@ SCOPE = (
     "and work budgets. Their localized annular costs sum to at most 256 bias plus "
     "sqrt(2^32 exp(48) variance), with explicit component, rarity-allocation, and "
     "cost premises. The single-band specialization derives finite rarity-allocation "
-    "costs directly. The full variational comparison, deterministic "
-    "selection and packing, canonical limit, and final lower bound remain obligations."
+    "costs directly. Canonical bands with indices at least six now instantiate "
+    "this bound in the original law, including zero allocations and empty bands. "
+    "A fractional dyadic top-mass selection loses at most a factor of two. "
+    "Finite selection minimizers exist, and ordinary bands in any such minimizer "
+    "have mass at most four times rarity. These are supporting deterministic "
+    "results; assembling ordinary and ignored costs, retained entropy packing, "
+    "the canonical limit, and final lower bound remain obligations."
 )
 
 
@@ -632,6 +688,10 @@ def scope_status(verified: bool = False) -> dict:
                 normalized_component_certificates_verified=verified,
                 localized_annular_bound_verified=verified,
                 finite_single_band_allocation_verified=verified,
+                canonical_band_allocations_verified=verified,
+                dyadic_top_mass_verified=verified,
+                entropy_increment_bound_verified=verified,
+                finite_selection_ordinary_mass_verified=verified,
                 full_information_gate_verified=False, gate_restart_renewal_verified=False,
                 entropy_tail_lower_verified=False, entropy_tail_law_verified=False,
                 closed_quantile_minimax_verified=False)
