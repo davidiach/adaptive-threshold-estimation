@@ -9,8 +9,8 @@ import verify_entropy_tail_lower_components as audit
 class LowerComponentAuditTests(unittest.TestCase):
     def test_registry_and_dependency_order(self):
         paths, ordered, roots = audit.validate_sources()
-        self.assertEqual(len(paths), 12)
-        self.assertEqual(len(roots), 56)
+        self.assertEqual(len(paths), 13)
+        self.assertEqual(len(roots), 72)
         self.assertTrue(set(audit.EXACT_TARGETS) <= roots)
         self.assertEqual([p for p in ordered if p in paths], paths)
 
@@ -19,6 +19,7 @@ class LowerComponentAuditTests(unittest.TestCase):
         self.assertTrue(status["valid"])
         self.assertTrue(status["weighted_sign_entropy_verified"])
         self.assertTrue(status["certificate_lower_reduction_verified"])
+        self.assertTrue(status["fair_gate_probability_verified"])
         for flag in ("full_information_gate_verified", "gate_restart_renewal_verified",
                      "entropy_tail_lower_verified", "entropy_tail_law_verified",
                      "closed_quantile_minimax_verified"):

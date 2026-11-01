@@ -1,7 +1,7 @@
 """Audit supporting lemmas for the unfinished entropy-tail lower bound.
 
 Default: rebuild the entire local dependency closure. --cached-dependencies
-rebuilds only the twelve supporting modules and records the reused artifact hashes.
+rebuilds only the thirteen supporting modules and records the reused artifact hashes.
 Both modes check the frozen weighted-sign target, the exact certificate
 reduction, and every new declaration's transitive axioms. Neither mode proves
 the statistical lower bound or the two-sided entropy-tail/quantile laws.
@@ -29,7 +29,7 @@ SOURCE = LEAN / "ThresholdHC/EntropyTailLower"
 PREFIX = "ThresholdHC.EntropyTailLower."
 MODULES = ("Specification", "WeightedOverlap", "WeightedSign", "WeightedEstimation",
            "AnnularWork", "AnnularEstimation", "CertificateReduction", "FractionalPrior",
-           "GeneralGoodGaps", "PopulationAnnular", "ActivationGate", "GateLikelihood")
+           "GeneralGoodGaps", "PopulationAnnular", "ActivationGate", "GateLikelihood", "FairGateWork")
 FREEZE = ROOT / "tools/entropy_tail_lower_specification_freeze.json"
 FROZEN = {"lean/ThresholdHC/EntropyTailLower/Specification.lean":
           "dfa2367c933f1cdbeeb82ecca9e92ca8a512d98de28a54cdee9c741b7acd3461"}
@@ -96,6 +96,24 @@ EXACT_TARGETS = {
         Real.exp (-12) ≤ EntropyTailLower.gatePrefixLikelihood d n k ∧
           EntropyTailLower.gatePrefixLikelihood d n k ≤ Real.exp 12
         """,
+    PREFIX + "activationGate_fair_square_identity": """
+        ∀ {R E : Type} [MeasurableSpace R] [MeasurableSpace E]
+        (ν : MeasureTheory.Measure R) [MeasureTheory.IsProbabilityMeasure ν]
+        (A : CriticalEntropy.StoppedProcedure R E) (M H : ℕ),
+        (∫ z, (EntropyTailLower.tapeBalance (EntropyTailLower.activationGateCost A M H z) z.2:ℝ)^2
+          ∂ν.prod (Tier2.tapeMeasure ⟨1/2,by norm_num⟩)) =
+          ∫ z, (EntropyTailLower.activationGateCost A M H z:ℝ)
+            ∂ν.prod (Tier2.tapeMeasure ⟨1/2,by norm_num⟩)
+        """,
+    PREFIX + "activationGate_fair_scaled_probability": """
+        ∀ {R E : Type} [MeasurableSpace R] [MeasurableSpace E]
+        (ν : MeasureTheory.Measure R) [MeasureTheory.IsProbabilityMeasure ν]
+        (A : CriticalEntropy.StoppedProcedure R E) (a : ℝ), 0 < a →
+        (ν.prod (Tier2.tapeMeasure ⟨1/2,by norm_num⟩)).real
+          {z | (EntropyTailLower.activationGate A ⌈(a^2)⁻¹⌉₊ ⌈a⁻¹⌉₊).output z = true} ≤
+          2*a^2*(CriticalEntropy.expectedStoppedProcedureWork ν ⟨1/2,by norm_num⟩
+            (EntropyTailLower.activationGate A ⌈(a^2)⁻¹⌉₊ ⌈a⁻¹⌉₊)).toReal
+        """,
 }
 SCOPE = (
     "Weighted observable sign-testing entropy (coefficient 4096), actual restart "
@@ -103,8 +121,9 @@ SCOPE = (
     "16384), and equivalence of the frozen statistical lower target with a "
     "uniform finite-certificate lower bound. Includes fractional priors, atomic "
     "population good gaps, population annular entropy, the observable bounded "
-    "gate and its exp(+-12) stopped-word likelihood factors. Gate activation "
-    "probability, rejection-restart renewal, and the finite-certificate lower "
+    "gate, its exp(+-12) stopped-word likelihood factors, and fair activation "
+    "probability bounded by twice scale squared times expected gate work. "
+    "Biased-law measure transfer, rejection-restart renewal, and the finite-certificate lower "
     "bound remain obligations."
 )
 
@@ -117,6 +136,7 @@ def scope_status(verified: bool = False) -> dict:
                 general_population_annular_verified=verified,
                 observable_activation_gate_verified=verified,
                 gate_prefix_likelihood_verified=verified,
+                fair_gate_probability_verified=verified,
                 full_information_gate_verified=False, gate_restart_renewal_verified=False,
                 entropy_tail_lower_verified=False, entropy_tail_law_verified=False,
                 closed_quantile_minimax_verified=False)

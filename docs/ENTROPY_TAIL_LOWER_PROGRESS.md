@@ -23,6 +23,7 @@ six proved targets.
 | [PopulationAnnular](../lean/ThresholdHC/EntropyTailLower/PopulationAnnular.lean) | Derives the moment floor and conditional mean, moment, and work premises, then proves `rho * Gamma <= 33554432 * m * W0`. Each band must have mass at least `140 m`; this mass condition is still a premise. |
 | [ActivationGate](../lean/ThresholdHC/EntropyTailLower/ActivationGate.lean) | Constructs an observable bounded gate, proves its stop is the minimum of the original stop and boundary/cap clock, treats ties as acceptance, bounds the stopped random walk, and charges gate work to actual original work. |
 | [GateLikelihood](../lean/ThresholdHC/EntropyTailLower/GateLikelihood.lean) | Proves exact fair-word likelihood factorization and uniform factors between `exp(-12)` and `exp(12)` on the actual stopped prefixes at scale `a <= 1/4`. Both signs are covered through `abs d <= a`. This is a wordwise bound, not yet the full conditioning/renewal theorem. |
+| [FairGateWork](../lean/ThresholdHC/EntropyTailLower/FairGateWork.lean) | Proves the fair stopped-walk square identity by finite predictable sums and next-flip independence, including arbitrary random seeds. Derives fair activation probability at most `2 a^2` times expected gate work, without an integrability or termination assumption on the original procedure. |
 
 The supporting weighted-sign target and its dependency hashes were recorded
 before accepting its proof in
@@ -32,9 +33,9 @@ No existing specification, manuscript, or published evidence is changed.
 
 ## Remaining mathematical work
 
-1. Complete the gate's probability and expectation estimates from its checked
-   stopping and likelihood properties. Prove the fair stopped-walk identity,
-   transfer to actual stopped-prefix laws, implement rejection and restart
+1. Transfer the checked wordwise likelihood factors to actual stopped-prefix
+   laws and use them to compare gate probability and work under biased coins
+   with the checked fair-law bounds. Implement rejection and restart
    on unused flips, and prove its renewal/work and moment identities. Derive
    the conditioned estimator's good-gap bounds, including saturation. Its
    conditioning does not preserve bias, so the population guarantee cannot
@@ -64,10 +65,10 @@ python -m unittest discover -s tools -p 'test_entropy_tail_lower_components.py' 
 ```
 
 The default rebuilds the entire local dependency closure. With
-`--cached-dependencies`, it rebuilds the twelve supporting modules, records the source
+`--cached-dependencies`, it rebuilds the thirteen supporting modules, records the source
 hashes and reused local artifact hashes, and explicitly reports that a full
-dependency rebuild was not performed. Both modes check seven exact types and
-all 56 declaration roots, permitting only `propext`, `Classical.choice`,
+dependency rebuild was not performed. Both modes check nine exact types and
+all 72 declaration roots, permitting only `propext`, `Classical.choice`,
 and `Quot.sound`. Fresh logs and status go under
 `.runtime/entropy-tail-lower-components/`; published historical records are
 preserved. The success report always keeps `entropy_tail_lower_verified`,
@@ -109,3 +110,14 @@ verifier suite, frozen-source check, and whitespace check passed.
 This checkpoint proves the atomic population and bounded-prefix results in
 the table. The activation probability, restart renewal, and final lower-bound
 claims remain unverified; the audit records those limitations explicitly.
+
+### Fair activation checkpoint, 1 November 2026
+
+The cached-dependency audit passed in
+`.runtime/entropy-tail-lower-components/20261101T132622305225Z/`: all thirteen
+supporting modules were rebuilt, all nine exact types checked, and all 72
+declaration roots had only the permitted axioms. The closure contains 387
+local modules, with 374 existing dependencies reused and hashed. The nine
+audit regression tests passed again after adding the new fair-probability
+scope flag. This checkpoint adds the fair-law square identity and activation
+bound; it does not establish biased-law transfer or restart renewal.
