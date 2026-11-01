@@ -280,8 +280,8 @@ proves weighted single-coin sign entropy, annular estimator bounds for
 arbitrary finite measures, and equivalence with a uniform finite-certificate
 lower bound. It also removes atomlessness from good-gap selection and
 constructs a bounded observable activation gate with uniform stopped-word
-likelihood factors and a fair activation-probability bound. Biased-law
-transfer, restart, and packing arguments have not
+likelihood factors and transfers its probability and work bounds to actual
+biased-coin laws. The restart and packing arguments have not
 been derived for general certificates, so it does not change the six-of-eight
 completion status.
 

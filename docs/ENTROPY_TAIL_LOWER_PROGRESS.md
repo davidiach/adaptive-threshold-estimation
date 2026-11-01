@@ -24,6 +24,7 @@ six proved targets.
 | [ActivationGate](../lean/ThresholdHC/EntropyTailLower/ActivationGate.lean) | Constructs an observable bounded gate, proves its stop is the minimum of the original stop and boundary/cap clock, treats ties as acceptance, bounds the stopped random walk, and charges gate work to actual original work. |
 | [GateLikelihood](../lean/ThresholdHC/EntropyTailLower/GateLikelihood.lean) | Proves exact fair-word likelihood factorization and uniform factors between `exp(-12)` and `exp(12)` on the actual stopped prefixes at scale `a <= 1/4`. Both signs are covered through `abs d <= a`. This is a wordwise bound, not yet the full conditioning/renewal theorem. |
 | [FairGateWork](../lean/ThresholdHC/EntropyTailLower/FairGateWork.lean) | Proves the fair stopped-walk square identity by finite predictable sums and next-flip independence, including arbitrary random seeds. Derives fair activation probability at most `2 a^2` times expected gate work, without an integrability or termination assumption on the original procedure. |
+| [GateMeasure](../lean/ThresholdHC/EntropyTailLower/GateMeasure.lean) | Transfers the likelihood factors to the actual seeded stopped-transcript laws, event probabilities, and nonnegative observables. In particular, fair activation is at most `2 exp(12) a^2` times the original expected work under any coin with `abs(p-1/2) <= a <= 1/4`, retaining infinite work honestly. |
 
 The supporting weighted-sign target and its dependency hashes were recorded
 before accepting its proof in
@@ -33,13 +34,13 @@ No existing specification, manuscript, or published evidence is changed.
 
 ## Remaining mathematical work
 
-1. Transfer the checked wordwise likelihood factors to actual stopped-prefix
-   laws and use them to compare gate probability and work under biased coins
-   with the checked fair-law bounds. Implement rejection and restart
-   on unused flips, and prove its renewal/work and moment identities. Derive
-   the conditioned estimator's good-gap bounds, including saturation. Its
-   conditioning does not preserve bias, so the population guarantee cannot
-   simply be reused for the conditioned estimator.
+1. Complete the gated estimator's mean and moment reduction, including the
+   early-output estimate, good-gap selection, and saturation. The paper's
+   route requires an observable rejection/restart procedure on unused flips
+   and its renewal identities. A finite-average alternative is described
+   below but is not yet formalized. Neither masking nor conditioning
+   preserves the original bias guarantee, so that guarantee cannot simply
+   be reused for the transformed estimator.
 2. Connect an arbitrary feasible finite certificate to the required one-coin
    guarantees and the gate construction.
 3. Prove the deterministic selection and packing steps: split retained bands
@@ -55,6 +56,29 @@ No existing specification, manuscript, or published evidence is changed.
 The certificate route can reuse the existing formal treatment of arbitrary
 adaptive population algorithms. It does not make steps 1–4 automatic.
 
+### Candidate finite-average reduction (not Lean-verified)
+
+The rejection loop may be avoidable. Once fair activation `p > 0` is proved,
+take `N = ceil(1/p)` independent full runs of the original procedure on
+successive unused flips. Replace each output by `X = Y * 1_E`, and return
+their average. Every run, including each rejected run, is charged in full.
+The common repetition count depends on fair activation, not the hidden coin
+parameter. For each fixed state, the proposed calculation is
+
+```text
+E[average(X)^2] <= E[Y^2]/N + P(E) E[Y^2]
+                <= (1 + exp(12)) p E[Y^2],
+E[total work] = N E[T] <= 2 E[T]/p.
+```
+
+The first line uses independent averaging and Cauchy–Schwarz for the masked
+mean. Averaging preserves `E[Y * 1_E]`, so the early-output mean estimate is
+still needed. Existing [finite-average identities](../lean/ThresholdHC/BlindUpper/ProductionAverage.lean)
+and [actual same-coin restart laws](../lean/ThresholdHC/CriticalEntropy/RepeatedRestart.lean)
+are available. The observable masking construction, full moment calculation,
+population integration, and good-gap argument remain to be proved before
+using this alternative in any verified claim.
+
 ## Verification
 
 Run the new audit from the repository root:
@@ -65,10 +89,10 @@ python -m unittest discover -s tools -p 'test_entropy_tail_lower_components.py' 
 ```
 
 The default rebuilds the entire local dependency closure. With
-`--cached-dependencies`, it rebuilds the thirteen supporting modules, records the source
+`--cached-dependencies`, it rebuilds the fourteen supporting modules, records the source
 hashes and reused local artifact hashes, and explicitly reports that a full
-dependency rebuild was not performed. Both modes check nine exact types and
-all 72 declaration roots, permitting only `propext`, `Classical.choice`,
+dependency rebuild was not performed. Both modes check thirteen exact types and
+all 86 declaration roots, permitting only `propext`, `Classical.choice`,
 and `Quot.sound`. Fresh logs and status go under
 `.runtime/entropy-tail-lower-components/`; published historical records are
 preserved. The success report always keeps `entropy_tail_lower_verified`,
@@ -121,3 +145,19 @@ local modules, with 374 existing dependencies reused and hashed. The nine
 audit regression tests passed again after adding the new fair-probability
 scope flag. This checkpoint adds the fair-law square identity and activation
 bound; it does not establish biased-law transfer or restart renewal.
+
+### Biased-law transfer checkpoint, 1 November 2026
+
+The cached-dependency audit passed in
+`.runtime/entropy-tail-lower-components/20261101T133250231356Z/`: all fourteen
+supporting modules were rebuilt, all thirteen exact types checked, and all
+86 declaration roots had only the permitted axioms. The closure contains
+388 local modules, with 374 existing dependencies reused and hashed. The
+nine audit regression tests, frozen-source check, project-wide proof-escape
+scan, documentation file links, and whitespace check passed.
+
+This checkpoint verifies actual stopped-transcript transfer and the stated
+event/work consequences. The full information gate and final statistical
+lower bound remain unproved. The canonical completeness command still
+rejects `entropy_tail_lower` and `entropy_tail_law`. The finite-average
+alternative above is a proposed next step, not part of this audit's claims.

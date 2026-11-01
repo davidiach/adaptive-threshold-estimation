@@ -1,7 +1,7 @@
 """Audit supporting lemmas for the unfinished entropy-tail lower bound.
 
 Default: rebuild the entire local dependency closure. --cached-dependencies
-rebuilds only the thirteen supporting modules and records the reused artifact hashes.
+rebuilds only the fourteen supporting modules and records the reused artifact hashes.
 Both modes check the frozen weighted-sign target, the exact certificate
 reduction, and every new declaration's transitive axioms. Neither mode proves
 the statistical lower bound or the two-sided entropy-tail/quantile laws.
@@ -29,7 +29,8 @@ SOURCE = LEAN / "ThresholdHC/EntropyTailLower"
 PREFIX = "ThresholdHC.EntropyTailLower."
 MODULES = ("Specification", "WeightedOverlap", "WeightedSign", "WeightedEstimation",
            "AnnularWork", "AnnularEstimation", "CertificateReduction", "FractionalPrior",
-           "GeneralGoodGaps", "PopulationAnnular", "ActivationGate", "GateLikelihood", "FairGateWork")
+           "GeneralGoodGaps", "PopulationAnnular", "ActivationGate", "GateLikelihood", "FairGateWork",
+           "GateMeasure")
 FREEZE = ROOT / "tools/entropy_tail_lower_specification_freeze.json"
 FROZEN = {"lean/ThresholdHC/EntropyTailLower/Specification.lean":
           "dfa2367c933f1cdbeeb82ecca9e92ca8a512d98de28a54cdee9c741b7acd3461"}
@@ -114,6 +115,57 @@ EXACT_TARGETS = {
           2*a^2*(CriticalEntropy.expectedStoppedProcedureWork ν ⟨1/2,by norm_num⟩
             (EntropyTailLower.activationGate A ⌈(a^2)⁻¹⌉₊ ⌈a⁻¹⌉₊)).toReal
         """,
+    PREFIX + "activationGate_transcript_comparison": """
+        ∀ {R E : Type} [MeasurableSpace R] [MeasurableSpace E]
+        (ν : MeasureTheory.Measure R) [MeasureTheory.IsProbabilityMeasure ν]
+        (A : CriticalEntropy.StoppedProcedure R E) (a : ℝ), 0 < a → a ≤ 1/4 →
+        ∀ (p : unitInterval), |(p:ℝ)-1/2| ≤ a →
+        ENNReal.ofReal (Real.exp (-12)) • EntropyTailLower.coinTranscriptLaw ν ⟨1/2,by norm_num⟩
+          (EntropyTailLower.activationGate A ⌈(a^2)⁻¹⌉₊ ⌈a⁻¹⌉₊) ⌈(a^2)⁻¹⌉₊ ≤
+            EntropyTailLower.coinTranscriptLaw ν p
+              (EntropyTailLower.activationGate A ⌈(a^2)⁻¹⌉₊ ⌈a⁻¹⌉₊) ⌈(a^2)⁻¹⌉₊ ∧
+          EntropyTailLower.coinTranscriptLaw ν p
+            (EntropyTailLower.activationGate A ⌈(a^2)⁻¹⌉₊ ⌈a⁻¹⌉₊) ⌈(a^2)⁻¹⌉₊ ≤
+            ENNReal.ofReal (Real.exp 12) • EntropyTailLower.coinTranscriptLaw ν ⟨1/2,by norm_num⟩
+              (EntropyTailLower.activationGate A ⌈(a^2)⁻¹⌉₊ ⌈a⁻¹⌉₊) ⌈(a^2)⁻¹⌉₊
+        """,
+    PREFIX + "activationGate_work_comparison": """
+        ∀ {R E : Type} [MeasurableSpace R] [MeasurableSpace E]
+        (ν : MeasureTheory.Measure R) [MeasureTheory.IsProbabilityMeasure ν]
+        (A : CriticalEntropy.StoppedProcedure R E) (a : ℝ), 0 < a → a ≤ 1/4 →
+        ∀ (p : unitInterval), |(p:ℝ)-1/2| ≤ a →
+        ENNReal.ofReal (Real.exp (-12))*CriticalEntropy.expectedStoppedProcedureWork ν ⟨1/2,by norm_num⟩
+          (EntropyTailLower.activationGate A ⌈(a^2)⁻¹⌉₊ ⌈a⁻¹⌉₊) ≤
+            CriticalEntropy.expectedStoppedProcedureWork ν p
+              (EntropyTailLower.activationGate A ⌈(a^2)⁻¹⌉₊ ⌈a⁻¹⌉₊) ∧
+          CriticalEntropy.expectedStoppedProcedureWork ν p
+            (EntropyTailLower.activationGate A ⌈(a^2)⁻¹⌉₊ ⌈a⁻¹⌉₊) ≤
+            ENNReal.ofReal (Real.exp 12)*CriticalEntropy.expectedStoppedProcedureWork ν ⟨1/2,by norm_num⟩
+              (EntropyTailLower.activationGate A ⌈(a^2)⁻¹⌉₊ ⌈a⁻¹⌉₊)
+        """,
+    PREFIX + "activationGate_probability_comparison": """
+        ∀ {R E : Type} [MeasurableSpace R] [MeasurableSpace E]
+        (ν : MeasureTheory.Measure R) [MeasureTheory.IsProbabilityMeasure ν]
+        (A : CriticalEntropy.StoppedProcedure R E) (a : ℝ), 0 < a → a ≤ 1/4 →
+        ∀ (p : unitInterval), |(p:ℝ)-1/2| ≤ a →
+        ENNReal.ofReal (Real.exp (-12))*(ν.prod (Tier2.tapeMeasure ⟨1/2,by norm_num⟩))
+          {z | (EntropyTailLower.activationGate A ⌈(a^2)⁻¹⌉₊ ⌈a⁻¹⌉₊).output z = true} ≤
+          (ν.prod (Tier2.tapeMeasure p))
+            {z | (EntropyTailLower.activationGate A ⌈(a^2)⁻¹⌉₊ ⌈a⁻¹⌉₊).output z = true} ∧
+          (ν.prod (Tier2.tapeMeasure p))
+            {z | (EntropyTailLower.activationGate A ⌈(a^2)⁻¹⌉₊ ⌈a⁻¹⌉₊).output z = true} ≤
+            ENNReal.ofReal (Real.exp 12)*(ν.prod (Tier2.tapeMeasure ⟨1/2,by norm_num⟩))
+              {z | (EntropyTailLower.activationGate A ⌈(a^2)⁻¹⌉₊ ⌈a⁻¹⌉₊).output z = true}
+        """,
+    PREFIX + "activationGate_fair_probability_le_biased_work": """
+        ∀ {R E : Type} [MeasurableSpace R] [MeasurableSpace E]
+        (ν : MeasureTheory.Measure R) [MeasureTheory.IsProbabilityMeasure ν]
+        (A : CriticalEntropy.StoppedProcedure R E) (a : ℝ), 0 < a → a ≤ 1/4 →
+        ∀ (p : unitInterval), |(p:ℝ)-1/2| ≤ a →
+        (ν.prod (Tier2.tapeMeasure ⟨1/2,by norm_num⟩))
+          {z | (EntropyTailLower.activationGate A ⌈(a^2)⁻¹⌉₊ ⌈a⁻¹⌉₊).output z = true} ≤
+          ENNReal.ofReal (2*Real.exp 12*a^2)*CriticalEntropy.expectedStoppedProcedureWork ν p A
+        """,
 }
 SCOPE = (
     "Weighted observable sign-testing entropy (coefficient 4096), actual restart "
@@ -123,7 +175,8 @@ SCOPE = (
     "population good gaps, population annular entropy, the observable bounded "
     "gate, its exp(+-12) stopped-word likelihood factors, and fair activation "
     "probability bounded by twice scale squared times expected gate work. "
-    "Biased-law measure transfer, rejection-restart renewal, and the finite-certificate lower "
+    "Includes actual stopped-transcript measure transfer and activation/work "
+    "bounds under nearby biased coins. Rejection-restart renewal and the finite-certificate lower "
     "bound remain obligations."
 )
 
@@ -137,6 +190,7 @@ def scope_status(verified: bool = False) -> dict:
                 observable_activation_gate_verified=verified,
                 gate_prefix_likelihood_verified=verified,
                 fair_gate_probability_verified=verified,
+                biased_gate_transfer_verified=verified,
                 full_information_gate_verified=False, gate_restart_renewal_verified=False,
                 entropy_tail_lower_verified=False, entropy_tail_law_verified=False,
                 closed_quantile_minimax_verified=False)
