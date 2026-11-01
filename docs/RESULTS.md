@@ -303,8 +303,10 @@ fractional dyadic top-mass theorem and the ordinary-band mass bound
 `w <= 4 rho` are also proved. Support-independent label localization now
 extends allocations to every canonical band. The ordinary and rarity-capped
 ignored costs are bounded for finite prefixes, as is the first-six-band
-entropy contribution. Retained-band entropy packing and the canonical
-finite-prefix comparison and limit remain. The registry therefore stays at
+entropy contribution. Retained-gap optimality and deterministic entropy
+partition/trimming helpers are also checked. Constructing the actual
+retained-band groups and rarity allocations, and the canonical finite-prefix
+comparison and limit, remain. The registry therefore stays at
 six of eight proved targets.
 
 **Upper half.** The upper bound comes from the additive formalization of

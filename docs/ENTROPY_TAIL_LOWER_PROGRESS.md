@@ -53,6 +53,8 @@ six proved targets.
 | [LargeGapEntropy](../lean/ThresholdHC/EntropyTailLower/LargeGapEntropy.lean) | Bounds the canonical entropy in the first six bands by 16384 and derives their capped entropy cost at most `16384 bias + 512 sqrt(variance)` for the original probability law. |
 | [LabelAllocation](../lean/ThresholdHC/EntropyTailLower/LabelAllocation.lean) | Combines support-independent label bounds through the actual normalized certificates and joint budgets. Allows atoms, empty bands, and zero allocations. |
 | [GlobalCosts](../lean/ThresholdHC/EntropyTailLower/GlobalCosts.lean) | Combines label and annular bounds to cover every canonical band. For `R = 256 bias + sqrt(2^32 exp(48) variance)`, proves finite allocation cost at most `65 R`, ordinary cost of any optimal finite selection at most `2080 R`, and rarity-capped ignored mass at most `260 R`. Proves the exact ordinary/ignored penalty decomposition. |
+| [RetainedGap](../lean/ThresholdHC/EntropyTailLower/RetainedGap.lean) | Derives the exact entropy decrement when erasing a retained band and its logarithmic lower bound. Optimality gives `sqrt(rho) (1 + log(A/a_j)) <= 2 b_j sqrt(F)` for each positive retained band. |
+| [EntropyPacking](../lean/ThresholdHC/EntropyTailLower/EntropyPacking.lean) | Proves finite entropy decomposition and geometric reference estimates, comparable-cost bounds, and factor-64 entropy preservation when at least half the comparable bands remain. The integer trimming size and gap amplification are checked under explicit separation premises; the actual tier/parity construction and saturation allocation remain. |
 
 The supporting weighted-sign target and its dependency hashes were recorded
 before accepting its proof in
@@ -62,16 +64,20 @@ No existing specification, manuscript, or published evidence is changed.
 
 ## Remaining mathematical work
 
-1. Prove retained-band optimality and entropy packing: derive the retained-gap
-   condition, split positive cost weights into comparable groups and parity
-   classes, trim them, and allocate rarity while preserving the actual
-   minimum-band-mass saturation condition. The ordinary and ignored costs
-   are now bounded for every finite canonical prefix, and the first-six-band
-   entropy contribution is bounded. The localized annular theorem still
-   requires the remaining component choices and cost comparisons.
+1. Construct the retained-band entropy packing: split positive cost weights
+   into comparable groups and parity classes, instantiate the checked trimming
+   bounds, and allocate rarity while preserving the actual minimum-band-mass
+   saturation condition. The logarithmic retained-gap condition and the
+   deterministic entropy/trimming helpers are now checked. The localized
+   annular theorem still requires the actual component choices and cost
+   comparisons. Ordinary, capped ignored, and first-six-band costs are bounded.
+
 2. Prove the canonical finite-prefix comparison and limit for arbitrary laws,
    maintaining the original selection functional and global rarity budget.
-   The full continuous variational modulus is not a claimed theorem.
+   The lower-bound route needs an upper comparison of the original selection
+   functional with twice the finite-prefix optimum plus the omitted tail mass,
+   followed by the vanishing-tail limit at each fixed law. The full continuous
+   variational modulus is not a claimed theorem.
 3. Prove `CertificateLowerStatement`, apply the checked equivalence, and
    register `entropy_tail_lower` against the original frozen specification.
    Then assemble the two-sided entropy-tail and closed-quantile laws and run
@@ -201,6 +207,27 @@ is at most `16384 bias + 512 sqrt(variance)`. This uses actual finite
 certificates on the original gap law and requires no small-gap assumption.
 The remaining retained small-gap entropy still needs the packing argument.
 
+### Retained-gap optimality and deterministic trimming
+
+For a minimizer of the finite score, let `F` be its retained entropy and `A`
+its retained cost mass. Every positive retained band satisfies
+`sqrt(rho) (1 + log(A/a_j)) <= 2 b_j sqrt(F)`. The proof uses the exact change
+in entropy on erasing one coordinate, a binary-entropy lower bound, and
+optimality against assigning that coordinate to the complementary penalty.
+It does not assume differentiability at a zero coordinate.
+
+Finite entropy decomposes exactly into within-group entropy and entropy of
+the group masses. The geometric reference estimate and its finite weighted
+sum are checked. For costs in a factor-four interval, keeping at least half
+the coordinates preserves entropy within a factor of 64. For every nonempty
+group, removing `ceil(log_4 n)` indices leaves at least half. Removing those
+indices from the smallest-gap end of an explicitly separated ordered family
+gains a factor `n` in its minimum retained gap.
+
+These are deterministic ingredients. The construction of the actual
+cost-tier/parity groups, their canonical separation, the saturated component
+allocation, and the resulting retained-entropy lower bound remain unproved.
+
 ## Verification
 
 Run the new audit from the repository root:
@@ -211,10 +238,10 @@ python -m unittest discover -s tools -p 'test_entropy_tail_lower_components.py' 
 ```
 
 The default rebuilds the entire local dependency closure. With
-`--cached-dependencies`, it rebuilds the forty-two supporting modules, records the source
+`--cached-dependencies`, it rebuilds the forty-four supporting modules, records the source
 hashes and reused local artifact hashes, and explicitly reports that a full
-dependency rebuild was not performed. Both modes check sixty-nine exact types and
-all 279 declaration roots, permitting only `propext`, `Classical.choice`,
+dependency rebuild was not performed. Both modes check seventy-six exact types and
+all 301 declaration roots, permitting only `propext`, `Classical.choice`,
 and `Quot.sound`. Fresh logs and status go under
 `.runtime/entropy-tail-lower-components/`; published historical records are
 preserved. The success report always keeps `entropy_tail_lower_verified`,
@@ -448,3 +475,31 @@ checkpoint. The canonical completeness check still rejects
 All five GitHub CI jobs passed for the earlier 37-module commit
 `ce410c8beda03faca7bfe483f2f8e914bcda6a1c` in run `41324755472`. That CI result
 belongs to that commit; it does not certify this later checkpoint.
+
+
+### Retained-gap and deterministic trimming checkpoint, 1 November 2026
+
+The cached-dependency audit passed in
+`.runtime/entropy-tail-lower-components/20261101T180647371920Z/`: all forty-four
+supporting modules were rebuilt, all seventy-six exact types checked, and
+all 301 declaration roots had only the permitted axioms. The closure contains
+428 local modules, with 384 dependencies reused and hashed. The reused local
+dependency sources match the `entropy-tail-integrated` cache checkout byte
+for byte. This is not a full dependency rebuild. All nine audit regression
+tests, frozen-source verification, the proof-escape scan of 714 Lean sources,
+documentation file links, and whitespace checks passed.
+
+Optimal retained positive bands satisfy the logarithmic gap condition,
+proved through the exact entropy decrement and comparison with erasing one
+coordinate. The checkpoint also proves finite entropy decomposition,
+geometric reference and sum bounds, comparable-cost entropy estimates,
+and factor-64 entropy preservation after retaining at least half a group.
+The ceiling logarithm gives a valid trimming size; the minimum-gap increase
+is proved when removing the smallest-gap end of an explicitly separated
+ordered family.
+
+Constructing the actual cost-tier/parity groups, instantiating their
+separation, proving the saturated rarity allocation, the canonical
+finite-prefix comparison and limit, and final lower/law assembly remain
+outside this checkpoint. The canonical completeness check still rejects
+`entropy_tail_lower` and `entropy_tail_law`.

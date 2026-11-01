@@ -49,9 +49,11 @@ Canonical small-gap band laws, fractional dyadic top-mass selection, and
 the ordinary-band mass bound `w <= 4 rho` are now proved. The label floor
 and its additive localization cover the larger gaps. Ordinary and capped
 ignored costs are now bounded for every finite canonical prefix, together
-with the first-six-band entropy contribution. Retained-band entropy packing
-and the canonical finite-prefix comparison and limit remain; the full lower
-target is still unproved. Verified increments are in
+with the first-six-band entropy contribution. Retained-gap optimality and
+entropy partition/trimming helpers are now checked. Constructing the actual
+retained-band groups and saturated rarity allocations, and the canonical
+finite-prefix comparison and limit, remain; the full lower target is still
+unproved. Verified increments are in
 [draft PR #38](https://github.com/davidiach/adaptive-threshold-estimation/pull/38).
 
 Finite-law rate computation is now available in the
