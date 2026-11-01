@@ -14,6 +14,7 @@ class EntropyTailAuditTests(unittest.TestCase):
         paths, roots = audit.validate_sources()
         self.assertEqual(len(paths), len(audit.MODULES))
         self.assertEqual(len(audit.TARGETS), 8)
+        self.assertEqual(set(audit.PROVED), set(audit.TARGETS))
         self.assertTrue(set(audit.PROVED) <= roots)
         self.assertIn(audit.PREFIX + 'EntropyTailLawStatement', roots)
 
@@ -48,17 +49,51 @@ class EntropyTailAuditTests(unittest.TestCase):
     def test_hidden_unregistered_target_declaration_rejected(self):
         real_read = type(audit.SOURCE).read_text
         target = audit.SOURCE / (audit.MODULES[-1] + '.lean')
-        for short in sorted(t.removeprefix(audit.PREFIX) for t in set(audit.TARGETS) - set(audit.PROVED)):
+        for short in sorted(t.removeprefix(audit.PREFIX) for t in audit.TARGETS):
             for planted_line in (f'protected theorem {short} : True := trivial',
                                  f'theorem {audit.PREFIX}{short} : True := trivial',
                                  f'@[simp] private lemma {short} : True := trivial'):
                 def planted(self, *args, **kwargs):
                     text = real_read(self, *args, **kwargs)
+                    # Remove the real proof so this exercises detection of the
+                    # otherwise unregistered declaration form, even after completion.
+                    text = audit.re.sub(r'\btheorem\s+' + audit.re.escape(short) + r'\b',
+                                        'theorem unrelated_test_proof', text)
                     return text + '\n' + planted_line + '\n' if self == target else text
                 with self.subTest(line=planted_line), \
+                        patch.object(audit, 'PROVED', tuple(t for t in audit.PROVED
+                                                          if t != audit.PREFIX + short)), \
                         patch.object(type(audit.SOURCE), 'read_text', planted):
                     with self.assertRaisesRegex(ValueError, 'Unregistered proof'):
                         audit.validate_sources()
+
+    def test_cached_dependencies_require_and_hash_native_artifacts(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            lean = root/'lean'
+            source = lean/'ThresholdHC/Dependency.lean'
+            rebuilt = lean/'ThresholdHC/Target.lean'
+            obj = lean/'.lake/build/lib/lean/ThresholdHC/Dependency.olean'
+            with patch.object(audit, 'ROOT', root), patch.object(audit, 'LEAN', lean):
+                with self.assertRaisesRegex(ValueError, 'Missing cached dependency'):
+                    audit.cached_artifact_hashes([source, rebuilt], [rebuilt])
+                obj.parent.mkdir(parents=True)
+                obj.write_bytes(b'native-artifact')
+                companion = obj.with_suffix('.olean.private')
+                companion.write_bytes(b'private-companion')
+                hashes = audit.cached_artifact_hashes([source, rebuilt], [rebuilt])
+                self.assertEqual(hashes, {p.relative_to(root).as_posix(): audit.sha(p)
+                                          for p in (obj, companion)})
+                generated = root/'ExactAudit.lean'
+                generated.write_text('example : True := trivial', encoding='utf-8')
+                original = audit.sha(generated)
+                audit.validate_stability(hashes, generated, original)
+                companion.write_bytes(b'changed-companion')
+                with self.assertRaisesRegex(ValueError, 'changed during audit'):
+                    audit.validate_stability(hashes, generated, original)
+                generated.write_text('changed audit', encoding='utf-8')
+                with self.assertRaisesRegex(ValueError, 'changed during audit'):
+                    audit.validate_stability({}, generated, original)
 
     def test_changed_freeze_record_rejected(self):
         record = json.loads(audit.FREEZE.read_text(encoding='utf-8'))

@@ -9,12 +9,12 @@ import verify_entropy_tail_lower_components as audit
 class LowerComponentAuditTests(unittest.TestCase):
     def test_registry_and_dependency_order(self):
         paths, ordered, roots = audit.validate_sources()
-        self.assertEqual(len(paths), 48)
-        self.assertEqual(len(roots), 329)
+        self.assertEqual(len(paths), 57)
+        self.assertEqual(len(roots), 368)
         self.assertTrue(set(audit.EXACT_TARGETS) <= roots)
         self.assertEqual([p for p in ordered if p in paths], paths)
 
-    def test_success_does_not_claim_the_full_lower_bound(self):
+    def test_success_keeps_canonical_target_audit_separate(self):
         status = audit.scope_status(True)
         self.assertTrue(status["valid"])
         self.assertTrue(status["weighted_sign_entropy_verified"])
@@ -56,6 +56,11 @@ class LowerComponentAuditTests(unittest.TestCase):
         self.assertTrue(status["canonical_parity_trim_verified"])
         self.assertTrue(status["packed_saturation_algebra_verified"])
         self.assertTrue(status["canonical_group_localization_verified"])
+        self.assertTrue(status["retained_band_packing_verified"])
+        self.assertTrue(status["joint_rarity_allocation_verified"])
+        self.assertTrue(status["finite_prefix_comparison_and_limit_verified"])
+        self.assertTrue(status["finite_selection_cost_bound_verified"])
+        self.assertTrue(status["certificate_lower_bound_verified"])
         for flag in ("full_information_gate_verified", "gate_restart_renewal_verified",
                      "entropy_tail_lower_verified", "entropy_tail_law_verified",
                      "closed_quantile_minimax_verified"):

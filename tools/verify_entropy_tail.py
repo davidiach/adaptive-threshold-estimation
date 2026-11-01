@@ -13,18 +13,20 @@ import json
 from pathlib import Path
 import re
 import subprocess
+import sys
 
 from verify_blind_upper_components import (
     DECLARATION, FORBIDDEN, module_path, project_dependencies, sha,
     strip_comments, validate_reports, imports, validate_dependency_freeze,
 )
+from verify_entropy_tail_components import dependency_order
 
 ROOT = Path(__file__).resolve().parents[1]
 LEAN = ROOT / 'lean'
 SOURCE = LEAN / 'ThresholdHC/EntropyTail'
 FREEZE = ROOT / 'tools/entropy_tail_specification_freeze.json'
 MODULES = ('Model', 'Specification', 'Band', 'Entropy', 'Gamma', 'Objective', 'Bounds',
-           'SingleAtom', 'Nonvacuity', 'Superadditive', 'HardSelection', 'Bridge', 'Upper')
+           'SingleAtom', 'Nonvacuity', 'Superadditive', 'HardSelection', 'Bridge', 'Upper', 'Lower', 'Law')
 PREFIX = 'ThresholdHC.EntropyTail.'
 FROZEN = {'lean/ThresholdHC/EntropyTail/Specification.lean': '8440d8853dd20cfcb4d0123fd30de0fae82ee970a0577f5e4ba0ebe041a1cbeb'}
 TARGETS = {
@@ -39,7 +41,8 @@ TARGETS = {
 }
 # Targets whose proofs are present. A target is proved only by its registered name.
 PROVED = (PREFIX+'selection_bounds', PREFIX+'single_atom', PREFIX+'small_budget',
-          PREFIX+'entropy_tail_nonvacuity', PREFIX+'hard_selection', PREFIX+'entropy_tail_upper')
+          PREFIX+'entropy_tail_nonvacuity', PREFIX+'hard_selection', PREFIX+'entropy_tail_upper',
+          PREFIX+'entropy_tail_lower', PREFIX+'entropy_tail_law')
 # Any declaration form of a target name, including modifiers such as `protected` and
 # fully qualified names, which the shared root pattern does not report.
 TARGET_DECLARATION = (r"\b(?:def|abbrev|structure|theorem|lemma|instance|inductive)\s+"
@@ -103,8 +106,30 @@ def validate_sources() -> tuple[list[Path], set[str]]:
     return paths, set(roots)
 
 
+def cached_artifact_hashes(paths: list[Path], rebuilt: list[Path]) -> dict[str, str]:
+    """Bind every reused local dependency to its native compiler artifacts."""
+    cached = {}
+    for path in set(paths) - set(rebuilt):
+        obj = LEAN / '.lake/build/lib/lean' / path.relative_to(LEAN).with_suffix('.olean')
+        if not obj.is_file():
+            raise ValueError('Missing cached dependency: ' + str(obj))
+        for artifact in obj.parent.glob(obj.name + '*'):
+            cached[artifact.relative_to(ROOT).as_posix()] = sha(artifact)
+    return cached
+
+
+def validate_stability(hashes: dict[str, str], audit: Path, audit_hash: str) -> None:
+    if any(sha(ROOT/p) != h for p, h in hashes.items()) or sha(audit) != audit_hash:
+        raise ValueError('Protected source or reused dependency artifact changed during audit')
+
+
 def main() -> int:
+    if hasattr(sys.stdout, 'reconfigure'):
+        sys.stdout.reconfigure(encoding='utf-8')
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--lake', default='lake')
+    parser.add_argument('--cached-dependencies', action='store_true',
+                        help='Rebuild registered modules natively and hash reused local artifacts')
     parser.add_argument('--output-dir', type=Path)
     parser.add_argument('--sequential', action='store_true')
     parser.add_argument('--require-complete', action='store_true')
@@ -114,8 +139,12 @@ def main() -> int:
     if args.require_complete and not complete:
         print('Unproved full targets: '+', '.join(sorted(set(TARGETS)-set(PROVED))), flush=True)
         return 1
-    protected = project_dependencies(paths) | {
+    ordered = dependency_order(paths)
+    rebuilt = [p for p in ordered if p in paths]
+    cached = cached_artifact_hashes(ordered, rebuilt) if args.cached_dependencies else {}
+    protected = set(ordered) | {
         Path(__file__).resolve(), ROOT/'tools/verify_blind_upper_components.py',
+        ROOT/'tools/verify_entropy_tail_components.py',
         ROOT/'tools/verify_tier6.py', FREEZE,
         LEAN/'lean-toolchain', LEAN/'lake-manifest.json', LEAN/'lakefile.toml',
     }
@@ -127,7 +156,11 @@ def main() -> int:
     status = dict(valid=False, scope=SCOPE, source_sha256=hashes, full_targets=TARGETS,
                   exact_targets=targets, exact_targets_checked=0,
                   unproved_targets=sorted(set(TARGETS)-set(PROVED)),
-                  entropy_tail_law_verified=False, commands=[])
+                  entropy_tail_law_verified=False, commands=[],
+                  cached_dependencies=args.cached_dependencies,
+                  cached_dependency_artifact_sha256=cached,
+                  local_dependency_rebuild_performed=False,
+                  build_mode='native_registered_modules' if args.cached_dependencies else 'lake_build')
     status_path = output/'status.json'
 
     def save():
@@ -138,9 +171,22 @@ def main() -> int:
     audit.write_text(''.join('import '+PREFIX+m+'\n' for m in MODULES)+'\n' +
                      ''.join(f'example : {t} := {d}\n' for d, t in targets.items())+'\n' +
                      ''.join('#print axioms '+r+'\n' for r in sorted(roots)), encoding='utf-8')
+    audit_hash = sha(audit)
+    (output/'ExactAudit.lean').write_bytes(audit.read_bytes())
+    status['audit_source_sha256'] = audit_hash
+    save()
     modules = [PREFIX+name for name in MODULES]
-    commands = [['lake', 'build', m] for m in modules] if args.sequential else [['lake', 'build', *modules]]
-    commands.append(['lake', 'env', 'lean', str(audit.relative_to(LEAN))])
+    if args.cached_dependencies:
+        commands = []
+        for path in rebuilt:
+            relative = path.relative_to(LEAN)
+            obj = Path('.lake/build/lib/lean') / relative.with_suffix('.olean')
+            (LEAN/obj).parent.mkdir(parents=True, exist_ok=True)
+            commands.append([args.lake, 'env', 'lean', '-j', '1', '-o', str(obj), str(relative)])
+    else:
+        commands = ([[args.lake, 'build', m] for m in modules] if args.sequential
+                    else [[args.lake, 'build', *modules]])
+    commands.append([args.lake, 'env', 'lean', '-j', '1', str(audit.relative_to(LEAN))])
     for i, command in enumerate(commands):
         result = subprocess.run(command, cwd=LEAN, capture_output=True, text=True, encoding='utf-8')
         text = result.stdout+result.stderr
@@ -153,8 +199,7 @@ def main() -> int:
             return result.returncode
     status['axioms'] = validate_reports(text, result.returncode, roots)
     validate_sources()
-    if any(sha(ROOT/p) != h for p, h in hashes.items()):
-        raise ValueError('Protected source changed during audit')
+    validate_stability(hashes | cached, audit, audit_hash)
     status.update(valid=True, audited_modules=len(paths), audited_declarations=len(roots),
                   exact_targets_checked=len(targets), entropy_tail_law_verified=complete)
     save()

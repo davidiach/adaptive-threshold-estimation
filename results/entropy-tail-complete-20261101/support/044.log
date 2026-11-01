@@ -1,0 +1,8 @@
+ThresholdHC\EntropyTailLower\EntropyPacking.lean:142:39: warning: This simp argument is unused:
+  neg_zero
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [costEntropy, costTotal, Finset.sum_const, Finset.card_univ, nsmul_eq_mul, mul_one, negMulLog,
+    log_one, mul_zero, add_zero]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`

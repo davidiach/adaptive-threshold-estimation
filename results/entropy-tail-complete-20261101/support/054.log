@@ -1,0 +1,12 @@
+ThresholdHC\EntropyTailLower\FiniteBandApprox.lean:61:24: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+ThresholdHC\EntropyTailLower\FiniteBandApprox.lean:61:24: warning: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+ThresholdHC\EntropyTailLower\FiniteBandApprox.lean:142:51: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+ThresholdHC\EntropyTailLower\FiniteBandApprox.lean:142:51: warning: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`

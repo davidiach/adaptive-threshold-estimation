@@ -288,8 +288,8 @@ jobs:
             fi
             sleep 10
           done
-      - name: Verify the registered entropy-tail targets, including the upper half
-        run: python tools/verify_entropy_tail.py --sequential
+      - name: Require all eight entropy-tail targets, including the two-sided law
+        run: python tools/verify_entropy_tail.py --sequential --require-complete
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
       - uses: actions/upload-artifact@v4
@@ -336,7 +336,7 @@ jobs:
           done
       - name: Build and audit supporting entropy-tail lower lemmas
         run: |
-          (cd lean && lake build ThresholdHC.EntropyTailLower.PopulationAnnular ThresholdHC.EntropyTailLower.CertificateReduction ThresholdHC.EntropyTailLower.GatedAnnular ThresholdHC.EntropyTailLower.GlobalCosts ThresholdHC.EntropyTailLower.LargeGapEntropy ThresholdHC.EntropyTailLower.RetainedGap ThresholdHC.EntropyTailLower.EntropyTiers ThresholdHC.EntropyTailLower.SeparatedGroups ThresholdHC.EntropyTailLower.PackedAllocation ThresholdHC.EntropyTailLower.CanonicalGroups)
+          (cd lean && lake build ThresholdHC.EntropyTailLower.PopulationAnnular ThresholdHC.EntropyTailLower.CertificateReduction ThresholdHC.EntropyTailLower.GatedAnnular ThresholdHC.EntropyTailLower.GlobalCosts ThresholdHC.EntropyTailLower.LargeGapEntropy ThresholdHC.EntropyTailLower.RetainedGap ThresholdHC.EntropyTailLower.EntropyTiers ThresholdHC.EntropyTailLower.SeparatedGroups ThresholdHC.EntropyTailLower.PackedAllocation ThresholdHC.EntropyTailLower.CanonicalGroups ThresholdHC.EntropyTailLower.CertificateLower)
           python tools/verify_entropy_tail_lower_components.py --cached-dependencies
       - uses: actions/upload-artifact@v4
         if: always()

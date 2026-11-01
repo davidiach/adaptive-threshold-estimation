@@ -1,10 +1,10 @@
-"""Audit supporting lemmas for the unfinished entropy-tail lower bound.
+"""Audit the finite-certificate proof of the entropy-tail lower bound.
 
 Default: rebuild the entire local dependency closure. --cached-dependencies
-rebuilds only the forty-eight supporting modules and records the reused artifact hashes.
+rebuilds only the fifty-seven supporting modules and records the reused artifact hashes.
 Both modes check the frozen weighted-sign target, the exact certificate
-reduction, and every new declaration's transitive axioms. Neither mode proves
-the statistical lower bound or the two-sided entropy-tail/quantile laws.
+reduction, and every new declaration's transitive axioms. The canonical statistical lower target and
+two-sided law are audited separately by verify_entropy_tail.py.
 """
 from __future__ import annotations
 
@@ -38,7 +38,8 @@ MODULES = ("Specification", "WeightedOverlap", "WeightedSign", "WeightedEstimati
            "CanonicalBands", "DyadicMass", "EntropyIncrement", "FiniteSelection",
            "FiniteAllocation", "CertificateLabel", "LargeGapEntropy", "LabelAllocation", "GlobalCosts",
            "RetainedGap", "EntropyPacking",
-           "EntropyTiers", "SeparatedGroups", "PackedAllocation", "CanonicalGroups")
+           "EntropyTiers", "SeparatedGroups", "PackedAllocation", "CanonicalGroups",
+           "ComparableGroups", "TrimmedGroup", "JointAllocation", "RetainedFamily", "OptimalRetained", "FiniteBandApprox", "FiniteSelectionLift", "FiniteCertificateCost", "CertificateLower")
 FREEZE = ROOT / "tools/entropy_tail_lower_specification_freeze.json"
 FROZEN = {"lean/ThresholdHC/EntropyTailLower/Specification.lean":
           "dfa2367c933f1cdbeeb82ecca9e92ca8a512d98de28a54cdee9c741b7acd3461"}
@@ -835,6 +836,18 @@ EXACT_TARGETS = {
       (fun k => μ.real (EntropyTail.band (j i k))/((1/2:ℝ)^(j i k+1))^2))) →
   (∑ i, u i) ≤ 256*C.bias+Real.sqrt ((4294967296*Real.exp 48)*C.variance)
  """,
+    PREFIX + 'certificate_lower': """ThresholdHC.EntropyTailLower.CertificateLowerStatement""",
+    PREFIX + 'certificate_selection_upper': """∀ {N : ℕ} (μ : MeasureTheory.Measure ThresholdHC.Tier6.Gap)
+    [MeasureTheory.IsProbabilityMeasure μ] (ρ B : ℝ),
+    0 < ρ → ρ ≤ 1 → 0 < B → 0 < N → ∀ C : ThresholdHC.StoppingProgram.Certificate N,
+    ThresholdHC.StoppingProgram.Feasible μ ρ B C →
+    ThresholdHC.EntropyTail.selection μ ρ B ≤ ENNReal.ofReal
+      (200000000*(256*C.bias+Real.sqrt ((4294967296*Real.exp 48)*C.variance)))""",
+    PREFIX + 'finite_canonical_uniform_limit': """∀ (μ : MeasureTheory.Measure ThresholdHC.Tier6.Gap)
+    [MeasureTheory.IsFiniteMeasure μ] (ρ B M : ℝ), 0 ≤ ρ →
+    (∀ n : ℕ, ∃ S : Finset ℕ, (∀ j ∈ S, j < n) ∧
+      min ρ (ThresholdHC.EntropyTailLower.finiteCanonicalScore μ ρ B n S) ≤ M) →
+    ThresholdHC.EntropyTail.selection μ ρ B ≤ ENNReal.ofReal (2*M)""",
 }
 SCOPE = (
     "Weighted observable sign-testing entropy (coefficient 4096), actual restart "
@@ -892,10 +905,18 @@ SCOPE = (
     "saturation retains the component's actual largest endpoint and minimum "
     "band mass. The canonical-group adapter constructs actual normalized "
     "union-of-band laws and derives the localized cost bound from explicit "
-    "unnormalized rarity, mass and saturation premises. Combining the "
-    "tiers, parity and trimming into the complete retained-band packing and "
-    "allocation, the one-sided finite-prefix comparison and tail limit, "
-    "and the final lower/law assembly remain obligations."
+    "unnormalized rarity, mass and saturation premises. Ordered tier/parity "
+    "groups and logarithmic trimming now construct the complete retained-band "
+    "packing. The joint rarity allocation discharges the actual group-law "
+    "premises. Optimal retained entropy costs are at most 83886080 R; full "
+    "rarity-capped finite selection scores are at most 100000000 R. Hard "
+    "finite band selections bound the original objective by twice the finite "
+    "score plus omitted tail probability. That probability tends to zero "
+    "without moment assumptions. Thus selection is at most 200000000 R, "
+    "giving the complete uniform finite-certificate lower statement. The "
+    "canonical lower target and two-sided law have a separate eight-target "
+    "exact-type audit; this component audit does not report that audit's "
+    "completion or a separate closed-quantile minimax target."
 )
 
 
@@ -944,6 +965,11 @@ def scope_status(verified: bool = False) -> dict:
                 canonical_parity_trim_verified=verified,
                 packed_saturation_algebra_verified=verified,
                 canonical_group_localization_verified=verified,
+                retained_band_packing_verified=verified,
+                joint_rarity_allocation_verified=verified,
+                finite_prefix_comparison_and_limit_verified=verified,
+                finite_selection_cost_bound_verified=verified,
+                certificate_lower_bound_verified=verified,
                 full_information_gate_verified=False, gate_restart_renewal_verified=False,
                 entropy_tail_lower_verified=False, entropy_tail_law_verified=False,
                 closed_quantile_minimax_verified=False)

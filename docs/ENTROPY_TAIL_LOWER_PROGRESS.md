@@ -1,11 +1,18 @@
 # Entropy-tail lower-bound progress
 
 This additive development starts from main commit
-`4553d9e2207cbc3534f434da211828a50c9f9f1d`. It supplies supporting lemmas for
-the missing statistical lower bound. It does **not** prove
-`EntropyTailLowerStatement`, the two-sided entropy-tail law, or the matching
-closed-quantile lower bound. The existing eight-target registry remains at
-six proved targets.
+`4553d9e2207cbc3534f434da211828a50c9f9f1d`. It proves the statistical lower
+bound against the unchanged frozen `EntropyTailLowerStatement` and combines
+it with the existing upper proof to prove the two-sided entropy-tail law.
+All eight canonical targets are registered and checked. The
+[completion evidence](../results/entropy-tail-complete-20261101/README.md)
+separates the supporting audit from the canonical exact-type audit and
+records their cached-dependency scope. Historical checkpoints below retain
+their original, incomplete scopes.
+
+The proof supplies a conservative positive universal lower coefficient;
+it does not prove the paper's sharper explicit lower constant, a separate
+closed-quantile minimax target, or the direct finite-law lower argument.
 
 ## New statements and proof route
 
@@ -17,7 +24,7 @@ six proved targets.
 | [WeightedEstimation](../lean/ThresholdHC/EntropyTailLower/WeightedEstimation.lean) | Converts a real-valued stopped procedure with separated means and bounded second moments to the sign-testing bound through actual independent restarts. The cost multiplier is the number of restarts. |
 | [AnnularWork](../lean/ThresholdHC/EntropyTailLower/AnnularWork.lean) | Selects good points with controlled average work under an arbitrary finite measure, sums disjoint band costs, and proves annular sign entropy with coefficient 16384. Every band must retain at least half its mass in the measurable good set. |
 | [AnnularEstimation](../lean/ThresholdHC/EntropyTailLower/AnnularEstimation.lean) | Combines annular averaging and the estimator reduction. Bands lie in `(b/2,b]`, with successive endpoints separated by a factor of four. Moment, mean-separation, integrability, and good-set premises remain explicit. |
-| [CertificateReduction](../lean/ThresholdHC/EntropyTailLower/CertificateReduction.lean) | Proves that the unchanged canonical lower target is equivalent to a lower bound uniform over all feasible positive-cap finite certificates. The reverse implication loses a factor of 16, using the existing attained certificate and risk comparison. The finite-certificate lower bound is an obligation, not a proved premise. |
+| [CertificateReduction](../lean/ThresholdHC/EntropyTailLower/CertificateReduction.lean) | Proves that the unchanged canonical lower target is equivalent to a lower bound uniform over all feasible positive-cap finite certificates. The reverse implication loses a factor of 16, using the existing attained certificate and risk comparison. The finite-certificate obligation is discharged by `CertificateLower`. |
 | [FractionalPrior](../lean/ThresholdHC/EntropyTailLower/FractionalPrior.lean) | Constructs admissible event priors of an exact rarity mass even when the gap law has atoms, and proves their population mean and second-moment identities. |
 | [GeneralGoodGaps](../lean/ThresholdHC/EntropyTailLower/GeneralGoodGaps.lean) | Derives a measurable good set with exceptional mass at most `70 m` from actual uniform population guarantees on any probability space. It removes the old atomlessness restriction. |
 | [PopulationAnnular](../lean/ThresholdHC/EntropyTailLower/PopulationAnnular.lean) | Derives the moment floor and conditional mean, moment, and work premises, then proves `rho * Gamma <= 33554432 * m * W0`. Each band must have mass at least `140 m`; this mass condition is still a premise. |
@@ -47,48 +54,63 @@ six proved targets.
 | [CanonicalBands](../lean/ThresholdHC/EntropyTailLower/CanonicalBands.lean) | Constructs normalized small-gap laws from the original canonical bands and proves their finite rarity-allocation bound for indices at least six, including zero allocations and empty bands. It also proves the scalar allocation comparison. The original experiment is unchanged. |
 | [DyadicMass](../lean/ThresholdHC/EntropyTailLower/DyadicMass.lean) | Constructs a fractional upper-tail mass cut and proves the factor-two dyadic top-mass inequality for arbitrary nonnegative finite mass vectors whose entries are bounded by the mass budget. |
 | [EntropyIncrement](../lean/ThresholdHC/EntropyTailLower/EntropyIncrement.lean) | Proves a square-root entropy increment bound with coefficient two, and a binary entropy decrement bound. These deterministic estimates allow zero coordinates. |
-| [FiniteSelection](../lean/ThresholdHC/EntropyTailLower/FiniteSelection.lean) | Proves existence of finite selection minimizers and derives ordinary-band mass at most `4 rho` from their optimality. This conservative constant is weaker than the paper's `rho` bound and suffices for the proposed route. It does not yet bound the complete selection objective. |
+| [FiniteSelection](../lean/ThresholdHC/EntropyTailLower/FiniteSelection.lean) | Proves existence of finite selection minimizers and derives ordinary-band mass at most `4 rho` from their optimality. This conservative constant is weaker than the paper's `rho` bound and suffices for the completed route. It does not yet bound the complete selection objective. |
 | [FiniteAllocation](../lean/ThresholdHC/EntropyTailLower/FiniteAllocation.lean) | Proves restriction and ordinary/ignored cost comparisons for finite rarity allocations, and connects the allocation interface to the checked canonical small-gap certificate bound. |
 | [CertificateLabel](../lean/ThresholdHC/EntropyTailLower/CertificateLabel.lean) | Derives `rho <= 16 B variance` for small-bias certificates without a gap-support restriction. The resulting capped label cost is at most `128 bias + 4 sqrt(variance)`. |
 | [LargeGapEntropy](../lean/ThresholdHC/EntropyTailLower/LargeGapEntropy.lean) | Bounds the canonical entropy in the first six bands by 16384 and derives their capped entropy cost at most `16384 bias + 512 sqrt(variance)` for the original probability law. |
 | [LabelAllocation](../lean/ThresholdHC/EntropyTailLower/LabelAllocation.lean) | Combines support-independent label bounds through the actual normalized certificates and joint budgets. Allows atoms, empty bands, and zero allocations. |
 | [GlobalCosts](../lean/ThresholdHC/EntropyTailLower/GlobalCosts.lean) | Combines label and annular bounds to cover every canonical band. For `R = 256 bias + sqrt(2^32 exp(48) variance)`, proves finite allocation cost at most `65 R`, ordinary cost of any optimal finite selection at most `2080 R`, and rarity-capped ignored mass at most `260 R`. Proves the exact ordinary/ignored penalty decomposition. |
 | [RetainedGap](../lean/ThresholdHC/EntropyTailLower/RetainedGap.lean) | Derives the exact entropy decrement when erasing a retained band and its logarithmic lower bound. Optimality gives `sqrt(rho) (1 + log(A/a_j)) <= 2 b_j sqrt(F)` for each positive retained band. |
-| [EntropyPacking](../lean/ThresholdHC/EntropyTailLower/EntropyPacking.lean) | Proves finite entropy decomposition and geometric reference estimates, comparable-cost bounds, and factor-64 entropy preservation when at least half the comparable bands remain. The integer trimming size and gap amplification are checked under explicit separation premises; the complete retained-band packing and allocation remain. |
+| [EntropyPacking](../lean/ThresholdHC/EntropyTailLower/EntropyPacking.lean) | Proves finite entropy decomposition and geometric reference estimates, comparable-cost bounds, and factor-64 entropy preservation when at least half the comparable bands remain. The integer trimming size and gap amplification are checked under explicit separation premises; the complete packing and allocation are supplied by RetainedFamily. |
 | [EntropyTiers](../lean/ThresholdHC/EntropyTailLower/EntropyTiers.lean) | Constructs factor-four cost tiers for any nonempty finite positive vector and proves total entropy at most nine times the sum of tier entropies. Includes empty fibers in the finite partition. |
 | [SeparatedGroups](../lean/ThresholdHC/EntropyTailLower/SeparatedGroups.lean) | Derives separation and trimming gap amplification for sorted canonical bands of one parity, plus entropy reindexing, bipartition, and finite-sum superadditivity. |
 | [PackedAllocation](../lean/ThresholdHC/EntropyTailLower/PackedAllocation.lean) | Proves the numeric saturation estimate `lam^2 G^2 <= 4096 tau w_min/a^2` under explicit mass/gap premises, retaining the actual largest endpoint. Proves conditional rarity and eligible square-root-cost bounds. |
 | [CanonicalGroups](../lean/ThresholdHC/EntropyTailLower/CanonicalGroups.lean) | Constructs normalized laws on disjoint finite unions of original canonical bands, with exact band-mass and entropy rescaling. Converts explicit unnormalized rarity and saturated-cost premises into the checked localized annular bound. |
+| [ComparableGroups](../lean/ThresholdHC/EntropyTailLower/ComparableGroups.lean) | Constructs actual ordered, disjoint factor-four cost groups split by parity. Their total entropy captures the original within factor 18. |
+| [TrimmedGroup](../lean/ThresholdHC/EntropyTailLower/TrimmedGroup.lean) | Trims each group, preserves entropy within factor 64, and derives the required saturation bound using its actual largest endpoint. |
+| [JointAllocation](../lean/ThresholdHC/EntropyTailLower/JointAllocation.lean) | Constructs the common rarity and eligible-cost coefficients, proves every component constraint and the global rarity sum, and captures the capped retained cost. |
+| [RetainedFamily](../lean/ThresholdHC/EntropyTailLower/RetainedFamily.lean) | Instantiates the actual normalized group laws and joint allocation. Bounds the retained low-band cost by `83886080 R`. |
+| [OptimalRetained](../lean/ThresholdHC/EntropyTailLower/OptimalRetained.lean) | Combines the retained-family bound with the high-band and small-entropy cases for every finite-score minimizer, including empty and zero-weight cases. |
+| [FiniteBandApprox](../lean/ThresholdHC/EntropyTailLower/FiniteBandApprox.lean) | Constructs measurable finite hard band selections, bounds their original entropy and tail objectives, and proves omitted tail mass tends to zero for every finite measure. |
+| [FiniteSelectionLift](../lean/ThresholdHC/EntropyTailLower/FiniteSelectionLift.lean) | Bounds the original selection functional by twice the rarity-capped finite score plus omitted mass, then passes uniform finite bounds to the limit without moment assumptions. |
+| [FiniteCertificateCost](../lean/ThresholdHC/EntropyTailLower/FiniteCertificateCost.lean) | Combines retained, ordinary and capped ignored costs to bound each optimal finite score by `100000000 R` and the original selection by `200000000 R`. |
+| [CertificateLower](../lean/ThresholdHC/EntropyTailLower/CertificateLower.lean) | Converts `R = 256 bias + sqrt(2^32 exp(48) variance)` to certificate RMS and proves the full uniform `CertificateLowerStatement`. |
 
 The supporting weighted-sign target and its dependency hashes were recorded
 before accepting its proof in
 [the new specification lock](../tools/entropy_tail_lower_specification_freeze.json).
 The coefficient is conservative and is not the paper's sharper coefficient.
-No existing specification, manuscript, or published evidence is changed.
+Existing specifications, dependency locks, and published evidence are preserved.
+The editable v6 verification account records the later completion separately.
 
-## Remaining mathematical work
+## Completed route and remaining scope
 
-1. Combine the checked tier partition, parity separation, and trimming into
-   the retained-band packing for an optimal finite selection. Establish its
-   total captured entropy and actual maximum-endpoint/minimum-mass estimates,
-   choose the joint rarity and eligible costs, and apply the canonical-group
-   localization theorem. Its measure normalization is now constructed; the
-   remaining task is to discharge its explicit numeric premises for this
-   packing. Ordinary, capped ignored, and first-six-band costs are bounded.
+The retained-band packing, joint rarity allocation, one-sided finite-prefix
+comparison and vanishing-tail limit are proved. `CertificateLower` discharges
+the finite-certificate obligation. The existing factor-sixteen reduction
+gives [the canonical lower theorem](../lean/ThresholdHC/EntropyTail/Lower.lean),
+and [Law](../lean/ThresholdHC/EntropyTail/Law.lean) pairs it with the checked
+upper theorem. No reverse finite-prefix comparison, nested sequence of
+minimizers, continuous variational-modulus theorem, or gate-restart renewal
+theorem is required by this route.
 
-2. Prove the canonical finite-prefix comparison and limit for arbitrary laws,
-   maintaining the original selection functional and global rarity budget.
-   The lower-bound route needs an upper comparison of the original selection
-   functional with twice the finite-prefix optimum plus the omitted tail mass,
-   followed by the vanishing-tail limit at each fixed law. The full continuous
-   variational modulus is not a claimed theorem.
-3. Prove `CertificateLowerStatement`, apply the checked equivalence, and
-   register `entropy_tail_lower` against the original frozen specification.
-   Then assemble the two-sided entropy-tail and closed-quantile laws and run
-   their full exact-type audits.
+Write `M = 200000000 (256 + sqrt(2^32 exp(48)))`. The certificate lower
+coefficient is `1/M`; the statistical lower coefficient is `1/(16 M)`.
+The upper coefficient remains 28000. The frozen targets assert positive
+universal constants rather than the paper's explicit constants.
 
-The certificate route can reuse the existing formal treatment of arbitrary
-adaptive population algorithms. It does not make the remaining steps automatic.
+The entropy losses are explicit: the high-band reduction, tier/parity split
+and trimming lose factors 4, 18 and 64. Their product 4608 is bounded by 5120
+in the allocation theorem. Its coefficient 16384 gives `83886080 R` for
+retained cost. Adding `2080 R` for ordinary cost and `260 R` for capped
+ignored mass fits below `100000000 R`. The finite-prefix comparison then
+gives `200000000 R` for the original selection functional.
+
+A separate closed-quantile minimax target and the direct finite-gap proof
+remain follow-ups. The existing deterministic comparison supplies a
+mathematical corollary with a conservative constant, but this audit does not
+register or check that corollary as a separate Lean target. Other paper-only
+and open results remain listed in [WORKPLAN.md](WORKPLAN.md#current-priorities).
 
 ### Finite-average reduction and its remaining premises
 
@@ -185,11 +207,10 @@ specialization supplies the eligible cost directly as
 allocations have the same additive bound.
 
 The statistical certificates and additive budgets are derived in this
-theorem. The deterministic selection proof must still provide the component
-families, their rarity allocation, their normalized small-gap laws, and the
-displayed cost comparisons. No bound for the full original selection
-functional is inferred before those steps and the remaining variational
-and finite-prefix arguments are proved.
+theorem. The completed deterministic selection proof provides the component
+families, their rarity allocation, their normalized small-gap laws and the
+displayed cost comparisons. The finite-prefix limit transfers the resulting
+uniform bound to the original selection functional.
 
 ### Ordinary, ignored, and larger-gap costs
 
@@ -209,7 +230,7 @@ The first six bands have total canonical entropy at most 16384, including
 after retaining any subset. For `0 < rho <= 1`, their capped entropy cost
 is at most `16384 bias + 512 sqrt(variance)`. This uses actual finite
 certificates on the original gap law and requires no small-gap assumption.
-The remaining retained small-gap entropy still needs the packing argument.
+The retained small-gap entropy is handled by the packing argument below.
 
 ### Retained-gap optimality and deterministic trimming
 
@@ -230,7 +251,7 @@ gains a factor `n` in its minimum retained gap.
 
 These deterministic ingredients now feed the tier and canonical-group
 constructions below. Their combination into the complete saturated packing
-and the resulting retained-entropy lower bound remains unproved.
+and retained-entropy bound is proved in `RetainedFamily` and `OptimalRetained`.
 
 ### Tier partitions and normalized canonical groups
 
@@ -243,7 +264,7 @@ at least four, so the checked trimming gap estimate now applies to them.
 The numeric saturation lemma retains `tau w_min/a^2`, where `a` is the
 component's actual largest endpoint and `w_min` bounds every original band
 mass from below. The conditional rarity cap uses `G >= tau/a^2`. These
-premises must still be established for the assembled retained-band packing.
+premises are established by `TrimmedGroup` and `JointAllocation`.
 
 For any disjoint finite canonical groups satisfying the explicit premises,
 the canonical-group theorem constructs the normalized restrictions of the
@@ -264,16 +285,20 @@ python -m unittest discover -s tools -p 'test_entropy_tail_lower_components.py' 
 ```
 
 The default rebuilds the entire local dependency closure. With
-`--cached-dependencies`, it rebuilds the forty-eight supporting modules, records the source
+`--cached-dependencies`, it rebuilds the fifty-seven supporting modules, records the source
 hashes and reused local artifact hashes, and explicitly reports that a full
-dependency rebuild was not performed. Both modes check eighty-six exact types and
-all 329 declaration roots, permitting only `propext`, `Classical.choice`,
+dependency rebuild was not performed. Both modes check eighty-nine exact types and
+all 368 declaration roots, permitting only `propext`, `Classical.choice`,
 and `Quot.sound`. Fresh logs and status go under
 `.runtime/entropy-tail-lower-components/`; published historical records are
 preserved. The success report always keeps `entropy_tail_lower_verified`,
 `entropy_tail_law_verified`, and `closed_quantile_minimax_verified` false.
-It also keeps `full_information_gate_verified` and
-`gate_restart_renewal_verified` false.
+The separate canonical audit
+`python tools/verify_entropy_tail.py --require-complete` checks all eight
+frozen targets, 15 canonical modules and 92 declaration roots, and reports
+`entropy_tail_law_verified: true` only on success. The component audit also
+keeps `full_information_gate_verified` and `gate_restart_renewal_verified`
+false; these unused routes are not assumptions of the completed proof.
 
 The CI configuration builds the new modules and runs the supporting audit in
 the existing stopping-program job. A configured job is not evidence of a CI
@@ -555,3 +580,15 @@ joint allocation, the one-sided finite-prefix comparison and vanishing-tail
 limit, and final lower/law assembly remain outside this checkpoint. The
 canonical completeness check still rejects `entropy_tail_lower` and
 `entropy_tail_law`.
+
+
+### Completed lower bound and two-sided law, 1 November 2026
+
+The [completion record](../results/entropy-tail-complete-20261101/README.md)
+preserves the successful 57-module lower-support audit and the separate
+15-module canonical audit. All 89 supporting exact types, all eight frozen
+canonical target types, and all 368 + 92 declaration roots passed. The
+canonical `--require-complete` audit now succeeds and reports the law
+verified. Both runs rebuild registered modules and hash reused dependencies;
+they are not full dependency rebuilds. The previous checkpoint descriptions
+above retain their original scopes.

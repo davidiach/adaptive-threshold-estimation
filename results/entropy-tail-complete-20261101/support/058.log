@@ -1,0 +1,572 @@
+'ThresholdHC.EntropyTailLower.CertificateLowerStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.ComparableOrderedGroups' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.FiniteAllocationBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.WeightedSignEntropyStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.abs_tapeBalance_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.activationGate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.activationGateCost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.activationGateCost_min' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.activationGateCost_prefix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.activationGateValue' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.activationGate_accepts_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.activationGate_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.activationGate_fair_probability_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.activationGate_fair_probability_le_biased_work' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.activationGate_fair_scaled_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.activationGate_fair_square_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.activationGate_fair_work_le_biased' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.activationGate_indicator_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.activationGate_lintegral_comparison' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.activationGate_prefix_likelihood' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.activationGate_prefix_likelihood_difference' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.activationGate_probability_comparison' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.activationGate_probability_real_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.activationGate_rejects_stop' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.activationGate_stop_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.activationGate_transcript_comparison' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.activationGate_work_comparison' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.allocation_min_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.annular_estimation_entropy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.annular_sign_entropy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.annular_work_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.averageProcedure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.averageProcedure_mean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.averageProcedure_output_law' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.averageProcedure_secondMoment_finite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.averageProcedure_secondMoment_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.averageProcedure_work' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.averaged_gate_secondMoment_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.balance_before_boundaryGate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.band_subset_canonicalGroup' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.binary_entropy_le_four_sqrt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.binary_entropy_lower_right' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.boundaryGateCost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.bounded_fair_square_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.canonicalGroup' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.canonicalGroup_cond_band_real' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.canonicalGroup_disjoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.canonicalGroup_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.canonicalGroup_measurable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.canonical_bandCost_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.canonical_band_mass_sum_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.canonical_band_tail_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.canonical_high_mask_entropy_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.canonical_inverse_scale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.canonical_parity_separation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.canonical_prefix_remainder_tendsto_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.canonical_selected_tail_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.canonical_sqrt_cost_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.cappedGuarantee_pullback' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.cappedPrior_event' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.cappedPrior_extend' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.capped_guarantee_bad_mean_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.capped_guarantee_integrated_mean_separation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.capped_guarantee_moment_floor_general' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.centeredCertificate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.centeredCertificate_feasible' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.centeredCertificate_null_mean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.centeredCertificate_squared' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.centeredFlow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.centeredFlow_cone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.centeredFlow_mean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.centeredFlow_moment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_all_band_finiteAllocationBound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_all_band_ignored_cost' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_all_band_ordinary_cost' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_annular_bound_le_root' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_band_label_allocation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_bias_le_root' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_bounded_entropy_cost' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_canonical_band_allocation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_canonical_band_allocation_nonneg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_canonical_finiteAllocationBound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_canonical_group_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_component_bias_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_component_localization' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_disjoint_component_bias_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_disjoint_component_moment_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_disjoint_component_work_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_disjoint_label_allocation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_entropy_cap_65536' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_finite_canonical_score' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_gated_annular_saturation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_high_band_entropy_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_label_floor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_large_bias_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_large_bias_or_positive_intensity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_localized_annular_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_localized_label_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_localized_single_band_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_one_coin_guarantee' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_one_coin_tradeoff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_optimal_finite_score' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_optimal_ordinary_cost' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_optimal_retained_cost' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_prefix_ignored_cost' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_retained_family_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_selection_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.certificate_small_bias_label_floor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.clog_four_le_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.clog_four_trim_size' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.coinTranscriptLaw' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.coinTranscriptLaw_cell' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.coinTranscriptLaw_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.coinTranscriptLaw_fair_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.coinTranscriptLaw_integral_fair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.common_allocation_coefficient' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.comparable_cost_entropy_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.comparable_entropy_subfamily' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.comparable_entropy_trim_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.comparable_group_log_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.comparable_retained_gap_floor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.comparable_retained_group_trim' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.component_certificate_optimizers' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.component_countMean_rescale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.component_integral_rescale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.constantPrior_countMean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.costEntropy_add_sqrt_cross' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.costEntropy_bipartition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.costEntropy_const' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.costEntropy_equiv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.costEntropy_erase_difference' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.costEntropy_erase_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.costEntropy_fin_prefix_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.costEntropy_geometric_reference' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.costEntropy_indicator_eq_subtype' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.costEntropy_orderEmb_eq_indicator' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.costEntropy_partition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.costEntropy_partition_reference' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.costEntropy_partition_sum_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.costEntropy_single' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.costEntropy_sum_superadditive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.costTotal_comp_injective_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.costTotal_orderEmb_eq_indicator' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.countMean_disjoint_restrictions_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.countMean_pasted_components_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.countMean_prior_maximizer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.countMean_restrict_congr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.dense_tier_cross' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.dyadic_top_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.earlyOutput' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.earlyProcedure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.earlyProcedure_fair_secondMoment_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.earlyProcedure_mean_difference_fair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.earlyProcedure_mean_fair' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.earlyProcedure_output' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.earlyProcedure_secondMoment_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.earlyProcedure_stop' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.early_gated_mean_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.early_gated_output_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.entropyGapInclusion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.entropyGapInclusion_measurableEmbedding' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.entropyGapInclusion_parameter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.entropyGapInclusion_range' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.entropy_partition_tier_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.entropy_tail_lower_iff_certificate_lower' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.entropy_tier_parity_refinement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.eventPrior' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.eventPrior_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.eventPrior_weighted_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.exists_comparable_ordered_groups' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.exists_cost_tier' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.exists_entropy_tier_partition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.exists_finiteSelection_minimizer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.exists_fractional_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.exists_fractional_upper_cut' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.exists_point_below_annular_average' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.exists_upper_mass_cut' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.exp_abs_sub_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.exp_sub_le_scaled_sub' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.expected_activationGate_work_finite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.expected_activationGate_work_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.expected_activationGate_work_toReal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.fairActivation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.fair_activation_positive_of_small_work' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.finiteAllocationBound_dyadic_ordinary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.finiteAllocationBound_ignored' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.finiteAllocationBound_restrict' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.finiteCanonicalScore' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.finiteSelectionScore' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.finiteSelectionScore_erase_penalty' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.finiteSelectionScore_insert_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.finiteSelectionScore_ordinary_penalty' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.finiteSumPrior' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.finiteSumPrior_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.finiteSumPrior_rare' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.finiteSumPrior_weighted_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.finite_canonical_selection_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.finite_canonical_uniform_limit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.finite_component_obstructions' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.finite_seed_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.flowCoinProcedure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.flowCoinProcedure_capped' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.flowCoinProcedure_mean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.flowCoinProcedure_moment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.flowCoinProcedure_output_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.flowCoinProcedure_population_mean' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.flowCoinProcedure_population_moment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.flowCoinProcedure_population_work' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.flowCoinProcedure_work_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.flowCoinSeedLaw' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.flowCoinSeedLaw_probability' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.flow_countMean_square' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.gateAverage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.gateAverage_mean_decomposition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.gateAverage_secondMoment_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.gateAverage_work_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.gateBatchCount' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.gateBatchCount_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.gatePrefixLikelihood' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.gatePrefixLikelihood_difference' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.gatePrefixLikelihood_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.gatePrefixLikelihood_log' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.gatePrefixLikelihood_log_difference' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.gatePrefixLikelihood_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.gatePrefixLikelihood_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.gatePrefixLikelihood_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.gate_reference_word_likelihood' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.gate_restart_count_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.gate_scale_ceiling_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.gate_scale_reciprocal_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.gatedProcedure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.gatedProcedure_mean_square_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.gatedProcedure_output' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.gatedProcedure_secondMoment_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.gatedProcedure_work' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.gated_mean_zero_of_fair_activation_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.geometric_reciprocal_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.group_mass_le_scaled_entropy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.integrable_activationGate_count' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.integrable_activationGate_square' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.integrable_survives_balance_step' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.integral_product_square_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.integral_survives_balance_step_fair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.label_bound_le_annular_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.log_card_half_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.log_one_add_abs_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.log_one_add_le_two_sqrt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.log_one_add_quadratic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.lower_dyadic_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.maskedCost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.maskedCost_erase_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.maskedCost_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.masked_mean_square_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.measurable_activationGateCost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.measurable_activationGateValue' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.measurable_activationGate_balance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.measurable_boundedFirst' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.measurable_earlyOutput' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.measurable_entropy_signParameter' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.measurable_eventPrior' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.measurable_stoppedGateLikelihood' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.measurable_stoppedReference_support' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.measurable_tapeBalance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.measurable_transcriptOutput' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.min_add_le_min_add_min' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.mul_sqrt_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.nat_le_two_pow_pred' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.normalized_annular_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.normalized_capped_entropy_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.normalized_cost_entropy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.observedPair' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.optimal_ordinary_band_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.optimal_retained_band_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.optimal_retained_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.ordinary_ignored_penalty_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.ordinary_mass_of_penalty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.packed_gap_entropy_scale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.packed_joint_allocation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.packed_min_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.packed_rarity_cap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.packed_saturation_numeric' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.pastedSignPrior' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.pastedSignPrior_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.pastedSignPrior_rare' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.polynomial_abs_prior_maximizer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.population_annular_entropy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.population_annular_of_good_gaps' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.population_early_fair_secondMoment_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.population_early_mean_difference' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.population_eventPrior_mean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.population_eventPrior_moment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.population_gateAverage_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.population_gateAverage_tradeoff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.population_gateAverage_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.population_gate_activation_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.population_gate_fair_work_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.population_gate_good_gaps' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.population_gate_good_gaps_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.population_gate_moment_floor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.population_gated_annular_entropy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.population_gated_annular_saturation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.population_good_gaps_general' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.population_good_gaps_of_mean_tail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.population_integral_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.population_lintegral_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.population_moment_floor_of_mean_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.restrictedSignPrior' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.restrictedSignPrior_mean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.restrictedSignPrior_weighted_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.restrictedSignPriors_sum_le_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.scaled_gateAverage_secondMoment_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.scaled_min_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.selectedCanonicalBands' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.selectedCanonicalBands_bandCost' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.selectedCanonicalBands_gamma_upper' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.selectedCanonicalBands_inter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.selectedCanonicalBands_measurable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.selectedCanonicalBands_tail_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.separated_endpoint_power' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.separated_square_gaps' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.signTest_exponential_overlap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.signTest_exponential_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.six_band_entropy_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.six_cost_entropy_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.six_index_entropy_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.smallGapLaw' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.smallGapLaw_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.smallGapLaw_probability' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.sorted_canonical_parity_separation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailLower.sorted_canonical_trim_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.sparse_tier_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.sqrt_allocation_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.sqrt_costEntropy_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.stoppedGateLikelihood' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.stoppedGateLikelihood_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.stopped_output_prefix_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.stopped_sum_predictable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.stopping_window_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.sum_dyadic_powers' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.sum_half_pow_prefix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.sum_indicator_eq_subtype' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.sum_subtype_eq_of_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.sum_weighted_half_pow_le_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.sum_weighted_half_pow_prefix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.survives_balance_prefix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.tapeBalance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.tapeBalance_heads' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.tapeBalance_prefix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.tapeBalance_square_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.tapeBalance_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.tapeBalance_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.tier_cross_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.transcriptOutput' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.transcriptOutput_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.trimmed_gap_amplification' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.upperCutPrior' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.upperCutPrior_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.upperCut_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.upperMass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.upperMass_castSucc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.upperMass_last' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.upperMass_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.weighted_estimation_entropy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.weighted_order_partition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.weighted_sign_entropy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.weighted_upperCut_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailLower.wordLikelihood_fair_factor' depends on axioms: [propext, Classical.choice, Quot.sound]

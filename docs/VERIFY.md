@@ -226,10 +226,27 @@ specification and its project dependencies. It fixes eight full target types:
 
 The audit checks every registered target for its exact type and transitive
 axioms. It rejects any declaration that carries an unregistered target's name.
-Six targets are proved: the upper half and the five deterministic targets. The
-law and its lower half are not, so the status reports
-`entropy_tail_law_verified: false`, and `--require-complete` fails. No result
-record is published for this partial audit.
+All eight targets are proved, including both halves and the two-sided law.
+Run with `--require-complete` to require that full registry. The
+[completion record](../results/entropy-tail-complete-20261101/README.md)
+covers 15 canonical modules, 92 roots and all eight exact types. The supporting
+audit covers 57 modules, 368 roots and 89 exact types:
+
+```sh
+python tools/verify_entropy_tail_lower_components.py
+python tools/verify_entropy_tail.py --sequential --require-complete
+python -m unittest discover -s tools -p 'test_entropy_tail_lower_components.py' -v
+```
+
+The lower-component audit rebuilds its entire local dependency closure by
+default. Its `--cached-dependencies` mode rebuilds only registered lower
+modules and hashes reused local native artifacts. The canonical audit also
+offers `--cached-dependencies`: it rebuilds all 15 canonical modules with
+the pinned native compiler and hashes reused local artifacts. Populate those
+dependencies first, for example with the default Lake build. Both modes
+check exact types, transitive axioms, and source stability; cached mode also
+checks reused artifact stability. `--lake PATH` selects the Lake executable.
+A successful cached audit is not a full dependency rebuild.
 
 The upper half imports the observable upper-bound development of
 [#33](https://github.com/davidiach/adaptive-threshold-estimation/pull/33), about
