@@ -46,9 +46,12 @@ localization now constructs normalized component certificates with joint
 bias, variance, and work budgets and combines their eligible annular costs.
 The single-band specialization also supplies finite rarity-allocation costs.
 Canonical small-gap band laws, fractional dyadic top-mass selection, and
-the ordinary-band mass bound `w <= 4 rho` are now proved. Assembling the
-ordinary/ignored cost comparison, retained-band packing, and canonical
-finite-prefix limit remain; the full lower target is still unproved. Verified increments are in
+the ordinary-band mass bound `w <= 4 rho` are now proved. The label floor
+and its additive localization cover the larger gaps. Ordinary and capped
+ignored costs are now bounded for every finite canonical prefix, together
+with the first-six-band entropy contribution. Retained-band entropy packing
+and the canonical finite-prefix comparison and limit remain; the full lower
+target is still unproved. Verified increments are in
 [draft PR #38](https://github.com/davidiach/adaptive-threshold-estimation/pull/38).
 
 Finite-law rate computation is now available in the

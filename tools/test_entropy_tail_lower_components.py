@@ -9,8 +9,8 @@ import verify_entropy_tail_lower_components as audit
 class LowerComponentAuditTests(unittest.TestCase):
     def test_registry_and_dependency_order(self):
         paths, ordered, roots = audit.validate_sources()
-        self.assertEqual(len(paths), 37)
-        self.assertEqual(len(roots), 254)
+        self.assertEqual(len(paths), 42)
+        self.assertEqual(len(roots), 279)
         self.assertTrue(set(audit.EXACT_TARGETS) <= roots)
         self.assertEqual([p for p in ordered if p in paths], paths)
 
@@ -43,6 +43,11 @@ class LowerComponentAuditTests(unittest.TestCase):
         self.assertTrue(status["dyadic_top_mass_verified"])
         self.assertTrue(status["entropy_increment_bound_verified"])
         self.assertTrue(status["finite_selection_ordinary_mass_verified"])
+        self.assertTrue(status["certificate_label_floor_verified"])
+        self.assertTrue(status["localized_label_bound_verified"])
+        self.assertTrue(status["all_band_allocation_verified"])
+        self.assertTrue(status["ordinary_ignored_costs_verified"])
+        self.assertTrue(status["large_gap_entropy_bound_verified"])
         for flag in ("full_information_gate_verified", "gate_restart_renewal_verified",
                      "entropy_tail_lower_verified", "entropy_tail_law_verified",
                      "closed_quantile_minimax_verified"):

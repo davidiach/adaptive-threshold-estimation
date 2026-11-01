@@ -48,6 +48,11 @@ six proved targets.
 | [DyadicMass](../lean/ThresholdHC/EntropyTailLower/DyadicMass.lean) | Constructs a fractional upper-tail mass cut and proves the factor-two dyadic top-mass inequality for arbitrary nonnegative finite mass vectors whose entries are bounded by the mass budget. |
 | [EntropyIncrement](../lean/ThresholdHC/EntropyTailLower/EntropyIncrement.lean) | Proves a square-root entropy increment bound with coefficient two, and a binary entropy decrement bound. These deterministic estimates allow zero coordinates. |
 | [FiniteSelection](../lean/ThresholdHC/EntropyTailLower/FiniteSelection.lean) | Proves existence of finite selection minimizers and derives ordinary-band mass at most `4 rho` from their optimality. This conservative constant is weaker than the paper's `rho` bound and suffices for the proposed route. It does not yet bound the complete selection objective. |
+| [FiniteAllocation](../lean/ThresholdHC/EntropyTailLower/FiniteAllocation.lean) | Proves restriction and ordinary/ignored cost comparisons for finite rarity allocations, and connects the allocation interface to the checked canonical small-gap certificate bound. |
+| [CertificateLabel](../lean/ThresholdHC/EntropyTailLower/CertificateLabel.lean) | Derives `rho <= 16 B variance` for small-bias certificates without a gap-support restriction. The resulting capped label cost is at most `128 bias + 4 sqrt(variance)`. |
+| [LargeGapEntropy](../lean/ThresholdHC/EntropyTailLower/LargeGapEntropy.lean) | Bounds the canonical entropy in the first six bands by 16384 and derives their capped entropy cost at most `16384 bias + 512 sqrt(variance)` for the original probability law. |
+| [LabelAllocation](../lean/ThresholdHC/EntropyTailLower/LabelAllocation.lean) | Combines support-independent label bounds through the actual normalized certificates and joint budgets. Allows atoms, empty bands, and zero allocations. |
+| [GlobalCosts](../lean/ThresholdHC/EntropyTailLower/GlobalCosts.lean) | Combines label and annular bounds to cover every canonical band. For `R = 256 bias + sqrt(2^32 exp(48) variance)`, proves finite allocation cost at most `65 R`, ordinary cost of any optimal finite selection at most `2080 R`, and rarity-capped ignored mass at most `260 R`. Proves the exact ordinary/ignored penalty decomposition. |
 
 The supporting weighted-sign target and its dependency hashes were recorded
 before accepting its proof in
@@ -57,21 +62,17 @@ No existing specification, manuscript, or published evidence is changed.
 
 ## Remaining mathematical work
 
-1. Compare the ordinary and ignored selection costs with the checked finite
-   single-band rarity-allocation bound. The dyadic top-mass cut, ordinary-band
-   mass bound, and normalized canonical small-gap laws are now proved; the
-   remaining work is to assemble their cost comparison and treat the finitely
-   many larger-gap bands. The full continuous variational modulus
-   is not yet a claimed theorem. Finite-certificate restriction,
-   normalization, joint budgets, and localized annular costs are proved.
-2. Prove the deterministic selection and packing steps: split retained bands
-   by scale and cost, allocate rarity across the families, and combine their
-   lower bounds with the ordinary and ignored parts of the selection cost.
-   The localized annular theorem requires these component choices and
-   deterministic cost comparisons; it does not choose them.
-3. Handle arbitrary laws through canonical finite-prefix approximation,
+1. Prove retained-band optimality and entropy packing: derive the retained-gap
+   condition, split positive cost weights into comparable groups and parity
+   classes, trim them, and allocate rarity while preserving the actual
+   minimum-band-mass saturation condition. The ordinary and ignored costs
+   are now bounded for every finite canonical prefix, and the first-six-band
+   entropy contribution is bounded. The localized annular theorem still
+   requires the remaining component choices and cost comparisons.
+2. Prove the canonical finite-prefix comparison and limit for arbitrary laws,
    maintaining the original selection functional and global rarity budget.
-4. Prove `CertificateLowerStatement`, apply the checked equivalence, and
+   The full continuous variational modulus is not a claimed theorem.
+3. Prove `CertificateLowerStatement`, apply the checked equivalence, and
    register `entropy_tail_lower` against the original frozen specification.
    Then assemble the two-sided entropy-tail and closed-quantile laws and run
    their full exact-type audits.
@@ -180,6 +181,26 @@ displayed cost comparisons. No bound for the full original selection
 functional is inferred before those steps and the remaining variational
 and finite-prefix arguments are proved.
 
+### Ordinary, ignored, and larger-gap costs
+
+Write `R = 256 bias + sqrt(2^32 exp(48) variance)` for a feasible positive-cap
+certificate at positive budget. The support-independent label bound and
+its component localization extend the finite allocation inequality to all
+canonical bands, with coefficient 65. Conditional rarities lie in `[0,1/4]`
+and their mass-weighted total stays within the original rarity budget.
+
+For any minimizer of the finite canonical score at `h = 1/sqrt(B)`, the
+checked ordinary cost is at most `2080 R`. The ignored mass, capped by
+`rho`, is at most `260 R` for any finite selection. The bandwise penalty
+decomposes exactly into ordinary cost plus ignored mass; the uncapped
+ignored mass is not claimed bounded by `260 R`.
+
+The first six bands have total canonical entropy at most 16384, including
+after retaining any subset. For `0 < rho <= 1`, their capped entropy cost
+is at most `16384 bias + 512 sqrt(variance)`. This uses actual finite
+certificates on the original gap law and requires no small-gap assumption.
+The remaining retained small-gap entropy still needs the packing argument.
+
 ## Verification
 
 Run the new audit from the repository root:
@@ -190,10 +211,10 @@ python -m unittest discover -s tools -p 'test_entropy_tail_lower_components.py' 
 ```
 
 The default rebuilds the entire local dependency closure. With
-`--cached-dependencies`, it rebuilds the thirty-seven supporting modules, records the source
+`--cached-dependencies`, it rebuilds the forty-two supporting modules, records the source
 hashes and reused local artifact hashes, and explicitly reports that a full
-dependency rebuild was not performed. Both modes check fifty-seven exact types and
-all 254 declaration roots, permitting only `propext`, `Classical.choice`,
+dependency rebuild was not performed. Both modes check sixty-nine exact types and
+all 279 declaration roots, permitting only `propext`, `Classical.choice`,
 and `Quot.sound`. Fresh logs and status go under
 `.runtime/entropy-tail-lower-components/`; published historical records are
 preserved. The success report always keeps `entropy_tail_lower_verified`,
@@ -397,3 +418,33 @@ The ordinary/ignored cost assembly, larger-gap treatment, retained entropy
 packing, canonical finite-prefix comparison/limit, and final lower/law
 assembly remain outside this checkpoint. The canonical completeness check
 still rejects `entropy_tail_lower` and `entropy_tail_law`.
+
+
+### Ordinary, ignored, and larger-gap checkpoint, 1 November 2026
+
+The cached-dependency audit passed in
+`.runtime/entropy-tail-lower-components/20261101T174616833433Z/`: all forty-two
+supporting modules were rebuilt, all sixty-nine exact types checked, and
+all 279 declaration roots had only the permitted axioms. The closure contains
+426 local modules, with 384 dependencies reused and hashed. The reused local
+dependency sources match the `entropy-tail-integrated` cache checkout byte
+for byte. This is not a full dependency rebuild. All nine audit regression
+tests, frozen-source verification, the proof-escape scan of 712 Lean sources,
+documentation file links, and whitespace checks passed.
+
+The support-independent certificate label floor and its additive localization
+extend finite rarity allocations to all canonical bands. For
+`R = 256 bias + sqrt(2^32 exp(48) variance)`, the allocation bound is `65 R`,
+the ordinary cost of any optimal finite selection is at most `2080 R`, and
+the rarity-capped ignored mass is at most `260 R`. The exact penalty split
+contains uncapped ignored mass. The first-six-band entropy is at most 16384,
+with its capped entropy cost at most `16384 bias + 512 sqrt(variance)`.
+
+Retained-band optimality and entropy packing, the canonical finite-prefix
+comparison and limit, and final lower/law assembly remain outside this
+checkpoint. The canonical completeness check still rejects
+`entropy_tail_lower` and `entropy_tail_law`.
+
+All five GitHub CI jobs passed for the earlier 37-module commit
+`ce410c8beda03faca7bfe483f2f8e914bcda6a1c` in run `41324755472`. That CI result
+belongs to that commit; it does not certify this later checkpoint.

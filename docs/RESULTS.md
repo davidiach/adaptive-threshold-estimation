@@ -300,9 +300,11 @@ work budgets. Their eligible annular costs sum to at most
 finite rarity-allocation costs directly. The canonical small-gap bands now
 instantiate this bound, including zero allocations and empty bands. A
 fractional dyadic top-mass theorem and the ordinary-band mass bound
-`w <= 4 rho` are also proved. Assembling the ordinary and ignored cost
-comparison, retained-band packing, and the canonical finite-prefix limit
-remain. The registry therefore stays at
+`w <= 4 rho` are also proved. Support-independent label localization now
+extends allocations to every canonical band. The ordinary and rarity-capped
+ignored costs are bounded for finite prefixes, as is the first-six-band
+entropy contribution. Retained-band entropy packing and the canonical
+finite-prefix comparison and limit remain. The registry therefore stays at
 six of eight proved targets.
 
 **Upper half.** The upper bound comes from the additive formalization of

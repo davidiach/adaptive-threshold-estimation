@@ -1,7 +1,7 @@
 """Audit supporting lemmas for the unfinished entropy-tail lower bound.
 
 Default: rebuild the entire local dependency closure. --cached-dependencies
-rebuilds only the thirty-seven supporting modules and records the reused artifact hashes.
+rebuilds only the forty-two supporting modules and records the reused artifact hashes.
 Both modes check the frozen weighted-sign target, the exact certificate
 reduction, and every new declaration's transitive axioms. Neither mode proves
 the statistical lower bound or the two-sided entropy-tail/quantile laws.
@@ -35,7 +35,8 @@ MODULES = ("Specification", "WeightedOverlap", "WeightedSign", "WeightedEstimati
            "GateMomentFloor", "GatedAnnular", "CertificateCentering", "FlowOneCoin", "CertificateOneCoin",
            "PopulationPullback", "CertificateAnnular",
            "ComponentPriors", "ComponentLocalization", "LocalizationAlgebra", "LocalizedAnnular",
-           "CanonicalBands", "DyadicMass", "EntropyIncrement", "FiniteSelection")
+           "CanonicalBands", "DyadicMass", "EntropyIncrement", "FiniteSelection",
+           "FiniteAllocation", "CertificateLabel", "LargeGapEntropy", "LabelAllocation", "GlobalCosts")
 FREEZE = ROOT / "tools/entropy_tail_lower_specification_freeze.json"
 FROZEN = {"lean/ThresholdHC/EntropyTailLower/Specification.lean":
           "dfa2367c933f1cdbeeb82ecca9e92ca8a512d98de28a54cdee9c741b7acd3461"}
@@ -617,6 +618,106 @@ EXACT_TARGETS = {
         (fun i => w i*min 1 (h/b i)) T) →
       ∀ j : I, j ∉ S → h ≤ b j → w j ≤ 4*ρ
       """,
+    PREFIX + 'certificate_small_bias_label_floor': """
+      ∀ {N : ℕ} (μ : MeasureTheory.Measure Tier6.Gap) [MeasureTheory.IsProbabilityMeasure μ]
+      (ρ B : ℝ), 0 < ρ → ρ ≤ 1 → ∀ C : StoppingProgram.Certificate N,
+      StoppingProgram.Feasible μ ρ B C → C.bias ≤ ρ/128 → ρ ≤ 16*B*C.variance
+      """,
+    PREFIX + 'certificate_label_floor': """
+      ∀ {N : ℕ} (μ : MeasureTheory.Measure Tier6.Gap) [MeasureTheory.IsProbabilityMeasure μ]
+      (ρ B : ℝ), 0 < ρ → ρ ≤ 1 → 0 < B → ∀ C : StoppingProgram.Certificate N,
+      StoppingProgram.Feasible μ ρ B C →
+      min ρ (Real.sqrt (ρ/B)) ≤ 128*C.bias+4*Real.sqrt C.variance
+      """,
+    PREFIX + 'six_band_entropy_bound': """
+      ∀ w : Fin 6 → ℝ, (∀ i, 0 ≤ w i) → (∑ i, w i) ≤ 1 →
+      EntropyTailQuantile.costEntropy (fun i => w i/((1/2:ℝ)^(i.val+1))^2) ≤ 16384
+      """,
+    PREFIX + 'certificate_high_band_entropy_bound': """
+      ∀ {N : ℕ} (μ : MeasureTheory.Measure Tier6.Gap) [MeasureTheory.IsProbabilityMeasure μ]
+      (ρ B : ℝ), 0 < ρ → ρ ≤ 1 → 0 < B → ∀ C : StoppingProgram.Certificate N,
+      StoppingProgram.Feasible μ ρ B C → ∀ (p : Fin 6 → Prop) [DecidablePred p],
+      min ρ (Real.sqrt (ρ*EntropyTailQuantile.costEntropy (fun i : Fin 6 => if p i then
+        μ.real (EntropyTail.band i.val)/((1/2:ℝ)^(i.val+1))^2 else 0)/B)) ≤
+        16384*C.bias+512*Real.sqrt C.variance
+      """,
+    PREFIX + 'certificate_localized_label_bound': """
+      ∀ {T : Type} [Fintype T] {N : ℕ} (μ : MeasureTheory.Measure Tier6.Gap)
+      [MeasureTheory.IsProbabilityMeasure μ] (ρ B : ℝ), 0 < B →
+      ∀ C : StoppingProgram.Certificate N, StoppingProgram.Feasible μ ρ B C →
+      ∀ S : T → Set Tier6.Gap, (∀ i, MeasurableSet (S i)) →
+      Pairwise (fun i j => Disjoint (S i) (S j)) → (∀ i, μ (S i) ≠ 0) →
+      ∀ r : T → ℝ, (∀ i, 0 < r i) → (∀ i, r i ≤ 1) →
+      (∑ i, μ.real (S i)*r i) ≤ ρ → ∀ u : T → ℝ, (∀ i, 0 ≤ u i) →
+      (∀ i, u i ≤ μ.real (S i)*r i) → (∀ i, (u i)^2*B ≤ (μ.real (S i))^2*r i) →
+      (∑ i, u i) ≤ 256*C.bias+4*Real.sqrt C.variance
+      """,
+    PREFIX + 'certificate_band_label_allocation': """
+      ∀ {T : Type} [Fintype T] {N : ℕ} (μ : MeasureTheory.Measure Tier6.Gap)
+      [MeasureTheory.IsProbabilityMeasure μ] (ρ B : ℝ), 0 < B →
+      ∀ C : StoppingProgram.Certificate N, StoppingProgram.Feasible μ ρ B C →
+      ∀ j : T → ℕ, Function.Injective j → ∀ r : T → ℝ, (∀ i, 0 ≤ r i) → (∀ i, r i ≤ 1) →
+      (∑ i, μ.real (EntropyTail.band (j i))*r i) ≤ ρ →
+      (∑ i, μ.real (EntropyTail.band (j i))*min (r i) (Real.sqrt (r i/B))) ≤
+      256*C.bias+4*Real.sqrt C.variance
+      """,
+    PREFIX + 'certificate_all_band_finiteAllocationBound': """
+      ∀ {I : Type} [Fintype I] {N : ℕ} (μ : MeasureTheory.Measure Tier6.Gap)
+      [MeasureTheory.IsProbabilityMeasure μ] (ρ B : ℝ), 0 < B → 0 < N →
+      ∀ C : StoppingProgram.Certificate N, StoppingProgram.Feasible μ ρ B C →
+      ∀ j : I → ℕ, Function.Injective j → ∀ r : I → ℝ,
+      (∀ i, 0 ≤ r i) → (∀ i, r i ≤ 1/4) →
+      (∑ i, μ.real (EntropyTail.band (j i))*r i) ≤ ρ →
+      (∑ i, μ.real (EntropyTail.band (j i))*min (r i)
+        ((1/(Real.sqrt B*((1/2:ℝ)^(j i+1))))*Real.sqrt (r i))) ≤
+      65*(256*C.bias+Real.sqrt ((4294967296*Real.exp 48)*C.variance))
+      """,
+    PREFIX + 'certificate_all_band_ordinary_cost': """
+      ∀ {n N : ℕ} (μ : MeasureTheory.Measure Tier6.Gap) [MeasureTheory.IsProbabilityMeasure μ]
+      (ρ B : ℝ), 0 < ρ → 0 < B → 0 < N → ∀ C : StoppingProgram.Certificate N,
+      StoppingProgram.Feasible μ ρ B C → ∀ (p : Fin n → Prop) [DecidablePred p],
+      (∀ i, p i → μ.real (EntropyTail.band i.val) ≤ 4*ρ) →
+      (∀ i, p i → 1/(Real.sqrt B*((1/2:ℝ)^(i.val+1))) ≤ 1) →
+      (∑ i, if p i then μ.real (EntropyTail.band i.val)/(Real.sqrt B*((1/2:ℝ)^(i.val+1))) else 0) ≤
+      2080*(256*C.bias+Real.sqrt ((4294967296*Real.exp 48)*C.variance))
+      """,
+    PREFIX + 'certificate_all_band_ignored_cost': """
+      ∀ {I : Type} [Fintype I] {N : ℕ} (μ : MeasureTheory.Measure Tier6.Gap)
+      [MeasureTheory.IsProbabilityMeasure μ] (ρ B : ℝ), 0 ≤ ρ → 0 < B → 0 < N →
+      ∀ C : StoppingProgram.Certificate N, StoppingProgram.Feasible μ ρ B C →
+      ∀ j : I → ℕ, Function.Injective j → ∀ (p : I → Prop) [DecidablePred p],
+      (∀ i, p i → 1 ≤ 1/(Real.sqrt B*((1/2:ℝ)^(j i+1)))) →
+      min ρ (∑ i, if p i then μ.real (EntropyTail.band (j i)) else 0) ≤
+      260*(256*C.bias+Real.sqrt ((4294967296*Real.exp 48)*C.variance))
+      """,
+    PREFIX + 'certificate_optimal_ordinary_cost': """
+      ∀ {n N : ℕ} (μ : MeasureTheory.Measure Tier6.Gap) [MeasureTheory.IsProbabilityMeasure μ]
+      (ρ B : ℝ), 0 < ρ → 0 < B → 0 < N → ∀ C : StoppingProgram.Certificate N,
+      StoppingProgram.Feasible μ ρ B C → ∀ S : Finset (Fin n),
+      (∀ T, EntropyTailLower.finiteSelectionScore ((1/Real.sqrt B)*Real.sqrt ρ)
+        (fun i : Fin n => μ.real (EntropyTail.band i.val)/((1/2:ℝ)^(i.val+1))^2)
+        (fun i => μ.real (EntropyTail.band i.val)*min 1 ((1/Real.sqrt B)/((1/2:ℝ)^(i.val+1)))) S ≤
+        EntropyTailLower.finiteSelectionScore ((1/Real.sqrt B)*Real.sqrt ρ)
+        (fun i : Fin n => μ.real (EntropyTail.band i.val)/((1/2:ℝ)^(i.val+1))^2)
+        (fun i => μ.real (EntropyTail.band i.val)*min 1 ((1/Real.sqrt B)/((1/2:ℝ)^(i.val+1)))) T) →
+      (∑ i : Fin n, if i ∉ S ∧ 1/Real.sqrt B ≤ (1/2:ℝ)^(i.val+1) then
+        μ.real (EntropyTail.band i.val)/(Real.sqrt B*((1/2:ℝ)^(i.val+1))) else 0) ≤
+      2080*(256*C.bias+Real.sqrt ((4294967296*Real.exp 48)*C.variance))
+      """,
+    PREFIX + 'certificate_prefix_ignored_cost': """
+      ∀ {n N : ℕ} (μ : MeasureTheory.Measure Tier6.Gap) [MeasureTheory.IsProbabilityMeasure μ]
+      (ρ B : ℝ), 0 ≤ ρ → 0 < B → 0 < N → ∀ C : StoppingProgram.Certificate N,
+      StoppingProgram.Feasible μ ρ B C → ∀ S : Finset (Fin n),
+      min ρ (∑ i : Fin n, if i ∉ S ∧ (1/2:ℝ)^(i.val+1) < 1/Real.sqrt B then
+        μ.real (EntropyTail.band i.val) else 0) ≤
+      260*(256*C.bias+Real.sqrt ((4294967296*Real.exp 48)*C.variance))
+      """,
+    PREFIX + 'ordinary_ignored_penalty_split': """
+      ∀ {I : Type} [Fintype I] [DecidableEq I] (w b : I → ℝ), (∀ i, 0 < b i) →
+      ∀ (h : ℝ) (S : Finset I), (∑ i, if i ∈ S then 0 else w i*min 1 (h/b i)) =
+      (∑ i, if i ∉ S ∧ h ≤ b i then w i*h/b i else 0)+
+      (∑ i, if i ∉ S ∧ b i < h then w i else 0)
+      """,
 }
 SCOPE = (
     "Weighted observable sign-testing entropy (coefficient 4096), actual restart "
@@ -654,9 +755,16 @@ SCOPE = (
     "this bound in the original law, including zero allocations and empty bands. "
     "A fractional dyadic top-mass selection loses at most a factor of two. "
     "Finite selection minimizers exist, and ordinary bands in any such minimizer "
-    "have mass at most four times rarity. These are supporting deterministic "
-    "results; assembling ordinary and ignored costs, retained entropy packing, "
-    "the canonical limit, and final lower bound remain obligations."
+    "have mass at most four times rarity. A support-independent certificate "
+    "label floor and its additive localization now extend finite allocations "
+    "to every canonical band, at most 65 times R, where R is 256 bias plus "
+    "sqrt(2^32 exp(48) variance). The ordinary cost of an optimal finite "
+    "selection is at most 2080 R and its rarity-capped ignored mass at most "
+    "260 R. The penalty is ordinary cost plus uncapped ignored mass. The first six bands have entropy "
+    "at most 16384; their capped entropy cost is at most 16384 bias plus "
+    "512 sqrt(variance). Retained-band gap optimality and entropy packing, "
+    "the canonical finite-prefix comparison and limit, and the final lower "
+    "bound remain obligations."
 )
 
 
@@ -692,6 +800,11 @@ def scope_status(verified: bool = False) -> dict:
                 dyadic_top_mass_verified=verified,
                 entropy_increment_bound_verified=verified,
                 finite_selection_ordinary_mass_verified=verified,
+                certificate_label_floor_verified=verified,
+                localized_label_bound_verified=verified,
+                all_band_allocation_verified=verified,
+                ordinary_ignored_costs_verified=verified,
+                large_gap_entropy_bound_verified=verified,
                 full_information_gate_verified=False, gate_restart_renewal_verified=False,
                 entropy_tail_lower_verified=False, entropy_tail_law_verified=False,
                 closed_quantile_minimax_verified=False)
