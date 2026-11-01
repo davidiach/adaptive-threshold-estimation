@@ -1,7 +1,7 @@
 """Audit supporting lemmas for the unfinished entropy-tail lower bound.
 
 Default: rebuild the entire local dependency closure. --cached-dependencies
-rebuilds only the twenty-nine supporting modules and records the reused artifact hashes.
+rebuilds only the thirty-three supporting modules and records the reused artifact hashes.
 Both modes check the frozen weighted-sign target, the exact certificate
 reduction, and every new declaration's transitive axioms. Neither mode proves
 the statistical lower bound or the two-sided entropy-tail/quantile laws.
@@ -33,7 +33,8 @@ MODULES = ("Specification", "WeightedOverlap", "WeightedSign", "WeightedEstimati
            "GateMeasure", "GatedOutput", "FiniteAverageProcedure", "GateAverage",
            "PopulationGateAverage", "EarlyLikelihood", "EarlyOutput", "EarlyMean", "GatedGoodGaps",
            "GateMomentFloor", "GatedAnnular", "CertificateCentering", "FlowOneCoin", "CertificateOneCoin",
-           "PopulationPullback", "CertificateAnnular")
+           "PopulationPullback", "CertificateAnnular",
+           "ComponentPriors", "ComponentLocalization", "LocalizationAlgebra", "LocalizedAnnular")
 FREEZE = ROOT / "tools/entropy_tail_lower_specification_freeze.json"
 FROZEN = {"lean/ThresholdHC/EntropyTailLower/Specification.lean":
           "dfa2367c933f1cdbeeb82ecca9e92ca8a512d98de28a54cdee9c741b7acd3461"}
@@ -475,6 +476,96 @@ EXACT_TARGETS = {
         min (s/a^2) (ρ*EntropyTailQuantile.costEntropy (fun i => μ.real (I i)/(b i)^2)) ≤
           4294967296*Real.exp 48*B*C.variance
         """,
+    PREFIX + 'certificate_localized_single_band_bound': """
+        ∀ {T : Type} [Fintype T] {N : ℕ} (μ : MeasureTheory.Measure Tier6.Gap)
+        [MeasureTheory.IsProbabilityMeasure μ] (ρ B : ℝ), 0 < B → 0 < N →
+        ∀ C : StoppingProgram.Certificate N, StoppingProgram.Feasible μ ρ B C →
+        ∀ S : T → Set Tier6.Gap, (∀ i, MeasurableSet (S i)) →
+        Pairwise (fun i j => Disjoint (S i) (S j)) → (∀ i, μ (S i) ≠ 0) →
+        ∀ r : T → ℝ, (∀ i, 0 < r i) → (∀ i, r i ≤ 1/4) → (∑ i, μ.real (S i)*r i) ≤ ρ →
+        ∀ ν : T → MeasureTheory.Measure CriticalEntropy.EntropyGap,
+        ∀ [∀ i, MeasureTheory.IsProbabilityMeasure (ν i)],
+        (∀ i, (ν i).map EntropyTailLower.entropyGapInclusion = ProbabilityTheory.cond μ (S i)) →
+        ∀ b : T → ℝ, (∀ i, 0 < b i) → (∀ i, b i ≤ 1/4) →
+        (∀ i, ∀ᵐ (d : CriticalEntropy.EntropyGap) ∂ν i, b i/2 < (d:ℝ) ∧ (d:ℝ) ≤ b i) →
+        (∑ i, μ.real (S i)*min (r i) (Real.sqrt (r i/(B*(b i)^2)))) ≤
+          256*C.bias+Real.sqrt ((4294967296*Real.exp 48)*C.variance)
+        """,
+    PREFIX + 'certificate_disjoint_component_bias_budget': """
+        ∀ {I : Type} [Fintype I] {N : ℕ} (μ : MeasureTheory.Measure Tier6.Gap)
+        [MeasureTheory.IsProbabilityMeasure μ] (ρ B : ℝ) (C : StoppingProgram.Certificate N),
+        StoppingProgram.Feasible μ ρ B C → ∀ (S : I → Set Tier6.Gap),
+        (∀ i, MeasurableSet (S i)) → Pairwise (fun i j => Disjoint (S i) (S j)) →
+        ∀ q : I → Tier6.SignLaw, (∑ i, ∫ d in S i, (q i).val d ∂μ) ≤ ρ →
+        (∑ i, |∫ d in S i, (q i).val d*(StoppingProgram.biasPolynomial C).eval (d:ℝ) ∂μ|) ≤ 2*C.bias
+        """,
+    PREFIX + 'certificate_disjoint_component_moment_budget': """
+        ∀ {I : Type} [Fintype I] {N : ℕ} (μ : MeasureTheory.Measure Tier6.Gap)
+        [MeasureTheory.IsProbabilityMeasure μ] (ρ B : ℝ) (C : StoppingProgram.Certificate N),
+        StoppingProgram.Feasible μ ρ B C → ∀ (S : I → Set Tier6.Gap),
+        (∀ i, MeasurableSet (S i)) → Pairwise (fun i j => Disjoint (S i) (S j)) →
+        ∀ q : I → Tier6.SignLaw, (∑ i, ∫ d in S i, (q i).val d ∂μ) ≤ ρ →
+        (∑ i, StoppingProgram.countMean (μ.restrict (S i)) (q i) C.flow.momentWeight) ≤ C.variance
+        """,
+    PREFIX + 'certificate_disjoint_component_work_budget': """
+        ∀ {I : Type} [Fintype I] {N : ℕ} (μ : MeasureTheory.Measure Tier6.Gap)
+        [MeasureTheory.IsProbabilityMeasure μ] (ρ B : ℝ) (C : StoppingProgram.Certificate N),
+        StoppingProgram.Feasible μ ρ B C → ∀ (S : I → Set Tier6.Gap),
+        (∀ i, MeasurableSet (S i)) → Pairwise (fun i j => Disjoint (S i) (S j)) →
+        ∀ q : I → Tier6.SignLaw, (∑ i, ∫ d in S i, (q i).val d ∂μ) ≤ ρ →
+        (∑ i, StoppingProgram.countMean (μ.restrict (S i)) (q i) C.flow.continueWeight) ≤ B
+        """,
+    PREFIX + 'component_integral_rescale': """
+        ∀ (μ : MeasureTheory.Measure Tier6.Gap) [MeasureTheory.IsFiniteMeasure μ]
+        (S : Set Tier6.Gap), μ S ≠ 0 → ∀ f : Tier6.Gap → ℝ,
+        μ.real S*(∫ d, f d ∂ProbabilityTheory.cond μ S) = ∫ d in S, f d ∂μ
+        """,
+    PREFIX + 'certificate_component_localization': """
+        ∀ {I : Type} [Fintype I] {N : ℕ} (μ : MeasureTheory.Measure Tier6.Gap)
+        [MeasureTheory.IsProbabilityMeasure μ] (ρ B : ℝ) (C : StoppingProgram.Certificate N),
+        StoppingProgram.Feasible μ ρ B C → ∀ S : I → Set Tier6.Gap,
+        (∀ i, MeasurableSet (S i)) → Pairwise (fun i j => Disjoint (S i) (S j)) →
+        (∀ i, μ (S i) ≠ 0) → ∀ r : I → ℝ, (∀ i, 0 ≤ r i) →
+        (∑ i, μ.real (S i)*r i) ≤ ρ →
+        ∃ (D : I → StoppingProgram.Certificate N) (w : I → ℝ),
+        (∀ i, (D i).flow = C.flow ∧ 0 ≤ w i ∧
+          StoppingProgram.Feasible (ProbabilityTheory.cond μ (S i)) (r i) (w i) (D i)) ∧
+        (∑ i, μ.real (S i)*(D i).bias) ≤ 2*C.bias ∧
+        (∑ i, μ.real (S i)*(D i).variance) ≤ C.variance ∧
+        (∑ i, μ.real (S i)*w i) ≤ B
+        """,
+    PREFIX + 'finite_component_obstructions': """
+        ∀ {I : Type} [Fintype I] (u e v w r : I → ℝ) (B V b C K : ℝ),
+        (∀ i, 0 ≤ u i) → (∀ i, 0 ≤ e i) → (∀ i, 0 ≤ v i) → (∀ i, 0 ≤ w i) →
+        0 < B → 0 ≤ C → 0 < K → (∑ i, e i) ≤ b → (∑ i, v i) ≤ V → (∑ i, w i) ≤ B →
+        (∀ i, r i/K < e i → u i ≤ r i) →
+        (∀ i, e i ≤ r i/K → (u i)^2*B ≤ C*v i*w i) →
+        (∑ i, u i) ≤ K*b+Real.sqrt (C*V)
+        """,
+    PREFIX + 'certificate_localized_annular_bound': """
+        ∀ {T : Type} [Fintype T] {N : ℕ} (μ : MeasureTheory.Measure Tier6.Gap)
+        [MeasureTheory.IsProbabilityMeasure μ] (ρ B : ℝ), 0 < B → 0 < N →
+        ∀ C : StoppingProgram.Certificate N, StoppingProgram.Feasible μ ρ B C →
+        ∀ S : T → Set Tier6.Gap, (∀ i, MeasurableSet (S i)) →
+        Pairwise (fun i j => Disjoint (S i) (S j)) → (∀ i, μ (S i) ≠ 0) →
+        ∀ r : T → ℝ, (∀ i, 0 < r i) → (∀ i, r i ≤ 1/4) → (∑ i, μ.real (S i)*r i) ≤ ρ →
+        ∀ ν : T → MeasureTheory.Measure CriticalEntropy.EntropyGap,
+        ∀ [∀ i, MeasureTheory.IsProbabilityMeasure (ν i)],
+        (∀ i, (ν i).map EntropyTailLower.entropyGapInclusion = ProbabilityTheory.cond μ (S i)) →
+        ∀ a : T → ℝ, (∀ i, 0 < a i) → (∀ i, a i ≤ 1/4) →
+        (∀ i, ∀ᵐ (d : CriticalEntropy.EntropyGap) ∂ν i, (d:ℝ) ≤ a i) →
+        ∀ (K : T → ℕ) (J : (i : T) → Fin (K i) → Set CriticalEntropy.EntropyGap)
+        (b : (i : T) → Fin (K i) → ℝ),
+        (∀ i j, 0 < b i j) → (∀ i j, MeasurableSet (J i j)) →
+        (∀ i, Pairwise (fun j k => Disjoint (J i j) (J i k))) →
+        (∀ i j d, d ∈ J i j → b i j/2 < (d:ℝ) ∧ (d:ℝ) ≤ b i j) →
+        (∀ i j k, k.val = j.val+1 → 4*b i k ≤ b i j) →
+        ∀ s : T → ℝ, (∀ i, s i ≤ 1) → (∀ i j, s i ≤ (ν i).real (J i j)) →
+        ∀ u : T → ℝ, (∀ i, 0 ≤ u i) → (∀ i, u i ≤ μ.real (S i)*r i) →
+        (∀ i, (u i)^2*B ≤ (μ.real (S i))^2*min (s i/(a i)^2)
+          (r i*EntropyTailQuantile.costEntropy (fun j => (ν i).real (J i j)/(b i j)^2))) →
+        (∑ i, u i) ≤ 256*C.bias+Real.sqrt ((4294967296*Real.exp 48)*C.variance)
+        """,
 }
 SCOPE = (
     "Weighted observable sign-testing entropy (coefficient 4096), actual restart "
@@ -501,9 +592,15 @@ SCOPE = (
     "case directly bounds selection with coefficient 1/128. Measurable parameter "
     "embeddings preserve the actual capped guarantee and connect small-gap laws "
     "to the original experiment. The resulting single-component certificate "
-    "annular obstruction has coefficient 2^32 exp(48) times B variance. Additive "
-    "component localization, selection and packing, the canonical limit, and the "
-    "final lower bound remain obligations."
+    "annular obstruction has coefficient 2^32 exp(48) times B variance. Disjoint "
+    "component priors now give joint bias, variance, and work budgets. Attained "
+    "prior optimizers construct feasible normalized component certificates with "
+    "weighted bias at most twice global bias and no loss in the weighted variance "
+    "and work budgets. Their localized annular costs sum to at most 256 bias plus "
+    "sqrt(2^32 exp(48) variance), with explicit component, rarity-allocation, and "
+    "cost premises. The single-band specialization derives finite rarity-allocation "
+    "costs directly. The full variational comparison, deterministic "
+    "selection and packing, canonical limit, and final lower bound remain obligations."
 )
 
 
@@ -531,6 +628,10 @@ def scope_status(verified: bool = False) -> dict:
                 large_bias_certificate_lower_verified=verified,
                 population_embedding_transfer_verified=verified,
                 certificate_annular_obstruction_verified=verified,
+                joint_component_budgets_verified=verified,
+                normalized_component_certificates_verified=verified,
+                localized_annular_bound_verified=verified,
+                finite_single_band_allocation_verified=verified,
                 full_information_gate_verified=False, gate_restart_renewal_verified=False,
                 entropy_tail_lower_verified=False, entropy_tail_law_verified=False,
                 closed_quantile_minimax_verified=False)
@@ -590,7 +691,7 @@ def main() -> int:
     output.mkdir(parents=True, exist_ok=False)
     audit = LEAN / ".audit/EntropyTailLowerComponents.lean"
     source = "".join("import " + PREFIX + m + "\n" for m in MODULES) + "\n"
-    source += "open ThresholdHC\nopen scoped ENNReal\n\n"
+    source += "open ThresholdHC\nopen scoped ENNReal BigOperators\n\n"
     source += "".join(f"example : {t} := {d}\n" for d, t in EXACT_TARGETS.items())
     source += "\n" + "".join("#print axioms " + r + "\n" for r in sorted(roots))
     if FORBIDDEN.search(strip_comments(source)):

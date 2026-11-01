@@ -41,10 +41,13 @@ certificate connection now gives the actual one-coin guarantee and
 `m W0 <= 4 B variance` for small certificate bias; larger bias is handled
 directly. Measurable embedding now transfers this guarantee to small-gap
 laws and gives the single-component annular certificate obstruction with
-coefficient `2^32 exp(48)` times `B variance`. Additive component
-restriction/localization, selection/packing, and the
-canonical finite-prefix limit remain; the full lower
-target is still unproved. Verified increments are in
+coefficient `2^32 exp(48)` times `B variance`. Additive finite-certificate
+localization now constructs normalized component certificates with joint
+bias, variance, and work budgets and combines their eligible annular costs.
+The single-band specialization also supplies finite rarity-allocation costs.
+Their comparison with the ordinary and ignored costs, deterministic
+selection/packing, and canonical finite-prefix limit remain; the full
+lower target is still unproved. Verified increments are in
 [draft PR #38](https://github.com/davidiach/adaptive-threshold-estimation/pull/38).
 
 Finite-law rate computation is now available in the

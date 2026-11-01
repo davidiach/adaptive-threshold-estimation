@@ -40,6 +40,10 @@ six proved targets.
 | [CertificateOneCoin](../lean/ThresholdHC/EntropyTailLower/CertificateOneCoin.lean) | Proves the required selection lower bound directly when certificate bias is at least `rho/128`. For smaller bias, constructs the actual capped one-coin guarantee and proves `m W0 <= 4 B variance`. Component localization and packing remain separate. |
 | [PopulationPullback](../lean/ThresholdHC/EntropyTailLower/PopulationPullback.lean) | Proves exact population integral identities and capped-prior extension under measurable parameter embeddings. Pulls back the actual guarantee from the original gap space to `EntropyGap`, preserving both original coin parameters. |
 | [CertificateAnnular](../lean/ThresholdHC/EntropyTailLower/CertificateAnnular.lean) | For a feasible small-bias certificate on the included small-gap law, proves `min(s/a^2, rho Gamma) <= 2^32 exp(48) B variance`. This is a single-component obstruction with the same explicit support and separated-band hypotheses. It does not yet combine components under a global rarity allocation. |
+| [ComponentPriors](../lean/ThresholdHC/EntropyTailLower/ComponentPriors.lean) | Pastes disjoint component priors under one global rarity budget. Proves joint absolute bias-response error at most `2 bias`, and additive component moment and work bounds at most the original variance and work allowances. |
+| [ComponentLocalization](../lean/ThresholdHC/EntropyTailLower/ComponentLocalization.lean) | Normalizes arbitrary positive-mass restrictions and constructs actual feasible component certificates using attained worst-case priors. Their mass-weighted biases total at most `2 bias`; mass-weighted variance and work stay within the original allowances. |
+| [LocalizationAlgebra](../lean/ThresholdHC/EntropyTailLower/LocalizationAlgebra.lean) | Splits components by bias accuracy and combines the accurate components by finite Cauchy--Schwarz. Its budget premises are supplied by the component certificate construction. |
+| [LocalizedAnnular](../lean/ThresholdHC/EntropyTailLower/LocalizedAnnular.lean) | Combines the actual component certificates with annular saturation, giving total eligible component cost at most `256 bias + sqrt(2^32 exp(48) variance)`. The single-band specialization also proves the finite rarity-allocation obstruction directly. The component families and canonical cost comparison remain explicit obligations. |
 
 The supporting weighted-sign target and its dependency hashes were recorded
 before accepting its proof in
@@ -49,18 +53,17 @@ No existing specification, manuscript, or published evidence is changed.
 
 ## Remaining mathematical work
 
-1. Prove the restriction/rescaling and bias-dependent additive localization
-   needed to apply the annular bound to component laws and combine them
-   under the global rarity constraint. Parameter embedding now connects the
-   original whole-law certificate to the small-gap annular obstruction. The
-   normalized component guarantees and their joint rarity, bias, variance,
-   and work accounting remain to be derived.
+1. Compare the ordinary and ignored selection costs with the checked finite
+   single-band rarity-allocation bound. This needs dyadic top-mass selection,
+   construction of the normalized small-gap band laws, and treatment of the
+   finitely many larger-gap bands. The full continuous variational modulus
+   is not yet a claimed theorem. Finite-certificate restriction,
+   normalization, joint budgets, and localized annular costs are proved.
 2. Prove the deterministic selection and packing steps: split retained bands
    by scale and cost, allocate rarity across the families, and combine their
    lower bounds with the ordinary and ignored parts of the selection cost.
-   This also needs the variational lower bound under the global rarity
-   constraint; the existing unrestricted magnitude-oracle lower bound does
-   not supply that statement.
+   The localized annular theorem requires these component choices and
+   deterministic cost comparisons; it does not choose them.
 3. Handle arbitrary laws through canonical finite-prefix approximation,
    maintaining the original selection functional and global rarity budget.
 4. Prove `CertificateLowerStatement`, apply the checked equivalence, and
@@ -106,8 +109,8 @@ entropy bound when all annular masses exceed
 `288 exp(12) (1 + exp(12)) a^2 m W0`. Splitting off the complementary
 small-mass and large-work cases proves the saturated minimum bound in the
 table. Its coefficient is conservative; it is not the paper's coefficient.
-The whole-law certificate connection below is proved; component localization
-remains.
+The whole-law certificate connection and additive finite-certificate
+localization below are proved; the final selection comparison remains.
 Rejection-loop renewal has not been formalized and is not used by this
 fixed-repeat construction.
 
@@ -124,15 +127,53 @@ are charged, and the procedure observes only its independent seed and tape.
 If the certificate bias is at least `rho/128`, the outer rarity cap of the
 original selection functional gives the desired certificate inequality
 with coefficient `1/128` directly. The remaining lower-bound work concerns
-small-bias certificates and the combination of component obstructions.
+small-bias certificates and the deterministic comparison with selection.
 
 Measurable embedding now transfers the actual guarantee to a small-gap law
 without changing its coin parameters. Combining it with the saturated
 annular theorem gives
 `min(s/a^2, rho Gamma) <= 2^32 exp(48) B variance` for each feasible
-small-bias certificate on such a law. Restricting an arbitrary original law
-to normalized components and combining their obstructions under one global
-budget are separate remaining steps.
+small-bias certificate on such a law. The construction below supplies normalized
+component certificates and combines their annular obstructions under one
+global budget.
+
+### Additive finite-certificate localization
+
+Let `S_i` be disjoint measurable sets of positive mass `tau_i`, and let
+nonnegative conditional rarity allowances satisfy `sum tau_i r_i <= rho`.
+The checked construction gives feasible certificates on each normalized
+restriction. Each keeps the original flow, with an independently centered
+offset and attained worst-case bias, moment, and work allowances. Their
+joint bounds are
+
+```text
+sum tau_i bias_i <= 2 bias,
+sum tau_i variance_i <= variance,
+sum tau_i work_i <= B.
+```
+
+These bounds follow from actual admissible pasted priors, including for
+laws with atoms. At positive budget and cap, for identified small-gap
+component laws with `0 < r_i <= 1/4` satisfying the annular support,
+separation, and mass conditions, take nonnegative costs
+`u_i <= tau_i r_i` with
+`u_i^2 B <= tau_i^2 min(s_i/a_i^2, r_i Gamma_i)`. The resulting checked bound is
+
+```text
+sum u_i <= 256 bias + sqrt(2^32 exp(48) variance).
+```
+
+For a component contained in one annulus `(b_i/2,b_i]`, the checked
+specialization supplies the eligible cost directly as
+`tau_i min(r_i, sqrt(r_i/(B b_i^2)))`. Thus finite single-band rarity
+allocations have the same additive bound.
+
+The statistical certificates and additive budgets are derived in this
+theorem. The deterministic selection proof must still provide the component
+families, their rarity allocation, their normalized small-gap laws, and the
+displayed cost comparisons. No bound for the full original selection
+functional is inferred before those steps and the remaining variational
+and finite-prefix arguments are proved.
 
 ## Verification
 
@@ -144,10 +185,10 @@ python -m unittest discover -s tools -p 'test_entropy_tail_lower_components.py' 
 ```
 
 The default rebuilds the entire local dependency closure. With
-`--cached-dependencies`, it rebuilds the twenty-nine supporting modules, records the source
+`--cached-dependencies`, it rebuilds the thirty-three supporting modules, records the source
 hashes and reused local artifact hashes, and explicitly reports that a full
-dependency rebuild was not performed. Both modes check forty-one exact types and
-all 189 declaration roots, permitting only `propext`, `Classical.choice`,
+dependency rebuild was not performed. Both modes check forty-nine exact types and
+all 216 declaration roots, permitting only `propext`, `Classical.choice`,
 and `Quot.sound`. Fresh logs and status go under
 `.runtime/entropy-tail-lower-components/`; published historical records are
 preserved. The success report always keeps `entropy_tail_lower_verified`,
@@ -302,3 +343,27 @@ obstruction with coefficient `2^32 exp(48)` times `B variance`. Additive
 component localization, selection/packing, and the canonical finite-prefix
 limit remain outside this checkpoint. The canonical completeness check
 still rejects `entropy_tail_lower` and `entropy_tail_law`.
+
+
+### Additive localization and finite-band allocation checkpoint, 1 November 2026
+
+The cached-dependency audit passed in
+`.runtime/entropy-tail-lower-components/20261101T152527805783Z/`: all thirty-three
+supporting modules were rebuilt, all forty-nine exact types checked, and all
+216 declaration roots had only the permitted axioms. The closure contains
+417 local modules, with 384 dependencies reused and hashed. The reused local
+dependency sources match the `entropy-tail-integrated` cache checkout byte
+for byte. This is not a full dependency rebuild. The nine audit regression
+tests, frozen-source check, project-wide proof-escape scan, documentation
+file links, and whitespace check passed.
+
+This was a fresh sequential retry after the earlier audit at
+`20261101T151839654871Z` stopped on a cached Mathlib artifact read error.
+That earlier failed record remains unchanged; it is not counted as a pass.
+
+The checkpoint derives actual normalized component certificates with joint
+bias, variance, and work budgets, then combines their saturated annular
+obstructions. It also derives finite single-band rarity-allocation costs.
+The ordinary/ignored cost comparison, deterministic packing, canonical
+finite-prefix limit, and final lower/law assembly remain open. The canonical
+completeness check still rejects `entropy_tail_lower` and `entropy_tail_law`.

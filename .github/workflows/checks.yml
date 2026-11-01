@@ -336,7 +336,7 @@ jobs:
           done
       - name: Build and audit supporting entropy-tail lower lemmas
         run: |
-          (cd lean && lake build ThresholdHC.EntropyTailLower.PopulationAnnular ThresholdHC.EntropyTailLower.CertificateReduction ThresholdHC.EntropyTailLower.GatedAnnular ThresholdHC.EntropyTailLower.CertificateAnnular)
+          (cd lean && lake build ThresholdHC.EntropyTailLower.PopulationAnnular ThresholdHC.EntropyTailLower.CertificateReduction ThresholdHC.EntropyTailLower.GatedAnnular ThresholdHC.EntropyTailLower.LocalizedAnnular)
           python tools/verify_entropy_tail_lower_components.py --cached-dependencies
       - uses: actions/upload-artifact@v4
         if: always()

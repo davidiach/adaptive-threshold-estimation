@@ -293,9 +293,14 @@ a small-work premise. Feasible finite certificates with bias at most
 larger bias directly bounds the capped selection cost. Measurable parameter
 embedding connects this guarantee to the small-gap annular bound, yielding
 the single-component certificate obstruction with coefficient `2^32 exp(48)`
-times `B variance`. Additive component restriction/localization,
-selection/packing, and the canonical finite-prefix
-limit remain, so this does not change the six-of-eight completion status.
+times `B variance`. Additive finite-certificate localization now supplies
+normalized component certificates with joint weighted bias, variance, and
+work budgets. Their eligible annular costs sum to at most
+`256 bias + sqrt(2^32 exp(48) variance)`. A single-band specialization supplies
+finite rarity-allocation costs directly. Their comparison with the ordinary
+and ignored costs, deterministic component selection/packing, and the
+canonical finite-prefix limit remain. The registry therefore stays at
+six of eight proved targets.
 
 **Upper half.** The upper bound comes from the additive formalization of
 [#33](https://github.com/davidiach/adaptive-threshold-estimation/pull/33), in
