@@ -28,8 +28,12 @@ extending them. The Python toolkit remains outside the Lean proof.
 An additive [lower-bound development](ENTROPY_TAIL_LOWER_PROGRESS.md) now
 provides weighted sign-testing entropy, arbitrary-mass annular estimator
 lemmas, and an equivalence reducing the missing lower target to a uniform
-finite-certificate bound. The activation gate, selection/packing argument,
-and arbitrary-law limit remain; the full lower target is still unproved.
+finite-certificate bound. It now handles atoms in good-gap selection and
+constructs an observable gate with bounded stopped-word likelihood factors.
+The gate probability and restart estimates, certificate connection,
+selection/packing argument, and arbitrary-law limit remain; the full lower
+target is still unproved. Verified increments are in
+[draft PR #38](https://github.com/davidiach/adaptive-threshold-estimation/pull/38).
 
 Finite-law rate computation is now available in the
 [rare-event calculator](../toolkit/README.md#3-compute-the-rare-event-rate-for-a-known-finite-law):

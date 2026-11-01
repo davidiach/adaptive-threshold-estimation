@@ -278,8 +278,11 @@ registered. The local audit of the five properties passed at `49877f3`.
 The additive [lower-bound supporting development](ENTROPY_TAIL_LOWER_PROGRESS.md)
 proves weighted single-coin sign entropy, annular estimator bounds for
 arbitrary finite measures, and equivalence with a uniform finite-certificate
-lower bound. Its gate and packing premises have not been derived for general
-certificates, so it does not change the six-of-eight completion status.
+lower bound. It also removes atomlessness from good-gap selection and
+constructs a bounded observable activation gate with uniform stopped-word
+likelihood factors. The probability/restart and packing arguments have not
+been derived for general certificates, so it does not change the six-of-eight
+completion status.
 
 **Upper half.** The upper bound comes from the additive formalization of
 [#33](https://github.com/davidiach/adaptive-threshold-estimation/pull/33), in

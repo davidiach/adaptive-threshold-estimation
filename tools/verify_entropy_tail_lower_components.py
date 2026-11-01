@@ -1,7 +1,7 @@
 """Audit supporting lemmas for the unfinished entropy-tail lower bound.
 
 Default: rebuild the entire local dependency closure. --cached-dependencies
-rebuilds only the seven new modules and records the reused artifact hashes.
+rebuilds only the twelve supporting modules and records the reused artifact hashes.
 Both modes check the frozen weighted-sign target, the exact certificate
 reduction, and every new declaration's transitive axioms. Neither mode proves
 the statistical lower bound or the two-sided entropy-tail/quantile laws.
@@ -28,7 +28,8 @@ LEAN = ROOT / "lean"
 SOURCE = LEAN / "ThresholdHC/EntropyTailLower"
 PREFIX = "ThresholdHC.EntropyTailLower."
 MODULES = ("Specification", "WeightedOverlap", "WeightedSign", "WeightedEstimation",
-           "AnnularWork", "AnnularEstimation", "CertificateReduction")
+           "AnnularWork", "AnnularEstimation", "CertificateReduction", "FractionalPrior",
+           "GeneralGoodGaps", "PopulationAnnular", "ActivationGate", "GateLikelihood")
 FREEZE = ROOT / "tools/entropy_tail_lower_specification_freeze.json"
 FROZEN = {"lean/ThresholdHC/EntropyTailLower/Specification.lean":
           "dfa2367c933f1cdbeeb82ecca9e92ca8a512d98de28a54cdee9c741b7acd3461"}
@@ -43,13 +44,68 @@ EXACT_TARGETS = {
         "ThresholdHC.StoppingProgram.Feasible μ ρ B C → "
         "ENNReal.ofReal c * ThresholdHC.EntropyTail.selection μ ρ B ≤ "
         "ThresholdHC.StoppingProgram.certificateSquared C ^ (1/2 : ℝ))",
+    PREFIX + "population_good_gaps_general": """
+        ∀ {D R : Type} [MeasurableSpace D] [MeasurableSpace R]
+        (μ : MeasureTheory.Measure D) [MeasureTheory.IsProbabilityMeasure μ]
+        (ν : MeasureTheory.Measure R) [MeasureTheory.IsProbabilityMeasure ν]
+        (p₀ p₁ : D → unitInterval), Measurable p₀ → Measurable p₁ →
+        ∀ (ρ : unitInterval), 0 < (ρ:ℝ) → (ρ:ℝ) ≤ 1/4 →
+        ∀ (m : ℝ), 2*(ρ:ℝ)/3 ≤ m → ∀ (A : CriticalEntropy.StoppedProcedure R ℝ),
+        CriticalEntropy.CappedPopulationGuarantee μ ν p₀ p₁ A (ρ:ℝ) m →
+        ∃ G : Set D, MeasurableSet G ∧ μ.real Gᶜ ≤ 70*m ∧
+          ∀ d ∈ G, CriticalEntropy.PopulationGoodGap ν p₀ p₁ A (ρ:ℝ) m d
+        """,
+    PREFIX + "population_annular_entropy": """
+        ∀ {R : Type} [MeasurableSpace R]
+        (μ : MeasureTheory.Measure CriticalEntropy.EntropyGap) [MeasureTheory.IsProbabilityMeasure μ]
+        (ν : MeasureTheory.Measure R) [MeasureTheory.IsProbabilityMeasure ν]
+        (A : CriticalEntropy.StoppedProcedure R ℝ) (ρ : unitInterval),
+        0 < (ρ:ℝ) → (ρ:ℝ) ≤ 1/4 → ∀ (m : ℝ), 0 ≤ m →
+        CriticalEntropy.CappedPopulationGuarantee μ ν
+          (fun d => CriticalEntropy.signParameter d false)
+          (fun d => CriticalEntropy.signParameter d true) A (ρ:ℝ) m →
+        ∀ {K : ℕ} (I : Fin K → Set CriticalEntropy.EntropyGap) (b : Fin K → ℝ),
+        (∀ i, 0 < b i) → (∀ i, MeasurableSet (I i)) →
+        Pairwise (fun i j => Disjoint (I i) (I j)) →
+        (∀ i d, d ∈ I i → b i/2 < (d:ℝ) ∧ (d:ℝ) ≤ b i) →
+        (∀ i j, j.val = i.val+1 → 4*b j ≤ b i) →
+        (∀ i, 140*m ≤ μ.real (I i)) →
+        (ρ:ℝ)*EntropyTailQuantile.costEntropy (fun i => μ.real (I i)/(b i)^2) ≤
+          33554432*m*(CriticalEntropy.populationExpectedWork μ ν
+            (fun d => CriticalEntropy.signParameter d false)
+            (fun d => CriticalEntropy.signParameter d true) (fun _ => 0) A).toReal
+        """,
+    PREFIX + "activationGateCost_min": """
+        ∀ {R E : Type} [MeasurableSpace R] [MeasurableSpace E]
+        (A : CriticalEntropy.StoppedProcedure R E) (M H : ℕ) (z : R × (ℕ → Bool)),
+        (EntropyTailLower.activationGateCost A M H z:ℕ∞) =
+          min (A.stop z) (EntropyTailLower.boundaryGateCost M H z.2:ℕ∞)
+        """,
+    PREFIX + "activationGate_accepts_iff": """
+        ∀ {R E : Type} [MeasurableSpace R] [MeasurableSpace E]
+        (A : CriticalEntropy.StoppedProcedure R E) (M H : ℕ) (z : R × (ℕ → Bool)),
+        (EntropyTailLower.activationGate A M H).output z = true ↔
+          (EntropyTailLower.boundaryGateCost M H z.2:ℕ∞) ≤ A.stop z
+        """,
+    PREFIX + "activationGate_prefix_likelihood": """
+        ∀ {R E : Type} [MeasurableSpace R] [MeasurableSpace E]
+        (A : CriticalEntropy.StoppedProcedure R E) (a d : ℝ),
+        0 < a → a ≤ 1/4 → |d| ≤ a → ∀ (z : R × (ℕ → Bool)),
+        let n := EntropyTailLower.activationGateCost A ⌈(a^2)⁻¹⌉₊ ⌈a⁻¹⌉₊ z
+        let k := CriticalEntropy.wordHeads (Tier2.tapePrefix n z.2)
+        Real.exp (-12) ≤ EntropyTailLower.gatePrefixLikelihood d n k ∧
+          EntropyTailLower.gatePrefixLikelihood d n k ≤ Real.exp 12
+        """,
 }
 SCOPE = (
     "Weighted observable sign-testing entropy (coefficient 4096), actual restart "
     "estimator reductions, arbitrary finite-law annular averaging (coefficient "
     "16384), and equivalence of the frozen statistical lower target with a "
-    "uniform finite-certificate lower bound. The latter remains an obligation; "
-    "neither side of that equivalence is proved by this audit."
+    "uniform finite-certificate lower bound. Includes fractional priors, atomic "
+    "population good gaps, population annular entropy, the observable bounded "
+    "gate and its exp(+-12) stopped-word likelihood factors. Gate activation "
+    "probability, rejection-restart renewal, and the finite-certificate lower "
+    "bound remain obligations."
 )
 
 
@@ -58,6 +114,10 @@ def scope_status(verified: bool = False) -> dict:
                 weighted_sign_entropy_verified=verified,
                 annular_estimation_verified=verified,
                 certificate_lower_reduction_verified=verified,
+                general_population_annular_verified=verified,
+                observable_activation_gate_verified=verified,
+                gate_prefix_likelihood_verified=verified,
+                full_information_gate_verified=False, gate_restart_renewal_verified=False,
                 entropy_tail_lower_verified=False, entropy_tail_law_verified=False,
                 closed_quantile_minimax_verified=False)
 
@@ -116,6 +176,7 @@ def main() -> int:
     output.mkdir(parents=True, exist_ok=False)
     audit = LEAN / ".audit/EntropyTailLowerComponents.lean"
     source = "".join("import " + PREFIX + m + "\n" for m in MODULES) + "\n"
+    source += "open ThresholdHC\nopen scoped ENNReal\n\n"
     source += "".join(f"example : {t} := {d}\n" for d, t in EXACT_TARGETS.items())
     source += "\n" + "".join("#print axioms " + r + "\n" for r in sorted(roots))
     if FORBIDDEN.search(strip_comments(source)):
