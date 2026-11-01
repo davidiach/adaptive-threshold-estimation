@@ -275,6 +275,12 @@ The lower half and the law are **not** Lean-proved. They remain paper proofs,
 and the audit reports the law as unverified until all eight targets are
 registered. The local audit of the five properties passed at `49877f3`.
 
+The additive [lower-bound supporting development](ENTROPY_TAIL_LOWER_PROGRESS.md)
+proves weighted single-coin sign entropy, annular estimator bounds for
+arbitrary finite measures, and equivalence with a uniform finite-certificate
+lower bound. Its gate and packing premises have not been derived for general
+certificates, so it does not change the six-of-eight completion status.
+
 **Upper half.** The upper bound comes from the additive formalization of
 [#33](https://github.com/davidiach/adaptive-threshold-estimation/pull/33), in
 the [EntropyTailQuantile](../lean/ThresholdHC/EntropyTailQuantile/),

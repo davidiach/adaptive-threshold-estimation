@@ -127,6 +127,8 @@ jobs:
         run: python -m unittest discover -s tools -p 'test_rare_above_two.py' -v
       - name: Regression tests for the entropy-tail audit
         run: python -m unittest discover -s tools -p 'test_entropy_tail.py' -v
+      - name: Regression tests for the supporting entropy-tail lower audit
+        run: python -m unittest discover -s tools -p 'test_entropy_tail_lower_components.py' -v
       - name: Regression tests for the quantile-comparison audit
         run: python -m unittest discover -s tools -p 'test_quantile_comparison.py' -v
       - name: Regression tests for the quantile-model and upper-theorem audits
@@ -332,6 +334,10 @@ jobs:
             python tools/verify_${audit}.py --cached-dependencies
             echo "::endgroup::"
           done
+      - name: Build and audit supporting entropy-tail lower lemmas
+        run: |
+          (cd lean && lake build ThresholdHC.EntropyTailLower.AnnularEstimation ThresholdHC.EntropyTailLower.CertificateReduction)
+          python tools/verify_entropy_tail_lower_components.py --cached-dependencies
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -354,3 +360,4 @@ jobs:
             .runtime/genie-convergence/
             .runtime/genie-conic/
             .runtime/genie-counterexample/
+            .runtime/entropy-tail-lower-components/
