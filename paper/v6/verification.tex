@@ -10,6 +10,8 @@ The rare-event theory above exponent two uses
 \nolinkurl{637fb4a79d20e30415a2cb0e495752603077c0ee}.
 The entropy--tail upper half, the closed-quantile upper bound and the
 stopping-program results use \nolinkurl{8fb16244ded0d6cebf4ba78e1ad9adae09ef293d}.
+The entropy--tail lower half and the completed two-sided law use
+\nolinkurl{24937929f7c215d0f9b60c45083c0456d3d1fb31}.
 All theorem links point to fixed source revisions.
 The preceding all-size addendum has its own linked checkpoint and audit;
 its stronger domain and explicit single-coin constants supplement this table.
@@ -111,9 +113,12 @@ specification, with constant $28000$ in place of $33000$, for every
 probability law on $(0,1/2]$, $0<\rho\le1/4$ and $B>0$. The construction of
 \cref{sec:entropy-tail-upper} is realized in the original observable
 experiment, without an inverse-moment or finite-support assumption.
-The lower half (\cref{sec:matching-lower}), and hence the two-sided law
-and its lower constant in \eqref{eq:explicit-main-constants}, remain paper
-proofs with adversarial AI audits of the standalone manuscript.\\[5pt]
+\lowerleanref{EntropyTail/Lower.lean}{entropy\_tail\_lower} proves the
+matching lower half, and
+\lowerleanref{EntropyTail/Law.lean}{entropy\_tail\_law} proves the two-sided
+law on this same domain. All eight frozen targets are checked. The lower
+proof gives a conservative positive universal constant; the sharper explicit
+lower constant in \eqref{eq:explicit-main-constants} remains paper-only.\\[5pt]
 Closed quantile form &
 \tailleanref{EntropyTail/Upper.lean}{selection\_quantile\_comparison}
 proves the deterministic comparison \cref{fg:prop:quantile-selection},
@@ -121,9 +126,12 @@ $K_{\mu,\rho}\le Q\le(1+2\sqrt2)K_{\mu,\rho}$, for every probability
 law, including fractional boundary atoms.
 \tailleanref{EntropyTailExecution/UpperTheorem.lean}{closed\_quantile\_upper\_30001}
 proves the upper half of Theorem~\ref{fg:thm:direct-main}, $R\le30001\,Q(B)$,
-for every law rather than only finite ones. The lower half of that theorem
-is a paper proof, and Corollary~\ref{fg:cor:general-laws} rests on
-Theorem~\ref{thm:entropy-tail-law}.\\[5pt]
+for every law rather than only finite ones.
+\lowerleanref{ClosedQuantile/Full.lean}{closed\_quantile\_law}
+now proves the full two-sided rate on this domain with conservative universal
+constants, using the entropy--tail lower bound and deterministic comparison.
+The direct finite-law lower argument and its explicit constant remain
+paper proofs.\\[5pt]
 Stopping programs and certificates &
 For every probability law, $0<\rho\le1/4$, $B>0$ and cap $N>0$,
 \tailleanref{StoppingProgram/DualTheorem.lean}{attained\_four\_prior\_dual}
@@ -149,8 +157,8 @@ The exact specifications and model definitions are necessary to interpret
 that fact: absence of proof holes does not show that a statement matches
 an intended experiment. The finite-gap targets were introduced with their
 proofs and are not described as specifications frozen before the proof work.
-The entropy--tail specification was frozen before the proof of its upper
-target. The upper construction's own quantile specification records a
+The entropy--tail specification was frozen before the proofs of both
+statistical halves and the two-sided target. The upper construction's own quantile specification records a
 freezing time before its proofs. The stopping-program specification was
 committed before the proofs of its three targets, but it was hash-locked
 only afterwards.
@@ -259,6 +267,47 @@ are Bochner integrals. A separate bridge proves $K'\le K_{\mu,\rho}$ for every
 measure and $K'=K_{\mu,\rho}$ for every finite law. No component label, hidden
 magnitude or sign enters the policy.
 
+\paragraph{Proving the entropy--tail lower bound.}
+The additive lower development realizes a feasible finite stopping
+certificate as a capped one-coin procedure. Observable gating and fixed
+repetition give saturated annular bounds without an atomlessness assumption.
+Disjoint normalized component certificates share the original bias, variance
+and work allowances. Comparable entropy tiers, parity separation and
+logarithmic trimming construct a retained-band packing; the rarity allocation
+is global and every component keeps its actual largest gap endpoint.
+
+For a feasible certificate with bias allowance $b$ and variance allowance $v$,
+write $A=256b+\sqrt{2^{32}e^{48}v}$. The complete rarity-capped finite score is
+at most $10^8 A$. Finite hard band selections bound the original selection
+functional by twice that score plus omitted tail mass. The omitted mass
+tends to zero for every probability law, so $K\le2\cdot10^8 A$ without an
+inverse-moment or finite-entropy assumption.
+\lowerleanref{EntropyTailLower/CertificateLower.lean}{certificate\_lower}
+then bounds $K$ by $M\sqrt{b^2+v}$, where
+$M=2\cdot10^8(256+\sqrt{2^{32}e^{48}})$.
+The existing factor-sixteen certificate theorem gives lower coefficient
+$1/(16M)$ in the original observable experiment. This route needs only the
+one-sided finite-prefix comparison, not a continuous variational-modulus
+identity or a nested sequence of optimal selections.
+
+The supporting audit rebuilds 57 registered modules and checks 89 exact
+types and 368 declaration roots. The canonical audit rebuilds 15 modules
+and checks all eight frozen target types and 92 roots. Both local completion
+audits record reused native artifacts and verify their stability; they are
+not full dependency rebuilds. The preserved completion evidence identifies
+the exact source hashes and permitted transitive axioms.
+
+\paragraph{The closed-quantile corollary.}
+The completed lower inequality $cK\le R$ and the deterministic comparison
+$Q\le(1+2\sqrt2)K$ give $cQ/(1+2\sqrt2)\le R$. The checked observable upper
+bound supplies $R\le30001Q$. The separate closed-quantile audit checks this
+full universal target and both declaration roots in two new modules, using
+the preceding checked artifacts. Its new specification and lock are
+introduced alongside the corollary proof, not described as independently
+frozen before it. The original experiment and quantile definitions are
+unchanged; the direct finite-law argument and explicit paper lower constant
+are not claimed by this corollary.
+
 \paragraph{Realizing the critical upper algorithm.}
 The formal construction uses asymmetric classifiers at dyadic flip counts,
 an alternative to the likelihood-bank construction in \cref{app:critical}.
@@ -345,10 +394,10 @@ validations of the full proof. The
 records the workflow, failed approaches, and these limits.
 
 \paragraph{Remaining mathematical work.}
-The lower half of the entropy--tail law, and with it the two-sided law and
-closed quantile form, the rare-event regimes below two, and auxiliary
-envelope, smoothness, and observed-state results retain their stated
-paper-proof scopes; their formalization is the next verification target. Sharp
+The direct finite-law closed-quantile proof and its explicit lower constant,
+the rare-event regimes below two, and auxiliary envelope, smoothness, and observed-state results retain
+their stated paper-proof scopes; their formalization is the next
+verification target. Sharp
 comparison constants, efficient selection for structured laws, rates of
 cap convergence, and sharp rare-event confidence rates at and above the
 quadratic boundary remain open. The rare-event results assume a known

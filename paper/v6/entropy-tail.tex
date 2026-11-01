@@ -36,11 +36,12 @@ minimax, and convex-duality tools are cited where used.
 antecedents from the contribution of the joint selection law.
 
 \paragraph{Status.}
-The upper direction now has a Lean proof in the original observable
-experiment, with coefficient $28000$ and no inverse-moment or finite-support
-assumption. The matching statistical lower direction of
-Theorem~\ref{thm:entropy-tail-law} remains a paper proof, so the two-sided
-characterization is not yet Lean-checked.
+Both directions now have Lean proofs in the original observable experiment,
+with upper coefficient $28000$ and a conservative positive universal lower
+coefficient. No inverse-moment, finite-entropy or finite-support assumption
+is imposed. All eight frozen targets, including the two-sided statement of
+Theorem~\ref{thm:entropy-tail-law}, are checked. Its sharper explicit paper
+lower constant is outside this formal claim.
 The standalone manuscript and its adversarial AI audits are preserved.
 Exact rational checks certify only their finite numerical instances.
 There has been no external specialist review. See \cref{sec:verification}
