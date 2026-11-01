@@ -248,6 +248,22 @@ check exact types, transitive axioms, and source stability; cached mode also
 checks reused artifact stability. `--lake PATH` selects the Lake executable.
 A successful cached audit is not a full dependency rebuild.
 
+The separate universal closed-quantile corollary is checked by:
+
+```sh
+python tools/verify_closed_quantile.py
+python -m unittest discover -s tools -p 'test_closed_quantile.py' -v
+```
+
+Its [record](../results/closed-quantile-law-20261101/README.md) covers two
+modules, two declaration roots, and one complete exact target. The target
+was introduced alongside its proof, with the previously frozen experiment
+and quantile definitions unchanged. The default rebuilds the whole local
+closure; `--cached-dependencies` rebuilds the two registered modules and
+hashes reused artifacts. Run that mode after the canonical entropy-tail
+audit has populated its dependencies. This proves universal constants,
+not the paper's explicit lower coefficient or its direct finite-law argument.
+
 The upper half imports the observable upper-bound development of
 [#33](https://github.com/davidiach/adaptive-threshold-estimation/pull/33), about
 240 modules, so this audit takes much longer than the other theorem audits. CI

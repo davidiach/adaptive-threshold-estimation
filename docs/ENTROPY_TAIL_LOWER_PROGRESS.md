@@ -11,8 +11,9 @@ records their cached-dependency scope. Historical checkpoints below retain
 their original, incomplete scopes.
 
 The proof supplies a conservative positive universal lower coefficient;
-it does not prove the paper's sharper explicit lower constant, a separate
-closed-quantile minimax target, or the direct finite-law lower argument.
+it does not prove the paper's sharper explicit lower constant or the direct
+finite-law lower argument. The separate closed-quantile corollary now has
+its own audit, described below.
 
 ## New statements and proof route
 
@@ -106,11 +107,11 @@ retained cost. Adding `2080 R` for ordinary cost and `260 R` for capped
 ignored mass fits below `100000000 R`. The finite-prefix comparison then
 gives `200000000 R` for the original selection functional.
 
-A separate closed-quantile minimax target and the direct finite-gap proof
-remain follow-ups. The existing deterministic comparison supplies a
-mathematical corollary with a conservative constant, but this audit does not
-register or check that corollary as a separate Lean target. Other paper-only
-and open results remain listed in [WORKPLAN.md](WORKPLAN.md#current-priorities).
+The separate [closed-quantile minimax corollary](../lean/ThresholdHC/ClosedQuantile/Full.lean)
+is now checked by [its own exact-type audit](../results/closed-quantile-law-20261101/README.md).
+The direct finite-gap proof and the sharper paper constants remain follow-ups.
+Other paper-only and open results are listed in
+[WORKPLAN.md](WORKPLAN.md#current-priorities).
 
 ### Finite-average reduction and its remaining premises
 

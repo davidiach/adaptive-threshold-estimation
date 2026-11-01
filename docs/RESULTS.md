@@ -383,18 +383,23 @@ their independent seed, coin identities and purchased flips. Both bounds
 use uniform expected physical-observation budgets and allow adaptive
 creation, revisiting and interleaving.
 
-Status: **the two-sided theorem is a paper proof**, not externally
-specialist-reviewed. Its upper bound is Lean-checked in a stronger form:
+Status: **the direct finite-law theorem with its explicit constants remains
+a paper proof**, not externally specialist-reviewed. Its upper bound is Lean-checked in a stronger form:
 $R\le30001\,Q$ for every probability law on $(0,1/2]$, not only finite ones,
 with the same $Q$ ([upper half](#general-law-rare-event-characterization)).
-The lower bound $10^{-20}Q\le R$ is not Lean-checked. The now checked
-entropy-tail law and deterministic comparison imply a weaker universal
-closed-quantile lower bound mathematically; a separate Lean minimax target
-for that corollary has not been registered.
+The lower bound $10^{-20}Q\le R$ is not Lean-checked. The separate
+[general-law closed-quantile theorem](../lean/ThresholdHC/ClosedQuantile/Full.lean)
+now proves the two-sided rate with a conservative universal lower coefficient
+and upper coefficient 30001, using the completed entropy-tail lower bound
+and deterministic comparison. Its [exact-type audit](../results/closed-quantile-law-20261101/README.md)
+covers both new modules and both declaration roots. The new corollary target
+was introduced alongside its proof; it is not described as independently
+frozen before the proof. The original experiment and quantile definitions
+remain unchanged.
 The precursor received fresh-context AI review; the
 [provenance note](../paper/finite-gap-rare-events/PROVENANCE.md) records its
 limits. The earlier Lean finite-gap entropy and critical-law results do not
-certify this theorem. The manuscript does not establish an unknown-law guarantee, a
+certify this theorem. The standalone finite-law manuscript does not establish an unknown-law guarantee, a
 general infinite-support extension, a deterministic budget or a
 high-confidence result.
 
