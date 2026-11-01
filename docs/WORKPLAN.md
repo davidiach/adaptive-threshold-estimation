@@ -33,10 +33,11 @@ constructs an observable gate with bounded stopped-word likelihood factors.
 The fair stopped-walk identity and activation-probability estimate are also
 proved, together with transfer to actual biased-coin transcript laws and
 fixed-repeat masked moment/work bounds, including population integration,
-conditional on positive activation. It also proves an observable early-output
-decomposition and the signwise stopped-prefix likelihood difference.
-The integrated early-output estimate, activation positivity, gated good gaps, certificate
-connection, selection/packing argument, and arbitrary-law limit remain; the full lower
+conditional on positive activation. The integrated early-mean estimate now
+derives positive activation and gated good gaps under explicit small-work
+conditions, with excluded mass at most `64 mZ + 4 rho`. Absorbing the additive
+rarity term, gate saturation, certificate connection, selection/packing, and
+the arbitrary-law limit remain; the full lower
 target is still unproved. Verified increments are in
 [draft PR #38](https://github.com/davidiach/adaptive-threshold-estimation/pull/38).
 

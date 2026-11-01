@@ -31,6 +31,8 @@ six proved targets.
 | [PopulationGateAverage](../lean/ThresholdHC/EntropyTailLower/PopulationGateAverage.lean) | Integrates the fixed-repeat bounds over arbitrary probability laws, including atoms. From the original uniform capped guarantee and positive activation, obtains a smaller uniform moment bound, finite actual work, and the population moment/work tradeoff. It does not assert the original bias guarantee for the transformed estimator. |
 | [EarlyLikelihood](../lean/ThresholdHC/EntropyTailLower/EarlyLikelihood.lean) | Bounds the difference between the two sign likelihoods on the actual gate prefix by `8 exp(12) abs(d) abs(S_stop)`. This density bound still needs integration against the early output. |
 | [EarlyOutput](../lean/ThresholdHC/EntropyTailLower/EarlyOutput.lean) | Constructs the observable early output at the bounded gate time, proves its moment is no larger than the original moment, and proves the exact early-plus-masked output and mean decompositions. |
+| [EarlyMean](../lean/ThresholdHC/EntropyTailLower/EarlyMean.lean) | Integrates the actual stopped-prefix densities, proving the early sign-mean difference squared is at most `64 exp(48) a^2 M0 W0`. From the original capped population guarantee, symmetric signs, and `64 exp(48) a^2 m W0 <= 1/16`, derives positive fair activation. |
+| [GatedGoodGaps](../lean/ThresholdHC/EntropyTailLower/GatedGoodGaps.lean) | Under the stronger small-work condition with right side `1/64`, derives positive activation and actual good gaps for the finite-average estimator. Their excluded mass is at most `64 mZ + 4 rho`. The transformed bias guarantee is not assumed. |
 
 The supporting weighted-sign target and its dependency hashes were recorded
 before accepting its proof in
@@ -40,12 +42,12 @@ No existing specification, manuscript, or published evidence is changed.
 
 ## Remaining mathematical work
 
-1. Integrate the signwise likelihood difference to prove the early-output
-   mean estimate and positivity of fair activation, then finish good-gap
-   selection and saturation for the finite-average estimator. Its observable
-   construction and fixed-state and population moment/work bounds are proved
-   below, conditional on positive activation. Masking does not preserve the original bias guarantee, so
-   that guarantee cannot simply be reused for the transformed estimator.
+1. Absorb the additive rarity term in the gated good-set mass bound, then
+   finish saturation and the choice of gate scale. The early-mean estimate,
+   positive activation, and good-gap selection are now proved under explicit
+   small scale/moment/work conditions. The construction derives transformed
+   mean separation from the original guarantees; it does not assume that
+   masking preserves the original bias guarantee.
 2. Connect an arbitrary feasible finite certificate to the required one-coin
    guarantees and the gate construction.
 3. Prove the deterministic selection and packing steps: split retained bands
@@ -78,18 +80,22 @@ E[total work] = N E[T] <= 2 E[T]/p.
 ```
 
 The first line uses independent averaging and the masked-mean square bound.
-Averaging preserves `E[Y * 1_E]`, so the early-output mean estimate is still
-needed. The construction reuses the existing
+Averaging preserves `E[Y * 1_E]`; the early-output mean estimate supplies
+the resulting mean-separation bound. The construction reuses the existing
 [finite-average identities](../lean/ThresholdHC/BlindUpper/ProductionAverage.lean)
 and [actual same-coin restart laws](../lean/ThresholdHC/CriticalEntropy/RepeatedRestart.lean).
 Population integration now gives the corresponding uniform moment bound
 `mZ = (1 + exp(12)) p m` and
 `mZ W0Z <= 2 (1 + exp(12)) m W0`. Combining this with the activation/work
 bound gives `mZ <= 2 exp(12) (1 + exp(12)) a^2 m W0`. These statements
-still assume `p > 0`; they assert moments and work, not transformed bias.
-The integrated early-mean bound, activation positivity, and good-gap argument
-remain before this yields the full information gate. Rejection-loop renewal
-has not been formalized and is not used by this fixed-repeat construction.
+assert moments and work, not transformed bias. The early-mean estimate now
+derives `p > 0` when the symmetric population parameters lie within scale
+`a` of the fair parameter and `64 exp(48) a^2 m W0 <= 1/16`.
+With right side `1/64`, the transformed estimator has a measurable good set
+whose excluded mass is at most `64 mZ + 4 rho`. Absorbing the additive rarity
+term and completing saturation remain before the full gate reduction.
+Rejection-loop renewal has not been formalized and is not used by this
+fixed-repeat construction.
 
 ## Verification
 
@@ -101,15 +107,15 @@ python -m unittest discover -s tools -p 'test_entropy_tail_lower_components.py' 
 ```
 
 The default rebuilds the entire local dependency closure. With
-`--cached-dependencies`, it rebuilds the twenty supporting modules, records the source
+`--cached-dependencies`, it rebuilds the twenty-two supporting modules, records the source
 hashes and reused local artifact hashes, and explicitly reports that a full
-dependency rebuild was not performed. Both modes check twenty-two exact types and
-all 128 declaration roots, permitting only `propext`, `Classical.choice`,
+dependency rebuild was not performed. Both modes check twenty-five exact types and
+all 148 declaration roots, permitting only `propext`, `Classical.choice`,
 and `Quot.sound`. Fresh logs and status go under
 `.runtime/entropy-tail-lower-components/`; published historical records are
 preserved. The success report always keeps `entropy_tail_lower_verified`,
 `entropy_tail_law_verified`, and `closed_quantile_minimax_verified` false.
-It also keeps `integrated_early_output_bound_verified`, `full_information_gate_verified`, and
+It also keeps `full_information_gate_verified` and
 `gate_restart_renewal_verified` false.
 
 The CI configuration builds the new modules and runs the supporting audit in
@@ -190,3 +196,19 @@ moment/work bounds, the observable early-output decomposition, and the
 signwise prefix likelihood difference. The integrated early-mean estimate,
 activation positivity, gated good-gap argument, and final lower bound are
 outside this checkpoint's verified scope.
+
+### Early means and gated good gaps checkpoint, 1 November 2026
+
+The cached-dependency audit passed in
+`.runtime/entropy-tail-lower-components/20261101T141608049296Z/`: all twenty-two
+supporting modules were rebuilt, all twenty-five exact types checked, and
+all 148 declaration roots had only the permitted axioms. The closure contains
+396 local modules, with 374 dependencies reused and hashed. This is not a
+full dependency rebuild. The nine audit regression tests, frozen-source
+check, project-wide proof-escape scan, documentation file links, and
+whitespace check passed.
+
+This checkpoint proves the integrated early-mean estimate, positive fair
+activation under the stated small-work condition, and actual gated good
+gaps with exceptional mass at most `64 mZ + 4 rho`. Absorption of the rarity
+term, saturation, and the final lower bound remain outside this checkpoint.

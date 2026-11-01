@@ -283,10 +283,11 @@ constructs a bounded observable activation gate with uniform stopped-word
 likelihood factors and transfers its probability and work bounds to actual
 biased-coin laws. Actual fixed repetition of masked outputs now gives the
 moment/work reduction, including arbitrary-law population integration,
-conditional on positive fair activation. The observable early-output
-decomposition and signwise prefix likelihood difference are also proved.
-The integrated early-mean estimate, activation positivity, gated good gaps,
-and packing for general certificates remain,
+conditional on positive fair activation. The integrated early-mean estimate
+now proves activation positivity under a small scale/moment/work condition
+and gives actual gated good gaps with excluded mass at most `64 mZ + 4 rho`.
+Absorbing that additive rarity term, gate saturation, and packing for general
+certificates remain,
 so this does not change the six-of-eight completion status.
 
 **Upper half.** The upper bound comes from the additive formalization of

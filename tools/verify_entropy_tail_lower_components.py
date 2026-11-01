@@ -1,7 +1,7 @@
 """Audit supporting lemmas for the unfinished entropy-tail lower bound.
 
 Default: rebuild the entire local dependency closure. --cached-dependencies
-rebuilds only the twenty supporting modules and records the reused artifact hashes.
+rebuilds only the twenty-two supporting modules and records the reused artifact hashes.
 Both modes check the frozen weighted-sign target, the exact certificate
 reduction, and every new declaration's transitive axioms. Neither mode proves
 the statistical lower bound or the two-sided entropy-tail/quantile laws.
@@ -31,7 +31,7 @@ MODULES = ("Specification", "WeightedOverlap", "WeightedSign", "WeightedEstimati
            "AnnularWork", "AnnularEstimation", "CertificateReduction", "FractionalPrior",
            "GeneralGoodGaps", "PopulationAnnular", "ActivationGate", "GateLikelihood", "FairGateWork",
            "GateMeasure", "GatedOutput", "FiniteAverageProcedure", "GateAverage",
-           "PopulationGateAverage", "EarlyLikelihood", "EarlyOutput")
+           "PopulationGateAverage", "EarlyLikelihood", "EarlyOutput", "EarlyMean", "GatedGoodGaps")
 FREEZE = ROOT / "tools/entropy_tail_lower_specification_freeze.json"
 FROZEN = {"lean/ThresholdHC/EntropyTailLower/Specification.lean":
           "dfa2367c933f1cdbeeb82ecca9e92ca8a512d98de28a54cdee9c741b7acd3461"}
@@ -268,6 +268,53 @@ EXACT_TARGETS = {
           CriticalEntropy.conditionalMean ν p (EntropyTailLower.gatedProcedure A M H) =
             CriticalEntropy.conditionalMean ν p A
         """,
+    PREFIX + "population_early_mean_difference": """
+        ∀ {D R : Type} [MeasurableSpace D] [MeasurableSpace R]
+        (μ : MeasureTheory.Measure D) [MeasureTheory.IsProbabilityMeasure μ]
+        (ν : MeasureTheory.Measure R) [MeasureTheory.IsProbabilityMeasure ν]
+        (p₀ p₁ : D → unitInterval), Measurable p₀ → Measurable p₁ →
+        ∀ (A : CriticalEntropy.StoppedProcedure R ℝ) (a : ℝ), 0 < a → a ≤ 1/4 →
+        (∀ᵐ d ∂μ, |(p₀ d:ℝ)-1/2| ≤ a) →
+        CriticalEntropy.populationSecondMoment μ ν p₀ p₁ (fun _ => 0) A ≠ ∞ →
+        CriticalEntropy.populationExpectedWork μ ν p₀ p₁ (fun _ => 0) A ≠ ∞ →
+        ∀ (p q : unitInterval), |(p:ℝ)-1/2| ≤ a → (p:ℝ)+(q:ℝ) = 1 →
+        (CriticalEntropy.conditionalMean ν p (EntropyTailLower.earlyProcedure A ⌈(a^2)⁻¹⌉₊ ⌈a⁻¹⌉₊)-
+          CriticalEntropy.conditionalMean ν q (EntropyTailLower.earlyProcedure A ⌈(a^2)⁻¹⌉₊ ⌈a⁻¹⌉₊))^2 ≤
+          64*Real.exp 48*a^2*(CriticalEntropy.populationSecondMoment μ ν p₀ p₁ (fun _ => 0) A).toReal*
+            (CriticalEntropy.populationExpectedWork μ ν p₀ p₁ (fun _ => 0) A).toReal
+        """,
+    PREFIX + "fair_activation_positive_of_small_work": """
+        ∀ {D R : Type} [MeasurableSpace D] [MeasurableSpace R]
+        (μ : MeasureTheory.Measure D) [MeasureTheory.IsProbabilityMeasure μ]
+        (ν : MeasureTheory.Measure R) [MeasureTheory.IsProbabilityMeasure ν]
+        (p₀ p₁ : D → unitInterval), Measurable p₀ → Measurable p₁ →
+        ∀ (A : CriticalEntropy.StoppedProcedure R ℝ) (ρ : unitInterval),
+        0 < (ρ:ℝ) → (ρ:ℝ) ≤ 1/4 → ∀ (m : ℝ), 0 ≤ m →
+        CriticalEntropy.CappedPopulationGuarantee μ ν p₀ p₁ A (ρ:ℝ) m →
+        ∀ (a : ℝ), 0 < a → a ≤ 1/4 →
+        (∀ᵐ d ∂μ, |(p₀ d:ℝ)-1/2| ≤ a ∧ (p₀ d:ℝ)+(p₁ d:ℝ) = 1) →
+        64*Real.exp 48*a^2*m*(CriticalEntropy.populationExpectedWork μ ν p₀ p₁ (fun _ => 0) A).toReal ≤ 1/16 →
+        0 < (ν.prod (Tier2.tapeMeasure ⟨1/2,by norm_num⟩)).real
+          {z | (EntropyTailLower.activationGate A ⌈(a^2)⁻¹⌉₊ ⌈a⁻¹⌉₊).output z = true}
+        """,
+    PREFIX + "population_gate_good_gaps": """
+        ∀ {D R : Type} [MeasurableSpace D] [MeasurableSpace R]
+        (μ : MeasureTheory.Measure D) [MeasureTheory.IsProbabilityMeasure μ]
+        (ν : MeasureTheory.Measure R) [MeasureTheory.IsProbabilityMeasure ν]
+        (p₀ p₁ : D → unitInterval), Measurable p₀ → Measurable p₁ →
+        ∀ (A : CriticalEntropy.StoppedProcedure R ℝ) (ρ : unitInterval),
+        0 < (ρ:ℝ) → (ρ:ℝ) ≤ 1/4 → ∀ (m : ℝ), 0 < m →
+        CriticalEntropy.CappedPopulationGuarantee μ ν p₀ p₁ A (ρ:ℝ) m →
+        ∀ (a : ℝ), 0 < a → a ≤ 1/4 →
+        (∀ᵐ d ∂μ, |(p₀ d:ℝ)-1/2| ≤ a ∧ (p₀ d:ℝ)+(p₁ d:ℝ) = 1) →
+        64*Real.exp 48*a^2*m*(CriticalEntropy.populationExpectedWork μ ν p₀ p₁ (fun _ => 0) A).toReal ≤ 1/64 →
+        let β := EntropyTailLower.fairActivation ν A a
+        let Z := EntropyTailLower.gateAverage A ⌈(a^2)⁻¹⌉₊ ⌈a⁻¹⌉₊ β
+        let η := MeasureTheory.Measure.pi (fun _ : Fin ((EntropyTailLower.gateBatchCount β-1)+1) => ν)
+        let mZ := (1+Real.exp 12)*β*m
+        0 < β ∧ ∃ G : Set D, MeasurableSet G ∧ μ.real Gᶜ ≤ 64*mZ+4*(ρ:ℝ) ∧
+          ∀ d ∈ G, CriticalEntropy.PopulationGoodGap η p₀ p₁ Z (ρ:ℝ) mZ d
+        """,
 }
 SCOPE = (
     "Weighted observable sign-testing entropy (coefficient 4096), actual restart "
@@ -283,8 +330,10 @@ SCOPE = (
     "moments while charging every run, conditional on positive fair activation. "
     "Includes arbitrary-law population moment/work integration, an observable "
     "early-output decomposition, and signwise stopped-prefix likelihood differences. "
-    "The integrated early-output estimate, activation positivity, gated good gaps, and "
-    "finite-certificate lower bound remain obligations."
+    "Includes the integrated early-mean bound, positive activation under a "
+    "specified small scale/moment/work condition, and actual gated good gaps "
+    "with exceptional mass at most 64 mZ + 4 rho. Removing the additive rarity "
+    "term, gate saturation, and the finite-certificate lower bound remain obligations."
 )
 
 
@@ -302,7 +351,9 @@ def scope_status(verified: bool = False) -> dict:
                 population_gate_moment_work_verified=verified,
                 early_output_decomposition_verified=verified,
                 signwise_gate_likelihood_difference_verified=verified,
-                integrated_early_output_bound_verified=False,
+                integrated_early_output_bound_verified=verified,
+                small_work_activation_positive_verified=verified,
+                gated_good_gaps_verified=verified,
                 full_information_gate_verified=False, gate_restart_renewal_verified=False,
                 entropy_tail_lower_verified=False, entropy_tail_law_verified=False,
                 closed_quantile_minimax_verified=False)
