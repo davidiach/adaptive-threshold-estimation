@@ -290,8 +290,11 @@ term, giving excluded mass at most `72 mZ`. The saturated annular bound now
 holds for arbitrary small-gap laws with coefficient `2^30 exp(48)`, without
 a small-work premise. Feasible finite certificates with bias at most
 `rho/128` now give an actual one-coin guarantee with `m W0 <= 4 B variance`;
-larger bias directly bounds the capped selection cost. Component
-restriction/localization, selection/packing, and the canonical finite-prefix
+larger bias directly bounds the capped selection cost. Measurable parameter
+embedding connects this guarantee to the small-gap annular bound, yielding
+the single-component certificate obstruction with coefficient `2^32 exp(48)`
+times `B variance`. Additive component restriction/localization,
+selection/packing, and the canonical finite-prefix
 limit remain, so this does not change the six-of-eight completion status.
 
 **Upper half.** The upper bound comes from the additive formalization of

@@ -1,7 +1,7 @@
 """Audit supporting lemmas for the unfinished entropy-tail lower bound.
 
 Default: rebuild the entire local dependency closure. --cached-dependencies
-rebuilds only the twenty-seven supporting modules and records the reused artifact hashes.
+rebuilds only the twenty-nine supporting modules and records the reused artifact hashes.
 Both modes check the frozen weighted-sign target, the exact certificate
 reduction, and every new declaration's transitive axioms. Neither mode proves
 the statistical lower bound or the two-sided entropy-tail/quantile laws.
@@ -32,7 +32,8 @@ MODULES = ("Specification", "WeightedOverlap", "WeightedSign", "WeightedEstimati
            "GeneralGoodGaps", "PopulationAnnular", "ActivationGate", "GateLikelihood", "FairGateWork",
            "GateMeasure", "GatedOutput", "FiniteAverageProcedure", "GateAverage",
            "PopulationGateAverage", "EarlyLikelihood", "EarlyOutput", "EarlyMean", "GatedGoodGaps",
-           "GateMomentFloor", "GatedAnnular", "CertificateCentering", "FlowOneCoin", "CertificateOneCoin")
+           "GateMomentFloor", "GatedAnnular", "CertificateCentering", "FlowOneCoin", "CertificateOneCoin",
+           "PopulationPullback", "CertificateAnnular")
 FREEZE = ROOT / "tools/entropy_tail_lower_specification_freeze.json"
 FROZEN = {"lean/ThresholdHC/EntropyTailLower/Specification.lean":
           "dfa2367c933f1cdbeeb82ecca9e92ca8a512d98de28a54cdee9c741b7acd3461"}
@@ -444,6 +445,36 @@ EXACT_TARGETS = {
           (CriticalEntropy.populationExpectedWork μ ν (ObservableSimulation.gapParameter false)
             (ObservableSimulation.gapParameter true) (fun _ => 0) A).toReal ≤ 4*B*C.variance
         """,
+    PREFIX + "cappedGuarantee_pullback": """
+        ∀ {D E R : Type} [MeasurableSpace D] [MeasurableSpace E] [MeasurableSpace R]
+        (μ : MeasureTheory.Measure D) [MeasureTheory.IsProbabilityMeasure μ]
+        (ν : MeasureTheory.Measure R) [MeasureTheory.IsProbabilityMeasure ν]
+        (f : D → E), MeasurableEmbedding f → ∀ (p₀ p₁ : E → unitInterval),
+        Measurable p₀ → Measurable p₁ → ∀ (A : CriticalEntropy.StoppedProcedure R ℝ) (ρ m : ℝ),
+        CriticalEntropy.CappedPopulationGuarantee (μ.map f) ν p₀ p₁ A ρ m →
+        CriticalEntropy.CappedPopulationGuarantee μ ν (p₀ ∘ f) (p₁ ∘ f) A ρ m
+        """,
+    PREFIX + "entropyGapInclusion_measurableEmbedding":
+        "MeasurableEmbedding EntropyTailLower.entropyGapInclusion",
+    PREFIX + "entropyGapInclusion_parameter": """
+        ∀ (s : Bool), ObservableSimulation.gapParameter s ∘ EntropyTailLower.entropyGapInclusion =
+          fun d => CriticalEntropy.signParameter d s
+        """,
+    PREFIX + "certificate_gated_annular_saturation": """
+        ∀ {N : ℕ} (μ : MeasureTheory.Measure CriticalEntropy.EntropyGap) [MeasureTheory.IsProbabilityMeasure μ]
+        (ρ B : ℝ), 0 < ρ → ρ ≤ 1/4 → 0 < N → ∀ (C : StoppingProgram.Certificate N),
+        StoppingProgram.Feasible (μ.map EntropyTailLower.entropyGapInclusion) ρ B C → C.bias ≤ ρ/128 →
+        ∀ (a : ℝ), 0 < a → a ≤ 1/4 →
+        (∀ᵐ (d : CriticalEntropy.EntropyGap) ∂μ, (d:ℝ) ≤ a) →
+        ∀ {K : ℕ} (I : Fin K → Set CriticalEntropy.EntropyGap) (b : Fin K → ℝ),
+        (∀ i, 0 < b i) → (∀ i, MeasurableSet (I i)) →
+        Pairwise (fun i j => Disjoint (I i) (I j)) →
+        (∀ i d, d ∈ I i → b i/2 < (d:ℝ) ∧ (d:ℝ) ≤ b i) →
+        (∀ i j, j.val = i.val+1 → 4*b j ≤ b i) →
+        ∀ (s : ℝ), s ≤ 1 → (∀ i, s ≤ μ.real (I i)) →
+        min (s/a^2) (ρ*EntropyTailQuantile.costEntropy (fun i => μ.real (I i)/(b i)^2)) ≤
+          4294967296*Real.exp 48*B*C.variance
+        """,
 }
 SCOPE = (
     "Weighted observable sign-testing entropy (coefficient 4096), actual restart "
@@ -467,8 +498,12 @@ SCOPE = (
     "without a small-work premise. Finite certificate centering and an actual "
     "one-coin procedure now give capped guarantees for certificate bias at "
     "most rho/128, with moment/work product at most 4 B variance. The large-bias "
-    "case directly bounds selection with coefficient 1/128. Component localization, "
-    "selection and packing, the canonical limit, and the final lower bound remain obligations."
+    "case directly bounds selection with coefficient 1/128. Measurable parameter "
+    "embeddings preserve the actual capped guarantee and connect small-gap laws "
+    "to the original experiment. The resulting single-component certificate "
+    "annular obstruction has coefficient 2^32 exp(48) times B variance. Additive "
+    "component localization, selection and packing, the canonical limit, and the "
+    "final lower bound remain obligations."
 )
 
 
@@ -494,6 +529,8 @@ def scope_status(verified: bool = False) -> dict:
                 certificate_centering_verified=verified,
                 certificate_one_coin_verified=verified,
                 large_bias_certificate_lower_verified=verified,
+                population_embedding_transfer_verified=verified,
+                certificate_annular_obstruction_verified=verified,
                 full_information_gate_verified=False, gate_restart_renewal_verified=False,
                 entropy_tail_lower_verified=False, entropy_tail_law_verified=False,
                 closed_quantile_minimax_verified=False)

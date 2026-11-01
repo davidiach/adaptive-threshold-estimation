@@ -38,6 +38,8 @@ six proved targets.
 | [CertificateCentering](../lean/ThresholdHC/EntropyTailLower/CertificateCentering.lean) | Centers a feasible finite stopping certificate at its null mean while preserving work, doubling its bias allowance, and quadrupling its variance allowance. Zero intensity forces bias at least `rho/2`. |
 | [FlowOneCoin](../lean/ThresholdHC/EntropyTailLower/FlowOneCoin.lean) | Realizes a cone flow as an actual capped one-coin procedure with an independent finite decision-table seed. Its population mean is the flow output count mean, its second moment is at most intensity times the moment count mean, and its work is the continuation count mean divided by positive intensity. |
 | [CertificateOneCoin](../lean/ThresholdHC/EntropyTailLower/CertificateOneCoin.lean) | Proves the required selection lower bound directly when certificate bias is at least `rho/128`. For smaller bias, constructs the actual capped one-coin guarantee and proves `m W0 <= 4 B variance`. Component localization and packing remain separate. |
+| [PopulationPullback](../lean/ThresholdHC/EntropyTailLower/PopulationPullback.lean) | Proves exact population integral identities and capped-prior extension under measurable parameter embeddings. Pulls back the actual guarantee from the original gap space to `EntropyGap`, preserving both original coin parameters. |
+| [CertificateAnnular](../lean/ThresholdHC/EntropyTailLower/CertificateAnnular.lean) | For a feasible small-bias certificate on the included small-gap law, proves `min(s/a^2, rho Gamma) <= 2^32 exp(48) B variance`. This is a single-component obstruction with the same explicit support and separated-band hypotheses. It does not yet combine components under a global rarity allocation. |
 
 The supporting weighted-sign target and its dependency hashes were recorded
 before accepting its proof in
@@ -49,9 +51,10 @@ No existing specification, manuscript, or published evidence is changed.
 
 1. Prove the restriction/rescaling and bias-dependent additive localization
    needed to apply the annular bound to component laws and combine them
-   under the global rarity constraint. The finite-certificate connection now
-   supplies the actual one-coin guarantee on the original whole law; it does
-   not by itself supply the component guarantees or their rarity allocation.
+   under the global rarity constraint. Parameter embedding now connects the
+   original whole-law certificate to the small-gap annular obstruction. The
+   normalized component guarantees and their joint rarity, bias, variance,
+   and work accounting remain to be derived.
 2. Prove the deterministic selection and packing steps: split retained bands
    by scale and cost, allocate rarity across the families, and combine their
    lower bounds with the ordinary and ignored parts of the selection cost.
@@ -123,6 +126,14 @@ original selection functional gives the desired certificate inequality
 with coefficient `1/128` directly. The remaining lower-bound work concerns
 small-bias certificates and the combination of component obstructions.
 
+Measurable embedding now transfers the actual guarantee to a small-gap law
+without changing its coin parameters. Combining it with the saturated
+annular theorem gives
+`min(s/a^2, rho Gamma) <= 2^32 exp(48) B variance` for each feasible
+small-bias certificate on such a law. Restricting an arbitrary original law
+to normalized components and combining their obstructions under one global
+budget are separate remaining steps.
+
 ## Verification
 
 Run the new audit from the repository root:
@@ -133,10 +144,10 @@ python -m unittest discover -s tools -p 'test_entropy_tail_lower_components.py' 
 ```
 
 The default rebuilds the entire local dependency closure. With
-`--cached-dependencies`, it rebuilds the twenty-seven supporting modules, records the source
+`--cached-dependencies`, it rebuilds the twenty-nine supporting modules, records the source
 hashes and reused local artifact hashes, and explicitly reports that a full
-dependency rebuild was not performed. Both modes check thirty-seven exact types and
-all 181 declaration roots, permitting only `propext`, `Classical.choice`,
+dependency rebuild was not performed. Both modes check forty-one exact types and
+all 189 declaration roots, permitting only `propext`, `Classical.choice`,
 and `Quot.sound`. Fresh logs and status go under
 `.runtime/entropy-tail-lower-components/`; published historical records are
 preserved. The success report always keeps `entropy_tail_lower_verified`,
@@ -273,3 +284,21 @@ realization, the small-bias capped guarantee with `m W0 <= 4 B variance`, and
 the large-bias selection bound with coefficient `1/128`. Component
 localization, selection/packing, and the canonical finite-prefix limit remain
 open. The canonical lower and two-sided laws remain unproved.
+
+### Parameter transfer and certificate annular checkpoint, 1 November 2026
+
+The cached-dependency audit passed in
+`.runtime/entropy-tail-lower-components/20261101T150156246216Z/`: all twenty-nine
+supporting modules were rebuilt, all forty-one exact types checked, and all
+189 declaration roots had only the permitted axioms. The closure contains
+407 local modules, with 378 dependencies reused and hashed. This is not a
+full dependency rebuild. The nine audit regression tests, frozen-source
+check, project-wide proof-escape scan, documentation file links, and
+whitespace check passed.
+
+This checkpoint preserves the actual capped guarantee under measurable
+parameter embedding and proves the single-component annular certificate
+obstruction with coefficient `2^32 exp(48)` times `B variance`. Additive
+component localization, selection/packing, and the canonical finite-prefix
+limit remain outside this checkpoint. The canonical completeness check
+still rejects `entropy_tail_lower` and `entropy_tail_law`.
