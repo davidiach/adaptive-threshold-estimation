@@ -1,7 +1,7 @@
 """Audit supporting lemmas for the unfinished entropy-tail lower bound.
 
 Default: rebuild the entire local dependency closure. --cached-dependencies
-rebuilds only the fourteen supporting modules and records the reused artifact hashes.
+rebuilds only the twenty supporting modules and records the reused artifact hashes.
 Both modes check the frozen weighted-sign target, the exact certificate
 reduction, and every new declaration's transitive axioms. Neither mode proves
 the statistical lower bound or the two-sided entropy-tail/quantile laws.
@@ -30,7 +30,8 @@ PREFIX = "ThresholdHC.EntropyTailLower."
 MODULES = ("Specification", "WeightedOverlap", "WeightedSign", "WeightedEstimation",
            "AnnularWork", "AnnularEstimation", "CertificateReduction", "FractionalPrior",
            "GeneralGoodGaps", "PopulationAnnular", "ActivationGate", "GateLikelihood", "FairGateWork",
-           "GateMeasure")
+           "GateMeasure", "GatedOutput", "FiniteAverageProcedure", "GateAverage",
+           "PopulationGateAverage", "EarlyLikelihood", "EarlyOutput")
 FREEZE = ROOT / "tools/entropy_tail_lower_specification_freeze.json"
 FROZEN = {"lean/ThresholdHC/EntropyTailLower/Specification.lean":
           "dfa2367c933f1cdbeeb82ecca9e92ca8a512d98de28a54cdee9c741b7acd3461"}
@@ -166,6 +167,107 @@ EXACT_TARGETS = {
           {z | (EntropyTailLower.activationGate A ⌈(a^2)⁻¹⌉₊ ⌈a⁻¹⌉₊).output z = true} ≤
           ENNReal.ofReal (2*Real.exp 12*a^2)*CriticalEntropy.expectedStoppedProcedureWork ν p A
         """,
+    PREFIX + "gatedProcedure_output": """
+        ∀ {R : Type} [MeasurableSpace R] (A : CriticalEntropy.StoppedProcedure R ℝ) (M H : ℕ),
+        (EntropyTailLower.gatedProcedure A M H).output =
+          {z | (EntropyTailLower.activationGate A M H).output z = true}.indicator A.output
+        """,
+    PREFIX + "averageProcedure_mean": """
+        ∀ {R : Type} [MeasurableSpace R]
+        (ν : MeasureTheory.Measure R) [MeasureTheory.IsProbabilityMeasure ν] (p : unitInterval)
+        (A : CriticalEntropy.StoppedProcedure R ℝ),
+        CriticalEntropy.expectedStoppedProcedureWork ν p A ≠ ∞ →
+        CriticalEntropy.conditionalSecondMoment ν p A ≠ ∞ → ∀ (n : ℕ),
+        CriticalEntropy.conditionalMean (MeasureTheory.Measure.pi (fun _ : Fin (n+1) => ν)) p
+          (EntropyTailLower.averageProcedure A n) = CriticalEntropy.conditionalMean ν p A
+        """,
+    PREFIX + "gateAverage_work_le": """
+        ∀ {R : Type} [MeasurableSpace R]
+        (ν : MeasureTheory.Measure R) [MeasureTheory.IsProbabilityMeasure ν] (p : unitInterval)
+        (A : CriticalEntropy.StoppedProcedure R ℝ),
+        CriticalEntropy.expectedStoppedProcedureWork ν p A ≠ ∞ → ∀ (M H : ℕ) (q : ℝ),
+        0 < q → q ≤ 1 →
+        CriticalEntropy.expectedStoppedProcedureWork
+          (MeasureTheory.Measure.pi (fun _ : Fin ((EntropyTailLower.gateBatchCount q-1)+1) => ν)) p
+          (EntropyTailLower.gateAverage A M H q) ≤
+          ENNReal.ofReal (2/q)*CriticalEntropy.expectedStoppedProcedureWork ν p A
+        """,
+    PREFIX + "scaled_gateAverage_secondMoment_le": """
+        ∀ {R : Type} [MeasurableSpace R]
+        (ν : MeasureTheory.Measure R) [MeasureTheory.IsProbabilityMeasure ν]
+        (A : CriticalEntropy.StoppedProcedure R ℝ) (a : ℝ), 0 < a → a ≤ 1/4 →
+        0 < EntropyTailLower.fairActivation ν A a →
+        ∀ (p : unitInterval), |(p:ℝ)-1/2| ≤ a →
+        CriticalEntropy.expectedStoppedProcedureWork ν p A ≠ ∞ →
+        CriticalEntropy.conditionalSecondMoment ν p A ≠ ∞ →
+        CriticalEntropy.conditionalSecondMoment
+          (MeasureTheory.Measure.pi (fun _ : Fin ((EntropyTailLower.gateBatchCount
+            (EntropyTailLower.fairActivation ν A a)-1)+1) => ν)) p
+          (EntropyTailLower.gateAverage A ⌈(a^2)⁻¹⌉₊ ⌈a⁻¹⌉₊ (EntropyTailLower.fairActivation ν A a)) ≤
+          ENNReal.ofReal ((1+Real.exp 12)*EntropyTailLower.fairActivation ν A a)*
+            CriticalEntropy.conditionalSecondMoment ν p A
+        """,
+    PREFIX + "population_gateAverage_uniform": """
+        ∀ {D R : Type} [MeasurableSpace D] [MeasurableSpace R]
+        (μ : MeasureTheory.Measure D) [MeasureTheory.IsProbabilityMeasure μ]
+        (ν : MeasureTheory.Measure R) [MeasureTheory.IsProbabilityMeasure ν]
+        (p₀ p₁ : D → unitInterval), Measurable p₀ → Measurable p₁ →
+        ∀ (A : CriticalEntropy.StoppedProcedure R ℝ) (ρ : unitInterval),
+        0 < (ρ:ℝ) → (ρ:ℝ) ≤ 1/4 → ∀ (m : ℝ),
+        CriticalEntropy.CappedPopulationGuarantee μ ν p₀ p₁ A (ρ:ℝ) m →
+        ∀ (a : ℝ), 0 < a → a ≤ 1/4 →
+        (∀ᵐ d ∂μ, |(p₀ d:ℝ)-1/2| ≤ a ∧ |(p₁ d:ℝ)-1/2| ≤ a) →
+        0 < EntropyTailLower.fairActivation ν A a →
+        let β := EntropyTailLower.fairActivation ν A a
+        let Z := EntropyTailLower.gateAverage A ⌈(a^2)⁻¹⌉₊ ⌈a⁻¹⌉₊ β
+        let η := MeasureTheory.Measure.pi (fun _ : Fin ((EntropyTailLower.gateBatchCount β-1)+1) => ν)
+        ∀ q, CriticalEntropy.CappedPrior μ (ρ:ℝ) q →
+          CriticalEntropy.populationSecondMoment μ η p₀ p₁ q Z ≤
+            ENNReal.ofReal (((1+Real.exp 12)*β)*m) ∧
+          CriticalEntropy.populationExpectedWork μ η p₀ p₁ q Z ≠ ∞
+        """,
+    PREFIX + "population_gateAverage_tradeoff": """
+        ∀ {D R : Type} [MeasurableSpace D] [MeasurableSpace R]
+        (μ : MeasureTheory.Measure D) [MeasureTheory.IsProbabilityMeasure μ]
+        (ν : MeasureTheory.Measure R) [MeasureTheory.IsProbabilityMeasure ν]
+        (p₀ p₁ : D → unitInterval), Measurable p₀ → Measurable p₁ →
+        ∀ (A : CriticalEntropy.StoppedProcedure R ℝ) (ρ : unitInterval),
+        0 < (ρ:ℝ) → (ρ:ℝ) ≤ 1/4 → ∀ (m : ℝ), 0 ≤ m →
+        CriticalEntropy.CappedPopulationGuarantee μ ν p₀ p₁ A (ρ:ℝ) m →
+        ∀ (a : ℝ), 0 < a → a ≤ 1/4 →
+        (∀ᵐ d ∂μ, |(p₀ d:ℝ)-1/2| ≤ a ∧ |(p₁ d:ℝ)-1/2| ≤ a) →
+        0 < EntropyTailLower.fairActivation ν A a →
+        let β := EntropyTailLower.fairActivation ν A a
+        let Z := EntropyTailLower.gateAverage A ⌈(a^2)⁻¹⌉₊ ⌈a⁻¹⌉₊ β
+        let η := MeasureTheory.Measure.pi (fun _ : Fin ((EntropyTailLower.gateBatchCount β-1)+1) => ν)
+        let mZ := (1+Real.exp 12)*β*m
+        mZ ≤ 2*Real.exp 12*(1+Real.exp 12)*a^2*m*
+          (CriticalEntropy.populationExpectedWork μ ν p₀ p₁ (fun _ => 0) A).toReal ∧
+        mZ*(CriticalEntropy.populationExpectedWork μ η p₀ p₁ (fun _ => 0) Z).toReal ≤
+          2*(1+Real.exp 12)*m*(CriticalEntropy.populationExpectedWork μ ν p₀ p₁ (fun _ => 0) A).toReal
+        """,
+    PREFIX + "activationGate_prefix_likelihood_difference": """
+        ∀ {R E : Type} [MeasurableSpace R] [MeasurableSpace E]
+        (A : CriticalEntropy.StoppedProcedure R E) (a d : ℝ),
+        0 < a → a ≤ 1/4 → |d| ≤ a → ∀ (z : R × (ℕ → Bool)),
+        let n := EntropyTailLower.activationGateCost A ⌈(a^2)⁻¹⌉₊ ⌈a⁻¹⌉₊ z
+        let k := CriticalEntropy.wordHeads (Tier2.tapePrefix n z.2)
+        |EntropyTailLower.gatePrefixLikelihood d n k-EntropyTailLower.gatePrefixLikelihood (-d) n k| ≤
+          8*Real.exp 12*|d| * |(EntropyTailLower.tapeBalance n z.2:ℝ)|
+        """,
+    PREFIX + "earlyProcedure_stop": """
+        ∀ {R : Type} [MeasurableSpace R] (A : CriticalEntropy.StoppedProcedure R ℝ) (M H : ℕ),
+        (EntropyTailLower.earlyProcedure A M H).stop = (EntropyTailLower.activationGate A M H).stop
+        """,
+    PREFIX + "early_gated_mean_sum": """
+        ∀ {R : Type} [MeasurableSpace R]
+        (ν : MeasureTheory.Measure R) [MeasureTheory.IsProbabilityMeasure ν] (p : unitInterval)
+        (A : CriticalEntropy.StoppedProcedure R ℝ),
+        CriticalEntropy.conditionalSecondMoment ν p A ≠ ∞ → ∀ (M H : ℕ),
+        CriticalEntropy.conditionalMean ν p (EntropyTailLower.earlyProcedure A M H)+
+          CriticalEntropy.conditionalMean ν p (EntropyTailLower.gatedProcedure A M H) =
+            CriticalEntropy.conditionalMean ν p A
+        """,
 }
 SCOPE = (
     "Weighted observable sign-testing entropy (coefficient 4096), actual restart "
@@ -176,8 +278,13 @@ SCOPE = (
     "gate, its exp(+-12) stopped-word likelihood factors, and fair activation "
     "probability bounded by twice scale squared times expected gate work. "
     "Includes actual stopped-transcript measure transfer and activation/work "
-    "bounds under nearby biased coins. Rejection-restart renewal and the finite-certificate lower "
-    "bound remain obligations."
+    "bounds under nearby biased coins. Includes observable output masking and "
+    "actual fixed-repeat averaging, preserving masked means and shrinking "
+    "moments while charging every run, conditional on positive fair activation. "
+    "Includes arbitrary-law population moment/work integration, an observable "
+    "early-output decomposition, and signwise stopped-prefix likelihood differences. "
+    "The integrated early-output estimate, activation positivity, gated good gaps, and "
+    "finite-certificate lower bound remain obligations."
 )
 
 
@@ -191,6 +298,11 @@ def scope_status(verified: bool = False) -> dict:
                 gate_prefix_likelihood_verified=verified,
                 fair_gate_probability_verified=verified,
                 biased_gate_transfer_verified=verified,
+                fixed_repeat_gate_bounds_verified=verified,
+                population_gate_moment_work_verified=verified,
+                early_output_decomposition_verified=verified,
+                signwise_gate_likelihood_difference_verified=verified,
+                integrated_early_output_bound_verified=False,
                 full_information_gate_verified=False, gate_restart_renewal_verified=False,
                 entropy_tail_lower_verified=False, entropy_tail_law_verified=False,
                 closed_quantile_minimax_verified=False)

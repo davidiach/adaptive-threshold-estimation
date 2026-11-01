@@ -281,9 +281,13 @@ arbitrary finite measures, and equivalence with a uniform finite-certificate
 lower bound. It also removes atomlessness from good-gap selection and
 constructs a bounded observable activation gate with uniform stopped-word
 likelihood factors and transfers its probability and work bounds to actual
-biased-coin laws. The restart and packing arguments have not
-been derived for general certificates, so it does not change the six-of-eight
-completion status.
+biased-coin laws. Actual fixed repetition of masked outputs now gives the
+moment/work reduction, including arbitrary-law population integration,
+conditional on positive fair activation. The observable early-output
+decomposition and signwise prefix likelihood difference are also proved.
+The integrated early-mean estimate, activation positivity, gated good gaps,
+and packing for general certificates remain,
+so this does not change the six-of-eight completion status.
 
 **Upper half.** The upper bound comes from the additive formalization of
 [#33](https://github.com/davidiach/adaptive-threshold-estimation/pull/33), in

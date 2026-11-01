@@ -31,9 +31,12 @@ lemmas, and an equivalence reducing the missing lower target to a uniform
 finite-certificate bound. It now handles atoms in good-gap selection and
 constructs an observable gate with bounded stopped-word likelihood factors.
 The fair stopped-walk identity and activation-probability estimate are also
-proved, together with transfer to actual biased-coin transcript laws.
-Restart estimates, the certificate connection,
-selection/packing argument, and arbitrary-law limit remain; the full lower
+proved, together with transfer to actual biased-coin transcript laws and
+fixed-repeat masked moment/work bounds, including population integration,
+conditional on positive activation. It also proves an observable early-output
+decomposition and the signwise stopped-prefix likelihood difference.
+The integrated early-output estimate, activation positivity, gated good gaps, certificate
+connection, selection/packing argument, and arbitrary-law limit remain; the full lower
 target is still unproved. Verified increments are in
 [draft PR #38](https://github.com/davidiach/adaptive-threshold-estimation/pull/38).
 

@@ -25,6 +25,12 @@ six proved targets.
 | [GateLikelihood](../lean/ThresholdHC/EntropyTailLower/GateLikelihood.lean) | Proves exact fair-word likelihood factorization and uniform factors between `exp(-12)` and `exp(12)` on the actual stopped prefixes at scale `a <= 1/4`. Both signs are covered through `abs d <= a`. This is a wordwise bound, not yet the full conditioning/renewal theorem. |
 | [FairGateWork](../lean/ThresholdHC/EntropyTailLower/FairGateWork.lean) | Proves the fair stopped-walk square identity by finite predictable sums and next-flip independence, including arbitrary random seeds. Derives fair activation probability at most `2 a^2` times expected gate work, without an integrability or termination assumption on the original procedure. |
 | [GateMeasure](../lean/ThresholdHC/EntropyTailLower/GateMeasure.lean) | Transfers the likelihood factors to the actual seeded stopped-transcript laws, event probabilities, and nonnegative observables. In particular, fair activation is at most `2 exp(12) a^2` times the original expected work under any coin with `abs(p-1/2) <= a <= 1/4`, retaining infinite work honestly. |
+| [GatedOutput](../lean/ThresholdHC/EntropyTailLower/GatedOutput.lean) | Masks the output by the observable gate decision at the original stopping time, with no extra flips. Proves that the squared masked mean is bounded by activation probability times the original second moment. |
+| [FiniteAverageProcedure](../lean/ThresholdHC/EntropyTailLower/FiniteAverageProcedure.lean) | Constructs actual finite averaging on successive unused flips of the same coin. Proves its independent output law, exact mean and work identities, and second-moment bound, with the needed finiteness assumptions explicit. |
+| [GateAverage](../lean/ThresholdHC/EntropyTailLower/GateAverage.lean) | Uses `ceil(1/p)` masked runs, where `p` is fair activation. For `p > 0`, bounds moments by `(1 + exp(12)) p` times original moments and work by `2/p` times original work. Positivity of fair activation is still a premise. |
+| [PopulationGateAverage](../lean/ThresholdHC/EntropyTailLower/PopulationGateAverage.lean) | Integrates the fixed-repeat bounds over arbitrary probability laws, including atoms. From the original uniform capped guarantee and positive activation, obtains a smaller uniform moment bound, finite actual work, and the population moment/work tradeoff. It does not assert the original bias guarantee for the transformed estimator. |
+| [EarlyLikelihood](../lean/ThresholdHC/EntropyTailLower/EarlyLikelihood.lean) | Bounds the difference between the two sign likelihoods on the actual gate prefix by `8 exp(12) abs(d) abs(S_stop)`. This density bound still needs integration against the early output. |
+| [EarlyOutput](../lean/ThresholdHC/EntropyTailLower/EarlyOutput.lean) | Constructs the observable early output at the bounded gate time, proves its moment is no larger than the original moment, and proves the exact early-plus-masked output and mean decompositions. |
 
 The supporting weighted-sign target and its dependency hashes were recorded
 before accepting its proof in
@@ -34,13 +40,12 @@ No existing specification, manuscript, or published evidence is changed.
 
 ## Remaining mathematical work
 
-1. Complete the gated estimator's mean and moment reduction, including the
-   early-output estimate, good-gap selection, and saturation. The paper's
-   route requires an observable rejection/restart procedure on unused flips
-   and its renewal identities. A finite-average alternative is described
-   below but is not yet formalized. Neither masking nor conditioning
-   preserves the original bias guarantee, so that guarantee cannot simply
-   be reused for the transformed estimator.
+1. Integrate the signwise likelihood difference to prove the early-output
+   mean estimate and positivity of fair activation, then finish good-gap
+   selection and saturation for the finite-average estimator. Its observable
+   construction and fixed-state and population moment/work bounds are proved
+   below, conditional on positive activation. Masking does not preserve the original bias guarantee, so
+   that guarantee cannot simply be reused for the transformed estimator.
 2. Connect an arbitrary feasible finite certificate to the required one-coin
    guarantees and the gate construction.
 3. Prove the deterministic selection and packing steps: split retained bands
@@ -56,14 +61,15 @@ No existing specification, manuscript, or published evidence is changed.
 The certificate route can reuse the existing formal treatment of arbitrary
 adaptive population algorithms. It does not make steps 1–4 automatic.
 
-### Candidate finite-average reduction (not Lean-verified)
+### Finite-average reduction and its remaining premises
 
-The rejection loop may be avoidable. Once fair activation `p > 0` is proved,
+The formal development uses fixed repetition. Once fair activation `p > 0` is proved,
 take `N = ceil(1/p)` independent full runs of the original procedure on
 successive unused flips. Replace each output by `X = Y * 1_E`, and return
 their average. Every run, including each rejected run, is charged in full.
 The common repetition count depends on fair activation, not the hidden coin
-parameter. For each fixed state, the proposed calculation is
+parameter. For each fixed state with finite original work and second moment,
+the checked bounds give
 
 ```text
 E[average(X)^2] <= E[Y^2]/N + P(E) E[Y^2]
@@ -71,13 +77,19 @@ E[average(X)^2] <= E[Y^2]/N + P(E) E[Y^2]
 E[total work] = N E[T] <= 2 E[T]/p.
 ```
 
-The first line uses independent averaging and Cauchy–Schwarz for the masked
-mean. Averaging preserves `E[Y * 1_E]`, so the early-output mean estimate is
-still needed. Existing [finite-average identities](../lean/ThresholdHC/BlindUpper/ProductionAverage.lean)
-and [actual same-coin restart laws](../lean/ThresholdHC/CriticalEntropy/RepeatedRestart.lean)
-are available. The observable masking construction, full moment calculation,
-population integration, and good-gap argument remain to be proved before
-using this alternative in any verified claim.
+The first line uses independent averaging and the masked-mean square bound.
+Averaging preserves `E[Y * 1_E]`, so the early-output mean estimate is still
+needed. The construction reuses the existing
+[finite-average identities](../lean/ThresholdHC/BlindUpper/ProductionAverage.lean)
+and [actual same-coin restart laws](../lean/ThresholdHC/CriticalEntropy/RepeatedRestart.lean).
+Population integration now gives the corresponding uniform moment bound
+`mZ = (1 + exp(12)) p m` and
+`mZ W0Z <= 2 (1 + exp(12)) m W0`. Combining this with the activation/work
+bound gives `mZ <= 2 exp(12) (1 + exp(12)) a^2 m W0`. These statements
+still assume `p > 0`; they assert moments and work, not transformed bias.
+The integrated early-mean bound, activation positivity, and good-gap argument
+remain before this yields the full information gate. Rejection-loop renewal
+has not been formalized and is not used by this fixed-repeat construction.
 
 ## Verification
 
@@ -89,15 +101,15 @@ python -m unittest discover -s tools -p 'test_entropy_tail_lower_components.py' 
 ```
 
 The default rebuilds the entire local dependency closure. With
-`--cached-dependencies`, it rebuilds the fourteen supporting modules, records the source
+`--cached-dependencies`, it rebuilds the twenty supporting modules, records the source
 hashes and reused local artifact hashes, and explicitly reports that a full
-dependency rebuild was not performed. Both modes check thirteen exact types and
-all 86 declaration roots, permitting only `propext`, `Classical.choice`,
+dependency rebuild was not performed. Both modes check twenty-two exact types and
+all 128 declaration roots, permitting only `propext`, `Classical.choice`,
 and `Quot.sound`. Fresh logs and status go under
 `.runtime/entropy-tail-lower-components/`; published historical records are
 preserved. The success report always keeps `entropy_tail_lower_verified`,
 `entropy_tail_law_verified`, and `closed_quantile_minimax_verified` false.
-It also keeps `full_information_gate_verified` and
+It also keeps `integrated_early_output_bound_verified`, `full_information_gate_verified`, and
 `gate_restart_renewal_verified` false.
 
 The CI configuration builds the new modules and runs the supporting audit in
@@ -161,3 +173,20 @@ event/work consequences. The full information gate and final statistical
 lower bound remain unproved. The canonical completeness command still
 rejects `entropy_tail_lower` and `entropy_tail_law`. The finite-average
 alternative above is a proposed next step, not part of this audit's claims.
+
+### Finite averaging and population bounds checkpoint, 1 November 2026
+
+The cached-dependency audit passed in
+`.runtime/entropy-tail-lower-components/20261101T140257871598Z/`: all twenty
+supporting modules were rebuilt, all twenty-two exact types checked, and
+all 128 declaration roots had only the permitted axioms. The closure contains
+394 local modules, with 374 dependencies reused and hashed. This is not a
+full dependency rebuild. The nine audit regression tests, frozen-source
+check, project-wide proof-escape scan, documentation file links, and
+whitespace check passed.
+
+This checkpoint adds actual finite averaging, arbitrary-law population
+moment/work bounds, the observable early-output decomposition, and the
+signwise prefix likelihood difference. The integrated early-mean estimate,
+activation positivity, gated good-gap argument, and final lower bound are
+outside this checkpoint's verified scope.
