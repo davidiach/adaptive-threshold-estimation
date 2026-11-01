@@ -35,9 +35,10 @@ proved, together with transfer to actual biased-coin transcript laws and
 fixed-repeat masked moment/work bounds, including population integration,
 conditional on positive activation. The integrated early-mean estimate now
 derives positive activation and gated good gaps under explicit small-work
-conditions, with excluded mass at most `64 mZ + 4 rho`. Absorbing the additive
-rarity term, gate saturation, certificate connection, selection/packing, and
-the arbitrary-law limit remain; the full lower
+conditions. A moment floor improves the excluded mass to `72 mZ`, and the
+saturated annular lower bound now holds across all work regimes. Certificate
+connection, additive localization, selection/packing, and the canonical
+finite-prefix limit remain; the full lower
 target is still unproved. Verified increments are in
 [draft PR #38](https://github.com/davidiach/adaptive-threshold-estimation/pull/38).
 

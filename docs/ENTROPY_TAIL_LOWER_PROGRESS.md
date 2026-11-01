@@ -33,6 +33,8 @@ six proved targets.
 | [EarlyOutput](../lean/ThresholdHC/EntropyTailLower/EarlyOutput.lean) | Constructs the observable early output at the bounded gate time, proves its moment is no larger than the original moment, and proves the exact early-plus-masked output and mean decompositions. |
 | [EarlyMean](../lean/ThresholdHC/EntropyTailLower/EarlyMean.lean) | Integrates the actual stopped-prefix densities, proving the early sign-mean difference squared is at most `64 exp(48) a^2 M0 W0`. From the original capped population guarantee, symmetric signs, and `64 exp(48) a^2 m W0 <= 1/16`, derives positive fair activation. |
 | [GatedGoodGaps](../lean/ThresholdHC/EntropyTailLower/GatedGoodGaps.lean) | Under the stronger small-work condition with right side `1/64`, derives positive activation and actual good gaps for the finite-average estimator. Their excluded mass is at most `64 mZ + 4 rho`. The transformed bias guarantee is not assumed. |
+| [GateMomentFloor](../lean/ThresholdHC/EntropyTailLower/GateMomentFloor.lean) | Proves `rho/2 <= mZ` under the same small-work condition, using actual integrated mean separation and the population variance inequality. This absorbs the additive rarity term and gives excluded mass at most `72 mZ`. |
+| [GatedAnnular](../lean/ThresholdHC/EntropyTailLower/GatedAnnular.lean) | For arbitrary probability laws on `EntropyGap` supported below `a <= 1/4`, proves `min(s/a^2, rho Gamma) <= 2^30 exp(48) m W0`, where the separated annuli each have mass at least `s <= 1`. No small-work premise remains. The original capped population guarantee is still required. |
 
 The supporting weighted-sign target and its dependency hashes were recorded
 before accepting its proof in
@@ -42,26 +44,23 @@ No existing specification, manuscript, or published evidence is changed.
 
 ## Remaining mathematical work
 
-1. Absorb the additive rarity term in the gated good-set mass bound, then
-   finish saturation and the choice of gate scale. The early-mean estimate,
-   positive activation, and good-gap selection are now proved under explicit
-   small scale/moment/work conditions. The construction derives transformed
-   mean separation from the original guarantees; it does not assume that
-   masking preserves the original bias guarantee.
-2. Connect an arbitrary feasible finite certificate to the required one-coin
-   guarantees and the gate construction.
-3. Prove the deterministic selection and packing steps: split retained bands
+1. Connect an arbitrary feasible finite certificate to the required one-coin
+   guarantees and the gate construction. Prove the bias-dependent transfer
+   and additive localization needed to combine component laws under the
+   global rarity constraint. The saturated one-coin annular bound does not
+   provide this connection by itself.
+2. Prove the deterministic selection and packing steps: split retained bands
    by scale and cost, allocate rarity across the families, and combine their
    lower bounds with the ordinary and ignored parts of the selection cost.
-4. Handle arbitrary laws through canonical finite-prefix approximation,
+3. Handle arbitrary laws through canonical finite-prefix approximation,
    maintaining the original selection functional and global rarity budget.
-5. Prove `CertificateLowerStatement`, apply the checked equivalence, and
+4. Prove `CertificateLowerStatement`, apply the checked equivalence, and
    register `entropy_tail_lower` against the original frozen specification.
    Then assemble the two-sided entropy-tail and closed-quantile laws and run
    their full exact-type audits.
 
 The certificate route can reuse the existing formal treatment of arbitrary
-adaptive population algorithms. It does not make steps 1–4 automatic.
+adaptive population algorithms. It does not make the remaining steps automatic.
 
 ### Finite-average reduction and its remaining premises
 
@@ -92,8 +91,13 @@ assert moments and work, not transformed bias. The early-mean estimate now
 derives `p > 0` when the symmetric population parameters lie within scale
 `a` of the fair parameter and `64 exp(48) a^2 m W0 <= 1/16`.
 With right side `1/64`, the transformed estimator has a measurable good set
-whose excluded mass is at most `64 mZ + 4 rho`. Absorbing the additive rarity
-term and completing saturation remain before the full gate reduction.
+whose excluded mass is at most `64 mZ + 4 rho`. The moment floor
+`rho/2 <= mZ` improves this to `72 mZ`. Annular averaging then gives the
+entropy bound when all annular masses exceed
+`288 exp(12) (1 + exp(12)) a^2 m W0`. Splitting off the complementary
+small-mass and large-work cases proves the saturated minimum bound in the
+table. Its coefficient is conservative; it is not the paper's coefficient.
+The certificate connection and additive localization remain.
 Rejection-loop renewal has not been formalized and is not used by this
 fixed-repeat construction.
 
@@ -107,10 +111,10 @@ python -m unittest discover -s tools -p 'test_entropy_tail_lower_components.py' 
 ```
 
 The default rebuilds the entire local dependency closure. With
-`--cached-dependencies`, it rebuilds the twenty-two supporting modules, records the source
+`--cached-dependencies`, it rebuilds the twenty-four supporting modules, records the source
 hashes and reused local artifact hashes, and explicitly reports that a full
-dependency rebuild was not performed. Both modes check twenty-five exact types and
-all 148 declaration roots, permitting only `propext`, `Classical.choice`,
+dependency rebuild was not performed. Both modes check twenty-eight exact types and
+all 155 declaration roots, permitting only `propext`, `Classical.choice`,
 and `Quot.sound`. Fresh logs and status go under
 `.runtime/entropy-tail-lower-components/`; published historical records are
 preserved. The success report always keeps `entropy_tail_lower_verified`,
@@ -212,3 +216,20 @@ This checkpoint proves the integrated early-mean estimate, positive fair
 activation under the stated small-work condition, and actual gated good
 gaps with exceptional mass at most `64 mZ + 4 rho`. Absorption of the rarity
 term, saturation, and the final lower bound remain outside this checkpoint.
+
+### Gated annular saturation checkpoint, 1 November 2026
+
+The cached-dependency audit passed in
+`.runtime/entropy-tail-lower-components/20261101T143010989137Z/`: all twenty-four
+supporting modules were rebuilt, all twenty-eight exact types checked, and
+all 155 declaration roots had only the permitted axioms. The closure contains
+398 local modules, with 374 dependencies reused and hashed. This is not a
+full dependency rebuild. The nine audit regression tests, frozen-source
+check, project-wide proof-escape scan, documentation file links, and
+whitespace check passed.
+
+This checkpoint proves the gated moment floor, the `72 mZ` exceptional-mass
+bound, and the saturated annular lower bound with coefficient `2^30 exp(48)`.
+The certificate connection, component localization, selection/packing, and
+canonical finite-prefix limit remain outside this checkpoint. The canonical
+lower and two-sided laws remain unproved.

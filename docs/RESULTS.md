@@ -285,10 +285,12 @@ biased-coin laws. Actual fixed repetition of masked outputs now gives the
 moment/work reduction, including arbitrary-law population integration,
 conditional on positive fair activation. The integrated early-mean estimate
 now proves activation positivity under a small scale/moment/work condition
-and gives actual gated good gaps with excluded mass at most `64 mZ + 4 rho`.
-Absorbing that additive rarity term, gate saturation, and packing for general
-certificates remain,
-so this does not change the six-of-eight completion status.
+and gives actual gated good gaps. The gated moment floor absorbs the rarity
+term, giving excluded mass at most `72 mZ`. The saturated annular bound now
+holds for arbitrary small-gap laws with coefficient `2^30 exp(48)`, without
+a small-work premise. The certificate connection, additive localization,
+selection/packing, and canonical finite-prefix limit remain, so this does
+not change the six-of-eight completion status.
 
 **Upper half.** The upper bound comes from the additive formalization of
 [#33](https://github.com/davidiach/adaptive-threshold-estimation/pull/33), in
