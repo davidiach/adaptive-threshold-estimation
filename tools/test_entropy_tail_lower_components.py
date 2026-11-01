@@ -9,8 +9,8 @@ import verify_entropy_tail_lower_components as audit
 class LowerComponentAuditTests(unittest.TestCase):
     def test_registry_and_dependency_order(self):
         paths, ordered, roots = audit.validate_sources()
-        self.assertEqual(len(paths), 44)
-        self.assertEqual(len(roots), 301)
+        self.assertEqual(len(paths), 48)
+        self.assertEqual(len(roots), 329)
         self.assertTrue(set(audit.EXACT_TARGETS) <= roots)
         self.assertEqual([p for p in ordered if p in paths], paths)
 
@@ -52,6 +52,10 @@ class LowerComponentAuditTests(unittest.TestCase):
         self.assertTrue(status["entropy_partition_verified"])
         self.assertTrue(status["comparable_entropy_trim_verified"])
         self.assertTrue(status["separated_trim_size_gap_verified"])
+        self.assertTrue(status["entropy_tier_partition_verified"])
+        self.assertTrue(status["canonical_parity_trim_verified"])
+        self.assertTrue(status["packed_saturation_algebra_verified"])
+        self.assertTrue(status["canonical_group_localization_verified"])
         for flag in ("full_information_gate_verified", "gate_restart_renewal_verified",
                      "entropy_tail_lower_verified", "entropy_tail_law_verified",
                      "closed_quantile_minimax_verified"):

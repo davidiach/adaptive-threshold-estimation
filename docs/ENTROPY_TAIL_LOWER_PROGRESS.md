@@ -54,7 +54,11 @@ six proved targets.
 | [LabelAllocation](../lean/ThresholdHC/EntropyTailLower/LabelAllocation.lean) | Combines support-independent label bounds through the actual normalized certificates and joint budgets. Allows atoms, empty bands, and zero allocations. |
 | [GlobalCosts](../lean/ThresholdHC/EntropyTailLower/GlobalCosts.lean) | Combines label and annular bounds to cover every canonical band. For `R = 256 bias + sqrt(2^32 exp(48) variance)`, proves finite allocation cost at most `65 R`, ordinary cost of any optimal finite selection at most `2080 R`, and rarity-capped ignored mass at most `260 R`. Proves the exact ordinary/ignored penalty decomposition. |
 | [RetainedGap](../lean/ThresholdHC/EntropyTailLower/RetainedGap.lean) | Derives the exact entropy decrement when erasing a retained band and its logarithmic lower bound. Optimality gives `sqrt(rho) (1 + log(A/a_j)) <= 2 b_j sqrt(F)` for each positive retained band. |
-| [EntropyPacking](../lean/ThresholdHC/EntropyTailLower/EntropyPacking.lean) | Proves finite entropy decomposition and geometric reference estimates, comparable-cost bounds, and factor-64 entropy preservation when at least half the comparable bands remain. The integer trimming size and gap amplification are checked under explicit separation premises; the actual tier/parity construction and saturation allocation remain. |
+| [EntropyPacking](../lean/ThresholdHC/EntropyTailLower/EntropyPacking.lean) | Proves finite entropy decomposition and geometric reference estimates, comparable-cost bounds, and factor-64 entropy preservation when at least half the comparable bands remain. The integer trimming size and gap amplification are checked under explicit separation premises; the complete retained-band packing and allocation remain. |
+| [EntropyTiers](../lean/ThresholdHC/EntropyTailLower/EntropyTiers.lean) | Constructs factor-four cost tiers for any nonempty finite positive vector and proves total entropy at most nine times the sum of tier entropies. Includes empty fibers in the finite partition. |
+| [SeparatedGroups](../lean/ThresholdHC/EntropyTailLower/SeparatedGroups.lean) | Derives separation and trimming gap amplification for sorted canonical bands of one parity, plus entropy reindexing, bipartition, and finite-sum superadditivity. |
+| [PackedAllocation](../lean/ThresholdHC/EntropyTailLower/PackedAllocation.lean) | Proves the numeric saturation estimate `lam^2 G^2 <= 4096 tau w_min/a^2` under explicit mass/gap premises, retaining the actual largest endpoint. Proves conditional rarity and eligible square-root-cost bounds. |
+| [CanonicalGroups](../lean/ThresholdHC/EntropyTailLower/CanonicalGroups.lean) | Constructs normalized laws on disjoint finite unions of original canonical bands, with exact band-mass and entropy rescaling. Converts explicit unnormalized rarity and saturated-cost premises into the checked localized annular bound. |
 
 The supporting weighted-sign target and its dependency hashes were recorded
 before accepting its proof in
@@ -64,13 +68,13 @@ No existing specification, manuscript, or published evidence is changed.
 
 ## Remaining mathematical work
 
-1. Construct the retained-band entropy packing: split positive cost weights
-   into comparable groups and parity classes, instantiate the checked trimming
-   bounds, and allocate rarity while preserving the actual minimum-band-mass
-   saturation condition. The logarithmic retained-gap condition and the
-   deterministic entropy/trimming helpers are now checked. The localized
-   annular theorem still requires the actual component choices and cost
-   comparisons. Ordinary, capped ignored, and first-six-band costs are bounded.
+1. Combine the checked tier partition, parity separation, and trimming into
+   the retained-band packing for an optimal finite selection. Establish its
+   total captured entropy and actual maximum-endpoint/minimum-mass estimates,
+   choose the joint rarity and eligible costs, and apply the canonical-group
+   localization theorem. Its measure normalization is now constructed; the
+   remaining task is to discharge its explicit numeric premises for this
+   packing. Ordinary, capped ignored, and first-six-band costs are bounded.
 
 2. Prove the canonical finite-prefix comparison and limit for arbitrary laws,
    maintaining the original selection functional and global rarity budget.
@@ -224,9 +228,31 @@ group, removing `ceil(log_4 n)` indices leaves at least half. Removing those
 indices from the smallest-gap end of an explicitly separated ordered family
 gains a factor `n` in its minimum retained gap.
 
-These are deterministic ingredients. The construction of the actual
-cost-tier/parity groups, their canonical separation, the saturated component
-allocation, and the resulting retained-entropy lower bound remain unproved.
+These deterministic ingredients now feed the tier and canonical-group
+constructions below. Their combination into the complete saturated packing
+and the resulting retained-entropy lower bound remains unproved.
+
+### Tier partitions and normalized canonical groups
+
+Every nonempty finite positive cost vector admits an actual partition into
+factor-four tiers whose entropies sum to at least one ninth of the original
+entropy. The proof uses finite geometric reference sums and a cardinality
+split. Sorted canonical bands with one index parity have endpoint separation
+at least four, so the checked trimming gap estimate now applies to them.
+
+The numeric saturation lemma retains `tau w_min/a^2`, where `a` is the
+component's actual largest endpoint and `w_min` bounds every original band
+mass from below. The conditional rarity cap uses `G >= tau/a^2`. These
+premises must still be established for the assembled retained-band packing.
+
+For any disjoint finite canonical groups satisfying the explicit premises,
+the canonical-group theorem constructs the normalized restrictions of the
+original probability law, transfers them to the small-gap domain, and proves
+the exact normalized band masses and entropy. Positive allocated rarities
+must be at most one quarter of each component mass and sum to at most the
+global rarity. Eligible costs satisfying the unnormalized saturated bound
+then sum to at most `256 bias + sqrt(2^32 exp(48) variance)`. No separate
+conditional work budgets or rounded observation experiment are assumed.
 
 ## Verification
 
@@ -238,10 +264,10 @@ python -m unittest discover -s tools -p 'test_entropy_tail_lower_components.py' 
 ```
 
 The default rebuilds the entire local dependency closure. With
-`--cached-dependencies`, it rebuilds the forty-four supporting modules, records the source
+`--cached-dependencies`, it rebuilds the forty-eight supporting modules, records the source
 hashes and reused local artifact hashes, and explicitly reports that a full
-dependency rebuild was not performed. Both modes check seventy-six exact types and
-all 301 declaration roots, permitting only `propext`, `Classical.choice`,
+dependency rebuild was not performed. Both modes check eighty-six exact types and
+all 329 declaration roots, permitting only `propext`, `Classical.choice`,
 and `Quot.sound`. Fresh logs and status go under
 `.runtime/entropy-tail-lower-components/`; published historical records are
 preserved. The success report always keeps `entropy_tail_lower_verified`,
@@ -503,3 +529,29 @@ separation, proving the saturated rarity allocation, the canonical
 finite-prefix comparison and limit, and final lower/law assembly remain
 outside this checkpoint. The canonical completeness check still rejects
 `entropy_tail_lower` and `entropy_tail_law`.
+
+
+### Tier partitions and canonical-group checkpoint, 1 November 2026
+
+The cached-dependency audit passed in
+`.runtime/entropy-tail-lower-components/20261101T184006836292Z/`: all forty-eight
+supporting modules were rebuilt, all eighty-six exact types checked, and all
+329 declaration roots had only the permitted axioms. The closure contains
+432 local modules, with 384 dependencies reused and hashed. The reused local
+dependency sources match the `entropy-tail-integrated` cache checkout byte
+for byte. This is not a full dependency rebuild. All nine audit regression
+tests, frozen-source verification, the proof-escape scan of 718 Lean sources,
+documentation file links, and whitespace checks passed.
+
+Actual factor-four cost tiers capture at least one ninth of finite positive
+cost entropy. Sorted canonical parity groups satisfy separation and the
+trimming gap bound. The numeric saturation estimate retains the actual
+largest endpoint in `tau w_min/a^2`. The group-law adapter constructs the
+normalized restrictions of the original law on disjoint finite unions of
+canonical bands and proves their exact mass and entropy rescaling.
+
+Combining these ingredients into the complete retained-band packing and
+joint allocation, the one-sided finite-prefix comparison and vanishing-tail
+limit, and final lower/law assembly remain outside this checkpoint. The
+canonical completeness check still rejects `entropy_tail_lower` and
+`entropy_tail_law`.

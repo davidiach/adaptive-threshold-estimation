@@ -1,7 +1,7 @@
 """Audit supporting lemmas for the unfinished entropy-tail lower bound.
 
 Default: rebuild the entire local dependency closure. --cached-dependencies
-rebuilds only the forty-four supporting modules and records the reused artifact hashes.
+rebuilds only the forty-eight supporting modules and records the reused artifact hashes.
 Both modes check the frozen weighted-sign target, the exact certificate
 reduction, and every new declaration's transitive axioms. Neither mode proves
 the statistical lower bound or the two-sided entropy-tail/quantile laws.
@@ -37,7 +37,8 @@ MODULES = ("Specification", "WeightedOverlap", "WeightedSign", "WeightedEstimati
            "ComponentPriors", "ComponentLocalization", "LocalizationAlgebra", "LocalizedAnnular",
            "CanonicalBands", "DyadicMass", "EntropyIncrement", "FiniteSelection",
            "FiniteAllocation", "CertificateLabel", "LargeGapEntropy", "LabelAllocation", "GlobalCosts",
-           "RetainedGap", "EntropyPacking")
+           "RetainedGap", "EntropyPacking",
+           "EntropyTiers", "SeparatedGroups", "PackedAllocation", "CanonicalGroups")
 FREEZE = ROOT / "tools/entropy_tail_lower_specification_freeze.json"
 FROZEN = {"lean/ThresholdHC/EntropyTailLower/Specification.lean":
           "dfa2367c933f1cdbeeb82ecca9e92ca8a512d98de28a54cdee9c741b7acd3461"}
@@ -767,6 +768,73 @@ EXACT_TARGETS = {
     (4:ℝ)^k*b ⟨i.val+k,hik⟩ ≤ b i) → ∀ i : Fin (n-t),
     (n:ℝ)*δ ≤ b ⟨i.val,by omega⟩
  """,
+    PREFIX + 'exists_entropy_tier_partition': """
+  ∀ {I : Type} [Fintype I] [Nonempty I] (a : I → ℝ), (∀ i, 0 < a i) →
+  ∃ (K : ℕ) (p : I → Fin K) (c : Fin K → ℝ),
+  (∀ k, 0 < c k) ∧ (∀ i, c (p i) < a i ∧ a i ≤ 4*c (p i)) ∧
+  EntropyTailQuantile.costEntropy a ≤
+    9*∑ k, EntropyTailQuantile.costEntropy (fun i => if p i = k then a i else 0)
+ """,
+    PREFIX + 'canonical_parity_separation': """
+  ∀ {n : ℕ} (j : Fin n → ℕ), StrictMono j →
+  (∀ i k, j i % 2 = j k % 2) → ∀ i k : Fin n, k.val = i.val+1 →
+    4*((1/2:ℝ)^(j k+1)) ≤ (1/2:ℝ)^(j i+1)
+ """,
+    PREFIX + 'sorted_canonical_trim_gap': """
+  ∀ S : Finset ℕ, (∀ i ∈ S, ∀ j ∈ S, i % 2 = j % 2) →
+  ∀ δ : ℝ, 0 ≤ δ → (∀ j ∈ S, δ ≤ (1/2:ℝ)^(j+1)) →
+  ∀ i : Fin (S.card-Nat.clog 4 S.card),
+    (S.card:ℝ)*δ ≤ (1/2:ℝ)^(S.orderEmbOfFin rfl ⟨i.val,by omega⟩+1)
+ """,
+    PREFIX + 'costEntropy_sum_superadditive': """
+  ∀ {I T : Type} [Fintype I] [Fintype T] (a : T → I → ℝ),
+  (∀ t i, 0 ≤ a t i) → (∑ t, EntropyTailQuantile.costEntropy (a t)) ≤
+    EntropyTailQuantile.costEntropy (fun i => ∑ t, a t i)
+ """,
+    PREFIX + 'packed_saturation_numeric': """
+  ∀ τ w a c b lam G : ℝ, 0 < a → 0 ≤ c → 0 ≤ b → 0 ≤ lam → 0 ≤ G →
+  c*a^2 ≤ τ → c*b^2 ≤ w → lam*G ≤ 64*c*b →
+    lam^2*G^2 ≤ 4096*(τ*w/a^2)
+ """,
+    PREFIX + 'packed_rarity_cap': """
+  ∀ τ w a G θ : ℝ, 0 < G → 0 ≤ w → w ≤ τ → τ/a^2 ≤ G →
+  θ*G ≤ (τ*w/a^2)/4 → θ ≤ τ/4
+ """,
+    PREFIX + 'packed_min_cost': """
+  ∀ θ G B : ℝ, 0 ≤ θ → 0 ≤ G → 0 < B →
+  0 ≤ min θ (Real.sqrt (θ*G/B)) ∧ min θ (Real.sqrt (θ*G/B)) ≤ θ ∧
+    (min θ (Real.sqrt (θ*G/B)))^2*B ≤ θ*G
+ """,
+    PREFIX + 'canonicalGroup_mass': """
+  ∀ {K : ℕ} (μ : MeasureTheory.Measure Tier6.Gap) [MeasureTheory.IsFiniteMeasure μ]
+  (j : Fin K → ℕ), Function.Injective j →
+    μ.real (⋃ i, EntropyTail.band (j i)) = ∑ i, μ.real (EntropyTail.band (j i))
+ """,
+    PREFIX + 'normalized_annular_cost': """
+  ∀ τ s a θ G : ℝ, 0 < τ → 0 < a →
+  τ^2*min ((s/τ)/a^2) ((θ/τ)*((1/τ)*G)) = min (τ*s/a^2) (θ*G)
+ """,
+    PREFIX + 'certificate_canonical_group_bound': """
+  ∀ {T : Type} [Fintype T] {N : ℕ} (μ : MeasureTheory.Measure Tier6.Gap)
+  [MeasureTheory.IsProbabilityMeasure μ] (ρ B : ℝ), 0 < B → 0 < N →
+  ∀ C : StoppingProgram.Certificate N, StoppingProgram.Feasible μ ρ B C →
+  ∀ (K : T → ℕ) (j : (i : T) → Fin (K i) → ℕ),
+  (∀ i, Function.Injective (j i)) →
+  (∀ i l, i ≠ l → ∀ k m, j i k ≠ j l m) →
+  (∀ i, μ (⋃ k, EntropyTail.band (j i k)) ≠ 0) →
+  ∀ a : T → ℝ, (∀ i, 0 < a i) → (∀ i, a i ≤ 1/128) →
+  (∀ i k, (1/2:ℝ)^(j i k+1) ≤ a i) →
+  (∀ i k l, l.val = k.val+1 → 4*((1/2:ℝ)^(j i l+1)) ≤ (1/2:ℝ)^(j i k+1)) →
+  ∀ θ s u : T → ℝ, (∀ i, 0 < θ i) →
+  (∀ i, θ i ≤ μ.real (⋃ k, EntropyTail.band (j i k))/4) → (∑ i, θ i) ≤ ρ →
+  (∀ i, s i ≤ μ.real (⋃ k, EntropyTail.band (j i k))) →
+  (∀ i k, s i ≤ μ.real (EntropyTail.band (j i k))) →
+  (∀ i, 0 ≤ u i) → (∀ i, u i ≤ θ i) →
+  (∀ i, (u i)^2*B ≤ min (μ.real (⋃ k, EntropyTail.band (j i k))*s i/(a i)^2)
+    (θ i*EntropyTailQuantile.costEntropy
+      (fun k => μ.real (EntropyTail.band (j i k))/((1/2:ℝ)^(j i k+1))^2))) →
+  (∑ i, u i) ≤ 256*C.bias+Real.sqrt ((4294967296*Real.exp 48)*C.variance)
+ """,
 }
 SCOPE = (
     "Weighted observable sign-testing entropy (coefficient 4096), actual restart "
@@ -817,10 +885,17 @@ SCOPE = (
     "finite groups, a geometric reference bound, comparable-cost entropy "
     "estimates, and a factor-64 entropy trimming bound. Removing ceil(log_4 n) "
     "indices leaves at least half a nonempty group; an explicitly separated "
-    "family gains the required factor n in its minimum gap. The actual "
-    "cost-tier/parity group construction, saturation and rarity allocation, "
-    "canonical finite-prefix comparison and limit, and final lower bound "
-    "remain obligations."
+    "family gains the required factor n in its minimum gap. Finite positive "
+    "vectors now admit actual factor-four cost tiers with total entropy at "
+    "most nine times their group entropy. Sorted canonical parity groups "
+    "satisfy the required separation and trimming gap bound. Numeric "
+    "saturation retains the component's actual largest endpoint and minimum "
+    "band mass. The canonical-group adapter constructs actual normalized "
+    "union-of-band laws and derives the localized cost bound from explicit "
+    "unnormalized rarity, mass and saturation premises. Combining the "
+    "tiers, parity and trimming into the complete retained-band packing and "
+    "allocation, the one-sided finite-prefix comparison and tail limit, "
+    "and the final lower/law assembly remain obligations."
 )
 
 
@@ -865,6 +940,10 @@ def scope_status(verified: bool = False) -> dict:
                 entropy_partition_verified=verified,
                 comparable_entropy_trim_verified=verified,
                 separated_trim_size_gap_verified=verified,
+                entropy_tier_partition_verified=verified,
+                canonical_parity_trim_verified=verified,
+                packed_saturation_algebra_verified=verified,
+                canonical_group_localization_verified=verified,
                 full_information_gate_verified=False, gate_restart_renewal_verified=False,
                 entropy_tail_lower_verified=False, entropy_tail_law_verified=False,
                 closed_quantile_minimax_verified=False)
