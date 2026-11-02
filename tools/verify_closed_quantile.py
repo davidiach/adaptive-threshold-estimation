@@ -1,7 +1,9 @@
 """Audit the universal closed-quantile minimax corollary in the original model.
 
-Default: rebuild the complete local dependency closure. Cached mode rebuilds
-the two registered modules and binds reused native artifacts to the run.
+Default: rebuild the complete local dependency closure. Cached mode first has
+Lake confirm (or, with --build-dependencies, build) the reused dependencies
+from current sources, then rebuilds the two registered modules and binds the
+reused native artifacts to the run.
 The explicit paper lower coefficient and direct finite-law proof are not targets.
 """
 from __future__ import annotations
@@ -18,7 +20,10 @@ from verify_blind_upper_components import (
     validate_dependency_freeze, validate_reports,
 )
 from verify_entropy_tail_components import dependency_order
-from verify_entropy_tail import cached_artifact_hashes, validate_stability
+from verify_entropy_tail import (
+    cached_artifact_hashes, check_dependencies, native_commands, validate_stability,
+    write_audit_source,
+)
 
 ROOT=Path(__file__).resolve().parents[1]
 LEAN=ROOT/'lean'
@@ -68,10 +73,14 @@ def main() -> int:
     parser.add_argument('--lake',default='lake')
     parser.add_argument('--output-dir',type=Path)
     parser.add_argument('--cached-dependencies',action='store_true')
+    parser.add_argument('--build-dependencies',action='store_true',
+                        help='With --cached-dependencies, let Lake build missing or stale reused '
+                             'dependencies instead of only checking that they are up to date')
     args=parser.parse_args()
+    if args.build_dependencies and not args.cached_dependencies:
+        parser.error('--build-dependencies requires --cached-dependencies')
     paths,ordered,roots=validate_sources()
     rebuilt=paths if args.cached_dependencies else ordered
-    cached=cached_artifact_hashes(ordered,rebuilt) if args.cached_dependencies else {}
     protected=set(ordered)|{Path(__file__).resolve(),FREEZE,
         ROOT/'tools/verify_blind_upper_components.py',ROOT/'tools/verify_tier6.py',
         ROOT/'tools/verify_entropy_tail_components.py',ROOT/'tools/verify_entropy_tail.py',
@@ -83,12 +92,10 @@ def main() -> int:
     source=''.join('import '+PREFIX+m+'\n' for m in MODULES)+'\n'
     source+=''.join(f'example : {t} := {d}\n' for d,t in EXACT_TARGETS.items())
     source+='\n'+''.join('#print axioms '+r+'\n' for r in sorted(roots))
-    audit.parent.mkdir(exist_ok=True)
-    audit.write_text(source,encoding='utf-8')
-    (output/'ExactAudit.lean').write_text(source,encoding='utf-8')
-    audit_hash=sha(audit)
     status=dict(valid=False,scope=SCOPE,source_sha256=hashes,
-        cached_dependency_artifact_sha256=cached,audit_source_sha256=audit_hash,
+        cached_dependencies=args.cached_dependencies,
+        build_mode='native_registered_modules' if args.cached_dependencies else 'native_full_closure',
+        dependency_check=None,cached_dependency_artifact_sha256={},
         exact_targets=EXACT_TARGETS,exact_targets_checked=0,roots=sorted(roots),
         closed_quantile_law_verified=False,direct_finite_law_proof_verified=False,
         paper_explicit_lower_constant_verified=False,
@@ -99,12 +106,22 @@ def main() -> int:
         (output/'status.json').write_text(json.dumps(status,indent=2)+'\n',encoding='utf-8')
 
     save()
-    commands=[]
-    for path in rebuilt:
-        rel=path.relative_to(LEAN)
-        obj=Path('.lake/build/lib/lean')/rel.with_suffix('.olean')
-        (LEAN/obj).parent.mkdir(parents=True,exist_ok=True)
-        commands.append([args.lake,'env','lean','-j','1','-o',str(obj),str(rel)])
+    cached={}
+    if args.cached_dependencies:
+        status['dependency_check']=check_dependencies(args.lake,rebuilt,output,args.build_dependencies)
+        save()
+        if status['dependency_check'] and status['dependency_check']['exit_code']:
+            return status['dependency_check']['exit_code']
+        cached=cached_artifact_hashes(ordered,rebuilt)
+        status['cached_dependency_artifact_sha256']=cached
+        save()
+    audit.parent.mkdir(exist_ok=True)
+    write_audit_source(audit,source)
+    (output/'ExactAudit.lean').write_bytes(audit.read_bytes())
+    audit_hash=sha(audit)
+    status['audit_source_sha256']=audit_hash
+    save()
+    commands=native_commands(args.lake,rebuilt)
     commands.append([args.lake,'env','lean','-j','1',str(audit.relative_to(LEAN))])
     for i,command in enumerate(commands,1):
         result=subprocess.run(command,cwd=LEAN,capture_output=True,text=True,encoding='utf-8')

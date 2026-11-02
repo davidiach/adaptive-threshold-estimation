@@ -118,6 +118,24 @@ class LowerComponentAuditTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     audit.validate_reports(report, 0, {root})
 
+    def test_cached_mode_uses_shared_dependency_guards(self):
+        import verify_entropy_tail as canonical
+        for name in ("cached_artifact_hashes", "check_dependencies", "native_commands",
+                     "validate_stability", "write_audit_source"):
+            with self.subTest(name=name):
+                self.assertIs(getattr(audit, name), getattr(canonical, name))
+        paths, ordered, _ = audit.validate_sources()
+        rebuilt = [p for p in ordered if p in paths]
+        frontier = canonical.dependency_frontier(rebuilt)
+        reached = set(canonical.dependency_order([canonical.module_path(n) for n in frontier]))
+        self.assertEqual(reached, set(ordered) - set(paths))
+
+    def test_build_dependencies_requires_cached_mode(self):
+        with patch("sys.argv", ["verify_entropy_tail_lower_components.py", "--build-dependencies"]), \
+                patch("sys.stderr"), self.assertRaises(SystemExit) as raised:
+            audit.main()
+        self.assertEqual(raised.exception.code, 2)
+
     def test_failed_lean_exit_is_rejected_even_with_valid_report(self):
         root = audit.PREFIX + "weighted_sign_entropy"
         with self.assertRaisesRegex(ValueError, "unsuccessfully"):

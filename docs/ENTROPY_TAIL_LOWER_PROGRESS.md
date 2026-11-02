@@ -286,7 +286,9 @@ python -m unittest discover -s tools -p 'test_entropy_tail_lower_components.py' 
 ```
 
 The default rebuilds the entire local dependency closure. With
-`--cached-dependencies`, it rebuilds the fifty-seven supporting modules, records the source
+`--cached-dependencies`, Lake must first confirm that every reused dependency
+is up to date (`--build-dependencies` lets it build them instead); the audit
+then rebuilds the fifty-seven supporting modules, records the source
 hashes and reused local artifact hashes, and explicitly reports that a full
 dependency rebuild was not performed. Both modes check eighty-nine exact types and
 all 368 declaration roots, permitting only `propext`, `Classical.choice`,

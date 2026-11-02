@@ -1,7 +1,9 @@
 """Audit the finite-certificate proof of the entropy-tail lower bound.
 
 Default: rebuild the entire local dependency closure. --cached-dependencies
-rebuilds only the fifty-seven supporting modules and records the reused artifact hashes.
+first has Lake confirm (or, with --build-dependencies, build) the reused
+dependencies from current sources, then rebuilds only the fifty-seven
+supporting modules and records the reused artifact hashes.
 Both modes check the frozen weighted-sign target, the exact certificate
 reduction, and every new declaration's transitive axioms. The canonical statistical lower target and
 two-sided law are audited separately by verify_entropy_tail.py.
@@ -20,7 +22,10 @@ from verify_blind_upper_components import (
     validate_dependency_freeze, validate_reports,
 )
 from verify_entropy_tail_components import dependency_order
-from verify_entropy_tail import validate_sources as validate_canonical_sources
+from verify_entropy_tail import (
+    cached_artifact_hashes, check_dependencies, native_commands, validate_stability,
+    write_audit_source, validate_sources as validate_canonical_sources,
+)
 from stopping_program_lock import validate_stopping_specification
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -1006,7 +1011,12 @@ def main() -> int:
     parser.add_argument("--lake", default="lake")
     parser.add_argument("--output-dir", type=Path)
     parser.add_argument("--cached-dependencies", action="store_true")
+    parser.add_argument("--build-dependencies", action="store_true",
+                        help="With --cached-dependencies, let Lake build missing or stale reused "
+                             "dependencies instead of only checking that they are up to date")
     args = parser.parse_args()
+    if args.build_dependencies and not args.cached_dependencies:
+        parser.error("--build-dependencies requires --cached-dependencies")
     paths, ordered, roots = validate_sources()
     rebuilt = [p for p in ordered if p in paths] if args.cached_dependencies else ordered
     protected = set(ordered) | {Path(__file__).resolve(), FREEZE,
@@ -1016,14 +1026,6 @@ def main() -> int:
         ROOT / "tools/stopping_program_specification_freeze.json",
         LEAN / "lean-toolchain", LEAN / "lake-manifest.json", LEAN / "lakefile.toml"}
     hashes = {p.relative_to(ROOT).as_posix(): sha(p) for p in sorted(protected)}
-    cached = {}
-    if args.cached_dependencies:
-        for path in set(ordered) - set(rebuilt):
-            obj = LEAN / ".lake/build/lib/lean" / path.relative_to(LEAN).with_suffix(".olean")
-            if not obj.is_file():
-                raise ValueError("Missing cached dependency: " + str(obj))
-            for artifact in obj.parent.glob(obj.name + "*"):
-                cached[artifact.relative_to(ROOT).as_posix()] = sha(artifact)
     output = args.output_dir or ROOT / ".runtime/entropy-tail-lower-components" / datetime.now(
         timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
     output.mkdir(parents=True, exist_ok=False)
@@ -1034,13 +1036,12 @@ def main() -> int:
     source += "\n" + "".join("#print axioms " + r + "\n" for r in sorted(roots))
     if FORBIDDEN.search(strip_comments(source)):
         raise ValueError("Forbidden generated audit source")
-    audit.parent.mkdir(exist_ok=True)
-    audit.write_text(source, encoding="utf-8")
-    (output / "ExactAudit.lean").write_text(source, encoding="utf-8")
-    audit_hash = sha(audit)
     status = scope_status()
-    status.update(source_sha256=hashes, cached_dependency_artifact_sha256=cached,
-                  audit_source_sha256=audit_hash, exact_targets=EXACT_TARGETS,
+    status.update(source_sha256=hashes, cached_dependencies=args.cached_dependencies,
+                  build_mode="native_registered_modules" if args.cached_dependencies
+                  else "native_full_closure",
+                  dependency_check=None, cached_dependency_artifact_sha256={},
+                  exact_targets=EXACT_TARGETS,
                   exact_types_checked=0, roots=sorted(roots), commands=[],
                   local_dependency_rebuild_performed=not args.cached_dependencies,
                   module_count=len(paths), rebuilt_local_modules=len(rebuilt))
@@ -1049,12 +1050,22 @@ def main() -> int:
         (output / "status.json").write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
 
     save()
-    commands = []
-    for path in rebuilt:
-        relative = path.relative_to(LEAN)
-        obj = Path(".lake/build/lib/lean") / relative.with_suffix(".olean")
-        (LEAN / obj).parent.mkdir(parents=True, exist_ok=True)
-        commands.append([args.lake, "env", "lean", "-j", "1", "-o", str(obj), str(relative)])
+    cached = {}
+    if args.cached_dependencies:
+        status["dependency_check"] = check_dependencies(args.lake, rebuilt, output, args.build_dependencies)
+        save()
+        if status["dependency_check"] and status["dependency_check"]["exit_code"]:
+            return status["dependency_check"]["exit_code"]
+        cached = cached_artifact_hashes(ordered, rebuilt)
+        status["cached_dependency_artifact_sha256"] = cached
+        save()
+    audit.parent.mkdir(exist_ok=True)
+    write_audit_source(audit, source)
+    (output / "ExactAudit.lean").write_bytes(audit.read_bytes())
+    audit_hash = sha(audit)
+    status["audit_source_sha256"] = audit_hash
+    save()
+    commands = native_commands(args.lake, rebuilt)
     commands.append([args.lake, "env", "lean", "-j", "1", str(audit.relative_to(LEAN))])
     for i, command in enumerate(commands, 1):
         result = subprocess.run(command, cwd=LEAN, capture_output=True, text=True, encoding="utf-8")
@@ -1068,8 +1079,7 @@ def main() -> int:
             return result.returncode
     status["axioms"] = validate_reports(report, result.returncode, roots)
     validate_sources()
-    if (any(sha(ROOT / p) != h for p, h in (hashes | cached).items()) or sha(audit) != audit_hash):
-        raise ValueError("Protected source or reused dependency artifact changed during audit")
+    validate_stability(hashes | cached, audit, audit_hash)
     status.update(scope_status(True), exact_types_checked=len(EXACT_TARGETS), declaration_count=len(roots))
     save()
     print(json.dumps(dict(valid=True, modules=len(paths), declarations=len(roots),

@@ -106,21 +106,97 @@ def validate_sources() -> tuple[list[Path], set[str]]:
     return paths, set(roots)
 
 
+# Compiler outputs that Lean loads for an imported module, as suffixes of `.olean`.
+# Lake's `.hash` metadata is not a compiler output and is not bound.
+NATIVE_COMPANIONS = ('', '.private', '.server')
+
+
+def native_object(path: Path) -> Path:
+    """The native `.olean` of a local source, relative to the Lean project."""
+    return Path('.lake/build/lib/lean') / path.relative_to(LEAN).with_suffix('.olean')
+
+
 def cached_artifact_hashes(paths: list[Path], rebuilt: list[Path]) -> dict[str, str]:
-    """Bind every reused local dependency to its native compiler artifacts."""
+    """Bind every reused local dependency to its native compiler artifacts.
+
+    A leftover temporary file from an interrupted write fails closed. Keys are
+    sorted, so the record is independent of Python's hash seed.
+    """
     cached = {}
-    for path in set(paths) - set(rebuilt):
-        obj = LEAN / '.lake/build/lib/lean' / path.relative_to(LEAN).with_suffix('.olean')
+    for path in sorted(set(paths) - set(rebuilt)):
+        obj = LEAN / native_object(path)
         if not obj.is_file():
             raise ValueError('Missing cached dependency: ' + str(obj))
-        for artifact in obj.parent.glob(obj.name + '*'):
-            cached[artifact.relative_to(ROOT).as_posix()] = sha(artifact)
+        for artifact in sorted(obj.parent.glob(obj.name + '*')):
+            suffix = artifact.name[len(obj.name):]
+            if '.tmp' in suffix:
+                raise ValueError('Interrupted native artifact write: ' + str(artifact))
+            if suffix in NATIVE_COMPANIONS:
+                cached[artifact.relative_to(ROOT).as_posix()] = sha(artifact)
     return cached
 
 
 def validate_stability(hashes: dict[str, str], audit: Path, audit_hash: str) -> None:
     if any(sha(ROOT/p) != h for p, h in hashes.items()) or sha(audit) != audit_hash:
         raise ValueError('Protected source or reused dependency artifact changed during audit')
+
+
+def dependency_frontier(rebuilt: list[Path]) -> list[str]:
+    """Local modules imported by the rebuilt modules but reused from earlier builds.
+
+    Every reused local dependency is one of these or a transitive import of one.
+    """
+    rebuilt_paths = set(rebuilt)
+    found = set()
+    for path in rebuilt:
+        for name in imports(strip_comments(path.read_text(encoding='utf-8'))):
+            if name.startswith('ThresholdHC.') and module_path(name) not in rebuilt_paths:
+                found.add(name)
+    return sorted(found)
+
+
+def dependency_command(lake: str, rebuilt: list[Path], build: bool) -> list[str] | None:
+    """Ask Lake to confirm, or with build=True to bring, every reused dependency up to date.
+
+    Lake compares current sources with its traces, so an artifact compiled from
+    different or older sources is rejected (or rebuilt) instead of being trusted.
+    """
+    frontier = dependency_frontier(rebuilt)
+    if not frontier:
+        return None
+    return [lake, 'build', *([] if build else ['--no-build']), *frontier]
+
+
+def check_dependencies(lake: str, rebuilt: list[Path], output: Path, build: bool) -> dict | None:
+    command = dependency_command(lake, rebuilt, build)
+    if command is None:
+        return None
+    result = subprocess.run(command, cwd=LEAN, capture_output=True, text=True, encoding='utf-8')
+    text = result.stdout+result.stderr
+    (output/'dependencies.log').write_text(text, encoding='utf-8')
+    mode = 'build' if build else 'up-to-date check'
+    print(f'reused dependencies, Lake {mode} of {len(dependency_frontier(rebuilt))} imported modules: '
+          f'exit {result.returncode}', flush=True)
+    if result.returncode:
+        print(text, flush=True)
+        print('Reused dependencies are missing or not up to date. Run the default Lake build '
+              'first, or pass --build-dependencies.', flush=True)
+    return dict(command=command, exit_code=result.returncode)
+
+
+def native_commands(lake: str, rebuilt: list[Path]) -> list[list[str]]:
+    """One single-threaded native compiler run per rebuilt module, in dependency order."""
+    commands = []
+    for path in rebuilt:
+        obj = native_object(path)
+        (LEAN/obj).parent.mkdir(parents=True, exist_ok=True)
+        commands.append([lake, 'env', 'lean', '-j', '1', '-o', str(obj), str(path.relative_to(LEAN))])
+    return commands
+
+
+def write_audit_source(path: Path, source: str) -> None:
+    """Write generated Lean with LF line endings, so its hash is platform independent."""
+    path.write_bytes(source.encode('utf-8'))
 
 
 def main() -> int:
@@ -130,10 +206,15 @@ def main() -> int:
     parser.add_argument('--lake', default='lake')
     parser.add_argument('--cached-dependencies', action='store_true',
                         help='Rebuild registered modules natively and hash reused local artifacts')
+    parser.add_argument('--build-dependencies', action='store_true',
+                        help='With --cached-dependencies, let Lake build missing or stale reused '
+                             'dependencies instead of only checking that they are up to date')
     parser.add_argument('--output-dir', type=Path)
     parser.add_argument('--sequential', action='store_true')
     parser.add_argument('--require-complete', action='store_true')
     args = parser.parse_args()
+    if args.build_dependencies and not args.cached_dependencies:
+        parser.error('--build-dependencies requires --cached-dependencies')
     paths, roots = validate_sources()
     complete = set(PROVED) == set(TARGETS)
     if args.require_complete and not complete:
@@ -141,7 +222,6 @@ def main() -> int:
         return 1
     ordered = dependency_order(paths)
     rebuilt = [p for p in ordered if p in paths]
-    cached = cached_artifact_hashes(ordered, rebuilt) if args.cached_dependencies else {}
     protected = set(ordered) | {
         Path(__file__).resolve(), ROOT/'tools/verify_blind_upper_components.py',
         ROOT/'tools/verify_entropy_tail_components.py',
@@ -158,7 +238,8 @@ def main() -> int:
                   unproved_targets=sorted(set(TARGETS)-set(PROVED)),
                   entropy_tail_law_verified=False, commands=[],
                   cached_dependencies=args.cached_dependencies,
-                  cached_dependency_artifact_sha256=cached,
+                  cached_dependency_artifact_sha256={}, dependency_check=None,
+                  # Lake mode rebuilds only stale dependencies, so no full rebuild is claimed.
                   local_dependency_rebuild_performed=False,
                   build_mode='native_registered_modules' if args.cached_dependencies else 'lake_build')
     status_path = output/'status.json'
@@ -166,23 +247,27 @@ def main() -> int:
     def save():
         status_path.write_text(json.dumps(status, indent=2)+'\n', encoding='utf-8')
     save()
+    cached = {}
+    if args.cached_dependencies:
+        status['dependency_check'] = check_dependencies(args.lake, rebuilt, output, args.build_dependencies)
+        save()
+        if status['dependency_check'] and status['dependency_check']['exit_code']:
+            return status['dependency_check']['exit_code']
+        cached = cached_artifact_hashes(ordered, rebuilt)
+        status['cached_dependency_artifact_sha256'] = cached
+        save()
     audit = LEAN/'.audit/EntropyTail.lean'
     audit.parent.mkdir(exist_ok=True)
-    audit.write_text(''.join('import '+PREFIX+m+'\n' for m in MODULES)+'\n' +
-                     ''.join(f'example : {t} := {d}\n' for d, t in targets.items())+'\n' +
-                     ''.join('#print axioms '+r+'\n' for r in sorted(roots)), encoding='utf-8')
+    write_audit_source(audit, ''.join('import '+PREFIX+m+'\n' for m in MODULES)+'\n' +
+                       ''.join(f'example : {t} := {d}\n' for d, t in targets.items())+'\n' +
+                       ''.join('#print axioms '+r+'\n' for r in sorted(roots)))
     audit_hash = sha(audit)
     (output/'ExactAudit.lean').write_bytes(audit.read_bytes())
     status['audit_source_sha256'] = audit_hash
     save()
     modules = [PREFIX+name for name in MODULES]
     if args.cached_dependencies:
-        commands = []
-        for path in rebuilt:
-            relative = path.relative_to(LEAN)
-            obj = Path('.lake/build/lib/lean') / relative.with_suffix('.olean')
-            (LEAN/obj).parent.mkdir(parents=True, exist_ok=True)
-            commands.append([args.lake, 'env', 'lean', '-j', '1', '-o', str(obj), str(relative)])
+        commands = native_commands(args.lake, rebuilt)
     else:
         commands = ([[args.lake, 'build', m] for m in modules] if args.sequential
                     else [[args.lake, 'build', *modules]])

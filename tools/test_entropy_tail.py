@@ -81,9 +81,19 @@ class EntropyTailAuditTests(unittest.TestCase):
                 obj.write_bytes(b'native-artifact')
                 companion = obj.with_suffix('.olean.private')
                 companion.write_bytes(b'private-companion')
+                server = obj.with_suffix('.olean.server')
+                server.write_bytes(b'server-companion')
+                # Lake metadata is not a compiler output and is not bound.
+                obj.with_suffix('.olean.hash').write_text('123', encoding='utf-8')
                 hashes = audit.cached_artifact_hashes([source, rebuilt], [rebuilt])
                 self.assertEqual(hashes, {p.relative_to(root).as_posix(): audit.sha(p)
-                                          for p in (obj, companion)})
+                                          for p in (obj, companion, server)})
+                self.assertEqual(list(hashes), sorted(hashes))
+                leftover = obj.with_name(obj.name + '.tmp.42740')
+                leftover.write_bytes(b'partial')
+                with self.assertRaisesRegex(ValueError, 'Interrupted native artifact write'):
+                    audit.cached_artifact_hashes([source, rebuilt], [rebuilt])
+                leftover.unlink()
                 generated = root/'ExactAudit.lean'
                 generated.write_text('example : True := trivial', encoding='utf-8')
                 original = audit.sha(generated)
@@ -94,6 +104,56 @@ class EntropyTailAuditTests(unittest.TestCase):
                 generated.write_text('changed audit', encoding='utf-8')
                 with self.assertRaisesRegex(ValueError, 'changed during audit'):
                     audit.validate_stability({}, generated, original)
+
+    def test_reused_dependencies_must_be_current_for_lake(self):
+        paths, _ = audit.validate_sources()
+        ordered = audit.dependency_order(paths)
+        rebuilt = [p for p in ordered if p in paths]
+        frontier = audit.dependency_frontier(rebuilt)
+        self.assertTrue(frontier)
+        self.assertEqual(frontier, sorted(set(frontier)))
+        self.assertFalse({audit.module_path(n) for n in frontier} & set(rebuilt))
+        # Every reused dependency is checked through some imported frontier module.
+        reached = set(audit.dependency_order([audit.module_path(n) for n in frontier]))
+        self.assertTrue(set(ordered) - set(rebuilt) <= reached)
+        self.assertEqual(audit.dependency_command('lake', rebuilt, False),
+                         ['lake', 'build', '--no-build', *frontier])
+        self.assertEqual(audit.dependency_command('lake', rebuilt, True),
+                         ['lake', 'build', *frontier])
+        self.assertIsNone(audit.dependency_command('lake', ordered, False))
+
+    def test_failed_dependency_check_is_recorded(self):
+        paths, _ = audit.validate_sources()
+        rebuilt = [p for p in audit.dependency_order(paths) if p in paths]
+        stale = type('Result', (), dict(returncode=3, stdout='', stderr='out of date'))()
+        with tempfile.TemporaryDirectory() as directory, \
+                patch.object(audit.subprocess, 'run', return_value=stale) as run, \
+                patch('builtins.print'):
+            record = audit.check_dependencies('lake', rebuilt, Path(directory), False)
+            self.assertEqual(record['exit_code'], 3)
+            self.assertIn('--no-build', run.call_args.args[0])
+            self.assertEqual((Path(directory)/'dependencies.log').read_text(encoding='utf-8'),
+                             'out of date')
+
+    def test_native_commands_and_lf_audit_source(self):
+        with tempfile.TemporaryDirectory() as directory:
+            lean = Path(directory)/'lean'
+            source = lean/'ThresholdHC/EntropyTail/Model.lean'
+            with patch.object(audit, 'LEAN', lean):
+                command, = audit.native_commands('lake', [source])
+                self.assertTrue((lean/'.lake/build/lib/lean/ThresholdHC/EntropyTail').is_dir())
+            self.assertEqual(command[:6], ['lake', 'env', 'lean', '-j', '1', '-o'])
+            self.assertEqual(Path(command[6]), Path('.lake/build/lib/lean/ThresholdHC/EntropyTail/Model.olean'))
+            self.assertEqual(Path(command[7]), Path('ThresholdHC/EntropyTail/Model.lean'))
+            generated = Path(directory)/'Audit.lean'
+            audit.write_audit_source(generated, 'import A\n\nexample : True := trivial\n')
+            self.assertEqual(generated.read_bytes(), b'import A\n\nexample : True := trivial\n')
+
+    def test_build_dependencies_requires_cached_mode(self):
+        with patch('sys.argv', ['verify_entropy_tail.py', '--build-dependencies']), \
+                patch('sys.stderr'), self.assertRaises(SystemExit) as raised:
+            audit.main()
+        self.assertEqual(raised.exception.code, 2)
 
     def test_changed_freeze_record_rejected(self):
         record = json.loads(audit.FREEZE.read_text(encoding='utf-8'))

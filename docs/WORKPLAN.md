@@ -31,8 +31,8 @@ rarity allocation, one-sided finite-prefix comparison and vanishing-tail
 limit. The canonical lower and two-sided-law theorems inhabit the original
 frozen specifications. The [completion record](../results/entropy-tail-complete-20261101/README.md)
 records the supporting and eight-target native audits, with reused
-dependencies explicitly identified. Verified increments are in
-[draft PR #38](https://github.com/davidiach/adaptive-threshold-estimation/pull/38).
+dependencies explicitly identified. The proof increments were developed in
+[PR #38](https://github.com/davidiach/adaptive-threshold-estimation/pull/38).
 The proof's conservative lower coefficient does not certify the paper's
 sharper explicit value. Completion of this theorem does not complete the
 other formalization and research work in the table.

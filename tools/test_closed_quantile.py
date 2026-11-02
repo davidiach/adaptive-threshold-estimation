@@ -80,6 +80,23 @@ class ClosedQuantileAuditTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError,'Forbidden proof escape'):
                     audit.validate_sources()
 
+    def test_cached_mode_uses_shared_dependency_guards(self):
+        import verify_entropy_tail as canonical
+        for name in ('cached_artifact_hashes','check_dependencies','native_commands',
+                     'validate_stability','write_audit_source'):
+            with self.subTest(name=name):
+                self.assertIs(getattr(audit,name),getattr(canonical,name))
+        paths,ordered,_=audit.validate_sources()
+        self.assertEqual(canonical.dependency_command('lake',paths,False),
+                         ['lake','build','--no-build','ThresholdHC.EntropyTail.Law',
+                          'ThresholdHC.EntropyTailQuantile.Model'])
+
+    def test_build_dependencies_requires_cached_mode(self):
+        with patch('sys.argv',['verify_closed_quantile.py','--build-dependencies']), \
+                patch('sys.stderr'),self.assertRaises(SystemExit) as raised:
+            audit.main()
+        self.assertEqual(raised.exception.code,2)
+
     def test_incomplete_unsafe_or_failed_reports_rejected(self):
         roots={audit.PREFIX+'ClosedQuantileLawStatement',audit.PREFIX+'closed_quantile_law'}
         lines=[f"'{n}' depends on axioms: [propext, Classical.choice, Quot.sound]" for n in sorted(roots)]
