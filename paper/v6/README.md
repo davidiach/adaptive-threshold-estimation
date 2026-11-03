@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Read the manuscript](paper.pdf) · [Open the LaTeX project](main.tex) · [Build record](#build-record)
+[Read the updated manuscript](builds/entropy-tail-complete-20261101.pdf) · [Open the LaTeX project](main.tex) · [Completion build](#completion-build) · [Preserved build record](#preserved-build-record)
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -41,16 +41,19 @@ Lean checks both directions of the original RMS law, the critical quadratic
 law, the exact Ψ comparison and counterexample, the variational optimizer,
 the unbiased characterization with constants 1/16 and 713, the confidence
 characterization, the magnitude-oracle lower bounds, and the rare-event
-rate above exponent two. It also checks the upper half of the entropy–tail
-law, the closed quantile upper bound for every law, the comparison
+rate above exponent two. It also checks both halves and the full entropy–tail
+law, the two-sided closed quantile rate for every law, the comparison
 $K\le Q\le(1+2\sqrt2)K$, and the stopping-program, fixed-cap
 identification and genie results of §15, each in the scope stated in §18.
 Section 18 states each formal scope and links the fixed source revisions.
 
-The lower half of the entropy–tail law, and hence the two-sided law and the
-two-sided closed quantile form (including its direct proof for finite laws),
-and the rare-event regimes below two are **paper proofs**. They are not
-Lean-formalized and have not had external specialist review. The general-law and finite-gap proofs share
+The sharper explicit entropy–tail lower constant, the direct finite-law
+closed quantile proof and its explicit lower constant, and the rare-event
+regimes below two remain **paper proofs**. The general-law closed-quantile
+corollary is now Lean-checked with conservative universal constants, using
+the completed entropy–tail law and the deterministic comparison. The remaining
+paper proofs have not been Lean-formalized or externally reviewed by specialists.
+The general-law and finite-gap proofs share
 their upper construction and Appendices F–H, so they are one rate
 established by two arguments, not two independent confirmations. The remark
 in §11 on agreement of the power-margin table with the closed quantile form is
@@ -94,7 +97,8 @@ The editorial changes are explicit in the generator:
   verification section adds the above-two Lean result at
   `637fb4a79d20e30415a2cb0e495752603077c0ee`, and the entropy–tail upper
   half, closed quantile upper bound and stopping-program results at
-  `8fb16244ded0d6cebf4ba78e1ad9adae09ef293d`.
+  `8fb16244ded0d6cebf4ba78e1ad9adae09ef293d`. The completed lower half and
+  two-sided law are pinned to `24937929f7c215d0f9b60c45083c0456d3d1fb31`.
 
 [test_build_v6.py](../../tools/test_build_v6.py) checks that every line of
 the finite-gap and general-law versions of the shared appendices is present
@@ -125,7 +129,29 @@ the same way with TeX Live from the Ubuntu 24.04 archive and uploads the PDF
 and log as the `v6-paper` artifact. Typesetting and source checks do not
 constitute a new mathematical proof or independent review.
 
-## Build record
+## Completion build
+
+The [updated PDF](builds/entropy-tail-complete-20261101.pdf) records the
+completed entropy-tail and general-law closed-quantile proofs. Its new theorem
+links are pinned to `24937929f7c215d0f9b60c45083c0456d3d1fb31`. The
+[build record](builds/entropy-tail-complete-20261101.json) identifies every
+TeX source by its exact hash and preserves the earlier PDF's identity.
+
+Two fresh scratch builds with Tectonic 0.17.0 and the fixed source date were
+byte-identical: 136 pages and 788,463 bytes. All 29 fonts are embedded,
+and there are no unresolved references or new TeX warnings. The inherited
+critical-appendix overfull line and bibliography underfull line match the
+unchanged-source baseline under this engine. The changed verification pages
+were rendered and inspected; they have no new layout defects. Different
+engines may paginate differently from the preserved pdfTeX build below.
+
+## Preserved build record
+
+The tracked `paper.pdf` below preserves the earlier published checkpoint.
+The updated sources include the later entropy-tail completion; the
+[manuscript workflow](../../.github/workflows/manuscript.yml) rebuilds them
+in a scratch directory and publishes a `v6-paper` artifact for each matching
+commit. That current artifact is separate from the preserved PDF.
 
 `paper.pdf` was built from the v6 sources at commit
 `ac1fbb75c94f97c90cc0887c4695eae7aece82db` with pdfTeX 1.40.25

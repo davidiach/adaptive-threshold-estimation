@@ -25,25 +25,30 @@ axioms; a successful build alone is not a substitute for that audit.
 | Revealed/selected magnitude-oracle lower bounds | [OracleLower specification](ThresholdHC/OracleLower/Specification.lean), [Full](ThresholdHC/OracleLower/Full.lean) | `python tools/verify_oracle_lower.py --sequential` |
 | Observable rare-event rate above alpha two | [RareAboveTwo specification](ThresholdHC/RareAboveTwo/Specification.lean), [Full](ThresholdHC/RareAboveTwo/Full.lean), [scope guide](../docs/RARE_ABOVE_TWO.md) | `python tools/verify_rare_above_two.py --sequential` |
 | Scalar inequality (Lemma 3) of the 8/5 quantile-selection comparison | [QuantileComparison specification](ThresholdHC/QuantileComparison/Specification.lean), [Scalar](ThresholdHC/QuantileComparison/Scalar.lean) | `python tools/verify_quantile_comparison.py --sequential --require-complete` |
-| Entropy-tail law: upper half and selection-functional properties (the lower half and the law are unproved) | [EntropyTail specification](ThresholdHC/EntropyTail/Specification.lean), [Upper](ThresholdHC/EntropyTail/Upper.lean), [Bridge](ThresholdHC/EntropyTail/Bridge.lean), [HardSelection](ThresholdHC/EntropyTail/HardSelection.lean) | `python tools/verify_entropy_tail.py --sequential` |
+| Full entropy-tail law: both halves and five selection-functional properties | [EntropyTail specification](ThresholdHC/EntropyTail/Specification.lean), [Upper](ThresholdHC/EntropyTail/Upper.lean), [Lower](ThresholdHC/EntropyTail/Lower.lean), [Law](ThresholdHC/EntropyTail/Law.lean), [Bridge](ThresholdHC/EntropyTail/Bridge.lean), [HardSelection](ThresholdHC/EntropyTail/HardSelection.lean) | `python tools/verify_entropy_tail.py --sequential --require-complete` |
+| Complete finite-certificate lower proof: weighted signs, annular localization, retained-band packing and finite-prefix limit | [EntropyTailLower](ThresholdHC/EntropyTailLower/), [proof map and scope](../docs/ENTROPY_TAIL_LOWER_PROGRESS.md) | `python tools/verify_entropy_tail_lower_components.py` |
+| Universal two-sided closed-quantile minimax rate | [ClosedQuantile specification](ThresholdHC/ClosedQuantile/Specification.lean), [Full](ThresholdHC/ClosedQuantile/Full.lean) | `python tools/verify_closed_quantile.py` |
 | Observable entropy-tail and closed-quantile upper theorems ($R\le28000\,\mathcal K$, $R\le30001\,Q$), quantile split and $\mathcal K\le Q\le(1+2\sqrt2)\mathcal K$ | [EntropyTailQuantile specification](ThresholdHC/EntropyTailQuantile/Specification.lean), [UpperTheorem](ThresholdHC/EntropyTailExecution/UpperTheorem.lean), [QuantileComparison](ThresholdHC/EntropyTailQuantile/QuantileComparison.lean) | `python tools/verify_entropy_tail_upper.py` |
 | Robust stopping program ($R\le P_N$, attained four-prior dual, $R\le P_N\le16R$), fixed-cap identification and genie certificates | [StoppingProgram specification](ThresholdHC/StoppingProgram/Specification.lean), [FiniteCertificate](ThresholdHC/StoppingProgram/FiniteCertificate.lean), [CapIdentification](ThresholdHC/CapIdentification/Full.lean), [Genie](ThresholdHC/Genie/) | [Sixteen audits](../docs/VERIFY.md#stopping-program-identification-and-genie-certificates), e.g. `python tools/verify_finite_risk_certificate.py` |
 
-The general-law entropy-tail law (v6 Theorem 13.2) remains a paper proof. Its
-two-sided comparison, both halves and five properties of the selection functional
-are locked as Lean target types. Six are proved: the upper half, through the
-additive EntropyTailQuantile development and a bridge showing that its
-selection functional equals the locked one on every finite law, and the five
-properties (hard selection, the elementary bounds, the single-atom and
-small-budget values and nonvacuity). The lower half and the law are not.
+The general-law entropy-tail law (v6 Theorem 13.2) is now Lean-checked
+against all eight frozen target types: the two-sided comparison, both halves,
+hard selection, elementary bounds, single-atom and small-budget values, and
+nonvacuity. The upper half uses the observable EntropyTailQuantile development;
+the lower half uses finite certificates and the additive EntropyTailLower
+development. The constants are conservative and the original experiment is
+unchanged. See the [completion evidence](../results/entropy-tail-complete-20261101/README.md)
+for exact audit scope and reused dependencies.
 Its stopping-program, fixed-cap identification and genie results are also
 proved, in the StoppingProgram, CapIdentification and Genie modules.
 The existing critical-law and optimizer formalizations do not certify its
 general claims.
 See its [separate status](../paper/rare-event/README.md). The two-sided closed
 quantile law of the [finite-gap manuscript](../paper/finite-gap-rare-events/README.md)
-is also a paper proof. Its upper bound is Lean-checked for every law, but the
-Lean finite-gap entropy results above do not verify its lower bound.
+retains its paper-only direct argument and explicit lower constant. The
+separate `ClosedQuantile` corollary now proves a two-sided rate for every law
+with conservative universal constants; its upper coefficient is 30001.
+See its [audit evidence](../results/closed-quantile-law-20261101/README.md).
 The [certified-selection package](../research/2026-10-30-certified-selection/README.md)
 sharpens its comparison with the selection functional to $\mathcal K\le Q\le\frac85\mathcal K$.
 Only that comparison's scalar Lemma 3 is Lean-checked. The comparison itself,

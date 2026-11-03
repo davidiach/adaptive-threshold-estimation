@@ -127,6 +127,10 @@ jobs:
         run: python -m unittest discover -s tools -p 'test_rare_above_two.py' -v
       - name: Regression tests for the entropy-tail audit
         run: python -m unittest discover -s tools -p 'test_entropy_tail.py' -v
+      - name: Regression tests for the supporting entropy-tail lower audit
+        run: python -m unittest discover -s tools -p 'test_entropy_tail_lower_components.py' -v
+      - name: Regression tests for the closed-quantile minimax corollary
+        run: python -m unittest discover -s tools -p 'test_closed_quantile.py' -v
       - name: Regression tests for the quantile-comparison audit
         run: python -m unittest discover -s tools -p 'test_quantile_comparison.py' -v
       - name: Regression tests for the quantile-model and upper-theorem audits
@@ -286,8 +290,10 @@ jobs:
             fi
             sleep 10
           done
-      - name: Verify the registered entropy-tail targets, including the upper half
-        run: python tools/verify_entropy_tail.py --sequential
+      - name: Require all eight entropy-tail targets, including the two-sided law
+        run: python tools/verify_entropy_tail.py --sequential --require-complete
+      - name: Verify the universal closed-quantile minimax law
+        run: python tools/verify_closed_quantile.py --cached-dependencies
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
       - uses: actions/upload-artifact@v4
@@ -298,6 +304,7 @@ jobs:
           path: |
             .runtime/entropy-tail/
             .runtime/entropy-tail-upper/
+            .runtime/closed-quantile/
   stopping-program:
     runs-on: ubuntu-latest
     timeout-minutes: 180
@@ -332,6 +339,10 @@ jobs:
             python tools/verify_${audit}.py --cached-dependencies
             echo "::endgroup::"
           done
+      # Lake builds only the reused dependencies; the 57 registered modules are
+      # compiled once, natively, by the audit itself.
+      - name: Build dependencies and audit supporting entropy-tail lower lemmas
+        run: python tools/verify_entropy_tail_lower_components.py --cached-dependencies --build-dependencies
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -354,3 +365,4 @@ jobs:
             .runtime/genie-convergence/
             .runtime/genie-conic/
             .runtime/genie-counterexample/
+            .runtime/entropy-tail-lower-components/

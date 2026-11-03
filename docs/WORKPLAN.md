@@ -9,8 +9,8 @@ review, and CI history.
 
 | Area | Next work | Starting point |
 |---|---|---|
-| General-law rare-event results | Prove the lower half of the locked entropy-tail law, which then completes the law; the upper half and the deterministic selection-functional targets are Lean-checked. The stopping-program, cap-identification and genie results are Lean-checked as well. The published lower half remains a paper proof. | [Manuscript and audit](../paper/rare-event/README.md), [claim scope](RESULTS.md#general-law-rare-event-characterization), [audits](VERIFY.md#entropy-tail-selection-functional) |
-| Other paper-only results | Formalize the finite-gap closed quantile law, remaining rare-event regimes, and auxiliary envelope, smooth-density, and observed-state results. For the 8/5 comparison, scalar Lemma 3 is Lean-checked; Lemmas 1–2, the comparison itself and the bandwise-suffix theorem remain. For the hard-cap fallback reduction, first lock the full observable controller statement, then prove cap and persistent-label semantics, independent stage execution, the risk recursion and the ordinary and critical instantiations; a scalar recursion lemma alone would not establish it. For the confidence transfer, the quarter-smoothing bound, the hybrid KL decomposition and the capped median are self-contained first targets; the critical confidence rate then needs only Lean-checked inputs. | [Finite-gap manuscript](../paper/finite-gap-rare-events/README.md), [certified-selection package](../research/2026-10-30-certified-selection/README.md#limitations), [hard-cap scope](RESULTS.md#hard-observation-caps-for-the-rms-rates), [confidence scope](RESULTS.md#confidence-rates-and-sequential-stopping), [results guide](RESULTS.md), [research index](../research/README.md) |
+| General-law rare-event results | All eight frozen entropy-tail targets, including the lower half and two-sided law, are Lean-checked. The universal closed-quantile minimax corollary is also Lean-checked. Next: formalize the sharper explicit constants or the direct finite-law proof. The stopping-program, cap-identification and genie results are also Lean-checked. | [Manuscript and audit](../paper/rare-event/README.md), [claim scope](RESULTS.md#general-law-rare-event-characterization), [audits](VERIFY.md#entropy-tail-selection-functional) |
+| Other paper-only results | Formalize the direct finite-gap closed quantile proof and its explicit constants, remaining rare-event regimes, and auxiliary envelope, smooth-density, and observed-state results. For the 8/5 comparison, scalar Lemma 3 is Lean-checked; Lemmas 1–2, the comparison itself and the bandwise-suffix theorem remain. For the hard-cap fallback reduction, first lock the full observable controller statement, then prove cap and persistent-label semantics, independent stage execution, the risk recursion and the ordinary and critical instantiations; a scalar recursion lemma alone would not establish it. For the confidence transfer, the quarter-smoothing bound, the hybrid KL decomposition and the capped median are self-contained first targets; the critical confidence rate then needs only Lean-checked inputs. | [Finite-gap manuscript](../paper/finite-gap-rare-events/README.md), [certified-selection package](../research/2026-10-30-certified-selection/README.md#limitations), [hard-cap scope](RESULTS.md#hard-observation-caps-for-the-rms-rates), [confidence scope](RESULTS.md#confidence-rates-and-sequential-stopping), [results guide](RESULTS.md), [research index](../research/README.md) |
 | Open research | A matching time-uniform lower bound for sequential confidence intervals, and intervals for an unknown magnitude law (fixed-confidence rates for known laws, including at and above the quadratic boundary, now have a paper proof); tighter constants, including the best quantile-to-selection factor in (1.4604, 8/5]; efficient exact selection when many dyadic bands are occupied. | [Current claim boundaries](RESULTS.md), [main overview](../README.md#scope-and-review), [certified-selection package](../research/2026-10-30-certified-selection/README.md), [confidence-transfer package](../research/2026-10-30-confidence-transfer/README.md) |
 | Maintenance | Parameterize repeated entropy/base-cost and prefix-information/event-transfer arguments; extract shared audit code; simplify redundant premises and unused facts. These are non-blocking follow-ups. | [Recorded refactoring scope](#pr-10-review-and-maintenance-follow-up), [Lean map](../lean/README.md), [tool index](../tools/README.md) |
 
@@ -25,6 +25,18 @@ lower bounds already have formal results with the scopes recorded in
 [RESULTS.md](RESULTS.md). Preserve their specifications and evidence when
 extending them. The Python toolkit remains outside the Lean proof.
 
+The additive [lower-bound development](ENTROPY_TAIL_LOWER_PROGRESS.md)
+now completes the finite-certificate bound, retained-band packing and joint
+rarity allocation, one-sided finite-prefix comparison and vanishing-tail
+limit. The canonical lower and two-sided-law theorems inhabit the original
+frozen specifications. The [completion record](../results/entropy-tail-complete-20261101/README.md)
+records the supporting and eight-target native audits, with reused
+dependencies explicitly identified. The proof increments were developed in
+[PR #38](https://github.com/davidiach/adaptive-threshold-estimation/pull/38).
+The proof's conservative lower coefficient does not certify the paper's
+sharper explicit value. Completion of this theorem does not complete the
+other formalization and research work in the table.
+
 Finite-law rate computation is now available in the
 [rare-event calculator](../toolkit/README.md#3-compute-the-rare-event-rate-for-a-known-finite-law):
 $O(n\log n)$ preprocessing and $O(\log n)$ evaluation or target-value
@@ -35,8 +47,9 @@ Neither this comparison nor the Python calculation is Lean-checked. The
 [certified-selection package](../research/2026-10-30-certified-selection/README.md)
 sharpens the factor to $8/5$ and encloses the finite-law $\mathcal K$ exactly by
 bandwise-suffix enumeration, which is exponential in the number of occupied
-bands. Efficient exact selection, the executable general-law rare-event
-estimator and the statistical formalization remain separate work.
+bands. Efficient exact selection, an executable general-law rare-event
+estimator and formalization of that package's sharper comparison remain
+separate work.
 
 For a new contribution, follow [CONTRIBUTING.md](../CONTRIBUTING.md) and
 [AGENTS.md](../AGENTS.md). The project owner does not plan human specialist

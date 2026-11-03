@@ -2,6 +2,8 @@
 * -text
 # Compiler output is retained verbatim, including diagnostic whitespace.
 *.log -whitespace
+# Preserve the exact generated compiler input bound by the completion audit hash.
+results/entropy-tail-complete-20261101/support/ExactAudit.lean -whitespace
 # Delivered manuscript and historical patches are hash-locked verbatim imports.
 paper/rare-event/v2/** -whitespace
 paper/rare-event/audit/*.patch -whitespace

@@ -15,7 +15,7 @@ the [evidence index](../results/README.md) explains published checkpoints.
 | Consolidated v5 manuscript | `python tools/build_v5.py --check`; `python -m unittest discover -s tools -p 'test_build_v5.py' -v` | Checks inherited source identities, assembly, references, and citations. [Build and visually review](../paper/v5/README.md#reproduce) the PDF when typeset content changes. |
 | Critical review packet | `python tools/build_critical_review.py --check` | Compares generated source to the locked proof and editable brief. [Compile and review](../paper/critical-review/README.md) changed typeset content separately. |
 | General-law rare-event manuscript (v2) | `python tools/verify_rare_event_manuscript.py` | Hashes and finite checks in a temporary copy; preserves the payload. Does not formally verify the general theorems. |
-| Finite-gap rare-event manuscript | `cd paper/finite-gap-rare-events && sha256sum -c SHA256SUMS`; for the [revision 2](../paper/finite-gap-rare-events/revision-2/README.md) sources, the same command in `revision-2/`; [build](../paper/finite-gap-rare-events/README.md) in a disposable copy | Checks the source and PDF identity of revision 1 and of revision 2. The closed quantile theorem is a paper proof; no Lean or numerical certificate covers it. |
+| Finite-gap rare-event manuscript | `cd paper/finite-gap-rare-events && sha256sum -c SHA256SUMS`; for the [revision 2](../paper/finite-gap-rare-events/revision-2/README.md) sources, the same command in `revision-2/`; [build](../paper/finite-gap-rare-events/README.md) in a disposable copy | Checks the source and PDF identity of revision 1 and of revision 2. The direct finite-law argument and its explicit constants are paper proofs; the general-law two-sided rate, with conservative universal constants, is checked separately by `python tools/verify_closed_quantile.py`. |
 | Certified-selection research package | The [package replay commands](../research/2026-10-30-certified-selection/README.md#replay) | Unit tests, exact polynomial identities and exact rational certificates, written to `.runtime/certified-selection/` and compared byte for byte with the tracked evidence. They check finite computations, not the paper proofs; `--write-evidence` rewrites the tracked files. |
 | Hard-budget RMS research package | `python -m unittest discover -s toolkit/tests -p 'test_budget_ladders.py' -v`; `python research/2026-10-30-hard-budget-rms/verify.py` | Driver unit tests and exact rational recurrence, schedule and timeout-counterexample audits, written to `.runtime/hard-budget-rms/validation.json`. There are no tracked evidence records to compare with. They check finite computations, not the [paper proof](../research/2026-10-30-hard-budget-rms/NOTE.md). |
 | Confidence-transfer research package | `python -m unittest discover -s toolkit/tests -p 'test_confidence*.py' -v`; `python research/2026-10-30-confidence-transfer/verify_transfer.py --output .runtime/confidence-transfer/transfer.json`; `python research/2026-10-30-confidence-transfer/verify_anytime.py` | Driver unit tests; exact rational smoothing, likelihood-factorization and null-work audits; exact error-spending identities and the optional-stopping path count, written to `.runtime/confidence-transfer/`. There are no tracked evidence records to compare with. They check finite computations, not the [paper proof](../research/2026-10-30-confidence-transfer/NOTE.md). |
@@ -226,10 +226,61 @@ specification and its project dependencies. It fixes eight full target types:
 
 The audit checks every registered target for its exact type and transitive
 axioms. It rejects any declaration that carries an unregistered target's name.
-Six targets are proved: the upper half and the five deterministic targets. The
-law and its lower half are not, so the status reports
-`entropy_tail_law_verified: false`, and `--require-complete` fails. No result
-record is published for this partial audit.
+All eight targets are proved, including both halves and the two-sided law.
+Run with `--require-complete` to require that full registry. The
+[completion record](../results/entropy-tail-complete-20261101/README.md)
+covers 15 canonical modules, 92 roots and all eight exact types. The supporting
+audit covers 57 modules, 368 roots and 89 exact types:
+
+```sh
+python tools/verify_entropy_tail_lower_components.py
+python tools/verify_entropy_tail.py --sequential --require-complete
+python -m unittest discover -s tools -p 'test_entropy_tail_lower_components.py' -v
+```
+
+The lower-component audit rebuilds its entire local dependency closure by
+default. Its `--cached-dependencies` mode rebuilds only registered lower
+modules and hashes reused local native artifacts. The canonical audit also
+offers `--cached-dependencies`: it rebuilds all 15 canonical modules with
+the pinned native compiler and hashes reused local artifacts. Before
+reusing anything, cached mode runs `lake build --no-build` on the local
+modules that the rebuilt modules import, so Lake must confirm from current
+sources and its traces that every reused dependency is up to date. Populate
+them first with the default Lake build, or pass `--build-dependencies` to let
+Lake build missing or stale dependencies. Only compiler outputs (`.olean`,
+`.olean.private`, `.olean.server`) are hashed, in sorted order; a leftover
+temporary artifact from an interrupted write fails the audit. Generated
+audit sources use LF line endings, so their hashes do not depend on the
+platform. Both modes check exact types, transitive axioms, and source
+stability; cached mode also checks reused artifact stability. `--lake PATH`
+selects the Lake executable. Each status file records its `build_mode` and
+the dependency check it ran. A successful cached audit is not a full
+dependency rebuild. The canonical audit's default Lake mode also reports
+`local_dependency_rebuild_performed: false`, because Lake rebuilds only
+stale dependencies.
+
+The published completion and closed-quantile records predate these checks.
+Their `source_sha256` mappings identify, by hash, the verifier versions that
+produced them. Fresh runs add the dependency check, omit Lake `.hash` files
+from the artifact list and write LF audit sources, so their command lists
+and hashes differ from those records.
+
+The separate universal closed-quantile corollary is checked by:
+
+```sh
+python tools/verify_closed_quantile.py
+python -m unittest discover -s tools -p 'test_closed_quantile.py' -v
+```
+
+Its [record](../results/closed-quantile-law-20261101/README.md) covers two
+modules, two declaration roots, and one complete exact target. The target
+was introduced alongside its proof, with the previously frozen experiment
+and quantile definitions unchanged. The default rebuilds the whole local
+closure; `--cached-dependencies` rebuilds the two registered modules and
+hashes reused artifacts. Run that mode after the default Lake-mode canonical
+entropy-tail audit has built its dependencies, or add `--build-dependencies`.
+This proves universal constants,
+not the paper's explicit lower coefficient or its direct finite-law argument.
 
 The upper half imports the observable upper-bound development of
 [#33](https://github.com/davidiach/adaptive-threshold-estimation/pull/33), about

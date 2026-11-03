@@ -251,7 +251,7 @@ they are not proofs of the continuum or compactness claims. The existing Lean
 variational-optimizer and critical-law results above and below retain their
 separate scopes. See [verification commands](VERIFY.md#general-law-rare-event-manuscript-v2).
 
-**Partial Lean formalization.** The [EntropyTail specification](../lean/ThresholdHC/EntropyTail/Specification.lean)
+**Complete entropy-tail Lean formalization.** The [EntropyTail specification](../lean/ThresholdHC/EntropyTail/Specification.lean)
 locks eight target types in the unchanged observable experiment of the
 above-two package:
 
@@ -260,9 +260,9 @@ above-two package:
 - its upper and lower halves;
 - five properties of $\mathcal K$.
 
-Six targets are **Lean-checked** with exact types and only the standard axioms.
-The first is the upper half $R\le C\mathcal K$, with $C=28000$ (described
-below). The other five are properties of $\mathcal K$:
+All eight targets are **Lean-checked** with exact types and only the standard
+axioms: the two-sided law, its lower half, the upper half with $C=28000$,
+and these five properties of $\mathcal K$:
 
 - restricting to hard measurable assignments $\sigma=\mu|_S$ leaves the infimum
   over submeasures unchanged (v6 Lemma 13.1; no minimizer is claimed);
@@ -271,9 +271,25 @@ below). The other five are properties of $\mathcal K$:
 - $\mathcal K=\rho$ when $B\le1$;
 - $\mathcal K$ is positive and finite, and below $\rho$ for some law.
 
-The lower half and the law are **not** Lean-proved. They remain paper proofs,
-and the audit reports the law as unverified until all eight targets are
-registered. The local audit of the five properties passed at `49877f3`.
+**Lower half and two-sided law.** The additive
+[lower development](ENTROPY_TAIL_LOWER_PROGRESS.md) proves the uniform finite-
+certificate lower bound using actual one-coin realizations, observable gates,
+normalized component certificates, entropy-tier packing, joint rarity
+allocation and a finite-prefix limit. It covers atoms, empty bands and
+arbitrary probability laws without inverse-moment or finite-entropy assumptions.
+The existing certificate comparison then gives
+[entropy_tail_lower](../lean/ThresholdHC/EntropyTail/Lower.lean), and
+[entropy_tail_law](../lean/ThresholdHC/EntropyTail/Law.lean) combines it with
+the checked upper half in the unchanged observable experiment.
+
+For `M = 200000000 (256 + sqrt(2^32 exp(48)))`, the construction gives lower
+coefficient `1/(16 M)`. The frozen targets assert existence of positive
+universal constants; the paper's sharper explicit lower constant is not
+proved by this development. The [completion record](../results/entropy-tail-complete-20261101/README.md)
+covers 57 supporting modules, 368 roots and 89 exact types, plus 15 canonical
+modules, 92 roots and all eight frozen target types. Both native audits
+rebuild their registered modules and hash reused local dependencies; neither
+is a full dependency rebuild. Earlier records keep their historical scope.
 
 **Upper half.** The upper bound comes from the additive formalization of
 [#33](https://github.com/davidiach/adaptive-threshold-estimation/pull/33), in
@@ -336,8 +352,8 @@ standard axioms, subject to the CI audit in the `stopping-program` job
 ([details](VERIFY.md#stopping-program-identification-and-genie-certificates)).
 The full-rebuild record cited above also covers these modules. The scopes
 and constants are those of the Lean statements, which can differ from the
-manuscript's. None of them proves the entropy-tail lower bound or the
-two-sided law.
+manuscript's. The factor-sixteen certificate comparison is now an input
+to the separate entropy-tail lower proof described above.
 
 ## Rare-event power margins above two
 
@@ -367,15 +383,23 @@ their independent seed, coin identities and purchased flips. Both bounds
 use uniform expected physical-observation budgets and allow adaptive
 creation, revisiting and interleaving.
 
-Status: **the two-sided theorem is a paper proof**, not externally
-specialist-reviewed. Its upper bound is Lean-checked in a stronger form:
+Status: **the direct finite-law theorem with its explicit constants remains
+a paper proof**, not externally specialist-reviewed. Its upper bound is Lean-checked in a stronger form:
 $R\le30001\,Q$ for every probability law on $(0,1/2]$, not only finite ones,
 with the same $Q$ ([upper half](#general-law-rare-event-characterization)).
-The lower bound $10^{-20}Q\le R$ is not Lean-checked.
+The lower bound $10^{-20}Q\le R$ is not Lean-checked. The separate
+[general-law closed-quantile theorem](../lean/ThresholdHC/ClosedQuantile/Full.lean)
+now proves the two-sided rate with a conservative universal lower coefficient
+and upper coefficient 30001, using the completed entropy-tail lower bound
+and deterministic comparison. Its [exact-type audit](../results/closed-quantile-law-20261101/README.md)
+covers both new modules and both declaration roots. The new corollary target
+was introduced alongside its proof; it is not described as independently
+frozen before the proof. The original experiment and quantile definitions
+remain unchanged.
 The precursor received fresh-context AI review; the
 [provenance note](../paper/finite-gap-rare-events/PROVENANCE.md) records its
 limits. The earlier Lean finite-gap entropy and critical-law results do not
-certify this theorem. The manuscript does not establish an unknown-law guarantee, a
+certify this theorem. The standalone finite-law manuscript does not establish an unknown-law guarantee, a
 general infinite-support extension, a deterministic budget or a
 high-confidence result.
 
@@ -668,7 +692,7 @@ essential.
 |---|---|---|
 | Distribution-blind RMS law | $\frac1{64}\omega_\mu(B^{-1/2})\le R^{\rm hard}_\mu(B)\le3000\,\omega_\mu(B^{-1/2})$ for $B\ge1$, with one family for every $\mu$ | Both expected-budget bounds Lean-checked |
 | Critical quadratic law | $R^{\rm hard}_{\mu,\rho}(B)\asymp\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}$, upper coefficient $570000$ | Both expected-budget bounds Lean-checked |
-| Known general law, known rarity | $10^{-17}\mathcal K_{\mu,\rho}(B)\le R^{\rm hard}_{\mu,\rho}(B)\le190000\,\mathcal K_{\mu,\rho}(B)$ for $B>0$ | Lower: the paper-only entropy-tail lower bound. Upper: $R\le C\mathcal K$, [Lean-checked](#general-law-rare-event-characterization) with $C=28000$; the coefficient $190000$ was derived from the paper's $33000$ |
+| Known general law, known rarity | $10^{-17}\mathcal K_{\mu,\rho}(B)\le R^{\rm hard}_{\mu,\rho}(B)\le190000\,\mathcal K_{\mu,\rho}(B)$ for $B>0$ | Lower: the entropy-tail rate is now Lean-checked with a conservative universal constant; the displayed explicit coefficient remains paper-only. Upper: $R\le C\mathcal K$, [Lean-checked](#general-law-rare-event-characterization) with $C=28000$; the coefficient $190000$ was derived from the paper's $33000$ |
 
 **Status and limits.** The reduction, its observable realization and all three
 hard-cap conclusions are **paper proofs, not Lean-checked**. Lean-checked premises

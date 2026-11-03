@@ -1,0 +1,15 @@
+ThresholdHC\EntropyTailLower\FiniteSelectionLift.lean:49:19: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+ThresholdHC\EntropyTailLower\FiniteSelectionLift.lean:55:19: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+ThresholdHC\EntropyTailLower\FiniteSelectionLift.lean:49:15: warning: Unused tactic linter: `<;>` can be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+ThresholdHC\EntropyTailLower\FiniteSelectionLift.lean:49:19: warning: Unused tactic linter: `exact hgamma` is never executed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+ThresholdHC\EntropyTailLower\FiniteSelectionLift.lean:55:19: warning: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
