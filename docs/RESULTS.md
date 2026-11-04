@@ -23,6 +23,22 @@ boundaries. Historical source pointers below refer to the unchanged
 [v4 paper](../paper/paper.pdf), its [TeX](../paper/paper.tex), and the
 [rare-event continuation](../inputs/next-phase/report/research_note.pdf).
 
+## Logarithmic and intermediate rare power margins
+
+For $1\le\alpha<2$, Lean now proves both RMS bounds and both
+fixed-confidence bounds in the original experiment. The upper confidence
+procedure also obeys a cap on every valid observation path. The rate is
+$\min\{\rho,x[1+\log_+(\rho/x)]\}$ at one and
+$\min\{\rho,\rho^{1-1/\alpha}x\}$ above one, with
+$x=(a\sqrt B)^{-1}$ for RMS and $x=a^{-1}\sqrt{\log(1/\delta)/B}$ for confidence.
+The upper families depend on the margin parameters and work for every law
+in that envelope. [Exact statements and native record](../results/shifted-power-20261105/README.md)
+
+At exponent one, upper coefficients $287$ and $7749$ suffice for RMS and
+hard-cap confidence. Both rows have lower coefficients $1/32$ and $1/960$.
+The intermediate upper coefficient is an explicit function of the exponent.
+The proofs cover all $B>0$ and $0<\rho,\delta\le1/4$.
+
 ## Rare-event power margins below exponent one
 
 Put $z(h)=\min\{\rho,(h/a)^\alpha\}$ for $0<\alpha<1$. At RMS

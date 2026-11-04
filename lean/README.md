@@ -113,3 +113,5 @@ the ordinary model to unknown laws ordered by their gap CDFs.
 [Audit](../results/stochastic-envelope-20261105/README.md)
 
 [Sublinear power margins](ThresholdHC/SubcriticalPower/Full.lean) give both rare-event minimax rates and one estimator family across the margin class. [Audit](../results/sublinear-power-20261105/README.md)
+
+[Shifted power-margin estimators](ThresholdHC/ShiftedPower/Full.lean) give both remaining rare-event rows, including hard-cap confidence and uniformity over the margin class. [Audit](../results/shifted-power-20261105/README.md)

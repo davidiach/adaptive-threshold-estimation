@@ -1,0 +1,114 @@
+\section{The logarithmic and intermediate power-margin rows}
+\label{app:shifted-power}
+
+Let $1\le\alpha<2$, $0<a\le1$, and $0<\rho\le1/4$. Write
+\[
+ f_1(x)=\min\{\rho,x[1+\max(0,\log(\rho/x))]\},\qquad
+ f_\alpha(x)=\min\{\rho,\rho^{1-1/\alpha}x\}\quad(\alpha>1).
+\]
+The following proof uses a \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/1f1a0229b16f16d9f7f415519f2c73d9af09b7e9/lean/ThresholdHC/ShiftedPower/Allocated.lean}{finite Poisson allocation} of shifted classifier
+increments. Its expected cost is bounded directly by the supplied budget.
+
+Put $p=(\alpha+2)/2$ and
+\[
+ W_\alpha=\frac{17}{(1-p/2)(1-\alpha/p)},\qquad
+ C_1=1+20\sqrt{W_1},\qquad
+ C_\alpha=1+\frac{8\sqrt{W_\alpha}}{1-2^{(1-\alpha)/2}}\quad(\alpha>1).
+\]
+The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/3950b4070f7261b6b4368568b5d823cbdd97bec4/lean/ThresholdHC/ShiftedPower/Full.lean}{complete comparison}
+holds for the exact power law and every $B>0$, with $x=(a\sqrt B)^{-1}$,
+\[
+ \frac1{32}f_\alpha(x)\le R_{\mu,\rho}(B)\le C_\alpha f_\alpha(x).
+\]
+At $0<\delta\le1/4$, replace $x$ by
+$x_\delta=a^{-1}\sqrt{\log(1/\delta)/B}$. The expected-budget radius
+is at least $f_\alpha(x_\delta)/960$, and the hard-cap radius is at most
+$27C_\alpha f_\alpha(x_\delta)$. Every upper construction is uniform over
+the class $F_\nu(t)\le\min\{1,(t/a)^\alpha\}$.
+Here $W_\alpha=68(\alpha+2)/(2-\alpha)^2$ and $C_1\le287$, giving
+upper coefficients $287$ for RMS and $7749$ for hard-cap confidence at one.
+
+\paragraph{Quantile-tail lower bounds.}
+The lower-tail CDF is $\min(\rho,F_\mu)$, as in
+Appendix~\ref{app:sublinear-power}. At $\alpha=1$, integrating it over
+the layer interval gives exactly $f_1(h/a)$.
+For $\alpha>1$, the lower quantile is supported on gaps at most
+$a\rho^{1/\alpha}$. Its clipped modulus is therefore at least
+$\rho\min\{1,h/(a\rho^{1/\alpha})\}=f_\alpha(h/a)$.
+The observable quantile-tail lower theorem and
+\cref{thm:confidence-stopping-dual} give the coefficients $1/32$ and $1/960$.
+
+\paragraph{Classifier moments under the envelope.}
+For cap $n=2^l$, set $h_l=n^{-1/2}$ and $r_l=(h_l/a)^\alpha$.
+Raising all gaps to power $q\ge1$ transforms the exponent to $\alpha/q$.
+Applying the sublinear modulus bound gives, for $q>\alpha$,
+\[
+ \int\min\{1,(h/d)^q\}\,d\nu(d)
+ \le\frac{(h/a)^\alpha}{1-\alpha/q}.
+\]
+The ordinary binary classifier has error at most
+$\min\{1,(nd^2)^{-2}\}$ and expected cost at most
+$17\min\{n,d^{-2}[1+\max(0,\log(nd^2))]\}$ conditional on its gap and sign.
+For $0\le u<1$, the logarithm inequality implies
+\[
+ \min\{n,d^{-2}[1+\max(0,\log(nd^2))]\}
+ \le\frac{n}{1-u}\min\{1,(n^{-1/2}/d)^{2u}\}.
+\]
+Take $q=4$ for error and $u=p/2$ for cost. The resulting population
+bounds are error at most $2r_l$ and expected cost at most $W_\alpha 2^l r_l$.
+At $\alpha=1$ the error bound sharpens to $4r_l/3$.
+They hold for every sign prior. The original observation-prefix identities
+ensure that these costs count only purchased flips.
+
+\clearpage
+\paragraph{A finite shifted estimator.}
+Choose $k$ using the envelope and rarity so that $\rho\le r_k\le2\rho$.
+Such a dyadic level exists because $r_{l+1}=2^{-\alpha/2}r_l$.
+Let $A_j$ be the classifier at cap $2^{k+j}$, and put
+$\Delta_0=A_0$ and $\Delta_j=A_j-A_{j-1}$ for $j\ge1$ using
+a shared prefix within each difference.
+The base second moment is at most $\rho+2r_k\le3r_k$.
+The difference second moment is at most $2r_{k+j}+2r_{k+j-1}
+\le6r_{k+j}$. Thus use the uniform bounds
+\[
+ v_j=8r_{k+j},\qquad c_j=2W_\alpha 2^{k+j}r_{k+j}.
+\]
+Put $S_J=\sum_{j=0}^J\sqrt{v_jc_j}$ and draw independent Poisson counts
+with means $\lambda_j=B\sqrt{v_j/c_j}/S_J$. Sum all calls at level $j$
+with weight $1/\lambda_j$. The resulting estimator has expected work
+at most $\sum_j\lambda_jc_j=B$, variance at most
+$\sum_jv_j/\lambda_j=S_J^2/B$, and root mean squared error at most
+\[
+ 2r_{k+J}+\frac1{\sqrt B}\sum_{j=0}^J\sqrt{v_jc_j}.
+\]
+Only finite $J$ is used. Counts are private randomness chosen before the
+population is observed. The checked controller assigns disjoint persistent
+coin labels to its calls.
+
+Write $s=2^{(1-\alpha)/2}$. The allocation sum is exactly
+\[
+ 4\sqrt{W_\alpha}\sqrt{2^k}\,r_k\sum_{j=0}^J s^j.
+\]
+For $\alpha>1$ this is at most
+$8\sqrt{W_\alpha}\rho^{1-1/\alpha}/[a(1-s)]$.
+Choose a finite $J$ so that the bias is at most
+$\rho^{1-1/\alpha}/(a\sqrt B)$. This gives $C_\alpha$.
+For $\alpha=1$ the allocation sum is
+$4\sqrt{W_1}(J+1)/a$. If $x<\rho$, a geometric rounding argument chooses
+$J$ with bias at most $x$ and
+$J+1\le5[1+\log(\rho/x)]$. This gives $C_1$.
+In either row, use the zero-work midpoint $\rho/2$ whenever the rate
+saturates. All choices precede the actual gap law, so the guarantees are
+uniform over the margin class.
+
+\paragraph{Fixed confidence with a physical cap.}
+Both rate functions obey $f_\alpha(cx)\le c f_\alpha(x)$ for $c\ge1$.
+Apply the capped-median construction of Appendix~\ref{app:known-confidence}
+to the RMS family at expected budget $B/(8m)$ per copy, with an odd
+$m=2\lceil4\log(1/\delta)\rceil+1$.
+The effective-budget ratio is at most $88$. Consequently the radius
+increases by at most $\sqrt{8\cdot88}<27$ relative to the rate at
+$B/\log(1/\delta)$. The
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/45e6f417c882038d7f4b8fc1b7e39f9d730a538c/lean/ThresholdHC/ShiftedPower/Confidence.lean}{confidence guarantee}
+holds even when a copy receives zero
+observations. A copy's runtime and error may be dependent.

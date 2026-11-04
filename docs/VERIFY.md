@@ -761,3 +761,7 @@ unknown-law class. [Native record](../results/stochastic-envelope-20261105/READM
 ## Rare-event margins below one
 
 Run `python tools/verify_sublinear_power.py` for five exact statements and ten transitive axiom reports. [Native record](../results/sublinear-power-20261105/README.md)
+
+## Logarithmic and intermediate rare margins
+
+Run `python tools/verify_shifted_power.py` for ten exact statements and 35 transitive axiom reports. The finite Poisson controller is checked through the original observable experiment. [Native record](../results/shifted-power-20261105/README.md)
