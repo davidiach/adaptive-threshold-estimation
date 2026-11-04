@@ -49,6 +49,10 @@ $\prod_j(n_j+1)$ elements and can grow exponentially with the number of occupied
 bands. The Python calculator is unverified. Efficient exact selection for many
 occupied bands and an executable general-law rare-event estimator remain open.
 
+For structured finite laws, [grouping repeated suffix costs](BAND_COST_SELECTION.md)
+reduces the search to a polynomial number of states when the number of distinct
+positive costs is fixed. The general many-band complexity remains open.
+
 For a new contribution, follow [CONTRIBUTING.md](../CONTRIBUTING.md) and
 [AGENTS.md](../AGENTS.md). The project owner does not plan human specialist
 review; its absence remains a stated limitation, not a pending completion gate.
