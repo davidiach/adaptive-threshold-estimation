@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Read the updated manuscript](builds/entropy-tail-complete-20261101.pdf) · [Open the LaTeX project](main.tex) · [Completion build](#completion-build) · [Preserved build record](#preserved-build-record)
+[Read the updated manuscript](builds/direct-finite-quantile-20261104.pdf) · [Open the LaTeX project](main.tex) · [Finite-law build](#finite-law-build) · [Earlier completion build](#completion-build)
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -47,9 +47,11 @@ $K\le Q\le(1+2\sqrt2)K$, and the stopping-program, fixed-cap
 identification and genie results of §15, each in the scope stated in §18.
 Section 18 states each formal scope and links the fixed source revisions.
 
-The sharper explicit entropy–tail lower constant, the direct finite-law
-closed quantile proof and its explicit lower constant, and the rare-event
-regimes below two remain **paper proofs**. The general-law closed-quantile
+For finite laws a [direct Lean proof](../../lean/ThresholdHC/FiniteQuantile/Full.lean)
+now establishes both explicit coefficients, $10^{-20}$ and $30001$. The
+[operational theorems](../../lean/ThresholdHC/FiniteQuantile/Operational.lean)
+give the estimator and converse statements. The sharper general-law entropy–tail
+lower constant and the rare-event regimes below two remain **paper proofs**. The general-law closed-quantile
 corollary is now Lean-checked with conservative universal constants, using
 the completed entropy–tail law and the deterministic comparison. The remaining
 paper proofs have not been Lean-formalized or externally reviewed by specialists.
@@ -128,6 +130,16 @@ The [manuscript workflow](../../.github/workflows/manuscript.yml) builds it
 the same way with TeX Live from the Ubuntu 24.04 archive and uploads the PDF
 and log as the `v6-paper` artifact. Typesetting and source checks do not
 constitute a new mathematical proof or independent review.
+
+## Finite-law build
+
+The [4 November PDF](builds/direct-finite-quantile-20261104.pdf) records the
+finite-law theorem and its direct lower proof in §§14 and 18. The new theorem
+links use proof commit `fc61852123b37c723bbb671d0b4ed294d3b6ee06`.
+Two offline Tectonic builds produced identical 136-page PDFs. All 29 fonts
+are embedded, the references resolve, and the final TeX warnings match the
+1 November build. The [build record](builds/direct-finite-quantile-20261104.json)
+identifies the exact inputs, PDF and pages inspected.
 
 ## Completion build
 

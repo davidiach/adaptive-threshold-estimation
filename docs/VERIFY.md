@@ -15,7 +15,7 @@ the [evidence index](../results/README.md) explains published checkpoints.
 | Consolidated v5 manuscript | `python tools/build_v5.py --check`; `python -m unittest discover -s tools -p 'test_build_v5.py' -v` | Checks inherited source identities, assembly, references, and citations. [Build and visually review](../paper/v5/README.md#reproduce) the PDF when typeset content changes. |
 | Critical review packet | `python tools/build_critical_review.py --check` | Compares generated source to the locked proof and editable brief. [Compile and review](../paper/critical-review/README.md) changed typeset content separately. |
 | General-law rare-event manuscript (v2) | `python tools/verify_rare_event_manuscript.py` | Hashes and finite checks in a temporary copy; preserves the payload. Does not formally verify the general theorems. |
-| Finite-gap rare-event manuscript | `cd paper/finite-gap-rare-events && sha256sum -c SHA256SUMS`; for the [revision 2](../paper/finite-gap-rare-events/revision-2/README.md) sources, the same command in `revision-2/`; [build](../paper/finite-gap-rare-events/README.md) in a disposable copy | Checks the source and PDF identity of revision 1 and of revision 2. The direct finite-law argument and its explicit constants are paper proofs; the general-law two-sided rate, with conservative universal constants, is checked separately by `python tools/verify_closed_quantile.py`. |
+| Finite-gap rare-event manuscript | `cd paper/finite-gap-rare-events && sha256sum -c SHA256SUMS`; for the [revision 2](../paper/finite-gap-rare-events/revision-2/README.md) sources, the same command in `revision-2/`; [build](../paper/finite-gap-rare-events/README.md) in a disposable copy | Checks the source and PDF identity of revision 1 and of revision 2. Run `python tools/verify_finite_quantile.py` for the explicit finite-law bounds and `python tools/verify_closed_quantile.py` for the general-law rate. |
 | Certified-selection research package | The [package replay commands](../research/2026-10-30-certified-selection/README.md#replay) | Unit tests, exact polynomial identities and exact rational certificates, written to `.runtime/certified-selection/` and compared byte for byte with the tracked evidence. They check finite computations, not the paper proofs; `--write-evidence` rewrites the tracked files. |
 | Hard-budget RMS research package | `python -m unittest discover -s toolkit/tests -p 'test_budget_ladders.py' -v`; `python research/2026-10-30-hard-budget-rms/verify.py` | Driver unit tests and exact rational recurrence, schedule and timeout-counterexample audits, written to `.runtime/hard-budget-rms/validation.json`. There are no tracked evidence records to compare with. They check finite computations, not the [paper proof](../research/2026-10-30-hard-budget-rms/NOTE.md). |
 | Confidence-transfer research package | `python -m unittest discover -s toolkit/tests -p 'test_confidence*.py' -v`; `python research/2026-10-30-confidence-transfer/verify_transfer.py --output .runtime/confidence-transfer/transfer.json`; `python research/2026-10-30-confidence-transfer/verify_anytime.py` | Driver unit tests; exact rational smoothing, likelihood-factorization and null-work audits; exact error-spending identities and the optional-stopping path count, written to `.runtime/confidence-transfer/`. There are no tracked evidence records to compare with. They check finite computations, not the [paper proof](../research/2026-10-30-confidence-transfer/NOTE.md). |
@@ -279,8 +279,11 @@ and quantile definitions unchanged. The default rebuilds the whole local
 closure; `--cached-dependencies` rebuilds the two registered modules and
 hashes reused artifacts. Run that mode after the default Lake-mode canonical
 entropy-tail audit has built its dependencies, or add `--build-dependencies`.
-This proves universal constants,
-not the paper's explicit lower coefficient or its direct finite-law argument.
+The separate direct finite-law audit runs with `python tools/verify_finite_quantile.py`.
+It builds the registered proof modules with Lake, checks the statement fixed at
+`5557334`, and validates the exact types and transitive axioms. It rejects imports
+of the completed general statistical lower theorem. The [finite-law record](../results/direct-finite-quantile-20261104/README.md)
+gives the local verification scope and the exact coefficients.
 
 The upper half imports the observable upper-bound development of
 [#33](https://github.com/davidiach/adaptive-threshold-estimation/pull/33), about

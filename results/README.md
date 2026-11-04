@@ -25,6 +25,7 @@ or CI run passes.
 | Observable rare-event rate above alpha two | [rare_above_two_001.json](rare_above_two_001.json) |
 | Rare-event upper bounds, quantile comparison, stopping program, identification and genie certificates (full rebuild; see the note below) | [rare-event-full-20261031](rare-event-full-20261031/README.md) |
 | Complete entropy-tail lower and two-sided law (cached dependencies; source and artifact hashes recorded) | [entropy-tail-complete-20261101](entropy-tail-complete-20261101/README.md) |
+| Direct finite-law quantile bounds and estimator quantifiers | [direct-finite-quantile-20261104](direct-finite-quantile-20261104/README.md) |
 | Universal closed-quantile minimax corollary (cached dependencies) | [closed-quantile-law-20261101](closed-quantile-law-20261101/README.md) |
 | Constant search and scope | [constants_theory.json](constants_theory.json), [constants_finite_grid.json](constants_finite_grid.json), [process account](../docs/process/TRACK_B.md) |
 | Real-valued benchmark | [real_comparison.json](real_comparison.json), [real_verification.json](real_verification.json), [benchmark protocol](../benchmark/README.md) |

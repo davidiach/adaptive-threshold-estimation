@@ -5,7 +5,7 @@
 Minimax theory for estimating a threshold probability from noisy coin flips,
 with a research manuscript, Lean 4 proofs built on Mathlib, and reproducible experiments.
 
-**[Paper](paper/v6/paper.pdf)** · **[Formal proof map](lean/README.md)** · **[Verification guide](docs/VERIFY.md)** · **[Specialist review packet](paper/critical-review/review.pdf)**
+**[Paper](paper/v6/builds/direct-finite-quantile-20261104.pdf)** · **[Formal proof map](lean/README.md)** · **[Verification guide](docs/VERIFY.md)** · **[Specialist review packet](paper/critical-review/review.pdf)**
 
 New contributors: start with [CONTRIBUTING.md](CONTRIBUTING.md).
 AI agents: read [AGENTS.md](AGENTS.md) for current entry points, preservation
@@ -49,7 +49,7 @@ The [lower theorem](lean/ThresholdHC/Tier6/Full.lean),
 | An estimator unbiased for every sign law, with uniformly finite variance and expected work, exists iff $I<\infty$; one universal construction has variance–work at most $713I^2$ | Proved in Lean in the observable adaptive model | [Theorems](lean/ThresholdHC/Observable713/Full.lean) · [Audit](results/observable713_001.json) |
 | Unbiased converse: for such estimators, finite inverse moment is necessary and variance–work is at least $I^2/16$ | Proved in Lean in the observable adaptive model | [Theorem](lean/ThresholdHC/UnbiasedConverse/Full.lean) · [Audit](results/unbiased_converse_001.json) |
 | Finite-gap entropy for every gap count; explicit single-coin base costs | Proved in Lean | [Proofs](lean/ThresholdHC/CriticalAllSizes/) · [Audit](results/critical_all_sizes_002.json) |
-| Closed quantile rare-event law: direct proof for known finite gap laws, and for every law through the entropy-tail theorem | The two-sided rate for every law and $\mathcal K\le Q\le(1+2\sqrt2)\mathcal K$ are proved in Lean with conservative universal constants. The direct finite-law argument and its explicit lower constant remain paper proofs | [v6 §14](paper/v6/README.md#reading-guide) · [Standalone manuscript](paper/finite-gap-rare-events/README.md) · [Lean scope](docs/RESULTS.md#general-law-rare-event-characterization) |
+| Closed quantile rare-event law: direct proof for known finite gap laws, and for every law through the entropy-tail theorem | The two-sided rate for every law and $\mathcal K\le Q\le(1+2\sqrt2)\mathcal K$ are proved in Lean with conservative universal constants. For finite laws a direct Lean proof gives $10^{-20}Q\le R\le30001Q$ | [v6 §14](paper/v6/README.md#reading-guide) · [Standalone manuscript](paper/finite-gap-rare-events/README.md) · [Lean scope](docs/RESULTS.md#general-law-rare-event-characterization) |
 | Confidence radius $r_\mu(B,\delta)\asymp\omega_\mu(\sqrt{\log(1/\delta)/B})$ | Both bounds proved in Lean in the observable adaptive model | [Theorems](lean/ThresholdHC/Confidence/Full.lean) · [Audit](results/confidence_001.json) |
 | Hard observation caps: the RMS law, the critical law and the general-law rare-event rate hold with at most $\lfloor B\rfloor$ flips on every path, at a factor $\sqrt{32}$ | Paper proof; not Lean-checked. The first two inherit Lean-checked expected-budget bounds. The third inherits the Lean-checked entropy-tail upper and lower rates; its displayed explicit lower coefficient remains paper-only | [Scope](docs/RESULTS.md#hard-observation-caps-for-the-rms-rates) · [Package](research/2026-10-30-hard-budget-rms/README.md) |
 | High-confidence radius: the general-law rate is $\mathcal K(B/\log(1/\delta))$ under an expected or a hard budget, and the critical rate gains a factor $\sqrt{\log(1/\delta)}$; nested intervals stay valid under data-dependent stopping | Paper proof; not Lean-checked. The general-law lower bound inherits paper-only results; the critical rate inherits only Lean-checked bounds | [Scope](docs/RESULTS.md#confidence-rates-and-sequential-stopping) · [Package](research/2026-10-30-confidence-transfer/README.md) |
@@ -120,12 +120,11 @@ coins adaptively. Only physical observations are charged.
 fresh-context AI review of its precursor. The two-sided closed-quantile
 rate is now Lean-checked for every probability law with conservative universal
 constants and upper coefficient 30001
-([scope](docs/RESULTS.md#general-law-rare-event-characterization)). The direct
-finite-law proof and its explicit lower coefficient remain paper-only;
-there has been no external specialist review. The standalone finite-law
-manuscript's constants are not optimized; it does not assert a deterministic
-total budget, an unknown-law
-guarantee, an infinite-support extension or a high-confidence result.
+([scope](docs/RESULTS.md#general-law-rare-event-characterization)). For finite
+laws, the [direct proof](lean/ThresholdHC/FiniteQuantile/Full.lean) gives
+the lower coefficient $10^{-20}$. One observable estimator achieves the upper
+coefficient uniformly over the allowed priors. The finite-law theorem assumes
+a known gap law and a uniform expected budget.
 
 ## Check the proofs
 
@@ -181,7 +180,7 @@ experiments provide supporting evidence, not proofs of universal claims.
 
 The general-law entropy-tail and closed-quantile rates are now Lean-checked
 with conservative universal constants. The next formalization targets include
-the sharper explicit constants and direct finite-law proof, the remaining paper-only
+the sharper general-law entropy-tail lower constant, the remaining paper-only
 regimes, and auxiliary results on envelopes, smooth densities, and observed
 outer states. Tighter constants and efficient selection algorithms remain
 research directions; the quantile-to-selection factor is now known to lie in

@@ -383,11 +383,15 @@ their independent seed, coin identities and purchased flips. Both bounds
 use uniform expected physical-observation budgets and allow adaptive
 creation, revisiting and interleaving.
 
-Status: **the direct finite-law theorem with its explicit constants remains
-a paper proof**, not externally specialist-reviewed. Its upper bound is Lean-checked in a stronger form:
-$R\le30001\,Q$ for every probability law on $(0,1/2]$, not only finite ones,
-with the same $Q$ ([upper half](#general-law-rare-event-characterization)).
-The lower bound $10^{-20}Q\le R$ is not Lean-checked. The separate
+**Lean checks the explicit finite-law theorem** $10^{-20}Q\le R\le30001Q$
+for every finite-support probability law, $0<\rho\le1/4$ and $B>0$.
+The [direct lower proof](../lean/ThresholdHC/FiniteQuantile/Full.lean) uses
+the actual fractional quantile tail to prove $T_h/32\le R$. It filters the
+dyadic core and allocates the full rarity budget in proportion to the entropy
+of the retained groups. The [operational bounds](../lean/ThresholdHC/FiniteQuantile/Operational.lean)
+give one feasible estimator with worst-case error at most $30001Q$, and the
+converse for every feasible estimator. See the [verification record](../results/direct-finite-quantile-20261104/README.md).
+The separate
 [general-law closed-quantile theorem](../lean/ThresholdHC/ClosedQuantile/Full.lean)
 now proves the two-sided rate with a conservative universal lower coefficient
 and upper coefficient 30001, using the completed entropy-tail lower bound
@@ -398,8 +402,7 @@ frozen before the proof. The original experiment and quantile definitions
 remain unchanged.
 The precursor received fresh-context AI review; the
 [provenance note](../paper/finite-gap-rare-events/PROVENANCE.md) records its
-limits. The earlier Lean finite-gap entropy and critical-law results do not
-certify this theorem. The standalone finite-law manuscript does not establish an unknown-law guarantee, a
+limits. The standalone finite-law manuscript does not establish an unknown-law guarantee, a
 general infinite-support extension, a deterministic budget or a
 high-confidence result.
 

@@ -130,8 +130,11 @@ for every law rather than only finite ones.
 \lowerleanref{ClosedQuantile/Full.lean}{closed\_quantile\_law}
 now proves the full two-sided rate on this domain with conservative universal
 constants, using the entropy--tail lower bound and deterministic comparison.
-The direct finite-law lower argument and its explicit constant remain
-paper proofs.\\[5pt]
+For finite laws, \finiteleanref{Full.lean}{direct\_finite\_law}
+proves $10^{-20}Q\le R\le30001Q$. The
+\finiteleanref{Operational.lean}{observable\_estimator} and
+\finiteleanref{Operational.lean}{every\_estimator\_lower} theorems give
+the estimator and converse quantifiers.\\[5pt]
 Stopping programs and certificates &
 For every probability law, $0<\rho\le1/4$, $B>0$ and cap $N>0$,
 \tailleanref{StoppingProgram/DualTheorem.lean}{attained\_four\_prior\_dual}
@@ -305,8 +308,29 @@ full universal target and both declaration roots in two new modules, using
 the preceding checked artifacts. Its new specification and lock are
 introduced alongside the corollary proof, not described as independently
 frozen before it. The original experiment and quantile definitions are
-unchanged; the direct finite-law argument and explicit paper lower constant
-are not claimed by this corollary.
+unchanged.
+
+\paragraph{The direct finite-law proof.}
+For Theorem~\ref{fg:thm:direct-main}, the equal-sign posterior on a
+stopped likelihood tree has energy at most $4d^2$ times expected work.
+The two tail priors split the boundary atom in the prescribed fraction.
+Their means differ by $T_h/8$, and their midpoint information bound holds
+at every cap. Passing to the original observable estimator gives
+\finiteleanref{TailRisk.lean}{quantile\_tail\_lower}, namely $R\ge T_h/32$.
+
+The Lean proof uses the whole boundary band to upper bound the rounded
+core entropy $F$. It strengthens the endpoint filter in Appendix~O
+and allocates the full rarity budget in proportion to the entropy
+remaining after trimming. If this entropy is $S$, the retained groups
+give $F\le65536S$, so the square-root term loses at most a factor $256$.
+The small-entropy case uses the Bernoulli-label floor, and when the
+threshold is too close to the filter scale the tail controls the core.
+In the packing case the finite-certificate comparison gives
+$M_B=\min\{\rho,h\sqrt{\rho F}\}\le2\cdot10^{19}R$.
+Together with $Q\le T_h+2M_B$, these estimates give $10^{-20}Q\le R$.
+The checked upper inequality with coefficient $28000$ has enough slack
+to obtain one feasible estimator at $30001Q$. The proof links in this
+paragraph use revision \nolinkurl{fc61852123b37c723bbb671d0b4ed294d3b6ee06}.
 
 \paragraph{Realizing the critical upper algorithm.}
 The formal construction uses asymmetric classifiers at dyadic flip counts,
@@ -394,8 +418,8 @@ validations of the full proof. The
 records the workflow, failed approaches, and these limits.
 
 \paragraph{Remaining mathematical work.}
-The direct finite-law closed-quantile proof and its explicit lower constant,
-the rare-event regimes below two, and auxiliary envelope, smoothness, and observed-state results retain
+The sharper general-law entropy--tail lower constant, the rare-event regimes
+below two, and auxiliary envelope, smoothness, and observed-state results retain
 their stated paper-proof scopes; their formalization is the next
 verification target. Sharp
 comparison constants, efficient selection for structured laws, rates of

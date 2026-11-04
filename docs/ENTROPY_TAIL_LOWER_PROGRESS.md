@@ -109,7 +109,7 @@ gives `200000000 R` for the original selection functional.
 
 The separate [closed-quantile minimax corollary](../lean/ThresholdHC/ClosedQuantile/Full.lean)
 is now checked by [its own exact-type audit](../results/closed-quantile-law-20261101/README.md).
-The direct finite-gap proof and the sharper paper constants remain follow-ups.
+The later [direct finite-law proof](../lean/ThresholdHC/FiniteQuantile/Full.lean) checks its explicit coefficients. The sharper general-law entropy-tail lower coefficient remains a follow-up.
 Other paper-only and open results are listed in
 [WORKPLAN.md](WORKPLAN.md#current-priorities).
 
