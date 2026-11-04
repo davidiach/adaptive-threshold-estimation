@@ -62,6 +62,24 @@ theorem stopped_observable_kl_eq_iSup {R : Type} [MeasurableSpace R]
 
 /-- The bound for unbounded stopping uses only reference expected work on the
 right. Finite work under the opposite endpoint guarantees reconstruction. -/
+theorem stopped_reference_work_kl {R : Type} [MeasurableSpace R] (μ : Measure Gap)
+    [IsProbabilityMeasure μ] (A : AdaptiveEstimator R) (q r : SignLaw)
+    (κ B : ℝ) (hκ : 0 ≤ κ) (hB : 0 ≤ B) (hloc : LocalReferenceWorkBound μ
+      (gapParameter false) (gapParameter true) (signUnit q) (signUnit r) κ)
+    (hw : expectedWork μ A (smoothedSign q r) ≤ ENNReal.ofReal B)
+    (hw' : expectedWork μ A (smoothedSign r q) < ∞) :
+    klDiv (observableDecisionLaw μ A (smoothedSign q r) id)
+      (observableDecisionLaw μ A (smoothedSign r q) id) ≤ ENNReal.ofReal ((8/3)*κ*B) := by
+  have hfin := hw.trans_lt ENNReal.ofReal_lt_top
+  rw [stopped_observable_kl_eq_iSup μ A _ _ hfin hw']
+  refine iSup_le fun n => (observable_reference_work_kl μ A q r n κ hκ hloc).trans ?_
+  apply ENNReal.ofReal_le_ofReal
+  have hb := prefix_work_le_total (experimentLaw μ A (smoothedSign q r)) Prod.snd
+    observable_tape_measurable hfin n
+  have h := ENNReal.toReal_mono ENNReal.ofReal_ne_top hw
+  rw [ENNReal.toReal_ofReal hB] at h
+  exact mul_le_mul_of_nonneg_left (hb.trans h) (mul_nonneg (by norm_num) hκ)
+
 theorem stopped_null_work_kl {R : Type} [MeasurableSpace R] (μ : Measure Gap)
     [IsProbabilityMeasure μ] (A : AdaptiveEstimator R) (q r : SignLaw)
     (hqhalf : ∀ d, q.val d ≤ 1/2) (hrhalf : ∀ d, r.val d ≤ 1/2)
@@ -71,14 +89,10 @@ theorem stopped_null_work_kl {R : Type} [MeasurableSpace R] (μ : Measure Gap)
     (hw' : expectedWork μ A (smoothedSign r q) < ∞) :
     klDiv (observableDecisionLaw μ A (smoothedSign q r) id)
       (observableDecisionLaw μ A (smoothedSign r q) id) ≤ ENNReal.ofReal ((16/3)*κ*B) := by
-  have hfin := hw.trans_lt ENNReal.ofReal_lt_top
-  rw [stopped_observable_kl_eq_iSup μ A _ _ hfin hw']
-  refine iSup_le fun n => (observable_null_work_kl μ A q r hqhalf hrhalf n κ hκ hloc).trans ?_
-  apply ENNReal.ofReal_le_ofReal
-  have hb := prefix_work_le_total (experimentLaw μ A (smoothedSign q r)) Prod.snd
-    observable_tape_measurable hfin n
-  have h := ENNReal.toReal_mono ENNReal.ofReal_ne_top hw
-  rw [ENNReal.toReal_ofReal hB] at h
-  exact mul_le_mul_of_nonneg_left (hb.trans h) (mul_nonneg (by norm_num) hκ)
+  have h := stopped_reference_work_kl μ A q r (2*κ) B (by positivity) hB
+    (local_reference_of_null μ _ _ _ _ (measurable_gapParameter false) (measurable_gapParameter true)
+      (measurable_signUnit q) (measurable_signUnit r) hqhalf hrhalf hκ hloc) hw hw'
+  rw [show (16/3:ℝ)*κ = (8/3)*(2*κ) by ring]
+  exact h
 
 end ThresholdHC.ConfidenceTransfer
