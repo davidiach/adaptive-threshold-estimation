@@ -304,6 +304,12 @@ jobs:
         run: python tools/verify_quantile_selection.py
       - name: Verify the finite-law bandwise-suffix optimizer and search bound
         run: python tools/verify_bandwise_suffix.py
+      - name: Verify selection stability and finite approximation of arbitrary laws
+        run: python tools/verify_selection_stability.py
+      - name: Verify the two-sided quarter-smoothing inequality
+        run: python tools/verify_quarter_smoothing.py
+      - name: Verify the observable single-type KL and confidence transfer
+        run: python tools/verify_confidence_population.py
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
       - uses: actions/upload-artifact@v4

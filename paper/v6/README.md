@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Read the updated manuscript](builds/quantile-selection-suffix-20261104.pdf) · [Open the LaTeX project](main.tex) · [Quantile comparison and finite selection build](#quantile-comparison-and-finite-selection-build)
+[Read the updated manuscript](builds/confidence-population-20261104.pdf) · [Open the LaTeX project](main.tex) · [Population confidence build](#population-confidence-build)
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -44,7 +44,8 @@ characterization, the magnitude-oracle lower bounds, and the rare-event
 rate above exponent two. It also checks both halves and the full entropy–tail
 law, the two-sided closed quantile rate for every law, the comparison
 $K\le Q\le(8/5)K$, and the existence of a finite-law optimizer that selects
-a suffix in each dyadic band. It also checks the stopping-program, fixed-cap
+a suffix in each dyadic band. For arbitrary laws it checks variation and
+rounding stability and the finite-approximation enclosures. It also checks the stopping-program, fixed-cap
 identification and genie results of §15, in the scope stated in §18.
 Section 18 states each formal scope and links the fixed source revisions.
 
@@ -130,6 +131,30 @@ The [manuscript workflow](../../.github/workflows/manuscript.yml) builds it
 the same way with TeX Live from the Ubuntu 24.04 archive and uploads the PDF
 and log as the `v6-paper` artifact. Typesetting and source checks do not
 constitute a new mathematical proof or independent review.
+
+## Population confidence build
+
+Page 50 of the [updated paper](builds/confidence-population-20261104.pdf)
+records the one-type KL transfer through unbounded stopping and the $1/128$
+confidence lower bound under the common-pair premise. The [kernel audit](../../results/confidence-population-20261104/README.md)
+and [build record](builds/confidence-population-20261104.json) identify the exact inputs.
+
+## Confidence follow-up build
+
+Page 50 of the [updated paper](builds/confidence-followups-20261104.pdf)
+distinguishes the [Lean quarter-smoothing theorem](../../results/quarter-smoothing-20261104/README.md)
+from the [unknown-law confidence sequence and time-uniform lower bound](../../docs/UNKNOWN_LAW_CONFIDENCE.md)
+proved on paper. The [build record](builds/confidence-followups-20261104.json)
+lists the pinned revisions and matching hashes of two offline builds.
+
+## Selection stability build
+
+Sections 14 and 18 of the [updated manuscript](builds/selection-stability-20261104.pdf)
+locate Theorems 7 and 8 and the finite-approximation corollary.
+The [Lean audit](../../results/selection-stability-20261104/README.md) checks
+the approximation construction and both numerical enclosures. The [build
+record](builds/selection-stability-20261104.json) identifies the source and PDF
+hashes, the two identical builds, and the eight pages reviewed.
 
 ## Quantile comparison and finite selection build
 

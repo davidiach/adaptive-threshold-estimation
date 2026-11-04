@@ -1,0 +1,27 @@
+'ThresholdHC.ConfidenceTransfer.CommonPairBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.LocalNullWorkBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.confidence_rate_of_common_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ConfidenceTransfer.creation_null_work_kl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.finite_null_work_kl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.finite_weight_gibbs' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.finite_weight_kl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.measurable_quarterPrior' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.minimax_confidence_rate_of_common_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ConfidenceTransfer.observable_null_work_kl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.pair_confidence_work' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.population_hybrid_kl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.quarterPrior' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.quarter_coin_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.quarter_population_hybrid_kl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.rareConfidenceRadius' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.smoothedSign' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.smoothedSign_rare' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.smoothedSign_separation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.stopped_null_work_kl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.stopped_observable_kl_eq_iSup' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

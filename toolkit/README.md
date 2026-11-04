@@ -357,6 +357,11 @@ The module is not imported by the package itself.
 
 ## Research modules: high confidence and sequential stopping
 
+For an unknown gap distribution, `unknown_law_confidence` runs a sequence of
+observable sign-classification experiments. Its nested intervals cover the
+positive fraction simultaneously and shrink for every fixed positive-gap law.
+[Proof, flip budgets and usage](../docs/UNKNOWN_LAW_CONFIDENCE.md)
+
 Two more research drivers use the same interface: your estimator is a
 generator that yields coin IDs and returns its estimate.
 
