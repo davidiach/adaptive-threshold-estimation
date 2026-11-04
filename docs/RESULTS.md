@@ -14,7 +14,8 @@ Psi correction explicit.
 Lean checks the general-law entropy-tail and closed-quantile rates, the explicit
 lower coefficient $10^{-17}$, the direct finite-law bounds and the sharper
 $8/5$ quantile comparison. On finite support a bandwise-suffix optimizer
-attains the minimum. The stopping-program, identification and genie results
+attains the minimum. Total-variation stability, upward rounding within bands
+and the resulting finite-law enclosures are Lean-checked. The stopping-program, identification and genie results
 are also Lean-checked within the scopes recorded below.
 
 This guide gives the exact Lean specifications and remaining paper-proof
@@ -480,8 +481,15 @@ all submeasures and attains $K$ after clipping at $\rho$. If a larger atom in
 the same band is skipped, moving equal inverse-square cost to that atom keeps
 the entropy fixed and strictly increases the saved tail cost. A suffix is
 determined by its selected count in each band, so at most $\prod_j(n_j+1)$
-candidates suffice. The stability and rounding results have paper proofs. The
-rational certificates rely on unverified Python. [Theorem 5 and verification](VERIFY.md#finite-law-bandwise-suffix-theorem)
+candidates suffice. [Theorem 5 and verification](VERIFY.md#finite-law-bandwise-suffix-theorem)
+
+**Lean verifies Theorems 7–8 and Corollary 9.** Changing a law by total variation
+$\eta$ changes $K$ by at most $\eta$. Within-band upward rounding by a factor
+at most $r$ gives a value between $K/r$ and $K$. For every $\eta>0$ and
+$r>1$ the proof constructs a finite approximation. Its interval $[L,U]$
+gives $[\max(0,L-\eta),\min(\rho,rU+\eta)]$ for the original law.
+The quantile choice is $L=5Q/8$, $U=Q$. The Python certificate evaluator
+remains unverified. [Verification record](../results/selection-stability-20261104/README.md)
 
 ## Critical power margin: full minimax characterization
 

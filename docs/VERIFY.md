@@ -412,6 +412,15 @@ in that family. It checks the transitive axioms of every new declaration.
 The [native record](../results/bandwise-suffix-20261104/README.md) lists the
 rebuilt modules, cached inputs and kernel reports.
 
+## Selection stability and finite approximation
+
+Run `python tools/verify_selection_stability.py` from the repository root.
+The audit checks total-variation stability using half of Mathlib’s variation
+distance, both rounding inequalities, the transported interval, its $5Q/8$
+specialization and existence of finite approximations for every positive
+tolerance and distortion above one. The [native record](../results/selection-stability-20261104/README.md)
+lists the five exact statements, 18 transitive axiom reports and reused inputs.
+
 ## Magnitude-oracle lower bounds
 
 The magnitude-oracle lower bounds have a separate audit:
