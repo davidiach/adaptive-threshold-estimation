@@ -481,11 +481,17 @@ The best comparison constant, efficient exact selection for structured
 laws and rates of cap convergence remain open. A later
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/8a701c8db6c42930ad2a187f3d895ca55265afd6/research/2026-10-30-confidence-transfer/NOTE.md}{confidence-transfer paper proof}
 gives fixed-confidence rates for known laws, including the quadratic
-boundary. A matching time-uniform lower bound for sequential intervals
-and guarantees for unknown magnitude laws remain open.
+boundary. Its \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/680a833415e8de803d2a98847292063f10448527/lean/ThresholdHC/ConfidenceTransfer/Quarter.lean}{quarter-smoothing lemma}
+bounds both KL directions by $8/3$ times squared Hellinger distance.
+Lean also checks the \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/f33163da3fa78902336a98814f38078ab12bef1a/lean/ThresholdHC/ConfidenceTransfer/Terminal.lean}{one-type $16/3$ transfer}
+through unbounded stopping and the \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/f33163da3fa78902336a98814f38078ab12bef1a/lean/ThresholdHC/ConfidenceTransfer/CommonPairRate.lean}{$1/128$ lower bound}
+given a policy-uniform common pair. Adaptive types and the capped median retain paper proofs.
+A separate \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/a3b00cd8962060ca13768e5d3567168105e7ccfd/docs/UNKNOWN_LAW_CONFIDENCE.md}{confidence sequence}
+shrinks for every unknown positive-gap law with simultaneous coverage.
+The iterated-logarithm lower bound matches at $D=1/2$. General
+law-dependent lower bounds and oracle-rate adaptation remain open.
 
-The model requires independent fresh coins and conditionally independent
-flips, without drift or additional smooth structure linking states.
-Expected-work optimality supplies no deterministic latency bound or
-data-computable confidence radius over all unknown laws. Neither useful
-finite critical constants nor practical superiority is established.
+The model assumes independent fresh coins and conditionally iid flips,
+with no drift or smoothness linking states. Expected work alone gives
+no deterministic latency bound. Practical superiority and useful
+finite critical constants remain unestablished.
