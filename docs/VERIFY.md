@@ -412,6 +412,16 @@ in that family. It checks the transitive axioms of every new declaration.
 The [native record](../results/bandwise-suffix-20261104/README.md) lists the
 rebuilt modules, cached inputs and kernel reports.
 
+## Observable population confidence transfer
+
+Run `python tools/verify_confidence_population.py`. The kernel checks the
+exact hybrid identity, the single-type $16/3$ information bound for finite
+decision trees and full randomized observable prefixes, its extension to
+stopped tapes, and confidence testing and minimax conclusions. The $1/128$
+lower bound assumes the note’s quantitative common-pair statement. The
+[verification record](../results/confidence-population-20261104/README.md)
+pins the proof, reused project artifacts and newly compiled modules.
+
 ## Quarter smoothing for arbitrary laws
 
 Run `python tools/verify_quarter_smoothing.py`. It checks the locked

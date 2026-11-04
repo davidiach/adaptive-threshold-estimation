@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Read the updated manuscript](builds/confidence-followups-20261104.pdf) · [Open the LaTeX project](main.tex) · [Confidence follow-up build](#confidence-follow-up-build)
+[Read the updated manuscript](builds/confidence-population-20261104.pdf) · [Open the LaTeX project](main.tex) · [Population confidence build](#population-confidence-build)
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -131,6 +131,13 @@ The [manuscript workflow](../../.github/workflows/manuscript.yml) builds it
 the same way with TeX Live from the Ubuntu 24.04 archive and uploads the PDF
 and log as the `v6-paper` artifact. Typesetting and source checks do not
 constitute a new mathematical proof or independent review.
+
+## Population confidence build
+
+Page 50 of the [updated paper](builds/confidence-population-20261104.pdf)
+records the one-type KL transfer through unbounded stopping and the $1/128$
+confidence lower bound under the common-pair premise. The [kernel audit](../../results/confidence-population-20261104/README.md)
+and [build record](builds/confidence-population-20261104.json) identify the exact inputs.
 
 ## Confidence follow-up build
 
