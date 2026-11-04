@@ -412,6 +412,14 @@ in that family. It checks the transitive axioms of every new declaration.
 The [native record](../results/bandwise-suffix-20261104/README.md) lists the
 rebuilt modules, cached inputs and kernel reports.
 
+## Quarter smoothing for arbitrary laws
+
+Run `python tools/verify_quarter_smoothing.py`. It checks the locked
+statement and an expanded version with both mixtures written explicitly.
+The [isolated build](../results/quarter-smoothing-20261104/README.md) checks
+five transitive axiom reports. The statistical application to an adaptive
+population requires additional work beyond this inequality.
+
 ## Selection stability and finite approximation
 
 Run `python tools/verify_selection_stability.py` from the repository root.

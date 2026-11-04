@@ -22,9 +22,9 @@ positive if its observed head fraction is strictly above $1/2+r$, negative
 if strictly below $1/2-r$, and unresolved otherwise. Write $p_+,p_-,p_0$
 for the probabilities of these three outcomes and use hats for their sample
 fractions. Return the interval
-\[
+$$
  I_j=[\widehat p_+-a-\tau,\ 1-\widehat p_-+a+\tau]\cap[0,1].
-\]
+$$
 
 A Bernoulli sample mean of $k$ trials deviates in a specified direction by
 more than $H(k,e)/k$ with probability at most $\exp(-2H^2/k)\le e$.
@@ -39,9 +39,9 @@ The outcomes across the $n$ fresh items are iid. Apply the same one-sided
 inequality to each of their three indicator averages. Except on an event of
 probability at most $\delta_j$, all three satisfy $\widehat p_i\le p_i+a$.
 The first two give $\theta\in I_j$. The third gives the width bound
-\[
+$$
  |I_j|\le \widehat p_0+2a+2\tau\le P(D\le2r)+3a+3\tau .
-\]
+$$
 
 ## All authorized budgets
 
@@ -73,10 +73,10 @@ under a physical flip cap at every integer budget $n$. Suppose a deterministic
 nonincreasing envelope $t(n)$ bounds the interval half-width on a joint event
 of simultaneous coverage and width with probability at least $1-\delta$ for
 each admissible population. Then infinitely many $n$ satisfy
-\[
+$$
  t(n)\ \ge\ \sqrt{\frac{3(1-\delta)\rho}{64}}\,
                  \sqrt{\frac{\log\log n}{n}} .
-\]
+$$
 This is a lower bound on the envelope. It does not require realized interval
 width to exceed that expression on each individual sample path.
 

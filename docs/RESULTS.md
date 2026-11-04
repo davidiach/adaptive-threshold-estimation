@@ -747,7 +747,8 @@ $r^{\rm hard}_{\mu,\rho}(B,\delta)\ge r^{\rm exp}_{\mu,\rho}(B,\delta)$ for the
 same under a cap of $\lfloor B\rfloor$ observations on every path. Let
 $0<\delta\le1/4$.
 
-**Transfer.** Smoothing a hard pair of priors coin by coin, at weights $3/4$
+**Transfer.** Lean checks the [quarter-smoothing lemma](../results/quarter-smoothing-20261104/README.md)
+for arbitrary probability measures. Smoothing a hard pair of priors coin by coin, at weights $3/4$
 and $1/4$, turns a Hellinger bound into a Kullback–Leibler bound for the whole
 adaptive population at a factor $16/3$ and half the separation. A
 variance–null-work obstruction $(b,J)$ then gives
@@ -764,7 +765,7 @@ a run's cost and its error is assumed.
 
 | Application | Conclusion (paper proof) | Inherited premises |
 |---|---|---|
-| Known general law, known rarity | $10^{-17}\mathcal K(B/\ell)\le r^{\rm exp}(B,\delta)\le r^{\rm hard}(B,\delta)\le840000\,\mathcal K(B/\ell)$ | Lower: the policy-uniform common pair, both null-work obstructions and the entropy packing of v6 Appendix E, all paper proofs. Upper: $R\le C\mathcal K$, [Lean-checked](#general-law-rare-event-characterization) with $C=28000$ |
+| Known general law, known rarity | $10^{-17}\mathcal K(B/\ell)\le r^{\rm exp}(B,\delta)\le r^{\rm hard}(B,\delta)\le840000\,\mathcal K(B/\ell)$ | Lower: the policy-uniform common pair, null-work obstructions and entropy packing of v6 Appendix E enter through the paper's adaptive KL transfer. Upper: $R\le C\mathcal K$, [Lean-checked](#general-law-rare-event-characterization) with $C=28000$ |
 | Critical quadratic law | $r^{\rm exp}\asymp r^{\rm hard}\asymp\min\{\rho,\sqrt{\rho L(1+\log L)\ell/B}\}$ | The [critical common pair and RMS upper bound](#critical-power-margin-full-minimax-characterization), both Lean-checked |
 | Sequential coverage | Stage $j$ has cap $4\cdot2^j$ and failure probability $\delta/((j+1)(j+2))$. The running intersection of stage intervals contains $\theta$ at every budget simultaneously with probability at least $1-\delta$, so stopping on the data is valid. For a known law and $B\ge1$, its half-width on that event is at most $1700000\,\mathcal K(B/\Lambda)$, where $\Lambda=\ell+2\log(2+\log_2(1+B))$ | Valid stage intervals; the width bound uses the general-law row |
 
