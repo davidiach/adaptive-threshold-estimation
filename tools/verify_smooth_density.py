@@ -7,11 +7,9 @@ from verify_blind_upper_components import LEAN, validate_reports
 
 def audit_input():
     source = """
-import ThresholdHC.SmoothDensity.Separation
-import ThresholdHC.SmoothDensity.Information
-import ThresholdHC.SmoothDensity.Scale
+import ThresholdHC.SmoothDensity.Full
 noncomputable section
-open MeasureTheory InformationTheory ThresholdHC.SmoothDensity
+open MeasureTheory InformationTheory Set ThresholdHC.SmoothDensity
 open ThresholdHC.Tier6 ThresholdHC.Confidence
 open scoped ENNReal ContDiff
 
@@ -57,6 +55,61 @@ example (s : ℕ) {ε : ℝ} (hε : 0 < ε) (hsmall : ε ≤ radiusCutoff s) :
       t ^ (s + 1) = scaleConstant s * ε / Real.log (1 / ε) ∧
       2 * ε < t ^ (s + 1) / 8 * Real.log (1 / t) :=
   choose_smooth_scale s hε hsmall
+
+example (s : ℕ) :
+    ∃ M : ℝ, 0 < M ∧ ∀ (t : ℝ) (ht : 0 < t) (ht1 : t ≤ 1) (plus : Bool),
+      SmoothModel s M smoothGapLaw (smoothSign s ht ht1 plus) :=
+  smooth_pair_in_class s
+
+example (μ : Measure Gap) [IsProbabilityMeasure μ]
+    (q : SignLaw) (f : ℝ → ℝ) (h : Represents μ q f)
+    (F : ℝ → ℝ) (hF : Measurable F) (C : ℝ) (hb : ∀ p, |F p| ≤ C) :
+    (∫ p, F (p : ℝ) ∂latentLaw μ q) = ∫ p, f p * F p :=
+  represents_latent_integral μ q f h F hF C hb
+
+example (μ : Measure Gap) [IsProbabilityMeasure μ]
+    (q : SignLaw) (f : ℝ → ℝ) (h : Represents μ q f) :
+    signMean μ q.val = ∫ p in Ioi (1 / 2 : ℝ), f p :=
+  represents_threshold_mean μ q f h
+
+example {s : ℕ} {M : ℝ} (μ : Measure Gap) [IsProbabilityMeasure μ]
+    (q : SignLaw) (h : SmoothModel s M μ q) {x : ℝ} (hx : 0 ≤ x) :
+    μ.real {d : Gap | (d : ℝ) ≤ x} ≤ 2 * M * x :=
+  smoothModel_cdf μ q h hx
+
+example (s : ℕ) :
+    ∃ M₀ c ε₀ : ℝ, 0 < M₀ ∧ 0 < c ∧ 0 < ε₀ ∧
+      ∀ (M B ε δ : ℝ), M₀ ≤ M → 0 < ε → ε ≤ ε₀ → 0 < δ → δ ≤ 1 / 4 →
+      ∀ (R : Type) [MeasurableSpace R] (A : AdaptiveEstimator R),
+        FitsClass s M B ε δ A →
+          c * (ε ^ 2)⁻¹ * (Real.log (1 / ε)) ^ 2 * Real.log (1 / δ) ≤ B :=
+  smooth_confidence_lower s
+
+example (s : ℕ) :
+    ∃ (R : Type) (_ : MeasurableSpace R) (rule : ℝ → ℝ → ℝ → AdaptiveEstimator R),
+      ∀ M ε δ : ℝ, 1 ≤ M → 0 < ε → ε ≤ Real.exp (-16) → 0 < δ → δ ≤ 1 / 4 →
+        FitsClass s M (upperBudget M ε δ) ε δ (rule M ε δ) :=
+  smooth_confidence_upper s
+
+example (s : ℕ) :
+    ∃ M₀ : ℝ, 0 < M₀ ∧ ∀ M : ℝ, M₀ ≤ M →
+      ∀ (R : Type) [MeasurableSpace R] (A : AdaptiveEstimator R) (V W : ℝ),
+        0 ≤ V → 0 ≤ W → ¬ FiniteUnbiasedClass s M V W A :=
+  smooth_unbiased_impossible s
+
+example (s : ℕ) :
+    ∃ M₀ c ε₀ : ℝ, 1 ≤ M₀ ∧ 0 < c ∧ 0 < ε₀ ∧
+      (∀ M B ε δ : ℝ, M₀ ≤ M → 0 < ε → ε ≤ ε₀ → 0 < δ → δ ≤ 1 / 4 →
+        ∀ (R : Type) [MeasurableSpace R] (A : AdaptiveEstimator R),
+          FitsClass s M B ε δ A →
+            c * (ε ^ 2)⁻¹ * Real.log (1 / ε) ^ 2 * Real.log (1 / δ) ≤ B) ∧
+      (∃ (R : Type) (_ : MeasurableSpace R) (rule : ℝ → ℝ → ℝ → AdaptiveEstimator R),
+        ∀ M ε δ : ℝ, M₀ ≤ M → 0 < ε → ε ≤ ε₀ → 0 < δ → δ ≤ 1 / 4 →
+          FitsClass s M ((65536 * M) ^ 2 * (ε ^ 2)⁻¹ *
+            Real.log (1 / ε) ^ 2 * Real.log (1 / δ)) ε δ (rule M ε δ)) ∧
+      (∀ M : ℝ, M₀ ≤ M → ∀ (R : Type) [MeasurableSpace R] (A : AdaptiveEstimator R)
+        (V W : ℝ), 0 ≤ V → 0 ≤ W → ¬ FiniteUnbiasedClass s M V W A) :=
+  smooth_density_robustness s
 """.lstrip()
     roots = {"ThresholdHC.SmoothDensity." + name for name in [
         "profile_contDiff", "profile_iteratedDeriv", "profile_derivative_bound",
@@ -69,14 +122,19 @@ example (s : ℕ) {ε : ℝ} (hε : 0 < ε) (hsmall : ε ≤ radiusCutoff s) :
         "exists_uniform_density_bound", "centered_pair_separation",
         "local_pair_information", "hidden_local_pair_information", "local_pair_confidence_cost",
         "radiusCutoff_pos", "choose_smooth_scale",
+        "smoothGapLaw_integral", "smoothGapLaw_probability", "smoothSign_separation",
+        "density_test_integral", "smooth_represents", "smooth_pair_in_class",
+        "represents_latent_integral", "represents_threshold_mean", "smooth_confidence_lower",
+        "smoothModel_cdf", "smoothModel_envelope", "linear_modulus", "upper_scale_bounds",
+        "smooth_confidence_upper", "hidden_reverse_pair_information", "smooth_unbiased_impossible",
+        "smooth_density_robustness",
     ]}
     return source + "".join("#print axioms " + name + "\n" for name in sorted(roots)), roots
 
 
 def main():
     source, roots = audit_input()
-    subprocess.run(["lake", "build", "ThresholdHC.SmoothDensity.Separation",
-                    "ThresholdHC.SmoothDensity.Information", "ThresholdHC.SmoothDensity.Scale"],
+    subprocess.run(["lake", "build", "ThresholdHC.SmoothDensity.Full"],
                    cwd=LEAN, check=True)
     run = subprocess.run(["lake", "env", "lean", "--stdin"], cwd=LEAN, input=source, text=True,
                          encoding="utf-8", capture_output=True)
