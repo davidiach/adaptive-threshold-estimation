@@ -10,11 +10,22 @@ namespace ThresholdHC.QuantileSelection
 open ThresholdHC.Tier6 (Gap)
 open ThresholdHC.EntropyTailQuantile
 
-/-- Compare the quantile candidate with any individual submeasure, before taking the infimum. -/
-theorem comparison_pointwise (μ : Measure Gap) [IsProbabilityMeasure μ]
+/-- A separated inverse-moment bound and a core price bound suffice for the
+pointwise comparison. This keeps the measure decomposition and clipping
+argument shared between numerical constants. -/
+theorem comparison_pointwise_of_price (coeff k : ℝ) (hD : 0 ≤ coeff) (hk : 0 < k)
+    (sep : ∀ (Z : Measure Gap) [IsFiniteMeasure Z] {t : ℝ}, 0 < t →
+      (∀ᵐ x : Gap ∂Z, t ≤ (x:ℝ)) → measureCostEntropy Z ≤
+        ENNReal.ofReal ((coeff/t)*∫ x : Gap, (x:ℝ)⁻¹ ∂Z))
+    (price : ∀ (V Z : Measure Gap) [IsFiniteMeasure V] [IsFiniteMeasure Z] {t q T c : ℝ},
+      0 < t → (∀ᵐ x : Gap ∂V, t ≤ (x:ℝ)) → (∀ᵐ x : Gap ∂Z, t ≤ (x:ℝ)) →
+      0 ≤ q → 0 ≤ T → 0 ≤ c → q*(measureCostEntropy Z).toReal ≤ coeff*T*c →
+      T + sqrt (q*(measureCostEntropy (V+Z)).toReal) ≤
+        k*(sqrt (T^2+(sqrt (q*(measureCostEntropy V).toReal))^2)+c))
+    (μ : Measure Gap) [IsProbabilityMeasure μ]
     {ρ B : ℝ} (hρ : 0 < ρ) (hρ1 : ρ ≤ 1) (hB : 0 < B)
     (hht : budgetScale B < quantileThreshold μ ρ) (σ : Measure Gap) (hσ : σ ≤ μ) :
-    closedQuantileValue μ ρ B ≤ ENNReal.ofReal (8/5) * selectionCost μ σ ρ (budgetScale B) := by
+    closedQuantileValue μ ρ B ≤ ENNReal.ofReal k * selectionCost μ σ ρ (budgetScale B) := by
   let t := quantileThreshold μ ρ
   let h := budgetScale B
   let r := quantileBoundaryFraction μ ρ
@@ -23,7 +34,7 @@ theorem comparison_pointwise (μ : Measure Gap) [IsProbabilityMeasure μ]
   have hr := quantileBoundaryFraction_properties μ hρ hρ1
   by_cases hinf : measureCostEntropy σ = ⊤
   · simp [selectionCost, hinf, ENNReal.mul_top, ENNReal.ofReal_eq_zero,
-      not_le.mpr hρ, not_le.mpr (budgetScale_pos hB)]
+      not_le.mpr hk, not_le.mpr hρ, not_le.mpr (budgetScale_pos hB)]
   let L := lowerCut t r σ
   let V := upperCut t r σ
   let D := lowerCut t r (μ-σ)
@@ -81,27 +92,24 @@ theorem comparison_pointwise (μ : Measure Gap) [IsProbabilityMeasure μ]
     simp only [sq_sqrt (mul_nonneg hq ENNReal.toReal_nonneg)]
     rw [← mul_add]
     exact mul_le_mul_of_nonneg_left hb' hq
-  have hwork : q * E Z ≤ 2*T*c := by
+  have hwork : q * E Z ≤ coeff*T*c := by
     let H := ∫ d : Gap, (d:ℝ)⁻¹ ∂Z
     have hH : 0 ≤ H := integral_nonneg (fun d : Gap => inv_nonneg.mpr d.property.1.le)
-    have he := ENNReal.toReal_mono ENNReal.ofReal_ne_top (separated_cost Z ht hZs)
-    change E Z ≤ (ENNReal.ofReal ((2/t)*H)).toReal at he
+    have he := ENNReal.toReal_mono ENNReal.ofReal_ne_top (sep Z ht hZs)
+    change E Z ≤ (ENNReal.ofReal ((coeff/t)*H)).toReal at he
     rw [ENNReal.toReal_ofReal (by positivity)] at he
     have hthreshold : h*ρ/t ≤ T := quantileTail_threshold_lower μ hρ hρ1 hh.le hht
     have hceq : c = h*H := tailModulus_eq_inverseCost _ (hZs.mono (fun _ hd => hht.le.trans hd))
     calc
-      _ ≤ q * ((2/t)*H) := mul_le_mul_of_nonneg_left he hq
-      _ = 2*(h*ρ/t)*c := by rw [hceq]; dsimp [q]; ring
-      _ ≤ _ := by linarith only [mul_le_mul_of_nonneg_right hthreshold hc]
-  have hi := core_interaction V Z ht hVs hZs
-  rw [← hcore] at hi
-  have hroot := core_price hq (V := E V) (Z := E Z) ENNReal.toReal_nonneg ENNReal.toReal_nonneg
-    hT hc hi hwork
-  have hscalar := QuantileComparison.scalar_comparison T (P V) c hT (sqrt_nonneg _) hc
+      _ ≤ q * ((coeff/t)*H) := mul_le_mul_of_nonneg_left he hq
+      _ = coeff*(h*ρ/t)*c := by rw [hceq]; dsimp [q]; ring
+      _ ≤ _ := by simpa only [mul_assoc] using mul_le_mul_of_nonneg_left (mul_le_mul_of_nonneg_right hthreshold hc) hD
+  have hroot := price V Z ht hVs hZs hq hT hc hwork
   have htri := selection_triangle hT (sqrt_nonneg _) (sqrt_nonneg _) ha hTu hbudget
-  have hfinal : T + P (quantileCore μ ρ) ≤ 8/5 * (P σ + (a+c)) := by
-    change P (quantileCore μ ρ) ≤ sqrt ((P V)^2+2*T*c+2*P V*sqrt (T*c)) at hroot
-    linarith only [hroot, hscalar, htri]
+  have hfinal : T + P (quantileCore μ ρ) ≤ k * (P σ + (a+c)) := by
+    rw [hcore]
+    exact hroot.trans (mul_le_mul_of_nonneg_left (by linarith only [htri] :
+      sqrt (T^2+(P V)^2)+c ≤ P σ+(a+c)) hk.le)
   calc
     _ ≤ ENNReal.ofReal T + ENNReal.ofReal h *
         (ENNReal.ofReal ρ * measureCostEntropy (quantileCore μ ρ))^(1/(2:ℝ)) := min_le_right _ _
@@ -110,6 +118,19 @@ theorem comparison_pointwise (μ : Measure Gap) [IsProbabilityMeasure μ]
     _ ≤ _ := by
       apply (ENNReal.ofReal_le_ofReal hfinal).trans_eq
       rw [selectionCost, ← hres, tailModulus_add _ _ hh.le, hprice σ hinf,
-        ENNReal.ofReal_mul (by norm_num : 0 ≤ (8/5:ℝ)), ENNReal.ofReal_add (sqrt_nonneg _) (add_nonneg ha hc)]
+        ENNReal.ofReal_mul hk.le, ENNReal.ofReal_add (sqrt_nonneg _) (add_nonneg ha hc)]
+
+/-- Compare the quantile candidate with any individual submeasure, before taking the infimum. -/
+theorem comparison_pointwise (μ : Measure Gap) [IsProbabilityMeasure μ]
+    {ρ B : ℝ} (hρ : 0 < ρ) (hρ1 : ρ ≤ 1) (hB : 0 < B)
+    (hht : budgetScale B < quantileThreshold μ ρ) (σ : Measure Gap) (hσ : σ ≤ μ) :
+    closedQuantileValue μ ρ B ≤ ENNReal.ofReal (8/5) * selectionCost μ σ ρ (budgetScale B) := by
+  apply comparison_pointwise_of_price 2 (8/5) (by norm_num) (by norm_num)
+    (fun Z _ _ ht hs => separated_cost Z ht hs) _ μ hρ hρ1 hB hht σ hσ
+  intro V Z _ _ t q T c ht hVs hZs hq hT hc hwork
+  have hroot := core_price hq (V := (measureCostEntropy V).toReal) (Z := (measureCostEntropy Z).toReal)
+    ENNReal.toReal_nonneg ENNReal.toReal_nonneg hT hc (core_interaction V Z ht hVs hZs) hwork
+  exact (add_le_add_right hroot T).trans
+    (QuantileComparison.scalar_comparison T _ c hT (sqrt_nonneg _) hc)
 
 end ThresholdHC.QuantileSelection

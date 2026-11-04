@@ -5,7 +5,8 @@ if needed, and compute the entropy cost of the remaining core. Add the
 truncated inverse-gap cost of the removed mass, then cap the sum at $\rho$
 to obtain the closed value $Q$.
 The comparison in \cref{fg:prop:quantile-selection} gives a factor
-$1+2\sqrt2$. The sharper comparison below gives $8/5$.
+$1+2\sqrt2$. The comparison below gives $8/5$. The optimal factor is
+characterized by a scalar equation in \cref{thm:sharp-quantile-factor}.
 For finite laws, Theorem~\ref{fg:thm:direct-main} proves the
 resulting closed formula with explicit constants, by an argument that does
 not invoke Theorem~\ref{thm:entropy-tail-law}.
@@ -64,6 +65,12 @@ improve the objective. Thus if occupied band $j$ has $n_j$ atoms,
 searching at most $\prod_j(n_j+1)$ choices suffices. The cut can differ
 from band to band. Section~\ref{sec:verification} links both proofs.
 
+For repeated suffix costs, choices with the same multiset have identical
+entropy. Keeping only the smallest ordinary remainder in each class reduces
+the search to at most $\binom{m+r}{r}$ terminal states for $m$ occupied
+bands and $r$ distinct positive suffix costs.
+The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/7332a2c199fffd977d405f30b92c8740b58c5179/docs/BAND_COST_SELECTION.md}{selection algorithm}
+certifies an optimizer on a 64-band example using 65 terminal states.
 The finite grid construction and its error bound appear in \cref{sec:verification}.
 
 \input{finite-consequences}

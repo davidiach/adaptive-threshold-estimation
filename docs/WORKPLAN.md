@@ -11,7 +11,7 @@ review, and CI history.
 |---|---|---|
 | General-law rare-event results | All eight frozen entropy-tail targets, including the lower half and two-sided law, are Lean-checked. The universal closed-quantile minimax corollary is also Lean-checked. The direct finite-law bounds with coefficients $10^{-20}$ and 30001 are also Lean-checked. The [explicit general-law theorem](../lean/ThresholdHC/EntropyTailSharp/Full.lean) checks the lower coefficient $10^{-17}$ for both the entropy-tail and quantile functionals. The stopping-program, cap-identification and genie results are also Lean-checked. | [Manuscript and audit](../paper/rare-event/README.md), [claim scope](RESULTS.md#general-law-rare-event-characterization), [audits](VERIFY.md#entropy-tail-selection-functional) |
 | Other paper-only results | Formalize the remaining rare-event regimes and auxiliary envelope, smooth-density, and observed-state results. Lemmas 1–3 and the [full 8/5 comparison](../lean/ThresholdHC/QuantileSelection/Full.lean) are Lean-checked. The [finite-law bandwise-suffix theorem and search bound](../lean/ThresholdHC/BandwiseSuffix/Search.lean) are also Lean-checked. Lean also verifies [total-variation stability, band-preserving rounding and finite approximation](../results/selection-stability-20261104/README.md). For the hard-cap fallback reduction, first lock the full observable controller statement, then prove cap and persistent-label semantics, independent stage execution, the risk recursion and the ordinary and critical instantiations; a scalar recursion lemma alone would not establish it. The [quarter-smoothing bound](../results/quarter-smoothing-20261104/README.md) is Lean-checked. The [single-type adaptive KL transfer, stopped experiment and common-pair confidence lower bound](../results/confidence-population-20261104/README.md) are also Lean-checked. The adaptive-type extension, the capped median, and the critical and general-law confidence instantiations remain. | [Finite-gap manuscript](../paper/finite-gap-rare-events/README.md), [certified-selection package](../research/2026-10-30-certified-selection/README.md#limitations), [hard-cap scope](RESULTS.md#hard-observation-caps-for-the-rms-rates), [confidence scope](RESULTS.md#confidence-rates-and-sequential-stopping), [results guide](RESULTS.md), [research index](../research/README.md) |
-| Open research | A matching gap-law dependent time-uniform lower bound and oracle-rate adaptation to an unknown law. The [observable confidence sequence](UNKNOWN_LAW_CONFIDENCE.md) shrinks for every positive-gap law, and a Bernoulli reduction forces the iterated logarithm on the deterministic-gap law. Also open are tighter constants, including the best quantile-to-selection factor in (1.4604, 8/5]; efficient exact selection when many dyadic bands are occupied. | [Current claim boundaries](RESULTS.md), [main overview](../README.md#scope-and-review), [certified-selection package](../research/2026-10-30-certified-selection/README.md), [confidence-transfer package](../research/2026-10-30-confidence-transfer/README.md) |
+| Open research | A matching gap-law dependent time-uniform lower bound and oracle-rate adaptation to an unknown law. The [observable confidence sequence](UNKNOWN_LAW_CONFIDENCE.md) shrinks for every positive-gap law, and a Bernoulli reduction forces the iterated logarithm on the deterministic-gap law. The optimal quantile factor now has a [paper characterization](OPTIMAL_QUANTILE_FACTOR.md). Its Lean formalization and efficient exact selection for unrestricted band costs remain open. | [Current claim boundaries](RESULTS.md), [main overview](../README.md#scope-and-review), [certified-selection package](../research/2026-10-30-certified-selection/README.md), [confidence-transfer package](../research/2026-10-30-confidence-transfer/README.md) |
 | Maintenance | Parameterize repeated entropy/base-cost and prefix-information/event-transfer arguments; extract shared audit code; simplify redundant premises and unused facts. These are non-blocking follow-ups. | [Recorded refactoring scope](#pr-10-review-and-maintenance-follow-up), [Lean map](../lean/README.md), [tool index](../tools/README.md) |
 
 The [consolidated v6 manuscript](../paper/v6/README.md) presents all of
@@ -46,8 +46,17 @@ Lean verifies the stronger [factor $8/5$](../results/quantile-selection-20261104
 and the [finite-law suffix reduction](../results/bandwise-suffix-20261104/README.md)
 from the certified-selection package. The sufficient search family has at most
 $\prod_j(n_j+1)$ elements and can grow exponentially with the number of occupied
-bands. The Python calculator is unverified. Efficient exact selection for many
-occupied bands and an executable general-law rare-event estimator remain open.
+bands. The Python calculator is unverified. The executable known-law estimator
+and its finite-law adapter are in [PR #42](https://github.com/davidiach/adaptive-threshold-estimation/pull/42).
+
+The [sharp quantile factor](OPTIMAL_QUANTILE_FACTOR.md) is characterized on paper
+by a unique scalar root, with a certified numerical bracket of width $10^{-12}$.
+Lean verifies the upper factor [$31/20$](../results/quantile-price-20261104/README.md).
+Formalizing the sharp root characterization remains open.
+
+For structured finite laws, [grouping repeated suffix costs](BAND_COST_SELECTION.md)
+reduces the search to a polynomial number of states when the number of distinct
+positive costs is fixed. The general many-band complexity remains open.
 
 For a new contribution, follow [CONTRIBUTING.md](../CONTRIBUTING.md) and
 [AGENTS.md](../AGENTS.md). The project owner does not plan human specialist

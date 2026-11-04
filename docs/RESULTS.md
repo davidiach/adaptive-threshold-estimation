@@ -13,7 +13,7 @@ Psi correction explicit.
 
 Lean checks the general-law entropy-tail and closed-quantile rates, the explicit
 lower coefficient $10^{-17}$, the direct finite-law bounds and the sharper
-$8/5$ quantile comparison. On finite support a bandwise-suffix optimizer
+[$31/20$ quantile comparison](../results/quantile-price-20261104/README.md). On finite support a bandwise-suffix optimizer
 attains the minimum. Total-variation stability, upward rounding within bands
 and the resulting finite-law enclosures are Lean-checked. The stopping-program, identification and genie results
 are also Lean-checked within the scopes recorded below.
@@ -456,7 +456,7 @@ algebraic coefficient $\lambda_*\approx1.6435$. Besides the same
 scale-separated estimate, it replaces the square-root triangle inequality by
 the entropy interaction bound
 $\mathcal G(a+b)\le\mathcal G(a)+\mathcal G(b)+\sqrt{2\mathcal G(a)\mathcal G(b)}$.
-The best factor lies in $(1.4604,8/5]$, by exact rational certificates for a
+The original package and integration review bounded the factor in $(1.4604,8/5]$, using a
 six-atom law ($Q/\mathcal K>1.42132$) and an eight-atom law
 ($Q/\mathcal K>1.4604$, from the integration review). For finite laws, the
 package also proves that some optimal hard selection is an upper-gap suffix in
@@ -474,6 +474,15 @@ The [theorem](../lean/ThresholdHC/QuantileSelection/Full.lean) covers arbitrary
 probability laws, fractional quantile atoms and unbounded full-law entropy.
 The [audit](VERIFY.md#full-quantile-selection-comparison) also checks the
 statement for the selection functional used in the minimax theorem.
+
+A [sharper proof](QUANTILE_PRICE_BOUNDS.md) gives $Q\le(31/20)K$ for all
+positive-gap laws. Lean checks this bound on the original selection functional,
+including the separated-cost coefficient $16/9$. [Kernel record](../results/quantile-price-20261104/README.md) A five-atom rational example has $Q/K>1.46255$. The
+arithmetic verifier checks the upper proof’s rational inequalities and the
+strict lower example. A [sharp-factor proof](OPTIMAL_QUANTILE_FACTOR.md) reduces the
+supremum over laws to the unique root of a scalar equation. Its rational
+certificate gives $1.462554551279<c_*<1.462554551280$. The characterization
+and numerical certificate have not been checked in Lean.
 
 **Lean verifies the finite-law bandwise-suffix theorem.** For a probability
 law with finite support, a hard restriction minimizes the raw objective over

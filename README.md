@@ -5,7 +5,7 @@
 Minimax theory for estimating a threshold probability from noisy coin flips,
 with a research manuscript, Lean 4 proofs built on Mathlib, and reproducible experiments.
 
-**[Paper](paper/v6/builds/confidence-population-20261104.pdf)** · **[Formal proof map](lean/README.md)** · **[Verification guide](docs/VERIFY.md)** · **[Specialist review packet](paper/critical-review/review.pdf)**
+**[Paper](paper/v6/builds/optimal-quantile-factor-20261104.pdf)** · **[Formal proof map](lean/README.md)** · **[Verification guide](docs/VERIFY.md)** · **[Specialist review packet](paper/critical-review/review.pdf)**
 
 New contributors: start with [CONTRIBUTING.md](CONTRIBUTING.md).
 AI agents: read [AGENTS.md](AGENTS.md) for current entry points, preservation
@@ -96,7 +96,10 @@ inverse without subset search. The calculator's floating-point evaluation
 is unverified. Lean proves the [sharper comparison](lean/ThresholdHC/QuantileSelection/Full.lean)
 from the [certified-selection note](research/2026-10-30-certified-selection/README.md),
 $\mathcal K\le Q\le(8/5)\mathcal K$, for every positive-gap law in the same
-parameter range. The optimal factor lies in $(1.4604,8/5]$.
+parameter range. A later [Lean proof](results/quantile-price-20261104/README.md)
+lowers the upper factor to $31/20$. The [optimal factor](docs/OPTIMAL_QUANTILE_FACTOR.md) is the
+unique root of a scalar equation and lies strictly between $1.462554551279$
+and $1.462554551280$ by a paper proof and rational certificate.
 For a finite law, Lean also proves that a hard optimizer selects an upper-gap
 suffix within each dyadic band. With $n_j$ atoms in occupied band $j$, at most
 $\prod_j(n_j+1)$ candidates suffice. [Suffix theorem and search bound](lean/ThresholdHC/BandwiseSuffix/Search.lean)
@@ -183,9 +186,9 @@ experiments provide supporting evidence, not proofs of universal claims.
 The general-law entropy-tail and closed-quantile rates are now Lean-checked
 with explicit coefficients. The remaining formalization targets include the paper-only
 regimes, and auxiliary results on envelopes, smooth densities, and observed
-outer states. Tighter constants and efficient selection algorithms remain
-research directions; the quantile-to-selection factor is now known to lie in
-$(1.4604,8/5]$. See the [completion ledger](docs/WORKPLAN.md) for the current boundary.
+outer states. The sharp quantile factor now has a paper proof. Efficient
+exact selection for many bands with unrestricted costs remains open.
+See the [completion ledger](docs/WORKPLAN.md) for the current boundary.
 
 ## Attribution and license
 

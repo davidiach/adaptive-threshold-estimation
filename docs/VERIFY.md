@@ -382,6 +382,17 @@ its exact type and transitive axioms and writes its status under
 $\mathcal K\le Q\le\frac85\mathcal K$, Lemmas 1–2 and the suffix theorem are not
 targets.
 
+## Sharper quantile factor
+
+Run `python tools/verify_quantile_price_upper.py` for the original arbitrary-law
+comparison $K\le Q\le(31/20)K$ and the $16/9$ separated-cost bound. The audit
+includes the earlier $8/5$ endpoints after sharing their pointwise reduction.
+[Six exact statements and 31 axiom reports](../results/quantile-price-20261104/README.md)
+
+Run `python tools/verify_optimal_quantile_factor.py` for the strict rational
+bracket of width $10^{-12}$ around the sharp factor. The reduction to the
+scalar root is a [paper proof](OPTIMAL_QUANTILE_FACTOR.md).
+
 ## Full quantile-selection comparison
 
 ```sh
