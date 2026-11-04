@@ -17,8 +17,10 @@ unfair coin, and the tool uses the same word.
 
 For a **known finite gap law and a known bound on the positive fraction**, the
 [rare-event calculator](#3-compute-the-rare-event-rate-for-a-known-finite-law)
-evaluates the paper's quantile rate functional and its inverse. This is a
-separate calculation from the two executable estimators below.
+evaluates the paper's quantile rate functional and its inverse. To run an
+observable estimator for a known law, use the [known-law estimator and
+oracle guide](../docs/KNOWN_LAW_ESTIMATOR.md). It accepts finite atom tables
+or certified integrals for a continuous or mixed law.
 
 ## Read this first: what building it showed
 
@@ -211,12 +213,10 @@ positive-gap law; the executable calculator accepts finite laws.
 It also uses $T_h\le\mathcal K$, so the returned interval is
 $[\max\{T_h,3Q/5\},Q]$ and collapses to $\{\rho\}$ when $h\ge t$.
 
-**These are rate-functional values, not achieved RMS errors.** The statistical
-comparison between the rate and minimax risk is a paper proof with loose
-constants. This calculator does not implement the rare-event estimator or
-certify its execution budget. It does not infer a gap law from data or provide
-an unknown-law confidence interval. Numerical values, including the comparison
-endpoints, use floating-point arithmetic and are not interval certified.
+These floating-point endpoints describe the rate functional. Lean verifies the
+comparison with minimax risk. The separate [known-law estimator](../docs/KNOWN_LAW_ESTIMATOR.md)
+reports its finite-level MSE bound, expected work budget and actual flips.
+Both calculations require the magnitude law as an input.
 
 To invert $Q$, replace `--budget` with `--target-rate`:
 

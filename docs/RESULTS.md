@@ -777,7 +777,9 @@ the median of $m$ independent copies, with $m$ the least odd integer such that
 $(3/4)^m\le\delta^2$, each run at expected budget $B/(8m)$ and stopped after
 $\lfloor B/m\rfloor$ observations, never exceeds $B$ observations. Its radius
 is $\sqrt8\,R(B/(8m))$ at failure probability $\delta$. No independence between
-a run's cost and its error is assumed.
+a run's cost and its error is assumed. The [known-law implementation](KNOWN_LAW_ESTIMATOR.md#a-confidence-interval-under-a-hard-flip-budget)
+uses the same observable base program for expected-work estimation and capped
+median amplification. It reports the base plan’s squared-error bound.
 
 | Application | Conclusion (paper proof) | Inherited premises |
 |---|---|---|
