@@ -18,7 +18,7 @@ def check_lock():
 def audit_input():
     check_lock()
     src = """
-import ThresholdHC.HardBudget.Full
+import ThresholdHC.HardBudget.Ordinary
 noncomputable section
 open ThresholdHC.HardBudget ThresholdHC.Tier6 ThresholdHC.ObservableSimulation
 open scoped ENNReal
@@ -41,6 +41,9 @@ example {R : ℕ → Type} [∀ j, MeasurableSpace (R j)] (A : ∀ j, AdaptiveEs
       (MeasureTheory.Measure.infinitePi (fun i => originalSimulationLaw μ (A i) q)) :=
   stageInputs_preserving A M k μ q
 example : ObservableFallbackStatement := observable_fallback
+example (μ : MeasureTheory.Measure Gap) [MeasureTheory.IsProbabilityMeasure μ] {B : ℝ} (hB : 1 ≤ B) :
+    ENNReal.ofReal (modulus μ (1/Real.sqrt B)/64) ≤ hardMinimaxRisk μ B ∧
+      hardMinimaxRisk μ B ≤ ENNReal.ofReal (3000*modulus μ (1/Real.sqrt B)) := ordinary_hard_minimax μ hB
 """.lstrip()
     roots = {"ThresholdHC.HardBudget." + name for name in [
         "readBlock_length", "readBlock_append", "readBlock_untouched", "readBlock_relabel",
@@ -48,13 +51,14 @@ example : ObservableFallbackStatement := observable_fallback
         "paid_fits", "count_at_checkpoint", "count_zero_of_small", "estimator", "estimator_output",
         "estimator_cap", "stageInputs_preserving", "clip_loss_le", "stage_loss_le", "timeout_quarter",
         "expected_loss_step", "fallback_rate", "estimator_squared_loss", "observable_fallback",
+        "pathwise_expected", "rms_family", "ordinary_budget_scale", "ordinary_hard_family", "ordinary_hard_minimax",
     ]}
     return src + "".join("#print axioms " + n + "\n" for n in sorted(roots)), roots
 
 
 def main():
     src, roots = audit_input()
-    subprocess.run(["lake", "build", "ThresholdHC.HardBudget.Full"], cwd=LEAN, check=True)
+    subprocess.run(["lake", "build", "ThresholdHC.HardBudget.Ordinary"], cwd=LEAN, check=True)
     run = subprocess.run(["lake", "env", "lean", "--stdin"], cwd=LEAN, input=src, text=True,
                          encoding="utf-8", capture_output=True)
     output = run.stdout + run.stderr
