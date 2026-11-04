@@ -111,3 +111,5 @@ and the [observable median](ThresholdHC/ConfidenceProgram/Amplify.lean).
 [unbiased variance and work](ThresholdHC/Envelope/Unbiased.lean) extend
 the ordinary model to unknown laws ordered by their gap CDFs.
 [Audit](../results/stochastic-envelope-20261105/README.md)
+
+[Sublinear power margins](ThresholdHC/SubcriticalPower/Full.lean) give both rare-event minimax rates and one estimator family across the margin class. [Audit](../results/sublinear-power-20261105/README.md)

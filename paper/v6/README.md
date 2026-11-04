@@ -275,3 +275,5 @@ lower bound and constructs the budgeted median in the observable experiment.
 The [stochastic-envelope build](builds/stochastic-envelope-20261105.pdf)
 adds the formal verification links for the corollary in the original
 finite-budget and unbiased models. [Build record](builds/stochastic-envelope-20261105.json)
+
+[Appendix T](appendix-sublinear-power.tex) gives a direct proof for power margins below one, including fixed confidence and a uniform upper estimator. [Manuscript](builds/sublinear-power-20261105.pdf) · [Build record](builds/sublinear-power-20261105.json)

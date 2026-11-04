@@ -64,3 +64,5 @@ They build the original observable experiment before checking the minimax radii.
 
 Run `verify_stochastic_envelope.py` for the unknown-law envelope corollary.
 [Statements and native logs](../results/stochastic-envelope-20261105/README.md)
+
+Run `verify_sublinear_power.py` for [the power-margin row below one](../results/sublinear-power-20261105/README.md).

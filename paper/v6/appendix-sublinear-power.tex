@@ -1,0 +1,46 @@
+\section{A direct proof below margin exponent one}\label{app:sublinear-power}
+
+Let $0<\alpha<1$, $a>0$, $0<\rho\le1/4$, $B\ge1$ and
+$0<\delta\le1/4$. For resolution $h>0$, put
+$z(h)=\min\{\rho,(h/a)^\alpha\}$. Write $h_B=1/\sqrt B$ and
+$h_\delta=\sqrt{\log(1/\delta)/B}$. Under the exact power law,
+\[
+ \frac{z(h_B)}{32}\le R_{\mu,\rho}(B)\le
+ \frac{512}{1-\alpha}z(h_B),\qquad
+ \frac{z(h_\delta)}{960}\le r_{\rm exp}(B,\delta)\le
+ \frac{8192}{1-\alpha}z(h_\delta).
+\]
+The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/b0c197402f9623cf845f732582fe21f7e9159d9f/lean/ThresholdHC/SubcriticalPower/Upper.lean}{upper procedures} need only the power margin envelope. The constants
+are uniform in $a,\rho,B,\delta$ wherever the law exists.
+
+\paragraph{Why the lower bound saturates.}
+The fractional lower-quantile measure $\eta$ of mass $\rho$ has CDF
+$F_\eta(t)=\min\{\rho,F_\mu(t)\}$, including when the quantile is an
+atom. Below the threshold its mass agrees with the full law. At or above
+the threshold its cumulative mass is $\rho$. Since the clipped kernel
+equals one at every $d\le h$, its integral against $\eta$ is at least
+$F_\eta(h)=z(h)$ for the exact power law. The observable quantile-tail
+lower bound gives $R_{\mu,\rho}(B)\ge z(h_B)/32$.
+For confidence put $\beta=B/\log(1/\delta)$, so $h_\beta=h_\delta$.
+The stopping program dominates expected-budget RMS risk at $\beta$.
+Applying \cref{thm:confidence-stopping-dual} gives the coefficient $1/960$.
+
+\paragraph{One procedure for every law in the envelope.}
+For every finite measure $\nu$ on positive gaps,
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/72c56e0f37d72c8464ac35290181715152aa2450/lean/ThresholdHC/SubcriticalPower/Layers.lean}{layer integration} gives
+\[
+ \int\min\{1,h/d\}\,d\nu(d)=\int_0^1 F_\nu(h/t)\,dt.
+\]
+Indeed the superlevel set at $0<t\le1$ consists of the gaps at most $h/t$.
+For a probability law with the power envelope, this is at most
+\[
+ (h/a)^\alpha\int_0^1t^{-\alpha}\,dt
+   =\frac{(h/a)^\alpha}{1-\alpha}.
+\]
+If $\rho\le(h/a)^\alpha$, return $\rho/2$ without buying a flip.
+Otherwise use the ordinary distribution-blind procedure, whose risk
+is controlled by this integral, with $h=h_B$ for RMS and $h=h_\delta$
+for confidence. Both decisions depend only on known parameters. Thus the
+same procedure covers all sign priors of mean at most $\rho$ and all laws
+in the envelope. At exponent one the displayed integral diverges, and the
+shifted-start construction of Appendix~\ref{app:localization} treats that row.

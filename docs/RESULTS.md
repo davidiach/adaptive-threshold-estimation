@@ -23,6 +23,15 @@ boundaries. Historical source pointers below refer to the unchanged
 [v4 paper](../paper/paper.pdf), its [TeX](../paper/paper.tex), and the
 [rare-event continuation](../inputs/next-phase/report/research_note.pdf).
 
+## Rare-event power margins below exponent one
+
+Put $z(h)=\min\{\rho,(h/a)^\alpha\}$ for $0<\alpha<1$. At RMS
+resolution $1/\sqrt B$ the checked coefficients on $z$ are $1/32$ and
+$512/(1-\alpha)$. At confidence resolution $\sqrt{\log(1/\delta)/B}$ they
+are $1/960$ and $8192/(1-\alpha)$. Lower bounds use the exact power law.
+The same upper family works for every law under the power margin envelope.
+[Statement, assumptions and native record](../results/sublinear-power-20261105/README.md)
+
 ## Unknown gap laws under a stochastic envelope
 
 Suppose the actual gap law $\nu$ satisfies $\nu((0,t])\le\mu((0,t])$
