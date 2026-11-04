@@ -117,3 +117,5 @@ the ordinary model to unknown laws ordered by their gap CDFs.
 [Shifted power-margin estimators](ThresholdHC/ShiftedPower/Full.lean) give both remaining rare-event rows, including hard-cap confidence and uniformity over the margin class. [Audit](../results/shifted-power-20261105/README.md)
 
 [Time-uniform confidence](ThresholdHC/Anytime/Full.lean) verifies nested observable intervals, a shared purchase history, data-dependent stopping and the known-law iterated-logarithm width. [Audit](../results/anytime-confidence-20261105/README.md)
+
+[Smooth-density robustness](ThresholdHC/SmoothDensity/Full.lean) verifies both expected-complexity bounds and the uniform unbiased impossibility in the original adaptive experiment. [Proof map](../docs/SMOOTH_DENSITY.md) · [Audit](../results/smooth-density-20261105/README.md)

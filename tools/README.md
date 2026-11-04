@@ -70,3 +70,5 @@ Run `verify_sublinear_power.py` for [the power-margin row below one](../results/
 Run `verify_shifted_power.py` for [the logarithmic and intermediate power-margin rows](../results/shifted-power-20261105/README.md).
 
 Run `verify_anytime_confidence.py` for [the online confidence theorem](../results/anytime-confidence-20261105/README.md).
+
+Run `verify_smooth_density.py` for the [smooth-density theorem](../results/smooth-density-20261105/README.md), its analytic construction and original-experiment identification.

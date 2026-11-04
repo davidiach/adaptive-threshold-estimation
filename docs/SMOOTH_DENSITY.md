@@ -26,13 +26,39 @@ The current exact-type and transitive-axiom audit checks the following results.
 
 The audit command is `python tools/verify_smooth_density.py`.
 
-## Remaining assembly
+## Completed theorem
 
-The initial checkpoint verifies the analytic construction and the local
-information bound separately. Connecting the constructed density pair to the
-original latent-parameter law, completing the class-wide two-sided complexity
-theorem, and proving the smooth-class unbiased impossibility remain in progress.
-The manuscript retains its paper-proof status for the full smooth-density claim
-until that assembly and its exact-type audit are complete.
+The [full theorem](../lean/ThresholdHC/SmoothDensity/Full.lean) checks the
+class-wide two-sided expected complexity and uniform unbiased impossibility.
+For each fixed finite derivative order, one sufficiently large finite bound
+defines a class with complexity proportional to
+`ε⁻² log²(1/ε) log(1/δ)`, for sufficiently small positive accuracy and
+`0 < δ ≤ 1/4`. The upper coefficient is `(65536 M)²`.
 
-The historical generated theorem and its source files are preserved.
+The class is represented in the original gap/sign experiment by equality
+against every bounded measurable function of the latent Bernoulli parameter.
+The proof identifies that law with the existing independent-tape construction
+and identifies its threshold probability with the original sign mean.
+
+The upper family is selected before the density. The lower bound permits
+arbitrary measurable private randomness, adaptive revisits, interleaving and
+unbounded stopping. The unbiased impossibility applies to estimators with
+uniform finite variance and uniform finite expected work throughout the class.
+
+## Proof map
+
+| Modules | Result |
+|---|---|
+| Rational, Perturbation, Bump, Densities | Uniform derivatives and normalized smooth densities |
+| Separation, Scale | Logarithmic separation and the accuracy-dependent scale |
+| GapLaw, Representation, LatentLaw | Common gap law and the original parameter law |
+| Information, SymmetricInformation | Actual expected-work information bounds |
+| Envelope, Upper | Density-to-CDF bound and a law-independent upper family |
+| Lower, Unbiased, Full | Both complexity bounds and unbiased impossibility |
+
+All modules are in [SmoothDensity](../lean/ThresholdHC/SmoothDensity/Full.lean).
+The [native audit](../results/smooth-density-20261105/README.md) checks
+15 independent exact statements and 46 transitive axiom reports.
+[Appendix W](../paper/v6/appendix-smooth-density.tex) supplies the updated
+paper proof. The [149-page manuscript](../paper/v6/builds/smooth-density-20261105.pdf)
+includes that appendix and the revised verification scope.
