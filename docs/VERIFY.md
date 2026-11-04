@@ -765,3 +765,7 @@ Run `python tools/verify_sublinear_power.py` for five exact statements and ten t
 ## Logarithmic and intermediate rare margins
 
 Run `python tools/verify_shifted_power.py` for ten exact statements and 35 transitive axiom reports. The finite Poisson controller is checked through the original observable experiment. [Native record](../results/shifted-power-20261105/README.md)
+
+## Observable time-uniform confidence
+
+Run `python tools/verify_anytime_confidence.py` for nine exact statements and 29 transitive axiom reports. Both interval endpoints use the same observed prefix and private seed. [Native record](../results/anytime-confidence-20261105/README.md)

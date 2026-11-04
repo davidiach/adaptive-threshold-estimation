@@ -29,6 +29,7 @@ or CI run passes.
 | Finite-law bandwise-suffix optimizer and sufficient search family | [bandwise-suffix-20261104](bandwise-suffix-20261104/README.md) |
 | Total variation, rounding, transported enclosures and finite approximation | [selection-stability-20261104](selection-stability-20261104/README.md) |
 | Quarter smoothing in both KL directions | [quarter-smoothing-20261104](quarter-smoothing-20261104/README.md) |
+| Observable time-uniform confidence for known laws | [anytime-confidence-20261105](anytime-confidence-20261105/README.md) |
 | Logarithmic and intermediate rare power margins | [shifted-power-20261105](shifted-power-20261105/README.md) |
 | Rare power margins below exponent one | [sublinear-power-20261105](sublinear-power-20261105/README.md) |
 | Unknown laws under a stochastic envelope | [stochastic-envelope-20261105](stochastic-envelope-20261105/README.md) |

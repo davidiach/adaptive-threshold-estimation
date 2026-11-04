@@ -162,4 +162,4 @@ The [known-law native audit](../../results/known-law-confidence-20261104/README.
 verifies the observable capped median, both critical bounds and a separate
 general-law lower proof through the stopping-program dual. That route gives
 a lower coefficient thirty times smaller than the localization proof here.
-Full adaptive-type localization and the sequential width row retain paper proofs.
+The [sequential controller, coverage and width](../../results/anytime-confidence-20261105/README.md) are now Lean-checked. Full adaptive-type localization retains a paper proof.

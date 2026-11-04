@@ -820,11 +820,11 @@ $\lfloor B/m\rfloor$ observations, never exceeds $B$ observations. Its radius
 is $\sqrt8\,R(B/(8m))$ at failure probability $\delta$. No independence between
 a run's cost and its error is assumed.
 
-| Application | Conclusion (paper proof) | Inherited premises |
+| Application | Conclusion | Inherited premises |
 |---|---|---|
 | Known general law, known rarity | $10^{-17}\mathcal K(B/\ell)\le r^{\rm exp}(B,\delta)\le r^{\rm hard}(B,\delta)\le840000\,\mathcal K(B/\ell)$ | Lower: the policy-uniform common pair, null-work obstructions and entropy packing of v6 Appendix E enter through the single-type KL transfer and the paper's additive localization. Upper: $R\le C\mathcal K$, [Lean-checked](#general-law-rare-event-characterization) with $C=28000$ |
 | Critical quadratic law | $r^{\rm exp}\asymp r^{\rm hard}\asymp\min\{\rho,\sqrt{\rho L(1+\log L)\ell/B}\}$ | The [critical common pair and RMS upper bound](#critical-power-margin-full-minimax-characterization), both Lean-checked |
-| Sequential coverage | Stage $j$ has cap $4\cdot2^j$ and failure probability $\delta/((j+1)(j+2))$. The running intersection of stage intervals contains $\theta$ at every budget simultaneously with probability at least $1-\delta$, so stopping on the data is valid. For a known law and $B\ge1$, its half-width on that event is at most $1700000\,\mathcal K(B/\Lambda)$, where $\Lambda=\ell+2\log(2+\log_2(1+B))$ | Valid stage intervals; the width bound uses the general-law row |
+| Sequential coverage | Stage $j$ has cap $4\cdot2^j$ and failure probability $\delta/((j+1)(j+2))$. The running intersection of stage intervals contains $\theta$ at every budget simultaneously with probability at least $1-\delta$, so stopping on the data is valid. For a known law and $B\ge1$, its half-width on that event is at most $1500002\,\mathcal K(B/\Lambda)$, where $\Lambda=\ell+2\log(2+\log_2(1+B))$ | [Lean-checked online controller, coverage and width](../results/anytime-confidence-20261105/README.md) |
 
 **Status and limits.** The [critical confidence lower bound](../results/critical-confidence-20261104/README.md)
 now has a Lean proof for the original estimator under a uniform expected flip budget.
@@ -833,7 +833,7 @@ It derives the common pair from the fixed quadratic law. Lean also verifies a
 For all known laws and $0<\rho\le1/4$, the checked coefficients on $\mathcal K(B/\ell)$
 are $10^{-17}/30$ and $750000$. The critical upper coefficient is $2670000$.
 The paper's stronger general lower coefficient in the table uses additive localization.
-The known-law time-uniform width row retains a paper proof. The
+The known-law time-uniform width row now has a [Lean proof](../results/anytime-confidence-20261105/README.md), with half-width coefficient $1500002$. It uses one common observable experiment and consistent acquisition prefixes across budgets. The
 algorithms in the table may know $\mu$, $\rho$, $B$ and $\delta$. A separate
 [unknown-law construction and lower bound](UNKNOWN_LAW_CONFIDENCE.md) gives
 observable, simultaneously valid intervals that shrink for every fixed

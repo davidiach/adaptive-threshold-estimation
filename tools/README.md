@@ -68,3 +68,5 @@ Run `verify_stochastic_envelope.py` for the unknown-law envelope corollary.
 Run `verify_sublinear_power.py` for [the power-margin row below one](../results/sublinear-power-20261105/README.md).
 
 Run `verify_shifted_power.py` for [the logarithmic and intermediate power-margin rows](../results/shifted-power-20261105/README.md).
+
+Run `verify_anytime_confidence.py` for [the online confidence theorem](../results/anytime-confidence-20261105/README.md).
