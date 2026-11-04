@@ -18,7 +18,8 @@ def check_lock():
 def audit_input():
     check_lock()
     src = """
-import ThresholdHC.HardBudget.Execution
+import ThresholdHC.HardBudget.Inputs
+import ThresholdHC.HardBudget.StageMoments
 noncomputable section
 open ThresholdHC.HardBudget ThresholdHC.Tier6 ThresholdHC.ObservableSimulation
 open scoped ENNReal
@@ -33,17 +34,27 @@ example {R : ℕ → Type} [∀ j, MeasurableSpace (R j)] (A : ∀ j, AdaptiveEs
     (M : ℝ) (r : ∀ j, R j) (s : Table) (k : ℕ) :
     planOutput A M r k (readBlock (paid k) (planReader A r k) s).1 = idealFallback A M r s k :=
   planOutput_readBlock A M r s k
+example {R : ℕ → Type} [∀ j, MeasurableSpace (R j)] (A : ∀ j, AdaptiveEstimator (R j))
+    (M : ℝ) (k : ℕ) : PathwiseCap (estimator A M k) (paid k) := estimator_cap A M k
+example {R : ℕ → Type} [∀ j, MeasurableSpace (R j)] (A : ∀ j, AdaptiveEstimator (R j))
+    (M : ℝ) (k : ℕ) (μ : MeasureTheory.Measure Gap) [MeasureTheory.IsProbabilityMeasure μ] (q : SignLaw) :
+    MeasureTheory.MeasurePreserving stageInputs (originalSimulationLaw μ (estimator A M k) q)
+      (MeasureTheory.Measure.infinitePi (fun i => originalSimulationLaw μ (A i) q)) :=
+  stageInputs_preserving A M k μ q
 """.lstrip()
     roots = {"ThresholdHC.HardBudget." + name for name in [
         "readBlock_length", "readBlock_append", "readBlock_untouched", "readBlock_relabel",
         "block_path", "decode_correct", "stageOutput_correct", "next_stage_fresh", "planOutput_readBlock",
+        "paid_fits", "count_at_checkpoint", "count_zero_of_small", "estimator", "estimator_output",
+        "estimator_cap", "stageInputs_preserving", "clip_loss_le", "stage_loss_le", "timeout_quarter",
     ]}
     return src + "".join("#print axioms " + n + "\n" for n in sorted(roots)), roots
 
 
 def main():
     src, roots = audit_input()
-    subprocess.run(["lake", "build", "ThresholdHC.HardBudget.Execution"], cwd=LEAN, check=True)
+    subprocess.run(["lake", "build", "ThresholdHC.HardBudget.Inputs", "ThresholdHC.HardBudget.StageMoments"],
+                   cwd=LEAN, check=True)
     run = subprocess.run(["lake", "env", "lean", "--stdin"], cwd=LEAN, input=src, text=True,
                          encoding="utf-8", capture_output=True)
     output = run.stdout + run.stderr
