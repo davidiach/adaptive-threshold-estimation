@@ -68,6 +68,7 @@ jobs:
           python research/2026-10-30-certified-selection/reproduce.py
           python research/2026-10-30-certified-selection/integration-review/certify_obstruction.py
           python research/2026-10-30-certified-selection/integration-review/independent_check.py
+          python tools/verify_quantile_price_bounds.py
       - name: Replay the exact hard-budget RMS fallback audits
         run: python research/2026-10-30-hard-budget-rms/verify.py
       - name: Replay the exact confidence-transfer and sequential-coverage audits

@@ -474,6 +474,11 @@ probability laws, fractional quantile atoms and unbounded full-law entropy.
 The [audit](VERIFY.md#full-quantile-selection-comparison) also checks the
 statement for the selection functional used in the minimax theorem.
 
+A [sharper paper proof](QUANTILE_PRICE_BOUNDS.md) gives $Q\le(31/20)K$ for all
+positive-gap laws. A five-atom rational example has $Q/K>1.46255$. The
+arithmetic verifier checks the upper proof’s rational inequalities and the
+strict lower example. The optimal coefficient is still unknown.
+
 **Lean verifies the finite-law bandwise-suffix theorem.** For a probability
 law with finite support, a hard restriction minimizes the raw objective over
 all submeasures and attains $K$ after clipping at $\rho$. If a larger atom in
