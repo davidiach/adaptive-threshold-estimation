@@ -56,27 +56,27 @@ theorem stage_loss_le {R : Type} [MeasurableSpace R] (μ : Measure Gap) [IsProba
   rw [← show _ = (∫⁻ z, loss θ (outcome A n M z).2 ∂originalSimulationLaw μ A q) from h]
   exact lintegral_mono (fun z => clip_loss_le _ _ _ hθ)
 
+theorem timeout_work {R : Type} [MeasurableSpace R] (μ : Measure Gap) [IsProbabilityMeasure μ]
+    (q : SignLaw) (A : AdaptiveEstimator R) (M : ℝ) (n : ℕ) :
+    ((n:ℝ≥0∞)+1)*(∫⁻ z, timedOut (outcome A n M z) ∂originalSimulationLaw μ A q) ≤ expectedWork μ A q := by
+  let F (z : R × ProcessTape) := timedOut (observed A n M z)
+  have h := original_observable_lintegral μ A q F (measurable_timedOut.comp (measurable_observed A n M))
+  change ((n:ℝ≥0∞)+1)*(∫⁻ z, F (z.1,populationPath (A.policy z.1) z.2) ∂originalSimulationLaw μ A q) ≤ _
+  rw [← h,← lintegral_const_mul' _ _ (by finiteness)]
+  apply lintegral_mono_ae
+  filter_upwards [original_path_valid μ A q] with z hz
+  cases hp : A.policy z.1.1 (processHistory z.2 n) with
+  | none => simp [F,timedOut,observed,hp]
+  | some i =>
+    have hv := valid_path_continuation_work (A.policy z.1.1) z.2 hz n (by simp [hp])
+    simpa [F,timedOut,observed,hp,ENNReal.ofReal_add (Nat.cast_nonneg n) zero_le_one] using hv
+
 theorem timeout_quarter {R : Type} [MeasurableSpace R] (μ : Measure Gap) [IsProbabilityMeasure μ]
     (q : SignLaw) (A : AdaptiveEstimator R) (M : ℝ) (j : ℕ) (hw : expectedWork μ A q ≤ stageAllowance j) :
     (∫⁻ z, timedOut (outcome A (stageCap j) M z) ∂originalSimulationLaw μ A q) ≤ 1/4 := by
   let n := stageCap j
-  let F (z : R × ProcessTape) := timedOut (observed A n M z)
-  have hm : Measurable F := measurable_timedOut.comp (measurable_observed A n M)
-  have h := original_observable_lintegral μ A q F hm
-  change (∫⁻ z, F (z.1,populationPath (A.policy z.1) z.2) ∂originalSimulationLaw μ A q) ≤ _
-  rw [← h]
-  have hbound : (n:ℝ≥0∞)*(∫⁻ z, F (z.1.1,z.2) ∂experimentLaw μ A q) ≤ expectedWork μ A q := by
-    rw [← lintegral_const_mul' _ _ (ENNReal.natCast_ne_top n)]
-    apply lintegral_mono_ae
-    filter_upwards [original_path_valid μ A q] with z hz
-    by_cases hp : A.policy z.1.1 (processHistory z.2 n) = none
-    · simp [F,timedOut,observed,hp]
-    · have hv := valid_path_continuation_work (A.policy z.1.1) z.2 hz n hp
-      have hn : (n:ℝ≥0∞) ≤ ENNReal.ofReal ((n:ℝ)+1) := by
-        rw [← ENNReal.ofReal_natCast n]; apply ENNReal.ofReal_le_ofReal; linarith
-      cases he : A.policy z.1.1 (processHistory z.2 n) with
-      | none => exact (hp he).elim
-      | some i => simpa [F,timedOut,observed,he] using hn.trans hv
+  have hbound : (n:ℝ≥0∞)*(∫⁻ z, timedOut (outcome A n M z) ∂originalSimulationLaw μ A q) ≤ expectedWork μ A q :=
+    (mul_le_mul_left (le_self_add : (n:ℝ≥0∞) ≤ n+1) _).trans (timeout_work μ q A M n)
   have hn0 : n ≠ 0 := by dsimp [n,stageCap,stageAllowance]; positivity
   have eq : (stageAllowance j : ℝ≥0∞)/(n:ℝ≥0∞) = 1/4 := by
     have hb : (stageAllowance j:ℝ≥0∞) ≠ 0 := by dsimp [stageAllowance]; positivity

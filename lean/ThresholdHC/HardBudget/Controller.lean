@@ -101,23 +101,27 @@ private theorem work_history (x : ProcessTape) (j : ℕ) :
     rw [processPrefix_snoc,ThresholdHC.Proofs.workOf_snoc,ih,history_succ,List.length_append]
     cases h : x j <;> simp
 
-theorem estimator_cap (base : ∀ j, AdaptiveEstimator (R j)) (M : ℝ) (k : ℕ) :
-    PathwiseCap (estimator base M k) (paid k) := by
+theorem stopAt_pathwise_cap {S : Type} [MeasurableSpace S] (A : AdaptiveEstimator S) (n : ℕ)
+    (p : S → Reader) (hp : ∀ r, A.policy r = stopAt n (p r)) : PathwiseCap A n := by
   intro r x hv
-  have hlen (j : ℕ) : (processHistory x j).length ≤ paid k := by
+  simp_rw [hp] at hv
+  have hlen (j : ℕ) : (processHistory x j).length ≤ n := by
     induction j with
     | zero => simp [processHistory]
     | succ j ih =>
       rw [history_succ,List.length_append]
-      by_cases h : (processHistory x j).length < paid k
+      by_cases h : (processHistory x j).length < n
       · cases x j <;> simp <;> omega
       · have hx := hv j
-        change (x j).isSome = (stopAt (paid k) _ (processHistory x j)).isSome at hx
         simp [stopAt,h] at hx
         rw [hx]; simpa using ih
   apply iSup_le
   intro j
   rw [work_history,ENNReal.ofReal_natCast]
   exact_mod_cast hlen j
+
+theorem estimator_cap (base : ∀ j, AdaptiveEstimator (R j)) (M : ℝ) (k : ℕ) :
+    PathwiseCap (estimator base M k) (paid k) :=
+  stopAt_pathwise_cap _ _ _ (fun _ => rfl)
 
 end ThresholdHC.HardBudget
