@@ -11,9 +11,11 @@ which shared proofs appear once. The three source manuscripts are preserved
 unchanged. The v5 source record preserves the original proofs and makes the
 Psi correction explicit.
 
-The general-law and finite-gap results are paper proofs, except that their
-upper bounds and the $1+2\sqrt2$ quantile comparison are Lean-checked; their
-scopes are recorded below.
+The general-law entropy-tail law and the closed-quantile rate for every law are
+Lean-checked in both directions with conservative universal constants, as are
+the $1+2\sqrt2$ quantile comparison and the stopping-program, identification
+and genie results. The manuscripts' explicit lower constants and the direct
+finite-law proof remain paper proofs; the scopes are recorded below.
 
 This guide gives the exact Lean specifications and remaining paper-proof
 boundaries. Historical source pointers below refer to the unchanged
@@ -227,10 +229,10 @@ $$10^{-17}\mathcal K_{\mu,\rho}(B)\le R_{\mu,\rho}(B)
 \le33000\mathcal K_{\mu,\rho}(B).$$
 
 No finite inverse moment, density, or regularity assumption is imposed.
-The following scopes are **paper-level claims**. Lean versions now cover the
-upper half of the first row and the other four rows, as described below, as
-well as the hard-selection reduction and the elementary properties of
-$\mathcal K$:
+The following scopes are **paper-level claims**. Lean versions now cover all
+five rows, including both halves of the first, as described below, as well as
+the hard-selection reduction and the elementary properties of $\mathcal K$.
+Their scopes and constants are those of the Lean statements:
 
 | Claim | Scope and qualification |
 |---|---|
@@ -243,10 +245,11 @@ $\mathcal K$:
 The [audit index](../paper/rare-event/audit/README.md) distinguishes the original
 source audits, final referee assessment, and revision audit, including corrected
 interpretations of historical findings. V2 resolves the revision audit's two
-minor editorial defects. Apart from the upper half and the stopping-program
-results below, the new general results have no Lean formalization, and none
-has external specialist review. The exact stored certificates cover 33 lower
-bounds, 9 upper policies, 9 stopping decisions, and two perfect-label examples;
+minor editorial defects. The explicit lower constant $10^{-17}$ has no Lean
+formalization; the Lean lower bound uses a smaller conservative constant. None
+of the general results has external specialist review. The exact stored
+certificates cover 33 lower bounds, 9 upper policies, 9 stopping decisions,
+and two perfect-label examples;
 they are not proofs of the continuum or compactness claims. The existing Lean
 variational-optimizer and critical-law results above and below retain their
 separate scopes. See [verification commands](VERIFY.md#general-law-rare-event-manuscript-v2).
@@ -365,7 +368,7 @@ for $F_\mu(d)=(d/a)^\alpha$ on $(0,a]$, all $0<a\le1/2$, $0<\rho\le1/4$, $B\ge1$
 
 The original paper construction uses asymmetric sign-test errors and a randomized telescope. Its unbiased single-coin output has $\mathbb E Y^2\le(153/56)\rho$ and separately $\mathbb E T\le w_\alpha/a^2$, with explicit finite $w_\alpha$ in the note. The central integration step is $\mathbb E[q(D)\min(D,a)^{-2}]\le[\alpha/(\alpha-2)]a^{-2}\rho^{1-2/\alpha}$; this uses the global constraint, not $q(d)\le\rho$. Compound-Poisson replication enforces the exact expected budget, and a constant estimate covers saturation. The matching lower proof imports Lee–Valiant Corollary 19 and Lemma 18, then gives an explicit fixed-gap simulation reduction.
 
-The [adversarial review](../research/2026-10-27-route-a/review.md), [second analytic review](../research/2026-10-27-route-a/second-review.md), [primary-source comparison](../research/2026-10-27-route-a/sources.md), and [baseline ledger](../research/2026-10-27-route-a/BASELINE.md) record the evidence. Reviewers did not author the main proof; model diversity is not guaranteed. The new Lean construction has second moment at most $28\rho$ and uses fixed-count averaging with the constant saturation estimator. Its matching lower coefficient is $1/256$ for every law supported below $a$, proved without importing an external statistical theorem. These two constants are instantiated in the proofs; the frozen statements assert positive constants. The [formal scope and proof map](RARE_ABOVE_TWO.md) distinguish these conservative constants and the formal algorithm from the paper construction. The seven frozen targets also cover exact-law existence, Psi equivalence and nonvacuity. External specialist review and worldwide novelty remain unverified. At the 27 October paper checkpoint, the arbitrary-law conjecture and $\alpha=2$ were unresolved. The later critical-law theorem below resolves the specified quadratic law and refutes the matching-Psi conjecture. The [general-law manuscript](#general-law-rare-event-characterization) supplies an entropy-tail replacement as an audited paper proof. The separate finite-gap manuscript below gives a closed quantile formula for known finite laws, including two atoms; infinite-support and unknown-law guarantees remain outside that manuscript's scope. Constants diverge as $\alpha\downarrow2$. The preserved paper and imported continuation are unchanged.
+The [adversarial review](../research/2026-10-27-route-a/review.md), [second analytic review](../research/2026-10-27-route-a/second-review.md), [primary-source comparison](../research/2026-10-27-route-a/sources.md), and [baseline ledger](../research/2026-10-27-route-a/BASELINE.md) record the evidence. Reviewers did not author the main proof; model diversity is not guaranteed. The new Lean construction has second moment at most $28\rho$ and uses fixed-count averaging with the constant saturation estimator. Its matching lower coefficient is $1/256$ for every law supported below $a$, proved without importing an external statistical theorem. These two constants are instantiated in the proofs; the frozen statements assert positive constants. The [formal scope and proof map](RARE_ABOVE_TWO.md) distinguish these conservative constants and the formal algorithm from the paper construction. The seven frozen targets also cover exact-law existence, Psi equivalence and nonvacuity. External specialist review and worldwide novelty remain unverified. At the 27 October paper checkpoint, the arbitrary-law conjecture and $\alpha=2$ were unresolved. The later critical-law theorem below resolves the specified quadratic law and refutes the matching-Psi conjecture. The [general-law manuscript](#general-law-rare-event-characterization) supplies an entropy-tail replacement as an audited paper proof, since Lean-checked in both directions with conservative universal constants. The separate finite-gap manuscript below gives a closed quantile formula for known finite laws, including two atoms; infinite-support and unknown-law guarantees remain outside that manuscript's scope. Constants diverge as $\alpha\downarrow2$. The preserved paper and imported continuation are unchanged.
 
 ## Known finite-gap rare events: paper-proof characterization
 
@@ -778,7 +781,7 @@ These packages retain their original statements and source locks. Statements
 that the matching-Psi conjecture was unresolved describe their historical
 scope; the full critical-law paper result above supplies the counterexample.
 The later [general-law entropy-tail manuscript](#general-law-rare-event-characterization)
-provides the arbitrary-law replacement as an audited paper proof. The finite-gap manuscript above gives a separate
+provides the arbitrary-law replacement as an audited paper proof, since Lean-checked in both directions with conservative universal constants. The finite-gap manuscript above gives a separate
 closed quantile formula for known finite laws. See the
 [research index](../research/README.md) and [replay commands](VERIFY.md).
 
