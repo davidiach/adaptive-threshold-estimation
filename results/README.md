@@ -29,6 +29,7 @@ or CI run passes.
 | Finite-law bandwise-suffix optimizer and sufficient search family | [bandwise-suffix-20261104](bandwise-suffix-20261104/README.md) |
 | Total variation, rounding, transported enclosures and finite approximation | [selection-stability-20261104](selection-stability-20261104/README.md) |
 | Quarter smoothing in both KL directions | [quarter-smoothing-20261104](quarter-smoothing-20261104/README.md) |
+| General-law $31/20$ quantile comparison | [quantile-price-20261104](quantile-price-20261104/README.md) |
 | Single-type population confidence transfer and common-pair lower bound | [confidence-population-20261104](confidence-population-20261104/README.md) |
 | Eight-fifths quantile-selection comparison for arbitrary laws | [quantile-selection-20261104](quantile-selection-20261104/README.md) |
 | Direct finite-law quantile bounds and estimator quantifiers | [direct-finite-quantile-20261104](direct-finite-quantile-20261104/README.md) |

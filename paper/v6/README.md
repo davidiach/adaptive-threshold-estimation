@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Read the updated manuscript](builds/confidence-population-20261104.pdf) · [Open the LaTeX project](main.tex) · [Population confidence build](#population-confidence-build)
+[Read the updated manuscript](builds/optimal-quantile-factor-20261104.pdf) · [Open the LaTeX project](main.tex) · [Optimal-factor build](#optimal-quantile-factor-build)
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -34,6 +34,7 @@ unchanged.
 | Appendices F–H | Shared single-unit and transfer tools used by both rare-event proofs |
 | Appendices I–N | Stopping-flow representation, exact dual, midpoint comparison, genie certificates, fixed-cap identification and exact numerical certificates |
 | Appendix O | The direct proof of the closed quantile law for finite laws |
+| Appendix P | The optimal general-law quantile comparison factor, its scalar equation and rational numerical bracket |
 
 ## Verification status
 
@@ -131,6 +132,19 @@ The [manuscript workflow](../../.github/workflows/manuscript.yml) builds it
 the same way with TeX Live from the Ubuntu 24.04 archive and uploads the PDF
 and log as the `v6-paper` artifact. Typesetting and source checks do not
 constitute a new mathematical proof or independent review.
+
+## Optimal quantile factor build
+
+Appendix P proves that the best factor for all positive-gap laws is a unique
+scalar root. It also gives matching finite-law constructions. The
+[rational certificate](../../tools/verify_optimal_quantile_factor.py) puts the
+root strictly between $1.462554551279$ and $1.462554551280$. Section 18
+records the [Lean proof of the upper bound $31/20$](../../results/quantile-price-20261104/README.md).
+The sharp characterization has a paper proof.
+
+The [published PDF](builds/optimal-quantile-factor-20261104.pdf) has 139 pages.
+Two independent builds produced identical bytes. The [build record](builds/optimal-quantile-factor-20261104.json)
+lists the source hashes, changed pages and visual checks.
 
 ## Population confidence build
 

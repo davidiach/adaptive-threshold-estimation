@@ -7,7 +7,9 @@ $$
 $$
 A five-atom law has $Q/K>1.46255$. Thus the optimal universal factor lies
 strictly above $1.46255$ and at most $1.55$. A [subsequent characterization](OPTIMAL_QUANTILE_FACTOR.md)
-identifies its exact value as a scalar root. The following is a paper proof.
+identifies its exact value as a scalar root. The argument below proves the
+$31/20$ upper bound. Its [Lean proof and audit](../results/quantile-price-20261104/README.md)
+cover arbitrary positive-gap laws.
 The [arithmetic verifier](../tools/verify_quantile_price_bounds.py) checks the
 rational inequalities and evaluates the lower example with rational log and
 square-root enclosures.

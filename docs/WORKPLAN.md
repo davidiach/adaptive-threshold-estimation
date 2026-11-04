@@ -46,12 +46,13 @@ Lean verifies the stronger [factor $8/5$](../results/quantile-selection-20261104
 and the [finite-law suffix reduction](../results/bandwise-suffix-20261104/README.md)
 from the certified-selection package. The sufficient search family has at most
 $\prod_j(n_j+1)$ elements and can grow exponentially with the number of occupied
-bands. The Python calculator is unverified. Efficient exact selection for many
-occupied bands and an executable general-law rare-event estimator remain open.
+bands. The Python calculator is unverified. The executable known-law estimator
+and its finite-law adapter are in [PR #42](https://github.com/davidiach/adaptive-threshold-estimation/pull/42).
 
 The [sharp quantile factor](OPTIMAL_QUANTILE_FACTOR.md) is characterized on paper
 by a unique scalar root, with a certified numerical bracket of width $10^{-12}$.
-Its formalization remains open.
+Lean verifies the upper factor [$31/20$](../results/quantile-price-20261104/README.md).
+Formalizing the sharp root characterization remains open.
 
 For structured finite laws, [grouping repeated suffix costs](BAND_COST_SELECTION.md)
 reduces the search to a polynomial number of states when the number of distinct
