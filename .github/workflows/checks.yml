@@ -304,6 +304,8 @@ jobs:
         run: python tools/verify_bandwise_suffix.py
       - name: Verify selection stability and finite approximation of arbitrary laws
         run: python tools/verify_selection_stability.py
+      - name: Verify the two-sided quarter-smoothing inequality
+        run: python tools/verify_quarter_smoothing.py
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
       - uses: actions/upload-artifact@v4
