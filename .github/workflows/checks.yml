@@ -302,6 +302,8 @@ jobs:
         run: python tools/verify_entropy_tail_sharp.py
       - name: Verify the eight-fifths quantile-selection comparison
         run: python tools/verify_quantile_selection.py
+      - name: Audit the universal 31/20 quantile comparison
+        run: python tools/verify_quantile_price_upper.py
       - name: Verify the finite-law bandwise-suffix optimizer and search bound
         run: python tools/verify_bandwise_suffix.py
       - name: Verify selection stability and finite approximation of arbitrary laws
