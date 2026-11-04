@@ -22,6 +22,7 @@ behavior before running it in a checkout that contains published evidence.
 | Selection stability and finite approximation | [verify_selection_stability.py](verify_selection_stability.py) | Checks five exact statements and audits the transitive axioms. |
 | Quarter smoothing for arbitrary laws | [verify_quarter_smoothing.py](verify_quarter_smoothing.py) | Checks both KL directions and the Hellinger normalization. |
 | Finite, seeded and stopped population confidence transfer | [verify_confidence_population.py](verify_confidence_population.py) | Checks physical work, endpoint smoothing and the common-pair rate. |
+| Hard observable flip budgets | [verify_hard_budget.py](verify_hard_budget.py) | Checks the target digest, original estimator, stage independence, risk bound and minimax rates. |
 | Quantitative finite-cap convergence | [Lean audit](verify_genie_rate.py), [rational checks](verify_finite_cap_rate.py) | Checks the optimized programs and risk certificate, and replays finite Bellman comparisons. |
 | Critical confidence lower bound | [Kernel audit](verify_critical_confidence.py) | Checks the gap density, common pair and unconditional minimax lower rate. |
 | Quantile-factor bounds | [31/20 Lean audit](verify_quantile_price_upper.py), [rational inequalities](verify_quantile_price_bounds.py), [sharp-root certificate](verify_optimal_quantile_factor.py) | Checks the original selection functional in Lean and the two numerical endpoints in exact rational arithmetic. |

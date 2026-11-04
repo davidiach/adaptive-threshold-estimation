@@ -708,8 +708,8 @@ false for the fixed quadratic law and gives no arbitrary-law replacement.
 The results above charge a uniform *expected* budget, so a single run may use
 many more observations than $B$. The
 [hard-budget RMS package](../research/2026-10-30-hard-budget-rms/README.md)
-gives a **paper proof** that the RMS rates survive a pathwise cap at a constant
-cost. Write $R^{\rm hard}(B)$ for the minimax RMS risk over algorithms that make
+gives the original proof that the RMS rates survive a pathwise cap at a constant
+cost. Lean now checks the [controller and its three applications](../results/hard-budget-rms-20261104/README.md). Write $R^{\rm hard}(B)$ for the minimax RMS risk over algorithms that make
 at most $\lfloor B\rfloor$ observations on every path. Such algorithms also meet
 the expected budget, so $R(B)\le R^{\rm hard}(B)$ and every expected-budget
 lower bound carries over unchanged.
@@ -726,15 +726,17 @@ inequality bounds each timeout probability by $1/4$. No independence between a
 run's error and its runtime is assumed; independence *between* complete runs is
 essential.
 
-| Application | Hard-cap conclusion (paper proof) | Inherited premises |
+| Application | Lean-checked hard-cap conclusion | Statistical input |
 |---|---|---|
 | Distribution-blind RMS law | $\frac1{64}\omega_\mu(B^{-1/2})\le R^{\rm hard}_\mu(B)\le3000\,\omega_\mu(B^{-1/2})$ for $B\ge1$, with one family for every $\mu$ | Both expected-budget bounds Lean-checked |
 | Critical quadratic law | $R^{\rm hard}_{\mu,\rho}(B)\asymp\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}$, upper coefficient $570000$ | Both expected-budget bounds Lean-checked |
-| Known general law, known rarity | $10^{-17}\mathcal K_{\mu,\rho}(B)\le R^{\rm hard}_{\mu,\rho}(B)\le190000\,\mathcal K_{\mu,\rho}(B)$ for $B>0$ | Lower: the entropy-tail rate is now Lean-checked with the displayed $10^{-17}$ lower coefficient. Its application to the hard cap is a paper reduction. Upper: $R\le C\mathcal K$, [Lean-checked](#general-law-rare-event-characterization) with $C=28000$; the coefficient $190000$ was derived from the paper's $33000$ |
+| Known general law, known rarity | $10^{-17}\mathcal K_{\mu,\rho}(B)\le R^{\rm hard}_{\mu,\rho}(B)\le160000\mathcal K_{\mu,\rho}(B)$ for $B>0$ | The expected-budget upper coefficient $28000$ and positivity supply dyadic base rules with coefficient $28001$. |
 
-**Status and limits.** The reduction, its observable realization and all three
-hard-cap conclusions are **paper proofs, not Lean-checked**. Lean-checked premises
-do not make these conclusions formal theorems. The guarantee holds at every
+**Observable implementation.** The [Lean controller](../lean/ThresholdHC/HardBudget/Full.lean)
+spends whole reserved blocks. It drops the filler observations after an early
+success and recovers the stopped output on every private seed and persistent
+coin table. The Python driver can release a successful stage early. The
+same retained estimates and deterministic reservation bound apply. The guarantee holds at every
 deterministic allowance. It does not cover an allowance or stopping time chosen
 from the data, and it does not preserve unbiasedness. The
 [toolkit driver](../toolkit/README.md#research-module-hard-observation-caps)
