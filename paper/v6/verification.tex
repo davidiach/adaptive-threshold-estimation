@@ -137,6 +137,18 @@ proves $10^{-20}Q\le R\le30001Q$. The
 \finiteleanref{Operational.lean}{observable\_estimator} and
 \finiteleanref{Operational.lean}{every\_estimator\_lower} theorems give
 the estimator and converse quantifiers.\\[5pt]
+Quantile comparison and finite selection &
+For $0<\rho\le1/4$ and $B>0$,
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/4916e389c6e2203998c274fa0f6a4854ae758042/lean/ThresholdHC/QuantileSelection/Full.lean}{the comparison theorem}
+gives $\mathcal K\le Q\le(8/5)\mathcal K$ for arbitrary gap laws.
+The proof combines the entropy interaction inequality, the factor-two
+bound on separated supports and the scalar comparison.
+For finite support,
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/1cafb0cc0fca2a4633fb1c2046f0076c16af1deb/lean/ThresholdHC/BandwiseSuffix/Full.lean}{the suffix theorem}
+gives a hard optimizer of the uncapped objective and identifies its capped
+value with $\mathcal K$. The
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/c15a9fa46a5f0a743fb20416b87498225a13661e/lean/ThresholdHC/BandwiseSuffix/Search.lean}{search corollary}
+bounds the sufficient family by $\prod_j(n_j+1)$.\\[5pt]
 Stopping programs and certificates &
 For every probability law, $0<\rho\le1/4$, $B>0$ and cap $N>0$,
 \tailleanref{StoppingProgram/DualTheorem.lean}{attained\_four\_prior\_dual}

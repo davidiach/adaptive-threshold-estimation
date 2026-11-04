@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Read the updated manuscript](builds/entropy-tail-explicit-20261104.pdf) · [Open the LaTeX project](main.tex) · [Explicit general-law build](#explicit-general-law-build) · [Finite-law build](#finite-law-build)
+[Read the updated manuscript](builds/quantile-selection-suffix-20261104.pdf) · [Open the LaTeX project](main.tex) · [Quantile comparison and finite selection build](#quantile-comparison-and-finite-selection-build)
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -43,8 +43,9 @@ the unbiased characterization with constants 1/16 and 713, the confidence
 characterization, the magnitude-oracle lower bounds, and the rare-event
 rate above exponent two. It also checks both halves and the full entropy–tail
 law, the two-sided closed quantile rate for every law, the comparison
-$K\le Q\le(1+2\sqrt2)K$, and the stopping-program, fixed-cap
-identification and genie results of §15, each in the scope stated in §18.
+$K\le Q\le(8/5)K$, and the existence of a finite-law optimizer that selects
+a suffix in each dyadic band. It also checks the stopping-program, fixed-cap
+identification and genie results of §15, in the scope stated in §18.
 Section 18 states each formal scope and links the fixed source revisions.
 
 For finite laws a [direct Lean proof](../../lean/ThresholdHC/FiniteQuantile/Full.lean)
@@ -129,6 +130,14 @@ The [manuscript workflow](../../.github/workflows/manuscript.yml) builds it
 the same way with TeX Live from the Ubuntu 24.04 archive and uploads the PDF
 and log as the `v6-paper` artifact. Typesetting and source checks do not
 constitute a new mathematical proof or independent review.
+
+## Quantile comparison and finite selection build
+
+The [4 November manuscript](builds/quantile-selection-suffix-20261104.pdf)
+gives the sharper comparison and the finite-law suffix search bound in §14.
+Section 18 links the Lean statements. The [build record](builds/quantile-selection-suffix-20261104.json)
+records the pinned proof revisions, matching hashes from two offline builds,
+embedded fonts and the pages reviewed.
 
 ## Explicit general-law build
 

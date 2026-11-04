@@ -42,13 +42,12 @@ $O(n\log n)$ preprocessing and $O(\log n)$ evaluation or target-value
 inversion, without subset search. The accompanying
 [deterministic paper proof](RARE_EVENT_COMPUTATION.md) strengthens the
 comparison to $\mathcal K\le Q\le(5/3)\mathcal K$ for all positive-gap laws.
-Neither this comparison nor the Python calculation is Lean-checked. The
-[certified-selection package](../research/2026-10-30-certified-selection/README.md)
-sharpens the factor to $8/5$ and encloses the finite-law $\mathcal K$ exactly by
-bandwise-suffix enumeration, which is exponential in the number of occupied
-bands. Efficient exact selection, an executable general-law rare-event
-estimator and formalization of that package's sharper comparison remain
-separate work.
+Lean verifies the stronger [factor $8/5$](../results/quantile-selection-20261104/README.md)
+and the [finite-law suffix reduction](../results/bandwise-suffix-20261104/README.md)
+from the certified-selection package. The sufficient search family has at most
+$\prod_j(n_j+1)$ elements and can grow exponentially with the number of occupied
+bands. The Python calculator is unverified. Efficient exact selection for many
+occupied bands and an executable general-law rare-event estimator remain open.
 
 For a new contribution, follow [CONTRIBUTING.md](../CONTRIBUTING.md) and
 [AGENTS.md](../AGENTS.md). The project owner does not plan human specialist

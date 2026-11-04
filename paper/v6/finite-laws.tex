@@ -1,9 +1,12 @@
 \section{The closed quantile form}\label{fg:sec:model}
 The selection in \eqref{eq:scalar-selection} ranges over submeasures of
-$\mu$. This section shows that one explicit choice is optimal up to the
-factor $1+2\sqrt2$: remove exactly the smallest-gap mass $\rho$, keep its
-truncated inverse-gap cost, and charge the remaining core its cost
-entropy. For finite laws, Theorem~\ref{fg:thm:direct-main} proves the
+$\mu$. Remove exactly the smallest-gap mass $\rho$, split a boundary atom
+if needed, and compute the entropy cost of the remaining core. Add the
+truncated inverse-gap cost of the removed mass, then cap the sum at $\rho$
+to obtain the closed value $Q$.
+The comparison in \cref{fg:prop:quantile-selection} gives a factor
+$1+2\sqrt2$. The sharper comparison below gives $8/5$.
+For finite laws, Theorem~\ref{fg:thm:direct-main} proves the
 resulting closed formula with explicit constants, by an argument that does
 not invoke Theorem~\ref{thm:entropy-tail-law}.
 Corollary~\ref{fg:cor:general-laws} extends the formula to every law
@@ -43,4 +46,22 @@ no external specialist review. See \cref{sec:verification}.
 \input{finite-model}
 \input{finite-entropy}
 \input{finite-comparison}
+\paragraph{Sharper comparison and exact finite selection.}
+For every law on $(0,1/2]$, $0<\rho\le1/4$ and $B>0$, the selection
+functional satisfies $\mathcal K\le Q\le(8/5)\mathcal K$. The quantile
+tail gives the floor $T_h\le\mathcal K$, and $Q=\mathcal K=\rho$ when
+$h=B^{-1/2}$ reaches or exceeds the quantile threshold.
+
+For a law with finite support, a hard selection attains the minimum over
+all submeasures before the cap at $\rho$. Within each canonical dyadic
+band it selects a suffix in increasing gap order. Moving selected
+inverse-square cost between two atoms in the same band preserves the
+band total and hence the entropy. At gap $d$ the tail cost saved per unit is
+$d^2\min\{1,h/d\}=\min\{d^2,hd\}$, strictly increasing in $d$.
+If a selected atom had a larger unselected neighbor in its band, moving
+a sufficiently small positive amount of cost to that neighbor would
+improve the objective. Thus if occupied band $j$ has $n_j$ atoms,
+searching at most $\prod_j(n_j+1)$ choices suffices. The cut can differ
+from band to band. Section~\ref{sec:verification} links both proofs.
+
 \input{finite-consequences}
