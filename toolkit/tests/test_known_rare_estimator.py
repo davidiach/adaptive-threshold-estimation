@@ -9,6 +9,7 @@ import sys
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from threshold_toolkit.confidence_amplification import MedianSchedule, run_capped_median
 from threshold_toolkit.known_law_oracle import FiniteGapOracle, SplitIntegrals
 from threshold_toolkit.known_rare_estimator import (
     Level,
@@ -16,6 +17,7 @@ from threshold_toolkit.known_rare_estimator import (
     _classify,
     _ordinary_stop,
     estimate_known_rare,
+    known_rare_program,
     plan_known_rare,
 )
 from threshold_toolkit.rare_event_functional import FiniteGapLaw, Interval
@@ -42,6 +44,20 @@ class UniformUpperBand:
             for k in range(tails + 1)
         )
         return Interval(d, d)
+
+
+def classify(plan, level, tape):
+    program = _classify(plan, level, 0)
+    item = next(program)
+    used = 0
+    while True:
+        assert item == 0
+        bit = next(tape)
+        used += 1
+        try:
+            item = program.send(bit)
+        except StopIteration as stop:
+            return stop.value, used
 
 
 class RareEstimatorTests(unittest.TestCase):
@@ -76,7 +92,7 @@ class RareEstimatorTests(unittest.TestCase):
     def test_zero_null_and_charged_flips(self):
         p = plan_known_rare(self.law, rho="1/4", budget=65536)
         data = iter((1, 0))
-        self.assertEqual(_classify(p, p.levels[0], lambda n: next(data)), (1, 2))
+        self.assertEqual(classify(p, p.levels[0], data), (1, 2))
         with self.assertRaises(StopIteration):
             next(data)
 
@@ -99,7 +115,7 @@ class RareEstimatorTests(unittest.TestCase):
         plan = RarePlan(law, F(1, 4), F(8), ((1, F(1)),), (level,), F(1))
         for path in product((0, 1), repeat=8):
             tape = iter(path)
-            actual = _classify(plan, level, lambda n: next(tape))
+            actual = classify(plan, level, tape)
             self.assertEqual(actual, (int(sum(path[1::2]) > 2), 8))
 
     def test_normal_entry_point_with_physical_accounting(self):
@@ -121,6 +137,48 @@ class RareEstimatorTests(unittest.TestCase):
         self.assertEqual(seen, [result.items, result.flips])
         self.assertGreaterEqual(result.value, 0)
         self.assertLessEqual(result.value, plan.rho)
+
+    def test_known_law_under_physical_cap(self):
+        schedule = MedianSchedule(19 * 8 * 65536, rho="1/4", delta="1/4")
+        plan = plan_known_rare(
+            self.law, rho=schedule.rho, budget=schedule.base_expected_budget
+        )
+        self.assertTrue(plan.levels)
+        flips = 0
+
+        def factory(rng):
+            bit = int(rng.randrange(8) == 0)
+
+            def flip():
+                nonlocal flips
+                flips += 1
+                return bit
+
+            return flip
+
+        def program(budget, rng):
+            self.assertEqual(budget, plan.budget)
+            return known_rare_program(plan, rng)
+
+        result = run_capped_median(schedule, program, factory, seed=12)
+        self.assertEqual(flips, result.flips)
+        self.assertGreater(flips, 0)
+        self.assertLessEqual(flips, schedule.total_budget)
+        self.assertTrue(
+            all(n <= schedule.per_block_cap for n in result.per_block_flips)
+        )
+
+    def test_timeout_between_paired_flips(self):
+        from threshold_toolkit.confidence_amplification import _run_block
+
+        level = Level(1, F(1, 64), F(2), F(1))
+        plan = RarePlan(self.law, F(1, 4), F(2), ((0, F(1)),), (level,), F(1))
+        for cap, expected in [(1, (F(1, 8), 1, 1, True)), (2, (F(1, 4), 2, 1, False))]:
+            program = known_rare_program(plan, Random(0))
+            result = _run_block(
+                program, lambda rng: lambda: 1, Random(0), cap, plan.rho
+            )
+            self.assertEqual(result, expected)
 
     def test_fractional_allocation_counts(self):
         level = Level(1, F(1, 64), F(2), F(1, 3))
@@ -150,4 +208,4 @@ class RareEstimatorTests(unittest.TestCase):
 
         p = plan_known_rare(Wide(), rho="1/4", budget=10**6)
         with self.assertRaisesRegex(ValueError, "enclosure contract"):
-            _classify(p, p.levels[0], lambda n: 1)
+            classify(p, p.levels[0], iter((1, 1)))

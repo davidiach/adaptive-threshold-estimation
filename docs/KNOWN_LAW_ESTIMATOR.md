@@ -33,6 +33,40 @@ the callable's flips, including those spent on coarse corrections. The actual
 flip count is random. For small budgets the planner can choose the zero-flip
 estimate $\rho/2$ with squared-error bound $\rho^2/4$.
 
+## A confidence interval under a hard flip budget
+
+The same program can run under the existing [capped-median driver](../toolkit/threshold_toolkit/confidence_amplification.py).
+Each request identifies a coin and purchases one flip. Repeated requests to
+the same ID retain its gap and sign. A block can therefore stop between any
+two flips, including the two halves of a classifier round.
+
+```python
+from threshold_toolkit.confidence_amplification import MedianSchedule, run_capped_median
+from threshold_toolkit.known_rare_estimator import known_rare_program
+
+schedule = MedianSchedule(10_000_000, rho="1/4", delta="1/4")
+base = plan_known_rare(law, rho=schedule.rho, budget=schedule.base_expected_budget)
+
+def coin_factory(rng):
+    bit = int(rng.randrange(8) == 0)
+    return lambda: bit
+
+out = run_capped_median(
+    schedule, lambda budget, rng: known_rare_program(base, rng), coin_factory, seed=17
+)
+radius_squared = 8 * base.mse_bound
+```
+
+Use the schedule's base budget and rarity bound to build the plan. The
+confidence interval is centered at `out.estimate`, has radius
+$\sqrt{8\,\texttt{base.mse\_bound}}$, and is intersected with $[0,\rho]$.
+For an admissible population with independent block randomness, it covers
+the target with probability at least $1-\delta$. Each block exceeds its cap
+with probability at most $1/8$ by the expected-work bound, and its uncapped
+estimate misses that radius with probability at most $1/8$ by the MSE bound.
+The schedule controls the probability that a majority of blocks fail. Its
+total flip cap holds on every execution, including timed-out blocks.
+
 ## Integrating a continuous or mixed law
 
 The [oracle interface](../toolkit/threshold_toolkit/known_law_oracle.py) has

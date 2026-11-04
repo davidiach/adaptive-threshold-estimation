@@ -6,6 +6,7 @@ randomness are independent of the sampled items. The plan reports its own
 finite-level MSE bound; Python execution itself is not a checked Lean program.
 """
 
+from collections.abc import Generator
 from dataclasses import dataclass
 from fractions import Fraction as F
 from functools import lru_cache
@@ -147,9 +148,7 @@ def _ordinary_stop(heads: int, n: int, cap: int) -> bool:
         terms *= 2
 
 
-def _classify(
-    plan: RarePlan, level: Level, draw: Callable[[int], int]
-) -> tuple[int, int]:
+def _classify(plan: RarePlan, level: Level, item: int) -> Generator[int, int, int]:
     """Race the likelihood bank with the ordinary classifier on alternating flips."""
     refs = [(w, F(1, 2 ** (j + 2)), F(1, 2 ** (j + 3))) for j, w in plan.weights]
     negative = [F(1)] * len(refs)
@@ -157,13 +156,13 @@ def _classify(
     u = level.error / 4
     bank_heads = ordinary_heads = 0
     for n in range(1, level.cap + 1):
-        bit = draw(1)
+        bit = yield item
         bank_heads += bit
-        ordinary_heads += draw(1)
+        ordinary_heads += yield item
         for j, (weight, minus, plus) in enumerate(refs):
             negative[j] *= 1 - 2 * minus if bit else 1 + 2 * minus
             if negative[j] * u * weight >= plan.rho:
-                return 0, 2 * n
+                return 0
             positive[j] *= F(1, 2) + plus if bit else F(1, 2) - plus
         threshold = u * sum(positive)
         null = plan.law.null_prefix(bank_heads, n - bank_heads, threshold / 2)
@@ -177,11 +176,11 @@ def _classify(
                 "null-prefix oracle failed its probability enclosure contract"
             )
         if null.upper <= threshold:
-            return 1, 2 * n
+            return 1
         if n == level.cap or (
             n & (n - 1) == 0 and _ordinary_stop(ordinary_heads, n, level.cap)
         ):
-            return int(2 * ordinary_heads > n), 2 * n
+            return int(2 * ordinary_heads > n)
     raise AssertionError("terminal cap was not reached")
 
 
@@ -192,21 +191,16 @@ class RareEstimate:
     items: int
 
 
-def estimate_known_rare(
-    new_item: Callable[[], Callable], plan: RarePlan, *, rng: Random | None = None
-) -> RareEstimate:
-    """Execute on observable flips and project the telescoping estimate onto [0,rho].
+def known_rare_program(plan: RarePlan, rng: Random) -> Generator[int, int, F]:
+    """Yield a local item ID for each purchased flip and return the clipped estimate.
 
-    Independent randomized rounding of each replication count has its specified
-    mean and variance at most that mean, which suffices for the Poisson-mark
-    second-moment bound. Adjacent classifiers use fresh flips on the same item.
+    IDs increase from zero as items are created. Adjacent-level corrections
+    query the same item. The caller supplies a bit in response to each request.
     """
     if not plan.levels:
-        return RareEstimate(plan.rho / 2, 0, 0)
-    if rng is None:
-        rng = Random()
+        return plan.rho / 2
     value = F(0)
-    flips = items = 0
+    item = 0
     for index, level in enumerate(plan.levels):
         mean = level.mean_count
         count, rem = divmod(mean.numerator, mean.denominator)
@@ -214,14 +208,37 @@ def estimate_known_rare(
             count += 1
         marks = 0
         for _ in range(count):
-            draw = block_flipper(new_item(), False)
-            fine, used = _classify(plan, level, draw)
-            flips += used
+            fine = yield from _classify(plan, level, item)
             coarse = 0
             if index:
-                coarse, used = _classify(plan, plan.levels[index - 1], draw)
-                flips += used
+                coarse = yield from _classify(plan, plan.levels[index - 1], item)
             marks += fine - coarse
-        items += count
+            item += 1
         value += marks / mean
-    return RareEstimate(min(plan.rho, max(F(0), value)), flips, items)
+    return min(plan.rho, max(F(0), value))
+
+
+def estimate_known_rare(
+    new_item: Callable[[], Callable], plan: RarePlan, *, rng: Random | None = None
+) -> RareEstimate:
+    """Drive the observable program and report total flips and fresh items."""
+    program = known_rare_program(plan, rng if rng is not None else Random())
+    try:
+        item = next(program)
+    except StopIteration as stop:
+        return RareEstimate(stop.value, 0, 0)
+    current = -1
+    flips = 0
+    try:
+        while True:
+            if item != current:
+                draw = block_flipper(new_item(), False)
+                current = item
+            bit = draw(1)
+            flips += 1
+            try:
+                item = program.send(bit)
+            except StopIteration as stop:
+                return RareEstimate(stop.value, flips, current + 1)
+    finally:
+        program.close()
