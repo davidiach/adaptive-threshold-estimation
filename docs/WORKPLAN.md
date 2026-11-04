@@ -46,8 +46,10 @@ Lean verifies the stronger [factor $8/5$](../results/quantile-selection-20261104
 and the [finite-law suffix reduction](../results/bandwise-suffix-20261104/README.md)
 from the certified-selection package. The sufficient search family has at most
 $\prod_j(n_j+1)$ elements and can grow exponentially with the number of occupied
-bands. The Python calculator is unverified. Efficient exact selection for many
-occupied bands and an executable general-law rare-event estimator remain open.
+bands. The Python calculator is unverified. The [known-law estimator](KNOWN_LAW_ESTIMATOR.md)
+implements the finite-level race with a certified integration oracle or finite
+atom table, an expected flip budget and a per-plan MSE bound. Its performance
+proof is on paper. Efficient exact selection for many occupied bands remains open.
 
 For a new contribution, follow [CONTRIBUTING.md](../CONTRIBUTING.md) and
 [AGENTS.md](../AGENTS.md). The project owner does not plan human specialist
