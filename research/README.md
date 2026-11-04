@@ -1,10 +1,15 @@
 # Research packages and current status
 
 For the current mathematical narrative and full proofs, start with the
-[consolidated v5 manuscript](../paper/v5/paper.pdf). The packages below preserve
-the detailed provenance and evidence behind its appendices. The separate
-[general-law rare-event manuscript](../paper/rare-event/README.md) adds the
-29 October entropy-tail characterization and its audit records.
+[consolidated v6 manuscript](../paper/v6/README.md). It combines the
+[v5 manuscript](../paper/v5/README.md) with the
+[general-law rare-event manuscript](../paper/rare-event/README.md), which keeps
+the 29 October entropy-tail characterization's audit records, and the
+[finite-gap rare-event manuscript](../paper/finite-gap-rare-events/README.md).
+The packages below preserve the detailed provenance and evidence behind its
+appendices. Sections 14 and 18 of v6 now include the certified-selection
+comparison and finite-law suffix theorem. The hard-budget RMS and confidence
+transfer packages retain separate paper proofs.
 
 These packages preserve the reviewed sources, failed approaches, exact source
 locks, diagnostics and numerical evidence from separate research passes.
@@ -13,9 +18,9 @@ later results do not rewrite those historical records.
 
 | Package | Accepted scope | Evidence |
 |---|---|---|
-| [General-law rare-event manuscript v2](../paper/rare-event/README.md) | Arbitrary known-law entropy-tail characterization, stopping dual, and qualified genie certificates. | Audited paper proof with exact finite certificates. The entropy-tail upper bound, stopping dual, factor-sixteen certificate, cap identification and genie results have since been [Lean-checked](../docs/RESULTS.md#general-law-rare-event-characterization); the entropy-tail lower bound and the two-sided law have not. Existing manuscripts and historical audit identities are preserved. |
-| [Certified selection](2026-10-30-certified-selection/README.md) | Quantile-to-selection factor 8/5 (1 + 2 sqrt 2 in finite-gap revision 2, 5/3 in the [computation note](../docs/RARE_EVENT_COMPUTATION.md)), bandwise-suffix exact finite selection, total-variation and band-preserving rounding stability of the selection functional, and an exact-rational evaluator in the toolkit. The best factor lies in (1.4604, 8/5]. | Paper proofs; only the scalar Lemma 3 is Lean-checked. Exact rational certificates from unverified Python. An integration review adds the 1.4604 obstruction and a separately written high-precision cross-check. |
-| [Hard-budget RMS](2026-10-30-hard-budget-rms/README.md) | Independent geometric-fallback reduction from expected work to a pathwise observation cap at factor sqrt(32) in RMS; hard-cap corollaries for the distribution-blind RMS law, the critical quadratic law and the known general-law entropy-tail rate; an observation-capping driver in the toolkit. | Paper proof, not Lean-checked; the general-law corollary's lower half also depends on the paper-only entropy-tail lower bound. Exact finite recurrence and schedule audits and timeout counterexamples. Scoped extraction from a delivered archive that is not in the repository. |
+| [General-law rare-event manuscript v2](../paper/rare-event/README.md) | Arbitrary known-law entropy-tail characterization, stopping dual, and qualified genie certificates. | Audited paper proof with exact finite certificates. Both entropy-tail halves, the two-sided law, the stopping dual, factor-sixteen certificate, cap identification and genie results have since been [Lean-checked](../docs/RESULTS.md#general-law-rare-event-characterization), including the paper's explicit lower coefficient $10^{-17}$ for the entropy-tail risk. Existing manuscripts and historical audit identities are preserved. |
+| [Certified selection](2026-10-30-certified-selection/README.md) | Quantile-to-selection factor 8/5 (1 + 2 sqrt 2 in finite-gap revision 2, 5/3 in the [computation note](../docs/RARE_EVENT_COMPUTATION.md)), bandwise-suffix exact finite selection, total-variation and band-preserving rounding stability of the selection functional, and an exact-rational evaluator in the toolkit. The best factor lies in (1.4604, 8/5]. | Lean checks the [full comparison](../results/quantile-selection-20261104/README.md) and [finite-law suffix theorem](../results/bandwise-suffix-20261104/README.md). Stability and rounding have paper proofs. Exact rational certificates from unverified Python. An integration review adds the 1.4604 obstruction and a separately written high-precision cross-check. |
+| [Hard-budget RMS](2026-10-30-hard-budget-rms/README.md) | Independent geometric-fallback reduction from expected work to a pathwise observation cap at factor sqrt(32) in RMS; hard-cap corollaries for the distribution-blind RMS law, the critical quadratic law and the known general-law entropy-tail rate; an observation-capping driver in the toolkit. | The hard-cap reduction has a paper proof. Its general-law RMS inputs are Lean-checked with coefficients $10^{-17}$ and $28000$. Exact finite recurrence and schedule audits and timeout counterexamples. Scoped extraction from a delivered archive that is not in the repository. |
 | [Confidence transfer](2026-10-30-confidence-transfer/README.md) | Smoothed Hellinger-to-KL transfer giving high-confidence rates at budget B/log(1/delta) for the general law and the critical law, under expected or hard budgets; capped independent-block median amplification; nested intervals with error spending, valid under data-dependent stopping; two toolkit drivers. | Paper proof, not Lean-checked; the general-law lower bound inherits paper-only results. Exact finite smoothing, factorization and path-counting audits. AI integration review, no specialist review. Scoped extraction from delivered archives that are not in the repository. |
 | [Power margins above two](2026-10-27-route-a/CHECKPOINT.md) | Known-rarity power-margin rate for alpha greater than two. | Reviewed paper proof; exact finite diagnostics; separate conditional-kernel Lean bridge. |
 | [Minimax audit](2026-10-27-minimax-audit/FINAL_REPORT.md) | Critical upper construction, scope audit and numerical comparison. | Reviewed paper components and explicitly limited numerical evidence. |
@@ -26,7 +31,8 @@ later results do not rewrite those historical records.
 
 The full critical theorem concerns the fixed law F(d)=(4d)^2. The later
 [general-law manuscript](../paper/rare-event/README.md) supplies an entropy-tail
-replacement for Psi as an audited paper proof; its formalization remains open. Earlier statements that the
+replacement for Psi as an audited paper proof; both directions are now Lean-checked
+with conservative universal constants. Earlier statements that the
 matching-Psi conjecture itself remained open record the state before the full
 critical proof. The finite feedback advantage uses a deterministic cap and
 does not claim an asymptotic rate improvement under a uniform expected budget.

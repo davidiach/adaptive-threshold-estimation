@@ -16,9 +16,10 @@ not included; it is in the
 
 The new controller and theorem are not Lean-checked. The ordinary and critical
 applications inherit formalized premises. The arbitrary-law rare-event
-application inherits the Lean-checked entropy-tail upper bound,
-`R <= 28000 K`, and the paper-only lower bound; its coefficient
-190000 was derived from the paper's upper constant 33000. The Python driver
+application inherits the [Lean-checked RMS bounds](../../results/entropy-tail-explicit-20261104/README.md)
+with lower coefficient $10^{-17}$ and upper coefficient $28000$. Passing
+to the hard cap uses the paper reduction. The coefficient 190000 was derived
+from the paper's upper constant 33000. The Python driver
 cannot check the caller's statistical work, error or independence assumptions.
 It preserves the most recent successful estimate on timeout and separately
 reports reserved allowance and actual observations.
