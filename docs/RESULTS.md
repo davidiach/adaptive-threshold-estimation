@@ -11,11 +11,11 @@ which shared proofs appear once. The three source manuscripts are preserved
 unchanged. The v5 source record preserves the original proofs and makes the
 Psi correction explicit.
 
-The general-law entropy-tail law and the closed-quantile rate for every law are
-Lean-checked in both directions with conservative universal constants, as are
-the $1+2\sqrt2$ quantile comparison and the stopping-program, identification
-and genie results. The manuscripts' explicit lower constants and the direct
-finite-law proof remain paper proofs; the scopes are recorded below.
+Lean checks the general-law entropy-tail and closed-quantile rates, the explicit
+lower coefficient $10^{-17}$, the direct finite-law bounds and the sharper
+$8/5$ quantile comparison. On finite support a bandwise-suffix optimizer
+attains the minimum. The stopping-program, identification and genie results
+are also Lean-checked within the scopes recorded below.
 
 This guide gives the exact Lean specifications and remaining paper-proof
 boundaries. Historical source pointers below refer to the unchanged
@@ -229,10 +229,11 @@ $$10^{-17}\mathcal K_{\mu,\rho}(B)\le R_{\mu,\rho}(B)
 \le33000\mathcal K_{\mu,\rho}(B).$$
 
 No finite inverse moment, density, or regularity assumption is imposed.
-The following scopes are **paper-level claims**. Lean versions now cover all
-five rows, including both halves of the first, as described below, as well as
-the hard-selection reduction and the elementary properties of $\mathcal K$.
-Their scopes and constants are those of the Lean statements:
+The [explicit comparison](../lean/ThresholdHC/EntropyTailSharp/Full.lean) now
+proves this lower bound and the stronger upper coefficient $28000$ in Lean.
+The table gives the scopes of the entropy-tail, stopping-program and genie
+results. The hard-selection reduction and elementary properties of $\mathcal K$
+are also checked.
 
 | Claim | Scope and qualification |
 |---|---|
@@ -245,11 +246,8 @@ Their scopes and constants are those of the Lean statements:
 The [audit index](../paper/rare-event/audit/README.md) distinguishes the original
 source audits, final referee assessment, and revision audit, including corrected
 interpretations of historical findings. V2 resolves the revision audit's two
-minor editorial defects. The explicit lower constant $10^{-17}$ has no Lean
-formalization; the Lean lower bound uses a smaller conservative constant. None
-of the general results has external specialist review. The exact stored
-certificates cover 33 lower bounds, 9 upper policies, 9 stopping decisions,
-and two perfect-label examples;
+minor editorial defects. The formal results below identify their precise scopes. External specialist review has not been performed. The exact stored certificates cover 33 lower
+bounds, 9 upper policies, 9 stopping decisions, and two perfect-label examples;
 they are not proofs of the continuum or compactness claims. The existing Lean
 variational-optimizer and critical-law results above and below retain their
 separate scopes. See [verification commands](VERIFY.md#general-law-rare-event-manuscript-v2).
@@ -287,12 +285,21 @@ the checked upper half in the unchanged observable experiment.
 
 For `M = 200000000 (256 + sqrt(2^32 exp(48)))`, the construction gives lower
 coefficient `1/(16 M)`. The frozen targets assert existence of positive
-universal constants; the paper's sharper explicit lower constant is not
-proved by this development. The [completion record](../results/entropy-tail-complete-20261101/README.md)
+universal constants. A subsequent proof establishes the explicit lower coefficient. The [completion record](../results/entropy-tail-complete-20261101/README.md)
 covers 57 supporting modules, 368 roots and 89 exact types, plus 15 canonical
 modules, 92 roots and all eight frozen target types. Both native audits
 rebuild their registered modules and hash reused local dependencies; neither
 is a full dependency rebuild. Earlier records keep their historical scope.
+
+**Explicit lower coefficient.** For every law on $(0,1/2]$, $0<\rho\le1/4$
+and $B>0$, Lean proves $10^{-17}Q\le R$ and hence $10^{-17}\mathcal K\le R$.
+The fractional tail pair works for arbitrary support because each prefix
+likelihood and its posterior-energy potential is bounded and measurable.
+At the gated annular step the three costs fit within $4096e^{48}$.
+Passing to observable certificates gives variance coefficient $2^{14}e^{48}$.
+The filtered-core cost is then at most $3\cdot10^{16}R$ in the packing case,
+and $T_h\le32R$ controls the tail. The [theorem and estimator converse](../lean/ThresholdHC/EntropyTailSharp/Full.lean)
+have a separate [native audit](../results/entropy-tail-explicit-20261104/README.md).
 
 **Upper half.** The upper bound comes from the additive formalization of
 [#33](https://github.com/davidiach/adaptive-threshold-estimation/pull/33), in
@@ -386,11 +393,15 @@ their independent seed, coin identities and purchased flips. Both bounds
 use uniform expected physical-observation budgets and allow adaptive
 creation, revisiting and interleaving.
 
-Status: **the direct finite-law theorem with its explicit constants remains
-a paper proof**, not externally specialist-reviewed. Its upper bound is Lean-checked in a stronger form:
-$R\le30001\,Q$ for every probability law on $(0,1/2]$, not only finite ones,
-with the same $Q$ ([upper half](#general-law-rare-event-characterization)).
-The lower bound $10^{-20}Q\le R$ is not Lean-checked. The separate
+**Lean checks the explicit finite-law theorem** $10^{-20}Q\le R\le30001Q$
+for every finite-support probability law, $0<\rho\le1/4$ and $B>0$.
+The [direct lower proof](../lean/ThresholdHC/FiniteQuantile/Full.lean) uses
+the actual fractional quantile tail to prove $T_h/32\le R$. It filters the
+dyadic core and allocates the full rarity budget in proportion to the entropy
+of the retained groups. The [operational bounds](../lean/ThresholdHC/FiniteQuantile/Operational.lean)
+give one feasible estimator with worst-case error at most $30001Q$, and the
+converse for every feasible estimator. See the [verification record](../results/direct-finite-quantile-20261104/README.md).
+The separate
 [general-law closed-quantile theorem](../lean/ThresholdHC/ClosedQuantile/Full.lean)
 now proves the two-sided rate with a conservative universal lower coefficient
 and upper coefficient 30001, using the completed entropy-tail lower bound
@@ -401,8 +412,7 @@ frozen before the proof. The original experiment and quantile definitions
 remain unchanged.
 The precursor received fresh-context AI review; the
 [provenance note](../paper/finite-gap-rare-events/PROVENANCE.md) records its
-limits. The earlier Lean finite-gap entropy and critical-law results do not
-certify this theorem. The standalone finite-law manuscript does not establish an unknown-law guarantee, a
+limits. The standalone finite-law manuscript does not establish an unknown-law guarantee, a
 general infinite-support extension, a deterministic budget or a
 high-confidence result.
 
@@ -416,12 +426,10 @@ closed functional, explicit constants and a self-contained proof that does not
 cite the general-law theorem. The two proofs share the observable upper
 construction and most appendix lemmas and differ mainly in the lower-bound
 reduction, so their agreement is not independent confirmation of the rate.
-Conditionally on the general-law theorem, $R\asymp Q$ also holds for general
-laws; that extension rests entirely on the general-law paper proof. The
-consolidated v6 manuscript states this extension as a corollary of the
-entropy–tail theorem in the same paper; its status is unchanged. The
-comparison came from an external adversarial review of revision 1, which is
-unchanged.
+The consolidated v6 manuscript derives $R\asymp Q$ for general laws from
+the entropy–tail theorem. Lean checks this [general-law corollary](../results/closed-quantile-law-20261101/README.md)
+and the [explicit lower coefficient](../results/entropy-tail-explicit-20261104/README.md).
+The deterministic comparison in revision 2 grew out of an external review of revision 1.
 
 The additive [computation note](RARE_EVENT_COMPUTATION.md) improves the
 deterministic comparison to $\mathcal K\le Q\le(5/3)\mathcal K$ for every
@@ -429,9 +437,9 @@ probability law on positive gaps, including infinite support. Its proof
 retains the selected tail and core costs separately, uses superadditivity
 and a square-root triangle inequality for the entropy, and proves the sharper
 scale-separated estimate $\Gamma_\xi\le2H_\xi/t$ on $[t,1/2]$.
-This is a new paper proof, not a Lean theorem or a completed formalization of
-the statistical rare-event law. The note also gives a slightly smaller
-algebraic coefficient without claiming optimality.
+The computation note gives a paper proof, including a slightly smaller
+algebraic coefficient. The stronger $8/5$ estimate below implies both
+numerical upper bounds.
 
 The [toolkit](../toolkit/README.md#3-compute-the-rare-event-rate-for-a-known-finite-law)
 now computes the finite-law $Q$ and its inverse with $O(n\log n)$
@@ -454,16 +462,26 @@ package also proves that some optimal hard selection is an upper-gap suffix in
 every dyadic band. It proves $|\mathcal K_\mu-\mathcal K_{\tilde\mu}|\le d_{\rm TV}(\mu,\tilde\mu)$
 and a band-preserving rounding bound, and adds an exact-rational evaluator of
 $\mathcal K$ to the toolkit. Composed with the results above, the comparison gives
-$R\le30001\cdot\frac85\mathcal K$ for finite laws and, conditionally on the
-general-law theorem, $\frac58\cdot10^{-17}Q\le R$ for every law. The
-floating-point calculator above still reports the $5/3$ interval. Status:
-**paper proofs**, except that the comparison's scalar Lemma 3 is **Lean-checked**
-with its exact type and only the standard axioms
-([audit](VERIFY.md#quantile-selection-comparison-scalar-lemma-3)). The $8/5$
-comparison itself is not Lean-checked, though the weaker factor $1+2\sqrt2$ is
-([upper half](#general-law-rare-event-characterization)). The certificates rely
-on unverified Python. The
-manuscripts above still state $1+2\sqrt2$ and are unchanged.
+$R\le30001\cdot\frac85\mathcal K$ for finite laws and
+$\frac58\cdot10^{-17}Q\le R$ for every law. The later direct lower proof
+establishes the stronger $10^{-17}Q\le R$ in Lean. The
+floating-point calculator above still reports the $5/3$ interval.
+
+**Lean verifies Lemmas 1–3 and the full $8/5$ comparison**, including the tail
+floor $T_h\le\mathcal K$ and saturation $\mathcal K=Q=\rho$ when $h\ge t$.
+The [theorem](../lean/ThresholdHC/QuantileSelection/Full.lean) covers arbitrary
+probability laws, fractional quantile atoms and unbounded full-law entropy.
+The [audit](VERIFY.md#full-quantile-selection-comparison) also checks the
+statement for the selection functional used in the minimax theorem.
+
+**Lean verifies the finite-law bandwise-suffix theorem.** For a probability
+law with finite support, a hard restriction minimizes the raw objective over
+all submeasures and attains $K$ after clipping at $\rho$. If a larger atom in
+the same band is skipped, moving equal inverse-square cost to that atom keeps
+the entropy fixed and strictly increases the saved tail cost. A suffix is
+determined by its selected count in each band, so at most $\prod_j(n_j+1)$
+candidates suffice. The stability and rounding results have paper proofs. The
+rational certificates rely on unverified Python. [Theorem 5 and verification](VERIFY.md#finite-law-bandwise-suffix-theorem)
 
 ## Critical power margin: full minimax characterization
 
@@ -695,7 +713,7 @@ essential.
 |---|---|---|
 | Distribution-blind RMS law | $\frac1{64}\omega_\mu(B^{-1/2})\le R^{\rm hard}_\mu(B)\le3000\,\omega_\mu(B^{-1/2})$ for $B\ge1$, with one family for every $\mu$ | Both expected-budget bounds Lean-checked |
 | Critical quadratic law | $R^{\rm hard}_{\mu,\rho}(B)\asymp\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}$, upper coefficient $570000$ | Both expected-budget bounds Lean-checked |
-| Known general law, known rarity | $10^{-17}\mathcal K_{\mu,\rho}(B)\le R^{\rm hard}_{\mu,\rho}(B)\le190000\,\mathcal K_{\mu,\rho}(B)$ for $B>0$ | Lower: the entropy-tail rate is now Lean-checked with a conservative universal constant; the displayed explicit coefficient remains paper-only. Upper: $R\le C\mathcal K$, [Lean-checked](#general-law-rare-event-characterization) with $C=28000$; the coefficient $190000$ was derived from the paper's $33000$ |
+| Known general law, known rarity | $10^{-17}\mathcal K_{\mu,\rho}(B)\le R^{\rm hard}_{\mu,\rho}(B)\le190000\,\mathcal K_{\mu,\rho}(B)$ for $B>0$ | Lower: the entropy-tail rate is now Lean-checked with the displayed $10^{-17}$ lower coefficient. Its application to the hard cap is a paper reduction. Upper: $R\le C\mathcal K$, [Lean-checked](#general-law-rare-event-characterization) with $C=28000$; the coefficient $190000$ was derived from the paper's $33000$ |
 
 **Status and limits.** The reduction, its observable realization and all three
 hard-cap conclusions are **paper proofs, not Lean-checked**. Lean-checked premises

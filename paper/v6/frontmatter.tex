@@ -20,10 +20,10 @@ whereas $\Psi$ gives only $\min\{\rho,\sqrt{\rho L/B}\}$.
 For every known magnitude law, rarity bound and positive budget, the
 risk is comparable to an entropy--tail selection functional: a selected
 part of the law pays its dyadic inverse-square cost entropy, and the
-remainder pays a truncated inverse-gap cost. Selecting all mass outside
-the smallest-gap quantile $\rho$ is optimal within a factor $1+2\sqrt2$,
-which gives a closed formula. For finite laws that formula is also
-proved directly, with explicit constants. A robust stopping program has
+remainder pays a truncated inverse-gap cost. Removing the smallest-gap
+mass $\rho$ gives a closed formula within a factor $8/5$ of the optimum.
+For finite laws an exact optimizer selects an upper-gap suffix in each
+dyadic band, and a direct proof gives explicit risk bounds. A robust stopping program has
 an exact four-prior dual, a factor-sixteen comparison with minimax risk,
 and convergent finite certificates.
 
@@ -36,8 +36,10 @@ rare-event rate above exponent two are also Lean-checked in their stated
 models. The two-sided entropy--tail and closed-quantile laws,
 deterministic quantile comparison, stopping-program duality, risk
 certificates, identification and genie limits are also Lean-checked.
-The direct finite-law quantile lower proof, its explicit constant, and
-the remaining rare-event regimes retain their paper-proof status. This manuscript consolidates the statements, proofs,
+For every known gap law, the checked entropy--tail coefficients are
+$10^{-17}$ and $28000$. For finite laws a separate direct proof gives
+closed-quantile coefficients $10^{-20}$ and $30001$. The remaining rare-event regimes
+retain their paper-proof status. This manuscript consolidates the statements, proofs,
 dependencies, and verification boundaries.
 \end{abstract}
 \begin{center}\small

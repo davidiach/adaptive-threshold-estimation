@@ -116,9 +116,9 @@ experiment, without an inverse-moment or finite-support assumption.
 \lowerleanref{EntropyTail/Lower.lean}{entropy\_tail\_lower} proves the
 matching lower half, and
 \lowerleanref{EntropyTail/Law.lean}{entropy\_tail\_law} proves the two-sided
-law on this same domain. All eight frozen targets are checked. The lower
-proof gives a conservative positive universal constant; the sharper explicit
-lower constant in \eqref{eq:explicit-main-constants} remains paper-only.\\[5pt]
+law on this same domain. All eight frozen targets are checked.
+\sharpleanref{Full.lean}{entropy\_tail\_explicit\_law} proves the sharper
+comparison $10^{-17}\mathcal K\le R\le28000\mathcal K$ for every law.\\[5pt]
 Closed quantile form &
 \tailleanref{EntropyTail/Upper.lean}{selection\_quantile\_comparison}
 proves the deterministic comparison \cref{fg:prop:quantile-selection},
@@ -130,8 +130,25 @@ for every law rather than only finite ones.
 \lowerleanref{ClosedQuantile/Full.lean}{closed\_quantile\_law}
 now proves the full two-sided rate on this domain with conservative universal
 constants, using the entropy--tail lower bound and deterministic comparison.
-The direct finite-law lower argument and its explicit constant remain
-paper proofs.\\[5pt]
+\sharpleanref{Full.lean}{closed\_quantile\_lower\_explicit} gives
+$10^{-17}Q\le R$ on the same domain.
+For finite laws, \finiteleanref{Full.lean}{direct\_finite\_law}
+proves $10^{-20}Q\le R\le30001Q$. The
+\finiteleanref{Operational.lean}{observable\_estimator} and
+\finiteleanref{Operational.lean}{every\_estimator\_lower} theorems give
+the estimator and converse quantifiers.\\[5pt]
+Quantile comparison and finite selection &
+For $0<\rho\le1/4$ and $B>0$,
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/4916e389c6e2203998c274fa0f6a4854ae758042/lean/ThresholdHC/QuantileSelection/Full.lean}{the comparison theorem}
+gives $\mathcal K\le Q\le(8/5)\mathcal K$ for arbitrary gap laws.
+The proof combines the entropy interaction inequality, the factor-two
+bound on separated supports and the scalar comparison.
+For finite support,
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/1cafb0cc0fca2a4633fb1c2046f0076c16af1deb/lean/ThresholdHC/BandwiseSuffix/Full.lean}{the suffix theorem}
+gives a hard optimizer of the uncapped objective and identifies its capped
+value with $\mathcal K$. The
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/c15a9fa46a5f0a743fb20416b87498225a13661e/lean/ThresholdHC/BandwiseSuffix/Search.lean}{search corollary}
+bounds the sufficient family by $\prod_j(n_j+1)$.\\[5pt]
 Stopping programs and certificates &
 For every probability law, $0<\rho\le1/4$, $B>0$ and cap $N>0$,
 \tailleanref{StoppingProgram/DualTheorem.lean}{attained\_four\_prior\_dual}
@@ -305,8 +322,49 @@ full universal target and both declaration roots in two new modules, using
 the preceding checked artifacts. Its new specification and lock are
 introduced alongside the corollary proof, not described as independently
 frozen before it. The original experiment and quantile definitions are
-unchanged; the direct finite-law argument and explicit paper lower constant
-are not claimed by this corollary.
+unchanged.
+
+\paragraph{The direct finite-law proof.}
+For Theorem~\ref{fg:thm:direct-main}, the equal-sign posterior on a
+stopped likelihood tree has energy at most $4d^2$ times expected work.
+The two tail priors split the boundary atom in the prescribed fraction.
+Their means differ by $T_h/8$, and their midpoint information bound holds
+at every cap. Passing to the original observable estimator gives
+\finiteleanref{TailRisk.lean}{quantile\_tail\_lower}, namely $R\ge T_h/32$.
+
+The Lean proof uses the whole boundary band to upper bound the rounded
+core entropy $F$. It strengthens the endpoint filter in Appendix~O
+and allocates the full rarity budget in proportion to the entropy
+remaining after trimming. If this entropy is $S$, the retained groups
+give $F\le65536S$, so the square-root term loses at most a factor $256$.
+The small-entropy case uses the Bernoulli-label floor, and when the
+threshold is too close to the filter scale the tail controls the core.
+In the packing case the finite-certificate comparison gives
+$M_B=\min\{\rho,h\sqrt{\rho F}\}\le2\cdot10^{19}R$.
+Together with $Q\le T_h+2M_B$, these estimates give $10^{-20}Q\le R$.
+The checked upper inequality with coefficient $28000$ has enough slack
+to obtain one feasible estimator at $30001Q$. The proof links in this
+paragraph use revision \nolinkurl{fc61852123b37c723bbb671d0b4ed294d3b6ee06}.
+
+\paragraph{Explicit constants for every gap law.}
+At a prefix, let $a,b$ be the nonnegative likelihood masses for the two signs
+under the equal prior. The posterior-energy integrand
+$(a-b)^2/(a+b)$ is bounded by $a+b$, with value zero at an impossible
+prefix. The likelihoods, fractional tail weights and perturbations are
+bounded and measurable, so the mixed information argument integrates over
+every probability law. The same pair then gives $T_h\le32R$ for arbitrary
+support.
+
+The three gate estimates fit under $4096e^{48}$.
+The observable one-coin certificate contributes a further factor four,
+so the variance coefficient is $16384e^{48}$ before taking its square
+root. With the filtered core and the factor-sixteen certificate comparison
+this gives $M_B\le3\cdot10^{16}R$ in the packing case. The label floor and
+tail cover the other cases. Thus $\mathcal K\le Q\le T_h+2M_B$ yields
+the coefficient $10^{-17}$ for both lower bounds. The
+\sharpleanref{Full.lean}{estimator\_entropy\_tail\_lower} theorem states
+the converse for each feasible estimator. The explicit comparison is
+pinned to \nolinkurl{8a701c8db6c42930ad2a187f3d895ca55265afd6}.
 
 \paragraph{Realizing the critical upper algorithm.}
 The formal construction uses asymmetric classifiers at dyadic flip counts,
@@ -394,15 +452,14 @@ validations of the full proof. The
 records the workflow, failed approaches, and these limits.
 
 \paragraph{Remaining mathematical work.}
-The direct finite-law closed-quantile proof and its explicit lower constant,
-the rare-event regimes below two, and auxiliary envelope, smoothness, and observed-state results retain
-their stated paper-proof scopes; their formalization is the next
-verification target. Sharp
-comparison constants, efficient selection for structured laws, rates of
-cap convergence, and sharp rare-event confidence rates at and above the
-quadratic boundary remain open. The rare-event results assume a known
-magnitude law; unknown laws, other observation kernels and almost-sure
-budgets require separate arguments.
+The rare-event regimes below two and the auxiliary envelope, smoothness
+and observed-state results have paper proofs awaiting formalization.
+The best comparison constant, efficient exact selection for structured
+laws and rates of cap convergence remain open. A later
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/8a701c8db6c42930ad2a187f3d895ca55265afd6/research/2026-10-30-confidence-transfer/NOTE.md}{confidence-transfer paper proof}
+gives fixed-confidence rates for known laws, including the quadratic
+boundary. A matching time-uniform lower bound for sequential intervals
+and guarantees for unknown magnitude laws remain open.
 
 The model requires independent fresh coins and conditionally independent
 flips, without drift or additional smooth structure linking states.

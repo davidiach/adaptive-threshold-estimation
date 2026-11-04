@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Read the updated manuscript](builds/entropy-tail-complete-20261101.pdf) · [Open the LaTeX project](main.tex) · [Completion build](#completion-build) · [Preserved build record](#preserved-build-record)
+[Read the updated manuscript](builds/quantile-selection-suffix-20261104.pdf) · [Open the LaTeX project](main.tex) · [Quantile comparison and finite selection build](#quantile-comparison-and-finite-selection-build)
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -43,15 +43,17 @@ the unbiased characterization with constants 1/16 and 713, the confidence
 characterization, the magnitude-oracle lower bounds, and the rare-event
 rate above exponent two. It also checks both halves and the full entropy–tail
 law, the two-sided closed quantile rate for every law, the comparison
-$K\le Q\le(1+2\sqrt2)K$, and the stopping-program, fixed-cap
-identification and genie results of §15, each in the scope stated in §18.
+$K\le Q\le(8/5)K$, and the existence of a finite-law optimizer that selects
+a suffix in each dyadic band. It also checks the stopping-program, fixed-cap
+identification and genie results of §15, in the scope stated in §18.
 Section 18 states each formal scope and links the fixed source revisions.
 
-The sharper explicit entropy–tail lower constant, the direct finite-law
-closed quantile proof and its explicit lower constant, and the rare-event
-regimes below two remain **paper proofs**. The general-law closed-quantile
-corollary is now Lean-checked with conservative universal constants, using
-the completed entropy–tail law and the deterministic comparison. The remaining
+For finite laws a [direct Lean proof](../../lean/ThresholdHC/FiniteQuantile/Full.lean)
+now establishes both explicit coefficients, $10^{-20}$ and $30001$. The
+[operational theorems](../../lean/ThresholdHC/FiniteQuantile/Operational.lean)
+give the estimator and converse statements. The [arbitrary-law comparison](../../lean/ThresholdHC/EntropyTailSharp/Full.lean)
+checks $10^{-17}\mathcal K\le R\le28000\mathcal K$ and $10^{-17}Q\le R$.
+The rare-event regimes below two remain **paper proofs**. The remaining
 paper proofs have not been Lean-formalized or externally reviewed by specialists.
 The general-law and finite-gap proofs share
 their upper construction and Appendices F–H, so they are one rate
@@ -128,6 +130,32 @@ The [manuscript workflow](../../.github/workflows/manuscript.yml) builds it
 the same way with TeX Live from the Ubuntu 24.04 archive and uploads the PDF
 and log as the `v6-paper` artifact. Typesetting and source checks do not
 constitute a new mathematical proof or independent review.
+
+## Quantile comparison and finite selection build
+
+The [4 November manuscript](builds/quantile-selection-suffix-20261104.pdf)
+gives the sharper comparison and the finite-law suffix search bound in §14.
+Section 18 links the Lean statements. The [build record](builds/quantile-selection-suffix-20261104.json)
+records the pinned proof revisions, matching hashes from two offline builds,
+embedded fonts and the pages reviewed.
+
+## Explicit general-law build
+
+The [updated PDF](builds/entropy-tail-explicit-20261104.pdf) records the
+explicit arbitrary-law comparison in §§13 and 18. The theorem links use
+proof revision `8a701c8db6c42930ad2a187f3d895ca55265afd6`. Two offline builds
+produced identical PDFs. The [build record](builds/entropy-tail-explicit-20261104.json)
+gives the source and PDF hashes, page count, font checks and visual review.
+
+## Finite-law build
+
+The [4 November PDF](builds/direct-finite-quantile-20261104.pdf) records the
+finite-law theorem and its direct lower proof in §§14 and 18. The new theorem
+links use proof commit `fc61852123b37c723bbb671d0b4ed294d3b6ee06`.
+Two offline Tectonic builds produced identical 136-page PDFs. All 29 fonts
+are embedded, the references resolve, and the final TeX warnings match the
+1 November build. The [build record](builds/direct-finite-quantile-20261104.json)
+identifies the exact inputs, PDF and pages inspected.
 
 ## Completion build
 

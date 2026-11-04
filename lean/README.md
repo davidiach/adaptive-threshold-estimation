@@ -24,9 +24,13 @@ axioms; a successful build alone is not a substitute for that audit.
 | Confidence characterization | [Confidence specification](ThresholdHC/Confidence/Specification.lean), [Full](ThresholdHC/Confidence/Full.lean) | `python tools/verify_confidence.py --sequential` |
 | Revealed/selected magnitude-oracle lower bounds | [OracleLower specification](ThresholdHC/OracleLower/Specification.lean), [Full](ThresholdHC/OracleLower/Full.lean) | `python tools/verify_oracle_lower.py --sequential` |
 | Observable rare-event rate above alpha two | [RareAboveTwo specification](ThresholdHC/RareAboveTwo/Specification.lean), [Full](ThresholdHC/RareAboveTwo/Full.lean), [scope guide](../docs/RARE_ABOVE_TWO.md) | `python tools/verify_rare_above_two.py --sequential` |
+| Finite-law bandwise-suffix optimizer and search bound | [Specification](ThresholdHC/BandwiseSuffix/Specification.lean), [Theorem 5](ThresholdHC/BandwiseSuffix/Full.lean), [Search](ThresholdHC/BandwiseSuffix/Search.lean) | `python tools/verify_bandwise_suffix.py` |
+| Full $8/5$ quantile-selection comparison, Lemmas 1 and 2, saturation and the tail floor | [Statements](ThresholdHC/QuantileSelection/Specification.lean), [Theorem 4](ThresholdHC/QuantileSelection/Full.lean) | `python tools/verify_quantile_selection.py` |
 | Scalar inequality (Lemma 3) of the 8/5 quantile-selection comparison | [QuantileComparison specification](ThresholdHC/QuantileComparison/Specification.lean), [Scalar](ThresholdHC/QuantileComparison/Scalar.lean) | `python tools/verify_quantile_comparison.py --sequential --require-complete` |
 | Full entropy-tail law: both halves and five selection-functional properties | [EntropyTail specification](ThresholdHC/EntropyTail/Specification.lean), [Upper](ThresholdHC/EntropyTail/Upper.lean), [Lower](ThresholdHC/EntropyTail/Lower.lean), [Law](ThresholdHC/EntropyTail/Law.lean), [Bridge](ThresholdHC/EntropyTail/Bridge.lean), [HardSelection](ThresholdHC/EntropyTail/HardSelection.lean) | `python tools/verify_entropy_tail.py --sequential --require-complete` |
 | Complete finite-certificate lower proof: weighted signs, annular localization, retained-band packing and finite-prefix limit | [EntropyTailLower](ThresholdHC/EntropyTailLower/), [proof map and scope](../docs/ENTROPY_TAIL_LOWER_PROGRESS.md) | `python tools/verify_entropy_tail_lower_components.py` |
+| Explicit general-law entropy-tail comparison, $10^{-17}\mathcal K\le R\le28000\mathcal K$ and $10^{-17}Q\le R$ | [Specification](ThresholdHC/EntropyTailSharp/Specification.lean), [Full](ThresholdHC/EntropyTailSharp/Full.lean) | `python tools/verify_entropy_tail_sharp.py` |
+| Direct finite-law quantile bounds with constants $10^{-20}$ and 30001 | [Full theorem](ThresholdHC/FiniteQuantile/Full.lean), [estimator and converse](ThresholdHC/FiniteQuantile/Operational.lean) | `python tools/verify_finite_quantile.py` |
 | Universal two-sided closed-quantile minimax rate | [ClosedQuantile specification](ThresholdHC/ClosedQuantile/Specification.lean), [Full](ThresholdHC/ClosedQuantile/Full.lean) | `python tools/verify_closed_quantile.py` |
 | Observable entropy-tail and closed-quantile upper theorems ($R\le28000\,\mathcal K$, $R\le30001\,Q$), quantile split and $\mathcal K\le Q\le(1+2\sqrt2)\mathcal K$ | [EntropyTailQuantile specification](ThresholdHC/EntropyTailQuantile/Specification.lean), [UpperTheorem](ThresholdHC/EntropyTailExecution/UpperTheorem.lean), [QuantileComparison](ThresholdHC/EntropyTailQuantile/QuantileComparison.lean) | `python tools/verify_entropy_tail_upper.py` |
 | Robust stopping program ($R\le P_N$, attained four-prior dual, $R\le P_N\le16R$), fixed-cap identification and genie certificates | [StoppingProgram specification](ThresholdHC/StoppingProgram/Specification.lean), [FiniteCertificate](ThresholdHC/StoppingProgram/FiniteCertificate.lean), [CapIdentification](ThresholdHC/CapIdentification/Full.lean), [Genie](ThresholdHC/Genie/) | [Sixteen audits](../docs/VERIFY.md#stopping-program-identification-and-genie-certificates), e.g. `python tools/verify_finite_risk_certificate.py` |
@@ -45,14 +49,14 @@ The existing critical-law and optimizer formalizations do not certify its
 general claims.
 See its [separate status](../paper/rare-event/README.md). The two-sided closed
 quantile law of the [finite-gap manuscript](../paper/finite-gap-rare-events/README.md)
-retains its paper-only direct argument and explicit lower constant. The
+has a [direct proof with its explicit coefficients](ThresholdHC/FiniteQuantile/Full.lean). The
 separate `ClosedQuantile` corollary now proves a two-sided rate for every law
 with conservative universal constants; its upper coefficient is 30001.
 See its [audit evidence](../results/closed-quantile-law-20261101/README.md).
 The [certified-selection package](../research/2026-10-30-certified-selection/README.md)
 sharpens its comparison with the selection functional to $\mathcal K\le Q\le\frac85\mathcal K$.
-Only that comparison's scalar Lemma 3 is Lean-checked. The comparison itself,
-Lemmas 1–2 and the bandwise-suffix theorem remain paper proofs.
+Lemmas 1–3, the comparison and the finite-law bandwise-suffix theorem
+are Lean-checked. The suffix optimizer minimizes over all submeasures.
 
 ## Foundations and supporting developments
 

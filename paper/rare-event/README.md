@@ -23,8 +23,10 @@ Lean-formalized. Since then both halves and the full observable entropy-tail law
 stopping-program results, the factor-sixteen certificate, fixed-cap
 identification and the genie results have been Lean-checked, with the scopes
 recorded in the [claim status](../../docs/RESULTS.md#general-law-rare-event-characterization).
-The entropy-tail proof uses conservative universal constants; the paper's
-sharper explicit lower coefficient remains outside that formal claim.
+The later [explicit comparison](../../lean/ThresholdHC/EntropyTailSharp/Full.lean)
+checks the paper's lower coefficient $10^{-17}$ for every probability law and
+improves its upper coefficient from $33000$ to $28000$. Its [audit](../../results/entropy-tail-explicit-20261104/README.md)
+also covers the converse for each admissible estimator.
 The [completion evidence](../../results/entropy-tail-complete-20261101/README.md)
 records the exact targets, source hashes, and reused dependencies.
 No external specialist review is
