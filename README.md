@@ -97,6 +97,9 @@ is unverified. Lean proves the [sharper comparison](lean/ThresholdHC/QuantileSel
 from the [certified-selection note](research/2026-10-30-certified-selection/README.md),
 $\mathcal K\le Q\le(8/5)\mathcal K$, for every positive-gap law in the same
 parameter range. The optimal factor lies in $(1.4604,8/5]$.
+For a finite law, Lean also proves that a hard optimizer selects an upper-gap
+suffix within each dyadic band. With $n_j$ atoms in occupied band $j$, at most
+$\prod_j(n_j+1)$ candidates suffice. [Suffix theorem and search bound](lean/ThresholdHC/BandwiseSuffix/Search.lean)
 
 For a **known finite** magnitude law with strictly positive gaps, known global
 rarity bound $0<\rho\le1/4$, and any uniform expected observation budget $B>0$,

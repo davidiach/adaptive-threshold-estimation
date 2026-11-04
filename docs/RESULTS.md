@@ -470,9 +470,16 @@ floor $T_h\le\mathcal K$ and saturation $\mathcal K=Q=\rho$ when $h\ge t$.
 The [theorem](../lean/ThresholdHC/QuantileSelection/Full.lean) covers arbitrary
 probability laws, fractional quantile atoms and unbounded full-law entropy.
 The [audit](VERIFY.md#full-quantile-selection-comparison) also checks the
-statement for the selection functional used in the minimax theorem. The suffix,
-stability and rounding results have paper proofs. The rational certificates
-rely on unverified Python.
+statement for the selection functional used in the minimax theorem.
+
+**Lean verifies the finite-law bandwise-suffix theorem.** For a probability
+law with finite support, a hard restriction minimizes the raw objective over
+all submeasures and attains $K$ after clipping at $\rho$. If a larger atom in
+the same band is skipped, moving equal inverse-square cost to that atom keeps
+the entropy fixed and strictly increases the saved tail cost. A suffix is
+determined by its selected count in each band, so at most $\prod_j(n_j+1)$
+candidates suffice. The stability and rounding results have paper proofs. The
+rational certificates rely on unverified Python. [Theorem 5 and verification](VERIFY.md#finite-law-bandwise-suffix-theorem)
 
 ## Critical power margin: full minimax characterization
 

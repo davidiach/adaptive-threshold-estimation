@@ -397,6 +397,21 @@ functional, and inspects the transitive axioms of every new declaration. The
 [verification record](../results/quantile-selection-20261104/README.md) identifies
 the compiler, rebuilt modules and reused inputs.
 
+## Finite-law bandwise-suffix theorem
+
+```sh
+python tools/verify_bandwise_suffix.py
+```
+
+The [specification](../lean/ThresholdHC/BandwiseSuffix/Specification.lean)
+requires a hard restriction on the support that minimizes the uncapped
+objective over every submeasure and gives the capped value $K$. The verifier
+checks finite hard attainment, strict improvement from an inversion, Theorem 5,
+the bound on the size of the suffix family and the existence of a minimizer
+in that family. It checks the transitive axioms of every new declaration.
+The [native record](../results/bandwise-suffix-20261104/README.md) lists the
+rebuilt modules, cached inputs and kernel reports.
+
 ## Magnitude-oracle lower bounds
 
 The magnitude-oracle lower bounds have a separate audit:

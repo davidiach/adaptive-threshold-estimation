@@ -1,0 +1,348 @@
+{
+  "valid": true,
+  "proof_checkpoint": "c15a9fa46a5f0a743fb20416b87498225a13661e",
+  "specification_checkpoint": "a2ee4e83f985d942297639d12712c278e89a7421",
+  "scope": "Certified-selection Theorem 5: hard attainment on finite support, strict exchange, per-band upper suffix optimizer, capped K, candidate bound and search attainment.",
+  "compiler": "Lean (version 4.36.0-rc1, x86_64-w64-windows-gnu, commit c9afcddf514a6772bd4d649f7cfc04eff0b9f15e, Release)",
+  "compiler_cache": "Pinned Mathlib cache. Project inputs reused only after source and native hashes match the 8611f2e entropy-tail record. Other project modules rebuilt in an isolated directory.",
+  "exact_targets": [
+    "ThresholdHC.BandwiseSuffix.exists_optimal_hard",
+    "ThresholdHC.BandwiseSuffix.improve_inversion",
+    "ThresholdHC.BandwiseSuffix.bandwise_suffix",
+    "ThresholdHC.BandwiseSuffix.suffixChoices_card_le",
+    "ThresholdHC.BandwiseSuffix.search_attains"
+  ],
+  "source_sha256": {
+    "lean/lake-manifest.json": "a7058b14db1034b58735d82f1cf9a82a938855e93decc1960ca7d21e786fdfe2",
+    "lean/lakefile.toml": "273cfe4674e97219b22f7de1428bdadfb45379c7fa582882c59624ab7fbc3189",
+    "lean/lean-toolchain": "d581a24b57a4ae9e0b2132ca8ac7cc3ac336a9fc2751fe6b29414e2d434d54c4",
+    "lean/ThresholdHC/BandwiseSuffix/Attainment.lean": "323953cbf181d5d5d8eecc462df8577891f658d67b3af19db61987775525d8dd",
+    "lean/ThresholdHC/BandwiseSuffix/Exchange.lean": "83d17398caea2f98c92ef2c62a614b54d0784a5dcbcd6d400def0dcb49094f80",
+    "lean/ThresholdHC/BandwiseSuffix/Full.lean": "d064dae070e01c37d1bb33f5139649770cfb849350e6bb8373221699067de1da",
+    "lean/ThresholdHC/BandwiseSuffix/Packets.lean": "d8e3e21707ec5a58c353c3d2af52be615c637640670e67c8cf7b4e0e9fa1a806",
+    "lean/ThresholdHC/BandwiseSuffix/Search.lean": "af0af1c8b30e15a0a7d876e99d1e49d32abca63d0f5e9e4cc6d2232adb491468",
+    "lean/ThresholdHC/BandwiseSuffix/Specification.lean": "e1ea3f7e38a3dea09bfab1d5df07b278a12d284ccc4a1ddd46cdf65640fb1206",
+    "lean/ThresholdHC/EntropyTail/Band.lean": "c17a4c422029ae887bdf6892e8eabde53c19f0669276b097ef23323fee755134",
+    "lean/ThresholdHC/EntropyTail/Entropy.lean": "c9c0102b280c83b63428a1bd090ec2a12ba06842ff47f67edc9fb4a819946e97",
+    "lean/ThresholdHC/EntropyTail/Gamma.lean": "3852f51883656cd2f151a8b495310e20253ca264c36c10e45291fa0e147be20e",
+    "lean/ThresholdHC/EntropyTail/HardSelection.lean": "b120d970be5081e8e9712cd73bd41c4bc9fd31493feb391ab151cd11c1003a81",
+    "lean/ThresholdHC/EntropyTail/Model.lean": "399bf6b492253773188a625df2c5453600a71137637c0684540704663dc7436f",
+    "lean/ThresholdHC/EntropyTail/Objective.lean": "818e44be2cf3f949536b253b17b9fda74192ad43c00da284e22d090922b10c23",
+    "lean/ThresholdHC/EntropyTail/Specification.lean": "8440d8853dd20cfcb4d0123fd30de0fae82ee970a0577f5e4ba0ebe041a1cbeb",
+    "lean/ThresholdHC/EntropyTail/Superadditive.lean": "7883cb72ace83339645025ef22ea88f161853489ad9b66c0e65c7f3c665beed1",
+    "lean/ThresholdHC/Proofs/Algebra.lean": "68efcc1bef2ab5407fa86b1e8fea52c2baeaf0001bfe5d548d0a58ee959fb155",
+    "lean/ThresholdHC/Proofs/KL.lean": "ddf4b0067271296ea1836e44fe01fe55bf1143e14cf1f5b3473e38a196d966c3",
+    "lean/ThresholdHC/Proofs/Tier2/Information.lean": "4b62b5996af4e6c96cff51796745fc9b8dea356744b1ae7f0777ecc43b76fd16",
+    "lean/ThresholdHC/Proofs/Tier2/InformationCore.lean": "0a6a1af42b5b0af29db453982aabd1a4dbb615baf1284c8ecf6d14e5b0d58590",
+    "lean/ThresholdHC/Proofs/Tier2/Transcript.lean": "e8b8feca5af14a68f23fa9cdc57eb28259f87c18d3ff092ca732b353daf4e640",
+    "lean/ThresholdHC/Proofs/Tier2/TranscriptBase.lean": "ef06442bc824d756f959d0c9711edbf8b84a61359d8d1a10fedb8dbfe5c201d7",
+    "lean/ThresholdHC/Proofs/Tier2/TranscriptLikelihood.lean": "7d051a6f2f028d912910c9d18533b6db90863328a7bdc6c87c4181fade7c489f",
+    "lean/ThresholdHC/Proofs/Tier2/TranscriptScalar.lean": "dc691a74b9b1915377df80cd2caac4feec5d7bee3938480b906afbdb04630fee",
+    "lean/ThresholdHC/RareAboveTwo/Model.lean": "e73349c6b4297fde20d3b3038e9eda089c60df0af3cab001caf7c58e9b0aa6a7",
+    "lean/ThresholdHC/Statements.lean": "0873505b7c133561e82f63dcbba7f7a0a3da39d0c3692daee99d01882a757abf",
+    "lean/ThresholdHC/Statements2.lean": "51f85fee842aec2de331872b760ecd47e15715a84deaf5b8f08970bd9fa01414",
+    "lean/ThresholdHC/Tier3/OptimizerModel.lean": "36c085b6409b1355247d5127ab4ee9fdb94e621c1aac8379fb1f119d607cae49",
+    "lean/ThresholdHC/Tier3/RandomizedBase.lean": "87af7b31ba2c3cc9ff623cf403d954ffd7b8844c1b3af6e9283b823921ed8285",
+    "lean/ThresholdHC/Tier3/RandomizedModel.lean": "3a61f9b034ee58e45e903356c60037e4808fdb1a711d96b24f3013ef95716f6b",
+    "lean/ThresholdHC/Tier3/StoppingBase.lean": "0989b9b554ea0c056ec9f296e463c1767dc3509400960c266593c64e3daaa51d",
+    "lean/ThresholdHC/Tier3/StoppingModel.lean": "36aed19aa97432a9068952e5d389fe6a992faad0da71984b7412204940aa3892",
+    "lean/ThresholdHC/Tier3/TranscriptRatio.lean": "49b87fb8ece824fd69d52f2d83b40050529f3c7a295ed59e214cb18d1f139d4d",
+    "lean/ThresholdHC/Tier4/FiniteDensity.lean": "7b4216aebc1b247486233e4ea86de2e5b67301526bc3f5b730b4db4ebd53cba2",
+    "lean/ThresholdHC/Tier4/Model.lean": "2271691c5af1c4936accbb9a5c62b6ea5cbc3e6bdd718b0b44a958cd7a057214",
+    "lean/ThresholdHC/Tier5/CreationBase.lean": "c77ca55ab89d3d286443be9699ebca100706851f2f33393c82770209362250ea",
+    "lean/ThresholdHC/Tier5/CreationModel.lean": "b767058304f884582dc976a59b5d31671d417717097b60280d6b4533acae5871",
+    "lean/ThresholdHC/Tier5/CreationPadding.lean": "0749f9235601e37c0e141414b6347c9df8b3028c9c44924ef324739eb3e5cf68",
+    "lean/ThresholdHC/Tier5/FiniteCreation.lean": "382ea9fae97e5c8184a129f29b5004aa91416a26350445971315fcc28bd0d017",
+    "lean/ThresholdHC/Tier5/FiniteEnvironment.lean": "cdfd42cf5b704fd7577de9dc04fed2fcac94830cd7207240d704eb702f14b669",
+    "lean/ThresholdHC/Tier5/FiniteJoint.lean": "b8c826351070c9c8f8eb92ae68e9499c32e77e777c9438aa15ec1cb7db17956a",
+    "lean/ThresholdHC/Tier5/Model.lean": "d0bd50268eb858d2acb14f0f220f228d6a1d8b211dd4359864c35faca6bf0fdd",
+    "lean/ThresholdHC/Tier5/PriorRatio.lean": "a116b733974fd4b0b1bddaf4c7eed5d161595b5a228fc59fbfcf68a5fbcc99d5",
+    "lean/ThresholdHC/Tier6/AlgorithmCore.lean": "ba81c4bbbcba907337a82b0350135c4f734239fcd2c5f4685d87d6ea72452ad8",
+    "lean/ThresholdHC/Tier6/AlgorithmModel.lean": "4494049e8205ca83eb635c8f82f0f7661f7ba61bc2ccc29966dcd9a5e47eeea5",
+    "lean/ThresholdHC/Tier6/HardPairModel.lean": "003aa6f400fe62d6e0e074ef2df8b4d3afc5e79db73800d529ae11c0cd89e068",
+    "lean/ThresholdHC/Tier6/ProcessModel.lean": "c7da1211a83f0925da7f1ce0b573f155c08edbfaa0564cc6dc26e640d51a625b",
+    "lean/ThresholdHC/Tier6/ProcessWeights.lean": "280214be58ce854b84c13d424e570d5cd955f7c27ffe1afd3646e103edece733",
+    "lean/ThresholdHC/Tier6/TestingModel.lean": "941b5583b6a9d8776c38ac9de371b5f30a7a2c580b4cd627df7935665ca80944",
+    "results/entropy-tail-explicit-20261104/status.json": "333ffc0887736678441e415a3a001aa1dc307f1bdd6c45b9c4c3fcc08f6f4f23",
+    "tools/entropy_tail_quantile_specification_freeze.json": "91f761b2790cf40b7b4ad3da3e12a1ea6b7525cac9714fbd233c0e2bdcc73345",
+    "tools/entropy_tail_specification_freeze.json": "5df9e3e4dc7b059d39b5abbd8125f5f7cb7a45cf81ff85d42186b0bf0d5d0bee",
+    "tools/verify_bandwise_suffix.py": "d22adfbdc4b6c1c7fab493bcf2940c402efcce48da3c4d1d47923eee9c2d21b9",
+    "tools/verify_blind_upper_components.py": "08faf54b212914db25f1c65c8455ab9d918d70e9366a8fef2b7622a6ce5325e7",
+    "tools/verify_entropy_tail.py": "c1d3edb75044cb3967507193198f300b41ef495e234df8b77381384407ce829e",
+    "tools/verify_entropy_tail_components.py": "32a424f48e92c50cd3e6a6c38d3d11c42fef974843e33f2aa489b54d1cd293b8",
+    "tools/verify_tier6.py": "7295c1609c57be9951fc46f3e210f7f7682083470cf94bbe2dd89a387b0f075e"
+  },
+  "project_closure": 47,
+  "cached_project_modules": 39,
+  "rebuilt_project_modules": 8,
+  "audit_input_sha256": "d72fbcdd8419e6a4dcb17c54ec395f6eb18352d8d8df114228c9eb5edb1b373f",
+  "reused_artifact_sha256": {
+    "lean/.lake/build/lib/lean/ThresholdHC/EntropyTail/Band.olean": "75f09c96bfc0d1425391bf5be58fcf061dbaf2ca144eb6f5df5398ed51e6250d",
+    "lean/.lake/build/lib/lean/ThresholdHC/EntropyTail/Entropy.olean": "30178ab34f2804b2425c6a11a5e0282b01720f8167afb738414b6743119e0914",
+    "lean/.lake/build/lib/lean/ThresholdHC/EntropyTail/Gamma.olean": "d481e11e09bbcd3b19e7995d0a1547afc8c44e16a0bcaea49d49cfe2a6295fa6",
+    "lean/.lake/build/lib/lean/ThresholdHC/EntropyTail/Model.olean": "a794ca4113cae1f5aba5a14bb979bdd0eddedbee820792bf0fadad68f8f703a6",
+    "lean/.lake/build/lib/lean/ThresholdHC/EntropyTail/Objective.olean": "d837775f8b95f9a272b51dd40bbe98c6fa440c3ecd6688bc25afba261b471a44",
+    "lean/.lake/build/lib/lean/ThresholdHC/EntropyTail/Specification.olean": "d8571c6467ce0843a4f6a713ba5b8aa0a9483e4f1c0f7092cccfc18242237b65",
+    "lean/.lake/build/lib/lean/ThresholdHC/Proofs/Algebra.olean": "1782fbad9ceb66d5d5bb49d4e4707b99b60badc250b861755853ada7e797f4f3",
+    "lean/.lake/build/lib/lean/ThresholdHC/Proofs/KL.olean": "71338a6d293772b30fddebcf33fb179020e3c6a8fa200be153bf73f8227b2d0d",
+    "lean/.lake/build/lib/lean/ThresholdHC/Proofs/Tier2/Information.olean": "83dd289e9d7c3a6cc9276196af4a4343964eda55ac3de2c2ff65326beb7f4fe9",
+    "lean/.lake/build/lib/lean/ThresholdHC/Proofs/Tier2/InformationCore.olean": "fbfe22d3ae29bee5fb1565b49746d7db232012a07c2dd880146a2bbf2598dcac",
+    "lean/.lake/build/lib/lean/ThresholdHC/Proofs/Tier2/Transcript.olean": "bca7df0eb265d60bc0dc2076d18933909c0ffa557897ffdf625d1d95b126b9a7",
+    "lean/.lake/build/lib/lean/ThresholdHC/Proofs/Tier2/TranscriptBase.olean": "cf39e50e71f114968b13defb90dc942f47b79c63be789cfef0166d642fb163c3",
+    "lean/.lake/build/lib/lean/ThresholdHC/Proofs/Tier2/TranscriptLikelihood.olean": "3a77598fca6150af02f0da58bc314a00b3fba6fa38979b01532c46c2f0b4f7c7",
+    "lean/.lake/build/lib/lean/ThresholdHC/Proofs/Tier2/TranscriptScalar.olean": "f67e6dd72d1fe6001a2f702f3ca9c4ddd999916867be1134840372c908a2faff",
+    "lean/.lake/build/lib/lean/ThresholdHC/RareAboveTwo/Model.olean": "a9901f172ac819c41b8f7655544bfb5673530245addd8e08bdaafed8fd8ac233",
+    "lean/.lake/build/lib/lean/ThresholdHC/Statements.olean": "7c3eb400e460e895b8e2067ddbc19417cb44edae3a432b8f4bed251777f54cbf",
+    "lean/.lake/build/lib/lean/ThresholdHC/Statements2.olean": "45823cce83451afabf7909e5ee7248ed122023f8fae0b75afa7bca69ecc361a4",
+    "lean/.lake/build/lib/lean/ThresholdHC/Tier3/OptimizerModel.olean": "4a852a13aa00fdf99a1471826e91724652dea0be04e79d527f38ae04a68189c9",
+    "lean/.lake/build/lib/lean/ThresholdHC/Tier3/RandomizedBase.olean": "dc45a024a3d338e7448b58be4c5d8bb8d5407533d9210237e4770d369e3bd251",
+    "lean/.lake/build/lib/lean/ThresholdHC/Tier3/RandomizedModel.olean": "6d03d18f966ac6baf99dae0af7525cf99f66b25b3d67c876f3874fd828d5652a",
+    "lean/.lake/build/lib/lean/ThresholdHC/Tier3/StoppingBase.olean": "afe28ff64b371584831f1a486e2044fbe5d00042b8eb2a2e9c557d5284a63398",
+    "lean/.lake/build/lib/lean/ThresholdHC/Tier3/StoppingModel.olean": "2d03e180804918701d842e6eaa803d6a18ffde3758a4d6d6a0755eed53c3f34e",
+    "lean/.lake/build/lib/lean/ThresholdHC/Tier3/TranscriptRatio.olean": "b31c6af0ad375bc11f0d033ea618a26dfa46243fd6d3853224d8dc4f47ba363f",
+    "lean/.lake/build/lib/lean/ThresholdHC/Tier4/FiniteDensity.olean": "f6a18e34eb9e879fc1dcf8c97a7fcecbe84b801b5cf3c81eae102cbbf9897e1c",
+    "lean/.lake/build/lib/lean/ThresholdHC/Tier4/Model.olean": "be7972fae1f18aaa1396891cf3835292d699098126ce986d5d79b8287210c791",
+    "lean/.lake/build/lib/lean/ThresholdHC/Tier5/CreationBase.olean": "24c59ab2cc5ed6e836afc7ee784132b00c49dcbe74d7fcae89c855fd53d44624",
+    "lean/.lake/build/lib/lean/ThresholdHC/Tier5/CreationModel.olean": "7dbfcfa428ee6309e2e5eb12620b65df14dc2258a9cff2fbd870e120934b7da9",
+    "lean/.lake/build/lib/lean/ThresholdHC/Tier5/CreationPadding.olean": "4ff5a4312c5f269d131210fd54a44b3b4957b59f9a15fa57c1adab408476de9d",
+    "lean/.lake/build/lib/lean/ThresholdHC/Tier5/FiniteCreation.olean": "d9feb00d5e80379c301532df5a63114d3d0ce721662f9949a5f4cc62336bee1d",
+    "lean/.lake/build/lib/lean/ThresholdHC/Tier5/FiniteEnvironment.olean": "4f0f317d3703f67196bc1eb8c1c5575c197b9cfd9554f16306d86c88f84ec339",
+    "lean/.lake/build/lib/lean/ThresholdHC/Tier5/FiniteJoint.olean": "e34c4a8b803fb6aa3b7493bd4eecbb5e1f7f0e40803e2f87cfca988eed8035a7",
+    "lean/.lake/build/lib/lean/ThresholdHC/Tier5/Model.olean": "3a99017ed76f4985eae39f0ad86d2a39d716c58a10c4e73c3a099b487890dc40",
+    "lean/.lake/build/lib/lean/ThresholdHC/Tier5/PriorRatio.olean": "9ed50c41f9cc4d93ec058802c92b75965a0657c202147e9e3b53df46ff313f8b",
+    "lean/.lake/build/lib/lean/ThresholdHC/Tier6/AlgorithmCore.olean": "43985f9a3e8e2f881df2c13e794bfcd76ad54133c2229727d9330dd0c86d16c1",
+    "lean/.lake/build/lib/lean/ThresholdHC/Tier6/AlgorithmModel.olean": "00dc068cfb31f95a5439b5b8dce24564f762709b453f7618473498e1d32e3d27",
+    "lean/.lake/build/lib/lean/ThresholdHC/Tier6/HardPairModel.olean": "c2699671978391e6472a685f34fbf987d877ff2505f6ad40077de586b1ee890b",
+    "lean/.lake/build/lib/lean/ThresholdHC/Tier6/ProcessModel.olean": "243e9a22f4a81958a823e9b2730a295111be558ee9ed6434d0da65f0fd6e2d90",
+    "lean/.lake/build/lib/lean/ThresholdHC/Tier6/ProcessWeights.olean": "a3276fe4b3de6e5b33e257731d60ce369f9c77d054becda1d6b21e136ed5ce42",
+    "lean/.lake/build/lib/lean/ThresholdHC/Tier6/TestingModel.olean": "316a4b971b5590eeb1bfcab734424a264b33cb5b13cb0554583e285b446b9d33"
+  },
+  "rebuilt_artifact_sha256": {
+    "ThresholdHC/BandwiseSuffix/Specification.olean": "b36c29a9f9e090789e09da2eaaf9f5277d203c4e1c0b8f6072c0f64e983b28d7",
+    "ThresholdHC/EntropyTail/Superadditive.olean": "caa348baa69260ed4b08a7b455287e9aa0a1467a313f2a309b3f8eaf13242dc8",
+    "ThresholdHC/EntropyTail/HardSelection.olean": "e497c2f2160ca5153f57cb7618304e6bc6f5aa71551f23db0c1185d3e50b1de3",
+    "ThresholdHC/BandwiseSuffix/Attainment.olean": "568f91d4ad969b1cf0db038f65b06daf7d759f7938a35d3bba1179d6a5e3eb0b",
+    "ThresholdHC/BandwiseSuffix/Packets.olean": "afd6627697550fa2fd11d504f070578f98d2451ab3afd95a31c762d52bc52e61",
+    "ThresholdHC/BandwiseSuffix/Exchange.olean": "4b5143ecde08fa72d80eb82b1d42c7974edf43c41bb7667f241a250a0c3703ad",
+    "ThresholdHC/BandwiseSuffix/Full.olean": "b258151ab9b64811f21cddd39c5ec95a028bf1aa1ee1b48589730316e534b5f8",
+    "ThresholdHC/BandwiseSuffix/Search.olean": "7b14de40339bb965a72edcb5f4b6ac206877958955abcb08e7901008fa3838f2"
+  },
+  "commands": [
+    {
+      "command": [
+        "lean",
+        "-j1",
+        "-o",
+        "objects/ThresholdHC/BandwiseSuffix/Specification.olean",
+        "ThresholdHC/BandwiseSuffix/Specification.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lean",
+        "-j1",
+        "-o",
+        "objects/ThresholdHC/EntropyTail/Superadditive.olean",
+        "ThresholdHC/EntropyTail/Superadditive.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lean",
+        "-j1",
+        "-o",
+        "objects/ThresholdHC/EntropyTail/HardSelection.olean",
+        "ThresholdHC/EntropyTail/HardSelection.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lean",
+        "-j1",
+        "-o",
+        "objects/ThresholdHC/BandwiseSuffix/Attainment.olean",
+        "ThresholdHC/BandwiseSuffix/Attainment.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lean",
+        "-j1",
+        "-o",
+        "objects/ThresholdHC/BandwiseSuffix/Packets.olean",
+        "ThresholdHC/BandwiseSuffix/Packets.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lean",
+        "-j1",
+        "-o",
+        "objects/ThresholdHC/BandwiseSuffix/Exchange.olean",
+        "ThresholdHC/BandwiseSuffix/Exchange.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lean",
+        "-j1",
+        "-o",
+        "objects/ThresholdHC/BandwiseSuffix/Full.olean",
+        "ThresholdHC/BandwiseSuffix/Full.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lean",
+        "-j1",
+        "-o",
+        "objects/ThresholdHC/BandwiseSuffix/Search.olean",
+        "ThresholdHC/BandwiseSuffix/Search.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "lean",
+        "-j1",
+        "--stdin"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "axioms": {
+    "ThresholdHC.BandwiseSuffix.BandwiseSuffixStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.BandwiseSuffix.IsBandSuffix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.BandwiseSuffix.bandIndex": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.BandwiseSuffix.bandwise_suffix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.BandwiseSuffix.exists_optimal_hard": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.BandwiseSuffix.improve_inversion": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.BandwiseSuffix.improving_exchange": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.BandwiseSuffix.mem_index_band": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.BandwiseSuffix.mem_suffixChoices": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.BandwiseSuffix.optimal_is_suffix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.BandwiseSuffix.packet": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.BandwiseSuffix.packet_bandCost": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.BandwiseSuffix.packet_le_restrict": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.BandwiseSuffix.packet_strict_gain": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.BandwiseSuffix.packet_tailCost": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.BandwiseSuffix.saving": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.BandwiseSuffix.saving_strictMono": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.BandwiseSuffix.search_attains": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.BandwiseSuffix.slice": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.BandwiseSuffix.slices_comparable": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.BandwiseSuffix.suffixChoices": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.BandwiseSuffix.suffixChoices_card_le": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.BandwiseSuffix.support_atom_pos": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "log_sha256": {
+    "01.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "02.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "03.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "04.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "05.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "06.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "07.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "08.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "09.log": "4ad1ecbdda1047b1541ecd5b00ccd0b9520a0634a5f51d1f0e2bb53410d7ac1c"
+  }
+}
