@@ -382,6 +382,17 @@ its exact type and transitive axioms and writes its status under
 $\mathcal K\le Q\le\frac85\mathcal K$, Lemmas 1–2 and the suffix theorem are not
 targets.
 
+## Critical confidence and finite-cap rates
+
+Run `python tools/verify_critical_confidence.py` to check the fixed quadratic
+law, the local pair and the expected-budget minimax confidence lower bound.
+[Exact statements and compiler output](../results/critical-confidence-20261104/README.md)
+
+Run `python tools/verify_genie_rate.py` for the uniform cap theorem, its
+relative-error bound and the factor-sixteen risk certificate. The separate
+`python tools/verify_finite_cap_rate.py` replay checks 576 exact Bellman
+comparisons. [Cap theorem and compiler output](../results/genie-rate-20261104/README.md)
+
 ## Sharper quantile factor
 
 Run `python tools/verify_quantile_price_upper.py` for the original arbitrary-law

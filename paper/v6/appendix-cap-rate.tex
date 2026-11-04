@@ -1,0 +1,61 @@
+\section{A uniform convergence rate for the optimized cap programs}
+\label{app:uniform-cap-rate}
+
+\begin{theorem}\label{thm:uniform-cap-rate}
+Let $\mu$ be any gap law, $0<\rho\le1/2$, $B>0$, and let $N\ge1$ be an
+integer. For $k>1$ the programs of \cref{sec:genie} satisfy
+\[
+ N\ge\frac{B}{(1-1/k)^2(k^2-1)}
+ \quad\Longrightarrow\quad
+ G_N(B)\le P_\infty(B)\le P_N(B)\le kG_N(B).
+\]
+In particular $N=\lceil4B/3\rceil$ suffices for $P_N\le2G_N$ and
+$R(B)\le P_N(B)\le16R(B)$. For $N\ge B$ the factor may be taken to be
+$1+2(B/N)^{1/3}$.
+\end{theorem}
+
+\begin{proof}
+Fix an admissible quartet, let $m=(q_L+q_H)/2$ and
+$\Delta=q_H-q_L$. For $0<e<1$ mix both references with $m$:
+$v'=(1-e)q_v+em$ and $w'=(1-e)q_w+em$. Convexity preserves global
+rarity. Write $K$ for the original ordinary information/work ratio at cap
+$N$. An infinite $K$ gives zero in the original dual, so suppose it is
+finite.
+
+Fix a root-active policy and let $W_u$ denote its expected paid work
+under prior $u$. Before depth $N$, the variance reference at every word
+is at least $(1-e)$ times the old one. Consequently the sum of ordinary
+stop rewards before the cap is bounded by $K W_{q_w}/(1-e)$, since
+including ordinary stops at the cap can only increase that original
+information. This uses the closed perspective also on null words.
+
+At a gap $d$, $|\Delta|\le2m$ and $|\Delta|\le2(1-m)$. The positive and
+negative latent contributions to the reveal reward
+\eqref{eq:genie-terminal} therefore satisfy
+\[
+ \frac{\Delta^2}{v'}\le\frac{4m}{e},\qquad
+ \frac{\Delta^2}{1-v'}\le\frac{4(1-m)}{e}.
+\]
+A zero denominator has zero contrast. Multiply by the respective word
+likelihoods, integrate in $d$ and sum over terminal stops. The reveal
+information is at most $4\Pr_m(T=N)/e\le 4W_m/(eN)$.
+An independent policy seed may be conditioned on throughout.
+Affineness of work gives $W_{w'}=(1-e)W_{q_w}+eW_m$, so division and
+maximization over policies give
+\[
+ K_N^+(q_L,q_H;v',w')
+ \le \max\{K/(1-e)^2,\,4/(e^2 N)\}.
+\]
+Set $e=1-1/k$. The cap condition implies
+$4+B K_N^+(q_L,q_H;v',w')\le k^2(4+BK)$.
+The target separation did not change. Maximizing the original quotient
+in \eqref{eq:exact-four-prior-dual} gives $P_N\le kG_N$ by
+\eqref{eq:genie-program}. The other inequalities follow from
+\cref{thm:genie-program}. For $k=2$ the cap condition is $N\ge4B/3$.
+For $t=(B/N)^{1/3}\le1$ and $k=1+2t$, its denominator is
+$16t^3(1+t)/(1+2t)^2\ge t^3$.
+\end{proof}
+
+The bound concerns the optimized programs. An individual unregularized
+quartet can have infinite genie information at every cap, as in
+\cref{sec:genie}. The optimal uniform convergence rate remains open.

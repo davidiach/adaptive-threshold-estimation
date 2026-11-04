@@ -5,7 +5,7 @@
 Minimax theory for estimating a threshold probability from noisy coin flips,
 with a research manuscript, Lean 4 proofs built on Mathlib, and reproducible experiments.
 
-**[Paper](paper/v6/builds/optimal-quantile-factor-20261104.pdf)** · **[Formal proof map](lean/README.md)** · **[Verification guide](docs/VERIFY.md)** · **[Specialist review packet](paper/critical-review/review.pdf)**
+**[Paper](paper/v6/builds/critical-confidence-cap-rate-20261104.pdf)** · **[Formal proof map](lean/README.md)** · **[Verification guide](docs/VERIFY.md)** · **[Specialist review packet](paper/critical-review/review.pdf)**
 
 New contributors: start with [CONTRIBUTING.md](CONTRIBUTING.md).
 AI agents: read [AGENTS.md](AGENTS.md) for current entry points, preservation
@@ -52,7 +52,7 @@ The [lower theorem](lean/ThresholdHC/Tier6/Full.lean),
 | Closed quantile rare-event law: direct proof for known finite gap laws, and for every law through the entropy-tail theorem | Lean proves $10^{-17}Q\le R\le30001Q$ for every law and $\mathcal K\le Q\le(1+2\sqrt2)\mathcal K$. For finite laws a direct Lean proof gives $10^{-20}Q\le R\le30001Q$ | [v6 §14](paper/v6/README.md#reading-guide) · [Standalone manuscript](paper/finite-gap-rare-events/README.md) · [Lean scope](docs/RESULTS.md#general-law-rare-event-characterization) |
 | Confidence radius $r_\mu(B,\delta)\asymp\omega_\mu(\sqrt{\log(1/\delta)/B})$ | Both bounds proved in Lean in the observable adaptive model | [Theorems](lean/ThresholdHC/Confidence/Full.lean) · [Audit](results/confidence_001.json) |
 | Hard observation caps: the RMS law, the critical law and the general-law rare-event rate hold with at most $\lfloor B\rfloor$ flips on every path, at a factor $\sqrt{32}$ | Paper proof; not Lean-checked. The first two inherit Lean-checked expected-budget bounds. The third uses the Lean-checked expected-budget coefficients. Its transfer to a hard cap remains a paper proof | [Scope](docs/RESULTS.md#hard-observation-caps-for-the-rms-rates) · [Package](research/2026-10-30-hard-budget-rms/README.md) |
-| High-confidence radius: the general-law rate is $\mathcal K(B/\log(1/\delta))$ under an expected or a hard budget, and the critical rate gains a factor $\sqrt{\log(1/\delta)}$; nested intervals stay valid under data-dependent stopping | Paper proof; not Lean-checked. The general-law lower bound inherits paper-only results; the critical rate inherits only Lean-checked bounds | [Scope](docs/RESULTS.md#confidence-rates-and-sequential-stopping) · [Package](research/2026-10-30-confidence-transfer/README.md) |
+| High-confidence radius: the general-law rate is $\mathcal K(B/\log(1/\delta))$ under an expected or a hard budget, and the critical rate gains a factor $\sqrt{\log(1/\delta)}$; nested intervals stay valid under data-dependent stopping | Lean checks the [critical-law lower bound](results/critical-confidence-20261104/README.md). The upper bound uses capped-median amplification. The general-law lower proof still uses paper-only steps | [Scope](docs/RESULTS.md#confidence-rates-and-sequential-stopping) · [Package](research/2026-10-30-confidence-transfer/README.md) |
 | RMS and confidence lower bounds with revealed or adaptively selected magnitudes | Proved in Lean in canonical oracle models | [Theorems](lean/ThresholdHC/OracleLower/Full.lean) · [Audit](results/oracle_lower_001.json) |
 | Other rare-event regimes and auxiliary results | Paper proofs; formalization incomplete | [Full results guide](docs/RESULTS.md) |
 
@@ -186,7 +186,8 @@ experiments provide supporting evidence, not proofs of universal claims.
 The general-law entropy-tail and closed-quantile rates are now Lean-checked
 with explicit coefficients. The remaining formalization targets include the paper-only
 regimes, and auxiliary results on envelopes, smooth densities, and observed
-outer states. The sharp quantile factor now has a paper proof. Efficient
+outer states. The sharp quantile factor now has a paper proof. The [finite-cap comparison](docs/FINITE_CAP_RATE.md)
+certifies $P_N\le 16R$ at $N=\lceil4B/3\rceil$. Efficient
 exact selection for many bands with unrestricted costs remains open.
 See the [completion ledger](docs/WORKPLAN.md) for the current boundary.
 

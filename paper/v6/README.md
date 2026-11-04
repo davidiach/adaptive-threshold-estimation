@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Read the updated manuscript](builds/optimal-quantile-factor-20261104.pdf) · [Open the LaTeX project](main.tex) · [Optimal-factor build](#optimal-quantile-factor-build)
+[Read the updated manuscript](builds/critical-confidence-cap-rate-20261104.pdf) · [Open the LaTeX project](main.tex) · [Critical confidence and cap-rate build](#critical-confidence-and-cap-rate-build)
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -132,6 +132,16 @@ The [manuscript workflow](../../.github/workflows/manuscript.yml) builds it
 the same way with TeX Live from the Ubuntu 24.04 archive and uploads the PDF
 and log as the `v6-paper` artifact. Typesetting and source checks do not
 constitute a new mathematical proof or independent review.
+
+## Critical confidence and cap-rate build
+
+Appendix Q gives a quantitative comparison of the optimized ordinary and
+latent-reveal programs. A cap of $\lceil4B/3\rceil$ already guarantees the
+factor-sixteen risk certificate for every gap law. Section 18 records the
+[formal cap theorem](../../results/genie-rate-20261104/README.md) and the
+[critical-law confidence lower bound](../../results/critical-confidence-20261104/README.md).
+The [build record](builds/critical-confidence-cap-rate-20261104.json) gives
+the hashes of the typeset sources and PDF and records the visual checks.
 
 ## Optimal quantile factor build
 

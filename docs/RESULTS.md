@@ -240,8 +240,8 @@ are also checked.
 |---|---|
 | Matching entropy-tail upper/lower bounds | Every law, known rarity, and positive expected budget in the model; hard measurable assignments suffice. |
 | Attained four-prior stopping dual | Exact identity for the robust certificate program; its connection to minimax risk is a comparison inequality. |
-| Factor-sixteen risk certificate | A sufficient theoretical cap or a cap passing the verified genie criterion; not every fixed cap. |
-| Genie convergence | Pointwise convergence assumes finite latent divergence. An explicit infinite-divergence counterexample is included. Optimized convergence first fixes a positive regularization, takes the cap limit, then removes regularization. |
+| Factor-sixteen risk certificate | For $0<\rho\le1/2$, the [uniform cap theorem](FINITE_CAP_RATE.md) gives $P_N\le2G_N$ and $R\le P_N\le16R$ whenever $N\ge4B/3$. |
+| Genie convergence | Pointwise convergence assumes finite latent divergence. An explicit infinite-divergence counterexample is included. Mixing the variance and work references with the endpoint midpoint gives $P_N/G_N\le1+2(B/N)^{1/3}$ for $N\ge B$. [Lean record](../results/genie-rate-20261104/README.md) |
 | Fixed-cap identification | For $m$ distinct positive magnitudes, the zero-bias threshold is $N\ge2m-1$. This identifies the target, not necessarily the full allocation $q$. Infinite support has a positive floor at every fixed cap; the cap may grow. |
 
 The [audit index](../paper/rare-event/audit/README.md) distinguishes the original
@@ -783,8 +783,10 @@ a run's cost and its error is assumed.
 | Critical quadratic law | $r^{\rm exp}\asymp r^{\rm hard}\asymp\min\{\rho,\sqrt{\rho L(1+\log L)\ell/B}\}$ | The [critical common pair and RMS upper bound](#critical-power-margin-full-minimax-characterization), both Lean-checked |
 | Sequential coverage | Stage $j$ has cap $4\cdot2^j$ and failure probability $\delta/((j+1)(j+2))$. The running intersection of stage intervals contains $\theta$ at every budget simultaneously with probability at least $1-\delta$, so stopping on the data is valid. For a known law and $B\ge1$, its half-width on that event is at most $1700000\,\mathcal K(B/\Lambda)$, where $\Lambda=\ell+2\log(2+\log_2(1+B))$ | Valid stage intervals; the width bound uses the general-law row |
 
-**Status and limits.** The full statistical applications in the table and the
-capped-median amplification have paper proofs. The
+**Status and limits.** The [critical confidence lower bound](../results/critical-confidence-20261104/README.md)
+now has a Lean proof for the original estimator under a uniform expected flip budget.
+It derives the common pair from the fixed quadratic law. The matching upper bound,
+capped-median amplification and complete general-law confidence rate retain paper proofs. The
 algorithms in the table may know $\mu$, $\rho$, $B$ and $\delta$. A separate
 [unknown-law construction and lower bound](UNKNOWN_LAW_CONFIDENCE.md) gives
 observable, simultaneously valid intervals that shrink for every fixed
