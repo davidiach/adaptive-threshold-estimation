@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Read the updated manuscript](builds/critical-confidence-cap-rate-20261104.pdf) · [Open the LaTeX project](main.tex) · [Critical confidence and cap-rate build](#critical-confidence-and-cap-rate-build)
+[Read the updated manuscript](builds/hard-budget-rms-20261104.pdf) · [Open the LaTeX project](main.tex) · [Hard-budget RMS build](#hard-budget-rms-build)
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -132,6 +132,13 @@ The [manuscript workflow](../../.github/workflows/manuscript.yml) builds it
 the same way with TeX Live from the Ubuntu 24.04 archive and uploads the PDF
 and log as the `v6-paper` artifact. Typesetting and source checks do not
 constitute a new mathematical proof or independent review.
+
+## Hard-budget RMS build
+
+Appendix R proves the hard-budget reduction and records the constants for
+the three applications. The [Lean record](../../results/hard-budget-rms-20261104/README.md)
+audits the observable experiment, its cap and risk. The [PDF build record](builds/hard-budget-rms-20261104.json)
+lists the source hashes and changed pages.
 
 ## Critical confidence and cap-rate build
 

@@ -382,6 +382,12 @@ its exact type and transitive axioms and writes its status under
 $\mathcal K\le Q\le\frac85\mathcal K$, Lemmas 1–2 and the suffix theorem are not
 targets.
 
+## Hard-budget RMS
+
+Run `python tools/verify_hard_budget.py`. It checks the advance statement
+digest, the actual observable controller and the ordinary, critical and
+known-law minimax applications. [Native inputs and exact statements](../results/hard-budget-rms-20261104/README.md)
+
 ## Critical confidence and finite-cap rates
 
 Run `python tools/verify_critical_confidence.py` to check the fixed quadratic

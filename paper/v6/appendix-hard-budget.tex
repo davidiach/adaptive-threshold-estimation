@@ -1,0 +1,61 @@
+\section{RMS guarantees under a deterministic observation cap}
+\label{app:hard-budget}
+
+A run with expected cost $B$ can buy more than $B$ observations on a
+particular path. Let $R^{\rm hard}(B)$ be the minimax RMS risk when every
+valid observation path must stop within $\lfloor B\rfloor$ paid flips.
+
+\begin{theorem}\label{thm:hard-budget-fallback}
+Suppose $\theta\in[0,M]$. At each budget $b_j=2^j$, let a base rule use
+at most $b_j$ flips in expectation and have squared error at most
+$C^2 f(b_j)^2$ in expectation. Assume $C\ge1/2$, $f\ge0$ on $[1/2,\infty)$,
+$f(1/2)=M$ and $f(b)\le\sqrt{B/b}\,f(B)$ for $B\ge b\ge1/2$. There
+is an observable rule with a pathwise cap of $\lfloor B\rfloor$ and
+mean squared error at most $32C^2 f(B)^2$ for $B\ge4$.
+The rule uses the base rules, $M$ and $B$. Thus one base family fixed
+before the gap law gives one transformed family fixed before the law.
+\end{theorem}
+
+\begin{proof}
+Reserve $n_j=4b_j$ flips for stage $j$. Start at $M/2$. Complete as
+many whole stages as fit. A run that stops by its last reserved flip
+replaces the previous estimate by its output clipped to $[0,M]$.
+A run that requests another flip at the cap leaves the previous estimate
+in place. Below budget four the rule returns $M/2$ without buying a flip.
+
+Pair each stage index with the local coin label so a revisit uses the
+same coin and stages have disjoint labels. Draw independent private seeds.
+The checked implementation spends each reserved block in full. After a
+stage has finished, a decoder ignores the remaining observations in that
+block and recovers the original stopped tape. This gives the same retained
+output on every table of persistent coin flips. The total reservation
+through stage $j$ is $S_j=4(2^{j+1}-1)$.
+
+Let $D_j$ be the mean squared error after stage $j$, with
+$D_{-1}=(M/2-\theta)^2$. Markov's inequality bounds the probability
+of a timeout by $1/4$. The previous estimate is independent of the
+next stage. On success, its clipped squared error is a nonnegative
+part of that stage's unconditional loss. Hence
+\[
+ D_j\le C^2 f(b_j)^2+\tfrac14 D_{j-1}.
+\]
+Set $b_{-1}=1/2$. The initial squared error is at most $C^2f(b_{-1})^2$.
+At the last completed stage $m$, rate scaling gives
+\[
+ D_m\le C^2(B/b_m) f(B)^2\sum_{\ell=0}^{m+1}2^{-\ell}.
+\]
+The next stage does not fit, so $B<S_{m+1}<16b_m$. This proves the bound.
+\end{proof}
+
+For the \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/d797ef633423516ce9e8e74cce3991b8aae82e73/lean/ThresholdHC/HardBudget/Ordinary.lean}{distribution-blind ordinary family},
+the hard-cap upper coefficient is $3000$ in front of $\omega_\mu(B^{-1/2})$.
+For the \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/720fc2bda6b24b62a8fbd086d586f1714e03b902/lean/ThresholdHC/HardBudget/Critical.lean}{critical quadratic law}
+it is $570000$ in front of
+$\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}$, where $L=1+\log(1/\rho)$.
+For an \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/720fc2bda6b24b62a8fbd086d586f1714e03b902/lean/ThresholdHC/HardBudget/Rare.lean}{arbitrary known gap law} and $0<\rho\le1/4$ it is $160000$ in
+front of $\mathcal K(B)$. The ordinary and critical bounds use the
+expected-budget families with coefficients $512$ and $100000$.
+For the general law, choose a base rule at each dyadic allowance with
+RMS at most $28001\,\mathcal K(b_j)$ using the positive rate and the
+expected-budget coefficient $28000$. Every pathwise cap bounds expected
+work, so the corresponding expected-budget lower bounds apply.
