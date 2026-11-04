@@ -751,3 +751,9 @@ Run `python tools/verify_stopping_confidence.py` and
 toolchain. These audits check the actual reference work, effective-budget
 lower bound, pathwise cap and the two minimax rates.
 [Exact statements and native logs](../results/known-law-confidence-20261104/README.md)
+
+## Stochastic-envelope corollary
+
+Run `python tools/verify_stochastic_envelope.py` for the two minimax rates,
+the unbiased existence equivalence and the variance–work product in the
+unknown-law class. [Native record](../results/stochastic-envelope-20261105/README.md)

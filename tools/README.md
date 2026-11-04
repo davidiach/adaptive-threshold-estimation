@@ -61,3 +61,6 @@ altering the original snapshots.
 Run `verify_stopping_confidence.py` and `verify_confidence_amplification.py`
 for the [fixed-confidence statements and native record](../results/known-law-confidence-20261104/README.md).
 They build the original observable experiment before checking the minimax radii.
+
+Run `verify_stochastic_envelope.py` for the unknown-law envelope corollary.
+[Statements and native logs](../results/stochastic-envelope-20261105/README.md)

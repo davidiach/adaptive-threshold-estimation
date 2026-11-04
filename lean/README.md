@@ -106,3 +106,8 @@ bounds both budget models for every known positive-gap law. It uses the
 [stopping-program lower bound](ThresholdHC/ConfidenceProgram/Lower.lean)
 and the [observable median](ThresholdHC/ConfidenceProgram/Amplify.lean).
 [Exact statements and native record](../results/known-law-confidence-20261104/README.md)
+
+[Envelope minimax rates](ThresholdHC/Envelope/Minimax.lean) and
+[unbiased variance and work](ThresholdHC/Envelope/Unbiased.lean) extend
+the ordinary model to unknown laws ordered by their gap CDFs.
+[Audit](../results/stochastic-envelope-20261105/README.md)
