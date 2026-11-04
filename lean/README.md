@@ -24,6 +24,7 @@ axioms; a successful build alone is not a substitute for that audit.
 | Confidence characterization | [Confidence specification](ThresholdHC/Confidence/Specification.lean), [Full](ThresholdHC/Confidence/Full.lean) | `python tools/verify_confidence.py --sequential` |
 | Revealed/selected magnitude-oracle lower bounds | [OracleLower specification](ThresholdHC/OracleLower/Specification.lean), [Full](ThresholdHC/OracleLower/Full.lean) | `python tools/verify_oracle_lower.py --sequential` |
 | Observable rare-event rate above alpha two | [RareAboveTwo specification](ThresholdHC/RareAboveTwo/Specification.lean), [Full](ThresholdHC/RareAboveTwo/Full.lean), [scope guide](../docs/RARE_ABOVE_TWO.md) | `python tools/verify_rare_above_two.py --sequential` |
+| Full $8/5$ quantile-selection comparison, Lemmas 1 and 2, saturation and the tail floor | [Statements](ThresholdHC/QuantileSelection/Specification.lean), [Theorem 4](ThresholdHC/QuantileSelection/Full.lean) | `python tools/verify_quantile_selection.py` |
 | Scalar inequality (Lemma 3) of the 8/5 quantile-selection comparison | [QuantileComparison specification](ThresholdHC/QuantileComparison/Specification.lean), [Scalar](ThresholdHC/QuantileComparison/Scalar.lean) | `python tools/verify_quantile_comparison.py --sequential --require-complete` |
 | Full entropy-tail law: both halves and five selection-functional properties | [EntropyTail specification](ThresholdHC/EntropyTail/Specification.lean), [Upper](ThresholdHC/EntropyTail/Upper.lean), [Lower](ThresholdHC/EntropyTail/Lower.lean), [Law](ThresholdHC/EntropyTail/Law.lean), [Bridge](ThresholdHC/EntropyTail/Bridge.lean), [HardSelection](ThresholdHC/EntropyTail/HardSelection.lean) | `python tools/verify_entropy_tail.py --sequential --require-complete` |
 | Complete finite-certificate lower proof: weighted signs, annular localization, retained-band packing and finite-prefix limit | [EntropyTailLower](ThresholdHC/EntropyTailLower/), [proof map and scope](../docs/ENTROPY_TAIL_LOWER_PROGRESS.md) | `python tools/verify_entropy_tail_lower_components.py` |
@@ -53,8 +54,8 @@ with conservative universal constants; its upper coefficient is 30001.
 See its [audit evidence](../results/closed-quantile-law-20261101/README.md).
 The [certified-selection package](../research/2026-10-30-certified-selection/README.md)
 sharpens its comparison with the selection functional to $\mathcal K\le Q\le\frac85\mathcal K$.
-Only that comparison's scalar Lemma 3 is Lean-checked. The comparison itself,
-Lemmas 1–2 and the bandwise-suffix theorem remain paper proofs.
+Lemmas 1–3 and the comparison are Lean-checked. The separate finite-law
+bandwise-suffix theorem remains a paper proof.
 
 ## Foundations and supporting developments
 

@@ -382,6 +382,21 @@ its exact type and transitive axioms and writes its status under
 $\mathcal K\le Q\le\frac85\mathcal K$, Lemmas 1–2 and the suffix theorem are not
 targets.
 
+## Full quantile-selection comparison
+
+```sh
+python tools/verify_quantile_selection.py
+```
+
+The [specification](../lean/ThresholdHC/QuantileSelection/Specification.lean)
+fixes Lemma 1 with both entropy interaction coefficients, the factor-two
+scale-separated estimate of Lemma 2 and Theorem 4 with its tail floor and
+saturation clause. The verifier builds the [full proof](../lean/ThresholdHC/QuantileSelection/Full.lean),
+checks the three exact types and the comparison for the statistical selection
+functional, and inspects the transitive axioms of every new declaration. The
+[verification record](../results/quantile-selection-20261104/README.md) identifies
+the compiler, rebuilt modules and reused inputs.
+
 ## Magnitude-oracle lower bounds
 
 The magnitude-oracle lower bounds have a separate audit:

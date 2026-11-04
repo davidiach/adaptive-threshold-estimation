@@ -424,12 +424,10 @@ closed functional, explicit constants and a self-contained proof that does not
 cite the general-law theorem. The two proofs share the observable upper
 construction and most appendix lemmas and differ mainly in the lower-bound
 reduction, so their agreement is not independent confirmation of the rate.
-Conditionally on the general-law theorem, $R\asymp Q$ also holds for general
-laws; that extension rests entirely on the general-law paper proof. The
-consolidated v6 manuscript states this extension as a corollary of the
-entropy–tail theorem in the same paper; its status is unchanged. The
-comparison came from an external adversarial review of revision 1, which is
-unchanged.
+The consolidated v6 manuscript derives $R\asymp Q$ for general laws from
+the entropy–tail theorem. Lean checks this [general-law corollary](../results/closed-quantile-law-20261101/README.md)
+and the [explicit lower coefficient](../results/entropy-tail-explicit-20261104/README.md).
+The deterministic comparison in revision 2 grew out of an external review of revision 1.
 
 The additive [computation note](RARE_EVENT_COMPUTATION.md) improves the
 deterministic comparison to $\mathcal K\le Q\le(5/3)\mathcal K$ for every
@@ -437,9 +435,9 @@ probability law on positive gaps, including infinite support. Its proof
 retains the selected tail and core costs separately, uses superadditivity
 and a square-root triangle inequality for the entropy, and proves the sharper
 scale-separated estimate $\Gamma_\xi\le2H_\xi/t$ on $[t,1/2]$.
-This is a new paper proof, not a Lean theorem or a completed formalization of
-the statistical rare-event law. The note also gives a slightly smaller
-algebraic coefficient without claiming optimality.
+The computation note gives a paper proof, including a slightly smaller
+algebraic coefficient. The stronger $8/5$ estimate below implies both
+numerical upper bounds.
 
 The [toolkit](../toolkit/README.md#3-compute-the-rare-event-rate-for-a-known-finite-law)
 now computes the finite-law $Q$ and its inverse with $O(n\log n)$
@@ -465,14 +463,16 @@ $\mathcal K$ to the toolkit. Composed with the results above, the comparison giv
 $R\le30001\cdot\frac85\mathcal K$ for finite laws and
 $\frac58\cdot10^{-17}Q\le R$ for every law. The later direct lower proof
 establishes the stronger $10^{-17}Q\le R$ in Lean. The
-floating-point calculator above still reports the $5/3$ interval. Status:
-**paper proofs**, except that the comparison's scalar Lemma 3 is **Lean-checked**
-with its exact type and only the standard axioms
-([audit](VERIFY.md#quantile-selection-comparison-scalar-lemma-3)). The $8/5$
-comparison itself is not Lean-checked, though the weaker factor $1+2\sqrt2$ is
-([upper half](#general-law-rare-event-characterization)). The certificates rely
-on unverified Python. The
-manuscripts above still state $1+2\sqrt2$ and are unchanged.
+floating-point calculator above still reports the $5/3$ interval.
+
+**Lean verifies Lemmas 1–3 and the full $8/5$ comparison**, including the tail
+floor $T_h\le\mathcal K$ and saturation $\mathcal K=Q=\rho$ when $h\ge t$.
+The [theorem](../lean/ThresholdHC/QuantileSelection/Full.lean) covers arbitrary
+probability laws, fractional quantile atoms and unbounded full-law entropy.
+The [audit](VERIFY.md#full-quantile-selection-comparison) also checks the
+statement for the selection functional used in the minimax theorem. The suffix,
+stability and rounding results have paper proofs. The rational certificates
+rely on unverified Python.
 
 ## Critical power margin: full minimax characterization
 
