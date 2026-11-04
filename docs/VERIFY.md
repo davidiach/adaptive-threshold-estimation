@@ -382,6 +382,17 @@ its exact type and transitive axioms and writes its status under
 $\mathcal K\le Q\le\frac85\mathcal K$, Lemmas 1–2 and the suffix theorem are not
 targets.
 
+## Sharper quantile factor
+
+Run `python tools/verify_quantile_price_upper.py` for the original arbitrary-law
+comparison $K\le Q\le(31/20)K$ and the $16/9$ separated-cost bound. The audit
+includes the earlier $8/5$ endpoints after sharing their pointwise reduction.
+[Six exact statements and 31 axiom reports](../results/quantile-price-20261104/README.md)
+
+Run `python tools/verify_optimal_quantile_factor.py` for the strict rational
+bracket of width $10^{-12}$ around the sharp factor. The reduction to the
+scalar root is a [paper proof](OPTIMAL_QUANTILE_FACTOR.md).
+
 ## Full quantile-selection comparison
 
 ```sh
@@ -411,6 +422,33 @@ the bound on the size of the suffix family and the existence of a minimizer
 in that family. It checks the transitive axioms of every new declaration.
 The [native record](../results/bandwise-suffix-20261104/README.md) lists the
 rebuilt modules, cached inputs and kernel reports.
+
+## Observable population confidence transfer
+
+Run `python tools/verify_confidence_population.py`. The kernel checks the
+exact hybrid identity, the single-type $16/3$ information bound for finite
+decision trees and full randomized observable prefixes, its extension to
+stopped tapes, and confidence testing and minimax conclusions. The $1/128$
+lower bound assumes the note’s quantitative common-pair statement. The
+[verification record](../results/confidence-population-20261104/README.md)
+pins the proof, reused project artifacts and newly compiled modules.
+
+## Quarter smoothing for arbitrary laws
+
+Run `python tools/verify_quarter_smoothing.py`. It checks the locked
+statement and an expanded version with both mixtures written explicitly.
+The [isolated build](../results/quarter-smoothing-20261104/README.md) checks
+five transitive axiom reports. The statistical application to an adaptive
+population requires additional work beyond this inequality.
+
+## Selection stability and finite approximation
+
+Run `python tools/verify_selection_stability.py` from the repository root.
+The audit checks total-variation stability using half of Mathlib’s variation
+distance, both rounding inequalities, the transported interval, its $5Q/8$
+specialization and existence of finite approximations for every positive
+tolerance and distortion above one. The [native record](../results/selection-stability-20261104/README.md)
+lists the five exact statements, 18 transitive axiom reports and reused inputs.
 
 ## Magnitude-oracle lower bounds
 

@@ -141,14 +141,23 @@ Quantile comparison and finite selection &
 For $0<\rho\le1/4$ and $B>0$,
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/4916e389c6e2203998c274fa0f6a4854ae758042/lean/ThresholdHC/QuantileSelection/Full.lean}{the comparison theorem}
 gives $\mathcal K\le Q\le(8/5)\mathcal K$ for arbitrary gap laws.
-The proof combines the entropy interaction inequality, the factor-two
-bound on separated supports and the scalar comparison.
+A \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/a1f9b7c3f757798068c7a7db45d9c1fa9ee19a2c/lean/ThresholdHC/QuantilePrice/Full.lean}{sharper Lean theorem}
+gives $Q\le(31/20)\mathcal K$ using a $16/9$ bound on separated supports.
+The exact factor in \cref{app:optimal-quantile-factor} has a paper proof.
 For finite support,
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/1cafb0cc0fca2a4633fb1c2046f0076c16af1deb/lean/ThresholdHC/BandwiseSuffix/Full.lean}{the suffix theorem}
 gives a hard optimizer of the uncapped objective and identifies its capped
 value with $\mathcal K$. The
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/c15a9fa46a5f0a743fb20416b87498225a13661e/lean/ThresholdHC/BandwiseSuffix/Search.lean}{search corollary}
 bounds the sufficient family by $\prod_j(n_j+1)$.\\[5pt]
+Stability under law approximation &
+The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/11a8139812a6e39e60dcdfbfc162c8ed9514999d/lean/ThresholdHC/SelectionStability/Variation.lean}{total-variation proof}
+uses a common submeasure and charges the excess mass once.
+The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/11a8139812a6e39e60dcdfbfc162c8ed9514999d/lean/ThresholdHC/SelectionStability/Rounding.lean}{rounding proof}
+includes maps that merge atoms. Lean also verifies the
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/d48094b796e5d06e7e9f26e139db3656d2c67447/lean/ThresholdHC/SelectionStability/FiniteApproximation.lean}{existence of finite approximations}
+and the \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/d48094b796e5d06e7e9f26e139db3656d2c67447/lean/ThresholdHC/SelectionStability/Approximation.lean}{transported enclosures}
+for both selection and quantile calculations.\\[5pt]
 Stopping programs and certificates &
 For every probability law, $0<\rho\le1/4$, $B>0$ and cap $N>0$,
 \tailleanref{StoppingProgram/DualTheorem.lean}{attained\_four\_prior\_dual}
@@ -324,6 +333,21 @@ introduced alongside the corollary proof, not described as independently
 frozen before it. The original experiment and quantile definitions are
 unchanged.
 
+\paragraph{Approximating the law.}
+Write $d_{\rm TV}(\mu,\nu)=\sup_A|\mu(A)-\nu(A)|$.
+At fixed $\rho,B$, changing the law by distance $\eta$ changes
+$\mathcal K$ by at most $\eta$. Rounding each gap upward within its
+original band by a factor at most $r\ge1$ gives
+$\mathcal K_{T_\#\nu}\le\mathcal K_\nu\le r\mathcal K_{T_\#\nu}$.
+For every $\eta>0$ and $r>1$, one can move the small-gap tail mass of
+$\mu$ to a positive cutoff and round the remaining gaps onto a finite
+grid. If $[L,U]$ encloses the rounded value, then
+\[
+  \max\{0,L-\eta\}\le\mathcal K_\mu\le\min\{\rho,rU+\eta\}.
+\]
+A finite quantile calculation gives $L=(5/8)Q$ and $U=Q$. The guarantee
+requires bounds on the law and the rounding map supplied to the calculation.
+
 \paragraph{The direct finite-law proof.}
 For Theorem~\ref{fg:thm:direct-main}, the equal-sign posterior on a
 stopped likelihood tree has energy at most $4d^2$ times expected work.
@@ -454,15 +478,20 @@ records the workflow, failed approaches, and these limits.
 \paragraph{Remaining mathematical work.}
 The rare-event regimes below two and the auxiliary envelope, smoothness
 and observed-state results have paper proofs awaiting formalization.
-The best comparison constant, efficient exact selection for structured
-laws and rates of cap convergence remain open. A later
+The sharp factor has a paper proof in \cref{app:optimal-quantile-factor}.
+Unrestricted selection complexity and cap-convergence rates remain open. The
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/8a701c8db6c42930ad2a187f3d895ca55265afd6/research/2026-10-30-confidence-transfer/NOTE.md}{confidence-transfer paper proof}
 gives fixed-confidence rates for known laws, including the quadratic
-boundary. A matching time-uniform lower bound for sequential intervals
-and guarantees for unknown magnitude laws remain open.
+boundary. Its \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/680a833415e8de803d2a98847292063f10448527/lean/ThresholdHC/ConfidenceTransfer/Quarter.lean}{quarter-smoothing lemma}
+bounds both KL directions by $8/3$ times squared Hellinger distance.
+Lean also checks the \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/f33163da3fa78902336a98814f38078ab12bef1a/lean/ThresholdHC/ConfidenceTransfer/Terminal.lean}{one-type $16/3$ transfer}
+through unbounded stopping and the \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/f33163da3fa78902336a98814f38078ab12bef1a/lean/ThresholdHC/ConfidenceTransfer/CommonPairRate.lean}{$1/128$ lower bound}
+given a policy-uniform common pair. Adaptive types and the capped median retain paper proofs.
+A separate \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/a3b00cd8962060ca13768e5d3567168105e7ccfd/docs/UNKNOWN_LAW_CONFIDENCE.md}{confidence sequence}
+shrinks for every unknown positive-gap law with simultaneous coverage.
+The iterated-logarithm lower bound matches at $D=1/2$. General
+law-dependent lower bounds and oracle-rate adaptation remain open.
 
-The model requires independent fresh coins and conditionally independent
-flips, without drift or additional smooth structure linking states.
-Expected-work optimality supplies no deterministic latency bound or
-data-computable confidence radius over all unknown laws. Neither useful
-finite critical constants nor practical superiority is established.
+The model assumes independent coins and conditionally iid flips.
+Expected work alone bounds neither latency nor worst-case flip count.
+Practical superiority and useful finite critical constants remain open.

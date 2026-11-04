@@ -68,6 +68,8 @@ jobs:
           python research/2026-10-30-certified-selection/reproduce.py
           python research/2026-10-30-certified-selection/integration-review/certify_obstruction.py
           python research/2026-10-30-certified-selection/integration-review/independent_check.py
+          python tools/verify_quantile_price_bounds.py
+          python tools/verify_optimal_quantile_factor.py
       - name: Replay the exact hard-budget RMS fallback audits
         run: python research/2026-10-30-hard-budget-rms/verify.py
       - name: Replay the exact confidence-transfer and sequential-coverage audits
@@ -300,8 +302,16 @@ jobs:
         run: python tools/verify_entropy_tail_sharp.py
       - name: Verify the eight-fifths quantile-selection comparison
         run: python tools/verify_quantile_selection.py
+      - name: Audit the universal 31/20 quantile comparison
+        run: python tools/verify_quantile_price_upper.py
       - name: Verify the finite-law bandwise-suffix optimizer and search bound
         run: python tools/verify_bandwise_suffix.py
+      - name: Verify selection stability and finite approximation of arbitrary laws
+        run: python tools/verify_selection_stability.py
+      - name: Verify the two-sided quarter-smoothing inequality
+        run: python tools/verify_quarter_smoothing.py
+      - name: Verify the observable single-type KL and confidence transfer
+        run: python tools/verify_confidence_population.py
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
       - uses: actions/upload-artifact@v4

@@ -312,6 +312,10 @@ for the mathematics and status; its
 [note](../research/2026-10-30-certified-selection/NOTE.md#example-use) has a
 usage example.
 
+For laws with repeated inverse-square suffix costs, [selection by band cost](../docs/BAND_COST_SELECTION.md)
+certifies the minimum after grouping choices with equal entropy. Its example
+reduces 64 occupied bands from $2^{64}$ suffix choices to 65 terminal states.
+
 ## Research module: hard observation caps
 
 `threshold_toolkit.budget_ladders` is a research driver, not a ready-made
@@ -352,6 +356,11 @@ result is a paper proof, not Lean-checked; see the
 The module is not imported by the package itself.
 
 ## Research modules: high confidence and sequential stopping
+
+For an unknown gap distribution, `unknown_law_confidence` runs a sequence of
+observable sign-classification experiments. Its nested intervals cover the
+positive fraction simultaneously and shrink for every fixed positive-gap law.
+[Proof, flip budgets and usage](../docs/UNKNOWN_LAW_CONFIDENCE.md)
 
 Two more research drivers use the same interface: your estimator is a
 generator that yields coin IDs and returns its estimate.

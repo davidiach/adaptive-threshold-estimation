@@ -1,0 +1,144 @@
+\section{The optimal quantile comparison factor}\label{app:optimal-quantile-factor}
+Let $c_*=\sup Q/\mathcal K$, with the supremum over all positive-gap laws,
+$0<\rho\le1/4$ and $B>0$ in \cref{fg:sec:model}. Both functionals use the
+canonical dyadic bands and split a boundary atom fractionally.
+For $k\ge\sqrt2$ and $u\ge1$ put
+\[
+ \lambda_k(u)=2k^2(u+u^{-1})-4k,\qquad
+ F(k,u)=e^{1-\lambda_k(u)/(2u)}+
+             \sum_{j=0}^{\infty}e^{1-2^j\lambda_k(u)} .
+\]
+
+\begin{theorem}\label{thm:sharp-quantile-factor}
+There is exactly one $k\in[\sqrt2,31/20]$ satisfying
+\[
+ \max_{1\le u\le31/20} F(k,u)=1.
+\]
+It equals $c_*$ for general laws and for finite laws. Its value satisfies
+\[
+ 1.462554551279<c_*<1.462554551280 .
+\]
+\end{theorem}
+
+\paragraph{Normalization.}
+Write $G(x)=A+\sum_i x_i\log(A/x_i)$ for $A=\sum_i x_i$ and use its
+continuous value at zero. If $x,y$ have disjoint coordinates and totals
+$A,B_0$, then $G(x\sqcup y)=G(x)+G(y)+I(A,B_0)$, where
+$I(A,B_0)=(A+B_0)\log(A+B_0)-A\log A-B_0\log B_0$.
+Merging coordinates cannot increase $G$, and $I$ increases in both arguments.
+
+Let $h=B^{-1/2}$, $t$ be the quantile, $\nu$ the tail of mass $\rho$,
+$\kappa$ the core and $T=\int\min(1,h/d)\,d\nu>0$.
+When $h\ge t$, $\mathcal K=Q=\rho$. Otherwise index core bands from the
+band of $t$ upwards to larger gaps. The minimum ratios $d/t$ are bounded
+below by $m_0=1$, $m_j=2^{j-1}$ for $j\ge1$.
+Fix a submeasure $f\mu$ of finite objective and scale inverse-square
+band costs by $h^2\rho/T^2$. Denote the cost vectors for the selected
+core, unselected core and selected tail by $v,b,l$. The raw quantile
+price in units of $T$ is $1+\sqrt{G(v+b)}$. The unselected core costs
+at least $\sum_j m_j b_j$ in these units, since $d\ge tm_j$ on its
+$j$th band and $T\ge h\rho/t$.
+
+Let $e\in[0,1]$ denote the fraction of $T$ left unselected. By
+Cauchy--Schwarz, $(1-e)^2\le\sum_i l_i$. Only band zero can contain
+both tail and core. Merge all selected tail costs into that band and
+use monotonicity. The normalized rare price is at least
+$\sqrt{G(v+(1-e)^2e_0)}$. For infinitely many tail bands, first merge
+a finite prefix and pass to the limit. Finite objective bounds the total
+cost, and the merged vector has finitely many coordinates.
+
+The function $\Phi(y)=\sqrt{G(v+y^2e_0)}$ is 1-Lipschitz on $[0,\infty)$.
+Indeed, if $y>0$ and $p$ is the fraction of cost in band zero,
+\[
+ 0\le\Phi'(y)\le
+ \sqrt{\frac{p(1-\log p)^2}{1+H_2(p)}}\le1.
+\]
+The first bound follows by differentiation and by merging all other
+bands in the entropy. For the second, subtract the numerator from the
+denominator and use $-\log(1-p)\ge p$. The difference is at least
+$1-p^2-p(x+x^2)$, with $x=-\log p$. This is nonnegative since
+$e^x-e^{-x}\ge2x+x^3/3\ge x+x^2$. The endpoint $p=1$ gives equality
+and $\Phi$ is continuous at zero. Consequently the normalized selection
+price is at least $\sqrt{G(v+e_0)}+\sum_jm_jb_j$.
+
+\paragraph{Reduction to one distinguished cost.}
+For fixed $w=v+b$ this last lower bound is concave in $v$ on its box
+$0\le v_j\le w_j$. Choosing a cheaper endpoint in each coordinate allows
+us to take $v,b$ disjoint when bounding the ratio from above. Put
+$E=G(v)$, $A=\sum v_j$, $B_0=\sum b_j$ and $c=\sum m_jb_j$.
+If $b_0=0$, superadditivity gives $G(v+e_0)\ge1+E$ and
+\[
+ G(v+b)\le E+G(b)+I(A,B_0)\le E+G(b)+I(E,B_0)=G(E,b_1,b_2,\ldots).
+\]
+Here $E\ge A$. This replaces the selected core by one cost in the boundary band.
+
+If $b_0>0$, then $v_0=0$ and $G(v+e_0)=1+D$, where $D=E+I(A,1)$.
+The weights $\exp(1-2m_j)$ sum to at most one and their cross entropy
+gives $G(b)\le2c$. For $c\le1$ the numerator
+has the form $1+\sqrt N$ with $N\le D+2c$ since $B_0\le c$. Hence
+$1+\sqrt N\le\sqrt2\sqrt{1+N}\le\sqrt2(\sqrt{1+D}+c)$.
+For $c\ge1$, $\partial_s I(A,s)=\log(1+A/s)\le\sqrt A$ on $s\ge1$,
+using $\log(1+x^2)\le x$ for $x\ge0$. Now
+$N\le D+2c+(c-1)\sqrt D$ and again $1+N\le(\sqrt{1+D}+c)^2$, since
+$2\sqrt{1+D}\ge1+\sqrt D$ and $c^2\ge c$.
+
+It follows that $c_*$ is at most the supremum over $a\ge0$ and finite
+lists $b_j\ge0$ of
+\begin{equation}\label{eq:sharp-quantile-reduced}
+ \frac{1+\sqrt{G(a,b_0,\ldots,b_{s-1})}}
+      {\sqrt{1+a}+\sum_{j=0}^{s-1}2^jb_j}.
+\end{equation}
+The list here starts in the first band \emph{above} the boundary band.
+The choice $a=1$, $b=0$ gives $\sqrt2$, covering the second case.
+Taking infima and clipping at $\rho$ preserves the raw-price upper bound.
+
+For the converse, put mass $\rho(1+a)$ at a dyadic gap $t=2^{-n}$
+and mass $\rho b_j[2^j(1+\eta)]^2$ at $t2^j(1+\eta)$, with $0<\eta<1$.
+Choose a fixed positive $\rho\le1/4$ sufficiently small to leave positive
+mass at $1/2$. For large $n$ the gaps lie in distinct bands. The
+quantile tail takes mass $\rho$ from the atom at $t$. A feasible hard
+selection keeps the entire atom at $t$ and the atom at $1/2$. With
+$h=\alpha t$, choose $\alpha>0$ sufficiently small that both prices fall
+below $\rho$ and $h<t$. In units of $T=\alpha\rho$ the easy atom's
+scaled band cost is at most $4t^2/\rho$. As $n\to\infty$, the core costs
+tend to $(a,b)$ and the hard selection's rare price tends to
+$\sqrt{1+a}$. Its ordinary price is $(1+\eta)\sum 2^j b_j$.
+Taking $\eta\downarrow0$ realizes \eqref{eq:sharp-quantile-reduced} as a
+limit of feasible-price ratios. This proves equality of the two suprema.
+
+\paragraph{The scalar criterion.}
+Use $\sqrt{1+a}=\inf_{u\ge1}(u+(1+a)/u)/2$. For fixed $u$ scale all
+costs $x=(a,b)$ by $t\ge0$ and write $C(x)=a/(2u)+\sum_j2^j b_j$.
+The maximum of $\sqrt{tG(x)}-tkC(x)$ for $x\ne0$ is $G(x)/(4kC(x))$.
+Thus $k$ bounds \eqref{eq:sharp-quantile-reduced} for every vector exactly
+when $G(x)\le\lambda_k(u)C(x)$ for all $u\ge1$ and finite $x\ge0$.
+At unit total this is $1+H(p)\le\lambda\sum_i p_iw_i$, with weights
+$w=(1/(2u),1,2,4,\ldots)$. Over any finite collection the maximum
+difference is $\log\sum_i e^{1-\lambda w_i}$, by subtracting KL to the
+normalized exponential weights. Passing to all finite collections gives
+the condition $F(k,u)\le1$.
+
+For $u\ge1$, $\lambda_k(u)$ increases. The first summand is
+$\exp(2-k^2-(k/u-1)^2)$ and decreases for $u\ge k$. On the stated
+range of $k$ we can therefore maximize on $[1,31/20]$. The series is
+uniformly convergent there and $\lambda$ increases strictly in $k$.
+The maximum is continuous and strictly decreasing, by taking a
+maximizer on this compact interval. The numerical inequalities below
+straddle one and give the unique root.
+
+\paragraph{Rational certification.}
+The lower endpoint uses $t=\eta=2^{-40}$, $\rho=1/8$, $h=t/16$ and
+$(a,b)=(0.5853452,0.09980536,0.005307215,0.00001500696,0.00000000012033)$
+in the finite construction. The entries are exact decimals.
+For the upper endpoint $F_{uu}\ge-25$ on $[1,31/20]$. The first
+exponential is at most one and its exponent has second derivative at
+least $-6k^2\ge-15$. The remaining negative contribution is bounded by
+$\lambda''\sum_{m=1,2,4,\ldots}m e^{1-m\lambda}$, with $\lambda''<10$,
+$\lambda\ge2$ and sum at most $e^{-1}/(1-e^{-2})^2<1$. The series of
+derivatives converge uniformly. On a cell $[l,r]$ the larger endpoint
+value plus $25(r-l)^2/8$ bounds $F$ by convexity after adding $25u^2/2$.
+The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/0555610a84ef201c0c42320d11d1c62e0c8d3588/tools/verify_optimal_quantile_factor.py}{rational verifier}
+bounds every cell strictly below one, using 85 terminal cells of maximum
+depth 21. It encloses exponentials by alternating series and
+upward-rounded squaring, with omitted terms beyond $m=16$ bounded by
+$4/(3\cdot2^{63})$. It also checks the strict lower example.

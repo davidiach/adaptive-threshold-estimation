@@ -1,0 +1,5 @@
+'ThresholdHC.ConfidenceTransfer.QuarterSmoothingStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.quarterMix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.quarter_kl_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.quarter_smoothing' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.quarter_smoothing_both' depends on axioms: [propext, Classical.choice, Quot.sound]

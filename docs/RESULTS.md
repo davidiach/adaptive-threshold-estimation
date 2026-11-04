@@ -13,8 +13,9 @@ Psi correction explicit.
 
 Lean checks the general-law entropy-tail and closed-quantile rates, the explicit
 lower coefficient $10^{-17}$, the direct finite-law bounds and the sharper
-$8/5$ quantile comparison. On finite support a bandwise-suffix optimizer
-attains the minimum. The stopping-program, identification and genie results
+[$31/20$ quantile comparison](../results/quantile-price-20261104/README.md). On finite support a bandwise-suffix optimizer
+attains the minimum. Total-variation stability, upward rounding within bands
+and the resulting finite-law enclosures are Lean-checked. The stopping-program, identification and genie results
 are also Lean-checked within the scopes recorded below.
 
 This guide gives the exact Lean specifications and remaining paper-proof
@@ -455,7 +456,7 @@ algebraic coefficient $\lambda_*\approx1.6435$. Besides the same
 scale-separated estimate, it replaces the square-root triangle inequality by
 the entropy interaction bound
 $\mathcal G(a+b)\le\mathcal G(a)+\mathcal G(b)+\sqrt{2\mathcal G(a)\mathcal G(b)}$.
-The best factor lies in $(1.4604,8/5]$, by exact rational certificates for a
+The original package and integration review bounded the factor in $(1.4604,8/5]$, using a
 six-atom law ($Q/\mathcal K>1.42132$) and an eight-atom law
 ($Q/\mathcal K>1.4604$, from the integration review). For finite laws, the
 package also proves that some optimal hard selection is an upper-gap suffix in
@@ -474,14 +475,30 @@ probability laws, fractional quantile atoms and unbounded full-law entropy.
 The [audit](VERIFY.md#full-quantile-selection-comparison) also checks the
 statement for the selection functional used in the minimax theorem.
 
+A [sharper proof](QUANTILE_PRICE_BOUNDS.md) gives $Q\le(31/20)K$ for all
+positive-gap laws. Lean checks this bound on the original selection functional,
+including the separated-cost coefficient $16/9$. [Kernel record](../results/quantile-price-20261104/README.md) A five-atom rational example has $Q/K>1.46255$. The
+arithmetic verifier checks the upper proof’s rational inequalities and the
+strict lower example. A [sharp-factor proof](OPTIMAL_QUANTILE_FACTOR.md) reduces the
+supremum over laws to the unique root of a scalar equation. Its rational
+certificate gives $1.462554551279<c_*<1.462554551280$. The characterization
+and numerical certificate have not been checked in Lean.
+
 **Lean verifies the finite-law bandwise-suffix theorem.** For a probability
 law with finite support, a hard restriction minimizes the raw objective over
 all submeasures and attains $K$ after clipping at $\rho$. If a larger atom in
 the same band is skipped, moving equal inverse-square cost to that atom keeps
 the entropy fixed and strictly increases the saved tail cost. A suffix is
 determined by its selected count in each band, so at most $\prod_j(n_j+1)$
-candidates suffice. The stability and rounding results have paper proofs. The
-rational certificates rely on unverified Python. [Theorem 5 and verification](VERIFY.md#finite-law-bandwise-suffix-theorem)
+candidates suffice. [Theorem 5 and verification](VERIFY.md#finite-law-bandwise-suffix-theorem)
+
+**Lean verifies Theorems 7–8 and Corollary 9.** Changing a law by total variation
+$\eta$ changes $K$ by at most $\eta$. Within-band upward rounding by a factor
+at most $r$ gives a value between $K/r$ and $K$. For every $\eta>0$ and
+$r>1$ the proof constructs a finite approximation. Its interval $[L,U]$
+gives $[\max(0,L-\eta),\min(\rho,rU+\eta)]$ for the original law.
+The quantile choice is $L=5Q/8$, $U=Q$. The Python certificate evaluator
+remains unverified. [Verification record](../results/selection-stability-20261104/README.md)
 
 ## Critical power margin: full minimax characterization
 
@@ -731,7 +748,7 @@ shared across stages, leaves a nonvanishing error floor.
 ## Confidence rates and sequential stopping
 
 The [confidence-transfer package](../research/2026-10-30-confidence-transfer/README.md)
-gives a **paper proof**, not Lean-checked, that the high-confidence error radius
+gives a **paper proof** that the high-confidence error radius
 follows the same rates with the budget divided by $\ell=\log(1/\delta)$. Write
 $r^{\rm exp}_{\mu,\rho}(B,\delta)$ for the smallest radius achievable with failure
 probability at most $\delta$ under a uniform expected budget $B$, and
@@ -739,13 +756,19 @@ $r^{\rm hard}_{\mu,\rho}(B,\delta)\ge r^{\rm exp}_{\mu,\rho}(B,\delta)$ for the
 same under a cap of $\lfloor B\rfloor$ observations on every path. Let
 $0<\delta\le1/4$.
 
-**Transfer.** Smoothing a hard pair of priors coin by coin, at weights $3/4$
+**Transfer.** Lean checks the [quarter-smoothing lemma](../results/quarter-smoothing-20261104/README.md)
+for arbitrary probability measures. Smoothing a hard pair of priors coin by coin, at weights $3/4$
 and $1/4$, turns a Hellinger bound into a Kullback–Leibler bound for the whole
 adaptive population at a factor $16/3$ and half the separation. A
 variance–null-work obstruction $(b,J)$ then gives
 $r^{\rm exp}(B,\delta)\ge\frac1{128}\min\{b,\sqrt{J\ell/B}\}$. This is the RMS
 transfer with $B$ replaced by $B/\ell$, and additive localization carries over
-with the same coefficient.
+with the same coefficient. Lean checks the single-type $16/3$ transfer for
+the actual randomized estimator and the stopped transcript. The minimax
+$1/128$ conclusion is checked given the quantitative policy-uniform
+common-pair premise. Deriving that premise from a supplied variance–work
+obstruction and applying the adaptive-type extension are separate steps.
+[Exact statements and kernel record](../results/confidence-population-20261104/README.md)
 
 **Amplification.** If a procedure has $\mathbb ET\le b$ and RMS at most $R(b)$,
 the median of $m$ independent copies, with $m$ the least odd integer such that
@@ -758,16 +781,20 @@ median amplification. It reports the base plan’s squared-error bound.
 
 | Application | Conclusion (paper proof) | Inherited premises |
 |---|---|---|
-| Known general law, known rarity | $10^{-17}\mathcal K(B/\ell)\le r^{\rm exp}(B,\delta)\le r^{\rm hard}(B,\delta)\le840000\,\mathcal K(B/\ell)$ | Lower: the policy-uniform common pair, both null-work obstructions and the entropy packing of v6 Appendix E, all paper proofs. Upper: $R\le C\mathcal K$, [Lean-checked](#general-law-rare-event-characterization) with $C=28000$ |
+| Known general law, known rarity | $10^{-17}\mathcal K(B/\ell)\le r^{\rm exp}(B,\delta)\le r^{\rm hard}(B,\delta)\le840000\,\mathcal K(B/\ell)$ | Lower: the policy-uniform common pair, null-work obstructions and entropy packing of v6 Appendix E enter through the single-type KL transfer and the paper's additive localization. Upper: $R\le C\mathcal K$, [Lean-checked](#general-law-rare-event-characterization) with $C=28000$ |
 | Critical quadratic law | $r^{\rm exp}\asymp r^{\rm hard}\asymp\min\{\rho,\sqrt{\rho L(1+\log L)\ell/B}\}$ | The [critical common pair and RMS upper bound](#critical-power-margin-full-minimax-characterization), both Lean-checked |
 | Sequential coverage | Stage $j$ has cap $4\cdot2^j$ and failure probability $\delta/((j+1)(j+2))$. The running intersection of stage intervals contains $\theta$ at every budget simultaneously with probability at least $1-\delta$, so stopping on the data is valid. For a known law and $B\ge1$, its half-width on that event is at most $1700000\,\mathcal K(B/\Lambda)$, where $\Lambda=\ell+2\log(2+\log_2(1+B))$ | Valid stage intervals; the width bound uses the general-law row |
 
-**Status and limits.** The transfer, the amplification and every row above are
-**paper proofs, not Lean-checked**, even where the inherited premises are. The
-algorithms may know $\mu$, $\rho$, $B$ and $\delta$; nothing here gives an
-interval computable from data for an unknown law. The sequential construction
-is standard error spending. Its width is an upper bound only; no matching
-time-uniform lower bound is proved. An exact path count shows that repeatedly
+**Status and limits.** The full statistical applications in the table and the
+capped-median amplification have paper proofs. The
+algorithms in the table may know $\mu$, $\rho$, $B$ and $\delta$. A separate
+[unknown-law construction and lower bound](UNKNOWN_LAW_CONFIDENCE.md) gives
+observable, simultaneously valid intervals that shrink for every fixed
+positive-gap law. Its width bound depends on unresolved small gaps.
+A Bernoulli subfamily forces the iterated logarithm infinitely often and
+matches the known-law order at $D=1/2$. The full law-dependent lower bound
+and adaptation to the known-law width remain open.
+An exact path count shows that repeatedly
 checking a fixed-time interval fails: a check with fixed-time failure at most
 $1/4$ fails with probability about $0.428$ when checked at every step up to
 512. The [toolkit drivers](../toolkit/README.md#research-modules-high-confidence-and-sequential-stopping)

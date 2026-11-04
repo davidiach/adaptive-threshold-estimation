@@ -1,0 +1,72 @@
+{
+  "valid": true,
+  "proof_checkpoint": "680a833415e8de803d2a98847292063f10448527",
+  "specification_checkpoint": "491dfc246265199e5108868184ccd0c3d7a56010",
+  "compiler": "Lean (version 4.36.0-rc1, x86_64-w64-windows-gnu, commit c9afcddf514a6772bd4d649f7cfc04eff0b9f15e, Release)",
+  "project_cached_modules": 0,
+  "pinned_external_dependencies": true,
+  "source_sha256": {
+    "lean/ThresholdHC/CriticalEntropy/HellingerModel.lean": "5a4b8bb5bf4cd2645df2292a121741e4b8eb7abf62a4b627a8bbb77f54ccf422",
+    "lean/ThresholdHC/ConfidenceTransfer/Specification.lean": "22c8206aaf7fcc0164716e087f9211c0bd32d71b0c809aa92adacad0d76af503",
+    "lean/ThresholdHC/ConfidenceTransfer/Quarter.lean": "488cd3524d29addca512c72e3b1a324b85044ecf0e78fd80be9276da470248b9",
+    "lean/lean-toolchain": "d581a24b57a4ae9e0b2132ca8ac7cc3ac336a9fc2751fe6b29414e2d434d54c4",
+    "lean/lakefile.toml": "273cfe4674e97219b22f7de1428bdadfb45379c7fa582882c59624ab7fbc3189",
+    "lean/lake-manifest.json": "a7058b14db1034b58735d82f1cf9a82a938855e93decc1960ca7d21e786fdfe2",
+    "tools/verify_quarter_smoothing.py": "f3a5ab430ec381cc9a35dc6b51d0da011ab52eb74bc41a4081863c1eddc847cb",
+    "tools/verify_blind_upper_components.py": "08faf54b212914db25f1c65c8455ab9d918d70e9366a8fef2b7622a6ce5325e7",
+    "tools/verify_tier6.py": "7295c1609c57be9951fc46f3e210f7f7682083470cf94bbe2dd89a387b0f075e"
+  },
+  "audit_sha256": "429b860bee98be9b547a380a67e9be107fe3572ce8a9d244057cfddcc95f6783",
+  "steps": [
+    {
+      "source": "lean/ThresholdHC/CriticalEntropy/HellingerModel.lean",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "3bc42db26e92a6dfef85b76bf9bc4ea2a5965d72a8eb94e1ec1c0ff89ac72c51"
+    },
+    {
+      "source": "lean/ThresholdHC/ConfidenceTransfer/Specification.lean",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "e3c45a60850c575be32f988c6c79a6d2ab2b1a9f60d837ac3ef9d11bdbc669f9"
+    },
+    {
+      "source": "lean/ThresholdHC/ConfidenceTransfer/Quarter.lean",
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "olean_sha256": "95caf25499812e7ca28139a08b9b203cce9accc6264a12b3bed0e48b9a776ac5"
+    },
+    {
+      "source": "ExactAudit.lean",
+      "exit_code": 0,
+      "log_sha256": "f9cfa5a6ae4ff7e5d6c25564589048ee8526e10c958021daa9aeea47bb7f0dbd"
+    }
+  ],
+  "axioms": {
+    "ThresholdHC.ConfidenceTransfer.QuarterSmoothingStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.ConfidenceTransfer.quarterMix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.ConfidenceTransfer.quarter_kl_density": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.ConfidenceTransfer.quarter_smoothing": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.ConfidenceTransfer.quarter_smoothing_both": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  }
+}
