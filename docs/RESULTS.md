@@ -770,10 +770,14 @@ a run's cost and its error is assumed.
 
 **Status and limits.** The transfer, the amplification and every row above are
 **paper proofs, not Lean-checked**, even where the inherited premises are. The
-algorithms may know $\mu$, $\rho$, $B$ and $\delta$; nothing here gives an
-interval computable from data for an unknown law. The sequential construction
-is standard error spending. Its width is an upper bound only; no matching
-time-uniform lower bound is proved. An exact path count shows that repeatedly
+algorithms in the table may know $\mu$, $\rho$, $B$ and $\delta$. A separate
+[unknown-law construction and lower bound](UNKNOWN_LAW_CONFIDENCE.md) gives
+observable, simultaneously valid intervals that shrink for every fixed
+positive-gap law. Its width bound depends on unresolved small gaps.
+A Bernoulli subfamily forces the iterated logarithm infinitely often and
+matches the known-law order at $D=1/2$. The full law-dependent lower bound
+and adaptation to the known-law width remain open.
+An exact path count shows that repeatedly
 checking a fixed-time interval fails: a check with fixed-time failure at most
 $1/4$ fails with probability about $0.428$ when checked at every step up to
 512. The [toolkit drivers](../toolkit/README.md#research-modules-high-confidence-and-sequential-stopping)
