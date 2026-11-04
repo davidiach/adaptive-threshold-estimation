@@ -1,6 +1,12 @@
 import ThresholdHC.FiniteQuantile.Allocation
+import ThresholdHC.FiniteQuantile.Core
+import ThresholdHC.FiniteQuantile.CoreRisk
+import ThresholdHC.FiniteQuantile.CoreValue
 import ThresholdHC.FiniteQuantile.Filter
+import ThresholdHC.FiniteQuantile.FilteredPacking
 import ThresholdHC.FiniteQuantile.FiniteInformation
+import ThresholdHC.FiniteQuantile.Full
+import ThresholdHC.FiniteQuantile.Operational
 import ThresholdHC.FiniteQuantile.PosteriorEnergy
 import ThresholdHC.FiniteQuantile.SmallBudget
 import ThresholdHC.FiniteQuantile.Specification
@@ -38,13 +44,40 @@ example (μ : Measure Gap) [IsProbabilityMeasure μ] (hs : μ.support.Finite)
       rareMinimaxRisk μ ρ B :=
   quantile_tail_lower μ hs hρ hρ4 hB
 
+example : ∀ (μ : Measure Gap) [IsProbabilityMeasure μ], μ.support.Finite →
+    ∀ ρ B : ℝ, 0 < ρ → ρ ≤ 1/4 → 0 < B →
+      ENNReal.ofReal ((10:ℝ)⁻¹^20) * closedQuantileValue μ ρ B ≤ rareMinimaxRisk μ ρ B ∧
+        rareMinimaxRisk μ ρ B ≤ 30001 * closedQuantileValue μ ρ B :=
+  direct_finite_law
+
+example (μ : Measure Gap) [IsProbabilityMeasure μ] {ρ B : ℝ}
+    (hρ : 0 < ρ) (hρ4 : ρ ≤ 1/4) (hB : 0 < B) :
+    ∃ (S : Type) (_ : MeasurableSpace S) (A : AdaptiveEstimator S),
+      RareBudget μ A ρ B ∧ rareRisk μ A ρ ≤ 30001 * closedQuantileValue μ ρ B :=
+  observable_estimator μ hρ hρ4 hB
+
+example (μ : Measure Gap) [IsProbabilityMeasure μ] (hs : μ.support.Finite)
+    {ρ B : ℝ} (hρ : 0 < ρ) (hρ4 : ρ ≤ 1/4) (hB : 0 < B)
+    {S : Type} [MeasurableSpace S] (A : AdaptiveEstimator S) (hb : RareBudget μ A ρ B) :
+    ENNReal.ofReal ((10:ℝ)⁻¹^20) * closedQuantileValue μ ρ B ≤ rareRisk μ A ρ :=
+  every_estimator_lower μ hs hρ hρ4 hB A hb
+
 #print axioms ThresholdHC.FiniteQuantile.DirectFiniteLawStatement
 #print axioms ThresholdHC.FiniteQuantile.ExplicitBounds
 #print axioms ThresholdHC.FiniteQuantile.above_threshold_lower
+#print axioms ThresholdHC.FiniteQuantile.annular_root_constant
+#print axioms ThresholdHC.FiniteQuantile.certificate_root_bound
+#print axioms ThresholdHC.FiniteQuantile.closedQuantile_le_tail_core
+#print axioms ThresholdHC.FiniteQuantile.core_entropy_le_prefix
+#print axioms ThresholdHC.FiniteQuantile.core_observable_bound
 #print axioms ThresholdHC.FiniteQuantile.cutWeight
 #print axioms ThresholdHC.FiniteQuantile.cutWeight_range
+#print axioms ThresholdHC.FiniteQuantile.direct_finite_law
 #print axioms ThresholdHC.FiniteQuantile.discardedBand
 #print axioms ThresholdHC.FiniteQuantile.discarded_entropy
+#print axioms ThresholdHC.FiniteQuantile.every_estimator_lower
+#print axioms ThresholdHC.FiniteQuantile.filtered_core_certificate_bound
+#print axioms ThresholdHC.FiniteQuantile.filtered_prefix_certificate
 #print axioms ThresholdHC.FiniteQuantile.fractional_word_bound
 #print axioms ThresholdHC.FiniteQuantile.full_rarity_allocation
 #print axioms ThresholdHC.FiniteQuantile.informationRatio_of_potential
@@ -53,10 +86,14 @@ example (μ : Measure Gap) [IsProbabilityMeasure μ] (hs : μ.support.Finite)
 #print axioms ThresholdHC.FiniteQuantile.measurable_cutWeight
 #print axioms ThresholdHC.FiniteQuantile.midpointMass
 #print axioms ThresholdHC.FiniteQuantile.mixture_quadratic_bound
+#print axioms ThresholdHC.FiniteQuantile.observable_estimator
 #print axioms ThresholdHC.FiniteQuantile.posteriorEnergy
 #print axioms ThresholdHC.FiniteQuantile.posteriorEnergy_step
+#print axioms ThresholdHC.FiniteQuantile.prefixCoreEntropy
+#print axioms ThresholdHC.FiniteQuantile.prefixCoreEntropy_nonneg
 #print axioms ThresholdHC.FiniteQuantile.prefixEnergy
 #print axioms ThresholdHC.FiniteQuantile.prefixEnergy_step
+#print axioms ThresholdHC.FiniteQuantile.quantileTail_threshold_floor
 #print axioms ThresholdHC.FiniteQuantile.quantile_tail_lower
 #print axioms ThresholdHC.FiniteQuantile.relative_log_square
 #print axioms ThresholdHC.FiniteQuantile.small_budget_explicit_bounds
