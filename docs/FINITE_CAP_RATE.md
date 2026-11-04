@@ -19,7 +19,9 @@ In particular $N=\max(1,\lceil4B/3\rceil)$ guarantees the factor-two
 stopping test and therefore $R(B)\le P_N(B)\le16R(B)$. For $N\ge B$ one
 may take $k=1+2(B/N)^{1/3}$. This gives relative convergence of both
 optimized values uniformly in the law and rarity. The exponent is a
-sufficient rate. Its optimality is open.
+sufficient rate. Its optimality is open. The [Lean proof](../lean/ThresholdHC/GenieRate/Full.lean)
+checks the general comparison and both corollaries against the original programs.
+[Exact statements and kernel output](../results/genie-rate-20261104/README.md)
 
 ## Proof
 

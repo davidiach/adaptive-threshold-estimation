@@ -165,12 +165,12 @@ proves the attained four-prior dual with positive value and finite optimal
 information ratio. \tailleanref{StoppingProgram/ProgramUpper.lean}{program\_upper}
 realizes every feasible certificate in the observable experiment, so
 $R\le P_N$, and \tailleanref{StoppingProgram/FiniteCertificate.lean}{finite\_certificate}
-proves $R\le P_N\le16R$ at $N=\lceil64\max(B,\rho B^2)\rceil$ without the
-entropy--tail lower bound. The infinite-cap dual and its factor-eight
-comparison are proved for $0<\rho\le1/2$. The genie modules prove the
-brackets, residual convergence under finite latent divergence, optimized
-convergence, finite termination of the factor-sixteen test, the finite-atom
-second-order cone program and the uniform-gap counterexample.
+gives a sufficient cap without the entropy--tail lower bound.
+The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/537543ca0ea813d9eecbc165b0e4af1beb71a06e/lean/ThresholdHC/GenieRate/Full.lean}{uniform cap theorem}
+in \cref{app:uniform-cap-rate} gives $P_N\le2G_N$ and $R\le P_N\le16R$ at
+$N=\lceil4B/3\rceil$ for $0<\rho\le1/2$. Lean also checks the infinite-cap
+factor eight, the genie residual under finite latent divergence, the finite-atom
+conic program and the uniform-gap counterexample.
 \tailleanref{CapIdentification/Full.lean}{fixed\_cap\_identification}
 proves the threshold $N\ge2m-1$ and the positive infinite-support floor.
 Exact rational checks additionally certify the stored finite instances.\\
@@ -476,17 +476,17 @@ validations of the full proof. The
 records the workflow, failed approaches, and these limits.
 
 \paragraph{Remaining mathematical work.}
-The rare-event regimes below two and the auxiliary envelope, smoothness
-and observed-state results have paper proofs awaiting formalization.
-The sharp factor has a paper proof in \cref{app:optimal-quantile-factor}.
-Unrestricted selection complexity and cap-convergence rates remain open. The
+The below-two regimes, envelope, smoothness and observed-state results
+await formalization. The sharp factor has a paper proof in
+\cref{app:optimal-quantile-factor}. Unrestricted selection complexity
+remains open. The
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/8a701c8db6c42930ad2a187f3d895ca55265afd6/research/2026-10-30-confidence-transfer/NOTE.md}{confidence-transfer paper proof}
-gives fixed-confidence rates for known laws, including the quadratic
-boundary. Its \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/680a833415e8de803d2a98847292063f10448527/lean/ThresholdHC/ConfidenceTransfer/Quarter.lean}{quarter-smoothing lemma}
-bounds both KL directions by $8/3$ times squared Hellinger distance.
-Lean also checks the \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/f33163da3fa78902336a98814f38078ab12bef1a/lean/ThresholdHC/ConfidenceTransfer/Terminal.lean}{one-type $16/3$ transfer}
+gives fixed-confidence rates for known laws. Lean verifies its
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/680a833415e8de803d2a98847292063f10448527/lean/ThresholdHC/ConfidenceTransfer/Quarter.lean}{$8/3$ quarter-smoothing bound},
+the \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/f33163da3fa78902336a98814f38078ab12bef1a/lean/ThresholdHC/ConfidenceTransfer/Terminal.lean}{one-type $16/3$ transfer}
 through unbounded stopping and the \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/f33163da3fa78902336a98814f38078ab12bef1a/lean/ThresholdHC/ConfidenceTransfer/CommonPairRate.lean}{$1/128$ lower bound}
-given a policy-uniform common pair. Adaptive types and the capped median retain paper proofs.
+given a common pair for all policies. The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/04ff1245f501e2405ed474f9fb1923c0cfa885c3/lean/ThresholdHC/ConfidenceTransfer/CriticalRate.lean}{critical confidence lower bound}
+follows from the quadratic law itself. Adaptive types and the capped median retain paper proofs.
 A separate \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/a3b00cd8962060ca13768e5d3567168105e7ccfd/docs/UNKNOWN_LAW_CONFIDENCE.md}{confidence sequence}
 shrinks for every unknown positive-gap law with simultaneous coverage.
 The iterated-logarithm lower bound matches at $D=1/2$. General

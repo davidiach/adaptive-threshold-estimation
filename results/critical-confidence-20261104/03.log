@@ -1,0 +1,18 @@
+'ThresholdHC.ConfidenceTransfer.CriticalConfidenceLowerStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ConfidenceTransfer.criticalPositiveLaw' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.criticalPositiveLaw_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.criticalPositiveLaw_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ConfidenceTransfer.criticalSign' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.critical_common_pair_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.critical_confidence_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.critical_local_transfer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.critical_parameter_law' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.critical_sign_mean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.minimax_confidence_rate_of_common_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.CriticalEntropy.critical_common_capped_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
