@@ -6,7 +6,8 @@ $$
  K\le Q\le \frac{31}{20}K .
 $$
 A five-atom law has $Q/K>1.46255$. Thus the optimal universal factor lies
-strictly above $1.46255$ and at most $1.55$. The following is a paper proof.
+strictly above $1.46255$ and at most $1.55$. A [subsequent characterization](OPTIMAL_QUANTILE_FACTOR.md)
+identifies its exact value as a scalar root. The following is a paper proof.
 The [arithmetic verifier](../tools/verify_quantile_price_bounds.py) checks the
 rational inequalities and evaluates the lower example with rational log and
 square-root enclosures.

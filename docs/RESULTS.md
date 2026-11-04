@@ -477,7 +477,10 @@ statement for the selection functional used in the minimax theorem.
 A [sharper paper proof](QUANTILE_PRICE_BOUNDS.md) gives $Q\le(31/20)K$ for all
 positive-gap laws. A five-atom rational example has $Q/K>1.46255$. The
 arithmetic verifier checks the upper proof’s rational inequalities and the
-strict lower example. The optimal coefficient is still unknown.
+strict lower example. A [sharp-factor proof](OPTIMAL_QUANTILE_FACTOR.md) reduces the
+supremum over laws to the unique root of a scalar equation. Its rational
+certificate gives $1.462554551279<c_*<1.462554551280$. The characterization
+and numerical certificate have not been checked in Lean.
 
 **Lean verifies the finite-law bandwise-suffix theorem.** For a probability
 law with finite support, a hard restriction minimizes the raw objective over
