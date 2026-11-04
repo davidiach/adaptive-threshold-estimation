@@ -279,6 +279,11 @@ and quantile definitions unchanged. The default rebuilds the whole local
 closure; `--cached-dependencies` rebuilds the two registered modules and
 hashes reused artifacts. Run that mode after the default Lake-mode canonical
 entropy-tail audit has built its dependencies, or add `--build-dependencies`.
+Run `python tools/verify_entropy_tail_sharp.py` for the sharper general-law
+coefficient. Lake builds the new proof, checks its independent statements
+and audits transitive axioms. The [evidence](../results/entropy-tail-explicit-20261104/README.md)
+binds the pinned native run to its sources and dependency artifacts.
+
 The separate direct finite-law audit runs with `python tools/verify_finite_quantile.py`.
 It builds the registered proof modules with Lake, checks the statement fixed at
 `5557334`, and validates the exact types and transitive axioms. It rejects imports

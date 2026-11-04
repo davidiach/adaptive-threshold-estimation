@@ -227,10 +227,11 @@ $$10^{-17}\mathcal K_{\mu,\rho}(B)\le R_{\mu,\rho}(B)
 \le33000\mathcal K_{\mu,\rho}(B).$$
 
 No finite inverse moment, density, or regularity assumption is imposed.
-The following scopes are **paper-level claims**. Lean versions now cover the
-upper half of the first row and the other four rows, as described below, as
-well as the hard-selection reduction and the elementary properties of
-$\mathcal K$:
+The [explicit comparison](../lean/ThresholdHC/EntropyTailSharp/Full.lean) now
+proves this lower bound and the stronger upper coefficient $28000$ in Lean.
+The table gives the scopes of the entropy-tail, stopping-program and genie
+results. The hard-selection reduction and elementary properties of $\mathcal K$
+are also checked.
 
 | Claim | Scope and qualification |
 |---|---|
@@ -243,9 +244,7 @@ $\mathcal K$:
 The [audit index](../paper/rare-event/audit/README.md) distinguishes the original
 source audits, final referee assessment, and revision audit, including corrected
 interpretations of historical findings. V2 resolves the revision audit's two
-minor editorial defects. Apart from the upper half and the stopping-program
-results below, the new general results have no Lean formalization, and none
-has external specialist review. The exact stored certificates cover 33 lower
+minor editorial defects. The formal results below identify their precise scopes. External specialist review has not been performed. The exact stored certificates cover 33 lower
 bounds, 9 upper policies, 9 stopping decisions, and two perfect-label examples;
 they are not proofs of the continuum or compactness claims. The existing Lean
 variational-optimizer and critical-law results above and below retain their
@@ -284,12 +283,21 @@ the checked upper half in the unchanged observable experiment.
 
 For `M = 200000000 (256 + sqrt(2^32 exp(48)))`, the construction gives lower
 coefficient `1/(16 M)`. The frozen targets assert existence of positive
-universal constants; the paper's sharper explicit lower constant is not
-proved by this development. The [completion record](../results/entropy-tail-complete-20261101/README.md)
+universal constants. A subsequent proof establishes the explicit lower coefficient. The [completion record](../results/entropy-tail-complete-20261101/README.md)
 covers 57 supporting modules, 368 roots and 89 exact types, plus 15 canonical
 modules, 92 roots and all eight frozen target types. Both native audits
 rebuild their registered modules and hash reused local dependencies; neither
 is a full dependency rebuild. Earlier records keep their historical scope.
+
+**Explicit lower coefficient.** For every law on $(0,1/2]$, $0<\rho\le1/4$
+and $B>0$, Lean proves $10^{-17}Q\le R$ and hence $10^{-17}\mathcal K\le R$.
+The fractional tail pair works for arbitrary support because each prefix
+likelihood and its posterior-energy potential is bounded and measurable.
+At the gated annular step the three costs fit within $4096e^{48}$.
+Passing to observable certificates gives variance coefficient $2^{14}e^{48}$.
+The filtered-core cost is then at most $3\cdot10^{16}R$ in the packing case,
+and $T_h\le32R$ controls the tail. The [theorem and estimator converse](../lean/ThresholdHC/EntropyTailSharp/Full.lean)
+have a separate [native audit](../results/entropy-tail-explicit-20261104/README.md).
 
 **Upper half.** The upper bound comes from the additive formalization of
 [#33](https://github.com/davidiach/adaptive-threshold-estimation/pull/33), in
@@ -454,8 +462,9 @@ package also proves that some optimal hard selection is an upper-gap suffix in
 every dyadic band. It proves $|\mathcal K_\mu-\mathcal K_{\tilde\mu}|\le d_{\rm TV}(\mu,\tilde\mu)$
 and a band-preserving rounding bound, and adds an exact-rational evaluator of
 $\mathcal K$ to the toolkit. Composed with the results above, the comparison gives
-$R\le30001\cdot\frac85\mathcal K$ for finite laws and, conditionally on the
-general-law theorem, $\frac58\cdot10^{-17}Q\le R$ for every law. The
+$R\le30001\cdot\frac85\mathcal K$ for finite laws and
+$\frac58\cdot10^{-17}Q\le R$ for every law. The later direct lower proof
+establishes the stronger $10^{-17}Q\le R$ in Lean. The
 floating-point calculator above still reports the $5/3$ interval. Status:
 **paper proofs**, except that the comparison's scalar Lemma 3 is **Lean-checked**
 with its exact type and only the standard axioms
@@ -695,7 +704,7 @@ essential.
 |---|---|---|
 | Distribution-blind RMS law | $\frac1{64}\omega_\mu(B^{-1/2})\le R^{\rm hard}_\mu(B)\le3000\,\omega_\mu(B^{-1/2})$ for $B\ge1$, with one family for every $\mu$ | Both expected-budget bounds Lean-checked |
 | Critical quadratic law | $R^{\rm hard}_{\mu,\rho}(B)\asymp\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}$, upper coefficient $570000$ | Both expected-budget bounds Lean-checked |
-| Known general law, known rarity | $10^{-17}\mathcal K_{\mu,\rho}(B)\le R^{\rm hard}_{\mu,\rho}(B)\le190000\,\mathcal K_{\mu,\rho}(B)$ for $B>0$ | Lower: the entropy-tail rate is now Lean-checked with a conservative universal constant; the displayed explicit coefficient remains paper-only. Upper: $R\le C\mathcal K$, [Lean-checked](#general-law-rare-event-characterization) with $C=28000$; the coefficient $190000$ was derived from the paper's $33000$ |
+| Known general law, known rarity | $10^{-17}\mathcal K_{\mu,\rho}(B)\le R^{\rm hard}_{\mu,\rho}(B)\le190000\,\mathcal K_{\mu,\rho}(B)$ for $B>0$ | Lower: the entropy-tail rate is now Lean-checked with the displayed $10^{-17}$ lower coefficient. Its application to the hard cap is a paper reduction. Upper: $R\le C\mathcal K$, [Lean-checked](#general-law-rare-event-characterization) with $C=28000$; the coefficient $190000$ was derived from the paper's $33000$ |
 
 **Status and limits.** The reduction, its observable realization and all three
 hard-cap conclusions are **paper proofs, not Lean-checked**. Lean-checked premises

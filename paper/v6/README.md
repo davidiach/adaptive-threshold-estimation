@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Read the updated manuscript](builds/direct-finite-quantile-20261104.pdf) · [Open the LaTeX project](main.tex) · [Finite-law build](#finite-law-build) · [Earlier completion build](#completion-build)
+[Read the updated manuscript](builds/entropy-tail-explicit-20261104.pdf) · [Open the LaTeX project](main.tex) · [Explicit general-law build](#explicit-general-law-build) · [Finite-law build](#finite-law-build)
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -50,10 +50,9 @@ Section 18 states each formal scope and links the fixed source revisions.
 For finite laws a [direct Lean proof](../../lean/ThresholdHC/FiniteQuantile/Full.lean)
 now establishes both explicit coefficients, $10^{-20}$ and $30001$. The
 [operational theorems](../../lean/ThresholdHC/FiniteQuantile/Operational.lean)
-give the estimator and converse statements. The sharper general-law entropy–tail
-lower constant and the rare-event regimes below two remain **paper proofs**. The general-law closed-quantile
-corollary is now Lean-checked with conservative universal constants, using
-the completed entropy–tail law and the deterministic comparison. The remaining
+give the estimator and converse statements. The [arbitrary-law comparison](../../lean/ThresholdHC/EntropyTailSharp/Full.lean)
+checks $10^{-17}\mathcal K\le R\le28000\mathcal K$ and $10^{-17}Q\le R$.
+The rare-event regimes below two remain **paper proofs**. The remaining
 paper proofs have not been Lean-formalized or externally reviewed by specialists.
 The general-law and finite-gap proofs share
 their upper construction and Appendices F–H, so they are one rate
@@ -130,6 +129,14 @@ The [manuscript workflow](../../.github/workflows/manuscript.yml) builds it
 the same way with TeX Live from the Ubuntu 24.04 archive and uploads the PDF
 and log as the `v6-paper` artifact. Typesetting and source checks do not
 constitute a new mathematical proof or independent review.
+
+## Explicit general-law build
+
+The [updated PDF](builds/entropy-tail-explicit-20261104.pdf) records the
+explicit arbitrary-law comparison in §§13 and 18. The theorem links use
+proof revision `8a701c8db6c42930ad2a187f3d895ca55265afd6`. Two offline builds
+produced identical PDFs. The [build record](builds/entropy-tail-explicit-20261104.json)
+gives the source and PDF hashes, page count, font checks and visual review.
 
 ## Finite-law build
 

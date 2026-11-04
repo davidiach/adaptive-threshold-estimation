@@ -116,9 +116,9 @@ experiment, without an inverse-moment or finite-support assumption.
 \lowerleanref{EntropyTail/Lower.lean}{entropy\_tail\_lower} proves the
 matching lower half, and
 \lowerleanref{EntropyTail/Law.lean}{entropy\_tail\_law} proves the two-sided
-law on this same domain. All eight frozen targets are checked. The lower
-proof gives a conservative positive universal constant; the sharper explicit
-lower constant in \eqref{eq:explicit-main-constants} remains paper-only.\\[5pt]
+law on this same domain. All eight frozen targets are checked.
+\sharpleanref{Full.lean}{entropy\_tail\_explicit\_law} proves the sharper
+comparison $10^{-17}\mathcal K\le R\le28000\mathcal K$ for every law.\\[5pt]
 Closed quantile form &
 \tailleanref{EntropyTail/Upper.lean}{selection\_quantile\_comparison}
 proves the deterministic comparison \cref{fg:prop:quantile-selection},
@@ -130,6 +130,8 @@ for every law rather than only finite ones.
 \lowerleanref{ClosedQuantile/Full.lean}{closed\_quantile\_law}
 now proves the full two-sided rate on this domain with conservative universal
 constants, using the entropy--tail lower bound and deterministic comparison.
+\sharpleanref{Full.lean}{closed\_quantile\_lower\_explicit} gives
+$10^{-17}Q\le R$ on the same domain.
 For finite laws, \finiteleanref{Full.lean}{direct\_finite\_law}
 proves $10^{-20}Q\le R\le30001Q$. The
 \finiteleanref{Operational.lean}{observable\_estimator} and
@@ -332,6 +334,26 @@ The checked upper inequality with coefficient $28000$ has enough slack
 to obtain one feasible estimator at $30001Q$. The proof links in this
 paragraph use revision \nolinkurl{fc61852123b37c723bbb671d0b4ed294d3b6ee06}.
 
+\paragraph{Explicit constants for every gap law.}
+At a prefix, let $a,b$ be the nonnegative likelihood masses for the two signs
+under the equal prior. The posterior-energy integrand
+$(a-b)^2/(a+b)$ is bounded by $a+b$, with value zero at an impossible
+prefix. The likelihoods, fractional tail weights and perturbations are
+bounded and measurable, so the mixed information argument integrates over
+every probability law. The same pair then gives $T_h\le32R$ for arbitrary
+support.
+
+The three gate estimates fit under $4096e^{48}$.
+The observable one-coin certificate contributes a further factor four,
+so the variance coefficient is $16384e^{48}$ before taking its square
+root. With the filtered core and the factor-sixteen certificate comparison
+this gives $M_B\le3\cdot10^{16}R$ in the packing case. The label floor and
+tail cover the other cases. Thus $\mathcal K\le Q\le T_h+2M_B$ yields
+the coefficient $10^{-17}$ for both lower bounds. The
+\sharpleanref{Full.lean}{estimator\_entropy\_tail\_lower} theorem states
+the converse for each feasible estimator. The explicit comparison is
+pinned to \nolinkurl{8a701c8db6c42930ad2a187f3d895ca55265afd6}.
+
 \paragraph{Realizing the critical upper algorithm.}
 The formal construction uses asymmetric classifiers at dyadic flip counts,
 an alternative to the likelihood-bank construction in \cref{app:critical}.
@@ -418,15 +440,14 @@ validations of the full proof. The
 records the workflow, failed approaches, and these limits.
 
 \paragraph{Remaining mathematical work.}
-The sharper general-law entropy--tail lower constant, the rare-event regimes
-below two, and auxiliary envelope, smoothness, and observed-state results retain
-their stated paper-proof scopes; their formalization is the next
-verification target. Sharp
-comparison constants, efficient selection for structured laws, rates of
-cap convergence, and sharp rare-event confidence rates at and above the
-quadratic boundary remain open. The rare-event results assume a known
-magnitude law; unknown laws, other observation kernels and almost-sure
-budgets require separate arguments.
+The rare-event regimes below two and the auxiliary envelope, smoothness
+and observed-state results have paper proofs awaiting formalization.
+The best comparison constant, efficient exact selection for structured
+laws and rates of cap convergence remain open. A later
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/8a701c8db6c42930ad2a187f3d895ca55265afd6/research/2026-10-30-confidence-transfer/NOTE.md}{confidence-transfer paper proof}
+gives fixed-confidence rates for known laws, including the quadratic
+boundary. A matching time-uniform lower bound for sequential intervals
+and guarantees for unknown magnitude laws remain open.
 
 The model requires independent fresh coins and conditionally independent
 flips, without drift or additional smooth structure linking states.

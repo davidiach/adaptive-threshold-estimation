@@ -10,10 +10,9 @@ separates the supporting audit from the canonical exact-type audit and
 records their cached-dependency scope. Historical checkpoints below retain
 their original, incomplete scopes.
 
-The proof supplies a conservative positive universal lower coefficient;
-it does not prove the paper's sharper explicit lower constant or the direct
-finite-law lower argument. The separate closed-quantile corollary now has
-its own audit, described below.
+This record covers the original conservative coefficient. Subsequent work
+checks the direct finite-law proof and the sharper general-law coefficient
+in separate audits. See the [explicit comparison](../results/entropy-tail-explicit-20261104/README.md).
 
 ## New statements and proof route
 
@@ -109,7 +108,7 @@ gives `200000000 R` for the original selection functional.
 
 The separate [closed-quantile minimax corollary](../lean/ThresholdHC/ClosedQuantile/Full.lean)
 is now checked by [its own exact-type audit](../results/closed-quantile-law-20261101/README.md).
-The later [direct finite-law proof](../lean/ThresholdHC/FiniteQuantile/Full.lean) checks its explicit coefficients. The sharper general-law entropy-tail lower coefficient remains a follow-up.
+The later [direct finite-law proof](../lean/ThresholdHC/FiniteQuantile/Full.lean) checks its explicit coefficients. The [arbitrary-law comparison](../lean/ThresholdHC/EntropyTailSharp/Full.lean) now checks the sharper lower coefficient as well.
 Other paper-only and open results are listed in
 [WORKPLAN.md](WORKPLAN.md#current-priorities).
 

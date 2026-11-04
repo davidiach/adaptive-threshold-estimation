@@ -1,0 +1,22 @@
+import ThresholdHC.EntropyTailSharp.Audit
+
+example : ThresholdHC.EntropyTailSharp.ExplicitLawStatement := ThresholdHC.EntropyTailSharp.entropy_tail_explicit_law
+
+#print axioms ThresholdHC.EntropyTailSharp.ExplicitLawStatement
+#print axioms ThresholdHC.EntropyTailSharp.above_threshold_lower_general
+#print axioms ThresholdHC.EntropyTailSharp.annular_root_constant_sharp
+#print axioms ThresholdHC.EntropyTailSharp.certificate_canonical_group_bound_sharp
+#print axioms ThresholdHC.EntropyTailSharp.certificate_gated_annular_saturation_sharp
+#print axioms ThresholdHC.EntropyTailSharp.certificate_localized_annular_bound_sharp
+#print axioms ThresholdHC.EntropyTailSharp.certificate_root_bound_sharp
+#print axioms ThresholdHC.EntropyTailSharp.closed_quantile_lower_explicit
+#print axioms ThresholdHC.EntropyTailSharp.core_observable_bound_sharp
+#print axioms ThresholdHC.EntropyTailSharp.entropy_tail_explicit_law
+#print axioms ThresholdHC.EntropyTailSharp.estimator_entropy_tail_lower
+#print axioms ThresholdHC.EntropyTailSharp.filtered_core_certificate_bound_sharp
+#print axioms ThresholdHC.EntropyTailSharp.filtered_prefix_certificate_sharp
+#print axioms ThresholdHC.EntropyTailSharp.mixture_quadratic_bound_of_integrable
+#print axioms ThresholdHC.EntropyTailSharp.paper_comparison
+#print axioms ThresholdHC.EntropyTailSharp.population_gated_annular_saturation_sharp
+#print axioms ThresholdHC.EntropyTailSharp.quantile_tail_lower_general
+#print axioms ThresholdHC.EntropyTailSharp.tail_information_ratio_general

@@ -1,0 +1,32 @@
+'ThresholdHC.EntropyTailSharp.ExplicitLawStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailSharp.above_threshold_lower_general' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailSharp.annular_root_constant_sharp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailSharp.certificate_canonical_group_bound_sharp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailSharp.certificate_gated_annular_saturation_sharp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailSharp.certificate_localized_annular_bound_sharp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailSharp.certificate_root_bound_sharp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailSharp.closed_quantile_lower_explicit' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailSharp.core_observable_bound_sharp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailSharp.entropy_tail_explicit_law' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailSharp.estimator_entropy_tail_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailSharp.filtered_core_certificate_bound_sharp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailSharp.filtered_prefix_certificate_sharp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailSharp.mixture_quadratic_bound_of_integrable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailSharp.paper_comparison' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailSharp.population_gated_annular_saturation_sharp' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EntropyTailSharp.quantile_tail_lower_general' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EntropyTailSharp.tail_information_ratio_general' depends on axioms: [propext, Classical.choice, Quot.sound]
