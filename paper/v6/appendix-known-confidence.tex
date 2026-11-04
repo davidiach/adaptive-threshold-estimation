@@ -1,0 +1,85 @@
+\section{Rare-event confidence at the effective budget}
+\label{app:known-confidence}
+
+Fix a known positive-gap law $\mu$. Write $r_{\rm exp}$ and $r_{\rm hard}$
+for the smallest uniform confidence radii in the sense of infima. The first
+budget bounds expected work under each admissible sign law. The second
+caps the number of purchased flips on every valid observation path.
+Put $\ell=\log(1/\delta)$ and $\beta=B/\ell$.
+
+\begin{theorem}\label{thm:confidence-stopping-dual}
+For $B>0$, $0<\delta\le1/4$, and $0<\rho\le1/2$,
+$r_{\rm exp}(B,\delta)\ge P_\infty(\beta)/30$.
+For $0<\rho\le1/4$ the entropy--tail functional consequently satisfies
+\[
+ \frac{10^{-17}}{30}\mathcal K(\beta)\le r_{\rm exp}(B,\delta)
+ \le r_{\rm hard}(B,\delta)\le 750000\,\mathcal K(\beta).
+\]
+For the critical quadratic law let $L=1+\log(1/\rho)$. Both radii are
+within universal factors of $\min\{\rho,\sqrt{\rho L(1+\log L)/\beta}\}$.
+The upper coefficient is $2670000$.
+\end{theorem}
+
+\begin{proof}
+Consider a quartet in the stopping-program dual of Appendix~\ref{sec:genie},
+with target separation $\Delta$ and information/work ratio $J$. Its
+contribution to $P_\infty(\beta)^2$ is $\Delta^2/(4+\beta J)$.
+It suffices to bound positive contributions with finite $J$.
+Mix each endpoint equally with the two reference priors, giving each of
+the three components weight $1/3$. The separated means now differ by
+$\Delta/3$, and the midpoint ratio of the new pair is at most $J$.
+Contract the endpoints toward their midpoint by the factor
+$a=(1+6\beta J)^{-1/2}$. The ratio becomes at most $a^2J$, the gap
+becomes $a\Delta/3$, and the endpoint means still meet the rarity bound.
+
+Write $q,r$ for the contracted priors, $m=(q+r)/2$, $s=(3q+r)/4$ and
+$t=(q+3r)/4$. For every capped single-coin rule, the inequality
+$(\sqrt x-\sqrt y)^2\le(x-y)^2/(x+y)$ gives squared Hellinger
+distance at most $a^2J W_m/4$ in the normalization $1-\int\sqrt{dP\,dQ}$.
+Single-coin work is affine in its prior, so $W_m\le2W_s$. Quarter
+smoothing bounds the KL divergence between the $s,t$ transcripts by
+$8/3$ times the Hellinger distance squared between the $q,r$ transcripts.
+Isolate each coin in the finite population tree by simulating the other
+coins under $s$. Its work charge is then the expected number of flips
+of that coin under $s$. The one-coin KL contributions add under the same
+reference. Finite-prefix reconstruction with finite endpoint work gives
+the full observable KL bound $(4/3)a^2JB\le2\ell/9$.
+
+The final mean gap is $a\Delta/6$. A radius $\varepsilon<a\Delta/12$
+would distinguish these means at error at most $\delta$, requiring KL at
+least $\ell/4$. Thus $a\Delta/12\le\varepsilon$. The inequality
+$144(1+6x)\le900(4+x)$ for $x\ge0$ bounds the quartet contribution by
+$(30\varepsilon)^2$. Taking the dual supremum and the radius infimum
+proves the \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/384de1857b55f86cad3d86e6e5801b69d8eb9519/lean/ThresholdHC/ConfidenceProgram/Lower.lean}{stopping-program lower bound}. At budget $\beta$, the RMS lower bound
+$10^{-17}\mathcal K(\beta)$ and the stopping-program RMS upper bound
+$P_\infty(\beta)$ give the stated entropy--tail lower coefficient.
+The critical lower bound follows from the critical two-prior construction.
+
+\clearpage
+For the upper bound, start with an observable rule whose expected work is
+at most $b=B/(8k)$ and whose root mean squared error is at most $u$,
+uniformly over the rare priors. Choose an odd $k=2m+1$ and reserve
+$N=\lfloor B/k\rfloor$ flips per copy. Use separate coin labels and
+private seeds for the copies. Accept a decision made after exactly $N$
+flips and clip it to $[0,\rho]$. A copy still requesting a flip after its
+$N$th reservation returns $\rho/2$. The controller may fill unused
+reservations and in all cases spends at most $kN\le\lfloor B\rfloor$.
+A timeout requires at least $N+1$ flips in the uncapped copy. Its
+probability is at most $b/(N+1)\le1/8$, even when $N=0$.
+On a completed copy, clipping can only reduce squared error. Markov's
+inequality bounds the probability of completion with error exceeding
+$\sqrt8\,u$ by $1/8$ (zero RMS gives zero error almost surely).
+The union bound gives failure probability at most $1/4$ for each copy.
+
+Let $I_i$ indicate failure of copy $i$. The copies are independent, so
+$\mathbb E\prod_i(1+2I_i)\le(3/2)^k$. On median failure at least $m+1$
+copies fail, making the product at least $3^{m+1}$. The median therefore
+has \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/fb4989c2bf21828214d74283ced14be44ec0b58d/lean/ThresholdHC/ConfidenceProgram/Amplify.lean}{failure probability at most $(3/4)^m/2$}. Choose $m=\lceil4\ell\rceil$.
+Since $\log(3/4)\le-1/4$ and $\ell\ge1$, the failure probability is at
+most $\delta$, $b\le\beta$, and $\beta/b=8k/\ell\le88$. The already
+proved budget scaling bounds the base rate at $b$ by $\sqrt{88}$ times
+its value at $\beta$. Use the general-law RMS witness with coefficient
+$28001$, or the critical estimator with coefficient $100000$. Multiplying
+each by $\sqrt{8\cdot88}\le26.7$ gives the two asserted upper bounds.
+Finally every hard-cap rule satisfies the expected-work constraint.
+\end{proof}

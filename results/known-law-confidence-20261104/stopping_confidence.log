@@ -1,0 +1,17 @@
+'ThresholdHC.ConfidenceProgram.entropy_tail_confidence_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceProgram.midpoint_reference_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceProgram.quartet_confidence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceProgram.stopping_confidence_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.creation_null_work_kl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.creation_reference_work_kl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.finite_null_work_kl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.finite_reference_work_kl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.local_reference_of_null' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.observable_null_work_kl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.observable_reference_work_kl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.pair_confidence_work' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.pair_reference_confidence_work' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ConfidenceTransfer.stopped_null_work_kl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceTransfer.stopped_reference_work_kl' depends on axioms: [propext, Classical.choice, Quot.sound]

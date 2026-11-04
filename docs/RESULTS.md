@@ -787,8 +787,12 @@ a run's cost and its error is assumed.
 
 **Status and limits.** The [critical confidence lower bound](../results/critical-confidence-20261104/README.md)
 now has a Lean proof for the original estimator under a uniform expected flip budget.
-It derives the common pair from the fixed quadratic law. The matching upper bound,
-capped-median amplification and complete general-law confidence rate retain paper proofs. The
+It derives the common pair from the fixed quadratic law. Lean also verifies a
+[direct stopping-program lower bound and the matching hard-cap construction](../results/known-law-confidence-20261104/README.md).
+For all known laws and $0<\rho\le1/4$, the checked coefficients on $\mathcal K(B/\ell)$
+are $10^{-17}/30$ and $750000$. The critical upper coefficient is $2670000$.
+The paper's stronger general lower coefficient in the table uses additive localization.
+The known-law time-uniform width row retains a paper proof. The
 algorithms in the table may know $\mu$, $\rho$, $B$ and $\delta$. A separate
 [unknown-law construction and lower bound](UNKNOWN_LAW_CONFIDENCE.md) gives
 observable, simultaneously valid intervals that shrink for every fixed

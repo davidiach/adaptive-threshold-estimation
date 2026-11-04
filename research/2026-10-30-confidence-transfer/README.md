@@ -157,3 +157,9 @@ Original archive SHA-256 values:
 No literature-wide novelty claim is made. The source note cites the relevant
 Lee-Valiant and convex-estimation antecedents; the anytime note distinguishes
 standard confidence-sequence methodology from this application.
+
+The [known-law native audit](../../results/known-law-confidence-20261104/README.md)
+verifies the observable capped median, both critical bounds and a separate
+general-law lower proof through the stopping-program dual. That route gives
+a lower coefficient thirty times smaller than the localization proof here.
+Full adaptive-type localization and the sequential width row retain paper proofs.

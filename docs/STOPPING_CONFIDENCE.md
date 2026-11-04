@@ -60,3 +60,23 @@ $\Delta^2/(4+\beta K_\infty)\le(30\varepsilon)^2$.
 Taking the dual supremum and the infimum over observable procedures
 proves the assertion. The comparison $R^{\rm exp}\le P_\infty$ and the
 expected-budget entropy-tail lower bound give the consequence for $K$.
+
+## The matching hard-cap upper bound
+
+Run $k=2m+1$ independent copies at expected budget $b=B/(8k)$, with
+$\lfloor B/k\rfloor$ reservations each. A timeout costs at least one more
+flip in the uncapped run, so its probability is at most $1/8$ even if
+the reservation is zero. The probability of completion with error greater
+than $\sqrt8$ times the base RMS is at most $1/8$. If the median fails,
+at least $m+1$ copies fail. For failure indicators $I_i$, Markov's inequality
+applied to the product of the factors $1+2I_i$ gives probability at most
+$(3/4)^m/2$. This uses independence across copies. The observable median
+accepts a stop after the final allowed flip and spends at most $\lfloor B\rfloor$
+on every valid path. [Controller](../lean/ThresholdHC/ConfidenceProgram/MedianController.lean)
+and [amplification](../lean/ThresholdHC/ConfidenceProgram/Amplify.lean)
+
+With $m=\lceil4\ell\rceil$, this probability is at most $\delta$ and
+$b\le\beta\le88b$. The resulting upper coefficients are $750000$ for the
+entropy--tail functional and $2670000$ for the critical rate. The
+[complete statements and native audit](../results/known-law-confidence-20261104/README.md)
+include both budget models. [Manuscript Appendix S](../paper/v6/appendix-known-confidence.tex)

@@ -100,3 +100,9 @@ in a disposable checkout containing your changes. The other tabled audits write
 under `.runtime/`; [tools/README.md](../tools/README.md) maps the output locations.
 Run the corresponding verifier regression tests when proof registration or
 verification logic changes. Keep published checkpoints intact.
+
+The [fixed-confidence theorem](ThresholdHC/ConfidenceProgram/Upper.lean)
+bounds both budget models for every known positive-gap law. It uses the
+[stopping-program lower bound](ThresholdHC/ConfidenceProgram/Lower.lean)
+and the [observable median](ThresholdHC/ConfidenceProgram/Amplify.lean).
+[Exact statements and native record](../results/known-law-confidence-20261104/README.md)
