@@ -149,6 +149,14 @@ gives a hard optimizer of the uncapped objective and identifies its capped
 value with $\mathcal K$. The
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/c15a9fa46a5f0a743fb20416b87498225a13661e/lean/ThresholdHC/BandwiseSuffix/Search.lean}{search corollary}
 bounds the sufficient family by $\prod_j(n_j+1)$.\\[5pt]
+Stability under law approximation &
+The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/11a8139812a6e39e60dcdfbfc162c8ed9514999d/lean/ThresholdHC/SelectionStability/Variation.lean}{total-variation proof}
+uses a common submeasure and charges the excess mass once.
+The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/11a8139812a6e39e60dcdfbfc162c8ed9514999d/lean/ThresholdHC/SelectionStability/Rounding.lean}{rounding proof}
+includes maps that merge atoms. Lean also verifies the
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/d48094b796e5d06e7e9f26e139db3656d2c67447/lean/ThresholdHC/SelectionStability/FiniteApproximation.lean}{existence of finite approximations}
+and the \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/d48094b796e5d06e7e9f26e139db3656d2c67447/lean/ThresholdHC/SelectionStability/Approximation.lean}{transported enclosures}
+for both selection and quantile calculations.\\[5pt]
 Stopping programs and certificates &
 For every probability law, $0<\rho\le1/4$, $B>0$ and cap $N>0$,
 \tailleanref{StoppingProgram/DualTheorem.lean}{attained\_four\_prior\_dual}
@@ -323,6 +331,21 @@ the preceding checked artifacts. Its new specification and lock are
 introduced alongside the corollary proof, not described as independently
 frozen before it. The original experiment and quantile definitions are
 unchanged.
+
+\paragraph{Approximating the law.}
+Write $d_{\rm TV}(\mu,\nu)=\sup_A|\mu(A)-\nu(A)|$.
+At fixed $\rho,B$, changing the law by distance $\eta$ changes
+$\mathcal K$ by at most $\eta$. Rounding each gap upward within its
+original band by a factor at most $r\ge1$ gives
+$\mathcal K_{T_\#\nu}\le\mathcal K_\nu\le r\mathcal K_{T_\#\nu}$.
+For every $\eta>0$ and $r>1$, one can move the small-gap tail mass of
+$\mu$ to a positive cutoff and round the remaining gaps onto a finite
+grid. If $[L,U]$ encloses the rounded value, then
+\[
+  \max\{0,L-\eta\}\le\mathcal K_\mu\le\min\{\rho,rU+\eta\}.
+\]
+A finite quantile calculation gives $L=(5/8)Q$ and $U=Q$. The guarantee
+requires bounds on the law and the rounding map supplied to the calculation.
 
 \paragraph{The direct finite-law proof.}
 For Theorem~\ref{fg:thm:direct-main}, the equal-sign posterior on a
