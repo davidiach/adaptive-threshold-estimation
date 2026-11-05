@@ -1,107 +1,125 @@
 {
-  "description": "Single source for two v6 passages: the abstract's status paragraph (generated as status-abstract.tex) and the introduction's Verification boundary paragraph. tools/build_v6.py writes both from this file; do not edit those sentences in TeX. Each result has a status, lean or paper, and repository evidence paths for it. Phrases are written as objects so that the same phrase reads correctly in \"Lean checks ...\" and in \"For ..., the manuscript gives paper proofs only\". When a status changes, also update Section 18 (verification.tex), which keeps the exact formal scopes and fixed source links, and any per-section status remark by hand.",
+  "description": "Single source for two v6 passages: the abstract's status paragraph (generated as status-abstract.tex) and the introduction's Verification boundary paragraph. tools/build_v6.py writes both from this file; do not edit those sentences in TeX. Each result has a status, lean or paper, and repository evidence paths for it. Phrases are written as objects so that the same phrase reads correctly in \"Lean checks ...\" and in \"For ..., the manuscript gives paper proofs only\". When a status changes, also update Section 18 (verification.tex), which keeps the exact formal scopes and fixed source links, and any per-section status remark by hand. Optional verification_rows name Section 18 claim-table rows; the generator requires each to cite a Lean source for a lean status, or to say paper and cite no Lean source for a paper status.",
   "results": {
     "rms-law": {
       "status": "lean",
+      "verification_rows": ["Original RMS minimax lower bound", "Original RMS upper bound"],
       "evidence": ["lean/ThresholdHC/Tier6/Full.lean", "lean/ThresholdHC/BlindUpper/Full.lean"],
       "abstract": "the original RMS law in both directions, with coefficients $1/64$ and $512$ and one distribution-blind upper algorithm",
       "boundary": "both directions of the original RMS law, with coefficients $1/64$ and $512$ and one distribution-blind upper algorithm"
     },
     "critical-law": {
       "status": "lean",
+      "verification_rows": ["Critical minimax lower bound", "Critical minimax upper bound"],
       "evidence": ["lean/ThresholdHC/CriticalEntropy/CriticalMinimax.lean", "lean/ThresholdHC/CriticalUpper/Full.lean"],
       "abstract": "the critical minimax law",
       "boundary": "the critical minimax law"
     },
     "psi-counterexample": {
       "status": "lean",
+      "verification_rows": ["Exact $\\Psi$ comparison and counterexample"],
       "evidence": ["lean/ThresholdHC/CriticalPsi/Full.lean"],
       "abstract": "the exact $\\Psi$ comparison and counterexample",
       "boundary": "the exact $\\Psi$ comparison and counterexample"
     },
     "variational-optimizer": {
       "status": "lean",
+      "verification_rows": ["Variational optimizer"],
       "evidence": ["lean/ThresholdHC/Tier3/Optimizer.lean"],
       "abstract": "the variational optimizer",
       "boundary": "the variational optimizer, which has a separate formal specification"
     },
     "unbiased": {
       "status": "lean",
+      "verification_rows": ["Unbiased characterization"],
       "evidence": ["lean/ThresholdHC/UnbiasedConverse/Full.lean", "lean/ThresholdHC/Observable713/Full.lean"],
       "abstract": "the unbiased characterization with coefficients $1/16$ and $713$",
       "boundary": "the unbiased characterization with coefficients $1/16$ and $713$"
     },
     "confidence": {
       "status": "lean",
+      "verification_rows": ["Confidence characterization"],
       "evidence": ["lean/ThresholdHC/Confidence/Full.lean"],
       "abstract": "the confidence characterization",
       "boundary": "the confidence characterization in the observable model, with coefficients $1/64$ and $8192$ and one upper family depending only on budget and failure probability"
     },
     "oracle-lower": {
       "status": "lean",
+      "verification_rows": ["Magnitude-oracle lower bounds"],
       "evidence": ["lean/ThresholdHC/OracleLower/Full.lean"],
       "abstract": "the magnitude-oracle lower bounds",
       "boundary": "the stronger revealed- and selected-magnitude RMS and confidence lower bounds, including the paper's confidence coefficient $15/(256\\sqrt2)$"
     },
     "above-two": {
       "status": "lean",
+      "verification_rows": ["Rare-event rate above two"],
       "evidence": ["lean/ThresholdHC/RareAboveTwo/Full.lean"],
       "abstract": "the rare-event rate above exponent two",
       "boundary": "the rare-event rate for power margins above exponent two, in the observable model and by a construction different from \\cref{app:above-two}"
     },
     "entropy-tail-law": {
       "status": "lean",
+      "verification_rows": ["Entropy--tail law"],
       "evidence": ["lean/ThresholdHC/EntropyTail/Law.lean", "results/entropy-tail-complete-20261101/README.md"],
       "abstract": "the two-sided entropy--tail law",
       "boundary": "the entropy--tail law"
     },
     "entropy-tail-coefficients": {
       "status": "lean",
+      "verification_rows": ["Entropy--tail law"],
       "evidence": ["lean/ThresholdHC/EntropyTailSharp/Full.lean", "results/entropy-tail-explicit-20261104/README.md"],
       "abstract": "the entropy--tail coefficients $10^{-17}$ and $28000$ for every known gap law"
     },
     "closed-quantile-law": {
       "status": "lean",
+      "verification_rows": ["Closed quantile form"],
       "evidence": ["lean/ThresholdHC/ClosedQuantile/Full.lean", "results/closed-quantile-law-20261101/README.md"],
       "abstract": "the two-sided closed-quantile law",
       "boundary": "the closed quantile form"
     },
     "finite-direct": {
       "status": "lean",
+      "verification_rows": ["Closed quantile form"],
       "evidence": ["lean/ThresholdHC/FiniteQuantile/Full.lean", "results/direct-finite-quantile-20261104/README.md"],
       "abstract": "the separate direct closed-quantile bounds for finite laws, with coefficients $10^{-20}$ and $30001$"
     },
     "quantile-comparison": {
       "status": "lean",
+      "verification_rows": ["Quantile comparison and finite selection"],
       "evidence": ["lean/ThresholdHC/QuantilePrice/Full.lean", "results/quantile-price-20261104/README.md"],
       "abstract": "the deterministic quantile comparison"
     },
     "sharp-factor": {
       "status": "lean",
+      "verification_rows": ["Quantile comparison and finite selection"],
       "evidence": ["lean/ThresholdHC/QuantileOptimality/Full.lean", "results/quantile-optimality-20261105/README.md"],
       "abstract": "the characterization of the sharp quantile factor as the unique root of its scalar equation, over all gap laws and over finite-support laws",
       "boundary": "the exact quantile comparison factor"
     },
     "stopping-program": {
       "status": "lean",
+      "verification_rows": ["Stopping programs and certificates"],
       "evidence": ["lean/ThresholdHC/StoppingProgram/BellmanTheorem.lean", "lean/ThresholdHC/StoppingProgram/FiniteCertificate.lean", "results/rare-event-full-20261031"],
       "abstract": "stopping-program duality and the risk certificates",
       "boundary": "the stopping-program results"
     },
     "identification": {
       "status": "lean",
+      "verification_rows": ["Stopping programs and certificates"],
       "evidence": ["lean/ThresholdHC/CapIdentification/Full.lean"],
       "abstract": "fixed-cap identification",
       "boundary": "fixed-cap identification"
     },
     "genie": {
       "status": "lean",
+      "verification_rows": ["Stopping programs and certificates"],
       "evidence": ["lean/ThresholdHC/Genie/OptimizedConvergence.lean", "lean/ThresholdHC/GenieRate/Full.lean"],
       "abstract": "the genie limits",
       "boundary": "the genie results"
     },
     "power-margins-below-two": {
       "status": "lean",
+      "verification_rows": ["Rare-event rates below two"],
       "evidence": ["lean/ThresholdHC/SubcriticalPower/Full.lean", "lean/ThresholdHC/ShiftedPower/Full.lean"],
       "abstract": "the power-margin rates below exponent two",
       "boundary": "the other power-margin rows"
@@ -136,6 +154,7 @@
     },
     "psi-lower-bound": {
       "status": "paper",
+      "verification_rows": ["General statistical $\\Psi$ lower bound"],
       "evidence": ["paper/v6/appendix-localization.tex"],
       "abstract": "the arbitrary-law statistical $\\Psi$ lower bound",
       "boundary": "the arbitrary-law statistical $\\Psi$ lower bound of \\cref{app:localization}"

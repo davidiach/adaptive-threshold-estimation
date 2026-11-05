@@ -385,6 +385,31 @@ class VerificationStatusTests(unittest.TestCase):
         self.assertEqual(build_v6.join_phrases(["a", "b and c", "d"]), "a, b and c, and d")
         self.assertEqual(build_v6.join_phrases(["a", "b"]), "a and b")
 
+    def test_section18_rows_agree_with_status(self):
+        tex = (DEST / "verification.tex").read_text(encoding="utf-8")
+        build_v6.check_verification_rows(self.status, tex)
+        rows = build_v6.verification_rows(tex)
+        self.assertIn("Rare-event rates below two", rows)
+        self.assertGreaterEqual(len(rows), 18)
+        for key, kind, message in (("rms-law", "paper", "must say paper proof"),
+                                   ("psi-lower-bound", "lean", "cites no Lean source")):
+            with self.subTest(key=key):
+                status = copy.deepcopy(self.status)
+                status["results"][key]["status"] = kind
+                with self.assertRaisesRegex(ValueError, message):
+                    build_v6.check_verification_rows(status, tex)
+        for key, result in self.status["results"].items():
+            if result.get("verification_rows"):
+                with self.subTest(flipped=key):
+                    status = copy.deepcopy(self.status)
+                    status["results"][key]["status"] = "paper" if result["status"] == "lean" else "lean"
+                    with self.assertRaises(ValueError):
+                        build_v6.check_verification_rows(status, tex)
+        status = copy.deepcopy(self.status)
+        status["results"]["unbiased"]["verification_rows"] = ["No such row"]
+        with self.assertRaisesRegex(ValueError, "no claim row"):
+            build_v6.check_verification_rows(status, tex)
+
     def test_abstract_has_no_hand_written_status(self):
         text = (DEST / "frontmatter.tex").read_text(encoding="utf-8")
         body = re.sub(r"(?<!\\)%[^\n]*", "", text)

@@ -166,8 +166,18 @@ jobs:
           python-version: '3.12'
       - name: Install Lean tool manager
         run: |
-          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/v4.2.4/elan-init.sh | sh -s -- -y --default-toolchain none
-          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          # The installer downloads elan from GitHub releases, which can return transient 5xx errors.
+          for attempt in 1 2 3; do
+            if curl -sSfL https://raw.githubusercontent.com/leanprover/elan/v4.2.4/elan-init.sh -o "$RUNNER_TEMP/elan-init.sh" \
+                && sh "$RUNNER_TEMP/elan-init.sh" -y --default-toolchain none; then
+              echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+              exit 0
+            fi
+            if [ "$attempt" -eq 3 ]; then
+              exit 1
+            fi
+            sleep 10
+          done
       - name: Download pinned Mathlib cache
         working-directory: lean
         run: |
@@ -269,8 +279,18 @@ jobs:
           python-version: '3.12'
       - name: Install Lean tool manager
         run: |
-          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/v4.2.4/elan-init.sh | sh -s -- -y --default-toolchain none
-          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          # The installer downloads elan from GitHub releases, which can return transient 5xx errors.
+          for attempt in 1 2 3; do
+            if curl -sSfL https://raw.githubusercontent.com/leanprover/elan/v4.2.4/elan-init.sh -o "$RUNNER_TEMP/elan-init.sh" \
+                && sh "$RUNNER_TEMP/elan-init.sh" -y --default-toolchain none; then
+              echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+              exit 0
+            fi
+            if [ "$attempt" -eq 3 ]; then
+              exit 1
+            fi
+            sleep 10
+          done
       - name: Download pinned Mathlib cache
         working-directory: lean
         run: |
@@ -368,8 +388,18 @@ jobs:
           python-version: '3.12'
       - name: Install Lean tool manager
         run: |
-          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/v4.2.4/elan-init.sh | sh -s -- -y --default-toolchain none
-          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+          # The installer downloads elan from GitHub releases, which can return transient 5xx errors.
+          for attempt in 1 2 3; do
+            if curl -sSfL https://raw.githubusercontent.com/leanprover/elan/v4.2.4/elan-init.sh -o "$RUNNER_TEMP/elan-init.sh" \
+                && sh "$RUNNER_TEMP/elan-init.sh" -y --default-toolchain none; then
+              echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+              exit 0
+            fi
+            if [ "$attempt" -eq 3 ]; then
+              exit 1
+            fi
+            sleep 10
+          done
       - name: Download pinned Mathlib cache
         working-directory: lean
         run: |

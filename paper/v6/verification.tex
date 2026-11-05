@@ -67,11 +67,14 @@ not assert a matching rare-event statistical upper bound.\\[5pt]
 Rare-event rates below two &
 For $0<\alpha<1$ and $1\le\alpha<2$,
 Appendices~\ref{app:sublinear-power}--\ref{app:shifted-power} Lean-check
-both RMS and confidence bounds, with lower bounds for the exact power law
-and upper families uniform over the power-margin envelope. The general
-statistical $\Psi$ lower bound remains a paper theorem. The arbitrary-law $\Psi$ lower bound in
-\cref{app:localization} uses the cited Lee--Valiant input. The critical
+both RMS and confidence bounds
+(\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/b0c197402f9623cf845f732582fe21f7e9159d9f/lean/ThresholdHC/SubcriticalPower/Full.lean}{below one},
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/3950b4070f7261b6b4368568b5d823cbdd97bec4/lean/ThresholdHC/ShiftedPower/Full.lean}{logarithmic and intermediate rows}), with lower bounds for the exact power law
+and upper families uniform over the power-margin envelope. The critical
 law has the separate formal coverage below.\\[5pt]
+General statistical $\Psi$ lower bound &
+The arbitrary-law $\Psi$ lower bound in \cref{app:localization} remains a
+paper theorem; it uses the cited Lee--Valiant input.\\[5pt]
 Rare-event rate above two &
 \abovetwoleanref{above\_two\_theory} proves both minimax bounds for the
 exact power law with $\alpha>2$, $0<a\le1/2$, $0<\rho\le1/4$ and $B\ge1$,

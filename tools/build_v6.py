@@ -159,10 +159,13 @@ def validate_status(status: dict) -> dict:
     for key, result in results.items():
         if not isinstance(result, dict) or result.get("status") not in STATUS_KINDS:
             raise ValueError(f"Status of {key} must be one of {STATUS_KINDS}")
-        unknown = set(result) - {"status", "evidence", *STATUS_VENUES}
+        unknown = set(result) - {"status", "evidence", "verification_rows", *STATUS_VENUES}
         if unknown:
             raise ValueError(f"Unknown fields for {key}: {sorted(unknown)}")
         _check_evidence(key, result)
+        rows = result.get("verification_rows", [])
+        if not isinstance(rows, list) or not all(isinstance(r, str) and r.strip() for r in rows):
+            raise ValueError(f"verification_rows of {key} must be a list of row labels")
         for venue in STATUS_VENUES:
             if venue in result:
                 _check_tex(result[venue], f"the {venue} phrase of {key}")
@@ -194,6 +197,38 @@ def validate_status(status: dict) -> dict:
     if set(results) - used:
         raise ValueError("Unused status entries: " + ", ".join(sorted(set(results) - used)))
     return status
+
+
+LEAN_CITATION = re.compile(r"\\[a-z]*leanref\{|lean/ThresholdHC/")
+
+
+def verification_rows(tex: str) -> dict[str, str]:
+    """Rows of the Section 18 claim table, keyed by their first cell."""
+    body = tex[tex.index("\\begin{longtable}"):tex.index("\\end{longtable}")]
+    if "\\endhead" in body:
+        body = body[body.index("\\endhead") + len("\\endhead"):]
+    rows = {}
+    for chunk in re.split(r"\\\\\[5pt\]", body):
+        if "&" in chunk:
+            label, text = chunk.split("&", 1)
+            rows[label.strip().splitlines()[-1].strip()] = text
+    return rows
+
+
+def check_verification_rows(status: dict, tex: str) -> None:
+    """Section 18 must agree with status.json for every result mapped to a table row."""
+    rows = verification_rows(tex)
+    for key, result in status["results"].items():
+        for label in result.get("verification_rows", []):
+            if label not in rows:
+                raise ValueError(f"Section 18 has no claim row {label!r} for {key}")
+            text = rows[label]
+            if result["status"] == "lean" and not LEAN_CITATION.search(text):
+                raise ValueError(f"Section 18 row {label!r} cites no Lean source, "
+                                 f"but status.json marks {key} Lean-checked")
+            if result["status"] == "paper" and ("paper" not in text or LEAN_CITATION.search(text)):
+                raise ValueError(f"Section 18 row {label!r} must say paper proof and cite no "
+                                 f"Lean source, because status.json marks {key} as a paper proof")
 
 
 def has_list_comma(phrase: str) -> bool:
@@ -1029,6 +1064,7 @@ def bibliography(sources: dict[str, str]) -> str:
 def assemble() -> dict[str, str]:
     sources = load_sources()
     status = load_status()
+    check_verification_rows(status, (DEST / "verification.tex").read_text(encoding="utf-8"))
     output = {}
     output.update(v5_material(sources, status))
     output["status-abstract.tex"] = status_text(status, "abstract")
