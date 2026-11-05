@@ -46,6 +46,7 @@ or CI run passes.
 | Hard-budget fallback and three RMS minimax bounds | [hard-budget-rms-20261104](hard-budget-rms-20261104/README.md) |
 | Critical-law minimax confidence lower bound | [critical-confidence-20261104](critical-confidence-20261104/README.md) |
 | Uniform finite-cap convergence and the linear sufficient cap | [genie-rate-20261104](genie-rate-20261104/README.md) |
+| All-law quantile upper comparison at the exact scalar-root factor | [sharp-quantile-upper-20261105](sharp-quantile-upper-20261105/README.md) |
 | Sharp finite-core selection reduction and entropy Lipschitz bound | [quantile-core-reduction-20261105](quantile-core-reduction-20261105/README.md) |
 | Sharp finite-vector quantile factor and unique scalar root | [optimal-quantile-root-20261105](optimal-quantile-root-20261105/README.md) |
 | General-law $31/20$ quantile comparison | [quantile-price-20261104](quantile-price-20261104/README.md) |

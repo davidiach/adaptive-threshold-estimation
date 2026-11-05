@@ -18,7 +18,7 @@ $$
  1.462554551279 < c_* < 1.462554551280 .
 $$
 Finite laws approach the same supremum as general laws. The characterization
-is a paper proof. Lean now checks the unique scalar root and its exact equivalence to all finite-vector bounds, including a counterexample below the root. The arbitrary-law reduction and finite-law realization remain to be formalized. [Native record](../results/optimal-quantile-root-20261105/README.md)
+is a paper proof. Lean now checks the unique scalar root and its exact equivalence to all finite-vector bounds, including a counterexample below the root. Finite-law realization and sharpness over gap laws remain to be formalized. [Native record](../results/optimal-quantile-root-20261105/README.md)
 
 The [exact arithmetic verifier](../tools/verify_optimal_quantile_factor.py)
 certifies the displayed numerical bracket. It uses a concrete six-atom
@@ -202,4 +202,8 @@ root, independent of the displayed rounding, specifies the exact factor.
 
 ## Native finite-core reduction
 
-Lean checks the 1-Lipschitz bound for the square root of entropy after adding $y^2$ in the boundary coordinate. It also checks skipped-tail absorption, the concave reduction to disjoint core vectors and both boundary-coordinate cases, giving the exact scalar-root factor for arbitrary nonnegative finite core splits. General-law measure normalization and finite-law realization remain to be formalized. [Native record](../results/quantile-core-reduction-20261105/README.md)
+Lean checks the 1-Lipschitz bound for the square root of entropy after adding $y^2$ in the boundary coordinate. It also checks skipped-tail absorption, the concave reduction to disjoint core vectors and both boundary-coordinate cases, giving the exact scalar-root factor for arbitrary nonnegative finite core splits. The all-law comparison below includes the measure normalization. [Native record](../results/quantile-core-reduction-20261105/README.md)
+
+## Native all-law upper comparison
+
+The normalization of arbitrary gap laws is now Lean-checked. For every positive-gap probability law, $0<\rho\le1/4$ and $B>0$, the original selection functional satisfies $\mathcal K\le Q\le c_{\rm vec}\mathcal K$, where $c_{\rm vec}$ is the exact unique scalar root. The proof includes fractional quantile atoms, countable tail merging, saturation and infinite selected entropy. The mathematical selection-value comparison also holds for $\rho\le1$. Finite-law realization and sharpness over gap laws remain to be formalized. [Native record](../results/sharp-quantile-upper-20261105/README.md)

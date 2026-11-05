@@ -91,4 +91,6 @@ Run `verify_rms_localization.py` for [generic RMS obstruction transfer and addit
 
 Run `verify_optimal_quantile.py` for the [sharp finite-vector factor and unique scalar root](../results/optimal-quantile-root-20261105/README.md). The numerical bracket uses the separate exact-arithmetic tool `verify_optimal_quantile_factor.py`.
 
-Run `verify_quantile_sharp_law.py` for the [entropy Lipschitz and finite-core reduction](../results/quantile-core-reduction-20261105/README.md). General-law measure normalization and finite-law realization remain paper proofs.
+Run `verify_quantile_sharp_law.py` for the [entropy Lipschitz and finite-core reduction](../results/quantile-core-reduction-20261105/README.md). The same audit now includes the all-law upper comparison below.
+
+The `verify_quantile_sharp_law.py` audit now includes the [all-law upper comparison](../results/sharp-quantile-upper-20261105/README.md) at the exact scalar-root coefficient.
