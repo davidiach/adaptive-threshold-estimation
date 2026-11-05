@@ -310,7 +310,7 @@ $\delta$. Square-root budget scaling compares it to the inflation in (16)
 by a universal factor. This proves matching law and rarity dependence in
 the asymptotic deterministic-envelope sense.
 
-The complete matching theorem is a paper proof. The native audit checks
+The complete matching theorem is a paper proof. The [15-statement native audit](../results/anytime-lower-20261105/README.md) checks
 the common-family information bounds and the posterior and per-flip KL inequalities.
 The sequential testing lemma, infinite-moment construction, its acquisition-law
 transfer and the asymptotic comparisons remain to be formalized in Lean.
