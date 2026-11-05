@@ -331,6 +331,8 @@ jobs:
         run: python tools/verify_anytime_confidence.py
       - name: Verify the smooth-density construction and adaptive information bound
         run: python tools/verify_smooth_density.py
+      - name: Verify observed-state proof components and the concrete experiment
+        run: python tools/verify_observed_states.py
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
       - uses: actions/upload-artifact@v4

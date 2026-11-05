@@ -1,0 +1,84 @@
+\section{The finite-cell observed-state lower bound}
+\label{app:finite-observed}
+
+This appendix formalizes \cref{prop:outer} for arbitrary measurable
+selected-state policies, including revisits, interleaving, private
+randomness, free outer samples, and unbounded stopping.
+
+\begin{theorem}[Verified finite-cell obstruction]
+\label{thm:finite-observed-verified}
+Let $\mu$ be any probability law on $(0,1/2]$, let $0<h\le1/2$,
+and let $0<\delta\le1/8$. There is a finite measurable partition
+$(A_i)$ of $[0,1]$, with cell magnitudes $d_i\in(0,1/2]$ and
+weights $w_i=|A_i|$, such that
+\[
+ \sum_{i:d_i\le x}w_i\le F_\mu(x),\qquad
+ \Delta=\frac14\sum_i w_i\min\{1,h/d_i\}
+ \ge\frac18\omega_\mu(h)>0.
+\]
+For each deterministic sign array $s$, take
+$X\in\{-1,1\}$ with conditional mean
+$(2s_i-1)2d_i$ on $A_i$. Its target is
+$\theta_s=\Pr(\mathbb E[X\mid U]>0)=\sum_iw_i s_i$.
+Every selected-state estimator satisfying
+\[
+ \sup_s\Pr_s(|\widehat\theta-\theta_s|>\Delta/4)\le\delta,
+ \qquad \sup_s\mathbb E_sN\le B
+\]
+obeys
+\[
+ B\ge\frac{225}{128h^2}
+       \operatorname{kl}(1-2\delta,2\delta).
+\]
+\end{theorem}
+
+\begin{proof}
+Raise each gap to at least $h$, then apply the finite upward rounding
+grid with distortion two. This gives a measurable finite-range map $T$
+with $d\le T(d)$ and
+\[
+ \min\{1,h/d\}\le2\min\{1,h/T(d)\}.
+\]
+Write its distinct values as $b_j$ and their probabilities as $a_j$.
+Then $\Delta=\frac14\omega_{T_\#\mu}(h)\ge\omega_\mu(h)/8>0$.
+Choose an integer $M>0$ with
+$M^{-1}\le\delta\Delta^2/16$.
+A measurable image of uniform measure on $[0,1]$ realizes
+$\mu\otimes\operatorname{Unif}\{1,\ldots,M\}$ exactly.
+The fibers of the pair consisting of the rounded-gap label and the
+replication index form the cells. They have weights $a_j/M$ and
+magnitudes $b_j$. Upward rounding gives the CDF inequality, and
+\[
+ \sum_iw_i^2=\frac1M\sum_j a_j^2
+ \le\frac1M\le\frac{\delta\Delta^2}{16}.
+\]
+Place independent signs on these cells with probabilities
+$q_i^\pm=1/2\pm\eta_i$, where
+$\eta_i=\frac18\min\{1,h/d_i\}$.
+Their target means differ by $\Delta$.
+Under either product prior, the target variance is at most
+$\sum_iw_i^2/4$. Consequently,
+\[
+ \Pr_\pm\bigl(|\theta_s-\mathbb E_\pm\theta_s|>\Delta/8\bigr)
+ \le\frac{16\sum_iw_i^2}{\Delta^2}\le\delta.
+\]
+Thresholding the estimator at the midpoint of the two target means
+therefore gives a test with each error at most $2\delta$.
+
+Each query consumes one observation from its cell's independent
+Bernoulli tape. The Bayes mixture realizes the adaptive simulator's
+finite-prefix laws, and its expected physical work is at most $B$.
+Since $0\le\eta_i\le1/8$ and $d_i\eta_i\le h/8$, the checked
+stopped-transcript bound gives
+$\operatorname{KL}(\mathbb P_+,\mathbb P_-)\le(128/225)h^2B$.
+Binary data processing supplies
+$\operatorname{kl}(1-2\delta,2\delta)$ as a lower bound.
+Combining the inequalities proves the result.
+\end{proof}
+
+The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/73511713e46e71ac977e191bb128cdd8e951ff64/lean/ThresholdHC/ObservedState/Finite.lean}{full Lean statement}
+constructs the partition and checks the conditional mean, magnitude,
+target, and lower bound. It uses the second-moment replication condition
+$M^{-1}\le\delta\Delta^2/16$.
+The paper's Hoeffding-based cell count and continuous-magnitude
+extension retain their separate paper proofs.
