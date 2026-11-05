@@ -886,10 +886,12 @@ and selected-type $16/3$ transfers through unbounded stopping, including
 private randomization, countably many persistent labels and exact physical
 work. Finite expected work is required at both endpoints. The minimax
 $1/128$ conclusion is checked given the quantitative policy-uniform
-common-pair premise. Deriving that premise from a variance–work obstruction
-and proving fractional-submeasure confidence localization remain separate
-formalization tasks.
-[Single-type record](../results/confidence-population-20261104/README.md) · [Selected-type record](../results/adaptive-types-20261105/README.md)
+common-pair premise. The policy-uniform pair is now constructed in Lean
+from a variance–null-work obstruction for every known gap law, including
+endpoint atoms. The resulting $1/128$ estimator and minimax confidence
+bounds are checked. Fractional-submeasure confidence localization and its
+entropy-packing application remain formalization work.
+[Single-type record](../results/confidence-population-20261104/README.md) · [Selected-type record](../results/adaptive-types-20261105/README.md) · [Common-pair record](../results/common-pair-20261105/README.md)
 
 **Amplification.** If a procedure has $\mathbb ET\le b$ and RMS at most $R(b)$,
 the median of $m$ independent copies, with $m$ the least odd integer such that

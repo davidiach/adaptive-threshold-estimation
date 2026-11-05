@@ -80,3 +80,5 @@ Run `verify_continuous_observed.py` for the [continuous-magnitude lower bounds a
 Run `verify_observed_upper.py` for the [full fresh-state upper-bound transfer and uniform-gap rates](../results/observed-state-upper-20261105/README.md).
 
 Run `verify_typed_confidence.py` for the [selected-type information transfer](../results/adaptive-types-20261105/README.md), including exact work charging and stopped reconstruction.
+
+Run `verify_confidence_localization.py` for the [common-pair construction and its confidence consequence](../results/common-pair-20261105/README.md).

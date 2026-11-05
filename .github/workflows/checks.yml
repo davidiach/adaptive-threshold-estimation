@@ -339,6 +339,8 @@ jobs:
         run: python tools/verify_observed_upper.py
       - name: Verify heterogeneous adaptive-type information transfer
         run: python tools/verify_typed_confidence.py
+      - name: Verify common-pair confidence-localization components
+        run: python tools/verify_confidence_localization.py
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
       - uses: actions/upload-artifact@v4
