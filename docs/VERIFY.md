@@ -858,3 +858,5 @@ The [theorem and boundary](FINITE_FAMILY_ADAPTATION.md) separate these component
 from the paper-only moment-determinacy and full observable-controller arguments.
 Run `python -m unittest discover -s toolkit/tests -p test_law_identification.py -v`
 for the executable rational pilot. Those tests do not formally verify Python.
+
+[Native record for the finite-family components](../results/law-adaptation-20261105/README.md).

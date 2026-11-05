@@ -166,3 +166,5 @@ model approximation and unobserved small-gap mass while retaining honest
 coverage and oracle-rate width. Finite-family identification alone does not
 supply that argument.
 
+
+[Native 17-statement record](../results/law-adaptation-20261105/README.md).

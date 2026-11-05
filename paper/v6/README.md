@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Read the updated manuscript](builds/finite-cap-truncation-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/finite-cap-truncation-20261105.json)
+[Read the updated manuscript](builds/law-adaptation-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/law-adaptation-20261105.json)
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -366,3 +366,20 @@ without body changes. All 29 fonts are embedded, references resolve, and no
 new layout warning appears. Earlier publications remain unchanged.
 
 [Updated manuscript](builds/finite-cap-truncation-20261105.pdf) · [Build record](builds/finite-cap-truncation-20261105.json) · [Native audit](../../results/finite-cap-truncation-20261105/README.md)
+
+
+## Eventual adaptation within a finite candidate family
+
+Section V.2 proves that a paid sign-neutral moment pilot identifies the true
+member of a supplied finite family and then recovers its known-law time-uniform
+rate beyond an explicit onset budget. Seventeen Lean statements verify the
+parity, concentration, identification, probability-transfer and delayed-rate
+components. Moment determinacy and the complete observable-controller
+construction remain paper proofs. Arbitrary-law oracle adaptation remains open.
+
+The new 169-page PDF has two byte-identical offline builds. All four changed
+pages (3, 50, 159 and 160) were visually inspected; nine later pages relocate
+without body changes. All 29 fonts are embedded, references resolve, and no
+new layout warning appears. Prior publications remain unchanged.
+
+[Updated manuscript](builds/law-adaptation-20261105.pdf) · [Build record](builds/law-adaptation-20261105.json) · [Native component audit](../../results/law-adaptation-20261105/README.md)

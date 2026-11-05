@@ -1,0 +1,141 @@
+\subsection{Oracle-rate adaptation within a supplied finite family}
+\label{sec:finite-family-adaptation}
+
+A supplied finite family permits eventual adaptation, even when its
+supports and gap locations differ. The identification cost is explicit.
+
+Let $\mu_1,\ldots,\mu_r$ be distinct probability laws on $(0,1/2]$, with
+$r\ge2$, and fix known $0<\rho\le1/4$, $0<\delta\le1/4$. The algorithm knows
+the family but not its true member. Under that member the sign can depend
+arbitrarily on the gap, with total positive mass at most $\rho$.
+Write
+\[
+ a_{i,k}=\int(2d)^{2k}\,\mu_i(dd),\qquad k\ge1.
+\]
+Choose $m\ge1$ for which the first $m$ moment signatures are distinct, and put
+\[
+ \eta=\min_{i\ne j}\max_{1\le k\le m}|a_{i,k}-a_{j,k}|,\qquad
+ n=\left\lceil\frac{32}{\eta^2}\log\frac{4m}{\delta}\right\rceil,\qquad
+ H=n\,m(m+1).
+ \tag{FA1}
+\]
+Such an $m$ exists and $\eta>0$, as proved below. These quantities are
+determined before any observations are purchased.
+
+\begin{theorem}[Finite-family adaptation]\label{thm:finite-family-adaptation}
+There is one observable online procedure with nested intervals $I(B)$ and
+a physical cap of $B$ flips at every integer budget $B\ge0$. Under each
+candidate $\mu_i$ and every admissible sign law, with probability at least
+$1-\delta$ it simultaneously covers the positive fraction at every budget
+and, for every $B\ge2H$, satisfies
+\[
+ \operatorname{halfwidth} I(B)\le
+ 3000004\,\mathcal K_{\mu_i,\rho}
+       \!\left(\frac{B}{\Lambda(B,\delta)}\right).
+ \tag{FA2}
+\]
+Here $\Lambda$ is the known-law time-uniform inflation defined at the start
+of this appendix. A singleton family uses the known-law procedure directly.
+\end{theorem}
+
+The additive cost $H$ depends on the family; no oracle comparison is
+claimed before it has been paid.
+
+\paragraph{Sign-neutral observations.}
+For a fresh coin buy $2k$ flips $X_1,\ldots,X_{2k}$ and record the observable
+statistic
+\[
+ Z_k=\prod_{\ell=1}^{2k}(2X_\ell-1)\in\{-1,1\}.
+\]
+Conditionally on its persistent gap $d$ and sign $s$, the flips are iid and
+\[
+ \mathbb E[Z_k\mid d,s]=(2d)^{2k}.
+ \tag{FA3}
+\]
+Indeed each factor has conditional mean $2d$ or $-2d$, and the exponent is
+even. Thus $\mathbb E_{\mu_i}Z_k=a_{i,k}$, irrespective of how the sign
+depends on the gap. Fresh coins supply independent parity observations.
+The pilot observes only identities and paid flips.
+
+\paragraph{Separation by finitely many moments.}
+Push a candidate law forward by the injective map $d\mapsto(2d)^2$ into
+$[0,1]$. Equality of all positive moments, together with total mass one,
+would imply equality of integrals of all polynomials. Uniform polynomial
+approximation then gives equality of integrals of all continuous functions
+on this compact interval, hence equality of the probability measures.
+The inverse map on $(0,1]$ is measurable, so the original laws would be
+equal as well. Each distinct pair therefore has a differing positive
+moment. There are finitely many pairs; take $m$ at least as large as all
+of their witnessing indices. This proves (FA1) is well-defined.
+
+For finite-support candidates with $s$ points in their combined support,
+moments $0,\ldots,s-1$ form an invertible Vandermonde system on the distinct
+numbers $(2d)^2$. Total mass is already one, so $m\le s-1$ suffices.
+
+\paragraph{A paid identification pilot.}
+For each $k=1,\ldots,m$, take $n$ fresh coins and buy $2k$ flips on each.
+Let $\widehat a_k$ be their average parity. All flips, including revisits,
+are charged; their total is exactly $H$.
+Hoeffding's inequality for independent variables in $[-1,1]$ gives
+\[
+ \Pr_{\mu_i}\{|\widehat a_k-a_{i,k}|>\eta/4\}
+ \le2\exp(-n\eta^2/32).
+\]
+The union bound over the $m$ coordinates is at most $\delta/2$ by (FA1).
+Choose the first candidate whose every coordinate lies within $\eta/4$
+of the empirical signature, and use the first candidate if none is
+compatible. When every coordinate is accurate, the true candidate is
+compatible. Two compatible candidates would have distance at most
+$\eta/2<\eta$, contradicting separation. Thus the pilot selects the true
+law with probability at least $1-\delta/2$, uniformly over its sign laws.
+The finite threshold rule is measurable.
+
+\paragraph{One controller and one simultaneous event.}
+During the pilot output $[0,\rho]$, pausing between flips as needed.
+After $H$ flips run the selected candidate's known-law controller with
+failure allowance $\delta/2$, fresh labels and independent private
+randomness. Its remaining budget is $B-H$. Actions have consistent
+prefixes across budgets. The known-law cap is pathwise, so the physical
+cap holds even when identification fails.
+
+Under true candidate $i$, its hypothetical controller on the fresh stream
+has simultaneous failure probability at most $\delta/2$. Correct
+identification makes it the actual controller. Actual failure is therefore
+contained in the union of pilot error and this one controller's failure.
+No union over candidates or independence of these events is needed.
+Fresh labels and randomness give the required post-pilot marginal law.
+The two allowances sum to $\delta$. Nested intersections preserve
+simultaneous coverage, including at data-dependent stopping budgets.
+
+\paragraph{Oracle width after the pilot.}
+On that joint event, for $B-H\ge1$ the known-law theorem bounds the
+half-width by
+\[
+ 1500002\,\mathcal K_{\mu_i,\rho}
+ \!\left(\frac{B-H}{\Lambda(B-H,\delta/2)}\right).
+\]
+For $B\ge2H$, the remaining budget is at least $B/2$. Moreover
+\[
+ \Lambda(B-H,\delta/2)\le\Lambda(B,\delta)+\log2
+                    \le2\Lambda(B,\delta).
+\]
+The last inequality uses $\delta\le1/4$.
+Thus the effective remaining budget is at least
+$B/[4\Lambda(B,\delta)]$. Monotonicity and square-root budget scaling of
+$\mathcal K$ prove (FA2). The family with one member needs no pilot.
+
+\paragraph{Verification and unresolved scope.}
+The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/507f0f5e5dea0ac53e5376f3d911b58ec3096c72/lean/ThresholdHC/LawAdaptation/Parity.lean}{parity identities},
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/507f0f5e5dea0ac53e5376f3d911b58ec3096c72/lean/ThresholdHC/LawAdaptation/Pilot.lean}{concentration and identification bound},
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/507f0f5e5dea0ac53e5376f3d911b58ec3096c72/lean/ThresholdHC/LawAdaptation/Transfer.lean}{probability and cap transfer},
+and \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/507f0f5e5dea0ac53e5376f3d911b58ec3096c72/lean/ThresholdHC/LawAdaptation/Rate.lean}{delayed-rate comparison}
+have a 17-statement exact-type and transitive-axiom Lean audit. The
+moment-determinacy argument, fresh-coin pilot realization, and complete
+selected-controller construction above remain paper proofs. The rational
+finite-law pilot has executable tests, not a formal verification of Python.
+
+The pilot cannot test membership in the supplied family, and close
+signatures can make $H$ large. Arbitrary-law adaptation remains open:
+it requires control of approximation error and unobserved small-gap mass
+compatible with honest oracle-rate intervals.
+
