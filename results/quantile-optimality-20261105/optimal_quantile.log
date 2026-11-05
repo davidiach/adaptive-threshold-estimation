@@ -1,0 +1,68 @@
+'ThresholdHC.OptimalQuantile.all_finite_bounds_iff_peak' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.all_finite_bounds_iff_root' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.all_finite_bounds_iff_root_unrestricted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.OptimalQuantile.all_finite_bounds_iff_series' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.all_tangents_iff_peak' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.dualPrice_continuousOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.dualPrice_ge_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.dualPrice_mono_in_tangent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.dualPrice_strict_in_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.exists_unique_scalarRoot' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.exp_seven_fifths_lt_five' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.exp_three_lt_twentyfive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.exp_two_gt_five' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.exponentialTail_antitone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.exponentialTail_bound_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.exponentialTail_summable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.exponential_entropy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.exponential_term_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.finitePartition_eq_range' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.finitePartition_eq_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.finitePartition_le_series' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.finitePartition_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.finiteVectorBound_iff_partition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.finiteVectorBound_zero_requires_sqrt_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.OptimalQuantile.finite_vector_witness_below_root' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.OptimalQuantile.first_exponent_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.partitionSeries_clamped_continuous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.OptimalQuantile.partitionSeries_continuousOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.partitionSeries_continuousOn_tangent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.OptimalQuantile.partitionSeries_le_one_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.partitionSeries_le_peak' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.partitionSeries_mono_above_factor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.OptimalQuantile.partitionSeries_strict_in_factor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.OptimalQuantile.power_two_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.price_iff_all_tangents' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.root_price_iff_entropy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.root_price_iff_partition' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.scalarPeak_attained' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.scalarPeak_continuousOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.scalarPeak_le_one_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.scalarPeak_lower_endpoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.scalarPeak_strictAntiOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.scalarPeak_upper_endpoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.scalarRoot_bounds_all_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.scalarRoot_interior' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.scalarRoot_spec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.scaled_root_bound_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.sqrt_tangent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.sqrt_tangent_attained' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.tangentOffset_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.tangentWeight_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.tangent_price_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.tangent_sum_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.OptimalQuantile.weighted_entropy_iff_partition' depends on axioms: [propext, Classical.choice, Quot.sound]

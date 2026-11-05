@@ -123,8 +123,31 @@ $\exp(2-k^2-(k/u-1)^2)$ and decreases for $u\ge k$. On the stated
 range of $k$ we can therefore maximize on $[1,31/20]$. The series is
 uniformly convergent there and $\lambda$ increases strictly in $k$.
 The maximum is continuous and strictly decreasing, by taking a
-maximizer on this compact interval. The numerical inequalities below
-straddle one and give the unique root.
+maximizer on this compact interval. At $k=\sqrt2$, $u=1$, the first
+summand is at least $4/5$ and the first tail term is greater than $1/5$.
+At $k=31/20$, $\lambda_k(u)\ge3$. The first summand is less than $3/4$,
+and the tail is bounded by $e^{-2}/(1-e^{-3})<1/4$.
+These analytic bounds straddle one and give a unique root $c_{\rm vec}$.
+
+\begin{proposition}\label{prop:sharp-finite-vector-factor}
+For every real $k$, the inequality
+\[
+ 1+\sqrt{G(a,b_0,\ldots,b_{s-1})}
+ \le k\left(\sqrt{1+a}+\sum_{j=0}^{s-1}2^jb_j\right)
+\]
+holds for every finite length $s$ and all $a,b_j\ge0$ if and only if
+$c_{\rm vec}\le k$. Every smaller factor has a finite nonnegative-vector
+counterexample.
+\end{proposition}
+The preceding scalar argument proves the proposition. For $k<\sqrt2$,
+the vector $a=1$, $s=0$ already violates the inequality.
+Lean checks the \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/43a60579395c6b14f33ccd9a23f5e7a928eb843e/lean/ThresholdHC/OptimalQuantile/Root.lean}{unique scalar root},
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/43a60579395c6b14f33ccd9a23f5e7a928eb843e/lean/ThresholdHC/QuantileSharpLaw/Full.lean}{all-law upper comparison},
+and \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/43a60579395c6b14f33ccd9a23f5e7a928eb843e/lean/ThresholdHC/QuantileOptimality/Full.lean}{finite-law sharpness construction}.
+The three native audits verify 219 exact statements and 219 transitive
+axiom reports. Every factor below the root has a finite-support counterexample
+in the original selection model. The numerical bracket below uses separate
+rational verification.
 
 \paragraph{Rational certification.}
 The lower endpoint uses $t=\eta=2^{-40}$, $\rho=1/8$, $h=t/16$ and

@@ -32,8 +32,9 @@ proof, and no Lean theorem is stated with the factor $5/3$. Later Lean results
 imply (3). For every probability law on $(0,1/2]$, $0<\rho\le1/4$ and $B>0$,
 Lean checks $\mathcal K\le Q\le\frac{31}{20}\mathcal K$
 ([record](../results/quantile-price-20261104/README.md)), and the
-[$8/5$ comparison](../lean/ThresholdHC/QuantileSelection/Full.lean) is also
-checked. In the formal observable experiment Lean proves
+[$8/5$ comparison](../lean/ThresholdHC/QuantileSelection/Full.lean) and the
+[exact least factor](../results/quantile-optimality-20261105/README.md),
+about $1.4626$, are also checked. In the formal observable experiment Lean proves
 $10^{-17}Q\le R\le30001Q$ for every such law
 ([scope](RESULTS.md#general-law-rare-event-characterization)), which is
 stronger than the consequence derived below. The calculator is still neither

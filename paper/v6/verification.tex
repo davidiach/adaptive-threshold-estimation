@@ -143,7 +143,7 @@ For $0<\rho\le1/4$ and $B>0$,
 gives $\mathcal K\le Q\le(8/5)\mathcal K$ for arbitrary gap laws.
 A \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/a1f9b7c3f757798068c7a7db45d9c1fa9ee19a2c/lean/ThresholdHC/QuantilePrice/Full.lean}{sharper Lean theorem}
 gives $Q\le(31/20)\mathcal K$ using a $16/9$ bound on separated supports.
-The exact factor in \cref{app:optimal-quantile-factor} has a paper proof.
+Lean checks the unique scalar root, the all-law upper comparison and finite-law sharpness in \cref{app:optimal-quantile-factor}. The proof includes the finite-vector and entropy-Lipschitz reductions. The numerical bracket uses separate exact-arithmetic verification.
 For finite support,
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/1cafb0cc0fca2a4633fb1c2046f0076c16af1deb/lean/ThresholdHC/BandwiseSuffix/Full.lean}{the suffix theorem}
 gives a hard optimizer of the uncapped objective and identifies its capped
@@ -485,7 +485,7 @@ and
 \Cref{app:smooth-density} verifies \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/8e42a99a49dcd4af8bdaaf17a6ea1c398f34b03b/lean/ThresholdHC/SmoothDensity/Full.lean}{smooth-density robustness}.
 \Cref{app:finite-observed,app:continuous-observed} check the observed-state lower bounds and regularity.
 \Cref{app:observed-upper} verifies the corresponding upper bounds.
-The sharp factor has a paper proof in \cref{app:optimal-quantile-factor}. Unrestricted selection complexity
+\Cref{app:optimal-quantile-factor} verifies the sharp factor for all gap laws. Unrestricted selection complexity
 remains open. The
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/8a701c8db6c42930ad2a187f3d895ca55265afd6/research/2026-10-30-confidence-transfer/NOTE.md}{confidence-transfer paper proof}
 uses the checked

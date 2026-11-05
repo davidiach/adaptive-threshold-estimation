@@ -64,7 +64,7 @@ coefficient directly. The separately checked
 [fractional-submeasure theorem](ADDITIVE_CONFIDENCE.md) retains
 its explicit component variance–null-work premises.
 
-The sharp quantile-factor characterization remains a paper proof.
+The sharp quantile-factor characterization is now [Lean-checked](../results/quantile-optimality-20261105/README.md).
 The law-dependent time-uniform lower bound, unknown-law oracle-rate
 adaptation, unrestricted exact-selection complexity and optimal cap
 convergence rate remain open research. Human specialist review is

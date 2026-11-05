@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Read the updated manuscript](builds/rms-localization-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/rms-localization-20261105.json)
+[Read the updated manuscript](builds/quantile-optimality-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/quantile-optimality-20261105.json)
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -51,7 +51,7 @@ the unbiased characterization with constants 1/16 and 713, the confidence
 characterization, the magnitude-oracle lower bounds, and the rare-event
 rate above exponent two. It also checks both halves and the full entropy–tail
 law, the two-sided closed quantile rate for every law, the comparison
-$K\le Q\le(31/20)K$ (the sharp factor of Appendix P has a paper proof only),
+$K\le Q\le(31/20)K$ and the exact least comparison factor of Appendix P,
 and the existence of a finite-law optimizer that selects
 a suffix in each dyadic band. For arbitrary laws it checks variation and
 rounding stability and the finite-approximation enclosures. It also checks the stopping-program, fixed-cap
@@ -312,3 +312,11 @@ finite-budget and unbiased models. [Build record](builds/stochastic-envelope-202
 [Sharper general-law confidence](entropy-confidence.tex) proves the lower coefficient $10^{-17}$ through a direct stopping-program comparison and retains the hard-cap upper coefficient $750000$. [Manuscript](builds/entropy-confidence-20261105.pdf) · [Build record](builds/entropy-confidence-20261105.json)
 
 [RMS obstruction transfer and additive localization](rms-localization.tex) verify coefficient $1/128$ using midpoint-work Hellinger bounds and binary testing. [Manuscript](builds/rms-localization-20261105.pdf) · [Build record](builds/rms-localization-20261105.json)
+
+The unique scalar root and sharp finite-vector quantile factor are now Lean-checked in Appendix P. The arbitrary-law reduction and finite-law realization remain paper proofs. [Updated manuscript](builds/finite-vector-root-20261105.pdf) · [Build record](builds/finite-vector-root-20261105.json) · [Native record](../../results/optimal-quantile-root-20261105/README.md)
+
+The entropy Lipschitz bound and sharp finite-core selection reduction in Appendix P now have native proofs. General-law measure normalization and finite-law realization remain paper proofs. [Updated manuscript](builds/quantile-core-reduction-20261105.pdf) · [Build record](builds/quantile-core-reduction-20261105.json) · [Native record](../../results/quantile-core-reduction-20261105/README.md)
+
+The upper comparison at the exact scalar-root factor is now Lean-checked for every gap law. Finite-law sharpness remains a paper proof. [Updated manuscript](builds/sharp-quantile-upper-20261105.pdf) · [Build record](builds/sharp-quantile-upper-20261105.json) · [Native record](../../results/sharp-quantile-upper-20261105/README.md)
+
+The exact scalar-root characterization, all-law comparison and finite-law sharpness in Appendix P are now Lean-checked. The decimal bracket retains separate rational verification. [Updated manuscript](builds/quantile-optimality-20261105.pdf) · [Build record](builds/quantile-optimality-20261105.json) · [Complete native record](../../results/quantile-optimality-20261105/README.md)
