@@ -785,3 +785,7 @@ Run `python tools/verify_continuous_observed.py` for 34 exact statements and 87 
 ## Fresh-state upper-bound transfer
 
 Run `python tools/verify_observed_upper.py` for 21 exact statements and 42 transitive axiom reports. The audit covers the parameter law, complete transcript, actual work and risk identities, universal modulus upper bounds and uniform-gap complexity. [Native record](../results/observed-state-upper-20261105/README.md)
+
+## Selected-type information transfer
+
+Run `python tools/verify_typed_confidence.py` for 48 exact statements and 48 transitive axiom reports. The audit covers heterogeneous parameter laws, quarter-mixture hybrids, actual local and total work, randomized countable populations, stopped reconstruction and the final $16/3$ null-work transfer. [Native record](../results/adaptive-types-20261105/README.md)

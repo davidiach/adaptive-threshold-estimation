@@ -5,7 +5,7 @@
 Minimax theory for estimating a threshold probability from noisy coin flips,
 with a research manuscript, Lean 4 proofs built on Mathlib, and reproducible experiments.
 
-**[Paper](paper/v6/builds/observed-state-upper-20261105.pdf)** · **[Formal proof map](lean/README.md)** · **[Verification guide](docs/VERIFY.md)** · **[Specialist review packet](paper/critical-review/review.pdf)**
+**[Paper](paper/v6/builds/adaptive-types-20261105.pdf)** · **[Formal proof map](lean/README.md)** · **[Verification guide](docs/VERIFY.md)** · **[Specialist review packet](paper/critical-review/review.pdf)**
 
 New contributors: start with [CONTRIBUTING.md](CONTRIBUTING.md).
 AI agents: read [AGENTS.md](AGENTS.md) for current entry points, preservation
@@ -186,7 +186,7 @@ experiments provide supporting evidence, not proofs of universal claims.
 The general-law entropy-tail and closed-quantile rates are now Lean-checked
 with explicit coefficients. The [stochastic-envelope corollary](results/stochastic-envelope-20261105/README.md)
 also has a Lean proof for RMS, confidence and unbiased estimation. The remaining
-formalization targets include adaptive-type confidence localization and the sharp quantile factor. The [fresh-state upper-bound transfer](results/observed-state-upper-20261105/README.md) completes the observed-state rates. The [continuous-magnitude lower bounds and regularity](results/continuous-observed-lower-20261105/README.md) are now Lean-checked. The [finite-cell observed-state lower bound](results/finite-observed-20261105/README.md) is now Lean-checked. The [smooth-density theorem](results/smooth-density-20261105/README.md) now has complete Lean proofs for complexity and unbiased impossibility. The
+formalization targets include common-pair derivation, additive confidence localization and the sharp quantile factor. The [selected-type information transfer](results/adaptive-types-20261105/README.md) is now Lean-checked through unbounded stopping. The [fresh-state upper-bound transfer](results/observed-state-upper-20261105/README.md) completes the observed-state rates. The [continuous-magnitude lower bounds and regularity](results/continuous-observed-lower-20261105/README.md) are now Lean-checked. The [finite-cell observed-state lower bound](results/finite-observed-20261105/README.md) is now Lean-checked. The [smooth-density theorem](results/smooth-density-20261105/README.md) now has complete Lean proofs for complexity and unbiased impossibility. The
 [logarithmic and intermediate power rows](results/shifted-power-20261105/README.md) now have complete Lean proofs. The [row below one](results/sublinear-power-20261105/README.md) is Lean-checked for RMS and fixed confidence. The sharp quantile factor now has a paper proof. The [finite-cap comparison](docs/FINITE_CAP_RATE.md)
 certifies $P_N\le 16R$ at $N=\lceil4B/3\rceil$. Efficient
 exact selection for many bands with unrestricted costs remains open.

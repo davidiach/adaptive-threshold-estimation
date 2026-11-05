@@ -1,0 +1,111 @@
+\clearpage
+\subsection{Adaptive selection of component types}
+\label{sec:typed-confidence}
+
+The confidence transfer also holds when the algorithm chooses the type
+of each fresh coin using its private seed and previous observations.
+Each type has a known gap law and a fixed pair of conditional sign
+priors. A coin retains its type, gap and sign on every revisit.
+
+\begin{theorem}[Verified selected-type information transfer]
+\label{thm:typed-confidence-verified}
+Let the component types form a finite nonempty set. For type $i$, let
+$\mu_i$ be a probability law on $(0,1/2]$ and let $q_i,r_i$ be measurable
+conditional sign probabilities bounded by $1/2$. Suppose that for every
+capped observable single-coin procedure, with any independent auxiliary
+randomness,
+\[
+ 1-\Aff(P_{i,q_i},P_{i,r_i})\le K\,\mathbb E_{i,0}T,
+ \qquad K\ge0.
+\]
+The observation law here retains the auxiliary seed and the actual
+stopped coin prefix. Form the smoothed priors
+\[
+ s_i=\frac{3q_i+r_i}{4},
+ \qquad t_i=\frac{q_i+3r_i}{4}.
+\]
+For every measurable adaptive population policy with independent
+private randomness, if $\mathbb E_s T\le B$ and
+$\mathbb E_tT<\infty$, then its complete observable laws satisfy
+\[
+ \KL(\mathbb P_s\Vert\mathbb P_t)\le\frac{16}{3}KB.
+\]
+The conclusion allows countably many persistent coin labels,
+interleaved revisits, adaptive type choices and unbounded stopping.
+\end{theorem}
+
+\begin{proof}
+Give type $i$ an infinite supply of labels $(j,i)$, $j\in\mathbb N$.
+For $k$ types, encode $(j,i)$ by $jk+i$. This is a bijection, and the
+decoded type of that label is always $i$. The formal
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/1f6a773aa1176a35cd83930d4d37b7251439c03e/lean/ThresholdHC/TypedConfidence/Labels.lean}{label identity}
+equates the physical observation words before and after this encoding.
+An arbitrary policy on these labels therefore includes adaptive type
+selection and persistent revisits.
+
+First fix a deterministic policy, horizon $n$ and finite label family.
+Let $\kappa_j,\tau_j$ be the two unsmoothed Bernoulli parameter laws at
+label $j$. Every consistent word has probability
+\[
+ a(w)\prod_j M_j(w;\lambda_j),
+ \qquad
+ M_j(w;\lambda_j)=\int L_j(w;p)\,d\lambda_j(p),
+\]
+where $a(w)$ is the policy-consistency indicator and $L_j$ is the
+likelihood of the observations of label $j$. These probabilities are
+the exact marginals of independent persistent tapes. Quarter
+smoothing makes the two local supports equal. The logarithm of the
+product ratio gives the
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/1f6a773aa1176a35cd83930d4d37b7251439c03e/lean/ThresholdHC/TypedConfidence/ParameterHybrid.lean}{hybrid identity}
+\[
+ \KL(P_s\Vert P_t)=\sum_j\KL(P_s\Vert P_{s,j\to t}).
+\]
+In the $j$th term, simulate all other tapes under the same reference
+law $s$ and retain them as independent auxiliary randomness.
+Data processing from the genuine local transcript and the $8/3$
+quarter-smoothing bound control that term by $8/3$ times its
+unsmoothed Hellinger loss.
+
+Because $s_j\le1/2$, all-negative expected work is at most twice
+the reference expected work. Each local simulation therefore costs
+at most its reference contribution times $(16/3)K$.
+The local contributions sum exactly to the full expected number of
+physical observations. This proves the finite bound.
+
+\clearpage
+At each finite horizon, a deterministic binary decision tree can use
+only finitely many labels. Restriction to those labels preserves its
+exact word law. Moreover, a word visits at most $n$ distinct labels,
+so the likelihood ratio of the smoothed word laws is at most $3^n$,
+independently of the largest label. This bound permits integration
+over an arbitrary measurable private seed while keeping the seed
+in the observable transcript. The
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/1f6a773aa1176a35cd83930d4d37b7251439c03e/lean/ThresholdHC/TypedConfidence/SeededTransfer.lean}{randomized prefix bound}
+is consequently
+\[
+ \KL(P_{s,n}\Vert P_{t,n})\le
+ \frac{16}{3}K\,\mathbb E_s T_n.
+\]
+
+The simulated path is valid at every step. Its stopped symbols agree
+with the policy's stopping decisions. Finite expected work at each
+endpoint implies almost-sure stopping. On each finite stopping
+event, padding the stopped prefix by stopped symbols reconstructs the
+complete observable seed and tape. The
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/1f6a773aa1176a35cd83930d4d37b7251439c03e/lean/ThresholdHC/TypedConfidence/StoppedTransfer.lean}{entropy reconstruction identity}
+therefore yields
+\[
+ \KL(\mathbb P_s\Vert\mathbb P_t)
+ =\sup_n\KL(P_{s,n}\Vert P_{t,n})
+ \le\frac{16}{3}KB.
+\]
+The
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/1f6a773aa1176a35cd83930d4d37b7251439c03e/lean/ThresholdHC/TypedConfidence/SignTransfer.lean}{final sign-law theorem}
+expresses this bound using the actual known gap laws and conditional
+sign priors.
+\end{proof}
+
+The local policy-uniform Hellinger premise remains an explicit
+hypothesis of this transfer. The separate derivation of a common pair
+from a variance--null-work obstruction, and the fractional-submeasure
+localization conclusion, still retain their paper proofs.
