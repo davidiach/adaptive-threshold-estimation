@@ -271,3 +271,7 @@ A fresh build with another engine or TeX Live release may differ in bytes.
 lower bound and constructs the budgeted median in the observable experiment.
 [Updated manuscript](builds/known-law-confidence-20261104.pdf) ·
 [Build record](builds/known-law-confidence-20261104.json)
+
+The [stochastic-envelope build](builds/stochastic-envelope-20261105.pdf)
+adds the formal verification links for the corollary in the original
+finite-budget and unbiased models. [Build record](builds/stochastic-envelope-20261105.json)

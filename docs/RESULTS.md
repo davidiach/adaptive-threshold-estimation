@@ -23,6 +23,22 @@ boundaries. Historical source pointers below refer to the unchanged
 [v4 paper](../paper/paper.pdf), its [TeX](../paper/paper.tex), and the
 [rare-event continuation](../inputs/next-phase/report/research_note.pdf).
 
+## Unknown gap laws under a stochastic envelope
+
+Suppose the actual gap law $\nu$ satisfies $\nu((0,t])\le\mu((0,t])$
+for every $t>0$. One observable estimator family works over that whole
+class before the reference $\mu$ is chosen. For $B\ge1$ the RMS minimax
+coefficients on $\omega_\mu(1/\sqrt B)$ are $1/64$ and $512$. For
+$0<\delta\le1/4$, the confidence coefficients at scale
+$\sqrt{\log(1/\delta)/B}$ are $15/(256\sqrt2)$ and $8192$.
+
+Finite uniform variance and work under unbiasedness are possible precisely
+when $I=\int d^{-1}\,d\mu$ is finite. The minimax product of separate
+uniform bounds lies between $I^2/16$ and $713I^2$. The upper estimator
+has uniform variance at most $23I$ and uniform work at most $31I$.
+The reference law belongs to the class and supplies all lower bounds.
+[Exact statements and proof record](../results/stochastic-envelope-20261105/README.md)
+
 ## Paper review scope
 
 The [response to the final Opus review](../inputs/next-phase/baseline/Adaptive_Threshold_v4/review/RESPONSE_TO_OPUS.md) records agent review of components incorporated into v4, including the budget-only algorithm and symmetric-KL converse. It explicitly says that the consolidated manuscript has not received independent specialist review. “Paper proof” therefore does not imply external peer review or a complete Lean proof. The later 713 argument, bias counterexample, and unknown-rarity obstruction have a separate [independent agent review](../proposals/RESEARCH_REVIEW.md), whose author did not write those arguments.
