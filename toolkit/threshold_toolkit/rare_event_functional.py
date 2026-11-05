@@ -274,7 +274,8 @@ def quantile_certificate(law: FiniteGapLaw, *, rho: Rational, budget: Rational,
                          precision: Precision = Precision()) -> dict:
     """Cheap rigorous enclosure using K<=Q<=(8/5)*K and T<=K.
 
-    This constant uses the new paper proof, not a Lean-checked statement.
+    Lean checks the 8/5 comparison (lean/ThresholdHC/QuantileSelection/Full.lean);
+    this Python enclosure is not itself checked.
     No stochastic simulation, estimation, or claim of a polynomial-bit running
     time is involved. Arithmetic cost depends on rational bit complexity.
     """

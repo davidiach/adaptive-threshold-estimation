@@ -1,7 +1,8 @@
 """The distribution-blind estimator, ready to run on real items.
 
 This follows the algorithm whose guarantee is machine-checked in
-lean/ThresholdHC/BlindUpper/Full.lean (`distribution_blind_upper`):
+lean/ThresholdHC/BlindUpper/Full.lean (`distribution_blind_upper`, with the
+coefficient 512 in `budgetEstimator_maximalRMSRisk`):
 capped dyadic classifiers, one random geometric level per call, and
 two-success cost calibration. It needs only the flip budget. It never
 needs to know how close the items are to 50/50.

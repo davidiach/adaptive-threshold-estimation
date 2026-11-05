@@ -100,9 +100,10 @@ current CI status from a historical log.
 ## Fresh runs and publication
 
 Several baseline and tier verifiers overwrite tracked files here. Run those in
-a disposable checkout containing the change being checked. Later theorem audits
-write under `.runtime/`; the [tool index](../tools/README.md) describes the other
-temporary output locations. Keep local reruns out of the published records.
+a disposable checkout containing the change being checked. The later theorem
+audits that save logs write them under `.runtime/`; audits added from
+4 November onward only print their kernel report. The [tool index](../tools/README.md) describes the
+other temporary output locations. Keep local reruns out of the published records.
 
 When a task calls for publishing new evidence, add a separately identified
 record with its source identity, commands, outcome, and precise scope. Preserve
