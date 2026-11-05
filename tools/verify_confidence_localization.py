@@ -7,13 +7,14 @@ from verify_blind_upper_components import LEAN, validate_reports
 
 def audit_input():
     source = """
-import ThresholdHC.ConfidenceLocalization.PowerPair
+import ThresholdHC.ConfidenceLocalization.ConfidenceRate
 noncomputable section
 set_option linter.unusedVariables false
 open MeasureTheory ProbabilityTheory InformationTheory Set
 open scoped ENNReal NNReal
 open ThresholdHC ThresholdHC.Proofs ThresholdHC.Tier3 ThresholdHC.Tier4
 open ThresholdHC.CriticalEntropy ThresholdHC.ObservableSimulation ThresholdHC.ConfidenceLocalization
+open ThresholdHC.Tier6 ThresholdHC.RareAboveTwo ThresholdHC.ConfidenceTransfer
 
 example : ∀ {D R E : Type}
     [MeasurableSpace D] [MeasurableSpace R] [MeasurableSpace E]
@@ -92,6 +93,47 @@ example : ∀ {D R E : Type}
       cappedStatisticLaw μ ν p₀ p₁ (fun _ => c) A n :=
   @ThresholdHC.ConfidenceLocalization.statistic_law_const_domination
 
+example : ∀ {D : Type} [MeasurableSpace D]
+    (μ : Measure D) [IsProbabilityMeasure μ] (p₀ p₁ : D → unitInterval)
+    (h₀ : Measurable p₀) (h₁ : Measurable p₁)
+    (c : unitInterval) (hc0 : 0 < (c : ℝ)) (hc : (c : ℝ) ≤ 1/4)
+    {b J δ : ℝ} (hJ : 0 < J) (hδ : 0 < δ) (hδb : δ ≤ b/3)
+    (hobs : NullVarianceObstruction μ p₀ p₁ (c : ℝ) b J),
+    ∃ q r : D → unitInterval, CappedPrior μ (c : ℝ) q ∧ CappedPrior μ (c : ℝ) r ∧
+      δ ≤ (∫ d, (r d : ℝ) ∂μ)-(∫ d, (q d : ℝ) ∂μ) ∧
+      ∀ {R E : Type} [MeasurableSpace R] [MeasurableSpace E]
+        (ν : Measure R) [IsProbabilityMeasure ν] (A : StoppedProcedure R E)
+        (m : ℕ), (∀ z, A.stop z ≤ m) →
+        1-(hellingerAffinity (cappedTranscriptLaw μ ν p₀ p₁ q A m)
+          (cappedTranscriptLaw μ ν p₀ p₁ r A m)).toReal ≤
+          (42*δ^2/J)*(populationExpectedWork μ ν p₀ p₁ (fun _ => 0) A).toReal :=
+  @ThresholdHC.ConfidenceLocalization.common_pair_of_obstruction
+
+example : ∀ {μ : Measure Gap} [IsProbabilityMeasure μ]
+    {ρ b J : ℝ} (hρ : 0 < ρ) (hρ' : ρ ≤ 1/4) (hJ : 0 < J)
+    (hobs : NullVarianceObstruction μ (gapParameter false) (gapParameter true) ρ b J),
+    CommonPairBound μ ρ b J :=
+  @ThresholdHC.ConfidenceLocalization.common_pair_bound
+
+example : ∀ {R : Type} [MeasurableSpace R]
+    (μ : Measure Gap) [IsProbabilityMeasure μ] (A : AdaptiveEstimator R)
+    {ρ b J B ε δ : ℝ} (hρ : 0 < ρ) (hρ' : ρ ≤ 1/4)
+    (hb : 0 < b) (hJ : 0 < J) (hB : 0 < B) (hδ : 0 < δ) (hδ' : δ ≤ 1/4)
+    (hobs : NullVarianceObstruction μ (gapParameter false) (gapParameter true) ρ b J)
+    (hw : RareBudget μ A ρ B)
+    (hconf : ∀ q : SignLaw, RarePrior μ ρ q →
+      ThresholdHC.Confidence.failureProbability μ A q ε ≤ ENNReal.ofReal δ),
+    min b (Real.sqrt (J*Real.log (1/δ)/B))/128 ≤ ε :=
+  @ThresholdHC.ConfidenceLocalization.confidence_rate_of_obstruction
+
+example : ∀ (μ : Measure Gap) [IsProbabilityMeasure μ]
+    {ρ b J B δ : ℝ} (hρ : 0 < ρ) (hρ' : ρ ≤ 1/4)
+    (hb : 0 < b) (hJ : 0 < J) (hB : 0 < B) (hδ : 0 < δ) (hδ' : δ ≤ 1/4)
+    (hobs : NullVarianceObstruction μ (gapParameter false) (gapParameter true) ρ b J),
+    ENNReal.ofReal (min b (Real.sqrt (J*Real.log (1/δ)/B))/128) ≤
+      rareConfidenceRadius μ ρ B δ :=
+  @ThresholdHC.ConfidenceLocalization.minimax_confidence_of_obstruction
+
 example : ∀ {X : Type} [MeasurableSpace X]
     (P Q ξ : Measure X) [SigmaFinite P] [SigmaFinite Q] [SigmaFinite ξ]
     (hP : P ≪ ξ) (hQ : Q ≪ ξ),
@@ -138,12 +180,113 @@ example : ∀ {I : Type} [Fintype I] [MeasurableSpace I] [MeasurableSingletonCla
     |(∫ i, Z i ∂P)-θ| ≤ 2*ε ∧ evariance Z P ≤ ENNReal.ofReal (2*V) :=
   @ThresholdHC.ConfidenceLocalization.half_score_transfer
 
+example : ∀ {X : Type} [MeasurableSpace X] (P Q : Measure X),
+    hellingerAffinity P Q = hellingerAffinity Q P :=
+  @ThresholdHC.ConfidenceLocalization.affinity_symm
+
+example : ∀ {D R E : Type}
+    [MeasurableSpace D] [MeasurableSpace R] [MeasurableSpace E]
+    (μ : Measure D) [IsProbabilityMeasure μ] (ν : Measure R) [IsProbabilityMeasure ν]
+    (p₀ p₁ q₁ q₂ r₁ r₂ : D → unitInterval) (h₀ : Measurable p₀) (h₁ : Measurable p₁)
+    (hq₁ : Measurable q₁) (hq₂ : Measurable q₂) (hr₁ : Measurable r₁) (hr₂ : Measurable r₂)
+    (A : StoppedProcedure R E) (m : ℕ) (hcap : ∀ z, A.stop z ≤ m)
+    (heq : (fun d => (q₁ d : ℝ)) =ᵐ[μ] (fun d => (q₂ d : ℝ)))
+    (her : (fun d => (r₁ d : ℝ)) =ᵐ[μ] (fun d => (r₂ d : ℝ))),
+    (hellingerAffinity (cappedTranscriptLaw μ ν p₀ p₁ q₁ A m)
+      (cappedTranscriptLaw μ ν p₀ p₁ r₁ A m)).toReal =
+    (hellingerAffinity (cappedTranscriptLaw μ ν p₀ p₁ q₂ A m)
+      (cappedTranscriptLaw μ ν p₀ p₁ r₂ A m)).toReal :=
+  @ThresholdHC.ConfidenceLocalization.capped_affinity_congr_ae
+
 example : ∀ {D : Type} [MeasurableSpace D]
     (μ : Measure D) [IsProbabilityMeasure μ] (p₀ p₁ : D → unitInterval)
     {ρ b J : ℝ} (hJ : 0 < J)
     (hobs : NullVarianceObstruction μ p₀ p₁ ρ b J),
     b < ρ/2 :=
   @ThresholdHC.ConfidenceLocalization.obstruction_bias_lt_half
+
+example : ∀ {D R E : Type}
+    [MeasurableSpace D] [MeasurableSpace R] [MeasurableSpace E]
+    (μ : Measure D) [IsProbabilityMeasure μ] (ν : Measure R) [IsProbabilityMeasure ν]
+    (p₀ p₁ q r : D → unitInterval)
+    (h₀ : Measurable p₀) (h₁ : Measurable p₁) (hq : Measurable q) (hr : Measurable r)
+    (A : StoppedProcedure R E) {m M : ℕ} (h : m ≤ M) (hcap : ∀ z, A.stop z ≤ m),
+    (hellingerAffinity (cappedTranscriptLaw μ ν p₀ p₁ q A M)
+      (cappedTranscriptLaw μ ν p₀ p₁ r A M)).toReal =
+    (hellingerAffinity (cappedTranscriptLaw μ ν p₀ p₁ q A m)
+      (cappedTranscriptLaw μ ν p₀ p₁ r A m)).toReal :=
+  @ThresholdHC.ConfidenceLocalization.capped_affinity_enlarge
+
+example : ∀ {D R S E : Type}
+    [MeasurableSpace D] [MeasurableSpace R] [MeasurableSpace S] [MeasurableSpace E]
+    (μ : Measure D) [IsProbabilityMeasure μ] (ν : Measure S) [IsProbabilityMeasure ν]
+    (p₀ p₁ q r : D → unitInterval)
+    (h₀ : Measurable p₀) (h₁ : Measurable p₁) (hq : Measurable q) (hr : Measurable r)
+    (A : StoppedProcedure R E) (m : ℕ) (hcap : ∀ z, A.stop z ≤ m)
+    (f : S → R) (hf : Measurable f),
+    (hellingerAffinity (cappedTranscriptLaw μ ν p₀ p₁ q (reseedProcedure A f hf) m)
+      (cappedTranscriptLaw μ ν p₀ p₁ r (reseedProcedure A f hf) m)).toReal =
+    (hellingerAffinity (cappedTranscriptLaw μ (ν.map f) p₀ p₁ q A m)
+      (cappedTranscriptLaw μ (ν.map f) p₀ p₁ r A m)).toReal :=
+  @ThresholdHC.ConfidenceLocalization.reseed_affinity
+
+example : ∀ {D I R E : Type} [Fintype I]
+    [MeasurableSpace D] [MeasurableSpace I] [MeasurableSingletonClass I]
+    [MeasurableSpace R] [MeasurableSpace E]
+    (μ : Measure D) [IsProbabilityMeasure μ] (κ : Measure I) [IsProbabilityMeasure κ]
+    (ν : Measure R) [IsProbabilityMeasure ν] (p₀ p₁ q r : D → unitInterval)
+    (h₀ : Measurable p₀) (h₁ : Measurable p₁) (hq : Measurable q) (hr : Measurable r)
+    (A : I → StoppedProcedure R E) (m : ℕ) (hcap : ∀ i z, (A i).stop z ≤ m),
+    (hellingerAffinity (cappedTranscriptLaw μ (κ.prod ν) p₀ p₁ q (selectedProcedure A) m)
+      (cappedTranscriptLaw μ (κ.prod ν) p₀ p₁ r (selectedProcedure A) m)).toReal =
+      ∑ i, κ.real {i}*(hellingerAffinity (cappedTranscriptLaw μ ν p₀ p₁ q (A i) m)
+        (cappedTranscriptLaw μ ν p₀ p₁ r (A i) m)).toReal :=
+  @ThresholdHC.ConfidenceLocalization.selected_affinity
+
+example : ∀ {D : Type} [MeasurableSpace D] (μ : Measure D) (p₀ p₁ : D → unitInterval) {R E : Type}
+    [MeasurableSpace R] [MeasurableSpace E]
+    (ν : Measure R) [IsProbabilityMeasure ν] (A : StoppedProcedure R E)
+    (m : ℕ) (hcap : ∀ z, A.stop z ≤ m) (q r : D → unitInterval),
+    localAffinity μ p₀ p₁ (cappedPolicyOfProcedure ν A m hcap) q r =
+      (hellingerAffinity
+        (cappedTranscriptLaw μ ν
+          p₀ p₁ q A m)
+        (cappedTranscriptLaw μ ν
+          p₀ p₁ r A m)).toReal :=
+  @ThresholdHC.ConfidenceLocalization.localPolicyOfProcedure_affinity
+
+example : ∀ {D : Type} [MeasurableSpace D] (μ : Measure D) (p₀ p₁ : D → unitInterval) {R E : Type}
+    [MeasurableSpace R] [MeasurableSpace E]
+    (ν : Measure R) [IsProbabilityMeasure ν] (A : StoppedProcedure R E)
+    (m : ℕ) (hcap : ∀ z, A.stop z ≤ m),
+    localNullWork μ p₀ p₁ (cappedPolicyOfProcedure ν A m hcap) =
+      (populationExpectedWork μ ν
+        p₀ p₁ (fun _ => 0) A).toReal :=
+  @ThresholdHC.ConfidenceLocalization.localPolicyOfProcedure_nullWork
+
+example : ∀ {D : Type} [MeasurableSpace D] (μ : Measure D) [IsProbabilityMeasure μ] (p₀ p₁ : D → unitInterval) (h₀ : Measurable p₀) (h₁ : Measurable p₁) {I : Type} [Fintype I]
+    [MeasurableSpace I] [MeasurableSingletonClass I]
+    (κ : Measure I) [IsProbabilityMeasure κ] (B : I → CappedPolicy),
+    ∃ M : CappedPolicy,
+      localNullWork μ p₀ p₁ M = ∑ i, κ.real {i}*localNullWork μ p₀ p₁ (B i) ∧
+      ∀ q r : D → unitInterval, Measurable q → Measurable r →
+        localAffinity μ p₀ p₁ M q r = ∑ i, κ.real {i}*localAffinity μ p₀ p₁ (B i) q r :=
+  @ThresholdHC.ConfidenceLocalization.local_policy_mixture
+
+example : ∀ {D R E : Type}
+    [MeasurableSpace D] [MeasurableSpace R] [MeasurableSpace E]
+    (μ : Measure D) [IsProbabilityMeasure μ] (ν : Measure R) [IsProbabilityMeasure ν]
+    (p₀ p₁ : D → unitInterval) (h₀ : Measurable p₀) (h₁ : Measurable p₁)
+    (A : StoppedProcedure R E) (m : ℕ) (hcap : ∀ z, A.stop z ≤ m)
+    (c : unitInterval) (hc0 : 0 < (c : ℝ)) (hc : (c : ℝ) ≤ 1/4)
+    {b J δ : ℝ} (hJ : 0 < J) (hδ : 0 < δ) (hδb : δ ≤ b/3)
+    (hobs : NullVarianceObstruction μ p₀ p₁ (c : ℝ) b J),
+    ∃ z ∈ populationPairSet μ (c : ℝ) (2*δ),
+      (1-(hellingerAffinity
+        (cappedTranscriptLaw μ ν p₀ p₁ (midpointPrior (populationDualPrior μ z.1) (fun _ => c)) A m)
+        (cappedTranscriptLaw μ ν p₀ p₁ (midpointPrior (populationDualPrior μ z.2) (fun _ => c)) A m)).toReal)*J ≤
+        42*δ^2*(populationExpectedWork μ ν p₀ p₁ (fun _ => 0) A).toReal :=
+  @ThresholdHC.ConfidenceLocalization.regularized_policy_constraint
 
 example : ∀ {D R E : Type}
     [MeasurableSpace D] [MeasurableSpace R] [MeasurableSpace E]
@@ -202,6 +345,20 @@ example : ∀ {D : Type} [MeasurableSpace D]
       (1/2 : ℝ≥0) • populationParameterLaw μ p₀ p₁ q +
         (1/2 : ℝ≥0) • populationParameterLaw μ p₀ p₁ r :=
   @ThresholdHC.ConfidenceLocalization.parameter_midpoint_law
+
+example : ∀ {D R E : Type}
+    [MeasurableSpace D] [MeasurableSpace R] [MeasurableSpace E]
+    (μ : Measure D) [IsProbabilityMeasure μ] (ν : Measure R) [IsProbabilityMeasure ν]
+    (p₀ p₁ : D → unitInterval) (h₀ : Measurable p₀) (h₁ : Measurable p₁)
+    (A : StoppedProcedure R E) (m : ℕ) (hcap : ∀ z, A.stop z ≤ m) (c : unitInterval),
+    ∃ H : PopulationDual μ × PopulationDual μ → ℝ, Continuous H ∧
+      ConvexOn ℝ (populationDualSet μ (c : ℝ) ×ˢ populationDualSet μ (c : ℝ)) H ∧
+      ∀ f ∈ populationDualSet μ (c : ℝ), ∀ g ∈ populationDualSet μ (c : ℝ),
+        H (f,g) = 1-(hellingerAffinity
+          (cappedTranscriptLaw μ ν p₀ p₁ (midpointPrior (populationDualPrior μ f) (fun _ => c)) A m)
+          (cappedTranscriptLaw μ ν p₀ p₁ (midpointPrior (populationDualPrior μ g) (fun _ => c)) A m)).toReal ∧
+        H (f,g) ∈ Icc 0 1 :=
+  @ThresholdHC.ConfidenceLocalization.regularized_pair_geometry
 
 example : ∀ {D R E : Type}
     [MeasurableSpace D] [MeasurableSpace R] [MeasurableSpace E]
@@ -282,15 +439,25 @@ example : ∀ {D R E : Type}
     roots = {
         'ThresholdHC.ConfidenceLocalization.affinity_factored_statistic',
         'ThresholdHC.ConfidenceLocalization.affinity_reference',
+        'ThresholdHC.ConfidenceLocalization.affinity_symm',
         'ThresholdHC.ConfidenceLocalization.affinity_with_density',
+        'ThresholdHC.ConfidenceLocalization.capped_affinity_congr_ae',
+        'ThresholdHC.ConfidenceLocalization.capped_affinity_enlarge',
         'ThresholdHC.ConfidenceLocalization.capped_affinity_real',
         'ThresholdHC.ConfidenceLocalization.capped_affinity_statistic',
         'ThresholdHC.ConfidenceLocalization.capped_law_const_domination',
         'ThresholdHC.ConfidenceLocalization.capped_law_midpoint',
         'ThresholdHC.ConfidenceLocalization.capped_pair_geometry',
+        'ThresholdHC.ConfidenceLocalization.common_pair_bound',
+        'ThresholdHC.ConfidenceLocalization.common_pair_of_obstruction',
+        'ThresholdHC.ConfidenceLocalization.confidence_rate_of_obstruction',
         'ThresholdHC.ConfidenceLocalization.half_mixture_mean',
         'ThresholdHC.ConfidenceLocalization.half_mixture_variance',
         'ThresholdHC.ConfidenceLocalization.half_score_transfer',
+        'ThresholdHC.ConfidenceLocalization.localPolicyOfProcedure_affinity',
+        'ThresholdHC.ConfidenceLocalization.localPolicyOfProcedure_nullWork',
+        'ThresholdHC.ConfidenceLocalization.local_policy_mixture',
+        'ThresholdHC.ConfidenceLocalization.minimax_confidence_of_obstruction',
         'ThresholdHC.ConfidenceLocalization.obstruction_bias_lt_half',
         'ThresholdHC.ConfidenceLocalization.parameter_law_const_domination',
         'ThresholdHC.ConfidenceLocalization.parameter_lintegral',
@@ -298,7 +465,11 @@ example : ∀ {D R E : Type}
         'ThresholdHC.ConfidenceLocalization.regularized_affinity_obstruction',
         'ThresholdHC.ConfidenceLocalization.regularized_capped_estimator',
         'ThresholdHC.ConfidenceLocalization.regularized_observation_score',
+        'ThresholdHC.ConfidenceLocalization.regularized_pair_geometry',
+        'ThresholdHC.ConfidenceLocalization.regularized_policy_constraint',
         'ThresholdHC.ConfidenceLocalization.regularized_policy_power_pair',
+        'ThresholdHC.ConfidenceLocalization.reseed_affinity',
+        'ThresholdHC.ConfidenceLocalization.selected_affinity',
         'ThresholdHC.ConfidenceLocalization.statistic_common_support',
         'ThresholdHC.ConfidenceLocalization.statistic_law_const_domination',
         'ThresholdHC.ConfidenceLocalization.statistic_law_midpoint',
@@ -312,7 +483,7 @@ example : ∀ {D R E : Type}
 
 def main():
     source, roots = audit_input()
-    subprocess.run(["lake", "build", "ThresholdHC.ConfidenceLocalization.PowerPair"], cwd=LEAN, check=True)
+    subprocess.run(["lake", "build", "ThresholdHC.ConfidenceLocalization.ConfidenceRate"], cwd=LEAN, check=True)
     run = subprocess.run(["lake", "env", "lean", "--stdin"], cwd=LEAN, input=source, text=True,
                          encoding="utf-8", capture_output=True)
     output = run.stdout + run.stderr
