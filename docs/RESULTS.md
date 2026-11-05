@@ -44,7 +44,8 @@ The proofs cover all $B>0$ and $0<\rho,\delta\le1/4$.
 Put $z(h)=\min\{\rho,(h/a)^\alpha\}$ for $0<\alpha<1$. At RMS
 resolution $1/\sqrt B$ the checked coefficients on $z$ are $1/32$ and
 $512/(1-\alpha)$. At confidence resolution $\sqrt{\log(1/\delta)/B}$ they
-are $1/960$ and $8192/(1-\alpha)$. Lower bounds use the exact power law.
+are $1/960$ and $8192/(1-\alpha)$. The proofs cover $B\ge1$ and
+$0<\rho,\delta\le1/4$. Lower bounds use the exact power law.
 The same upper family works for every law under the power margin envelope.
 [Statement, assumptions and native record](../results/sublinear-power-20261105/README.md)
 
@@ -429,8 +430,8 @@ $0<\rho\le1/4$ and $B>0$, with no inverse-moment or finite-support assumption.
 Here $\mathcal K'$ is that development's own definition of the selection
 functional, with Bochner band costs. The
 [bridge](../lean/ThresholdHC/EntropyTail/Bridge.lean) proves
-$\mathcal K'\le\mathcal K$ always and $\mathcal K'=\mathcal K$ for every
-finite law, so [Upper.lean](../lean/ThresholdHC/EntropyTail/Upper.lean)
+$\mathcal K'\le\mathcal K$ for every measure and $\mathcal K'=\mathcal K$ for
+every finite measure, in particular every probability law, so [Upper.lean](../lean/ThresholdHC/EntropyTail/Upper.lean)
 proves the locked upper target. The same development also proves the following,
 for its closed quantile functional $Q$ with a fractional boundary atom:
 
