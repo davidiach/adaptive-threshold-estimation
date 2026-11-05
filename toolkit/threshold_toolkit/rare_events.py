@@ -3,8 +3,10 @@
 This implements the *deterministic* quantile formula in the finite-gap paper,
 Section 1.2, and the strengthened comparison with the entropy-tail selection
 functional in ``docs/RARE_EVENT_COMPUTATION.md``.  ``Q(B)`` is a rate functional, not the minimax risk or
-the measured error of an implemented estimator.  The statistical comparison
-is a paper proof; neither it nor this Python implementation is Lean-checked.
+the measured error of an implemented estimator.  Lean checks the statistical
+comparison 1e-17*Q <= R <= 30001*Q for every gap law, and the deterministic
+comparison Q <= (31/20)*K, which implies the 5/3 factor used here (see
+docs/RESULTS.md).  This floating-point Python implementation is not checked.
 
 Inputs describe a known distribution of positive gaps, not observed signs.
 Rarity is the global constraint integral(q dmu) <= rho, not q(d) <= rho at
