@@ -12,6 +12,12 @@ all budgets and its width tends to zero. The procedure uses neither the gap
 distribution nor an upper bound on its small-gap tail. The rate proved below
 depends on that tail and can be slower than the known-law minimax rate.
 
+**Verification boundary:** this theorem and the time-uniform lower bound below
+are paper proofs in this note, not Lean-checked theorems. The lower bound
+applies Duchi and Haque's Proposition 11 as a cited result. The toolkit's unit
+tests check the integer thresholds, interval endpoints and flip budget, not
+the coverage or width claims.
+
 ## One stage
 
 For a positive stage cap $c$, take $n=\lfloor\sqrt c\rfloor$ fresh items

@@ -2,8 +2,10 @@
 
 Coverage is conditional on valid marginal stage intervals. No independence
 of the intervals is required for the union bound. A timeout preserves the
-current set; an empty intersection stays empty. Known-law entropy-tail
-width claims additionally require the paper-only confidence-transfer theorem.
+current set; an empty intersection stays empty. Lean checks the coverage
+and known-law entropy-tail width of an observable controller with this
+schedule (results/anytime-confidence-20261105/); width claims for this
+driver additionally require stage intervals meeting the same premises.
 
 Apache-2.0. Extracted from the 30 October 2026 round-three contribution.
 """

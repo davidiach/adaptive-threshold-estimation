@@ -73,5 +73,5 @@ The [native record](../results/rms-localization-20261105/README.md)
 checks 15 exact statements and 15 transitive axiom reports.
 The [manuscript proof](../paper/v6/rms-localization.tex) records the
 hypotheses and constants. The sharp quantile-factor characterization
-remains a paper proof, alongside the open research questions listed
+is [Lean-checked](../results/quantile-optimality-20261105/README.md); open research questions are listed
 in the [workplan](WORKPLAN.md#current-priorities).

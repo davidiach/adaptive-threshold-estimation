@@ -22,6 +22,9 @@ Reference absorption and affinity testing give the explicit comparison
  N_*=\left\lceil64\max\{B,\rho B^2\}\right\rceil,
 \end{equation}
 proved in \cref{sec:midpoint-dual}.
+Theorem~\ref{thm:uniform-cap-rate} in \cref{app:uniform-cap-rate} gives the
+same comparison at the much smaller cap $N=\lceil4B/3\rceil$, for every gap
+law and $0<\rho\le1/2$; its proof uses the latent-reveal programs below.
 The factor sixteen is a program guarantee, distinct from the conservative
 constants in Theorem~\ref{thm:entropy-tail-law}.
 
@@ -39,7 +42,7 @@ Pointwise convergence of the genie brackets assumes finite latent
 divergence, and \cref{sec:genie} includes an infinite-divergence
 counterexample; optimized convergence first fixes a positive
 regularization, takes the cap limit, and then removes the regularization.
-No uniform convergence rate or bit-complexity claim is made.
+\Cref{app:uniform-cap-rate} gives a uniform rate for the optimized programs; no bit-complexity claim is made.
 Finite-support inputs give genuine finite conic programs.
 The eight rational examples in \cref{sec:computation} pass at caps
 $1$, $4$, or $8$; independent exact checkers verify their feasibility.
@@ -62,5 +65,5 @@ formulations. It also checks the explicit
 infinite-divergence counterexample and optimized direct squared-risk
 certificate. These proofs use the original expected physical-work model.
 The exact rational computations retain their separate finite-instance
-scope. No numerical solver accuracy, uniform cap rate or bit complexity
-is asserted by the formal results. See \cref{sec:verification}.
+scope. The uniform cap rate of \cref{app:uniform-cap-rate} is Lean-checked;
+no numerical solver accuracy or bit complexity is asserted by the formal results. See \cref{sec:verification}.

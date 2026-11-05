@@ -79,10 +79,12 @@ $\int q\,\mathrm d\mu$.
 
 \paragraph{Formal scope.}
 The RMS law in the ordinary hidden-magnitude experiment is proved by
-\leanref{Tier6/Full.lean}{minimax\_lower\_bound} and
-\leanref{BlindUpper/Full.lean}{distribution\_blind\_upper}, with
-coefficients $1/64$ and $512$. The upper family is chosen before every
-gap law and satisfies the budget in the same experiment. The
+\leanref{Tier6/Full.lean}{minimax\_lower\_bound}, with coefficient
+$1/64$, and \leanref{BlindUpper/Full.lean}{minimax\_upper\_bound}, with
+coefficient $512$. The frozen target
+\leanref{BlindUpper/Full.lean}{distribution\_blind\_upper} chooses the
+upper family before every gap law and asserts a positive constant; the
+family satisfies the budget in the same experiment. The
 confidence law is proved by \confidenceleanref{confidence\_characterization},
 with coefficients $1/64$ and $8192$ for $B\ge1$ and $0<\delta\le1/4$.
 Its upper family depends only on $(B,\delta)$. The stronger revealed- and

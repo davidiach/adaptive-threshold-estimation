@@ -2,7 +2,9 @@
 
 [Read the manuscript](paper.pdf) · [Open the LaTeX project](main.tex)
 
-This is the current combined research draft: the original minimax law and
+This was the combined research draft before the [consolidated v6 paper](../v6/README.md),
+which is now the current single paper and includes this one unchanged. It
+contains the original minimax law and
 unbiased characterization, the 713 construction, rare-event power regimes,
 and the critical quadratic result correcting the matching-Psi conjecture.
 The main statements are in sections 2, 7 and 11. Section 12 gives the exact
@@ -50,7 +52,8 @@ gaps on reuse; the revealed interface grants the full iid magnitude array.
 See the [targets](../../lean/ThresholdHC/OracleLower/Specification.lean) and
 [audit](../../results/oracle_lower_001.json). Oracle links use checkpoint
 `4a5805c771e541f557848957e0a3ffada31dcb32`.
-Other rare-event regimes retain paper-proof status. Earlier formal links are pinned to
+Later rare-event results, several of them Lean-checked, are listed with their
+scopes in the [current results guide](../../docs/RESULTS.md). Earlier formal links are pinned to
 `eabf274cb42d4bff4daab6b58568ad6169e7f0a7`; the additive all-size proof links
 use `ebd36676693b66814bc2a379529499428ab98650`.
 The manuscript has received AI review, but has no independent external
