@@ -278,3 +278,5 @@ finite-budget and unbiased models. [Build record](builds/stochastic-envelope-202
 [Appendix T](appendix-sublinear-power.tex) gives a direct proof for power margins below one, including fixed confidence and a uniform upper estimator. [Manuscript](builds/sublinear-power-20261105.pdf) · [Build record](builds/sublinear-power-20261105.json)
 
 [Appendix U](appendix-shifted-power.tex) gives the complete logarithmic and intermediate power-margin proofs. [Manuscript](builds/shifted-power-20261105.pdf) Â· [Build record](builds/shifted-power-20261105.json)
+
+[Appendix V](appendix-anytime.tex) completes the known-law time-uniform upper theorem. [Manuscript](builds/anytime-confidence-20261105.pdf) · [Build record](builds/anytime-confidence-20261105.json)

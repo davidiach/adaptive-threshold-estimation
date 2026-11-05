@@ -115,3 +115,5 @@ the ordinary model to unknown laws ordered by their gap CDFs.
 [Sublinear power margins](ThresholdHC/SubcriticalPower/Full.lean) give both rare-event minimax rates and one estimator family across the margin class. [Audit](../results/sublinear-power-20261105/README.md)
 
 [Shifted power-margin estimators](ThresholdHC/ShiftedPower/Full.lean) give both remaining rare-event rows, including hard-cap confidence and uniformity over the margin class. [Audit](../results/shifted-power-20261105/README.md)
+
+[Time-uniform confidence](ThresholdHC/Anytime/Full.lean) verifies nested observable intervals, a shared purchase history, data-dependent stopping and the known-law iterated-logarithm width. [Audit](../results/anytime-confidence-20261105/README.md)

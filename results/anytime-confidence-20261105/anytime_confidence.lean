@@ -1,0 +1,102 @@
+import ThresholdHC.Anytime.Full
+noncomputable section
+open MeasureTheory ThresholdHC.Tier6 ThresholdHC.HardBudget ThresholdHC.Anytime
+open ThresholdHC.Confidence ThresholdHC.RareAboveTwo ThresholdHC.EntropyTail
+open scoped ENNReal
+
+example {R : ℕ → Type} [∀ j, MeasurableSpace (R j)] (base : ∀ j, AdaptiveEstimator (R j))
+    (M : ℝ) (radius : ℕ → ℝ) (B : ℝ) (upper : Bool) :
+    PathwiseCap (endpointEstimator base M radius (stageCount B) upper) ⌊B⌋₊ :=
+  endpoint_budget_cap base M radius B upper
+
+example {R : ℕ → Type} [∀ j, MeasurableSpace (R j)] (base : ∀ j, AdaptiveEstimator (R j))
+    (M : ℝ) (radius : ℕ → ℝ) {k l : ℕ} (hkl : k ≤ l) (upper upper' : Bool) (r : ∀ j, R j)
+    (xs : List Bool) (hx : xs.length < paid k) :
+    (endpointEstimator base M radius l upper').policy r xs =
+      (endpointEstimator base M radius k upper).policy r xs :=
+  endpoint_policy_compatible base M radius hkl upper upper' r xs hx
+
+example {R : ℕ → Type} [∀ j, MeasurableSpace (R j)] (base : ∀ j, AdaptiveEstimator (R j))
+    (r : ∀ j, R j) {k l : ℕ} (hkl : k ≤ l) (s : Table) :
+    ((readBlock (paid l) (planReader base r l) s).1).take (paid k) =
+      (readBlock (paid k) (planReader base r k) s).1 := planWord_prefix base r hkl s
+
+example {R : ℕ → Type} [∀ j, MeasurableSpace (R j)] (base : ∀ j, AdaptiveEstimator (R j))
+    (M : ℝ) (radius : ℕ → ℝ) (k : ℕ) (z : (∀ j, R j) × Table) :
+    observedInterval base M radius k z = tableInterval base M radius z.1 z.2 k := observedInterval_eq base M radius k z
+
+example {R : ℕ → Type} [∀ j, MeasurableSpace (R j)] (μ : Measure Gap) [IsProbabilityMeasure μ]
+    (base : ∀ j, AdaptiveEstimator (R j)) (q : SignLaw) (M : ℝ) (radius : ℕ → ℝ) {δ : ℝ}
+    (hd : 0 ≤ δ) (hθ : 0 ≤ signMean μ q.val ∧ signMean μ q.val ≤ M)
+    (hcap : ∀ j, PathwiseCap (base j) (stageCap j))
+    (hf : ∀ j, failureProbability μ (base j) q (radius j) ≤ ENNReal.ofReal (stageFailure δ j)) :
+    1-ENNReal.ofReal δ ≤ (streamLaw μ base q) {z | ∀ k,
+      (observedInterval base M radius k z).1 ≤ signMean μ q.val ∧ signMean μ q.val ≤ (observedInterval base M radius k z).2} :=
+  simultaneous_probability μ base q M radius hd hθ hcap hf
+
+example {R : ℕ → Type} [∀ j, MeasurableSpace (R j)] (μ : Measure Gap) [IsProbabilityMeasure μ]
+    (base : ∀ j, AdaptiveEstimator (R j)) (q : SignLaw) (M : ℝ) (radius : ℕ → ℝ) {δ : ℝ}
+    (hd : 0 ≤ δ) (hθ : 0 ≤ signMean μ q.val ∧ signMean μ q.val ≤ M)
+    (hcap : ∀ j, PathwiseCap (base j) (stageCap j))
+    (hf : ∀ j, failureProbability μ (base j) q (radius j) ≤ ENNReal.ofReal (stageFailure δ j))
+    (τ : ((∀ j, R j) × Table) → ℝ) :
+    (streamLaw μ base q) {z | ¬ ((observedInterval base M radius (stageCount (τ z)) z).1 ≤ signMean μ q.val ∧
+      signMean μ q.val ≤ (observedInterval base M radius (stageCount (τ z)) z).2)} ≤ ENNReal.ofReal δ :=
+  selected_budget_coverage μ base q M radius hd hθ hcap hf τ
+
+example {R : ℕ → Type} [∀ j, MeasurableSpace (R j)] (μ : Measure Gap) [IsProbabilityMeasure μ]
+    (base : ∀ j, AdaptiveEstimator (R j)) {ρ B δ : ℝ} (hr : 0 < ρ) (hu : ρ ≤ 1/4)
+    (hB : 1 ≤ B) (hd : 0 < δ) (hd' : δ ≤ 1/4) (r : ∀ j, R j) (s : Table) :
+    halfWidth (tableInterval base ρ (ThresholdHC.Anytime.radius μ ρ δ) r s (stageCount B)) ≤
+      1500002*(selection μ ρ (B/(Real.log (1/δ)+2*Real.log (2+Real.log (1+B)/Real.log 2)))).toReal :=
+  all_budget_width μ base hr hu hB hd hd' r s
+
+example (μ : Measure Gap) [IsProbabilityMeasure μ] {ρ δ : ℝ}
+    (hr : 0 < ρ) (hu : ρ ≤ 1/4) (hd : 0 < δ) (hd' : δ ≤ 1/4) :
+    ∃ (R : ℕ → Type) (_ : ∀ j, MeasurableSpace (R j)) (base : ∀ j, AdaptiveEstimator (R j)),
+    ∀ j, PathwiseCap (base j) (stageCap j) ∧ ∀ q : SignLaw, RarePrior μ ρ q →
+      failureProbability μ (base j) q (ThresholdHC.Anytime.radius μ ρ δ j) ≤ ENNReal.ofReal (stageFailure δ j) :=
+  known_stages μ hr hu hd hd'
+
+example (μ : Measure Gap) [IsProbabilityMeasure μ] {ρ δ : ℝ}
+    (hr : 0 < ρ) (hu : ρ ≤ 1/4) (hd : 0 < δ) (hd' : δ ≤ 1/4) :
+    ∃ (R : ℕ → Type) (_ : ∀ j, MeasurableSpace (R j)) (base : ∀ j, AdaptiveEstimator (R j)),
+      (∀ B : ℝ, ∀ upper : Bool, PathwiseCap (endpointEstimator base ρ (ThresholdHC.Anytime.radius μ ρ δ) (stageCount B) upper) ⌊B⌋₊) ∧
+      (∀ q : SignLaw, RarePrior μ ρ q →
+        (streamLaw μ base q) {z | ∃ k, ¬ ((observedInterval base ρ (ThresholdHC.Anytime.radius μ ρ δ) k z).1 ≤ signMean μ q.val ∧
+          signMean μ q.val ≤ (observedInterval base ρ (ThresholdHC.Anytime.radius μ ρ δ) k z).2)} ≤ ENNReal.ofReal δ) ∧
+      (∀ q : SignLaw, RarePrior μ ρ q → ∀ τ : ((∀ j, R j) × Table) → ℝ,
+        (streamLaw μ base q) {z | ¬ ((observedInterval base ρ (ThresholdHC.Anytime.radius μ ρ δ) (stageCount (τ z)) z).1 ≤ signMean μ q.val ∧
+          signMean μ q.val ≤ (observedInterval base ρ (ThresholdHC.Anytime.radius μ ρ δ) (stageCount (τ z)) z).2)} ≤ ENNReal.ofReal δ) ∧
+      (∀ B : ℝ, 1 ≤ B → ∀ z : (∀ j, R j) × Table,
+        halfWidth (observedInterval base ρ (ThresholdHC.Anytime.radius μ ρ δ) (stageCount B) z) ≤
+          1500002*(selection μ ρ (B/inflation B δ)).toReal) := known_anytime μ hr hu hd hd'
+#print axioms ThresholdHC.Anytime.all_budget_width
+#print axioms ThresholdHC.Anytime.all_stage_coverage
+#print axioms ThresholdHC.Anytime.cap_stops
+#print axioms ThresholdHC.Anytime.completed_stage_bounds
+#print axioms ThresholdHC.Anytime.count_log_bound
+#print axioms ThresholdHC.Anytime.endpoint_budget_cap
+#print axioms ThresholdHC.Anytime.endpoint_cap
+#print axioms ThresholdHC.Anytime.endpoint_output
+#print axioms ThresholdHC.Anytime.endpoint_policy_compatible
+#print axioms ThresholdHC.Anytime.hard_local_failure
+#print axioms ThresholdHC.Anytime.interval_coverage
+#print axioms ThresholdHC.Anytime.interval_nested
+#print axioms ThresholdHC.Anytime.interval_readBlock
+#print axioms ThresholdHC.Anytime.interval_width
+#print axioms ThresholdHC.Anytime.known_anytime
+#print axioms ThresholdHC.Anytime.known_rule
+#print axioms ThresholdHC.Anytime.known_stages
+#print axioms ThresholdHC.Anytime.measurable_observedInterval
+#print axioms ThresholdHC.Anytime.observedInterval_eq
+#print axioms ThresholdHC.Anytime.planReader_compatible
+#print axioms ThresholdHC.Anytime.planWord_prefix
+#print axioms ThresholdHC.Anytime.radius_width_bound
+#print axioms ThresholdHC.Anytime.selected_budget_coverage
+#print axioms ThresholdHC.Anytime.selection_antitone
+#print axioms ThresholdHC.Anytime.simultaneous_coverage
+#print axioms ThresholdHC.Anytime.simultaneous_probability
+#print axioms ThresholdHC.Anytime.stage_log_le
+#print axioms ThresholdHC.Anytime.stopped_stage_coverage
+#print axioms ThresholdHC.Anytime.sum_stageFailure

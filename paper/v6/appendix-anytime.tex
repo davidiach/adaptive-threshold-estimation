@@ -1,0 +1,68 @@
+\section{Observable time-uniform confidence for a known gap law}
+\label{app:anytime}
+
+Fix a known positive-gap law $\mu$, $0<\rho\le1/4$ and
+$0<\delta\le1/4$. The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/ffc0c5eb436ff31706d6f46fc135d1831b5a4e61/lean/ThresholdHC/Anytime/Full.lean}{time-uniform theorem} gives a single online procedure with nested intervals
+$I(B)$ such that, uniformly over all rare sign priors,
+\[
+ \Pr\{\theta\in I(B)\text{ for every }B\ge0\}\ge1-\delta.
+\]
+It purchases at most $\lfloor B\rfloor$ flips by the output at budget $B$.
+On the simultaneous-coverage event its half-width, for every $B\ge1$,
+is at most
+\[
+ 1500002\,\mathcal K\!\left(\frac{B}{\Lambda(B,\delta)}\right),\qquad
+ \Lambda(B,\delta)=\log(1/\delta)+
+ 2\log\!\left(2+\frac{\log(1+B)}{\log2}\right).
+\]
+The same coverage event protects the interval at any data-dependent stopping
+budget. The theorem proves an upper width bound. The general law-dependent
+time-uniform lower bound and adaptation to an unknown gap law remain open.
+
+\paragraph{A prescribed sequence of observable stages.}
+Stage $j$ reserves $s_j=4\cdot2^j$ flips and receives failure allocation
+$\delta_j=\delta/[(j+1)(j+2)]$. The total allocation is at most $\delta$.
+The fixed-confidence upper theorem of Appendix~\ref{app:known-confidence}
+and a strict margin above its infimum supply a stage rule with cap $s_j$
+and radius
+\[
+ r_j=750001\,\mathcal K\!\left(\frac{s_j}{\log(1/\delta_j)}\right).
+\]
+The selection functional is positive and finite at these positive budgets,
+so the extra unit in the coefficient gives an attaining rule at this radius.
+Choose the whole sequence before observing any data, with separate private
+seeds and coin-label namespaces.
+
+The controller starts with $[0,\rho]$. On completion of stage $j$, it clips
+the stage estimate to $[0,\rho]$ and intersects the current interval with
+the ball of radius $r_j$ around that estimate. It accepts a decision after
+the stage's last reserved flip. It spends whole blocks, discarding filler
+observations after an early internal stop. Thus stage $j$ finishes after
+$p_{j+1}=4(2^{j+1}-1)$ purchased flips. For any budget, output the most recent
+completed intersection.
+
+\paragraph{One experiment for all budgets.}
+Both endpoints are measurable functions of the same private seed and stopped
+observation history. Increasing the budget preserves every earlier action
+and \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/ec31ac9931c8464fe89f5a4b043a6b2a23e4a65b/lean/ThresholdHC/Anytime/Compatibility.lean}{observed prefix}. The simulation identity maps the original hidden-gap
+population onto the independent stage inputs in this shared experiment.
+A pathwise-capped stage has stopped by its final reservation almost surely,
+and clipping can only decrease its absolute error. Therefore its completed
+center has failure probability at most $\delta_j$. A union bound over all
+stages gives simultaneous coverage. Intersecting retains the true parameter
+on that event, and choosing a stopping budget after seeing the observations
+retains the same guarantee.
+
+\paragraph{Width between stage completions.}
+Let $k$ be the number of completed stages at budget $B$. Then
+$p_k\le B<p_{k+1}$ and
+$k\le\log(1+B)/\log2$. If $k=j+1>0$, these inequalities imply
+$B<4s_j$ and $\log(1/\delta_j)\le\Lambda(B,\delta)$.
+Monotonicity and the square-root budget scaling of $\mathcal K$ give
+\[
+ r_j\le750001\,\mathcal K\!\left(\frac{B}{4\Lambda(B,\delta)}\right)
+       \le1500002\,\mathcal K\!\left(\frac{B}{\Lambda(B,\delta)}\right).
+\]
+The running intersection is contained in the last stage's ball. If $k=0$,
+then $B<4$, and the selection functional at $B/\Lambda$ equals $\rho$.
+The initial interval therefore satisfies the same bound.
