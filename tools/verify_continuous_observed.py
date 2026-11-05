@@ -8,7 +8,8 @@ from verify_blind_upper_components import LEAN, validate_reports
 def audit_input():
     source = """
 import ThresholdHC.ContinuousObserved.QueryLower
-import ThresholdHC.ContinuousObserved.StandardizedMoments
+import ThresholdHC.ContinuousObserved.Regularity
+import ThresholdHC.ContinuousObserved.UniformRMSLower
 noncomputable section
 open MeasureTheory ProbabilityTheory
 open scoped ENNReal
@@ -131,6 +132,86 @@ example (d : Gap) (hd : (d : ℝ) ≤ 1 / 4) (s : Bool) {q : ℝ} (hq : 0 ≤ q)
         (ThresholdHC.ObservableSimulation.gapParameter s d)))) ^ q
       ∂bernoulliMeasure true false (ThresholdHC.ObservableSimulation.gapParameter s d)) ≤ (3 : ℝ) ^ (q / 2) :=
   binary_standardized_moment d hd s hq
+
+example (h : Gap) {δ : ℝ} (hδ : 0 < δ) :
+    ∃ D : CellDesign uniformGaps h δ,
+      (∀ u, (D.gap u : ℝ) ≤ 1 / 4) ∧ (∀ i, (D.cap i : ℝ) ≤ 1 / 4) :=
+  uniform_design_exists h hδ
+
+example {x : ℝ} (hx : 0 < x) :
+    uniformGaps.real {d : Gap | (d : ℝ) ≤ x} = min 1 (4 * x) := uniformGaps_cdf hx
+
+example {h : ℝ} (hh : 0 < h) (ha : h < 1 / 4) :
+    modulus uniformGaps h = 4 * h * (1 + Real.log (1 / (4 * h))) := uniformGaps_modulus hh ha
+
+example {N : ℕ} (D : QueryDesign N) (s : Fin N → Bool) :
+    volume.real {u : unitInterval | 0 < ∫ b, binaryValue b ∂bernoulliMeasure true false
+      (ThresholdHC.ObservableSimulation.gapParameter (s (D.cell u)) (D.gap u))} =
+        stateTarget D.cell s := query_threshold_target D s
+
+example :
+    uniformGaps.map (fun d : Gap => normalizedGap d) =
+      volume.withDensity (fun z => ENNReal.ofReal (normalizedDensity z)) := normalizedGap_density
+
+example (z : ℝ) : 0 ≤ normalizedDensity z ∧ normalizedDensity z ≤ 2 := normalizedDensity_bounds z
+
+example {N : ℕ} (D : QueryDesign N) (s : Fin N → Bool) (hl : volume.map D.gap = uniformGaps) :
+    volume.map (queryNormalizedMagnitude D s) =
+      volume.withDensity (fun z => ENNReal.ofReal (normalizedDensity z)) := query_normalized_density D s hl
+
+example {N : ℕ} (D : QueryDesign N) (s : Fin N → Bool)
+    (hd : ∀ u, (D.gap u : ℝ) ≤ 1 / 4) (u : unitInterval) {q : ℝ} (hq : 0 ≤ q) :
+    (∫ b, (|binaryValue b -
+      ∫ a, binaryValue a ∂bernoulliMeasure true false
+        (ThresholdHC.ObservableSimulation.gapParameter (s (D.cell u)) (D.gap u))| /
+        Real.sqrt (variance binaryValue
+          (bernoulliMeasure true false (ThresholdHC.ObservableSimulation.gapParameter (s (D.cell u)) (D.gap u))))) ^ q
+      ∂bernoulliMeasure true false (ThresholdHC.ObservableSimulation.gapParameter (s (D.cell u)) (D.gap u))) ≤
+        (3 : ℝ) ^ (q / 2) := query_normalized_moment D s hd u hq
+
+example {ε : ℝ} (hε : 0 < ε) (he : ε ≤ ThresholdHC.SmoothDensity.radiusCutoff 0) :
+    ∃ h : Gap, (h : ℝ) ≤ 1 / 64 ∧
+      (h : ℝ) = 64 * ε / Real.log (1 / ε) ∧ ε < modulus uniformGaps h / 32 :=
+  choose_observed_scale hε he
+
+example : 0 < lowerCoefficient := lowerCoefficient_pos
+
+example {ε : ℝ} (hε : 0 < ε) (he : ε ≤ ThresholdHC.SmoothDensity.radiusCutoff 0) :
+    ∃ (h : Gap) (D : CellDesign uniformGaps h (1 / 16)),
+      (∀ u, (D.gap u : ℝ) ≤ 1 / 4) ∧
+      (∀ (R : Type) [MeasurableSpace R] (A : StateEstimator R)
+        (P : (Fin D.count → Bool) → Measure (R × ProcessTape))
+        [∀ s, IsProbabilityMeasure (P s)],
+        (∀ s, RealizesQueryPrefixes (CellDesign.queryDesign uniformGaps h (1 / 16) D) A s (P s)) →
+        ∀ (B : ℝ), 0 ≤ B →
+        (∀ s, (∫⁻ z, totalProcessWork z.2 ∂P s) ≤ ENNReal.ofReal B) →
+        (∀ s, P s {z | ε < |A.output z - stateTarget D.cell s|} ≤ ENNReal.ofReal (1 / 16)) →
+        lowerCoefficient * (Real.log (1 / ε)) ^ 2 / ε ^ 2 ≤ B) :=
+  uniform_confidence_lower hε he
+
+example {N : ℕ} (D : QueryDesign N) (s : Fin N → Bool) (u : unitInterval) :
+    |∫ b, binaryValue b ∂bernoulliMeasure true false
+      (ThresholdHC.ObservableSimulation.gapParameter (s (D.cell u)) (D.gap u))| / 2 =
+        (D.gap u : ℝ) := query_gap_magnitude D s u
+
+example {Ω : Type} [MeasurableSpace Ω] (P : Measure Ω) [IsProbabilityMeasure P]
+    (f : Ω → ℝ) (hf : Measurable f) (θ : ℝ) {ε : ℝ} (hε : 0 < ε)
+    (hr : squaredRisk P f θ ≤ ENNReal.ofReal (ε ^ 2)) :
+    P {z | 4 * ε < |f z - θ|} ≤ ENNReal.ofReal (1 / 16) := mse_fixed_confidence P f hf θ hε hr
+
+example {ε : ℝ} (hε : 0 < ε)
+    (he : ε ≤ min (ThresholdHC.SmoothDensity.radiusCutoff 0 / 4) (1 / 16)) :
+    ∃ (h : Gap) (D : CellDesign uniformGaps h (1 / 16)),
+      (∀ u, (D.gap u : ℝ) ≤ 1 / 4) ∧
+      (∀ (R : Type) [MeasurableSpace R] (A : StateEstimator R)
+        (P : (Fin D.count → Bool) → Measure (R × ProcessTape))
+        [∀ s, IsProbabilityMeasure (P s)],
+        (∀ s, RealizesQueryPrefixes (CellDesign.queryDesign uniformGaps h (1 / 16) D) A s (P s)) →
+        ∀ (B : ℝ), 0 ≤ B →
+        (∀ s, (∫⁻ z, totalProcessWork z.2 ∂P s) ≤ ENNReal.ofReal B) →
+        (∀ s, squaredRisk (P s) A.output (stateTarget D.cell s) ≤ ENNReal.ofReal (ε ^ 2)) →
+        (lowerCoefficient / 64) * (Real.log (1 / ε)) ^ 2 / ε ^ 2 ≤ B) :=
+  uniform_rms_lower hε he
 """.lstrip()
     roots = {"ThresholdHC.ContinuousObserved." + name for name in [
         "decode_length", "decode_append", "decode_append_singleton", "measurable_decode",
@@ -146,6 +227,19 @@ example (d : Gap) (hd : (d : ℝ) ≤ 1 / 4) (s : Bool) {q : ℝ} (hq : 0 ≤ q)
         "query_prefix_unique", "query_confidence_lower", "variable_gap_observed_lower",
         "binary_mean", "binary_mean_magnitude", "binary_variance", "binary_variance_lower",
         "binary_centered_bound", "binary_standardized_bound", "binary_standardized_moment",
+        "capGap_le", "capGap_le_self", "capGap_of_le", "capGap_of_ge", "measurable_capGap",
+        "clippedGap_antitone", "capGap_clipped_bound", "capGap_law", "capped_delta_ge", "cappedDesign",
+        "binary_mean_positive", "query_threshold_target", "query_gap_magnitude",
+        "uniformGaps_probability", "uniformGaps_cdf", "uniformGaps_support", "uniformGaps_modulus",
+        "uniform_design_exists", "uniformGaps_real_law", "inverseSlope_pos", "inverseSlope_le",
+        "hasDerivAt_inverseNormalizedGap", "inverse_normalized_gap", "inverseNormalizedGap_strictMono",
+        "inverseNormalizedGap_zero", "inverseNormalizedGap_endpoint", "normalizedGap_mem_support",
+        "inverseNormalizedGap_mem_interval", "normalized_inverse_gap", "normalized_preimage",
+        "measurable_normalizedGap", "measurable_inverseSlope", "measurable_normalizedDensity",
+        "normalizedDensity_bounds", "normalizedGap_density", "choose_observed_scale",
+        "lowerCoefficient_pos", "uniform_confidence_lower", "queryNormalizedMagnitude_eq",
+        "query_normalized_density", "query_normalized_moment",
+        "mse_fixed_confidence", "uniform_rms_lower",
     ]}
     return source + "".join("#print axioms " + name + "\n" for name in sorted(roots)), roots
 
@@ -153,7 +247,8 @@ example (d : Gap) (hd : (d : ℝ) ≤ 1 / 4) (s : Bool) {q : ℝ} (hq : 0 ≤ q)
 def main():
     source, roots = audit_input()
     subprocess.run(["lake", "build", "ThresholdHC.ContinuousObserved.QueryLower",
-                    "ThresholdHC.ContinuousObserved.StandardizedMoments"], cwd=LEAN, check=True)
+                    "ThresholdHC.ContinuousObserved.Regularity",
+                    "ThresholdHC.ContinuousObserved.UniformRMSLower"], cwd=LEAN, check=True)
     run = subprocess.run(["lake", "env", "lean", "--stdin"], cwd=LEAN, input=source, text=True,
                          encoding="utf-8", capture_output=True)
     output = run.stdout + run.stderr
