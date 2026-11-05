@@ -49,3 +49,5 @@ Run:
 The audit independently restates all eight public statements and checks
 their transitive axioms. The native evidence is recorded separately from the
 earlier fifteen-root prior-family audit.
+
+[Native audit evidence](../results/anytime-sequential-20261105/README.md) binds the proof checkpoint, exact compiler input, axiom reports and dependency hashes.

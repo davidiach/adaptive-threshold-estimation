@@ -1,0 +1,8 @@
+'ThresholdHC.AnytimeLower.binary_event_log_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AnytimeLower.event_probability_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AnytimeLower.firstCrossing_information_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AnytimeLower.firstCrossing_information_summable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AnytimeLower.not_summable_half_log' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AnytimeLower.observed_separated_frequently' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AnytimeLower.separated_accuracy_frequently' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AnytimeLower.separated_accuracy_summable' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -109,3 +109,5 @@ record with its source identity, commands, outcome, and precise scope. Preserve
 the prior records and update this index and the current claim guide as needed.
 Never rename, overwrite, or rehash a historical artifact to make it describe
 newer work.
+
+The [observable sequential-testing audit](anytime-sequential-20261105/README.md) checks eight exact statements, including first-crossing summability and infinitely many width violations in the original adaptive experiment.
