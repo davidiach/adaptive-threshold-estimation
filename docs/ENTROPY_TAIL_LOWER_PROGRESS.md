@@ -112,7 +112,7 @@ The later [direct finite-law proof](../lean/ThresholdHC/FiniteQuantile/Full.lean
 Other paper-only and open results are listed in
 [WORKPLAN.md](WORKPLAN.md#current-priorities).
 
-### Finite-average reduction and its remaining premises
+### Finite-average reduction and its premises
 
 The formal development uses fixed repetition. Once fair activation `p > 0` is proved,
 take `N = ceil(1/p)` independent full runs of the original procedure on
@@ -147,8 +147,8 @@ entropy bound when all annular masses exceed
 `288 exp(12) (1 + exp(12)) a^2 m W0`. Splitting off the complementary
 small-mass and large-work cases proves the saturated minimum bound in the
 table. Its coefficient is conservative; it is not the paper's coefficient.
-The whole-law certificate connection and additive finite-certificate
-localization below are proved; the final selection comparison remains.
+The whole-law certificate connection, additive finite-certificate
+localization and final selection comparison below are proved.
 Rejection-loop renewal has not been formalized and is not used by this
 fixed-repeat construction.
 
@@ -304,9 +304,9 @@ false; these unused routes are not assumptions of the completed proof.
 
 The CI configuration builds the new modules and runs the supporting audit in
 the existing stopping-program job. A configured job is not evidence of a CI
-pass. Development is tracked in [draft PR #38](https://github.com/davidiach/adaptive-threshold-estimation/pull/38),
-with the first audited checkpoint committed as `551c1b9`; consult the PR for
-CI status at each later commit.
+pass. Development was tracked in [PR #38](https://github.com/davidiach/adaptive-threshold-estimation/pull/38),
+merged as `2077271`, with the first audited checkpoint committed as `551c1b9`;
+consult the PR for CI status at each of its commits.
 
 ### Local checkpoint, 1 November 2026
 

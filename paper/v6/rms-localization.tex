@@ -2,8 +2,19 @@
 \subsection{RMS consequences of the obstruction and mixture bounds}
 \label{sec:rms-localization}
 
-The same common pairs give the manuscript's generic RMS transfer
-and its additive submeasure version.
+The same common pairs give Lean proofs of the manuscript's generic RMS
+transfer, \eqref{eq:bias-population-transfer} of
+Theorem~\ref{thm:bias-transfer}, and of its additive submeasure version,
+\eqref{eq:additive-localization} of
+Theorem~\ref{thm:additive-localization}.
+Theorems~\ref{thm:rms-obstruction-verified}
+and~\ref{thm:rms-additive-verified} restate those bounds under equivalent
+hypotheses and with the same coefficient $1/128$. The formal proofs take
+the common pair from Theorem~\ref{thm:common-pair-verified}. They combine
+components through the original-model construction of
+Section~\ref{sec:additive-confidence}, not an oracle experiment with
+visible labels, and they replace the total-variation testing step by an
+affinity bound.
 
 \begin{theorem}[Verified RMS obstruction transfer]
 \label{thm:rms-obstruction-verified}

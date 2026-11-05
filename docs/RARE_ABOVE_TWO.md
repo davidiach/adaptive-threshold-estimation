@@ -92,11 +92,17 @@ specifications or imported models, omitted targets or modules, wrong dependency
 order, incomplete reports and nonstandard axioms. Fresh reports go under
 `.runtime/rare-above-two/`; CI runs the same audit.
 
-The paper-only rare-event regimes below two and sharp rare-event confidence
-rates at and above two remain outside this package. The new
-[general-law manuscript](../paper/rare-event/README.md) and
-[finite-gap manuscript](../paper/finite-gap-rare-events/README.md) have separate
-paper-proof characterizations whose formalization is follow-up work. This formalization does not establish novelty or external
+Rare-event power margins below two and sharp rare-event confidence
+rates at and above two remain outside this package. Separate Lean packages
+check the below-two RMS and confidence rates, with lower bounds for the exact
+power law ([0 < alpha < 1](RESULTS.md#rare-event-power-margins-below-exponent-one),
+[1 <= alpha < 2](RESULTS.md#logarithmic-and-intermediate-rare-power-margins)).
+They also check the known-law characterizations of the
+[general-law manuscript](../paper/rare-event/README.md), with conservative
+universal constants ([scope](RESULTS.md#general-law-rare-event-characterization)),
+and of the [finite-gap manuscript](../paper/finite-gap-rare-events/README.md),
+for finite-support laws ([scope](RESULTS.md#known-finite-gap-rare-events-closed-quantile-characterization)).
+This formalization does not establish novelty or external
 specialist review. Historical manuscripts and research bundles retain their
 original proof constructions and checkpoint labels; this guide records the
 new formal coverage.
