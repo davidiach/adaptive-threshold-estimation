@@ -184,11 +184,14 @@ The [audit](../results/confidence_001.json) checks all four full targets,
 model dependencies were frozen at `76e9a8f` before supporting proofs.
 
 The [full upper theorem](BLIND_UPPER.md), `distribution_blind_upper` in
-[Full.lean](../lean/ThresholdHC/BlindUpper/Full.lean), proves one budget-indexed
-observable algorithm family chosen before every magnitude law. It satisfies
-the uniform expected budget and has maximal RMS risk at most
-`512 * modulus μ (1 / Real.sqrt B)` for every `B ≥ 1`. The corresponding
-`minimax_upper_bound` uses the same minimax risk as the lower theorem below.
+[Full.lean](../lean/ThresholdHC/BlindUpper/Full.lean), proves that one
+budget-indexed observable algorithm family, chosen before every magnitude law,
+satisfies the uniform expected budget with maximal RMS risk at most a positive
+constant times the modulus; its frozen statement names no constant. The
+companion theorem `budgetEstimator_maximalRMSRisk` bounds that family's risk by
+`512 * modulus μ (1 / Real.sqrt B)` for every `B ≥ 1`, and
+`minimax_upper_bound` gives the same bound for the minimax risk of the lower
+theorem below. Both companions are axiom-audited roots, not exact-type targets.
 The original simulation law, actual controller cost/output identities,
 almost-sure pilot termination and budget selection are proved. The
 [full audit](../results/blind_upper_components_002.json) checks the unchanged

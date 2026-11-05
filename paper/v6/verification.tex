@@ -30,8 +30,11 @@ the experiment and retains infinite risk. The separate oracle theorem
 below covers the stronger revealed- and selected-magnitude models.\\[5pt]
 Original RMS upper bound &
 \leanref{BlindUpper/Full.lean}{distribution\_blind\_upper} chooses one
-budget-indexed observable family before every gap law and proves
-$R_\mu(B)\le512\omega_\mu(B^{-1/2})$. Actual cost/output identities,
+budget-indexed observable family before every gap law; its frozen target
+asserts a positive constant. \leanref{BlindUpper/Full.lean}{minimax\_upper\_bound}
+proves $R_\mu(B)\le512\omega_\mu(B^{-1/2})$ through the same family; it
+and the family bound are axiom-audited roots, not exact-type targets.
+Actual cost/output identities,
 almost-sure termination and every budget are included. The unchanged
 frozen specification has no additional statistical premise.\\[5pt]
 Confidence characterization &
