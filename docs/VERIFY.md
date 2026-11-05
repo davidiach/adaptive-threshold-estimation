@@ -743,3 +743,11 @@ separate from mathematical verification.
 | Workflow definition | [checks.yml](../.github/workflows/checks.yml) |
 
 The completed research commit `23988c7` passed [Linux CI](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40468287646). Later runs are available on the [workflow page](https://github.com/davidiach/adaptive-threshold-estimation/actions/workflows/checks.yml). Historical logs retain the terminology and checkpoints used when each result was produced.
+
+## Fixed confidence for every known gap law
+
+Run `python tools/verify_stopping_confidence.py` and
+`python tools/verify_confidence_amplification.py` with the pinned Lean
+toolchain. These audits check the actual reference work, effective-budget
+lower bound, pathwise cap and the two minimax rates.
+[Exact statements and native logs](../results/known-law-confidence-20261104/README.md)

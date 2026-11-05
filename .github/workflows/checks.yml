@@ -317,6 +317,10 @@ jobs:
         run: python tools/verify_critical_confidence.py
       - name: Verify the hard-budget controller execution
         run: python tools/verify_hard_budget.py
+      - name: Verify the stopping-program confidence lower bound
+        run: python tools/verify_stopping_confidence.py
+      - name: Verify the capped median and both known-law confidence rates
+        run: python tools/verify_confidence_amplification.py
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
       - uses: actions/upload-artifact@v4

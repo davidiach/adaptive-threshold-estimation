@@ -57,3 +57,7 @@ the record. See [results/README.md](../results/README.md) before publishing any
 new evidence. Historical research validators can intentionally reject the
 integrated checkout; use the maintained replay entry points above instead of
 altering the original snapshots.
+
+Run `verify_stopping_confidence.py` and `verify_confidence_amplification.py`
+for the [fixed-confidence statements and native record](../results/known-law-confidence-20261104/README.md).
+They build the original observable experiment before checking the minimax radii.

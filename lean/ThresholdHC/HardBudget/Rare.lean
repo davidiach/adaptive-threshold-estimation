@@ -8,7 +8,8 @@ namespace ThresholdHC.HardBudget
 open ThresholdHC.Tier6 ThresholdHC.RareAboveTwo ThresholdHC.EntropyTail ThresholdHC.StoppingProgram
 
 
-private theorem rare_base (μ : Measure Gap) [IsProbabilityMeasure μ] {ρ b : ℝ}
+/-- A known law supplies an expected-budget base rule with strict slack over the minimax infimum. -/
+theorem rare_base (μ : Measure Gap) [IsProbabilityMeasure μ] {ρ b : ℝ}
     (hr : 0 < ρ) (hu : ρ ≤ 1/4) (hb : 0 < b) :
     ∃ (R : Type) (_ : MeasurableSpace R) (A : AdaptiveEstimator R),
       RareBudget μ A ρ b ∧ rareRisk μ A ρ ≤ ENNReal.ofReal (28001*(selection μ ρ b).toReal) := by

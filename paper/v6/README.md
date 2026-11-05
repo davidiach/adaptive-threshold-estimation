@@ -264,3 +264,10 @@ above. Its SHA-256 is
   named theorems.
 
 A fresh build with another engine or TeX Live release may differ in bytes.
+
+## Known-law fixed confidence
+
+[Appendix S](appendix-known-confidence.tex) proves a direct stopping-program
+lower bound and constructs the budgeted median in the observable experiment.
+[Updated manuscript](builds/known-law-confidence-20261104.pdf) ·
+[Build record](builds/known-law-confidence-20261104.json)

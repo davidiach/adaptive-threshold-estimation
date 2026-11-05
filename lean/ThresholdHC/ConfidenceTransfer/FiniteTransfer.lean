@@ -67,12 +67,10 @@ theorem measurable_quarterPrior {D : Type} [MeasurableSpace D] (q r : D → unit
   fun_prop
 
 
-/-- The one-type finite adaptive population transfer in Theorem 2. The
-hypothesis is required only on the legal local simulators for this tree. -/
-theorem finite_null_work_kl {D : Type} [MeasurableSpace D] {m n : ℕ}
+/-- Charge local Hellinger loss to the actual reference population of the finite hybrid. -/
+theorem finite_reference_work_kl {D : Type} [MeasurableSpace D] {m n : ℕ}
     (μ : Measure D) [IsProbabilityMeasure μ] (p₀ p₁ q r : D → unitInterval)
     (h₀ : Measurable p₀) (h₁ : Measurable p₁) (hq : Measurable q) (hr : Measurable r)
-    (hqhalf : ∀ x, (q x : ℝ) ≤ 1/2) (hrhalf : ∀ x, (r x : ℝ) ≤ 1/2)
     (d : D → ℝ) (hdm : Measurable d) (hd : ∀ x, 0 ≤ d x ∧ d x ≤ 1/2)
     (h₀d : ∀ᵐ x ∂μ, (p₀ x : ℝ) = 1/2-d x) (h₁d : ∀ᵐ x ∂μ, (p₁ x : ℝ) = 1/2+d x)
     (pol : List Bool → Option (Fin m)) (κ : ℝ) (hκ : 0 ≤ κ)
@@ -81,17 +79,14 @@ theorem finite_null_work_kl {D : Type} [MeasurableSpace D] {m n : ℕ}
       ∀ i : Fin m, 1-(hellingerAffinity
         (cappedTranscriptLaw μ ν p₀ p₁ q (localSimulationProcedure i n pol) n)
         (cappedTranscriptLaw μ ν p₀ p₁ r (localSimulationProcedure i n pol) n)).toReal ≤
-        κ*(populationExpectedWork μ ν p₀ p₁ (fun _ => 0) (localSimulationProcedure i n pol)).toReal) :
+        κ*(populationExpectedWork μ ν p₀ p₁ (quarterPrior q r) (localSimulationProcedure i n pol)).toReal) :
     let W := fun u => finiteWeightMeasure (finitePopulationWeight (n := n) μ pol d u)
     klDiv (W (fun _ x => (quarterPrior q r x : ℝ))) (W (fun _ x => (quarterPrior r q x : ℝ))) ≤
-      ENNReal.ofReal ((16/3)*κ*(finitePopulationExpectedWork μ p₀ p₁ (quarterPrior q r) pol n).toReal) := by
+      ENNReal.ofReal ((8/3)*κ*(finitePopulationExpectedWork μ p₀ p₁ (quarterPrior q r) pol n).toReal) := by
   classical
   let s := quarterPrior q r
   let t := quarterPrior r q
   have hs : Measurable s := measurable_quarterPrior q r hq hr
-  have hshalf (x) : (s x : ℝ) ≤ 1/2 := by
-    change (3*(q x : ℝ)+(r x : ℝ))/4 ≤ 1/2
-    linarith [hqhalf x,hrhalf x]
   let : IsProbabilityMeasure (populationParameterLaw μ p₀ p₁ s) :=
     populationParameterLaw_probability μ p₀ p₁ s h₀ h₁ hs
   let ν := Measure.pi (fun _ : Fin m => parameterTapeLaw (populationParameterLaw μ p₀ p₁ s))
@@ -116,25 +111,18 @@ theorem finite_null_work_kl {D : Type} [MeasurableSpace D] {m n : ℕ}
       all_goals exact measurable_subtype_coe.comp (by assumption)
     · intro j x; split <;> first | exact (u x).property | exact (s x).property
   let work (i : Fin m) := populationExpectedWork μ ν p₀ p₁ s (localSimulationProcedure i n pol)
-  have step (i : Fin m) : klDiv (H i s) (H i t) ≤ ENNReal.ofReal ((16/3)*κ*(work i).toReal) := by
+  have step (i : Fin m) : klDiv (H i s) (H i t) ≤ ENNReal.ofReal ((8/3)*κ*(work i).toReal) := by
     let : IsProbabilityMeasure (H i q) := finiteWeightMeasure_probability _ (htotal i q hq).1 (htotal i q hq).2
     let : IsProbabilityMeasure (H i r) := finiteWeightMeasure_probability _ (htotal i r hr).1 (htotal i r hr).2
     rw [hmix i q r hq hr,hmix i r q hr hq]
     apply (quarter_smoothing (H i q) (H i r)).trans
     apply ENNReal.ofReal_le_ofReal
     have hA := localSimulation_affinity_le μ p₀ p₁ q r s h₀ h₁ hq hr hs d hdm hd h₀d h₁d pol i (n := n)
-    have hW := null_work_le_twice_population_work μ ν p₀ p₁ s h₀ h₁ hs hshalf (localSimulationProcedure i n pol)
-    have hfin : work i ≠ ∞ := ne_top_of_le_ne_top (by simp)
-      (population_capped_work_le μ ν p₀ p₁ s (localSimulationProcedure i n pol) n (localSimulationProcedure_capped i n pol))
-    have hWr := ENNReal.toReal_mono (ENNReal.mul_ne_top (by norm_num) hfin) hW
-    rw [ENNReal.toReal_mul] at hWr
-    norm_num only [ENNReal.toReal_ofNat] at hWr
-    change _ ≤ 2*(work i).toReal at hWr
     have hK := (sub_le_sub_left hA 1).trans (hbound i)
     change 1 - realFiniteAffinity (V i q) (V i r) ≤ _ at hK
     change 8/3 * (1 - (hellingerAffinity (finiteWeightMeasure (V i q)) (finiteWeightMeasure (V i r))).toReal) ≤ _
     rw [finiteWeightMeasure_affinity _ _ (htotal i q hq).1 (htotal i r hr).1]
-    nlinarith only [hK,mul_le_mul_of_nonneg_left hWr hκ]
+    exact mul_le_mul_of_nonneg_left hK (by norm_num : (0:ℝ) ≤ 8/3) |>.trans_eq (by ring)
   have hhy := quarter_population_hybrid_kl μ pol d (fun x => (q x : ℝ)) (fun x => (r x : ℝ))
     hdm (measurable_subtype_coe.comp hq) (measurable_subtype_coe.comp hr) hd
     (fun x => (q x).property) (fun x => (r x).property) (n := n)
@@ -149,10 +137,55 @@ theorem finite_null_work_kl {D : Type} [MeasurableSpace D] {m n : ℕ}
       intro i _
       simp only [H,V,veq,ite_self]
       rfl
-    _ ≤ ∑ i : Fin m, ENNReal.ofReal ((16/3)*κ*(work i).toReal) := Finset.sum_le_sum fun i _ => step i
+    _ ≤ ∑ i : Fin m, ENNReal.ofReal ((8/3)*κ*(work i).toReal) := Finset.sum_le_sum fun i _ => step i
     _ = _ := by
       rw [← ENNReal.ofReal_sum_of_nonneg (fun i _ => by positivity),← Finset.mul_sum]
       congr 2
       exact population_localSimulation_total_work_real μ p₀ p₁ s h₀ h₁ hs pol
+
+theorem null_local_work_comparison {D R E : Type} [MeasurableSpace D] [MeasurableSpace R] [MeasurableSpace E]
+    (μ : Measure D) [IsProbabilityMeasure μ] (ν : Measure R) [IsProbabilityMeasure ν]
+    (p₀ p₁ q r : D → unitInterval) (h₀ : Measurable p₀) (h₁ : Measurable p₁)
+    (hq : Measurable q) (hr : Measurable r) (hqhalf : ∀ x, (q x : ℝ) ≤ 1/2)
+    (hrhalf : ∀ x, (r x : ℝ) ≤ 1/2) (A : StoppedProcedure R E) (n : ℕ) (hn : ∀ z, A.stop z ≤ n) :
+    (populationExpectedWork μ ν p₀ p₁ (fun _ => 0) A).toReal ≤
+      2*(populationExpectedWork μ ν p₀ p₁ (quarterPrior q r) A).toReal := by
+  let s := quarterPrior q r
+  have hs := measurable_quarterPrior q r hq hr
+  have hhalf (x) : (s x : ℝ) ≤ 1/2 := by
+    change (3*(q x : ℝ)+(r x : ℝ))/4 ≤ 1/2
+    linarith [hqhalf x,hrhalf x]
+  have hW := null_work_le_twice_population_work μ ν p₀ p₁ s h₀ h₁ hs hhalf A
+  have hfin : populationExpectedWork μ ν p₀ p₁ s A ≠ ∞ := ne_top_of_le_ne_top (by simp)
+    (population_capped_work_le μ ν p₀ p₁ s A n hn)
+  have h := ENNReal.toReal_mono (ENNReal.mul_ne_top (by norm_num) hfin) hW
+  simpa only [ENNReal.toReal_mul,ENNReal.toReal_ofNat] using h
+
+theorem finite_null_work_kl {D : Type} [MeasurableSpace D] {m n : ℕ}
+    (μ : Measure D) [IsProbabilityMeasure μ] (p₀ p₁ q r : D → unitInterval)
+    (h₀ : Measurable p₀) (h₁ : Measurable p₁) (hq : Measurable q) (hr : Measurable r)
+    (hqhalf : ∀ x, (q x : ℝ) ≤ 1/2) (hrhalf : ∀ x, (r x : ℝ) ≤ 1/2)
+    (d : D → ℝ) (hdm : Measurable d) (hd : ∀ x, 0 ≤ d x ∧ d x ≤ 1/2)
+    (h₀d : ∀ᵐ x ∂μ, (p₀ x : ℝ) = 1/2-d x) (h₁d : ∀ᵐ x ∂μ, (p₁ x : ℝ) = 1/2+d x)
+    (pol : List Bool → Option (Fin m)) (κ : ℝ) (hκ : 0 ≤ κ)
+    (hbound : let ν := Measure.pi (fun _ : Fin m =>
+        parameterTapeLaw (populationParameterLaw μ p₀ p₁ (quarterPrior q r)))
+      ∀ i : Fin m, 1-(hellingerAffinity
+        (cappedTranscriptLaw μ ν p₀ p₁ q (localSimulationProcedure i n pol) n)
+        (cappedTranscriptLaw μ ν p₀ p₁ r (localSimulationProcedure i n pol) n)).toReal ≤
+        κ*(populationExpectedWork μ ν p₀ p₁ (fun _ => 0) (localSimulationProcedure i n pol)).toReal) :
+    let W := fun u => finiteWeightMeasure (finitePopulationWeight (n := n) μ pol d u)
+    klDiv (W (fun _ x => (quarterPrior q r x : ℝ))) (W (fun _ x => (quarterPrior r q x : ℝ))) ≤
+      ENNReal.ofReal ((16/3)*κ*(finitePopulationExpectedWork μ p₀ p₁ (quarterPrior q r) pol n).toReal) := by
+  let s := quarterPrior q r
+  let _ := populationParameterLaw_probability μ p₀ p₁ s h₀ h₁ (measurable_quarterPrior _ _ hq hr)
+  let ν := Measure.pi (fun _ : Fin m => parameterTapeLaw (populationParameterLaw μ p₀ p₁ s))
+  have h := finite_reference_work_kl μ p₀ p₁ q r h₀ h₁ hq hr d hdm hd h₀d h₁d pol (2*κ)
+    (by positivity) (n := n) (fun i => (hbound i).trans (by
+      have hc := null_local_work_comparison μ ν p₀ p₁ q r h₀ h₁ hq hr hqhalf hrhalf
+        (localSimulationProcedure i n pol) n (localSimulationProcedure_capped i n pol)
+      nlinarith only [mul_le_mul_of_nonneg_left hc hκ]))
+  rw [show (16/3:ℝ)*κ = (8/3)*(2*κ) by ring]
+  exact h
 
 end ThresholdHC.ConfidenceTransfer

@@ -74,14 +74,14 @@ theorem smoothedSign_separation (μ : Measure Gap) [IsProbabilityMeasure μ] (q 
 
 /-- The one-type transfer in the original experiment, including the independent
 private seed, unrestricted creation labels and actual physical prefix work. -/
-theorem observable_null_work_kl {R : Type} [MeasurableSpace R] (μ : Measure Gap)
+theorem observable_reference_work_kl {R : Type} [MeasurableSpace R] (μ : Measure Gap)
     [IsProbabilityMeasure μ] (A : AdaptiveEstimator R) (q r : SignLaw)
-    (hqhalf : ∀ d, q.val d ≤ 1/2) (hrhalf : ∀ d, r.val d ≤ 1/2) (n : ℕ)
-    (κ : ℝ) (hκ : 0 ≤ κ) (hloc : LocalNullWorkBound μ (gapParameter false) (gapParameter true)
+(n : ℕ)
+    (κ : ℝ) (hκ : 0 ≤ κ) (hloc : LocalReferenceWorkBound μ (gapParameter false) (gapParameter true)
       (signUnit q) (signUnit r) κ) :
     klDiv (observablePrefixLaw μ A (smoothedSign q r) n)
       (observablePrefixLaw μ A (smoothedSign r q) n) ≤ ENNReal.ofReal
-      ((16/3)*κ*∫ z, ThresholdHC.workOf (processPrefix n z.2) ∂experimentLaw μ A (smoothedSign q r)) := by
+      ((8/3)*κ*∫ z, ThresholdHC.workOf (processPrefix n z.2) ∂experimentLaw μ A (smoothedSign q r)) := by
   let s := smoothedSign q r
   let t := smoothedSign r q
   let v (b : SignLaw) (u : R) := creationPopulationWeight (n := n) μ (A.policy u) (fun d : Gap => (d : ℝ)) b.val
@@ -97,12 +97,12 @@ theorem observable_null_work_kl {R : Type} [MeasurableSpace R] (μ : Measure Gap
     measurable_fst.fst.prodMk (measurable_processPrefix Prod.snd observable_tape_measurable n)
   let (b : SignLaw) : IsProbabilityMeasure (observablePrefixLaw μ A b n) :=
     (Measure.isProbabilityMeasure_map_iff hobs.aemeasurable).2 inferInstance
-  have he (u) := creation_null_work_kl μ (gapParameter false) (gapParameter true) (signUnit q) (signUnit r)
+  have he (u) := creation_reference_work_kl μ (gapParameter false) (gapParameter true) (signUnit q) (signUnit r)
     (measurable_gapParameter false) (measurable_gapParameter true) (measurable_signUnit q) (measurable_signUnit r)
-    hqhalf hrhalf (fun d : Gap => (d : ℝ)) measurable_subtype_coe (fun d => ⟨d.property.1.le,d.property.2⟩)
+    (fun d : Gap => (d : ℝ)) measurable_subtype_coe (fun d => ⟨d.property.1.le,d.property.2⟩)
     (ae_of_all _ (fun d => by simp [gapParameter,sub_eq_add_neg])) (ae_of_all _ (fun d => by simp [gapParameter]))
     (A.policy u) n κ hκ hloc
-  have hscalar (u) : ThresholdHC.klFT (v s u) (v t u) ≤ (16/3)*κ*∑ w, v s u w*ThresholdHC.workOf w := by
+  have hscalar (u) : ThresholdHC.klFT (v s u) (v t u) ≤ (8/3)*κ*∑ w, v s u w*ThresholdHC.workOf w := by
     have hsupp (w) (hw : v t u w = 0) : v s u w = 0 := by
       have h := creation_quarter_le μ q r (A.policy u) w
       change v s u w ≤ 3^n * v t u w at h
@@ -111,7 +111,7 @@ theorem observable_null_work_kl {R : Type} [MeasurableSpace R] (μ : Measure Gap
     have h := he u
     change klDiv (finiteWeightMeasure (v s u)) (finiteWeightMeasure (v t u)) ≤ _ at h
     rw [finite_weight_kl _ _ (htotal s u).1 (htotal t u).1 (htotal s u).2 (htotal t u).2 hsupp] at h
-    have hnn : 0 ≤ (16/3)*κ*∑ w, v s u w*ThresholdHC.workOf w :=
+    have hnn : 0 ≤ (8/3)*κ*∑ w, v s u w*ThresholdHC.workOf w :=
       mul_nonneg (mul_nonneg (by norm_num) hκ) (Finset.sum_nonneg fun w _ =>
         mul_nonneg ((htotal s u).1 w) (workOf_nonneg w))
     exact (ENNReal.ofReal_le_ofReal_iff hnn).mp h
@@ -119,7 +119,7 @@ theorem observable_null_work_kl {R : Type} [MeasurableSpace R] (μ : Measure Gap
     (v s) (v t) (hm s) (hm t) (fun u => (htotal s u).1) (fun u w =>
       (Finset.single_le_sum (fun j _ => (htotal s u).1 j) (Finset.mem_univ w)).trans_eq (htotal s u).2)
     (fun u => (htotal t u).1) (3^n) (by positivity) (fun u => creation_quarter_le μ q r (A.policy u))
-    (fun u => creation_quarter_le μ r q (A.policy u)) (hk s) (hk t) ThresholdHC.workOf ((16/3)*κ) hscalar
+    (fun u => creation_quarter_le μ r q (A.policy u)) (hk s) (hk t) ThresholdHC.workOf ((8/3)*κ) hscalar
   have hf : Measurable (fun z : R × Prefix n => ThresholdHC.workOf z.2) :=
     (measurable_of_countable ThresholdHC.workOf).comp measurable_snd
   have hw := hk s (fun z => ThresholdHC.workOf z.2) hf
@@ -129,5 +129,19 @@ theorem observable_null_work_kl {R : Type} [MeasurableSpace R] (μ : Measure Gap
   rw [integral_map hobs.aemeasurable hf.aestronglyMeasurable] at hw
   rw [← hw] at hb
   exact hb
+
+theorem observable_null_work_kl {R : Type} [MeasurableSpace R] (μ : Measure Gap)
+    [IsProbabilityMeasure μ] (A : AdaptiveEstimator R) (q r : SignLaw)
+    (hqhalf : ∀ d, q.val d ≤ 1/2) (hrhalf : ∀ d, r.val d ≤ 1/2) (n : ℕ)
+    (κ : ℝ) (hκ : 0 ≤ κ) (hloc : LocalNullWorkBound μ (gapParameter false) (gapParameter true)
+      (signUnit q) (signUnit r) κ) :
+    klDiv (observablePrefixLaw μ A (smoothedSign q r) n)
+      (observablePrefixLaw μ A (smoothedSign r q) n) ≤ ENNReal.ofReal
+      ((16/3)*κ*∫ z, ThresholdHC.workOf (processPrefix n z.2) ∂experimentLaw μ A (smoothedSign q r)) := by
+  have h := observable_reference_work_kl μ A q r n (2*κ) (by positivity)
+    (local_reference_of_null μ _ _ _ _ (measurable_gapParameter false) (measurable_gapParameter true)
+      (measurable_signUnit q) (measurable_signUnit r) hqhalf hrhalf hκ hloc)
+  rw [show (16/3:ℝ)*κ = (8/3)*(2*κ) by ring]
+  exact h
 
 end ThresholdHC.ConfidenceTransfer
