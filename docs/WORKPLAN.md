@@ -52,7 +52,7 @@ and its finite-law adapter are in [PR #42](https://github.com/davidiach/adaptive
 The [sharp quantile factor](OPTIMAL_QUANTILE_FACTOR.md) is characterized on paper
 by a unique scalar root, with a certified numerical bracket of width $10^{-12}$.
 Lean verifies the upper factor [$31/20$](../results/quantile-price-20261104/README.md).
-Formalizing the sharp root characterization remains open.
+The [unique scalar root and finite-vector optimum](../results/optimal-quantile-root-20261105/README.md) are now Lean-checked. The arbitrary-law reduction and finite-law realization remain to be formalized.
 
 For structured finite laws, [grouping repeated suffix costs](BAND_COST_SELECTION.md)
 reduces the search to a polynomial number of states when the number of distinct

@@ -123,8 +123,29 @@ $\exp(2-k^2-(k/u-1)^2)$ and decreases for $u\ge k$. On the stated
 range of $k$ we can therefore maximize on $[1,31/20]$. The series is
 uniformly convergent there and $\lambda$ increases strictly in $k$.
 The maximum is continuous and strictly decreasing, by taking a
-maximizer on this compact interval. The numerical inequalities below
-straddle one and give the unique root.
+maximizer on this compact interval. At $k=\sqrt2$, $u=1$, the first
+summand is at least $4/5$ and the first tail term is greater than $1/5$.
+At $k=31/20$, $\lambda_k(u)\ge3$. The first summand is less than $3/4$,
+and the tail is bounded by $e^{-2}/(1-e^{-3})<1/4$.
+These analytic bounds straddle one and give a unique root $c_{\rm vec}$.
+
+\begin{proposition}\label{prop:sharp-finite-vector-factor}
+For every real $k$, the inequality
+\[
+ 1+\sqrt{G(a,b_0,\ldots,b_{s-1})}
+ \le k\left(\sqrt{1+a}+\sum_{j=0}^{s-1}2^jb_j\right)
+\]
+holds for every finite length $s$ and all $a,b_j\ge0$ if and only if
+$c_{\rm vec}\le k$. Every smaller factor has a finite nonnegative-vector
+counterexample.
+\end{proposition}
+The preceding scalar argument proves the proposition. For $k<\sqrt2$,
+the vector $a=1$, $s=0$ already violates the inequality.
+The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/df8be8cc6472a3fec98dca63ea0f5eb58a4d17f3/lean/ThresholdHC/OptimalQuantile/FiniteSharp.lean}{native finite-vector theorem}
+and \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/df8be8cc6472a3fec98dca63ea0f5eb58a4d17f3/lean/ThresholdHC/OptimalQuantile/Root.lean}{unique-root theorem}
+check these statements, with 54 exact types and transitive axiom reports.
+The law-to-vector reduction and finite-law realization above retain their
+paper-proof status.
 
 \paragraph{Rational certification.}
 The lower endpoint uses $t=\eta=2^{-40}$, $\rho=1/8$, $h=t/16$ and

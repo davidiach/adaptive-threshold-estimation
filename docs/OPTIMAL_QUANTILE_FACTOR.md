@@ -18,7 +18,9 @@ $$
  1.462554551279 < c_* < 1.462554551280 .
 $$
 Finite laws approach the same supremum as general laws. The characterization
-is a paper proof. The [exact arithmetic verifier](../tools/verify_optimal_quantile_factor.py)
+is a paper proof. Lean now checks the unique scalar root and its exact equivalence to all finite-vector bounds, including a counterexample below the root. The arbitrary-law reduction and finite-law realization remain to be formalized. [Native record](../results/optimal-quantile-root-20261105/README.md)
+
+The [exact arithmetic verifier](../tools/verify_optimal_quantile_factor.py)
 certifies the displayed numerical bracket. It uses a concrete six-atom
 law on the lower side and a covering of the entire interval in $u$ on the upper side.
 

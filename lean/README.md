@@ -135,3 +135,5 @@ the ordinary model to unknown laws ordered by their gap CDFs.
 [Sharper general-law confidence](ThresholdHC/ConfidenceEntropy/Full.lean) checks the lower coefficient $10^{-17}$ and hard-cap upper coefficient $750000$. Its [direct program comparison](ThresholdHC/ConfidenceEntropy/Program.lean) uses the retained entropy at every cap. [Proof map](../docs/ENTROPY_CONFIDENCE.md) · [Audit](../results/entropy-confidence-20261105/README.md)
 
 [Generic RMS transfer](ThresholdHC/RMSLocalization/CommonPair.lean) and [additive submeasure localization](ThresholdHC/RMSLocalization/Full.lean) verify coefficient $1/128$ in the original experiment. [Proof map](../docs/RMS_LOCALIZATION.md) · [Audit](../results/rms-localization-20261105/README.md)
+
+The [sharp finite-vector quantile factor](ThresholdHC/OptimalQuantile/FiniteSharp.lean) is equivalent to the [unique scalar root](ThresholdHC/OptimalQuantile/Root.lean) for every real factor. The law-to-vector reduction and finite-law realization remain paper proofs. [Native record](../results/optimal-quantile-root-20261105/README.md)

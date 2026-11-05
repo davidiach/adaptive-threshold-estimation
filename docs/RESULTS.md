@@ -1038,3 +1038,7 @@ with 599 flips each give another qualifying plan at 256,372 flips.
 To reproduce the grid result from `toolkit/`, run
 `python -m threshold_toolkit --rates 0.9,0.8,0.7,0.6,0.55,0.52,0.45,0.3,0.2,0.1`
 with `--budget 16384` or `--target-error 0.03`. The seed defaults to 0.
+
+## Sharp finite-vector quantile factor
+
+Lean checks a unique scalar root in $(\sqrt2,31/20)$ and proves that every finite nonnegative-vector inequality holds exactly when its factor is at least that root. Every smaller factor has a finite-vector counterexample. The proof includes the exact Gibbs test, tangent and scale elimination, summability, joint continuity, compact maximization, strict monotonicity and analytic endpoint inequalities. The arbitrary-law reduction and finite-law realization remain paper proofs. The tight numerical bracket retains its separate rational certificate. [Native record](../results/optimal-quantile-root-20261105/README.md)

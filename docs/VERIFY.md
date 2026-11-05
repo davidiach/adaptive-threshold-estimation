@@ -805,3 +805,7 @@ Run `python tools/verify_confidence_entropy.py` for six exact statements and six
 ## RMS obstruction transfer and localization
 
 Run `python tools/verify_rms_localization.py` for 15 exact statements and 15 transitive axiom reports. The audit covers countable-label creation, arbitrary private seeds, midpoint-work charging, stopped finite decisions, the sharper binary risk inequality, and the generic and additive RMS coefficient $1/128$. [Native record](../results/rms-localization-20261105/README.md)
+
+## Sharp finite-vector quantile factor
+
+Run `python tools/verify_optimal_quantile.py` for 54 exact statements and 54 transitive axiom reports. The audit covers the Gibbs criterion, square-root tangents, finite-to-infinite limit, joint continuity, compact maximum, strict monotonicity, analytic endpoint bounds, unique root and the unrestricted finite-vector equivalence. The arbitrary-law reduction and finite-law realization remain paper proofs. [Native record](../results/optimal-quantile-root-20261105/README.md)
