@@ -962,7 +962,11 @@ checks moment determinacy, finite signature separation, the shared-prefix pilot
 and the full observable selected controller. It proves unconditional caps,
 history compatibility, nested intervals and joint all-budget coverage and width.
 The endpoint law is also matched to the original observable experiment.
-Python execution remains outside Lean verification.
+The [executable finite-family controller](FINITE_FAMILY_ADAPTATION.md#executable-confidence-sequence)
+now joins a resumable pilot to known-law confidence stages under one cumulative
+physical flip budget. Its radii use the executable planner's own MSE certificate;
+it does not claim the formal construction's exact constant. Python execution
+remains outside Lean verification.
 Oracle-rate adaptation over arbitrary unknown gap laws remains open.
 An exact path count shows that repeatedly
 checking a fixed-time interval fails: a check with fixed-time failure at most

@@ -119,7 +119,12 @@ The [law-dependent lower-bound development](TIME_UNIFORM_LOWER.md) proves that e
 The [finite-family theorem](FINITE_FAMILY_ADAPTATION.md) gives the known-law
 time-uniform rate after an explicit finite pilot cost, even when candidate
 supports differ. Even products of observed flips identify moment signatures
-without assumptions on how signs depend on gaps. The theorem is a paper proof;
-17 Lean statements check its parity, concentration, identification, probability
-transfer and delayed-rate components. The candidate-family premise is required.
-This does not resolve adaptation over arbitrary unknown laws.
+without assumptions on how signs depend on gaps. Seventeen Lean statements
+check the original components, and a further
+[22-statement audit](../results/law-adaptation-realization-20261105/README.md)
+verifies moment determinacy, the actual pilot and full observable selected
+controller, including joint all-budget coverage and oracle width.
+The [executable controller](FINITE_FAMILY_ADAPTATION.md#executable-confidence-sequence)
+connects a resumable pilot to the known-law estimator's confidence stages under
+one physical flip budget. Python execution remains unverified. The supplied
+candidate-family premise is required; arbitrary-law oracle adaptation remains open.
