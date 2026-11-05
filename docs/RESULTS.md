@@ -893,8 +893,11 @@ bounds are checked. Fractional-submeasure confidence localization now
 has a checked additive coefficient $1/128$, including overlapping
 components and the original observation model. A direct retained-entropy
 comparison with the stopping program also checks the sharper general-law
-confidence coefficient $10^{-17}$.
-[Single-type record](../results/confidence-population-20261104/README.md) · [Selected-type record](../results/adaptive-types-20261105/README.md) · [Common-pair record](../results/common-pair-20261105/README.md) · [Additive localization record](../results/additive-confidence-20261105/README.md) · [Sharper confidence record](../results/entropy-confidence-20261105/README.md)
+confidence coefficient $10^{-17}$. The generic RMS transfer and its
+overlapping-submeasure version are also checked with coefficient $1/128$.
+Their proof charges Hellinger loss to midpoint work and uses a strengthened
+binary risk bound.
+[Single-type record](../results/confidence-population-20261104/README.md) · [Selected-type record](../results/adaptive-types-20261105/README.md) · [Common-pair record](../results/common-pair-20261105/README.md) · [Additive localization record](../results/additive-confidence-20261105/README.md) · [Sharper confidence record](../results/entropy-confidence-20261105/README.md) · [RMS localization record](../results/rms-localization-20261105/README.md)
 
 **Amplification.** If a procedure has $\mathbb ET\le b$ and RMS at most $R(b)$,
 the median of $m$ independent copies, with $m$ the least odd integer such that

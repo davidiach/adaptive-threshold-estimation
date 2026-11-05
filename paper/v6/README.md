@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Read the updated manuscript](builds/entropy-confidence-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/entropy-confidence-20261105.json)
+[Read the updated manuscript](builds/rms-localization-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/rms-localization-20261105.json)
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -296,3 +296,5 @@ finite-budget and unbiased models. [Build record](builds/stochastic-envelope-202
 [Fractional-submeasure confidence localization](additive-confidence.tex) proves the additive coefficient $1/128$ with overlapping supports and an exact transfer to the original observation model. [Manuscript](builds/additive-confidence-20261105.pdf) · [Build record](builds/additive-confidence-20261105.json)
 
 [Sharper general-law confidence](entropy-confidence.tex) proves the lower coefficient $10^{-17}$ through a direct stopping-program comparison and retains the hard-cap upper coefficient $750000$. [Manuscript](builds/entropy-confidence-20261105.pdf) · [Build record](builds/entropy-confidence-20261105.json)
+
+[RMS obstruction transfer and additive localization](rms-localization.tex) verify coefficient $1/128$ using midpoint-work Hellinger bounds and binary testing. [Manuscript](builds/rms-localization-20261105.pdf) · [Build record](builds/rms-localization-20261105.json)

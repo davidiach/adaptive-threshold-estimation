@@ -133,3 +133,5 @@ the ordinary model to unknown laws ordered by their gap CDFs.
 [Additive confidence localization](ThresholdHC/AdditiveConfidence/Full.lean) checks the estimator and minimax coefficient $1/128$ for finite overlapping submeasures, with exact normalization, original observation laws and weighted work. [Proof map](../docs/ADDITIVE_CONFIDENCE.md) · [Audit](../results/additive-confidence-20261105/README.md)
 
 [Sharper general-law confidence](ThresholdHC/ConfidenceEntropy/Full.lean) checks the lower coefficient $10^{-17}$ and hard-cap upper coefficient $750000$. Its [direct program comparison](ThresholdHC/ConfidenceEntropy/Program.lean) uses the retained entropy at every cap. [Proof map](../docs/ENTROPY_CONFIDENCE.md) · [Audit](../results/entropy-confidence-20261105/README.md)
+
+[Generic RMS transfer](ThresholdHC/RMSLocalization/CommonPair.lean) and [additive submeasure localization](ThresholdHC/RMSLocalization/Full.lean) verify coefficient $1/128$ in the original experiment. [Proof map](../docs/RMS_LOCALIZATION.md) · [Audit](../results/rms-localization-20261105/README.md)

@@ -1,0 +1,80 @@
+\clearpage
+\subsection{RMS consequences of the obstruction and mixture bounds}
+\label{sec:rms-localization}
+
+The same common pairs give the manuscript's generic RMS transfer
+and its additive submeasure version.
+
+\begin{theorem}[Verified RMS obstruction transfer]
+\label{thm:rms-obstruction-verified}
+Under the variance--null-work premise of
+Theorem~\ref{thm:common-pair-verified}, for every $B>0$,
+\[
+ R_{\mu,\rho}(B)\ge
+ \frac1{128}\min\{b,\sqrt{J/B}\}.
+\]
+The bound holds for each observable estimator with uniform expected
+work at most $B$, and for the minimax infimum.
+\end{theorem}
+
+\begin{proof}
+Choose the policy-uniform pair at separation
+$s=\min\{b,\sqrt{J/B}\}/32$. Its local squared Hellinger bound
+is $\kappa\mathbb E_0T$, where
+$\kappa=42s^2/J\le42/(1024B)$.
+The finite adaptive population decomposition charges each local
+loss to the same midpoint population. Null work is at most twice
+midpoint work, so the finite-prefix population laws satisfy
+\[
+ 1-\Aff(P_{q,n},P_{r,n})\le2\kappa B
+ \le\frac{21}{256}<\frac1{10}.
+\]
+The proof first restricts each finite decision tree to its finitely
+many labels, then integrates over the arbitrary private seed.
+Finite expected work at each endpoint and stopped-prefix
+reconstruction extend the bound to every terminal binary decision,
+as checked by the
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/8ed87544c861eee47a7b9fd2ede9483529b60e52/lean/ThresholdHC/RMSLocalization/Terminal.lean}{formal transfer}.
+
+Let $a<b$ be the two target means. Threshold the estimator at
+$(a+b)/2$. If both squared risks were below $(b-a)^2/16$,
+Markov's inequality would make each testing error at most $1/4$.
+For the resulting binary laws, write
+$p=P_q\{1\}$ and $u=P_r\{0\}$. Cauchy--Schwarz gives
+\[
+ \Aff(P_q,P_r)
+ =\sqrt{(1-p)u}+\sqrt{p(1-u)}
+ \le\sqrt{(2-p-u)(p+u)}\le\frac78.
+\]
+This contradicts affinity at least $9/10$. Thus the maximum
+RMS risk is at least $(b-a)/4\ge s/4$, proving the coefficient
+$1/128$. The
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/8ed87544c861eee47a7b9fd2ede9483529b60e52/lean/ThresholdHC/RMSLocalization/CommonPair.lean}{generic RMS theorem}
+constructs the common pair from the obstruction internally.
+\end{proof}
+
+\begin{theorem}[Verified additive RMS localization]
+\label{thm:rms-additive-verified}
+For the finite submeasures, normalized component laws, rarity
+allocation and variance--null-work obstructions of
+Theorem~\ref{thm:additive-confidence-verified}, for every $B>0$,
+\[
+ R_{\mu,\rho}(B)\ge\frac1{128}\sum_i\tau_i
+       \min\{b_i,\sqrt{J_i/B}\}.
+\]
+The component supports may overlap.
+\end{theorem}
+
+\begin{proof}
+Take $s_i=\min\{b_i,\sqrt{J_i/B}\}/32$ in each component.
+The combined measurable priors constructed in
+Section~\ref{sec:additive-confidence} have target difference at
+least $\sum_i\tau_i s_i$ and the uniform local bound
+$\kappa=42/(1024B)$ against original null work.
+The preceding midpoint transfer and binary-testing argument give
+RMS risk at least $\sum_i\tau_i s_i/4$.
+A zero total contribution gives the zero bound.
+The
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/8ed87544c861eee47a7b9fd2ede9483529b60e52/lean/ThresholdHC/RMSLocalization/Full.lean}{formal submeasure conclusions}
+cover each admissible estimator and the minimax infimum.
+\end{proof}
