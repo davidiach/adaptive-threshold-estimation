@@ -113,3 +113,5 @@ newer work.
 The [observable sequential-testing audit](anytime-sequential-20261105/README.md) checks eight exact statements, including first-crossing summability and infinitely many width violations in the original adaptive experiment.
 
 The [infinite-moment tail-family audit](anytime-tail-20261105/README.md) checks fifteen exact statements through the adaptive observable information transfer and an explicit unbounded integer-budget schedule.
+
+The [complete time-uniform lower-bound audit](anytime-asymptotic-20261105/README.md) checks fourteen exact statements, including the all-law asymptotic comparison and observable interval consequence with coefficient $10^{-22}$.

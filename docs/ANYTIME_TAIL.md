@@ -52,8 +52,9 @@ for every law with nonintegrable inverse gap.
 
 This is a construction and testing theorem in the actual observable experiment.
 It does not by itself prove the final comparison to
-K(n/[log(1/δ)+log log n]). The dense and sparse block comparisons and finite
-asymptotic coefficient case are further proof obligations.
+K(n/[log(1/δ)+log log n]). The later [asymptotic audit](../results/anytime-asymptotic-20261105/README.md)
+now checks the dense and sparse block comparisons and finite-coefficient case,
+completing the [all-law theorem](TIME_UNIFORM_LOWER.md).
 
 Run python tools/verify_anytime_tail.py for the exact-statement and transitive
 axiom audit. Earlier finite rational profile regressions remain historical

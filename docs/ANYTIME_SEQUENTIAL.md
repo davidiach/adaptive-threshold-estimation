@@ -1,8 +1,9 @@
 # Sequential testing in the observable experiment
 
 This checkpoint formalizes the dependent-observation testing step of the
-[law-dependent time-uniform lower bound](TIME_UNIFORM_LOWER.md). It does not yet
-formalize the full asymptotic comparison with the selection functional.
+[law-dependent time-uniform lower bound](TIME_UNIFORM_LOWER.md). Its own audit
+is scoped to sequential testing; the later [asymptotic audit](../results/anytime-asymptotic-20261105/README.md)
+completes the comparison with the selection functional.
 
 Let Q be one reference probability law and P_k a family of alternatives on
 the same experiment. Suppose the corresponding means are θ and θ+a_k, where
@@ -39,8 +40,9 @@ The schedule is required to be monotone, and the exact theorem still takes
 the separated family and its prefix information bounds as premises.
 
 The eight-root audit also checks that exp(−log(k+2)/2) is not summable.
-Substituting a concrete prior family and proving its integer-budget
-asymptotics are further steps.
+The [tail-family checkpoint](ANYTIME_TAIL.md) substitutes the infinite-moment
+family; the [final comparison](TIME_UNIFORM_LOWER.md) supplies the budget
+asymptotics and the finite-coefficient case.
 
 Run:
 

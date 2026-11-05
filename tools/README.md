@@ -97,6 +97,6 @@ The `verify_quantile_sharp_law.py` audit now includes the [all-law upper compari
 
 Run `verify_quantile_optimality.py` for [finite-law realization and exact least-factor equivalences](../results/quantile-optimality-20261105/README.md).
 
-Run `verify_anytime_lower.py` for the [law-dependent prior-family and observable information bounds](../docs/TIME_UNIFORM_LOWER.md). It audits 15 exact statements and their transitive axioms. Run `verify_anytime_sequential.py` for eight exact statements covering first-crossing summability and infinitely many width violations in the observable experiment. The final asymptotic comparison retains paper-proof status.
+Run `verify_anytime_lower.py` for the [law-dependent prior-family and observable information bounds](../docs/TIME_UNIFORM_LOWER.md). It audits 15 exact statements and their transitive axioms. Run `verify_anytime_sequential.py` for eight exact statements covering first-crossing summability and infinitely many width violations in the observable experiment. Run `verify_anytime_asymptotics.py` for fourteen exact statements covering the finite coefficient, dense and sparse cases, full all-law theorem, and observable interval consequence. [Native record](../results/anytime-asymptotic-20261105/README.md).
 
 Run `verify_anytime_tail.py` for fifteen exact statements covering the infinite-moment tail family, adaptive acquisition transfer, and explicit unbounded testing schedule. See the [construction and its boundary](../docs/ANYTIME_TAIL.md).
