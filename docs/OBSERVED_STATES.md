@@ -23,10 +23,22 @@ The initial component audit checks the following results.
 
 Run `python tools/verify_observed_states.py` for the component audit.
 
+## Finite-cell information and testing
+
+The next checkpoint identifies the full Bayes transcript law of the concrete
+independent-tape experiment. It proves the information bound from uniform
+expected work over deterministic sign arrays and derives the exact lower
+coefficient `225/(128h²)` multiplying `kl(1−2δ,2δ)`.
+
+The testing theorem assumes an explicit finite design with separation `Δ`
+and squared target weights at most `δΔ²/16`. The replication lemmas prove
+that sufficiently many copies satisfy this concentration requirement.
+This construction uses a second-moment cell-count bound.
+
 ## Remaining assembly
 
-The finite experiment still needs its full transcript information bound,
-the estimation-to-testing reduction, and the finite-partition construction.
-The continuous-magnitude result also needs the adaptive noise simulation
-and its exact work and observation-law identities. The full observed-state
-theorems retain their paper-proof status while those steps are in progress.
+The observed-state results still need the complete finite-partition
+construction. The continuous-magnitude result also needs the adaptive noise
+simulation and its exact work and observation-law identities. The full
+observed-state theorems retain their paper-proof status while those steps
+are in progress.
