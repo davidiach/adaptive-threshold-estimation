@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Read the updated manuscript](builds/law-adaptation-realization-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/law-adaptation-realization-20261105.json)
+[Read the updated manuscript](builds/gap-law-menus-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/gap-law-menus-20261105.json)
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -417,3 +417,19 @@ embedded, references resolve, and no new layout warning appears. Earlier
 publications and their records remain unchanged.
 
 [Updated manuscript](builds/law-adaptation-realization-20261105.pdf) · [Build record](builds/law-adaptation-realization-20261105.json) · [Native proof record](../../results/law-adaptation-realization-20261105/README.md)
+
+
+## Concrete finite-law selection menus
+
+The verification table now records the formal connection from a finite gap
+law to the cost-compressed suffix solver. Thirteen exact statements verify
+menu coverage, disjointness, the original entropy and saving identities,
+the optimized value K and the finite atomic sums. Python execution and the
+unrestricted polynomial-time question remain outside the result.
+
+The new 169-page PDF has two byte-identical offline builds. The only changed
+page (45) was visually inspected; no pages relocate. All 29 fonts are embedded,
+references resolve, and no new layout warning appears. Prior publications and
+their records remain unchanged.
+
+[Updated manuscript](builds/gap-law-menus-20261105.pdf) · [Build record](builds/gap-law-menus-20261105.json) · [Native proof record](../../results/gap-law-menus-20261105/README.md)

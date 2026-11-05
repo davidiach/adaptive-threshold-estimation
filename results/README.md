@@ -120,8 +120,11 @@ The [complete time-uniform lower-bound audit](anytime-asymptotic-20261105/README
 
 The [native 14-statement audit](band-cost-formal-20261105/README.md) verifies
 the mathematical compression algorithm, state bounds, entropy price,
-exact saving comparison and interval certificates. Its boundary excludes
-the Python implementation and the concrete gap-law-to-menu construction.
+exact saving comparison and interval certificates. The
+[new 13-statement connection](gap-law-menus-20261105/README.md) additionally
+constructs the actual finite-law menus and proves their compressed optimum
+equals the original $K$, including atomic cost and saving formulas.
+Python execution remains unverified.
 
 ## Ordinary cap truncation
 

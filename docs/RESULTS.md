@@ -612,10 +612,12 @@ candidates suffice. [Theorem 5 and verification](VERIFY.md#finite-law-bandwise-s
 [finite-menu audit](../results/band-cost-formal-20261105/README.md) checks
 feasible compression, preservation of a global minimum, the
 $\binom{m+r}{r}$ state bound and transition recurrence, entropy symmetry,
-exact saving comparisons, and interval certificates. It does not verify
-the Python implementation or its concrete gap-law-to-menu construction;
-that connection to $K$ remains a paper argument. Efficient exact selection
-with unrestricted distinct band costs remains open.
+exact saving comparisons, and interval certificates. A further
+[13-statement audit](../results/gap-law-menus-20261105/README.md) verifies the
+concrete finite-law menu construction, its exact entropy and saving identities,
+atomic formulas, and the equality of its optimized value with the original
+$K$. Python execution remains unverified. Efficient exact selection with
+unrestricted distinct band costs remains open.
 
 **Lean verifies Theorems 7–8 and Corollary 9.** Changing a law by total variation
 $\eta$ changes $K$ by at most $\eta$. Within-band upward rounding by a factor
