@@ -39,7 +39,7 @@ Pointwise convergence of the genie brackets assumes finite latent
 divergence, and \cref{sec:genie} includes an infinite-divergence
 counterexample; optimized convergence first fixes a positive
 regularization, takes the cap limit, and then removes the regularization.
-No uniform convergence rate or bit-complexity claim is made.
+\cref{app:uniform-cap-rate} gives a uniform rate for the optimized programs; no bit-complexity claim is made.
 Finite-support inputs give genuine finite conic programs.
 The eight rational examples in \cref{sec:computation} pass at caps
 $1$, $4$, or $8$; independent exact checkers verify their feasibility.
@@ -62,5 +62,5 @@ formulations. It also checks the explicit
 infinite-divergence counterexample and optimized direct squared-risk
 certificate. These proofs use the original expected physical-work model.
 The exact rational computations retain their separate finite-instance
-scope. No numerical solver accuracy, uniform cap rate or bit complexity
-is asserted by the formal results. See \cref{sec:verification}.
+scope. The uniform cap rate of \cref{app:uniform-cap-rate} is Lean-checked;
+no numerical solver accuracy or bit complexity is asserted by the formal results. See \cref{sec:verification}.

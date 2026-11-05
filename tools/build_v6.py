@@ -128,9 +128,12 @@ RMS and confidence lower bounds are also proved, including the paper's
 confidence coefficient $15/(256\sqrt2)$. The rare-event rate for power
 margins above exponent two is proved in the observable model by a
 construction different from \cref{app:above-two}. The entropy--tail law,
-the closed quantile form, the stopping-program results, and the other
-rare-event regimes are paper proofs. Section~\ref{sec:verification} gives
-the exact scope and links.
+the closed quantile form and its exact comparison factor, the
+stopping-program results and the other power-margin rows are also
+Lean-checked, as are the hard-cap, confidence, smooth-density and
+observed-state results of the later appendices. The arbitrary-law
+statistical $\Psi$ lower bound of \cref{app:localization} remains a paper
+proof. Section~\ref{sec:verification} gives the exact scope and links.
 """)
 
     core = sources[V5 + "core.tex"].replace(
@@ -720,8 +723,9 @@ Proposition~\\ref{fg:prop:quantile-selection}.
 \\end{proof}
 
 For every law, $\\Q(B)$ remains a closed expression: $\\kappa$ occupies
-finitely many bands. Corollary~\\ref{fg:cor:general-laws} rests on the
-paper proof of Theorem~\\ref{thm:entropy-tail-law}; for finite laws,
+finitely many bands. Corollary~\\ref{fg:cor:general-laws} follows from
+Theorem~\\ref{thm:entropy-tail-law}; Lean checks the stronger bounds
+$10^{-17}\\Q\\le R\\le30001\\,\\Q$ for every law (\\cref{sec:verification}). For finite laws,
 Theorem~\\ref{fg:thm:direct-main} gives the same rate by the direct
 argument of Appendix~\\ref{app:finite-direct}.
 
