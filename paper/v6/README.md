@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Read the updated manuscript](builds/law-adaptation-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/law-adaptation-20261105.json)
+[Read the updated manuscript](builds/law-adaptation-shared-pilot-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/law-adaptation-shared-pilot-20261105.json)
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -383,3 +383,19 @@ without body changes. All 29 fonts are embedded, references resolve, and no
 new layout warning appears. Prior publications remain unchanged.
 
 [Updated manuscript](builds/law-adaptation-20261105.pdf) · [Build record](builds/law-adaptation-20261105.json) · [Native component audit](../../results/law-adaptation-20261105/README.md)
+
+
+## Shared-prefix refinement of the adaptation pilot
+
+The current Section V.2 uses each coin's first 2m flips to supply all m parity
+coordinates. The pilot therefore costs exactly 2mn flips on n fresh coins,
+with the same error bound and oracle comparison. The existing Lean hypotheses
+require independence across coins only, separately for each coordinate; they
+already cover this refinement. The native proof checkpoint is unchanged.
+
+The new 169-page PDF has two byte-identical offline builds. Both changed pages
+(159 and 160) were visually inspected; no pages relocate. All 29 fonts are
+embedded, references resolve, and no new layout warning appears. The earlier
+publication and its record remain unchanged.
+
+[Updated manuscript](builds/law-adaptation-shared-pilot-20261105.pdf) · [Build record](builds/law-adaptation-shared-pilot-20261105.json)

@@ -16,7 +16,7 @@ Choose $m\ge1$ for which the first $m$ moment signatures are distinct, and put
 \[
  \eta=\min_{i\ne j}\max_{1\le k\le m}|a_{i,k}-a_{j,k}|,\qquad
  n=\left\lceil\frac{32}{\eta^2}\log\frac{4m}{\delta}\right\rceil,\qquad
- H=n\,m(m+1).
+ H=2mn.
  \tag{FA1}
 \]
 Such an $m$ exists and $\eta>0$, as proved below. These quantities are
@@ -73,10 +73,11 @@ moments $0,\ldots,s-1$ form an invertible Vandermonde system on the distinct
 numbers $(2d)^2$. Total mass is already one, so $m\le s-1$ suffices.
 
 \paragraph{A paid identification pilot.}
-For each $k=1,\ldots,m$, take $n$ fresh coins and buy $2k$ flips on each.
-Let $\widehat a_k$ be their average parity. All flips, including revisits,
-are charged; their total is exactly $H$.
-Hoeffding's inequality for independent variables in $[-1,1]$ gives
+Take $n$ fresh coins, each with $2m$ paid flips. Record all even-prefix
+parities on each coin; let $\widehat a_k$ average its $k$th parity across
+coins. All $H=2mn$ flips are charged, including revisits. Independence
+across coins suffices; coordinates need not be independent.
+Hoeffding's inequality for variables in $[-1,1]$ gives
 \[
  \Pr_{\mu_i}\{|\widehat a_k-a_{i,k}|>\eta/4\}
  \le2\exp(-n\eta^2/32).

@@ -59,14 +59,16 @@ the signatures $(a_{i,1},\ldots,a_{i,m})$ are pairwise distinct. Put
 $$
  \eta=\min_{i\ne j}\max_{1\le k\le m}|a_{i,k}-a_{j,k}|>0,\qquad
  n=\left\lceil\frac{32}{\eta^2}\log\frac{4m}{\delta}\right\rceil,\qquad
- H=n\,m(m+1).
+ H=2mn.
 $$
 The family and its moments determine all three quantities before observation.
 
-For each $k=1,\ldots,m$, use $n$ fresh coins, each with $2k$ paid flips.
-Let $\widehat a_k$ be the average parity. The total physical cost is exactly
-$H$, including every revisit. Each coordinate is an average of independent
-variables in $[-1,1]$. Hoeffding's inequality gives
+Use $n$ fresh coins, each with $2m$ paid flips, and record every even-prefix
+parity $Z_1,\ldots,Z_m$ from the same coin. Let $\widehat a_k$ average the
+$k$th parity across coins. The total physical cost is exactly $H=2mn$,
+including every revisit. For each fixed coordinate the observations across
+coins are independent; independence between coordinates is not required.
+Hoeffding's inequality for variables in $[-1,1]$ gives
 $$
  \Pr\{|\widehat a_k-a_{i,k}|>\eta/4\}
  \le2\exp(-n\eta^2/32).
@@ -157,6 +159,9 @@ budget arithmetic, and the delayed oracle-rate comparison. These are
 components of the theorem. The moment-determinacy argument, the concrete
 fresh-coin pilot realization, and the complete selected-controller
 construction above remain paper proofs. Python execution is not Lean-verified.
+The audited pilot bound requires independence only across coins for each
+coordinate, so it applies to these shared-prefix statistics without a new
+independence assumption or a change to the Lean statements.
 
 The candidate-family premise is substantive and cannot be verified by this
 pilot. Very close signatures can make $H$ large. This theorem gives no

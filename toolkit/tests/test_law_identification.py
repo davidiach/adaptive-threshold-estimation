@@ -39,7 +39,34 @@ class LawIdentificationTests(unittest.TestCase):
         self.assertEqual(plan.moments, 2)
         self.assertEqual(plan.signatures[0][0], plan.signatures[1][0])
         self.assertNotEqual(plan.signatures[0][1], plan.signatures[1][1])
-        self.assertEqual(plan.flip_cap, 6*plan.samples_per_moment)
+        self.assertEqual(plan.flip_cap, 4*plan.samples_per_moment)
+
+    def test_shared_coin_prefixes_supply_all_moments(self):
+        point = FiniteGapLaw([("1/4", 1)])
+        mixture = FiniteGapLaw([("1/8", "4/5"), ("1/2", "1/5")])
+        plan = plan_law_pilot([mixture, point], delta="1/4")
+        per_coin = []
+
+        def factory(rng):
+            i = len(per_coin)
+            per_coin.append(0)
+            first = 1 if i % 8 < 5 else -1
+            second = 1 if i % 32 < 17 else -1
+            bits = iter([0, int(first < 0), 0, int(second * first < 0)])
+
+            def flip():
+                per_coin[i] += 1
+                return next(bits)
+
+            return flip
+
+        out = run_law_pilot(plan, factory, budget=plan.flip_cap)
+        self.assertEqual(out.selected, 1)
+        self.assertEqual(out.items, plan.samples_per_moment)
+        self.assertEqual(out.flips, 4 * out.items)
+        self.assertEqual(per_coin, [4] * out.items)
+        for actual, target in zip(out.observed, [F(1, 4), F(1, 16)]):
+            self.assertLessEqual(abs(actual - target), plan.separation / 4)
 
     def test_exact_sampling_bound(self):
         laws = [FiniteGapLaw([("1/2", 1)]), FiniteGapLaw([("1/4", 1)])]

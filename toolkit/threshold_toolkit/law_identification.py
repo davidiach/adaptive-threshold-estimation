@@ -27,7 +27,7 @@ class LawPilotPlan:
 
     @property
     def flip_cap(self) -> int:
-        return self.samples_per_moment * self.moments * (self.moments + 1)
+        return 2 * self.samples_per_moment * self.moments
 
 
 @dataclass(frozen=True)
@@ -81,6 +81,7 @@ def run_law_pilot(plan: LawPilotPlan, coin_factory: CoinFactory, *,
                   budget: int, seed: int = 0) -> LawPilotResult:
     """Identify the candidate using only fresh coins and their paid flips.
 
+    Each coin supplies all even-prefix parities through its first 2m flips.
     Refuses insufficient authorization before creating any coin. Callers must
     use fresh independent coins and randomness for subsequent estimation.
     """
@@ -94,22 +95,21 @@ def run_law_pilot(plan: LawPilotPlan, coin_factory: CoinFactory, *,
     if allowance < plan.flip_cap:
         raise ValueError(f"Pilot requires authorization for {plan.flip_cap} flips.")
     rng = Random(seed)
-    observed = []
+    totals = [0] * plan.moments
     items = flips = 0
-    for k in range(1, plan.moments + 1):
-        total = 0
-        for _ in range(plan.samples_per_moment):
-            flip = coin_factory(rng)
-            items += 1
-            parity = 1
-            for _ in range(2 * k):
+    for _ in range(plan.samples_per_moment):
+        flip = coin_factory(rng)
+        items += 1
+        parity = 1
+        for k in range(plan.moments):
+            for _ in range(2):
                 bit = flip()
                 flips += 1
                 if type(bit) is not int or bit not in (0, 1):
                     raise ValueError("A flip callback must return the integer 0 or 1.")
                 parity *= 2 * bit - 1
-            total += parity
-        observed.append(Fraction(total, plan.samples_per_moment))
+            totals[k] += parity
+    observed = [Fraction(total, plan.samples_per_moment) for total in totals]
     tolerance = plan.separation / 4
     compatible = [
         i for i, row in enumerate(plan.signatures)
