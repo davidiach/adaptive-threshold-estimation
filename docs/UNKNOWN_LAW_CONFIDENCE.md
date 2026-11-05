@@ -12,6 +12,12 @@ all budgets and its width tends to zero. The procedure uses neither the gap
 distribution nor an upper bound on its small-gap tail. The rate proved below
 depends on that tail and can be slower than the known-law minimax rate.
 
+**Verification boundary:** this theorem and the time-uniform lower bound below
+are paper proofs in this note, not Lean-checked theorems. The lower bound
+applies Duchi and Haque's Proposition 11 as a cited result. The toolkit's unit
+tests check the integer thresholds, interval endpoints and flip budget, not
+the coverage or width claims.
+
 ## One stage
 
 For a positive stage cap $c$, take $n=\lfloor\sqrt c\rfloor$ fresh items
@@ -104,6 +110,6 @@ Indeed, selecting mass $x$ gives the concave objective
 $2\sqrt{\rho x/B}+(1-x)\min(1,2/\sqrt B)$, whose minimum is at an endpoint,
 followed by clipping at $\rho$. The lower bound thus matches the iterated
 logarithm term of the known-law upper rate on this law for fixed $\delta$
-as $n\to\infty$. The [full gap-law dependent comparison](TIME_UNIFORM_LOWER.md) now has a paper proof. Whether a law-agnostic interval attains the known-law rate remains open.
+as $n\to\infty$. The [full gap-law dependent comparison](TIME_UNIFORM_LOWER.md) is now Lean-checked. Whether a law-agnostic interval attains the known-law rate remains open.
 
-The [law-dependent lower-bound development](TIME_UNIFORM_LOWER.md) proves that every deterministic joint coverage-and-width envelope exceeds a universal multiple of the known-law rate infinitely often, for every positive-gap law. Its prior-family and information bounds are Lean-checked. The sequential and asymptotic parts retain paper-proof status.
+The [law-dependent lower-bound development](TIME_UNIFORM_LOWER.md) proves that every deterministic joint coverage-and-width envelope exceeds a universal multiple of the known-law rate infinitely often, for every positive-gap law. It is Lean-checked in the original observable experiment, including the sequential testing, the infinite-moment construction and the asymptotic comparison; the envelope need not be monotone ([final audit](../results/anytime-asymptotic-20261105/README.md)).

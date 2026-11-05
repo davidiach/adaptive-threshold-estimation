@@ -27,6 +27,21 @@ The existing statistical characterization retains the
 No frozen manuscript, formal statement, or published evidence is changed by
 this note.
 
+**Later status (5 November 2026):** the proof in this note remains a paper
+proof, and no Lean theorem is stated with the factor $5/3$. Later Lean results
+imply (3). For every probability law on $(0,1/2]$, $0<\rho\le1/4$ and $B>0$,
+Lean checks $\mathcal K\le Q\le\frac{31}{20}\mathcal K$
+([record](../results/quantile-price-20261104/README.md)), and the
+[$8/5$ comparison](../lean/ThresholdHC/QuantileSelection/Full.lean) and the
+[exact least factor](../results/quantile-optimality-20261105/README.md),
+about $1.4626$, are also checked. In the formal observable experiment Lean proves
+$10^{-17}Q\le R\le30001Q$ for every such law
+([scope](RESULTS.md#general-law-rare-event-characterization)), which is
+stronger than the consequence derived below. The calculator is still neither
+Lean-checked nor interval certified. A separate toolkit module now runs an
+observable estimator for a known law; see the
+[known-law estimator guide](KNOWN_LAW_ESTIMATOR.md).
+
 ## Definitions
 
 Let $\mu$ be a probability law on $(0,1/2]$, let $0<\rho\le1/4$, and let
@@ -409,9 +424,10 @@ the general-law manuscript's bounds
 $10^{-17}\mathcal K\le R\le33000\mathcal K$ are used, then
 $6\cdot10^{-18}Q\le R\le33000Q$. This consequence inherits the
 manuscript's paper-proof status and all its assumptions. It is not a new
-Lean verification of the rare-event characterization. The independently
+Lean verification of the rare-event characterization; the later Lean bounds
+in the status note above are stronger. The independently
 stated finite-law constants and their provenance remain as recorded in
-[RESULTS.md](RESULTS.md#known-finite-gap-rare-events-paper-proof-characterization).
+[RESULTS.md](RESULTS.md#known-finite-gap-rare-events-closed-quantile-characterization).
 
 In particular, the functional and its inverse do not by themselves provide
 a deterministic observation cap, a high-confidence radius, a data-computable

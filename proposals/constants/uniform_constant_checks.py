@@ -1,4 +1,7 @@
-"""Rational arithmetic checks for the paper-only 713 upper bound."""
+"""Rational arithmetic checks for the 713 upper bound's paper argument.
+
+The full theorem is now Lean-checked; see UNIFORM_PRODUCT_BOUND.md.
+"""
 from fractions import Fraction as F
 from math import factorial
 import json

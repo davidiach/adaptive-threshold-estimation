@@ -14,7 +14,7 @@ The selected-state policy assigns an independent uniform outer state to
 each original coin label. Its policy follows the original observations,
 and its output uses the original private seed and observation tape.
 
-Run `python tools/verify_observed_upper.py` for the current component audit.
+Run `python tools/verify_observed_upper.py` for the full audit.
 
 ## Complete experiment transfer
 

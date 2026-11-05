@@ -70,6 +70,7 @@ is now checked through a direct retained-entropy comparison with the
 stopping program. It gives the coefficient $10^{-17}$ for every
 known law. The generic fractional-submeasure theorem above retains
 its component variance–null-work premises. The sharp quantile-factor
-characterization retains its paper proof.
+characterization is [Lean-checked](../results/quantile-optimality-20261105/README.md); its decimal bracket has a separate
+exact-arithmetic certificate.
 
 The same component obstructions now give the [checked additive RMS bound](RMS_LOCALIZATION.md), $128^{-1}\sum_i\tau_i\min\{b_i,\sqrt{J_i/B}\}$, including overlapping supports.
