@@ -365,18 +365,23 @@ This build corrects verification-status statements that later appendices
 had made stale: the abstract, the introduction's Verification boundary,
 Sections 11 and 14 to 18, and Appendices K, N, O, Q, R and S. The abstract
 status paragraph and the boundary paragraph are now generated from
-[status.json](status.json). Section 18 gains a table of the upper constants
-33000, 28000, 30001 and 28001. No theorem changes.
+[status.json](status.json), which also records the complete time-uniform
+lower bound above as Lean-checked. Section 18 gains a table of the upper
+constants 33000, 28000, 30001 and 28001. Section 2 and Section 18 now cite
+the theorems whose types carry the coefficients 512 and 28000; the locked
+targets assert only positive constants. No theorem changes. The
+[model-fidelity brief](../../docs/MODEL_FIDELITY.md) compares the
+manuscript's model with the Lean definitions.
 
-The PDF has 169 pages. Two independent builds have identical bytes, all 29
+The PDF has 167 pages. Two independent builds have identical bytes, all 29
 fonts are embedded, there are no unresolved references, and the only
 warning, an inherited overfull line, also occurs in the unchanged sources.
 Tectonic was not available, so this build uses pdfTeX from TeX Live 2023,
 the engine of the [manuscript workflow](../../.github/workflows/manuscript.yml),
 with the same fixed source date. Pagination therefore differs from the
 earlier Tectonic builds. The changed pages were found by comparing with the
-previous build's sources typeset by the same engine, and all of them, with
-neighbouring pages, were visually inspected. The record lists the
-inherited cosmetic issues seen.
+sources of the time-uniform formalization build typeset by the same engine,
+and all of them, with neighbouring pages, were visually inspected. The
+record lists the inherited cosmetic issues seen.
 
 [Updated manuscript](builds/status-reconciliation-20261105.pdf) · [Build record](builds/status-reconciliation-20261105.json)
