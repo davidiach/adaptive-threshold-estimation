@@ -10,6 +10,9 @@ Commands below run from the repository root.
 Read a development's `Specification.lean` first, where one exists, then its
 final theorem and the imported model/proof modules. The audit checks exact target types and transitive
 axioms; a successful build alone is not a substitute for that audit.
+The audit does not show that a type means what the paper says; the
+[model-fidelity brief](../docs/MODEL_FIDELITY.md) compares the central
+definitions with the paper for that review.
 
 | Result | Formal entry point | Audit command |
 |---|---|---|

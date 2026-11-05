@@ -683,6 +683,10 @@ python tools/verify_tier6.py --sequential --require-complete
 
 The first command rebuilds the scored proof modules and runs the frozen scorer plus an independent audit. The arithmetic command checks the separate scalar lemmas. The final five commands enforce complete proofs of their exact specifications and check their source locks and transitive axioms. Passing arithmetic or numerical checks alone does not establish those probability theorems.
 
+A passing audit shows only that the exact Lean type is proved. The
+[model-fidelity brief](MODEL_FIDELITY.md) compares the central Lean
+definitions with the paper's model and lists what the audits do not cover.
+
 ## Critical-regime paper checkpoint
 
 The earlier restricted-class critical note remains a reviewed paper proof.

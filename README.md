@@ -162,8 +162,10 @@ Use a disposable checkout for reproduction: some checks write diagnostic files.
   the [critical-result review packet](paper/critical-review/README.md);
   and [claims with exact assumptions](docs/RESULTS.md).
 - **Inspect the formalization:** [theorem and module map](lean/README.md),
-  [main upper-bound scope](docs/BLIND_UPPER.md), and
-  [critical-law audit](docs/CRITICAL_AUDIT.md).
+  [main upper-bound scope](docs/BLIND_UPPER.md),
+  [critical-law audit](docs/CRITICAL_AUDIT.md), and the
+  [model-fidelity brief](docs/MODEL_FIDELITY.md), which sets the paper's
+  model beside the Lean definitions for a specialist reviewer.
 - **Reproduce the evidence:** [checks by task](docs/VERIFY.md#choose-checks-by-task),
   [verification tools](tools/README.md), [evidence index](results/README.md),
   and [benchmarks](benchmark/).
@@ -180,7 +182,8 @@ Use a disposable checkout for reproduction: some checks write diagnostic files.
 
 Lean verifies the linked mathematical statements and their definitions;
 coverage of the manuscript is recorded claim by claim. The work has received
-AI review and has not had independent external specialist review. Numerical
+AI review and has not had independent external specialist review; the
+[model-fidelity brief](docs/MODEL_FIDELITY.md) prepares one. Numerical
 experiments provide supporting evidence, not proofs of universal claims.
 
 The general-law entropy-tail and closed-quantile rates are now Lean-checked
