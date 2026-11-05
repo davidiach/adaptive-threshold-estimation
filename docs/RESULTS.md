@@ -954,8 +954,13 @@ are formalized in the original observable experiment.
 A new [finite-family adaptation theorem](FINITE_FAMILY_ADAPTATION.md) gives the
 known-law time-uniform rate after an explicit paid identification pilot, when
 the unknown law belongs to a supplied finite family. Its parity, concentration,
-identification and rate-transfer components have a 17-statement Lean audit;
-moment determinacy and the full observable controller remain paper proofs.
+identification and rate-transfer components have a 17-statement Lean audit.
+An additional [22-statement audit](../results/law-adaptation-realization-20261105/README.md)
+checks moment determinacy, finite signature separation, the shared-prefix pilot
+and the full observable selected controller. It proves unconditional caps,
+history compatibility, nested intervals and joint all-budget coverage and width.
+The endpoint law is also matched to the original observable experiment.
+Python execution remains outside Lean verification.
 Oracle-rate adaptation over arbitrary unknown gap laws remains open.
 An exact path count shows that repeatedly
 checking a fixed-time interval fails: a check with fixed-time failure at most

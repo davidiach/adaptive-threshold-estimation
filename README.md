@@ -198,7 +198,10 @@ Lean-checked for every positive-gap law, with coefficient $10^{-22}$ at
 arbitrarily late integer budgets. The [complete audit](results/anytime-asymptotic-20261105/README.md)
 includes the finite-coefficient case, dense and sparse infinite-moment cases,
 and observable interval half-widths. The deterministic envelope need not be
-monotone.
+monotone. The [finite-family unknown-law adaptation theorem](docs/FINITE_FAMILY_ADAPTATION.md)
+now also has a [complete observable Lean construction](results/law-adaptation-realization-20261105/README.md),
+including the paid pilot and joint all-budget coverage and oracle width.
+Adaptation over arbitrary unknown laws remains open.
 See the [completion ledger](docs/WORKPLAN.md) for the current boundary.
 
 ## Attribution and license

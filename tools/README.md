@@ -77,3 +77,10 @@ Run `verify_law_adaptation.py` for 17 exact types and transitive axiom reports
 covering [finite-family unknown-law adaptation components](../docs/FINITE_FAMILY_ADAPTATION.md):
 sign-neutral parity, bounded-average concentration, identification, probability
 transfer, physical cap arithmetic and the delayed oracle-rate comparison.
+
+Run `verify_law_adaptation_realization.py` for 22 exact types and transitive
+axiom reports covering moment determinacy, the actual shared-prefix pilot,
+the full selected controller, unconditional physical caps and history
+compatibility, joint all-budget coverage and oracle width, nesting, and the
+original-experiment endpoint law.
+[Native record](../results/law-adaptation-realization-20261105/README.md).

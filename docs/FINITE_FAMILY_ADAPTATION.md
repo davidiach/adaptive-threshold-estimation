@@ -152,16 +152,25 @@ The sampler does not itself construct the subsequent confidence sequence.
 
 ## Verification boundary and next work
 
-The new Lean modules check the finite-prefix parity identities, bounded
-average concentration, separated-signature identification and its error
-union bound, transfer of simultaneous properties after selection, physical
-budget arithmetic, and the delayed oracle-rate comparison. These are
-components of the theorem. The moment-determinacy argument, the concrete
-fresh-coin pilot realization, and the complete selected-controller
-construction above remain paper proofs. Python execution is not Lean-verified.
-The audited pilot bound requires independence only across coins for each
-coordinate, so it applies to these shared-prefix statistics without a new
-independence assumption or a change to the Lean statements.
+The [full observable construction](../lean/ThresholdHC/LawAdaptation/Full.lean)
+is now Lean-checked. The original 17 component statements are supplemented by
+a [22-statement exact-type and transitive-axiom audit](../tools/verify_law_adaptation_realization.py).
+It checks moment determinacy for arbitrary positive-gap laws, finite signature
+separation, parity means under the original population-tape law, the actual
+shared-prefix pilot, its observed-word selection, and the selected controller.
+
+The controller uses only its private seed and observed flips. Its physical cap,
+compatibility across budgets and nested intervals hold on every path. For
+each supplied family member, coverage and the stated oracle width hold jointly
+at all integer budgets with failure probability at most $\delta$. The
+[original-experiment endpoint law](../lean/ThresholdHC/LawAdaptation/Properties.lean)
+matches both reported endpoints jointly to the original observable model.
+The shared-prefix pilot needs independence across coins separately for each
+coordinate, not independence between coordinates.
+
+The [new native record](../results/law-adaptation-realization-20261105/README.md)
+binds 648 project sources, eight fresh empty compiler logs and 640 previously
+published compiled dependencies. Python execution is not Lean-verified.
 
 The candidate-family premise is substantive and cannot be verified by this
 pilot. Very close signatures can make $H$ large. This theorem gives no
