@@ -16,9 +16,22 @@ and its output uses the original private seed and observation tape.
 
 Run `python tools/verify_observed_upper.py` for the current component audit.
 
-## Remaining transfer
+## Complete experiment transfer
 
-The proof must identify the complete sampled-state transcript with the
-population experiment, then transfer actual expected work, RMS risk and
-confidence guarantees. The matching observed-state upper bounds retain
-their paper proofs while this connection is completed.
+The complete sampled-state transcript is now identified with the original
+population experiment after discarding the auxiliary outer sequence.
+Expected work, squared risk, RMS risk and failure probabilities transfer
+exactly. The proof includes unbounded stopping and arbitrary measurable
+private seeds.
+
+One universal observed-state family now attains RMS radius
+512 times the clipped modulus at one over the square root of the budget.
+A second universal family attains confidence radius 8192 times the
+clipped modulus at the confidence scale. Both charge actual observations
+and are selected before the gap law and deterministic sign-cell model.
+
+## Remaining assembly
+
+The exact uniform-gap complexity specialization and the manuscript
+update remain. The general experiment transfer and both modulus upper
+bounds are checked.
