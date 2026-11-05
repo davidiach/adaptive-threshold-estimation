@@ -17,8 +17,9 @@ In particular,
 $$
  1.462554551279 < c_* < 1.462554551280 .
 $$
-Finite laws approach the same supremum as general laws. The characterization
-is a paper proof. The [exact arithmetic verifier](../tools/verify_optimal_quantile_factor.py)
+Finite and general gap laws have the same least comparison factor. Lean checks the unique scalar root, the all-law upper comparison and finite-law counterexamples below the root. [Complete native record](../results/quantile-optimality-20261105/README.md)
+
+The [exact arithmetic verifier](../tools/verify_optimal_quantile_factor.py)
 certifies the displayed numerical bracket. It uses a concrete six-atom
 law on the lower side and a covering of the entire interval in $u$ on the upper side.
 
@@ -197,3 +198,17 @@ series after halving the argument, followed by upward-rounded squaring.
 All comparisons use integers and rational arithmetic. A reproduction is
 `python tools/verify_optimal_quantile_factor.py`. The unique scalar
 root, independent of the displayed rounding, specifies the exact factor.
+
+## Native finite-core reduction
+
+Lean checks the 1-Lipschitz bound for the square root of entropy after adding $y^2$ in the boundary coordinate. It also checks skipped-tail absorption, the concave reduction to disjoint core vectors and both boundary-coordinate cases, giving the exact scalar-root factor for arbitrary nonnegative finite core splits. The all-law comparison below includes the measure normalization. [Native record](../results/quantile-core-reduction-20261105/README.md)
+
+## Native all-law upper comparison
+
+The normalization of arbitrary gap laws is now Lean-checked. For every positive-gap probability law, $0<\rho\le1/4$ and $B>0$, the original selection functional satisfies $\mathcal K\le Q\le c_{\rm vec}\mathcal K$, where $c_{\rm vec}$ is the exact unique scalar root. The proof includes fractional quantile atoms, countable tail merging, saturation and infinite selected entropy. The mathematical selection-value comparison also holds for $\rho\le1$. [Native record](../results/sharp-quantile-upper-20261105/README.md)
+
+## Native finite-law sharpness
+
+The formal construction places the boundary atom and skipped atoms in distinct dyadic bands, with remaining mass at the easy gap. It checks probability mass, finite support, the fractional quantile split, core entropy, a feasible selection price and clipping. As the boundary gap and band offset tend to zero, the price approaches the finite-vector expression.
+
+The resulting theorem gives a finite law violating every factor below the scalar root. The original universal factor condition and its finite-support restriction are each equivalent to $c_{\rm vec}\le k$. Zero coordinates and an empty skipped family are included. [Complete native record](../results/quantile-optimality-20261105/README.md)

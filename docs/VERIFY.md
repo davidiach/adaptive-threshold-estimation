@@ -805,3 +805,19 @@ Run `python tools/verify_confidence_entropy.py` for six exact statements and six
 ## RMS obstruction transfer and localization
 
 Run `python tools/verify_rms_localization.py` for 15 exact statements and 15 transitive axiom reports. The audit covers countable-label creation, arbitrary private seeds, midpoint-work charging, stopped finite decisions, the sharper binary risk inequality, and the generic and additive RMS coefficient $1/128$. [Native record](../results/rms-localization-20261105/README.md)
+
+## Sharp finite-vector quantile factor
+
+Run `python tools/verify_optimal_quantile.py` for 54 exact statements and 54 transitive axiom reports. The audit covers the Gibbs criterion, square-root tangents, finite-to-infinite limit, joint continuity, compact maximum, strict monotonicity, analytic endpoint bounds, unique root and the unrestricted finite-vector equivalence. The all-law comparison is checked by the separate audit below. [Native record](../results/optimal-quantile-root-20261105/README.md)
+
+## Sharp finite-core selection reduction
+
+The finite-core checkpoint records 49 exact statements and 49 transitive axiom reports. It covers entropy Lipschitz continuity, skipped-tail absorption, concavity, disjoint-coordinate reduction, entropy interaction, dyadic weights and both boundary-band cases. The current audit also checks the all-law comparison, as described below. [Native record](../results/quantile-core-reduction-20261105/README.md)
+
+## All-law comparison at the exact scalar root
+
+Run `python tools/verify_quantile_sharp_law.py` for 84 exact statements and 84 transitive axiom reports. The audit includes the original selection functional, countable tail merging, moment and work bounds, normalization, fractional quantile atoms, saturation and the selection infimum. [Native record](../results/sharp-quantile-upper-20261105/README.md)
+
+## Exact quantile factor and finite-law optimality
+
+Run `python tools/verify_quantile_optimality.py` for 81 exact statements and 81 transitive axiom reports. It verifies the finite probability-law family, support, fractional quantile split, entropy and selection prices, clipping, the limiting counterexample and exact least-factor equivalences. Together with the scalar and all-law audits above, this gives 219 exact statements and 219 transitive axiom reports. The decimal bracket retains the separate rational verifier `python tools/verify_optimal_quantile_factor.py`. [Complete native record](../results/quantile-optimality-20261105/README.md)
