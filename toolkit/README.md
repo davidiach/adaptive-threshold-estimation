@@ -305,8 +305,9 @@ It also gives the cheaper bound $\frac58Q\le\mathcal K\le Q$. It uses only
 the standard library and rejects floats as inputs. It is not imported by the
 package itself, and its `FiniteGapLaw` is a different class from the
 package-level one in section 3, so import it from
-`threshold_toolkit.rare_event_functional`. Its bounds rest on paper proofs that
-are not Lean-checked. See the
+`threshold_toolkit.rare_event_functional`. The [comparison theorem](../results/quantile-selection-20261104/README.md)
+and [bandwise-suffix optimizer](../results/bandwise-suffix-20261104/README.md)
+are Lean-checked. The Python evaluator remains outside those proofs. See the
 [certified-selection package](../research/2026-10-30-certified-selection/README.md)
 for the mathematics and status; its
 [note](../research/2026-10-30-certified-selection/NOTE.md#example-use) has a
@@ -343,7 +344,7 @@ state = RMSLadder(program, coin_factory, seed=1).advance_to(1000)
 print(state.estimate, state.flips, state.reserved_budget)   # 19/64 127 508
 ```
 
-The paper proof behind it says the capped root-mean-square error is at most
+The mathematical hard-budget theorem bounds the capped root-mean-square error by
 $\sqrt{32}$ times the bound your estimator has at the full allowance as an
 average budget. That needs conditions the driver cannot check: your estimator
 really meets its average-budget and error bounds, its error bound shrinks no
@@ -351,7 +352,9 @@ faster than $1/\sqrt{\text{budget}}$, and separate stages are independent. The d
 streams, but trusts your callbacks. It caps flips, not CPU time. It leaves any
 allowance that does not fit the next stage unused. The guarantee holds at a
 fixed allowance, not at an allowance chosen after looking at the results. The
-result is a paper proof, not Lean-checked; see the
+mathematical controller, pathwise cap and RMS guarantee are
+[Lean-checked](../results/hard-budget-rms-20261104/README.md).
+The Python driver remains unverified. See the
 [hard-budget RMS package](../research/2026-10-30-hard-budget-rms/README.md).
 The module is not imported by the package itself.
 
@@ -394,7 +397,7 @@ print(schedule.blocks, schedule.per_block_cap, result.estimate, result.flips)
 # 33 3030 37/378 12474
 ```
 
-The paper proof behind it says the error exceeds $\sqrt8$ times your
+The mathematical capped-median theorem says the error exceeds $\sqrt8$ times your
 estimator's root-mean-square error bound at average budget $B/(8m)$ with
 probability at most $\delta$. The driver cannot check that your estimator
 meets its average-budget and error bounds, or that the copies are independent.
@@ -432,8 +435,11 @@ true value, provided each stage interval has its stated coverage. A stage that
 runs out of flips leaves the interval unchanged. An empty intersection stays
 empty: it signals a coverage failure and is not replaced by a wider interval.
 
-Both modules cap flips, not CPU time, and trust your callbacks. The
-results they rely on are paper proofs, not Lean-checked; see the
+Both modules cap flips, not CPU time, and trust your callbacks.
+Lean verifies the [observable capped-median construction](../results/known-law-confidence-20261104/README.md)
+and [known-law online controller, simultaneous coverage and width](../results/anytime-confidence-20261105/README.md).
+Those audits verify the mathematical constructions, not these Python drivers
+or arbitrary callbacks. See the
 [confidence-transfer package](../research/2026-10-30-confidence-transfer/README.md).
 Neither module is imported by the package itself.
 
