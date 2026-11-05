@@ -30,8 +30,16 @@ A second universal family attains confidence radius 8192 times the
 clipped modulus at the confidence scale. Both charge actual observations
 and are selected before the gap law and deterministic sign-cell model.
 
-## Remaining assembly
+## Uniform-gap complexity
 
-The exact uniform-gap complexity specialization and the manuscript
-update remain. The general experiment transfer and both modulus upper
-bounds are checked.
+For gaps exactly uniform on \((0,1/4]\) and
+\(0<\varepsilon\le e^{-16}\), both guarantees use expected work at most
+\[
+ 131072^2\,\varepsilon^{-2}\log^2(1/\varepsilon)\log16.
+\]
+The confidence guarantee has failure probability \(1/16\).
+The RMS guarantee has radius \(\varepsilon\).
+Together with the [continuous-magnitude lower bounds and regularity](CONTINUOUS_OBSERVED.md),
+these complete the two-sided observed-state complexity results.
+
+The full audit checks 21 exact statements and 42 transitive axiom reports.

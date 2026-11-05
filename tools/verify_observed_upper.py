@@ -7,7 +7,7 @@ from verify_blind_upper_components import LEAN, validate_reports
 
 def audit_input():
     source = """
-import ThresholdHC.ContinuousObserved.Upper
+import ThresholdHC.ContinuousObserved.UniformUpper
 noncomputable section
 open MeasureTheory
 open scoped ENNReal
@@ -129,6 +129,33 @@ example :
             (∫⁻ z, totalProcessWork z.2 ∂P) ≤ ENNReal.ofReal B ∧
               P {z | 8192 * modulus μ (ThresholdHC.Confidence.confidenceScale B δ) <
                 |(rule B δ).output z - stateTarget D.cell s|} ≤ ENNReal.ofReal δ := observed_confidence_upper
+
+example (ε : ℝ) :
+    uniformUpperBudget ε = (131072 : ℝ) ^ 2 * (ε ^ 2)⁻¹ * (Real.log (1 / ε)) ^ 2 * Real.log 16 :=
+  uniformUpperBudget_eq ε
+
+example {ε : ℝ} (hε : 0 < ε) (he : ε ≤ Real.exp (-16)) :
+    1 ≤ uniformUpperBudget ε ∧
+      8192 * modulus uniformGaps (ThresholdHC.Confidence.confidenceScale (uniformUpperBudget ε) (1 / 16)) ≤ ε ∧
+      512 * modulus uniformGaps (1 / Real.sqrt (uniformUpperBudget ε)) ≤ ε := uniform_upper_radius hε he
+
+example :
+    ∃ (R : Type) (_ : MeasurableSpace R) (rule : ℝ → StateEstimator R),
+      ∀ ε : ℝ, 0 < ε → ε ≤ Real.exp (-16) →
+        ∀ (N : ℕ) (D : QueryDesign N) (s : Fin N → Bool), volume.map D.gap = uniformGaps →
+          ∀ (P : Measure (R × ProcessTape)) [IsProbabilityMeasure P],
+            RealizesQueryPrefixes D (rule ε) s P →
+            (∫⁻ z, totalProcessWork z.2 ∂P) ≤ ENNReal.ofReal (uniformUpperBudget ε) ∧
+              P {z | ε < |(rule ε).output z - stateTarget D.cell s|} ≤ ENNReal.ofReal (1 / 16) :=
+  uniform_observed_confidence_upper
+
+example {ε : ℝ} (hε : 0 < ε) (he : ε ≤ Real.exp (-16)) {N : ℕ}
+    (D : QueryDesign N) (s : Fin N → Bool) (hl : volume.map D.gap = uniformGaps)
+    (P : Measure ((ThresholdHC.BlindUpper.BatchSeed × (ℕ → unitInterval)) × ProcessTape))
+    [IsProbabilityMeasure P] (hreal : RealizesQueryPrefixes D (rmsStateEstimator (uniformUpperBudget ε)) s P) :
+    (∫⁻ z, totalProcessWork z.2 ∂P) ≤ ENNReal.ofReal (uniformUpperBudget ε) ∧
+      rootMeanRisk P (rmsStateEstimator (uniformUpperBudget ε)).output (stateTarget D.cell s) ≤ ENNReal.ofReal ε :=
+  uniform_observed_rms_upper hε he D s hl P hreal
 """.lstrip()
     roots = {"ThresholdHC.ContinuousObserved." + name for name in [
         "positiveGapLaw_finite", "positiveGapLaw_le", "conditionalSign_density",
@@ -142,13 +169,14 @@ example :
         "sampled_creation_realizes", "state_population_parameter_law", "sampled_observable_law",
         "sampled_lintegral", "sampled_expectedWork", "sampled_squaredRisk", "sampled_rootMeanRisk",
         "sampled_failureProbability", "observed_rms_upper", "observed_confidence_upper",
+        "uniformUpperBudget_eq", "uniform_upper_radius", "uniform_observed_confidence_upper", "uniform_observed_rms_upper",
     ]}
     return source + "".join("#print axioms " + name + "\n" for name in sorted(roots)), roots
 
 
 def main():
     source, roots = audit_input()
-    subprocess.run(["lake", "build", "ThresholdHC.ContinuousObserved.Upper"], cwd=LEAN, check=True)
+    subprocess.run(["lake", "build", "ThresholdHC.ContinuousObserved.UniformUpper"], cwd=LEAN, check=True)
     run = subprocess.run(["lake", "env", "lean", "--stdin"], cwd=LEAN, input=source, text=True,
                          encoding="utf-8", capture_output=True)
     output = run.stdout + run.stderr
