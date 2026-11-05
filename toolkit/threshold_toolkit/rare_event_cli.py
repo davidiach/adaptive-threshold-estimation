@@ -65,8 +65,9 @@ def main(argv=None):
         print(f"error: {error}", file=sys.stderr)
         return 2
 
-    scope = ("Q is a paper-proof rate functional, not an achieved error or a certified "
-             "execution budget. Numerical values use floating-point arithmetic, not interval certification.")
+    scope = ("Q is a rate functional: Lean checks that minimax RMS risk lies between 1e-17*Q and "
+             "30001*Q. It is not an achieved error or a certified execution budget. Numerical values "
+             "use floating-point arithmetic, not interval certification.")
     if args.json:
         payload = {
             "law": {"gaps": law.gaps, "weights": law.weights},

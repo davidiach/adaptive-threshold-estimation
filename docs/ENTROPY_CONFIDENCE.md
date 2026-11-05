@@ -64,8 +64,10 @@ coefficient directly. The separately checked
 [fractional-submeasure theorem](ADDITIVE_CONFIDENCE.md) retains
 its explicit component variance–null-work premises.
 
-The sharp quantile-factor characterization remains a paper proof.
-The law-dependent time-uniform lower bound, unknown-law oracle-rate
-adaptation, unrestricted exact-selection complexity and optimal cap
-convergence rate remain open research. Human specialist review is
+The sharp quantile-factor characterization is now [Lean-checked](../results/quantile-optimality-20261105/README.md).
+The law-dependent time-uniform lower bound is now
+[Lean-checked](../results/anytime-asymptotic-20261105/README.md) for
+deterministic half-width envelopes. Unknown-law oracle-rate adaptation,
+unrestricted exact-selection complexity and the optimal cap convergence
+rate remain open research. Human specialist review is
 absent, as recorded in the project scope.

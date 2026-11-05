@@ -295,7 +295,7 @@ def main() -> None:
     for name, text in output.items():
         target = DEST / name
         if args.check:
-            if target.read_text(encoding="utf-8") != text:
+            if not target.is_file() or target.read_bytes() != text.encode("utf-8"):
                 raise SystemExit("Generated v5 source differs: " + name)
         else:
             target.write_text(text, encoding="utf-8", newline="\n")

@@ -51,10 +51,17 @@ of one atom in both $\nu$ and $\kappa$. These cases are included
 in the theorem without any generic-position assumption.
 
 The formulas concern a uniform expected observation budget.
-They do not supply a deterministic total cap, a high-confidence
-guarantee, or an estimator that learns an unknown magnitude law.
+They do not themselves supply a deterministic total cap, a
+high-confidence guarantee, or an estimator that learns an unknown
+magnitude law. For every known law and $0<\rho\le1/4$,
+\cref{app:hard-budget} gives Lean-checked hard-cap RMS bounds with
+coefficients $10^{-17}$ and $160000$ on $\mathcal K(B)$; for
+$0<\delta\le1/4$, \cref{app:known-confidence} gives Lean-checked
+bounds on both confidence radii between $10^{-17}\mathcal K(\beta)$ and
+$750000\,\mathcal K(\beta)$, with $\beta=B/\log(1/\delta)$.
 The finite support and strictly positive gaps ensure that all
 caps used in the upper construction exist. Extending these
 assumptions requires additional arguments; Corollary~\ref{fg:cor:general-laws}
 records the extension to general laws, which rests on
-Theorem~\ref{thm:entropy-tail-law}.
+Theorem~\ref{thm:entropy-tail-law}; Lean checks the stronger bounds
+$10^{-17}\Q\le R\le30001\,\Q$ for every law (\cref{sec:verification}).

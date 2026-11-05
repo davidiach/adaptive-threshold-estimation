@@ -1,8 +1,10 @@
 """Geometric fallback for hard-budget RMS.
 
-Conditional paper theorem: independent base runs satisfy E[T] <= b and
+Conditional theorem: independent base runs satisfy E[T] <= b and
 RMS <= C*f(b), with f(b/c) <= sqrt(c)*f(b), f(1/2)=upper and C>=1/2.
 At each deterministic authorized allowance B>=4, RMS <= sqrt(32)*C*f(B).
+Lean checks this for the observable controller recorded in
+results/hard-budget-rms-20261104/; this Python driver is not checked.
 The driver enforces observation caps, not the statistical assumptions.
 
 Generators yield nonnegative local coin IDs and receive integer bits.

@@ -128,19 +128,28 @@ Section~\ref{sec:certificates}
 adds a robust stopping-program dual and convergent finite certificates.
 
 \paragraph{Verification boundary.}
-Lean proves both directions of the original RMS law, with coefficients
-$1/64$ and $512$ and one distribution-blind upper algorithm. The critical
-minimax law, exact $\Psi$ comparison and counterexample, and unbiased
-characterization with coefficients $1/16$ and $713$ are also proved in the
-observable model. One 713 estimator is fixed before every gap law. The
-variational optimizer has its separate formal specification.
-The confidence characterization is also proved in that model, with
-coefficients $1/64$ and $8192$ and one upper family depending only on
-budget and failure probability. The stronger revealed- and selected-magnitude
-RMS and confidence lower bounds are also proved, including the paper's
-confidence coefficient $15/(256\sqrt2)$. The rare-event rate for power
-margins above exponent two is proved in the observable model by a
-construction different from \cref{app:above-two}. The entropy--tail law,
-the closed quantile form, the stopping-program results, and the other
-rare-event regimes are paper proofs. Section~\ref{sec:verification} gives
-the exact scope and links.
+Lean checks both directions of the original RMS law, with coefficients
+$1/64$ and $512$ and one distribution-blind upper algorithm. Lean also
+checks the critical minimax law, the exact $\Psi$ comparison and
+counterexample, and the unbiased characterization with coefficients $1/16$
+and $713$ in the observable model. One 713 estimator is fixed before every
+gap law. Lean also checks the variational optimizer, which has a separate
+formal specification. Lean also checks the confidence characterization in
+the observable model, with coefficients $1/64$ and $8192$ and one upper
+family depending only on budget and failure probability. Lean also checks
+the stronger revealed- and selected-magnitude RMS and confidence lower
+bounds, including the paper's confidence coefficient $15/(256\sqrt2)$.
+Lean also checks the rare-event rate for power margins above exponent two,
+in the observable model and by a construction different from
+\cref{app:above-two}. Lean also checks the entropy--tail law, the closed
+quantile form, the exact quantile comparison factor, the stopping-program
+results, fixed-cap identification, the genie results and the other
+power-margin rows. Lean also checks the hard-cap results of
+\cref{app:hard-budget}, the fixed-confidence rates of
+\cref{app:known-confidence} and the time-uniform upper bound of
+\cref{app:anytime}, the smooth-density results, the observed-state
+results, and the matching all-law time-uniform lower bound for
+deterministic half-width envelopes. For the arbitrary-law statistical
+$\Psi$ lower bound of \cref{app:localization}, the manuscript gives paper
+proofs only. Section~\ref{sec:verification} gives the exact scope and
+links.

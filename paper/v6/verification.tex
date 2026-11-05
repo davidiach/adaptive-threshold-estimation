@@ -30,8 +30,11 @@ the experiment and retains infinite risk. The separate oracle theorem
 below covers the stronger revealed- and selected-magnitude models.\\[5pt]
 Original RMS upper bound &
 \leanref{BlindUpper/Full.lean}{distribution\_blind\_upper} chooses one
-budget-indexed observable family before every gap law and proves
-$R_\mu(B)\le512\omega_\mu(B^{-1/2})$. Actual cost/output identities,
+budget-indexed observable family before every gap law; its frozen target
+asserts a positive constant. \leanref{BlindUpper/Full.lean}{minimax\_upper\_bound}
+proves $R_\mu(B)\le512\omega_\mu(B^{-1/2})$ through the same family; it
+and the family bound are axiom-audited roots, not exact-type targets.
+Actual cost/output identities,
 almost-sure termination and every budget are included. The unchanged
 frozen specification has no additional statistical premise.\\[5pt]
 Confidence characterization &
@@ -65,10 +68,16 @@ Variational optimizer &
 proves the optimizer and value formula for arbitrary laws. It does
 not assert a matching rare-event statistical upper bound.\\[5pt]
 Rare-event rates below two &
-The below-two rates and the general statistical $\Psi$ lower bound
-remain paper theorems. The arbitrary-law $\Psi$ lower bound in
-\cref{app:localization} uses the cited Lee--Valiant input. The critical
+For $0<\alpha<1$ and $1\le\alpha<2$,
+Appendices~\ref{app:sublinear-power}--\ref{app:shifted-power} Lean-check
+both RMS and confidence bounds
+(\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/b0c197402f9623cf845f732582fe21f7e9159d9f/lean/ThresholdHC/SubcriticalPower/Full.lean}{below one},
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/3950b4070f7261b6b4368568b5d823cbdd97bec4/lean/ThresholdHC/ShiftedPower/Full.lean}{logarithmic and intermediate rows}), with lower bounds for the exact power law
+and upper families uniform over the power-margin envelope. The critical
 law has the separate formal coverage below.\\[5pt]
+General statistical $\Psi$ lower bound &
+The arbitrary-law $\Psi$ lower bound in \cref{app:localization} remains a
+paper theorem; it uses the cited Lee--Valiant input.\\[5pt]
 Rare-event rate above two &
 \abovetwoleanref{above\_two\_theory} proves both minimax bounds for the
 exact power law with $\alpha>2$, $0<a\le1/2$, $0<\rho\le1/4$ and $B\ge1$,
@@ -109,7 +118,9 @@ minimax model. Its budget is $LH/\rho$, not the paper sequence $\rho^{-2}$.\\[5p
 Entropy--tail law &
 \tailleanref{EntropyTail/Upper.lean}{entropy\_tail\_upper} proves the
 upper half of Theorem~\ref{thm:entropy-tail-law} against its locked
-specification, with constant $28000$ in place of $33000$, for every
+specification, which asserts a universal constant;
+\tailleanref{EntropyTail/Upper.lean}{entropy\_tail\_upper\_explicit}, an
+axiom-audited root, gives constant $28000$ in place of $33000$, for every
 probability law on $(0,1/2]$, $0<\rho\le1/4$ and $B>0$. The construction of
 \cref{sec:entropy-tail-upper} is realized in the original observable
 experiment, without an inverse-moment or finite-support assumption.
@@ -304,7 +315,8 @@ allocation certificate is bounded by $28000(\sqrt{\rho\Gamma}+H)$ uniformly in
 the terminal level, and finite-band approximation removes the support cutoff. This gives
 $R\le28000K'$ for the development's own functional $K'$, whose band costs
 are Bochner integrals. A separate bridge proves $K'\le K_{\mu,\rho}$ for every
-measure and $K'=K_{\mu,\rho}$ for every finite law. No component label, hidden
+measure and $K'=K_{\mu,\rho}$ for every finite measure, hence for every
+probability law. No component label, hidden
 magnitude or sign enters the policy.
 
 \paragraph{Proving the entropy--tail lower bound.}
@@ -346,6 +358,36 @@ the preceding checked artifacts. Its new specification and lock are
 introduced alongside the corollary proof, not described as independently
 frozen before it. The original experiment and quantile definitions are
 unchanged.
+
+\paragraph{Upper constants.}
+The upper coefficients differ in functional, source and law class. All
+are stated for probability laws on $(0,1/2]$, $0<\rho\le1/4$ and $B>0$.
+
+\begin{center}\small
+\begin{tabularx}{\textwidth}{@{}lX@{}}
+\toprule
+Constant & Source and scope\\
+\midrule
+$33000$ & Paper constant for $\mathcal K$ in
+\eqref{eq:explicit-main-constants}, not optimized, carried to $Q$ through
+$\mathcal K\le Q$ in Corollary~\ref{fg:cor:general-laws}. Lean also
+checks the pair in \eqref{eq:explicit-main-constants}.\\
+$28000$ & Lean coefficient for $\mathcal K$, every law, from the formal
+realization of \cref{sec:entropy-tail-upper}. It is the sharper checked
+value of the bound stated with $33000$.\\
+$30001$ & Paper constant for $Q$ in Theorem~\ref{fg:thm:direct-main}, finite
+laws only, from the direct construction of
+Theorem~\ref{fg:thm:direct-upper}. Lean obtains $R\le30001Q$ for every law
+by weakening its $28000$ bound through the comparison with $Q$.\\
+$28001$ & Lean witness coefficient, not a new rate. The minimax risk $R$ is
+an infimum and is positive, so the strict allowance
+$28000\mathcal K<28001\mathcal K$ gives one feasible expected-budget
+estimator, the base rule of Appendices~\ref{app:hard-budget}
+and~\ref{app:known-confidence}. Lean's estimator at $30001Q$ for every law
+arises in the same way.\\
+\bottomrule
+\end{tabularx}
+\end{center}
 
 \paragraph{Approximating the law.}
 Write $d_{\rm TV}(\mu,\nu)=\sup_A|\mu(A)-\nu(A)|$.
@@ -487,11 +529,10 @@ validations of the full proof. The
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/6009662a5581b31de17c8956b6fd93e4279ba087/docs/process/METHOD.md}{process note}
 records the workflow, failed approaches, and these limits.
 
-\enlargethispage{\baselineskip}
-\paragraph{Remaining mathematical work.}
+\paragraph{Later checked results.}
 \Cref{app:hard-budget} verifies the \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/511b85b7bff8c6b7705b028a8f1ec43b774d2c35/lean/ThresholdHC/HardBudget/Full.lean}{hard-budget reduction}
 and its three applications.
-The envelope has proofs for
+The stochastic-envelope corollary has Lean proofs for
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/b59e043a3f504c412f6ca482fb96bc7626063888/lean/ThresholdHC/Envelope/Minimax.lean}{RMS and confidence} and
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/eb5a2ffdb9af6a52dc47cd2aa5a31a1dfb21ad16/lean/ThresholdHC/Envelope/Unbiased.lean}{unbiased estimation}. The
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/b0c197402f9623cf845f732582fe21f7e9159d9f/lean/ThresholdHC/SubcriticalPower/Full.lean}{below-one rates}
@@ -500,24 +541,43 @@ and
 \Cref{app:smooth-density} verifies \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/8e42a99a49dcd4af8bdaaf17a6ea1c398f34b03b/lean/ThresholdHC/SmoothDensity/Full.lean}{smooth-density robustness}.
 \Cref{app:finite-observed,app:continuous-observed} check the observed-state lower bounds and regularity.
 \Cref{app:observed-upper} verifies the corresponding upper bounds.
-\Cref{app:optimal-quantile-factor} verifies the sharp factor for all gap laws. Unrestricted selection complexity
-remains open. The
+\Cref{app:optimal-quantile-factor} verifies the sharp factor for all gap laws; its decimal bracket uses a
+separate exact-arithmetic certificate. The
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/8a701c8db6c42930ad2a187f3d895ca55265afd6/research/2026-10-30-confidence-transfer/NOTE.md}{confidence-transfer paper proof}
 uses the checked
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/680a833415e8de803d2a98847292063f10448527/lean/ThresholdHC/ConfidenceTransfer/Quarter.lean}{$8/3$ quarter-smoothing bound},
 the \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/f33163da3fa78902336a98814f38078ab12bef1a/lean/ThresholdHC/ConfidenceTransfer/Terminal.lean}{$16/3$ stopped transfer}
 and the \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/f33163da3fa78902336a98814f38078ab12bef1a/lean/ThresholdHC/ConfidenceTransfer/CommonPairRate.lean}{$1/128$ common-pair lower bound}. The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/04ff1245f501e2405ed474f9fb1923c0cfa885c3/lean/ThresholdHC/ConfidenceTransfer/CriticalRate.lean}{critical confidence lower bound}
-follows from the quadratic law. Appendices~\ref{app:known-confidence} and~\ref{app:anytime}
+is checked by deriving the common pair from the quadratic law. Appendices~\ref{app:known-confidence} and~\ref{app:anytime}
 check \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/46e1fa5925173d6c081c80d89b45ed4955ebe225/lean/ThresholdHC/ConfidenceProgram/Upper.lean}{fixed}
 and \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/ffc0c5eb436ff31706d6f46fc135d1831b5a4e61/lean/ThresholdHC/Anytime/Full.lean}{time-uniform confidence} for known laws.
+\Cref{app:anytime} also checks the \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/a6c77f546604cb6df7df67802e0061d1345fa2ca/lean/ThresholdHC/AnytimeLower/Intervals.lean}{matching all-law lower bound}
+for deterministic half-width envelopes.
 Sections~\ref{sec:typed-confidence}--\ref{sec:rms-localization}
 verify selected-type transfer, common pairs and RMS and confidence
 localization, including the $10^{-17}$ general-law confidence coefficient.
+
+\paragraph{Paper proofs, open questions and model limits.}
 A separate \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/a3b00cd8962060ca13768e5d3567168105e7ccfd/docs/UNKNOWN_LAW_CONFIDENCE.md}{confidence sequence}
-shrinks for every positive-gap law.
-Appendix~\ref{app:anytime} Lean-checks the \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/a6c77f546604cb6df7df67802e0061d1345fa2ca/lean/ThresholdHC/AnytimeLower/Intervals.lean}{matching all-law lower bound}.
-Section~\ref{sec:finite-family-adaptation} Lean-checks finite-family adaptation, including the observable pilot and selected controller. Arbitrary-law adaptation remains open.
+has a paper proof, not a Lean proof. It shrinks for every positive-gap law
+without using that law, but its proved width depends on the small-gap tail
+and can be slower than the known-law rate. Whether an interval that does
+not know the gap law attains the order of the known-law width bound in
+\cref{app:anytime} is open over arbitrary unknown laws. Section~\ref{sec:finite-family-adaptation} Lean-checks adaptation over a supplied finite family, including the observable pilot and selected controller. The same note gives a paper proof, using a
+cited external lower bound, that for every known gap law a deterministic
+nonincreasing half-width envelope valid for one online controller exceeds
+a multiple of $\sqrt{\rho\log\log B/B}$ for infinitely many integer
+budgets $B$. This matches the known-law order at $D=1/2$.
+Efficient exact
+selection for finite laws with many bands and unrestricted costs is open;
+the Lean-checked sufficient family can have $\prod_j(n_j+1)$ members. The
+optimal uniform convergence rate of the cap programs in
+\cref{app:uniform-cap-rate} is also open.
 
 Coins are independent with conditionally iid flips.
-Expected work controls neither latency nor worst-case count.
-Practical superiority and useful finite critical constants remain open.
+Expected-work bounds control neither latency nor the worst-case count.
+\Cref{app:hard-budget,app:known-confidence} recover the RMS and known-law
+confidence rates at every deterministic flip cap, not at a cap chosen from
+the data. The hard-cap controller does not preserve unbiasedness.
+Practical superiority is not established, and practically useful
+constants, including at the critical law, remain open.

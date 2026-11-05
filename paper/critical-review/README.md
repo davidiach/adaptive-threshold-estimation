@@ -26,6 +26,17 @@ It also records the completed original distribution-blind RMS upper theorem.
 The mathematical proof bundle itself
 remains the original four-file source identified above.
 
+The brief and PDF describe that checkpoint. Their statement that a matching
+rare-event characterization for arbitrary magnitude laws remains open is
+superseded: the later [entropy–tail law](../../docs/RESULTS.md#general-law-rare-event-characterization)
+(v6 §13) is Lean-checked for every known magnitude law on $(0,1/2]$, known
+$0<\rho\le1/4$ and every positive expected budget, with conservative
+coefficients $10^{-17}$ and $28000$
+([completion record](../../results/entropy-tail-complete-20261101/README.md),
+[explicit coefficients](../../results/entropy-tail-explicit-20261104/README.md)).
+The critical quadratic statements, constants and limits in this packet are
+unchanged.
+
 The [shared addendum](../finite-gap-extension.tex) proves entropy with
 coefficient 1/4096 for every gap count; the earlier 1/512 coefficient is
 retained for `log K >= 32`. It also gives explicit raw-moment and variance
@@ -49,7 +60,7 @@ tectonic paper/critical-review/main.tex --outdir .runtime/review-pdf --keep-logs
 The assembler checks the original SHA-256 source lock before expanding the
 proof inputs. It changes the title, date, authorship/provenance line, and layout;
 source paths and hashes receive line-breaking markup. The inherited status
-paragraph is replaced with the current verification boundary; shared references
+paragraph is replaced with the verification boundary at checkpoint `eabf274`; shared references
 are appended from `paper/gap-entropy-references.tex` and the mathematical
 extension is inserted from `paper/finite-gap-extension.tex`. The inherited mathematical
 content is preserved. Edit the brief, not the generated `main.tex` or the
