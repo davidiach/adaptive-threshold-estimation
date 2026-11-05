@@ -329,6 +329,8 @@ jobs:
         run: python tools/verify_shifted_power.py
       - name: Verify observable time-uniform confidence and the known-law width
         run: python tools/verify_anytime_confidence.py
+      - name: Verify the smooth-density construction and adaptive information bound
+        run: python tools/verify_smooth_density.py
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
       - uses: actions/upload-artifact@v4

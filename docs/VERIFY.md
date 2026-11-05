@@ -769,3 +769,7 @@ Run `python tools/verify_shifted_power.py` for ten exact statements and 35 trans
 ## Observable time-uniform confidence
 
 Run `python tools/verify_anytime_confidence.py` for nine exact statements and 29 transitive axiom reports. Both interval endpoints use the same observed prefix and private seed. [Native record](../results/anytime-confidence-20261105/README.md)
+
+## Smooth-density robustness
+
+Run `python tools/verify_smooth_density.py` for 15 exact statements and 46 transitive axiom reports. The audit covers uniform derivative bounds, the normalized density pair, its original parameter law, both expected-complexity bounds, and unbiased impossibility. [Native record](../results/smooth-density-20261105/README.md)

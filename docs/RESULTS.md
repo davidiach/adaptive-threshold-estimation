@@ -64,6 +64,26 @@ has uniform variance at most $23I$ and uniform work at most $31I$.
 The reference law belongs to the class and supplies all lower bounds.
 [Exact statements and proof record](../results/stochastic-envelope-20261105/README.md)
 
+## Fixed finite-order smooth densities
+
+For each fixed integer $s\ge1$, there is a finite $M_s$ such that the class
+of $C^\infty$ densities supported in $[1/4,3/4]$ with derivatives through
+order $s$ bounded by $M\ge M_s$ has expected complexity
+$\asymp_{s,M}\varepsilon^{-2}\log^2(1/\varepsilon)\log(1/\delta)$.
+The range is sufficiently small positive $\varepsilon$ and $0<\delta\le1/4$.
+The upper coefficient is $(65536M)^2$ and the family is selected before
+the density.
+
+Lean verifies an explicit normalized smooth testing pair, its common gap
+law and conditional sign probabilities, the original Bernoulli-tape
+parameter law, and the exact threshold mean. The lower bound charges
+actual expected flips under arbitrary randomized adaptive policies.
+The matching upper bound uses the checked stochastic-envelope theorem.
+The same class admits no estimator with uniform finite variance and
+uniform finite expected work that is unbiased throughout the class.
+The proof uses the symmetric information/variance inequality directly.
+[Proof map](SMOOTH_DENSITY.md) · [Native audit](../results/smooth-density-20261105/README.md)
+
 ## Paper review scope
 
 The [response to the final Opus review](../inputs/next-phase/baseline/Adaptive_Threshold_v4/review/RESPONSE_TO_OPUS.md) records agent review of components incorporated into v4, including the budget-only algorithm and symmetric-KL converse. It explicitly says that the consolidated manuscript has not received independent specialist review. “Paper proof” therefore does not imply external peer review or a complete Lean proof. The later 713 argument, bias counterexample, and unknown-rarity obstruction have a separate [independent agent review](../proposals/RESEARCH_REVIEW.md), whose author did not write those arguments.

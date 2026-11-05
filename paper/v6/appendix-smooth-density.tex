@@ -1,0 +1,111 @@
+\section{The smooth-density theorem in the adaptive experiment}
+\label{app:smooth-density}
+
+This appendix formalizes \cref{thm:smooth} in the original experiment.
+The policy has arbitrary measurable private randomness and may revisit
+coins, interleave observations, and use an unbounded stopping time.
+For an integer $s\ge1$, let $\mathcal F_{s,M}$ contain the $C^\infty$
+probability densities supported in $[1/4,3/4]$ with
+$\max_{k\le s}\|f^{(k)}\|_\infty\le M$.
+
+\begin{theorem}[Verified smooth-density robustness]
+\label{thm:smooth-verified}
+For each $s\ge1$ there are $M_s\ge1$, $c_s>0$, and $\varepsilon_s>0$
+such that, for $M\ge M_s$, $0<\varepsilon\le\varepsilon_s$, and
+$0<\delta\le1/4$, the minimax expected number of actual flips satisfies
+\[
+ c_s\varepsilon^{-2}\log^2(1/\varepsilon)\log(1/\delta)
+ \ \le\ \mathcal C_{s,M}(\varepsilon,\delta)
+ \ \le\ (65536M)^2\varepsilon^{-2}\log^2(1/\varepsilon)\log(1/\delta).
+\]
+The upper estimator is selected before the density.
+Every estimator unbiased throughout $\mathcal F_{s,M}$ has either
+unbounded variance over that class or unbounded expected work.
+\end{theorem}
+
+\begin{proof}
+Write $x=p-1/2$ and take the normalized even smooth bump $g$ with inner
+radius $1/8$ and outer radius $3/16$. It integrates to one and satisfies
+$g\ge1$ on $[-1/8,1/8]$. For $0<t\le1$, set
+\[
+ R(x)=\frac{x}{1+x^2},\qquad
+ \eta_t(x)=\frac{t^s}{8}R(x/t),\qquad
+ f_\pm(1/2+x)=g(x)(1\pm2\eta_t(x)).
+\]
+The perturbation is odd and bounded in absolute value by $1/8$.
+Thus both densities are nonnegative and normalized.
+The identity
+\[
+ R^{(k)}(x)=
+ \operatorname{Re}\frac{(-1)^k k!}{(x+\mathrm i)^{k+1}}
+\]
+gives $\|R^{(k)}\|_\infty\le k!$. Consequently,
+\[
+ \|\eta_t^{(k)}\|_\infty
+ \le \frac{k!}{8}t^{s-k}\le\frac{k!}{8},
+ \qquad 0\le k\le s.
+\]
+Compact support bounds every fixed derivative of $g$.
+Leibniz's rule then supplies one finite $M_s$ for all $t$ and both signs.
+
+The common gap law has density $2g(d)$ on $(0,1/2]$, and its sign
+probabilities are $1/2\pm\eta_t(d)$.
+The formal identification tests this mixture against every bounded
+measurable function of the parameter. It also identifies the threshold
+probability with the original sign mean and the parameter mixture used
+by the independent Bernoulli-tape simulator.
+
+Put $h=t^{s+1}$. For every positive gap,
+\[
+ 0\le\eta_t(d)\le\frac18,\qquad d\eta_t(d)\le\frac h8.
+\]
+The stopped-transcript bound therefore gives
+$\operatorname{KL}(\mathbb P_+,\mathbb P_-)\le(128/225)h^2B$
+whenever expected work under the plus model is at most $B$.
+For $t\le1/64$, integration on $[t,1/8]$ yields
+\[
+ \Delta_t=\theta_+-\theta_-
+ =4\int_0^\infty g(d)\eta_t(d)\,{\rm d}d
+ \ge\frac h8\log(1/t).
+\]
+Let $L=\log(1/\varepsilon)$ and $K_s=64(s+1)$.
+For sufficiently small $\varepsilon$, the choice
+$h=K_s\varepsilon/L$ and $t=h^{1/(s+1)}$ has $t\le1/64$
+and $\Delta_t>2\varepsilon$.
+The binary testing bound is $\log(1/\delta)/4$.
+Combining it with the transcript bound gives the lower result.
+This construction supplies $c_s=225/(512K_s^2)$.
+
+For the upper bound, every model in the class satisfies
+$\Pr(D\le u)\le2Mu$.
+The reference power law of exponent one and scale $a=(2M)^{-1}$
+therefore dominates its small-gap probabilities.
+At $0<z<a$ its clipped modulus is
+$(z/a)(1+\log(a/z))$.
+Apply the law-independent confidence estimator with
+\[
+ B=(65536M)^2\varepsilon^{-2}L^2\log(1/\delta),
+ \qquad z=\sqrt{\log(1/\delta)/B}=\frac{\varepsilon}{65536ML}.
+\]
+For $\varepsilon\le e^{-16}$, its radius
+$8192(z/a)(1+\log(a/z))$ is at most $\varepsilon$.
+
+Suppose one estimator is unbiased with variance at most $V$
+and expected work at most $W$ throughout the class.
+The same local information bound holds in both directions.
+The verified two-distribution variance inequality and $|\Delta_t|\le1$
+imply
+\[
+ \Delta_t^2\le\frac{128}{225}h^2W(2V+1/2).
+\]
+Combining this with the separation bound and cancelling $h^2>0$
+bounds $\log^2(1/t)$ by a constant independent of $t$.
+Letting $t$ tend to zero gives a contradiction.
+\end{proof}
+
+The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/8e42a99a49dcd4af8bdaaf17a6ea1c398f34b03b/lean/ThresholdHC/SmoothDensity/Full.lean}{full Lean theorem}
+checks the lower bound, the estimator family for the upper bound, and
+the unbiased impossibility together. Its class definition uses equality
+of the latent parameter law against all bounded measurable test functions.
+The source audit checks the construction and the original-experiment
+connections separately before checking this combined statement.
