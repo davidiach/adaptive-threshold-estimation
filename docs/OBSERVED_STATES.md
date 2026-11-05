@@ -1,44 +1,53 @@
-# Observed-state verification
+# Observed-state lower bounds
 
-This development formalizes the finite-cell and continuous-magnitude
-observed-state lower bounds in the consolidated manuscript.
+## Finite-cell theorem
 
-## Verified components
+The finite-cell observed-state obstruction is Lean-checked for every gap
+law, every scale \(0<h\le1/2\), and \(0<\delta\le1/8\).
+The construction gives a finite measurable partition of the uniform
+state space and a deterministic Bernoulli model for every cell-sign
+array. Its magnitude CDF is bounded by the original gap CDF, and its
+target separation satisfies \(\Delta\ge\omega_\mu(h)/8\).
 
-The initial component audit checks the following results.
+Every measurable selected-state algorithm with error at most \(\Delta/4\)
+and failure probability at most \(\delta\) throughout this family has
+worst-case expected work at least
+\[
+ \frac{225}{128h^2}\operatorname{kl}(1-2\delta,2\delta).
+\]
+Queries may choose any point, revisit states, and interleave cells.
+The private seed can include all free outer samples. The experiment
+charges one physical observation for each active query.
 
-- A product prior on the deterministic cell signs has the exact weighted
-  target mean and variance. A second-moment bound controls the probability
-  that this target differs from its prior mean.
-- Independent sign-symmetric noise converts a larger-gap Bernoulli
-  observation into a smaller-gap observation with the same cell sign.
-  The equality is checked for the actual probability measures.
-- The finite-cell experiment uses independent Bernoulli tapes and the
-  original adaptive path simulator, with arbitrary measurable private
-  randomness. Its mixture is a probability law, and uniform work bounds
-  for deterministic signs bound the mixture's expected physical work.
-- The existing finite rounding grid gives an upward finite-range map.
-  Its gap CDF is dominated by the original law, and its clipped modulus
-  is at least half the original modulus.
+## Proof map
 
-Run `python tools/verify_observed_states.py` for the component audit.
+- Rounding raises small gaps and applies the existing finite grid.
+  The resulting upward map preserves at least half the clipped modulus.
+- OuterMeasure, Labels, Design, and Construction realize the
+  gap law and an independent replication index as measurable functions
+  of a uniform state. Their fibers give the finite cells.
+- Targets and Replication prove the product-prior target mean,
+  variance, concentration, and a sufficient finite replication count.
+- Experiment and Realization identify the actual independent-tape
+  Bayes transcript with the adaptive finite-prefix model.
+- Information, Testing, and FiniteLower derive the stopped
+  information bound and the exact testing constant.
+- StateModel, Mean, and Finite connect arbitrary point queries,
+  conditional expectations, the threshold target, and the full theorem.
+- Garbling identifies a smaller-gap observation as a larger-gap
+  Bernoulli observation with independent noise.
 
-## Finite-cell information and testing
+Run `python tools/verify_observed_states.py` for 22 exact statements and
+58 transitive axiom reports. The audit checks the full theorem and its
+experiment connections.
 
-The next checkpoint identifies the full Bayes transcript law of the concrete
-independent-tape experiment. It proves the information bound from uniform
-expected work over deterministic sign arrays and derives the exact lower
-coefficient `225/(128h²)` multiplying `kl(1−2δ,2δ)`.
+The construction uses the second-moment condition
+\(M^{-1}\le\delta\Delta^2/16\). The paper's Hoeffding-based replication
+count remains a separately proved bound.
 
-The testing theorem assumes an explicit finite design with separation `Δ`
-and squared target weights at most `δΔ²/16`. The replication lemmas prove
-that sufficiently many copies satisfy this concentration requirement.
-This construction uses a second-moment cell-count bound.
+## Continuous magnitudes
 
-## Remaining assembly
-
-The observed-state results still need the complete finite-partition
-construction. The continuous-magnitude result also needs the adaptive noise
-simulation and its exact work and observation-law identities. The full
-observed-state theorems retain their paper-proof status while those steps
-are in progress.
+The continuous-magnitude observed-state result retains its paper proof.
+Its formalization still needs the adaptive noise simulation, the exact
+work and observation-law identities, and the final uniform-magnitude
+rate and regularity checks.

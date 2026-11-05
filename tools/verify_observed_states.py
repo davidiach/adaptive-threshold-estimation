@@ -7,8 +7,7 @@ from verify_blind_upper_components import LEAN, validate_reports
 
 def audit_input():
     source = """
-import ThresholdHC.ObservedState.FiniteLower
-import ThresholdHC.ObservedState.Replication
+import ThresholdHC.ObservedState.Finite
 import ThresholdHC.ObservedState.Garbling
 import ThresholdHC.ObservedState.Rounding
 noncomputable section
@@ -106,6 +105,43 @@ example {I : Type} [Fintype I] (w : I → ℝ) (hw : ∀ i, 0 ≤ w i) (hs : (�
 example {Δ δ : ℝ} (hΔ : 0 < Δ) (hδ : 0 < δ) :
     ∃ M : ℕ, 0 < M ∧ 1 / (M : ℝ) ≤ δ * Δ ^ 2 / 16 :=
   replication_count hΔ hδ
+
+example (μ : Measure Gap) [IsProbabilityMeasure μ] (M : ℕ) [NeZero M] :
+    ∃ f : unitInterval → Gap × Fin M, Measurable f ∧
+      volume.map f = μ.prod (repetitionLaw M) := outer_source μ M
+
+example (μ : Measure Gap) [IsProbabilityMeasure μ] (h : Gap) {δ : ℝ} (hδ : 0 < δ) :
+    Nonempty (CellDesign μ h δ) := cell_design_exists μ h hδ
+
+example (μ : Measure Gap) [IsProbabilityMeasure μ] (h : Gap) (δ : ℝ) (D : CellDesign μ h δ) :
+    modulus μ h / 8 ≤ cellDelta D.cap D.cell h := design_separation μ h δ D
+
+example {N : ℕ} (cap : Fin N → Gap) (cell : unitInterval → Fin N)
+    (s : Fin N → Bool) (u : unitInterval) :
+    (∫ b : Bool, (if b then (1 : ℝ) else -1)
+      ∂bernoulliMeasure true false (ThresholdHC.ObservableSimulation.gapParameter (s (cell u)) (cap (cell u)))) =
+        conditionalMean cap cell s u := conditionalMean_exact cap cell s u
+
+example {N : ℕ} (cap : Fin N → Gap) (cell : unitInterval → Fin N)
+    (s : Fin N → Bool) (u : unitInterval) :
+    |conditionalMean cap cell s u| = 2 * (cap (cell u) : ℝ) := conditionalMean_magnitude cap cell s u
+
+example {N : ℕ} (cap : Fin N → Gap) (cell : unitInterval → Fin N) (s : Fin N → Bool) :
+    volume.real {u | 0 < conditionalMean cap cell s u} = stateTarget cell s := threshold_target cap cell s
+
+example (μ : Measure Gap) [IsProbabilityMeasure μ] (h : Gap)
+    {δ : ℝ} (hδ : 0 < δ) (hd : δ ≤ 1 / 8) :
+    ∃ D : CellDesign μ h δ,
+      0 < cellDelta D.cap D.cell h ∧
+      modulus μ h / 8 ≤ cellDelta D.cap D.cell h ∧
+      (∀ x : ℝ, volume {u : unitInterval | (D.cap (D.cell u) : ℝ) ≤ x} ≤
+        μ {d : Gap | (d : ℝ) ≤ x}) ∧
+      (∀ (R : Type) [MeasurableSpace R] (A : StateEstimator R) (B : ℝ), 0 ≤ B →
+        (∀ s, (∫⁻ z, totalProcessWork z.2 ∂stateLaw A D.cap D.cell D.cell_measurable s) ≤ ENNReal.ofReal B) →
+        (∀ s, stateLaw A D.cap D.cell D.cell_measurable s
+          {z | cellDelta D.cap D.cell h / 4 < |A.output z - stateTarget D.cell s|} ≤ ENNReal.ofReal δ) →
+        (225 / (128 * (h : ℝ) ^ 2)) * klB (1 - 2 * δ) (2 * δ) ≤ B) :=
+  finite_observed_state_lower μ h hδ hd
 """.lstrip()
     roots = {"ThresholdHC.ObservedState." + name for name in [
         "target_memLp", "target_mean", "target_variance", "target_variance_le", "target_concentration",
@@ -117,13 +153,19 @@ example {Δ δ : ℝ} (hΔ : 0 < Δ) (hδ : 0 < δ) :
         "bayes_realizes", "bayes_information_bound", "event_information_lower", "bayes_event_bound",
         "small_weights_concentrate", "finite_confidence_lower", "replicated_sum", "replicated_moment",
         "replicated_square_sum", "replicated_square_le", "replication_count",
+        "repetitionLaw_probability", "repetitionLaw_singleton", "outer_source", "outer_gap_law",
+        "finite_cell_law", "cell_mass", "finite_range_labels", "labelWeight_nonneg", "labelWeight_sum",
+        "label_moment", "cell_moment", "cellWeight_sum", "design_separation", "design_delta_pos",
+        "design_cdf", "cell_design_exists", "stateEstimator_probability", "stateTarget_eq",
+        "conditional_mean_positive", "threshold_target", "onCells_policy", "design_confidence_lower",
+        "conditionalMean_exact", "conditionalMean_magnitude", "finite_observed_state_lower",
     ]}
     return source + "".join("#print axioms " + name + "\n" for name in sorted(roots)), roots
 
 
 def main():
     source, roots = audit_input()
-    subprocess.run(["lake", "build", "ThresholdHC.ObservedState.FiniteLower", "ThresholdHC.ObservedState.Replication",
+    subprocess.run(["lake", "build", "ThresholdHC.ObservedState.Finite",
                     "ThresholdHC.ObservedState.Garbling", "ThresholdHC.ObservedState.Rounding"],
                    cwd=LEAN, check=True)
     run = subprocess.run(["lake", "env", "lean", "--stdin"], cwd=LEAN, input=source, text=True,
