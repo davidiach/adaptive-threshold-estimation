@@ -357,6 +357,7 @@ are also checked.
 | Matching entropy-tail upper/lower bounds | Every law, known rarity, and positive expected budget in the model; hard measurable assignments suffice. |
 | Attained four-prior stopping dual | Exact identity for the robust certificate program; its connection to minimax risk is a comparison inequality. |
 | Factor-sixteen risk certificate | For $0<\rho\le1/2$, the [uniform cap theorem](FINITE_CAP_RATE.md) gives $P_N\le2G_N$ and $R\le P_N\le16R$ whenever $N\ge4B/3$. |
+| Ordinary cap convergence | The [truncation theorem](FINITE_CAP_RATE.md#a-sharper-rate-for-the-ordinary-upper-program) gives $P_\infty\le P_N\le(1+\sqrt{B/(N+1)})P_\infty$ uniformly in the law. For $0<\rho\le1/2$ and $B>0$, $P_N\le8(1+\sqrt{B/(N+1)})R$, so $N+1\ge B$ suffices for factor sixteen. This does not give a matching genie rate or prove optimality. [Lean record](../results/finite-cap-truncation-20261105/README.md) |
 | Genie convergence | Pointwise convergence assumes finite latent divergence. An explicit infinite-divergence counterexample is included. Mixing the variance and work references with the endpoint midpoint gives $P_N/G_N\le1+2(B/N)^{1/3}$ for $N\ge B$. [Lean record](../results/genie-rate-20261104/README.md) |
 | Fixed-cap identification | For $m$ distinct positive magnitudes, the zero-bias threshold is $N\ge2m-1$. This identifies the target, not necessarily the full allocation $q$. Infinite support has a positive floor at every fixed cap; the cap may grow. |
 

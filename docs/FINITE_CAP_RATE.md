@@ -80,6 +80,45 @@ and $G_N/8\le R\le P_N$ are the established minimax brackets.
 For $k=2$ the cap condition is $N\ge4B/3$. For $t=(B/N)^{1/3}\le1$ and
 $k=1+2t$, $(1-1/k)^2(k^2-1)=16t^3(1+t)/(1+2t)^2\ge t^3$.
 
+## A sharper rate for the ordinary upper program
+
+For every gap law and integer $N\ge1$, output-preserving truncation gives
+$$
+ P_\infty(B)\le P_N(B)\le
+ \left(1+\sqrt{\frac{B}{N+1}}\right)P_\infty(B).
+$$
+This is a uniform square-root rate for the ordinary program. The
+[Lean theorem](../lean/ThresholdHC/FiniteCapTruncation/Full.lean) checks it
+for every real $\rho$ and $B\ge0$; in the statistical domain
+$0<\rho\le1/2$, $B>0$, its [risk corollary](../lean/ThresholdHC/FiniteCapTruncation/Risk.lean)
+gives $R\le P_N\le8(1+\sqrt{B/(N+1)})R$. Thus $N+1\ge B$ suffices for
+$P_N\le16R$. This last bound does not assert the genie stopping criterion
+$P_N\le2G_N$ at that smaller cap.
+[Ten exact statements and native evidence](../results/finite-cap-truncation-20261105/README.md)
+
+To prove the rate, take a feasible certificate at cap $M\ge N$ with bias
+bound $b$, second moment bound $V$ and work bound $B$. Preserve all old
+stops and outputs through depth $N$ and force remaining paths to stop at
+$N$ with output zero. In the count flow, the terminal stop weight increases
+by the old continuation weight; the old output and moment weights remain.
+This preserves the perspective constraint. Work and second moments decrease.
+
+Under any admissible prior, the mass of discarded stops is at most
+$B/(N+1)$, since they require at least $N+1$ paid observations. Weighted
+Cauchy--Schwarz and the second-moment bound put the absolute discarded
+output mean below $\sqrt{BV/(N+1)}$. The new bias is therefore at most
+$b+\sqrt{BV/(N+1)}$. With $t=\sqrt{B/(N+1)}$,
+$$
+ \sqrt{(b+t\sqrt V)^2+V}\le(1+t)\sqrt{b^2+V}.
+$$
+Taking the infimum over certificates and then over $M\ge N$ proves the
+claim. The construction does not assume root intensity one, finite support,
+a lower gap bound, or a finite inverse moment.
+
+The square-root bound improves the earlier cube-root consequence for
+$P_N/P_\infty$. Its optimality and the optimal relative convergence of
+the genie program remain open.
+
 ## Scope
 
 Regularization depends on the requested comparison factor. The theorem

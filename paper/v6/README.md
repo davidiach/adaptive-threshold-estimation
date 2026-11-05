@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Read the updated manuscript](builds/band-cost-formal-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/band-cost-formal-20261105.json)
+[Read the updated manuscript](builds/finite-cap-truncation-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/finite-cap-truncation-20261105.json)
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -351,3 +351,18 @@ All 29 fonts are embedded, references resolve, and no new layout warning
 appears. Earlier publications remain unchanged.
 
 [Updated manuscript](builds/band-cost-formal-20261105.pdf) · [Build record](builds/band-cost-formal-20261105.json) · [Native audit](../../results/band-cost-formal-20261105/README.md)
+
+
+## Square-root convergence of the ordinary cap program
+
+Appendix Q.1 adds the output-preserving truncation proof and its checked
+ordinary-program bound: $P_N\le(1+\sqrt{B/(N+1)})P_\infty$. The minimax
+corollary gives factor sixteen once $N+1\ge B$. Optimality and the
+corresponding genie convergence rate remain open.
+
+The new 167-page PDF has two byte-identical offline builds. All three changed
+pages (3, 46 and 140) were visually inspected; 27 following pages relocate
+without body changes. All 29 fonts are embedded, references resolve, and no
+new layout warning appears. Earlier publications remain unchanged.
+
+[Updated manuscript](builds/finite-cap-truncation-20261105.pdf) · [Build record](builds/finite-cap-truncation-20261105.json) · [Native audit](../../results/finite-cap-truncation-20261105/README.md)
