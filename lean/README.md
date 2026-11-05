@@ -126,3 +126,13 @@ The other tabled audits write timestamped directories under `.runtime/`;
 [tools/README.md](../tools/README.md) maps those locations.
 Run the corresponding verifier regression tests when proof registration or
 verification logic changes. Keep published checkpoints intact.
+
+[Finite-family law adaptation](../docs/FINITE_FAMILY_ADAPTATION.md) has 17 checked
+components in [Parity](ThresholdHC/LawAdaptation/Parity.lean),
+[Identification](ThresholdHC/LawAdaptation/Identification.lean),
+[Concentration](ThresholdHC/LawAdaptation/Concentration.lean),
+[Pilot](ThresholdHC/LawAdaptation/Pilot.lean),
+[Transfer](ThresholdHC/LawAdaptation/Transfer.lean) and
+[Rate](ThresholdHC/LawAdaptation/Rate.lean). Run
+`python tools/verify_law_adaptation.py`. This is not yet a Lean theorem constructing
+the complete selected controller in the original observable experiment.

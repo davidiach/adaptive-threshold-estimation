@@ -72,3 +72,8 @@ altering the original snapshots.
 The Lean kernel audits added from 4 November onward take no build options
 (two accept only `--lake`). They build with Lake, check exact statements and
 transitive axioms, print the report and write no files.
+
+Run `verify_law_adaptation.py` for 17 exact types and transitive axiom reports
+covering [finite-family unknown-law adaptation components](../docs/FINITE_FAMILY_ADAPTATION.md):
+sign-neutral parity, bounded-average concentration, identification, probability
+transfer, physical cap arithmetic and the delayed oracle-rate comparison.

@@ -950,8 +950,13 @@ $0<\rho\le1/4$ and $0<\delta\le1/4$.
 The [sequential testing step](ANYTIME_SEQUENTIAL.md), [infinite-moment
 construction and adaptive acquisition transfer](ANYTIME_TAIL.md), and
 [complete asymptotic and interval comparison](../results/anytime-asymptotic-20261105/README.md)
-are formalized in the original observable experiment. Oracle-rate adaptation
-to an unknown gap law remains open.
+are formalized in the original observable experiment.
+A new [finite-family adaptation theorem](FINITE_FAMILY_ADAPTATION.md) gives the
+known-law time-uniform rate after an explicit paid identification pilot, when
+the unknown law belongs to a supplied finite family. Its parity, concentration,
+identification and rate-transfer components have a 17-statement Lean audit;
+moment determinacy and the full observable controller remain paper proofs.
+Oracle-rate adaptation over arbitrary unknown gap laws remains open.
 An exact path count shows that repeatedly
 checking a fixed-time interval fails: a check with fixed-time failure at most
 $1/4$ fails with probability about $0.428$ when checked at every step up to

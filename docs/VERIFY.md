@@ -852,3 +852,17 @@ Run `python tools/verify_quantile_optimality.py` for 81 exact statements and 81 
 Run `python tools/verify_anytime_lower.py` for 15 exact statements and transitive axiom reports. The audit covers central-segment information/work scaling, quarter-smoothing inversion, physical prefix work, admissibility, exact target separation and the observable prefix KL bound from an arbitrary four-prior certificate, plus posterior Lipschitz and per-flip Bernoulli KL inequalities. Run `python tools/verify_anytime_sequential.py` for eight exact statements and transitive axiom reports covering [observable sequential testing](ANYTIME_SEQUENTIAL.md). Run `python tools/verify_anytime_asymptotics.py` for fourteen exact statements and transitive axiom reports covering the finite-coefficient branch, dense and sparse infinite-moment branches, the full all-law theorem and observable interval half-widths. [Final native record](../results/anytime-asymptotic-20261105/README.md). [Native record](../results/anytime-lower-20261105/README.md). Run `python tools/verify_anytime_lower_profiles.py` for the separate exact finite profile checks.
 
 Run `python tools/verify_anytime_tail.py` for fifteen exact statements and transitive axiom reports covering the [infinite-moment tail family](ANYTIME_TAIL.md), its original observable-prefix KL bound, and arbitrarily late physical-budget violations. The final selection-rate comparison is outside this audit.
+
+## Finite-family unknown-law adaptation components
+
+Run `python tools/verify_law_adaptation.py` for 17 independently restated exact
+types and transitive axiom reports. It checks finite-prefix even-parity means,
+bounded-average concentration, separated-signature identification and error
+calibration, selection of simultaneous guarantees, physical budget arithmetic,
+and the delayed comparison with the actual entropy-tail selection functional.
+The [theorem and boundary](FINITE_FAMILY_ADAPTATION.md) separate these components
+from the paper-only moment-determinacy and full observable-controller arguments.
+Run `python -m unittest discover -s toolkit/tests -p test_law_identification.py -v`
+for the executable rational pilot. Those tests do not formally verify Python.
+
+[Native record for the finite-family components](../results/law-adaptation-20261105/README.md).

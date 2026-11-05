@@ -130,3 +130,8 @@ The [native ten-statement audit](finite-cap-truncation-20261105/README.md)
 verifies a uniform square-root rate for the ordinary optimized cap program,
 its output-preserving certificate construction, and the explicit risk bound.
 Optimality and the corresponding genie rate remain open.
+
+The [finite-family adaptation component audit](law-adaptation-20261105/README.md)
+checks 17 exact types, including observable parity, bounded-average concentration,
+identification, selected-event transfer and the delayed oracle-rate comparison.
+The full controller construction and moment determinacy remain paper proofs.

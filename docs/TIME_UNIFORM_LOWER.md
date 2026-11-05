@@ -17,7 +17,7 @@ and [online-estimate theorem](../lean/ThresholdHC/AnytimeLower/Full.lean) use
 the original hidden-gap experiment, one common adaptive policy, its private
 seed, and actual observed prefixes. The result concerns deterministic
 envelopes; it does not assert a pointwise lower bound on every random interval
-or every budget. Oracle-rate adaptation to an unknown gap law remains open.
+or every budget. The [finite-family theorem](FINITE_FAMILY_ADAPTATION.md) now gives eventual oracle-rate adaptation after a paid identification pilot. Adaptation over arbitrary unknown gap laws remains open.
 
 ## First-crossing testing
 
