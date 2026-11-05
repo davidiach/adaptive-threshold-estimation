@@ -47,7 +47,6 @@ count remains a separately proved bound.
 
 ## Continuous magnitudes
 
-The continuous-magnitude observed-state result retains its paper proof.
-Its formalization still needs the adaptive noise simulation, the exact
-work and observation-law identities, and the final uniform-magnitude
-rate and regularity checks.
+The [continuous-magnitude lower bounds and regularity](CONTINUOUS_OBSERVED.md)
+and the [fresh-state upper-bound transfer](OBSERVED_UPPER.md) are now
+Lean-checked, completing both two-sided complexity rates.

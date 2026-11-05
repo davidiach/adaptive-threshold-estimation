@@ -1,0 +1,109 @@
+\section{The fresh-outer-state upper-bound transfer}
+\label{app:observed-upper}
+
+This appendix completes the observed-state upper bounds used in
+\cref{prop:outer,prop:continuous}. The policy samples independent
+uniform outer states and assigns one to each original coin label.
+It uses the original estimator's observation history and private
+randomness, and its output discards the auxiliary outer sequence.
+
+\begin{theorem}[Verified observed-state upper bounds]
+\label{thm:observed-upper-verified}
+There are observed-state estimator families, selected before the gap
+law and deterministic sign-cell model, that use at most $B$ expected
+inner observations and attain
+\[
+ \operatorname{RMS}\le512\,\omega_\mu(B^{-1/2}),
+ \qquad
+ \Pr\!\left(
+ |\widehat\theta-\theta|>
+ 8192\,\omega_\mu\!\left(\sqrt{\log(1/\delta)/B}\right)
+ \right)\le\delta
+\]
+for $B\ge1$ and $0<\delta\le1/4$.
+Here $\mu$ is the actual gap law. The statements allow arbitrary
+finite measurable sign-cell designs and every physical experiment
+with the ordinary fresh-Bernoulli observation rule.
+
+For $\mu=\operatorname{Unif}(0,1/4]$ and
+$0<\varepsilon\le e^{-16}$, each guarantee is attained with
+\[
+ B_\varepsilon
+ =131072^2\,\varepsilon^{-2}\log^2(1/\varepsilon)\log16,
+\]
+using failure probability $1/16$ for the confidence guarantee.
+Together with \cref{app:continuous-observed}, this proves both
+two-sided complexity rates in the continuous-magnitude observed-state
+class.
+\end{theorem}
+
+\begin{proof}
+Let $D(u)$ be the gap map and $s(u)$ the cell sign. The actual
+Bernoulli parameter is
+$p(u)=1/2+(2s(u)-1)D(u)$.
+For a measurable gap set $E$, define the positive-gap submeasure
+\[
+ \nu_+(E)=\Pr(D(U)\in E,\ s(U)=1).
+\]
+It satisfies $\nu_+\le\mu$.
+Its Radon--Nikodym derivative has a measurable version
+$q(d)\in[0,1]$ everywhere, and the checked identity is
+$\nu_+=q\,\mu$.
+Testing against bounded measurable functions gives
+\[
+ p(U)\ \sim\
+ \int\left[q(d)\,\delta_{1/2+d}
+       +(1-q(d))\,\delta_{1/2-d}\right]\mu({\rm d}d),
+ \qquad
+ \theta=\int q\,{\rm d}\mu.
+\]
+Thus every deterministic observed-state model has the parameter law
+and target required by the original population estimator.
+
+Take an original adaptive estimator with private seed $R$.
+Augment its seed by an independent sequence
+$U_0,U_1,\ldots$ of uniform outer states.
+When its policy requests coin $i$, request one fresh observation at
+$U_i$. A repeated label reuses the same state. The selected-state
+policy is measurable, depends on no gap law or sign array, and has
+the original output as a function of its seed and observation tape.
+
+Conditional on the complete outer sequence, the signs are
+deterministic and each requested parameter is $p(U_i)$.
+The formal proof first reduces the original sign-mixture transcript
+weights at priors zero and one to these fixed-parameter weights.
+It then identifies the finite-prefix expectation of the
+selected-state policy with the original countable-label creation law.
+A finite-kernel conversion retains the full measurable seed and
+passes from nonnegative tests to bounded real tests.
+
+The existing population-simulation theorem identifies the complete
+observable transcript measure after the auxiliary outer sequence is
+discarded. The parameter-law identity above makes this exactly the
+original experiment with gap law $\mu$ and conditional sign law $q$.
+Consequently the two experiments have equal expected actual work,
+squared risk, RMS risk, and failure probabilities. These equalities
+include unbounded stopping and preserve infinite risk.
+
+Apply the checked original RMS and confidence estimator families.
+The resulting selected-state families are chosen before every
+$\mu$, gap map and sign-cell model, which proves the general bounds.
+
+For the uniform law, use
+$\omega_\mu(h)=4h[1+\log(1/(4h))]$ for $0<h<1/4$.
+The checked budget calculation gives
+\[
+ 8192\,\omega_\mu\!\left(\sqrt{\log16/B_\varepsilon}\right)
+ \le\varepsilon,\qquad
+ 512\,\omega_\mu(B_\varepsilon^{-1/2})\le\varepsilon.
+\]
+The first inequality gives fixed confidence and the second gives RMS.
+\end{proof}
+
+The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/d9146cc9ac90783b10756dcd96223eff9b61438f/lean/ThresholdHC/ContinuousObserved/SampledLaw.lean}{transcript identity}
+and \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/d9146cc9ac90783b10756dcd96223eff9b61438f/lean/ThresholdHC/ContinuousObserved/Transfer.lean}{work and risk identities}
+connect the actual selected-state experiment to the original one.
+The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/d9146cc9ac90783b10756dcd96223eff9b61438f/lean/ThresholdHC/ContinuousObserved/Upper.lean}{general upper families}
+and \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/d9146cc9ac90783b10756dcd96223eff9b61438f/lean/ThresholdHC/ContinuousObserved/UniformUpper.lean}{uniform-law specialization}
+complete the formal observed-state results together with
+Appendices~\ref{app:finite-observed} and~\ref{app:continuous-observed}.

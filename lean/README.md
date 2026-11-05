@@ -123,3 +123,5 @@ the ordinary model to unknown laws ordered by their gap CDFs.
 [Finite-cell observed-state lower bound](ThresholdHC/ObservedState/Finite.lean) constructs a measurable uniform-state partition and proves the exact testing bound for arbitrary selected-state policies. [Proof map](../docs/OBSERVED_STATES.md) · [Audit](../results/finite-observed-20261105/README.md)
 
 [Continuous-magnitude observed-state lower bounds](ThresholdHC/ContinuousObserved/UniformLower.lean) and [RMS lower bound](ThresholdHC/ContinuousObserved/UniformRMSLower.lean) apply to the actual selected-query experiment. [Regularity](ThresholdHC/ContinuousObserved/Regularity.lean) verifies the normalized density and moments. [Proof map](../docs/CONTINUOUS_OBSERVED.md) · [Audit](../results/continuous-observed-lower-20261105/README.md)
+
+[Fresh-state upper bounds](ThresholdHC/ContinuousObserved/Upper.lean) transfer the actual population experiment to selected-state queries. [Uniform-gap rates](ThresholdHC/ContinuousObserved/UniformUpper.lean) complete the observed-state results. [Proof map](../docs/OBSERVED_UPPER.md) · [Audit](../results/observed-state-upper-20261105/README.md)

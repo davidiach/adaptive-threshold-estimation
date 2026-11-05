@@ -781,3 +781,7 @@ Run `python tools/verify_observed_states.py` for 22 exact statements and 58 tran
 ## Continuous-magnitude observed states
 
 Run `python tools/verify_continuous_observed.py` for 34 exact statements and 87 transitive axiom reports. The audit covers the physical query law, exact uniform gap distribution, normalized density and moments, and both complexity lower bounds. [Native record](../results/continuous-observed-lower-20261105/README.md)
+
+## Fresh-state upper-bound transfer
+
+Run `python tools/verify_observed_upper.py` for 21 exact statements and 42 transitive axiom reports. The audit covers the parameter law, complete transcript, actual work and risk identities, universal modulus upper bounds and uniform-gap complexity. [Native record](../results/observed-state-upper-20261105/README.md)

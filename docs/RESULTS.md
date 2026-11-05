@@ -99,7 +99,7 @@ private randomness and unbounded stopping. It identifies the physical
 observation law and the threshold target.
 
 The checked construction uses a second-moment replication condition.
-The continuous-magnitude extension still has a paper proof.
+The continuous-magnitude extension is checked, including its lower bounds, regularity and fresh-state upper-bound transfer.
 [Proof map](OBSERVED_STATES.md) · [Native audit](../results/finite-observed-20261105/README.md)
 
 ## Continuous-magnitude observed-state obstruction
@@ -118,10 +118,26 @@ target and proves that the normalized conditional magnitude has density
 bounded by two. Every normalized conditional central moment of real
 order $q\ge0$ is bounded by $3^{q/2}$.
 
-The matching upper rate retains its paper proof. Its formal continuation
-transfers the existing population estimator to fresh uniform outer
-sampling, with the actual observation law, work and risk identified.
+The matching upper rate is now Lean-checked through the full fresh-state
+transfer. For $0<\varepsilon\le e^{-16}$, the actual expected-work upper
+bound for either RMS or confidence at failure probability $1/16$ is
+$131072^2\varepsilon^{-2}\log^2(1/\varepsilon)\log16$.
 [Proof map](CONTINUOUS_OBSERVED.md) · [Native audit](../results/continuous-observed-lower-20261105/README.md)
+
+## Fresh-state upper-bound transfer
+
+One universal selected-state estimator family attains RMS radius
+$512\omega_\mu(B^{-1/2})$ for every actual gap law and $B\ge1$.
+A second family attains confidence radius
+$8192\omega_\mu(\sqrt{\log(1/\delta)/B})$ for $0<\delta\le1/4$.
+Both families are selected before the gap law and deterministic sign-cell
+model, and their expected physical observation count is at most $B$.
+
+The proof identifies the conditional sign probability, population
+parameter law, complete observable transcript, actual work, squared risk,
+RMS risk and failure probabilities. The uniform-gap specialization
+completes both two-sided observed-state complexity rates.
+[Proof map](OBSERVED_UPPER.md) · [Native audit](../results/observed-state-upper-20261105/README.md)
 
 ## Paper review scope
 

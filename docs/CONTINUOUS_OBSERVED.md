@@ -65,9 +65,9 @@ Run `python tools/verify_continuous_observed.py` for 34 exact statements and 87 
 The construction uses the second-moment replication count from the
 [finite-cell theorem](OBSERVED_STATES.md).
 
-## Remaining upper-bound transfer
+## Matching upper bounds
 
-The matching upper rate retains its paper proof. Its formal continuation
-constructs a selected-state policy from the existing population estimator
-using independent uniform outer states, then identifies their complete
-observation laws and transfers actual work and risk.
+The [fresh-state upper-bound transfer](OBSERVED_UPPER.md) is now
+Lean-checked. It identifies the complete observation law and transfers
+actual work, RMS risk and confidence guarantees. The uniform-law
+specialization completes both two-sided complexity rates.
