@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Read the updated manuscript](builds/sharp-quantile-upper-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/sharp-quantile-upper-20261105.json)
+[Read the updated manuscript](builds/quantile-optimality-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/quantile-optimality-20261105.json)
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -304,3 +304,5 @@ The unique scalar root and sharp finite-vector quantile factor are now Lean-chec
 The entropy Lipschitz bound and sharp finite-core selection reduction in Appendix P now have native proofs. General-law measure normalization and finite-law realization remain paper proofs. [Updated manuscript](builds/quantile-core-reduction-20261105.pdf) · [Build record](builds/quantile-core-reduction-20261105.json) · [Native record](../../results/quantile-core-reduction-20261105/README.md)
 
 The upper comparison at the exact scalar-root factor is now Lean-checked for every gap law. Finite-law sharpness remains a paper proof. [Updated manuscript](builds/sharp-quantile-upper-20261105.pdf) · [Build record](builds/sharp-quantile-upper-20261105.json) · [Native record](../../results/sharp-quantile-upper-20261105/README.md)
+
+The exact scalar-root characterization, all-law comparison and finite-law sharpness in Appendix P are now Lean-checked. The decimal bracket retains separate rational verification. [Updated manuscript](builds/quantile-optimality-20261105.pdf) · [Build record](builds/quantile-optimality-20261105.json) · [Complete native record](../../results/quantile-optimality-20261105/README.md)

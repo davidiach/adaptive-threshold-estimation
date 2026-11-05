@@ -136,8 +136,10 @@ the ordinary model to unknown laws ordered by their gap CDFs.
 
 [Generic RMS transfer](ThresholdHC/RMSLocalization/CommonPair.lean) and [additive submeasure localization](ThresholdHC/RMSLocalization/Full.lean) verify coefficient $1/128$ in the original experiment. [Proof map](../docs/RMS_LOCALIZATION.md) · [Audit](../results/rms-localization-20261105/README.md)
 
-The [sharp finite-vector quantile factor](ThresholdHC/OptimalQuantile/FiniteSharp.lean) is equivalent to the [unique scalar root](ThresholdHC/OptimalQuantile/Root.lean) for every real factor. Finite-law realization and sharpness over gap laws remain paper proofs. [Native record](../results/optimal-quantile-root-20261105/README.md)
+The [sharp finite-vector quantile factor](ThresholdHC/OptimalQuantile/FiniteSharp.lean) is equivalent to the [unique scalar root](ThresholdHC/OptimalQuantile/Root.lean) for every real factor. [Native record](../results/optimal-quantile-root-20261105/README.md)
 
 The [finite-core selection reduction](ThresholdHC/QuantileSharpLaw/CoreReduction.lean) checks the exact scalar-root factor for arbitrary nonnegative core splits, using the [entropy Lipschitz bound](ThresholdHC/QuantileSharpLaw/Lipschitz.lean). [Native record](../results/quantile-core-reduction-20261105/README.md)
 
-The [all-law quantile comparison](ThresholdHC/QuantileSharpLaw/Full.lean) checks the exact scalar-root coefficient on the original selection functional. Finite-law sharpness remains a paper proof. [Native record](../results/sharp-quantile-upper-20261105/README.md)
+The [all-law quantile comparison](ThresholdHC/QuantileSharpLaw/Full.lean) checks the exact scalar-root coefficient on the original selection functional. [Native record](../results/sharp-quantile-upper-20261105/README.md)
+
+[Finite-law sharpness and exact optimality](ThresholdHC/QuantileOptimality/Full.lean) complete the scalar-root characterization. General and finite-support laws have the same least comparison factor on the original selection functional. [Complete native record](../results/quantile-optimality-20261105/README.md)

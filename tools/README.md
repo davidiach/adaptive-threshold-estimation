@@ -25,7 +25,7 @@ behavior before running it in a checkout that contains published evidence.
 | Hard observable flip budgets | [verify_hard_budget.py](verify_hard_budget.py) | Checks the target digest, original estimator, stage independence, risk bound and minimax rates. |
 | Quantitative finite-cap convergence | [Lean audit](verify_genie_rate.py), [rational checks](verify_finite_cap_rate.py) | Checks the optimized programs and risk certificate, and replays finite Bellman comparisons. |
 | Critical confidence lower bound | [Kernel audit](verify_critical_confidence.py) | Checks the gap density, common pair and unconditional minimax lower rate. |
-| Quantile-factor bounds | [31/20 Lean audit](verify_quantile_price_upper.py), [rational inequalities](verify_quantile_price_bounds.py), [sharp-root certificate](verify_optimal_quantile_factor.py) | Checks the original selection functional in Lean and the two numerical endpoints in exact rational arithmetic. |
+| Quantile-factor bounds | [Sharp-factor audit](verify_quantile_optimality.py), [31/20 Lean audit](verify_quantile_price_upper.py), [rational inequalities](verify_quantile_price_bounds.py), [sharp-root certificate](verify_optimal_quantile_factor.py) | Checks the exact factor and finite-law optimality in Lean. The numerical endpoints have separate exact-rational verification. |
 | Full quantile-selection comparison | [verify_quantile_selection.py](verify_quantile_selection.py) | Checks the two entropy lemmas, Theorem 4 and its statistical selection functional against their exact types and audits the transitive axioms. |
 | Explicit general-law entropy-tail audit | [verify_entropy_tail_sharp.py](verify_entropy_tail_sharp.py) | Checks the explicit constants against their advance statement, the original model lock, the estimator converse and transitive axioms. |
 | Direct finite-law quantile audit | [verify_finite_quantile.py](verify_finite_quantile.py) | Builds the finite-law theorem, the estimator witness and the converse with Lake. Checks the target, direct proof dependencies and transitive axioms. |
@@ -94,3 +94,5 @@ Run `verify_optimal_quantile.py` for the [sharp finite-vector factor and unique 
 Run `verify_quantile_sharp_law.py` for the [entropy Lipschitz and finite-core reduction](../results/quantile-core-reduction-20261105/README.md). The same audit now includes the all-law upper comparison below.
 
 The `verify_quantile_sharp_law.py` audit now includes the [all-law upper comparison](../results/sharp-quantile-upper-20261105/README.md) at the exact scalar-root coefficient.
+
+Run `verify_quantile_optimality.py` for [finite-law realization and exact least-factor equivalences](../results/quantile-optimality-20261105/README.md).

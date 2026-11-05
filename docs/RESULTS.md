@@ -597,8 +597,7 @@ including the separated-cost coefficient $16/9$. [Kernel record](../results/quan
 arithmetic verifier checks the upper proof’s rational inequalities and the
 strict lower example. A [sharp-factor proof](OPTIMAL_QUANTILE_FACTOR.md) reduces the
 supremum over laws to the unique root of a scalar equation. Its rational
-certificate gives $1.462554551279<c_*<1.462554551280$. The characterization
-and numerical certificate have not been checked in Lean.
+certificate gives $1.462554551279<c_*<1.462554551280$. The scalar characterization, all-law comparison and finite-law sharpness are Lean-checked. The numerical bracket retains separate exact-arithmetic verification. [Complete native record](../results/quantile-optimality-20261105/README.md)
 
 **Lean verifies the finite-law bandwise-suffix theorem.** For a probability
 law with finite support, a hard restriction minimizes the raw objective over
@@ -1041,8 +1040,10 @@ with `--budget 16384` or `--target-error 0.03`. The seed defaults to 0.
 
 ## Sharp finite-vector quantile factor
 
-Lean checks a unique scalar root in $(\sqrt2,31/20)$ and proves that every finite nonnegative-vector inequality holds exactly when its factor is at least that root. Every smaller factor has a finite-vector counterexample. The proof includes the exact Gibbs test, tangent and scale elimination, summability, joint continuity, compact maximization, strict monotonicity and analytic endpoint inequalities. Finite-law realization and sharpness over gap laws remain paper proofs. The tight numerical bracket retains its separate rational certificate. [Native record](../results/optimal-quantile-root-20261105/README.md)
+Lean checks a unique scalar root in $(\sqrt2,31/20)$ and proves that every finite nonnegative-vector inequality holds exactly when its factor is at least that root. Every smaller factor has a finite-vector counterexample. The proof includes the exact Gibbs test, tangent and scale elimination, summability, joint continuity, compact maximization, strict monotonicity and analytic endpoint inequalities. The tight numerical bracket retains its separate rational certificate. [Native record](../results/optimal-quantile-root-20261105/README.md)
 
 The [finite-core selection reduction](../results/quantile-core-reduction-20261105/README.md) is also Lean-checked at the exact scalar-root factor, including the entropy Lipschitz bound, fractional selections and both boundary-band cases. The all-law comparison below includes the measure normalization.
 
-The [all-law upper comparison](../results/sharp-quantile-upper-20261105/README.md) now checks $Q\le c_{\rm vec}\mathcal K$ at the exact scalar-root coefficient on the original domain. General-law measure normalization is checked. Finite-law realization and sharpness over gap laws remain paper proofs.
+The [all-law upper comparison](../results/sharp-quantile-upper-20261105/README.md) now checks $Q\le c_{\rm vec}\mathcal K$ at the exact scalar-root coefficient on the original domain. General-law measure normalization is checked.
+
+The [finite-law realization](../results/quantile-optimality-20261105/README.md) completes the sharp-factor proof. For every real $k$, the original universal comparison holds exactly when $c_{\rm vec}\le k$, and the same equivalence holds over finite-support laws. Every smaller factor has a finite probability-law counterexample with $0<\rho\le1/4$ and $B>0$. The three native audits verify 219 exact statements and 219 transitive axiom reports.
