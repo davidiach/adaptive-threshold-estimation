@@ -1,4 +1,4 @@
-"""Audit the finite-vector and exponential-series quantile-factor characterization."""
+"""Audit the sharp finite-vector quantile factor and unique scalar root."""
 
 import subprocess
 
@@ -7,12 +7,41 @@ from verify_blind_upper_components import LEAN, validate_reports
 
 def audit_input():
     source = """
-import ThresholdHC.OptimalQuantile.Monotonic
+import ThresholdHC.OptimalQuantile.FiniteSharp
 noncomputable section
 set_option linter.unusedVariables false
 open Real Filter
 open scoped BigOperators Topology
 open ThresholdHC.EntropyTailQuantile ThresholdHC.OptimalQuantile
+
+example : ContinuousOn (fun z : ℝ × ℝ => dualPrice z.1 z.2) scalarDomain :=
+  @ThresholdHC.OptimalQuantile.dualPrice_continuousOn
+
+example : ContinuousOn (fun z : ℝ × ℝ => partitionSeries z.1 z.2) scalarDomain :=
+  @ThresholdHC.OptimalQuantile.partitionSeries_continuousOn
+
+example : ∀ {k : ℝ} (hk : sqrt 2 ≤ k),
+    ContinuousOn (partitionSeries k) (Set.Ici 1) :=
+  @ThresholdHC.OptimalQuantile.partitionSeries_continuousOn_tangent
+
+example : exp (3 : ℝ) < 25 :=
+  @ThresholdHC.OptimalQuantile.exp_three_lt_twentyfive
+
+example : exp (7/5 : ℝ) < 5 :=
+  @ThresholdHC.OptimalQuantile.exp_seven_fifths_lt_five
+
+example : 1 < scalarPeak (sqrt 2) :=
+  @ThresholdHC.OptimalQuantile.scalarPeak_lower_endpoint
+
+example : ∀ {price : ℝ} (hp : 3 ≤ price),
+    exponentialTail price ≤ exp (-2)/(1-exp (-3)) :=
+  @ThresholdHC.OptimalQuantile.exponentialTail_bound_three
+
+example : (5 : ℝ) < exp 2 :=
+  @ThresholdHC.OptimalQuantile.exp_two_gt_five
+
+example : scalarPeak (31/20) < 1 :=
+  @ThresholdHC.OptimalQuantile.scalarPeak_upper_endpoint
 
 example : ∀ (n : ℕ) {k : ℝ} (hk : 1 ≤ k),
     finiteVectorBound n k ↔ ∀ u : ℝ, 1 ≤ u → finitePartition n k u ≤ 1 :=
@@ -34,6 +63,19 @@ example : ∀ (n : ℕ) (k u : ℝ) (x : Option (Fin n) → ℝ),
 example : ∀ (n : ℕ) (k u : ℝ),
     finitePartition n k u = ∑ i : Option (Fin n), exp (1-(4*k*tangentOffset k u)*tangentWeight u i) :=
   @ThresholdHC.OptimalQuantile.finitePartition_eq_sum
+
+example : ∀ {k : ℝ} (hk : finiteVectorBound 0 k),
+    sqrt 2 ≤ k :=
+  @ThresholdHC.OptimalQuantile.finiteVectorBound_zero_requires_sqrt_two
+
+example : ∀ (k : ℝ),
+    (∀ n : ℕ, finiteVectorBound n k) ↔ scalarRoot ≤ k :=
+  @ThresholdHC.OptimalQuantile.all_finite_bounds_iff_root_unrestricted
+
+example : ∀ {k : ℝ} (hk : k < scalarRoot),
+    ∃ n : ℕ, ∃ x : Option (Fin n) → ℝ, (∀ i, 0 ≤ x i) ∧
+      k*(sqrt (1+x none)+dyadicCost n x) < 1+sqrt (costEntropy x) :=
+  @ThresholdHC.OptimalQuantile.finite_vector_witness_below_root
 
 example : ∀ {I : Type} [Fintype I] (w : I → ℝ) (price : ℝ),
     costEntropy (fun i => exp (1-price*w i)) =
@@ -66,6 +108,33 @@ example : ∀ {k u : ℝ} (hk : sqrt 2 ≤ k) (hu : 1 ≤ u),
 example : ∀ {k : ℝ} (hk : sqrt 2 ≤ k),
     (∀ n : ℕ, finiteVectorBound n k) ↔ ∀ u : ℝ, 1 ≤ u → partitionSeries k u ≤ 1 :=
   @ThresholdHC.OptimalQuantile.all_finite_bounds_iff_series
+
+example : Continuous (fun z : ℝ × ℝ => partitionSeries (max (sqrt 2) z.1) (max 1 z.2)) :=
+  @ThresholdHC.OptimalQuantile.partitionSeries_clamped_continuous
+
+example : ContinuousOn scalarPeak (Set.Ici (sqrt 2)) :=
+  @ThresholdHC.OptimalQuantile.scalarPeak_continuousOn
+
+example : ∀ {k : ℝ} (hk : sqrt 2 ≤ k),
+    ∃ u ∈ Set.Icc (1 : ℝ) (31/20), scalarPeak k = partitionSeries k u ∧
+      ∀ v ∈ Set.Icc (1 : ℝ) (31/20), partitionSeries k v ≤ partitionSeries k u :=
+  @ThresholdHC.OptimalQuantile.scalarPeak_attained
+
+example : ∀ {k u : ℝ} (hk : sqrt 2 ≤ k)
+    (hu : u ∈ Set.Icc (1 : ℝ) (31/20)),
+    partitionSeries k u ≤ scalarPeak k :=
+  @ThresholdHC.OptimalQuantile.partitionSeries_le_peak
+
+example : StrictAntiOn scalarPeak (Set.Ici (sqrt 2)) :=
+  @ThresholdHC.OptimalQuantile.scalarPeak_strictAntiOn
+
+example : ∀ {k : ℝ} (hk : sqrt 2 ≤ k) (hkcap : k ≤ 31/20),
+    (∀ u : ℝ, 1 ≤ u → partitionSeries k u ≤ 1) ↔ scalarPeak k ≤ 1 :=
+  @ThresholdHC.OptimalQuantile.all_tangents_iff_peak
+
+example : ∀ {k : ℝ} (hk : sqrt 2 ≤ k) (hkcap : k ≤ 31/20),
+    (∀ n : ℕ, finiteVectorBound n k) ↔ scalarPeak k ≤ 1 :=
+  @ThresholdHC.OptimalQuantile.all_finite_bounds_iff_peak
 
 example : ∀ {k l u : ℝ}
     (hk : sqrt 2 ≤ k) (hkl : k < l) (hu : 1 ≤ u),
@@ -106,6 +175,27 @@ example : ∀ {g a d : ℝ} (hg : 0 ≤ g) (ha : 0 < a) (hd : 0 ≤ d),
     (∀ t : ℝ, 0 ≤ t → sqrt (t*g) ≤ d+a*t) ↔ g ≤ 4*a*d :=
   @ThresholdHC.OptimalQuantile.scaled_root_bound_iff
 
+example : ∃! k : ℝ, k ∈ Set.Icc (sqrt 2) (31/20) ∧ scalarPeak k = 1 :=
+  @ThresholdHC.OptimalQuantile.exists_unique_scalarRoot
+
+example : scalarRoot ∈ Set.Icc (sqrt 2) (31/20) ∧ scalarPeak scalarRoot = 1 :=
+  @ThresholdHC.OptimalQuantile.scalarRoot_spec
+
+example : sqrt 2 < scalarRoot ∧ scalarRoot < 31/20 :=
+  @ThresholdHC.OptimalQuantile.scalarRoot_interior
+
+example : ∀ {k : ℝ} (hk : sqrt 2 ≤ k),
+    scalarPeak k ≤ 1 ↔ scalarRoot ≤ k :=
+  @ThresholdHC.OptimalQuantile.scalarPeak_le_one_iff
+
+example : ∀ (n : ℕ),
+    finiteVectorBound n scalarRoot :=
+  @ThresholdHC.OptimalQuantile.scalarRoot_bounds_all_finite
+
+example : ∀ {k : ℝ} (hk : sqrt 2 ≤ k),
+    (∀ n : ℕ, finiteVectorBound n k) ↔ scalarRoot ≤ k :=
+  @ThresholdHC.OptimalQuantile.all_finite_bounds_iff_root
+
 example : ∀ (n : ℕ),
     (n : ℝ)+1 ≤ (2 : ℝ)^n :=
   @ThresholdHC.OptimalQuantile.power_two_lower
@@ -144,11 +234,21 @@ example : ∀ {I : Type} [Fintype I] (w : I → ℝ)
   @ThresholdHC.OptimalQuantile.root_price_iff_partition
 """.lstrip()
     roots = {
+        'ThresholdHC.OptimalQuantile.all_finite_bounds_iff_peak',
+        'ThresholdHC.OptimalQuantile.all_finite_bounds_iff_root',
+        'ThresholdHC.OptimalQuantile.all_finite_bounds_iff_root_unrestricted',
         'ThresholdHC.OptimalQuantile.all_finite_bounds_iff_series',
+        'ThresholdHC.OptimalQuantile.all_tangents_iff_peak',
+        'ThresholdHC.OptimalQuantile.dualPrice_continuousOn',
         'ThresholdHC.OptimalQuantile.dualPrice_ge_two',
         'ThresholdHC.OptimalQuantile.dualPrice_mono_in_tangent',
         'ThresholdHC.OptimalQuantile.dualPrice_strict_in_factor',
+        'ThresholdHC.OptimalQuantile.exists_unique_scalarRoot',
+        'ThresholdHC.OptimalQuantile.exp_seven_fifths_lt_five',
+        'ThresholdHC.OptimalQuantile.exp_three_lt_twentyfive',
+        'ThresholdHC.OptimalQuantile.exp_two_gt_five',
         'ThresholdHC.OptimalQuantile.exponentialTail_antitone',
+        'ThresholdHC.OptimalQuantile.exponentialTail_bound_three',
         'ThresholdHC.OptimalQuantile.exponentialTail_summable',
         'ThresholdHC.OptimalQuantile.exponential_entropy',
         'ThresholdHC.OptimalQuantile.exponential_term_bound',
@@ -157,14 +257,29 @@ example : ∀ {I : Type} [Fintype I] (w : I → ℝ)
         'ThresholdHC.OptimalQuantile.finitePartition_le_series',
         'ThresholdHC.OptimalQuantile.finitePartition_tendsto',
         'ThresholdHC.OptimalQuantile.finiteVectorBound_iff_partition',
+        'ThresholdHC.OptimalQuantile.finiteVectorBound_zero_requires_sqrt_two',
+        'ThresholdHC.OptimalQuantile.finite_vector_witness_below_root',
         'ThresholdHC.OptimalQuantile.first_exponent_identity',
+        'ThresholdHC.OptimalQuantile.partitionSeries_clamped_continuous',
+        'ThresholdHC.OptimalQuantile.partitionSeries_continuousOn',
+        'ThresholdHC.OptimalQuantile.partitionSeries_continuousOn_tangent',
         'ThresholdHC.OptimalQuantile.partitionSeries_le_one_iff',
+        'ThresholdHC.OptimalQuantile.partitionSeries_le_peak',
         'ThresholdHC.OptimalQuantile.partitionSeries_mono_above_factor',
         'ThresholdHC.OptimalQuantile.partitionSeries_strict_in_factor',
         'ThresholdHC.OptimalQuantile.power_two_lower',
         'ThresholdHC.OptimalQuantile.price_iff_all_tangents',
         'ThresholdHC.OptimalQuantile.root_price_iff_entropy',
         'ThresholdHC.OptimalQuantile.root_price_iff_partition',
+        'ThresholdHC.OptimalQuantile.scalarPeak_attained',
+        'ThresholdHC.OptimalQuantile.scalarPeak_continuousOn',
+        'ThresholdHC.OptimalQuantile.scalarPeak_le_one_iff',
+        'ThresholdHC.OptimalQuantile.scalarPeak_lower_endpoint',
+        'ThresholdHC.OptimalQuantile.scalarPeak_strictAntiOn',
+        'ThresholdHC.OptimalQuantile.scalarPeak_upper_endpoint',
+        'ThresholdHC.OptimalQuantile.scalarRoot_bounds_all_finite',
+        'ThresholdHC.OptimalQuantile.scalarRoot_interior',
+        'ThresholdHC.OptimalQuantile.scalarRoot_spec',
         'ThresholdHC.OptimalQuantile.scaled_root_bound_iff',
         'ThresholdHC.OptimalQuantile.sqrt_tangent',
         'ThresholdHC.OptimalQuantile.sqrt_tangent_attained',
@@ -179,7 +294,7 @@ example : ∀ {I : Type} [Fintype I] (w : I → ℝ)
 
 def main():
     source, roots = audit_input()
-    subprocess.run(["lake", "build", "ThresholdHC.OptimalQuantile.Monotonic"], cwd=LEAN, check=True)
+    subprocess.run(["lake", "build", "ThresholdHC.OptimalQuantile.FiniteSharp"], cwd=LEAN, check=True)
     run = subprocess.run(["lake", "env", "lean", "--stdin"], cwd=LEAN, input=source, text=True,
                          encoding="utf-8", capture_output=True)
     output = run.stdout + run.stderr
