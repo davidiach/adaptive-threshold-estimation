@@ -106,3 +106,5 @@ followed by clipping at $\rho$. The lower bound thus matches the iterated
 logarithm term of the known-law upper rate on this law for fixed $\delta$
 as $n\to\infty$. It leaves open the full gap-law dependent lower bound and
 whether a law-agnostic interval attains the known-law rate.
+
+The [law-dependent lower-bound development](TIME_UNIFORM_LOWER.md) gives a matching paper proof when the asymptotic coefficient is finite, including every finite-inverse-moment gap law. Its prior-family and adaptive prefix-information bounds are Lean-checked. The full infinite-coefficient comparison remains open.
