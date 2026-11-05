@@ -478,19 +478,21 @@ records the workflow, failed approaches, and these limits.
 \paragraph{Remaining mathematical work.}
 The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/511b85b7bff8c6b7705b028a8f1ec43b774d2c35/lean/ThresholdHC/HardBudget/Full.lean}{hard-budget reduction}
 and the three applications in \cref{app:hard-budget} are Lean-checked.
-The envelope now has proofs for
+The envelope has proofs for
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/b59e043a3f504c412f6ca482fb96bc7626063888/lean/ThresholdHC/Envelope/Minimax.lean}{RMS and confidence} and
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/eb5a2ffdb9af6a52dc47cd2aa5a31a1dfb21ad16/lean/ThresholdHC/Envelope/Unbiased.lean}{unbiased estimation}. The
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/b0c197402f9623cf845f732582fe21f7e9159d9f/lean/ThresholdHC/SubcriticalPower/Full.lean}{below-one rates}
-are checked in Appendix~\ref{app:sublinear-power}. Margins $1\le\alpha<2$, smoothness and observed states await Lean proofs. The sharp factor has a paper proof in
+and
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/3950b4070f7261b6b4368568b5d823cbdd97bec4/lean/ThresholdHC/ShiftedPower/Full.lean}{remaining rows} are checked in Appendices~\ref{app:sublinear-power}--\ref{app:shifted-power}.
+Smoothness and observed states await Lean proofs. The sharp factor has a paper proof in
 \cref{app:optimal-quantile-factor}. Unrestricted selection complexity
 remains open. The
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/8a701c8db6c42930ad2a187f3d895ca55265afd6/research/2026-10-30-confidence-transfer/NOTE.md}{confidence-transfer paper proof}
 uses the checked
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/680a833415e8de803d2a98847292063f10448527/lean/ThresholdHC/ConfidenceTransfer/Quarter.lean}{$8/3$ quarter-smoothing bound},
 the \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/f33163da3fa78902336a98814f38078ab12bef1a/lean/ThresholdHC/ConfidenceTransfer/Terminal.lean}{one-type $16/3$ transfer}
-through unbounded stopping and the \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/f33163da3fa78902336a98814f38078ab12bef1a/lean/ThresholdHC/ConfidenceTransfer/CommonPairRate.lean}{$1/128$ lower bound}
-given a common pair for all policies. The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/04ff1245f501e2405ed474f9fb1923c0cfa885c3/lean/ThresholdHC/ConfidenceTransfer/CriticalRate.lean}{critical confidence lower bound}
+through stopping and the \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/f33163da3fa78902336a98814f38078ab12bef1a/lean/ThresholdHC/ConfidenceTransfer/CommonPairRate.lean}{$1/128$ lower bound}
+under a policy-uniform common pair. The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/04ff1245f501e2405ed474f9fb1923c0cfa885c3/lean/ThresholdHC/ConfidenceTransfer/CriticalRate.lean}{critical confidence lower bound}
 follows from the quadratic law itself. Appendix~\ref{app:known-confidence}
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/46e1fa5925173d6c081c80d89b45ed4955ebe225/lean/ThresholdHC/ConfidenceProgram/Upper.lean}{checks both budget models} for every known law. Adaptive types await formalization.
 A separate \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/a3b00cd8962060ca13768e5d3567168105e7ccfd/docs/UNKNOWN_LAW_CONFIDENCE.md}{confidence sequence}
@@ -498,6 +500,6 @@ shrinks for every positive-gap law.
 The iterated logarithm is necessary at $D=1/2$. General
 law-dependent lower bounds and oracle-rate adaptation remain open.
 
-The model assumes independent coins and conditionally iid flips.
+The model uses independent coins and conditionally iid flips.
 Expected work alone bounds neither latency nor worst-case flip count.
 Practical superiority and useful finite critical constants remain open.

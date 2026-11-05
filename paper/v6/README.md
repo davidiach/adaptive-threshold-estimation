@@ -55,8 +55,7 @@ now establishes both explicit coefficients, $10^{-20}$ and $30001$. The
 [operational theorems](../../lean/ThresholdHC/FiniteQuantile/Operational.lean)
 give the estimator and converse statements. The [arbitrary-law comparison](../../lean/ThresholdHC/EntropyTailSharp/Full.lean)
 checks $10^{-17}\mathcal K\le R\le28000\mathcal K$ and $10^{-17}Q\le R$.
-The rare-event regimes below two remain **paper proofs**. The remaining
-paper proofs have not been Lean-formalized or externally reviewed by specialists.
+The rare-event rows below two are now Lean-checked in [Appendix T](appendix-sublinear-power.tex) and [Appendix U](appendix-shifted-power.tex). Smooth-density and observed-state results retain paper proofs.
 The general-law and finite-gap proofs share
 their upper construction and Appendices F–H, so they are one rate
 established by two arguments, not two independent confirmations. The remark
@@ -277,3 +276,5 @@ adds the formal verification links for the corollary in the original
 finite-budget and unbiased models. [Build record](builds/stochastic-envelope-20261105.json)
 
 [Appendix T](appendix-sublinear-power.tex) gives a direct proof for power margins below one, including fixed confidence and a uniform upper estimator. [Manuscript](builds/sublinear-power-20261105.pdf) · [Build record](builds/sublinear-power-20261105.json)
+
+[Appendix U](appendix-shifted-power.tex) gives the complete logarithmic and intermediate power-margin proofs. [Manuscript](builds/shifted-power-20261105.pdf) Â· [Build record](builds/shifted-power-20261105.json)
