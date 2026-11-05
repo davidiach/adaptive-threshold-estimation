@@ -259,7 +259,7 @@ def rareMinimaxRisk (μ : Measure Gap) [IsProbabilityMeasure μ] (ρ B : ℝ) : 
 ## 6. The risk
 
 **Paper**: the inner term of equation (4), and equation (5) for confidence:
-$r_\mu(B,\delta)=\inf_{\mathcal A}\inf\{r\ge0:\sup_q P(|\widehat\theta-\theta|>r)\le\delta\}$.
+$r_\mu(B,\delta)=\inf_{\mathcal A:\sup_q E_{\mu,q}T\le B}\inf\{r\ge0:\sup_q P_{\mu,q}(|\widehat\theta-\theta|>r)\le\delta\}$.
 Equation (6) defines $\omega_\mu(h)=h\,E_\mu\min\{h^{-1},D^{-1}\}$.
 
 **Lean** ([TestingModel.lean:9-11][squaredRisk], [AlgorithmModel.lean:32-41][maximalRMSRisk]):
@@ -289,7 +289,7 @@ def minimaxRisk (μ : Measure Gap) [IsProbabilityMeasure μ] (B : ℝ) : ℝ≥0
 ## 7. Theorem chain from the single-coin obstruction to the population bound
 
 **Paper.** Theorem S.7 (`rms-localization.tex`) and Theorem H.3, display
-(bias-population-transfer) (`appendix-transfer-foundations.tex`):
+(154) (`appendix-transfer-foundations.tex`):
 $R_{\mu,\rho}(B)\ge\min\{b,\sqrt{J/B}\}/128$ whenever every capped observable
 one-coin estimator with bias at most $b$ satisfies $V\,E_0T\ge J$.
 
@@ -402,21 +402,23 @@ read.
   [`CriticalMinimaxLowerStatement`][CriticalMinimaxLower] lives in a file
   named `Specification.lean` that imports its own proof. Its underlying
   `criticalMinimaxRisk` and `CriticalUniformBudget` are hash-pinned by
-  review-time dependency snapshots. About 42 of 60 Lake-running verifiers
-  reference no lock. Their statements are protected by git history and by the
+  review-time dependency snapshots. At `43d9fba`, 42 of the 70 verifiers
+  that run Lake reference no lock. Their statements are protected by git history and by the
   source hashes in the published records.
 - **Explicit constants.** Locked types that state their coefficients: Tier 6
   ($1/64$), Confidence ($1/64$, $8192$), OracleLower ($1/64$,
   $15/(256\sqrt2)$), Observable713 ($23$, $31$, $713$), UnbiasedConverse
   ($1/16$), StoppingProgram ($16$) and EntropyTailQuantile ($33000$). Locked
   types that assert only a positive constant: BlindUpper, EntropyTail,
-  ClosedQuantile, RareAboveTwo, CriticalUpper and CriticalEntropy. Their
-  coefficients are in audited companion theorems: 512
-  ([`minimax_upper_bound`][minimax_upper_bound]), 28000
-  ([`entropy_tail_upper_explicit`][tail_upper_explicit]), 30001, $1/256$
-  (above two), 100000 (critical upper), and $512/(1-\alpha)$ and
-  $8192/(1-\alpha)$ inline for the row below one. The 512 companions use only
-  locked Tier 6 definitions.
+  ClosedQuantile, RareAboveTwo and CriticalUpper; the unlocked
+  `CriticalMinimaxLowerStatement` also asserts only a positive constant. The
+  coefficients 512 ([`minimax_upper_bound`][minimax_upper_bound]), 28000
+  ([`entropy_tail_upper_explicit`][tail_upper_explicit]), 30001 and 100000
+  (critical upper) are in the types of audited companion theorems, and
+  $512/(1-\alpha)$ and $8192/(1-\alpha)$ in inline audit statements for the
+  row below one. The above-two coefficient $1/256$ appears only as the
+  witness inside the proof of `rare_supported_lower`; no stated type carries
+  it. The 512 companions use only locked Tier 6 definitions.
 - **Instances.** Inline audit statements are elaborated after the proof
   modules are imported, so an imported instance could change how their type
   classes resolve. The tree has 137 `instance` declarations and two global
