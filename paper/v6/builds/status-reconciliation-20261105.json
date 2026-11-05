@@ -7,7 +7,7 @@
   "Overfull \\hbox (5.16461pt too wide) in paragraph at lines 751--753"
  ],
  "inherited_manifest_sha256": "ab75faa88e1916a8ac47c5f86e3b800b4ac05f3b735133cfc2cc9a3973a69e38",
- "status_source_sha256": "666f8a94de707b0bd8c889d19eff191254372238fdce755c7015822bc8b2e78d",
+ "status_source_sha256": "b34a4d9556422abcbcdae857da38aa7747b2289bf3d12644bb45e0a65806aa77",
  "tex_sources": {
   "additive-confidence.tex": "c09908ad71852d739b281bcb5b9d03ed1628abc0e6f66be25f4a8e510fdcbe55",
   "all-sizes.tex": "ab5a81229fddb22b6029b9cf5406319f3af45cc83b083fcef77ef33cfb71df7a",
@@ -61,12 +61,12 @@
   "rms-localization.tex": "faed5bcd2e124a47cb90e8474a79a9278664b6492446a48c61b11462c6454154",
   "status-abstract.tex": "e1819a7cfc9de07293fb05c350426433d1e33308f7fbfe0bebd24d4ec928ab0a",
   "typed-confidence.tex": "e617b57ce095086f1ca0142d8918a3f32815f4417ddfd68d29ff141aef2e9710",
-  "verification.tex": "87a45e98c2f5f8bc6ad34ff92d29b24ec0bc27d190903deae466f2631ad6d5b9"
+  "verification.tex": "5439c6718c478aa92eab0df7d0ccbd35100557e584853e18d3427d90cbf6b29d"
  },
  "byte_identical_rebuilds": true,
- "pdf_sha256": "76681e7a2d88fb567517fe2cbf4751ee35d4b2a5c22b62a83b71f42c56d4cf45",
- "pdf_bytes": 1292417,
- "source_commit": "54f5639b2d273e7f833db98eb67c9dc0b928a900",
+ "pdf_sha256": "bf94935b82f22de6a97c868631fb2b3623e8fbf5fa3adde26f2ada74861e171b",
+ "pdf_bytes": 1292822,
+ "source_commit": "088786b7e4a2343375df0f809c80951ca78f493c",
  "proof_revisions": {},
  "source_date_epoch": 1793232000,
  "engine": "pdfTeX 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian); Latexmk, John Collins, 31 Jan. 2024. Version 4.83 (Ubuntu 24.04 archive, the manuscript workflow's TeX Live)",
@@ -129,7 +129,7 @@
  "no_new_layout_defects": true,
  "relocation_note": "Text added on page 1 moves every later page boundary. The word-level comparison with the baseline ignores running headers, page numbers and the extraction order of math glyphs; pages outside changed_pages differ from the baseline only in those respects.",
  "layout_notes": [
-  "A sentence-initial lower-case appendix reference on page 39, found in the first inspected build, was fixed in the source before this build; only page 39 differed between the two builds.",
+  "A sentence-initial lower-case appendix reference on page 39, found in the first inspected build, was fixed before the final build. A later source change split the Section 18 claim row for the general Psi lower bound from the below-two rates and added Lean links there; the rebuilt PDF differs from the inspected one only on page 44, which was inspected again.",
   "Cosmetic issues present in the unchanged-source baseline as well: the abstract's first paragraph ends on a short line holding only 713 I_mu^2 (page 1); the Theorem 11.2 display is set at full width (page 26); an explicit paragraph break splits 'Lean-checked in the original observable experiment:' from the theorem names (page 27); subsections 14.6.4 and 14.7 are both titled 'Consequences' (pages 37-38)."
  ]
 }
