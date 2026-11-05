@@ -484,7 +484,7 @@ and
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/3950b4070f7261b6b4368568b5d823cbdd97bec4/lean/ThresholdHC/ShiftedPower/Full.lean}{remaining rows} are checked in Appendices~\ref{app:sublinear-power}--\ref{app:shifted-power}.
 \Cref{app:smooth-density} verifies \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/8e42a99a49dcd4af8bdaaf17a6ea1c398f34b03b/lean/ThresholdHC/SmoothDensity/Full.lean}{smooth-density robustness}.
 \Cref{app:finite-observed,app:continuous-observed} check the observed-state lower bounds and regularity.
-The fresh-state upper-bound transfer remains.
+\Cref{app:observed-upper} verifies the corresponding upper bounds.
 The sharp factor has a paper proof in \cref{app:optimal-quantile-factor}. Unrestricted selection complexity
 remains open. The
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/8a701c8db6c42930ad2a187f3d895ca55265afd6/research/2026-10-30-confidence-transfer/NOTE.md}{confidence-transfer paper proof}
@@ -501,6 +501,6 @@ shrinks for every positive-gap law.
 The iterated logarithm is necessary at $D=1/2$. General
 law-dependent lower bounds and oracle-rate adaptation remain open.
 
-The model uses independent coins and conditionally iid flips.
-Expected work alone bounds neither latency nor worst-case flip count.
+Coins are independent with conditionally iid flips.
+Expected work controls neither latency nor worst-case count.
 Practical superiority and useful finite critical constants remain open.

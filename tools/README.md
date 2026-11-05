@@ -76,3 +76,5 @@ Run `verify_smooth_density.py` for the [smooth-density theorem](../results/smoot
 Run `verify_observed_states.py` for the [finite-cell observed-state theorem](../results/finite-observed-20261105/README.md), its construction and selected-query experiment.
 
 Run `verify_continuous_observed.py` for the [continuous-magnitude lower bounds and regularity](../results/continuous-observed-lower-20261105/README.md).
+
+Run `verify_observed_upper.py` for the [full fresh-state upper-bound transfer and uniform-gap rates](../results/observed-state-upper-20261105/README.md).
