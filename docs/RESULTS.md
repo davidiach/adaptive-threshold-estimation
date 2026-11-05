@@ -611,6 +611,15 @@ the entropy fixed and strictly increases the saved tail cost. A suffix is
 determined by its selected count in each band, so at most $\prod_j(n_j+1)$
 candidates suffice. [Theorem 5 and verification](VERIFY.md#finite-law-bandwise-suffix-theorem)
 
+**Lean verifies the mathematical cost-grouping algorithm.** The
+[finite-menu audit](../results/band-cost-formal-20261105/README.md) checks
+feasible compression, preservation of a global minimum, the
+$\binom{m+r}{r}$ state bound and transition recurrence, entropy symmetry,
+exact saving comparisons, and interval certificates. It does not verify
+the Python implementation or its concrete gap-law-to-menu construction;
+that connection to $K$ remains a paper argument. Efficient exact selection
+with unrestricted distinct band costs remains open.
+
 **Lean verifies Theorems 7–8 and Corollary 9.** Changing a law by total variation
 $\eta$ changes $K$ by at most $\eta$. Within-band upward rounding by a factor
 at most $r$ gives a value between $K/r$ and $K$. For every $\eta>0$ and

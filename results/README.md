@@ -116,3 +116,10 @@ The [observable sequential-testing audit](anytime-sequential-20261105/README.md)
 The [infinite-moment tail-family audit](anytime-tail-20261105/README.md) checks fifteen exact statements through the adaptive observable information transfer and an explicit unbounded integer-budget schedule.
 
 The [complete time-uniform lower-bound audit](anytime-asymptotic-20261105/README.md) checks fourteen exact statements, including the all-law asymptotic comparison and observable interval consequence with coefficient $10^{-22}$.
+
+## Finite-menu cost grouping
+
+The [native 14-statement audit](band-cost-formal-20261105/README.md) verifies
+the mathematical compression algorithm, state bounds, entropy price,
+exact saving comparison and interval certificates. Its boundary excludes
+the Python implementation and the concrete gap-law-to-menu construction.

@@ -51,8 +51,23 @@ enclose $K$. The solver returns a witness with the latter upper endpoint.
 If its upper bound is at most all competing lower bounds, it certifies a
 global minimizer of the clipped objective. Otherwise the enclosure and
 feasible witness are still valid. Increasing the precision can separate
-near ties. The proof of the reduction is on paper and the Python
-implementation is tested. The prerequisite suffix theorem is Lean-checked.
+near ties. Lean now checks the mathematical finite-menu compression,
+optimality induction, state and transition bounds, exact saving comparison,
+and endpoint certificate rules in a [14-statement audit](../results/band-cost-formal-20261105/README.md).
+The prerequisite suffix theorem is separately Lean-checked.
+
+The formal solver uses one tag for the empty option, so a length-$j$ trace
+has $j$ tags including zeros. Ignoring zeros recovers the positive-cost
+multiset; zero costs contribute no entropy. Thus $r$ positive tags plus the
+zero tag give the stated weak-composition bound. The recursion processes the
+tail of the menu list first; reversing the band's menu list represents any
+chosen processing order.
+
+This audit verifies the finite-menu algorithm, not the Python code or its
+construction of menus from a measure. The identification of those concrete
+menus with $K$ remains a paper argument. In particular, formal verification
+of the reduction does not settle the polynomial-time question for
+unrestricted distinct costs.
 
 ## Example with 64 occupied bands
 

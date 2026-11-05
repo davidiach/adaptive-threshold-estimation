@@ -318,6 +318,10 @@ usage example.
 For laws with repeated inverse-square suffix costs, [selection by band cost](../docs/BAND_COST_SELECTION.md)
 certifies the minimum after grouping choices with equal entropy. Its example
 reduces 64 occupied bands from $2^{64}$ suffix choices to 65 terminal states.
+The [mathematical menu algorithm](../results/band-cost-formal-20261105/README.md)
+now has a Lean proof of compression, optimality, state counts, exact comparisons
+and certificate rules. The Python implementation and concrete gap-law menu
+construction remain outside that formal proof.
 
 ## Research module: hard observation caps
 

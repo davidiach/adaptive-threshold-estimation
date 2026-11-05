@@ -161,6 +161,16 @@ gives a hard optimizer of the uncapped objective and identifies its capped
 value with $\mathcal K$. The
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/c15a9fa46a5f0a743fb20416b87498225a13661e/lean/ThresholdHC/BandwiseSuffix/Search.lean}{search corollary}
 bounds the sufficient family by $\prod_j(n_j+1)$.\\[5pt]
+Finite-menu cost grouping &
+The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/2052d00fb76d67b0f7ca68e112cebde91d427f2f/lean/ThresholdHC/BandCostSelection/Entropy.lean}{entropy-menu theorem}
+checks feasible compression and preservation of a clipped global minimum.
+The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/2052d00fb76d67b0f7ca68e112cebde91d427f2f/lean/ThresholdHC/BandCostSelection/Counting.lean}{counting theorem}
+gives $\binom{m+r}{r}$ states and the transition recurrence.
+The same 14-statement audit checks the exact comparison for
+$x+y/\sqrt B>0$ and terminal interval certificates.
+The concrete gap-law-to-menu construction and the Python implementation
+are outside this formal result. Unrestricted distinct costs can still
+require exponentially many states.\\[5pt]
 Stability under law approximation &
 The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/11a8139812a6e39e60dcdfbfc162c8ed9514999d/lean/ThresholdHC/SelectionStability/Variation.lean}{total-variation proof}
 uses a common submeasure and charges the excess mass once.

@@ -138,7 +138,7 @@ def _check_evidence(key: str, result: dict) -> None:
     root = ROOT.resolve()
     tops = set()
     for item in evidence:
-        if (not isinstance(item, str) or not item or Path(item).is_absolute()
+        if (not isinstance(item, str) or not item or Path(item).anchor
                 or ".." in Path(item).parts):
             raise ValueError(f"Evidence for {key} must be relative repository paths: {item!r}")
         path = (root / item).resolve()

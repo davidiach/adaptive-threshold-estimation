@@ -373,6 +373,8 @@ jobs:
           python tools/verify_anytime_tail.py
       - name: Verify the complete law-dependent time-uniform lower bound
         run: python tools/verify_anytime_asymptotics.py
+      - name: Verify finite-menu cost grouping, exact comparisons and certificates
+        run: python tools/verify_band_cost_selection.py
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
       - uses: actions/upload-artifact@v4
