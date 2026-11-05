@@ -347,8 +347,10 @@ jobs:
         run: python tools/verify_confidence_entropy.py
       - name: Verify RMS obstruction transfer and submeasure localization
         run: python tools/verify_rms_localization.py
-      - name: Verify the quantile-factor finite-vector scalar characterization
+      - name: Verify the sharp finite-vector quantile factor and scalar root
         run: python tools/verify_optimal_quantile.py
+      - name: Verify the entropy Lipschitz bound for the sharp law reduction
+        run: python tools/verify_quantile_sharp_law.py
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
       - uses: actions/upload-artifact@v4
