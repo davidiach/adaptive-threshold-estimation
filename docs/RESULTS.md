@@ -927,8 +927,14 @@ algorithms in the table may know $\mu$, $\rho$, $B$ and $\delta$. A separate
 observable, simultaneously valid intervals that shrink for every fixed
 positive-gap law. Its width bound depends on unresolved small gaps.
 A Bernoulli subfamily forces the iterated logarithm infinitely often and
-matches the known-law order at $D=1/2$. The full law-dependent lower bound
-and adaptation to the known-law width remain open.
+matches the known-law order at $D=1/2$. The [matching law-dependent lower
+bound](TIME_UNIFORM_LOWER.md) now has a paper proof for every positive-gap law:
+for any nonincreasing deterministic half-width envelope valid simultaneously
+at all integer budgets, the limsup of its ratio to
+$\mathcal K(n/[\log(1/\delta)+\log\log n])$ is at least $10^{-22}$.
+The common-family and scalar information inequalities are Lean-checked.
+The sequential testing, infinite-moment acquisition transfer and asymptotic
+comparison remain paper proofs. Adaptation to the known-law width remains open.
 An exact path count shows that repeatedly
 checking a fixed-time interval fails: a check with fixed-time failure at most
 $1/4$ fails with probability about $0.428$ when checked at every step up to

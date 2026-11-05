@@ -13,6 +13,7 @@ import json
 import build_v6
 from build_v6 import (DEST, ROOT, STATUS_WORDS, assemble, check_project, load_status,
                       project_text, rekey, status_text, validate_status)
+from build_v6 import STATUS as STATUS_PATH
 
 GL = ROOT / "paper/rare-event/v2/sections"
 FG = ROOT / "paper/finite-gap-rare-events/revision-2/sections"
@@ -264,58 +265,124 @@ class VerificationStatusTests(unittest.TestCase):
     def setUp(self):
         self.status = load_status()
 
+    def generated(self, status, venue):
+        return " ".join(status_text(status, venue).split())
+
     def test_status_change_moves_a_result_in_every_venue(self):
         status = copy.deepcopy(self.status)
         status["results"]["rms-law"]["status"] = "paper"
         status["results"]["psi-lower-bound"]["status"] = "lean"
-        abstract = " ".join(status_text(status, "abstract").split())
-        boundary = " ".join(status_text(status, "boundary").split())
-        self.assertIn("The original RMS law in both directions", abstract)
-        self.assertIn("remains a paper proof.", abstract)
+        abstract = self.generated(status, "abstract")
+        boundary = self.generated(status, "boundary")
+        self.assertIn("For the original RMS law in both directions", abstract)
         self.assertNotIn("checks the original RMS law", abstract)
         self.assertIn("Lean also checks the arbitrary-law statistical $\\Psi$ lower bound", abstract)
-        self.assertIn("Both directions of the original RMS law", boundary)
+        self.assertIn("For both directions of the original RMS law", boundary)
         self.assertNotIn("checks both directions of the original RMS law", boundary)
+
+    def test_every_entry_reads_correctly_under_either_status(self):
+        for key, result in self.status["results"].items():
+            for kind in ("lean", "paper"):
+                status = copy.deepcopy(self.status)
+                status["results"][key]["status"] = kind
+                for venue in ("abstract", "boundary"):
+                    if venue not in result:
+                        continue
+                    with self.subTest(key=key, kind=kind, venue=venue):
+                        text = self.generated(status, venue)
+                        phrase = " ".join(result[venue].split())
+                        self.assertIn(phrase, text)
+                        sentence = next(s for s in text.split(". ") if phrase in s)
+                        if kind == "lean":
+                            self.assertTrue(sentence.startswith("Lean "), sentence)
+                        else:
+                            self.assertTrue(sentence.startswith("For "), sentence)
+                            self.assertIn("the manuscript gives paper proofs only", text)
 
     def test_generated_status_matches_the_source(self):
         output = assemble()
         abstract = output["status-abstract.tex"].split("\n", 1)[1]
         self.assertEqual(abstract.rstrip("\n"), status_text(self.status, "abstract"))
-        boundary = " ".join(status_text(self.status, "boundary").split())
+        boundary = self.generated(self.status, "boundary")
         self.assertIn(boundary, " ".join(output["introduction.tex"].split()))
 
-    def test_status_words_stay_in_the_status_field(self):
+    def rejects(self, mutate, message):
         status = copy.deepcopy(self.status)
-        status["results"]["confidence"]["abstract"] += ", Lean-checked"
-        with self.assertRaisesRegex(ValueError, "Status wording"):
+        mutate(status)
+        with self.assertRaisesRegex(ValueError, message):
             validate_status(status)
 
-    def test_every_status_needs_existing_evidence(self):
-        status = copy.deepcopy(self.status)
-        status["results"]["unbiased"]["evidence"] = ["lean/ThresholdHC/Missing.lean"]
-        with self.assertRaisesRegex(ValueError, "evidence"):
-            validate_status(status)
-        status = copy.deepcopy(self.status)
-        status["results"]["unbiased"]["status"] = "proved"
-        with self.assertRaisesRegex(ValueError, "must be one of"):
-            validate_status(status)
+    def test_status_words_stay_in_the_status_field(self):
+        def phrase(s): s["results"]["confidence"]["abstract"] += ", Lean-checked"
+        def proved(s): s["results"]["confidence"]["boundary"] += " are also proved"
+        def text(s): s["abstract"].append({"text": "All of this is a paper proof."})
+        def suffix(s): s["boundary"][1]["suffix"] = " as verified in Lean"
+        for mutate in (phrase, proved, text, suffix):
+            with self.subTest(mutate=mutate.__name__):
+                self.rejects(mutate, "Status wording")
+
+    def test_phrases_are_safe_tex(self):
+        def percent(s): s["results"]["unbiased"]["abstract"] += " 50% of"
+        def braces(s): s["results"]["unbiased"]["abstract"] += " \\cref{x"
+        def math(s): s["results"]["unbiased"]["abstract"] += " $x"
+        def empty(s): s["results"]["unbiased"]["abstract"] = " "
+        for mutate, message in ((percent, "unescaped %"), (braces, "unbalanced"),
+                                (math, "unbalanced"), (empty, "non-empty")):
+            with self.subTest(mutate=mutate.__name__):
+                self.rejects(mutate, message)
+
+    def test_every_status_needs_existing_evidence_in_the_repository(self):
+        cases = {
+            "missing": (["lean/ThresholdHC/Missing.lean"], "not an existing path"),
+            "outside": (["../outside"], "not an existing path"),
+            "root": (["."], "not an existing path"),
+            "absolute": (["/etc/hosts"], "relative repository paths"),
+            "empty": ([], "non-empty list"),
+            "no lean evidence": (["docs/RESULTS.md"], "under lean/ or results/"),
+        }
+        for name, (evidence, message) in cases.items():
+            with self.subTest(case=name):
+                self.rejects(lambda s: s["results"]["unbiased"].__setitem__("evidence", evidence), message)
+        self.rejects(lambda s: s["results"]["unbiased"].__setitem__("status", "proved"), "must be one of")
 
     def test_entries_are_used_and_phrased_for_their_venues(self):
-        status = copy.deepcopy(self.status)
-        status["results"]["orphan"] = {"status": "lean", "evidence": ["lean/ThresholdHC/Tier6/Full.lean"]}
-        with self.assertRaisesRegex(ValueError, "Unused status entries"):
-            validate_status(status)
-        status = copy.deepcopy(self.status)
-        del status["results"]["unbiased"]["boundary"]
-        with self.assertRaisesRegex(ValueError, "No boundary phrase"):
-            validate_status(status)
+        def orphan(s):
+            s["results"]["orphan"] = {"status": "lean", "evidence": ["lean/ThresholdHC/Tier6/Full.lean"]}
+        def unphrased(s): del s["results"]["unbiased"]["boundary"]
+        def dropped(s): s["boundary"][1]["results"].remove("unbiased")
+        def repeated(s): s["abstract"][0]["results"].append("rms-law")
+        def unknown_field(s): s["results"]["unbiased"]["note"] = "x"
+        def unknown_item(s): s["abstract"].append({"results": ["rms-law"], "lead": "x"})
+        def top_level(s): s["extra"] = []
+        def text_extra(s): s["abstract"].append({"text": "A note.", "suffix": " here"})
+        for mutate, message in ((orphan, "Unused status entries"), (unphrased, "No boundary phrase"),
+                                (dropped, "not listed there"), (repeated, "repeated"),
+                                (unknown_field, "Unknown fields"), (unknown_item, "Malformed"),
+                                (top_level, "exactly"), (text_extra, "Malformed")):
+            with self.subTest(mutate=mutate.__name__):
+                self.rejects(mutate, message)
+
+    def test_duplicate_keys_are_rejected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "status.json"
+            text = STATUS_PATH.read_text(encoding="utf-8").replace(
+                '"results": {', '"results": {\n    "rms-law": {"status": "lean"},', 1)
+            path.write_text(text, encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "Duplicate keys"):
+                load_status(path)
+
+    def test_list_joins_ignore_braced_and_math_commas(self):
+        self.assertFalse(build_v6.has_list_comma(r"results of \cref{a,b}"))
+        self.assertFalse(build_v6.has_list_comma(r"the pair $(a,b)$"))
+        self.assertTrue(build_v6.has_list_comma("the law, with constants"))
+        self.assertEqual(build_v6.join_phrases(["a", "b and c", "d"]), "a, b and c, and d")
+        self.assertEqual(build_v6.join_phrases(["a", "b"]), "a and b")
 
     def test_abstract_has_no_hand_written_status(self):
         text = (DEST / "frontmatter.tex").read_text(encoding="utf-8")
         body = re.sub(r"(?<!\\)%[^\n]*", "", text)
         self.assertIn("\\input{status-abstract}", body)
         self.assertIsNone(STATUS_WORDS.search(body), STATUS_WORDS.search(body))
-
 
 if __name__ == "__main__":
     unittest.main()

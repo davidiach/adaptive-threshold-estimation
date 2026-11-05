@@ -94,49 +94,99 @@ def load_sources() -> dict[str, str]:
 # ---------------------------------------------------------------------------
 # Verification-status sentences, generated from one source
 # ---------------------------------------------------------------------------
+# status.json drives the abstract status paragraph and the introduction's
+# Verification boundary paragraph only. Section 18 and the per-section status
+# remarks are hand-edited and must be updated when a status changes.
 
 STATUS_KINDS = ("lean", "paper")
 STATUS_VENUES = ("abstract", "boundary")
 # Status belongs in the "status" field, never in a phrase or a fixed sentence.
-STATUS_WORDS = re.compile(r"\bLean\b|paper[ -]proof|\bchecked\b|\bverified\b|\bformalized\b",
-                          re.IGNORECASE)
+STATUS_WORDS = re.compile(r"\bLean\b|paper[ ~-]+proofs?|\bchecked\b|\bverified\b"
+                          r"|\bprov(?:ed|es|en)\b|formali[sz]ed|mechani[sz]ed", re.IGNORECASE)
+UNESCAPED_PERCENT = re.compile(r"(?<!\\)%")
+
+
+def _reject_duplicates(pairs: list) -> dict:
+    keys = [key for key, _ in pairs]
+    duplicates = sorted({key for key in keys if keys.count(key) > 1})
+    if duplicates:
+        raise ValueError("Duplicate keys in status source: " + ", ".join(duplicates))
+    return dict(pairs)
 
 
 def load_status(path: Path = STATUS) -> dict:
     """Read and validate the single source for the manuscript's status sentences."""
-    return validate_status(json.loads(path.read_text(encoding="utf-8")))
+    return validate_status(json.loads(path.read_text(encoding="utf-8"),
+                                      object_pairs_hook=_reject_duplicates))
+
+
+def _check_tex(text, where: str) -> None:
+    if not isinstance(text, str) or not text.strip():
+        raise ValueError(f"{where} must be a non-empty string")
+    if UNESCAPED_PERCENT.search(text):
+        raise ValueError(f"{where} contains an unescaped %: {text!r}")
+    if text.count("{") != text.count("}") or len(re.findall(r"(?<!\\)\$", text)) % 2:
+        raise ValueError(f"{where} has unbalanced braces or math: {text!r}")
+    if STATUS_WORDS.search(text):
+        raise ValueError(f"Status wording outside the status field in {where}: {text!r}")
+
+
+def _check_evidence(key: str, result: dict) -> None:
+    evidence = result.get("evidence")
+    if not isinstance(evidence, list) or not evidence:
+        raise ValueError(f"Status of {key} needs a non-empty list of evidence paths")
+    root = ROOT.resolve()
+    for item in evidence:
+        if not isinstance(item, str) or not item or Path(item).is_absolute():
+            raise ValueError(f"Evidence for {key} must be relative repository paths: {item!r}")
+        path = (root / item).resolve()
+        if path == root or not path.is_relative_to(root) or not path.exists():
+            raise ValueError(f"Evidence for {key} is not an existing path in the repository: {item!r}")
+    if result["status"] == "lean" and not any(p.startswith(("lean/", "results/")) for p in evidence):
+        raise ValueError(f"Lean status of {key} needs evidence under lean/ or results/")
 
 
 def validate_status(status: dict) -> dict:
+    if not isinstance(status, dict) or set(status) != {"description", "results", *STATUS_VENUES}:
+        raise ValueError("Status source needs exactly: description, results, "
+                         + ", ".join(STATUS_VENUES))
     results = status["results"]
-    used = set()
+    if not isinstance(results, dict) or not results:
+        raise ValueError("Status source needs a non-empty results object")
     for key, result in results.items():
-        if result.get("status") not in STATUS_KINDS:
+        if not isinstance(result, dict) or result.get("status") not in STATUS_KINDS:
             raise ValueError(f"Status of {key} must be one of {STATUS_KINDS}")
-        evidence = result.get("evidence")
-        if not evidence or not all(isinstance(p, str) and (ROOT / p).exists() for p in evidence):
-            raise ValueError(f"Status of {key} needs existing evidence paths: {evidence}")
         unknown = set(result) - {"status", "evidence", *STATUS_VENUES}
         if unknown:
             raise ValueError(f"Unknown fields for {key}: {sorted(unknown)}")
+        _check_evidence(key, result)
+        for venue in STATUS_VENUES:
+            if venue in result:
+                _check_tex(result[venue], f"the {venue} phrase of {key}")
+    used = set()
     for venue in STATUS_VENUES:
+        if not isinstance(status[venue], list) or not status[venue]:
+            raise ValueError(f"The {venue} needs a non-empty list of items")
         seen = set()
         for item in status[venue]:
-            if set(item) == {"text"}:
-                phrases = [item["text"]]
-            elif set(item) <= {"results", "suffix"} and item.get("results"):
+            if isinstance(item, dict) and set(item) == {"text"}:
+                _check_tex(item["text"], f"a {venue} text item")
+            elif (isinstance(item, dict) and "results" in item and set(item) <= {"results", "suffix"}
+                  and isinstance(item["results"], list) and item["results"]):
                 for key in item["results"]:
                     if key not in results or venue not in results[key]:
                         raise ValueError(f"No {venue} phrase for status entry {key}")
                     if key in seen:
                         raise ValueError(f"Status entry {key} repeated in the {venue}")
                     seen.add(key)
-                phrases = [results[key][venue] for key in item["results"]] + [item.get("suffix", "")]
+                if "suffix" in item:
+                    _check_tex(item["suffix"], f"a {venue} suffix")
             else:
                 raise ValueError(f"Malformed {venue} status item: {item}")
-            for phrase in phrases:
-                if STATUS_WORDS.search(phrase):
-                    raise ValueError(f"Status wording outside the status field: {phrase!r}")
+        phrased = {key for key, result in results.items() if venue in result}
+        if phrased != seen:
+            raise ValueError(f"Entries with a {venue} phrase but not listed there: "
+                             + ", ".join(sorted(phrased - seen)))
         used |= seen
     if set(results) - used:
         raise ValueError("Unused status entries: " + ", ".join(sorted(set(results) - used)))
@@ -163,11 +213,17 @@ def join_phrases(phrases: list[str]) -> str:
         return phrases[0]
     if any(has_list_comma(phrase) for phrase in phrases):
         return "; ".join(phrases[:-1]) + "; and " + phrases[-1]
-    return ", ".join(phrases[:-1]) + " and " + phrases[-1]
+    # A serial comma keeps items that contain "and" from running together.
+    serial = len(phrases) > 2 and any(" and " in phrase for phrase in phrases)
+    return ", ".join(phrases[:-1]) + (", and " if serial else " and ") + phrases[-1]
 
 
 def status_text(status: dict, venue: str) -> str:
-    """One venue's status sentences: each group is split by its entries' status."""
+    """One venue's status sentences: each group is split by its entries' status.
+
+    Phrases are always used as objects, so a status change needs no new wording:
+    "Lean checks X." or "For X, the manuscript gives paper proofs only."
+    """
     results = status["results"]
     sentences = []
     lean_before = False
@@ -183,9 +239,8 @@ def status_text(status: dict, venue: str) -> str:
             sentences.append(lead + join_phrases(lean) + suffix + ".")
             lean_before = True
         if paper:
-            subject = join_phrases(paper)
-            verb = " remains a paper proof" if len(paper) == 1 else " remain paper proofs"
-            sentences.append(subject[:1].upper() + subject[1:] + verb + suffix + ".")
+            sentences.append("For " + join_phrases(paper) + suffix
+                             + ", the manuscript gives paper proofs only.")
     return textwrap.fill(" ".join(sentences), width=74, break_long_words=False,
                          break_on_hyphens=False)
 

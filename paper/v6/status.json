@@ -1,5 +1,5 @@
 {
-  "description": "Single source for the verification-status sentences of the v6 manuscript. tools/build_v6.py generates the abstract's status paragraph (status-abstract.tex) and the introduction's Verification boundary paragraph from this file. To change what the manuscript says is Lean-checked or a paper proof, change a result's status here and rerun tools/build_v6.py; do not edit those sentences in TeX. Every result lists repository paths that support its status. Section 18 (verification.tex) keeps the exact formal scopes and fixed source links.",
+  "description": "Single source for two v6 passages: the abstract's status paragraph (generated as status-abstract.tex) and the introduction's Verification boundary paragraph. tools/build_v6.py writes both from this file; do not edit those sentences in TeX. Each result has a status, lean or paper, and repository evidence paths for it. Phrases are written as objects so that the same phrase reads correctly in \"Lean checks ...\" and in \"For ..., the manuscript gives paper proofs only\". When a status changes, also update Section 18 (verification.tex), which keeps the exact formal scopes and fixed source links, and any per-section status remark by hand.",
   "results": {
     "rms-law": {
       "status": "lean",
@@ -23,7 +23,7 @@
       "status": "lean",
       "evidence": ["lean/ThresholdHC/Tier3/Optimizer.lean"],
       "abstract": "the variational optimizer",
-      "boundary": "the variational optimizer against its separate formal specification"
+      "boundary": "the variational optimizer, which has a separate formal specification"
     },
     "unbiased": {
       "status": "lean",
@@ -35,7 +35,7 @@
       "status": "lean",
       "evidence": ["lean/ThresholdHC/Confidence/Full.lean"],
       "abstract": "the confidence characterization",
-      "boundary": "the confidence characterization in that model, with coefficients $1/64$ and $8192$ and one upper family depending only on budget and failure probability"
+      "boundary": "the confidence characterization in the observable model, with coefficients $1/64$ and $8192$ and one upper family depending only on budget and failure probability"
     },
     "oracle-lower": {
       "status": "lean",
@@ -69,7 +69,7 @@
     "finite-direct": {
       "status": "lean",
       "evidence": ["lean/ThresholdHC/FiniteQuantile/Full.lean", "results/direct-finite-quantile-20261104/README.md"],
-      "abstract": "a direct finite-law proof with closed-quantile coefficients $10^{-20}$ and $30001$"
+      "abstract": "the separate direct closed-quantile bounds for finite laws, with coefficients $10^{-20}$ and $30001$"
     },
     "quantile-comparison": {
       "status": "lean",
@@ -79,7 +79,7 @@
     "sharp-factor": {
       "status": "lean",
       "evidence": ["lean/ThresholdHC/QuantileOptimality/Full.lean", "results/quantile-optimality-20261105/README.md"],
-      "abstract": "that the sharp quantile factor is the unique root of its scalar equation, over all gap laws and over finite-support laws",
+      "abstract": "the characterization of the sharp quantile factor as the unique root of its scalar equation, over all gap laws and over finite-support laws",
       "boundary": "the exact quantile comparison factor"
     },
     "stopping-program": {
@@ -115,7 +115,7 @@
       "status": "lean",
       "evidence": ["lean/ThresholdHC/ConfidenceProgram/Upper.lean", "lean/ThresholdHC/ConfidenceEntropy/Full.lean", "lean/ThresholdHC/Anytime/Full.lean"],
       "abstract": "the general-law confidence coefficients $10^{-17}$ and $750000$",
-      "boundary": "the known-law confidence results of \\cref{app:known-confidence,app:anytime}"
+      "boundary": "the fixed-confidence rates of \\cref{app:known-confidence} and the time-uniform upper bound of \\cref{app:anytime}"
     },
     "smooth-density": {
       "status": "lean",
@@ -139,17 +139,24 @@
       "evidence": ["paper/v6/appendix-localization.tex"],
       "abstract": "the arbitrary-law statistical $\\Psi$ lower bound",
       "boundary": "the arbitrary-law statistical $\\Psi$ lower bound of \\cref{app:localization}"
+    },
+    "time-uniform-lower-bound": {
+      "status": "paper",
+      "evidence": ["docs/TIME_UNIFORM_LOWER.md", "paper/v6/appendix-anytime.tex", "results/anytime-lower-20261105/README.md"],
+      "abstract": "the matching gap-law-dependent time-uniform lower bound",
+      "boundary": "the matching gap-law-dependent time-uniform lower bound of \\cref{app:anytime}"
     }
   },
   "abstract": [
     {"results": ["rms-law"]},
     {"results": ["critical-law", "psi-counterexample", "variational-optimizer", "unbiased", "confidence", "oracle-lower", "above-two"], "suffix": " in their stated models"},
     {"results": ["entropy-tail-law", "closed-quantile-law", "quantile-comparison", "stopping-program", "identification", "genie"]},
-    {"results": ["entropy-tail-coefficients", "finite-direct"]},
+    {"results": ["entropy-tail-coefficients"]},
+    {"results": ["finite-direct"]},
     {"results": ["power-margins-below-two", "smooth-density", "observed-states", "selected-type-transfer", "known-law-confidence"]},
     {"results": ["sharp-factor"]},
     {"text": "A separate exact-arithmetic certificate gives the sharp factor's decimal bracket."},
-    {"results": ["psi-lower-bound"]},
+    {"results": ["psi-lower-bound", "time-uniform-lower-bound"]},
     {"text": "This manuscript records each result's dependencies and verification scope."}
   ],
   "boundary": [
@@ -162,7 +169,7 @@
     {"results": ["above-two"]},
     {"results": ["entropy-tail-law", "closed-quantile-law", "sharp-factor", "stopping-program", "identification", "genie", "power-margins-below-two"]},
     {"results": ["hard-cap", "known-law-confidence", "smooth-density", "observed-states"]},
-    {"results": ["psi-lower-bound"]},
+    {"results": ["psi-lower-bound", "time-uniform-lower-bound"]},
     {"text": "Section~\\ref{sec:verification} gives the exact scope and links."}
   ]
 }

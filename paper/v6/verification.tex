@@ -542,8 +542,11 @@ not know the gap law attains the order of the known-law width bound in
 cited external lower bound, that for every known gap law a deterministic
 nonincreasing half-width envelope valid for one online controller exceeds
 a multiple of $\sqrt{\rho\log\log B/B}$ for infinitely many integer
-budgets $B$. This matches the known-law order at $D=1/2$. A matching
-gap-law-dependent time-uniform lower bound is open. Efficient exact
+budgets $B$. This matches the known-law order at $D=1/2$.
+\Cref{app:anytime} proves the matching gap-law-dependent time-uniform lower
+bound on paper for every positive-gap law; its information inequalities are
+Lean-checked, while its sequential testing and asymptotic comparisons are
+not. Efficient exact
 selection for finite laws with many bands and unrestricted costs is open;
 the Lean-checked sufficient family can have $\prod_j(n_j+1)$ members. The
 optimal uniform convergence rate of the cap programs in
