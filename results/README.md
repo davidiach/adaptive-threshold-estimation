@@ -29,6 +29,7 @@ or CI run passes.
 | Finite-law bandwise-suffix optimizer and sufficient search family | [bandwise-suffix-20261104](bandwise-suffix-20261104/README.md) |
 | Total variation, rounding, transported enclosures and finite approximation | [selection-stability-20261104](selection-stability-20261104/README.md) |
 | Quarter smoothing in both KL directions | [quarter-smoothing-20261104](quarter-smoothing-20261104/README.md) |
+| General-law confidence coefficients $10^{-17}$ and $750000$ | [entropy-confidence-20261105](entropy-confidence-20261105/README.md) |
 | Fractional-submeasure additive confidence localization with coefficient $1/128$ | [additive-confidence-20261105](additive-confidence-20261105/README.md) |
 | Common pairs from variance–null-work obstructions and the $1/128$ confidence consequence | [common-pair-20261105](common-pair-20261105/README.md) |
 | Selected-type information transfer through unbounded stopping | [adaptive-types-20261105](adaptive-types-20261105/README.md) |

@@ -47,5 +47,6 @@ modules. The [manuscript proof](../paper/v6/common-pair-confidence.tex)
 states the hypotheses and construction.
 
 [Fractional-submeasure additive confidence localization](ADDITIVE_CONFIDENCE.md)
-is now checked. Its general-law entropy-packing application and the
-sharp quantile-factor formalization remain in progress.
+is now checked. The [sharper general-law confidence coefficient](ENTROPY_CONFIDENCE.md)
+is checked through the stopping program. The sharp quantile-factor
+formalization remains in progress.

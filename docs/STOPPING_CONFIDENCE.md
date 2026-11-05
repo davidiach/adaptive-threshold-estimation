@@ -7,11 +7,12 @@ $$
  r^{\rm exp}_{\mu,\rho}(B,\delta)\ \ge\ P_\infty(\beta)/30 .
 $$
 Here $P_\infty$ is the [unrestricted stopping-program value](../paper/v6/appendix-genie.tex).
-In particular, for $0<\rho\le1/4$ this gives the general-law lower rate
-$10^{-17}K_{\mu,\rho}(B/\ell)/30$ directly from the checked RMS
-characterization. The [earlier paper](../research/2026-10-30-confidence-transfer/NOTE.md)
-obtains $10^{-17}K_{\mu,\rho}(B/\ell)$ by additive localization.
-The two proofs use different starting bounds.
+For $0<\rho\le1/4$, the [direct retained-entropy comparison](ENTROPY_CONFIDENCE.md)
+now gives $30\cdot10^{-17}Q(\beta)\le P_\infty(\beta)$.
+Consequently the checked general-law lower coefficient is $10^{-17}$
+for both the closed-quantile and entropy–tail functionals.
+The [earlier paper](../research/2026-10-30-confidence-transfer/NOTE.md)
+also obtains this coefficient by additive localization.
 
 ## Local information and paid work
 
@@ -58,8 +59,9 @@ require KL at least $\ell/4$. Hence $\varepsilon\ge a\Delta/12$.
 Since $144(1+6x)\le900(4+x)$ for $x\ge0$, this gives
 $\Delta^2/(4+\beta K_\infty)\le(30\varepsilon)^2$.
 Taking the dual supremum and the infimum over observable procedures
-proves the assertion. The comparison $R^{\rm exp}\le P_\infty$ and the
-expected-budget entropy-tail lower bound give the consequence for $K$.
+proves the assertion. The direct bound
+$30\cdot10^{-17}Q(\beta)\le P_\infty(\beta)$ gives the sharper
+entropy–tail consequence. [Explicit comparison](ENTROPY_CONFIDENCE.md)
 
 ## The matching hard-cap upper bound
 

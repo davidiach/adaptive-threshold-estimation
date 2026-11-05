@@ -131,3 +131,5 @@ the ordinary model to unknown laws ordered by their gap CDFs.
 [Common-pair construction](ThresholdHC/ConfidenceLocalization/CommonPair.lean) derives one pair for every capped local policy from a variance–null-work obstruction. [Confidence consequences](ThresholdHC/ConfidenceLocalization/ConfidenceRate.lean) verify the estimator and minimax coefficient $1/128$. [Proof map](../docs/COMMON_PAIRS.md) · [Audit](../results/common-pair-20261105/README.md)
 
 [Additive confidence localization](ThresholdHC/AdditiveConfidence/Full.lean) checks the estimator and minimax coefficient $1/128$ for finite overlapping submeasures, with exact normalization, original observation laws and weighted work. [Proof map](../docs/ADDITIVE_CONFIDENCE.md) · [Audit](../results/additive-confidence-20261105/README.md)
+
+[Sharper general-law confidence](ThresholdHC/ConfidenceEntropy/Full.lean) checks the lower coefficient $10^{-17}$ and hard-cap upper coefficient $750000$. Its [direct program comparison](ThresholdHC/ConfidenceEntropy/Program.lean) uses the retained entropy at every cap. [Proof map](../docs/ENTROPY_CONFIDENCE.md) · [Audit](../results/entropy-confidence-20261105/README.md)

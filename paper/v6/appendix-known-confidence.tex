@@ -12,7 +12,7 @@ For $B>0$, $0<\delta\le1/4$, and $0<\rho\le1/2$,
 $r_{\rm exp}(B,\delta)\ge P_\infty(\beta)/30$.
 For $0<\rho\le1/4$ the entropy--tail functional consequently satisfies
 \[
- \frac{10^{-17}}{30}\mathcal K(\beta)\le r_{\rm exp}(B,\delta)
+ 10^{-17}\mathcal K(\beta)\le r_{\rm exp}(B,\delta)
  \le r_{\rm hard}(B,\delta)\le 750000\,\mathcal K(\beta).
 \]
 For the critical quadratic law let $L=1+\log(1/\rho)$. Both radii are
@@ -50,9 +50,10 @@ would distinguish these means at error at most $\delta$, requiring KL at
 least $\ell/4$. Thus $a\Delta/12\le\varepsilon$. The inequality
 $144(1+6x)\le900(4+x)$ for $x\ge0$ bounds the quartet contribution by
 $(30\varepsilon)^2$. Taking the dual supremum and the radius infimum
-proves the \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/384de1857b55f86cad3d86e6e5801b69d8eb9519/lean/ThresholdHC/ConfidenceProgram/Lower.lean}{stopping-program lower bound}. At budget $\beta$, the RMS lower bound
-$10^{-17}\mathcal K(\beta)$ and the stopping-program RMS upper bound
-$P_\infty(\beta)$ give the stated entropy--tail lower coefficient.
+proves the \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/384de1857b55f86cad3d86e6e5801b69d8eb9519/lean/ThresholdHC/ConfidenceProgram/Lower.lean}{stopping-program lower bound}. Section~\ref{sec:entropy-confidence}
+proves the direct comparison
+$30\cdot10^{-17}Q(\beta)\le P_\infty(\beta)$, giving the stated
+entropy--tail lower coefficient.
 The critical lower bound follows from the critical two-prior construction.
 
 \clearpage
@@ -89,3 +90,5 @@ Finally every hard-cap rule satisfies the expected-work constraint.
 \input{common-pair-confidence}
 
 \input{additive-confidence}
+
+\input{entropy-confidence}

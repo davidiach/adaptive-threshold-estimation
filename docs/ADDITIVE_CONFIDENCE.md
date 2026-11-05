@@ -65,9 +65,9 @@ checks 41 exact statements and 41 transitive axiom reports.
 The [manuscript proof](../paper/v6/additive-confidence.tex) gives
 the construction and constants.
 
-The general-law entropy-packing application still needs its
-conditional variance–null-work obstructions and deterministic
-assembly connected to this confidence theorem. The previously
-checked general-law confidence coefficient remains $10^{-17}/30$.
-The paper's stronger coefficient $10^{-17}$ and the sharp
-quantile-factor characterization retain their separate paper proofs.
+The [sharper general-law confidence coefficient](ENTROPY_CONFIDENCE.md)
+is now checked through a direct retained-entropy comparison with the
+stopping program. It gives the coefficient $10^{-17}$ for every
+known law. The generic fractional-submeasure theorem above retains
+its component variance–null-work premises. The sharp quantile-factor
+characterization retains its paper proof.

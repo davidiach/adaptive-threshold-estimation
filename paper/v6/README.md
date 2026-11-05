@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Read the updated manuscript](builds/additive-confidence-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/additive-confidence-20261105.json)
+[Read the updated manuscript](builds/entropy-confidence-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/entropy-confidence-20261105.json)
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -294,3 +294,5 @@ finite-budget and unbiased models. [Build record](builds/stochastic-envelope-202
 [Common-pair construction](common-pair-confidence.tex) proves the coefficient 42 from the variance–null-work obstruction and gives the $1/128$ confidence consequence. The regularization argument includes endpoint gap atoms. [Manuscript](builds/common-pair-20261105.pdf) · [Build record](builds/common-pair-20261105.json)
 
 [Fractional-submeasure confidence localization](additive-confidence.tex) proves the additive coefficient $1/128$ with overlapping supports and an exact transfer to the original observation model. [Manuscript](builds/additive-confidence-20261105.pdf) · [Build record](builds/additive-confidence-20261105.json)
+
+[Sharper general-law confidence](entropy-confidence.tex) proves the lower coefficient $10^{-17}$ through a direct stopping-program comparison and retains the hard-cap upper coefficient $750000$. [Manuscript](builds/entropy-confidence-20261105.pdf) · [Build record](builds/entropy-confidence-20261105.json)
