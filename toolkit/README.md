@@ -205,11 +205,13 @@ $\rho=0.05$ splits the atom at gap 0.01. The calculation gives:
 | Quantile functional $Q(B)$ | 0.0336221161 |
 | Comparison interval for the selection functional $\mathcal K(B)$ | [0.0201732697, 0.0336221161] |
 
-The interval comes from the new deterministic paper proof
-$3Q/5\le\mathcal K\le Q$ in the
-[computation note](../docs/RARE_EVENT_COMPUTATION.md). It improves the
-previous comparison factor $1+2\sqrt2$ to $5/3$. The proof applies to every
-positive-gap law; the executable calculator accepts finite laws.
+The interval uses the deterministic comparison
+$3Q/5\le\mathcal K\le Q$ from the
+[computation note](../docs/RARE_EVENT_COMPUTATION.md), which improved the
+earlier factor $1+2\sqrt2$ to $5/3$. Lean now checks the sharper
+[factor $31/20$](../results/quantile-price-20261104/README.md), which implies
+it; the calculator keeps $5/3$. The comparison applies to every positive-gap
+law; the executable calculator accepts finite laws.
 It also uses $T_h\le\mathcal K$, so the returned interval is
 $[\max\{T_h,3Q/5\},Q]$ and collapses to $\{\rho\}$ when $h\ge t$.
 
@@ -305,9 +307,9 @@ It also gives the cheaper bound $\frac58Q\le\mathcal K\le Q$. It uses only
 the standard library and rejects floats as inputs. It is not imported by the
 package itself, and its `FiniteGapLaw` is a different class from the
 package-level one in section 3, so import it from
-`threshold_toolkit.rare_event_functional`. The [comparison theorem](../results/quantile-selection-20261104/README.md)
-and [bandwise-suffix optimizer](../results/bandwise-suffix-20261104/README.md)
-are Lean-checked. The Python evaluator remains outside those proofs. See the
+`threshold_toolkit.rare_event_functional`. Lean checks the $8/5$ comparison and
+the [bandwise-suffix optimizer](../lean/ThresholdHC/BandwiseSuffix/Search.lean);
+the rational enclosure code itself is not checked. See the
 [certified-selection package](../research/2026-10-30-certified-selection/README.md)
 for the mathematics and status; its
 [note](../research/2026-10-30-certified-selection/NOTE.md#example-use) has a
@@ -349,17 +351,17 @@ state = RMSLadder(program, coin_factory, seed=1).advance_to(1000)
 print(state.estimate, state.flips, state.reserved_budget)   # 19/64 127 508
 ```
 
-The mathematical hard-budget theorem bounds the capped root-mean-square error by
+The theorem behind it says the capped root-mean-square error is at most
 $\sqrt{32}$ times the bound your estimator has at the full allowance as an
 average budget. That needs conditions the driver cannot check: your estimator
 really meets its average-budget and error bounds, its error bound shrinks no
 faster than $1/\sqrt{\text{budget}}$, and separate stages are independent. The driver supplies separate coin namespaces and random
 streams, but trusts your callbacks. It caps flips, not CPU time. It leaves any
 allowance that does not fit the next stage unused. The guarantee holds at a
-fixed allowance, not at an allowance chosen after looking at the results. The
-mathematical controller, pathwise cap and RMS guarantee are
-[Lean-checked](../results/hard-budget-rms-20261104/README.md).
-The Python driver remains unverified. See the
+fixed allowance, not at an allowance chosen after looking at the results.
+Lean checks the reduction for the
+[observable controller](../results/hard-budget-rms-20261104/README.md); this
+Python driver is not itself checked. The original paper proof is in the
 [hard-budget RMS package](../research/2026-10-30-hard-budget-rms/README.md).
 The module is not imported by the package itself.
 
@@ -402,7 +404,7 @@ print(schedule.blocks, schedule.per_block_cap, result.estimate, result.flips)
 # 33 3030 37/378 12474
 ```
 
-The mathematical capped-median theorem says the error exceeds $\sqrt8$ times your
+The theorem behind it says the error exceeds $\sqrt8$ times your
 estimator's root-mean-square error bound at average budget $B/(8m)$ with
 probability at most $\delta$. The driver cannot check that your estimator
 meets its average-budget and error bounds, or that the copies are independent.
@@ -440,11 +442,11 @@ true value, provided each stage interval has its stated coverage. A stage that
 runs out of flips leaves the interval unchanged. An empty intersection stays
 empty: it signals a coverage failure and is not replaced by a wider interval.
 
-Both modules cap flips, not CPU time, and trust your callbacks.
-Lean verifies the [observable capped-median construction](../results/known-law-confidence-20261104/README.md)
-and [known-law online controller, simultaneous coverage and width](../results/anytime-confidence-20261105/README.md).
-Those audits verify the mathematical constructions, not these Python drivers
-or arbitrary callbacks. See the
+Both modules cap flips, not CPU time, and trust your callbacks. Lean checks
+the [capped median](../results/known-law-confidence-20261104/README.md) and the
+[sequential coverage and known-law width](../results/anytime-confidence-20261105/README.md)
+for observable controllers with these schedules; the Python drivers are not
+themselves checked. The original paper proofs are in the
 [confidence-transfer package](../research/2026-10-30-confidence-transfer/README.md).
 Neither module is imported by the package itself.
 

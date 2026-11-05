@@ -25,5 +25,6 @@ for budget in (10_000, 100_000, 1_000_000):
 
 inverse = profile.budget_for_rate(0.01)
 print(f"\nQ reaches 0.01 at approximately B = {inverse.budget:,.3f}.")
-print("These are floating-point values of a paper-proof rate functional.")
+print("These are floating-point values of a rate functional; Lean checks that")
+print("minimax RMS risk lies between 1e-17*Q and 30001*Q.")
 print("They are not an achieved RMS error or a certified estimator budget.")

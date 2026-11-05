@@ -208,7 +208,7 @@ covering all 322 declaration roots and their transitive axioms.
 ## Entropy-tail selection functional
 
 The general-law entropy-tail law (v6 Theorem 13.2) has a locked specification
-and a partial audit:
+and a complete audit:
 
 ```sh
 python tools/verify_entropy_tail.py --sequential
@@ -415,7 +415,9 @@ includes the earlier $8/5$ endpoints after sharing their pointwise reduction.
 
 Run `python tools/verify_optimal_quantile_factor.py` for the strict rational
 bracket of width $10^{-12}$ around the sharp factor. The reduction to the
-scalar root is a [paper proof](OPTIMAL_QUANTILE_FACTOR.md).
+scalar root and finite-law sharpness are Lean-checked; see the
+[quantile-optimality record](../results/quantile-optimality-20261105/README.md).
+The rational bracket itself is an exact-arithmetic certificate, not a Lean proof.
 
 ## Full quantile-selection comparison
 
@@ -705,6 +707,10 @@ python tools/verify_tier6.py --sequential --require-complete
 
 The first command rebuilds the scored proof modules and runs the frozen scorer plus an independent audit. The arithmetic command checks the separate scalar lemmas. The final five commands enforce complete proofs of their exact specifications and check their source locks and transitive axioms. Passing arithmetic or numerical checks alone does not establish those probability theorems.
 
+A passing audit shows only that the exact Lean type is proved. The
+[model-fidelity brief](MODEL_FIDELITY.md) compares the central Lean
+definitions with the paper's model and lists what the audits do not cover.
+
 ## Critical-regime paper checkpoint
 
 The earlier restricted-class critical note remains a reviewed paper proof.
@@ -763,7 +769,7 @@ separate from mathematical verification.
 | Canonical revealed/selected-magnitude RMS and confidence lower bounds | [oracle_lower_001.json](../results/oracle_lower_001.json) |
 | Observable alpha > 2 rare-event theory (7 targets, 54 modules, 322 declarations) | [rare_above_two_001.json](../results/rare_above_two_001.json) |
 | Input preservation | [MANIFEST_SHA256.txt](../inputs/next-phase/MANIFEST_SHA256.txt) |
-| Frozen specifications and tools | [FROZEN.sha256](../FROZEN.sha256), [TIER3_FROZEN.sha256](../TIER3_FROZEN.sha256), [TIER4_FROZEN.sha256](../TIER4_FROZEN.sha256) |
+| Frozen specifications and tools | [FROZEN.sha256](../FROZEN.sha256), [TIER3_FROZEN.sha256](../TIER3_FROZEN.sha256), [TIER4_FROZEN.sha256](../TIER4_FROZEN.sha256), [TIER5_FROZEN.sha256](../TIER5_FROZEN.sha256), [TIER6_FROZEN.sha256](../TIER6_FROZEN.sha256) |
 | Workflow definition | [checks.yml](../.github/workflows/checks.yml) |
 
 The completed research commit `23988c7` passed [Linux CI](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/40468287646). Later runs are available on the [workflow page](https://github.com/davidiach/adaptive-threshold-estimation/actions/workflows/checks.yml). Historical logs retain the terminology and checkpoints used when each result was produced.

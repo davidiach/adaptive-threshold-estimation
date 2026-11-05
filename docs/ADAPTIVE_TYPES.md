@@ -46,4 +46,4 @@ general variance–null-work obstruction. The [fractional-submeasure
 localization](ADDITIVE_CONFIDENCE.md) is also Lean-checked. The
 [sharper general-law confidence coefficient](ENTROPY_CONFIDENCE.md)
 is checked through a direct stopping-program comparison. The sharp
-quantile-factor characterization retains its paper proof.
+quantile-factor characterization is now [Lean-checked](../results/quantile-optimality-20261105/README.md).

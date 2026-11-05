@@ -12,8 +12,11 @@ runs and fresh coins must have independent seeds/latent states/tapes. Then
 this driver has error <= sqrt(8)*R with probability >= 1-delta, and NEVER
 purchases more than total_budget flips. Clipping assumes theta in [0,rho].
 
-The package does not implement the general-law rare-event base estimator.
-A factory is not certified merely because the driver accepts it. Python's
+Lean checks this guarantee for the observable capped median recorded in
+results/known-law-confidence-20261104/; this Python driver is not checked.
+known_rare_estimator.known_rare_program supplies a known-law base program
+(docs/KNOWN_LAW_ESTIMATOR.md). A factory is not certified merely because
+the driver accepts it. Python's
 PRNG is used for reproducible experiments; it is not a formal probability
 space, a cryptographic boundary, or a guarantee for adversarial callbacks.
 Physical flips are capped; CPU time and callback execution are not.
