@@ -933,8 +933,10 @@ at all integer budgets, the limsup of its ratio to
 $\mathcal K(n/[\log(1/\delta)+\log\log n])$ is at least $10^{-22}$.
 The common-family and scalar information inequalities are Lean-checked.
 The [sequential testing step](ANYTIME_SEQUENTIAL.md) is now formalized for
-separated prior families and observable prefixes. The infinite-moment
-acquisition transfer and the final asymptotic comparison remain paper proofs. Adaptation to the known-law width remains open.
+separated prior families and observable prefixes. The [infinite-moment
+construction and adaptive acquisition transfer](ANYTIME_TAIL.md) are also
+formalized, including an explicit unbounded integer-budget schedule. The
+final asymptotic comparison remains a paper proof. Adaptation to the known-law width remains open.
 An exact path count shows that repeatedly
 checking a fixed-time interval fails: a check with fixed-time failure at most
 $1/4$ fails with probability about $0.428$ when checked at every step up to

@@ -357,8 +357,10 @@ jobs:
         run: |
           python tools/verify_anytime_lower.py
           python tools/verify_anytime_lower_profiles.py
-      - name: Verify dependent-observation sequential testing
-        run: python tools/verify_anytime_sequential.py
+      - name: Verify sequential testing and the infinite-moment tail family
+        run: |
+          python tools/verify_anytime_sequential.py
+          python tools/verify_anytime_tail.py
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
       - uses: actions/upload-artifact@v4
