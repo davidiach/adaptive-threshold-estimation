@@ -76,7 +76,7 @@ def main() -> None:
     source = assemble()
     target = PACKET / "main.tex"
     if args.check:
-        if target.read_text(encoding="utf-8") != source:
+        if not target.is_file() or target.read_bytes() != source.encode("utf-8"):
             raise SystemExit("Review packet differs from its locked sources or current brief")
         print("Review packet matches the locked mathematical sources and current brief.")
     else:

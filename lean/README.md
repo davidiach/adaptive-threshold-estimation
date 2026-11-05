@@ -7,9 +7,12 @@ Commands below run from the repository root.
 
 ## Main theorem entry points
 
-Read a development's `Specification.lean` first, then its final theorem and the
-imported model/proof modules. The audit checks exact target types and transitive
+Read a development's `Specification.lean` first, where one exists, then its
+final theorem and the imported model/proof modules. The audit checks exact target types and transitive
 axioms; a successful build alone is not a substitute for that audit.
+The audit does not show that a type means what the paper says; the
+[model-fidelity brief](../docs/MODEL_FIDELITY.md) compares the central
+definitions with the paper for that review.
 
 | Result | Formal entry point | Audit command |
 |---|---|---|
@@ -43,6 +46,24 @@ axioms; a successful build alone is not a substitute for that audit.
 | Universal two-sided closed-quantile minimax rate | [ClosedQuantile specification](ThresholdHC/ClosedQuantile/Specification.lean), [Full](ThresholdHC/ClosedQuantile/Full.lean) | `python tools/verify_closed_quantile.py` |
 | Observable entropy-tail and closed-quantile upper theorems ($R\le28000\,\mathcal K$, $R\le30001\,Q$), quantile split and $\mathcal K\le Q\le(1+2\sqrt2)\mathcal K$ | [EntropyTailQuantile specification](ThresholdHC/EntropyTailQuantile/Specification.lean), [UpperTheorem](ThresholdHC/EntropyTailExecution/UpperTheorem.lean), [QuantileComparison](ThresholdHC/EntropyTailQuantile/QuantileComparison.lean) | `python tools/verify_entropy_tail_upper.py` |
 | Robust stopping program ($R\le P_N$, attained four-prior dual, $R\le P_N\le16R$), fixed-cap identification and genie certificates | [StoppingProgram specification](ThresholdHC/StoppingProgram/Specification.lean), [FiniteCertificate](ThresholdHC/StoppingProgram/FiniteCertificate.lean), [CapIdentification](ThresholdHC/CapIdentification/Full.lean), [Genie](ThresholdHC/Genie/) | [Sixteen audits](../docs/VERIFY.md#stopping-program-identification-and-genie-certificates), e.g. `python tools/verify_finite_risk_certificate.py` |
+| Fixed confidence for every known positive-gap law, both budget models | [Upper](ThresholdHC/ConfidenceProgram/Upper.lean), [stopping-program lower bound](ThresholdHC/ConfidenceProgram/Lower.lean), [observable median](ThresholdHC/ConfidenceProgram/Amplify.lean), [record](../results/known-law-confidence-20261104/README.md) | `python tools/verify_stopping_confidence.py`; `python tools/verify_confidence_amplification.py` |
+| Envelope minimax rates and unbiased variance and work for unknown laws ordered by their gap CDFs | [Minimax](ThresholdHC/Envelope/Minimax.lean), [Unbiased](ThresholdHC/Envelope/Unbiased.lean), [record](../results/stochastic-envelope-20261105/README.md) | `python tools/verify_stochastic_envelope.py` |
+| Sublinear power margins: both rare-event minimax rates and one estimator family across the margin class | [Full](ThresholdHC/SubcriticalPower/Full.lean), [record](../results/sublinear-power-20261105/README.md) | `python tools/verify_sublinear_power.py` |
+| Shifted power margins: both remaining rare-event rows, including hard-cap confidence and uniformity over the margin class | [Full](ThresholdHC/ShiftedPower/Full.lean), [record](../results/shifted-power-20261105/README.md) | `python tools/verify_shifted_power.py` |
+| Time-uniform confidence: nested observable intervals, a shared purchase history, data-dependent stopping and the known-law iterated-logarithm width | [Full](ThresholdHC/Anytime/Full.lean), [record](../results/anytime-confidence-20261105/README.md) | `python tools/verify_anytime_confidence.py` |
+| Smooth-density robustness: both expected-complexity bounds and uniform unbiased impossibility in the original adaptive experiment | [Full](ThresholdHC/SmoothDensity/Full.lean), [proof map](../docs/SMOOTH_DENSITY.md), [record](../results/smooth-density-20261105/README.md) | `python tools/verify_smooth_density.py` |
+| Finite-cell observed-state lower bound: a measurable uniform-state partition and the exact testing bound for arbitrary selected-state policies | [Finite](ThresholdHC/ObservedState/Finite.lean), [proof map](../docs/OBSERVED_STATES.md), [record](../results/finite-observed-20261105/README.md) | `python tools/verify_observed_states.py` |
+| Continuous-magnitude observed-state complexity and RMS lower bounds in the actual selected-query experiment, with density regularity | [UniformLower](ThresholdHC/ContinuousObserved/UniformLower.lean), [UniformRMSLower](ThresholdHC/ContinuousObserved/UniformRMSLower.lean), [Regularity](ThresholdHC/ContinuousObserved/Regularity.lean), [proof map](../docs/CONTINUOUS_OBSERVED.md), [record](../results/continuous-observed-lower-20261105/README.md) | `python tools/verify_continuous_observed.py` |
+| Fresh-state upper bounds transferred to selected-state queries, and uniform-gap rates | [Upper](ThresholdHC/ContinuousObserved/Upper.lean), [UniformUpper](ThresholdHC/ContinuousObserved/UniformUpper.lean), [proof map](../docs/OBSERVED_UPPER.md), [record](../results/observed-state-upper-20261105/README.md) | `python tools/verify_observed_upper.py` |
+| Selected-type information transfer, coefficient $16/3$, for the actual randomized countable population through unbounded stopping | [SignTransfer](ThresholdHC/TypedConfidence/SignTransfer.lean), [type labels](ThresholdHC/TypedConfidence/Labels.lean), [proof map](../docs/ADAPTIVE_TYPES.md), [record](../results/adaptive-types-20261105/README.md) | `python tools/verify_typed_confidence.py` |
+| Common pair for every capped local policy from a variance–null-work obstruction; estimator and minimax confidence coefficient $1/128$ | [CommonPair](ThresholdHC/ConfidenceLocalization/CommonPair.lean), [ConfidenceRate](ThresholdHC/ConfidenceLocalization/ConfidenceRate.lean), [proof map](../docs/COMMON_PAIRS.md), [record](../results/common-pair-20261105/README.md) | `python tools/verify_confidence_localization.py` |
+| Additive confidence localization, coefficient $1/128$, for finite overlapping submeasures with original observation laws and weighted work | [Full](ThresholdHC/AdditiveConfidence/Full.lean), [proof map](../docs/ADDITIVE_CONFIDENCE.md), [record](../results/additive-confidence-20261105/README.md) | `python tools/verify_additive_confidence.py` |
+| Sharper general-law confidence: lower coefficient $10^{-17}$ and hard-cap upper coefficient $750000$, through a direct retained-entropy program comparison | [Full](ThresholdHC/ConfidenceEntropy/Full.lean), [Program](ThresholdHC/ConfidenceEntropy/Program.lean), [proof map](../docs/ENTROPY_CONFIDENCE.md), [record](../results/entropy-confidence-20261105/README.md) | `python tools/verify_confidence_entropy.py` |
+| Generic RMS transfer and additive submeasure localization, coefficient $1/128$ in the original experiment | [CommonPair](ThresholdHC/RMSLocalization/CommonPair.lean), [Full](ThresholdHC/RMSLocalization/Full.lean), [proof map](../docs/RMS_LOCALIZATION.md), [record](../results/rms-localization-20261105/README.md) | `python tools/verify_rms_localization.py` |
+| Sharp quantile factor: the finite-vector factor is equivalent to the unique scalar root for every real factor | [FiniteSharp](ThresholdHC/OptimalQuantile/FiniteSharp.lean), [Root](ThresholdHC/OptimalQuantile/Root.lean), [record](../results/optimal-quantile-root-20261105/README.md) | `python tools/verify_optimal_quantile.py` |
+| Finite-core selection reduction at the exact scalar-root factor, and the all-law comparison on the original selection functional | [Lipschitz](ThresholdHC/QuantileSharpLaw/Lipschitz.lean), [CoreReduction](ThresholdHC/QuantileSharpLaw/CoreReduction.lean), [Full](ThresholdHC/QuantileSharpLaw/Full.lean), [reduction record](../results/quantile-core-reduction-20261105/README.md), [comparison record](../results/sharp-quantile-upper-20261105/README.md) | `python tools/verify_quantile_sharp_law.py` |
+| Finite-law sharpness and exact optimality: general and finite-support laws have the same least comparison factor | [Full](ThresholdHC/QuantileOptimality/Full.lean), [record](../results/quantile-optimality-20261105/README.md) | `python tools/verify_quantile_optimality.py` |
+| All-law time-uniform lower bound: every nonnegative deterministic half-width envelope with joint simultaneous coverage and width control is at least $10^{-22}\mathcal K(n/[\log(1/\delta)+\log\log n])$ at arbitrarily late integer budgets, with no monotonicity assumption, in the original observable experiment. Prior families preserve admissibility and mean separation; every adaptive observable prefix has a quadratic KL bound; first-crossing testing, the infinite-moment tail family with adaptive acquisition, the asymptotic cases and the interval consequence are checked ([research note](../docs/TIME_UNIFORM_LOWER.md), [sequential step](../docs/ANYTIME_SEQUENTIAL.md), [tail family](../docs/ANYTIME_TAIL.md)) | [Full](ThresholdHC/AnytimeLower/Full.lean), [Intervals](ThresholdHC/AnytimeLower/Intervals.lean), [Quartet](ThresholdHC/AnytimeLower/Quartet.lean), [final record](../results/anytime-asymptotic-20261105/README.md), [information record](../results/anytime-lower-20261105/README.md) | `python tools/verify_anytime_asymptotics.py`, `python tools/verify_anytime_sequential.py`, `python tools/verify_anytime_tail.py`, `python tools/verify_anytime_lower.py`; profile regression checks: `python tools/verify_anytime_lower_profiles.py` |
 
 The general-law entropy-tail law (v6 Theorem 13.2) is now Lean-checked
 against all eight frozen target types: the two-sided comparison, both halves,
@@ -96,54 +117,12 @@ Even a supporting module may be locked by another result. Follow
 [contribution rules](../CONTRIBUTING.md#preserve-reproducibility) for any proposed
 change to frozen material.
 
-Use `--sequential` on the listed audits when memory is constrained. Baseline,
+Use `--sequential` on the audits that accept it when memory is constrained. Baseline,
 Uniform713, and tier audits write tracked `results/` files, so reproduce those
-in a disposable checkout containing your changes. The other tabled audits write
-under `.runtime/`; [tools/README.md](../tools/README.md) maps the output locations.
+in a disposable checkout containing your changes. Every audit added from
+4 November onward, for example the bandwise-suffix, hard-budget and
+finite-quantile audits, prints its kernel report and writes no evidence files.
+The other tabled audits write timestamped directories under `.runtime/`;
+[tools/README.md](../tools/README.md) maps those locations.
 Run the corresponding verifier regression tests when proof registration or
 verification logic changes. Keep published checkpoints intact.
-
-The [fixed-confidence theorem](ThresholdHC/ConfidenceProgram/Upper.lean)
-bounds both budget models for every known positive-gap law. It uses the
-[stopping-program lower bound](ThresholdHC/ConfidenceProgram/Lower.lean)
-and the [observable median](ThresholdHC/ConfidenceProgram/Amplify.lean).
-[Exact statements and native record](../results/known-law-confidence-20261104/README.md)
-
-[Envelope minimax rates](ThresholdHC/Envelope/Minimax.lean) and
-[unbiased variance and work](ThresholdHC/Envelope/Unbiased.lean) extend
-the ordinary model to unknown laws ordered by their gap CDFs.
-[Audit](../results/stochastic-envelope-20261105/README.md)
-
-[Sublinear power margins](ThresholdHC/SubcriticalPower/Full.lean) give both rare-event minimax rates and one estimator family across the margin class. [Audit](../results/sublinear-power-20261105/README.md)
-
-[Shifted power-margin estimators](ThresholdHC/ShiftedPower/Full.lean) give both remaining rare-event rows, including hard-cap confidence and uniformity over the margin class. [Audit](../results/shifted-power-20261105/README.md)
-
-[Time-uniform confidence](ThresholdHC/Anytime/Full.lean) verifies nested observable intervals, a shared purchase history, data-dependent stopping and the known-law iterated-logarithm width. [Audit](../results/anytime-confidence-20261105/README.md)
-
-[Smooth-density robustness](ThresholdHC/SmoothDensity/Full.lean) verifies both expected-complexity bounds and the uniform unbiased impossibility in the original adaptive experiment. [Proof map](../docs/SMOOTH_DENSITY.md) · [Audit](../results/smooth-density-20261105/README.md)
-
-[Finite-cell observed-state lower bound](ThresholdHC/ObservedState/Finite.lean) constructs a measurable uniform-state partition and proves the exact testing bound for arbitrary selected-state policies. [Proof map](../docs/OBSERVED_STATES.md) · [Audit](../results/finite-observed-20261105/README.md)
-
-[Continuous-magnitude observed-state lower bounds](ThresholdHC/ContinuousObserved/UniformLower.lean) and [RMS lower bound](ThresholdHC/ContinuousObserved/UniformRMSLower.lean) apply to the actual selected-query experiment. [Regularity](ThresholdHC/ContinuousObserved/Regularity.lean) verifies the normalized density and moments. [Proof map](../docs/CONTINUOUS_OBSERVED.md) · [Audit](../results/continuous-observed-lower-20261105/README.md)
-
-[Fresh-state upper bounds](ThresholdHC/ContinuousObserved/Upper.lean) transfer the actual population experiment to selected-state queries. [Uniform-gap rates](ThresholdHC/ContinuousObserved/UniformUpper.lean) complete the observed-state results. [Proof map](../docs/OBSERVED_UPPER.md) · [Audit](../results/observed-state-upper-20261105/README.md)
-
-[Selected-type information transfer](ThresholdHC/TypedConfidence/SignTransfer.lean) checks the coefficient $16/3$ for the actual randomized countable population through unbounded stopping. [Type-label encoding](ThresholdHC/TypedConfidence/Labels.lean) preserves every physical observation word. [Proof map](../docs/ADAPTIVE_TYPES.md) · [Audit](../results/adaptive-types-20261105/README.md)
-
-[Common-pair construction](ThresholdHC/ConfidenceLocalization/CommonPair.lean) derives one pair for every capped local policy from a variance–null-work obstruction. [Confidence consequences](ThresholdHC/ConfidenceLocalization/ConfidenceRate.lean) verify the estimator and minimax coefficient $1/128$. [Proof map](../docs/COMMON_PAIRS.md) · [Audit](../results/common-pair-20261105/README.md)
-
-[Additive confidence localization](ThresholdHC/AdditiveConfidence/Full.lean) checks the estimator and minimax coefficient $1/128$ for finite overlapping submeasures, with exact normalization, original observation laws and weighted work. [Proof map](../docs/ADDITIVE_CONFIDENCE.md) · [Audit](../results/additive-confidence-20261105/README.md)
-
-[Sharper general-law confidence](ThresholdHC/ConfidenceEntropy/Full.lean) checks the lower coefficient $10^{-17}$ and hard-cap upper coefficient $750000$. Its [direct program comparison](ThresholdHC/ConfidenceEntropy/Program.lean) uses the retained entropy at every cap. [Proof map](../docs/ENTROPY_CONFIDENCE.md) · [Audit](../results/entropy-confidence-20261105/README.md)
-
-[Generic RMS transfer](ThresholdHC/RMSLocalization/CommonPair.lean) and [additive submeasure localization](ThresholdHC/RMSLocalization/Full.lean) verify coefficient $1/128$ in the original experiment. [Proof map](../docs/RMS_LOCALIZATION.md) · [Audit](../results/rms-localization-20261105/README.md)
-
-The [sharp finite-vector quantile factor](ThresholdHC/OptimalQuantile/FiniteSharp.lean) is equivalent to the [unique scalar root](ThresholdHC/OptimalQuantile/Root.lean) for every real factor. [Native record](../results/optimal-quantile-root-20261105/README.md)
-
-The [finite-core selection reduction](ThresholdHC/QuantileSharpLaw/CoreReduction.lean) checks the exact scalar-root factor for arbitrary nonnegative core splits, using the [entropy Lipschitz bound](ThresholdHC/QuantileSharpLaw/Lipschitz.lean). [Native record](../results/quantile-core-reduction-20261105/README.md)
-
-The [all-law quantile comparison](ThresholdHC/QuantileSharpLaw/Full.lean) checks the exact scalar-root coefficient on the original selection functional. [Native record](../results/sharp-quantile-upper-20261105/README.md)
-
-[Finite-law sharpness and exact optimality](ThresholdHC/QuantileOptimality/Full.lean) complete the scalar-root characterization. General and finite-support laws have the same least comparison factor on the original selection functional. [Complete native record](../results/quantile-optimality-20261105/README.md)
-
-[Time-uniform lower-bound families](ThresholdHC/AnytimeLower/Quartet.lean) preserve admissibility and the mean separation while bounding every adaptive observable prefix by a quadratic KL expression. The [research note](../docs/TIME_UNIFORM_LOWER.md) explains the checked matching lower bound for every positive-gap law. The [sequential testing step](../docs/ANYTIME_SEQUENTIAL.md) now checks first-crossing summability and infinitely many width violations in the original observable experiment. The [infinite-moment tail family](../docs/ANYTIME_TAIL.md) now has a checked observable information bound and an explicit unbounded integer-budget schedule. The [complete online theorem](ThresholdHC/AnytimeLower/Full.lean) and [interval consequence](ThresholdHC/AnytimeLower/Intervals.lean) now give the coefficient $10^{-22}$ at arbitrarily late budgets without requiring a monotone deterministic envelope. Run `python tools/verify_anytime_asymptotics.py` for fourteen exact statements and their transitive axioms. [Native record](../results/anytime-asymptotic-20261105/README.md).

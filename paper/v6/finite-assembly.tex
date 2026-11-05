@@ -8,8 +8,11 @@ algorithm whose work and risk bounds hold for every $q\in\mathcal Q_\rho$.
 Its design may depend on $(\mu,\rho,B)$ but not on $q$ or a genuine
 coin's latent state. The lower proof applies to every such algorithm,
 including nonlinear outputs and arbitrary interleaving.
-There is no claim of a single procedure simultaneously attaining every
-budget, or of a deterministic total observation cap.
+The theorem makes no claim of a single procedure simultaneously
+attaining every budget, or of a deterministic total observation cap.
+For every known law and $0<\rho\le1/4$, \cref{app:hard-budget}
+separately gives a Lean-checked hard-cap RMS rate with coefficients
+$10^{-17}$ and $160000$ on $\mathcal K$.
 
 \subsubsection{Upper-bound branches and actual attainment}
 Put $D=\sqrt{\rho\Gamma_\kappa}+H$ for the split in

@@ -131,8 +131,11 @@ knows $(\alpha,a,\rho,B)$.
 The matching exact-power lower bound uses the published fixed-gap
 Lee--Valiant theorem through a simulation that keeps a coin's privately
 sampled magnitude fixed on every revisit. Constants diverge as
-$\alpha\downarrow2$. No sharp confidence characterization above or at
-two is asserted in this manuscript.
+$\alpha\downarrow2$. For $0<\rho,\delta\le1/4$, \cref{app:known-confidence}
+bounds both confidence radii for every known positive-gap law within
+universal factors of the entropy--tail functional at budget
+$B/\log(1/\delta)$, and states the critical quadratic rate explicitly. No
+explicit closed-form confidence row above two is derived.
 
 Both bounds of the row above two are also Lean-checked in the observable
 model, by a different construction:
@@ -165,8 +168,11 @@ $h\sqrt{\rho\Gamma_\kappa}$ is comparable to $x\rho^{1-1/\alpha}$,
 $x\sqrt{\rho L(1+\log L)}$ or $x\sqrt\rho$. Comparing the two terms of $\Q$
 recovers each row; below exponent one, $x\rho^{1-1/\alpha}\le x^\alpha$
 because $x<\rho^{1/\alpha}$. This is a consistency check between
-derivations, not an additional verification: the corollary rests on
-the paper proof of Theorem~\ref{thm:entropy-tail-law}.
+derivations, not an additional verification: the corollary follows from
+Theorem~\ref{thm:entropy-tail-law}, and Lean checks
+$10^{-17}\Q\le R_{\mu,\rho}\le30001\,\Q$ for every law, which implies the
+constants of the corollary (see \cref{sec:verification}); the calculation
+above is a paper argument.
 \end{remark}
 
 \subsection{The full critical theorem and the correction to \texorpdfstring{$\Psi$}{Psi}}
@@ -213,10 +219,12 @@ Chen--Li--Qiao~\cite[Lemma 4.1 and Remark D.4]{clq}, which includes a
 Bernoulli extension. The finite-gap proof in \cref{app:critical} supplies
 the required one-sided cost bound at fixed error without fair-coin
 termination. Agrawal--Ram--Ramdas~\cite{agrawal} give general
-composite-test bounds in the Farrell regime. The recent
-Yao--Zhao--Zhou result~\cite{yao} resolves the gap-entropy conjecture for
-Gaussian best-arm identification and reports Lean proofs; its target and
-observation model differ from the population problem here.
+composite-test bounds in the Farrell regime. Two recent preprints treat
+the gap-entropy conjecture for Gaussian best-arm identification:
+Aronow--Kallus--Lopatto~\cite{akl} prove it in the setting recalled in
+\cref{sec:related-work}, and Yao--Zhao--Zhou~\cite{yao} resolve it and
+report Lean proofs. Their targets and observation models differ from the
+population problem here.
 
 At the quadratic law, annular mass of order $16^{-j}$ balances testing
 cost of order $16^j$. Across order $L$ usable scales, comparable

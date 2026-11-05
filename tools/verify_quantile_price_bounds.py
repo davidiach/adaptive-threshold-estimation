@@ -65,6 +65,8 @@ def check_lower():
 
 
 if __name__ == "__main__":
+    if sys.flags.optimize:
+        raise SystemExit("Run without -O: these certificate checks are assert statements.")
     check_upper()
     check_lower()
     print("Verified all rational bounds for 1.46255 < sup(Q/K) <= 31/20.")
