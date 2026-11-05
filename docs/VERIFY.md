@@ -789,3 +789,7 @@ Run `python tools/verify_observed_upper.py` for 21 exact statements and 42 trans
 ## Selected-type information transfer
 
 Run `python tools/verify_typed_confidence.py` for 48 exact statements and 48 transitive axiom reports. The audit covers heterogeneous parameter laws, quarter-mixture hybrids, actual local and total work, randomized countable populations, stopped reconstruction and the final $16/3$ null-work transfer. [Native record](../results/adaptive-types-20261105/README.md)
+
+## Common-pair construction
+
+Run `python tools/verify_confidence_localization.py` for 40 exact statements and 40 transitive axiom reports. The audit covers zero-density Hellinger identities, support regularization, the bounded estimator, policy-wise pairs, finite mixtures, simultaneous feasibility and the estimator/minimax confidence coefficient $1/128$. [Native record](../results/common-pair-20261105/README.md)

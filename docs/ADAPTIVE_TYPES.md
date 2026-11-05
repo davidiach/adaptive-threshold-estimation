@@ -40,8 +40,8 @@ The [native record](../results/adaptive-types-20261105/README.md) checks
 project closure. The [manuscript subsection](../paper/v6/typed-confidence.tex)
 states the hypotheses and gives the full proof.
 
-The local policy-uniform pair is an explicit premise. Its derivation
-from a general variance–null-work obstruction and the
-fractional-submeasure confidence-localization conclusion remain
-formalization work. The sharp quantile-factor characterization also
-retains its paper proof.
+The local policy-uniform pair is an explicit premise of this transfer.
+The [common-pair construction](COMMON_PAIRS.md) now derives it from a
+general variance–null-work obstruction. Fractional-submeasure confidence
+localization and the sharp quantile-factor characterization retain
+their paper proofs.

@@ -1,0 +1,128 @@
+\clearpage
+\subsection{Common pairs from a variance--null-work obstruction}
+\label{sec:common-pair-confidence}
+
+The common pair needed by the confidence transfer can now be
+constructed from the stated single-coin obstruction. The argument
+includes laws with an atom at gap $1/2$.
+
+\begin{theorem}[Verified quantitative common pair]
+\label{thm:common-pair-verified}
+Fix a known probability law $\mu$ on $(0,1/2]$ and $0<\rho\le1/4$.
+Suppose that every capped observable one-coin estimator with bounded
+output, uniform bias at most $b>0$ on $X_\rho$, and uniform variance at
+most $V$ satisfies
+\[
+ V\,\mathbb E_0T\ge J,\qquad J>0.
+\]
+For every $0<\gamma\le b/3$, there are $q,r\in X_\rho$ with
+$\theta(r)-\theta(q)\ge\gamma$ such that, simultaneously for every
+capped local procedure with independent auxiliary randomness,
+\[
+ 1-\Aff(P_q^A,P_r^A)\le
+ \frac{42\gamma^2}{J}\,\mathbb E_0T_A.
+\]
+The pair is chosen before the local policy, auxiliary seed and cap.
+\end{theorem}
+
+\begin{proof}
+The zero-work constant estimator $\rho/2$ forces $b<\rho/2$.
+For a fixed capped acquisition rule, its full canonical transcript has
+the same Hellinger affinity as the finite statistic consisting of the
+stopping count and number of heads. This identity holds even when
+some category probabilities vanish. Indeed, for any common dominating
+measure $\xi$,
+\[
+ \Aff(P,Q)=\int\sqrt{\frac{dP}{d\xi}\frac{dQ}{d\xi}}\,d\xi.
+\]
+The density depends on the transcript only through those two counts,
+so the factor can be integrated over each statistic fiber. The
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/8cf32f7e4092929d46eb87ecbb67b1e231bbcaec/lean/ThresholdHC/ConfidenceLocalization/StatisticGeometry.lean}{finite-statistic identity}
+also gives continuous convex Hellinger constraints on the compact
+dual population-pair set.
+
+Use the constant prior $c=\rho$ and restrict attention to
+$q'=(q+c)/2$, $q\in X_\rho$. If $P_q$ denotes the categorical law,
+then $cP_q\le P_c$ and $P_{q'}=(P_q+P_c)/2$. Thus all these
+regularized laws have the same support and are strictly positive
+there. The finite categorical convex comparison applies on this
+support without any interior-gap hypothesis.
+
+If every pair with $n$-fold affinity at least $1/2$ has target
+separation less than $2\varepsilon$, that comparison and symmetric
+one-run reduction give a finite score $Y$ with bias at most
+$3\varepsilon$ and variance at most $9n\varepsilon^2$ on the regularized
+class. Put
+\[
+ Z=Y+(\mathbb E_cY-c).
+\]
+Affineness of the one-coin law gives
+$\mathbb E_qZ=2\mathbb E_{q'}Y-c$ and
+$\theta(q)=2\theta(q')-c$. Mixture variance gives
+$\Var_qZ=\Var_qY\le2\Var_{q'}Y$. Hence $Z$ has bias at most
+$6\varepsilon$ and variance at most $18n\varepsilon^2$ on the entire
+original class. Its actual stopping rule and work are unchanged.
+This is the
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/8cf32f7e4092929d46eb87ecbb67b1e231bbcaec/lean/ThresholdHC/ConfidenceLocalization/CappedEstimator.lean}{checked bounded estimator construction}.
+
+\clearpage
+Write $w=\mathbb E_0T_A$ and set $\varepsilon=\gamma/2$.
+Since $6\varepsilon\le b$, the obstruction implies that whenever
+\[
+ n\,\frac92\gamma^2w<J,
+\]
+there is a regularized pair with separation at least $\gamma$ and
+$n$-fold affinity at least $1/2$.
+
+On the compact convex set of raw prior pairs with separation at least
+$2\gamma$, let $h$ be the regularized squared Hellinger distance.
+It is continuous and takes values in $[0,1]$. If $h_*$ is its minimum,
+choose an integer $n$ with $2\le nh_*\le3$ when $h_*>0$.
+The elementary implication
+\[
+ (1-h)^n\ge\tfrac12 \quad\Longrightarrow\quad nh\le1
+\]
+shows that the preceding power-pair conclusion forces
+\[
+ J h_*\le\frac{27}{2}\gamma^2w\le42\gamma^2w.
+\]
+The same compact argument covers $w=0$ without dividing by work.
+
+For each capped policy $A$, its constraint
+$J h_A-42\gamma^2w_A$ is continuous and convex on the same compact
+pair set. Every finite revealed mixture of such policies is an actual
+capped policy. The chosen index is part of its independent seed,
+and both affinity and null work are exactly the corresponding
+weighted averages. Thus every finite convex mixture of constraints
+has a feasible pair. Convex minimax gives simultaneous feasibility
+for each finite family, and compactness gives one pair for all
+policies and caps. Finally replace the raw priors by their half
+mixtures with $c$. Their target gap is at least $\gamma$, and they
+remain in $X_\rho$. This proves the
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/8cf32f7e4092929d46eb87ecbb67b1e231bbcaec/lean/ThresholdHC/ConfidenceLocalization/CommonPair.lean}{policy-uniform common-pair theorem}.
+\end{proof}
+
+\begin{corollary}[Verified confidence consequence]
+\label{cor:common-pair-confidence}
+Under the same variance--null-work obstruction, for $B>0$ and
+$0<\delta\le1/4$,
+\[
+ r_{\rm exp}(B,\delta)\ge
+ \frac1{128}\min\left\{b,\sqrt{\frac{J\log(1/\delta)}{B}}\right\}.
+\]
+\end{corollary}
+\begin{proof}
+Set $\gamma=\min\{b,\sqrt{J\log(1/\delta)/B}\}/32$.
+The common pair just constructed satisfies the local premise of the
+stopped $16/3$ KL transfer. Quarter smoothing halves its separation.
+Midpoint testing would require KL at least
+$\log(1/\delta)/4$, while the transfer bounds it by
+$7\log(1/\delta)/32$ if the radius were smaller than the displayed
+lower bound. The
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/8cf32f7e4092929d46eb87ecbb67b1e231bbcaec/lean/ThresholdHC/ConfidenceLocalization/ConfidenceRate.lean}{formal conclusion}
+covers actual observable estimators and the minimax infimum.
+\end{proof}
+
+Fractional-submeasure additive confidence localization and its
+general-law entropy-packing application remain separate formalization
+work.

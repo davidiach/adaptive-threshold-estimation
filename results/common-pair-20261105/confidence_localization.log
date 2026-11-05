@@ -1,0 +1,72 @@
+'ThresholdHC.ConfidenceLocalization.affinity_factored_statistic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ConfidenceLocalization.affinity_reference' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceLocalization.affinity_symm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceLocalization.affinity_with_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceLocalization.capped_affinity_congr_ae' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceLocalization.capped_affinity_enlarge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceLocalization.capped_affinity_real' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceLocalization.capped_affinity_statistic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ConfidenceLocalization.capped_law_const_domination' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ConfidenceLocalization.capped_law_midpoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceLocalization.capped_pair_geometry' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceLocalization.common_pair_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceLocalization.common_pair_of_obstruction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ConfidenceLocalization.confidence_rate_of_obstruction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ConfidenceLocalization.half_mixture_mean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceLocalization.half_mixture_variance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceLocalization.half_score_transfer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceLocalization.localPolicyOfProcedure_affinity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ConfidenceLocalization.localPolicyOfProcedure_nullWork' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ConfidenceLocalization.local_policy_mixture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceLocalization.minimax_confidence_of_obstruction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ConfidenceLocalization.obstruction_bias_lt_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceLocalization.parameter_law_const_domination' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ConfidenceLocalization.parameter_lintegral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceLocalization.parameter_midpoint_law' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceLocalization.regularized_affinity_obstruction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ConfidenceLocalization.regularized_capped_estimator' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ConfidenceLocalization.regularized_observation_score' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ConfidenceLocalization.regularized_pair_geometry' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ConfidenceLocalization.regularized_policy_constraint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ConfidenceLocalization.regularized_policy_power_pair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ConfidenceLocalization.reseed_affinity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceLocalization.selected_affinity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceLocalization.statistic_common_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceLocalization.statistic_law_const_domination' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ConfidenceLocalization.statistic_law_midpoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceLocalization.statistic_mass_midpoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceLocalization.tape_law_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceLocalization.tape_law_smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceLocalization.tape_midpoint_law' depends on axioms: [propext, Classical.choice, Quot.sound]
