@@ -58,3 +58,5 @@ asymptotic coefficient case are further proof obligations.
 Run python tools/verify_anytime_tail.py for the exact-statement and transitive
 axiom audit. Earlier finite rational profile regressions remain historical
 evidence for their own construction.
+
+The [native audit record](../results/anytime-tail-20261105/README.md) binds fifteen exact statements to the proof commit, compiler inputs, axiom reports and dependency hashes.
