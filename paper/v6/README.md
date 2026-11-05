@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Read the updated manuscript](builds/time-uniform-formal-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/time-uniform-formal-20261105.json)
+[Read the updated manuscript](builds/band-cost-formal-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/band-cost-formal-20261105.json)
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -335,3 +335,19 @@ are pinned to the audited revision, and there are no unresolved references
 or new layout warnings. The previous PDF and its record remain unchanged.
 
 [Updated manuscript](builds/time-uniform-formal-20261105.pdf) · [Build record](builds/time-uniform-formal-20261105.json) · [Complete native record](../../results/anytime-asymptotic-20261105/README.md)
+
+
+## Finite-menu cost grouping
+
+The verification table now includes the 14-statement Lean audit of the
+mathematical finite-menu solver, its state and transition bounds, entropy
+price, exact saving comparisons and interval certificates. It explicitly
+leaves the concrete gap-law-to-menu construction and Python implementation
+outside the formal result.
+
+The new 166-page PDF has two byte-identical offline builds. Both changed
+pages (38 and 45) were visually inspected; every other page is unchanged.
+All 29 fonts are embedded, references resolve, and no new layout warning
+appears. Earlier publications remain unchanged.
+
+[Updated manuscript](builds/band-cost-formal-20261105.pdf) · [Build record](builds/band-cost-formal-20261105.json) · [Native audit](../../results/band-cost-formal-20261105/README.md)

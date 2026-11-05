@@ -425,6 +425,18 @@ functional, and inspects the transitive axioms of every new declaration. The
 [verification record](../results/quantile-selection-20261104/README.md) identifies
 the compiler, rebuilt modules and reused inputs.
 
+## Finite-menu cost grouping
+
+`python tools/verify_band_cost_selection.py` checks 14 independently stated
+types and their transitive axioms. It covers feasible compression, recursive
+optimality, state and transition bounds, the entropy price, exact saving
+comparisons and interval certificates.
+
+The [native record](../results/band-cost-formal-20261105/README.md) binds six
+fresh modules with empty logs and one unchanged, previously hash-checked
+dependency. The mathematical menu algorithm is verified; the Python program
+and its concrete finite-law menu construction are outside this audit.
+
 ## Finite-law bandwise-suffix theorem
 
 ```sh
