@@ -143,3 +143,5 @@ The [finite-core selection reduction](ThresholdHC/QuantileSharpLaw/CoreReduction
 The [all-law quantile comparison](ThresholdHC/QuantileSharpLaw/Full.lean) checks the exact scalar-root coefficient on the original selection functional. [Native record](../results/sharp-quantile-upper-20261105/README.md)
 
 [Finite-law sharpness and exact optimality](ThresholdHC/QuantileOptimality/Full.lean) complete the scalar-root characterization. General and finite-support laws have the same least comparison factor on the original selection functional. [Complete native record](../results/quantile-optimality-20261105/README.md)
+
+[Time-uniform lower-bound families](ThresholdHC/AnytimeLower/Quartet.lean) preserve admissibility and the mean separation while bounding every adaptive observable prefix by a quadratic KL expression. The [research note](../docs/TIME_UNIFORM_LOWER.md) gives a matching paper proof for every positive-gap law. The sequential testing argument, infinite-moment construction and asymptotic comparison remain to be formalized.

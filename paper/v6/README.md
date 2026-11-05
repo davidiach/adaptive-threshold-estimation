@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Read the updated manuscript](builds/quantile-optimality-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/quantile-optimality-20261105.json)
+[Read the updated manuscript](builds/time-uniform-lower-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/time-uniform-lower-20261105.json)
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -306,3 +306,15 @@ The entropy Lipschitz bound and sharp finite-core selection reduction in Appendi
 The upper comparison at the exact scalar-root factor is now Lean-checked for every gap law. Finite-law sharpness remains a paper proof. [Updated manuscript](builds/sharp-quantile-upper-20261105.pdf) · [Build record](builds/sharp-quantile-upper-20261105.json) · [Native record](../../results/sharp-quantile-upper-20261105/README.md)
 
 The exact scalar-root characterization, all-law comparison and finite-law sharpness in Appendix P are now Lean-checked. The decimal bracket retains separate rational verification. [Updated manuscript](builds/quantile-optimality-20261105.pdf) · [Build record](builds/quantile-optimality-20261105.json) · [Complete native record](../../results/quantile-optimality-20261105/README.md)
+
+## Matching time-uniform lower-bound build
+
+Appendix V.1 proves the matching gap-law-dependent lower bound on paper for
+every positive-gap law, including infinite inverse moment. The native audit
+checks 15 information inequalities; the sequential testing and asymptotic
+comparison retain paper-proof status. The updated PDF has 168 pages.
+Two independent builds have identical bytes; all eight changed pages were
+visually inspected. Nine following pages move unchanged apart from their
+page numbers. The build retains the two previously recorded layout warnings.
+
+[Updated manuscript](builds/time-uniform-lower-20261105.pdf) · [Build record](builds/time-uniform-lower-20261105.json) · [Native record](../../results/anytime-lower-20261105/README.md)

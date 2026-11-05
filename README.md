@@ -5,7 +5,7 @@
 Minimax theory for estimating a threshold probability from noisy coin flips,
 with a research manuscript, Lean 4 proofs built on Mathlib, and reproducible experiments.
 
-**[Paper](paper/v6/builds/quantile-optimality-20261105.pdf)** · **[Formal proof map](lean/README.md)** · **[Verification guide](docs/VERIFY.md)** · **[Specialist review packet](paper/critical-review/review.pdf)**
+**[Paper](paper/v6/builds/time-uniform-lower-20261105.pdf)** · **[Formal proof map](lean/README.md)** · **[Verification guide](docs/VERIFY.md)** · **[Specialist review packet](paper/critical-review/review.pdf)**
 
 New contributors: start with [CONTRIBUTING.md](CONTRIBUTING.md).
 AI agents: read [AGENTS.md](AGENTS.md) for current entry points, preservation
@@ -190,6 +190,11 @@ sharp quantile factor has a [checked unique scalar root and finite-vector optimu
 [logarithmic and intermediate power rows](results/shifted-power-20261105/README.md) now have complete Lean proofs. The [row below one](results/sublinear-power-20261105/README.md) is Lean-checked for RMS and fixed confidence. The [finite-cap comparison](docs/FINITE_CAP_RATE.md)
 certifies $P_N\le 16R$ at $N=\lceil4B/3\rceil$. Efficient
 exact selection for many bands with unrestricted costs remains open.
+The [matching time-uniform lower bound](docs/TIME_UNIFORM_LOWER.md) now has a
+paper proof for every positive-gap law, with universal coefficient $10^{-22}$
+in the asymptotic deterministic-envelope comparison. Its [15 information
+inequalities](results/anytime-lower-20261105/README.md) are Lean-checked;
+the sequential testing and asymptotic argument remain paper proofs.
 See the [completion ledger](docs/WORKPLAN.md) for the current boundary.
 
 ## Attribution and license

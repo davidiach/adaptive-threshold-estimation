@@ -38,6 +38,7 @@ or CI run passes.
 | Continuous-magnitude observed-state lower bounds and regularity | [continuous-observed-lower-20261105](continuous-observed-lower-20261105/README.md) |
 | Finite-cell observed-state lower bound | [finite-observed-20261105](finite-observed-20261105/README.md) |
 | Smooth-density complexity and unbiased impossibility | [smooth-density-20261105](smooth-density-20261105/README.md) |
+| Prior-family and per-flip information inequalities for the all-law time-uniform lower bound (the complete theorem is a paper proof) | [anytime-lower-20261105](anytime-lower-20261105/README.md) |
 | Observable time-uniform confidence for known laws | [anytime-confidence-20261105](anytime-confidence-20261105/README.md) |
 | Logarithmic and intermediate rare power margins | [shifted-power-20261105](shifted-power-20261105/README.md) |
 | Rare power margins below exponent one | [sublinear-power-20261105](sublinear-power-20261105/README.md) |
