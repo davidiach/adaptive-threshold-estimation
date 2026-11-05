@@ -454,3 +454,12 @@ python -m unittest discover -s toolkit/tests -v
 ```
 
 Code is Apache-2.0 and this guide is CC BY 4.0, like the rest of the repository.
+
+## Identify a law from supplied finite candidates
+
+`threshold_toolkit.law_identification` plans and runs a paid sign-neutral
+pilot using exact rational moments. The true gap law must be a member of the
+supplied `FiniteGapLaw` family; the pilot does not test that premise. It charges
+every flip and refuses insufficient authorization before sampling.
+See the [finite-family adaptation theorem and example](../docs/FINITE_FAMILY_ADAPTATION.md).
+The sampler returns a candidate index, not a complete confidence sequence.

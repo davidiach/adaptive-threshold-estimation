@@ -107,3 +107,13 @@ logarithm term of the known-law upper rate on this law for fixed $\delta$
 as $n\to\infty$. The [full gap-law dependent comparison](TIME_UNIFORM_LOWER.md) now has a complete Lean proof. Whether a law-agnostic interval attains the known-law rate remains open.
 
 The [law-dependent lower-bound development](TIME_UNIFORM_LOWER.md) proves that every deterministic joint coverage-and-width envelope exceeds a universal multiple of the known-law rate infinitely often, for every positive-gap law. Its prior-family, sequential-testing, infinite-moment and asymptotic arguments are Lean-checked, including the observable interval consequence. The [complete audit](../results/anytime-asymptotic-20261105/README.md) verifies the deterministic-envelope bound without a monotonicity assumption. The unknown-law upper construction and the sharper Bernoulli-subfamily coefficient described on this page retain their separate paper-proof scope.
+
+## Adaptation within a supplied finite family
+
+The [finite-family theorem](FINITE_FAMILY_ADAPTATION.md) gives the known-law
+time-uniform rate after an explicit finite pilot cost, even when candidate
+supports differ. Even products of observed flips identify moment signatures
+without assumptions on how signs depend on gaps. The theorem is a paper proof;
+17 Lean statements check its parity, concentration, identification, probability
+transfer and delayed-rate components. The candidate-family premise is required.
+This does not resolve adaptation over arbitrary unknown laws.

@@ -147,3 +147,13 @@ The [all-law quantile comparison](ThresholdHC/QuantileSharpLaw/Full.lean) checks
 [Finite-law sharpness and exact optimality](ThresholdHC/QuantileOptimality/Full.lean) complete the scalar-root characterization. General and finite-support laws have the same least comparison factor on the original selection functional. [Complete native record](../results/quantile-optimality-20261105/README.md)
 
 [Time-uniform lower-bound families](ThresholdHC/AnytimeLower/Quartet.lean) preserve admissibility and the mean separation while bounding every adaptive observable prefix by a quadratic KL expression. The [research note](../docs/TIME_UNIFORM_LOWER.md) explains the checked matching lower bound for every positive-gap law. The [sequential testing step](../docs/ANYTIME_SEQUENTIAL.md) now checks first-crossing summability and infinitely many width violations in the original observable experiment. The [infinite-moment tail family](../docs/ANYTIME_TAIL.md) now has a checked observable information bound and an explicit unbounded integer-budget schedule. The [complete online theorem](ThresholdHC/AnytimeLower/Full.lean) and [interval consequence](ThresholdHC/AnytimeLower/Intervals.lean) now give the coefficient $10^{-22}$ at arbitrarily late budgets without requiring a monotone deterministic envelope. Run `python tools/verify_anytime_asymptotics.py` for fourteen exact statements and their transitive axioms. [Native record](../results/anytime-asymptotic-20261105/README.md).
+
+[Finite-family law adaptation](../docs/FINITE_FAMILY_ADAPTATION.md) has 17 checked
+components in [Parity](ThresholdHC/LawAdaptation/Parity.lean),
+[Identification](ThresholdHC/LawAdaptation/Identification.lean),
+[Concentration](ThresholdHC/LawAdaptation/Concentration.lean),
+[Pilot](ThresholdHC/LawAdaptation/Pilot.lean),
+[Transfer](ThresholdHC/LawAdaptation/Transfer.lean) and
+[Rate](ThresholdHC/LawAdaptation/Rate.lean). Run
+`python tools/verify_law_adaptation.py`. This is not yet a Lean theorem constructing
+the complete selected controller in the original observable experiment.

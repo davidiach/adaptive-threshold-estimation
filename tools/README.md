@@ -102,3 +102,8 @@ Run `verify_quantile_optimality.py` for [finite-law realization and exact least-
 Run `verify_anytime_lower.py` for the [law-dependent prior-family and observable information bounds](../docs/TIME_UNIFORM_LOWER.md). It audits 15 exact statements and their transitive axioms. Run `verify_anytime_sequential.py` for eight exact statements covering first-crossing summability and infinitely many width violations in the observable experiment. Run `verify_anytime_asymptotics.py` for fourteen exact statements covering the finite coefficient, dense and sparse cases, full all-law theorem, and observable interval consequence. [Native record](../results/anytime-asymptotic-20261105/README.md).
 
 Run `verify_anytime_tail.py` for fifteen exact statements covering the infinite-moment tail family, adaptive acquisition transfer, and explicit unbounded testing schedule. See the [construction and its boundary](../docs/ANYTIME_TAIL.md).
+
+Run `verify_law_adaptation.py` for 17 exact types and transitive axiom reports
+covering [finite-family unknown-law adaptation components](../docs/FINITE_FAMILY_ADAPTATION.md):
+sign-neutral parity, bounded-average concentration, identification, probability
+transfer, physical cap arithmetic and the delayed oracle-rate comparison.
