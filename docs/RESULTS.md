@@ -444,7 +444,7 @@ states the two upper bounds with the coarser constant 33000. Its
 [lock](../tools/entropy_tail_quantile_specification_freeze.json) records the
 mechanical rename from #33's namespace, needed because `main` had locked a
 different model at the same paths. CI runs
-`python tools/verify_entropy_tail.py --sequential` and
+`python tools/verify_entropy_tail.py --sequential --require-complete` and
 `python tools/verify_entropy_tail_upper.py --cached-dependencies` in the
 `entropy-tail-upper` job ([details](VERIFY.md#entropy-tail-selection-functional)).
 A parallel integration of #33 published a full-rebuild record,
@@ -494,7 +494,7 @@ The original paper construction uses asymmetric sign-test errors and a randomize
 
 The [adversarial review](../research/2026-10-27-route-a/review.md), [second analytic review](../research/2026-10-27-route-a/second-review.md), [primary-source comparison](../research/2026-10-27-route-a/sources.md), and [baseline ledger](../research/2026-10-27-route-a/BASELINE.md) record the evidence. Reviewers did not author the main proof; model diversity is not guaranteed. The new Lean construction has second moment at most $28\rho$ and uses fixed-count averaging with the constant saturation estimator. Its matching lower coefficient is $1/256$ for every law supported below $a$, proved without importing an external statistical theorem. These two constants are instantiated in the proofs; the frozen statements assert positive constants. The [formal scope and proof map](RARE_ABOVE_TWO.md) distinguish these conservative constants and the formal algorithm from the paper construction. The seven frozen targets also cover exact-law existence, Psi equivalence and nonvacuity. External specialist review and worldwide novelty remain unverified. At the 27 October paper checkpoint, the arbitrary-law conjecture and $\alpha=2$ were unresolved. The later critical-law theorem below resolves the specified quadratic law and refutes the matching-Psi conjecture. The [general-law manuscript](#general-law-rare-event-characterization) supplies an entropy-tail replacement as an audited paper proof, since Lean-checked in both directions with conservative universal constants. The separate finite-gap manuscript below gives a closed quantile formula for known finite laws, including two atoms; infinite-support and unknown-law guarantees remain outside that manuscript's scope. Constants diverge as $\alpha\downarrow2$. The preserved paper and imported continuation are unchanged.
 
-## Known finite-gap rare events: paper-proof characterization
+## Known finite-gap rare events: closed quantile characterization
 
 Theorem 1.1 of the [standalone manuscript](../paper/finite-gap-rare-events/paper.pdf)
 states, for every known finite positive-gap law, $0<\rho\le1/4$ and $B>0$,

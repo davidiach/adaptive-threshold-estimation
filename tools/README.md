@@ -15,7 +15,7 @@ behavior before running it in a checkout that contains published evidence.
 | Rare-event manuscript replay | [verify_rare_event_manuscript.py](verify_rare_event_manuscript.py) | Publication manifests and finite certificates in a temporary copy; prints the report and preserves the published payload. |
 | Original Lean and tier audits | [verify_lean_checkpoint.py](verify_lean_checkpoint.py), [verify_uniform713.py](verify_uniform713.py), `verify_tier3.py` through `verify_tier6.py` | Build and audit frozen targets; write logs/status into tracked `results/`. Use a disposable checkout. |
 | Scalar constant lemmas | [verify_uniform_arithmetic.py](verify_uniform_arithmetic.py) | Runs `lake env lean` on the unfrozen `proposals/constants/UniformArithmetic.lean` and checks its seven lemmas' axiom reports with the shared proof-escape and `sorry` guards; writes `results/constants_uniform_lean_audit.log` and `_status.json`. |
-| Later theorem audits | `verify_*_components.py`, `verify_critical_psi.py`, `verify_critical_all_sizes.py`, `verify_unbiased_converse.py`, `verify_observable713.py`, `verify_confidence.py`, `verify_oracle_lower.py`, `verify_rare_above_two.py`, `verify_entropy_tail.py`, `verify_entropy_tail_upper.py`, `verify_entropy_tail_components.py`, `verify_entropy_tail_assembly.py`, `verify_quantile_comparison.py`, and the sixteen [stopping-program, identification and genie audits](../docs/VERIFY.md#stopping-program-identification-and-genie-certificates) (`stopping_program_lock.py` checks their specification lock) | Exact targets, source identities, and transitive axioms; timestamped directories under `.runtime/`, with `--output-dir` and `--sequential` options. See the [theorem map](../lean/README.md#main-theorem-entry-points). |
+| Later theorem audits | `verify_*_components.py`, `verify_critical_psi.py`, `verify_critical_all_sizes.py`, `verify_unbiased_converse.py`, `verify_observable713.py`, `verify_confidence.py`, `verify_oracle_lower.py`, `verify_rare_above_two.py`, `verify_entropy_tail.py`, `verify_entropy_tail_upper.py`, `verify_entropy_tail_components.py`, `verify_entropy_tail_assembly.py`, `verify_quantile_comparison.py`, and the sixteen [stopping-program, identification and genie audits](../docs/VERIFY.md#stopping-program-identification-and-genie-certificates) (`stopping_program_lock.py` checks their specification lock) | Exact targets, source identities, and transitive axioms; timestamped directories under `.runtime/`, with an `--output-dir` option. The build options differ: the older audits accept `--sequential`; `verify_entropy_tail_upper.py`, `verify_entropy_tail_assembly.py`, `verify_entropy_tail_lower_components.py` and the sixteen stopping-program audits accept `--cached-dependencies` instead; `verify_entropy_tail_components.py` accepts neither. See the [theorem map](../lean/README.md#main-theorem-entry-points). |
 | Numerical and experiment checks | `check_targets*_numeric.py`, [check_power_bracket.py](check_power_bracket.py), [verify_experiment_lock.py](verify_experiment_lock.py), with [benchmark/verify_production.py](../benchmark/verify_production.py) | Finite/numerical diagnostics, stored-sample replay, the held-out record recomputed from its raw data, and exact replays of the production benchmark routines, with the scope described in [VERIFY.md](../docs/VERIFY.md#integrity-numerics-and-unit-tests). Some write `results/`; use a disposable checkout for the full sequence. |
 | Lean source guard | [verify_lean_sources.py](verify_lean_sources.py) | Scans every project Lean source (`lean/`, without `.lake` and `.audit`, plus `proposals/constants/`) with the strengthened shared proof-escape pattern after comment stripping. Read-only and needs no Lean build; a textual guard, not a parser. |
 | Finite-law bandwise-suffix theorem | [verify_bandwise_suffix.py](verify_bandwise_suffix.py) | Builds the optimizer and candidate bound, checks exact theorem types and audits transitive axioms. |
@@ -31,6 +31,13 @@ behavior before running it in a checkout that contains published evidence.
 | Direct finite-law quantile audit | [verify_finite_quantile.py](verify_finite_quantile.py) | Builds the finite-law theorem, the estimator witness and the converse with Lake. Checks the target, direct proof dependencies and transitive axioms. |
 | Closed-quantile minimax audit | [verify_closed_quantile.py](verify_closed_quantile.py) | Full universal two-sided corollary in the original experiment; full local rebuild by default, or explicit `--cached-dependencies`, which requires Lake to confirm reused dependencies are up to date (`--build-dependencies` builds them). Fresh logs under `.runtime/closed-quantile/`. |
 | Entropy-tail lower supporting audit | [verify_entropy_tail_lower_components.py](verify_entropy_tail_lower_components.py) | The complete finite-certificate lower proof, including packing and the finite-prefix limit; the canonical lower/law targets are checked separately by `verify_entropy_tail.py --require-complete`. Full dependency rebuild by default, or explicit `--cached-dependencies` with the same Lake up-to-date check and `--build-dependencies` option; fresh logs under `.runtime/entropy-tail-lower-components/`. |
+| Known-law fixed confidence | [verify_stopping_confidence.py](verify_stopping_confidence.py), [verify_confidence_amplification.py](verify_confidence_amplification.py) | Build the original observable experiment and check the [fixed-confidence statements](../results/known-law-confidence-20261104/README.md) and minimax radii. |
+| Stochastic envelope | [verify_stochastic_envelope.py](verify_stochastic_envelope.py) | The [unknown-law envelope corollary](../results/stochastic-envelope-20261105/README.md). |
+| Power margins below two | [verify_sublinear_power.py](verify_sublinear_power.py), [verify_shifted_power.py](verify_shifted_power.py) | The [row below one](../results/sublinear-power-20261105/README.md) and the [logarithmic and intermediate rows](../results/shifted-power-20261105/README.md). |
+| Time-uniform confidence | [verify_anytime_confidence.py](verify_anytime_confidence.py) | The [online confidence theorem](../results/anytime-confidence-20261105/README.md). |
+| Smooth densities | [verify_smooth_density.py](verify_smooth_density.py) | The [smooth-density theorem](../results/smooth-density-20261105/README.md), its analytic construction and original-experiment identification. |
+| Observed states | [verify_observed_states.py](verify_observed_states.py), [verify_continuous_observed.py](verify_continuous_observed.py), [verify_observed_upper.py](verify_observed_upper.py) | The [finite-cell theorem](../results/finite-observed-20261105/README.md), the [continuous-magnitude lower bounds and regularity](../results/continuous-observed-lower-20261105/README.md), and the [fresh-state upper-bound transfer and uniform-gap rates](../results/observed-state-upper-20261105/README.md). |
+| Confidence localization | [verify_typed_confidence.py](verify_typed_confidence.py), [verify_confidence_localization.py](verify_confidence_localization.py), [verify_additive_confidence.py](verify_additive_confidence.py), [verify_confidence_entropy.py](verify_confidence_entropy.py), [verify_rms_localization.py](verify_rms_localization.py) | The [selected-type transfer](../results/adaptive-types-20261105/README.md), [common-pair construction](../results/common-pair-20261105/README.md), [fractional-submeasure localization](../results/additive-confidence-20261105/README.md), [sharper general-law coefficient](../results/entropy-confidence-20261105/README.md) and [generic RMS transfer](../results/rms-localization-20261105/README.md). |
 | Scoring and search | [score.py](score.py), [tune_constants.py](tune_constants.py), [constant scorers](../constants/) | Historical scoring/search protocol; may write evidence and acceptance state. Read [BRIEF.md](../BRIEF.md) as history and preserve the frozen and held-out constraints. These are not onboarding commands. |
 | Manuscript assembly | [build_v6.py](build_v6.py), [build_v5.py](build_v5.py), [build_critical_review.py](build_critical_review.py) | `--check` compares generated sources without rewriting them. Without `--check`, regenerates TeX; PDF compilation is separate. |
 | Regression tests | `test_*.py` | Exercise verification guards and manuscript assembly. Run the matching module for a focused change; the full command is below. |
@@ -58,33 +65,6 @@ new evidence. Historical research validators can intentionally reject the
 integrated checkout; use the maintained replay entry points above instead of
 altering the original snapshots.
 
-Run `verify_stopping_confidence.py` and `verify_confidence_amplification.py`
-for the [fixed-confidence statements and native record](../results/known-law-confidence-20261104/README.md).
-They build the original observable experiment before checking the minimax radii.
-
-Run `verify_stochastic_envelope.py` for the unknown-law envelope corollary.
-[Statements and native logs](../results/stochastic-envelope-20261105/README.md)
-
-Run `verify_sublinear_power.py` for [the power-margin row below one](../results/sublinear-power-20261105/README.md).
-
-Run `verify_shifted_power.py` for [the logarithmic and intermediate power-margin rows](../results/shifted-power-20261105/README.md).
-
-Run `verify_anytime_confidence.py` for [the online confidence theorem](../results/anytime-confidence-20261105/README.md).
-
-Run `verify_smooth_density.py` for the [smooth-density theorem](../results/smooth-density-20261105/README.md), its analytic construction and original-experiment identification.
-
-Run `verify_observed_states.py` for the [finite-cell observed-state theorem](../results/finite-observed-20261105/README.md), its construction and selected-query experiment.
-
-Run `verify_continuous_observed.py` for the [continuous-magnitude lower bounds and regularity](../results/continuous-observed-lower-20261105/README.md).
-
-Run `verify_observed_upper.py` for the [full fresh-state upper-bound transfer and uniform-gap rates](../results/observed-state-upper-20261105/README.md).
-
-Run `verify_typed_confidence.py` for the [selected-type information transfer](../results/adaptive-types-20261105/README.md), including exact work charging and stopped reconstruction.
-
-Run `verify_confidence_localization.py` for the [common-pair construction and its confidence consequence](../results/common-pair-20261105/README.md).
-
-Run `verify_additive_confidence.py` for [fractional-submeasure additive confidence localization](../results/additive-confidence-20261105/README.md).
-
-Run `verify_confidence_entropy.py` for the [sharper general-law confidence coefficient](../results/entropy-confidence-20261105/README.md).
-
-Run `verify_rms_localization.py` for [generic RMS obstruction transfer and additive localization](../results/rms-localization-20261105/README.md).
+The Lean kernel audits added from 4 November onward take no build options
+(two accept only `--lake`). They build with Lake, check exact statements and
+transitive axioms, print the report and write no files.
