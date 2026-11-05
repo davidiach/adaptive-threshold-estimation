@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Read the updated manuscript](builds/finite-observed-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/finite-observed-20261105.json)
+[Read the updated manuscript](builds/continuous-observed-lower-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/continuous-observed-lower-20261105.json)
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -55,7 +55,7 @@ now establishes both explicit coefficients, $10^{-20}$ and $30001$. The
 [operational theorems](../../lean/ThresholdHC/FiniteQuantile/Operational.lean)
 give the estimator and converse statements. The [arbitrary-law comparison](../../lean/ThresholdHC/EntropyTailSharp/Full.lean)
 checks $10^{-17}\mathcal K\le R\le28000\mathcal K$ and $10^{-17}Q\le R$.
-The rare-event rows below two are now Lean-checked in [Appendix T](appendix-sublinear-power.tex) and [Appendix U](appendix-shifted-power.tex). [Appendix W](appendix-smooth-density.tex) gives the Lean-checked smooth-density complexity and unbiased-impossibility theorem. [Appendix X](appendix-finite-observed.tex) verifies the finite-cell observed-state lower bound. The continuous-magnitude extension retains its paper proof.
+The rare-event rows below two are now Lean-checked in [Appendix T](appendix-sublinear-power.tex) and [Appendix U](appendix-shifted-power.tex). [Appendix W](appendix-smooth-density.tex) gives the Lean-checked smooth-density complexity and unbiased-impossibility theorem. [Appendix X](appendix-finite-observed.tex) verifies the finite-cell observed-state lower bound. [Appendix Y](appendix-continuous-observed.tex) verifies the continuous-magnitude lower bounds and regularity. The fresh-state upper-bound transfer retains its paper proof.
 The general-law and finite-gap proofs share
 their upper construction and Appendices F–H, so they are one rate
 established by two arguments, not two independent confirmations. The remark
@@ -284,3 +284,5 @@ finite-budget and unbiased models. [Build record](builds/stochastic-envelope-202
 [Appendix W](appendix-smooth-density.tex) completes smooth-density robustness. [Manuscript](builds/smooth-density-20261105.pdf) · [Build record](builds/smooth-density-20261105.json)
 
 [Appendix X](appendix-finite-observed.tex) completes the finite-cell observed-state theorem. [Manuscript](builds/finite-observed-20261105.pdf) · [Build record](builds/finite-observed-20261105.json)
+
+[Appendix Y](appendix-continuous-observed.tex) verifies continuous-magnitude observed-state lower bounds and regularity. [Manuscript](builds/continuous-observed-lower-20261105.pdf) · [Build record](builds/continuous-observed-lower-20261105.json)
