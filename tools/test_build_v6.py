@@ -7,8 +7,12 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
+import copy
+import json
+
 import build_v6
-from build_v6 import DEST, ROOT, assemble, check_project, project_text, rekey
+from build_v6 import (DEST, ROOT, STATUS_WORDS, assemble, check_project, load_status,
+                      project_text, rekey, status_text, validate_status)
 
 GL = ROOT / "paper/rare-event/v2/sections"
 FG = ROOT / "paper/finite-gap-rare-events/revision-2/sections"
@@ -252,6 +256,65 @@ class ConsolidatedAssemblyTests(unittest.TestCase):
 def missing_lines(source: str, generated: str) -> set[str]:
     present = set(lines(generated))
     return {line for line in lines(source) if line not in present}
+
+
+class VerificationStatusTests(unittest.TestCase):
+    """The abstract and boundary status sentences come only from status.json."""
+
+    def setUp(self):
+        self.status = load_status()
+
+    def test_status_change_moves_a_result_in_every_venue(self):
+        status = copy.deepcopy(self.status)
+        status["results"]["rms-law"]["status"] = "paper"
+        status["results"]["psi-lower-bound"]["status"] = "lean"
+        abstract = " ".join(status_text(status, "abstract").split())
+        boundary = " ".join(status_text(status, "boundary").split())
+        self.assertIn("The original RMS law in both directions", abstract)
+        self.assertIn("remains a paper proof.", abstract)
+        self.assertNotIn("checks the original RMS law", abstract)
+        self.assertIn("Lean also checks the arbitrary-law statistical $\\Psi$ lower bound", abstract)
+        self.assertIn("Both directions of the original RMS law", boundary)
+        self.assertNotIn("checks both directions of the original RMS law", boundary)
+
+    def test_generated_status_matches_the_source(self):
+        output = assemble()
+        abstract = output["status-abstract.tex"].split("\n", 1)[1]
+        self.assertEqual(abstract.rstrip("\n"), status_text(self.status, "abstract"))
+        boundary = " ".join(status_text(self.status, "boundary").split())
+        self.assertIn(boundary, " ".join(output["introduction.tex"].split()))
+
+    def test_status_words_stay_in_the_status_field(self):
+        status = copy.deepcopy(self.status)
+        status["results"]["confidence"]["abstract"] += ", Lean-checked"
+        with self.assertRaisesRegex(ValueError, "Status wording"):
+            validate_status(status)
+
+    def test_every_status_needs_existing_evidence(self):
+        status = copy.deepcopy(self.status)
+        status["results"]["unbiased"]["evidence"] = ["lean/ThresholdHC/Missing.lean"]
+        with self.assertRaisesRegex(ValueError, "evidence"):
+            validate_status(status)
+        status = copy.deepcopy(self.status)
+        status["results"]["unbiased"]["status"] = "proved"
+        with self.assertRaisesRegex(ValueError, "must be one of"):
+            validate_status(status)
+
+    def test_entries_are_used_and_phrased_for_their_venues(self):
+        status = copy.deepcopy(self.status)
+        status["results"]["orphan"] = {"status": "lean", "evidence": ["lean/ThresholdHC/Tier6/Full.lean"]}
+        with self.assertRaisesRegex(ValueError, "Unused status entries"):
+            validate_status(status)
+        status = copy.deepcopy(self.status)
+        del status["results"]["unbiased"]["boundary"]
+        with self.assertRaisesRegex(ValueError, "No boundary phrase"):
+            validate_status(status)
+
+    def test_abstract_has_no_hand_written_status(self):
+        text = (DEST / "frontmatter.tex").read_text(encoding="utf-8")
+        body = re.sub(r"(?<!\\)%[^\n]*", "", text)
+        self.assertIn("\\input{status-abstract}", body)
+        self.assertIsNone(STATUS_WORDS.search(body), STATUS_WORDS.search(body))
 
 
 if __name__ == "__main__":
