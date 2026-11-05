@@ -793,3 +793,7 @@ Run `python tools/verify_typed_confidence.py` for 48 exact statements and 48 tra
 ## Common-pair construction
 
 Run `python tools/verify_confidence_localization.py` for 40 exact statements and 40 transitive axiom reports. The audit covers zero-density Hellinger identities, support regularization, the bounded estimator, policy-wise pairs, finite mixtures, simultaneous feasibility and the estimator/minimax confidence coefficient $1/128$. [Native record](../results/common-pair-20261105/README.md)
+
+## Additive confidence localization
+
+Run `python tools/verify_additive_confidence.py` for 41 exact statements and 41 transitive axiom reports. The audit covers overlapping submeasures, clipped Radon–Nikodym priors, positive and negative sign measures, exact parameter and finite-statistic laws, residual mass, weighted original work, and the estimator/minimax coefficient $1/128$. [Native record](../results/additive-confidence-20261105/README.md)

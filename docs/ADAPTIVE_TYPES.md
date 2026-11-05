@@ -42,6 +42,7 @@ states the hypotheses and gives the full proof.
 
 The local policy-uniform pair is an explicit premise of this transfer.
 The [common-pair construction](COMMON_PAIRS.md) now derives it from a
-general variance–null-work obstruction. Fractional-submeasure confidence
-localization and the sharp quantile-factor characterization retain
-their paper proofs.
+general variance–null-work obstruction. The [fractional-submeasure
+localization](ADDITIVE_CONFIDENCE.md) is also Lean-checked. Its
+entropy-packing application and the sharp quantile-factor
+characterization retain their paper proofs.

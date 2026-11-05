@@ -46,6 +46,6 @@ The [native record](../results/common-pair-20261105/README.md) checks
 modules. The [manuscript proof](../paper/v6/common-pair-confidence.tex)
 states the hypotheses and construction.
 
-Fractional-submeasure additive confidence localization, its general-law
-entropy-packing application and the sharp quantile-factor formalization
-remain in progress.
+[Fractional-submeasure additive confidence localization](ADDITIVE_CONFIDENCE.md)
+is now checked. Its general-law entropy-packing application and the
+sharp quantile-factor formalization remain in progress.
