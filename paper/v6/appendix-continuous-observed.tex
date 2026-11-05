@@ -1,0 +1,120 @@
+\section{Continuous-magnitude observed-state lower bounds}
+\label{app:continuous-observed}
+
+This appendix verifies the lower bounds and regularity assertions of
+\cref{prop:continuous}. The class permits arbitrary finite measurable
+sign-cell partitions and disclosed gap maps. The query policy may choose
+any state, revisit states, and stop after an unbounded number of observations.
+The upper-bound transfer from fresh outer sampling remains a paper proof.
+
+\begin{theorem}[Verified continuous-magnitude obstruction]
+\label{thm:continuous-observed-verified}
+Let $U$ be uniform on $[0,1]$ and let $X\in\{-1,1\}$ have a deterministic
+conditional Bernoulli law with
+$|\mathbb E[X\mid U]|=2D(U)$ and
+$D(U)\sim\operatorname{Unif}(0,1/4]$.
+There is a class of such models with arbitrary finite sign-cell
+partitions for which, for all sufficiently small $\varepsilon>0$,
+the minimax expected observation counts satisfy
+\[
+\begin{gathered}
+ \mathcal C_{\rm conf}(\varepsilon,1/16)
+ \ge c\,\varepsilon^{-2}\log^2(1/\varepsilon),
+ \qquad
+ \mathcal C_{\rm RMS}(\varepsilon)
+ \ge \frac{c}{64}\,\varepsilon^{-2}\log^2(1/\varepsilon),\\
+ c=\frac{225\,\operatorname{kl}(7/8,1/8)}{128\cdot64^2}>0.
+\end{gathered}
+\]
+Every model has a version with $0<D(u)\le1/4$ at every state.
+Its normalized conditional magnitude has a density bounded by $2$.
+For every real $q\ge0$ and every state, its normalized central
+$q$th absolute moment is at most $3^{q/2}$.
+\end{theorem}
+
+\begin{proof}
+Use the finite measurable design from \cref{app:finite-observed},
+retaining the unrounded gap coordinate as the actual magnitude.
+The sign-cell caps still determine the testing priors, while the
+actual gap law is exactly the prescribed law $\mu$.
+For $\mu=\operatorname{Unif}(0,1/4]$, cap both the gap and each cell
+magnitude at $1/4$. This preserves the gap law, increases the clipped
+modulus of the caps, and retains the target-concentration condition.
+It also enforces the cutoff at states of probability zero that a
+selected-query algorithm could otherwise choose.
+
+For a point with actual gap $d$ in a cell with cap $b\ge d$, obtain
+one observation from the $b$-gap cell coin and independently flip its
+outcome with probability
+\[
+ \gamma(b,d)=\frac{1-d/b}{2}.
+\]
+For either cell sign, the resulting Bernoulli parameter is exactly
+$1/2\pm d$. A history decoder chooses each subsequent point from the
+transformed observations. It preserves every paid-observation
+indicator and the total work on every tape.
+
+The checked simulation extracts one raw cell observation and one
+independent uniform noise value at each active step. The transformed
+observation has the requested conditional law, and the unused
+randomness retains its independent product law. Induction therefore
+gives the ordinary fresh-Bernoulli law for every finite adaptive
+prefix, jointly with the original private seed. These prefix laws
+uniquely determine the complete transcript measure.
+Consequently the finite-cell testing argument applies to every
+physical experiment with this observation rule, giving
+\[
+ B\ge\frac{225}{128h^2}\operatorname{kl}(1-2\delta,2\delta),
+ \qquad \Delta_h\ge\frac18\omega_\mu(h).
+\]
+
+For $0<h<1/4$, the exact uniform-law modulus is
+\[
+ \omega_\mu(h)=4h\left(1+\log\frac1{4h}\right).
+\]
+For sufficiently small $\varepsilon$, the checked choice
+$h=64\varepsilon/\log(1/\varepsilon)$ has $h\le1/64$ and
+$\varepsilon<\omega_\mu(h)/32\le\Delta_h/4$.
+Take $\delta=1/16$ to obtain the stated confidence coefficient.
+A squared-error guarantee $\varepsilon^2$ gives radius $4\varepsilon$
+at failure probability $1/16$ by Markov's inequality.
+Apply the confidence result at $4\varepsilon$ and use
+$\log(1/(4\varepsilon))\ge\frac12\log(1/\varepsilon)$
+for $\varepsilon\le1/16$ to obtain the RMS coefficient.
+\end{proof}
+
+The regularity calculation concerns the actual conditional law.
+Writing $m=\mathbb E[X\mid U]$, direct Bernoulli integration gives
+\[
+ |m|=2D,\qquad
+ \operatorname{Var}(X\mid U)=1-4D^2\ge\frac34,\qquad
+ |X-m|\le\frac32.
+\]
+Hence $|X-m|/\sqrt{\operatorname{Var}(X\mid U)}\le\sqrt3$,
+which proves the moment assertion.
+For the normalized magnitude, put
+\[
+ Z(d)=\frac{2d}{\sqrt{1-4d^2}},\qquad
+ G(z)=\frac{z}{2\sqrt{1+z^2}},\qquad
+ G'(z)=\frac1{2(1+z^2)\sqrt{1+z^2}}.
+\]
+The inverse $G$ is strictly increasing and $0<G'\le1/2$.
+On $0<d\le1/4$, $G(Z(d))=d$. The checked change-of-variables
+identity thus gives the density
+\[
+ f_Z(z)=
+ \frac{2\,\mathbf1_{(0,Z(1/4)]}(z)}
+ {(1+z^2)\sqrt{1+z^2}}
+ \le2.
+\]
+These uniform bounds verify the bounded-density and normalized
+conditional-moment assumptions stated in \cref{prop:continuous}.
+
+The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/10fc9a912ff5ecd9b1125bea47daa4821df6fd79/lean/ThresholdHC/ContinuousObserved/UniformLower.lean}{confidence theorem},
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/10fc9a912ff5ecd9b1125bea47daa4821df6fd79/lean/ThresholdHC/ContinuousObserved/UniformRMSLower.lean}{RMS theorem}, and
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/10fc9a912ff5ecd9b1125bea47daa4821df6fd79/lean/ThresholdHC/ContinuousObserved/Regularity.lean}{regularity theorem}
+identify the physical observation law, threshold target, gap
+distribution, normalized density, and conditional moments.
+The finite replication count uses the second-moment construction
+from \cref{app:finite-observed}. The class contains designs at all
+scales and is selected before the requested accuracy.

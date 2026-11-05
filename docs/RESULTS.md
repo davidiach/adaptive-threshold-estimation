@@ -102,6 +102,27 @@ The checked construction uses a second-moment replication condition.
 The continuous-magnitude extension still has a paper proof.
 [Proof map](OBSERVED_STATES.md) · [Native audit](../results/finite-observed-20261105/README.md)
 
+## Continuous-magnitude observed-state obstruction
+
+For uniform observed states and gaps exactly uniform on $(0,1/4]$, Lean
+proves the expected-work lower rate $\varepsilon^{-2}\log^2(1/\varepsilon)$
+under arbitrary selected-state queries, revisits, interleaving and
+unbounded stopping. At failure probability $1/16$, the coefficient is
+$c=225\operatorname{kl}(7/8,1/8)/(128\cdot64^2)>0$. The RMS coefficient
+is $c/64$. Both statements hold for sufficiently small positive error.
+
+The proof identifies every physical finite-prefix law and the complete
+transcript measure. The exact gap-law construction enforces the
+one-quarter cutoff at every state. It identifies the actual threshold
+target and proves that the normalized conditional magnitude has density
+bounded by two. Every normalized conditional central moment of real
+order $q\ge0$ is bounded by $3^{q/2}$.
+
+The matching upper rate retains its paper proof. Its formal continuation
+transfers the existing population estimator to fresh uniform outer
+sampling, with the actual observation law, work and risk identified.
+[Proof map](CONTINUOUS_OBSERVED.md) · [Native audit](../results/continuous-observed-lower-20261105/README.md)
+
 ## Paper review scope
 
 The [response to the final Opus review](../inputs/next-phase/baseline/Adaptive_Threshold_v4/review/RESPONSE_TO_OPUS.md) records agent review of components incorporated into v4, including the budget-only algorithm and symmetric-KL converse. It explicitly says that the consolidated manuscript has not received independent specialist review. “Paper proof” therefore does not imply external peer review or a complete Lean proof. The later 713 argument, bias counterexample, and unknown-rarity obstruction have a separate [independent agent review](../proposals/RESEARCH_REVIEW.md), whose author did not write those arguments.

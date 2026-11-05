@@ -29,6 +29,7 @@ or CI run passes.
 | Finite-law bandwise-suffix optimizer and sufficient search family | [bandwise-suffix-20261104](bandwise-suffix-20261104/README.md) |
 | Total variation, rounding, transported enclosures and finite approximation | [selection-stability-20261104](selection-stability-20261104/README.md) |
 | Quarter smoothing in both KL directions | [quarter-smoothing-20261104](quarter-smoothing-20261104/README.md) |
+| Continuous-magnitude observed-state lower bounds and regularity | [continuous-observed-lower-20261105](continuous-observed-lower-20261105/README.md) |
 | Finite-cell observed-state lower bound | [finite-observed-20261105](finite-observed-20261105/README.md) |
 | Smooth-density complexity and unbiased impossibility | [smooth-density-20261105](smooth-density-20261105/README.md) |
 | Observable time-uniform confidence for known laws | [anytime-confidence-20261105](anytime-confidence-20261105/README.md) |

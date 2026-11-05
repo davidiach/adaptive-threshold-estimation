@@ -777,3 +777,7 @@ Run `python tools/verify_smooth_density.py` for 15 exact statements and 46 trans
 ## Finite-cell observed states
 
 Run `python tools/verify_observed_states.py` for 22 exact statements and 58 transitive axiom reports. The audit covers the finite partition, magnitude envelope, target separation, physical observation law and exact lower bound. [Native record](../results/finite-observed-20261105/README.md)
+
+## Continuous-magnitude observed states
+
+Run `python tools/verify_continuous_observed.py` for 34 exact statements and 87 transitive axiom reports. The audit covers the physical query law, exact uniform gap distribution, normalized density and moments, and both complexity lower bounds. [Native record](../results/continuous-observed-lower-20261105/README.md)
