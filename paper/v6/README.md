@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Read the updated manuscript](builds/time-uniform-lower-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/time-uniform-lower-20261105.json)
+[Read the updated manuscript](builds/status-reconciliation-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/status-reconciliation-20261105.json)
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -339,3 +339,25 @@ visually inspected. Nine following pages move unchanged apart from their
 page numbers. The build retains the two previously recorded layout warnings.
 
 [Updated manuscript](builds/time-uniform-lower-20261105.pdf) · [Build record](builds/time-uniform-lower-20261105.json) · [Native record](../../results/anytime-lower-20261105/README.md)
+
+## Status reconciliation build
+
+This build corrects verification-status statements that later appendices
+had made stale: the abstract, the introduction's Verification boundary,
+Sections 11 and 14 to 18, and Appendices K, N, O, Q, R and S. The abstract
+status paragraph and the boundary paragraph are now generated from
+[status.json](status.json). Section 18 gains a table of the upper constants
+33000, 28000, 30001 and 28001. No theorem changes.
+
+The PDF has 169 pages. Two independent builds have identical bytes, all 29
+fonts are embedded, there are no unresolved references, and the only
+warning, an inherited overfull line, also occurs in the unchanged sources.
+Tectonic was not available, so this build uses pdfTeX from TeX Live 2023,
+the engine of the [manuscript workflow](../../.github/workflows/manuscript.yml),
+with the same fixed source date. Pagination therefore differs from the
+earlier Tectonic builds. The changed pages were found by comparing with the
+previous build's sources typeset by the same engine, and all of them, with
+neighbouring pages, were visually inspected. The record lists the
+inherited cosmetic issues seen.
+
+[Updated manuscript](builds/status-reconciliation-20261105.pdf) · [Build record](builds/status-reconciliation-20261105.json)
