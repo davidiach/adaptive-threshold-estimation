@@ -187,11 +187,13 @@ information ratio. \tailleanref{StoppingProgram/ProgramUpper.lean}{program\_uppe
 realizes every feasible certificate in the observable experiment, so
 $R\le P_N$, and \tailleanref{StoppingProgram/FiniteCertificate.lean}{finite\_certificate}
 gives a sufficient cap without the entropy--tail lower bound.
+
 The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/537543ca0ea813d9eecbc165b0e4af1beb71a06e/lean/ThresholdHC/GenieRate/Full.lean}{uniform cap theorem}
 in \cref{app:uniform-cap-rate} gives $P_N\le2G_N$ and $R\le P_N\le16R$ at
-$N=\lceil4B/3\rceil$ for $0<\rho\le1/2$. Lean also checks the infinite-cap
-factor eight, the genie residual under finite latent divergence, the finite-atom
-conic program and the uniform-gap counterexample.
+$N=\lceil4B/3\rceil$ for $0<\rho\le1/2$. Lean checks
+\cref{thm:ordinary-cap-rate}, the infinite-cap factor eight,
+the finite-divergence genie residual, the finite-atom conic program
+and the uniform-gap counterexample.
 \tailleanref{CapIdentification/Full.lean}{fixed\_cap\_identification}
 proves the threshold $N\ge2m-1$ and the positive infinite-support floor.
 Exact rational checks additionally certify the stored finite instances.\\

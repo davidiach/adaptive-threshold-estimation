@@ -59,3 +59,73 @@ $16t^3(1+t)/(1+2t)^2\ge t^3$.
 The bound concerns the optimized programs. An individual unregularized
 quartet can have infinite genie information at every cap, as in
 \cref{sec:genie}. The optimal uniform convergence rate remains open.
+
+\clearpage
+\subsection{Truncating the ordinary program}
+
+The ordinary upper program admits a stronger one-sided comparison with its
+limit. This does not give the same rate for the genie lower program.
+
+\begin{theorem}\label{thm:ordinary-cap-rate}
+For every gap law, $0<\rho\le1/2$, $B>0$ and integer $N\ge1$,
+\[
+ P_\infty(B)\le P_N(B)\le
+ \left(1+\sqrt{\frac{B}{N+1}}\right)P_\infty(B).
+\]
+Consequently
+\[
+ R(B)\le P_N(B)\le
+ 8\left(1+\sqrt{\frac{B}{N+1}}\right)R(B).
+\]
+In particular $N+1\ge B$ suffices for $P_N(B)\le16R(B)$.
+\end{theorem}
+
+\begin{proof}
+Take any feasible certificate at a larger finite cap $M\ge N$, with
+uniform bias bound $b$, second-moment bound $V$ and work bound $B$.
+Keep every original stop and its output through depth $N$. Force every
+remaining path to stop at $N$ with output zero. In the count-flow
+description, add the old continuation weight to the terminal stop weight,
+keep its old output and moment weights, and delete later states.
+Increasing the stop weight preserves the closed-perspective inequality.
+Work and second moments can only decrease.
+
+Fix any admissible sign prior $q$. Write $\pi_q(s)$ for its count
+coefficient at state $s$, and let $a_s,u_s,v_s$ denote the original stop,
+output and moment weights. The discarded output mean is
+\[
+ D_q=\sum_{|s|>N}\pi_q(s)u_s.
+\]
+Every discarded stop uses at least $N+1$ paid observations, so flow
+conservation and the work bound give
+\[
+ \sum_{|s|>N}\pi_q(s)a_s\le\frac{B}{N+1}.
+\]
+Since $u_s^2\le a_sv_s$, weighted Cauchy--Schwarz gives
+\[
+ |D_q|^2\le
+ \left(\sum_{|s|>N}\pi_q(s)a_s\right)
+ \left(\sum_{|s|>N}\pi_q(s)v_s\right)
+ \le\frac{BV}{N+1}.
+\]
+These inequalities apply to arbitrary root intensity, not only to
+probability-normalized flows. The capped certificate therefore has bias
+at most $b+\sqrt{BV/(N+1)}$ and second moment at most $V$.
+Put $t=\sqrt{B/(N+1)}$. The Euclidean triangle inequality yields
+\[
+ \sqrt{(b+t\sqrt V)^2+V}\le(1+t)\sqrt{b^2+V}.
+\]
+Taking the infimum over the original feasible certificates proves
+$P_N\le(1+t)P_M$. Taking the infimum over $M\ge N$ gives the first
+claim, using monotonicity of the cap programs. The established
+$R\le P_\infty\le8R$ gives the risk bounds.
+\end{proof}
+
+This argument improves the sufficient relative rate for $P_N/P_\infty$
+from a cube root to a square root. It does not establish optimality,
+a matching convergence lower bound, or a square-root rate for
+$P_\infty/G_N$. The
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/2dc570206292ce88a0636d82e9bdfff54663e80d/lean/ThresholdHC/FiniteCapTruncation/Full.lean}{complete ordinary-program proof}
+and its
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/2dc570206292ce88a0636d82e9bdfff54663e80d/lean/ThresholdHC/FiniteCapTruncation/Risk.lean}{risk corollaries}
+have a ten-statement exact-type and transitive-axiom audit.

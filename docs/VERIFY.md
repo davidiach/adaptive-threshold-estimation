@@ -399,6 +399,13 @@ relative-error bound and the factor-sixteen risk certificate. The separate
 `python tools/verify_finite_cap_rate.py` replay checks 576 exact Bellman
 comparisons. [Cap theorem and compiler output](../results/genie-rate-20261104/README.md)
 
+Run `python tools/verify_finite_cap_truncation.py` for the sharper
+square-root rate of the ordinary program and its minimax-risk consequence.
+The [native record](../results/finite-cap-truncation-20261105/README.md)
+checks ten exact statements: the output-preserving flow, work and bias
+bounds, feasible certificate, optimized value and risk corollaries.
+This is not a square-root rate for the genie lower program.
+
 ## Sharper quantile factor
 
 Run `python tools/verify_quantile_price_upper.py` for the original arbitrary-law

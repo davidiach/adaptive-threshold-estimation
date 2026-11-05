@@ -123,3 +123,10 @@ The [native 14-statement audit](band-cost-formal-20261105/README.md) verifies
 the mathematical compression algorithm, state bounds, entropy price,
 exact saving comparison and interval certificates. Its boundary excludes
 the Python implementation and the concrete gap-law-to-menu construction.
+
+## Ordinary cap truncation
+
+The [native ten-statement audit](finite-cap-truncation-20261105/README.md)
+verifies a uniform square-root rate for the ordinary optimized cap program,
+its output-preserving certificate construction, and the explicit risk bound.
+Optimality and the corresponding genie rate remain open.

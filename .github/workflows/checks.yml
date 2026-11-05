@@ -432,6 +432,8 @@ jobs:
           done
       - name: Verify uniform convergence of the optimized cap programs
         run: python tools/verify_genie_rate.py
+      - name: Verify square-root convergence of the ordinary cap program
+        run: python tools/verify_finite_cap_truncation.py
       # Lake builds only the reused dependencies; the 57 registered modules are
       # compiled once, natively, by the audit itself.
       - name: Build dependencies and audit supporting entropy-tail lower lemmas

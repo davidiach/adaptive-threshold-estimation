@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Current LaTeX sources](main.tex) · [Finite-menu proof checkpoint](builds/band-cost-formal-20261105.pdf) · [Status-reconciliation checkpoint](builds/status-reconciliation-20261105.pdf)
+[Current LaTeX sources](main.tex) · [Finite-cap proof checkpoint](builds/finite-cap-truncation-20261105.pdf) · [Status-reconciliation checkpoint](builds/status-reconciliation-20261105.pdf)
 
 The current sources combine these two published checkpoints. Their PDFs and build records retain the source identities of their respective publications.
 
@@ -376,6 +376,21 @@ All 29 fonts are embedded, references resolve, and no new layout warning
 appears. Earlier publications remain unchanged.
 
 [Updated manuscript](builds/band-cost-formal-20261105.pdf) · [Build record](builds/band-cost-formal-20261105.json) · [Native audit](../../results/band-cost-formal-20261105/README.md)
+
+
+## Square-root convergence of the ordinary cap program
+
+Appendix Q.1 adds the output-preserving truncation proof and its checked
+ordinary-program bound: $P_N\le(1+\sqrt{B/(N+1)})P_\infty$. The minimax
+corollary gives factor sixteen once $N+1\ge B$. Optimality and the
+corresponding genie convergence rate remain open.
+
+The new 167-page PDF has two byte-identical offline builds. All three changed
+pages (3, 46 and 140) were visually inspected; 27 following pages relocate
+without body changes. All 29 fonts are embedded, references resolve, and no
+new layout warning appears. Earlier publications remain unchanged.
+
+[Updated manuscript](builds/finite-cap-truncation-20261105.pdf) · [Build record](builds/finite-cap-truncation-20261105.json) · [Native audit](../../results/finite-cap-truncation-20261105/README.md)
 
 ## Status reconciliation build
 
