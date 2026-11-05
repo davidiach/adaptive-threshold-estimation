@@ -343,6 +343,22 @@ page numbers. The build retains the two previously recorded layout warnings.
 
 [Updated manuscript](builds/time-uniform-lower-20261105.pdf) · [Build record](builds/time-uniform-lower-20261105.json) · [Native record](../../results/anytime-lower-20261105/README.md)
 
+## Complete time-uniform lower-bound formalization
+
+Appendix V.1 now follows the complete Lean proof: first-crossing testing,
+the infinite-moment prior construction and observable acquisition transfer,
+finite-coefficient and dense/sparse asymptotic cases, and the interval
+half-width consequence. The coefficient remains $10^{-22}$; a monotone
+deterministic envelope is no longer required.
+
+The new PDF has 166 pages. Two independent offline builds have identical
+bytes. All five changed pages were visually inspected; nine following pages
+move unchanged apart from page numbers. Every font is embedded, proof links
+are pinned to the audited revision, and there are no unresolved references
+or new layout warnings. The previous PDF and its record remain unchanged.
+
+[Updated manuscript](builds/time-uniform-formal-20261105.pdf) · [Build record](builds/time-uniform-formal-20261105.json) · [Complete native record](../../results/anytime-asymptotic-20261105/README.md)
+
 ## Status reconciliation build
 
 This build corrects verification-status statements that later appendices

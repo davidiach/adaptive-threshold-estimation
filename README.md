@@ -52,9 +52,9 @@ The [lower theorem](lean/ThresholdHC/Tier6/Full.lean),
 | Closed quantile rare-event law: direct proof for known finite gap laws, and for every law through the entropy-tail theorem | Lean proves $10^{-17}Q\le R\le30001Q$ for every law and $\mathcal K\le Q\le(1+2\sqrt2)\mathcal K$. For finite laws a direct Lean proof gives $10^{-20}Q\le R\le30001Q$ | [v6 §14](paper/v6/README.md#reading-guide) · [Standalone manuscript](paper/finite-gap-rare-events/README.md) · [Lean scope](docs/RESULTS.md#general-law-rare-event-characterization) |
 | Confidence radius $r_\mu(B,\delta)\asymp\omega_\mu(\sqrt{\log(1/\delta)/B})$ | Both bounds proved in Lean in the observable adaptive model | [Theorems](lean/ThresholdHC/Confidence/Full.lean) · [Audit](results/confidence_001.json) |
 | Hard observation caps for the distribution-blind RMS rate, the critical quadratic law and the known-law rare-event rate | Lean verifies the [observable fallback controller and all three minimax bounds](results/hard-budget-rms-20261104/README.md), including a general-law upper coefficient of $160000$. | [Scope](docs/RESULTS.md#hard-observation-caps-for-the-rms-rates) · [Original paper proof](research/2026-10-30-hard-budget-rms/README.md) |
-| High-confidence radius: the general-law rate is $\mathcal K(B/\log(1/\delta))$ under an expected or a hard budget, and the critical rate gains a factor $\sqrt{\log(1/\delta)}$; nested intervals stay valid under data-dependent stopping | Lean checks [both fixed-confidence rates](results/known-law-confidence-20261104/README.md) for the original observable estimator. The [known-law time-uniform rate and observable controller](results/anytime-confidence-20261105/README.md) are also Lean-checked | [Scope](docs/RESULTS.md#confidence-rates-and-sequential-stopping) · [Package](research/2026-10-30-confidence-transfer/README.md) |
+| High-confidence radius: the general-law rate is $\mathcal K(B/\log(1/\delta))$ under an expected or a hard budget, and the critical rate gains a factor $\sqrt{\log(1/\delta)}$; nested intervals stay valid under data-dependent stopping | Lean checks [both fixed-confidence rates](results/known-law-confidence-20261104/README.md) for the original observable estimator. The [known-law time-uniform rate and observable controller](results/anytime-confidence-20261105/README.md) and the [matching all-law time-uniform lower bound](results/anytime-asymptotic-20261105/README.md) are also Lean-checked | [Scope](docs/RESULTS.md#confidence-rates-and-sequential-stopping) · [Package](research/2026-10-30-confidence-transfer/README.md) |
 | RMS and confidence lower bounds with revealed or adaptively selected magnitudes | Proved in Lean in canonical oracle models | [Theorems](lean/ThresholdHC/OracleLower/Full.lean) · [Audit](results/oracle_lower_001.json) |
-| Unknown-rarity obstruction, unknown-law confidence sequences, the matching gap-law-dependent time-uniform lower bound (its information inequalities are Lean-checked), the earlier additive-class critical note, and the population and nonlinear-feedback follow-ups | Paper proofs; not Lean-checked. The power-margin rates below exponent two, the sharp quantile factor and the stochastic-envelope, smooth-density and observed-state results are Lean-checked; see [Scope and review](#scope-and-review) | [Full results guide](docs/RESULTS.md) |
+| Unknown-rarity obstruction, unknown-law confidence sequences, the earlier additive-class critical note, and the population and nonlinear-feedback follow-ups | Paper proofs; not Lean-checked. The power-margin rates below exponent two, the sharp quantile factor, the time-uniform lower bound and the stochastic-envelope, smooth-density and observed-state results are Lean-checked; see [Scope and review](#scope-and-review) | [Full results guide](docs/RESULTS.md) |
 
 Here $I=\mathbb E_\mu[D^{-1}]$ is the inverse-gap moment.
 
@@ -190,11 +190,12 @@ sharp quantile factor has a [checked unique scalar root and finite-vector optimu
 [logarithmic and intermediate power rows](results/shifted-power-20261105/README.md) now have complete Lean proofs. The [row below one](results/sublinear-power-20261105/README.md) is Lean-checked for RMS and fixed confidence. The [finite-cap comparison](docs/FINITE_CAP_RATE.md)
 certifies $P_N\le 16R$ at $N=\lceil4B/3\rceil$. Efficient
 exact selection for many bands with unrestricted costs remains open.
-The [matching time-uniform lower bound](docs/TIME_UNIFORM_LOWER.md) now has a
-paper proof for every positive-gap law, with universal coefficient $10^{-22}$
-in the asymptotic deterministic-envelope comparison. Its [15 information
-inequalities](results/anytime-lower-20261105/README.md) are Lean-checked;
-the sequential testing and asymptotic argument remain paper proofs.
+The [matching time-uniform lower bound](docs/TIME_UNIFORM_LOWER.md) is now
+Lean-checked for every positive-gap law, with coefficient $10^{-22}$ at
+arbitrarily late integer budgets. The [complete audit](results/anytime-asymptotic-20261105/README.md)
+includes the finite-coefficient case, dense and sparse infinite-moment cases,
+and observable interval half-widths. The deterministic envelope need not be
+monotone.
 See the [completion ledger](docs/WORKPLAN.md) for the current boundary.
 
 ## Attribution and license

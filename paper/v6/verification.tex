@@ -531,6 +531,8 @@ and the \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/f3
 is checked by deriving the common pair from the quadratic law. Appendices~\ref{app:known-confidence} and~\ref{app:anytime}
 check \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/46e1fa5925173d6c081c80d89b45ed4955ebe225/lean/ThresholdHC/ConfidenceProgram/Upper.lean}{fixed}
 and \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/ffc0c5eb436ff31706d6f46fc135d1831b5a4e61/lean/ThresholdHC/Anytime/Full.lean}{time-uniform confidence} for known laws.
+\Cref{app:anytime} also checks the \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/a6c77f546604cb6df7df67802e0061d1345fa2ca/lean/ThresholdHC/AnytimeLower/Intervals.lean}{matching all-law lower bound}
+for deterministic half-width envelopes.
 Sections~\ref{sec:typed-confidence}--\ref{sec:rms-localization}
 verify selected-type transfer, common pairs and RMS and confidence
 localization, including the $10^{-17}$ general-law confidence coefficient.
@@ -546,10 +548,7 @@ cited external lower bound, that for every known gap law a deterministic
 nonincreasing half-width envelope valid for one online controller exceeds
 a multiple of $\sqrt{\rho\log\log B/B}$ for infinitely many integer
 budgets $B$. This matches the known-law order at $D=1/2$.
-\Cref{app:anytime} proves the matching gap-law-dependent time-uniform lower
-bound on paper for every positive-gap law; its information inequalities are
-Lean-checked, while its sequential testing and asymptotic comparisons are
-not. Efficient exact
+Efficient exact
 selection for finite laws with many bands and unrestricted costs is open;
 the Lean-checked sufficient family can have $\prod_j(n_j+1)$ members. The
 optimal uniform convergence rate of the cap programs in

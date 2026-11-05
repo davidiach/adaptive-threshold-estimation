@@ -160,10 +160,10 @@
       "boundary": "the arbitrary-law statistical $\\Psi$ lower bound of \\cref{app:localization}"
     },
     "time-uniform-lower-bound": {
-      "status": "paper",
-      "evidence": ["docs/TIME_UNIFORM_LOWER.md", "paper/v6/appendix-anytime.tex", "results/anytime-lower-20261105/README.md"],
-      "abstract": "the matching gap-law-dependent time-uniform lower bound",
-      "boundary": "the matching gap-law-dependent time-uniform lower bound of \\cref{app:anytime}"
+      "status": "lean",
+      "evidence": ["lean/ThresholdHC/AnytimeLower/Full.lean", "lean/ThresholdHC/AnytimeLower/Intervals.lean", "results/anytime-asymptotic-20261105/README.md"],
+      "abstract": "the matching all-law time-uniform lower bound",
+      "boundary": "the matching all-law time-uniform lower bound for deterministic half-width envelopes"
     }
   },
   "abstract": [
@@ -172,10 +172,10 @@
     {"results": ["entropy-tail-law", "closed-quantile-law", "quantile-comparison", "stopping-program", "identification", "genie"]},
     {"results": ["entropy-tail-coefficients"]},
     {"results": ["finite-direct"]},
-    {"results": ["power-margins-below-two", "smooth-density", "observed-states", "selected-type-transfer", "known-law-confidence"]},
+    {"results": ["power-margins-below-two", "smooth-density", "observed-states", "selected-type-transfer", "known-law-confidence", "time-uniform-lower-bound"]},
     {"results": ["sharp-factor"]},
     {"text": "A separate exact-arithmetic certificate gives the sharp factor's decimal bracket."},
-    {"results": ["psi-lower-bound", "time-uniform-lower-bound"]},
+    {"results": ["psi-lower-bound"]},
     {"text": "This manuscript records each result's dependencies and verification scope."}
   ],
   "boundary": [
@@ -187,8 +187,8 @@
     {"results": ["oracle-lower"]},
     {"results": ["above-two"]},
     {"results": ["entropy-tail-law", "closed-quantile-law", "sharp-factor", "stopping-program", "identification", "genie", "power-margins-below-two"]},
-    {"results": ["hard-cap", "known-law-confidence", "smooth-density", "observed-states"]},
-    {"results": ["psi-lower-bound", "time-uniform-lower-bound"]},
+    {"results": ["hard-cap", "known-law-confidence", "smooth-density", "observed-states", "time-uniform-lower-bound"]},
+    {"results": ["psi-lower-bound"]},
     {"text": "Section~\\ref{sec:verification} gives the exact scope and links."}
   ]
 }

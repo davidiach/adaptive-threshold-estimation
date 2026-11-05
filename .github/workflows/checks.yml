@@ -367,6 +367,12 @@ jobs:
         run: |
           python tools/verify_anytime_lower.py
           python tools/verify_anytime_lower_profiles.py
+      - name: Verify sequential testing and the infinite-moment tail family
+        run: |
+          python tools/verify_anytime_sequential.py
+          python tools/verify_anytime_tail.py
+      - name: Verify the complete law-dependent time-uniform lower bound
+        run: python tools/verify_anytime_asymptotics.py
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
       - uses: actions/upload-artifact@v4
