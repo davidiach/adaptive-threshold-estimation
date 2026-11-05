@@ -156,9 +156,11 @@ The new Lean modules check the finite-prefix parity identities, bounded
 average concentration, separated-signature identification and its error
 union bound, transfer of simultaneous properties after selection, physical
 budget arithmetic, and the delayed oracle-rate comparison. These are
-components of the theorem. The moment-determinacy argument, the concrete
-fresh-coin pilot realization, and the complete selected-controller
-construction above remain paper proofs. Python execution is not Lean-verified.
+components of the theorem. A further [six-statement audit](../tools/verify_law_adaptation_realization.py)
+checks [moment determinacy and finite signature separation](../lean/ThresholdHC/LawAdaptation/Moments.lean)
+for arbitrary positive-gap probability laws. The concrete fresh-coin pilot
+realization and the complete selected-controller construction above remain
+paper proofs. Python execution is not Lean-verified.
 The audited pilot bound requires independence only across coins for each
 coordinate, so it applies to these shared-prefix statistics without a new
 independence assumption or a change to the Lean statements.
