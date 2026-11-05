@@ -7,9 +7,8 @@ from verify_blind_upper_components import LEAN, validate_reports
 
 def audit_input():
     source = """
-import ThresholdHC.ContinuousObserved.Word
-import ThresholdHC.ContinuousObserved.LowerReduction
-import ThresholdHC.ContinuousObserved.FreshObservation
+import ThresholdHC.ContinuousObserved.QueryLower
+import ThresholdHC.ContinuousObserved.StandardizedMoments
 noncomputable section
 open MeasureTheory ProbabilityTheory
 open scoped ENNReal
@@ -75,6 +74,63 @@ example {N : ℕ} (cap : Fin N → Gap) (s : Fin N → Bool)
         (uniformTapeMeasure.prod (Measure.pi (fun i =>
           Tier2.tapeMeasure (ThresholdHC.ObservableSimulation.gapParameter (s i) (cap i)))))) :=
   fresh_observation_preserving cap s j d hd
+
+example {N : ℕ} (D : QueryDesign N) (s : Fin N → Bool)
+    (c : List Bool → Bool) (q : List Bool → unitInterval) (n : ℕ) (F : Prefix n → ℝ≥0∞) :
+    (∫⁻ z, F (noisyWord D c q n z.1 z.2)
+      ∂uniformTapeMeasure.prod (Measure.pi (fun i =>
+        Tier2.tapeMeasure (ThresholdHC.ObservableSimulation.gapParameter (s i) (D.cap i))))) =
+        prefixExpectation D s c q n F := noisyWord_prefix_law D s c q n F
+
+example {N : ℕ} {R : Type} [MeasurableSpace R]
+    (D : QueryDesign N) (A : StateEstimator R) (s : Fin N → Bool) :
+    RealizesQueryPrefixes D A s (queryLaw D A s) := queryLaw_realizes D A s
+
+example {N : ℕ} {R : Type} [MeasurableSpace R]
+    (D : QueryDesign N) (A : StateEstimator R) (s : Fin N → Bool)
+    (P Q : Measure (R × ProcessTape)) [IsFiniteMeasure P] [IsFiniteMeasure Q]
+    (hP : RealizesQueryPrefixes D A s P) (hQ : RealizesQueryPrefixes D A s Q) : P = Q :=
+  query_prefix_unique D A s P Q hP hQ
+
+example (μ : Measure Gap) [IsProbabilityMeasure μ] (h : Gap)
+    {δ : ℝ} (hδ : 0 < δ) (hd : δ ≤ 1 / 8) :
+    ∃ D : CellDesign μ h δ,
+      volume.map D.gap = μ ∧
+      0 < cellDelta D.cap D.cell h ∧
+      modulus μ h / 8 ≤ cellDelta D.cap D.cell h ∧
+      (∀ (R : Type) [MeasurableSpace R] (A : StateEstimator R)
+        (P : (Fin D.count → Bool) → Measure (R × ProcessTape))
+        [∀ s, IsProbabilityMeasure (P s)],
+        (∀ s, RealizesQueryPrefixes (CellDesign.queryDesign μ h δ D) A s (P s)) →
+        ∀ (B : ℝ), 0 ≤ B →
+        (∀ s, (∫⁻ z, totalProcessWork z.2 ∂P s) ≤ ENNReal.ofReal B) →
+        (∀ s, P s {z | cellDelta D.cap D.cell h / 4 < |A.output z - stateTarget D.cell s|} ≤ ENNReal.ofReal δ) →
+        (225 / (128 * (h : ℝ) ^ 2)) * klB (1 - 2 * δ) (2 * δ) ≤ B) :=
+  variable_gap_observed_lower μ h hδ hd
+
+example (d : Gap) (s : Bool) :
+    (∫ b, binaryValue b ∂bernoulliMeasure true false (ThresholdHC.ObservableSimulation.gapParameter s d)) =
+      binaryMean d s := binary_mean d s
+
+example (d : Gap) (s : Bool) : |binaryMean d s| = 2 * (d : ℝ) := binary_mean_magnitude d s
+
+example (d : Gap) (s : Bool) :
+    variance binaryValue (bernoulliMeasure true false (ThresholdHC.ObservableSimulation.gapParameter s d)) =
+      1 - 4 * (d : ℝ) ^ 2 := binary_variance d s
+
+example (d : Gap) (hd : (d : ℝ) ≤ 1 / 4) (s : Bool) :
+    3 / 4 ≤ variance binaryValue (bernoulliMeasure true false (ThresholdHC.ObservableSimulation.gapParameter s d)) :=
+  binary_variance_lower d hd s
+
+example (d : Gap) (hd : (d : ℝ) ≤ 1 / 4) (s b : Bool) :
+    |binaryValue b - binaryMean d s| ≤ 3 / 2 := binary_centered_bound d hd s b
+
+example (d : Gap) (hd : (d : ℝ) ≤ 1 / 4) (s : Bool) {q : ℝ} (hq : 0 ≤ q) :
+    (∫ b, (|binaryValue b - binaryMean d s| /
+      Real.sqrt (variance binaryValue (bernoulliMeasure true false
+        (ThresholdHC.ObservableSimulation.gapParameter s d)))) ^ q
+      ∂bernoulliMeasure true false (ThresholdHC.ObservableSimulation.gapParameter s d)) ≤ (3 : ℝ) ^ (q / 2) :=
+  binary_standardized_moment d hd s hq
 """.lstrip()
     roots = {"ThresholdHC.ContinuousObserved." + name for name in [
         "decode_length", "decode_append", "decode_append_singleton", "measurable_decode",
@@ -86,15 +142,18 @@ example {N : ℕ} (cap : Fin N → Gap) (s : Fin N → Bool)
         "decodePrefix_none", "decodePrefix_cons_none", "decodePrefix_cons_some",
         "stepNoise_shift", "rawPolicy_shift", "noisyWord_decode",
         "fresh_pair_preserving", "fresh_observation_preserving",
+        "measurable_noisyWord", "noisyWord_prefix_law", "decoded_population_prefix", "queryLaw_realizes",
+        "query_prefix_unique", "query_confidence_lower", "variable_gap_observed_lower",
+        "binary_mean", "binary_mean_magnitude", "binary_variance", "binary_variance_lower",
+        "binary_centered_bound", "binary_standardized_bound", "binary_standardized_moment",
     ]}
     return source + "".join("#print axioms " + name + "\n" for name in sorted(roots)), roots
 
 
 def main():
     source, roots = audit_input()
-    subprocess.run(["lake", "build", "ThresholdHC.ContinuousObserved.Word",
-                    "ThresholdHC.ContinuousObserved.LowerReduction",
-                    "ThresholdHC.ContinuousObserved.FreshObservation"], cwd=LEAN, check=True)
+    subprocess.run(["lake", "build", "ThresholdHC.ContinuousObserved.QueryLower",
+                    "ThresholdHC.ContinuousObserved.StandardizedMoments"], cwd=LEAN, check=True)
     run = subprocess.run(["lake", "env", "lean", "--stdin"], cwd=LEAN, input=source, text=True,
                          encoding="utf-8", capture_output=True)
     output = run.stdout + run.stderr

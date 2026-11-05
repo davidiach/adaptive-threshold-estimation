@@ -23,12 +23,29 @@ The checked components establish the following results.
 
 Run `python tools/verify_continuous_observed.py` for the current component audit.
 
+## Physical experiment and moments
+
+The full finite-prefix law is now identified with the ordinary fresh
+Bernoulli rule at every adaptively selected point. It retains the original
+private seed jointly with the observations and determines the complete
+infinite transcript law uniquely.
+
+The variable-gap theorem constructs a finite sign-cell design with exactly
+any prescribed gap law and separation at least one eighth of its clipped
+modulus. The exact confidence lower bound applies to every physical law
+with those ordinary observation probabilities.
+
+For gaps at most one quarter, the conditional variance is at least three
+quarters, the centered observation is bounded by three halves, and its
+normalized central moment of every real order q at least zero is bounded
+by three to the power q/2. These are checked directly for the actual
+binary observation law.
+
 ## Remaining proof
 
-The full observed-state theorem still needs the complete finite-prefix
-law identification, the exact uniform gap-law construction with its
-pointwise cutoff, the density and conditional-moment checks, and the
-matching complexity and RMS statements.
+The full continuous-magnitude proposition still needs the uniform gap-law
+construction with its pointwise cutoff, the normalized-magnitude density
+check, and the matching complexity and RMS statements.
 
 The external assumptions require a density of the conditional mean's
 absolute value divided by its conditional standard deviation that is
