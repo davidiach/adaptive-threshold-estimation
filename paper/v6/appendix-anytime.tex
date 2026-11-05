@@ -68,315 +68,191 @@ then $B<4$, and the selection functional at $B/\Lambda$ equals $\rho$.
 The initial interval therefore satisfies the same bound.
 
 \subsection{Matching lower bound for every gap law}
-\label{sec:anytime-lower}
 
-One online controller reports intervals at all integer physical flip budgets.
-Let $t(n)$ be a nonincreasing deterministic half-width envelope. For every
-admissible sign prior, simultaneous coverage and the width bounds must hold
-together with probability at least $1-\delta$.
-The following argument proves a matching asymptotic lower bound for every
-positive-gap law. Its native information lemmas and paper-proof steps are
-identified separately.
+Fix any probability law $\mu$ on positive gaps, $0<\rho\le1/4$ and
+$0<\delta\le1/4$. One common online controller reports measurable intervals
+after every integer physical budget. Suppose simultaneous coverage and a
+nonnegative deterministic half-width envelope $t(n)$ hold jointly with
+probability at least $1-\delta$, under every admissible rare sign prior.
+Put $\lambda(n)=\log(1/\delta)+\log\log n$.
 
-\paragraph{A prior segment in the original experiment.}
-
-Write $I_\mu(q,r)$ for the infinite-cap information/work ratio with the midpoint
-of $q,r$ as both references. Suppose $I_\mu(q,r)\le J<\infty$.
-For $x\in[3/8,5/8]$, let $q_x=xq+(1-x)r$. Every member remains admissible
-whenever the two endpoints are admissible. For any adaptive controller and
-physical prefix of length $n$,
+\begin{theorem}[Law-dependent time-uniform lower bound]
+For every integer $M$, there is an integer $n\ge\max(M,3)$ such that
 \[
- D_{\rm KL}(P_{q_x}^{(n)}\Vert P_{q_y}^{(n)})
- \le \frac{64}{3}Jn(x-y)^2.                                      \tag{TU1}
+ t(n)\ge10^{-22}\mathcal K_{\mu,\rho}\bigl(n/\lambda(n)\bigr).
+ \tag{TU1}
 \]
-The prefix includes the private seed and actual observed tape. Revisits and
-adaptive acquisition are included.
+No monotonicity assumption on $t$ is needed.
+\end{theorem}
 
-To see this, set $a=(3x-y)/2$ and $b=(3y-x)/2$. Both belong to $[0,1]$,
-their sum lies in $[1/2,3/2]$, and quarter smoothing the pair $q_a,q_b$
-gives $q_x,q_y$. Each midpoint reference dominates half the original midpoint.
-Its variance denominator and work denominator therefore lose at most a factor
-two each. The numerator scales by $(a-b)^2$, so
+The proof below is formalized for the original observable hidden-gap
+experiment. Its prefix contains the private seed and actual observations;
+the controller may adapt acquisition labels, revisit coins, or stop early.
+The conclusion is an infinitely-often bound on a deterministic envelope,
+not a pointwise bound on every random interval or at every budget.
+
+\paragraph{First-crossing testing.}
+Let $Q$ have mean $\theta$ and let $P_k$ have mean $\theta+a_k$, where
+$a_k>0$ and $3a_k\le a_i$ for $i<k$. Suppose the observed prefix at an
+increasing budget $N_k$ has
+$D_{\mathrm{KL}}(P_k^{(N_k)}\Vert Q^{(N_k)})\le K_k$.
+If $t(N_k)<a_k/6$ at every step, define
 \[
- I_\mu(q_a,q_b)\le4(a-b)^2 I_\mu(q,r).
+ E_k=\{\widehat\theta_{N_k}>\theta+a_k/2\},\qquad
+ A_k=E_k\setminus\bigcup_{i<k}E_i.
 \]
-The existing midpoint reference bound and observable KL transfer give (TU1),
-because $a-b=2(x-y)$ and actual prefix work is at most $n$.
-
-The native statements are in
-\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/0544b2af17c9f12406e590fdafdaffa54494b38e/lean/ThresholdHC/AnytimeLower/Segment.lean}{Segment},
-\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/0544b2af17c9f12406e590fdafdaffa54494b38e/lean/ThresholdHC/AnytimeLower/Embedding.lean}{Embedding}, and
-\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/0544b2af17c9f12406e590fdafdaffa54494b38e/lean/ThresholdHC/AnytimeLower/Quartet.lean}{Quartet}. The first checkpoint has \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/0544b2af17c9f12406e590fdafdaffa54494b38e/results/anytime-lower-family-20261105/README.md}{11 exact statements and axiom audits}.
-
-\paragraph{A sequential testing lemma.}
-
-Here is the needed extension to dependent observations. Suppose one consistent
-experiment has prefix laws $P_\theta^{(n)}$ on a common filtration, with
-$\theta\in[\theta_0,\theta_0+r]$, $r>0$, and
+On simultaneous accuracy under $P_k$, the first crossing occurs exactly
+at $k$. Under $Q$, there is no crossing. Hence $P_k(A_k)\ge1-\delta$,
+the $A_k$ are disjoint, and $\sum_k Q(A_k)\le\delta$.
+Binary data processing and binary entropy at most $\log2$ imply
 \[
- D_{\rm KL}(P_\theta^{(n)}\Vert P_{\theta'}^{(n)})
-       \le Mn(\theta-\theta')^2,\qquad M>0.                     \tag{TU2}
+ Q(A_k)\ge\tfrac14\exp\{-K_k/(1-\delta)\}.
+ \tag{TU2}
 \]
-Any simultaneously valid deterministic error envelope satisfies
+Thus these exponential terms must be summable. Apply the same reasoning
+to every tail: a nonsummable testing schedule forces
+$t(N_k)\ge a_k/6$ infinitely often. Independence across prefixes is
+unnecessary.
+
+For any positive antitone scale $s_k$, take
 \[
- \limsup_{n\to\infty}t(n)\sqrt{n/\log\log n}
-       \ge \sqrt{(1-\delta)/(72M)}.                             \tag{TU3}
+ N_k=\left\lfloor\frac{1-\delta}{2}
+                  \frac{\log(k+2)}{s_k^2}\right\rfloor.
+ \tag{TU3}
 \]
-An interval midpoint has the required error bound on the joint coverage and
-width event. Define its midpoint arbitrarily when the interval is empty.
+This is monotone and unbounded. When $K_k=N_ks_k^2$, the testing terms
+dominate $(k+2)^{-1/2}$, so they are nonsummable. Also, eventually,
+$N_ks_k^2\ge\log(k+2)/8$ for $\delta\le1/2$.
 
-The proof uses finite Cantor families. For binary words $v$ of length $L$, set
+\paragraph{Finite asymptotic coefficient.}
+Let $C=\sup_{B>0}\sqrt B\,\mathcal K(B)$. If the inverse gap is integrable,
+then $0<C<\infty$: selection of the empty core gives
+$\mathcal K(B)\le B^{-1/2}\int d^{-1}\,\mu(dd)$, while small-budget
+saturation gives positivity.
+
+Choose $B$ with $\sqrt B\,\mathcal K(B)>C/2$.
+Attained infinite-cap four-prior duality and the existing
+$10^{-17}$ stopping-program comparison supply an admissible certificate
+with mean gap $\Delta>0$ and information bound $J>0$ satisfying
 \[
- \theta_v=\theta_0+2r\sum_{j=1}^L v_j3^{-j}.
+ (10^{-17}C/2)^2J\le\Delta^2.
+ \tag{TU4}
 \]
-Two parameters whose first $k$ bits differ are separated by at least $r3^{-k}$.
-Parameters sharing their first $k-1$ bits differ by at most $r3^{-(k-1)}$.
-If $t(n_k)<r3^{-k}/2$, nearest-parameter decoding at $n_k$ recovers the
-first $k$ bits on the coverage event.
+Absorbing its variance and work references into the endpoint priors gives
+a central segment with prefix KL at most
+$(64/3)Jn(x-y)^2$ and mean difference $(y-x)\Delta/3$.
+Use shifts $u_k=4^{-k}/8$ from the central reference and
+$s_k=\sqrt{(64/3)J}\,u_k$. The shifts satisfy the required separation.
+Equations (TU2)--(TU3) force $t(N_k)\ge u_k\Delta/18$ infinitely often.
 
-For each prefix $b$ of length $k-1$, condition on earlier decoded bits being
-correct. This event has probability at least $1-\delta$ under every parameter
-extending $b$. Conditional KL is at most unconditional KL divided by this
-probability. Pairing opposite next bits and applying the two-point
-Bretagnolle--Huber bound gives average conditional error at least
+Set $h(n)=\sqrt{\lambda(n)/n}$. The geometric schedule gives
+$\lambda(N_k)\le3\log(k+2)$ eventually, so $h(N_k)\le5s_k$.
+By the definition of $C$,
 \[
- \frac{1}{4}\exp\!\left\{-\frac{Mn_kr^2\,9^{-(k-1)}}{1-\delta}\right\}.
+ \mathcal K(N_k/\lambda(N_k))
+ \le C h(N_k)\le25C\sqrt J\,u_k.
+ \tag{TU5}
 \]
-Average uniformly over all finite words. For each word, first-error events
-are disjoint and their total probability is at most $\delta$. Thus
+Together with (TU4), this proves (TU1). This branch actually requires only
+finiteness of $C$, a weaker premise than inverse-gap integrability.
+
+\paragraph{Infinite inverse moment and capped profiles.}
+Choose $0<\tau\le1/4$ with $0<\mu\{d\le\tau\}\le\rho$ and put
 \[
- \sum_{k=1}^L
- \exp\!\left\{-\frac{Mn_kr^2\,9^{-(k-1)}}{1-\delta}\right\}
-       \le \frac{4\delta}{1-\delta}.                             \tag{TU4}
+ g_h(d)=\mathbf1_{\{d\le\tau\}}\min(1,h/d),\quad
+ T(h)=\int g_h\,d\mu,\quad
+ \varepsilon_j=\tau4^{-j},\quad W_j=T(\varepsilon_j).
 \]
-The same argument applies after fixing any finite initial bit prefix.
-
-For $k\ge2$, take
-$n_k=\lfloor c9^k\log k\rfloor$ with
-$c=(1-\delta)/(18Mr^2)$. The exponential terms in (TU4) are at least
-$k^{-1/2}$, whose sum diverges. Hence
-$t(n_k)\ge r3^{-k}/2$ infinitely often. Since
-$n_k/(9^k\log k)\to c$ and $\log\log n_k/\log k\to1$, (TU3) follows.
-The common filtration makes the earlier decoding events measurable at $n_k$.
-Independence of successive observations is unnecessary.
-
-This adapts the sequential testing method of Duchi and Haque. The finite-word
-argument above explicitly uses closeness for a prefix of length $k-1$ when
-testing bit $k$. \href{https://proceedings.mlr.press/v247/duchi24a.html}{Duchi and Haque, COLT 2024}
-
-\paragraph{The law-dependent coefficient.}
-
-For an admissible four-prior certificate $Q$, put
-$\Delta_Q=(\theta(Q_H)-\theta(Q_L))_+$ and
-$I_Q=I_\infty(\mu,Q)$. Define the extended coefficient
+Such a small-gap region exists by dominated convergence. The inverse gap
+on it is still nonintegrable, because the complementary inverse gap is
+bounded by $1/\tau$. Monotone convergence of $g_h/h$ gives
+$T(h)/h\to\infty$ as $h\downarrow0$.
+Selecting the empty core therefore proves, for all small positive $h$,
 \[
- V_{\mu,\rho}
-   =\sup_{\substack{Q\ {\rm admissible}\\J>0,\ I_Q\le J}}
-        \frac{\Delta_Q^2}{J}.                                  \tag{TU5}
+ \mathcal K(h^{-2})\le T(h)+h/\tau\le2T(h).
+ \tag{TU6}
 \]
-Reference absorption gives admissible endpoints with gap $\Delta_Q/3$ and
-midpoint information at most $J$. Parameterizing their central segment by its
-actual mean turns (TU1) into (TU2) with
-$M=192J/\Delta_Q^2$. Equation (TU3) and $13824<128^2$ yield
+Also $T(ah)\le aT(h)$ for $a\ge1$. No quantile comparison factor is needed
+for this branch.
+
+The sequence $W_j$ is positive, antitone and tends to zero, with
+$W_{j+1}\ge W_j/4$. Starting at $j_0=0$, choose $j_{k+1}$ as the first
+later index with $W_{j_{k+1}}\le W_{j_k}/4$.
+For $j_k\le j<j_{k+1}$, minimality gives $W_j>W_{j_k}/4$.
+
+Let $q_0=1/4$ on $\{d\le\tau\}$ and zero elsewhere, and define
 \[
- \limsup_{n\to\infty}t(n)\sqrt{n/\log\log n}
-       \ge \frac{\sqrt{1-\delta}}{128}\sqrt{V_{\mu,\rho}}.         \tag{TU6}
+ q_k=q_0+(g_{\varepsilon_{j_k}}-g_{\varepsilon_{j_{k+1}}})/32.
 \]
-The bound holds for each positive-gap certificate before taking the supremum.
-If $V_{\mu,\rho}=\infty$, its meaning is that the limsup is infinite.
+These are admissible measurable rare sign priors. Their mean increments
+$a_k=(W_{j_k}-W_{j_{k+1}})/32$ satisfy
+$a_k\ge3W_{j_k}/128$ and $3a_k\le a_i$ for $i<k$.
+The gap-weighted contrast is at most $\varepsilon_{j_k}/32$.
 
-The existing \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/0544b2af17c9f12406e590fdafdaffa54494b38e/lean/ThresholdHC/Genie/InfiniteDuality.lean}{infinite-cap duality} identifies
+\paragraph{Adaptive information.}
+On the differing region all priors lie in $[1/4,9/32]$ and gaps are at
+most $1/4$. After any fixed history on one coin, its posterior sign
+probability is Lipschitz in its prior with coefficient at most $16/3$.
+The resulting Bernoulli observation KL is controlled by a constant times
+the squared gap-weighted contrast. Outside the region the laws agree,
+including deterministic observations.
+The finite-transcript chain argument therefore gives
 \[
- V_{\mu,\rho}=\sup_{B>0}B P_\infty(B)^2
-            =\lim_{B\to\infty}B P_\infty(B)^2.                 \tag{TU7}
+ D_{\mathrm{KL}}(P_k^{(n)}\Vert Q^{(n)})\le n\varepsilon_{j_k}^2.
+ \tag{TU7}
 \]
-Indeed, after multiplying the dual identity by $B$, each term is
-$\Delta_Q^2/(4/B+I_Q)$, increasing in $B$. Suprema over $B,Q$ commute.
-For $0<I_Q<\infty$ the limit is $\Delta_Q^2/I_Q$. A zero information
-coefficient gives zero when $\Delta_Q=0$ and infinity otherwise. Infinite
-information contributes zero. These are exactly the cases included by (TU5).
+Integrating over the private seed and the iid hidden-gap array, then
+forgetting the gaps by data processing, proves (TU7) for the actual
+observable prefix. Revisits, adaptive labels and early stopping are included.
 
-\paragraph{Matching when the asymptotic coefficient is finite.}
-
-Let
+\paragraph{Dense blocks.}
+If $j_k\le(k+2)^2$ eventually, use (TU3) with $s_k=\varepsilon_{j_k}$.
+Testing forces $t(N_k)\ge W_{j_k}/256$ infinitely often.
+The polynomial index bound gives $\lambda(N_k)\le3\log(k+2)$ eventually,
+and hence $h(N_k)\le5\varepsilon_{j_k}$. Equation (TU6) yields
 \[
- C_{\mu,\rho}=\sup_{B>0}\sqrt B\,\mathcal K_{\mu,\rho}(B).
+ \mathcal K(N_k/\lambda(N_k))\le10W_{j_k}.
 \]
-\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/0544b2af17c9f12406e590fdafdaffa54494b38e/lean/ThresholdHC/HardBudget/SelectionScale.lean}{Square-root budget scaling} makes the expression inside the supremum
-nondecreasing. The existing comparisons
-$10^{-17}\mathcal K(B)\le R(B)\le P_\infty(B)\le8R(B)\le224000\mathcal K(B)$
-give
+This proves the stronger coefficient $1/2560$.
+
+\paragraph{Sparse blocks.}
+Otherwise $j_k>k^2$ infinitely often. If eventually every increment were
+smaller than $\sqrt{j_k}$, then
+$\sqrt{j_{k+1}}\le\sqrt{j_k}+1/2$, contradicting that growth.
+Thus $j_{k+1}-j_k\ge\sqrt{j_k}$ infinitely often.
+For a sufficiently large such start $j=j_k$, set
 \[
- 10^{-17}C_{\mu,\rho}\le\sqrt{V_{\mu,\rho}}
-        \le224000 C_{\mu,\rho}.                               \tag{TU8}
+ a=\lfloor\sqrt j/2\rfloor,\qquad m=j+a,\qquad
+ n=\lceil16^m/\tau^2\rceil.
 \]
-If $C_{\mu,\rho}<\infty$, positivity of the selection functional implies
-$0<C_{\mu,\rho}<\infty$. Equations (TU6)--(TU8) give the matching lower bound
+Then $m+1<j_{k+1}$, $n\varepsilon_{m+1}^2\le1/8$, and these budgets
+tend to infinity. Elementary geometric bounds give
+$\lambda(n)\le3(j+1)\le16^a\le n\varepsilon_j^2$.
+Therefore $h(n)\le\varepsilon_j$ and (TU6) bounds
+$\mathcal K(n/\lambda(n))$ by $2W_j$.
+
+Use the single alternative $q=q_0+g_{\varepsilon_{m+1}}/32$.
+Its mean gap is $W_{m+1}/32$ and its prefix KL is at most $1/8$.
+If $t(n)$ were smaller than half the gap, simultaneous accuracy would give
+a test of power at least $3/4$ and size at most $1/4$.
+Binary Pinsker would force KL at least $1/2$, a contradiction.
+Consequently
 \[
- \limsup_{n\to\infty}
- \frac{t(n)}{\mathcal K_{\mu,\rho}(n/\log\log n)}
- \ge \frac{\sqrt{1-\delta}}{128\cdot10^{17}}.                     \tag{TU9}
+ t(n)\ge W_{m+1}/64>W_j/256
+       \ge\mathcal K(n/\lambda(n))/512.
+ \tag{TU8}
 \]
-For each fixed $\delta$, inserting $\log(1/\delta)$ in the budget inflation
-has the same asymptotic conclusion. The existing known-law upper bound and
-(TU9) therefore match up to universal constants, including their dependence on
-the fixed law and rarity.
+Both infinite-moment cases imply (TU1).
 
-This includes every law with finite inverse moment
-$I_\mu=\int d^{-1}\,d\mu<\infty$, because selecting the empty core gives
-$\mathcal K(B)\le I_\mu/\sqrt B$. In particular it includes all finite-support
-positive-gap laws. No lower bound on the support is required for the
-finite-inverse-moment conclusion.
+\paragraph{Intervals and formal scope.}
+On joint coverage and half-width control, the midpoint of the interval
+has error at most $t(n)$ at every budget. The endpoints' measurability
+makes the midpoint observable, completing the interval theorem.
 
-\paragraph{Infinite inverse moment.}
-
-Assume $I_\mu=\infty$. Choose $0<\tau\le1/4$ with
-$0<\mu((0,\tau])\le\rho/2$, and set $S=(0,\tau]$ and
-$T(h)=\int_S\min(1,h/d)\,d\mu$.
-The mass-$\rho$ quantile threshold is above $\tau$. The quantile core has finite
-entropy and the quantile tail above $\tau$ has finite inverse moment.
-Since $T(h)/h\to\infty$, the checked $8/5$ comparison gives, eventually as $h\downarrow0$,
-\[
- (5/8)T(h)\le\mathcal K(h^{-2})\le2T(h).                       \tag{TU10}
-\]
-
-\paragraph{Bounded prior profiles.}
-
-Set $\varepsilon_j=\tau4^{-j}$ and
-\[
- f_j(d)=\frac{\varepsilon_j}{d}\mathbf1_{\{\varepsilon_j<d\le\tau\}},
- \quad a_j=\int f_j\,d\mu,\quad W_j=\sum_{i\ge j}a_i.
-\]
-Geometric summation gives
-\[
- T(\varepsilon_j)/3\le W_j\le4T(\varepsilon_j)/3,\quad
- W_{j+1}\ge W_j/4,\quad W_j\downarrow0,\quad W_j>0.             \tag{TU11}
-\]
-For $d>\varepsilon_j$, the pointwise sum is $4\varepsilon_j/(3d)$.
-For $0<d\le\varepsilon_j$, start at the first index with $\varepsilon_i<d$.
-The sum lies in $[1/3,4/3]$. The strict indicator handles atoms at grid endpoints.
-
-Let $j_1=0$, and let $j_{k+1}$ be the first index after $j_k$ with
-$W_{j_{k+1}}\le W_{j_k}/4$. Then
-$W_{j_k}/16<W_{j_{k+1}}\le W_{j_k}/4$.
-For a finite binary word $v$ of length $L$, define
-\[
- q_v(d)=\frac{1}{4}\mathbf1_S(d)+\frac{3}{128}
-     \sum_{k=1}^L v_k\sum_{j=j_k}^{j_{k+1}-1}f_j(d).
-\]
-This lies in $[1/4,9/32]$ on $S$, is zero outside $S$, and is admissible.
-Its block-$k$ mean increment is $(3/128)(W_{j_k}-W_{j_{k+1}})$.
-Parameters whose first $k$ bits differ are separated by at least
-\[
- \delta_k=(3/256)W_{j_k}.                                    \tag{TU12}
-\]
-If their first $k-1$ bits agree, then at every gap
-\[
- d\,|q_v(d)-q_w(d)|\le\varepsilon_{j_k}/32.                   \tag{TU13}
-\]
-Both bounds hold uniformly in finite depth $L$.
-
-\paragraph{Information under adaptive observation.}
-
-Augment the transcript with the whole iid gap sequence, whose distribution
-is independent of the sign prior. The controller still uses its original
-seed and observed flips. Forgetting the extra gaps gives the original
-experiment, so data processing makes its KL no larger.
-Conditional on the augmented seed and an observed history, a queried coin has sign
-likelihoods $A,B\ge0$, $A+B>0$. Its posterior sign probability is
-$\pi(q)=qA/[qA+(1-q)B]$.
-For $q,r\in[1/4,3/4]$, both denominators are at least $(A+B)/4$, so
-\[
- |\pi(q)-\pi(r)|
- =\frac{AB|q-r|}{[qA+(1-q)B][rA+(1-r)B]}\le4|q-r|.
-\]
-Thus the next-head probabilities differ by at most
-$8d|q-r|\le\varepsilon_{j_k}/4$ on $S$. Both are in $[1/4,3/4]$.
-The Bernoulli chi-square bound gives one-step KL at most
-$\varepsilon_{j_k}^2/3\le\varepsilon_{j_k}^2$.
-Outside $S$, the two conditional laws agree.
-
-Given the history and seed, the adaptive action is the same function under
-both hypotheses. The queried coin's posterior uses its own flips, and revisits
-retain its latent sign. Chain rule over at most $n$ physical flips, followed
-by forgetting the revealed gaps, gives
-\[
- D_{\rm KL}(P_v^{(n)}\Vert P_w^{(n)})\le n\varepsilon_{j_k}^2   \tag{TU14}
-\]
-whenever the first $k-1$ bits agree. The posterior and per-flip inequalities
-are checked in \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/0544b2af17c9f12406e590fdafdaffa54494b38e/lean/ThresholdHC/AnytimeLower/TailInformation.lean}{TailInformation};
-the adaptive chain-rule transfer here remains a paper proof.
-
-\paragraph{Two possible spacings of the blocks.}
-
-First suppose $j_k\le k^2$ eventually. Take
-$n_k=\lfloor(1-\delta)\varepsilon_{j_k}^{-2}\log k/2\rfloor$.
-The finite-tree argument of (TU4), using (TU12) and (TU14), forces
-$t(n_k)\ge(3/512)W_{j_k}$ infinitely often. Otherwise its error sum would
-dominate $\sum k^{-1/2}$.
-
-Put $\lambda(n)=\log(1/\delta)+\log\log n$. Eventually
-$\lambda(n_k)\le4\log k$ and
-$n_k\ge(3/16)\varepsilon_{j_k}^{-2}\log k$. Hence
-$\sqrt{\lambda(n_k)/n_k}\le5\varepsilon_{j_k}$.
-By (TU10), (TU11) and $T(5h)\le5T(h)$,
-$\mathcal K(n_k/\lambda(n_k))\le30W_{j_k}$.
-The ratio of the envelope to this functional is at least $1/5120$
-infinitely often.
-
-Otherwise $j_k>k^2$ infinitely often. There are then infinitely many blocks
-with $j_{k+1}-j_k\ge\sqrt{j_k}$. If all late increments were smaller,
-$\sqrt{j_{k+1}}\le\sqrt{j_k}+1/2$ would imply
-$j_k\le(k/2+O(1))^2<k^2$ eventually.
-
-On each such long block put
-$m_k=j_k+\lfloor\sqrt{j_k}/2\rfloor$ and
-$n_k=\lceil\varepsilon_{m_k}^{-2}\rceil$.
-Eventually $m_k+1<j_{k+1}$ and
-\[
- \varepsilon_{m_k+1}\le n_k^{-1/2}
- \le\sqrt{\lambda(n_k)/n_k}\le\varepsilon_{j_k}.
-\]
-The inflation shifts a geometric gap index by $O(\log\log j_k)$,
-whereas the distance to the block's start is of order $\sqrt{j_k}$.
-Also $W_{m_k+1}>W_{j_k}/4$. Therefore
-\[
- \mathcal K(n_k)\ge(15/128)W_{j_k},\qquad
- \mathcal K(n_k/\lambda(n_k))\le6W_{j_k}.
-\]
-In particular their ratio is at least $1/96$.
-The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/0544b2af17c9f12406e590fdafdaffa54494b38e/lean/ThresholdHC/ConfidenceProgram/Lower.lean}{fixed-budget confidence lower bound}, using its conservative coefficient
-$10^{-17}/30$, now yields
-\[
- \frac{t(n_k)}{\mathcal K(n_k/\lambda(n_k))}\ge10^{-17}/2880.     \tag{TU15}
-\]
-A physical cap implies an expected-work bound. The reported interval's midpoint
-is a fixed-budget estimator with error at most $t(n)$ on its coverage event.
-
-\newpage
-\paragraph{Matching theorem for every positive-gap law.}
-
-Every nonincreasing deterministic half-width envelope in the original online
-experiment, with joint coverage and width probability at least $1-\delta$
-for each admissible population, satisfies
-\[
- \boxed{\displaystyle
- \limsup_{n\to\infty}
- \frac{t(n)}{\mathcal K_{\mu,\rho}
-       (n/[\log(1/\delta)+\log\log n])}\ge10^{-22}.}            \tag{TU16}
-\]
-Here $\mu$ is any known probability law on $(0,1/2]$,
-$0<\rho\le1/4$, and $0<\delta\le1/4$. The limsup uses integer budgets
-large enough for the logarithms to be defined.
-
-For finite inverse moment, (TU9) gives (TU16). For infinite inverse moment,
-the two block-spacing cases give it. These cases exhaust all laws.
-The known-law upper inflation is asymptotic to $2\log\log n$ at fixed
-$\delta$. Square-root budget scaling compares it to the inflation in (TU16)
-by a universal factor. This proves matching law and rarity dependence in
-the asymptotic deterministic-envelope sense.
-
-The complete matching theorem is a paper proof. The native audit checks
-the common-family information bounds and the posterior and per-flip KL inequalities.
-The sequential testing lemma, infinite-moment construction, its acquisition-law
-transfer and the asymptotic comparisons remain to be formalized in Lean.
+The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/a6c77f546604cb6df7df67802e0061d1345fa2ca/lean/ThresholdHC/AnytimeLower/Intervals.lean}{complete interval lower bound}
+and its \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/a6c77f546604cb6df7df67802e0061d1345fa2ca/lean/ThresholdHC/AnytimeLower/Full.lean}{online-estimate counterpart}
+are Lean-checked. The final audit independently restates fourteen
+asymptotic and interval statements and checks their transitive axioms.
+The separate sequential and tail-family audits contain eight and fifteen
+statements respectively. This is the deterministic-envelope asymptotic
+comparison; adaptation to the oracle rate for an unknown gap law remains open.
