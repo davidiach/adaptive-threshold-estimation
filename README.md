@@ -5,7 +5,7 @@
 Minimax theory for estimating a threshold probability from noisy coin flips,
 with a research manuscript, Lean 4 proofs built on Mathlib, and reproducible experiments.
 
-**[Paper](paper/v6/builds/stochastic-envelope-20261105.pdf)** · **[Formal proof map](lean/README.md)** · **[Verification guide](docs/VERIFY.md)** · **[Specialist review packet](paper/critical-review/review.pdf)**
+**[Paper](paper/v6/builds/sublinear-power-20261105.pdf)** · **[Formal proof map](lean/README.md)** · **[Verification guide](docs/VERIFY.md)** · **[Specialist review packet](paper/critical-review/review.pdf)**
 
 New contributors: start with [CONTRIBUTING.md](CONTRIBUTING.md).
 AI agents: read [AGENTS.md](AGENTS.md) for current entry points, preservation
@@ -186,8 +186,8 @@ experiments provide supporting evidence, not proofs of universal claims.
 The general-law entropy-tail and closed-quantile rates are now Lean-checked
 with explicit coefficients. The [stochastic-envelope corollary](results/stochastic-envelope-20261105/README.md)
 also has a Lean proof for RMS, confidence and unbiased estimation. The remaining
-formalization targets include the below-two rare-event regimes, smooth densities
-and observed outer states. The sharp quantile factor now has a paper proof. The [finite-cap comparison](docs/FINITE_CAP_RATE.md)
+formalization targets include rare power margins from one up to two, smooth densities
+and observed outer states. The [row below one](results/sublinear-power-20261105/README.md) is Lean-checked for RMS and fixed confidence. The sharp quantile factor now has a paper proof. The [finite-cap comparison](docs/FINITE_CAP_RATE.md)
 certifies $P_N\le 16R$ at $N=\lceil4B/3\rceil$. Efficient
 exact selection for many bands with unrestricted costs remains open.
 See the [completion ledger](docs/WORKPLAN.md) for the current boundary.

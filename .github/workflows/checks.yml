@@ -323,6 +323,8 @@ jobs:
         run: python tools/verify_confidence_amplification.py
       - name: Verify distribution-blind estimation under a stochastic envelope
         run: python tools/verify_stochastic_envelope.py
+      - name: Verify rare-event minimax rates for power exponents below one
+        run: python tools/verify_sublinear_power.py
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
       - uses: actions/upload-artifact@v4
