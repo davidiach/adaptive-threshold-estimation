@@ -809,3 +809,7 @@ Run `python tools/verify_rms_localization.py` for 15 exact statements and 15 tra
 ## Sharp finite-vector quantile factor
 
 Run `python tools/verify_optimal_quantile.py` for 54 exact statements and 54 transitive axiom reports. The audit covers the Gibbs criterion, square-root tangents, finite-to-infinite limit, joint continuity, compact maximum, strict monotonicity, analytic endpoint bounds, unique root and the unrestricted finite-vector equivalence. The arbitrary-law reduction and finite-law realization remain paper proofs. [Native record](../results/optimal-quantile-root-20261105/README.md)
+
+## Sharp finite-core selection reduction
+
+Run `python tools/verify_quantile_sharp_law.py` for 49 exact statements and 49 transitive axiom reports. The audit covers entropy Lipschitz continuity, skipped-tail absorption, concavity, disjoint-coordinate reduction, entropy interaction, dyadic weights and both boundary-band cases. General-law measure normalization and finite-law realization remain paper proofs. [Native record](../results/quantile-core-reduction-20261105/README.md)

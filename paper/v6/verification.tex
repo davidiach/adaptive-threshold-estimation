@@ -143,7 +143,7 @@ For $0<\rho\le1/4$ and $B>0$,
 gives $\mathcal K\le Q\le(8/5)\mathcal K$ for arbitrary gap laws.
 A \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/a1f9b7c3f757798068c7a7db45d9c1fa9ee19a2c/lean/ThresholdHC/QuantilePrice/Full.lean}{sharper Lean theorem}
 gives $Q\le(31/20)\mathcal K$ using a $16/9$ bound on separated supports.
-The unique scalar root and finite-vector optimum in \cref{prop:sharp-finite-vector-factor} are Lean-checked. The arbitrary-law reduction and finite-law realization in \cref{app:optimal-quantile-factor} retain their paper proofs.
+Lean checks the scalar root, finite-vector optimum, entropy Lipschitz bound and finite-core selection reduction in \cref{app:optimal-quantile-factor}. Measure normalization and finite-law realization remain paper proofs.
 For finite support,
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/1cafb0cc0fca2a4633fb1c2046f0076c16af1deb/lean/ThresholdHC/BandwiseSuffix/Full.lean}{the suffix theorem}
 gives a hard optimizer of the uncapped objective and identifies its capped
@@ -485,7 +485,7 @@ and
 \Cref{app:smooth-density} verifies \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/8e42a99a49dcd4af8bdaaf17a6ea1c398f34b03b/lean/ThresholdHC/SmoothDensity/Full.lean}{smooth-density robustness}.
 \Cref{app:finite-observed,app:continuous-observed} check the observed-state lower bounds and regularity.
 \Cref{app:observed-upper} verifies the corresponding upper bounds.
-The finite-vector optimum in \cref{app:optimal-quantile-factor} is Lean-checked. Unrestricted selection complexity
+The scalar and finite-core results in \cref{app:optimal-quantile-factor} are Lean-checked. Unrestricted selection complexity
 remains open. The
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/8a701c8db6c42930ad2a187f3d895ca55265afd6/research/2026-10-30-confidence-transfer/NOTE.md}{confidence-transfer paper proof}
 uses the checked

@@ -199,3 +199,7 @@ series after halving the argument, followed by upward-rounded squaring.
 All comparisons use integers and rational arithmetic. A reproduction is
 `python tools/verify_optimal_quantile_factor.py`. The unique scalar
 root, independent of the displayed rounding, specifies the exact factor.
+
+## Native finite-core reduction
+
+Lean checks the 1-Lipschitz bound for the square root of entropy after adding $y^2$ in the boundary coordinate. It also checks skipped-tail absorption, the concave reduction to disjoint core vectors and both boundary-coordinate cases, giving the exact scalar-root factor for arbitrary nonnegative finite core splits. General-law measure normalization and finite-law realization remain to be formalized. [Native record](../results/quantile-core-reduction-20261105/README.md)

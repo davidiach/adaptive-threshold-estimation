@@ -137,3 +137,5 @@ the ordinary model to unknown laws ordered by their gap CDFs.
 [Generic RMS transfer](ThresholdHC/RMSLocalization/CommonPair.lean) and [additive submeasure localization](ThresholdHC/RMSLocalization/Full.lean) verify coefficient $1/128$ in the original experiment. [Proof map](../docs/RMS_LOCALIZATION.md) · [Audit](../results/rms-localization-20261105/README.md)
 
 The [sharp finite-vector quantile factor](ThresholdHC/OptimalQuantile/FiniteSharp.lean) is equivalent to the [unique scalar root](ThresholdHC/OptimalQuantile/Root.lean) for every real factor. The law-to-vector reduction and finite-law realization remain paper proofs. [Native record](../results/optimal-quantile-root-20261105/README.md)
+
+The [finite-core selection reduction](ThresholdHC/QuantileSharpLaw/CoreReduction.lean) checks the exact scalar-root factor for arbitrary nonnegative core splits, using the [entropy Lipschitz bound](ThresholdHC/QuantileSharpLaw/Lipschitz.lean). [Native record](../results/quantile-core-reduction-20261105/README.md)

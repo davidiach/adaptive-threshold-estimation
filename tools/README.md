@@ -90,3 +90,5 @@ Run `verify_confidence_entropy.py` for the [sharper general-law confidence coeff
 Run `verify_rms_localization.py` for [generic RMS obstruction transfer and additive localization](../results/rms-localization-20261105/README.md).
 
 Run `verify_optimal_quantile.py` for the [sharp finite-vector factor and unique scalar root](../results/optimal-quantile-root-20261105/README.md). The numerical bracket uses the separate exact-arithmetic tool `verify_optimal_quantile_factor.py`.
+
+Run `verify_quantile_sharp_law.py` for the [entropy Lipschitz and finite-core reduction](../results/quantile-core-reduction-20261105/README.md). General-law measure normalization and finite-law realization remain paper proofs.
