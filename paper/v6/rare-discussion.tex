@@ -30,13 +30,24 @@ $P_N$ bounds worst bias and worst variance separately. Accordingly, its
 exact dual is an identity for a certificate program, and the statistical
 connection is a comparison inequality. The convergent genie brackets
 can certify that a chosen cap suffices for a particular input without
-using the large universal cap. They do not give a uniform runtime bound.
+using the large universal cap. Theorem~\ref{thm:uniform-cap-rate} shows that
+$N=\lceil4B/3\rceil$ suffices for every input with $0<\rho\le1/2$.
+Neither gives a solver runtime or bit-complexity bound.
 
-The remaining quantitative questions include sharp comparison constants,
-efficient selection for structured laws, and rates of cap convergence.
+The remaining quantitative questions include sharp constants in
+$R_{\mu,\rho}\asymp\mathcal K$, efficient selection for structured laws,
+and the optimal rate of cap convergence. Lean checks the uniform cap rate
+of \cref{app:uniform-cap-rate} and the least factor in
+$\Q\le c\,\mathcal K$ as the root of the scalar equation in
+\cref{app:optimal-quantile-factor}; its decimal bracket uses separate
+exact arithmetic.
 The present theorem assumes known $\mu$, Bernoulli observations, and a
-uniform expected observation budget. Extensions to an unknown magnitude
-law, other observation kernels, or almost-sure budgets require separate
+uniform expected observation budget. Appendix~\ref{app:hard-budget} treats an
+almost-sure budget for RMS risk: for a known law and $0<\rho\le1/4$, if
+every path must stop within $\lfloor B\rfloor$ observations, Lean checks
+that the minimax risk lies between $10^{-17}\mathcal K_{\mu,\rho}(B)$
+and $160000\,\mathcal K_{\mu,\rho}(B)$ for every $B>0$. Extensions to
+an unknown magnitude law or other observation kernels require separate
 arguments.
 
 The general-law argument includes the specialized proof chain rather
@@ -44,8 +55,10 @@ than relying on the earlier working notes. Separate model audits of the
 standalone general-law manuscript found no remaining substantive
 inconsistency in the reviewed chain; exact arithmetic verifies the
 finite numerical certificates. These checks do
-not constitute external refereeing or proof-assistant verification of the
-general theorems. The related-work comparison is targeted and does not
+not constitute external refereeing. Lean separately checks both halves of
+\eqref{eq:entropy-tail-law}, with coefficients $10^{-17}$ and $28000$, and
+the stopping-program, identification and genie-bracket results, within the
+scopes stated in Section~\ref{sec:verification}. The related-work comparison is targeted and does not
 certify publication priority.
 
 

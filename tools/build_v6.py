@@ -567,8 +567,12 @@ Those results preceded the general law.""")
                     "The core term\n$\\Gamma_\\kappa$ of \\eqref{fg:eq:core-entropy} has the same form.")
     related = once(related, "\\paragraph{Convex estimation, testing, and stopping.}",
                    "\\paragraph{Gaussian best-arm identification.}\n" + gaussian.rstrip()
-                   + "\nThe critical-law discussion in Section~\\ref{sec:rare} also notes\n"
-                   "the Yao--Zhao--Zhou result~\\cite{yao}.\n\n"
+                   + "\nYao--Zhao--Zhou~\\cite{yao} also resolve the gap-entropy conjecture\n"
+                   "for Gaussian best-arm identification and report Lean proofs. Their\n"
+                   "target and observation model likewise differ from the population\n"
+                   "problem here; we do not use their result and do not claim that it\n"
+                   "implies ours or conversely. The critical-law discussion in\n"
+                   "Section~\\ref{sec:rare} notes both results.\n\n"
                    "\\paragraph{Convex estimation, testing, and stopping.}")
 
     discussion = gl("discussion")
@@ -582,6 +586,41 @@ than relying on the earlier working notes. Separate model audits of the
 standalone general-law manuscript found no remaining substantive
 inconsistency in the reviewed chain; exact arithmetic verifies the
 finite numerical certificates.""")
+    discussion = once(discussion,
+        "using the large universal cap. They do not give a uniform runtime bound.",
+        "using the large universal cap. Theorem~\\ref{thm:uniform-cap-rate} shows that\n"
+        "$N=\\lceil4B/3\\rceil$ suffices for every input with $0<\\rho\\le1/2$.\n"
+        "Neither gives a solver runtime or bit-complexity bound.")
+    discussion = once(discussion,
+        "The remaining quantitative questions include sharp comparison constants,\n"
+        "efficient selection for structured laws, and rates of cap convergence.",
+        "The remaining quantitative questions include sharp constants in\n"
+        "$R_{\\mu,\\rho}\\asymp\\mathcal K$, efficient selection for structured laws,\n"
+        "and the optimal rate of cap convergence. Lean checks the uniform cap rate\n"
+        "of \\cref{app:uniform-cap-rate} and the least factor in\n"
+        "$\\Q\\le c\\,\\mathcal K$ as the root of the scalar equation in\n"
+        "\\cref{app:optimal-quantile-factor}; its decimal bracket uses separate\n"
+        "exact arithmetic.")
+    discussion = once(discussion,
+        """Extensions to an unknown magnitude
+law, other observation kernels, or almost-sure budgets require separate
+arguments.""",
+        """Appendix~\\ref{app:hard-budget} treats an
+almost-sure budget for RMS risk: for a known law and $0<\\rho\\le1/4$, if
+every path must stop within $\\lfloor B\\rfloor$ observations, Lean checks
+that the minimax risk lies between $10^{-17}\\mathcal K_{\\mu,\\rho}(B)$
+and $160000\\,\\mathcal K_{\\mu,\\rho}(B)$ for every $B>0$. Extensions to
+an unknown magnitude law or other observation kernels require separate
+arguments.""")
+    discussion = once(discussion,
+        """These checks do
+not constitute external refereeing or proof-assistant verification of the
+general theorems.""",
+        """These checks do
+not constitute external refereeing. Lean separately checks both halves of
+\\eqref{eq:entropy-tail-law}, with coefficients $10^{-17}$ and $28000$, and
+the stopping-program, identification and genie-bracket results, within the
+scopes stated in Section~\\ref{sec:verification}.""")
     discussion = once(discussion, "The companion verifier\n\\texttt{checks/verify\\_revisions.py}",
                       "The verifier\n\\nolinkurl{paper/rare-event/v2/checks/verify_revisions.py}")
 
@@ -595,6 +634,13 @@ finite numerical certificates.""")
         "The repository directory \\nolinkurl{paper/rare-event/v2/checks/} is self-contained.")
     computation = once(computation, "From \\texttt{checks/}, verification needs only Python's standard library:",
                        "From that directory, verification needs only Python's standard library:")
+    computation = once(computation,
+        "The convergence theorem is qualitative and the\n"
+        "certificates concern the particular rational inputs displayed above.",
+        "The convergence theorem of \\cref{sec:genie} is qualitative;\n"
+        "\\cref{app:uniform-cap-rate} shows that the exact program values satisfy\n"
+        "$P_N\\le2G_N$ at $N=\\lceil4B/3\\rceil$, without covering solver accuracy.\n"
+        "The certificates concern the particular rational inputs displayed above.")
 
     return {
         "entropy-tail-statement.tex": statement,
@@ -607,7 +653,13 @@ finite numerical certificates.""")
         "appendix-transfer-foundations.tex": transfer,
         "appendix-flow.tex": gl("flow_foundations"),
         "appendix-dual.tex": gl("dual_transfer"),
-        "appendix-genie.tex": gl("genie_brackets"),
+        "appendix-genie.tex": once(gl("genie_brackets"),
+            "criterion therefore succeeds at a finite cap, with no claimed uniform\n"
+            "rate for that cap.",
+            "criterion therefore succeeds at a finite cap. Separately,\n"
+            "\\cref{app:uniform-cap-rate} uses this theorem to show that, for the\n"
+            "exact program values, $N\\ge4B/3$ suffices for every law with\n"
+            "$0<\\rho\\le1/2$."),
         "appendix-identifiability.tex": gl("identifiability"),
         "appendix-computation.tex": computation,
     }
@@ -743,12 +795,24 @@ works directly with the selection over submeasures in
 
     consequences = demote(fg("consequences"))
     consequences = once(consequences,
+        "They do not supply a deterministic total cap, a high-confidence\n"
+        "guarantee, or an estimator that learns an unknown magnitude law.",
+        "They do not themselves supply a deterministic total cap, a\n"
+        "high-confidence guarantee, or an estimator that learns an unknown\n"
+        "magnitude law. For every known law and $0<\\rho\\le1/4$,\n"
+        "\\cref{app:hard-budget} gives Lean-checked hard-cap RMS bounds with\n"
+        "coefficients $10^{-17}$ and $160000$ on $\\mathcal K(B)$; for\n"
+        "$0<\\delta\\le1/4$, \\cref{app:known-confidence} gives Lean-checked\n"
+        "bounds on both confidence radii between $10^{-17}\\mathcal K(\\beta)$ and\n"
+        "$750000\\,\\mathcal K(\\beta)$, with $\\beta=B/\\log(1/\\delta)$.")
+    consequences = once(consequences,
         "assumptions requires additional arguments; Remark~\\ref{fg:rem:general-laws}\n"
         "records the extension to general laws that follows, conditionally,\n"
         "from~\\cite{gl}.",
         "assumptions requires additional arguments; Corollary~\\ref{fg:cor:general-laws}\n"
         "records the extension to general laws, which rests on\n"
-        "Theorem~\\ref{thm:entropy-tail-law}.")
+        "Theorem~\\ref{thm:entropy-tail-law}; Lean checks the stronger bounds\n"
+        "$10^{-17}\\Q\\le R\\le30001\\,\\Q$ for every law (\\cref{sec:verification}).")
 
     lower = demote(fg("direct_lower"))
     # The tier lemma is identical to the general-law one, kept in its proof.
@@ -783,6 +847,14 @@ apply to this decomposition.
 """ + completion
 
     assembly = demote(fg("assembly"))
+    assembly = once(assembly,
+        "There is no claim of a single procedure simultaneously attaining every\n"
+        "budget, or of a deterministic total observation cap.",
+        "The theorem makes no claim of a single procedure simultaneously\n"
+        "attaining every budget, or of a deterministic total observation cap.\n"
+        "For every known law and $0<\\rho\\le1/4$, \\cref{app:hard-budget}\n"
+        "separately gives a Lean-checked hard-cap RMS rate with coefficients\n"
+        "$10^{-17}$ and $160000$ on $\\mathcal K$.")
     return {
         "finite-model.tex": model,
         "finite-entropy.tex": entropy,
