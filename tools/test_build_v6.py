@@ -1,8 +1,13 @@
 """Regression checks for the consolidated v6 manuscript assembly."""
 import re
+import shutil
+import sys
+import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
+import build_v6
 from build_v6 import DEST, ROOT, assemble, check_project, project_text, rekey
 
 GL = ROOT / "paper/rare-event/v2/sections"
@@ -139,7 +144,24 @@ class ConsolidatedAssemblyTests(unittest.TestCase):
     def test_generated_sources_are_current(self):
         for name, text in self.output.items():
             with self.subTest(name=name):
-                self.assertEqual((DEST / name).read_text(encoding="utf-8"), text)
+                self.assertEqual((DEST / name).read_bytes(), text.encode("utf-8"))
+
+    def test_check_rejects_line_ending_drift(self):
+        # .gitattributes keeps exact bytes, so --check must compare bytes too.
+        with tempfile.TemporaryDirectory() as tmp:
+            dest = Path(tmp)
+            for path in DEST.iterdir():
+                if path.suffix in (".tex", ".json"):
+                    shutil.copyfile(path, dest / path.name)
+            name = sorted(self.output)[0]
+            with mock.patch.object(build_v6, "DEST", dest), \
+                    mock.patch.object(sys, "argv", ["build_v6.py", "--check"]), \
+                    mock.patch("builtins.print"):
+                build_v6.main()
+                crlf = (dest / name).read_bytes().replace(b"\n", b"\r\n")
+                (dest / name).write_bytes(crlf)
+                with self.assertRaisesRegex(SystemExit, "Generated v6 source differs"):
+                    build_v6.main()
 
     def test_project_labels_references_and_citations_resolve(self):
         label_count, cite_count = check_project(project_text(DEST))

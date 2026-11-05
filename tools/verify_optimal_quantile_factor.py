@@ -104,6 +104,8 @@ def certify_lower():
 
 
 if __name__ == "__main__":
+    if sys.flags.optimize:
+        raise SystemExit("Run without -O: these certificate checks are assert statements.")
     certify_lower()
     cells, depth = certify_upper()
     print(

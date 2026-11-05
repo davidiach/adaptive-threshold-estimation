@@ -11,6 +11,7 @@ on:
       - 'CITATION.cff'
       - 'lean/**'
       - 'tools/**'
+      - 'toolkit/**'
       - 'constants/**'
       - 'benchmark/**'
       - 'results/**'
@@ -92,18 +93,14 @@ jobs:
       - run: python benchmark/verify_production.py
       - name: Regression tests for validation guards
         run: python -m unittest discover -s tools -p 'test_validation.py' -v
-      - name: Regression tests for the Tier 3 audit when present
-        run: |
-          if test -f tools/test_tier3_validation.py; then python -m unittest discover -s tools -p 'test_tier3_validation.py' -v; fi
-      - name: Regression tests for the Tier 4 audit when present
-        run: |
-          if test -f tools/test_tier4_validation.py; then python -m unittest discover -s tools -p 'test_tier4_validation.py' -v; fi
-      - name: Regression tests for the Tier 5 audit when present
-        run: |
-          if test -f tools/test_tier5_validation.py; then python -m unittest discover -s tools -p 'test_tier5_validation.py' -v; fi
-      - name: Regression tests for the Tier 6 audit when present
-        run: |
-          if test -f tools/test_tier6_validation.py; then python -m unittest discover -s tools -p 'test_tier6_validation.py' -v; fi
+      - name: Regression tests for the Tier 3 audit
+        run: python -m unittest discover -s tools -p 'test_tier3_validation.py' -v
+      - name: Regression tests for the Tier 4 audit
+        run: python -m unittest discover -s tools -p 'test_tier4_validation.py' -v
+      - name: Regression tests for the Tier 5 audit
+        run: python -m unittest discover -s tools -p 'test_tier5_validation.py' -v
+      - name: Regression tests for the Tier 6 audit
+        run: python -m unittest discover -s tools -p 'test_tier6_validation.py' -v
       - name: Regression tests for the scoped critical component audit
         run: python -m unittest discover -s tools -p 'test_critical_components.py' -v
       - name: Regression tests for the upper theorem audit
@@ -146,20 +143,17 @@ jobs:
             python -m unittest discover -s tools -p "test_${test}.py" -v
           done
       - run: python tools/check_targets_numeric.py
-      - name: Tier 2 numeric truth checks when present
-        run: |
-          if test -f tools/check_targets2_numeric.py; then python tools/check_targets2_numeric.py; fi
+      - name: Tier 2 numeric truth checks
+        run: python tools/check_targets2_numeric.py
       - run: python tools/check_power_bracket.py
       - run: python proposals/constants/bias_audit.py
-      - name: Check arithmetic for the paper constant when available
-        run: |
-          if test -f proposals/constants/uniform_constant_checks.py; then python proposals/constants/uniform_constant_checks.py; fi
-      - name: Verify frozen hashes when Phase 0 is complete
-        run: |
-          if test -f FROZEN.sha256; then python tools/freeze.py --verify; fi
+      - name: Check arithmetic for the paper constant
+        run: python proposals/constants/uniform_constant_checks.py
+      - name: Verify frozen hashes
+        run: python tools/freeze.py --verify
       - name: Check accepted constants configuration
         run: |
-          if test -f constants/candidate.json; then python constants/score_constants.py constants/candidate.json; fi
+          python constants/score_constants.py constants/candidate.json
           python constants/score_constants.py constants/candidate_theory.json
           python constants/score_constants.py constants/candidate_finite_grid.json
   lean-kernel:
@@ -192,18 +186,14 @@ jobs:
         run: python tools/verify_uniform_arithmetic.py
       - name: Require the complete uniform 713 theorem
         run: python tools/verify_uniform713.py --sequential --require-complete
-      - name: Require the complete Tier 3 landmark when present
-        run: |
-          if test -f tools/verify_tier3.py; then python tools/verify_tier3.py --sequential --require-complete; fi
-      - name: Require the complete Tier 4 landmark when present
-        run: |
-          if test -f tools/verify_tier4.py; then python tools/verify_tier4.py --sequential --require-complete; fi
-      - name: Require the complete Tier 5 landmark when present
-        run: |
-          if test -f tools/verify_tier5.py; then python tools/verify_tier5.py --sequential --require-complete; fi
-      - name: Require the complete Tier 6 landmark when present
-        run: |
-          if test -f tools/verify_tier6.py; then python tools/verify_tier6.py --sequential --require-complete; fi
+      - name: Require the complete Tier 3 landmark
+        run: python tools/verify_tier3.py --sequential --require-complete
+      - name: Require the complete Tier 4 landmark
+        run: python tools/verify_tier4.py --sequential --require-complete
+      - name: Require the complete Tier 5 landmark
+        run: python tools/verify_tier5.py --sequential --require-complete
+      - name: Require the complete Tier 6 landmark
+        run: python tools/verify_tier6.py --sequential --require-complete
       - name: Verify the locked separate-moment research bridge
         run: python lean/ThresholdHC/ResearchRouteA/verify.py
       - name: Verify the critical single-coin lower bound and scoped components
