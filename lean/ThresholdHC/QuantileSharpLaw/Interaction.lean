@@ -13,8 +13,7 @@ theorem costInteraction_nonneg {A B : ℝ} (hA : 0 ≤ A) (hB : 0 ≤ B) :
     0 ≤ costInteraction A B := sub_nonneg.mpr (negMulLog_add_le hA hB)
 
 theorem costInteraction_symm (A B : ℝ) : costInteraction A B=costInteraction B A := by
-  unfold costInteraction
-  ring
+  simp only [costInteraction,add_comm]
 
 theorem costInteraction_continuous (A : ℝ) : Continuous (costInteraction A) := by
   unfold costInteraction
