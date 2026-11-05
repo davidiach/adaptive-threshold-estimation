@@ -349,7 +349,7 @@ jobs:
         run: python tools/verify_rms_localization.py
       - name: Verify the sharp finite-vector quantile factor and scalar root
         run: python tools/verify_optimal_quantile.py
-      - name: Verify the entropy Lipschitz bound for the sharp law reduction
+      - name: Verify the entropy Lipschitz and sharp core reduction
         run: python tools/verify_quantile_sharp_law.py
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
