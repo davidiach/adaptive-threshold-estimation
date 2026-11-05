@@ -889,9 +889,12 @@ $1/128$ conclusion is checked given the quantitative policy-uniform
 common-pair premise. The policy-uniform pair is now constructed in Lean
 from a variance–null-work obstruction for every known gap law, including
 endpoint atoms. The resulting $1/128$ estimator and minimax confidence
-bounds are checked. Fractional-submeasure confidence localization and its
-entropy-packing application remain formalization work.
-[Single-type record](../results/confidence-population-20261104/README.md) · [Selected-type record](../results/adaptive-types-20261105/README.md) · [Common-pair record](../results/common-pair-20261105/README.md)
+bounds are checked. Fractional-submeasure confidence localization now
+has a checked additive coefficient $1/128$, including overlapping
+components and the original observation model. Its entropy-packing
+application for the sharper general-law confidence coefficient remains
+formalization work.
+[Single-type record](../results/confidence-population-20261104/README.md) · [Selected-type record](../results/adaptive-types-20261105/README.md) · [Common-pair record](../results/common-pair-20261105/README.md) · [Additive localization record](../results/additive-confidence-20261105/README.md)
 
 **Amplification.** If a procedure has $\mathbb ET\le b$ and RMS at most $R(b)$,
 the median of $m$ independent copies, with $m$ the least odd integer such that
@@ -914,7 +917,7 @@ It derives the common pair from the fixed quadratic law. Lean also verifies a
 [direct stopping-program lower bound and the matching hard-cap construction](../results/known-law-confidence-20261104/README.md).
 For all known laws and $0<\rho\le1/4$, the checked coefficients on $\mathcal K(B/\ell)$
 are $10^{-17}/30$ and $750000$. The critical upper coefficient is $2670000$.
-The paper's stronger general lower coefficient in the table uses additive localization.
+The paper's stronger general lower coefficient in the table uses the now-checked additive localization together with conditional obstructions and entropy packing. That full application remains a paper proof.
 The known-law time-uniform width row now has a [Lean proof](../results/anytime-confidence-20261105/README.md), with half-width coefficient $1500002$. It uses one common observable experiment and consistent acquisition prefixes across budgets. The
 algorithms in the table may know $\mu$, $\rho$, $B$ and $\delta$. A separate
 [unknown-law construction and lower bound](UNKNOWN_LAW_CONFIDENCE.md) gives

@@ -1,0 +1,55 @@
+'ThresholdHC.AdditiveConfidence.GapMixture.component_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.GapMixture.component_work_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.GapMixture.input_law' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.GapMixture.local_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.GapMixture.mass_balance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.GapMixture.mixedSign_complement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.AdditiveConfidence.GapMixture.mixedSign_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.GapMixture.mixedSign_mean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.GapMixture.parameter_law' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.GapMixture.positiveMass_twice_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.AdditiveConfidence.GapMixture.residual_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.GapMixture.statistic_law' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.GapMixture.statistic_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.GapMixture.statistic_mass_balance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.AdditiveConfidence.GapMixture.work_decomposition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.AdditiveConfidence.capped_statistic_tape' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.component_pair_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.confidence_rate_of_mixture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.confidence_rate_of_obstructions' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.AdditiveConfidence.confidence_rate_of_submeasures' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.AdditiveConfidence.finite_affinity_scale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.finite_affinity_self' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.finite_affinity_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.finite_mixture_loss' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.halfSign_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.halfSign_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.halfSign_le_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.halfSign_mean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.input_law_mixture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.measure_le_of_twice_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.minimax_confidence_of_submeasures' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.AdditiveConfidence.parameter_positive_negative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.positiveMeasure_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.positiveMeasure_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.positiveMeasure_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.positiveMeasure_twice_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.positive_complement_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.submeasureMixture_law' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.submeasureMixture_weight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.tapeStatisticLaw_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.AdditiveConfidence.tape_law_sum' depends on axioms: [propext, Classical.choice, Quot.sound]

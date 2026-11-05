@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Read the updated manuscript](builds/common-pair-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/common-pair-20261105.json)
+[Read the updated manuscript](builds/additive-confidence-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/additive-confidence-20261105.json)
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -292,3 +292,5 @@ finite-budget and unbiased models. [Build record](builds/stochastic-envelope-202
 [Selected-type transfer](typed-confidence.tex) extends the known-law confidence appendix with the full randomized, countable-label, unbounded-stopping proof. Common-pair derivation and fractional-submeasure localization retain their paper proofs. [Manuscript](builds/adaptive-types-20261105.pdf) · [Build record](builds/adaptive-types-20261105.json)
 
 [Common-pair construction](common-pair-confidence.tex) proves the coefficient 42 from the variance–null-work obstruction and gives the $1/128$ confidence consequence. The regularization argument includes endpoint gap atoms. [Manuscript](builds/common-pair-20261105.pdf) · [Build record](builds/common-pair-20261105.json)
+
+[Fractional-submeasure confidence localization](additive-confidence.tex) proves the additive coefficient $1/128$ with overlapping supports and an exact transfer to the original observation model. [Manuscript](builds/additive-confidence-20261105.pdf) · [Build record](builds/additive-confidence-20261105.json)

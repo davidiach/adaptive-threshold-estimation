@@ -82,3 +82,5 @@ Run `verify_observed_upper.py` for the [full fresh-state upper-bound transfer an
 Run `verify_typed_confidence.py` for the [selected-type information transfer](../results/adaptive-types-20261105/README.md), including exact work charging and stopped reconstruction.
 
 Run `verify_confidence_localization.py` for the [common-pair construction and its confidence consequence](../results/common-pair-20261105/README.md).
+
+Run `verify_additive_confidence.py` for [fractional-submeasure additive confidence localization](../results/additive-confidence-20261105/README.md).

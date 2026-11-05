@@ -1,0 +1,115 @@
+\clearpage
+\subsection{Fractional-submeasure confidence localization}
+\label{sec:additive-confidence}
+
+The common-pair theorem combines across overlapping fractional
+submeasures of the known gap law.
+
+\begin{theorem}[Verified additive confidence localization]
+\label{thm:additive-confidence-verified}
+Let $\sigma_i$, $i\in I$, be finitely many nonzero submeasures with
+$\sum_i\sigma_i\le\mu$, and write
+$\tau_i=\sigma_i((0,1/2])$ and $\nu_i=\sigma_i/\tau_i$.
+Choose $0<r_i\le1/4$ with $\sum_i\tau_i r_i\le\rho$.
+For each conditional law $\nu_i$, suppose every capped bounded
+observable one-coin estimator with uniform bias at most $b_i>0$
+and uniform variance at most $V$ on $X_{r_i}(\nu_i)$ satisfies
+$V\mathbb E_{0,i}T\ge J_i>0$.
+Then, for $B>0$ and $0<\delta\le1/4$,
+\[
+ r_{\rm exp}(B,\delta)\ge
+ \frac1{128}\sum_i\tau_i
+ \min\left\{b_i,\sqrt{\frac{J_i\log(1/\delta)}{B}}\right\}.
+\]
+This holds for the original hidden-gap observation model, with a
+uniform expected budget over the global rarity class.
+\end{theorem}
+
+\begin{proof}
+Put $\ell=\log(1/\delta)$ and
+\[
+ s_i=\frac1{32}\min\{b_i,\sqrt{J_i\ell/B}\},
+ \qquad \kappa=\frac{42\ell}{1024B}.
+\]
+Theorem~\ref{thm:common-pair-verified} supplies component pairs
+$u_i,v_i$ with target differences at least $s_i$, both priors
+bounded by $1/2$, and local Hellinger bounds
+\[
+ 1-\Aff(P_{u_i}^A,P_{v_i}^A)
+ \le \frac{42s_i^2}{J_i}\mathbb E_{0,i}T_A
+ \le \kappa\mathbb E_{0,i}T_A.
+\]
+Each pair works for every capped local acquisition rule and
+independent auxiliary seed.
+
+Let $\eta=\mu-\sum_i\sigma_i$ and form the positive-sign measures
+\[
+ \zeta_q=\sum_i\tau_i u_i\nu_i,\qquad
+ \zeta_r=\sum_i\tau_i v_i\nu_i.
+\]
+They satisfy $2\zeta_q,2\zeta_r\le\mu$. Define measurable global
+priors by clipping their Radon--Nikodym densities at $1/2$.
+The clipping preserves the densities almost everywhere, so
+$q\mu=\zeta_q$ and $r\mu=\zeta_r$ exactly as measures.
+Consequently
+\[
+ \theta(r)-\theta(q)\ge\sum_i\tau_i s_i,\qquad
+ \theta(q),\theta(r)\le\sum_i\tau_i r_i\le\rho.
+\]
+The negative-sign measure is
+$\eta+\sum_i\tau_i(1-u_i)\nu_i$, with the analogous identity
+for $r$. These identities hold when the component supports overlap.
+The
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/b64f44f43aa0bb2c43f83ad428a4bc9627a5f773/lean/ThresholdHC/AdditiveConfidence/PositiveMass.lean}{global prior construction}
+checks the exact density and target identities.
+
+\clearpage
+For any fixed capped local procedure, push these measures through
+the Bernoulli-parameter map, the independent coin-tape generator,
+and the actual stopped observation map. Its finite sufficient
+statistic has laws
+\[
+ P=P_{\rm res}+\sum_i\tau_i P_i,\qquad
+ Q=P_{\rm res}+\sum_i\tau_i Q_i,
+\]
+where the shared residual has total mass $\eta((0,1/2])$.
+The finite Cauchy--Schwarz inequality gives
+\[
+ \Aff(P,Q)\ge
+ \eta((0,1/2])+\sum_i\tau_i\Aff(P_i,Q_i).
+\]
+The full stopped transcript has the same affinity as this statistic.
+Since the residual mass plus $\sum_i\tau_i$ equals one,
+\[
+ 1-\Aff(P_q^A,P_r^A)
+ \le\sum_i\tau_i\bigl(1-\Aff(P_{u_i}^A,P_{v_i}^A)\bigr).
+\]
+The all-negative work law decomposes with the same weights and a
+nonnegative residual contribution. Therefore
+\[
+ \sum_i\tau_i\mathbb E_{0,i}T_A\le\mathbb E_0T_A,
+ \qquad
+ 1-\Aff(P_q^A,P_r^A)\le\kappa\mathbb E_0T_A.
+\]
+Thus the combined pair satisfies the local premise of the original
+stopped $16/3$ KL transfer. The
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/b64f44f43aa0bb2c43f83ad428a4bc9627a5f773/lean/ThresholdHC/AdditiveConfidence/LocalBound.lean}{formal mixture bound}
+includes both the actual observation laws and their work comparison.
+
+If an estimator had confidence radius smaller than the theorem's
+right-hand side, quarter smoothing and midpoint testing would give
+\[
+ \frac{\ell}{4}\le\frac{16}{3}\kappa B
+ =\frac{7\ell}{32},
+\]
+which contradicts $\ell>0$. The bound holds for every admissible
+observable estimator and hence for their minimax infimum.
+Both conclusions for the normalized submeasures are
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/b64f44f43aa0bb2c43f83ad428a4bc9627a5f773/lean/ThresholdHC/AdditiveConfidence/Full.lean}{checked in Lean}.
+\end{proof}
+
+The Lean construction normalizes each nonzero submeasure, retains
+the exact residual, and proves both the parameter-law identity and
+the work decomposition before invoking the stopped information bound.
+The entropy-packing application requires its conditional
+variance--null-work obstructions in addition to this theorem.
