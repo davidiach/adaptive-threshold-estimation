@@ -84,6 +84,24 @@ uniform finite expected work that is unbiased throughout the class.
 The proof uses the symmetric information/variance inequality directly.
 [Proof map](SMOOTH_DENSITY.md) · [Native audit](../results/smooth-density-20261105/README.md)
 
+## Finite-cell observed-state obstruction
+
+For every gap law, $0<h\le1/2$, and $0<\delta\le1/8$, Lean constructs a
+finite measurable partition of the uniform state space. Its cellwise
+constant magnitudes have a CDF bounded by the original gap CDF, and the
+product-prior target separation satisfies $\Delta\ge\omega_\mu(h)/8$.
+
+Every measurable selected-state algorithm uniformly attaining radius
+$\Delta/4$ at failure probability $\delta$ requires worst-case expected
+work at least $225\operatorname{kl}(1-2\delta,2\delta)/(128h^2)$.
+The theorem allows arbitrary point queries, revisits, interleaving,
+private randomness and unbounded stopping. It identifies the physical
+observation law and the threshold target.
+
+The checked construction uses a second-moment replication condition.
+The continuous-magnitude extension still has a paper proof.
+[Proof map](OBSERVED_STATES.md) · [Native audit](../results/finite-observed-20261105/README.md)
+
 ## Paper review scope
 
 The [response to the final Opus review](../inputs/next-phase/baseline/Adaptive_Threshold_v4/review/RESPONSE_TO_OPUS.md) records agent review of components incorporated into v4, including the budget-only algorithm and symmetric-KL converse. It explicitly says that the consolidated manuscript has not received independent specialist review. “Paper proof” therefore does not imply external peer review or a complete Lean proof. The later 713 argument, bias counterexample, and unknown-rarity obstruction have a separate [independent agent review](../proposals/RESEARCH_REVIEW.md), whose author did not write those arguments.
