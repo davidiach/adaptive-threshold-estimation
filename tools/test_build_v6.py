@@ -317,7 +317,8 @@ class VerificationStatusTests(unittest.TestCase):
         def proved(s): s["results"]["confidence"]["boundary"] += " are also proved"
         def text(s): s["abstract"].append({"text": "All of this is a paper proof."})
         def suffix(s): s["boundary"][1]["suffix"] = " as verified in Lean"
-        for mutate in (phrase, proved, text, suffix):
+        def wrapped(s): s["abstract"].append({"text": "All of this is a paper\nproof."})
+        for mutate in (phrase, proved, text, suffix, wrapped):
             with self.subTest(mutate=mutate.__name__):
                 self.rejects(mutate, "Status wording")
 
@@ -334,11 +335,12 @@ class VerificationStatusTests(unittest.TestCase):
     def test_every_status_needs_existing_evidence_in_the_repository(self):
         cases = {
             "missing": (["lean/ThresholdHC/Missing.lean"], "not an existing path"),
-            "outside": (["../outside"], "not an existing path"),
+            "outside": (["../outside"], "relative repository paths"),
             "root": (["."], "not an existing path"),
             "absolute": (["/etc/hosts"], "relative repository paths"),
             "empty": ([], "non-empty list"),
             "no lean evidence": (["docs/RESULTS.md"], "under lean/ or results/"),
+            "dot-dot inside": (["lean/../docs/RESULTS.md"], "relative repository paths"),
         }
         for name, (evidence, message) in cases.items():
             with self.subTest(case=name):
@@ -370,6 +372,11 @@ class VerificationStatusTests(unittest.TestCase):
             path.write_text(text, encoding="utf-8")
             with self.assertRaisesRegex(ValueError, "Duplicate keys"):
                 load_status(path)
+
+    def test_status_words_match_only_status_uses(self):
+        self.assertIsNotNone(STATUS_WORDS.search("Lean-checked"))
+        self.assertIsNotNone(STATUS_WORDS.search("a paper~proof"))
+        self.assertIsNone(STATUS_WORDS.search("a lean estimator"))
 
     def test_list_joins_ignore_braced_and_math_commas(self):
         self.assertFalse(build_v6.has_list_comma(r"results of \cref{a,b}"))

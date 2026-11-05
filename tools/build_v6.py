@@ -101,7 +101,7 @@ def load_sources() -> dict[str, str]:
 STATUS_KINDS = ("lean", "paper")
 STATUS_VENUES = ("abstract", "boundary")
 # Status belongs in the "status" field, never in a phrase or a fixed sentence.
-STATUS_WORDS = re.compile(r"\bLean\b|paper[ ~-]+proofs?|\bchecked\b|\bverified\b"
+STATUS_WORDS = re.compile(r"(?-i:\bLean)|paper[\s~-]+proofs?|\bchecked\b|\bverified\b"
                           r"|\bprov(?:ed|es|en)\b|formali[sz]ed|mechani[sz]ed", re.IGNORECASE)
 UNESCAPED_PERCENT = re.compile(r"(?<!\\)%")
 
@@ -136,13 +136,16 @@ def _check_evidence(key: str, result: dict) -> None:
     if not isinstance(evidence, list) or not evidence:
         raise ValueError(f"Status of {key} needs a non-empty list of evidence paths")
     root = ROOT.resolve()
+    tops = set()
     for item in evidence:
-        if not isinstance(item, str) or not item or Path(item).is_absolute():
+        if (not isinstance(item, str) or not item or Path(item).is_absolute()
+                or ".." in Path(item).parts):
             raise ValueError(f"Evidence for {key} must be relative repository paths: {item!r}")
         path = (root / item).resolve()
         if path == root or not path.is_relative_to(root) or not path.exists():
             raise ValueError(f"Evidence for {key} is not an existing path in the repository: {item!r}")
-    if result["status"] == "lean" and not any(p.startswith(("lean/", "results/")) for p in evidence):
+        tops.add(path.relative_to(root).parts[0])
+    if result["status"] == "lean" and not tops & {"lean", "results"}:
         raise ValueError(f"Lean status of {key} needs evidence under lean/ or results/")
 
 
