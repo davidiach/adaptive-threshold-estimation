@@ -365,6 +365,8 @@ jobs:
         run: python tools/verify_anytime_asymptotics.py
       - name: Verify finite-menu cost grouping, exact comparisons and certificates
         run: python tools/verify_band_cost_selection.py
+      - name: Verify the concrete finite-gap-law menu construction
+        run: python tools/verify_gap_law_menus.py
       - name: Verify finite-family law-adaptation components
         run: python tools/verify_law_adaptation.py
       - name: Verify moment determinacy and observable law adaptation
