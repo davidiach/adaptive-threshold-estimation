@@ -1,0 +1,14 @@
+'ThresholdHC.ConfidenceEntropy.closed_quantile_confidence_lower' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ConfidenceEntropy.closed_quantile_program' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceEntropy.core_program_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ConfidenceEntropy.entropy_tail_confidence_lower_explicit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ConfidenceEntropy.estimator_confidence_lower_explicit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ConfidenceEntropy.general_confidence_law_explicit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

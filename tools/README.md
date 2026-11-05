@@ -84,3 +84,5 @@ Run `verify_typed_confidence.py` for the [selected-type information transfer](..
 Run `verify_confidence_localization.py` for the [common-pair construction and its confidence consequence](../results/common-pair-20261105/README.md).
 
 Run `verify_additive_confidence.py` for [fractional-submeasure additive confidence localization](../results/additive-confidence-20261105/README.md).
+
+Run `verify_confidence_entropy.py` for the [sharper general-law confidence coefficient](../results/entropy-confidence-20261105/README.md).

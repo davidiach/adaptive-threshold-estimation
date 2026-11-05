@@ -797,3 +797,7 @@ Run `python tools/verify_confidence_localization.py` for 40 exact statements and
 ## Additive confidence localization
 
 Run `python tools/verify_additive_confidence.py` for 41 exact statements and 41 transitive axiom reports. The audit covers overlapping submeasures, clipped Radon–Nikodym priors, positive and negative sign measures, exact parameter and finite-statistic laws, residual mass, weighted original work, and the estimator/minimax coefficient $1/128$. [Native record](../results/additive-confidence-20261105/README.md)
+
+## Sharper general-law confidence coefficient
+
+Run `python tools/verify_confidence_entropy.py` for six exact statements and six transitive axiom reports. The audit covers the retained-core bound at the stopping-program infimum, the direct closed-quantile comparison, estimator and minimax lower coefficients $10^{-17}$, and the two-sided confidence law with hard-cap upper coefficient $750000$. [Native record](../results/entropy-confidence-20261105/README.md)

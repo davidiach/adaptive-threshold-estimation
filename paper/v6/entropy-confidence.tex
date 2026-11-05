@@ -1,0 +1,80 @@
+\clearpage
+\subsection{The sharper general-law confidence coefficient}
+\label{sec:entropy-confidence}
+
+A direct comparison between retained entropy and the stopping
+program gives the paper's stronger confidence coefficient.
+
+\begin{theorem}[Verified explicit confidence law]
+\label{thm:entropy-confidence-explicit}
+For every known positive-gap law $\mu$, $0<\rho\le1/4$,
+$B>0$ and $0<\delta\le1/4$, write $\beta=B/\log(1/\delta)$.
+Then
+\[
+ 10^{-17}Q(\beta)\le r_{\rm exp}(B,\delta)
+ \le r_{\rm hard}(B,\delta)\le750000\,\mathcal K(\beta).
+\]
+In particular, the same lower coefficient holds for
+$\mathcal K(\beta)\le Q(\beta)$.
+\end{theorem}
+
+\begin{proof}
+First work at an arbitrary budget $b>0$. Put
+$P=P_\infty(b)$, which is finite. For the retained prefix entropy
+$F$, write $M=\min\{\rho,\sqrt{\rho F/b}\}$.
+In the packing case, every attained finite-cap certificate $C$
+satisfies the already verified bounds
+\[
+ M\le256\left(256b_C+
+          \sqrt{16384e^{48}V_C}\right),\qquad
+ 256b_C+\sqrt{16384e^{48}V_C}
+ \le6\cdot10^{12}\sqrt{b_C^2+V_C}.
+\]
+Here $b_C$ and $V_C$ are the certificate's bias and variance prices.
+The certificate is attained at every positive integer cap $N$,
+and $\sqrt{b_C^2+V_C}=P_N(b)$.
+Since $256\cdot6\cdot10^{12}\le16\cdot10^{14}$, taking the
+infimum over $N\ge1$ gives
+\[
+ M\le16\cdot10^{14}P.
+\]
+The
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/0feee44f1e6dbdee6e3d8edb6c11eec2bc39ed60/lean/ThresholdHC/ConfidenceEntropy/Core.lean}{formal retained-core bound}
+holds at the exact cap-program infimum.
+
+For completeness, consider the other branches of the deterministic
+quantile comparison. Let $t$ be the closed $\rho$-quantile,
+$h=b^{-1/2}$, and $T$ the clipped inverse-gap tail modulus.
+The observable quantile-tail lower bound and $R(b)\le P$ give
+$T\le32P$. If $t\le h$, the same lower bound gives
+$Q(b)\le32P$ directly.
+
+Otherwise choose the first band cutoff below $t$.
+When $F\le262144$, the label lower bound gives
+$M\le8192P$. If the packing cutoff fails, its threshold
+inequality gives
+$M\le2097152T\le67108864P$.
+Both are smaller than $16\cdot10^{14}P$.
+Together with the packing case, the deterministic comparison yields
+\[
+ Q(b)\le T+2M
+ \le(32+32\cdot10^{14})P.
+\]
+The exact numerical inequality
+\[
+ 30\cdot10^{-17}(32+32\cdot10^{14})<1
+\]
+therefore proves $30\cdot10^{-17}Q(b)\le P_\infty(b)$.
+The
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/0feee44f1e6dbdee6e3d8edb6c11eec2bc39ed60/lean/ThresholdHC/ConfidenceEntropy/Program.lean}{formal comparison}
+covers all cutoff cases.
+
+Apply this at $b=\beta$ and use the checked stopping-program
+confidence bound
+$r_{\rm exp}(B,\delta)\ge P_\infty(\beta)/30$.
+The comparison $\mathcal K\le Q$, the inclusion of hard-cap
+procedures in the expected-budget class, and the existing
+hard-cap upper bound complete the result. The
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/0feee44f1e6dbdee6e3d8edb6c11eec2bc39ed60/lean/ThresholdHC/ConfidenceEntropy/Full.lean}{full theorem}
+also gives the lower bound for each admissible observable estimator.
+\end{proof}

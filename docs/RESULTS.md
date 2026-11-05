@@ -891,10 +891,10 @@ from a variance–null-work obstruction for every known gap law, including
 endpoint atoms. The resulting $1/128$ estimator and minimax confidence
 bounds are checked. Fractional-submeasure confidence localization now
 has a checked additive coefficient $1/128$, including overlapping
-components and the original observation model. Its entropy-packing
-application for the sharper general-law confidence coefficient remains
-formalization work.
-[Single-type record](../results/confidence-population-20261104/README.md) · [Selected-type record](../results/adaptive-types-20261105/README.md) · [Common-pair record](../results/common-pair-20261105/README.md) · [Additive localization record](../results/additive-confidence-20261105/README.md)
+components and the original observation model. A direct retained-entropy
+comparison with the stopping program also checks the sharper general-law
+confidence coefficient $10^{-17}$.
+[Single-type record](../results/confidence-population-20261104/README.md) · [Selected-type record](../results/adaptive-types-20261105/README.md) · [Common-pair record](../results/common-pair-20261105/README.md) · [Additive localization record](../results/additive-confidence-20261105/README.md) · [Sharper confidence record](../results/entropy-confidence-20261105/README.md)
 
 **Amplification.** If a procedure has $\mathbb ET\le b$ and RMS at most $R(b)$,
 the median of $m$ independent copies, with $m$ the least odd integer such that
@@ -905,7 +905,7 @@ a run's cost and its error is assumed.
 
 | Application | Conclusion | Inherited premises |
 |---|---|---|
-| Known general law, known rarity | $10^{-17}\mathcal K(B/\ell)\le r^{\rm exp}(B,\delta)\le r^{\rm hard}(B,\delta)\le840000\,\mathcal K(B/\ell)$ | Lower: the policy-uniform common pair, null-work obstructions and entropy packing of v6 Appendix E enter through the single-type KL transfer and the paper's additive localization. Upper: $R\le C\mathcal K$, [Lean-checked](#general-law-rare-event-characterization) with $C=28000$ |
+| Known general law, known rarity | $10^{-17}\mathcal K(B/\ell)\le r^{\rm exp}(B,\delta)\le r^{\rm hard}(B,\delta)\le750000\,\mathcal K(B/\ell)$ | [Lean-checked direct stopping-program lower comparison](../results/entropy-confidence-20261105/README.md) and [hard-cap median construction](../results/known-law-confidence-20261104/README.md) |
 | Critical quadratic law | $r^{\rm exp}\asymp r^{\rm hard}\asymp\min\{\rho,\sqrt{\rho L(1+\log L)\ell/B}\}$ | The [critical common pair and RMS upper bound](#critical-power-margin-full-minimax-characterization), both Lean-checked |
 | Sequential coverage | Stage $j$ has cap $4\cdot2^j$ and failure probability $\delta/((j+1)(j+2))$. The running intersection of stage intervals contains $\theta$ at every budget simultaneously with probability at least $1-\delta$, so stopping on the data is valid. For a known law and $B\ge1$, its half-width on that event is at most $1500002\,\mathcal K(B/\Lambda)$, where $\Lambda=\ell+2\log(2+\log_2(1+B))$ | [Lean-checked online controller, coverage and width](../results/anytime-confidence-20261105/README.md) |
 
@@ -914,8 +914,8 @@ now has a Lean proof for the original estimator under a uniform expected flip bu
 It derives the common pair from the fixed quadratic law. Lean also verifies a
 [direct stopping-program lower bound and the matching hard-cap construction](../results/known-law-confidence-20261104/README.md).
 For all known laws and $0<\rho\le1/4$, the checked coefficients on $\mathcal K(B/\ell)$
-are $10^{-17}/30$ and $750000$. The critical upper coefficient is $2670000$.
-The paper's stronger general lower coefficient in the table uses the now-checked additive localization together with conditional obstructions and entropy packing. That full application remains a paper proof.
+are now $10^{-17}$ and $750000$. The critical upper coefficient is $2670000$.
+The stronger lower coefficient follows from the direct checked inequality $30\cdot10^{-17}Q(b)\le P_\infty(b)$ and the stopped confidence bound $P_\infty(B/\ell)/30$. The retained-core comparison applies to every positive cap before taking the infimum.
 The known-law time-uniform width row now has a [Lean proof](../results/anytime-confidence-20261105/README.md), with half-width coefficient $1500002$. It uses one common observable experiment and consistent acquisition prefixes across budgets. The
 algorithms in the table may know $\mu$, $\rho$, $B$ and $\delta$. A separate
 [unknown-law construction and lower bound](UNKNOWN_LAW_CONFIDENCE.md) gives
