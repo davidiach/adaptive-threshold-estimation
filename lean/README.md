@@ -155,5 +155,15 @@ components in [Parity](ThresholdHC/LawAdaptation/Parity.lean),
 [Pilot](ThresholdHC/LawAdaptation/Pilot.lean),
 [Transfer](ThresholdHC/LawAdaptation/Transfer.lean) and
 [Rate](ThresholdHC/LawAdaptation/Rate.lean). Run
-`python tools/verify_law_adaptation.py`. This is not yet a Lean theorem constructing
-the complete selected controller in the original observable experiment.
+`python tools/verify_law_adaptation.py`. The full observable construction is now
+checked by `python tools/verify_law_adaptation_realization.py` (22 exact statements).
+[Moments](ThresholdHC/LawAdaptation/Moments.lean) supplies determinacy and finite
+separation; [Observation](ThresholdHC/LawAdaptation/Observation.lean) and
+[Execution](ThresholdHC/LawAdaptation/Execution.lean) realize the parity pilot;
+[Controller](ThresholdHC/LawAdaptation/Controller.lean),
+[Budget](ThresholdHC/LawAdaptation/Budget.lean) and
+[Coverage](ThresholdHC/LawAdaptation/Coverage.lean) connect observations, caps and
+probability; [Full](ThresholdHC/LawAdaptation/Full.lean) constructs the family
+with its joint coverage-and-width guarantee; [Properties](ThresholdHC/LawAdaptation/Properties.lean)
+checks nesting and the original-experiment endpoint law.
+[Native record](../results/law-adaptation-realization-20261105/README.md).

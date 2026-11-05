@@ -854,8 +854,16 @@ types and transitive axiom reports. It checks finite-prefix even-parity means,
 bounded-average concentration, separated-signature identification and error
 calibration, selection of simultaneous guarantees, physical budget arithmetic,
 and the delayed comparison with the actual entropy-tail selection functional.
-The [theorem and boundary](FINITE_FAMILY_ADAPTATION.md) separate these components
-from the paper-only moment-determinacy and full observable-controller arguments.
+Run `python tools/verify_law_adaptation_realization.py` for 22 further exact
+statements and transitive axiom reports. It verifies moment determinacy,
+finite signature separation, the original population-tape parity pilot,
+its actual read history, the selected observable controller, unconditional
+caps and compatibility, joint all-budget coverage and oracle width, nesting,
+and the original-experiment endpoint law. The
+[full construction record](../results/law-adaptation-realization-20261105/README.md)
+binds eight fresh empty compiler logs and the complete 648-source closure.
+The [theorem and boundary](FINITE_FAMILY_ADAPTATION.md) retain the finite-family
+premise and the open unrestricted adaptation question.
 Run `python -m unittest discover -s toolkit/tests -p test_law_identification.py -v`
 for the executable rational pilot. Those tests do not formally verify Python.
 

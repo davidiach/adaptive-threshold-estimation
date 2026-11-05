@@ -133,4 +133,7 @@ Optimality and the corresponding genie rate remain open.
 The [finite-family adaptation component audit](law-adaptation-20261105/README.md)
 checks 17 exact types, including observable parity, bounded-average concentration,
 identification, selected-event transfer and the delayed oracle-rate comparison.
-The full controller construction and moment determinacy remain paper proofs.
+The [22-statement realization audit](law-adaptation-realization-20261105/README.md)
+adds moment determinacy and the complete observable finite-family controller,
+with actual flip accounting, nested compatible intervals and joint all-budget
+coverage and oracle width. Arbitrary-law adaptation remains open.

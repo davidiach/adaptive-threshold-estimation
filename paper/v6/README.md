@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Read the updated manuscript](builds/law-adaptation-shared-pilot-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/law-adaptation-shared-pilot-20261105.json)
+[Read the updated manuscript](builds/law-adaptation-realization-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/law-adaptation-realization-20261105.json)
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -399,3 +399,21 @@ embedded, references resolve, and no new layout warning appears. The earlier
 publication and its record remain unchanged.
 
 [Updated manuscript](builds/law-adaptation-shared-pilot-20261105.pdf) · [Build record](builds/law-adaptation-shared-pilot-20261105.json)
+
+
+## Formal realization of finite-family adaptation
+
+The current Section V.2 now has a complete Lean construction of the observable
+pilot and selected confidence controller. A new 22-statement audit includes
+moment determinacy and finite signature separation, actual shared-prefix
+observations, unconditional caps and history compatibility, joint all-budget
+coverage and oracle width, nesting, and the joint endpoint law in the original
+observable experiment. Python execution and arbitrary-law oracle adaptation
+remain outside this result.
+
+The new 169-page PDF has two byte-identical offline builds. Both changed pages
+(50 and 160) were visually inspected; no pages relocate. All 29 fonts are
+embedded, references resolve, and no new layout warning appears. Earlier
+publications and their records remain unchanged.
+
+[Updated manuscript](builds/law-adaptation-realization-20261105.pdf) · [Build record](builds/law-adaptation-realization-20261105.json) · [Native proof record](../../results/law-adaptation-realization-20261105/README.md)

@@ -5,7 +5,7 @@
 Minimax theory for estimating a threshold probability from noisy coin flips,
 with a research manuscript, Lean 4 proofs built on Mathlib, and reproducible experiments.
 
-**[Paper](paper/v6/builds/law-adaptation-shared-pilot-20261105.pdf)** · **[Formal proof map](lean/README.md)** · **[Verification guide](docs/VERIFY.md)** · **[Specialist review packet](paper/critical-review/review.pdf)**
+**[Paper](paper/v6/builds/law-adaptation-realization-20261105.pdf)** · **[Formal proof map](lean/README.md)** · **[Verification guide](docs/VERIFY.md)** · **[Specialist review packet](paper/critical-review/review.pdf)**
 
 New contributors: start with [CONTRIBUTING.md](CONTRIBUTING.md).
 AI agents: read [AGENTS.md](AGENTS.md) for current entry points, preservation
@@ -195,7 +195,10 @@ Lean-checked for every positive-gap law, with coefficient $10^{-22}$ at
 arbitrarily late integer budgets. The [complete audit](results/anytime-asymptotic-20261105/README.md)
 includes the finite-coefficient case, dense and sparse infinite-moment cases,
 and observable interval half-widths. The deterministic envelope need not be
-monotone.
+monotone. The [finite-family unknown-law adaptation theorem](docs/FINITE_FAMILY_ADAPTATION.md)
+now also has a [complete observable Lean construction](results/law-adaptation-realization-20261105/README.md),
+including the paid pilot and joint all-budget coverage and oracle width.
+Adaptation over arbitrary unknown laws remains open.
 See the [completion ledger](docs/WORKPLAN.md) for the current boundary.
 
 ## Attribution and license

@@ -126,14 +126,17 @@ $B/[4\Lambda(B,\delta)]$. Monotonicity and square-root budget scaling of
 $\mathcal K$ prove (FA2). The family with one member needs no pilot.
 
 \paragraph{Verification and unresolved scope.}
-The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/507f0f5e5dea0ac53e5376f3d911b58ec3096c72/lean/ThresholdHC/LawAdaptation/Parity.lean}{parity identities},
-\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/507f0f5e5dea0ac53e5376f3d911b58ec3096c72/lean/ThresholdHC/LawAdaptation/Pilot.lean}{concentration and identification bound},
-\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/507f0f5e5dea0ac53e5376f3d911b58ec3096c72/lean/ThresholdHC/LawAdaptation/Transfer.lean}{probability and cap transfer},
-and \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/507f0f5e5dea0ac53e5376f3d911b58ec3096c72/lean/ThresholdHC/LawAdaptation/Rate.lean}{delayed-rate comparison}
-have a 17-statement exact-type and transitive-axiom Lean audit. The
-moment-determinacy argument, fresh-coin pilot realization, and complete
-selected-controller construction above remain paper proofs. The rational
-finite-law pilot has executable tests, not a formal verification of Python.
+The original parity, concentration, identification and delayed-rate components
+have a 17-statement Lean audit. A further 22-statement exact-type and
+transitive-axiom audit checks
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/b18f73fc0120b0b68b45b31e5aad08c943867fde/lean/ThresholdHC/LawAdaptation/Moments.lean}{moment determinacy and finite separation},
+the shared-prefix pilot under the original population-tape law, and the
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/b18f73fc0120b0b68b45b31e5aad08c943867fde/lean/ThresholdHC/LawAdaptation/Full.lean}{full observable construction}.
+It proves unconditional physical caps, compatibility across budgets, and joint
+all-budget coverage and width. The
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/b18f73fc0120b0b68b45b31e5aad08c943867fde/lean/ThresholdHC/LawAdaptation/Properties.lean}{interval properties}
+check nesting and the joint endpoint law in the original observable experiment.
+The rational finite-law pilot has executable tests; Python is not formally verified.
 
 The pilot cannot test membership in the supplied family, and close
 signatures can make $H$ large. Arbitrary-law adaptation remains open:
