@@ -67,6 +67,16 @@ estimate misses that radius with probability at most $1/8$ by the MSE bound.
 The schedule controls the probability that a majority of blocks fail. Its
 total flip cap holds on every execution, including timed-out blocks.
 
+For a complete cumulative-budget confidence sequence, use
+`threshold_toolkit.known_law_confidence.known_law_ladder(law, coin_factory,
+rho="1/4", delta="1/20", seed=17)` and call `advance_to(total_budget)`.
+It builds the base plan and capped-median interval for each eligible stage,
+using summable failure allowances and exact rational radius upper bounds.
+All median blocks use separate coin namespaces; the driver purchases every
+flip. A vacuous radius returns $[0,\rho]$ without sampling. Widths use the
+executable plan's MSE certificate, rather than the noncomputable Lean
+controller's exact constant. The same sampling and oracle assumptions apply.
+
 ## Integrating a continuous or mixed law
 
 The [oracle interface](../toolkit/threshold_toolkit/known_law_oracle.py) has

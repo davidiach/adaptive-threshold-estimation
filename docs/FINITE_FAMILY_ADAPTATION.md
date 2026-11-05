@@ -148,7 +148,50 @@ It returns a candidate index and the actual flip count, not a test that the
 true law belongs to the family. A singleton family costs zero flips.
 Duplicate laws are rejected. The default search limit is 32 moments;
 increase `max_moments` if the candidate signatures are not yet separated.
-The sampler does not itself construct the subsequent confidence sequence.
+The sampler returns only the pilot result. `LawPilot` also supports pausing
+and resuming at any cumulative flip allowance.
+
+## Executable confidence sequence
+
+`FiniteFamilyConfidenceLadder` combines that resumable pilot with the
+known-law estimator's capped-median confidence stages. It reserves half the
+failure allowance for identification and half for the subsequent stages.
+Every call uses a cumulative budget that includes the pilot's paid flips.
+
+~~~python
+from threshold_toolkit.finite_family_confidence import FiniteFamilyConfidenceLadder
+from threshold_toolkit.rare_event_functional import FiniteGapLaw
+
+candidates = [FiniteGapLaw([("1/2", 1)]), FiniteGapLaw([("1/4", 1)])]
+
+def coin_factory(rng):
+    sign = int(rng.randrange(8) == 0)  # true magnitude law: candidate zero
+    return lambda: sign
+
+sequence = FiniteFamilyConfidenceLadder(
+    candidates, coin_factory, rho="1/4", delta="1/20", seed=17
+)
+h = sequence.plan.flip_cap
+for budget in (0, h // 2, h, h + 10000):
+    state = sequence.advance_to(budget)
+    print(state.selected, state.flips, state.interval)
+~~~
+
+The interval is $[0,\rho]$ until the pilot finishes. Thereafter the selected
+candidate stays fixed and only newly created coins enter the confidence
+stages. Pausing midway through a pilot coin preserves its callback and
+prefix parity. Repeated calls at the same budget do no work. The controller
+rejects decreasing budgets and cannot resume after a callback error.
+Its total physical flips never exceed the authorized allowance, including
+on identification-error paths. Empty intersections remain empty.
+
+The implemented radii use the known-law planner's own MSE certificates,
+capped-median amplification, and upward rational square-root bounds. Small
+stages can still return $[0,\rho]$. The supplied-family premise, independent
+coins and valid sampling assumptions remain necessary for coverage. This
+implementation does not claim the exact coefficient $3000004$ from the Lean
+construction. Its code and PRNG are not formally verified; its execution
+regressions are not a proof of coverage.
 
 ## Verification boundary and next work
 
