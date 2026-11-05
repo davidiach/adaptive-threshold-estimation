@@ -50,3 +50,5 @@ states the hypotheses and construction.
 is now checked. The [sharper general-law confidence coefficient](ENTROPY_CONFIDENCE.md)
 is checked through the stopping program. The sharp quantile-factor
 formalization remains in progress.
+
+The [generic RMS consequence](RMS_LOCALIZATION.md) is also checked, with lower bound $128^{-1}\min\{b,\sqrt{J/B}\}$ for each observable estimator and for the minimax risk.
