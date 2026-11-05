@@ -38,6 +38,14 @@ class LawPilotResult:
     items: int
 
 
+@dataclass(frozen=True)
+class LawPilotState:
+    authorized_budget: int
+    flips: int
+    items: int
+    result: LawPilotResult | None
+
+
 def plan_law_pilot(candidates, *, delta: Rational, max_moments: int = 32) -> LawPilotPlan:
     """Compute exact moment signatures and a deterministic physical flip cap.
 
@@ -77,46 +85,92 @@ def plan_law_pilot(candidates, *, delta: Rational, max_moments: int = 32) -> Law
     raise ValueError("Moment limit does not separate these candidates; increase max_moments.")
 
 
-def run_law_pilot(plan: LawPilotPlan, coin_factory: CoinFactory, *,
-                  budget: int, seed: int = 0) -> LawPilotResult:
-    """Identify the candidate using only fresh coins and their paid flips.
-
-    Each coin supplies all even-prefix parities through its first 2m flips.
-    Refuses insufficient authorization before creating any coin. Callers must
-    use fresh independent coins and randomness for subsequent estimation.
-    """
-    allowance = _budget(budget)
+def _validate_plan(plan: LawPilotPlan) -> None:
     if not isinstance(plan, LawPilotPlan):
         raise TypeError("Expected a LawPilotPlan.")
     expected = plan_law_pilot(plan.candidates, delta=plan.delta,
                              max_moments=max(1, plan.moments))
     if plan != expected:
         raise ValueError("Pilot plan does not match its candidate laws and failure allowance.")
-    if allowance < plan.flip_cap:
-        raise ValueError(f"Pilot requires authorization for {plan.flip_cap} flips.")
-    rng = Random(seed)
-    totals = [0] * plan.moments
-    items = flips = 0
-    for _ in range(plan.samples_per_moment):
-        flip = coin_factory(rng)
-        items += 1
-        parity = 1
-        for k in range(plan.moments):
-            for _ in range(2):
-                bit = flip()
-                flips += 1
+
+
+class LawPilot:
+    """A persistent pilot that can pause after any paid flip.
+
+    advance_to authorizes a cumulative budget. The same coin and prefix parity
+    survive pauses; repeated calls at the same budget perform no extra work.
+    Exceptions from callbacks invalidate the pilot so it cannot be resumed.
+    """
+
+    def __init__(self, plan: LawPilotPlan, coin_factory: CoinFactory, *, seed: int = 0):
+        _validate_plan(plan)
+        if not callable(coin_factory):
+            raise TypeError("coin_factory must be callable.")
+        if type(seed) is not int:
+            raise TypeError("seed must be an integer.")
+        self.plan = plan
+        self._factory, self._rng = coin_factory, Random(seed)
+        self._authorized = self._flips = self._items = self._prefix = 0
+        self._parity = 1
+        self._totals = [0] * plan.moments
+        self._coin = None
+        self._failed = False
+        self._result = LawPilotResult(0, (), 0, 0) if not plan.flip_cap else None
+
+    def advance_to(self, total_budget: int) -> LawPilotState:
+        allowance = _budget(total_budget)
+        if self._failed:
+            raise RuntimeError("A callback failed; this pilot is invalidated.")
+        if allowance < self._authorized:
+            raise ValueError("Cumulative authorized budget cannot decrease.")
+        self._authorized = allowance
+        try:
+            while self._flips < min(allowance, self.plan.flip_cap):
+                if self._coin is None:
+                    self._coin = self._factory(self._rng)
+                    if not callable(self._coin):
+                        raise TypeError("coin_factory must return a callable.")
+                    self._items += 1
+                self._flips += 1
+                bit = self._coin()
                 if type(bit) is not int or bit not in (0, 1):
                     raise ValueError("A flip callback must return the integer 0 or 1.")
-                parity *= 2 * bit - 1
-            totals[k] += parity
-    observed = [Fraction(total, plan.samples_per_moment) for total in totals]
-    tolerance = plan.separation / 4
-    compatible = [
-        i for i, row in enumerate(plan.signatures)
-        if all(abs(x - a) <= tolerance for x, a in zip(observed, row))
-    ]
-    # On the proved good event the compatible candidate exists and is unique.
-    # On a failure path the total, deterministic fallback is candidate zero.
-    selected = compatible[0] if compatible else 0
-    return LawPilotResult(selected, tuple(observed), flips, items)
+                self._prefix += 1
+                self._parity *= 2 * bit - 1
+                if self._prefix % 2 == 0:
+                    self._totals[self._prefix // 2 - 1] += self._parity
+                if self._prefix == 2 * self.plan.moments:
+                    self._coin = None
+                    self._prefix, self._parity = 0, 1
+            if self._result is None and self._flips == self.plan.flip_cap:
+                observed = tuple(Fraction(x, self.plan.samples_per_moment)
+                                 for x in self._totals)
+                tolerance = self.plan.separation / 4
+                compatible = [
+                    i for i, row in enumerate(self.plan.signatures)
+                    if all(abs(x - a) <= tolerance for x, a in zip(observed, row))
+                ]
+                # On the good event the true candidate is uniquely compatible.
+                self._result = LawPilotResult(compatible[0] if compatible else 0,
+                                              observed, self._flips, self._items)
+        except BaseException:
+            self._failed = True
+            raise
+        return LawPilotState(allowance, self._flips, self._items, self._result)
+
+
+def run_law_pilot(plan: LawPilotPlan, coin_factory: CoinFactory, *,
+                  budget: int, seed: int = 0) -> LawPilotResult:
+    """Complete the pilot, refusing an insufficient budget before sampling.
+
+    Use LawPilot instead to pause and resume. Subsequent estimation must use
+    fresh independent coins and private randomness.
+    """
+    allowance = _budget(budget)
+    pilot = LawPilot(plan, coin_factory, seed=seed)
+    if allowance < plan.flip_cap:
+        raise ValueError(f"Pilot requires authorization for {plan.flip_cap} flips.")
+    result = pilot.advance_to(allowance).result
+    assert result is not None
+    return result
 

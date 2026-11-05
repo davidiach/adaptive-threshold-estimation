@@ -318,8 +318,9 @@ certifies the minimum after grouping choices with equal entropy. Its example
 reduces 64 occupied bands from $2^{64}$ suffix choices to 65 terminal states.
 The [mathematical menu algorithm](../results/band-cost-formal-20261105/README.md)
 now has a Lean proof of compression, optimality, state counts, exact comparisons
-and certificate rules. The Python implementation and concrete gap-law menu
-construction remain outside that formal proof.
+and certificate rules. The [concrete finite-gap-law menus and their equality
+with the original functional](../results/gap-law-menus-20261105/README.md)
+are also Lean-checked. Python execution remains outside those proofs.
 
 ## Research module: hard observation caps
 
@@ -464,4 +465,14 @@ every flip and refuses insufficient authorization before sampling. Each of
 the `samples_per_moment` coins supplies all `moments` even-prefix parities,
 so the exact physical cap is `2 * samples_per_moment * moments`.
 See the [finite-family adaptation theorem and example](../docs/FINITE_FAMILY_ADAPTATION.md).
-The sampler returns a candidate index, not a complete confidence sequence.
+`LawPilot` adds pause/resume support between any two paid flips.
+`threshold_toolkit.finite_family_confidence.FiniteFamilyConfidenceLadder`
+combines it with the known-law confidence stages under one cumulative
+physical-flip budget. It reports $[0,\rho]$ during identification and then
+intersects the selected candidate's stage intervals. Its radii use the
+executable estimator's MSE certificates; it does not claim the Lean
+construction's exact constant. The code and PRNG remain unverified.
+
+For a known law, `threshold_toolkit.known_law_confidence.known_law_ladder`
+provides the same continuation directly. Both interfaces expose
+`advance_to(total_budget)`; repeated calls at one allowance do no extra work.
