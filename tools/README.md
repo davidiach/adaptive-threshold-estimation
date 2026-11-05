@@ -97,4 +97,4 @@ The `verify_quantile_sharp_law.py` audit now includes the [all-law upper compari
 
 Run `verify_quantile_optimality.py` for [finite-law realization and exact least-factor equivalences](../results/quantile-optimality-20261105/README.md).
 
-Run `verify_anytime_lower.py` for the [law-dependent prior-family and observable information bounds](../docs/TIME_UNIFORM_LOWER.md). It audits 11 exact statements and their transitive axioms. The sequential testing argument and its asymptotic corollaries retain paper-proof status.
+Run `verify_anytime_lower.py` for the [law-dependent prior-family and observable information bounds](../docs/TIME_UNIFORM_LOWER.md). It audits 15 exact statements and their transitive axioms. The sequential testing argument and its asymptotic corollaries retain paper-proof status.

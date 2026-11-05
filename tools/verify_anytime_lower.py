@@ -8,6 +8,7 @@ from verify_blind_upper_components import LEAN, validate_reports
 def audit_input():
     source = """
 import ThresholdHC.AnytimeLower.Quartet
+import ThresholdHC.AnytimeLower.TailInformation
 noncomputable section
 set_option linter.unusedVariables false
 open MeasureTheory InformationTheory
@@ -95,6 +96,29 @@ example : ∀ {R : Type} [MeasurableSpace R]
       (observablePrefixLaw μ A (centralPrior Q y hy) n) ≤
         ENNReal.ofReal ((64/3)*J*(x-y)^2*n) :=
   @quartet_prefix_kl
+
+example : ∀ {q A B : ℝ} (hq : 1/4 ≤ q ∧ q ≤ 3/4)
+    (hA : 0 ≤ A) (hB : 0 ≤ B) (hs : 0 < A+B),
+    0 ≤ posteriorMass q A B ∧ posteriorMass q A B ≤ 1 :=
+  @posteriorMass_bounds
+
+example : ∀ {q r A B : ℝ}
+    (hq : 1/4 ≤ q ∧ q ≤ 3/4) (hr : 1/4 ≤ r ∧ r ≤ 3/4)
+    (hA : 0 ≤ A) (hB : 0 ≤ B) (hs : 0 < A+B),
+    |posteriorMass q A B-posteriorMass r A B| ≤ 4*|q-r| :=
+  @posteriorMass_lipschitz
+
+example : ∀ {q A B d : ℝ} (hq : 1/4 ≤ q ∧ q ≤ 3/4)
+    (hA : 0 ≤ A) (hB : 0 ≤ B) (hs : 0 < A+B) (hd : 0 ≤ d ∧ d ≤ 1/4),
+    1/4 ≤ predictiveHead q A B d ∧ predictiveHead q A B d ≤ 3/4 :=
+  @predictiveHead_bounds
+
+example : ∀ {q r A B d ε : ℝ}
+    (hq : 1/4 ≤ q ∧ q ≤ 3/4) (hr : 1/4 ≤ r ∧ r ≤ 3/4)
+    (hA : 0 ≤ A) (hB : 0 ≤ B) (hs : 0 < A+B) (hd : 0 ≤ d ∧ d ≤ 1/4)
+    (he : 0 ≤ ε) (hcontrast : d*|q-r| ≤ ε/32),
+    ThresholdHC.klB (predictiveHead q A B d) (predictiveHead r A B d) ≤ ε^2 :=
+  @predictiveHead_kl
 """
     names = {
         "segment_midpoint_coefficient",
@@ -108,6 +132,10 @@ example : ∀ {R : Type} [MeasurableSpace R]
         "centralPrior_rare",
         "centralPrior_mean_difference",
         "quartet_prefix_kl",
+        "posteriorMass_bounds",
+        "posteriorMass_lipschitz",
+        "predictiveHead_bounds",
+        "predictiveHead_kl",
     }
     roots = {"ThresholdHC.AnytimeLower." + name for name in names}
     return source + "".join("#print axioms " + name + "\n" for name in sorted(roots)), roots
@@ -115,7 +143,7 @@ example : ∀ {R : Type} [MeasurableSpace R]
 
 def main():
     source, roots = audit_input()
-    subprocess.run(["lake", "build", "ThresholdHC.AnytimeLower.Quartet"], cwd=LEAN, check=True)
+    subprocess.run(["lake", "build", "ThresholdHC.AnytimeLower.Quartet", "ThresholdHC.AnytimeLower.TailInformation"], cwd=LEAN, check=True)
     run = subprocess.run(["lake", "env", "lean", "--stdin"], cwd=LEAN, input=source, text=True,
                          encoding="utf-8", capture_output=True)
     output = run.stdout + run.stderr

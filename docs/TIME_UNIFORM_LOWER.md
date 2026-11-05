@@ -11,7 +11,7 @@ The target is a lower bound at the known-law upper scale
 $\mathcal K_{\mu,\rho}(n/[\log(1/\delta)+\log\log n])$ infinitely often.
 The native development begins with a quadratic information bound along prior
 segments. The sequential argument and asymptotic consequences below are paper
-proofs. The unrestricted infinite-coefficient case remains open.
+proofs. The final section proves the matching comparison for arbitrary positive-gap laws.
 
 ## A prior segment in the original experiment
 
@@ -39,8 +39,9 @@ The existing midpoint reference bound and observable KL transfer give (1),
 because $a-b=2(x-y)$ and actual prefix work is at most $n$.
 
 The native statements are in
-[Segment](../lean/ThresholdHC/AnytimeLower/Segment.lean) and
-[Embedding](../lean/ThresholdHC/AnytimeLower/Embedding.lean).
+[Segment](../lean/ThresholdHC/AnytimeLower/Segment.lean),
+[Embedding](../lean/ThresholdHC/AnytimeLower/Embedding.lean), and
+[Quartet](../lean/ThresholdHC/AnytimeLower/Quartet.lean). The first checkpoint has [11 exact statements and axiom audits](../results/anytime-lower-family-20261105/README.md).
 
 ## A sequential testing lemma
 
@@ -119,7 +120,7 @@ $M=192J/\Delta_Q^2$. Equation (3) and $13824<128^2$ yield
 The bound holds for each positive-gap certificate before taking the supremum.
 If $V_{\mu,\rho}=\infty$, its meaning is that the limsup is infinite.
 
-The existing infinite-cap duality identifies
+The existing [infinite-cap duality](../lean/ThresholdHC/Genie/InfiniteDuality.lean) identifies
 \[
  V_{\mu,\rho}=\sup_{B>0}B P_\infty(B)^2
             =\lim_{B\to\infty}B P_\infty(B)^2.                 \tag{7}
@@ -136,7 +137,7 @@ Let
 \[
  C_{\mu,\rho}=\sup_{B>0}\sqrt B\,\mathcal K_{\mu,\rho}(B).
 \]
-Square-root budget scaling makes the expression inside the supremum
+[Square-root budget scaling](../lean/ThresholdHC/HardBudget/SelectionScale.lean) makes the expression inside the supremum
 nondecreasing. The existing comparisons
 $10^{-17}\mathcal K(B)\le R(B)\le P_\infty(B)\le8R(B)\le224000\mathcal K(B)$
 give
@@ -162,11 +163,158 @@ $\mathcal K(B)\le I_\mu/\sqrt B$. In particular it includes all finite-support
 positive-gap laws. No lower bound on the support is required for the
 finite-inverse-moment conclusion.
 
-## Remaining target
+## Infinite inverse moment
 
-When $C_{\mu,\rho}=\infty$, (6) proves divergence relative to the ordinary
-iterated-logarithm scale. It does not yet compare the width to the full
-budget-dependent quantity $\mathcal K(n/\log\log n)$. A proof of that
-comparison needs control across hard families whose shape changes with the
-budget. The sequential testing lemma, dual-limit identity and conclusions
-(6)–(9) also remain to be formalized in Lean.
+Assume $I_\mu=\infty$. Choose $0<\tau\le1/4$ with
+$0<\mu((0,\tau])\le\rho/2$, and set $S=(0,\tau]$ and
+$T(h)=\int_S\min(1,h/d)\,d\mu$.
+The mass-$\rho$ quantile threshold is above $\tau$. The quantile core has finite
+entropy and the quantile tail above $\tau$ has finite inverse moment.
+Since $T(h)/h\to\infty$, the checked $8/5$ comparison gives, eventually as $h\downarrow0$,
+\[
+ (5/8)T(h)\le\mathcal K(h^{-2})\le2T(h).                       \tag{10}
+\]
+
+### Bounded prior profiles
+
+Set $\varepsilon_j=\tau4^{-j}$ and
+\[
+ f_j(d)={\varepsilon_j\over d}\mathbf1_{\{\varepsilon_j<d\le\tau\}},
+ \quad a_j=\int f_j\,d\mu,\quad W_j=\sum_{i\ge j}a_i.
+\]
+Geometric summation gives
+\[
+ T(\varepsilon_j)/3\le W_j\le4T(\varepsilon_j)/3,\quad
+ W_{j+1}\ge W_j/4,\quad W_j\downarrow0,\quad W_j>0.             \tag{11}
+\]
+For $d>\varepsilon_j$, the pointwise sum is $4\varepsilon_j/(3d)$.
+For $0<d\le\varepsilon_j$, start at the first index with $\varepsilon_i<d$.
+The sum lies in $[1/3,4/3]$. The strict indicator handles atoms at grid endpoints.
+
+Let $j_1=0$, and let $j_{k+1}$ be the first index after $j_k$ with
+$W_{j_{k+1}}\le W_{j_k}/4$. Then
+$W_{j_k}/16<W_{j_{k+1}}\le W_{j_k}/4$.
+For a finite binary word $v$ of length $L$, define
+\[
+ q_v(d)={1\over4}\mathbf1_S(d)+{3\over128}
+     \sum_{k=1}^L v_k\sum_{j=j_k}^{j_{k+1}-1}f_j(d).
+\]
+This lies in $[1/4,9/32]$ on $S$, is zero outside $S$, and is admissible.
+Its block-$k$ mean increment is $(3/128)(W_{j_k}-W_{j_{k+1}})$.
+Parameters whose first $k$ bits differ are separated by at least
+\[
+ \delta_k=(3/256)W_{j_k}.                                    \tag{12}
+\]
+If their first $k-1$ bits agree, then at every gap
+\[
+ d\,|q_v(d)-q_w(d)|\le\varepsilon_{j_k}/32.                   \tag{13}
+\]
+Both bounds hold uniformly in finite depth $L$.
+
+### Information under adaptive observation
+
+Augment the transcript with the whole iid gap sequence, whose distribution
+is independent of the sign prior. The controller still uses its original
+seed and observed flips. Forgetting the extra gaps gives the original
+experiment, so data processing makes its KL no larger.
+Conditional on the augmented seed and an observed history, a queried coin has sign
+likelihoods $A,B\ge0$, $A+B>0$. Its posterior sign probability is
+$\pi(q)=qA/[qA+(1-q)B]$.
+For $q,r\in[1/4,3/4]$, both denominators are at least $(A+B)/4$, so
+\[
+ |\pi(q)-\pi(r)|
+ ={AB|q-r|\over[qA+(1-q)B][rA+(1-r)B]}\le4|q-r|.
+\]
+Thus the next-head probabilities differ by at most
+$8d|q-r|\le\varepsilon_{j_k}/4$ on $S$. Both are in $[1/4,3/4]$.
+The Bernoulli chi-square bound gives one-step KL at most
+$\varepsilon_{j_k}^2/3\le\varepsilon_{j_k}^2$.
+Outside $S$, the two conditional laws agree.
+
+Given the history and seed, the adaptive action is the same function under
+both hypotheses. The queried coin's posterior uses its own flips, and revisits
+retain its latent sign. Chain rule over at most $n$ physical flips, followed
+by forgetting the revealed gaps, gives
+\[
+ D_{\rm KL}(P_v^{(n)}\Vert P_w^{(n)})\le n\varepsilon_{j_k}^2   \tag{14}
+\]
+whenever the first $k-1$ bits agree. The posterior and per-flip inequalities
+are checked in [TailInformation](../lean/ThresholdHC/AnytimeLower/TailInformation.lean);
+the adaptive chain-rule transfer here remains a paper proof.
+
+### Two possible spacings of the blocks
+
+First suppose $j_k\le k^2$ eventually. Take
+$n_k=\lfloor(1-\delta)\varepsilon_{j_k}^{-2}\log k/2\rfloor$.
+The finite-tree argument of (4), using (12) and (14), forces
+$t(n_k)\ge(3/512)W_{j_k}$ infinitely often. Otherwise its error sum would
+dominate $\sum k^{-1/2}$.
+
+Put $\lambda(n)=\log(1/\delta)+\log\log n$. Eventually
+$\lambda(n_k)\le4\log k$ and
+$n_k\ge(3/16)\varepsilon_{j_k}^{-2}\log k$. Hence
+$\sqrt{\lambda(n_k)/n_k}\le5\varepsilon_{j_k}$.
+By (10), (11) and $T(5h)\le5T(h)$,
+$\mathcal K(n_k/\lambda(n_k))\le30W_{j_k}$.
+The ratio of the envelope to this functional is at least $1/5120$
+infinitely often.
+
+Otherwise $j_k>k^2$ infinitely often. There are then infinitely many blocks
+with $j_{k+1}-j_k\ge\sqrt{j_k}$. If all late increments were smaller,
+$\sqrt{j_{k+1}}\le\sqrt{j_k}+1/2$ would imply
+$j_k\le(k/2+O(1))^2<k^2$ eventually.
+
+On each such long block put
+$m_k=j_k+\lfloor\sqrt{j_k}/2\rfloor$ and
+$n_k=\lceil\varepsilon_{m_k}^{-2}\rceil$.
+Eventually $m_k+1<j_{k+1}$ and
+\[
+ \varepsilon_{m_k+1}\le n_k^{-1/2}
+ \le\sqrt{\lambda(n_k)/n_k}\le\varepsilon_{j_k}.
+\]
+The inflation shifts a geometric gap index by $O(\log\log j_k)$,
+whereas the distance to the block's start is of order $\sqrt{j_k}$.
+Also $W_{m_k+1}>W_{j_k}/4$. Therefore
+\[
+ \mathcal K(n_k)\ge(15/128)W_{j_k},\qquad
+ \mathcal K(n_k/\lambda(n_k))\le6W_{j_k}.
+\]
+In particular their ratio is at least $1/96$.
+The [fixed-budget confidence lower bound](../lean/ThresholdHC/ConfidenceProgram/Lower.lean), using its conservative coefficient
+$10^{-17}/30$, now yields
+\[
+ {t(n_k)\over\mathcal K(n_k/\lambda(n_k))}\ge10^{-17}/2880.     \tag{15}
+\]
+A physical cap implies an expected-work bound. The reported interval's midpoint
+is a fixed-budget estimator with error at most $t(n)$ on its coverage event.
+
+## Matching theorem for every positive-gap law
+
+Every nonincreasing deterministic half-width envelope in the original online
+experiment, with joint coverage and width probability at least $1-\delta$
+for each admissible population, satisfies
+\[
+ \boxed{\displaystyle
+ \limsup_{n\to\infty}
+ {t(n)\over\mathcal K_{\mu,\rho}
+       (n/[\log(1/\delta)+\log\log n])}\ge10^{-22}.}            \tag{16}
+\]
+Here $\mu$ is any known probability law on $(0,1/2]$,
+$0<\rho\le1/4$, and $0<\delta\le1/4$. The limsup uses integer budgets
+large enough for the logarithms to be defined.
+
+For finite inverse moment, (9) gives (16). For infinite inverse moment,
+the two block-spacing cases give it. These cases exhaust all laws.
+The known-law upper inflation is asymptotic to $2\log\log n$ at fixed
+$\delta$. Square-root budget scaling compares it to the inflation in (16)
+by a universal factor. This proves matching law and rarity dependence in
+the asymptotic deterministic-envelope sense.
+
+The complete matching theorem is a paper proof. The native audit checks
+the common-family information bounds and the posterior and per-flip KL inequalities.
+The sequential testing lemma, infinite-moment construction, its acquisition-law
+transfer and the asymptotic comparisons remain to be formalized in Lean.
+
+Run `python tools/verify_anytime_lower_profiles.py` for 32,768 exact rational
+profile comparisons across 16 finite atomic examples, including grid endpoints.
+These are regression examples, not a proof for arbitrary laws.

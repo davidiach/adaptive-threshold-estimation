@@ -104,7 +104,6 @@ Indeed, selecting mass $x$ gives the concave objective
 $2\sqrt{\rho x/B}+(1-x)\min(1,2/\sqrt B)$, whose minimum is at an endpoint,
 followed by clipping at $\rho$. The lower bound thus matches the iterated
 logarithm term of the known-law upper rate on this law for fixed $\delta$
-as $n\to\infty$. It leaves open the full gap-law dependent lower bound and
-whether a law-agnostic interval attains the known-law rate.
+as $n\to\infty$. The [full gap-law dependent comparison](TIME_UNIFORM_LOWER.md) now has a paper proof. Whether a law-agnostic interval attains the known-law rate remains open.
 
-The [law-dependent lower-bound development](TIME_UNIFORM_LOWER.md) gives a matching paper proof when the asymptotic coefficient is finite, including every finite-inverse-moment gap law. Its prior-family and adaptive prefix-information bounds are Lean-checked. The full infinite-coefficient comparison remains open.
+The [law-dependent lower-bound development](TIME_UNIFORM_LOWER.md) proves that every deterministic joint coverage-and-width envelope exceeds a universal multiple of the known-law rate infinitely often, for every positive-gap law. Its prior-family and information bounds are Lean-checked. The sequential and asymptotic parts retain paper-proof status.

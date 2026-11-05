@@ -824,4 +824,4 @@ Run `python tools/verify_quantile_optimality.py` for 81 exact statements and 81 
 
 ## Time-uniform lower-bound families
 
-Run `python tools/verify_anytime_lower.py` for 11 exact statements and transitive axiom reports. The audit covers central-segment information/work scaling, quarter-smoothing inversion, physical prefix work, admissibility, exact target separation and the observable prefix KL bound from an arbitrary four-prior certificate. The [sequential testing argument and asymptotic lower bound](TIME_UNIFORM_LOWER.md) retain paper-proof status.
+Run `python tools/verify_anytime_lower.py` for 15 exact statements and transitive axiom reports. The audit covers central-segment information/work scaling, quarter-smoothing inversion, physical prefix work, admissibility, exact target separation and the observable prefix KL bound from an arbitrary four-prior certificate, plus posterior Lipschitz and per-flip Bernoulli KL inequalities. The [sequential testing argument and asymptotic lower bound](TIME_UNIFORM_LOWER.md) retain paper-proof status.
