@@ -118,7 +118,9 @@ minimax model. Its budget is $LH/\rho$, not the paper sequence $\rho^{-2}$.\\[5p
 Entropy--tail law &
 \tailleanref{EntropyTail/Upper.lean}{entropy\_tail\_upper} proves the
 upper half of Theorem~\ref{thm:entropy-tail-law} against its locked
-specification, with constant $28000$ in place of $33000$, for every
+specification, which asserts a universal constant;
+\tailleanref{EntropyTail/Upper.lean}{entropy\_tail\_upper\_explicit}, an
+axiom-audited root, gives constant $28000$ in place of $33000$, for every
 probability law on $(0,1/2]$, $0<\rho\le1/4$ and $B>0$. The construction of
 \cref{sec:entropy-tail-upper} is realized in the original observable
 experiment, without an inverse-moment or finite-support assumption.
