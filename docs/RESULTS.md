@@ -881,12 +881,15 @@ adaptive population at a factor $16/3$ and half the separation. A
 variance–null-work obstruction $(b,J)$ then gives
 $r^{\rm exp}(B,\delta)\ge\frac1{128}\min\{b,\sqrt{J\ell/B}\}$. This is the RMS
 transfer with $B$ replaced by $B/\ell$, and additive localization carries over
-with the same coefficient. Lean checks the single-type $16/3$ transfer for
-the actual randomized estimator and the stopped transcript. The minimax
+with the same coefficient in the paper proof. Lean checks the single-type
+and selected-type $16/3$ transfers through unbounded stopping, including
+private randomization, countably many persistent labels and exact physical
+work. Finite expected work is required at both endpoints. The minimax
 $1/128$ conclusion is checked given the quantitative policy-uniform
-common-pair premise. Deriving that premise from a supplied variance–work
-obstruction and applying the adaptive-type extension are separate steps.
-[Exact statements and kernel record](../results/confidence-population-20261104/README.md)
+common-pair premise. Deriving that premise from a variance–work obstruction
+and proving fractional-submeasure confidence localization remain separate
+formalization tasks.
+[Single-type record](../results/confidence-population-20261104/README.md) · [Selected-type record](../results/adaptive-types-20261105/README.md)
 
 **Amplification.** If a procedure has $\mathbb ET\le b$ and RMS at most $R(b)$,
 the median of $m$ independent copies, with $m$ the least odd integer such that

@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Read the updated manuscript](builds/observed-state-upper-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/observed-state-upper-20261105.json)
+[Read the updated manuscript](builds/adaptive-types-20261105.pdf) · [Open the LaTeX project](main.tex) · [Current build record](builds/adaptive-types-20261105.json)
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -288,3 +288,5 @@ finite-budget and unbiased models. [Build record](builds/stochastic-envelope-202
 [Appendix Y](appendix-continuous-observed.tex) verifies continuous-magnitude observed-state lower bounds and regularity. [Manuscript](builds/continuous-observed-lower-20261105.pdf) · [Build record](builds/continuous-observed-lower-20261105.json)
 
 [Appendix Z](appendix-observed-upper.tex) completes the observed-state upper bounds. [Manuscript](builds/observed-state-upper-20261105.pdf) · [Build record](builds/observed-state-upper-20261105.json)
+
+[Selected-type transfer](typed-confidence.tex) extends the known-law confidence appendix with the full randomized, countable-label, unbounded-stopping proof. Common-pair derivation and fractional-submeasure localization retain their paper proofs. [Manuscript](builds/adaptive-types-20261105.pdf) · [Build record](builds/adaptive-types-20261105.json)
