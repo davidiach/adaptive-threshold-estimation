@@ -443,8 +443,13 @@ comparisons and interval certificates.
 
 The [native record](../results/band-cost-formal-20261105/README.md) binds six
 fresh modules with empty logs and one unchanged, previously hash-checked
-dependency. The mathematical menu algorithm is verified; the Python program
-and its concrete finite-law menu construction are outside this audit.
+dependency. A further `python tools/verify_gap_law_menus.py` audit checks 13
+exact theorem types and transitive axiom reports for concrete menu coverage,
+disjointness, the original prefix-supremum entropy, tail savings, equality of
+the optimized value with $K$, and the atomic weight formulas.
+Its [native record](../results/gap-law-menus-20261105/README.md) binds all 64 project
+sources, five fresh empty compiler logs and 59 previously published dependencies.
+Python execution remains outside the formal proofs.
 
 ## Finite-law bandwise-suffix theorem
 

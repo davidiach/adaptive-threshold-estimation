@@ -193,6 +193,9 @@ sharp quantile factor has a [checked unique scalar root and finite-vector optimu
 [logarithmic and intermediate power rows](results/shifted-power-20261105/README.md) now have complete Lean proofs. The [row below one](results/sublinear-power-20261105/README.md) is Lean-checked for RMS and fixed confidence. The [finite-cap comparison](docs/FINITE_CAP_RATE.md)
 certifies $P_N\le 16R$ at $N=\lceil4B/3\rceil$. Efficient
 exact selection for many bands with unrestricted costs remains open.
+The [concrete finite-law menu construction](results/gap-law-menus-20261105/README.md)
+and its compressed optimum are now Lean-checked against the original selection
+functional, including the exact finite atomic sums.
 The [matching time-uniform lower bound](docs/TIME_UNIFORM_LOWER.md) is now
 Lean-checked for every positive-gap law, with coefficient $10^{-22}$ at
 arbitrarily late integer budgets. The [complete audit](results/anytime-asymptotic-20261105/README.md)

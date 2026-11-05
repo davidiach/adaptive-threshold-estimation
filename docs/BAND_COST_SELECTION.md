@@ -63,11 +63,21 @@ zero tag give the stated weak-composition bound. The recursion processes the
 tail of the menu list first; reversing the band's menu list represents any
 chosen processing order.
 
-This audit verifies the finite-menu algorithm, not the Python code or its
-construction of menus from a measure. The identification of those concrete
-menus with $K$ remains a paper argument. In particular, formal verification
-of the reduction does not settle the polynomial-time question for
-unrestricted distinct costs.
+A further [13-statement audit](../results/gap-law-menus-20261105/README.md)
+now connects the algorithm to a concrete finite gap law. It constructs the
+occupied-band menus from the support, proves that their traces cover exactly
+the global bandwise suffixes, and checks disjointness across band positions.
+The cost list equals the original inverse-square band costs; omitted bands
+contribute zero to the prefix-supremum entropy. The sum of saved costs equals
+the removed tail cost. Consequently the real clipped menu objective equals
+the original measure objective, and the compressed solver retains a selection
+whose value is exactly $K$, against every fractional submeasure.
+The [atomic formulas](../lean/ThresholdHC/GapLawMenus/Atoms.lean) also identify
+each cost and saving with the finite weighted sums used above.
+
+Python execution remains outside these mathematical audits. The formal
+connection does not settle the polynomial-time question for unrestricted
+distinct costs.
 
 ## Example with 64 occupied bands
 
