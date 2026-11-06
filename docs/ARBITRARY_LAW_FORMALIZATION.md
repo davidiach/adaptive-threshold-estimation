@@ -71,6 +71,11 @@ does not instantiate the statistical pilot or robust continuation, or assume
 their desired risk bounds in place of proving them. It is a single stage,
 not yet the final all-budget confidence controller.
 
+The [native stage audit](../results/arbitrary-law-stage-20261106/README.md)
+identifies the 644-source project closure, exact statements and compiled
+dependency hashes. Across all three component audits, 57 exact statements
+and 55 transitive axiom reports pass.
+
 ## Work still needed for the full theorem
 
 The finite matrix inequality is not yet the arbitrary-measure transport
