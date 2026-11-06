@@ -478,3 +478,16 @@ construction's exact constant. The code and PRNG remain unverified.
 For a known law, `threshold_toolkit.known_law_confidence.known_law_ladder`
 provides the same continuation directly. Both interfaces expose
 `advance_to(total_budget)`; repeated calls at one allowance do no extra work.
+
+## Certify small-gap mass without a known law
+
+`threshold_toolkit.tail_mass` plans and runs a capped median of adaptive
+single-coin probes. It returns an upper confidence bound on
+$\Pr(D\le2^{-J})$ using flips alone, without candidate laws or integrals.
+`TailMassProbe` can pause at any physical flip; `plan_tail_mass` and
+`run_tail_mass` provide a fixed-scale certificate with a requested failure
+allowance. See the [paper proof and example](../docs/ARBITRARY_LAW_TAIL.md).
+The bound has an eventual oracle-rate comparison for every positive-gap
+law, with a law-dependent onset. It is a tail-mass certificate, not a
+confidence interval for the positive fraction. Neither the new paper proof
+nor the Python execution is Lean-verified.
