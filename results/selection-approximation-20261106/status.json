@@ -1,0 +1,295 @@
+{
+  "valid": true,
+  "scope": "Actual finite cost entropy perturbation from certified logarithmic summaries; feasible retained traces with no worse saving and two summaries within c^m, for any certified bin map. Includes derivative, surrogate, relative-error, zero-case and dyadic-cell lemmas. Not the full FPTAS, bit complexity, concrete bucket-index implementation, or Python execution.",
+  "source_sha256": {
+    "lean/lake-manifest.json": "a7058b14db1034b58735d82f1cf9a82a938855e93decc1960ca7d21e786fdfe2",
+    "lean/lakefile.toml": "273cfe4674e97219b22f7de1428bdadfb45379c7fa582882c59624ab7fbc3189",
+    "lean/lean-toolchain": "d581a24b57a4ae9e0b2132ca8ac7cc3ac336a9fc2751fe6b29414e2d434d54c4",
+    "lean/ThresholdHC/BandCostSelection/Compression.lean": "552a556380a334ba78b88d8236dfa17652dc034f34f313667870507acdd8db0c",
+    "lean/ThresholdHC/BandCostSelection/Dynamic.lean": "c7f527aebbb80536aafbe42b8b7f28d122ec2af936482f943b56f28a3a2b88ff",
+    "lean/ThresholdHC/EntropyTailQuantile/CostEntropy.lean": "cfd71fb622f3e2a794de5ecb5f087ae0c96e65af5335beb44040aa690c483939",
+    "lean/ThresholdHC/SelectionApproximation/Compression.lean": "efd5e8ab20b8890954d1ce5a9732ffe7bf888803208d800008d7d99db10d4711",
+    "lean/ThresholdHC/SelectionApproximation/Entropy.lean": "a2e905661c06fec7e70f5be11bc466cd07149bfd4a06182298e6aaef04596619",
+    "lean/ThresholdHC/SelectionApproximation/Model.lean": "05296bd82d32c3916bb542fbb6a653ebf34282d3922479ccd290f3dd1eed93c9",
+    "lean/ThresholdHC/SelectionApproximation/SPECIFICATION.json": "5052ac53dc85077ace548c77588540c5dc4172459fac126534152885c5e02264",
+    "tools/verify_blind_upper_components.py": "08faf54b212914db25f1c65c8455ab9d918d70e9366a8fef2b7622a6ce5325e7",
+    "tools/verify_entropy_tail_components.py": "32a424f48e92c50cd3e6a6c38d3d11c42fef974843e33f2aa489b54d1cd293b8",
+    "tools/verify_selection_approximation.py": "931447aaced5bcefb076382ef294757341ff8db726f93b1325ec1ecddf233eb7",
+    "tools/verify_tier6.py": "7295c1609c57be9951fc46f3e210f7f7682083470cf94bbe2dd89a387b0f075e"
+  },
+  "exact_targets": {
+    "ThresholdHC.SelectionApproximation.entropy_perturbation": "ThresholdHC.SelectionApproximation.EntropyPerturbationStatement",
+    "ThresholdHC.SelectionApproximation.compression_invariant": "ThresholdHC.SelectionApproximation.CompressionInvariantStatement"
+  },
+  "compiler": {
+    "version": "Lean (version 4.36.0-rc1, x86_64-w64-windows-gnu, commit c9afcddf514a6772bd4d649f7cfc04eff0b9f15e, Release)",
+    "path": "c:\\Users\\User\\Desktop\\Projects\\math\\threshold-hillclimb\\.runtime\\elan\\toolchains\\leanprover--lean4---v4.36.0-rc1\\bin\\lean.exe",
+    "sha256": "47b9262e530b0063b908f3676fe622da518d2193a7cf0da488a9cc3db623e61c"
+  },
+  "external_packages": {
+    "mathlib": {
+      "revision": "9bdd0bc71aaae0fd83889f9aacd70c32fccd1bcd",
+      "library": "C:\\Users\\User\\Desktop\\Projects\\math\\threshold-hillclimb\\lean\\.lake\\packages\\mathlib\\.lake\\build\\lib\\lean"
+    },
+    "plausible": {
+      "revision": "c2d7840c65673533e15b499f25beecdc6227f7d8",
+      "library": "C:\\Users\\User\\Desktop\\Projects\\math\\threshold-hillclimb\\lean\\.lake\\packages\\plausible\\.lake\\build\\lib\\lean"
+    },
+    "LeanSearchClient": {
+      "revision": "9d39f9bb0c30aa2f6200808805ff16e6ce950890",
+      "library": "C:\\Users\\User\\Desktop\\Projects\\math\\threshold-hillclimb\\lean\\.lake\\packages\\LeanSearchClient\\.lake\\build\\lib\\lean"
+    },
+    "importGraph": {
+      "revision": "76c79b0c92e61e8e1c482ccc6c70896bef8fe841",
+      "library": "C:\\Users\\User\\Desktop\\Projects\\math\\threshold-hillclimb\\lean\\.lake\\packages\\importGraph\\.lake\\build\\lib\\lean"
+    },
+    "proofwidgets": {
+      "revision": "eef6bb95363c38103535ac2df08b6bb141f0a764",
+      "library": "C:\\Users\\User\\Desktop\\Projects\\math\\threshold-hillclimb\\lean\\.lake\\packages\\proofwidgets\\.lake\\build\\lib\\lean"
+    },
+    "aesop": {
+      "revision": "29c64c56cc38211d39b306db2df11701e3d3de11",
+      "library": "C:\\Users\\User\\Desktop\\Projects\\math\\threshold-hillclimb\\lean\\.lake\\packages\\aesop\\.lake\\build\\lib\\lean"
+    },
+    "Qq": {
+      "revision": "6d26f8bb4b2bb78f929ad160feac508866821316",
+      "library": "C:\\Users\\User\\Desktop\\Projects\\math\\threshold-hillclimb\\lean\\.lake\\packages\\Qq\\.lake\\build\\lib\\lean"
+    },
+    "batteries": {
+      "revision": "7d582b1508dece342d9bea5327cc0f1843c1b6fa",
+      "library": "C:\\Users\\User\\Desktop\\Projects\\math\\threshold-hillclimb\\lean\\.lake\\packages\\batteries\\.lake\\build\\lib\\lean"
+    },
+    "Cli": {
+      "revision": "34d2efffcb6dc8d5f3537cf6a7f88bfaa999ec49",
+      "library": null
+    }
+  },
+  "external_compiled_cache_trusted": true,
+  "exact_targets_checked": 2,
+  "entropy_perturbation_verified": true,
+  "state_compression_verified": true,
+  "full_fptas_verified": false,
+  "python_execution_verified": false,
+  "commands": [
+    {
+      "command": [
+        "c:\\Users\\User\\Desktop\\Projects\\math\\threshold-hillclimb\\.runtime\\elan\\toolchains\\leanprover--lean4---v4.36.0-rc1\\bin\\lean.exe",
+        "-j1",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\selection-fptas-20261106\\.runtime\\selection-lean\\20261106T153541098997Z\\objects\\ThresholdHC\\EntropyTailQuantile\\CostEntropy.olean",
+        "ThresholdHC\\EntropyTailQuantile\\CostEntropy.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "c:\\Users\\User\\Desktop\\Projects\\math\\threshold-hillclimb\\.runtime\\elan\\toolchains\\leanprover--lean4---v4.36.0-rc1\\bin\\lean.exe",
+        "-j1",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\selection-fptas-20261106\\.runtime\\selection-lean\\20261106T153541098997Z\\objects\\ThresholdHC\\BandCostSelection\\Compression.olean",
+        "ThresholdHC\\BandCostSelection\\Compression.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "c:\\Users\\User\\Desktop\\Projects\\math\\threshold-hillclimb\\.runtime\\elan\\toolchains\\leanprover--lean4---v4.36.0-rc1\\bin\\lean.exe",
+        "-j1",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\selection-fptas-20261106\\.runtime\\selection-lean\\20261106T153541098997Z\\objects\\ThresholdHC\\BandCostSelection\\Dynamic.olean",
+        "ThresholdHC\\BandCostSelection\\Dynamic.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "c:\\Users\\User\\Desktop\\Projects\\math\\threshold-hillclimb\\.runtime\\elan\\toolchains\\leanprover--lean4---v4.36.0-rc1\\bin\\lean.exe",
+        "-j1",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\selection-fptas-20261106\\.runtime\\selection-lean\\20261106T153541098997Z\\objects\\ThresholdHC\\SelectionApproximation\\Model.olean",
+        "ThresholdHC\\SelectionApproximation\\Model.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "c:\\Users\\User\\Desktop\\Projects\\math\\threshold-hillclimb\\.runtime\\elan\\toolchains\\leanprover--lean4---v4.36.0-rc1\\bin\\lean.exe",
+        "-j1",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\selection-fptas-20261106\\.runtime\\selection-lean\\20261106T153541098997Z\\objects\\ThresholdHC\\SelectionApproximation\\Entropy.olean",
+        "ThresholdHC\\SelectionApproximation\\Entropy.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "c:\\Users\\User\\Desktop\\Projects\\math\\threshold-hillclimb\\.runtime\\elan\\toolchains\\leanprover--lean4---v4.36.0-rc1\\bin\\lean.exe",
+        "-j1",
+        "-o",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\selection-fptas-20261106\\.runtime\\selection-lean\\20261106T153541098997Z\\objects\\ThresholdHC\\SelectionApproximation\\Compression.olean",
+        "ThresholdHC\\SelectionApproximation\\Compression.lean"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "c:\\Users\\User\\Desktop\\Projects\\math\\threshold-hillclimb\\.runtime\\elan\\toolchains\\leanprover--lean4---v4.36.0-rc1\\bin\\lean.exe",
+        "-j1",
+        "-R",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\selection-fptas-20261106\\.runtime\\selection-lean\\20261106T153541098997Z",
+        "C:\\Users\\User\\Desktop\\Projects\\math\\selection-fptas-20261106\\.runtime\\selection-lean\\20261106T153541098997Z\\Audit.lean"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "object_sha256": {
+    "ThresholdHC/EntropyTailQuantile/CostEntropy.olean": "16e55fcc3e2663214661bc737193d824174d55693f381dc7506838a446c8c699",
+    "ThresholdHC/BandCostSelection/Compression.olean": "66396d8d8115a0c953ff25c76fe6e73443bc01b6da723cf4ce8d7dbfc429d5c2",
+    "ThresholdHC/BandCostSelection/Dynamic.olean": "02f13ff1d05838d49ec6b62c7da0ce23e78a4513c28e56327ec0c6c50c997c53",
+    "ThresholdHC/SelectionApproximation/Model.olean": "ab1a9ed27ffbe3a3d719678760a20ead9b804cdc6ad861807c8dd6c88a1015f6",
+    "ThresholdHC/SelectionApproximation/Entropy.olean": "68dc96a4dd4cefcd3d408b77f725abfb9f683080c258aaecf4c8af114b57162a",
+    "ThresholdHC/SelectionApproximation/Compression.olean": "413987ae568fb141da806eb58d0482e540bd3bd07186694771859439f6b54f1b"
+  },
+  "axioms": {
+    "ThresholdHC.SelectionApproximation.Close": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.SelectionApproximation.CompressionInvariantStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.SelectionApproximation.EntropyPerturbationStatement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.SelectionApproximation.ValidBins": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.SelectionApproximation.baseSummary": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.SelectionApproximation.close_abs_sub": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.SelectionApproximation.close_add_same": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.SelectionApproximation.close_refl": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.SelectionApproximation.close_trans": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.SelectionApproximation.close_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.SelectionApproximation.compression_invariant": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.SelectionApproximation.costEntropy_eq_potential_sub": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.SelectionApproximation.dyadic_cell_close": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.SelectionApproximation.entropy_perturbation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.SelectionApproximation.entropy_relative": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.SelectionApproximation.entropy_zero_of_close": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.SelectionApproximation.interval_close": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.SelectionApproximation.potential": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.SelectionApproximation.potential_hasDerivAt": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.SelectionApproximation.potential_lipschitz": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.SelectionApproximation.summaryKey": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.SelectionApproximation.surrogate_bounds": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.SelectionApproximation.trace_nonneg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.SelectionApproximation.trimSolve": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.SelectionApproximation.trimSolve_subset": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.SelectionApproximation.validBins_identity": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "ThresholdHC.SelectionApproximation.validBins_of_intervals": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "audited_modules": 3,
+  "rebuilt_local_modules": 6,
+  "audited_declarations": 27,
+  "concrete_checks": 2,
+  "audit_source_sha256": "6581491c771d191c15d3860a1993a7e14318f86e058d49eaa7999be5e2b0dd9a"
+}

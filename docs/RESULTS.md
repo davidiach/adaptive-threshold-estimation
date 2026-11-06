@@ -623,6 +623,21 @@ atomic formulas, and the equality of its optimized value with the original
 $K$. Python execution remains unverified. Efficient exact selection with
 unrestricted distinct band costs remains open.
 
+**Prescribed relative accuracy has a paper proof.** The new
+[finite-law approximation scheme](../research/2026-11-06-selection-approximation/NOTE.md)
+returns an actual selection with capped objective between $K$ and
+$(1+\epsilon)K$, in time polynomial in rational input length and $1/\epsilon$.
+It does not require repeated costs. Two additive summaries control the entropy
+under state trimming. The rational prototype and adversarial subset tests are
+[reproducible](../research/2026-11-06-selection-approximation/README.md).
+The [entropy perturbation and state-compression components](../lean/ThresholdHC/SelectionApproximation/README.md)
+are now Lean-checked against locked statements. They control actual cost entropy
+and preserve a feasible witness with no worse saving and both summaries within
+the stage factor, assuming a certified bin map. The full approximation theorem,
+bit complexity and Python execution remain unverified in Lean. No independent
+review is claimed; this neither settles exact optimization nor changes the
+statistical minimax theorem.
+
 **Lean verifies Theorems 7–8 and Corollary 9.** Changing a law by total variation
 $\eta$ changes $K$ by at most $\eta$. Within-band upward rounding by a factor
 at most $r$ gives a value between $K/r$ and $K$. For every $\eta>0$ and

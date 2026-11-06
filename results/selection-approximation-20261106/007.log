@@ -1,0 +1,33 @@
+'ThresholdHC.SelectionApproximation.Close' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.SelectionApproximation.CompressionInvariantStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.SelectionApproximation.EntropyPerturbationStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.SelectionApproximation.ValidBins' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.SelectionApproximation.baseSummary' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.SelectionApproximation.close_abs_sub' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.SelectionApproximation.close_add_same' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.SelectionApproximation.close_refl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.SelectionApproximation.close_trans' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.SelectionApproximation.close_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.SelectionApproximation.compression_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.SelectionApproximation.costEntropy_eq_potential_sub' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.SelectionApproximation.dyadic_cell_close' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.SelectionApproximation.entropy_perturbation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.SelectionApproximation.entropy_relative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.SelectionApproximation.entropy_zero_of_close' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.SelectionApproximation.interval_close' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.SelectionApproximation.potential' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.SelectionApproximation.potential_hasDerivAt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.SelectionApproximation.potential_lipschitz' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.SelectionApproximation.summaryKey' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.SelectionApproximation.surrogate_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.SelectionApproximation.trace_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.SelectionApproximation.trimSolve' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.SelectionApproximation.trimSolve_subset' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.SelectionApproximation.validBins_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.SelectionApproximation.validBins_of_intervals' depends on axioms: [propext, Classical.choice, Quot.sound]
