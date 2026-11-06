@@ -147,3 +147,21 @@ probability; [Full](ThresholdHC/LawAdaptation/Full.lean) constructs the family
 with its joint coverage-and-width guarantee; [Properties](ThresholdHC/LawAdaptation/Properties.lean)
 checks nesting and the original-experiment endpoint law.
 [Native record](../results/law-adaptation-realization-20261105/README.md).
+
+The [arbitrary-law adaptation formalization](../docs/ARBITRARY_LAW_FORMALIZATION.md)
+starts with `ArbitraryLawAdaptation/EntropyTransport.lean` and `BandPenalty.lean`.
+Run `python tools/verify_arbitrary_law_entropy.py` for 15 exact statements and
+transitive axiom reports. This is finite entropy transport, not the full
+arbitrary-law statistical theorem.
+
+`ArbitraryLawAdaptation/CDFEnvelope.lean` constructs the conservative finite
+measure, including its zero atom and closed-CDF boundary values. Run
+`python tools/verify_arbitrary_law_envelope.py` for 25 exact statements and
+24 transitive reports. The statistical pilot event remains unproved in Lean.
+
+`ArbitraryLawAdaptation/LearnedStage.lean` joins a paid pilot to a continuation
+chosen from its observed finite envelope. Its cap, fresh labels, chronological
+readback and original-experiment joint endpoint law have 17 exact statements
+and 16 transitive reports in `python tools/verify_arbitrary_law_stage.py`.
+This component does not yet instantiate the statistical pilot or establish
+the full all-budget controller.

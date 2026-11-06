@@ -385,6 +385,12 @@ jobs:
         run: python tools/verify_law_adaptation.py
       - name: Verify moment determinacy and observable law adaptation
         run: python tools/verify_law_adaptation_realization.py
+      - name: Verify finite arbitrary-law entropy transports
+        run: python tools/verify_arbitrary_law_entropy.py
+      - name: Verify learned finite CDF envelopes
+        run: python tools/verify_arbitrary_law_envelope.py
+      - name: Verify observable learned-law stages
+        run: python tools/verify_arbitrary_law_stage.py
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
       - uses: actions/upload-artifact@v4

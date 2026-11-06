@@ -879,3 +879,19 @@ Run `python -m unittest discover -s toolkit/tests -p test_law_identification.py 
 for the executable rational pilot. Those tests do not formally verify Python.
 
 [Native record for the finite-family components](../results/law-adaptation-20261105/README.md).
+
+## Arbitrary-law adaptation components
+
+Run `python tools/verify_arbitrary_law_entropy.py` for 15 exact statements and
+transitive axiom reports covering finite entropy transport and its factor-three
+band penalty. The [scope](ARBITRARY_LAW_FORMALIZATION.md) separates this from
+the remaining countable measure and statistical controller work.
+
+Run `python tools/verify_arbitrary_law_envelope.py` for 25 exact statements
+and 24 transitive reports for the deterministic finite CDF envelope. It does
+not yet prove the statistical pilot event supplying the grid bounds.
+
+Run `python tools/verify_arbitrary_law_stage.py` for 17 exact statements and
+16 transitive reports for observable paid-pilot/selected-continuation stages.
+The [formal scope](ARBITRARY_LAW_FORMALIZATION.md) distinguishes this execution
+component from the unproved statistical instantiation and final controller.
