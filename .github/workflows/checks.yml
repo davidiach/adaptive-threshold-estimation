@@ -401,6 +401,8 @@ jobs:
         run: python tools/verify_arbitrary_law_dominated.py
       - name: Verify light-contraction product entropy
         run: python tools/verify_arbitrary_law_light_entropy.py
+      - name: Verify concrete light multiplier and selection comparison
+        run: python tools/verify_arbitrary_law_light.py
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
       - uses: actions/upload-artifact@v4

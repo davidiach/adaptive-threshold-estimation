@@ -130,4 +130,7 @@ when `c >= 1` and `e >= 0`, retaining infinite entropy and the cap.
 Run `python tools/verify_arbitrary_law_light_entropy.py` for 36 exact statements
 and transitive reports: product-reference entropy, explicit numerical budgets,
 two-band product geometry and the factor-1024 entropy bound for actual product
-measure cells. The full light-contraction selection comparison is separate.
+measure cells. Run `python tools/verify_arbitrary_law_light.py` for 26 more
+exact statements and transitive reports: residual tails, the constructed
+multiplier's exact CDF, and the full capped selection comparison with factor 32.
+The final result imposes no inverse-moment or entropy condition on the input law.

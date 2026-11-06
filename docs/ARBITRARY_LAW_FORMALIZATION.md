@@ -156,7 +156,7 @@ restated exact statements and 22 transitive axiom reports.
 The [native dominated-mass record](../results/arbitrary-law-dominated-20261106/README.md)
 binds the proof checkpoint and complete project closure.
 
-## Light contraction entropy
+## Light random contraction
 
 [ProductEntropy.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/ProductEntropy.lean)
 proves finite and countable entropy bounds using a product reference code.
@@ -171,8 +171,27 @@ assuming the stated multiplier support and dyadic probability bounds.
 Local column summability suffices; full-law entropy may be infinite.
 
 Run `python tools/verify_arbitrary_law_light_entropy.py` for 36 independently
-restated exact statements and 36 transitive axiom reports. The exact multiplier
-CDF, residual tail and full factor-32 selection comparison remain in progress.
+restated exact statements and 36 transitive axiom reports.
+
+[LightContractionTail.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/LightContractionTail.lean)
+proves the inverse first-moment and integrated residual-tail bounds.
+[LightContraction.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/LightContraction.lean)
+derives the dyadic probability bounds from the exact multiplier CDF, transports
+every fractional selection, identifies its residual, and proves the capped
+infimum comparison with coefficient 32.
+[LightMultiplier.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/LightMultiplier.lean)
+constructs the multiplier by mapping a uniform variable to
+`min(1/4, 1/sqrt(2 log(2/u)))`, assigning `1/4` at the null endpoint `u=0`.
+It proves the exact CDF in (A3), probability normalization, and the factor-32
+comparison for this constructed law. Independence is the actual product
+measure. No multiplier-existence, finite-moment or finite-entropy premise is
+needed in the final theorem; finite positive-gap input measures suffice.
+
+Run `python tools/verify_arbitrary_law_light.py` for 26 additional exact
+statements and transitive axiom reports. The proof uses a fixed two-cell
+reference code to obtain the post-division entropy bound 1024 directly.
+The paper's intermediate sharper `C_V < 256` calculation in (A4) is not
+asserted as a separately formalized result.
 
 ## Finite CDF envelope
 
@@ -215,14 +234,14 @@ not yet the final all-budget confidence controller.
 
 The [native stage audit](../results/arbitrary-law-stage-20261106/README.md)
 identifies the 644-source project closure, exact statements and compiled
-dependency hashes for that checkpoint. Across all ten current component
-audits, 210 exact statements and 208 transitive axiom reports pass.
+dependency hashes for that checkpoint. Across all eleven current component
+audits, 236 exact statements and 234 transitive axiom reports pass.
 
 ## Work still needed for the full theorem
 
 CDF domination now gives an increasing coupling and the selection
-comparison, including unresolved mass at zero. The dominated-mass inequality
-is also checked; the light random contraction remains. The finite
+comparison, including unresolved mass at zero. Dominated mass and the concrete
+factor-32 light random contraction are also checked. The finite
 CDF envelope is checked, but still needs its statistical pilot event and
 law-dependent onset. The observable stage is checked as an execution component;
 the concrete pilot and robust continuation must be instantiated and their

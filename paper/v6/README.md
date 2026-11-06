@@ -4,6 +4,11 @@
 
 The current build combines the finite-gap menu and status-reconciliation changes with the arbitrary-law tail certificate and full eventual oracle-adaptation paper proof. The [finite-gap menu PDF](builds/gap-law-menus-20261105.pdf) and [status-reconciliation PDF](builds/status-reconciliation-20261105.pdf) retain their respective published source identities.
 
+Later [Lean component audits](../../docs/ARBITRARY_LAW_FORMALIZATION.md) cover
+the CDF and zero-atom comparison, dominated mass, and the concrete factor-32
+light contraction. The full arbitrary-law adaptation theorem remains a paper
+proof; the published PDF and its build record retain their original scope.
+
 This is the current single research paper. It combines three manuscripts:
 
 - the [consolidated v5 paper](../v5/README.md): the original minimax law,

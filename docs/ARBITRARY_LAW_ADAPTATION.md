@@ -93,7 +93,7 @@ infimum, then the cap at $\rho$, proves (A2). A finite-entropy selection has
 no zero atom, and its transported mass stays positive. This proves the same
 statement when either ambient law has an unresolved zero atom.
 
-**A light random contraction.** Let $V$ be independent of $D\sim\mu$ and have
+**A light random contraction.** The factor-32 comparison is [Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#light-random-contraction), including a constructed multiplier with the exact CDF. Let $V$ be independent of $D\sim\mu$ and have
 distribution function
 $$
  G_V(v)=2e^{-1/(2v^2)}\quad(0<v<1/4),\qquad
@@ -129,6 +129,12 @@ $\mathbb EV^{-1}\le16$. Division by two shifts every dyadic band exactly
 one position, multiplying cost entropy by four. Thus the transported
 selection has entropy at most $1024\Gamma$, and its residual tail cost is
 at most 32 times the old tail cost. This proves (A3).
+
+The formal proof uses an alternative fixed reference code, with weights
+$7/16$ for each of the two first-band cells and $2^{-(n+4)}$ for each
+cell in multiplier band $n=k-2\ge1$. It proves the post-division entropy bound
+$1024\Gamma$ and tail coefficient 32 directly. The sharper intermediate
+calculation $C_V<256$ in (A4) remains the paper calculation above.
 
 **Dominated mass.** This comparison is [Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#dominated-mass). If $\lambda$ is a probability measure satisfying
 $\lambda\le c\eta+e\delta_0$, with $c\ge1$ and $e\ge0$, then
