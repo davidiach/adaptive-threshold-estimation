@@ -204,7 +204,10 @@ and observable interval half-widths. The deterministic envelope need not be
 monotone. The [finite-family unknown-law adaptation theorem](docs/FINITE_FAMILY_ADAPTATION.md)
 now also has a [complete observable Lean construction](results/law-adaptation-realization-20261105/README.md),
 including the paid pilot and joint all-budget coverage and oracle width.
-Adaptation over arbitrary unknown laws remains open.
+A new [paper proof of arbitrary-law oracle adaptation](docs/ARBITRARY_LAW_ADAPTATION.md)
+uses learned conservative gap laws and attains the time-uniform oracle
+rate after a law-dependent onset. Its controller has executable tests;
+the new theorem and Python execution remain outside Lean verification.
 See the [completion ledger](docs/WORKPLAN.md) for the current boundary.
 
 ## Attribution and license

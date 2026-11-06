@@ -159,6 +159,12 @@
       "abstract": "the arbitrary-law statistical $\\Psi$ lower bound",
       "boundary": "the arbitrary-law statistical $\\Psi$ lower bound of \\cref{app:localization}"
     },
+    "arbitrary-law-adaptation": {
+      "status": "paper",
+      "evidence": ["paper/v6/arbitrary-law-adaptation.tex", "docs/ARBITRARY_LAW_ADAPTATION.md"],
+      "abstract": "eventual oracle-rate adaptation over arbitrary unknown gap laws",
+      "boundary": "arbitrary-law oracle adaptation after a law-dependent onset"
+    },
     "time-uniform-lower-bound": {
       "status": "lean",
       "evidence": ["lean/ThresholdHC/AnytimeLower/Full.lean", "lean/ThresholdHC/AnytimeLower/Intervals.lean", "results/anytime-asymptotic-20261105/README.md"],
@@ -175,7 +181,7 @@
     {"results": ["power-margins-below-two", "smooth-density", "observed-states", "selected-type-transfer", "known-law-confidence", "time-uniform-lower-bound"]},
     {"results": ["sharp-factor"]},
     {"text": "A separate exact-arithmetic certificate gives the sharp factor's decimal bracket."},
-    {"results": ["psi-lower-bound"]},
+    {"results": ["psi-lower-bound", "arbitrary-law-adaptation"]},
     {"text": "This manuscript records each result's dependencies and verification scope."}
   ],
   "boundary": [
@@ -188,7 +194,7 @@
     {"results": ["above-two"]},
     {"results": ["entropy-tail-law", "closed-quantile-law", "sharp-factor", "stopping-program", "identification", "genie", "power-margins-below-two"]},
     {"results": ["hard-cap", "known-law-confidence", "smooth-density", "observed-states", "time-uniform-lower-bound"]},
-    {"results": ["psi-lower-bound"]},
+    {"results": ["psi-lower-bound", "arbitrary-law-adaptation"]},
     {"text": "Section~\\ref{sec:verification} gives the exact scope and links."}
   ]
 }

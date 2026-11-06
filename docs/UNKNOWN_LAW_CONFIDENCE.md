@@ -127,4 +127,7 @@ controller, including joint all-budget coverage and oracle width.
 The [executable controller](FINITE_FAMILY_ADAPTATION.md#executable-confidence-sequence)
 connects a resumable pilot to the known-law estimator's confidence stages under
 one physical flip budget. Python execution remains unverified. The supplied
-candidate-family premise is required; arbitrary-law oracle adaptation remains open.
+candidate-family premise is required for that construction. The new
+[arbitrary-law adaptation paper proof](ARBITRARY_LAW_ADAPTATION.md)
+removes the candidate-family premise using learned conservative laws;
+that additional theorem is not yet Lean-checked.

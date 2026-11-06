@@ -218,10 +218,11 @@ published compiled dependencies. Python execution is not Lean-verified.
 The candidate-family premise is substantive and cannot be verified by this
 pilot. Very close signatures can make $H$ large. This theorem gives no
 family-uniform onset time and no guarantee under a law outside the supplied
-family. To obtain the unrestricted result, a further argument must control
-model approximation and unobserved small-gap mass while retaining honest
-coverage and oracle-rate width. Finite-family identification alone does not
-supply that argument.
+family. The new [arbitrary-law adaptation paper proof](ARBITRARY_LAW_ADAPTATION.md)
+supplies a different argument based on learned conservative gap laws,
+unobserved-tail control and classifier robustness. That additional
+construction is not yet Lean-checked; finite-family identification alone
+does not supply it.
 
 
 [Native 17-statement record](../results/law-adaptation-20261105/README.md).

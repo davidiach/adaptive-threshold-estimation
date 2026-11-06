@@ -1,8 +1,8 @@
 # Consolidated version 6
 
-[Current manuscript](builds/arbitrary-law-tail-20261106.pdf) · [LaTeX sources](main.tex) · [Build record](builds/arbitrary-law-tail-20261106.json)
+[Current manuscript](builds/arbitrary-law-adaptation-20261106.pdf) · [LaTeX sources](main.tex) · [Build record](builds/arbitrary-law-adaptation-20261106.json)
 
-The current build combines the finite-gap menu and status-reconciliation changes with the arbitrary-law tail-certificate paper proof. The [finite-gap menu PDF](builds/gap-law-menus-20261105.pdf) and [status-reconciliation PDF](builds/status-reconciliation-20261105.pdf) retain their respective published source identities.
+The current build combines the finite-gap menu and status-reconciliation changes with the arbitrary-law tail certificate and full eventual oracle-adaptation paper proof. The [finite-gap menu PDF](builds/gap-law-menus-20261105.pdf) and [status-reconciliation PDF](builds/status-reconciliation-20261105.pdf) retain their respective published source identities.
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -41,7 +41,7 @@ unchanged.
 | Appendix R | RMS guarantees under a deterministic observation cap |
 | Appendix S | Rare-event confidence at the effective budget, with subsections on adaptively selected component types, common pairs, fractional-submeasure localization, the sharper general-law confidence coefficient and RMS localization |
 | Appendices T–U | The direct proof below margin exponent one; the logarithmic and intermediate power-margin rows |
-| Appendix V | Known-law time-uniform confidence, the matching lower bound, finite-family adaptation, and the arbitrary-law tail-certificate paper proof |
+| Appendix V | Known-law time-uniform confidence, the matching lower bound, finite-family adaptation, and the arbitrary-law tail and oracle-adaptation paper proofs |
 | Appendix W | The smooth-density theorem in the adaptive experiment |
 | Appendices X–Z | Observed states: the finite-cell lower bound, continuous-magnitude lower bounds and the fresh-outer-state upper-bound transfer |
 
@@ -400,7 +400,7 @@ member of a supplied finite family and then recovers its known-law time-uniform
 rate beyond an explicit onset budget. Seventeen Lean statements verify the
 parity, concentration, identification, probability-transfer and delayed-rate
 components. Moment determinacy and the complete observable-controller
-construction remain paper proofs. Arbitrary-law oracle adaptation remains open.
+construction remained paper proofs at this checkpoint. Section V.4 now supplies a separate arbitrary-law oracle-adaptation paper proof.
 
 The new 169-page PDF has two byte-identical offline builds. All four changed
 pages (3, 50, 159 and 160) were visually inspected; nine later pages relocate
@@ -499,10 +499,41 @@ using $m4^J$ flips, where $m\ge8\log(2/\delta)$ is odd.
 This new theorem is a paper proof with a tested Python controller, not a Lean
 result. The [proof guide](../../docs/ARBITRARY_LAW_TAIL.md) states the full
 scope. Core allocation, null-likelihood adaptation and a complete oracle-rate
-interval for the positive fraction remain open.
+interval are outside this tail-certificate result; Section V.4 now supplies
+them in the separate paper proof below.
 
 The 174-page build has two byte-identical offline builds and 29 embedded
 fonts. Compared with a fresh build of the pre-change sources, pages 3, 52
 and 163–165 change; later pages move by three. All changed pages were
 visually inspected, references resolve, and the existing layout-warning
 baseline is unchanged. Prior published PDFs and records remain unchanged.
+
+
+## Eventual oracle adaptation for arbitrary unknown laws
+
+[Section V.4](arbitrary-law-adaptation.tex) proves a single observable
+confidence sequence for every unknown probability law on positive gaps,
+with known rarity bound. It covers the positive fraction at every budget
+and reaches the known-law oracle rate at the iterated-log effective budget
+after a deterministic law-dependent onset. It requires no candidate family,
+moment assumption, tail regularity, or supplied integration oracle.
+
+The paid pilot learns a conservative finite law with an unresolved zero
+atom. Entropy transport comparisons control its oracle value; a coupling
+argument transfers the known-law estimator using correct-crossing times,
+since total stopping work need not decrease when gaps increase. A fresh
+capped-median continuation and summable stage allowances complete the
+all-budget theorem. The [proof guide](../../docs/ARBITRARY_LAW_ADAPTATION.md)
+gives the argument and executable interfaces. This new theorem is a paper
+proof; its entropy, robustness and controller arguments are not Lean-checked.
+The universal coefficient is conservative, and the onset is not uniform over
+laws. No practical sample-complexity claim is made.
+
+The 181-page manuscript has two byte-identical offline builds, 29 embedded
+fonts, 379 unique labels and 29 resolved citations. All 15 changed pages were
+visually inspected; nine following pages relocate by seven pages. No new
+layout warning appears. The first-page wording is shortened to keep the
+expanded status paragraph and provenance together. Earlier published PDFs
+and build records, including the tail-certificate checkpoint, are unchanged.
+
+[Updated manuscript](builds/arbitrary-law-adaptation-20261106.pdf) · [Build record](builds/arbitrary-law-adaptation-20261106.json) · [Tail-certificate checkpoint](builds/arbitrary-law-tail-20261106.pdf)
