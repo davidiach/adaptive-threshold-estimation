@@ -7,7 +7,7 @@ $0<\rho\le1/4$, and $0<\delta\le1/4$, but not the candidate index or the sign
 law. Signs may depend arbitrarily on the gap, subject to their total mass
 being at most $\rho$.
 
-**Finite-family theorem (paper proof).** There is one observable online
+**Finite-family theorem (full observable construction Lean-checked below).** There is one observable online
 procedure with nested intervals and a hard physical flip cap at every integer
 budget. Under every candidate law and every admissible sign law, simultaneous
 coverage holds with probability at least $1-\delta$. There is an explicit

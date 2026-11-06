@@ -568,6 +568,12 @@ cited external lower bound, that for every known gap law a deterministic
 nonincreasing half-width envelope valid for one online controller exceeds
 a multiple of $\sqrt{\rho\log\log B/B}$ for infinitely many integer
 budgets $B$. This matches the known-law order at $D=1/2$.
+Section~\ref{sec:arbitrary-law-tail} gives a paper proof of an observable,
+physically capped tail-mass certificate for every unknown gap law. Its
+upper endpoint has a universal-constant oracle comparison after a
+law-dependent onset. This theorem and its tested Python controller are
+not Lean-verified; the core allocation and null likelihood adaptation
+needed for an oracle-rate interval for the positive fraction remain open.
 Efficient exact
 selection for finite laws with many bands and unrestricted costs is open;
 the Lean-checked sufficient family can have $\prod_j(n_j+1)$ members. The

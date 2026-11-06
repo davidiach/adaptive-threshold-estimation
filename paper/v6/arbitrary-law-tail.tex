@@ -1,0 +1,167 @@
+\subsection{Oracle-scale tail certificates without a known gap law}
+\label{sec:arbitrary-law-tail}
+
+The next result addresses unobserved small-gap mass. It is a paper proof,
+with a tested executable controller, and is not part of the Lean audit.
+It does not yet give oracle-rate estimation of the positive fraction:
+learning or replacing the core allocation and null likelihood information
+remains necessary.
+
+Let $\mu$ be any probability law on $(0,1/2]$. A coin's sign may depend
+arbitrarily on its persistent magnitude. Fresh coins are independent and
+flips are conditionally independent given a coin's parameters. Only flips
+are observed. Write $F(t)=\mu((0,t])$ and $\log_2^+x=\max(0,\log_2x)$.
+
+\begin{theorem}[Arbitrary-law tail certificate]\label{thm:arbitrary-law-tail}
+Fix $J\ge1$, $N=4^J$, $t=2^{-J}$ and $0<\delta<1$. Let $m$ be odd with
+$m\ge8\log(2/\delta)$. There is an observable procedure using at most $mN$
+physical flips that returns $U\in[0,1]$. Put
+\[
+ w_J(d)=\min\{N,1024d^{-2}(1+\log_2^+(d/t))\},\qquad
+ W_J=\int w_J\,d\mu.
+ \tag{AT1}
+\]
+If $u_J$ is the unresolved probability of the single-coin test defined below,
+then
+\[
+ \tfrac12F(t)\le u_J\le\int\min\{1,16(t/d)^2\}\,\mu(dd).
+ \tag{AT2}
+\]
+With probability at least $1-\delta$,
+\[
+ F(t)\le U\le\min\{1,128\max(u_J,W_J/N)\}.
+ \tag{AT3}
+\]
+For each fixed $\mu$ and $0<\rho\le1/4$, there is a finite onset
+$J_0(\mu,\rho)$ such that, at all $J\ge J_0$, the same event also gives
+\[
+ F(2^{-J})\le U\le524288\,\mathcal K_{\mu,\rho}(4^J).
+ \tag{AT4}
+\]
+The coefficient is universal. The algorithm receives neither $\mu$, $\rho$
+nor the onset. No inverse-gap moment assumption is made.
+\end{theorem}
+
+\paragraph{The single-coin test.}
+Inspect a coin's mean after $n_k=4^k$ flips, $k=0,\ldots,J$, using
+\[
+ h_k=\left\lceil\sqrt{2n_k(J-k+2)}\right\rceil,
+ \qquad r_k=h_k/n_k.
+ \tag{AT5}
+\]
+Call it resolved and stop if $|\bar X_{n_k}-1/2|>r_k$; otherwise continue,
+calling it unresolved if the terminal check fails. Let $T$ be its work and
+$Y$ its unresolved indicator. Always $1\le T\le N$. Complementing every
+flip preserves its entire stopping path, so the conditional laws of $T,Y$
+depend only on the magnitude, including when sign and magnitude are dependent.
+
+If $d\le t$, then $r_k\ge2/\sqrt{n_k}\ge2t\ge2d$. Resolving at check $k$
+requires an empirical error larger than $r_k/2$. Two-sided Hoeffding gives
+\[
+ \Pr_d(Y=0)\le\sum_{k=0}^J2e^{-n_kr_k^2/2}
+ \le\sum_{s=0}^{\infty}2e^{-(s+2)}
+ =\frac{2}{e(e-1)}<\frac12.
+ \tag{AT6}
+\]
+No independence between checks is used. At the terminal check $h_J=2\sqrt N$
+exactly, so $r_J=2t$. If $d\ge4t$, being unresolved forces empirical error
+at least $d/2$. Chebyshev and $\operatorname{Var}(\bar X_N)\le1/(4N)$ bound
+its probability by $1/(Nd^2)$. For $d<4t$ use one. Integrating proves (AT2).
+
+We also have $\mathbb E_dT\le w_J(d)$. Indeed,
+$r_k\le3\sqrt{(J-k+2)/n_k}$. If it exists, let $k_0$ be the first check with
+$n_{k_0}d^2\ge36(J-k_0+2)$. Then $k_0\ge1$, and for every $k\ge k_0$,
+$r_k\le d/2$, giving $\Pr_d(T>n_k)\le2e^{-n_kd^2/2}$. Since
+$e^{-x}\le2/x^2$ for $x>0$,
+\[
+ \mathbb E_dT
+ \le n_{k_0}+6\sum_{k=k_0}^{J-1}n_ke^{-n_kd^2/2}
+ \le n_{k_0}+\frac{64}{n_{k_0}d^4}\le2n_{k_0}.
+ \tag{AT7}
+\]
+Here $n_{k_0}d^2\ge72$. Minimality gives
+$n_{k_0}d^2<144(J-k_0+3)$, while $2^{k_0}d\ge1$ implies
+$J-k_0\le\log_2(d/t)$. Thus the expected work is at most
+$864d^{-2}(1+\log_2^+(d/t))$. If there is no such check, $Nd^2<72$ and
+$T\le N<72d^{-2}$. Combining both cases with $T\le N$ proves (AT1)'s
+work bound and $\mathbb ET\le W_J$.
+
+\paragraph{Inverse sampling and the physical cap.}
+Test fresh coins until the first unresolved coin or budget exhaustion.
+Pause within a coin when necessary and count only completed tests. If $n$
+coins have completed, return $V=\min(1,8/n)$, taking $V=1$ if $n=0$.
+The first unresolved coin is included in $n$.
+
+For fixed $J$, with probability at least $7/8$, this probe covers $F(t)$
+simultaneously at every cumulative budget. Put $u=u_J$. When $F(t)>V$,
+$n>8/F(t)\ge4/u$. Reaching such an $n$ requires the first
+$\lfloor4/u\rfloor$ coins to be resolved, with probability at most
+\[
+ (1-u)^{\lfloor4/u\rfloor}\le e^{-4+u}\le e^{-3}<1/8.
+ \tag{AT8}
+\]
+If $u=0$, (AT2) makes failure impossible. Thus random completed sample sizes
+and observation-dependent budgets are covered by one event.
+
+For a deterministic budget $b>0$, separately,
+\[
+ \Pr\{V\le\min(1,128\max(u,W_J/b))\}\ge3/4.
+ \tag{AT9}
+\]
+Set $A=\max(u,W_J/b)>0$. If $A\ge1/16$ this is automatic. Otherwise let
+$q=\lfloor1/(8A)\rfloor\ge1/(16A)$. In a hypothetical stream of $q$ full
+tests, the chance any is unresolved is at most $qu\le1/8$. Markov bounds the
+chance their combined work exceeds $b$ by $qW_J/b\le1/8$. Outside this union,
+the actual probe completes at least $q$ tests, hence $V\le8/q\le128A$.
+The argument charges partial tests too and does not assume independence of
+the work and unresolved events.
+
+Take the median of $m$ independent probes, each capped at $b=N$. A block's
+validity failure has probability at most $1/8$ and its performance failure
+at most $1/4$. Hoeffding across blocks bounds each median failure by
+$e^{-m/8}$; their union is at most $\delta$. This proves (AT3), with the
+physical cap valid on every path.
+
+\paragraph{The oracle comparison.}
+Let $\nu$ be the lowest-gap quantile submeasure of mass $\rho$, splitting a
+boundary atom when needed, and set $\sigma=\mu-\nu$. There is $a>0$ such
+that $\sigma$ is supported on $[a,1/2]$. The existing quantile-tail floor gives
+\[
+ \tau_\nu(t)=\int\min(1,t/d)\,\nu(dd)\le\mathcal K_{\mu,\rho}(N).
+ \tag{AT10}
+\]
+For $x\ge1$, $1+\log_2x\le2x$. It follows that $w_J(d)/N\le2048\min(1,t/d)$
+and $\min(1,16(t/d)^2)\le4\min(1,t/d)$. On $\nu$ their summed integral is
+at most $2052\tau_\nu(t)$. On $\sigma$, using $a\le d\le1/2$, it is at most
+$[1024(J+1)+16]t^2/a^2\le2048(J+1)t^2/a^2$.
+
+Choose a finite $J_0$ after which
+\[
+ 2048(J+1)2^{-J}/a^2\le\sqrt\rho.
+ \tag{AT11}
+\]
+This also ensures $t\le\sqrt\rho/2$, where the elementary objective floor,
+after the infimum and cap, gives $\mathcal K_{\mu,\rho}(N)\ge2\sqrt\rho\,t$.
+Consequently
+\[
+ u_J+W_J/N\le(2052+1/2)\mathcal K_{\mu,\rho}(N)
+ \le4096\mathcal K_{\mu,\rho}(N).
+ \tag{AT12}
+\]
+Multiplying by 128 in (AT3) proves (AT4). The core's logarithmic work is
+absorbed after a law-dependent onset; the tail is charged directly to (AT10).
+
+For simultaneous certificates at all $J\ge1$, use fresh streams and
+$\delta_J=\delta/[J(J+1)]$. Their sum is $\delta$, and total work through
+scale $J$ is $O(4^J[\log(1/\delta)+\log(J+1)])$. On one event all certificates
+are valid and (AT4) holds past $J_0$. These concern different tail thresholds,
+not nested confidence intervals for the positive fraction.
+
+\paragraph{Execution and verification boundary.}
+The implementation uses integer thresholds, exact rational endpoints and
+$m=8\lceil\log_2(2/\delta)\rceil+1$. A resumable probe preserves its current
+coin and charges every flip; the median driver validates full authorization
+before acquisition. Its tests cover pause points, reflection, threshold ties,
+partial work, finite exact probabilities and failure paths. Neither Python
+execution nor the new probability theorem is Lean-verified. Existing Lean
+results support (AT10) and the elementary objective floor used above.
