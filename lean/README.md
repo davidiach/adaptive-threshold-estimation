@@ -147,3 +147,9 @@ probability; [Full](ThresholdHC/LawAdaptation/Full.lean) constructs the family
 with its joint coverage-and-width guarantee; [Properties](ThresholdHC/LawAdaptation/Properties.lean)
 checks nesting and the original-experiment endpoint law.
 [Native record](../results/law-adaptation-realization-20261105/README.md).
+
+The [arbitrary-law adaptation formalization](../docs/ARBITRARY_LAW_FORMALIZATION.md)
+starts with `ArbitraryLawAdaptation/EntropyTransport.lean` and `BandPenalty.lean`.
+Run `python tools/verify_arbitrary_law_entropy.py` for 15 exact statements and
+transitive axiom reports. This is finite entropy transport, not the full
+arbitrary-law statistical theorem.

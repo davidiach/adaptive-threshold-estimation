@@ -85,3 +85,7 @@ the full selected controller, unconditional physical caps and history
 compatibility, joint all-budget coverage and oracle width, nesting, and the
 original-experiment endpoint law.
 [Native record](../results/law-adaptation-realization-20261105/README.md).
+
+Run `verify_arbitrary_law_entropy.py` for the 15 finite entropy-transport
+statements in `ArbitraryLawAdaptation`. See the [formal scope](../docs/ARBITRARY_LAW_FORMALIZATION.md);
+the full arbitrary-law adaptation theorem remains a paper proof.

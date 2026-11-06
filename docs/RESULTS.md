@@ -974,7 +974,9 @@ unresolved mass at zero, and proves robustness of the known-law bank.
 For every positive-gap law, one observable controller has honest all-budget
 coverage and a universal-constant oracle width after a law-dependent onset.
 No candidate family, inverse-gap moment or tail regularity is assumed.
-The new entropy, envelope and controller arguments are not Lean-checked;
+The [finite entropy transport components](ARBITRARY_LAW_FORMALIZATION.md)
+now have a 15-statement exact-type and transitive-axiom audit. The countable
+measure, learned-envelope and full controller arguments are not yet Lean-checked;
 Python execution and its PRNG also remain outside formal verification.
 An exact path count shows that repeatedly
 checking a fixed-time interval fails: a check with fixed-time failure at most
