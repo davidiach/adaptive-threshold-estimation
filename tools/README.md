@@ -89,3 +89,7 @@ original-experiment endpoint law.
 Run `verify_arbitrary_law_entropy.py` for the 15 finite entropy-transport
 statements in `ArbitraryLawAdaptation`. See the [formal scope](../docs/ARBITRARY_LAW_FORMALIZATION.md);
 the full arbitrary-law adaptation theorem remains a paper proof.
+
+Run `verify_arbitrary_law_envelope.py` for 25 exact statements and 24 transitive
+reports covering prefix minima, the finite probability measure, its zero atom,
+and CDF domination from finitely many grid bounds.

@@ -29,13 +29,32 @@ and audit 15 independently restated exact statements and their transitive
 axioms. The audit permits only `propext`, `Classical.choice`, and `Quot.sound`.
 The proof-source guard is `python tools/verify_lean_sources.py`.
 
+The [native audit record](../results/arbitrary-law-entropy-20261106/README.md)
+identifies the exact proof checkpoint, sources, compiler and reused objects.
+
+## Finite CDF envelope
+
+[CDFEnvelope.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/CDFEnvelope.lean)
+constructs a measure on the real line from cumulative upper bounds. Taking
+prefix minima preserves the finite grid bounds and makes the weights
+nonnegative. The finite measure has total mass one when the first bound is
+one, and its zero atom has exactly the remaining tail mass. Lean proves its
+closed-CDF formula, including the preceding-bound value at each positive grid
+atom, and CDF domination of every nonnegative probability law satisfying the
+finitely many supplied grid bounds. No condition is imposed at unprobed cutoffs.
+
+Run `python tools/verify_arbitrary_law_envelope.py` for 25 exact statements
+and 24 transitive axiom reports. The hypotheses are deterministic finite grid
+bounds; the pilot's probability guarantee for those bounds remains to be proved.
+
 ## Work still needed for the full theorem
 
 The finite matrix inequality is not yet the arbitrary-measure transport
 theorem. Remaining work includes countable entropy limits, construction of
 transported selections and their domination, the light random contraction,
-and explicit treatment of unresolved mass at zero. The learned CDF envelope
-also needs its statistical pilot event and law-dependent onset. Finally the
+and the entropy functional's treatment of unresolved mass at zero. The finite
+CDF envelope is checked, but still needs its statistical pilot event and
+law-dependent onset. Finally the
 robust continuation must be joined to the observable controller, with its
 original experiment law, physical cap, fresh stages, and simultaneous
 all-budget coverage and oracle width. These conclusions must be proved,

@@ -141,3 +141,7 @@ The [22-statement realization audit](law-adaptation-realization-20261105/README.
 adds moment determinacy and the complete observable finite-family controller,
 with actual flip accounting, nested compatible intervals and joint all-budget
 coverage and oracle width. Arbitrary-law adaptation remains open.
+
+The [finite arbitrary-law entropy transport audit](arbitrary-law-entropy-20261106/README.md)
+adds 15 exact statements, including the geometric factor-three comparison.
+It does not yet establish the full arbitrary-law adaptation theorem.

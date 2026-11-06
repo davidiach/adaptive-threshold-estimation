@@ -886,3 +886,7 @@ Run `python tools/verify_arbitrary_law_entropy.py` for 15 exact statements and
 transitive axiom reports covering finite entropy transport and its factor-three
 band penalty. The [scope](ARBITRARY_LAW_FORMALIZATION.md) separates this from
 the remaining countable measure and statistical controller work.
+
+Run `python tools/verify_arbitrary_law_envelope.py` for 25 exact statements
+and 24 transitive reports for the deterministic finite CDF envelope. It does
+not yet prove the statistical pilot event supplying the grid bounds.

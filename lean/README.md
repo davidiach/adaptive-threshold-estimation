@@ -153,3 +153,8 @@ starts with `ArbitraryLawAdaptation/EntropyTransport.lean` and `BandPenalty.lean
 Run `python tools/verify_arbitrary_law_entropy.py` for 15 exact statements and
 transitive axiom reports. This is finite entropy transport, not the full
 arbitrary-law statistical theorem.
+
+`ArbitraryLawAdaptation/CDFEnvelope.lean` constructs the conservative finite
+measure, including its zero atom and closed-CDF boundary values. Run
+`python tools/verify_arbitrary_law_envelope.py` for 25 exact statements and
+24 transitive reports. The statistical pilot event remains unproved in Lean.
