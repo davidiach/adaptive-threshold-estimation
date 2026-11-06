@@ -16,6 +16,7 @@ definitions with the paper for that review.
 
 | Result | Formal entry point | Audit command |
 |---|---|---|
+| Entropy perturbation and feasible two-summary state compression for approximation | [Locked model](ThresholdHC/SelectionApproximation/Model.lean), [Entropy](ThresholdHC/SelectionApproximation/Entropy.lean), [Compression](ThresholdHC/SelectionApproximation/Compression.lean), [scope and reproduction](ThresholdHC/SelectionApproximation/README.md) | `python tools/verify_selection_approximation.py` |
 | General RMS lower bound in the observable experiment | [Tier6 specification](ThresholdHC/Tier6/Specification.lean), [Full](ThresholdHC/Tier6/Full.lean) | `python tools/verify_tier6.py --sequential --require-complete` |
 | Distribution-blind RMS upper bound | [BlindUpper specification](ThresholdHC/BlindUpper/Specification.lean), [Full](ThresholdHC/BlindUpper/Full.lean) | `python tools/verify_blind_upper_components.py --sequential` |
 | Critical quadratic rare-event lower bound | [CriticalEntropy specification](ThresholdHC/CriticalEntropy/Specification.lean), [CriticalMinimax](ThresholdHC/CriticalEntropy/CriticalMinimax.lean) | `python tools/verify_critical_components.py --sequential` |

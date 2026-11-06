@@ -1,0 +1,12 @@
+{
+  "scope": "Entropy perturbation and certified-bin state compression; not the full FPTAS",
+  "sha256": {
+    "lean/ThresholdHC/SelectionApproximation/Model.lean": "05296bd82d32c3916bb542fbb6a653ebf34282d3922479ccd290f3dd1eed93c9",
+    "lean/ThresholdHC/EntropyTailQuantile/CostEntropy.lean": "cfd71fb622f3e2a794de5ecb5f087ae0c96e65af5335beb44040aa690c483939",
+    "lean/ThresholdHC/BandCostSelection/Compression.lean": "552a556380a334ba78b88d8236dfa17652dc034f34f313667870507acdd8db0c",
+    "lean/ThresholdHC/BandCostSelection/Dynamic.lean": "c7f527aebbb80536aafbe42b8b7f28d122ec2af936482f943b56f28a3a2b88ff",
+    "lean/lean-toolchain": "d581a24b57a4ae9e0b2132ca8ac7cc3ac336a9fc2751fe6b29414e2d434d54c4",
+    "lean/lake-manifest.json": "a7058b14db1034b58735d82f1cf9a82a938855e93decc1960ca7d21e786fdfe2",
+    "lean/lakefile.toml": "273cfe4674e97219b22f7de1428bdadfb45379c7fa582882c59624ab7fbc3189"
+  }
+}

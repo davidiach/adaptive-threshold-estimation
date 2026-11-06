@@ -324,6 +324,14 @@ and certificate rules. The [concrete finite-gap-law menus and their equality
 with the original functional](../results/gap-law-menus-20261105/README.md)
 are also Lean-checked. Python execution remains outside those proofs.
 
+For arbitrary distinct costs, `threshold_toolkit.approximate_selection.select_approximately`
+returns a feasible selection and rational enclosure within a requested factor
+`1+epsilon`. Its [paper proof and example](../research/2026-11-06-selection-approximation/README.md)
+give a fully polynomial approximation scheme; exact efficient selection remains
+open. The [entropy perturbation and compression components](../lean/ThresholdHC/SelectionApproximation/README.md)
+are Lean-checked; the full guarantee and Python implementation are not. Resource
+or precision exhaustion raises an error instead of returning a partial result.
+
 ## Research module: hard observation caps
 
 `threshold_toolkit.budget_ladders` is a research driver, not a ready-made
