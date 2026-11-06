@@ -974,8 +974,8 @@ unresolved mass at zero, and proves robustness of the known-law bank.
 For every positive-gap law, one observable controller has honest all-budget
 coverage and a universal-constant oracle width after a law-dependent onset.
 No candidate family, inverse-gap moment or tail regularity is assumed.
-The [Lean components](ARBITRARY_LAW_FORMALIZATION.md) now have 174 exact
-statements and 172 transitive-axiom reports: finite and countable entropy transport, the finite
+The [Lean components](ARBITRARY_LAW_FORMALIZATION.md) now have 210 exact
+statements and 208 transitive-axiom reports: finite and countable entropy transport, the finite
 CDF envelope including its zero atom, and an observable paid-pilot/selected-
 continuation stage with physical caps and its original-experiment joint law.
 The canonical band cells are constructed for every finite increasing-gap
@@ -986,7 +986,9 @@ CDF domination, and the same selection comparison is proved on `[0,1/2]`
 with unresolved mass at zero. The extension agrees exactly with the
 original positive-gap K. The dominated-mass comparison is now proved for
 finite measures, by bounded density restriction and explicit residual control.
-Light random contraction remains.
+The light-contraction entropy bound is checked for the actual product measure;
+its exact multiplier construction, tail bound and full selection comparison
+remain in progress.
 The pilot probability event, robust continuation
 bounds and the full all-budget controller remain to be formalized;
 Python execution and its PRNG also remain outside formal verification.

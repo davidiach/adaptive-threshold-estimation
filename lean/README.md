@@ -198,3 +198,8 @@ The dominated-mass comparison (A5) is checked by
 selections and controls their residuals. For finite measures,
 `lambda <= c eta + e delta_0` gives `K(lambda) <= c K(eta) + e`
 when `c >= 1` and `e >= 0`, retaining infinite entropy and the cap.
+
+Run `python tools/verify_arbitrary_law_light_entropy.py` for 36 exact statements
+and transitive reports: product-reference entropy, explicit numerical budgets,
+two-band product geometry and the factor-1024 entropy bound for actual product
+measure cells. The full light-contraction selection comparison is separate.

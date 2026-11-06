@@ -156,6 +156,24 @@ restated exact statements and 22 transitive axiom reports.
 The [native dominated-mass record](../results/arbitrary-law-dominated-20261106/README.md)
 binds the proof checkpoint and complete project closure.
 
+## Light contraction entropy
+
+[ProductEntropy.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/ProductEntropy.lean)
+proves finite and countable entropy bounds using a product reference code.
+[LightContractionConstants.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/LightContractionConstants.lean)
+checks the exponential and geometric-series budgets, and
+[LightContractionGeometry.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/LightContractionGeometry.lean)
+proves that each source/multiplier band pair has two possible destination bands.
+[LightContractionCells.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/LightContractionCells.lean)
+constructs those cells in the actual independent product measure and proves
+`Gamma(law(VD/2)) <= 1024 Gamma(sigma)` for every finite selected measure,
+assuming the stated multiplier support and dyadic probability bounds.
+Local column summability suffices; full-law entropy may be infinite.
+
+Run `python tools/verify_arbitrary_law_light_entropy.py` for 36 independently
+restated exact statements and 36 transitive axiom reports. The exact multiplier
+CDF, residual tail and full factor-32 selection comparison remain in progress.
+
 ## Finite CDF envelope
 
 [CDFEnvelope.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/CDFEnvelope.lean)
@@ -197,8 +215,8 @@ not yet the final all-budget confidence controller.
 
 The [native stage audit](../results/arbitrary-law-stage-20261106/README.md)
 identifies the 644-source project closure, exact statements and compiled
-dependency hashes for that checkpoint. Across all nine current component
-audits, 174 exact statements and 172 transitive axiom reports pass.
+dependency hashes for that checkpoint. Across all ten current component
+audits, 210 exact statements and 208 transitive axiom reports pass.
 
 ## Work still needed for the full theorem
 
