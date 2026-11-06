@@ -58,6 +58,8 @@ still a separate obligation.
 
 Run `python tools/verify_arbitrary_law_countable.py` for 16 independently
 restated exact statements and their transitive axiom reports.
+The [native countable-transport record](../results/arbitrary-law-countable-20261106/README.md)
+identifies the exact proof checkpoint and all 45 project dependencies.
 
 ## Finite CDF envelope
 

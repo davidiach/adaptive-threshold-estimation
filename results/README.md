@@ -155,3 +155,9 @@ adds 17 exact statements and 16 axiom reports: a valid learned probability
 law on every word, fresh continuation labels, physical caps, history readback,
 and the original-experiment joint endpoint law. Statistical instantiation
 and the full all-budget controller remain outside this component.
+
+The [countable entropy-transport audit](arbitrary-law-countable-20261106/README.md)
+adds 16 exact statements and axiom reports. It extends the factor-three bound
+to countably many locally summable destination columns, allows infinite total
+cost and entropy, and identifies the result with canonical Gamma for finite
+gap measures with a supplied band-cell decomposition.
