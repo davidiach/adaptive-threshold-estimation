@@ -133,6 +133,8 @@ is constructed, not assumed. No atomlessness, finite inverse moment or
 finite entropy is required. Run `python tools/verify_arbitrary_law_zero.py`
 for 36 exact statements and transitive axiom reports, including exact
 agreement with the original positive-gap selection functional.
+The [native CDF and zero-atom record](../results/arbitrary-law-zero-cdf-20261106/README.md)
+identifies the proof checkpoint, audit inputs and complete project closure.
 
 ## Finite CDF envelope
 

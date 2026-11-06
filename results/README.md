@@ -167,4 +167,11 @@ adds 32 exact statements and transitive reports. It constructs canonical
 band cells from a finite increasing coupling on positive gaps, lifts every
 fractional selection, preserves mass and domination, and proves the original
 selection comparison with coefficient sqrt(3), allowing infinite moments
-and entropy. CDF coupling existence and the zero-atom extension remain separate.
+and entropy. CDF coupling existence and the zero-atom extension remain separate
+at that checkpoint.
+
+The [CDF coupling and zero-atom audit](arbitrary-law-zero-cdf-20261106/README.md)
+adds 47 exact statements and transitive reports. It constructs the common-
+uniform increasing coupling from CDF domination, extends the entropy-tail
+functional to unresolved mass at zero, proves exact agreement with positive-
+gap K, and derives the sqrt(3) comparison from CDF domination on `[0,1/2]`.
