@@ -895,3 +895,9 @@ Run `python tools/verify_arbitrary_law_stage.py` for 17 exact statements and
 16 transitive reports for observable paid-pilot/selected-continuation stages.
 The [formal scope](ARBITRARY_LAW_FORMALIZATION.md) distinguishes this execution
 component from the unproved statistical instantiation and final controller.
+
+Run `python tools/verify_arbitrary_law_countable.py` for 16 exact statements
+and transitive reports for countable entropy transport and its canonical
+Gamma connection. Individual destination columns must be summable, but the
+full entropy and moment may be infinite. The coupling-to-cell construction
+is outside this component; see the [formal scope](ARBITRARY_LAW_FORMALIZATION.md).

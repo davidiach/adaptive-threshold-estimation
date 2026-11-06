@@ -97,3 +97,8 @@ and CDF domination from finitely many grid bounds.
 Run `verify_arbitrary_law_stage.py` for 17 exact statements and 16 transitive
 reports covering observable paid learning stages: fresh continuation labels,
 physical caps, history readback and the joint original-experiment output law.
+
+Run `verify_arbitrary_law_countable.py` for 16 exact statements and transitive
+reports covering extended-valued countable entropy transport and its canonical
+Gamma connection. No finite total inverse-square moment is assumed; the
+destination-column summability condition remains explicit.

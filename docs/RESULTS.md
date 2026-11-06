@@ -974,11 +974,13 @@ unresolved mass at zero, and proves robustness of the known-law bank.
 For every positive-gap law, one observable controller has honest all-budget
 coverage and a universal-constant oracle width after a law-dependent onset.
 No candidate family, inverse-gap moment or tail regularity is assumed.
-The [Lean components](ARBITRARY_LAW_FORMALIZATION.md) now have 57 exact
-statements and 55 transitive-axiom reports: finite entropy transport, the finite
+The [Lean components](ARBITRARY_LAW_FORMALIZATION.md) now have 73 exact
+statements and 71 transitive-axiom reports: finite and countable entropy transport, the finite
 CDF envelope including its zero atom, and an observable paid-pilot/selected-
 continuation stage with physical caps and its original-experiment joint law.
-Countable measure transport, the pilot probability event, robust continuation
+The countable transport is connected to canonical Gamma for a supplied band-cell
+decomposition; constructing that decomposition from a coupling remains.
+The pilot probability event, robust continuation
 bounds and the full all-budget controller remain to be formalized;
 Python execution and its PRNG also remain outside formal verification.
 An exact path count shows that repeatedly

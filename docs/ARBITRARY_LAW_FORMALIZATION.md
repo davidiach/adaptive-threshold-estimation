@@ -32,6 +32,33 @@ The proof-source guard is `python tools/verify_lean_sources.py`.
 The [native audit record](../results/arbitrary-law-entropy-20261106/README.md)
 identifies the exact proof checkpoint, sources, compiler and reused objects.
 
+## Countable entropy transport
+
+[CountableEntropy.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/CountableEntropy.lean)
+defines entropy as the extended-valued supremum of the finite-prefix entropies.
+Continuity of each finite-prefix entropy gives a limit theorem under
+coordinatewise convergence. The module also proves entropy decrease when
+cells are both discarded and merged, and convergence of square partial sums
+to the sum of a summable array.
+
+[CountableTransport.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/CountableTransport.lean)
+applies those limits to nonnegative cells indexed by source band and displacement.
+If every finite row sum of the old costs is at most `a_i`, the new cells obey
+the geometric contraction bound, and each destination column is summable, then
+the full transported entropy is at most `3 G(a)`. The destination map is
+arbitrary. The total cost and entropy may be infinite; summability is required
+only within each destination band.
+
+[GammaTransport.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/GammaTransport.lean)
+identifies this prefix supremum with the project's canonical Gamma functional
+for every finite gap measure. It gives `Gamma(new) <= 3 Gamma(old)` from a
+supplied countable band-cell decomposition. Constructing the cells, their
+cost inequalities and their summability from an increasing-gap coupling is
+still a separate obligation.
+
+Run `python tools/verify_arbitrary_law_countable.py` for 16 independently
+restated exact statements and their transitive axiom reports.
+
 ## Finite CDF envelope
 
 [CDFEnvelope.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/CDFEnvelope.lean)
@@ -73,14 +100,15 @@ not yet the final all-budget confidence controller.
 
 The [native stage audit](../results/arbitrary-law-stage-20261106/README.md)
 identifies the 644-source project closure, exact statements and compiled
-dependency hashes. Across all three component audits, 57 exact statements
-and 55 transitive axiom reports pass.
+dependency hashes for that checkpoint. Across all four current component
+audits, 73 exact statements and 71 transitive axiom reports pass.
 
 ## Work still needed for the full theorem
 
-The finite matrix inequality is not yet the arbitrary-measure transport
-theorem. Remaining work includes countable entropy limits, construction of
-transported selections and their domination, the light random contraction,
+The countable matrix inequality is connected to canonical Gamma, but the
+band-cell decomposition still needs to be constructed from an increasing-gap
+coupling. Remaining work includes transported selections and their domination,
+the light random contraction,
 and the entropy functional's treatment of unresolved mass at zero. The finite
 CDF envelope is checked, but still needs its statistical pilot event and
 law-dependent onset. The observable stage is checked as an execution component;

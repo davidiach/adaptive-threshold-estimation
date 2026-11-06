@@ -165,3 +165,10 @@ readback and original-experiment joint endpoint law have 17 exact statements
 and 16 transitive reports in `python tools/verify_arbitrary_law_stage.py`.
 This component does not yet instantiate the statistical pilot or establish
 the full all-budget controller.
+
+`ArbitraryLawAdaptation/CountableEntropy.lean`, `CountableTransport.lean` and
+`GammaTransport.lean` extend the factor-three bound to countably many cells
+and identify its entropy with canonical Gamma. Run
+`python tools/verify_arbitrary_law_countable.py` for 16 exact statements and
+axiom reports. Individual destination columns are summable; the full moment
+and entropy may be infinite. Coupling-to-cell construction remains separate.
