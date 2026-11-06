@@ -1,4 +1,4 @@
-\section{Observable time-uniform confidence for a known gap law}
+\section{Observable time-uniform confidence and gap-law adaptation}
 \label{app:anytime}
 
 Fix a known positive-gap law $\mu$, $0<\rho\le1/4$ and
@@ -17,7 +17,8 @@ is at most
 \]
 The same coverage event protects the interval at any data-dependent stopping
 budget. The matching law-dependent lower bound is proved below.
-Adaptation to an unknown gap law remains open.
+\Cref{sec:arbitrary-law-adaptation} gives a separate paper proof of
+eventual oracle adaptation without a known gap law.
 
 \paragraph{A prescribed sequence of observable stages.}
 Stage $j$ reserves $s_j=4\cdot2^j$ flips and receives failure allocation
@@ -255,10 +256,14 @@ are Lean-checked. The final audit independently restates fourteen
 asymptotic and interval statements and checks their transitive axioms.
 The separate sequential and tail-family audits contain eight and fifteen
 statements respectively. This is the deterministic-envelope asymptotic
-comparison; adaptation to the oracle rate for an unknown gap law remains open.
+comparison. A separate paper proof of adaptation to an arbitrary unknown
+law follows in \cref{sec:arbitrary-law-adaptation}.
 
 \clearpage
 \input{finite-family-adaptation}
 
 \clearpage
 \input{arbitrary-law-tail}
+
+\clearpage
+\input{arbitrary-law-adaptation}

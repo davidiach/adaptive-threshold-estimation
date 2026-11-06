@@ -77,7 +77,7 @@ be its old inverse-square cost on that cell, so $\sum_k f_{jk}=a_j$.
 Its new cost $b_{jk}$ satisfies
 $$
  b_{jk}\le r_k f_{jk},\qquad r_k=\min(1,4^{1-k}),
- \quad r_k\le1,quad r_k(k+1)\le2.
+ \quad r_k\le1,\quad r_k(k+1)\le2.
 $$
 Apply (A1) with $p_{jk}=(a_j/A)2^{-(k+1)}$, allowing empty cells. After
 merging cells with the same destination band,
@@ -297,7 +297,7 @@ On the selected core, Appendix D's negative- and positive-bank work proofs
 already bound these correct crossing times: they use the matching negative
 reference and the positive-mixture crossing separately. On the ordinary
 tail, the bound
-$\min\{M,17d^{-2}[1+\log_+(Md^2)]\}$ still bounds $T_{\rm ord}^{s}$.
+$\min\{M,17d^{-2}[1+\log_+(Md^2)]\}$ still bounds $\mathbb E_d T_{\rm ord}^{s}$.
 Indeed, the proof in Appendix F only uses that survival past a check with
 $d>2t_{n,M}$ forces a deviation of at least $d/2$; failing to cross the
 correct boundary has exactly that implication. The dyadic survival sum and

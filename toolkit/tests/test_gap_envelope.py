@@ -123,6 +123,37 @@ class GapEnvelopeTests(unittest.TestCase):
             self.assertFalse(plan.levels)
             self.assertEqual(plan.mse_bound, F(1, 64))
 
+    def test_nonvacuous_continuation_under_a_dominating_actual_law(self):
+        # The comparison law has gap 1/4 and a positive unresolved zero atom;
+        # actual coins have gap 1/2 and positive-sign probability 1/8.
+        # Exercise the real oracle, planner, likelihood race and median.
+        counts = [0, 0]
+
+        def factory(rng):
+            counts[0] += 1
+            bit = int(rng.randrange(8) == 0)
+
+            def flip():
+                counts[1] += 1
+                return bit
+
+            return flip
+
+        interval, used, made, timeout = _execute(
+            known_law_interval(GapEnvelope([1, F(1, 10**8)]), rho=F(1, 4),
+                               cap=10**8, delta=F(1, 4), rng=Random(17)),
+            factory, Random(19), 10**8)
+        self.assertFalse(timeout)
+        self.assertEqual((made, used), tuple(counts))
+        self.assertGreater(used, made)
+        self.assertGreater(made, 0)
+        self.assertLessEqual(used, 10**8)
+        self.assertLess(interval.width, F(1, 4))
+        self.assertGreater(interval.width, 0)
+        # A reproducible smoke check; probabilistic coverage is the paper
+        # theorem, not a conclusion drawn from this single execution.
+        self.assertTrue(interval.contains(F(1, 8)))
+
     def test_invalid_bounds_plans_and_authorization(self):
         for bounds in [[], [F(1, 2)], [1, -1], [1, F(1, 2), F(3, 4)], [True]]:
             with self.assertRaises((ValueError, TypeError)):
