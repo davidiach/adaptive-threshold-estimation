@@ -180,5 +180,14 @@ coupling and prove its factor-three Gamma comparison. Run
 axiom reports. `SelectionLift.lean` and `IncreasingSelection.lean` transport
 all fractional selections and prove `K(new) <= sqrt(3) K(old)`. Run
 `python tools/verify_arbitrary_law_selection.py` for 13 exact statements and
-reports. These are positive-gap results under a supplied coupling; CDF
-coupling existence and unresolved mass at zero remain separate.
+reports. These are positive-gap results under a supplied coupling; the
+following modules construct it and include unresolved mass at zero.
+
+`ArbitraryLawAdaptation/CDFCoupling.lean` constructs a common-uniform coupling
+from CDF domination, including atoms at zero. Run
+`python tools/verify_arbitrary_law_cdf_coupling.py` for 11 exact statements and
+reports. `ZeroModel.lean`, `ZeroCoupling.lean`, `ZeroSelection.lean` and
+`CDFSelection.lean` extend the functional to `[0,1/2]`, prove exact agreement
+with positive-gap K, and derive `K(new) <= sqrt(3) K(old)` from CDF domination.
+Run `python tools/verify_arbitrary_law_zero.py` for 36 exact statements and
+reports. The light random contraction and statistical composition remain.

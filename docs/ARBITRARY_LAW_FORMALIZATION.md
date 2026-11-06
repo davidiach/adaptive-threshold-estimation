@@ -91,11 +91,48 @@ fractional submeasures, including those with infinite entropy.
 Run `python tools/verify_arbitrary_law_coupling.py` for 19 exact statements
 and transitive axiom reports, and `python tools/verify_arbitrary_law_selection.py`
 for 13 more. These results concern the canonical positive-gap space `(0,1/2]`
-and a supplied increasing coupling. Constructing such a coupling from CDF
-domination, and extending the functional to laws with an unresolved zero
-atom, remain separate formalization steps.
+and a supplied increasing coupling. The next development constructs the
+coupling from CDF domination and extends the functional to include zero.
 The [native coupling and selection record](../results/arbitrary-law-coupling-20261106/README.md)
 binds both audits to their proof checkpoint and complete project closure.
+
+## CDF coupling and unresolved mass at zero
+
+[CDFCoupling.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/CDFCoupling.lean)
+constructs a generalized inverse of a right-continuous CDF on the unit
+interval. Its exact threshold identity proves measurability and the
+pushforward law under uniform volume. Two inverses driven by the same
+uniform variable therefore give a probability coupling with the requested
+marginals. CDF domination makes this coupling increasing. The construction
+allows atoms, including at zero, for bounded nonnegative probability laws.
+Run `python tools/verify_arbitrary_law_cdf_coupling.py` for 11 exact statements
+and transitive axiom reports.
+
+[ZeroModel.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/ZeroModel.lean)
+defines the extended entropy and tail functional for laws on `[0,1/2]`,
+represented as real measures. Selected
+positive mass at zero has infinite entropy; the tail kernel at zero is one.
+The infimum still ranges over all fractional submeasures. On every finite
+positive-gap measure, the extended Gamma, objective and K agree with the
+original quantities after embedding into the real line.
+
+[ZeroCoupling.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/ZeroCoupling.lean)
+proves the factor-three entropy comparison on `[0,1/2]`. If the source has
+no zero atom, the increasing coupling stays within the positive-gap space
+almost surely, where the earlier canonical-band theorem applies. If selected
+source mass at zero is positive, its entropy is infinite. The tail kernel
+is antitone, including its value at zero.
+[ZeroSelection.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/ZeroSelection.lean)
+transports every fractional selection, preserving mass and domination, and
+proves the square-root-three objective and capped-infimum comparisons.
+
+[CDFSelection.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/CDFSelection.lean)
+joins these results: for probability laws on `[0,1/2]`,
+`F_new <= F_old` implies `K(new) <= sqrt(3) K(old)`. The increasing coupling
+is constructed, not assumed. No atomlessness, finite inverse moment or
+finite entropy is required. Run `python tools/verify_arbitrary_law_zero.py`
+for 36 exact statements and transitive axiom reports, including exact
+agreement with the original positive-gap selection functional.
 
 ## Finite CDF envelope
 
@@ -138,15 +175,14 @@ not yet the final all-budget confidence controller.
 
 The [native stage audit](../results/arbitrary-law-stage-20261106/README.md)
 identifies the 644-source project closure, exact statements and compiled
-dependency hashes for that checkpoint. Across all six current component
-audits, 105 exact statements and 103 transitive axiom reports pass.
+dependency hashes for that checkpoint. Across all eight current component
+audits, 152 exact statements and 150 transitive axiom reports pass.
 
 ## Work still needed for the full theorem
 
-Entropy and fractional selections now transport through any supplied
-increasing coupling on positive gaps. Remaining work includes constructing
-the coupling from CDF domination, the light random contraction, and the
-entropy functional's treatment of unresolved mass at zero. The finite
+CDF domination now gives an increasing coupling and the selection
+comparison, including unresolved mass at zero. Remaining comparison work
+includes the light random contraction and dominated-mass inequality. The finite
 CDF envelope is checked, but still needs its statistical pilot event and
 law-dependent onset. The observable stage is checked as an execution component;
 the concrete pilot and robust continuation must be instantiated and their

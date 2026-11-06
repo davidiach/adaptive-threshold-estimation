@@ -438,9 +438,10 @@ probabilities and arithmetic, controller accounting, namespaces, partial
 coins, zero atoms, split boundaries, tiny-radius rounding and failure paths.
 It does not prove the general theorem.
 
-Lean now checks increasing-gap entropy and fractional selection transport
-on positive gaps under a supplied coupling. Formalization remains for
-CDF-to-coupling existence, the zero-atom extension, light random contraction,
+Lean now constructs increasing couplings from CDF domination and checks
+entropy and fractional selection transport, including the zero-atom
+extension and its agreement with positive-gap K. Formalization remains for
+light random contraction, the dominated-mass inequality,
 learned-envelope comparison, robustness transfer and full adaptive controller. Existing Lean
 results establish the positive-gap quantile-tail floor, objective floor,
 budget scaling and known-law foundations used here; they do not automatically

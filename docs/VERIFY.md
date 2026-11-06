@@ -909,4 +909,11 @@ couplings on positive gaps. Run `python tools/verify_arbitrary_law_selection.py`
 for 13 more: Radon--Nikodym selection lifts, preserved mass and domination,
 residual tail contraction, and the square-root-three comparison of the
 original capped infimum. Neither result assumes a finite inverse moment.
-CDF-to-coupling existence and the zero-atom extension remain separate.
+CDF-to-coupling existence and the zero-atom extension are checked below.
+
+Run `python tools/verify_arbitrary_law_cdf_coupling.py` for 11 exact statements
+and transitive reports proving the common-uniform coupling for bounded
+nonnegative laws. Run `python tools/verify_arbitrary_law_zero.py` for 36 more:
+the zero-atom functional, exact agreement with positive-gap K, entropy and
+selection transport on `[0,1/2]`, and the comparison starting from CDF
+domination. Atoms and infinite inverse moments and entropy are allowed.
