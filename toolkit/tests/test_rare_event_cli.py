@@ -31,7 +31,7 @@ class RareEventCommandTests(unittest.TestCase):
         # For one gap d, the quantile split has masses rho and 1-rho.
         expected = (0.1 + math.sqrt(0.1 * 0.9)) / (0.25 * 100)
         self.assertAlmostEqual(report["evaluation"]["value"], expected)
-        self.assertAlmostEqual(report["evaluation"]["selection_lower"], 3 * expected / 5)
+        self.assertAlmostEqual(report["evaluation"]["selection_lower"], 20 * expected / 31)
         self.assertIn("not an achieved error", report["scope"])
 
     def test_target_above_cap_reports_infimum_without_fake_evaluation(self):

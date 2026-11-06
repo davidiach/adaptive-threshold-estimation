@@ -587,7 +587,8 @@ $\mathcal K$ to the toolkit. Composed with the results above, the comparison giv
 $R\le30001\cdot\frac85\mathcal K$ for finite laws and
 $\frac58\cdot10^{-17}Q\le R$ for every law. The later direct lower proof
 establishes the stronger $10^{-17}Q\le R$ in Lean. The
-floating-point calculator above still reports the $5/3$ interval.
+floating-point calculator above reports the interval from the Lean-checked
+$31/20$ comparison below.
 
 **Lean verifies Lemmas 1–3 and the full $8/5$ comparison**, including the tail
 floor $T_h\le\mathcal K$ and saturation $\mathcal K=Q=\rho$ when $h\ge t$.
