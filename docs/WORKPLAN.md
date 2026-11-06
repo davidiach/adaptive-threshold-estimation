@@ -18,8 +18,10 @@ The [consolidated v6 manuscript](../paper/v6/README.md) presents all of
 these results in one paper; the v5, general-law and finite-gap manuscripts
 remain preserved as its sources. When a paper-proof result is formalized,
 change its entry in [status.json](../paper/v6/status.json) and its evidence
-paths, run `python tools/build_v6.py`, update the v6 verification section
-and any per-section status remark, and rebuild the PDF.
+paths, run `python tools/build_v6.py` and `python tools/build_status_docs.py`,
+update the v6 verification section and any per-section status remark, and
+rebuild the PDF. The second command regenerates the status tables in the
+[README](../README.md#scope-and-review) and [results guide](RESULTS.md).
 
 The original RMS law, critical quadratic law, unbiased existence
 characterization, confidence characterization, and canonical magnitude-oracle
