@@ -130,7 +130,7 @@ one position, multiplying cost entropy by four. Thus the transported
 selection has entropy at most $1024\Gamma$, and its residual tail cost is
 at most 32 times the old tail cost. This proves (A3).
 
-**Dominated mass.** If $\lambda$ is a probability measure satisfying
+**Dominated mass.** This comparison is [Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#dominated-mass). If $\lambda$ is a probability measure satisfying
 $\lambda\le c\eta+e\delta_0$, with $c\ge1$ and $e\ge0$, then
 $$
  K_{\lambda,\rho}(N)\le cK_{\eta,\rho}(N)+e.             \tag{A5}

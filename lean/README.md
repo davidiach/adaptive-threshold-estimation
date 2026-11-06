@@ -191,3 +191,10 @@ reports. `ZeroModel.lean`, `ZeroCoupling.lean`, `ZeroSelection.lean` and
 with positive-gap K, and derive `K(new) <= sqrt(3) K(old)` from CDF domination.
 Run `python tools/verify_arbitrary_law_zero.py` for 36 exact statements and
 reports. The light random contraction and statistical composition remain.
+
+The dominated-mass comparison (A5) is checked by
+`python tools/verify_arbitrary_law_dominated.py`: 22 exact statements and
+22 transitive reports. Bounded density restriction transfers fractional
+selections and controls their residuals. For finite measures,
+`lambda <= c eta + e delta_0` gives `K(lambda) <= c K(eta) + e`
+when `c >= 1` and `e >= 0`, retaining infinite entropy and the cap.

@@ -136,6 +136,24 @@ agreement with the original positive-gap selection functional.
 The [native CDF and zero-atom record](../results/arbitrary-law-zero-cdf-20261106/README.md)
 identifies the proof checkpoint, audit inputs and complete project closure.
 
+## Dominated mass
+
+[ZeroAlgebra.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/ZeroAlgebra.lean)
+proves homogeneity and monotonicity of the extended entropy, and the tail
+cost's additivity, homogeneity and exact unit cost at zero.
+[DominatedSelection.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/DominatedSelection.lean)
+constructs a pointwise bounded Radon--Nikodym density. It restricts every
+fractional selection to a dominated law, proving domination of the selected
+measure and its residual, and hence monotonicity of K under measure domination.
+[DominatedMass.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/DominatedMass.lean)
+then proves (A5): `lambda <= c eta + e delta_0` implies
+`K(lambda) <= c K(eta) + e`, for `c >= 1` and `e >= 0`.
+Finite ambient measures suffice; no inverse moment or finite entropy is assumed.
+The theorem retains the infimum over all fractional selections and the cap.
+
+Run `python tools/verify_arbitrary_law_dominated.py` for 22 independently
+restated exact statements and 22 transitive axiom reports.
+
 ## Finite CDF envelope
 
 [CDFEnvelope.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/CDFEnvelope.lean)
@@ -177,14 +195,14 @@ not yet the final all-budget confidence controller.
 
 The [native stage audit](../results/arbitrary-law-stage-20261106/README.md)
 identifies the 644-source project closure, exact statements and compiled
-dependency hashes for that checkpoint. Across all eight current component
-audits, 152 exact statements and 150 transitive axiom reports pass.
+dependency hashes for that checkpoint. Across all nine current component
+audits, 174 exact statements and 172 transitive axiom reports pass.
 
 ## Work still needed for the full theorem
 
 CDF domination now gives an increasing coupling and the selection
-comparison, including unresolved mass at zero. Remaining comparison work
-includes the light random contraction and dominated-mass inequality. The finite
+comparison, including unresolved mass at zero. The dominated-mass inequality
+is also checked; the light random contraction remains. The finite
 CDF envelope is checked, but still needs its statistical pilot event and
 law-dependent onset. The observable stage is checked as an execution component;
 the concrete pilot and robust continuation must be instantiated and their
