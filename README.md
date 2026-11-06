@@ -186,28 +186,21 @@ AI review and has not had independent external specialist review; the
 [model-fidelity brief](docs/MODEL_FIDELITY.md) prepares one. Numerical
 experiments provide supporting evidence, not proofs of universal claims.
 
-The general-law entropy-tail and closed-quantile rates are now Lean-checked
-with explicit coefficients. The [stochastic-envelope corollary](results/stochastic-envelope-20261105/README.md)
-also has a Lean proof for RMS, confidence and unbiased estimation. The
-sharp quantile factor has a [checked unique scalar root and finite-vector optimum](results/optimal-quantile-root-20261105/README.md). The [entropy Lipschitz bound and finite-core selection reduction](results/quantile-core-reduction-20261105/README.md) are also checked. The [all-law upper comparison](results/sharp-quantile-upper-20261105/README.md) is checked at the exact scalar-root coefficient. The [finite-law sharpness construction](results/quantile-optimality-20261105/README.md) completes the exact factor characterization. The [direct stopping-program comparison](results/entropy-confidence-20261105/README.md) now verifies the general-law confidence coefficients $10^{-17}$ and $750000$. The [generic RMS and additive obstruction transfers](results/rms-localization-20261105/README.md) are also checked with coefficient $1/128$. The [fractional-submeasure localization](results/additive-confidence-20261105/README.md) now gives the additive $1/128$ confidence bound for overlapping components in the original observation model. The [common-pair construction](results/common-pair-20261105/README.md) now derives the policy-uniform pair and the $1/128$ confidence consequence from a variance–null-work obstruction. The [selected-type information transfer](results/adaptive-types-20261105/README.md) is now Lean-checked through unbounded stopping. The [fresh-state upper-bound transfer](results/observed-state-upper-20261105/README.md) completes the observed-state rates. The [continuous-magnitude lower bounds and regularity](results/continuous-observed-lower-20261105/README.md) are now Lean-checked. The [finite-cell observed-state lower bound](results/finite-observed-20261105/README.md) is now Lean-checked. The [smooth-density theorem](results/smooth-density-20261105/README.md) now has complete Lean proofs for complexity and unbiased impossibility. The
-[logarithmic and intermediate power rows](results/shifted-power-20261105/README.md) now have complete Lean proofs. The [row below one](results/sublinear-power-20261105/README.md) is Lean-checked for RMS and fixed confidence. The [finite-cap comparison](docs/FINITE_CAP_RATE.md)
-certifies $P_N\le 16R$ at $N=\lceil4B/3\rceil$. Efficient
-exact selection for many bands with unrestricted costs remains open.
-The [concrete finite-law menu construction](results/gap-law-menus-20261105/README.md)
-and its compressed optimum are now Lean-checked against the original selection
-functional, including the exact finite atomic sums.
-The [matching time-uniform lower bound](docs/TIME_UNIFORM_LOWER.md) is now
-Lean-checked for every positive-gap law, with coefficient $10^{-22}$ at
-arbitrarily late integer budgets. The [complete audit](results/anytime-asymptotic-20261105/README.md)
-includes the finite-coefficient case, dense and sparse infinite-moment cases,
-and observable interval half-widths. The deterministic envelope need not be
-monotone. The [finite-family unknown-law adaptation theorem](docs/FINITE_FAMILY_ADAPTATION.md)
-now also has a [complete observable Lean construction](results/law-adaptation-realization-20261105/README.md),
-including the paid pilot and joint all-budget coverage and oracle width.
-A new [paper proof of arbitrary-law oracle adaptation](docs/ARBITRARY_LAW_ADAPTATION.md)
-uses learned conservative gap laws and attains the time-uniform oracle
-rate after a law-dependent onset. Its controller has executable tests;
-the new theorem and Python execution remain outside Lean verification.
+Later results, beyond the table above, by area:
+
+| Area | Status | Records |
+|---|---|---|
+| General-law rates | Entropy-tail and closed-quantile rates Lean-checked with explicit coefficients | [Scope](docs/RESULTS.md#general-law-rare-event-characterization) |
+| Sharp quantile factor | Lean-checked: unique scalar root and finite-vector optimum, entropy Lipschitz bound and finite-core selection reduction, the all-law upper comparison at the exact scalar-root coefficient, and finite-law sharpness, which completes the exact factor characterization | [Root](results/optimal-quantile-root-20261105/README.md) · [Core reduction](results/quantile-core-reduction-20261105/README.md) · [All-law comparison](results/sharp-quantile-upper-20261105/README.md) · [Sharpness](results/quantile-optimality-20261105/README.md) |
+| Finite-law menus | Construction and compressed optimum Lean-checked against the original selection functional, including the exact finite atomic sums. Efficient exact selection for many bands with unrestricted costs remains open | [Menus](results/gap-law-menus-20261105/README.md) |
+| Finite caps | Lean-checked $P_N\le16R$ at $N=\lceil4B/3\rceil$ | [Comparison](docs/FINITE_CAP_RATE.md) · [Lean record](results/genie-rate-20261104/README.md) |
+| General-law confidence | Direct stopping-program comparison Lean-checks the coefficients $10^{-17}$ and $750000$ | [Record](results/entropy-confidence-20261105/README.md) |
+| Localization and transfer | Lean-checked with coefficient $1/128$: generic RMS and additive obstruction transfers; additive confidence for overlapping components in the original observation model; the policy-uniform common pair and its confidence consequence, from a variance–null-work obstruction. Selected-type information transfer is Lean-checked through unbounded stopping | [RMS](results/rms-localization-20261105/README.md) · [Additive](results/additive-confidence-20261105/README.md) · [Common pair](results/common-pair-20261105/README.md) · [Selected types](results/adaptive-types-20261105/README.md) |
+| Ordinary-law extensions | Lean-checked: the stochastic-envelope corollary for RMS, confidence and unbiased estimation; the smooth-density theorem for complexity and unbiased impossibility; and the observed-state rates (finite-cell lower bound, continuous-magnitude lower bounds and regularity, fresh-state upper-bound transfer) | [Envelope](results/stochastic-envelope-20261105/README.md) · [Smooth density](results/smooth-density-20261105/README.md) · [Finite cells](results/finite-observed-20261105/README.md) · [Continuous](results/continuous-observed-lower-20261105/README.md) · [Upper transfer](results/observed-state-upper-20261105/README.md) |
+| Power margins below two | Logarithmic and intermediate rows fully Lean-checked; the row below one Lean-checked for RMS and fixed confidence | [Shifted rows](results/shifted-power-20261105/README.md) · [Below one](results/sublinear-power-20261105/README.md) |
+| Time-uniform lower bound | Lean-checked for every positive-gap law, coefficient $10^{-22}$ at arbitrarily late integer budgets, including the finite-coefficient case, dense and sparse infinite-moment cases and observable interval half-widths. The deterministic envelope need not be monotone | [Statement](docs/TIME_UNIFORM_LOWER.md) · [Audit](results/anytime-asymptotic-20261105/README.md) |
+| Unknown-law adaptation | Finite family: complete observable Lean construction, including the paid pilot and joint all-budget coverage and oracle width. Arbitrary laws: paper proof only; learned conservative gap laws attain the time-uniform oracle rate after a law-dependent onset. Its controller has executable tests; the theorem and the Python execution are outside Lean verification | [Finite family](docs/FINITE_FAMILY_ADAPTATION.md) · [Construction](results/law-adaptation-realization-20261105/README.md) · [Arbitrary laws](docs/ARBITRARY_LAW_ADAPTATION.md) |
+
 See the [completion ledger](docs/WORKPLAN.md) for the current boundary.
 
 ## Attribution and license
