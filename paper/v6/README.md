@@ -1,8 +1,8 @@
 # Consolidated version 6
 
-[Current LaTeX sources](main.tex) · [Finite-gap menu checkpoint](builds/gap-law-menus-20261105.pdf) · [Status-reconciliation checkpoint](builds/status-reconciliation-20261105.pdf)
+[Current manuscript](builds/arbitrary-law-tail-20261106.pdf) · [LaTeX sources](main.tex) · [Build record](builds/arbitrary-law-tail-20261106.json)
 
-The current sources combine these two published checkpoints. Their PDFs and build records retain the source identities of their respective publications.
+The current build combines the finite-gap menu and status-reconciliation changes with the arbitrary-law tail-certificate paper proof. The [finite-gap menu PDF](builds/gap-law-menus-20261105.pdf) and [status-reconciliation PDF](builds/status-reconciliation-20261105.pdf) retain their respective published source identities.
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -41,7 +41,7 @@ unchanged.
 | Appendix R | RMS guarantees under a deterministic observation cap |
 | Appendix S | Rare-event confidence at the effective budget, with subsections on adaptively selected component types, common pairs, fractional-submeasure localization, the sharper general-law confidence coefficient and RMS localization |
 | Appendices T–U | The direct proof below margin exponent one; the logarithmic and intermediate power-margin rows |
-| Appendix V | Observable time-uniform confidence for a known gap law |
+| Appendix V | Known-law time-uniform confidence, the matching lower bound, finite-family adaptation, and the arbitrary-law tail-certificate paper proof |
 | Appendix W | The smooth-density theorem in the adaptive experiment |
 | Appendices X–Z | Observed states: the finite-cell lower bound, continuous-magnitude lower bounds and the fresh-outer-state upper-bound transfer |
 
@@ -485,3 +485,24 @@ and all of them, with neighbouring pages, were visually inspected. The
 record lists the inherited cosmetic issues seen.
 
 [Updated manuscript](builds/status-reconciliation-20261105.pdf) · [Build record](builds/status-reconciliation-20261105.json)
+
+
+## Arbitrary-law tail certificates
+
+[Section V.3](arbitrary-law-tail.tex) proves an observable small-gap mass
+certificate for every unknown probability law on positive gaps. A dyadic
+single-coin test and capped inverse sampling give an explicit work envelope;
+median amplification supplies the requested confidence. After a finite
+law/rarity-dependent onset, the upper endpoint is at most $524288K(4^J)$
+using $m4^J$ flips, where $m\ge8\log(2/\delta)$ is odd.
+
+This new theorem is a paper proof with a tested Python controller, not a Lean
+result. The [proof guide](../../docs/ARBITRARY_LAW_TAIL.md) states the full
+scope. Core allocation, null-likelihood adaptation and a complete oracle-rate
+interval for the positive fraction remain open.
+
+The 174-page build has two byte-identical offline builds and 29 embedded
+fonts. Compared with a fresh build of the pre-change sources, pages 3, 52
+and 163–165 change; later pages move by three. All changed pages were
+visually inspected, references resolve, and the existing layout-warning
+baseline is unchanged. Prior published PDFs and records remain unchanged.
