@@ -10,7 +10,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from threshold_toolkit import FiniteGapLaw, RareEventProfile
+from threshold_toolkit import FiniteGapLaw
 from threshold_toolkit.rare_events import QUANTILE_SELECTION_FACTOR
 
 

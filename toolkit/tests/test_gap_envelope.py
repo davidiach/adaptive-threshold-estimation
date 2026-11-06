@@ -14,7 +14,7 @@ from threshold_toolkit.arbitrary_law_confidence import arbitrary_law_confidence,
 from threshold_toolkit.budget_ladders import _execute
 from threshold_toolkit.confidence_ladders import ClosedInterval
 from threshold_toolkit.gap_envelope import (
-    GapEnvelope, _probe_program, gap_envelope_program, plan_gap_envelope, run_gap_envelope,
+    GapEnvelope, _probe_program, plan_gap_envelope, run_gap_envelope,
 )
 from threshold_toolkit.known_law_confidence import known_law_interval
 from threshold_toolkit.known_rare_estimator import RarePlan, _ordinary_stop, plan_known_rare

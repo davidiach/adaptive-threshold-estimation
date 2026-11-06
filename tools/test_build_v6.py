@@ -8,7 +8,6 @@ from pathlib import Path
 from unittest import mock
 
 import copy
-import json
 
 import build_v6
 from build_v6 import (DEST, ROOT, STATUS_WORDS, assemble, check_project, load_status,

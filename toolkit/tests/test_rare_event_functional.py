@@ -4,7 +4,6 @@ from decimal import Decimal, localcontext
 from fractions import Fraction as F
 from itertools import product
 import json
-import math
 from pathlib import Path
 import random
 import sys
