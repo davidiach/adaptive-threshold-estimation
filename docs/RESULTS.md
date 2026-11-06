@@ -967,13 +967,15 @@ now joins a resumable pilot to known-law confidence stages under one cumulative
 physical flip budget. Its radii use the executable planner's own MSE certificate;
 it does not claim the formal construction's exact constant. Python execution
 remains outside Lean verification.
-Oracle-rate adaptation over arbitrary unknown gap laws remains open.
-A new [arbitrary-law tail certificate](ARBITRARY_LAW_TAIL.md) proves one
-ingredient on paper: flips alone certify the unobserved small-gap mass,
-with a hard cap and an eventual universal-constant comparison to $K$.
-Its controller has executable tests; the new proof is not Lean-checked.
-Learning or replacing the core allocation and null likelihoods, and
-combining them into a full oracle-rate estimator, remain open.
+The [arbitrary-law oracle-adaptation theorem](ARBITRARY_LAW_ADAPTATION.md)
+now has a paper proof and an executable controller. It builds a finite
+conservative law from [tail certificates](ARBITRARY_LAW_TAIL.md), including
+unresolved mass at zero, and proves robustness of the known-law bank.
+For every positive-gap law, one observable controller has honest all-budget
+coverage and a universal-constant oracle width after a law-dependent onset.
+No candidate family, inverse-gap moment or tail regularity is assumed.
+The new entropy, envelope and controller arguments are not Lean-checked;
+Python execution and its PRNG also remain outside formal verification.
 An exact path count shows that repeatedly
 checking a fixed-time interval fails: a check with fixed-time failure at most
 $1/4$ fails with probability about $0.428$ when checked at every step up to

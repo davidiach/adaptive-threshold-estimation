@@ -227,9 +227,8 @@ are not Lean-verified. The [tests](../toolkit/tests/test_tail_mass.py) check
 physical accounting, pauses, reflection, exact finite sampling calculations
 and error paths; they do not replace the general-law paper proof above.
 
-What remains for arbitrary-law **oracle adaptation of the positive fraction**
-is a complete observable construction that learns or replaces the core
-allocation and null likelihood information, combines its errors with these
-tail certificates, and proves the final $K$-width bound under one physical
-budget. Neither the finite-family pilot nor the present tail certificate
-establishes that remaining theorem.
+The new [arbitrary-law adaptation paper proof](ARBITRARY_LAW_ADAPTATION.md)
+uses these certificates to learn a conservative finite law, transfers
+the classifier bank to that law, and proves the full eventual oracle
+width bound for the positive fraction. That additional construction,
+like this tail theorem, still requires Lean formalization.

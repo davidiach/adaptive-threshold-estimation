@@ -10,9 +10,10 @@ from random import Random
 
 from .budget_ladders import CoinFactory, Exact, _exact
 from .confidence_amplification import MedianSchedule
-from .confidence_ladders import ClosedInterval, ConfidenceLadder, _sqrt_upper
+from .confidence_ladders import ClosedInterval, ConfidenceLadder
 from .known_law_oracle import KnownGapOracle
 from .known_rare_estimator import RarePlan, known_rare_program, plan_known_rare
+from .rare_event_functional import sqrt_interval
 
 
 def _capped_block(plan: RarePlan, rng: Random, cap: int, offset: int):
@@ -56,7 +57,7 @@ def known_law_interval(law: KnownGapOracle, *, rho: Exact, cap: int,
     schedule = MedianSchedule(cap, rho=rho, delta=delta)
     base = plan_known_rare(law, rho=schedule.rho,
                            budget=schedule.base_expected_budget)
-    radius = _sqrt_upper(8 * base.mse_bound)
+    radius = sqrt_interval(8 * base.mse_bound).upper
     full = ClosedInterval(0, schedule.rho)
     if 2 * radius >= schedule.rho:
         return full

@@ -491,3 +491,19 @@ The bound has an eventual oracle-rate comparison for every positive-gap
 law, with a law-dependent onset. It is a tail-mass certificate, not a
 confidence interval for the positive fraction. Neither the new paper proof
 nor the Python execution is Lean-verified.
+
+## Adapt to an arbitrary unknown gap law
+
+`threshold_toolkit.arbitrary_law_confidence.arbitrary_law_confidence`
+builds a nested confidence ladder from a fresh-coin factory, known rarity
+and a failure allowance. It learns conservative finite gap laws from flips,
+then runs confidence stages on fresh coins. No candidate list or true-law
+integrals are supplied. `advance_to(total_budget)` includes all pilot and
+continuation flips in the cumulative physical cap.
+
+`threshold_toolkit.gap_envelope` exposes the finite-law learner separately.
+Its zero atom records unresolved mass; it is included in the null likelihood
+and excluded from inverse-gap core costs. See the
+[full paper proof and verification boundary](../docs/ARBITRARY_LAW_ADAPTATION.md).
+The oracle comparison has a universal constant and a law-dependent onset.
+The new theorem, Python execution and PRNG are not Lean-verified.
