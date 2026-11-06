@@ -93,3 +93,7 @@ the full arbitrary-law adaptation theorem remains a paper proof.
 Run `verify_arbitrary_law_envelope.py` for 25 exact statements and 24 transitive
 reports covering prefix minima, the finite probability measure, its zero atom,
 and CDF domination from finitely many grid bounds.
+
+Run `verify_arbitrary_law_stage.py` for 17 exact statements and 16 transitive
+reports covering observable paid learning stages: fresh continuation labels,
+physical caps, history readback and the joint original-experiment output law.

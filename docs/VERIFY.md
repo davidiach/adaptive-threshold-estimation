@@ -890,3 +890,8 @@ the remaining countable measure and statistical controller work.
 Run `python tools/verify_arbitrary_law_envelope.py` for 25 exact statements
 and 24 transitive reports for the deterministic finite CDF envelope. It does
 not yet prove the statistical pilot event supplying the grid bounds.
+
+Run `python tools/verify_arbitrary_law_stage.py` for 17 exact statements and
+16 transitive reports for observable paid-pilot/selected-continuation stages.
+The [formal scope](ARBITRARY_LAW_FORMALIZATION.md) distinguishes this execution
+component from the unproved statistical instantiation and final controller.

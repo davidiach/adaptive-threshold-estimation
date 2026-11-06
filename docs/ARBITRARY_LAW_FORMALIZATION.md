@@ -47,6 +47,30 @@ Run `python tools/verify_arbitrary_law_envelope.py` for 25 exact statements
 and 24 transitive axiom reports. The hypotheses are deterministic finite grid
 bounds; the pilot's probability guarantee for those bounds remains to be proved.
 
+The [native envelope record](../results/arbitrary-law-envelope-20261106/README.md)
+preserves its proof checkpoint, exact audit input, axiom reports and empty
+compilation log.
+
+## Observable learning stage
+
+[LearnedStage.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/LearnedStage.lean)
+constructs an observable stage from a fixed paid pilot, a rule turning its
+observed word into the finite envelope above, and a continuation selected by
+that envelope. The pilot and continuation use disjoint persistent coin labels.
+Lean proves that the continuation receives untouched tapes and that the output
+computed from the chronological observed history equals the table construction.
+The learned law is a probability measure on every observed word; CDF domination
+follows on the finite grid event. Both endpoints share one policy and obey the
+unconditional physical cap
+`pilotCost + continuationCost`. Their joint output law is identified in the
+original hidden-gap experiment, with arbitrary measurable gap-dependent signs.
+
+Run `python tools/verify_arbitrary_law_stage.py` for 17 exact statements and
+16 transitive axiom reports. This is a reusable execution construction. It
+does not instantiate the statistical pilot or robust continuation, or assume
+their desired risk bounds in place of proving them. It is a single stage,
+not yet the final all-budget confidence controller.
+
 ## Work still needed for the full theorem
 
 The finite matrix inequality is not yet the arbitrary-measure transport
@@ -54,8 +78,9 @@ theorem. Remaining work includes countable entropy limits, construction of
 transported selections and their domination, the light random contraction,
 and the entropy functional's treatment of unresolved mass at zero. The finite
 CDF envelope is checked, but still needs its statistical pilot event and
-law-dependent onset. Finally the
-robust continuation must be joined to the observable controller, with its
-original experiment law, physical cap, fresh stages, and simultaneous
-all-budget coverage and oracle width. These conclusions must be proved,
-not supplied as assumptions to a controller interface.
+law-dependent onset. The observable stage is checked as an execution component;
+the concrete pilot and robust continuation must be instantiated and their
+statistical bounds proved. Finally the stages need to be joined into the
+all-budget controller, with fresh stages, nested intervals, simultaneous
+coverage and eventual oracle width. These conclusions must be proved, not
+supplied as assumptions to a controller interface.

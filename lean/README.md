@@ -158,3 +158,10 @@ arbitrary-law statistical theorem.
 measure, including its zero atom and closed-CDF boundary values. Run
 `python tools/verify_arbitrary_law_envelope.py` for 25 exact statements and
 24 transitive reports. The statistical pilot event remains unproved in Lean.
+
+`ArbitraryLawAdaptation/LearnedStage.lean` joins a paid pilot to a continuation
+chosen from its observed finite envelope. Its cap, fresh labels, chronological
+readback and original-experiment joint endpoint law have 17 exact statements
+and 16 transitive reports in `python tools/verify_arbitrary_law_stage.py`.
+This component does not yet instantiate the statistical pilot or establish
+the full all-budget controller.
