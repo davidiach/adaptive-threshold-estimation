@@ -94,6 +94,8 @@ for 13 more. These results concern the canonical positive-gap space `(0,1/2]`
 and a supplied increasing coupling. Constructing such a coupling from CDF
 domination, and extending the functional to laws with an unresolved zero
 atom, remain separate formalization steps.
+The [native coupling and selection record](../results/arbitrary-law-coupling-20261106/README.md)
+binds both audits to their proof checkpoint and complete project closure.
 
 ## Finite CDF envelope
 

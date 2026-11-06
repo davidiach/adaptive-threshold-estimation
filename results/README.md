@@ -161,3 +161,10 @@ adds 16 exact statements and axiom reports. It extends the factor-three bound
 to countably many locally summable destination columns, allows infinite total
 cost and entropy, and identifies the result with canonical Gamma for finite
 gap measures with a supplied band-cell decomposition.
+
+The [increasing-gap coupling and selection audit](arbitrary-law-coupling-20261106/README.md)
+adds 32 exact statements and transitive reports. It constructs canonical
+band cells from a finite increasing coupling on positive gaps, lifts every
+fractional selection, preserves mass and domination, and proves the original
+selection comparison with coefficient sqrt(3), allowing infinite moments
+and entropy. CDF coupling existence and the zero-atom extension remain separate.
