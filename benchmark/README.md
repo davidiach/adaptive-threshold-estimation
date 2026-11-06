@@ -27,6 +27,11 @@ has RMSE 0.025 on this model.
 
 ## Reproduction
 
+The frozen commands below describe the archived workflow. For a separately
+authorized fresh run, the [persistence wrapper](../docs/EXPERIMENT_PERSISTENCE.md)
+adds an exclusive writer lock, explicit interruption states and atomic stage
+publication without editing these sources. It never resumes a held-out attempt.
+
 Use Python 3.12 and `python -m pip install -r benchmark/requirements.txt`.
 On this workspace the runner also recognizes dependencies in `.runtime/python`.
 Run commands from the repository root:
