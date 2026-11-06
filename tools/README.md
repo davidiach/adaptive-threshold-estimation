@@ -9,6 +9,7 @@ behavior before running it in a checkout that contains published evidence.
 
 | Family | Entry points | Purpose and output |
 |---|---|---|
+| Entropy perturbation and approximate state compression | [verify_selection_approximation.py](verify_selection_approximation.py) | Rebuilds all six local modules into fresh `.runtime/selection-lean/` output, checks two locked exact targets and all new declaration axioms. Accepts `--lean-exe` and `--package-cache`; the [scope](../lean/ThresholdHC/SelectionApproximation/README.md) excludes the full FPTAS and Python execution. |
 | Frozen and imported identities | [freeze.py](freeze.py) with `--verify`, [verify_inputs.py](verify_inputs.py) | Read-only identity checks. `freeze.py --init` is an authorized initialization operation, not a repair command. |
 | Integrated research replay | [verify_research.py](verify_research.py) | Frozen/research identities and finite diagnostics; fresh temporary directory by default, or a new directory supplied with `--output-dir`. |
 | Population and feedback replay | [verify_population_research.py](verify_population_research.py) | Sealed research identities and selected experiment replay in disposable copies under `.runtime/`. |

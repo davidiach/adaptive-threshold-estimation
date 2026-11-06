@@ -61,7 +61,15 @@ The [unique scalar root and finite-vector optimum](../results/optimal-quantile-r
 
 For structured finite laws, [grouping repeated suffix costs](BAND_COST_SELECTION.md)
 reduces the search to a polynomial number of states when the number of distinct
-positive costs is fixed. The general many-band complexity remains open.
+positive costs is fixed. The general many-band exact complexity remains open. A new
+[paper proof and rational prototype](../research/2026-11-06-selection-approximation/README.md)
+give a fully polynomial `(1+epsilon)` approximation without repeated costs.
+Its [entropy perturbation bound and trimming invariant](../lean/ThresholdHC/SelectionApproximation/README.md)
+are now Lean-checked against locked statements. The next formal steps are the
+concrete bin-index certificate, parameter and state-count bounds, and composition
+with the concrete finite-law menus and rational endpoint selection. The full
+approximation theorem and Python execution are not yet Lean-checked; no
+independent review is claimed.
 
 For a new contribution, follow [CONTRIBUTING.md](../CONTRIBUTING.md) and
 [AGENTS.md](../AGENTS.md). The project owner does not plan human specialist
