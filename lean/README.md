@@ -171,4 +171,14 @@ the full all-budget controller.
 and identify its entropy with canonical Gamma. Run
 `python tools/verify_arbitrary_law_countable.py` for 16 exact statements and
 axiom reports. Individual destination columns are summable; the full moment
-and entropy may be infinite. Coupling-to-cell construction remains separate.
+and entropy may be infinite. The coupling construction is checked below.
+
+`ArbitraryLawAdaptation/BandGeometry.lean`, `TransportCells.lean` and
+`CouplingEntropy.lean` construct the canonical cells of an increasing-gap
+coupling and prove its factor-three Gamma comparison. Run
+`python tools/verify_arbitrary_law_coupling.py` for 19 exact statements and
+axiom reports. `SelectionLift.lean` and `IncreasingSelection.lean` transport
+all fractional selections and prove `K(new) <= sqrt(3) K(old)`. Run
+`python tools/verify_arbitrary_law_selection.py` for 13 exact statements and
+reports. These are positive-gap results under a supplied coupling; CDF
+coupling existence and unresolved mass at zero remain separate.

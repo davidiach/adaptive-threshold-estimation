@@ -389,6 +389,10 @@ jobs:
         run: python tools/verify_arbitrary_law_stage.py
       - name: Verify countable band entropy transport and canonical Gamma
         run: python tools/verify_arbitrary_law_countable.py
+      - name: Verify increasing-gap coupling entropy
+        run: python tools/verify_arbitrary_law_coupling.py
+      - name: Verify fractional selection transport
+        run: python tools/verify_arbitrary_law_selection.py
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
       - uses: actions/upload-artifact@v4

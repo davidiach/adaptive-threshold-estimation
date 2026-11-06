@@ -1,7 +1,7 @@
 # Eventual oracle-rate adaptation over arbitrary unknown gap laws
 
 This is a **paper proof**, with an executable construction. Its
-[entropy-transport, CDF-envelope and observable-stage components](ARBITRARY_LAW_FORMALIZATION.md)
+[entropy and selection transport, CDF-envelope and observable-stage components](ARBITRARY_LAW_FORMALIZATION.md)
 are now Lean-checked; the full theorem and Python execution are not formally verified. The previous
 [tail-certificate theorem](ARBITRARY_LAW_TAIL.md) supplies the single-coin
 probe and its physical work bound. The additional steps here are a learned
@@ -438,8 +438,10 @@ probabilities and arithmetic, controller accounting, namespaces, partial
 coins, zero atoms, split boundaries, tiny-radius rounding and failure paths.
 It does not prove the general theorem.
 
-Lean formalization remains for the new entropy transports, learned-envelope
-comparison, robustness transfer and full adaptive controller. Existing Lean
+Lean now checks increasing-gap entropy and fractional selection transport
+on positive gaps under a supplied coupling. Formalization remains for
+CDF-to-coupling existence, the zero-atom extension, light random contraction,
+learned-envelope comparison, robustness transfer and full adaptive controller. Existing Lean
 results establish the positive-gap quantile-tail floor, objective floor,
 budget scaling and known-law foundations used here; they do not automatically
 formalize this new composition. Python and its PRNG remain unverified.

@@ -52,14 +52,48 @@ only within each destination band.
 [GammaTransport.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/GammaTransport.lean)
 identifies this prefix supremum with the project's canonical Gamma functional
 for every finite gap measure. It gives `Gamma(new) <= 3 Gamma(old)` from a
-supplied countable band-cell decomposition. Constructing the cells, their
-cost inequalities and their summability from an increasing-gap coupling is
-still a separate obligation.
+supplied countable band-cell decomposition. The increasing-gap coupling
+construction below now supplies these premises for positive-gap measures.
 
 Run `python tools/verify_arbitrary_law_countable.py` for 16 independently
 restated exact statements and their transitive axiom reports.
 The [native countable-transport record](../results/arbitrary-law-countable-20261106/README.md)
 identifies the exact proof checkpoint and all 45 project dependencies.
+
+## Increasing-gap coupling and fractional selections
+
+[BandGeometry.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/BandGeometry.lean)
+constructs the measurable canonical band index and proves that it decreases
+when the gap increases. Its inverse-square inequality gives exactly
+`min(1, 4 (1/4)^k)` for a move of `k` bands, including band endpoints.
+[TransportCells.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/TransportCells.lean)
+integrates measurable countable cells and proves their merging identity.
+[CouplingEntropy.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/CouplingEntropy.lean)
+constructs these cells for every finite measure on pairs of positive gaps
+whose first coordinate is at most its second almost surely. The old row sums
+equal the source band costs, and merged new columns equal the destination
+band costs. Local summability follows from finite mass and bands bounded
+away from zero. Consequently `Gamma(second marginal) <= 3 Gamma(first marginal)`
+without any finite full-law inverse moment or entropy assumption.
+
+[SelectionLift.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/SelectionLift.lean)
+lifts every fractional selection of the first marginal using its
+Radon--Nikodym density. The lifted measure is dominated by the coupling,
+has the original selection as first marginal, and transports to a selection
+dominated by the second marginal with exactly the same mass. Subtracting
+the selection commutes with taking either marginal. The residual tail cost
+decreases, while selected entropy increases by at most a factor of three.
+[IncreasingSelection.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/IncreasingSelection.lean)
+then proves the objective and capped-infimum comparison
+`K(second marginal) <= sqrt(3) K(first marginal)`. The infimum ranges over all
+fractional submeasures, including those with infinite entropy.
+
+Run `python tools/verify_arbitrary_law_coupling.py` for 19 exact statements
+and transitive axiom reports, and `python tools/verify_arbitrary_law_selection.py`
+for 13 more. These results concern the canonical positive-gap space `(0,1/2]`
+and a supplied increasing coupling. Constructing such a coupling from CDF
+domination, and extending the functional to laws with an unresolved zero
+atom, remain separate formalization steps.
 
 ## Finite CDF envelope
 
@@ -102,16 +136,15 @@ not yet the final all-budget confidence controller.
 
 The [native stage audit](../results/arbitrary-law-stage-20261106/README.md)
 identifies the 644-source project closure, exact statements and compiled
-dependency hashes for that checkpoint. Across all four current component
-audits, 73 exact statements and 71 transitive axiom reports pass.
+dependency hashes for that checkpoint. Across all six current component
+audits, 105 exact statements and 103 transitive axiom reports pass.
 
 ## Work still needed for the full theorem
 
-The countable matrix inequality is connected to canonical Gamma, but the
-band-cell decomposition still needs to be constructed from an increasing-gap
-coupling. Remaining work includes transported selections and their domination,
-the light random contraction,
-and the entropy functional's treatment of unresolved mass at zero. The finite
+Entropy and fractional selections now transport through any supplied
+increasing coupling on positive gaps. Remaining work includes constructing
+the coupling from CDF domination, the light random contraction, and the
+entropy functional's treatment of unresolved mass at zero. The finite
 CDF envelope is checked, but still needs its statistical pilot event and
 law-dependent onset. The observable stage is checked as an execution component;
 the concrete pilot and robust continuation must be instantiated and their

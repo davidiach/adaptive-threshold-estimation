@@ -901,3 +901,12 @@ and transitive reports for countable entropy transport and its canonical
 Gamma connection. Individual destination columns must be summable, but the
 full entropy and moment may be infinite. The coupling-to-cell construction
 is outside this component; see the [formal scope](ARBITRARY_LAW_FORMALIZATION.md).
+
+Run `python tools/verify_arbitrary_law_coupling.py` for 19 exact statements
+and transitive axiom reports: measurable canonical band indices, countable
+cell integrals, and the factor-three Gamma comparison for finite increasing
+couplings on positive gaps. Run `python tools/verify_arbitrary_law_selection.py`
+for 13 more: Radon--Nikodym selection lifts, preserved mass and domination,
+residual tail contraction, and the square-root-three comparison of the
+original capped infimum. Neither result assumes a finite inverse moment.
+CDF-to-coupling existence and the zero-atom extension remain separate.
