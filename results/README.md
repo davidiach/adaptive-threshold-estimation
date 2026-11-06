@@ -180,3 +180,8 @@ The [dominated-mass audit](arbitrary-law-dominated-20261106/README.md)
 adds 22 exact statements and transitive reports for bounded density
 restriction, entropy and tail algebra, residual control, and comparison (A5)
 for finite measures, allowing infinite entropy and preserving the cap.
+
+The [concrete light-contraction audit](arbitrary-law-light-20261106/README.md)
+adds 62 exact statements and transitive reports. It constructs the multiplier
+from a uniform variable, proves its exact CDF, derives product-law entropy
+and residual-tail bounds, and proves the full factor-32 selection comparison.

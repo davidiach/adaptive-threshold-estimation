@@ -192,6 +192,8 @@ statements and transitive axiom reports. The proof uses a fixed two-cell
 reference code to obtain the post-division entropy bound 1024 directly.
 The paper's intermediate sharper `C_V < 256` calculation in (A4) is not
 asserted as a separately formalized result.
+The [native light-contraction record](../results/arbitrary-law-light-20261106/README.md)
+binds both audits to the proof checkpoint and complete project closure.
 
 ## Finite CDF envelope
 

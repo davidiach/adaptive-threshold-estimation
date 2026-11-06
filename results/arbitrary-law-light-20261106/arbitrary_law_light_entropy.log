@@ -1,0 +1,48 @@
+'ThresholdHC.ArbitraryLawAdaptation.bandCost_index' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.bandIndex_ge_of_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.bandIndex_le_of_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.costEntropy_product_reference' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.countable_product_transport' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.duplicate_prefix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.duplicate_prefix_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.gamma_light_contraction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.lightCostBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.lightCostBound_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.lightCostBound_prefix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.lightDest' does not depend on any axioms
+'ThresholdHC.ArbitraryLawAdaptation.lightGap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.lightGap_bands' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.lightGap_inverseSquare' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.lightReference' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.lightReference_code_prefix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.lightReference_code_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.lightReference_code_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.lightReference_duplicate_code_prefix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.lightReference_duplicate_prefix' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.lightReference_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.lightReference_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.lightReference_prefix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.lightTag' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.lightTag_destination' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.lightTag_multiplier' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.light_band_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.light_cell_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.light_column_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.light_exponential_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.light_prod_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.lintegral_bandIndex_indicator' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.measurable_lightGap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.measurable_lightTag' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.product_band_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
