@@ -226,6 +226,7 @@ Lean-checked results that the status source does not track yet:
 - **Stochastic envelope:** RMS, confidence and unbiased estimation for unknown laws ordered by their gap CDFs ([record](results/stochastic-envelope-20261105/README.md)).
 - **Localization and transfer, coefficient $1/128$:** generic RMS and additive obstruction transfers, additive confidence for overlapping components, and the policy-uniform common pair ([RMS](results/rms-localization-20261105/README.md), [additive](results/additive-confidence-20261105/README.md), [common pair](results/common-pair-20261105/README.md)).
 - **Finite-law menus:** the construction and compressed optimum against the original selection functional, including the exact finite atomic sums. Efficient exact selection for many bands with unrestricted costs remains open ([record](results/gap-law-menus-20261105/README.md)).
+- **Finite-law selection approximation components:** entropy perturbation and state compression, assuming a certified bin map. The approximation scheme itself, which returns a selection within $(1+\epsilon)K$ in polynomial time, is a paper proof ([components](lean/ThresholdHC/SelectionApproximation/README.md), [record](results/selection-approximation-20261106/README.md), [note](research/2026-11-06-selection-approximation/NOTE.md)).
 
 See the [completion ledger](docs/WORKPLAN.md) for the current boundary.
 
