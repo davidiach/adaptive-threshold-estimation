@@ -175,3 +175,8 @@ adds 47 exact statements and transitive reports. It constructs the common-
 uniform increasing coupling from CDF domination, extends the entropy-tail
 functional to unresolved mass at zero, proves exact agreement with positive-
 gap K, and derives the sqrt(3) comparison from CDF domination on `[0,1/2]`.
+
+The [dominated-mass audit](arbitrary-law-dominated-20261106/README.md)
+adds 22 exact statements and transitive reports for bounded density
+restriction, entropy and tail algebra, residual control, and comparison (A5)
+for finite measures, allowing infinite entropy and preserving the cap.

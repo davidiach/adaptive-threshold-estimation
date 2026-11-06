@@ -153,6 +153,8 @@ The theorem retains the infimum over all fractional selections and the cap.
 
 Run `python tools/verify_arbitrary_law_dominated.py` for 22 independently
 restated exact statements and 22 transitive axiom reports.
+The [native dominated-mass record](../results/arbitrary-law-dominated-20261106/README.md)
+binds the proof checkpoint and complete project closure.
 
 ## Finite CDF envelope
 
