@@ -1,0 +1,28 @@
+'ThresholdHC.ArbitraryLawAdaptation.envelopeCDF' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.envelopeCDF_at_grid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.envelopeCDF_below_grid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.envelopeCDF_dominates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.envelopeCDF_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.envelopeCDF_succ_above' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.envelopeLaw' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.envelopeLaw_Iic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.envelopeLaw_dominates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.envelopeLaw_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.envelopeLaw_probability' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.envelopeLaw_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.envelope_weights_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.gridPoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.gridPoint_antitone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.gridPoint_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.gridPoint_succ_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.learnedEnvelope_dominates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.learnedEnvelope_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.prefixMinimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.prefixMinimum_antitone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.prefixMinimum_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.prefixMinimum_majorizes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.prefixMinimum_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,7 +1,8 @@
 # Eventual oracle-rate adaptation over arbitrary unknown gap laws
 
-This is a **paper proof**, with an executable construction. It is not a new
-Lean theorem or a formal verification of Python. The previous
+This is a **paper proof**, with an executable construction. Its
+[finite entropy, CDF-envelope and observable-stage components](ARBITRARY_LAW_FORMALIZATION.md)
+are now Lean-checked; the full theorem and Python execution are not formally verified. The previous
 [tail-certificate theorem](ARBITRARY_LAW_TAIL.md) supplies the single-coin
 probe and its physical work bound. The additional steps here are a learned
 stochastic envelope, its entropy comparison, and a robustness proof for the

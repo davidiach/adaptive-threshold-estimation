@@ -141,3 +141,17 @@ The [22-statement realization audit](law-adaptation-realization-20261105/README.
 adds moment determinacy and the complete observable finite-family controller,
 with actual flip accounting, nested compatible intervals and joint all-budget
 coverage and oracle width. Arbitrary-law adaptation remains open.
+
+The [finite arbitrary-law entropy transport audit](arbitrary-law-entropy-20261106/README.md)
+adds 15 exact statements, including the geometric factor-three comparison.
+It does not yet establish the full arbitrary-law adaptation theorem.
+
+The [finite CDF-envelope audit](arbitrary-law-envelope-20261106/README.md)
+adds 25 exact statements and 24 axiom reports for the conservative finite
+measure, its zero atom and CDF domination from finite grid bounds.
+
+The [observable learned-law stage audit](arbitrary-law-stage-20261106/README.md)
+adds 17 exact statements and 16 axiom reports: a valid learned probability
+law on every word, fresh continuation labels, physical caps, history readback,
+and the original-experiment joint endpoint law. Statistical instantiation
+and the full all-budget controller remain outside this component.
