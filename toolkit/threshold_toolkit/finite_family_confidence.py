@@ -8,8 +8,9 @@ MSE certificates, not the exact constant of the noncomputable Lean theorem.
 from dataclasses import dataclass
 from fractions import Fraction
 from random import Random
+from threading import Lock
 
-from .budget_ladders import CoinFactory, Exact, _budget, _exact
+from .budget_ladders import CoinFactory, Exact, _budget, _exact, _exclusive_advance
 from .confidence_ladders import ClosedInterval, ConfidenceState
 from .known_law_confidence import known_law_ladder
 from .known_law_oracle import FiniteGapOracle
@@ -39,6 +40,7 @@ class FiniteFamilyConfidenceLadder:
     Factories must supply iid persistent coins and conditionally iid flips.
     The physical cap applies also when identification fails. Python execution,
     PRNG independence and oracle-rate constants are not formally verified.
+    Overlapping advance_to calls, including callback re-entry, are rejected.
     """
 
     def __init__(self, candidates, coin_factory: CoinFactory, *, rho: Exact,
@@ -57,7 +59,9 @@ class FiniteFamilyConfidenceLadder:
         self._ladder = None
         self._authorized = 0
         self._failed = False
+        self._advance_lock = Lock()
 
+    @_exclusive_advance
     def advance_to(self, total_budget: int) -> FiniteFamilyState:
         allowance = _budget(total_budget)
         if self._failed:
