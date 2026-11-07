@@ -8,8 +8,9 @@ is in docs/FINITE_FAMILY_ADAPTATION.md; Python execution is not Lean-verified.
 from dataclasses import dataclass
 from fractions import Fraction
 from random import Random
+from threading import Lock
 
-from .budget_ladders import CoinFactory, _budget
+from .budget_ladders import CoinFactory, _budget, _exclusive_advance
 from .rare_event_functional import FiniteGapLaw, Rational, rational
 
 
@@ -100,6 +101,7 @@ class LawPilot:
     advance_to authorizes a cumulative budget. The same coin and prefix parity
     survive pauses; repeated calls at the same budget perform no extra work.
     Exceptions from callbacks invalidate the pilot so it cannot be resumed.
+    Overlapping advance_to calls, including callback re-entry, are rejected.
     """
 
     def __init__(self, plan: LawPilotPlan, coin_factory: CoinFactory, *, seed: int = 0):
@@ -115,8 +117,10 @@ class LawPilot:
         self._totals = [0] * plan.moments
         self._coin = None
         self._failed = False
+        self._advance_lock = Lock()
         self._result = LawPilotResult(0, (), 0, 0) if not plan.flip_cap else None
 
+    @_exclusive_advance
     def advance_to(self, total_budget: int) -> LawPilotState:
         allowance = _budget(total_budget)
         if self._failed:

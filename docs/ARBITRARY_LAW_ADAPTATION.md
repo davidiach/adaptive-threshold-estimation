@@ -1,7 +1,7 @@
 # Eventual oracle-rate adaptation over arbitrary unknown gap laws
 
 This is a **paper proof**, with an executable construction. Its
-[finite entropy, CDF-envelope and observable-stage components](ARBITRARY_LAW_FORMALIZATION.md)
+[entropy and selection transport, CDF-envelope and observable-stage components](ARBITRARY_LAW_FORMALIZATION.md)
 are now Lean-checked; the full theorem and Python execution are not formally verified. The previous
 [tail-certificate theorem](ARBITRARY_LAW_TAIL.md) supplies the single-coin
 probe and its physical work bound. The additional steps here are a learned
@@ -93,7 +93,7 @@ infimum, then the cap at $\rho$, proves (A2). A finite-entropy selection has
 no zero atom, and its transported mass stays positive. This proves the same
 statement when either ambient law has an unresolved zero atom.
 
-**A light random contraction.** Let $V$ be independent of $D\sim\mu$ and have
+**A light random contraction.** The factor-32 comparison is [Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#light-random-contraction), including a constructed multiplier with the exact CDF. Let $V$ be independent of $D\sim\mu$ and have
 distribution function
 $$
  G_V(v)=2e^{-1/(2v^2)}\quad(0<v<1/4),\qquad
@@ -130,7 +130,13 @@ one position, multiplying cost entropy by four. Thus the transported
 selection has entropy at most $1024\Gamma$, and its residual tail cost is
 at most 32 times the old tail cost. This proves (A3).
 
-**Dominated mass.** If $\lambda$ is a probability measure satisfying
+The formal proof uses an alternative fixed reference code, with weights
+$7/16$ for each of the two first-band cells and $2^{-(n+4)}$ for each
+cell in multiplier band $n=k-2\ge1$. It proves the post-division entropy bound
+$1024\Gamma$ and tail coefficient 32 directly. The sharper intermediate
+calculation $C_V<256$ in (A4) remains the paper calculation above.
+
+**Dominated mass.** This comparison is [Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#dominated-mass). If $\lambda$ is a probability measure satisfying
 $\lambda\le c\eta+e\delta_0$, with $c\ge1$ and $e\ge0$, then
 $$
  K_{\lambda,\rho}(N)\le cK_{\eta,\rho}(N)+e.             \tag{A5}
@@ -438,8 +444,11 @@ probabilities and arithmetic, controller accounting, namespaces, partial
 coins, zero atoms, split boundaries, tiny-radius rounding and failure paths.
 It does not prove the general theorem.
 
-Lean formalization remains for the new entropy transports, learned-envelope
-comparison, robustness transfer and full adaptive controller. Existing Lean
+Lean now constructs increasing couplings from CDF domination and checks
+entropy and fractional selection transport, including the zero-atom
+extension and its agreement with positive-gap K. Formalization remains for
+light random contraction, the dominated-mass inequality,
+learned-envelope comparison, robustness transfer and full adaptive controller. Existing Lean
 results establish the positive-gap quantile-tail floor, objective floor,
 budget scaling and known-law foundations used here; they do not automatically
 formalize this new composition. Python and its PRNG remain unverified.

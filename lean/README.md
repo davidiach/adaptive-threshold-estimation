@@ -166,3 +166,44 @@ readback and original-experiment joint endpoint law have 17 exact statements
 and 16 transitive reports in `python tools/verify_arbitrary_law_stage.py`.
 This component does not yet instantiate the statistical pilot or establish
 the full all-budget controller.
+
+`ArbitraryLawAdaptation/CountableEntropy.lean`, `CountableTransport.lean` and
+`GammaTransport.lean` extend the factor-three bound to countably many cells
+and identify its entropy with canonical Gamma. Run
+`python tools/verify_arbitrary_law_countable.py` for 16 exact statements and
+axiom reports. Individual destination columns are summable; the full moment
+and entropy may be infinite. The coupling construction is checked below.
+
+`ArbitraryLawAdaptation/BandGeometry.lean`, `TransportCells.lean` and
+`CouplingEntropy.lean` construct the canonical cells of an increasing-gap
+coupling and prove its factor-three Gamma comparison. Run
+`python tools/verify_arbitrary_law_coupling.py` for 19 exact statements and
+axiom reports. `SelectionLift.lean` and `IncreasingSelection.lean` transport
+all fractional selections and prove `K(new) <= sqrt(3) K(old)`. Run
+`python tools/verify_arbitrary_law_selection.py` for 13 exact statements and
+reports. These are positive-gap results under a supplied coupling; the
+following modules construct it and include unresolved mass at zero.
+
+`ArbitraryLawAdaptation/CDFCoupling.lean` constructs a common-uniform coupling
+from CDF domination, including atoms at zero. Run
+`python tools/verify_arbitrary_law_cdf_coupling.py` for 11 exact statements and
+reports. `ZeroModel.lean`, `ZeroCoupling.lean`, `ZeroSelection.lean` and
+`CDFSelection.lean` extend the functional to `[0,1/2]`, prove exact agreement
+with positive-gap K, and derive `K(new) <= sqrt(3) K(old)` from CDF domination.
+Run `python tools/verify_arbitrary_law_zero.py` for 36 exact statements and
+reports. The light random contraction and statistical composition remain.
+
+The dominated-mass comparison (A5) is checked by
+`python tools/verify_arbitrary_law_dominated.py`: 22 exact statements and
+22 transitive reports. Bounded density restriction transfers fractional
+selections and controls their residuals. For finite measures,
+`lambda <= c eta + e delta_0` gives `K(lambda) <= c K(eta) + e`
+when `c >= 1` and `e >= 0`, retaining infinite entropy and the cap.
+
+Run `python tools/verify_arbitrary_law_light_entropy.py` for 36 exact statements
+and transitive reports: product-reference entropy, explicit numerical budgets,
+two-band product geometry and the factor-1024 entropy bound for actual product
+measure cells. Run `python tools/verify_arbitrary_law_light.py` for 26 more
+exact statements and transitive reports: residual tails, the constructed
+multiplier's exact CDF, and the full capped selection comparison with factor 32.
+The final result imposes no inverse-moment or entropy condition on the input law.

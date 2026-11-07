@@ -16,8 +16,9 @@ from fractions import Fraction
 from functools import lru_cache
 import math
 import random
+from threading import Lock
 from .budget_ladders import (
-    Exact, CoinFactory, StageRun, _exact, _budget, _execute, stage, plan,
+    Exact, CoinFactory, StageRun, _exact, _budget, _execute, _exclusive_advance, stage, plan,
 )
 IntervalFactory = Callable[[int, Fraction, random.Random], Generator[int, int, object]]
 
@@ -79,6 +80,7 @@ class ConfidenceLadder:
     It must return an interval with the stated unconditional marginal coverage.
     A timeout contributes [0,upper], preserving coverage but not a width rate.
     Empty intersections remain empty and are never silently reset.
+    Overlapping advance_to calls, including callback re-entry, are rejected.
     """
     def __init__(self, interval_factory: IntervalFactory, coin_factory: CoinFactory,
                  *, delta: Exact, upper: Exact = 1, seed: int = 0):
@@ -96,7 +98,9 @@ class ConfidenceLadder:
         self._authorized = self._flips = self._reserved = 0
         self._spent = Fraction(0)
         self._failed = False
+        self._advance_lock = Lock()
 
+    @_exclusive_advance
     def advance_to(self, total_budget: int) -> ConfidenceState:
         n = _budget(total_budget)
         if self._failed:
