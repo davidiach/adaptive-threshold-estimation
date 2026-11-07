@@ -152,6 +152,31 @@
       "evidence": ["lean/ThresholdHC/TypedConfidence/SignTransfer.lean", "results/adaptive-types-20261105/README.md"],
       "abstract": "selected-type information transfer"
     },
+    "stochastic-envelope": {
+      "status": "lean",
+      "evidence": ["lean/ThresholdHC/Envelope/Minimax.lean", "lean/ThresholdHC/Envelope/Unbiased.lean", "results/stochastic-envelope-20261105/README.md"],
+      "abstract": "the stochastic-envelope extension to unknown gap laws",
+      "boundary": "the stochastic-envelope extension for RMS, confidence and unbiased estimation"
+    },
+    "localization-transfers": {
+      "status": "lean",
+      "evidence": ["lean/ThresholdHC/ConfidenceLocalization/ConfidenceRate.lean", "lean/ThresholdHC/AdditiveConfidence/Full.lean", "lean/ThresholdHC/RMSLocalization/Full.lean", "results/common-pair-20261105/README.md", "results/additive-confidence-20261105/README.md", "results/rms-localization-20261105/README.md"],
+      "abstract": "the common-pair, fractional-submeasure and RMS localization transfers with coefficient $1/128$",
+      "boundary": "the common-pair, fractional-submeasure and RMS localization transfers with coefficient $1/128$"
+    },
+    "finite-law-menus": {
+      "status": "lean",
+      "verification_rows": ["Finite-menu cost grouping"],
+      "evidence": ["lean/ThresholdHC/BandCostSelection/Counting.lean", "lean/ThresholdHC/GapLawMenus/Full.lean", "results/band-cost-formal-20261105/README.md", "results/gap-law-menus-20261105/README.md"],
+      "abstract": "finite-menu cost grouping and the exact optimized value of concrete finite-law menus",
+      "boundary": "finite-menu cost grouping and its concrete finite-law menus"
+    },
+    "finite-family-adaptation": {
+      "status": "lean",
+      "evidence": ["lean/ThresholdHC/LawAdaptation/Full.lean", "results/law-adaptation-realization-20261105/README.md"],
+      "abstract": "oracle-rate adaptation within a supplied finite family of gap laws",
+      "boundary": "finite-family oracle adaptation with its paid pilot"
+    },
     "psi-lower-bound": {
       "status": "paper",
       "verification_rows": ["General statistical $\\Psi$ lower bound"],
@@ -181,6 +206,7 @@
     {"results": ["power-margins-below-two", "smooth-density", "observed-states", "selected-type-transfer", "known-law-confidence", "time-uniform-lower-bound"]},
     {"results": ["sharp-factor"]},
     {"text": "A separate exact-arithmetic certificate gives the sharp factor's decimal bracket."},
+    {"results": ["stochastic-envelope", "localization-transfers", "finite-law-menus", "finite-family-adaptation"]},
     {"results": ["psi-lower-bound", "arbitrary-law-adaptation"]},
     {"text": "This manuscript records each result's dependencies and verification scope."}
   ],
@@ -194,6 +220,7 @@
     {"results": ["above-two"]},
     {"results": ["entropy-tail-law", "closed-quantile-law", "sharp-factor", "stopping-program", "identification", "genie", "power-margins-below-two"]},
     {"results": ["hard-cap", "known-law-confidence", "smooth-density", "observed-states", "time-uniform-lower-bound"]},
+    {"results": ["stochastic-envelope", "localization-transfers", "finite-law-menus", "finite-family-adaptation"]},
     {"results": ["psi-lower-bound", "arbitrary-law-adaptation"]},
     {"text": "Section~\\ref{sec:verification} gives the exact scope and links."}
   ]
