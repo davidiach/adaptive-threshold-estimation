@@ -1,5 +1,5 @@
 {
-  "description": "Single source for two v6 passages: the abstract's status paragraph (generated as status-abstract.tex) and the introduction's Verification boundary paragraph. tools/build_v6.py writes both from this file; do not edit those sentences in TeX. Each result has a status, lean or paper, and repository evidence paths for it. Phrases are written as objects so that the same phrase reads correctly in \"Lean checks ...\" and in \"For ..., the manuscript gives paper proofs only\". When a status changes, also update Section 18 (verification.tex), which keeps the exact formal scopes and fixed source links, and any per-section status remark by hand. Optional verification_rows name Section 18 claim-table rows; the generator requires each to cite a Lean source for a lean status, or to say paper and cite no Lean source for a paper status.",
+  "description": "Single source for two v6 passages: the abstract's status paragraph (generated as status-abstract.tex) and the introduction's Verification boundary paragraph. tools/build_v6.py writes both from this file; do not edit those sentences in TeX. Each result has a status, lean or paper, and repository evidence paths for it. An optional summary phrase is used only by tools/build_status_docs.py for the README and results-guide tables. Phrases are written as objects so that the same phrase reads correctly in \"Lean checks ...\" and in \"For ..., the manuscript gives paper proofs only\". When a status changes, also update Section 18 (verification.tex), which keeps the exact formal scopes and fixed source links, and any per-section status remark by hand. Optional verification_rows name Section 18 claim-table rows; the generator requires each to cite a Lean source for a lean status, or to say paper and cite no Lean source for a paper status.",
   "results": {
     "rms-law": {
       "status": "lean",
@@ -155,27 +155,30 @@
     "stochastic-envelope": {
       "status": "lean",
       "evidence": ["lean/ThresholdHC/Envelope/Minimax.lean", "lean/ThresholdHC/Envelope/Unbiased.lean", "results/stochastic-envelope-20261105/README.md"],
-      "abstract": "the stochastic-envelope extension",
-      "boundary": "the stochastic-envelope extension for RMS, confidence and unbiased estimation"
+      "abstract": "the stochastic-envelope extension to unknown gap laws",
+      "boundary": "the stochastic-envelope extension for RMS, confidence and unbiased estimation",
+      "summary": "the stochastic-envelope extension to unknown gap laws for RMS, confidence and unbiased estimation"
     },
     "localization-transfers": {
       "status": "lean",
       "evidence": ["lean/ThresholdHC/ConfidenceLocalization/ConfidenceRate.lean", "lean/ThresholdHC/AdditiveConfidence/Full.lean", "lean/ThresholdHC/RMSLocalization/Full.lean", "results/common-pair-20261105/README.md", "results/additive-confidence-20261105/README.md", "results/rms-localization-20261105/README.md"],
-      "abstract": "the $1/128$ localization transfers",
-      "boundary": "the common-pair, fractional-submeasure and RMS localization transfers with coefficient $1/128$"
+      "abstract": "lower-bound localization with coefficient $1/128$",
+      "boundary": "the common-pair, fractional-submeasure and RMS lower-bound localization with coefficient $1/128$"
     },
     "finite-law-menus": {
       "status": "lean",
       "verification_rows": ["Finite-menu cost grouping"],
       "evidence": ["lean/ThresholdHC/BandCostSelection/Counting.lean", "lean/ThresholdHC/GapLawMenus/Full.lean", "results/band-cost-formal-20261105/README.md", "results/gap-law-menus-20261105/README.md"],
       "abstract": "finite-menu cost grouping",
-      "boundary": "finite-menu cost grouping and its concrete finite-law menus"
+      "boundary": "finite-menu cost grouping and its concrete finite-law menus",
+      "summary": "finite-menu cost grouping and the exact optimized value of concrete finite-law menus"
     },
     "finite-family-adaptation": {
       "status": "lean",
       "evidence": ["lean/ThresholdHC/LawAdaptation/Full.lean", "results/law-adaptation-realization-20261105/README.md"],
-      "abstract": "oracle adaptation within a supplied finite family",
-      "boundary": "finite-family oracle adaptation with its paid pilot"
+      "abstract": "finite-family oracle adaptation",
+      "boundary": "finite-family oracle adaptation with its paid pilot",
+      "summary": "oracle-rate adaptation within a supplied finite family of gap laws, including its paid pilot"
     },
     "psi-lower-bound": {
       "status": "paper",

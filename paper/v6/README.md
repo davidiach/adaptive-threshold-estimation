@@ -2,7 +2,7 @@
 
 [Current manuscript](builds/status-coverage-20261107.pdf) · [LaTeX sources](main.tex) · [Build record](builds/status-coverage-20261107.json) · [Previous build](builds/arbitrary-law-adaptation-20261106.pdf)
 
-The current build combines the finite-gap menu and status-reconciliation changes with the arbitrary-law tail certificate and full eventual oracle-adaptation paper proof. The [finite-gap menu PDF](builds/gap-law-menus-20261105.pdf) and [status-reconciliation PDF](builds/status-reconciliation-20261105.pdf) retain their respective published source identities.
+The current build adds four results to the generated status paragraphs of the [previous build](builds/arbitrary-law-adaptation-20261106.pdf), which combines the finite-gap menu and status-reconciliation changes with the arbitrary-law tail certificate and full eventual oracle-adaptation paper proof. The [finite-gap menu PDF](builds/gap-law-menus-20261105.pdf) and [status-reconciliation PDF](builds/status-reconciliation-20261105.pdf) retain their respective published source identities.
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -58,6 +58,10 @@ and the existence of a finite-law optimizer that selects
 a suffix in each dyadic band. For arbitrary laws it checks variation and
 rounding stability and the finite-approximation enclosures. It also checks the stopping-program, fixed-cap
 identification and genie results of §15, in the scope stated in §18.
+It also checks the stochastic-envelope extension, lower-bound localization
+with coefficient $1/128$, finite-menu cost grouping and finite-family oracle
+adaptation. The [status table](../../README.md#scope-and-review), generated
+from [status.json](status.json), lists every result the abstract tracks.
 Section 18 states each formal scope and links the fixed source revisions.
 
 For finite laws a [direct Lean proof](../../lean/ThresholdHC/FiniteQuantile/Full.lean)
