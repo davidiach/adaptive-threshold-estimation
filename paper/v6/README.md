@@ -561,9 +561,13 @@ warning, an inherited overfull line, also occurs in the unchanged sources.
 Tectonic was not available, so this build uses pdfTeX from TeX Live 2023,
 the engine of the [manuscript workflow](../../.github/workflows/manuscript.yml),
 with the same fixed source date. Against an unchanged-source baseline typeset
-by the same engine, only pages 1 and 6 change, and page 7 absorbs the moved
-text. Pages 1, 2, 6 and 7 were visually inspected. The new abstract phrases
-are short so that the title-page note stays on page 1; that page is now
-nearly full.
+by the same engine, pages 1 and 6 gain the two generated sentences and page 7
+absorbs text moved from page 6; the other 177 pages are identical and none is
+renumbered. Pages 1, 2, 6 and 7 of this build were visually inspected. The
+title page is nearly full, so the
+[manuscript workflow](../../.github/workflows/manuscript.yml) now fails if the
+abstract's last sentence or the provenance note leaves page 1, and
+`python tools/check_build_record.py` checks that this record still describes
+its PDF and the current sources.
 
 [Updated manuscript](builds/status-coverage-20261107.pdf) · [Build record](builds/status-coverage-20261107.json)

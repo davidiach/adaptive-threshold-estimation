@@ -7,7 +7,7 @@
   "Overfull \\hbox (5.16461pt too wide) in paragraph at lines 751--753"
  ],
  "inherited_manifest_sha256": "ab75faa88e1916a8ac47c5f86e3b800b4ac05f3b735133cfc2cc9a3973a69e38",
- "status_source_sha256": "8ffc4f744b474bb5c4a498243600fbb3daa01e5f28241f79ec732bc68f373685",
+ "status_manifest_sha256": "2f2af8f69c4b5401b71e08831f647cda7fab669d2cd59cc96f8388f49c4ba691",
  "tex_sources": {
   "additive-confidence.tex": "c09908ad71852d739b281bcb5b9d03ed1628abc0e6f66be25f4a8e510fdcbe55",
   "all-sizes.tex": "ab5a81229fddb22b6029b9cf5406319f3af45cc83b083fcef77ef33cfb71df7a",
@@ -55,21 +55,21 @@
   "finite-proof.tex": "7290fb8fef8ff91e6f5c13cab06ce376013cefb615174f817cee86fc60ec7241",
   "finite-upper.tex": "fa71be8a77f49758733119666b9f11003d054bc58b4d5785edefc06a17ff2a76",
   "frontmatter.tex": "dba17aefbaf606dbf83a0e53accc176fa21670f12228c3e306535ef9afa8842e",
-  "introduction.tex": "0cfd87f9d3e9d1328fe86cbdc4edbb9d52da92f4a5ae5968f90800ea24d74cbd",
+  "introduction.tex": "6da4b53e7bc725b6b403f10d987d87dde43b7ab6110684f14e3130a6c6cf471d",
   "main.tex": "326f0dc26c924a026c0171a2517d8b3b109fe83288a93198c7b36ce9f36001c3",
   "rare-discussion.tex": "95be88a11801c828db1cdf6c28820d6af21f2d4084c01841b9bf2bdda7945194",
   "rare-events.tex": "166023bf4df3ec4bae5a189121841dc664a3b65fd14061d7970ad4a3f844cbbc",
   "rare-related-work.tex": "795b22e51ce00643b69e8228a2e745b15be74490aa4a4e977601320b8fed03d2",
   "references.tex": "c31b463f7caf678f7c5ba6bd589e7a6d07f2fbf77340a31656f8a594128a7dca",
   "rms-localization.tex": "faed5bcd2e124a47cb90e8474a79a9278664b6492446a48c61b11462c6454154",
-  "status-abstract.tex": "a0bd718e3efc6e276791ac4727d631d90a7a056c4f435a98229fde4d8bdee343",
+  "status-abstract.tex": "d6fe92c19de62988d4a3d206063f092ea9a6cb7ef7891e6f6e7b167850ec4cfc",
   "typed-confidence.tex": "e617b57ce095086f1ca0142d8918a3f32815f4417ddfd68d29ff141aef2e9710",
   "verification.tex": "c634bcfc1cec9a9519dfa3e6ac838e40dbe6f7dd71085bdf350d5af2a9a4e42b"
  },
  "byte_identical_rebuilds": true,
- "pdf_sha256": "e09c8d10860aecf9488f87a1757ac4a5414e935c23fde128dbe2f644a9d04ab8",
- "pdf_bytes": 1352023,
- "source_commit": "c3568f7db3bf65d9662b3b0d82ae85e93499a8bb",
+ "pdf_sha256": "1e84f22aeb1d185555d035beeeb490ead61ac3bda3fca5f1be8c434b9cb4dfb4",
+ "pdf_bytes": 1351889,
+ "source_commit": "9e4975946eb63f1b38b8f259913a757dee76b3c5",
  "proof_revisions": {
   "lean/ThresholdHC/Envelope/Minimax.lean": "b59e043a3f504c412f6ca482fb96bc7626063888",
   "lean/ThresholdHC/Envelope/Unbiased.lean": "eb5a2ffdb9af6a52dc47cd2aa5a31a1dfb21ad16",
@@ -94,7 +94,8 @@
  "source_citations": 29,
  "changed_pages": [
   1,
-  6
+  6,
+  7
  ],
  "relocated_pages": {},
  "visual_pages_checked": [
@@ -104,9 +105,9 @@
   7
  ],
  "no_new_layout_defects": true,
- "relocation_note": "Only the two generated status paragraphs changed: one added sentence in the abstract on page 1 and one in the introduction's verification boundary on page 6. The word-level comparison with the baseline ignores running headers and page numbers. Words from the end of page 6 now begin page 7, which absorbs them; pages 8 to 180 have the same text and page boundaries as the baseline. The baseline is main at d60c95f, whose v6 sources and status.json match the arbitrary-law-adaptation-20261106 build record.",
+ "relocation_note": "The word-level comparison with the baseline ignores running headers and page numbers. Page 1 gains one abstract sentence and page 6 one sentence in the introduction's verification boundary; page 7 begins with text moved from page 6 and absorbs it, so its page boundary at the end is unchanged. The other 177 pages have the same text as the baseline and no page is renumbered, so relocated_pages is empty. The baseline is main at d60c95f, whose v6 sources and status.json match the arbitrary-law-adaptation-20261106 build record.",
  "layout_notes": [
-  "A first build with longer abstract phrases split the title-page provenance note across pages 1 and 2 and added a page. The four new abstract phrases were shortened before the final build; the note stays on page 1 and the page count matches the baseline.",
-  "The title page is now nearly full: a further sentence in the abstract's status paragraph is likely to push the provenance note to page 2 again."
+  "An earlier build of this change split the title-page provenance note across pages 1 and 2. The abstract phrases are kept short, and the manuscript workflow now fails if the abstract's last sentence or the provenance note leaves page 1.",
+  "Pages 1, 2, 6 and 7 of this exact build were rendered and inspected: the title page holds the abstract and the whole note, page 2 starts the table of contents, and the new boundary sentence and moved text on pages 6 and 7 show no clipping or overlap."
  ]
 }
