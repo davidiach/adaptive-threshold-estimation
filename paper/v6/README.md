@@ -1,8 +1,8 @@
 # Consolidated version 6
 
-[Current manuscript](builds/arbitrary-law-adaptation-20261106.pdf) · [LaTeX sources](main.tex) · [Build record](builds/arbitrary-law-adaptation-20261106.json)
+[Current manuscript](builds/status-coverage-20261107.pdf) · [LaTeX sources](main.tex) · [Build record](builds/status-coverage-20261107.json) · [Previous build](builds/arbitrary-law-adaptation-20261106.pdf)
 
-The current build combines the finite-gap menu and status-reconciliation changes with the arbitrary-law tail certificate and full eventual oracle-adaptation paper proof. The [finite-gap menu PDF](builds/gap-law-menus-20261105.pdf) and [status-reconciliation PDF](builds/status-reconciliation-20261105.pdf) retain their respective published source identities.
+The current build adds four results to the generated status paragraphs of the [previous build](builds/arbitrary-law-adaptation-20261106.pdf), which combines the finite-gap menu and status-reconciliation changes with the arbitrary-law tail certificate and full eventual oracle-adaptation paper proof. The [finite-gap menu PDF](builds/gap-law-menus-20261105.pdf) and [status-reconciliation PDF](builds/status-reconciliation-20261105.pdf) retain their respective published source identities.
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -58,6 +58,10 @@ and the existence of a finite-law optimizer that selects
 a suffix in each dyadic band. For arbitrary laws it checks variation and
 rounding stability and the finite-approximation enclosures. It also checks the stopping-program, fixed-cap
 identification and genie results of §15, in the scope stated in §18.
+It also checks the stochastic-envelope extension, lower-bound localization
+with coefficient $1/128$, finite-menu cost grouping and finite-family oracle
+adaptation. The [status table](../../README.md#scope-and-review), generated
+from [status.json](status.json), lists every result the abstract tracks.
 Section 18 states each formal scope and links the fixed source revisions.
 
 For finite laws a [direct Lean proof](../../lean/ThresholdHC/FiniteQuantile/Full.lean)
@@ -537,3 +541,33 @@ expanded status paragraph and provenance together. Earlier published PDFs
 and build records, including the tail-certificate checkpoint, are unchanged.
 
 [Updated manuscript](builds/arbitrary-law-adaptation-20261106.pdf) · [Build record](builds/arbitrary-law-adaptation-20261106.json) · [Tail-certificate checkpoint](builds/arbitrary-law-tail-20261106.pdf)
+
+## Status coverage build
+
+The abstract's status paragraph and the introduction's verification
+boundary now also name four results that the manuscript already presents
+with Lean citations: the stochastic-envelope extension, the $1/128$
+localization transfers, finite-menu cost grouping with its concrete
+finite-law menus, and finite-family oracle adaptation. Both paragraphs are
+generated from [status.json](status.json); the menu entry is tied to its
+Section 18 claim row. No theorem, proof or other passage changes. The
+arbitrary-law adaptation components and the selection-approximation
+components are not added, because the manuscript does not yet describe
+them as checked.
+
+The PDF has 180 pages. Two independent builds have identical bytes, all 29
+fonts are embedded, there are no unresolved references, and the only
+warning, an inherited overfull line, also occurs in the unchanged sources.
+Tectonic was not available, so this build uses pdfTeX from TeX Live 2023,
+the engine of the [manuscript workflow](../../.github/workflows/manuscript.yml),
+with the same fixed source date. Against an unchanged-source baseline typeset
+by the same engine, pages 1 and 6 gain the two generated sentences and page 7
+absorbs text moved from page 6; the other 177 pages are identical and none is
+renumbered. Pages 1, 2, 6 and 7 of this build were visually inspected. The
+title page is nearly full, so the
+[manuscript workflow](../../.github/workflows/manuscript.yml) now fails if the
+abstract's last sentence or the provenance note leaves page 1, and
+`python tools/check_build_record.py` checks that this record still describes
+its PDF and the current sources.
+
+[Updated manuscript](builds/status-coverage-20261107.pdf) · [Build record](builds/status-coverage-20261107.json)

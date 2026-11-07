@@ -8,6 +8,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_status_docs as docs  # noqa: E402
+import build_v6  # noqa: E402
 from build_v6 import load_status  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -81,6 +82,19 @@ class RepositoryTests(unittest.TestCase):
         self.assertEqual(len(rows), len(status["results"]))
         for key, line in zip(docs.ordered_keys(status), rows):
             self.assertIn(docs.STATUS_LABELS[status["results"][key]["status"]], line)
+
+    def test_summary_phrase_is_preferred_and_kept_out_of_the_manuscript(self):
+        status = load_status()
+        keys = [k for k, r in status["results"].items() if "summary" in r]
+        self.assertTrue(keys)
+        block = docs.render(status, ROOT / "README.md")
+        for key in keys:
+            result = status["results"][key]
+            with self.subTest(key=key):
+                phrase = docs.latex_to_markdown(result["summary"], ROOT / "README.md")
+                self.assertIn("| " + docs._sentence_case(phrase) + " |", block)
+                for venue in ("abstract", "boundary"):
+                    self.assertNotIn(result["summary"], build_v6.status_text(status, venue))
 
     def test_a_status_change_changes_the_summary(self):
         status = load_status()

@@ -40,6 +40,18 @@ jobs:
           cp -r paper/v6 "$RUNNER_TEMP/v6"
           cd "$RUNNER_TEMP/v6"
           latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+      - name: Keep the abstract and provenance note on the title page
+        # status.json grows the generated abstract paragraph; fail if it pushes
+        # the abstract's end or the provenance note off page 1.
+        run: |
+          cd "$RUNNER_TEMP/v6"
+          page1=$(pdftotext -f 1 -l 1 main.pdf - | sed -z 's/-\n//g' | tr -s '[:space:]' ' ')
+          for text in "dependencies and verification scope." "Priority and practical superiority are not established."; do
+            if ! grep -qF "$text" <<<"$page1"; then
+              echo "::error::Page 1 no longer contains: $text"
+              exit 1
+            fi
+          done
       - name: Summarize the structure and warnings
         run: |
           cd "$RUNNER_TEMP/v6"
