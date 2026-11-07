@@ -110,7 +110,7 @@ Indeed, selecting mass $x$ gives the concave objective
 $2\sqrt{\rho x/B}+(1-x)\min(1,2/\sqrt B)$, whose minimum is at an endpoint,
 followed by clipping at $\rho$. The lower bound thus matches the iterated
 logarithm term of the known-law upper rate on this law for fixed $\delta$
-as $n\to\infty$. The [full gap-law dependent comparison](TIME_UNIFORM_LOWER.md) now has a complete Lean proof. Whether a law-agnostic interval attains the known-law rate remains open.
+as $n\to\infty$. The [full gap-law dependent comparison](TIME_UNIFORM_LOWER.md) now has a complete Lean proof. The [arbitrary-law adaptation theorem](ARBITRARY_LAW_ADAPTATION.md) gives a law-agnostic interval whose width is within a universal constant of the known-law rate after a law-dependent onset; it is a paper proof, not Lean-checked.
 
 The [law-dependent lower-bound development](TIME_UNIFORM_LOWER.md) proves that every deterministic joint coverage-and-width envelope exceeds a universal multiple of the known-law rate infinitely often, for every positive-gap law. Its prior-family, sequential-testing, infinite-moment and asymptotic arguments are Lean-checked, including the observable interval consequence. The [complete audit](../results/anytime-asymptotic-20261105/README.md) verifies the deterministic-envelope bound without a monotonicity assumption. The unknown-law upper construction and the sharper Bernoulli-subfamily coefficient described on this page retain their separate paper-proof scope.
 

@@ -85,7 +85,9 @@ finite-gap revision 2 sections. The twenty-ninth, `status-abstract.tex`, and
 the introduction's Verification boundary paragraph come from
 [status.json](status.json), the single source for those two passages. To
 change what they say about a result, edit its status and evidence paths
-there and rerun the generator; `tools/test_build_v6.py` rejects status
+there and rerun the generator, then `python tools/build_status_docs.py`, which
+regenerates the status tables in the [README](../../README.md#scope-and-review)
+and [results guide](../../docs/RESULTS.md); `tools/test_build_v6.py` rejects status
 wording typed into the abstract or into a phrase. Section 18 keeps the exact
 formal scopes and fixed source links and is edited by hand, but the
 generator checks it against status.json: each claim-table row an entry
@@ -149,6 +151,8 @@ From the repository root:
 python tools/build_v6.py
 python tools/build_v6.py --check
 python -m unittest discover -s tools -p 'test_build_v6.py' -v
+python tools/build_status_docs.py --check
+python tools/check_build_record.py
 ```
 
 To build the PDF, copy `paper/v6/` to a disposable directory and run there:
