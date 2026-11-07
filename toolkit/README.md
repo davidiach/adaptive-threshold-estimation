@@ -203,17 +203,17 @@ $\rho=0.05$ splits the atom at gap 0.01. The calculation gives:
 | Tail contribution $T_h$ | 0.0158113883 |
 | Core entropy contribution $h\sqrt{\rho\Gamma_\kappa}$ | 0.0178107278 |
 | Quantile functional $Q(B)$ | 0.0336221161 |
-| Comparison interval for the selection functional $\mathcal K(B)$ | [0.0201732697, 0.0336221161] |
+| Comparison interval for the selection functional $\mathcal K(B)$ | [0.0216916878, 0.0336221161] |
 
-The interval uses the deterministic comparison
-$3Q/5\le\mathcal K\le Q$ from the
-[computation note](../docs/RARE_EVENT_COMPUTATION.md), which improved the
-earlier factor $1+2\sqrt2$ to $5/3$. Lean now checks the sharper
-[factor $31/20$](../results/quantile-price-20261104/README.md), which implies
-it; the calculator keeps $5/3$. The comparison applies to every positive-gap
-law; the executable calculator accepts finite laws.
+The interval uses the Lean-checked deterministic comparison
+$20Q/31\le\mathcal K\le Q$
+([factor $31/20$](../results/quantile-price-20261104/README.md)), which
+sharpens the [computation note's](../docs/RARE_EVENT_COMPUTATION.md) paper
+factor $5/3$. The comparison applies to every positive-gap law with
+$0<\rho\le1/4$ and $B>0$; the executable calculator accepts finite laws in
+that range. The least valid factor is about $1.4626$ but has no closed form.
 It also uses $T_h\le\mathcal K$, so the returned interval is
-$[\max\{T_h,3Q/5\},Q]$ and collapses to $\{\rho\}$ when $h\ge t$.
+$[\max\{T_h,20Q/31\},Q]$ and collapses to $\{\rho\}$ when $h\ge t$.
 
 These floating-point endpoints describe the rate functional. Lean verifies the
 comparison with minimax risk. The separate [known-law estimator](../docs/KNOWN_LAW_ESTIMATOR.md)
@@ -300,10 +300,12 @@ python toolkit/examples/rare_events.py
 `threshold_toolkit.rare_event_functional` is a separate research computation,
 not part of the calculators or the estimators. For a known finite gap law, the
 calculator in section 3 evaluates $Q$ in floating point and brackets the
-selection functional $\mathcal K$ by the $5/3$ comparison. This module instead
+selection functional $\mathcal K$ by the $31/20$ comparison. This module instead
 encloses $\mathcal K$ itself between exact rational bounds, by bandwise-suffix
 enumeration whose cost grows exponentially with the number of occupied bands.
-It also gives the cheaper bound $\frac58Q\le\mathcal K\le Q$. It uses only
+It also gives the cheaper bound $\frac58Q\le\mathcal K\le Q$; it keeps the
+$8/5$ factor because the sealed certified-selection records replay its exact
+output. It uses only
 the standard library and rejects floats as inputs. It is not imported by the
 package itself, and its `FiniteGapLaw` is a different class from the
 package-level one in section 3, so import it from

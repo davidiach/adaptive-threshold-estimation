@@ -5,8 +5,9 @@ Section 1.2, and the strengthened comparison with the entropy-tail selection
 functional in ``docs/RARE_EVENT_COMPUTATION.md``.  ``Q(B)`` is a rate functional, not the minimax risk or
 the measured error of an implemented estimator.  Lean checks the statistical
 comparison 1e-17*Q <= R <= 30001*Q for every gap law, and the deterministic
-comparison Q <= (31/20)*K, which implies the 5/3 factor used here (see
-docs/RESULTS.md).  This floating-point Python implementation is not checked.
+comparison K <= Q <= (31/20)*K used here
+(lean/ThresholdHC/QuantilePrice/Full.lean, ``quantile_le_31_20_selection``).
+This floating-point Python implementation is not checked.
 
 Inputs describe a known distribution of positive gaps, not observed signs.
 Rarity is the global constraint integral(q dmu) <= rho, not q(d) <= rho at
@@ -23,10 +24,11 @@ from fractions import Fraction
 from typing import Iterable, Optional, Tuple
 
 
-# docs/RARE_EVENT_COMPUTATION.md, strengthened deterministic comparison.
-# Keep the deterministic comparison distinct
-# from the much looser constants in the statistical minimax theorem.
-QUANTILE_SELECTION_FACTOR = 5 / 3
+# Lean-checked deterministic comparison Q <= (31/20)*K for every gap law,
+# 0 < rho <= 1/4 and B > 0 (results/quantile-price-20261104/README.md).
+# Keep it distinct from the much looser constants of the statistical minimax
+# theorem. The exact sharp factor (about 1.4626) has no closed form.
+QUANTILE_SELECTION_FACTOR = 31 / 20
 
 
 def _logadd(left: float, right: float) -> float:
@@ -139,7 +141,7 @@ class EntropyBand:
 class RareEventEvaluation:
     """Floating-point values of Q and its two uncapped components.
 
-    ``selection_lower = max(tail, 3 * value / 5) <= K <= selection_upper``
+    ``selection_lower = max(tail, 20 * value / 31) <= K <= selection_upper``
     combines two deterministic comparisons, subject to floating-point error;
     it is not a bound on minimax risk.
     ``entropy_term`` can be infinity when the uncapped term exceeds float

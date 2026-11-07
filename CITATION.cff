@@ -4,7 +4,7 @@ message: >-
   This work is AI-assisted: AI agents performed research and formalization
   under David Iach's direction. See the provenance and process documentation.
 type: software
-title: A Distributional Minimax Law for Adaptive Threshold Estimation
+title: 'Adaptive Threshold Estimation: Minimax Laws, Unbiased Estimation, and Rare Events'
 authors:
   - family-names: Iach
     given-names: David

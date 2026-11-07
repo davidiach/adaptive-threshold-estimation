@@ -1,10 +1,7 @@
 from __future__ import annotations
 import copy
-from decimal import Decimal, localcontext
 from fractions import Fraction as F
-from itertools import product
 from pathlib import Path
-import random
 import sys
 import unittest
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
