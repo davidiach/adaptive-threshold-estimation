@@ -159,7 +159,8 @@ def validate_status(status: dict) -> dict:
     for key, result in results.items():
         if not isinstance(result, dict) or result.get("status") not in STATUS_KINDS:
             raise ValueError(f"Status of {key} must be one of {STATUS_KINDS}")
-        unknown = set(result) - {"status", "evidence", "verification_rows", *STATUS_VENUES}
+        unknown = set(result) - {"status", "evidence", "verification_rows", "summary",
+                                 *STATUS_VENUES}
         if unknown:
             raise ValueError(f"Unknown fields for {key}: {sorted(unknown)}")
         _check_evidence(key, result)
@@ -169,6 +170,10 @@ def validate_status(status: dict) -> dict:
         for venue in STATUS_VENUES:
             if venue in result:
                 _check_tex(result[venue], f"the {venue} phrase of {key}")
+        # An optional fuller phrase for the generated README and results-guide
+        # tables (tools/build_status_docs.py); the manuscript never prints it.
+        if "summary" in result:
+            _check_tex(result["summary"], f"the summary phrase of {key}")
     used = set()
     for venue in STATUS_VENUES:
         if not isinstance(status[venue], list) or not status[venue]:

@@ -317,7 +317,8 @@ class VerificationStatusTests(unittest.TestCase):
         def text(s): s["abstract"].append({"text": "All of this is a paper proof."})
         def suffix(s): s["boundary"][1]["suffix"] = " as verified in Lean"
         def wrapped(s): s["abstract"].append({"text": "All of this is a paper\nproof."})
-        for mutate in (phrase, proved, text, suffix, wrapped):
+        def summary(s): s["results"]["confidence"]["summary"] = "the confidence law, formalized"
+        for mutate in (phrase, proved, text, suffix, wrapped, summary):
             with self.subTest(mutate=mutate.__name__):
                 self.rejects(mutate, "Status wording")
 
@@ -326,8 +327,10 @@ class VerificationStatusTests(unittest.TestCase):
         def braces(s): s["results"]["unbiased"]["abstract"] += " \\cref{x"
         def math(s): s["results"]["unbiased"]["abstract"] += " $x"
         def empty(s): s["results"]["unbiased"]["abstract"] = " "
+        def summary_math(s): s["results"]["unbiased"]["summary"] = "the $x law"
         for mutate, message in ((percent, "unescaped %"), (braces, "unbalanced"),
-                                (math, "unbalanced"), (empty, "non-empty")):
+                                (math, "unbalanced"), (empty, "non-empty"),
+                                (summary_math, "unbalanced")):
             with self.subTest(mutate=mutate.__name__):
                 self.rejects(mutate, message)
 

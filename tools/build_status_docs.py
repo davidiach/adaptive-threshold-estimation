@@ -4,9 +4,11 @@ paper/v6/status.json is the single source for each result's verification
 status: tools/build_v6.py writes the v6 abstract's status paragraph and the
 introduction's verification-boundary paragraph from it. This tool renders the
 same entries as a Markdown table between two marker lines in README.md and in
-docs/RESULTS.md. Each row gives the result's abstract phrase (its boundary
-phrase when it has none), its status and links to its evidence paths. Text
-outside the markers is not touched.
+docs/RESULTS.md. Each row gives the result's summary phrase, else its abstract
+phrase, else its boundary phrase, then its status and links to its evidence
+paths. The optional summary phrase lets the tables name a result fully when the
+abstract phrase is kept short for the title page. Text outside the markers is
+not touched.
 
 After changing status.json, run this tool; --check fails when a document is
 stale. The LaTeX conversion is deliberately narrow and fails closed: inline
@@ -132,7 +134,7 @@ def render(status: dict, document: Path, sources: Path = DEST) -> str:
     ]
     for key in keys:
         result = results[key]
-        phrase = result.get("abstract") or result["boundary"]
+        phrase = result.get("summary") or result.get("abstract") or result["boundary"]
         evidence = " · ".join(f"[{_evidence_label(p)}]({_link(ROOT / p, document)})"
                               for p in result["evidence"])
         lines.append(f"| {_sentence_case(latex_to_markdown(phrase, document, sources))} "
