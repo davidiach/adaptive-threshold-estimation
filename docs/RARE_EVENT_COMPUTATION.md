@@ -37,7 +37,9 @@ Lean checks $\mathcal K\le Q\le\frac{31}{20}\mathcal K$
 about $1.4626$, are also checked. In the formal observable experiment Lean proves
 $10^{-17}Q\le R\le30001Q$ for every such law
 ([scope](RESULTS.md#general-law-rare-event-characterization)), which is
-stronger than the consequence derived below. The calculator is still neither
+stronger than the consequence derived below. The calculator now reports the
+interval $[\max\{T_h,20Q/31\},Q]$ from the $31/20$ comparison, not the
+$3Q/5$ endpoint described below. It is still neither
 Lean-checked nor interval certified. A separate toolkit module now runs an
 observable estimator for a known law; see the
 [known-law estimator guide](KNOWN_LAW_ESTIMATOR.md).
@@ -412,8 +414,9 @@ between a comparison and an equality matters even with one gap.
 For a supplied finite law, the computation and (3) provide a numerical
 evaluation of $Q$ and the mathematical comparison
 $\mathcal K\in[3Q/5,Q]$. Since the proof also gives $T_h\le\mathcal K$,
-the implementation returns the sharper interval
-$[\max\{T_h,3Q/5\},Q]$. In particular it reports the singleton
+the implementation at the time of this note returned the sharper interval
+$[\max\{T_h,3Q/5\},Q]$; it now uses the later $31/20$ comparison
+(see the status note above). In particular it reports the singleton
 $\{\rho\}$ in the proved saturation regime $h\ge t$.
 Finite examples can check implementation behavior;
 they do not establish (3) for all laws. The proof above establishes that

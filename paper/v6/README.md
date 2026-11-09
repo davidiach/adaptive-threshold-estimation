@@ -58,8 +58,10 @@ and the existence of a finite-law optimizer that selects
 a suffix in each dyadic band. For arbitrary laws it checks variation and
 rounding stability and the finite-approximation enclosures. It also checks the stopping-program, fixed-cap
 identification and genie results of §15, in the scope stated in §18.
+It also checks the arbitrary-law statistical Ψ lower bound of Appendix A,
+with coefficient $10^{-17}$, as a corollary of the entropy–tail law.
 It also checks the stochastic-envelope extension, lower-bound localization
-with coefficient $1/128$, finite-menu cost grouping and finite-family oracle
+with coefficient $1/128$ conditional on a single-coin obstruction, finite-menu cost grouping and finite-family oracle
 adaptation. The [status table](../../README.md#scope-and-review), generated
 from [status.json](status.json), lists every result the abstract tracks.
 Section 18 states each formal scope and links the fixed source revisions.

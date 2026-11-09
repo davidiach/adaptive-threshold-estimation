@@ -227,8 +227,9 @@ $t\le\sqrt\rho/2$, so the elementary objective floor gives
 $\mathcal K_{\mu,\rho}(N)\ge2\sqrt\rho\,t$. The core term in (UA12) is at most
 $\mathcal K/2$, and $1/M\le\sqrt\rho\,t/8\le \mathcal K/16$.
 
-The sharper terminal unresolved bound from the tail proof implies
-$u_j\le\Pr(VD\le t_j)$. For $x\in[t_{j+1},t_j)$ this is at most
+By (AT6a) at depth $j$, a coin with gap $d$ is unresolved with probability
+at most $G_V(t_j/d)$: this is $2e^{-d^2/(2t_j^2)}$ when $d>4t_j$ and one
+otherwise. Integrating over the gap gives $u_j\le\Pr(VD\le t_j)$. For $x\in[t_{j+1},t_j)$ this is at most
 $F_{\mu'}(x)$, where $\mu'=\mathcal L(VD/2)$ as in (UA3). Consequently
 \[
  F_{\bar\mu}(x)\le\min\{1,128F_{\mu'}(x)+e\},

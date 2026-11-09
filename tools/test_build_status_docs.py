@@ -99,7 +99,8 @@ class RepositoryTests(unittest.TestCase):
     def test_a_status_change_changes_the_summary(self):
         status = load_status()
         changed = copy.deepcopy(status)
-        changed["results"]["psi-lower-bound"]["status"] = "lean"
+        current = status["results"]["psi-lower-bound"]["status"]
+        changed["results"]["psi-lower-bound"]["status"] = "paper" if current == "lean" else "lean"
         self.assertNotEqual(docs.render(status, ROOT / "README.md"),
                             docs.render(changed, ROOT / "README.md"))
 

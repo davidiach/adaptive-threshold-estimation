@@ -1,0 +1,43 @@
+{
+ "valid": true,
+ "proof_checkpoint": "ce0897b178f3b14c5706b5273843aea7008157ac",
+ "base_checkpoint": "5c27c4648090c598e7032577ffbd93dbd0f267ec",
+ "compiler": "Lean (version 4.36.0-rc1, x86_64-unknown-linux-gnu, commit c9afcddf514a6772bd4d649f7cfc04eff0b9f15e, Release)",
+ "mathlib_revision": "9bdd0bc71aaae0fd83889f9aacd70c32fccd1bcd",
+ "build": "Every project module was rebuilt from source on Linux against the Mathlib cache for the pinned revision; no project object was reused from an earlier record.",
+ "specification_sha256": "b18fe14fc8be24db36e132013e85c91197da6b368d511bb2dd014752c60faca9",
+ "source_sha256": {
+  "lean/lean-toolchain": "d581a24b57a4ae9e0b2132ca8ac7cc3ac336a9fc2751fe6b29414e2d434d54c4",
+  "lean/lakefile.toml": "273cfe4674e97219b22f7de1428bdadfb45379c7fa582882c59624ab7fbc3189",
+  "lean/lake-manifest.json": "a7058b14db1034b58735d82f1cf9a82a938855e93decc1960ca7d21e786fdfe2",
+  "lean/ThresholdHC/PsiSelection/Specification.lean": "b18fe14fc8be24db36e132013e85c91197da6b368d511bb2dd014752c60faca9",
+  "lean/ThresholdHC/PsiSelection/Comparison.lean": "d06434723f1f4bfd79676b37e6a1c23374a8a2bb7f746b7fbb18c629bed9378e",
+  "lean/ThresholdHC/PsiSelection/Full.lean": "5871793920b5bb002bc255128e51a2af596288c7c8527db899bc22a1a59c4af7",
+  "lean/ThresholdHC/EntropyTail/Model.lean": "399bf6b492253773188a625df2c5453600a71137637c0684540704663dc7436f",
+  "lean/ThresholdHC/EntropyTail/Gamma.lean": "3852f51883656cd2f151a8b495310e20253ca264c36c10e45291fa0e147be20e",
+  "lean/ThresholdHC/EntropyTail/Objective.lean": "818e44be2cf3f949536b253b17b9fda74192ad43c00da284e22d090922b10c23",
+  "lean/ThresholdHC/RareAboveTwo/Model.lean": "e73349c6b4297fde20d3b3038e9eda089c60df0af3cab001caf7c58e9b0aa6a7",
+  "lean/ThresholdHC/Tier3/OptimizerModel.lean": "36c085b6409b1355247d5127ab4ee9fdb94e621c1aac8379fb1f119d607cae49",
+  "lean/ThresholdHC/Confidence/Model.lean": "ddcdab8c0b1a735e3b94f10765547458d4d772b19eddf519bc5be125d80eade5",
+  "lean/ThresholdHC/ConfidenceTransfer/CommonPairRate.lean": "41735998aa3a467c230a58ec00087215f4e8dac2aa015e0592a98ae327565ad0",
+  "lean/ThresholdHC/EntropyTailSharp/Specification.lean": "2e131950f38ef4f7ebb1810cb2df99a35e4cd6c3c1092a4377bf5231af02fa8f",
+  "lean/ThresholdHC/EntropyTailSharp/Full.lean": "4025c92ce0e51381ccc80bf9dae7e7c1d7b009c6ce874c4eb8311e1db6328f93",
+  "lean/ThresholdHC/ConfidenceEntropy/Full.lean": "c2dac3b0ade8fde1154bea875ff2efe5fd303021ce356108b7e7580ec462de34",
+  "tools/verify_psi_selection.py": "26d6d2009de8f05b92906cca0ddbb4a376452c6e9feb8846df1b60dff5f8b789",
+  "tools/verify_blind_upper_components.py": "08faf54b212914db25f1c65c8455ab9d918d70e9366a8fef2b7622a6ce5325e7"
+ },
+ "audits": {
+  "psi_selection": {
+   "input": "psi_selection.lean",
+   "log": "psi_selection.log",
+   "exact_statements": 6,
+   "axiom_reports": 10,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "exit_code": 0
+  }
+ }
+}

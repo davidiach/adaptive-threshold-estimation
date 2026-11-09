@@ -372,11 +372,19 @@ read.
   `validate_reports` also reject a `declaration uses 'sorry'` warning. The
   Uniform713 audit and the CriticalEntropy audit use their own exact-type
   paths.
-- **Kernel trust.** No independent kernel replay such as `lean4checker` is
-  run. `#print axioms` cannot see a declaration admitted with
-  `set_option debug.skipKernelTC true`; the textual source scanner, which bans
-  that option, is the only guard against it. Mathlib `.olean` files come from
-  the cache for the pinned revision `9bdd0bc`, with Lean `v4.36.0-rc1`.
+- **Kernel trust.** When this brief was written no independent kernel replay
+  was run. `#print axioms` cannot see a declaration admitted with
+  `set_option debug.skipKernelTC true`, and the textual source scanner, which
+  bans that option, was the only guard against it. Since 9 November 2026 the
+  `lean-all-modules` CI job runs
+  [`verify_project_axioms.py`](../tools/verify_project_axioms.py): it builds
+  every project module, checks the transitive axioms of every constant, not
+  only registered theorems, and replays the project modules behind both
+  halves of the main RMS law through the toolchain's `leanchecker`
+  ([first record](../results/project-axioms-20261109/README.md)). Modules
+  outside that import closure are still not replayed. Mathlib `.olean` files
+  come from the cache for the pinned revision `9bdd0bc`, with Lean
+  `v4.36.0-rc1`.
 - **Locks.** `FROZEN.sha256`, the Tier 3-6 manifests, the 15 specification
   lock files, `HardBudget/SPECIFICATION.sha256`, the Uniform713 targets, the
   Route A lock and `blind_upper_components.json` were all recomputed and match.
@@ -398,7 +406,11 @@ read.
 - **Unlocked definitions.** These carry the main content of Lean-checked rows
   but no lock covers them: [`rareConfidenceRadius`][rareConfidenceRadius],
   [`hardMinimaxRisk`][hardMinimaxRisk], [`hardRareMinimaxRisk`][hardRareMinimaxRisk],
-  `populationPath` and the `ObservableSimulation` bridge. The CriticalEntropy
+  `populationPath` and the `ObservableSimulation` bridge. The same holds for
+  every definition behind the smooth-density, observed-state and
+  stochastic-envelope rows: `SmoothDensity/`, `ObservedState/`,
+  `ContinuousObserved/` and `Envelope/` have no specification file, and their
+  audits restate theorem types by definition name only. The CriticalEntropy
   [`CriticalMinimaxLowerStatement`][CriticalMinimaxLower] lives in a file
   named `Specification.lean` that imports its own proof. Its underlying
   `criticalMinimaxRisk` and `CriticalUniformBudget` are hash-pinned by
@@ -457,7 +469,8 @@ read.
 8. Read `hardMinimaxRisk`, `hardRareMinimaxRisk`, `rareConfidenceRadius` and
    `CriticalMinimaxLowerStatement` directly; no lock fixes them.
 9. If kernel trust matters, rebuild with Lean `v4.36.0-rc1` and Mathlib
-   `9bdd0bc` and replay the environment with `lean4checker`.
+   `9bdd0bc` and replay the environment with `lean4checker`. CI now does
+   this for the main RMS law's modules (section 10); the rest is open.
 
 ## Corrections made while preparing this brief
 

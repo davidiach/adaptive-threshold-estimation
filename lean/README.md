@@ -44,6 +44,7 @@ definitions with the paper for that review.
 | Full entropy-tail law: both halves and five selection-functional properties | [EntropyTail specification](ThresholdHC/EntropyTail/Specification.lean), [Upper](ThresholdHC/EntropyTail/Upper.lean), [Lower](ThresholdHC/EntropyTail/Lower.lean), [Law](ThresholdHC/EntropyTail/Law.lean), [Bridge](ThresholdHC/EntropyTail/Bridge.lean), [HardSelection](ThresholdHC/EntropyTail/HardSelection.lean) | `python tools/verify_entropy_tail.py --sequential --require-complete` |
 | Complete finite-certificate lower proof: weighted signs, annular localization, retained-band packing and finite-prefix limit | [EntropyTailLower](ThresholdHC/EntropyTailLower/), [proof map and scope](../docs/ENTROPY_TAIL_LOWER_PROGRESS.md) | `python tools/verify_entropy_tail_lower_components.py` |
 | Explicit general-law entropy-tail comparison, $10^{-17}\mathcal K\le R\le28000\mathcal K$ and $10^{-17}Q\le R$ | [Specification](ThresholdHC/EntropyTailSharp/Specification.lean), [Full](ThresholdHC/EntropyTailSharp/Full.lean) | `python tools/verify_entropy_tail_sharp.py` |
+| Arbitrary-law $\Psi$ lower bound through the entropy-tail law: $\Psi(B^{-1/2})\le\mathcal K(B)$ for every law, hence $10^{-17}\Psi\le R$ and the same coefficient for the confidence radius | [Specification](ThresholdHC/PsiSelection/Specification.lean), [Comparison](ThresholdHC/PsiSelection/Comparison.lean), [Full](ThresholdHC/PsiSelection/Full.lean), [record](../results/psi-selection-20261109/README.md) | `python tools/verify_psi_selection.py` |
 | Direct finite-law quantile bounds with constants $10^{-20}$ and 30001 | [Full theorem](ThresholdHC/FiniteQuantile/Full.lean), [estimator and converse](ThresholdHC/FiniteQuantile/Operational.lean) | `python tools/verify_finite_quantile.py` |
 | Universal two-sided closed-quantile minimax rate | [ClosedQuantile specification](ThresholdHC/ClosedQuantile/Specification.lean), [Full](ThresholdHC/ClosedQuantile/Full.lean) | `python tools/verify_closed_quantile.py` |
 | Observable entropy-tail and closed-quantile upper theorems ($R\le28000\,\mathcal K$, $R\le30001\,Q$), quantile split and $\mathcal K\le Q\le(1+2\sqrt2)\mathcal K$ | [EntropyTailQuantile specification](ThresholdHC/EntropyTailQuantile/Specification.lean), [UpperTheorem](ThresholdHC/EntropyTailExecution/UpperTheorem.lean), [QuantileComparison](ThresholdHC/EntropyTailQuantile/QuantileComparison.lean) | `python tools/verify_entropy_tail_upper.py` |
@@ -118,6 +119,12 @@ Inspect the applicable frozen manifest and specification/dependency lock first.
 Even a supporting module may be locked by another result. Follow
 [contribution rules](../CONTRIBUTING.md#preserve-reproducibility) for any proposed
 change to frozen material.
+
+Every file under `ThresholdHC/` must compile, whether or not a result audit
+names it. `python tools/verify_project_axioms.py` builds all of them and
+checks the transitive axioms of every constant they declare; CI runs it with a
+kernel replay of the main theorem's modules. A default `lake build` reaches
+only the original root's 33 modules, so do not rely on it for coverage.
 
 Use `--sequential` on the audits that accept it when memory is constrained. Baseline,
 Uniform713, and tier audits write tracked `results/` files, so reproduce those

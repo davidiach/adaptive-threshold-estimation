@@ -1,0 +1,11 @@
+'ThresholdHC.PsiSelection.PsiConfidenceLowerStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PsiSelection.PsiRiskLowerStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PsiSelection.PsiSelectionStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PsiSelection.confidenceScale_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PsiSelection.ofReal_sqrt_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PsiSelection.psi_confidence_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PsiSelection.psi_le_selection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PsiSelection.psi_risk_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PsiSelection.rareObjective_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PsiSelection.rarePsi_le_selection_scale' depends on axioms: [propext, Classical.choice, Quot.sound]
+Verified 6 exact statements and 10 transitive axiom reports

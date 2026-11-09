@@ -58,9 +58,10 @@ The corresponding confidence lower bound replaces $B^{-1/2}$ by
 $\sqrt{\log(1/\delta)/B}$. The proof in \cref{app:localization}
 explicitly imports the single-coin rare-prior Hellinger bound of
 Lee--Valiant~\cite[Corollary 19]{leevaliant}; its bounded-ratio hybrid
-argument is written out. These statistical lower bounds are paper
-proofs with that published external input. The general-law lower proof
-in \cref{sec:matching-lower} does not use that input: it derives the
+argument is written out. That proof is a paper proof with a published
+external input. Lean checks both bounds with $c=10^{-17}$ through
+$\Psi_{\mu,\rho}(B^{-1/2})\le\mathcal K_{\mu,\rho}(B)$; the
+entropy--tail lower proof in \cref{sec:matching-lower} derives the
 null-work consequence of $\Psi$ directly in
 \cref{sec:transfer-foundations}.
 
