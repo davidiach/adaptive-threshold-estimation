@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 # Phase 0 setup for the Lean track.
+#
+# HISTORICAL. This script bootstrapped the original overnight run and is kept
+# for the process record. Do not use it to set up a current checkout: the
+# "next steps" it prints (tools/freeze.py --init, a fresh score) describe that
+# run, and AGENTS.md forbids regenerating a lock. For current setup follow
+# docs/VERIFY.md (Setup): install elan, then run `lake exe cache get` here.
+#
 # Needs network access to github.com, raw.githubusercontent.com and Mathlib's
 # build-cache host. Without the cache, building Mathlib takes hours.
 set -euo pipefail

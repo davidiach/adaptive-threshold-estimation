@@ -224,8 +224,11 @@ $t\le\sqrt\rho/2$, so the elementary objective floor gives
 $K_{\mu,\rho}(N)\ge2\sqrt\rho\,t$. The core term in (A12) is at most
 $K/2$, and $1/M\le\sqrt\rho\,t/8\le K/16$.
 
-The sharper terminal unresolved bound from the tail proof implies
-$u_j\le\Pr(VD\le t_j)$. For $x\in[t_{j+1},t_j)$ this is at most
+The Hoeffding form (2a) of the terminal unresolved bound in the
+[tail proof](ARBITRARY_LAW_TAIL.md), applied at depth $j$, bounds the
+unresolved probability of a coin with gap $d$ by $G_V(t_j/d)$: it is
+$2e^{-d^2/(2t_j^2)}$ when $d>4t_j$ and one otherwise. Integrating over the
+gap gives $u_j\le\Pr(VD\le t_j)$. For $x\in[t_{j+1},t_j)$ this is at most
 $F_{\mu'}(x)$, where $\mu'=\mathcal L(VD/2)$ as in (A3). Consequently
 $$
  F_{\bar\mu}(x)\le\min\{1,128F_{\mu'}(x)+e\},

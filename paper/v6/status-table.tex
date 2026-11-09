@@ -9,7 +9,7 @@ Result & Source\\
 Result & Source\\
 \midrule
 \endhead
-\multicolumn{2}{@{}l}{\emph{Checked in Lean (28 results)}}\\[3pt]
+\multicolumn{2}{@{}l}{\emph{Checked in Lean (29 results)}}\\[3pt]
 Original RMS law in both directions, with coefficients $1/64$ and $512$ and one distribution-blind upper algorithm & \path{Tier6/Full.lean}\newline \path{BlindUpper/Full.lean}\\[2pt]
 Critical minimax law & \path{CriticalEntropy/CriticalMinimax.lean}\newline \path{CriticalUpper/Full.lean}\\[2pt]
 Exact $\Psi$ comparison and counterexample & \path{CriticalPsi/Full.lean}\\[2pt]
@@ -25,6 +25,7 @@ Stopping-program duality and the risk certificates & \path{StoppingProgram/Bellm
 Fixed-cap identification & \path{CapIdentification/Full.lean}\\[2pt]
 Genie limits & \path{Genie/OptimizedConvergence.lean}\newline \path{GenieRate/Full.lean}\\[2pt]
 Entropy--tail coefficients $10^{-17}$ and $28000$ for every known gap law & \path{EntropyTailSharp/Full.lean}\\[2pt]
+Arbitrary-law statistical $\Psi$ lower bound with coefficient $10^{-17}$, through the entropy--tail law & \path{PsiSelection/Full.lean}\\[2pt]
 Separate direct closed-quantile bounds for finite laws, with coefficients $10^{-20}$ and $30001$ & \path{FiniteQuantile/Full.lean}\\[2pt]
 Power-margin rates below exponent two & \path{SubcriticalPower/Full.lean}\newline \path{ShiftedPower/Full.lean}\\[2pt]
 Smooth-density rates & \path{SmoothDensity/Full.lean}\\[2pt]
@@ -34,13 +35,12 @@ General-law confidence coefficients $10^{-17}$ and $750000$ & \path{ConfidencePr
 Matching all-law time-uniform lower bound & \path{AnytimeLower/Full.lean}\newline \path{AnytimeLower/Intervals.lean}\\[2pt]
 Characterization of the sharp quantile factor as the unique root of its scalar equation, over all gap laws and over finite-support laws & \path{QuantileOptimality/Full.lean}\\[2pt]
 Stochastic-envelope extension to unknown gap laws for RMS, confidence and unbiased estimation & \path{Envelope/Minimax.lean}\newline \path{Envelope/Unbiased.lean}\\[2pt]
-Lower-bound localization with coefficient $1/128$ & \path{ConfidenceLocalization/ConfidenceRate.lean}\newline \path{AdditiveConfidence/Full.lean}\newline \path{RMSLocalization/Full.lean}\\[2pt]
+Lower-bound localization with coefficient $1/128$, conditional on a single-coin variance--null-work obstruction & \path{ConfidenceLocalization/ConfidenceRate.lean}\newline \path{AdditiveConfidence/Full.lean}\newline \path{RMSLocalization/Full.lean}\\[2pt]
 Finite-menu cost grouping and the exact optimized value of concrete finite-law menus & \path{BandCostSelection/Counting.lean}\newline \path{GapLawMenus/Full.lean}\\[2pt]
 Oracle-rate adaptation within a supplied finite family of gap laws, including its paid pilot & \path{LawAdaptation/Full.lean}\\[2pt]
 Hard-cap results of \cref{app:hard-budget} & \path{HardBudget/Full.lean}\\[2pt]
 \addlinespace[6pt]
-\multicolumn{2}{@{}l}{\emph{Paper proof only (3 results)}}\\[3pt]
-Arbitrary-law statistical $\Psi$ lower bound & \cref{app:localization}\\[2pt]
+\multicolumn{2}{@{}l}{\emph{Paper proof only (2 results)}}\\[3pt]
 Eventual oracle-rate adaptation over arbitrary unknown gap laws & \cref{sec:arbitrary-law-adaptation}\\[2pt]
 Closed form of $\Psi$ within a factor $\sqrt2$, its distance from the rate, and the power-margin rate uniform in the exponent & \cref{sec:psi-window}\\[2pt]
 \bottomrule

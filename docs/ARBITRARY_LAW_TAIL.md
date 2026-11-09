@@ -82,6 +82,15 @@ $d/2$. Since $\operatorname{Var}(\bar X_N)\le1/(4N)$, Chebyshev bounds its
 probability by $1/(Nd^2)$. For $d<4t$ use the bound one. These observations
 prove (2), including the more convenient upper envelope $\min\{1,16(t/d)^2\}$.
 
+Hoeffding's inequality sharpens the terminal bound. For $d\ge4t$ the same
+event is a deviation of $\bar X_N$ from its mean by at least $d/2$, and
+$Nt^2=1$, so
+$$
+ \Pr_d(Y=1)\le2e^{-Nd^2/2}=2e^{-d^2/(2t^2)}\qquad(d\ge4t).   \tag{2a}
+$$
+Statements (1)–(3) need only the Chebyshev envelope. The
+[oracle-adaptation proof](ARBITRARY_LAW_ADAPTATION.md) uses (2a).
+
 For completeness, the cost bound is
 $$
  \mathbb E_d T\le w_J(d).                                \tag{4}

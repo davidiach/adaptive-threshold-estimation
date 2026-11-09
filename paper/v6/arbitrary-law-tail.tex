@@ -67,6 +67,14 @@ No independence between checks is used. At the terminal check $h_J=2\sqrt N$
 exactly, so $r_J=2t$. If $d\ge4t$, being unresolved forces empirical error
 at least $d/2$. Chebyshev and $\operatorname{Var}(\bar X_N)\le1/(4N)$ bound
 its probability by $1/(Nd^2)$. For $d<4t$ use one. Integrating proves (AT2).
+Hoeffding's inequality sharpens the terminal bound: for $d\ge4t$ the same
+event is a deviation of $\bar X_N$ from its mean by at least $d/2$, and
+$Nt^2=1$, so
+\[
+ \Pr_d(Y=1)\le2e^{-Nd^2/2}=2e^{-d^2/(2t^2)}\qquad(d\ge4t).
+ \tag{AT6a}
+\]
+Only \cref{sec:arbitrary-law-adaptation} uses (AT6a).
 
 We also have $\mathbb E_dT\le w_J(d)$. Indeed,
 $r_k\le3\sqrt{(J-k+2)/n_k}$. If it exists, let $k_0$ be the first check with

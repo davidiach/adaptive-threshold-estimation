@@ -67,6 +67,11 @@ estimate misses that radius with probability at most $1/8$ by the MSE bound.
 The schedule controls the probability that a majority of blocks fail. Its
 total flip cap holds on every execution, including timed-out blocks.
 
+At this allowance the certificate is not yet informative. The radius is
+about $0.152$, more than $\rho/2$, so the reported interval is all of
+$[0,\rho]$. For the same law the radius is about $0.088$ at
+$3\cdot10^7$ flips and $0.048$ at $10^8$ flips.
+
 For a complete cumulative-budget confidence sequence, use
 `threshold_toolkit.known_law_confidence.known_law_ladder(law, coin_factory,
 rho="1/4", delta="1/20", seed=17)` and call `advance_to(total_budget)`.
@@ -77,7 +82,10 @@ fixed absolute floor. The [arbitrary-law adaptation proof](ARBITRARY_LAW_ADAPTAT
 also explains when a learned conservative law, including unresolved mass
 at zero, can replace the exact true law in this construction.
 All median blocks use separate coin namespaces; the driver purchases every
-flip. A vacuous radius returns $[0,\rho]$ without sampling. Widths use the
+flip. A vacuous radius returns $[0,\rho]$ without sampling. For the point
+mass at $1/2$ above, with $\rho=1/4$ and $\delta=1/20$, every stage is
+vacuous until the cumulative allowance reaches $268{,}435{,}452$ flips
+(stage 25, radius about $0.102$). Widths use the
 executable plan's MSE certificate, rather than the noncomputable Lean
 controller's exact constant. The same sampling and oracle assumptions apply.
 

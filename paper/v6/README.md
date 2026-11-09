@@ -1,8 +1,8 @@
 # Consolidated version 6
 
-[Current manuscript](builds/psi-closed-form-20261109.pdf) · [LaTeX sources](main.tex) · [Build record](builds/psi-closed-form-20261109.json) · [Previous build](builds/status-coverage-20261107.pdf)
+[Current manuscript](builds/psi-closed-form-20261109.pdf) · [LaTeX sources](main.tex) · [Build record](builds/psi-closed-form-20261109.json) · [Previous build](builds/psi-lower-bound-20261109.pdf)
 
-The current build adds [§14.8](psi-window.tex), which gives the variational modulus Ψ in closed form and the power-margin rate with constants uniform in the exponent, both as paper proofs, and it revises the presentation: a rewritten abstract, a results overview with a generated status table, a reading guide and notation table, and a grouped table of contents. The [previous build](builds/status-coverage-20261107.pdf) added four results to the generated status paragraphs of the [arbitrary-law adaptation build](builds/arbitrary-law-adaptation-20261106.pdf), which combines the finite-gap menu and status-reconciliation changes with the arbitrary-law tail certificate and full eventual oracle-adaptation paper proof. The [finite-gap menu PDF](builds/gap-law-menus-20261105.pdf) and [status-reconciliation PDF](builds/status-reconciliation-20261105.pdf) retain their respective published source identities.
+Two builds were published from the same base on 9 November 2026. The [closed-form and exposition build](#closed-form-and-exposition-build) adds [§14.8](psi-window.tex), which gives the variational modulus Ψ in closed form and the power-margin rate with constants uniform in the exponent, and revises the presentation: a rewritten abstract, a results overview with a generated status table, a reading guide and notation table, and a grouped table of contents. The [Psi lower bound build](#psi-lower-bound-and-tail-proof-build) records the arbitrary-law Ψ lower bound as Lean-checked and repairs one step of the arbitrary-law tail proof. The sources now combine both, so they are ahead of each PDF. The [earlier build](builds/status-coverage-20261107.pdf) added four results to the generated status paragraphs of the [arbitrary-law adaptation build](builds/arbitrary-law-adaptation-20261106.pdf), which combines the finite-gap menu and status-reconciliation changes with the arbitrary-law tail certificate and full eventual oracle-adaptation paper proof. The [finite-gap menu PDF](builds/gap-law-menus-20261105.pdf) and [status-reconciliation PDF](builds/status-reconciliation-20261105.pdf) retain their respective published source identities.
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -60,8 +60,10 @@ and the existence of a finite-law optimizer that selects
 a suffix in each dyadic band. For arbitrary laws it checks variation and
 rounding stability and the finite-approximation enclosures. It also checks the stopping-program, fixed-cap
 identification and genie results of §15, in the scope stated in §18.
+It also checks the arbitrary-law statistical Ψ lower bound of Appendix A,
+with coefficient $10^{-17}$, as a corollary of the entropy–tail law.
 It also checks the stochastic-envelope extension, lower-bound localization
-with coefficient $1/128$, finite-menu cost grouping and finite-family oracle
+with coefficient $1/128$ conditional on a single-coin obstruction, finite-menu cost grouping and finite-family oracle
 adaptation. The [status table](../../README.md#scope-and-review), generated
 from [status.json](status.json), lists every result the abstract tracks.
 Section 18 states each formal scope and links the fixed source revisions.
@@ -591,8 +593,11 @@ its PDF and the current sources.
 
 ## Closed form of Ψ and the critical window
 
-[§14.8](psi-window.tex) is new mathematics, with paper proofs. It is not
-Lean-checked and has had no independent review. It is published in the
+[§14.8](psi-window.tex) is new mathematics, with paper proofs and no
+independent review. Lean checks one part of it, the inequality
+$\Psi\le\mathcal K$ with the two lower bounds of Corollary 14.10; see the
+[Psi lower bound build](#psi-lower-bound-and-tail-proof-build). The rest is not
+Lean-checked. It was first published in the
 [closed-form and exposition build](#closed-form-and-exposition-build) below.
 
 - **Ψ in closed form.** For every law, $\mathcal Q^0/\sqrt2\le\Psi\le\mathcal Q^0$,
@@ -602,8 +607,8 @@ Lean-checked and has had no independent review. It is published in the
 - **The Ψ lower bound as a corollary.** $\Psi\le\mathcal K$ has a three-line
   proof, so the bounds of Theorem A.5 follow from the statements of the
   entropy–tail law and the confidence theorem, with constant $10^{-17}$, for
-  every $B>0$, and without the Lee–Valiant input. Formalizing that one
-  inequality would let the existing Lean results imply the Ψ lower bound.
+  every $B>0$, and without the Lee–Valiant input. That inequality is now
+  Lean-checked, so the existing Lean results imply the Ψ lower bound.
 - **Distance from the rate.** $\mathcal Q\le\sqrt{2(1+E_\kappa)}\,\Psi$, with
   $E_\kappa$ the entropy of the core's band costs, and a matching lower
   bound when the core term dominates. This says for which laws Ψ gives the
@@ -682,3 +687,35 @@ proof. No Lean source changes, and the Lean proofs were not rebuilt for
 this build.
 
 [Updated manuscript](builds/psi-closed-form-20261109.pdf) · [Build record](builds/psi-closed-form-20261109.json)
+
+## Psi lower bound and tail-proof build
+
+Three things change. None alters a theorem statement.
+
+- **Status of the Ψ lower bound.** [Theorem A.5](appendix-localization.tex),
+  the arbitrary-law statistical Ψ lower bound, is now Lean-checked with
+  coefficient $10^{-17}$ for the RMS risk and the confidence radius. The
+  [Lean proof](../../lean/ThresholdHC/PsiSelection/Full.lean) compares
+  $\Psi_{\mu,\rho}(B^{-1/2})\le\mathcal K_{\mu,\rho}(B)$ by Cauchy–Schwarz and
+  applies the explicit entropy–tail lower bounds, so it needs no Lee–Valiant
+  input. The abstract and verification-boundary paragraphs, generated from
+  [status.json](status.json), the Section 11 remark and the Section 18 row say
+  so. The paper proof in Appendix A is unchanged.
+- **The $1/128$ localization entry.** Both generated paragraphs now call it
+  conditional: each theorem takes a single-coin obstruction as a hypothesis.
+- **A repaired step in Appendix V.** The adaptation proof cited a sharper
+  terminal unresolved bound "from the tail proof", which had only a Chebyshev
+  bound. [Section V.3](arbitrary-law-tail.tex) now states the Hoeffding form
+  (AT6a), and [Section V.4](arbitrary-law-adaptation.tex) cites it.
+
+The PDF has 180 pages. Two independent builds from commit `84d8bfa` have
+identical bytes, all 29 fonts are embedded, there are no unresolved
+references, and the only warning is the inherited overfull line. The engine
+is pdfTeX from TeX Live 2023 with the fixed source date; typesetting the
+previous sources in the same environment reproduced the previous build byte
+for byte. Against that baseline, pages 1, 6, 25, 44, 162, 163 and 168 change
+and the other 173 pages are identical; none is renumbered. Those seven pages
+and page 2 were rendered and inspected. Earlier published PDFs and records
+are unchanged.
+
+[Updated manuscript](builds/psi-lower-bound-20261109.pdf) · [Build record](builds/psi-lower-bound-20261109.json)

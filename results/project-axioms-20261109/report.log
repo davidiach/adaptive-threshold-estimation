@@ -1,0 +1,9 @@
+Built 1129 project modules
+PROJECT_AXIOMS modules=1129
+PROJECT_AXIOMS constants=11406
+PROJECT_AXIOMS theorems=9159
+PROJECT_AXIOMS declared=[]
+PROJECT_AXIOMS used=[propext, Classical.choice, Quot.sound]
+PROJECT_AXIOMS offenders=[]
+Verified 11406 constants (9159 theorems) in 1129 modules: axioms propext, Classical.choice, Quot.sound
+Replayed 204 main-theorem modules through the kernel checker

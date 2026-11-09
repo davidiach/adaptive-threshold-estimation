@@ -4,7 +4,11 @@ These files record particular source checkpoints and experiments. Use
 [docs/RESULTS.md](../docs/RESULTS.md) for current claim scope and
 [docs/VERIFY.md](../docs/VERIFY.md) to reproduce a check. A stored pass applies to
 the sources and targets it audited; it does not establish that a later checkout
-or CI run passes.
+or CI run passes. A record's source hashes describe its own checkpoint, so they
+can differ from the current files after a later proof-only change: the
+[hard-budget record](hard-budget-rms-20261104/README.md), for example, lists
+eight Lean files that were refactored afterwards without changing a
+statement. For the current tree the evidence is the CI run on that commit.
 
 ## Records referenced by the current guides
 
@@ -27,6 +31,8 @@ or CI run passes.
 | Rare-event upper bounds, quantile comparison, stopping program, identification and genie certificates (full rebuild; see the note below) | [rare-event-full-20261031](rare-event-full-20261031/README.md) |
 | Complete entropy-tail lower and two-sided law (cached dependencies; source and artifact hashes recorded) | [entropy-tail-complete-20261101](entropy-tail-complete-20261101/README.md) |
 | Explicit arbitrary-law entropy-tail and quantile lower bounds | [entropy-tail-explicit-20261104](entropy-tail-explicit-20261104/README.md) |
+| Arbitrary-law $\Psi$ lower bound through the entropy-tail law | [psi-selection-20261109](psi-selection-20261109/README.md) |
+| Whole-project build, axiom audit and main-theorem kernel replay | [project-axioms-20261109](project-axioms-20261109/README.md) |
 | Finite-law bandwise-suffix optimizer and sufficient search family | [bandwise-suffix-20261104](bandwise-suffix-20261104/README.md) |
 | Total variation, rounding, transported enclosures and finite approximation | [selection-stability-20261104](selection-stability-20261104/README.md) |
 | Quarter smoothing in both KL directions | [quarter-smoothing-20261104](quarter-smoothing-20261104/README.md) |
@@ -141,7 +147,8 @@ identification, selected-event transfer and the delayed oracle-rate comparison.
 The [22-statement realization audit](law-adaptation-realization-20261105/README.md)
 adds moment determinacy and the complete observable finite-family controller,
 with actual flip accounting, nested compatible intervals and joint all-budget
-coverage and oracle width. Arbitrary-law adaptation remains open.
+coverage and oracle width. Arbitrary-law adaptation has a
+[paper proof](../docs/ARBITRARY_LAW_ADAPTATION.md); Lean checks components of it only.
 
 The [finite arbitrary-law entropy transport audit](arbitrary-law-entropy-20261106/README.md)
 adds 15 exact statements, including the geometric factor-three comparison.

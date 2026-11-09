@@ -272,12 +272,15 @@ class VerificationStatusTests(unittest.TestCase):
     def test_status_change_moves_a_result_in_every_venue(self):
         status = copy.deepcopy(self.status)
         status["results"]["rms-law"]["status"] = "paper"
-        status["results"]["psi-lower-bound"]["status"] = "lean"
+        status["results"]["psi-lower-bound"]["status"] = "paper"
+        status["results"]["arbitrary-law-adaptation"]["status"] = "lean"
         abstract = self.generated(status, "abstract")
         boundary = self.generated(status, "boundary")
         self.assertIn("For the original RMS law in both directions", abstract)
-        self.assertNotIn("the arbitrary-law statistical $\\Psi$ lower bound", abstract)
-        self.assertIn("Lean also checks the arbitrary-law statistical $\\Psi$ lower bound", boundary)
+        self.assertIn("the arbitrary-law statistical $\\Psi$ lower bound", abstract)
+        self.assertNotIn("eventual oracle-rate adaptation", abstract)
+        self.assertIn("For the arbitrary-law statistical $\\Psi$ lower bound", boundary)
+        self.assertIn("Lean also checks arbitrary-law oracle adaptation", boundary)
         self.assertIn("For both directions of the original RMS law", boundary)
         self.assertNotIn("checks both directions of the original RMS law", boundary)
 
@@ -362,7 +365,7 @@ class VerificationStatusTests(unittest.TestCase):
         self.assertIn(f"\\emph{{Checked in Lean ({counts['lean']} results)}}", table)
         self.assertIn(f"({counts['paper']} results)", paper)
         # A paper proof points to the section that holds it; a checked result to its modules.
-        self.assertIn("lower bound & \\cref{app:localization}", paper)
+        self.assertIn("unknown gap laws & \\cref{sec:arbitrary-law-adaptation}", paper)
         self.assertNotIn("\\path{", paper)
         self.assertIn("\\path{Tier6/Full.lean}", checked)
         flipped = copy.deepcopy(self.status)
@@ -459,13 +462,18 @@ class VerificationStatusTests(unittest.TestCase):
         rows = build_v6.verification_rows(tex)
         self.assertIn("Rare-event rates below two", rows)
         self.assertGreaterEqual(len(rows), 18)
-        for key, kind, message in (("rms-law", "paper", "must say paper proof"),
-                                   ("psi-lower-bound", "lean", "cites no Lean source")):
+        for key in ("rms-law", "psi-lower-bound"):
             with self.subTest(key=key):
                 status = copy.deepcopy(self.status)
-                status["results"][key]["status"] = kind
-                with self.assertRaisesRegex(ValueError, message):
+                status["results"][key]["status"] = "paper"
+                with self.assertRaisesRegex(ValueError, "must say paper proof"):
                     build_v6.check_verification_rows(status, tex)
+        # A row that stops citing its Lean source no longer supports a lean status.
+        label = "General statistical $\\Psi$ lower bound"
+        uncited = tex.replace(rows[label], "\nThe bound remains a paper theorem.")
+        self.assertNotEqual(uncited, tex)
+        with self.assertRaisesRegex(ValueError, "cites no Lean source"):
+            build_v6.check_verification_rows(self.status, uncited)
         for key, result in self.status["results"].items():
             if result.get("verification_rows"):
                 with self.subTest(flipped=key):
