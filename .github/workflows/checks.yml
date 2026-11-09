@@ -452,6 +452,22 @@ jobs:
         run: python tools/verify_arbitrary_law_envelope.py
       - name: Verify observable learned-law stages
         run: python tools/verify_arbitrary_law_stage.py
+      - name: Verify countable band entropy transport and canonical Gamma
+        run: python tools/verify_arbitrary_law_countable.py
+      - name: Verify increasing-gap coupling entropy
+        run: python tools/verify_arbitrary_law_coupling.py
+      - name: Verify fractional selection transport
+        run: python tools/verify_arbitrary_law_selection.py
+      - name: Verify CDF-to-coupling construction
+        run: python tools/verify_arbitrary_law_cdf_coupling.py
+      - name: Verify zero-atom selection and CDF comparison
+        run: python tools/verify_arbitrary_law_zero.py
+      - name: Verify dominated-mass entropy-tail comparison
+        run: python tools/verify_arbitrary_law_dominated.py
+      - name: Verify light-contraction product entropy
+        run: python tools/verify_arbitrary_law_light_entropy.py
+      - name: Verify concrete light multiplier and selection comparison
+        run: python tools/verify_arbitrary_law_light.py
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
       - uses: actions/upload-artifact@v4

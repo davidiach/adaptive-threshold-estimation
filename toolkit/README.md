@@ -469,6 +469,11 @@ Neither module is imported by the package itself.
 
 ## Tests
 
+The [budget controller transition contract and audit](../docs/BUDGET_CONTROLLER_TRANSITIONS.md)
+documents cumulative authorization, pause versus timeout, terminal and failed
+states, and rejection of overlapping `advance_to` calls, including callback
+re-entry. It also maps these behaviors to the regression tests.
+
 ```sh
 python -m unittest discover -s toolkit/tests -v
 ```

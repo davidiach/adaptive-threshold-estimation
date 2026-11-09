@@ -1106,11 +1106,22 @@ $C=2^{32}C_*\approx3.5\cdot10^{16}$ and $\rho=1/4$, the width bound is
 below the trivial width $\rho/2$ only beyond about $8\cdot10^{35}$ flips,
 and later for smaller $\rho$. For a point mass at $1/2$ with $\rho=1/4$
 the proof's onset needs pilot depth $29$, a budget above $10^{17}$ flips.
-The [Lean components](ARBITRARY_LAW_FORMALIZATION.md) now have 57 exact
-statements and 55 transitive-axiom reports: finite entropy transport, the finite
+The [Lean components](ARBITRARY_LAW_FORMALIZATION.md) now have 236 exact
+statements and 234 transitive-axiom reports: finite and countable entropy transport, the finite
 CDF envelope including its zero atom, and an observable paid-pilot/selected-
 continuation stage with physical caps and its original-experiment joint law.
-Countable measure transport, the pilot probability event, robust continuation
+The canonical band cells are constructed for every finite increasing-gap
+coupling on positive gaps. Fractional selection transport preserves mass
+and domination and proves `K(new) <= sqrt(3) K(old)`, including infinite
+moments and entropy. The common-uniform coupling is now constructed from
+CDF domination, and the same selection comparison is proved on `[0,1/2]`
+with unresolved mass at zero. The extension agrees exactly with the
+original positive-gap K. The dominated-mass comparison is now proved for
+finite measures, by bounded density restriction and explicit residual control.
+The light random contraction is also proved with coefficient 32, including
+a constructed multiplier with the exact specified CDF, actual product-law
+entropy and residual-tail bounds, and transport of all fractional selections.
+The pilot probability event, robust continuation
 bounds and the full all-budget controller remain to be formalized;
 Python execution and its PRNG also remain outside formal verification.
 An exact path count shows that repeatedly

@@ -163,3 +163,33 @@ adds 17 exact statements and 16 axiom reports: a valid learned probability
 law on every word, fresh continuation labels, physical caps, history readback,
 and the original-experiment joint endpoint law. Statistical instantiation
 and the full all-budget controller remain outside this component.
+
+The [countable entropy-transport audit](arbitrary-law-countable-20261106/README.md)
+adds 16 exact statements and axiom reports. It extends the factor-three bound
+to countably many locally summable destination columns, allows infinite total
+cost and entropy, and identifies the result with canonical Gamma for finite
+gap measures with a supplied band-cell decomposition.
+
+The [increasing-gap coupling and selection audit](arbitrary-law-coupling-20261106/README.md)
+adds 32 exact statements and transitive reports. It constructs canonical
+band cells from a finite increasing coupling on positive gaps, lifts every
+fractional selection, preserves mass and domination, and proves the original
+selection comparison with coefficient sqrt(3), allowing infinite moments
+and entropy. CDF coupling existence and the zero-atom extension remain separate
+at that checkpoint.
+
+The [CDF coupling and zero-atom audit](arbitrary-law-zero-cdf-20261106/README.md)
+adds 47 exact statements and transitive reports. It constructs the common-
+uniform increasing coupling from CDF domination, extends the entropy-tail
+functional to unresolved mass at zero, proves exact agreement with positive-
+gap K, and derives the sqrt(3) comparison from CDF domination on `[0,1/2]`.
+
+The [dominated-mass audit](arbitrary-law-dominated-20261106/README.md)
+adds 22 exact statements and transitive reports for bounded density
+restriction, entropy and tail algebra, residual control, and comparison (A5)
+for finite measures, allowing infinite entropy and preserving the cap.
+
+The [concrete light-contraction audit](arbitrary-law-light-20261106/README.md)
+adds 62 exact statements and transitive reports. It constructs the multiplier
+from a uniform variable, proves its exact CDF, derives product-law entropy
+and residual-tail bounds, and proves the full factor-32 selection comparison.

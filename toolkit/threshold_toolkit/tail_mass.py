@@ -9,8 +9,9 @@ from dataclasses import dataclass
 from fractions import Fraction
 from math import isqrt
 from random import Random
+from threading import Lock
 
-from .budget_ladders import CoinFactory, Exact, _budget, _exact
+from .budget_ladders import CoinFactory, Exact, _budget, _exact, _exclusive_advance
 
 
 def _depth(value: int) -> int:
@@ -43,6 +44,8 @@ class TailMassProbe:
     For a fixed depth, upper covers its small-gap mass simultaneously at all
     cumulative budgets with probability at least 7/8. A lone probe does not
     accept a user-selected failure probability; use run_tail_mass for that.
+    Callback exceptions, including interruption, invalidate the probe.
+    Overlapping advance_to calls, including callback re-entry, are rejected.
     """
 
     def __init__(self, depth: int, coin_factory: CoinFactory, *, seed: int = 0):
@@ -57,7 +60,9 @@ class TailMassProbe:
         self._prefix = self._heads = self._level = 0
         self._coin = None
         self._unresolved = self._failed = False
+        self._advance_lock = Lock()
 
+    @_exclusive_advance
     def advance_to(self, total_budget: int) -> TailProbeState:
         allowance = _budget(total_budget)
         if self._failed:
@@ -89,7 +94,7 @@ class TailMassProbe:
                     self._prefix = self._heads = self._level = 0
                 else:
                     self._level += 1
-        except Exception:
+        except BaseException:
             self._failed = True
             raise
         upper = min(Fraction(1), Fraction(8, self._completed)) if self._completed else Fraction(1)

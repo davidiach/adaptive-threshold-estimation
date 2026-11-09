@@ -920,3 +920,40 @@ Run `python tools/verify_arbitrary_law_stage.py` for 17 exact statements and
 16 transitive reports for observable paid-pilot/selected-continuation stages.
 The [formal scope](ARBITRARY_LAW_FORMALIZATION.md) distinguishes this execution
 component from the unproved statistical instantiation and final controller.
+
+Run `python tools/verify_arbitrary_law_countable.py` for 16 exact statements
+and transitive reports for countable entropy transport and its canonical
+Gamma connection. Individual destination columns must be summable, but the
+full entropy and moment may be infinite. The coupling-to-cell construction
+is outside this component; see the [formal scope](ARBITRARY_LAW_FORMALIZATION.md).
+
+Run `python tools/verify_arbitrary_law_coupling.py` for 19 exact statements
+and transitive axiom reports: measurable canonical band indices, countable
+cell integrals, and the factor-three Gamma comparison for finite increasing
+couplings on positive gaps. Run `python tools/verify_arbitrary_law_selection.py`
+for 13 more: Radon--Nikodym selection lifts, preserved mass and domination,
+residual tail contraction, and the square-root-three comparison of the
+original capped infimum. Neither result assumes a finite inverse moment.
+CDF-to-coupling existence and the zero-atom extension are checked below.
+
+Run `python tools/verify_arbitrary_law_cdf_coupling.py` for 11 exact statements
+and transitive reports proving the common-uniform coupling for bounded
+nonnegative laws. Run `python tools/verify_arbitrary_law_zero.py` for 36 more:
+the zero-atom functional, exact agreement with positive-gap K, entropy and
+selection transport on `[0,1/2]`, and the comparison starting from CDF
+domination. Atoms and infinite inverse moments and entropy are allowed.
+
+The dominated-mass comparison (A5) is checked by
+`python tools/verify_arbitrary_law_dominated.py`: 22 exact statements and
+22 transitive reports. Bounded density restriction transfers fractional
+selections and controls their residuals. For finite measures,
+`lambda <= c eta + e delta_0` gives `K(lambda) <= c K(eta) + e`
+when `c >= 1` and `e >= 0`, retaining infinite entropy and the cap.
+
+Run `python tools/verify_arbitrary_law_light_entropy.py` for 36 exact statements
+and transitive reports: product-reference entropy, explicit numerical budgets,
+two-band product geometry and the factor-1024 entropy bound for actual product
+measure cells. Run `python tools/verify_arbitrary_law_light.py` for 26 more
+exact statements and transitive reports: residual tails, the constructed
+multiplier's exact CDF, and the full capped selection comparison with factor 32.
+The final result imposes no inverse-moment or entropy condition on the input law.
