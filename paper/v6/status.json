@@ -1,5 +1,5 @@
 {
-  "description": "Single source for two v6 passages: the abstract's status paragraph (generated as status-abstract.tex) and the introduction's Verification boundary paragraph. tools/build_v6.py writes both from this file; do not edit those sentences in TeX. Each result has a status, lean or paper, and repository evidence paths for it. An optional summary phrase is used only by tools/build_status_docs.py for the README and results-guide tables. Phrases are written as objects so that the same phrase reads correctly in \"Lean checks ...\" and in \"For ..., the manuscript gives paper proofs only\". When a status changes, also update Section 18 (verification.tex), which keeps the exact formal scopes and fixed source links, and any per-section status remark by hand. Optional verification_rows name Section 18 claim-table rows; the generator requires each to cite a Lean source for a lean status, or to say paper and cite no Lean source for a paper status.",
+  "description": "Single source for three v6 passages: the abstract's status paragraph (generated as status-abstract.tex), the introduction's Verification boundary paragraph, and the status table of Section 1 (generated as status-table.tex). tools/build_v6.py writes all three from this file; do not edit them in TeX. The abstract counts the Lean-checked results and names each paper-proof result by its abstract phrase, or by its boundary phrase if it has none; the boundary paragraph names every result. Each result has a status, lean or paper, and repository evidence paths for it. An optional summary phrase is used only in tables: the manuscript's status table and the README and results-guide tables of tools/build_status_docs.py. For a paper-proof result the status table refers to the first labelled section of each paper/v6 TeX source among its evidence, and to Section 18 if it has none. Phrases are written as objects so that the same phrase reads correctly in \"Lean checks ...\" and in \"For ..., the manuscript gives paper proofs only\". When a status changes, also update Section 18 (verification.tex), which keeps the exact formal scopes and fixed source links, and any per-section status remark by hand. Optional verification_rows name Section 18 claim-table rows; the generator requires each to cite a Lean source for a lean status, or to say paper and cite no Lean source for a paper status.",
   "results": {
     "rms-law": {
       "status": "lean",
@@ -208,7 +208,7 @@
     {"results": ["finite-direct"]},
     {"results": ["power-margins-below-two", "smooth-density", "observed-states", "selected-type-transfer", "known-law-confidence", "time-uniform-lower-bound"]},
     {"results": ["sharp-factor"]},
-    {"text": "A separate exact-arithmetic certificate gives the sharp factor's decimal bracket."},
+    {"text": "A separate exact-arithmetic certificate gives the decimal bracket for $c_*$."},
     {"results": ["stochastic-envelope", "localization-transfers", "finite-law-menus", "finite-family-adaptation"]},
     {"results": ["psi-lower-bound", "arbitrary-law-adaptation"]},
     {"text": "This manuscript records each result's dependencies and verification scope."}

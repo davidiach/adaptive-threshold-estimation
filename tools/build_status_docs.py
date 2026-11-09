@@ -1,10 +1,10 @@
 """Generate the status summaries in README.md and docs/RESULTS.md from status.json.
 
 paper/v6/status.json is the single source for each result's verification
-status: tools/build_v6.py writes the v6 abstract's status paragraph and the
-introduction's verification-boundary paragraph from it. This tool renders the
-same entries as a Markdown table between two marker lines in README.md and in
-docs/RESULTS.md. Each row gives the result's summary phrase, else its abstract
+status: tools/build_v6.py writes the v6 abstract's status paragraph, the
+introduction's verification-boundary paragraph and the manuscript's status
+table from it. This tool renders the same entries, in the same order, as a
+Markdown table between two marker lines in README.md and in docs/RESULTS.md. Each row gives the result's summary phrase, else its abstract
 phrase, else its boundary phrase, then its status and links to its evidence
 paths. The optional summary phrase lets the tables name a result fully when the
 abstract phrase is kept short for the title page. Text outside the markers is
@@ -24,7 +24,8 @@ import re
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from build_v6 import DEST, STATUS, load_status  # noqa: E402
+from build_v6 import (DEST, STATUS, _sentence_case, load_status,  # noqa: E402
+                      ordered_status_keys)
 
 ROOT = Path(__file__).resolve().parents[1]
 TARGETS = (ROOT / "README.md", ROOT / "docs" / "RESULTS.md")
@@ -93,11 +94,6 @@ def latex_to_markdown(phrase: str, document: Path, sources: Path = DEST) -> str:
     return "".join(out)
 
 
-def _sentence_case(text: str) -> str:
-    text = text[4:] if text.startswith("the ") else text
-    return text[:1].upper() + text[1:]
-
-
 def _evidence_label(path: str) -> str:
     parts = Path(path).parts
     if parts[:2] == ("lean", "ThresholdHC"):
@@ -108,14 +104,8 @@ def _evidence_label(path: str) -> str:
 
 
 def ordered_keys(status: dict) -> list[str]:
-    """Results in abstract order, then those that appear only in the boundary."""
-    keys: list[str] = []
-    for venue in ("abstract", "boundary"):
-        for item in status[venue]:
-            for key in item.get("results", []):
-                if key not in keys:
-                    keys.append(key)
-    return keys
+    """Results in the order of the manuscript's status table."""
+    return ordered_status_keys(status)
 
 
 def render(status: dict, document: Path, sources: Path = DEST) -> str:

@@ -7,11 +7,12 @@
 \usepackage{enumitem,needspace,fancyhdr}
 \usepackage[hidelinks]{hyperref}
 \hypersetup{pdftitle={Adaptive Threshold Estimation: Minimax Laws, Unbiased Estimation, and Rare Events},pdfauthor={David Iach; AI-assisted research},pdfsubject={Consolidated version 6: mathematical results and exact formal verification scope}}
-\usepackage[nameinlink,noabbrev]{cleveref}
+\usepackage[nameinlink,noabbrev,capitalise]{cleveref}
 \setlength{\parskip}{3pt}
 \setlength{\parindent}{1.3em}
 \setlength{\emergencystretch}{2em}
 \setcounter{tocdepth}{1}
+\setlength{\LTcapwidth}{\textwidth}
 \pagestyle{fancy}\fancyhf{}
 \fancyhead[L]{\small Adaptive threshold estimation}
 \fancyhead[R]{\small Consolidated research draft, v6}
@@ -57,7 +58,29 @@
 \author{Project lead: David Iach\\\small AI-assisted research and formalization}
 \newcommand{\finiteleanref}[2]{\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/fc61852123b37c723bbb671d0b4ed294d3b6ee06/lean/ThresholdHC/FiniteQuantile/#1}{\textnormal{\texttt{#2}}}}
 \newcommand{\sharpleanref}[2]{\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/8a701c8db6c42930ad2a187f3d895ca55265afd6/lean/ThresholdHC/EntropyTailSharp/#1}{\textnormal{\texttt{#2}}}}
-\date{Version 6 \quad\textbullet\quad 5 November 2026}
+\date{Version 6 \quad\textbullet\quad 9 November 2026}
+% Group headings for the table of contents only. They add no sectioning
+% level, so section, theorem and equation numbers are unchanged.
+\newcommand{\tocgroup}[1]{\addtocontents{toc}{\protect\addvspace{1.1em}%
+  \protect\noindent{\protect\small\protect\scshape #1}\protect\par\protect\nopagebreak}}
+% The article class's section entry, with less space above it so that the
+% grouped contents fit on two pages, and a wider box for the letters M and W.
+\makeatletter
+\renewcommand*\l@section[2]{%
+  \ifnum \c@tocdepth >\z@
+    \addpenalty\@secpenalty
+    \addvspace{0.5em \@plus\p@}%
+    \setlength\@tempdima{1.8em}%
+    \begingroup
+      \parindent \z@ \rightskip \@pnumwidth
+      \parfillskip -\@pnumwidth
+      \leavevmode \bfseries
+      \advance\leftskip\@tempdima
+      \hskip -\leftskip
+      #1\nobreak\hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+    \endgroup
+  \fi}
+\makeatother
 \begin{document}
 \maketitle
 \thispagestyle{plain}
@@ -66,7 +89,10 @@
 \tableofcontents
 \clearpage
 \input{introduction}
+\input{overview}
+\tocgroup{Every sign law: the modulus $\omega_\mu$}
 \input{core}
+\tocgroup{Rare events: a known bound $\theta\le\rho$}
 \input{rare-events}
 \input{all-sizes}
 \input{entropy-tail}
@@ -75,15 +101,18 @@
 \input{rare-related-work}
 \input{rare-discussion}
 \clearpage
+\tocgroup{Verification}
 \input{verification}
 \clearpage
 \appendix
+\tocgroup{Appendices A--C: power margins and the critical quadratic law}
 \input{appendix-localization}
 \clearpage
 \input{appendix-above-two}
 \clearpage
 \input{appendix-critical}
 \clearpage
+\tocgroup{Appendices D--H: proof of the entropy--tail law}
 \input{appendix-entropy-tail-upper}
 \clearpage
 \input{appendix-entropy-tail-lower}
@@ -94,6 +123,7 @@
 \clearpage
 \input{appendix-transfer-foundations}
 \clearpage
+\tocgroup{Appendices I--N: stopping programs and certificates}
 \input{appendix-flow}
 \clearpage
 \input{appendix-dual}
@@ -104,22 +134,27 @@
 \clearpage
 \input{appendix-computation}
 \clearpage
+\tocgroup{Appendices O--P: the closed quantile form}
 \input{finite-proof}
 \clearpage
 \input{appendix-optimal-factor}
 \clearpage
+\tocgroup{Appendices Q--S: observation caps and fixed confidence}
 \input{appendix-cap-rate}
 \clearpage
 \input{appendix-hard-budget}
 \clearpage
 \input{appendix-known-confidence}
 \clearpage
+\tocgroup{Appendices T--U: power margins below exponent two}
 \input{appendix-sublinear-power}
 \clearpage
 \input{appendix-shifted-power}
 \clearpage
+\tocgroup{Appendix V: time-uniform confidence and unknown gap laws}
 \input{appendix-anytime}
 \clearpage
+\tocgroup{Appendices W--Z: smooth densities and observed outer states}
 \input{appendix-smooth-density}
 \clearpage
 \input{appendix-finite-observed}
