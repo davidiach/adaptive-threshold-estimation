@@ -193,6 +193,13 @@
       "abstract": "eventual oracle-rate adaptation over arbitrary unknown gap laws",
       "boundary": "arbitrary-law oracle adaptation after a law-dependent onset"
     },
+    "psi-closed-form": {
+      "status": "paper",
+      "evidence": ["paper/v6/psi-window.tex", "research/2026-11-09-psi-closed-form/README.md"],
+      "summary": "the closed form of $\\Psi$ within a factor $\\sqrt2$, its distance from the rate, and the power-margin rate uniform in the exponent",
+      "abstract": "the closed form of $\\Psi$ with the power-margin rate uniform in the exponent",
+      "boundary": "the closed form of $\\Psi$ and the uniform power-margin rate of \\cref{sec:psi-window}"
+    },
     "time-uniform-lower-bound": {
       "status": "lean",
       "evidence": ["lean/ThresholdHC/AnytimeLower/Full.lean", "lean/ThresholdHC/AnytimeLower/Intervals.lean", "results/anytime-asymptotic-20261105/README.md"],
@@ -210,7 +217,7 @@
     {"results": ["sharp-factor"]},
     {"text": "A separate exact-arithmetic certificate gives the decimal bracket for $c_*$."},
     {"results": ["stochastic-envelope", "localization-transfers", "finite-law-menus", "finite-family-adaptation"]},
-    {"results": ["psi-lower-bound", "arbitrary-law-adaptation"]},
+    {"results": ["psi-lower-bound", "arbitrary-law-adaptation", "psi-closed-form"]},
     {"text": "This manuscript records each result's dependencies and verification scope."}
   ],
   "boundary": [
@@ -224,7 +231,7 @@
     {"results": ["entropy-tail-law", "closed-quantile-law", "sharp-factor", "stopping-program", "identification", "genie", "power-margins-below-two"]},
     {"results": ["hard-cap", "known-law-confidence", "smooth-density", "observed-states", "time-uniform-lower-bound"]},
     {"results": ["stochastic-envelope", "localization-transfers", "finite-law-menus", "finite-family-adaptation"]},
-    {"results": ["psi-lower-bound", "arbitrary-law-adaptation"]},
+    {"results": ["psi-lower-bound", "arbitrary-law-adaptation", "psi-closed-form"]},
     {"text": "Section~\\ref{sec:verification} gives the exact scope and links."}
   ]
 }

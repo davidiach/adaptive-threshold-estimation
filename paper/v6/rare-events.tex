@@ -83,6 +83,11 @@ algorithm. In particular,
  \Psi_{\delta_a,\rho}(h)=\min\{\rho,h\sqrt\rho/a\},\qquad
  \rho\omega_\mu(h/\sqrt\rho)\le\Psi_{\mu,\rho}(h)\le\omega_\mu(h).
 \]
+Proposition~\ref{prop:psi-closed} evaluates $\Psi$ within a factor $\sqrt2$
+for every law: it is the closed quantile functional of \cref{fg:sec:model}
+with the entropy factor removed. Corollary~\ref{cor:psi-from-law} then
+derives the two lower bounds above from the entropy--tail law, with
+constant $10^{-17}$, for every $B>0$ and without the external input.
 
 \subsection{The power-margin regimes}
 Let $\mu_{\alpha,a}$ have distribution function $(d/a)^\alpha$ on
@@ -106,6 +111,8 @@ Here $L=1+\log(1/\rho)$. For the rows below two, $0<a\le1/4$;
 for the row above two, $0<a\le1/2$. Constants may depend on the fixed
 exponent. The quadratic row concerns one normalized law, with universal
 constants; it does not claim a theorem uniform in $\alpha$ near two.
+\Cref{thm:power-uniform} gives one formula, with universal constants, for
+every exponent $0<\alpha\le4$.
 All rows hold for $B\ge1$ and $0<\rho\le1/4$ in their stated domains.
 
 For $0<\alpha<2$, \cref{app:localization} gives full proofs, including
@@ -131,11 +138,12 @@ knows $(\alpha,a,\rho,B)$.
 The matching exact-power lower bound uses the published fixed-gap
 Lee--Valiant theorem through a simulation that keeps a coin's privately
 sampled magnitude fixed on every revisit. Constants diverge as
-$\alpha\downarrow2$. For $0<\rho,\delta\le1/4$, \cref{app:known-confidence}
+$\alpha\downarrow2$; \cref{rem:window} gives their rate of growth. For $0<\rho,\delta\le1/4$, \cref{app:known-confidence}
 bounds both confidence radii for every known positive-gap law within
 universal factors of the entropy--tail functional at budget
 $B/\log(1/\delta)$, and states the critical quadratic rate explicitly. No
-explicit closed-form confidence row above two is derived.
+explicit closed-form confidence row above two is derived there;
+\cref{thm:power-uniform} gives the confidence radii for every exponent.
 
 Both bounds of the row above two are also Lean-checked in the observable
 model, by a different construction:
@@ -172,7 +180,8 @@ derivations, not an additional verification: the corollary follows from
 Theorem~\ref{thm:entropy-tail-law}, and Lean checks
 $10^{-17}\Q\le R_{\mu,\rho}\le30001\,\Q$ for every law, which implies the
 constants of the corollary (see \cref{sec:verification}); the calculation
-above is a paper argument.
+above is a paper argument. \Cref{thm:power-uniform} carries out the same
+calculation with constants that do not depend on $\alpha$.
 \end{remark}
 
 \subsection{The full critical theorem and the correction to \texorpdfstring{$\Psi$}{Psi}}
@@ -275,6 +284,7 @@ claim alone.
 The variational optimizer remains valid. The sharp replacement for
 arbitrary laws, Theorem~\ref{thm:entropy-tail-law}, accounts for the
 additional statistical difficulty across scales through cost entropy.
+\Cref{thm:psi-gap} measures the difference for every law.
 
 \subsection{The formal critical lower bound}
 The formal lower proof starts with the following statistical finite-gap result.

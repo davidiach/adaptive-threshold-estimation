@@ -77,7 +77,12 @@ and upper families uniform over the power-margin envelope. The critical
 law has the separate formal coverage below.\\[5pt]
 General statistical $\Psi$ lower bound &
 The arbitrary-law $\Psi$ lower bound in \cref{app:localization} remains a
-paper theorem; it uses the cited Lee--Valiant input.\\[5pt]
+paper theorem; it uses the cited Lee--Valiant input.
+Corollary~\ref{cor:psi-from-law} gives a second paper derivation, with
+coefficient $10^{-17}$ and for every $B>0$: it combines the statements of
+the entropy--tail and confidence theorems with the inequality
+$\Psi\le\mathcal K$, whose three-line proof is on paper only, and uses no
+external input.\\[5pt]
 Rare-event rate above two &
 \abovetwoleanref{above\_two\_theory} proves both minimax bounds for the
 exact power law with $\alpha>2$, $0<a\le1/2$, $0<\rho\le1/4$ and $B\ge1$,
@@ -558,6 +563,14 @@ verify selected-type transfer, common pairs and RMS and confidence
 localization, including the $10^{-17}$ general-law confidence coefficient.
 
 \paragraph{Paper proofs, open questions and model limits.}
+The results of \cref{sec:psi-window} have paper proofs: the comparison of
+$\Psi$ with the quantile functional, the bound on its distance from the
+rate, and the power-margin rate that is uniform in the exponent. They are
+deterministic consequences of Corollary~\ref{fg:cor:general-laws} and
+\cref{thm:entropy-confidence-explicit}. Their elementary inequalities are
+not Lean-checked, and the floating-point script
+\path{research/2026-11-09-psi-closed-form/check.py} is numerical evidence
+only.
 A separate \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/a3b00cd8962060ca13768e5d3567168105e7ccfd/docs/UNKNOWN_LAW_CONFIDENCE.md}{confidence sequence}
 has a paper proof, not a Lean proof. It shrinks for every positive-gap law
 without using that law, but its proved width depends on the small-gap tail

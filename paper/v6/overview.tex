@@ -98,6 +98,21 @@ Closed quantile form
    from~\eqref{fg:eq:closed-functional}, so $R_{\mu,\rho}\asymp\Q$. The
    factor $c_*\approx1.4626$ cannot be lowered.
  & \cref{fg:thm:direct-main,fg:cor:general-laws,thm:sharp-quantile-factor}; \cref{app:finite-direct}\\[3pt]
+$\Psi$ in closed form
+ & $\Q^0/\sqrt2\le\Psi_{\mu,\rho}(h)\le\Q^0$, where $\Q^0$ is $\Q$ with the
+   cost entropy $\Gamma_\kappa$ replaced by the inverse-square cost
+   $A_\kappa$. Hence $\Psi\le\mathcal K$, and
+   $R_{\mu,\rho}\le C\sqrt{1+E_\kappa}\,\Psi$ with $E_\kappa$ the entropy
+   of the band costs of the quantile core.
+ & \cref{prop:psi-closed,thm:psi-gap}\\[3pt]
+Through the critical exponent
+ & For $F(d)=(d/a)^\alpha$ with $3/2\le\alpha\le3$ and $x=(a\sqrt B)^{-1}$,
+   $R_{\mu,\rho}(B)\asymp\min\bigl\{\rho,\
+   x\sqrt{\rho\,\Phi_\alpha(\rho)[1+\log N_\alpha(\rho)]}\bigr\}$ with
+   constants independent of $\alpha$, for $\Phi_\alpha$ and $N_\alpha$
+   in~\eqref{eq:power-phi-n}. A formula of the same kind holds for
+   $0<\alpha\le4$ and for confidence radii.
+ & \cref{thm:power-uniform}, \cref{cor:critical-window}\\[3pt]
 Stopping programs
  & The cap-$N$ program $P_N$ has an exact four-prior dual, and
    $R_{\mu,\rho}\le P_N\le16R_{\mu,\rho}$ at $N=\lceil4B/3\rceil$.
@@ -271,6 +286,9 @@ $\nu$, $\kappa$ & The mass $\rho$ of smallest gaps and the remaining core
  $\kappa=\mu-\nu$ & \eqref{fg:eq:quantile-split}\\
 $T_h$, $\Q(B)$ & The tail cost $\int\min\{1,h/d\}\,\nu(dd)$ and the closed
  quantile functional & \eqref{fg:eq:closed-functional}\\
+$A_\sigma$, $E_\kappa$, $\Q^0(B)$ & The inverse-square cost
+ $\int d^{-2}\,\sigma(dd)$, the entropy of the band costs of $\kappa$, and
+ $\Q$ with $\Gamma_\kappa$ replaced by $A_\kappa$ & \cref{sec:psi-window}\\
 $c_*$ & The least $c$ with $\Q\le c\,\mathcal K$ for every law, rarity and
  budget & \cref{thm:sharp-quantile-factor}\\
 $P_N(B)$, $G_N(B)$ & The value of the cap-$N$ stopping program, and of

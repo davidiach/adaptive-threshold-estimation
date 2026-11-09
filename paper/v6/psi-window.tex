@@ -1,0 +1,447 @@
+% Hand-written. Displays are tagged, not numbered, so that the equation
+% numbers of the rest of the paper do not move.
+\subsection{The variational modulus in closed form, and the critical window}
+\label{sec:psi-window}
+This subsection compares the variational modulus $\Psi$ of
+\eqref{eq:v5-psi} with the closed quantile functional, and then evaluates
+that functional for power laws with constants that do not depend on the
+exponent. Its arguments are deterministic; the statistical conclusions
+come from Corollary~\ref{fg:cor:general-laws} and
+\cref{thm:entropy-confidence-explicit}.
+
+Fix a probability law $\mu$ on $(0,1/2]$, $0<\rho\le1/4$ and $h>0$, and
+put $B=h^{-2}$. Let $t$, $\nu$, $\kappa$ and $T_h$ be as in
+\cref{fg:sec:comparison}, and write
+$A_\sigma=\int d^{-2}\,\sigma(dd)$ for a measure $\sigma\le\mu$. Since
+$\kappa$ has mass $1-\rho$ and lives on $[t,1/2]$, it occupies finitely
+many bands and $0<A_\kappa<\infty$. Hence
+$\Gamma_\kappa=A_\kappa(1+E_\kappa)$, where
+\[
+ E_\kappa=\Ent\bigl((a_j(\kappa)/A_\kappa)_j\bigr)
+\]
+is the entropy of the normalized band costs of the core. Define
+\begin{align*}
+ \Q^0(B)&=\min\bigl\{\rho,\ T_h+h\sqrt{\rho A_\kappa}\bigr\},\\
+ \mathcal K^0(B)&=\min\Bigl\{\rho,\ \inf_{0\le\sigma\le\mu}
+ \Bigl[h\sqrt{\rho A_\sigma}
+       +\int\min\{1,h/d\}\,(\mu-\sigma)(dd)\Bigr]\Bigr\}.
+ \tag{W1}\label{eq:psi-window-defs}
+\end{align*}
+These are $\Q(B)$ and $\mathcal K(B)$ with the cost entropy $\Gamma_\sigma$
+replaced by the inverse-square cost $A_\sigma$. Because
+$\Gamma_\sigma\ge A_\sigma$, we have $\mathcal K^0\le\mathcal K$ and
+$\Q^0\le\Q$, and the choice $\sigma=\kappa$ gives $\mathcal K^0\le\Q^0$.
+
+\begin{proposition}[$\Psi$ is the quantile form without its entropy]
+\label{prop:psi-closed}
+For every probability law $\mu$ on $(0,1/2]$, every $0<\rho\le1/4$ and
+every $h>0$, with $B=h^{-2}$,
+\[
+ \frac{1}{\sqrt2}\,\Q^0(B)\le\Psi_{\mu,\rho}(h)\le\mathcal K^0(B)\le\Q^0(B).
+ \tag{W2}\label{eq:psi-window-chain}
+\]
+Neither outer constant can be improved. If $h\ge t$ then
+$\Psi_{\mu,\rho}(h)=\Q^0(B)=\rho$. If
+$\mu=\rho\,\delta_{d_1}+(1-\rho)\,\delta_{d_2}$ with
+$d_2=d_1\sqrt{(1-\rho)/\rho}\le1/2$ and $h\le d_1/2$, then
+$\Psi_{\mu,\rho}(h)=\sqrt2\,h\rho/d_1=\Q^0(B)/\sqrt2$.
+\end{proposition}
+
+\begin{proof}
+\emph{Upper bounds.} Let $0\le v\le1$ with $\int v\,d\mu\le\rho$, let
+$0\le\sigma\le\mu$, and put $f=d\sigma/d\mu$. Since $v\le1$, the
+integrand $\min\{v,h\sqrt v/d\}$ is at most $\min\{1,h/d\}$ and at most
+$h\sqrt v/d$. Using the first bound against $1-f$, the second against
+$f$, and the Cauchy--Schwarz inequality,
+\begin{align*}
+ \int\min\{v,h\sqrt v/d\}\,d\mu
+ &\le\int\min\{1,h/d\}\,d(\mu-\sigma)
+   +h\Bigl(\int fv\,d\mu\Bigr)^{1/2}\Bigl(\int fd^{-2}\,d\mu\Bigr)^{1/2}\\
+ &\le\int\min\{1,h/d\}\,d(\mu-\sigma)+h\sqrt{\rho A_\sigma}.
+\end{align*}
+The left side is also at most $\int v\,d\mu\le\rho$. Taking the supremum
+over $v$ and the infimum over $\sigma$ gives
+$\Psi_{\mu,\rho}(h)\le\mathcal K^0(B)$.
+
+\emph{Lower bound.} The function
+$b(c)=\int\min\{1,c^2/d^2\}\,\mu(dd)$ is continuous and nondecreasing in
+$c>0$ by dominated convergence, tends to zero as $c\downarrow0$, and
+equals one at $c=1/2$. Choose $c$ with $b(c)=\rho$. Then
+$v(d)=\min\{1,c^2/d^2\}$ is admissible in \eqref{eq:v5-psi}; let $V$ be
+its objective value, so that $\Psi_{\mu,\rho}(h)\ge V$.
+
+We first show $c<t$. If $c\ge t$, then $\mu((0,c])\ge\mu((0,t])\ge\rho$,
+and $b(c)=\mu((0,c])+c^2\int_{(c,1/2]}d^{-2}\,d\mu=\rho$ forces
+$\mu((c,1/2])=0$. Then $\mu((0,c])=1>\rho$, a contradiction. Hence
+$\nu=\mu$ on $(0,c]$ and $\kappa((0,c])=0$.
+
+If $h\ge c$, the objective integrand equals $v$ at every gap, so
+$V=b(c)=\rho\ge\Q^0(B)$. Suppose $h<c$. Put
+\begin{gather*}
+ F=\mu((0,c]),\qquad C=\int_{(0,c]}\min\{1,h/d\}\,d\mu,\qquad
+ m=\nu((c,t])=\rho-F,\\
+ I_1=\int_{(c,t]}d^{-1}\,d\nu,\qquad I_2=\int_{(c,t]}d^{-2}\,d\nu .
+\end{gather*}
+On $(c,1/2]$ the integrand equals $hc/d^2$, and $\mu=\nu+\kappa$ there,
+so $V=C+hc(I_2+A_\kappa)$. The budget identity $b(c)=\rho$ reads
+$m=c^2(I_2+A_\kappa)$. Therefore
+\[
+ V=C+\frac{hm}{c},\qquad I_2+A_\kappa=\frac{m}{c^2},\qquad
+ C\ge\frac{hF}{c}.
+\]
+The last inequality holds because $\min\{1,h/d\}\ge h/c$ for
+$d\le c$. Moreover $T_h=C+hI_1$ and $I_1\le\sqrt{mI_2}$. By the
+Cauchy--Schwarz inequality for the vectors
+$(\sqrt m,\sqrt{F+m})$ and $(\sqrt{I_2},\sqrt{A_\kappa})$,
+\[
+ T_h+h\sqrt{\rho A_\kappa}
+ \le C+h\bigl[\sqrt{mI_2}+\sqrt{(F+m)A_\kappa}\bigr]
+ \le C+\frac{h}{c}\sqrt{m(F+2m)} .
+\]
+Write $u=F/c$ and $w=m/c$, so that $C\ge hu$ and $V=C+hw$. Then
+\[
+ \bigl[(\sqrt2-1)u+\sqrt2\,w\bigr]^2
+ =(3-2\sqrt2)u^2+(4-2\sqrt2)uw+2w^2\ge uw+2w^2 ,
+\]
+that is, $\sqrt{w(u+2w)}\le(\sqrt2-1)u+\sqrt2\,w$. Consequently
+\[
+ T_h+h\sqrt{\rho A_\kappa}\le C+(\sqrt2-1)hu+\sqrt2\,hw
+ \le\sqrt2\,(C+hw)=\sqrt2\,V .
+\]
+In both cases $\Q^0(B)\le\sqrt2\,V\le\sqrt2\,\Psi_{\mu,\rho}(h)$.
+
+\emph{Sharpness.} If $h\ge t$, then $T_h=\rho$, so $\Q^0(B)=\rho$. Also
+$h>c$, so the first case above gives $\Psi_{\mu,\rho}(h)\ge V=\rho$, and
+$\Psi_{\mu,\rho}(h)\le\rho$ always. For the two-atom law, $d_1<d_2$, so
+$\nu=\rho\,\delta_{d_1}$, $\kappa=(1-\rho)\,\delta_{d_2}$ and
+$A_\kappa=\rho/d_1^2$; hence $\Q^0(B)=\min\{\rho,2h\rho/d_1\}=2h\rho/d_1$.
+For any admissible $v$, the Cauchy--Schwarz inequality gives
+\[
+ \int\min\{v,h\sqrt v/d\}\,d\mu
+ \le h\Bigl(\int v\,d\mu\Bigr)^{1/2}
+      \Bigl(\frac{\rho}{d_1^2}+\frac{1-\rho}{d_2^2}\Bigr)^{1/2}
+ \le\frac{\sqrt2\,h\rho}{d_1},
+\]
+and the lower bound just proved gives the reverse inequality.
+\end{proof}
+
+The proposition places $\Psi$ inside the framework of \cref{sec:entropy-tail}:
+within a factor $\sqrt2$, it is the selection functional in which a
+selected submeasure pays its inverse-square cost $A_\sigma$. The true rate
+replaces $A_\sigma$ by $\Gamma_\sigma=A_\sigma(1+\Ent)$. Two consequences
+follow at once.
+
+\begin{corollary}[The $\Psi$ lower bound from the entropy--tail law]
+\label{cor:psi-from-law}
+For every probability law $\mu$ on $(0,1/2]$, every $0<\rho\le1/4$, every
+$B>0$ and every $0<\delta\le1/4$,
+\[
+ \Psi_{\mu,\rho}(B^{-1/2})\le\mathcal K_{\mu,\rho}(B)\le\Q(B),
+\]
+and therefore
+\[
+ R_{\mu,\rho}(B)\ge10^{-17}\,\Psi_{\mu,\rho}(B^{-1/2}),\qquad
+ r_{\rm exp}(B,\delta)\ge10^{-17}\,
+ \Psi_{\mu,\rho}\Bigl(\sqrt{\log(1/\delta)/B}\Bigr).
+ \tag{W3}\label{eq:psi-window-lower}
+\]
+\end{corollary}
+
+\begin{proof}
+The first display is \eqref{eq:psi-window-chain} with
+$\mathcal K^0\le\mathcal K\le\Q$. The risk bound then follows from the
+lower half of \eqref{eq:explicit-main-constants}. For the radius, apply
+\cref{thm:entropy-confidence-explicit} at $\beta=B/\log(1/\delta)$ and use
+$\Psi_{\mu,\rho}(\beta^{-1/2})\le\Q(\beta)$.
+\end{proof}
+
+The bounds \eqref{eq:psi-window-lower} are those of
+Theorem~\ref{loc:thm:PsiLower}, now with an explicit constant and for
+every $B>0$. This derivation uses neither the published single-coin
+input of Lemma~\ref{loc:lem:LV} nor the hybrid argument of
+\cref{app:localization}: it needs only the statements of the two cited
+theorems and the inequality $\Psi\le\mathcal K$. For the risk alone,
+\eqref{eq:psi-budget-lower} gives the better constant $1/8192$.
+
+\begin{theorem}[How far $\Psi$ is from the rate]\label{thm:psi-gap}
+For every probability law $\mu$ on $(0,1/2]$, every $0<\rho\le1/4$ and
+every $B>0$, with $h=B^{-1/2}$,
+\[
+ \Psi_{\mu,\rho}(h)\le\mathcal K(B)\le\Q(B)
+ \le\sqrt{1+E_\kappa}\;\Q^0(B)
+ \le\sqrt{2(1+E_\kappa)}\;\Psi_{\mu,\rho}(h).
+ \tag{W4}\label{eq:psi-window-gap}
+\]
+Consequently
+\[
+ 10^{-17}\,\Psi_{\mu,\rho}(h)\le R_{\mu,\rho}(B)
+ \le33000\sqrt{2(1+E_\kappa)}\;\Psi_{\mu,\rho}(h).
+\]
+If moreover $T_h\le h\sqrt{\rho A_\kappa}$ and
+$T_h+h\sqrt{\rho\Gamma_\kappa}\le\rho$, then
+$\Q(B)\ge\tfrac12\sqrt{1+E_\kappa}\,\Q^0(B)$, and so
+\[
+ R_{\mu,\rho}(B)\ge\frac{10^{-17}}{2(1+2\sqrt2)}
+ \sqrt{1+E_\kappa}\;\Psi_{\mu,\rho}(h).
+\]
+The entropy satisfies $E_\kappa\le\log n_\kappa\le\log\log_2(1/t)$, where
+$n_\kappa$ is the number of bands that $\kappa$ occupies.
+\end{theorem}
+
+\begin{proof}
+The first two inequalities of \eqref{eq:psi-window-gap} are
+Corollary~\ref{cor:psi-from-law}. For the third,
+$T_h+h\sqrt{\rho A_\kappa(1+E_\kappa)}
+ \le\sqrt{1+E_\kappa}\,(T_h+h\sqrt{\rho A_\kappa})$, and
+$\min\{\rho,sx\}\le s\min\{\rho,x\}$ for $s\ge1$. The fourth is
+\eqref{eq:psi-window-chain}. The risk bounds combine these with
+\eqref{eq:explicit-main-constants}.
+
+Under the two additional hypotheses,
+$\Q(B)=T_h+h\sqrt{\rho A_\kappa(1+E_\kappa)}
+ \ge\tfrac12\sqrt{1+E_\kappa}\,(T_h+h\sqrt{\rho A_\kappa})
+ \ge\tfrac12\sqrt{1+E_\kappa}\,\Q^0(B)$,
+and $\Q^0\ge\Psi$. Apply the lower bound of
+Corollary~\ref{fg:cor:general-laws}.
+
+An entropy is at most the logarithm of the size of its support. The bands
+meeting $[t,1/2]$ are $I_0,\ldots,I_{j_0}$ with $t\in I_{j_0}$, and
+$t\le b_{j_0}=2^{-(j_0+1)}$ gives $j_0+1\le\log_2(1/t)$.
+\end{proof}
+
+Thus $\Psi$ gives the rate, up to universal constants, on every family of
+laws, rarities and budgets along which the core entropy $E_\kappa$ stays
+bounded, for instance whenever the quantile core occupies a bounded
+number of bands. When the core term dominates and the cap is inactive,
+$\Psi$ falls short by a factor within universal constants of
+$\sqrt{1+E_\kappa}$. For the
+quadratic law of \cref{thm:v5-critical} the core occupies order $L$ bands
+of comparable cost, so $1+E_\kappa\asymp1+\log L$; this is the factor by
+which that theorem exceeds $\Psi$.
+
+\subsubsection{Power laws, uniformly in the exponent}
+Let $\mu_{\alpha,a}$ have distribution function $(d/a)^\alpha$ on $(0,a]$,
+with $0<\alpha\le4$ and $0<a\le1/2$. For $0<\rho<1$ write
+$s_\rho=\rho^{1/\alpha}$. The quantile is $t=as_\rho$, there are no atoms,
+$\nu=\mu|_{(0,t]}$ and $\kappa=\mu|_{(t,a]}$. Define
+\begin{align*}
+ \Phi_\alpha(\rho)&=\alpha\int_{s_\rho}^1s^{\alpha-3}\,ds
+ =\begin{cases}
+   \dfrac{\alpha\,(1-\rho^{1-2/\alpha})}{\alpha-2},&\alpha\ne2,\\[1.5ex]
+   \log(1/\rho),&\alpha=2,
+  \end{cases}\\
+ N_\alpha(\rho)&=\min\Bigl\{1+\frac{\log_2(1/\rho)}{\alpha},\
+ \max\Bigl\{1,\frac1{|\alpha-2|}\Bigr\}\Bigr\},
+ \tag{W5}\label{eq:power-phi-n}
+\end{align*}
+with $1/0=\infty$, so that $N_2(\rho)=1+\tfrac12\log_2(1/\rho)$. The
+function $\Phi_\alpha$ is continuous in $\alpha$. The number $N_\alpha(\rho)$
+counts the dyadic scales of the core that carry comparable cost: all of
+them when $|\alpha-2|\log(1/\rho)$ is small, and about $1/|\alpha-2|$ of
+them otherwise.
+
+\begin{lemma}[The quantile core of a power law]\label{lem:power-core}
+For $0<\alpha\le4$, $0<a\le1/2$ and $0<\rho<1$,
+\[
+ a^2A_\kappa=\Phi_\alpha(\rho),\qquad
+ \tfrac12\bigl[1+\log N_\alpha(\rho)\bigr]\le1+E_\kappa
+ \le3.83\bigl[1+\log N_\alpha(\rho)\bigr].
+ \tag{W6}
+\]
+\end{lemma}
+
+\begin{proof}
+The substitution $d=as$ gives
+$A_\kappa=\alpha a^{-\alpha}\int_t^ad^{\alpha-3}\,dd=a^{-2}\Phi_\alpha(\rho)$.
+
+Parametrize the core by $y=\log_2(a/d)\in[0,M)$, where
+$M=\log_2(1/s_\rho)=\log_2(1/\rho)/\alpha$. The cost measure
+$d^{-2}\kappa(dd)$ becomes
+$\alpha(\log2)a^{-2}\,2^{-ey}\,dy$ with $e=\alpha-2\in(-2,2]$, and the
+band $I_j$ becomes the unit interval
+$[j+1+\log_2a,\ j+2+\log_2a)$. Hence $E_\kappa$ is the entropy of the
+partition of $[0,M)$ into these unit cells under the probability measure
+$P$ whose density is proportional to $2^{-ey}$. Write $p_k$ for the cell
+probabilities.
+
+\emph{Upper bound.} At most $\lceil M\rceil+1\le M+2$ cells meet
+$[0,M)$, so $E_\kappa\le\log(M+2)\le\log2+\log(1+M)$. Now let $e\ne0$.
+Replacing $y$ by $M-y$ if $e<0$, we may assume that $P$ has density
+proportional to $2^{-|e|y}$ on $[0,M]$; the cells remain unit intervals.
+Number them $k=0,1,2,\ldots$ in increasing order of $y$. Cell $k\ge1$
+lies in $[k-1,\infty)$, and
+$P([s,\infty))=(2^{-|e|s}-2^{-|e|M})/(1-2^{-|e|M})\le\theta^s$ for
+$0\le s\le M$, where $\theta=2^{-|e|}\in[1/4,1)$. Therefore
+$\sum_kkp_k=\sum_{k\ge1}P(\text{cells }k,k+1,\ldots)
+ \le\sum_{k\ge1}\theta^{k-1}=1/(1-\theta)$.
+Gibbs' inequality with the reference probabilities $(1-\theta)\theta^k$
+gives
+\[
+ E_\kappa\le\log\frac1{1-\theta}+\log\frac1\theta\sum_kkp_k
+ \le\log\frac1{1-\theta}+\frac{\log(1/\theta)}{1-\theta}.
+\]
+The last fraction decreases in $\theta$, so it is at most
+$\tfrac43\log4<1.849$. Concavity of $z\mapsto1-2^{-z}$ on $[0,2]$ gives
+$1-\theta\ge\tfrac38|e|$, so
+$E_\kappa<\log\tfrac83+1.849+\log(1/|e|)<2.83+\log(1/|e|)$, and
+$E_\kappa<2.83$ if $|e|\ge1$.
+Together,
+\[
+ 1+E_\kappa\le\min\bigl\{1+\log2+\log(1+M),\
+ 3.83+\log\max\{1,1/|e|\}\bigr\}\le3.83\,[1+\log N_\alpha(\rho)] .
+\]
+
+\emph{Lower bound.} An entropy is at least $\log(1/\max_kp_k)$. A cell
+has length at most one, so $\max_kp_k$ is at most the supremum of the
+density of $P$, which is $M^{-1}\zeta/(1-e^{-\zeta})$ with
+$\zeta=|e|M\log2$, and $M^{-1}$ if $e=0$. Since
+$\zeta/(1-e^{-\zeta})\le1+\zeta$,
+\[
+ \max_kp_k\le\min\Bigl\{1,\frac1M+|e|\log2\Bigr\}
+ \le\min\Bigl\{1,\frac{1+\log2}{z}\Bigr\},\qquad
+ z=\min\{M,1/|e|\}.
+\]
+Hence $1+E_\kappa\ge1+\log\max\{1,z/(1+\log2)\}$. The right side is at
+least $\tfrac12[1+\log(1+z)]$: for $z\le1+\log2$ this reads
+$1\ge\tfrac12[1+\log(2+\log2)]$, and for $z\ge1+\log2$ it follows from
+$\log(1+z)\le\log z+\log\bigl(1+1/(1+\log2)\bigr)$ and $\log z\ge0.52$.
+Finally $N_\alpha(\rho)\le1+z$.
+\end{proof}
+
+For $0<x<s_\rho$ put
+\[
+ T_\alpha(x,\rho)=x^\alpha+\alpha x\int_x^{s_\rho}s^{\alpha-2}\,ds,
+ \qquad
+ Y_\alpha(x,\rho)=x\sqrt{\rho\,\Phi_\alpha(\rho)\,[1+\log N_\alpha(\rho)]},
+\]
+and define
+\[
+ \mathcal R_\alpha(x,\rho)=
+ \begin{cases}
+  \min\{\rho,\ T_\alpha(x,\rho)+Y_\alpha(x,\rho)\},&0<x<s_\rho,\\
+  \rho,&x\ge s_\rho .
+ \end{cases}
+ \tag{W7}\label{eq:power-uniform-rate}
+\]
+
+\begin{theorem}[Power margins, uniformly in the exponent]
+\label{thm:power-uniform}
+Let $0<\alpha\le4$, $0<a\le1/2$, $0<\rho\le1/4$ and $B>0$, and put
+$x=(a\sqrt B)^{-1}$. For the law $\mu_{\alpha,a}$,
+\[
+ \frac1{\sqrt2}\,\mathcal R_\alpha(x,\rho)\le\Q(B)
+ \le2\,\mathcal R_\alpha(x,\rho),
+ \qquad
+ 10^{-18}\,\mathcal R_\alpha(x,\rho)\le R_{\mu_{\alpha,a},\rho}(B)
+ \le66000\,\mathcal R_\alpha(x,\rho).
+ \tag{W8}\label{eq:power-uniform}
+\]
+For $0<\delta\le1/4$ and $x_\delta=a^{-1}\sqrt{\log(1/\delta)/B}$, the
+confidence radii of \cref{app:known-confidence} satisfy
+\[
+ 10^{-18}\,\mathcal R_\alpha(x_\delta,\rho)\le r_{\rm exp}(B,\delta)
+ \le r_{\rm hard}(B,\delta)
+ \le1.5\cdot10^{6}\,\mathcal R_\alpha(x_\delta,\rho).
+\]
+The constants do not depend on $\alpha$, $a$, $\rho$, $B$ or $\delta$.
+\end{theorem}
+
+\begin{proof}
+Let $h=B^{-1/2}=ax$. If $x\ge s_\rho$ then $h\ge t$ and
+$\Q(B)=\rho=\mathcal R_\alpha(x,\rho)$. If $x<s_\rho$, the substitution
+$d=as$ gives
+$T_h=\mu((0,h])+h\int_{(h,t]}d^{-1}\,\mu(dd)=T_\alpha(x,\rho)$, and
+Lemma~\ref{lem:power-core} gives
+$h\sqrt{\rho\Gamma_\kappa}=x\sqrt{\rho\,\Phi_\alpha(\rho)(1+E_\kappa)}$
+with $1/\sqrt2\le\sqrt{(1+E_\kappa)/(1+\log N_\alpha(\rho))}\le\sqrt{3.83}<2$.
+This proves the bounds on $\Q(B)$. The risk bounds follow from
+Corollary~\ref{fg:cor:general-laws}, since
+$10^{-17}/[(1+2\sqrt2)\sqrt2]>10^{-18}$. For the radii, apply
+\cref{thm:entropy-confidence-explicit} with
+$\mathcal K(\beta)\le\Q(\beta)$ at $\beta=B/\log(1/\delta)$, for which
+$(a\sqrt\beta)^{-1}=x_\delta$.
+\end{proof}
+
+\begin{corollary}[The critical window]\label{cor:critical-window}
+Let $3/2\le\alpha\le3$, with the other parameters as in
+\cref{thm:power-uniform}, and write $Y=Y_\alpha(x,\rho)$. Then
+$\min\{\rho,Y\}\le\mathcal R_\alpha(x,\rho)\le5.13\min\{\rho,Y\}$, and
+therefore
+\[
+ 10^{-18}\min\{\rho,Y\}\le R_{\mu_{\alpha,a},\rho}(B)
+ \le3.4\cdot10^{5}\min\{\rho,Y\},
+ \qquad
+ Y=\frac{\sqrt{\rho\,\Phi_\alpha(\rho)\,[1+\log N_\alpha(\rho)]}}{a\sqrt B}.
+ \tag{W9}\label{eq:psi-window-critical}
+\]
+Moreover
+$\tfrac1{\sqrt2}\min\{\rho,Y^0\}\le\Psi_{\mu,\rho}(B^{-1/2})
+ \le5.13\min\{\rho,Y^0\}$ with
+$Y^0=x\sqrt{\rho\,\Phi_\alpha(\rho)}$. In particular, whenever $Y\le\rho$,
+the ratio $R_{\mu_{\alpha,a},\rho}(B)/\Psi_{\mu,\rho}(B^{-1/2})$ is
+within universal constants of $\sqrt{1+\log N_\alpha(\rho)}$.
+\end{corollary}
+
+\begin{proof}
+For $\alpha>1$ and $x<s_\rho$,
+$T_\alpha(x,\rho)=x[\alpha s_\rho^{\alpha-1}-x^{\alpha-1}]/(\alpha-1)
+ \le\frac{\alpha}{\alpha-1}\,x\rho^{1-1/\alpha}$, and
+$\alpha/(\alpha-1)\le3$ for $\alpha\ge3/2$, $\le2$ for $\alpha\ge2$.
+
+If $3/2\le\alpha\le2$, then $s_\rho\le1/2$, and since $s^{\alpha-3}$
+decreases,
+$\Phi_\alpha(\rho)\ge\alpha\int_{s_\rho}^{2s_\rho}s^{\alpha-3}\,ds
+ \ge\alpha2^{\alpha-3}\rho^{1-2/\alpha}\ge0.53\,\rho^{1-2/\alpha}$.
+Hence $\sqrt{\rho\Phi_\alpha(\rho)}\ge0.728\,\rho^{1-1/\alpha}$. If
+$2\le\alpha\le3$, then $s^{\alpha-3}\ge1$ on $(0,1]$, so
+$\Phi_\alpha(\rho)\ge\alpha(1-s_\rho)\ge2(1-4^{-1/3})>0.74$ and
+$\sqrt{\rho\Phi_\alpha(\rho)}\ge0.86\sqrt\rho\ge0.86\,\rho^{1-1/\alpha}$.
+In both cases $T_\alpha(x,\rho)\le4.13\,Y^0\le4.13\,Y$ for $x<s_\rho$,
+which gives $\min\{\rho,Y\}\le\mathcal R_\alpha\le5.13\min\{\rho,Y\}$ there.
+For $x\ge s_\rho$ the same lower bounds give
+$Y\ge Y^0\ge s_\rho\sqrt{\rho\Phi_\alpha(\rho)}\ge0.728\,\rho$, using
+$\rho^{1/\alpha+1/2}\ge\rho$ when $\alpha\ge2$; hence
+$\mathcal R_\alpha=\rho\le1.38\min\{\rho,Y\}$. The risk bounds follow
+from \cref{thm:power-uniform}.
+
+The same argument with $E_\kappa$ deleted gives
+$\min\{\rho,Y^0\}\le\Q^0(B)\le5.13\min\{\rho,Y^0\}$, and
+Proposition~\ref{prop:psi-closed} transfers this to $\Psi$. If $Y\le\rho$
+then also $Y^0\le\rho$, and $Y/Y^0=\sqrt{1+\log N_\alpha(\rho)}$.
+\end{proof}
+
+\begin{remark}[Reading the uniform rate]\label{rem:window}
+At $\alpha=2$ and $a=1/4$, \eqref{eq:psi-window-critical} is the rate of
+\cref{thm:v5-critical}: $\Phi_2(\rho)=\log(1/\rho)$ and
+$N_2(\rho)=1+\tfrac12\log_2(1/\rho)$ are within universal factors of $L$.
+
+Away from two the formula gives the rows of \cref{sec:rare} together
+with the dependence of their constants on the exponent. Put
+$u=|1-2/\alpha|\log(1/\rho)$ and suppose $u\ge1$, with
+$3/2\le\alpha\le3$ and $\alpha\ne2$. Then
+$N_\alpha(\rho)=1/|\alpha-2|$, and $\Phi_\alpha(\rho)$ lies between
+$1-e^{-1}$ and $1$ times $\alpha/(\alpha-2)$ for $\alpha>2$, and times
+$\alpha\rho^{1-2/\alpha}/(2-\alpha)$ for $\alpha<2$. Hence, with
+$\epsilon=|\alpha-2|$,
+\[
+ R_{\mu_{\alpha,a},\rho}(B)\asymp
+ \min\Bigl\{\rho,\ x\,\rho^{\min\{1/2,\,1-1/\alpha\}}
+ \sqrt{\frac{1+\log(1/\epsilon)}{\epsilon}}\Bigr\}
+\]
+with universal constants. The constants of the fixed-exponent rows
+therefore grow like $\sqrt{\log(1/\epsilon)/\epsilon}$ as the exponent
+approaches two, and they stop growing once $\epsilon\log(1/\rho)\le1$:
+at rarity $\rho$ the exponents within $1/\log(1/\rho)$ of two behave like
+the quadratic law, with $\Phi_\alpha(\rho)$ and $N_\alpha(\rho)$ both of
+order $\log(1/\rho)$.
+\end{remark}
+
+\paragraph{Status.}
+The statements of this subsection have paper proofs. They use
+Corollary~\ref{fg:cor:general-laws} and
+\cref{thm:entropy-confidence-explicit}, whose scopes are recorded in
+\cref{sec:verification}, and elementary inequalities that have not been
+formalized. The floating-point script
+\path{research/2026-11-09-psi-closed-form/check.py} tests every inequality
+and constant above on random finite laws and on a grid of power laws; it
+is numerical evidence only.
