@@ -1,8 +1,8 @@
 # Consolidated version 6
 
-[Current manuscript](builds/status-coverage-20261107.pdf) · [LaTeX sources](main.tex) · [Build record](builds/status-coverage-20261107.json) · [Previous build](builds/arbitrary-law-adaptation-20261106.pdf)
+[Current manuscript](builds/psi-lower-bound-20261109.pdf) · [LaTeX sources](main.tex) · [Build record](builds/psi-lower-bound-20261109.json) · [Previous build](builds/status-coverage-20261107.pdf)
 
-The current build adds four results to the generated status paragraphs of the [previous build](builds/arbitrary-law-adaptation-20261106.pdf), which combines the finite-gap menu and status-reconciliation changes with the arbitrary-law tail certificate and full eventual oracle-adaptation paper proof. The [finite-gap menu PDF](builds/gap-law-menus-20261105.pdf) and [status-reconciliation PDF](builds/status-reconciliation-20261105.pdf) retain their respective published source identities.
+The current build records the arbitrary-law Ψ lower bound as Lean-checked and repairs one step of the arbitrary-law tail proof; see the [last section](#psi-lower-bound-and-tail-proof-build). The [previous build](builds/status-coverage-20261107.pdf) added four results to the generated status paragraphs of the [arbitrary-law adaptation build](builds/arbitrary-law-adaptation-20261106.pdf), which combines the finite-gap menu and status-reconciliation changes with the arbitrary-law tail certificate and full eventual oracle-adaptation paper proof. The [finite-gap menu PDF](builds/gap-law-menus-20261105.pdf) and [status-reconciliation PDF](builds/status-reconciliation-20261105.pdf) retain their respective published source identities.
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -577,3 +577,35 @@ abstract's last sentence or the provenance note leaves page 1, and
 its PDF and the current sources.
 
 [Updated manuscript](builds/status-coverage-20261107.pdf) · [Build record](builds/status-coverage-20261107.json)
+
+## Psi lower bound and tail-proof build
+
+Three things change. None alters a theorem statement.
+
+- **Status of the Ψ lower bound.** [Theorem A.5](appendix-localization.tex),
+  the arbitrary-law statistical Ψ lower bound, is now Lean-checked with
+  coefficient $10^{-17}$ for the RMS risk and the confidence radius. The
+  [Lean proof](../../lean/ThresholdHC/PsiSelection/Full.lean) compares
+  $\Psi_{\mu,\rho}(B^{-1/2})\le\mathcal K_{\mu,\rho}(B)$ by Cauchy–Schwarz and
+  applies the explicit entropy–tail lower bounds, so it needs no Lee–Valiant
+  input. The abstract and verification-boundary paragraphs, generated from
+  [status.json](status.json), the Section 11 remark and the Section 18 row say
+  so. The paper proof in Appendix A is unchanged.
+- **The $1/128$ localization entry.** Both generated paragraphs now call it
+  conditional: each theorem takes a single-coin obstruction as a hypothesis.
+- **A repaired step in Appendix V.** The adaptation proof cited a sharper
+  terminal unresolved bound "from the tail proof", which had only a Chebyshev
+  bound. [Section V.3](arbitrary-law-tail.tex) now states the Hoeffding form
+  (AT6a), and [Section V.4](arbitrary-law-adaptation.tex) cites it.
+
+The PDF has 180 pages. Two independent builds from commit `84d8bfa` have
+identical bytes, all 29 fonts are embedded, there are no unresolved
+references, and the only warning is the inherited overfull line. The engine
+is pdfTeX from TeX Live 2023 with the fixed source date; typesetting the
+previous sources in the same environment reproduced the previous build byte
+for byte. Against that baseline, pages 1, 6, 25, 44, 162, 163 and 168 change
+and the other 173 pages are identical; none is renumbered. Those seven pages
+and page 2 were rendered and inspected. Earlier published PDFs and records
+are unchanged.
+
+[Updated manuscript](builds/psi-lower-bound-20261109.pdf) · [Build record](builds/psi-lower-bound-20261109.json)
