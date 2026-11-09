@@ -1,4 +1,9 @@
-"""Build the direct finite-law proof components and check their transitive axioms."""
+"""Build the direct finite-law proof components and check their transitive axioms.
+
+The exact statements are the `example` declarations in the committed audit
+file, so that file is pinned by hash: an edit that drops or weakens one of
+them fails here instead of leaving only the axiom reports to pass.
+"""
 import argparse
 import hashlib
 from pathlib import Path
@@ -12,11 +17,20 @@ SOURCE = LEAN / "ThresholdHC" / "FiniteQuantile"
 PREFIX = "ThresholdHC.FiniteQuantile."
 AUDIT = SOURCE / "Audit.lean"
 SPEC_SHA256 = "16ef75f25f8448133af321d7016e5db8bc1a8d5ac7569deefec884dcf920d16a"
+AUDIT_SHA256 = "f0dc70e80aef77371a0f3fd62780bdd3eeaf966b76b0abe18b5ad58788d4194e"
+EXACT_STATEMENTS = 7
 
 
 def validate_sources() -> set[str]:
     if hashlib.sha256((SOURCE / "Specification.lean").read_bytes()).hexdigest() != SPEC_SHA256:
         raise ValueError("Direct finite-law target differs from the statement at 5557334")
+    audit = AUDIT.read_bytes()
+    if hashlib.sha256(audit).hexdigest() != AUDIT_SHA256:
+        raise ValueError("Finite-quantile audit file changed; it carries the exact statements")
+    examples = [line for line in strip_comments(audit.decode("utf-8")).splitlines()
+                if line.startswith("example ")]
+    if len(examples) != EXACT_STATEMENTS:
+        raise ValueError("Finite-quantile audit file lacks its exact statements")
     closure = dependency_order([AUDIT])
     excluded = {"EntropyTail/Lower.lean", "EntropyTail/Law.lean", "ClosedQuantile/Full.lean",
                 "EntropyTailLower/CertificateLower.lean"}
