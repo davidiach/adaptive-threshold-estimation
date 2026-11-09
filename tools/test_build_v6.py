@@ -265,6 +265,8 @@ class VerificationStatusTests(unittest.TestCase):
         self.status = load_status()
 
     def generated(self, status, venue):
+        if venue == "abstract":
+            return " ".join(build_v6.abstract_status_text(status).split())
         return " ".join(status_text(status, venue).split())
 
     def test_status_change_moves_a_result_in_every_venue(self):
@@ -274,8 +276,8 @@ class VerificationStatusTests(unittest.TestCase):
         abstract = self.generated(status, "abstract")
         boundary = self.generated(status, "boundary")
         self.assertIn("For the original RMS law in both directions", abstract)
-        self.assertNotIn("checks the original RMS law", abstract)
-        self.assertIn("Lean also checks the arbitrary-law statistical $\\Psi$ lower bound", abstract)
+        self.assertNotIn("the arbitrary-law statistical $\\Psi$ lower bound", abstract)
+        self.assertIn("Lean also checks the arbitrary-law statistical $\\Psi$ lower bound", boundary)
         self.assertIn("For both directions of the original RMS law", boundary)
         self.assertNotIn("checks both directions of the original RMS law", boundary)
 
@@ -285,11 +287,18 @@ class VerificationStatusTests(unittest.TestCase):
                 status = copy.deepcopy(self.status)
                 status["results"][key]["status"] = kind
                 for venue in ("abstract", "boundary"):
-                    if venue not in result:
+                    # The abstract names a paper proof by its abstract phrase,
+                    # or by its boundary phrase when it has no abstract phrase.
+                    source = venue if venue in result else "boundary"
+                    if venue == "boundary" and venue not in result:
                         continue
                     with self.subTest(key=key, kind=kind, venue=venue):
                         text = self.generated(status, venue)
-                        phrase = " ".join(result[venue].split())
+                        phrase = " ".join(result[source].split())
+                        if venue == "abstract" and kind == "lean":
+                            # Checked results are counted in the abstract, not named.
+                            self.assertNotIn(phrase, text)
+                            continue
                         self.assertIn(phrase, text)
                         sentence = next(s for s in text.split(". ") if phrase in s)
                         if kind == "lean":
@@ -301,9 +310,66 @@ class VerificationStatusTests(unittest.TestCase):
     def test_generated_status_matches_the_source(self):
         output = assemble()
         abstract = output["status-abstract.tex"].split("\n", 1)[1]
-        self.assertEqual(abstract.rstrip("\n"), status_text(self.status, "abstract"))
+        self.assertEqual(abstract.rstrip("\n"), build_v6.abstract_status_text(self.status))
+        table = output["status-table.tex"].split("\n", 1)[1]
+        self.assertEqual(table.rstrip("\n"), build_v6.status_table(self.status, output))
         boundary = self.generated(self.status, "boundary")
         self.assertIn(boundary, " ".join(output["introduction.tex"].split()))
+
+    def test_abstract_counts_checked_results_and_names_only_paper_proofs(self):
+        results = self.status["results"]
+        total = len(results)
+        paper = [key for key, result in results.items() if result["status"] == "paper"]
+        abstract = self.generated(self.status, "abstract")
+        self.assertTrue(abstract.startswith(
+            f"Lean checks {total - len(paper)} of the {total} results listed in "
+            "\\cref{tab:status}"), abstract)
+        for item in self.status["abstract"]:
+            if "text" in item:
+                self.assertIn(" ".join(item["text"].split()), abstract)
+        every = copy.deepcopy(self.status)
+        none = copy.deepcopy(self.status)
+        for key in results:
+            every["results"][key]["status"] = "lean"
+            none["results"][key]["status"] = "paper"
+        text = self.generated(every, "abstract")
+        self.assertTrue(text.startswith(f"Lean checks all {total} results"), text)
+        self.assertNotIn("paper proofs only", text)
+        text = self.generated(none, "abstract")
+        self.assertTrue(text.startswith("For "), text)
+        self.assertNotIn("Lean checks", text)
+        # One more checked result changes the count, not the length of the list.
+        more = copy.deepcopy(self.status)
+        more["results"][paper[0]]["status"] = "lean"
+        self.assertIn(f"Lean checks {total - len(paper) + 1} of the {total} results",
+                      self.generated(more, "abstract"))
+
+    def test_status_table_lists_every_result_once_under_its_status(self):
+        results = self.status["results"]
+        table = build_v6.status_table(self.status)
+        rows = [line for line in table.splitlines() if line.endswith("\\\\[2pt]")]
+        self.assertEqual(len(rows), len(results))
+        self.assertIn("\\label{tab:status}", table)
+        checked, paper = table.split("\\emph{Paper proof only")
+        for key, result in results.items():
+            phrase = result.get("summary") or result.get("abstract") or result["boundary"]
+            row = build_v6._sentence_case(phrase) + " & "
+            with self.subTest(key=key):
+                self.assertEqual(table.count(row), 1)
+                self.assertIn(row, checked if result["status"] == "lean" else paper)
+        counts = {kind: sum(r["status"] == kind for r in results.values())
+                  for kind in ("lean", "paper")}
+        self.assertIn(f"\\emph{{Checked in Lean ({counts['lean']} results)}}", table)
+        self.assertIn(f"({counts['paper']} results)", paper)
+        # A paper proof points to the section that holds it; a checked result to its modules.
+        self.assertIn("lower bound & \\cref{app:localization}", paper)
+        self.assertNotIn("\\path{", paper)
+        self.assertIn("\\path{Tier6/Full.lean}", checked)
+        flipped = copy.deepcopy(self.status)
+        flipped["results"]["rms-law"]["status"] = "paper"
+        changed = build_v6.status_table(flipped).split("\\emph{Paper proof only")[1]
+        self.assertIn("Original RMS law in both directions", changed)
+        self.assertIn("See \\cref{sec:verification}", changed)
 
     def rejects(self, mutate, message):
         status = copy.deepcopy(self.status)
