@@ -1,8 +1,8 @@
 # Consolidated version 6
 
-[Current manuscript](builds/status-coverage-20261107.pdf) · [LaTeX sources](main.tex) · [Build record](builds/status-coverage-20261107.json) · [Previous build](builds/arbitrary-law-adaptation-20261106.pdf)
+[Current manuscript](builds/psi-closed-form-20261109.pdf) · [LaTeX sources](main.tex) · [Build record](builds/psi-closed-form-20261109.json) · [Previous build](builds/status-coverage-20261107.pdf)
 
-The current build adds four results to the generated status paragraphs of the [previous build](builds/arbitrary-law-adaptation-20261106.pdf), which combines the finite-gap menu and status-reconciliation changes with the arbitrary-law tail certificate and full eventual oracle-adaptation paper proof. The [finite-gap menu PDF](builds/gap-law-menus-20261105.pdf) and [status-reconciliation PDF](builds/status-reconciliation-20261105.pdf) retain their respective published source identities.
+The current build adds [§14.8](psi-window.tex), which gives the variational modulus Ψ in closed form and the power-margin rate with constants uniform in the exponent, both as paper proofs, and it revises the presentation: a rewritten abstract, a results overview with a generated status table, a reading guide and notation table, and a grouped table of contents. The [previous build](builds/status-coverage-20261107.pdf) added four results to the generated status paragraphs of the [arbitrary-law adaptation build](builds/arbitrary-law-adaptation-20261106.pdf), which combines the finite-gap menu and status-reconciliation changes with the arbitrary-law tail certificate and full eventual oracle-adaptation paper proof. The [finite-gap menu PDF](builds/gap-law-menus-20261105.pdf) and [status-reconciliation PDF](builds/status-reconciliation-20261105.pdf) retain their respective published source identities.
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -591,8 +591,9 @@ its PDF and the current sources.
 
 ## Closed form of Ψ and the critical window
 
-[§14.8](psi-window.tex) is new mathematics, with paper proofs. It is not yet
-in a published PDF; see the note under the next heading.
+[§14.8](psi-window.tex) is new mathematics, with paper proofs. It is not
+Lean-checked and has had no independent review. It is published in the
+[closed-form and exposition build](#closed-form-and-exposition-build) below.
 
 - **Ψ in closed form.** For every law, $\mathcal Q^0/\sqrt2\le\Psi\le\mathcal Q^0$,
   where $\mathcal Q^0$ is the closed quantile functional with the cost
@@ -624,10 +625,9 @@ evidence, not a proof.
 
 ## Exposition revision
 
-These source changes follow the status coverage build and are not yet in a
-published PDF. The [manuscript workflow](../../.github/workflows/manuscript.yml)
-typesets them, and `python tools/check_build_record.py` reports the linked
-PDF as stale until the next build is published.
+These source changes follow the status coverage build. They are published,
+together with §14.8, in the
+[closed-form and exposition build](#closed-form-and-exposition-build) below.
 
 No theorem, proof or constant changes, and section, theorem and equation
 numbers are unchanged. The changes are to the presentation:
@@ -648,11 +648,37 @@ numbers are unchanged. The changes are to the presentation:
   preserved critical-law proof", and the status remarks of §§11, 13–15 and
   18 and of Appendices S and V drop "now" and "new".
 
-The existing tables are renumbered from 1–3 to 4–6. With the workflow's
-engine (pdfTeX, TeX Live 2023) the sources, including §14.8, typeset to
-192 pages; two builds
-have identical bytes, all fonts are embedded, references resolve, and the
-only warning is the inherited overfull line. A word-level comparison with
-the previous sources typeset by the same engine finds new text only on the
-pages edited here; every other difference is a capitalized reference name,
-a renumbered table or a page number.
+The existing tables are renumbered from 1–3 to 4–6.
+
+## Closed-form and exposition build
+
+This build publishes the two preceding changes: §14.8 and the exposition
+revision. The PDF has 192 pages, twelve more than the status coverage build:
+five from the overview with its status table, six from §14.8, and one from
+the additions to §18.
+
+Two independent builds have identical bytes, all 33 fonts are embedded,
+there are no unresolved references, and the only warning, an inherited
+overfull line in Appendix C, also occurs in the unchanged sources. The
+engine is pdfTeX from TeX Live 2023, that of the
+[manuscript workflow](../../.github/workflows/manuscript.yml), with the same
+fixed source date. This environment does not reproduce the status coverage
+PDF byte for byte, so pages are compared with the unchanged sources typeset
+here.
+
+Against that baseline, 34 pages carry new or edited text, 34 have unchanged
+text with page breaks moved by the insertions before them, and 26 differ
+only in capitalized reference names. All 94 were visually inspected. The
+other 98 pages reproduce baseline pages twelve pages later, with word
+positions equal to within 0.01pt. A mechanical comparison of every word
+box with the text block finds no line beyond the margins other than the
+inherited one. The [build record](builds/psi-closed-form-20261109.json)
+lists the pages of each kind.
+
+The new statements have paper proofs only. The
+[check script](../../research/2026-11-09-psi-closed-form/README.md) passes
+on these sources; it tests the inequalities in floating point and is not a
+proof. No Lean source changes, and the Lean proofs were not rebuilt for
+this build.
+
+[Updated manuscript](builds/psi-closed-form-20261109.pdf) · [Build record](builds/psi-closed-form-20261109.json)
