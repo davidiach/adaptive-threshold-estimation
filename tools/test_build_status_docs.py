@@ -4,6 +4,7 @@ import re
 import sys
 import tempfile
 import unittest
+import unittest.mock
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -107,12 +108,60 @@ class RepositoryTests(unittest.TestCase):
     def test_links_resolve_from_both_documents(self):
         status = load_status()
         for document in docs.TARGETS:
-            block = docs.render(status, document)
+            block = docs.block_for(status, document)
             targets = re.findall(r"\]\(([^)]+)\)", block)
             self.assertTrue(targets)
             for target in targets:
                 with self.subTest(document=document.name, target=target):
-                    self.assertTrue((document.parent / target).exists())
+                    self.assertTrue((document.parent / target.split("#")[0]).exists())
+
+    def test_landing_page_gets_counts_and_names_but_no_table(self):
+        status = load_status()
+        results = status["results"]
+        block = docs.block_for(status, docs.SUMMARY)
+        paper = [k for k in docs.ordered_keys(status) if results[k]["status"] == "paper"]
+        self.assertIn(f"tracks {len(results)} results", block)
+        self.assertIn(f"Lean checks {len(results) - len(paper)} of them", block)
+        for key in paper:
+            phrase = results[key].get("abstract") or results[key]["boundary"]
+            self.assertIn(docs.latex_to_markdown(phrase, docs.SUMMARY), block)
+        self.assertNotIn("\n| ", block)
+        self.assertEqual(len(block.splitlines()), 3)
+        # The other document still gets one row for each result.
+        self.assertIn("| Result | Status | Evidence |", docs.block_for(status, docs.TABLE))
+
+    def test_landing_page_summary_follows_the_status_source(self):
+        status = load_status()
+        changed = copy.deepcopy(status)
+        current = status["results"]["psi-lower-bound"]["status"]
+        changed["results"]["psi-lower-bound"]["status"] = "paper" if current == "lean" else "lean"
+        self.assertNotEqual(docs.render_summary(status, docs.SUMMARY),
+                            docs.render_summary(changed, docs.SUMMARY))
+        checked = copy.deepcopy(status)
+        for result in checked["results"].values():
+            result["status"] = "lean"
+        block = docs.render_summary(checked, docs.SUMMARY)
+        self.assertIn(f"Lean checks all {len(status['results'])} results", block)
+        self.assertNotIn("paper proof", block)
+        single = copy.deepcopy(checked)
+        single["results"]["psi-lower-bound"]["status"] = "paper"
+        self.assertIn("1 has a paper proof only", docs.render_summary(single, docs.SUMMARY))
+
+    def test_landing_page_link_reaches_the_table_heading(self):
+        text = docs.TABLE.read_text(encoding="utf-8")
+        self.assertIn(docs.TABLE_HEADING + "\n", text)
+        self.assertLess(text.index(docs.TABLE_HEADING), text.index(docs.BEGIN))
+        self.assertEqual(docs.TABLE_ANCHOR, docs.TABLE_HEADING[3:].lower().replace(" ", "-"))
+        self.assertIn("#" + docs.TABLE_ANCHOR, docs.render_summary(load_status(), docs.SUMMARY))
+
+    def test_table_document_without_its_heading_fails(self):
+        status = load_status()
+        with tempfile.TemporaryDirectory() as tmp:
+            document = Path(tmp) / "RESULTS.md"
+            document.write_text(f"intro\n{docs.BEGIN}\nold\n{docs.END}\n", encoding="utf-8")
+            with unittest.mock.patch.object(docs, "TABLE", document):
+                with self.assertRaisesRegex(ValueError, "needs the heading"):
+                    docs.update(status, (document,), write=False)
 
 
 if __name__ == "__main__":

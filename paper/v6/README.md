@@ -70,7 +70,7 @@ It also checks the arbitrary-law statistical Ψ lower bound of Appendix A,
 with coefficient $10^{-17}$, as a corollary of the entropy–tail law.
 It also checks the stochastic-envelope extension, lower-bound localization
 with coefficient $1/128$ conditional on a single-coin obstruction, finite-menu cost grouping and finite-family oracle
-adaptation. The [status table](../../README.md#scope-and-review), generated
+adaptation. The [status table](../../docs/RESULTS.md#verification-status), generated
 from [status.json](status.json), lists every result the abstract tracks.
 Section 18 states each formal scope and links the fixed source revisions.
 
@@ -100,8 +100,8 @@ status table of §1.3 lists every result with its Lean modules or the
 location of its paper proof, and the boundary paragraph gives the scopes. To
 change what they say about a result, edit its status and evidence paths
 there and rerun the generator, then `python tools/build_status_docs.py`, which
-regenerates the status tables in the [README](../../README.md#scope-and-review)
-and [results guide](../../docs/RESULTS.md); `tools/test_build_v6.py` rejects status
+regenerates the status sentence in the [README](../../README.md#scope-and-review)
+and the status table in the [results guide](../../docs/RESULTS.md#verification-status); `tools/test_build_v6.py` rejects status
 wording typed into the abstract or into a phrase. Section 18 keeps the exact
 formal scopes and fixed source links and is edited by hand, but the
 generator checks it against status.json: each claim-table row an entry

@@ -53,7 +53,7 @@ each manuscript README gives its build command.
 
 | Area | Editing guidance |
 |---|---|
-| `README.md`, `docs/`, and directory indexes | Maintain current explanations, navigation, and status. Preserve the historical records under `docs/process/`. The status tables between the generated markers in `README.md` and `docs/RESULTS.md` come from `paper/v6/status.json`; change that file and run `python tools/build_status_docs.py` instead of editing them. |
+| `README.md`, `docs/`, and directory indexes | Maintain current explanations, navigation, and status. Preserve the historical records under `docs/process/`. The status sentence in `README.md` and the status table in `docs/RESULTS.md`, each between generated markers, come from `paper/v6/status.json`; change that file and run `python tools/build_status_docs.py` instead of editing them. Keep `README.md` short: it is the landing page, and detail belongs in `docs/RESULTS.md`. List a new guide in [docs/README.md](docs/README.md). |
 | `lean/ThresholdHC/` | Use the [module map](lean/README.md). Inspect the applicable manifest or specification lock before editing: locks can include proof files and model dependencies. |
 | `tools/` | Verifiers, regression tests, registries, and manuscript generators. Some tools are frozen; check the [tool index](tools/README.md) and the applicable locks. |
 | `toolkit/` | Python package, examples, and tests. Its implementation is not itself Lean-verified. |

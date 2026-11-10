@@ -21,8 +21,9 @@ remain preserved as its sources. When a paper-proof result is formalized,
 change its entry in [status.json](../paper/v6/status.json) and its evidence
 paths, run `python tools/build_v6.py` and `python tools/build_status_docs.py`,
 update the v6 verification section and any per-section status remark, and
-rebuild the PDF. The second command regenerates the status tables in the
-[README](../README.md#scope-and-review) and [results guide](RESULTS.md).
+rebuild the PDF. The second command regenerates the status sentence in the
+[README](../README.md#scope-and-review) and the status table in the
+[results guide](RESULTS.md#verification-status).
 
 The original RMS law, critical quadratic law, unbiased existence
 characterization, confidence characterization, and canonical magnitude-oracle
