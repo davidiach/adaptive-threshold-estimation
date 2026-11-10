@@ -1108,8 +1108,8 @@ $C=2^{32}C_*\approx3.5\cdot10^{16}$ and $\rho=1/4$, the width bound is
 below the trivial width $\rho/2$ only beyond about $8\cdot10^{35}$ flips,
 and later for smaller $\rho$. For a point mass at $1/2$ with $\rho=1/4$
 the proof's onset needs pilot depth $29$, a budget above $10^{17}$ flips.
-The [Lean components](ARBITRARY_LAW_FORMALIZATION.md) now have 327 exact
-statements and 325 transitive-axiom reports: finite and countable entropy transport, the finite
+The [Lean components](ARBITRARY_LAW_FORMALIZATION.md) now have 396 exact
+statements and 394 transitive-axiom reports: finite and countable entropy transport, the finite
 CDF envelope including its zero atom, and an observable paid-pilot/selected-
 continuation stage with physical caps and its original-experiment joint law.
 The canonical band cells are constructed for every finite increasing-gap
@@ -1126,7 +1126,12 @@ entropy and residual-tail bounds, and transport of all fractional selections.
 The sign-neutral single-coin tail test is proved with its work cap, its
 unresolved-probability bounds for small and large gaps, the comparison with
 that multiplier, and its expected-work bound, for every sign law.
-The pilot probability event built from that test, robust continuation
+One capped probe over fresh coins is proved on the coin array of the original
+experiment: its certificate covers the small-gap mass at every budget
+simultaneously with probability at least $7/8$, and at a fixed budget it is at
+most $\min\{1,128\max(u_J,W_J/b,1/M)\}$ with probability at least $3/4$.
+The median over probes, the oracle comparison past the onset, the multi-depth
+pilot probability event, robust continuation
 bounds and the full all-budget controller remain to be formalized;
 Python execution and its PRNG also remain outside formal verification.
 An exact path count shows that repeatedly

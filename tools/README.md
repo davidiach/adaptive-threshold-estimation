@@ -144,3 +144,8 @@ and transitive reports on the sign-neutral single-coin tail test: its work cap,
 dependence on the observed prefix, flip symmetry, the sign-neutral law on the
 original population, both unresolved-probability bounds, the comparison with
 the constructed multiplier, and the expected-work bound.
+Run `python tools/verify_arbitrary_law_tail_probe.py` for 69 exact statements
+and transitive reports on one capped probe over fresh coins: its caps and
+charge, dependence on the bought flips, coverage of the small-gap mass at every
+budget with probability at least 7/8, and the fixed-budget performance bound
+with probability at least 3/4, with and without the coin cap.

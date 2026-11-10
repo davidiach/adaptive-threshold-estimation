@@ -279,11 +279,62 @@ modules. The audit fails if a declaration is added without being registered.
 The [tail-test record](../results/arbitrary-law-tail-test-20261110/README.md)
 identifies the proof checkpoint and source hashes.
 
-These are statements about one coin. They do not include fresh-coin inverse
-sampling, the median over probes, the multi-depth pilot or the onset, and the
-test is not yet embedded as a reader in the observable stage. Across all
-twelve current component audits, 327 exact statements and 325 transitive axiom
-reports pass.
+These are statements about one coin. Inverse sampling over fresh coins is the
+subject of the next section. The test is not yet embedded as a reader in the
+observable stage.
+
+## Capped tail probe
+
+This is one probe of the
+[inverse-sampling step](ARBITRARY_LAW_TAIL.md#inverse-sampling-under-a-physical-budget),
+with the coin cap of
+[adaptation (A7)](ARBITRARY_LAW_ADAPTATION.md#2-learning-the-envelope-under-one-physical-cap).
+Fresh coins are tested one after another with the tail test. The probe stops
+when it completes an unresolved coin, when it has completed `M` coins, or when
+its flip budget `b` is exhausted. After `n` completed coins it returns
+`V = min(1, 8/n)`, and `V = 1` when `n = 0`.
+
+[TailProbe.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/TailProbe.lean)
+defines the probe on a stream of tapes, one tape for each fresh coin. On every
+stream the charge is at most `b` and at most `M 4^J`, and at most `min(b, M)`
+coins are completed. A coin that the budget interrupts is charged for the flips
+bought on it and is not counted. Raising the budget never lowers the completed
+count or the charge, and a coin cap of at least `b` does not change the
+completed count. The completed count, the charge and the final verdict depend
+only on the bought flips.
+
+[TailProbeProbability.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/TailProbeProbability.lean)
+takes independent coins whose tapes share an arbitrary probability law, and
+writes `u` for the probability that one coin is unresolved. If `F <= 1` and
+`F <= 2u`, then with probability at least `7/8` the certificate is at least `F`
+at every flip budget and every coin cap simultaneously. The proof bounds the
+event that the first `floor(4/u)` coins are all resolved, which has probability
+`(1-u)^floor(4/u)`. It never treats the number of completed coins as a fixed
+sample size. At a fixed budget `b >= 1` and coin cap `M >= 1`, with probability
+at least `3/4` the certificate is at most `min(1, 128 max(u, W/b, 1/M))`, for
+every `W` that bounds the expected work of one coin. The two failure events
+are joined by a union bound and are not assumed independent.
+
+[TailProbeLaw.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/TailProbeLaw.lean)
+states both results on the coin array of the original simulation law, for
+every probability law `mu` of positive gaps and every measurable gap-dependent
+sign law. There `F = F(2^-J) = mu((0, 2^-J])`, `u = u_J`, and `W = W_J` is the
+integral of the bounded work envelope. Without a coin cap the performance
+bound is `min(1, 128 max(u_J, W_J/b))`, which is (5) of the tail certificate.
+With the cap it is (A7).
+
+Run `python tools/verify_arbitrary_law_tail_probe.py` for 69 exact statements
+and 69 transitive axiom reports, one for each declaration of the three
+modules. The audit fails if a declaration is added without being registered.
+The [tail-probe record](../results/arbitrary-law-tail-probe-20261110/README.md)
+identifies the proof checkpoint and source hashes.
+
+These are statements about one probe at one depth. The median over independent
+probes, statement (1), the oracle comparison (3) with its onset, and the
+simultaneous statement across depths are not formalized. The probe is defined
+on a stream of tapes and is not yet a reader in the observable stage. Across
+all thirteen current component audits, 396 exact statements and 394 transitive
+axiom reports pass.
 
 ## Work still needed for the full theorem
 
@@ -291,9 +342,10 @@ CDF domination now gives an increasing coupling and the selection
 comparison, including unresolved mass at zero. Dominated mass and the concrete
 factor-32 light random contraction are also checked. The finite
 CDF envelope is checked, but still needs its statistical pilot event and
-law-dependent onset. The single-coin tail test is checked with its error and
-work bounds; capped inverse sampling over fresh coins, the median, and the
-multi-depth pilot built from it are not. The observable stage is checked as an execution component;
+law-dependent onset. The single-coin tail test and one capped probe over fresh
+coins are checked with their probability bounds; the median over independent
+probes, the oracle comparison past the onset, and the multi-depth pilot built
+from them are not. The observable stage is checked as an execution component;
 the concrete pilot and robust continuation must be instantiated and their
 statistical bounds proved. Finally the stages need to be joined into the
 all-budget controller, with fresh stages, nested intervals, simultaneous

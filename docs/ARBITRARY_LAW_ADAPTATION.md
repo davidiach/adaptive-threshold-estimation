@@ -170,6 +170,9 @@ Indeed use $A=\max(u_j,W_j/b,1/M)$ in the original proof. Its
 $q=\lfloor1/(8A)\rfloor$ satisfies $q\le M/8$, so the extra stopping rule
 cannot prevent completing those $q$ coins. All work bounds and the union of
 the unresolved and excessive-work events remain valid.
+The simultaneous coverage of one probe and (A7) are
+[Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#capped-tail-probe). The median
+and (A8) are not.
 
 Use a common odd $m\ge8\log(2J/\varepsilon)$ and take a median $U_j$ at each
 depth. A union bound gives, with probability at least $1-\varepsilon$,
