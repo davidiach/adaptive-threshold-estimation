@@ -7,6 +7,13 @@ It does **not** yet construct an oracle-rate confidence sequence for the
 positive fraction. In particular, it does not supply the core costs and null
 likelihood integrals needed by the known-law estimator.
 
+Lean now checks the single-coin test of the
+[section below](#a-sign-neutral-test-with-a-gap-dependent-cost): its sign
+neutrality, statement (2), the Hoeffding form (2a) and the work bound (4).
+The [formal scope](ARBITRARY_LAW_FORMALIZATION.md#sign-neutral-tail-test) gives
+the exact statements. Inverse sampling, the median, statement (1) and the
+oracle comparison (3) remain a paper proof.
+
 Let the persistent magnitude of a fresh coin have any probability law $\mu$ on
 $(0,1/2]$. Its sign may depend arbitrarily on its magnitude. Fresh coins are
 independent, and flips are independent conditional on each coin's parameters.

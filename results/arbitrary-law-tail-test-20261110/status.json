@@ -1,0 +1,58 @@
+{
+ "valid": true,
+ "proof_checkpoint": "1204b139d4cf3431e0c81b9e943bc3b5a7415264",
+ "base_checkpoint": "1c6cc2e06231ceef0b19cbda21393bebe10777d3",
+ "compiler": "Lean (version 4.36.0-rc1, x86_64-unknown-linux-gnu, commit c9afcddf514a6772bd4d649f7cfc04eff0b9f15e, Release)",
+ "mathlib_revision": "9bdd0bc71aaae0fd83889f9aacd70c32fccd1bcd",
+ "build": "The three new modules were built from source on Linux with Lake, on top of a full build of every project module made in the same environment from a tree identical to the base checkpoint, against the Mathlib cache for the pinned revision. They compiled without warnings.",
+ "source_sha256": {
+  "lean/lean-toolchain": "d581a24b57a4ae9e0b2132ca8ac7cc3ac336a9fc2751fe6b29414e2d434d54c4",
+  "lean/lakefile.toml": "273cfe4674e97219b22f7de1428bdadfb45379c7fa582882c59624ab7fbc3189",
+  "lean/lake-manifest.json": "a7058b14db1034b58735d82f1cf9a82a938855e93decc1960ca7d21e786fdfe2",
+  "lean/ThresholdHC/ArbitraryLawAdaptation/TailTest.lean": "ff0df5355b0c6dcb5208c549638c2d921dfbf36e99be24256fc8d0fa666067f3",
+  "lean/ThresholdHC/ArbitraryLawAdaptation/TailTestProbability.lean": "9acf9906af26bbda59fd3715bd2388cb997d833f519deb7dc8cc5ed98fcc7bcf",
+  "lean/ThresholdHC/ArbitraryLawAdaptation/TailTestLaw.lean": "48f331efc79fd031c189402d0977b4c46c56d55df8ae66703a3f1209df94f093",
+  "lean/ThresholdHC/ArbitraryLawAdaptation/LightMultiplier.lean": "deb8eacbbda30e64705000bea709796c218520f2a7e19bce2fd91c58709e4aa6",
+  "lean/ThresholdHC/ArbitraryLawAdaptation/LightContraction.lean": "9c1e96ef72b17f6e521eaad2c79d46af35a1564ac7b999e992227fe445d4b728",
+  "lean/ThresholdHC/EntropyTailUpper/PrefixConcentration.lean": "52abf55b3f1904be025d8f6984102be9782184e1ebcd427fdd74dcde4ab0caf0",
+  "lean/ThresholdHC/Uniform713/Concentration.lean": "b494cc19ba348e05533c0a6f7715de8bda306c94e4ad613bb8515e5af6b7c149",
+  "lean/ThresholdHC/Proofs/Tier2/ClassifierProbability.lean": "bae7b6d3d3fc0f3e8fd32bf626a316b44fac61b4c05593da98148dbe1a0e11c3",
+  "lean/ThresholdHC/ObservableSimulation/OriginalExperiment.lean": "fdb786b2cff5837a1f0cbbb4effb483531a9221a53b93f19be7058625c2de097",
+  "lean/ThresholdHC/CriticalEntropy/PopulationModel.lean": "6563b8a07b6941cae10140c0611d6c13e63378bb9eae0009f1d03e987ac315fd",
+  "lean/ThresholdHC/CriticalEntropy/UniformCoin.lean": "0485ada581ebb1d3c551fb15b4b7fd0edf4b6f1b5901912420d0c7d53fbb4ee6",
+  "lean/ThresholdHC/CriticalEntropy/PopulationMixture.lean": "e1731a76df0e157101ec7013e01c21c854c4219a760c1e94371f06a6eba49525",
+  "lean/ThresholdHC/CriticalEntropy/PopulationTapeLaw.lean": "f29394f00682af19e8f9fa519d5b4f7a8d21d063bcc2bb46b418000fa12fd9a8",
+  "lean/ThresholdHC/Tier6/AlgorithmCore.lean": "ba81c4bbbcba907337a82b0350135c4f734239fcd2c5f4685d87d6ea72452ad8",
+  "lean/ThresholdHC/Tier6/HardPairModel.lean": "003aa6f400fe62d6e0e074ef2df8b4d3afc5e79db73800d529ae11c0cd89e068",
+  "tools/verify_arbitrary_law_tail_test.py": "2d1fe98098a20241851a6255ea332f7b93a5247f072e6896a8e6972ac2cb2008",
+  "tools/test_arbitrary_law_tail_test.py": "d598c56c6fa8850c245423645ca080209797355d2faa25bfd564a2c84be44bf8",
+  "tools/verify_blind_upper_components.py": "08faf54b212914db25f1c65c8455ab9d918d70e9366a8fef2b7622a6ce5325e7"
+ },
+ "audits": {
+  "arbitrary_law_tail_test": {
+   "input": "arbitrary_law_tail_test.lean",
+   "log": "arbitrary_law_tail_test.log",
+   "exact_statements": 91,
+   "axiom_reports": 91,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "exit_code": 0
+  },
+  "project_axioms": {
+   "command": "python tools/verify_project_axioms.py --no-build --jobs 3",
+   "modules": 1155,
+   "constants": 11799,
+   "theorems": 9507,
+   "declared_axioms": [],
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "kernel_replay": "not run locally"
+  }
+ }
+}

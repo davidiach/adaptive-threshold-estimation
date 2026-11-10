@@ -5,8 +5,9 @@
 The current build combines two builds that were published from the same base on 9 November 2026; see the [last section](#combined-build). The [closed-form and exposition build](#closed-form-and-exposition-build) adds [§14.8](psi-window.tex), which gives the variational modulus Ψ in closed form and the power-margin rate with constants uniform in the exponent, and revises the presentation: a rewritten abstract, a results overview with a generated status table, a reading guide and notation table, and a grouped table of contents. The [Psi lower bound build](#psi-lower-bound-and-tail-proof-build) records the arbitrary-law Ψ lower bound as Lean-checked and repairs one step of the arbitrary-law tail proof. The [earlier build](builds/status-coverage-20261107.pdf) added four results to the generated status paragraphs of the [arbitrary-law adaptation build](builds/arbitrary-law-adaptation-20261106.pdf), which combines the finite-gap menu and status-reconciliation changes with the arbitrary-law tail certificate and full eventual oracle-adaptation paper proof. The [finite-gap menu PDF](builds/gap-law-menus-20261105.pdf) and [status-reconciliation PDF](builds/status-reconciliation-20261105.pdf) retain their respective published source identities.
 
 Later [Lean component audits](../../docs/ARBITRARY_LAW_FORMALIZATION.md) cover
-the CDF and zero-atom comparison, dominated mass, and the concrete factor-32
-light contraction. The full arbitrary-law adaptation theorem remains a paper
+the CDF and zero-atom comparison, dominated mass, the concrete factor-32
+light contraction, and the single-coin tail test of Appendix V.3 with its
+error and work bounds. The full arbitrary-law adaptation theorem remains a paper
 proof; the published PDF and its build record retain their original scope.
 
 This is the current single research paper. It combines three manuscripts:

@@ -1106,8 +1106,8 @@ $C=2^{32}C_*\approx3.5\cdot10^{16}$ and $\rho=1/4$, the width bound is
 below the trivial width $\rho/2$ only beyond about $8\cdot10^{35}$ flips,
 and later for smaller $\rho$. For a point mass at $1/2$ with $\rho=1/4$
 the proof's onset needs pilot depth $29$, a budget above $10^{17}$ flips.
-The [Lean components](ARBITRARY_LAW_FORMALIZATION.md) now have 236 exact
-statements and 234 transitive-axiom reports: finite and countable entropy transport, the finite
+The [Lean components](ARBITRARY_LAW_FORMALIZATION.md) now have 327 exact
+statements and 325 transitive-axiom reports: finite and countable entropy transport, the finite
 CDF envelope including its zero atom, and an observable paid-pilot/selected-
 continuation stage with physical caps and its original-experiment joint law.
 The canonical band cells are constructed for every finite increasing-gap
@@ -1121,7 +1121,10 @@ finite measures, by bounded density restriction and explicit residual control.
 The light random contraction is also proved with coefficient 32, including
 a constructed multiplier with the exact specified CDF, actual product-law
 entropy and residual-tail bounds, and transport of all fractional selections.
-The pilot probability event, robust continuation
+The sign-neutral single-coin tail test is proved with its work cap, its
+unresolved-probability bounds for small and large gaps, the comparison with
+that multiplier, and its expected-work bound, for every sign law.
+The pilot probability event built from that test, robust continuation
 bounds and the full all-budget controller remain to be formalized;
 Python execution and its PRNG also remain outside formal verification.
 An exact path count shows that repeatedly

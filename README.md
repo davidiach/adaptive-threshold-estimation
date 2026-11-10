@@ -228,7 +228,7 @@ The [status source](paper/v6/status.json) of the v6 abstract lists 31 results: 2
 
 Lean-checked components not yet in the status source, because the v6 manuscript does not yet describe them as checked:
 
-- **Arbitrary-law adaptation components:** checked components of the proof, including entropy transport, the CDF envelope and the observable paid learning stage. The [formal scope](docs/ARBITRARY_LAW_FORMALIZATION.md) lists each component, its exact-statement count and the work that remains. The theorem itself is a paper proof.
+- **Arbitrary-law adaptation components:** checked components of the proof, including entropy transport, the CDF envelope, the observable paid learning stage and the single-coin tail test. The [formal scope](docs/ARBITRARY_LAW_FORMALIZATION.md) lists each component, its exact-statement count and the work that remains. The theorem itself is a paper proof.
 - **Finite-law selection approximation components:** entropy perturbation and state compression, assuming a certified bin map. The approximation scheme itself, which returns a selection within $(1+\epsilon)K$ in polynomial time, is a paper proof ([components](lean/ThresholdHC/SelectionApproximation/README.md), [record](results/selection-approximation-20261106/README.md), [note](research/2026-11-06-selection-approximation/NOTE.md)).
 
 See the [completion ledger](docs/WORKPLAN.md) for the current boundary.

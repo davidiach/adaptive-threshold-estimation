@@ -236,8 +236,54 @@ not yet the final all-budget confidence controller.
 
 The [native stage audit](../results/arbitrary-law-stage-20261106/README.md)
 identifies the 644-source project closure, exact statements and compiled
-dependency hashes for that checkpoint. Across all eleven current component
-audits, 236 exact statements and 234 transitive axiom reports pass.
+dependency hashes for that checkpoint.
+
+## Sign-neutral tail test
+
+This is the single-coin primitive of the
+[tail certificate](ARBITRARY_LAW_TAIL.md#a-sign-neutral-test-with-a-gap-dependent-cost).
+One persistent coin is inspected after `n_k = 4^k` flips, `k = 0,...,J`. Check
+`k` resolves the coin when `|2S - n_k| > 2 h_k`, where `S` counts heads and
+`h_k = ceil(sqrt(2 n_k (J-k+2)))`. The inequality is strict, so a tie continues,
+and the coin is unresolved when the terminal check also fails.
+
+[TailTest.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/TailTest.lean)
+defines the test on a tape of flips. It proves that `h_k` is the least natural
+number whose square reaches `2 n_k (J-k+2)`, that `h_J = 2^(J+1)` exactly, and
+the pathwise work cap `1 <= T <= 4^J`. The stopping check and the unresolved
+indicator depend only on the flips that were bought, and complementing every
+flip leaves the whole stopping path unchanged.
+
+[TailTestProbability.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/TailTestProbability.lean)
+proves the bounds for a coin with heads probability `1/2 + d`. If
+`d <= 2^-J`, the coin is unresolved with probability at least `1/2`. If
+`d >= 4 * 2^-J`, it is unresolved with probability at most `exp(-4^J d^2 / 2)`.
+Its expected work is at most `min(4^J, 1024 d^-2 (1 + log2+(d 2^J)))`. Each
+bound uses Hoeffding's inequality at single checkpoints and a union bound. The
+checks share one coin and are never treated as independent samples.
+
+[TailTestLaw.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/TailTestLaw.lean)
+proves that complementing flips exchanges the two signs of the coin law. A
+bounded flip-invariant statistic of one fresh coin therefore has the same mean
+under the original population tape law for every measurable gap-dependent
+sign law. For every probability law `mu` of positive gaps and every sign law,
+the unresolved probability `u_J` of a fresh coin satisfies
+`F(2^-J)/2 <= u_J <= integral of min(1, 16 (2^-J/d)^2) dmu`, and
+`u_J <= P(V D <= 2^-J)` for the constructed multiplier `V` of (A3), independent
+of `D`. The expected work is at most the integral of the bounded work
+envelope. No inverse-moment assumption is made.
+
+Run `python tools/verify_arbitrary_law_tail_test.py` for 91 exact statements
+and 91 transitive axiom reports, one for each declaration of the three
+modules. The audit fails if a declaration is added without being registered.
+The [tail-test record](../results/arbitrary-law-tail-test-20261110/README.md)
+identifies the proof checkpoint and source hashes.
+
+These are statements about one coin. They do not include fresh-coin inverse
+sampling, the median over probes, the multi-depth pilot or the onset, and the
+test is not yet embedded as a reader in the observable stage. Across all
+twelve current component audits, 327 exact statements and 325 transitive axiom
+reports pass.
 
 ## Work still needed for the full theorem
 
@@ -245,7 +291,9 @@ CDF domination now gives an increasing coupling and the selection
 comparison, including unresolved mass at zero. Dominated mass and the concrete
 factor-32 light random contraction are also checked. The finite
 CDF envelope is checked, but still needs its statistical pilot event and
-law-dependent onset. The observable stage is checked as an execution component;
+law-dependent onset. The single-coin tail test is checked with its error and
+work bounds; capped inverse sampling over fresh coins, the median, and the
+multi-depth pilot built from it are not. The observable stage is checked as an execution component;
 the concrete pilot and robust continuation must be instantiated and their
 statistical bounds proved. Finally the stages need to be joined into the
 all-budget controller, with fresh stages, nested intervals, simultaneous

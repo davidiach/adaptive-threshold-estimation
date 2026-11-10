@@ -214,3 +214,8 @@ measure cells. Run `python tools/verify_arbitrary_law_light.py` for 26 more
 exact statements and transitive reports: residual tails, the constructed
 multiplier's exact CDF, and the full capped selection comparison with factor 32.
 The final result imposes no inverse-moment or entropy condition on the input law.
+Run `python tools/verify_arbitrary_law_tail_test.py` for 91 exact statements
+and transitive reports on the sign-neutral single-coin tail test: its work cap,
+dependence on the observed prefix, flip symmetry, the sign-neutral law on the
+original population, both unresolved-probability bounds, the comparison with
+the constructed multiplier, and the expected-work bound.
