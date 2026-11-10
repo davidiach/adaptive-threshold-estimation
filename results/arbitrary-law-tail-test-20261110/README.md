@@ -56,7 +56,8 @@ for each declaration of the three modules, using only `propext`,
 `python tools/verify_project_axioms.py --no-build` passed on the same build:
 1,155 modules, 11,799 constants and 9,507 theorems, with no declared axiom. Its
 kernel replay was not run locally. The [native record](status.json) lists the
-source hashes.
+source hash of every project module in the import closure of the new
+modules.
 
 Run `python tools/verify_arbitrary_law_tail_test.py` with the pinned
 toolchain. The audit restates every definition and theorem in full and fails
