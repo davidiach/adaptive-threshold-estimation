@@ -193,3 +193,9 @@ The [concrete light-contraction audit](arbitrary-law-light-20261106/README.md)
 adds 62 exact statements and transitive reports. It constructs the multiplier
 from a uniform variable, proves its exact CDF, derives product-law entropy
 and residual-tail bounds, and proves the full factor-32 selection comparison.
+
+The [sign-neutral tail-test audit](arbitrary-law-tail-test-20261110/README.md)
+adds 91 exact statements and transitive reports for the single-coin test of
+the tail certificate: its work cap, flip symmetry and sign-neutral law, both
+unresolved-probability bounds, the multiplier comparison and the expected-work
+bound. Inverse sampling and the pilot are not part of it.
