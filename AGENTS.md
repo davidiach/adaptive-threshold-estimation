@@ -7,7 +7,10 @@ within its scope. Use this guide for repository operations and
 
 ## Find the current source of truth
 
-- [README.md](README.md): problem, main results, and reading paths.
+- [README.md](README.md): problem, main results, reading paths, and a map of every
+  top-level folder and file.
+- [docs/README.md](docs/README.md) and [paper/README.md](paper/README.md): indexes of
+  the guides and of the manuscripts.
 - [docs/RESULTS.md](docs/RESULTS.md): current mathematical claims, assumptions,
   and verification boundaries. Read the relevant section before changing a claim.
 - [lean/README.md](lean/README.md): concept-to-module map and formal audit commands.
