@@ -94,9 +94,10 @@ def load_sources() -> dict[str, str]:
 # ---------------------------------------------------------------------------
 # Verification-status sentences, generated from one source
 # ---------------------------------------------------------------------------
-# status.json drives the abstract status paragraph and the introduction's
-# Verification boundary paragraph only. Section 18 and the per-section status
-# remarks are hand-edited and must be updated when a status changes.
+# status.json drives the abstract status paragraph, the introduction's
+# Verification boundary paragraph and the status table of the overview.
+# Section 18 and the per-section status remarks are hand-edited and must be
+# updated when a status changes.
 
 STATUS_KINDS = ("lean", "paper")
 STATUS_VENUES = ("abstract", "boundary")
@@ -170,8 +171,9 @@ def validate_status(status: dict) -> dict:
         for venue in STATUS_VENUES:
             if venue in result:
                 _check_tex(result[venue], f"the {venue} phrase of {key}")
-        # An optional fuller phrase for the generated README and results-guide
-        # tables (tools/build_status_docs.py); the manuscript never prints it.
+        # An optional fuller phrase for the generated status tables: the README
+        # and results guide (tools/build_status_docs.py) and the manuscript's
+        # status table. The generated sentences never print it.
         if "summary" in result:
             _check_tex(result["summary"], f"the summary phrase of {key}")
     used = set()
@@ -288,6 +290,125 @@ def status_text(status: dict, venue: str) -> str:
                          break_on_hyphens=False)
 
 
+def ordered_status_keys(status: dict) -> list[str]:
+    """Results in abstract order, then those that appear only in the boundary."""
+    keys: list[str] = []
+    for venue in STATUS_VENUES:
+        for item in status[venue]:
+            for key in item.get("results", []):
+                if key not in keys:
+                    keys.append(key)
+    return keys
+
+
+def abstract_status_text(status: dict) -> str:
+    """The abstract's status sentences: a count, then each paper proof by name.
+
+    The abstract counts the Lean-checked results and names only the results
+    that have paper proofs, so it does not grow with the list of checked
+    results. The status table lists every result; the boundary paragraph and
+    Section 18 give the scopes. Fixed sentences of the abstract venue follow.
+    """
+    results = status["results"]
+    keys = ordered_status_keys(status)
+    paper = [results[key].get("abstract") or results[key]["boundary"]
+             for key in keys if results[key]["status"] == "paper"]
+    checked = len(keys) - len(paper)
+    listed = f"the {len(keys)} results listed in \\cref{{tab:status}}"
+    scope = ", each in the scope recorded in \\cref{sec:verification}"
+    sentences = []
+    if not paper:
+        sentences.append(f"Lean checks all {len(keys)} results listed in "
+                         f"\\cref{{tab:status}}{scope}.")
+    elif checked:
+        sentences.append(f"Lean checks {checked} of {listed}{scope}.")
+    if paper:
+        sentences.append("For " + join_phrases(paper)
+                         + ", the manuscript gives paper proofs only.")
+    sentences += [item["text"] for item in status["abstract"] if "text" in item]
+    return textwrap.fill(" ".join(sentences), width=74, break_long_words=False,
+                         break_on_hyphens=False)
+
+
+def _sentence_case(text: str) -> str:
+    text = text[4:] if text.startswith("the ") else text
+    return text[:1].upper() + text[1:]
+
+
+SECTION_LABEL = re.compile(r"\\(?:sub){0,2}section\{.*?\}\s*\\label\{([^}]+)\}", re.S)
+
+
+def _proof_location(paths: list[str], texts: dict[str, str]) -> str:
+    """A reference to the first labelled section of each v6 source in `paths`.
+
+    A paper proof kept outside the manuscript has no such source; its row
+    then points to Section 18, which describes it.
+    """
+    found = []
+    for path in paths:
+        name = Path(path).name
+        if Path(path).parent.as_posix() != "paper/v6" or not name.endswith(".tex"):
+            continue
+        text = texts[name] if name in texts else (DEST / name).read_text(encoding="utf-8")
+        match = SECTION_LABEL.search(text)
+        if not match:
+            raise ValueError("No labelled section in paper-proof evidence " + path)
+        found.append("\\cref{" + match[1] + "}")
+    return "\\newline ".join(found) or "See \\cref{sec:verification}"
+
+
+def status_table(status: dict, texts: dict[str, str] | None = None) -> str:
+    """Every tracked result, grouped by status, with its source.
+
+    The row text is the summary phrase, else the abstract phrase, else the
+    boundary phrase, as in the README table of tools/build_status_docs.py.
+    A Lean-checked row lists its modules relative to lean/ThresholdHC; they
+    are not links, because Section 18 holds the links to fixed source
+    revisions. A paper-proof row refers to the section that holds the proof.
+    `texts` supplies assembled sources that may not be on disk yet.
+    """
+    results = status["results"]
+    keys = ordered_status_keys(status)
+    prefix = "lean/ThresholdHC/"
+    head = "Result & Source\\\\\n\\midrule\n"
+    lines = [
+        "\\begin{longtable}{@{}>{\\raggedright\\arraybackslash}p{0.55\\textwidth}"
+        ">{\\raggedright\\arraybackslash\\footnotesize}p{0.41\\textwidth}@{}}",
+        f"\\caption{{Verification status of the {len(keys)} results this paper tracks. "
+        "For a result checked in Lean the source is its modules, relative to "
+        "\\texttt{lean/ThresholdHC/}; for a paper proof it is the location of the "
+        "proof. \\Cref{sec:verification} states each formal scope and links the "
+        "fixed source revisions.}\\label{tab:status}\\\\",
+        "\\toprule\n" + head + "\\endfirsthead",
+        "\\toprule\n" + head + "\\endhead",
+    ]
+    groups = (("lean", "Checked in Lean"), ("paper", "Paper proof only"))
+    first = True
+    for kind, title in groups:
+        members = [key for key in keys if results[key]["status"] == kind]
+        if not members:
+            continue
+        if not first:
+            lines.append("\\addlinespace[6pt]")
+        first = False
+        noun = "result" if len(members) == 1 else "results"
+        lines.append(f"\\multicolumn{{2}}{{@{{}}l}}{{\\emph{{{title} "
+                     f"({len(members)} {noun})}}}}\\\\[3pt]")
+        for key in members:
+            result = results[key]
+            phrase = result.get("summary") or result.get("abstract") or result["boundary"]
+            if kind == "lean":
+                modules = [path[len(prefix):] for path in result["evidence"]
+                           if path.startswith(prefix)]
+                cell = ("\\newline ".join(f"\\path{{{module}}}" for module in modules)
+                        or "See \\cref{sec:verification}")
+            else:
+                cell = _proof_location(result["evidence"], texts or {})
+            lines.append(f"{_sentence_case(phrase)} & {cell}\\\\[2pt]")
+    lines += ["\\bottomrule", "\\end{longtable}"]
+    return "\n".join(lines)
+
+
 # ---------------------------------------------------------------------------
 # Version 5 material
 # ---------------------------------------------------------------------------
@@ -315,6 +436,10 @@ adds a robust stopping-program dual and convergent finite certificates.
 
 \paragraph{Verification boundary.}
 """ + status_text(status, "boundary") + "\n")
+
+    # "Entire function" is a term of complex analysis; the whole modulus is meant.
+    intro = once(intro, "The central object is the entire function\n",
+                 "The central object is the whole function\n")
 
     core = sources[V5 + "core.tex"].replace(
         "% Generated by tools/build_v5.py; edit the assembly rules, not this file.\n", "")
@@ -367,6 +492,14 @@ adds a robust stopping-program dual and convergent finite certificates.
                     "compactness. No claim for every other magnitude law follows from (C.A);\n"
                     "\\cref{sec:entropy-tail} treats general laws by a different argument.")
 
+    # The provenance of the inherited argument is recorded in Section 18.
+    critical = once(critical,
+        "The upper construction is reproduced in the final subsection. Its source\n"
+        "and the inherited proof identities are recorded in the v5 source manifest. "
+        "The new lower proof has three\nsteps.",
+        "The upper construction is given in the final subsection. The lower proof "
+        "has three\nsteps.")
+
     addendum = sources[V5 + "finite-gap-extension.tex"].replace(
         "% Generated by tools/build_v5.py; edit the assembly rules, not this file.\n", "")
     addendum = once(addendum,
@@ -379,6 +512,41 @@ adds a robust stopping-program dual and convergent finite certificates.
         "\\phantomsection\n"
         "\\addcontentsline{toc}{subsection}{Explicit single-coin base costs}\n",
         "\\subsection{Explicit base costs for the same single-coin model}\n")
+
+    # The addendum referred to "the preserved critical-law proof" and to its
+    # "existing" bounds; in this paper that proof is Appendix C, so cite it.
+    for old, new in (
+        ("This extension supplements the preserved critical-law proof. For the same\n",
+         "This section removes the restriction on the number of gaps in the\n"
+         "finite-gap sign-entropy bound of \\cref{crit:lem:finite-sign-entropy}, which\n"
+         "the critical lower proof of \\cref{app:critical} uses. For the same\n"),
+        ("The existing coefficient $1/512$ still applies when $\\log K\\ge32$.",
+         "The coefficient $1/512$ of that lemma still applies when $\\log K\\ge32$."),
+        ("original entropy theorem (BC2 in the preserved critical-law argument)\n"
+         "supplies the stronger coefficient $1/512$.",
+         "bound (C.BC2) of \\cref{crit:lem:finite-sign-entropy}\n"
+         "supplies the stronger coefficient $1/512$."),
+        ("uniform raw second moment bound $M$, the new proof gives\n",
+         "uniform raw second moment bound $M$, the argument below gives\n"),
+        ("These statements retain the original quantifiers over seed spaces,\n",
+         "These statements retain the quantifiers of \\cref{crit:thm:base-cost} over seed spaces,\n"),
+        ("Put $P=MW_0$. Activation still gives\n$P\\ge\\rho/6$. "
+         "The all-size entropy inequality and the existing good-gap\nselection give,",
+         "Put $P=MW_0$. Activation gives\n$P\\ge\\rho/6$, as in (C.BC7). "
+         "The all-size entropy inequality and the good-gap\n"
+         "selection of \\cref{app:critical} give,"),
+        ("If $P\\ge e^{-t/2}$, the existing\nexponential bound already gives $P\\ge\\rho LH$.",
+         "If $P\\ge e^{-t/2}$, then\n$P\\ge\\rho LH$ already, because $e^{t/2}\\ge LH$ in this range."),
+        ("The variance claim follows from the existing bound $M\\le3V/2$ in the\n"
+         "uniform-bias reduction.",
+         "The variance claim follows from the bound $M\\le3V/2$ of (C.BC6) in the\n"
+         "uniform-bias reduction."),
+        ("The earlier constructive proof used\n",
+         "An earlier constructive proof used\n"),
+        ("constant about $1.29\\cdot10^{-18}$. The new explicit constant is about\n",
+         "constant about $1.29\\cdot10^{-18}$. The explicit constant above is about\n"),
+    ):
+        addendum = once(addendum, old, new)
 
     constant = sources[V5 + "constant713.tex"]
     return {"introduction.tex": intro, "core.tex": core, "constant713.tex": constant,
@@ -1085,7 +1253,8 @@ def assemble() -> dict[str, str]:
     check_verification_rows(status, (DEST / "verification.tex").read_text(encoding="utf-8"))
     output = {}
     output.update(v5_material(sources, status))
-    output["status-abstract.tex"] = status_text(status, "abstract")
+    output["status-abstract.tex"] = abstract_status_text(status)
+    output["status-table.tex"] = status_table(status, output)
     general_law_files = general_law(sources)
     finite_gap_files = finite_gap(sources)
     output.update(general_law_files)

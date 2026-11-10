@@ -13,7 +13,7 @@ stopping-program results use \nolinkurl{8fb16244ded0d6cebf4ba78e1ad9adae09ef293d
 The entropy--tail lower half and the completed two-sided law use
 \nolinkurl{24937929f7c215d0f9b60c45083c0456d3d1fb31}.
 All theorem links point to fixed source revisions.
-The preceding all-size addendum has its own linked checkpoint and audit;
+\Cref{sec:all-sizes} has its own linked checkpoint and audit;
 its stronger domain and explicit single-coin constants supplement this table.
 
 \begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.28\textwidth}>{\raggedright\arraybackslash}p{0.67\textwidth}@{}}
@@ -76,8 +76,10 @@ both RMS and confidence bounds
 and upper families uniform over the power-margin envelope. The critical
 law has the separate formal coverage below.\\[5pt]
 General statistical $\Psi$ lower bound &
-The arbitrary-law $\Psi$ lower bound in \cref{app:localization} remains a
-paper theorem; it uses the cited Lee--Valiant input.\\[5pt]
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/ce0897b178f3b14c5706b5273843aea7008157ac/lean/ThresholdHC/PsiSelection/Full.lean}{\textnormal{\texttt{psi\_risk\_lower}}}
+and \texttt{psi\_confidence\_lower} prove \cref{loc:thm:PsiLower}
+with $c=10^{-17}$ via $\Psi\le\mathcal K$, without the Lee--Valiant input.
+Corollary~\ref{cor:psi-from-law} states this derivation.\\[5pt]
 Rare-event rate above two &
 \abovetwoleanref{above\_two\_theory} proves both minimax bounds for the
 exact power law with $\alpha>2$, $0<a\le1/2$, $0<\rho\le1/4$ and $B\ge1$,
@@ -139,7 +141,7 @@ law, including fractional boundary atoms.
 proves the upper half of Theorem~\ref{fg:thm:direct-main}, $R\le30001\,Q(B)$,
 for every law rather than only finite ones.
 \lowerleanref{ClosedQuantile/Full.lean}{closed\_quantile\_law}
-now proves the full two-sided rate on this domain with conservative universal
+proves the full two-sided rate on this domain with conservative universal
 constants, using the entropy--tail lower bound and deterministic comparison.
 \sharpleanref{Full.lean}{closed\_quantile\_lower\_explicit} gives
 $10^{-17}Q\le R$ on the same domain.
@@ -558,11 +560,21 @@ verify selected-type transfer, common pairs and RMS and confidence
 localization, including the $10^{-17}$ general-law confidence coefficient.
 
 \paragraph{Paper proofs, open questions and model limits.}
+The results of \cref{sec:psi-window} have paper proofs: the comparison of
+$\Psi$ with the quantile functional, the bound on its distance from the
+rate, and the power-margin rate that is uniform in the exponent. They are
+deterministic consequences of Corollary~\ref{fg:cor:general-laws} and
+\cref{thm:entropy-confidence-explicit}. Of their elementary inequalities,
+Lean checks only $\Psi\le\mathcal K$ and the two bounds of
+Corollary~\ref{cor:psi-from-law}, in the row for the general statistical
+$\Psi$ lower bound above; the floating-point script
+\path{research/2026-11-09-psi-closed-form/check.py} is numerical evidence
+only.
 A separate \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/a3b00cd8962060ca13768e5d3567168105e7ccfd/docs/UNKNOWN_LAW_CONFIDENCE.md}{confidence sequence}
 has a paper proof, not a Lean proof. It shrinks for every positive-gap law
 without using that law, but its proved width depends on the small-gap tail
 and can be slower than the known-law rate. Section~\ref{sec:arbitrary-law-adaptation}
-now gives a paper proof of the oracle time-uniform rate for arbitrary
+gives a paper proof of the oracle time-uniform rate for arbitrary
 unknown laws, after a law-dependent onset, using a learned conservative law.
 The new entropy transport, envelope learning, robustness and controller
 arguments are not Lean-checked. Section~\ref{sec:finite-family-adaptation}

@@ -1,8 +1,13 @@
 # Consolidated version 6
 
-[Current manuscript](builds/status-coverage-20261107.pdf) · [LaTeX sources](main.tex) · [Build record](builds/status-coverage-20261107.json) · [Previous build](builds/arbitrary-law-adaptation-20261106.pdf)
+[Current manuscript](builds/combined-psi-20261109.pdf) · [LaTeX sources](main.tex) · [Build record](builds/combined-psi-20261109.json) · [Previous build](builds/psi-closed-form-20261109.pdf)
 
-The current build adds four results to the generated status paragraphs of the [previous build](builds/arbitrary-law-adaptation-20261106.pdf), which combines the finite-gap menu and status-reconciliation changes with the arbitrary-law tail certificate and full eventual oracle-adaptation paper proof. The [finite-gap menu PDF](builds/gap-law-menus-20261105.pdf) and [status-reconciliation PDF](builds/status-reconciliation-20261105.pdf) retain their respective published source identities.
+The current build combines two builds that were published from the same base on 9 November 2026; see the [last section](#combined-build). The [closed-form and exposition build](#closed-form-and-exposition-build) adds [§14.8](psi-window.tex), which gives the variational modulus Ψ in closed form and the power-margin rate with constants uniform in the exponent, and revises the presentation: a rewritten abstract, a results overview with a generated status table, a reading guide and notation table, and a grouped table of contents. The [Psi lower bound build](#psi-lower-bound-and-tail-proof-build) records the arbitrary-law Ψ lower bound as Lean-checked and repairs one step of the arbitrary-law tail proof. The [earlier build](builds/status-coverage-20261107.pdf) added four results to the generated status paragraphs of the [arbitrary-law adaptation build](builds/arbitrary-law-adaptation-20261106.pdf), which combines the finite-gap menu and status-reconciliation changes with the arbitrary-law tail certificate and full eventual oracle-adaptation paper proof. The [finite-gap menu PDF](builds/gap-law-menus-20261105.pdf) and [status-reconciliation PDF](builds/status-reconciliation-20261105.pdf) retain their respective published source identities.
+
+Later [Lean component audits](../../docs/ARBITRARY_LAW_FORMALIZATION.md) cover
+the CDF and zero-atom comparison, dominated mass, and the concrete factor-32
+light contraction. The full arbitrary-law adaptation theorem remains a paper
+proof; the published PDF and its build record retain their original scope.
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -23,11 +28,13 @@ unchanged.
 
 | Location | Contents |
 |---|---|
-| §§1–10 | Version 5's original theory: model, minimax law, distribution-blind algorithm, unbiased characterization, 713 construction, power and boundary regimes, smoothness and observed-state results |
+| §1 | Introduction and related work. §1.2 summarizes the main results in one table, §1.3 lists the verification status of every tracked result, §1.4 describes how the sections and appendices fit together, and §1.5 collects the notation |
+| §§2–10 | Version 5's original theory: model, minimax law, distribution-blind algorithm, unbiased characterization, 713 construction, power and boundary regimes, smoothness and observed-state results |
 | §11 | Rare-event model, the variational modulus Ψ, the power-margin table (with a consistency check against the closed quantile form), and the critical quadratic law |
 | §12 | Critical sign entropy for every finite gap count (the v5 all-size addendum) |
 | §13 | The entropy–tail law for every magnitude law: definitions, theorem statements and proof structure |
 | §14 | The closed quantile form: the finite-law theorem, its comparison with the selection functional, the extension to every law, and consequences |
+| §14.8 | $\Psi$ in closed form within a factor $\sqrt2$, the $\Psi$ lower bound as a corollary of the entropy–tail law, the distance of $\Psi$ from the rate, and power-margin rates with constants independent of the exponent |
 | §15 | Stopping programs, the four-prior dual, the factor-sixteen comparison and finite certificates |
 | §§16–17 | Related work for the rare-event results; consequences and limits |
 | §18 | Exact formal verification scope, with fixed Lean links |
@@ -58,8 +65,10 @@ and the existence of a finite-law optimizer that selects
 a suffix in each dyadic band. For arbitrary laws it checks variation and
 rounding stability and the finite-approximation enclosures. It also checks the stopping-program, fixed-cap
 identification and genie results of §15, in the scope stated in §18.
+It also checks the arbitrary-law statistical Ψ lower bound of Appendix A,
+with coefficient $10^{-17}$, as a corollary of the entropy–tail law.
 It also checks the stochastic-envelope extension, lower-bound localization
-with coefficient $1/128$, finite-menu cost grouping and finite-family oracle
+with coefficient $1/128$ conditional on a single-coin obstruction, finite-menu cost grouping and finite-family oracle
 adaptation. The [status table](../../README.md#scope-and-review), generated
 from [status.json](status.json), lists every result the abstract tracks.
 Section 18 states each formal scope and links the fixed source revisions.
@@ -78,12 +87,16 @@ new in this edition; it is a consistency check, not additional verification.
 
 ## Source and editorial scope
 
-[build_v6.py](../../tools/build_v6.py) generates 29 of the TeX files. Twenty-eight
+[build_v6.py](../../tools/build_v6.py) generates 30 of the TeX files. Twenty-eight
 come from the inputs hash-locked in [sources.json](sources.json): the v5
 project files, the general-law v2 sections and bibliography, and the
-finite-gap revision 2 sections. The twenty-ninth, `status-abstract.tex`, and
-the introduction's Verification boundary paragraph come from
-[status.json](status.json), the single source for those two passages. To
+finite-gap revision 2 sections. The other two, `status-abstract.tex` and
+`status-table.tex`, and the introduction's Verification boundary paragraph
+come from [status.json](status.json), the single source for those three
+passages. The abstract counts the Lean-checked results and names each
+paper-proof result, so it keeps its length as results are checked; the
+status table of §1.3 lists every result with its Lean modules or the
+location of its paper proof, and the boundary paragraph gives the scopes. To
 change what they say about a result, edit its status and evidence paths
 there and rerun the generator, then `python tools/build_status_docs.py`, which
 regenerates the status tables in the [README](../../README.md#scope-and-review)
@@ -95,9 +108,10 @@ names must cite a Lean source for a Lean-checked result, or say paper and
 cite no Lean source for a paper proof. The per-section status remarks are
 still updated by hand. Each generated file begins with `% Generated by tools/build_v6.py`;
 do not edit those files directly. Every other TeX file is hand-edited source:
-the exposition in `frontmatter.tex`, `rare-events.tex`, `entropy-tail.tex`,
-`finite-laws.tex`, `certificates.tex`, `finite-proof.tex` and
-`verification.tex`; Appendices P–Z (`appendix-optimal-factor.tex` through
+the exposition in `frontmatter.tex`, `overview.tex` (§§1.2–1.5),
+`rare-events.tex`, `entropy-tail.tex`,
+`finite-laws.tex`, `psi-window.tex` (§14.8), `certificates.tex`,
+`finite-proof.tex` and `verification.tex`; Appendices P–Z (`appendix-optimal-factor.tex` through
 `appendix-observed-upper.tex`); and the confidence subsections that
 `appendix-known-confidence.tex` inputs (`typed-confidence.tex`,
 `common-pair-confidence.tex`, `additive-confidence.tex`,
@@ -123,6 +137,12 @@ The editorial changes are explicit in the generator:
 - **Notation.** Squared Hellinger distance is written 𝔥 throughout the
   shared appendices, as in the finite-gap manuscript, because h also
   denotes the budget scale. Finite-gap labels carry an `fg:` prefix.
+- **Addendum wording.** Version 5's all-size addendum referred to "the
+  preserved critical-law proof" and its "existing" bounds. §12 cites
+  Lemma C.3, Theorem C.2 and the tagged displays of Appendix C instead.
+  The introduction says "the whole function" where v5 said "the entire
+  function", and the proof outline of Appendix C no longer points to the
+  v5 source manifest, whose provenance §18 records.
 - **Internal citations.** Citations of the companion manuscripts become
   cross-references. The finite-gap manuscript's conditional remark on
   general laws becomes a corollary in §14, whose proof cites the
@@ -575,3 +595,168 @@ abstract's last sentence or the provenance note leaves page 1, and
 its PDF and the current sources.
 
 [Updated manuscript](builds/status-coverage-20261107.pdf) · [Build record](builds/status-coverage-20261107.json)
+
+## Closed form of Ψ and the critical window
+
+[§14.8](psi-window.tex) is new mathematics, with paper proofs and no
+independent review. Lean checks one part of it, the inequality
+$\Psi\le\mathcal K$ with the two lower bounds of Corollary 14.10; see the
+[Psi lower bound build](#psi-lower-bound-and-tail-proof-build). The rest is not
+Lean-checked. It was first published in the
+[closed-form and exposition build](#closed-form-and-exposition-build) below.
+
+- **Ψ in closed form.** For every law, $\mathcal Q^0/\sqrt2\le\Psi\le\mathcal Q^0$,
+  where $\mathcal Q^0$ is the closed quantile functional with the cost
+  entropy of the quantile core replaced by its inverse-square cost. Both
+  constants are attained.
+- **The Ψ lower bound as a corollary.** $\Psi\le\mathcal K$ has a three-line
+  proof, so the bounds of Theorem A.5 follow from the statements of the
+  entropy–tail law and the confidence theorem, with constant $10^{-17}$, for
+  every $B>0$, and without the Lee–Valiant input. That inequality is now
+  Lean-checked, so the existing Lean results imply the Ψ lower bound.
+- **Distance from the rate.** $\mathcal Q\le\sqrt{2(1+E_\kappa)}\,\Psi$, with
+  $E_\kappa$ the entropy of the core's band costs, and a matching lower
+  bound when the core term dominates. This says for which laws Ψ gives the
+  rate, and by how much it fails otherwise.
+- **Power margins, uniformly in the exponent.** For $F(d)=(d/a)^\alpha$ with
+  $0<\alpha\le4$ an explicit formula gives the RMS rate and both confidence
+  radii with constants independent of $\alpha$. For $3/2\le\alpha\le3$ the
+  rate is $\min\{\rho,\ x\sqrt{\rho\,\Phi_\alpha(\rho)[1+\log N_\alpha(\rho)]}\}$.
+  The earlier text said that the power-margin constants diverge as
+  $\alpha\to2$ and claimed no uniform theorem; the remark after the
+  corollary gives their growth, $\sqrt{\log(1/|\alpha-2|)/|\alpha-2|}$.
+
+These results are tracked in [status.json](status.json) as one paper-proof
+entry, so the abstract, the status table and the README tables list 31
+results. §§11 and 18 point to the new statements where they stated the
+old limits. The [check script](../../research/2026-11-09-psi-closed-form/README.md)
+tests every inequality and constant in floating point; it is numerical
+evidence, not a proof.
+
+## Exposition revision
+
+These source changes follow the status coverage build. They are published,
+together with §14.8, in the
+[closed-form and exposition build](#closed-form-and-exposition-build) below.
+
+No theorem, proof or constant changes, and section, theorem and equation
+numbers are unchanged. The changes are to the presentation:
+
+- **Abstract.** The mathematical part is rewritten to state the problem, the
+  worst case and each main result in plain terms. The generated status
+  paragraph now counts the Lean-checked results and names the paper proofs,
+  so it no longer lengthens the title page as results are checked.
+- **§§1.2–1.5.** The new hand-written [overview.tex](overview.tex) gives a
+  table of the main results with their locations, the generated status
+  table, a guide to the sections and appendices, and a notation table that
+  also lists the letters whose meaning differs between parts.
+- **Contents.** Unnumbered group headings divide the 18 sections and 26
+  appendices by topic.
+- **Cross-references.** `cleveref` capitalizes every reference name, so the
+  text no longer mixes "theorem 11.2" with "Theorem 13.2".
+- **§12 and status remarks.** §12 cites Appendix C in place of "the
+  preserved critical-law proof", and the status remarks of §§11, 13–15 and
+  18 and of Appendices S and V drop "now" and "new".
+
+The existing tables are renumbered from 1–3 to 4–6.
+
+## Closed-form and exposition build
+
+This build publishes the two preceding changes: §14.8 and the exposition
+revision. The PDF has 192 pages, twelve more than the status coverage build:
+five from the overview with its status table, six from §14.8, and one from
+the additions to §18.
+
+Two independent builds have identical bytes, all 33 fonts are embedded,
+there are no unresolved references, and the only warning, an inherited
+overfull line in Appendix C, also occurs in the unchanged sources. The
+engine is pdfTeX from TeX Live 2023, that of the
+[manuscript workflow](../../.github/workflows/manuscript.yml), with the same
+fixed source date. This environment does not reproduce the status coverage
+PDF byte for byte, so pages are compared with the unchanged sources typeset
+here.
+
+Against that baseline, 34 pages carry new or edited text, 34 have unchanged
+text with page breaks moved by the insertions before them, and 26 differ
+only in capitalized reference names. All 94 were visually inspected. The
+other 98 pages reproduce baseline pages twelve pages later, with word
+positions equal to within 0.01pt. A mechanical comparison of every word
+box with the text block finds no line beyond the margins other than the
+inherited one. The [build record](builds/psi-closed-form-20261109.json)
+lists the pages of each kind.
+
+The new statements have paper proofs only. The
+[check script](../../research/2026-11-09-psi-closed-form/README.md) passes
+on these sources; it tests the inequalities in floating point and is not a
+proof. No Lean source changes, and the Lean proofs were not rebuilt for
+this build.
+
+[Updated manuscript](builds/psi-closed-form-20261109.pdf) · [Build record](builds/psi-closed-form-20261109.json)
+
+## Psi lower bound and tail-proof build
+
+Three things change. None alters a theorem statement.
+
+- **Status of the Ψ lower bound.** [Theorem A.5](appendix-localization.tex),
+  the arbitrary-law statistical Ψ lower bound, is now Lean-checked with
+  coefficient $10^{-17}$ for the RMS risk and the confidence radius. The
+  [Lean proof](../../lean/ThresholdHC/PsiSelection/Full.lean) compares
+  $\Psi_{\mu,\rho}(B^{-1/2})\le\mathcal K_{\mu,\rho}(B)$ by Cauchy–Schwarz and
+  applies the explicit entropy–tail lower bounds, so it needs no Lee–Valiant
+  input. The abstract and verification-boundary paragraphs, generated from
+  [status.json](status.json), the Section 11 remark and the Section 18 row say
+  so. The paper proof in Appendix A is unchanged.
+- **The $1/128$ localization entry.** Both generated paragraphs now call it
+  conditional: each theorem takes a single-coin obstruction as a hypothesis.
+- **A repaired step in Appendix V.** The adaptation proof cited a sharper
+  terminal unresolved bound "from the tail proof", which had only a Chebyshev
+  bound. [Section V.3](arbitrary-law-tail.tex) now states the Hoeffding form
+  (AT6a), and [Section V.4](arbitrary-law-adaptation.tex) cites it.
+
+The PDF has 180 pages. Two independent builds from commit `84d8bfa` have
+identical bytes, all 29 fonts are embedded, there are no unresolved
+references, and the only warning is the inherited overfull line. The engine
+is pdfTeX from TeX Live 2023 with the fixed source date; typesetting the
+previous sources in the same environment reproduced the previous build byte
+for byte. Against that baseline, pages 1, 6, 25, 44, 162, 163 and 168 change
+and the other 173 pages are identical; none is renumbered. Those seven pages
+and page 2 were rendered and inspected. Earlier published PDFs and records
+are unchanged.
+
+[Updated manuscript](builds/psi-lower-bound-20261109.pdf) · [Build record](builds/psi-lower-bound-20261109.json)
+
+## Combined build
+
+The two preceding builds were prepared independently from the same base, so
+neither contains the other's changes. This build typesets their merged
+sources. Beyond what each build already contains, the merge changes four
+passages:
+
+- **Status source.** [status.json](status.json) lists 31 results: 29
+  Lean-checked and 2 with paper proofs only, namely arbitrary-law oracle
+  adaptation and the closed form of Ψ with the uniform power-margin rate.
+  The abstract, the verification-boundary paragraph and the status table of
+  §1.3 are regenerated from it.
+- **§14.8.** Its status paragraph says that Lean checks $\Psi\le\mathcal K$
+  and the two bounds of Corollary 14.10, and that the other statements have
+  paper proofs.
+- **§18.** The row for the general statistical Ψ lower bound cites the Lean
+  theorems and refers to Corollary 14.10 for the derivation. The paragraph on
+  paper proofs makes the same distinction for §14.8.
+
+No theorem statement, proof or constant changes relative to the two builds.
+
+The PDF has 192 pages. Two independent builds from commit `fef24b7` have
+identical bytes, all 33 fonts are embedded, there are no unresolved
+references, and the only warning is the inherited overfull line. The engine
+is pdfTeX from TeX Live 2023 with the fixed source date. In the same
+environment the Psi lower bound sources reproduce their published PDF byte
+for byte. The closed-form sources give the same text as their published PDF
+on all 192 pages but different bytes, so they are typeset here as the
+baseline. Against that baseline 22 pages differ: 1, 6, 8–11, 30, 49–51,
+55–63, 174, 175 and 180. The other 170 are identical in extracted text and as
+rendered images, and none is renumbered. The 22 pages were rendered and
+inspected for layout; the [build record](builds/combined-psi-20261109.json)
+says what each contains. Earlier published PDFs and records are unchanged.
+
+[Updated manuscript](builds/combined-psi-20261109.pdf) · [Build record](builds/combined-psi-20261109.json)

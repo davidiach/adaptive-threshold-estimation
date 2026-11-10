@@ -1,0 +1,23 @@
+'ThresholdHC.ArbitraryLawAdaptation.map_sub_of_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.map_withDensity_comp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.one_le_sqrt_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.selectionLift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.selectionLift_first' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.selectionLift_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.selection_le_sqrt_three_of_increasing_coupling' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.tailCost_increasing_coupling' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.transportedSelection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.transportedSelection_costs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.transportedSelection_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.transportedSelection_mass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.transportedSelection_objective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

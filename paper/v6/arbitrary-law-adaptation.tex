@@ -1,9 +1,9 @@
 \subsection{Eventual oracle-rate adaptation over arbitrary unknown gap laws}
 \label{sec:arbitrary-law-adaptation}
 
-This is a \textbf{paper proof}, with an executable construction. It is not a new
-Lean theorem or a formal verification of Python. The previous
-\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/9dbddf6622c17f37fb98c79bcf4407f579318a45/docs/ARBITRARY_LAW_TAIL.md}{tail-certificate theorem} supplies the single-coin
+This is a \textbf{paper proof}, with an executable construction. It is not a
+Lean theorem or a formal verification of Python. The
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/9dbddf6622c17f37fb98c79bcf4407f579318a45/docs/ARBITRARY_LAW_TAIL.md}{tail-certificate theorem} of \cref{sec:arbitrary-law-tail} supplies the single-coin
 probe and its physical work bound. The additional steps here are a learned
 stochastic envelope, its entropy comparison, and a robustness proof for the
 known-law classifier bank. In particular, running time itself is not assumed
@@ -227,8 +227,9 @@ $t\le\sqrt\rho/2$, so the elementary objective floor gives
 $\mathcal K_{\mu,\rho}(N)\ge2\sqrt\rho\,t$. The core term in (UA12) is at most
 $\mathcal K/2$, and $1/M\le\sqrt\rho\,t/8\le \mathcal K/16$.
 
-The sharper terminal unresolved bound from the tail proof implies
-$u_j\le\Pr(VD\le t_j)$. For $x\in[t_{j+1},t_j)$ this is at most
+By (AT6a) at depth $j$, a coin with gap $d$ is unresolved with probability
+at most $G_V(t_j/d)$: this is $2e^{-d^2/(2t_j^2)}$ when $d>4t_j$ and one
+otherwise. Integrating over the gap gives $u_j\le\Pr(VD\le t_j)$. For $x\in[t_{j+1},t_j)$ this is at most
 $F_{\mu'}(x)$, where $\mu'=\mathcal L(VD/2)$ as in (UA3). Consequently
 \[
  F_{\bar\mu}(x)\le\min\{1,128F_{\mu'}(x)+e\},

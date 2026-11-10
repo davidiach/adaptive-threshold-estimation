@@ -452,6 +452,13 @@ true value, provided each stage interval has its stated coverage. A stage that
 runs out of flips leaves the interval unchanged. An empty intersection stays
 empty: it signals a coverage failure and is not replaced by a wider interval.
 
+The certified radii are conservative. With the
+[known-law estimator](../docs/KNOWN_LAW_ESTIMATOR.md) as the base program on
+deterministic coins (the easiest law), the capped median first reports less
+than the whole range $[0,\rho]$ at about $3\cdot10^7$ flips, and the known-law
+ladder at about $2.7\cdot10^8$. Below that these drivers return valid but
+uninformative intervals.
+
 Both modules cap flips, not CPU time, and trust your callbacks. Lean checks
 the [capped median](../results/known-law-confidence-20261104/README.md) and the
 [sequential coverage and known-law width](../results/anytime-confidence-20261105/README.md)
@@ -461,6 +468,11 @@ themselves checked. The original paper proofs are in the
 Neither module is imported by the package itself.
 
 ## Tests
+
+The [budget controller transition contract and audit](../docs/BUDGET_CONTROLLER_TRANSITIONS.md)
+documents cumulative authorization, pause versus timeout, terminal and failed
+states, and rejection of overlapping `advance_to` calls, including callback
+re-entry. It also maps these behaviors to the regression tests.
 
 ```sh
 python -m unittest discover -s toolkit/tests -v

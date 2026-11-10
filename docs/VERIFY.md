@@ -21,6 +21,7 @@ the [evidence index](../results/README.md) explains published checkpoints.
 | Confidence-transfer research package | `python -m unittest discover -s toolkit/tests -p 'test_confidence*.py' -v`; `python research/2026-10-30-confidence-transfer/verify_transfer.py --output .runtime/confidence-transfer/transfer.json`; `python research/2026-10-30-confidence-transfer/verify_anytime.py` | Driver unit tests; exact rational smoothing, likelihood-factorization and null-work audits; exact error-spending identities and the optional-stopping path count, written to `.runtime/confidence-transfer/`. There are no tracked evidence records to compare with. They check finite computations, not the [paper proof](../research/2026-10-30-confidence-transfer/NOTE.md). |
 | Imported inputs and research packages | `python tools/verify_inputs.py`; `python tools/verify_research.py`; `python tools/verify_population_research.py` | Input identities and maintained research replay. Research diagnostics use temporary output and `.runtime/`; original records remain intact. |
 | Main RMS law | `python tools/verify_tier6.py --sequential --require-complete`; `python tools/verify_blind_upper_components.py --sequential` | Exact formal audits of both directions. Tier 6 writes tracked `results/`; use a disposable checkout. The upper audit writes `.runtime/`. |
+| Any Lean source | `python tools/verify_project_axioms.py`; add `--replay-main-theorem` for the kernel replay | Builds every module under `lean/ThresholdHC` and checks the transitive axioms of every constant they declare. Registers nothing and writes nothing. It does not check exact statement types; run the affected result's audit as well. |
 | Another Lean result | [Theorem-to-audit map](../lean/README.md#main-theorem-entry-points), [baseline and tier sequence](#lean-kernel-checks) | Run the affected result's exact-target/axiom audit, including affected downstream results when shared dependencies change. Check locks first. |
 | Verification logic or registration | Relevant audit plus its matching `test_*.py` module; `python -m unittest discover -s tools -p 'test_*.py' -v` for all guard tests | Tests exercise validation guards; they do not replace the mathematical kernel audits. Use a disposable checkout for audits that overwrite published files. |
 | Numerical checks and recorded benchmarks | [Integrity and numerical sequence](#integrity-numerics-and-unit-tests), [benchmark protocol](../benchmark/README.md) | Some commands write `results/`. Replaying stored samples is distinct from rerunning held-out experiments. |
@@ -286,7 +287,9 @@ binds the pinned native run to its sources and dependency artifacts.
 
 The separate direct finite-law audit runs with `python tools/verify_finite_quantile.py`.
 It builds the registered proof modules with Lake, checks the statement fixed at
-`5557334`, and validates the exact types and transitive axioms. It rejects imports
+`5557334`, and validates the exact types and transitive axioms. The exact types
+are the seven `example` declarations of `FiniteQuantile/Audit.lean`; the audit
+pins that file by hash and fails if they are missing. It rejects imports
 of the completed general statistical lower theorem. The [finite-law record](../results/direct-finite-quantile-20261104/README.md)
 gives the local verification scope and the exact coefficients.
 
@@ -789,6 +792,27 @@ Run `python tools/verify_stochastic_envelope.py` for the two minimax rates,
 the unbiased existence equivalence and the variance–work product in the
 unknown-law class. [Native record](../results/stochastic-envelope-20261105/README.md)
 
+## Arbitrary-law Psi lower bound
+
+Run `python tools/verify_psi_selection.py` for six exact statements and ten
+transitive axiom reports: the comparison $\Psi(B^{-1/2})\le\mathcal K(B)$ and
+the two minimax lower bounds with coefficient $10^{-17}$ that follow from the
+entropy-tail law. Every declaration in `PsiSelection/` is an audit root.
+[Native record](../results/psi-selection-20261109/README.md)
+
+## Whole-project build, axioms and kernel replay
+
+Run `python tools/verify_project_axioms.py --replay-main-theorem`. It builds
+every module under `lean/ThresholdHC`, including files that no result audit
+names, and fails unless no project module declares an axiom and every
+constant depends only on `propext`, `Classical.choice` and `Quot.sound`. The
+replay runs the toolchain's `leanchecker`, one process per module, on the
+import closure of `Tier6/Full.lean` and `BlindUpper/Full.lean`. The audit
+catches a `sorry` that the textual source scanner cannot see, for example a
+proof closed with the `stop` tactic. It does not check statement types.
+CI runs it in the `lean-all-modules` job.
+[First record](../results/project-axioms-20261109/README.md)
+
 ## Rare-event margins below one
 
 Run `python tools/verify_sublinear_power.py` for five exact statements and ten transitive axiom reports. [Native record](../results/sublinear-power-20261105/README.md)
@@ -896,3 +920,40 @@ Run `python tools/verify_arbitrary_law_stage.py` for 17 exact statements and
 16 transitive reports for observable paid-pilot/selected-continuation stages.
 The [formal scope](ARBITRARY_LAW_FORMALIZATION.md) distinguishes this execution
 component from the unproved statistical instantiation and final controller.
+
+Run `python tools/verify_arbitrary_law_countable.py` for 16 exact statements
+and transitive reports for countable entropy transport and its canonical
+Gamma connection. Individual destination columns must be summable, but the
+full entropy and moment may be infinite. The coupling-to-cell construction
+is outside this component; see the [formal scope](ARBITRARY_LAW_FORMALIZATION.md).
+
+Run `python tools/verify_arbitrary_law_coupling.py` for 19 exact statements
+and transitive axiom reports: measurable canonical band indices, countable
+cell integrals, and the factor-three Gamma comparison for finite increasing
+couplings on positive gaps. Run `python tools/verify_arbitrary_law_selection.py`
+for 13 more: Radon--Nikodym selection lifts, preserved mass and domination,
+residual tail contraction, and the square-root-three comparison of the
+original capped infimum. Neither result assumes a finite inverse moment.
+CDF-to-coupling existence and the zero-atom extension are checked below.
+
+Run `python tools/verify_arbitrary_law_cdf_coupling.py` for 11 exact statements
+and transitive reports proving the common-uniform coupling for bounded
+nonnegative laws. Run `python tools/verify_arbitrary_law_zero.py` for 36 more:
+the zero-atom functional, exact agreement with positive-gap K, entropy and
+selection transport on `[0,1/2]`, and the comparison starting from CDF
+domination. Atoms and infinite inverse moments and entropy are allowed.
+
+The dominated-mass comparison (A5) is checked by
+`python tools/verify_arbitrary_law_dominated.py`: 22 exact statements and
+22 transitive reports. Bounded density restriction transfers fractional
+selections and controls their residuals. For finite measures,
+`lambda <= c eta + e delta_0` gives `K(lambda) <= c K(eta) + e`
+when `c >= 1` and `e >= 0`, retaining infinite entropy and the cap.
+
+Run `python tools/verify_arbitrary_law_light_entropy.py` for 36 exact statements
+and transitive reports: product-reference entropy, explicit numerical budgets,
+two-band product geometry and the factor-1024 entropy bound for actual product
+measure cells. Run `python tools/verify_arbitrary_law_light.py` for 26 more
+exact statements and transitive reports: residual tails, the constructed
+multiplier's exact CDF, and the full capped selection comparison with factor 32.
+The final result imposes no inverse-moment or entropy condition on the input law.

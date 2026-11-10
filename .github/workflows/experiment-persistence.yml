@@ -1,0 +1,30 @@
+name: Experiment persistence
+on:
+  push:
+    paths:
+      - '.github/workflows/experiment-persistence.yml'
+      - 'tools/run_real_guarded.py'
+      - 'tools/test_experiment_persistence.py'
+      - 'benchmark/run_real.py'
+  pull_request:
+    paths:
+      - '.github/workflows/experiment-persistence.yml'
+      - 'tools/run_real_guarded.py'
+      - 'tools/test_experiment_persistence.py'
+      - 'benchmark/run_real.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  transitions:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Exercise storage transitions without scientific sampling
+        run: python -B -m unittest discover -s tools -p 'test_experiment_persistence.py' -v

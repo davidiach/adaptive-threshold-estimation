@@ -1,0 +1,298 @@
+% Hand-written. Summary of results, guide and notation for the whole paper.
+% The verification-status table is generated: edit status.json, not this file.
+% This file adds no numbered equations or theorems, so later numbers are
+% the same with or without it.
+\subsection{Summary of results}\label{sec:summary}
+\Cref{tab:results} collects the main statements. Throughout, $\mu$ is the
+law of a coin's gap $D=|P-1/2|$, the budget $B$ bounds the expected number
+of flips, and $\asymp$ hides universal positive constants unless a
+subscript names a dependence. The first block of the table takes the worst
+case over every sign law at a fixed gap law, in the model of
+\cref{sec:model}. The second block adds the constraint $\theta\le\rho$,
+with $\mu$, $\rho$ and $B$ known to the algorithm, in the model of
+\cref{sec:rare-model}.
+
+{\small
+\renewcommand{\arraystretch}{1.15}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.17\textwidth}
+                     >{\raggedright\arraybackslash}p{0.56\textwidth}
+                     >{\raggedright\arraybackslash}p{0.21\textwidth}@{}}
+\caption{The main results. Constants $c$ and $C$ are universal.
+In the second block $h=B^{-1/2}$ and $L=1+\log(1/\rho)$.}\label{tab:results}\\
+\toprule
+Result & Statement & Where\\
+\midrule
+\endfirsthead
+\toprule
+Result & Statement & Where\\
+\midrule
+\endhead
+\multicolumn{3}{@{}l}{\emph{Every sign law: any gap law $\mu$ on $(0,1/2]$,
+ $B\ge1$, $0<\delta\le1/4$}}\\[3pt]
+Minimax RMS error
+ & $\tfrac1{64}\,\omega_\mu(B^{-1/2})\le R_\mu(B)\le C\,\omega_\mu(B^{-1/2})$,
+   where $\omega_\mu(h)=\E_\mu\min\{1,h/D\}$. One algorithm that depends
+   only on $B$ attains the upper bound for every $\mu$.
+ & \cref{thm:main}; proof in \cref{sec:lower,sec:classifier,sec:minimax-proof}\\[3pt]
+Confidence radius
+ & $r_\mu(B,\delta)\asymp\omega_\mu\bigl(\sqrt{\log(1/\delta)/B}\bigr)$, again
+   with one algorithm for every $\mu$.
+ & \cref{thm:main}\\[3pt]
+Unbiased estimation
+ & An estimator that is unbiased for every sign law, with uniformly
+   finite variance $V$ and expected work $W$, exists if and only if
+   $I_\mu=\E_\mu D^{-1}<\infty$. Then
+   $I_\mu^2/16\le\inf VW\le713\,I_\mu^2$, and one estimator attains the
+   upper bound for every such $\mu$.
+ & \cref{thm:unbiased}; proof in \cref{sec:unbiased-proof,sec:713}\\[3pt]
+Unknown gap law
+ & The three statements above hold uniformly over every population whose
+   gaps are stochastically no smaller than those of $\mu$.
+ & \cref{cor:envelope}\\[3pt]
+Margin conditions
+ & If $\Prob(|P-1/2|\le t)\le Ct^\alpha$, the work needed for accuracy
+   $\varepsilon$ at confidence $1-\delta$ is of order
+   $\log(1/\delta)$ times $\varepsilon^{-2/\alpha}$ for $\alpha<1$,
+   $\varepsilon^{-2}\log^2(1/\varepsilon)$ for $\alpha=1$ and
+   $\varepsilon^{-2}$ for $\alpha>1$, for small $\varepsilon$. Logarithmic
+   corrections to a linear margin interpolate between the last two cases.
+ & \cref{cor:power,cor:log}; \cref{tab:rates}\\[3pt]
+Smooth densities
+ & The rate $\varepsilon^{-2}\log^2(1/\varepsilon)\log(1/\delta)$ persists
+   when $P$ has a density bounded in $C^s$, for each fixed $s$.
+ & \cref{thm:smooth}; \cref{app:smooth-density}\\[3pt]
+Observed outer states
+ & With observable states and no regularity across states, the cost at
+   RMS error $\varepsilon$ is of order
+   $\varepsilon^{-2}\log^2(1/\varepsilon)$ on a class satisfying the
+   assumptions of~\cite{gileshajiali}.
+ & \cref{cor:nested}, \cref{prop:continuous}; \cref{app:finite-observed,app:continuous-observed,app:observed-upper}\\[3pt]
+\addlinespace[4pt]
+\multicolumn{3}{@{}l}{\emph{Rare events: $\theta\le\rho$ with
+ $0<\rho\le1/4$, and $\mu$, $\rho$, $B$ known}}\\[3pt]
+Variational lower bound
+ & $R_{\mu,\rho}(B)\ge c\,\Psi_{\mu,\rho}(B^{-1/2})$ for $\Psi$
+   in~\eqref{eq:v5-psi}, whose optimizer and value are explicit.
+ & \cref{sec:rare}; \cref{loc:thm:PsiLower}\\[3pt]
+Power-law gaps
+ & For $F(d)=(d/a)^\alpha$, $B\ge1$ and $x=(a\sqrt B)^{-1}$, the RMS error is of
+   order $\min\{\rho,x^\alpha\}$ for $\alpha<1$,
+   $\min\{\rho,x[1+\log_+(\rho/x)]\}$ for $\alpha=1$,
+   $\min\{\rho,\rho^{1-1/\alpha}x\}$ for $1<\alpha<2$ and
+   $\min\{\rho,\sqrt\rho\,x\}$ for $\alpha>2$, with constants depending
+   on $\alpha$.
+ & \cref{sec:rare}; \cref{app:localization,app:above-two,app:sublinear-power,app:shifted-power}\\[3pt]
+Critical quadratic law
+ & For $F(d)=(4d)^2$ and $B\ge1$,
+   $R_{\mu,\rho}(B)\asymp\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}$, whereas
+   $\Psi_{\mu,\rho}(B^{-1/2})\asymp\min\{\rho,\sqrt{\rho L/B}\}$.
+ & \cref{thm:v5-critical}; \cref{app:critical}\\[3pt]
+Entropy--tail law
+ & $R_{\mu,\rho}(B)\asymp\mathcal K_{\mu,\rho}(B)$ for every $\mu$ and
+   every $B>0$, where $\mathcal K$ is the selection
+   functional~\eqref{eq:scalar-selection}.
+ & \cref{thm:entropy-tail-law}; \crefrange{sec:entropy-tail-upper}{sec:transfer-foundations}\\[3pt]
+Closed quantile form
+ & $\mathcal K\le\Q\le c_*\mathcal K$ with
+   $\Q(B)=\min\{\rho,\,T_h+h\sqrt{\rho\Gamma_\kappa}\}$
+   from~\eqref{fg:eq:closed-functional}, so $R_{\mu,\rho}\asymp\Q$. The
+   factor $c_*\approx1.4626$ cannot be lowered.
+ & \cref{fg:thm:direct-main,fg:cor:general-laws,thm:sharp-quantile-factor}; \cref{app:finite-direct}\\[3pt]
+$\Psi$ in closed form
+ & $\Q^0/\sqrt2\le\Psi_{\mu,\rho}(h)\le\Q^0$, where $\Q^0$ is $\Q$ with the
+   cost entropy $\Gamma_\kappa$ replaced by the inverse-square cost
+   $A_\kappa$. Hence $\Psi\le\mathcal K$, and
+   $R_{\mu,\rho}\le C\sqrt{1+E_\kappa}\,\Psi$ with $E_\kappa$ the entropy
+   of the band costs of the quantile core.
+ & \cref{prop:psi-closed,thm:psi-gap}\\[3pt]
+Through the critical exponent
+ & For $F(d)=(d/a)^\alpha$ with $3/2\le\alpha\le3$ and $x=(a\sqrt B)^{-1}$,
+   $R_{\mu,\rho}(B)\asymp\min\bigl\{\rho,\
+   x\sqrt{\rho\,\Phi_\alpha(\rho)[1+\log N_\alpha(\rho)]}\bigr\}$ with
+   constants independent of $\alpha$, for $\Phi_\alpha$ and $N_\alpha$
+   in~\eqref{eq:power-phi-n}. A formula of the same kind holds for
+   $0<\alpha\le4$ and for confidence radii.
+ & \cref{thm:power-uniform}, \cref{cor:critical-window}\\[3pt]
+Stopping programs
+ & The cap-$N$ program $P_N$ has an exact four-prior dual, and
+   $R_{\mu,\rho}\le P_N\le16R_{\mu,\rho}$ at $N=\lceil4B/3\rceil$.
+ & \cref{sec:certificates}; \crefrange{sec:flow-foundations}{sec:computation}, \cref{thm:uniform-cap-rate}\\[3pt]
+Deterministic caps
+ & The rates for $R_\mu$, for the critical law and for
+   $\mathcal K_{\mu,\rho}$ remain valid when every run must stop within
+   $\lfloor B\rfloor$ flips.
+ & \cref{app:hard-budget}\\[3pt]
+Confidence
+ & For $0<\delta\le1/4$ the confidence radius is of order
+   $\mathcal K_{\mu,\rho}\bigl(B/\log(1/\delta)\bigr)$ under an expected
+   budget and under a deterministic cap.
+ & \cref{thm:confidence-stopping-dual,thm:entropy-confidence-explicit}\\[3pt]
+Time-uniform intervals
+ & One procedure gives nested intervals that cover $\theta$ at every
+   budget at once, with half-width at most a constant times
+   $\mathcal K_{\mu,\rho}\bigl(B/\Lambda(B,\delta)\bigr)$, where
+   $\Lambda$ adds an iterated logarithm of $B$ to $\log(1/\delta)$. A
+   lower bound of the same form holds at infinitely many budgets.
+ & \cref{app:anytime}\\[3pt]
+Unknown gap law
+ & The same time-uniform rate is attained without knowing $\mu$: after an
+   explicit pilot cost when $\mu$ lies in a supplied finite family, and
+   after an onset depending on $\mu$ in general.
+ & \cref{thm:finite-family-adaptation,thm:arbitrary-law-adaptation}\\
+\bottomrule
+\end{longtable}}
+
+Three limits apply to every row. The results are minimax over sign laws at
+a fixed gap law; they are not instance-optimal for an individual
+population. Budgets bound expected work unless a row says otherwise. The
+universal constants are explicit but conservative, and the rare-event
+constants in particular are far from practical: the entropy--tail
+comparison has lower coefficient $10^{-17}$ and upper coefficient $33000$
+in~\eqref{eq:explicit-main-constants}.
+
+\subsection{Verification status}\label{sec:status-table}
+Each tracked result either has a statement checked in Lean~4 with Mathlib,
+or has a proof in this paper only. \Cref{tab:status} lists them. A
+checked statement can differ from the corresponding paper statement in its
+constants or in the construction it uses; \cref{sec:verification} records
+the exact formal statement, its model and its source revision for each
+row, and the Verification boundary paragraph above gives the coefficients.
+
+\input{status-table}
+
+\subsection{How the paper is organized}\label{sec:organization}
+The paper has two parts, a verification section and appendices.
+
+\emph{Every sign law (\crefrange{sec:model}{sec:outer}).}
+\Cref{sec:model} states the model and the two main theorems.
+\Cref{sec:lower} proves the information bound behind every lower bound of
+this part, and \cref{sec:classifier} builds the capped classifier and the
+randomized multilevel estimator behind every upper bound.
+\Cref{sec:minimax-proof,sec:unbiased-proof} combine them into the minimax
+law and the unbiased characterization, and \cref{sec:713} sharpens the
+variance--work constant to $713$. \Cref{sec:rates,sec:smooth,sec:outer}
+give consequences for margin conditions, smooth densities and observed
+outer states.
+
+\emph{Rare events (\crefrange{sec:rare}{sec:discussion}).}
+\Cref{sec:rare} defines the rare-event experiment and states the
+variational lower bound, the power-margin rates and the critical quadratic
+law; \cref{sec:all-sizes} extends the sign-entropy input of the critical
+lower bound to every number of gaps. \Cref{sec:entropy-tail} states the
+entropy--tail law, \cref{fg:sec:model} the closed quantile form and
+\cref{sec:certificates} the stopping programs.
+\Cref{sec:related-work,sec:discussion} discuss related work, consequences
+and limits.
+
+\emph{Verification (\cref{sec:verification}).} This section gives, for
+each claim, the formal statement that was checked and its scope, then the
+provenance of the work and the open questions.
+
+\emph{Appendices.} \Cref{app:localization,app:above-two,app:critical}
+prove the results of \cref{sec:rare}.
+\Cref{sec:entropy-tail-upper,sec:matching-lower} prove the two halves of
+the entropy--tail law, using the single-unit and transfer tools of
+\cref{sec:uf-foundations,sec:lower-foundations,sec:transfer-foundations}.
+\Crefrange{sec:flow-foundations}{sec:computation} develop the stopping
+programs. \Cref{app:finite-direct} proves the closed quantile form
+directly for finite laws, and \cref{app:optimal-quantile-factor}
+identifies $c_*$. \Cref{app:uniform-cap-rate,app:hard-budget,app:known-confidence}
+treat observation caps and fixed confidence;
+\cref{app:sublinear-power,app:shifted-power} give direct proofs of the
+power-margin rates below exponent two; \cref{app:anytime} treats
+time-uniform confidence and unknown gap laws; and
+\crefrange{app:smooth-density}{app:observed-upper} carry the results of
+\cref{sec:smooth,sec:outer} to the adaptive experiment.
+
+\emph{Reading paths.} \Crefrange{sec:model}{sec:minimax-proof} are
+self-contained and give the main law with its proof. The rare-event part
+can be read from \cref{sec:rare} after the model of \cref{sec:model}; it
+cites the first part wherever it reuses a construction. Its statements
+are in \cref{sec:rare,sec:entropy-tail,fg:sec:model} and its proofs are in
+the appendices. \Cref{app:known-confidence,app:anytime} build on the
+stopping programs.
+
+\subsection{Notation}\label{sec:notation-table}
+\Cref{tab:notation} lists the symbols used throughout. Several letters
+change meaning between parts of the paper, because the parts were written
+separately. The sign of a coin is $S\in\{0,1\}$, with observation mean
+$1/2+(2S-1)D$, except in \cref{fg:sec:model} and \cref{app:finite-direct},
+where it is $S\in\{-1,+1\}$ with mean $1/2+SD$. The letter $h$ is a free
+gap scale up to \cref{sec:rare} and is fixed as the budget scale
+$B^{-1/2}$ from \cref{sec:entropy-tail} on. Squared Hellinger distance is
+written $H^2$ in \cref{sec:unbiased-proof}, $h(P,Q)$ in \cref{app:critical}
+and $\mathfrak h$ in \cref{fg:sec:model} and
+\cref{sec:lower-foundations,sec:transfer-foundations,app:finite-direct}.
+The letter $H$ has two other uses: $H=1+\log L$ in
+\cref{sec:rare,sec:all-sizes} and \cref{app:critical}, and
+$H_\tau=\int d^{-1}\,\tau(dd)$ in \cref{sec:entropy-tail,fg:sec:model}.
+The script letter $\mathcal G$ is the class of populations
+$\mathcal G(\mu)$ in \crefrange{sec:model}{sec:outer} and the cost entropy
+$\mathcal G(a)$ from \cref{sec:entropy-tail} on, while $G$ is a population
+law and $G_N$ a program value in \cref{sec:certificates}. Likewise
+$\mathcal Q_\rho$ is a class of sign laws and $\Q(B)$ the closed quantile
+functional, which some passages write $Q(B)$. Finally $a=1/2$ is the largest gap
+in \cref{sec:model}, while $a$ is the scale of a power law in
+\cref{sec:rates,sec:rare}.
+
+{\small
+\renewcommand{\arraystretch}{1.15}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.20\textwidth}
+                     >{\raggedright\arraybackslash}p{0.56\textwidth}
+                     >{\raggedright\arraybackslash}p{0.18\textwidth}@{}}
+\caption{Notation.}\label{tab:notation}\\
+\toprule
+Symbol & Meaning & Defined in\\
+\midrule
+\endfirsthead
+\toprule
+Symbol & Meaning & Defined in\\
+\midrule
+\endhead
+$P$, $D$, $S$ & A coin's heads probability, its gap $D=|P-1/2|$ and its
+ sign, so that $P=\tfrac12+(2S-1)D$ & \eqref{eq:model}\\
+$\mu$, $F_\mu$ & The law of $D$ on $(0,1/2]$ and its distribution
+ function & \cref{sec:model}\\
+$q$ & The sign law: $q(d)$ is the probability that a coin with gap $d$
+ favours heads & \eqref{eq:model}\\
+$\theta$ & The target $\Prob(P>1/2)=\int q\,d\mu$ & \eqref{eq:target}\\
+$B$, $T$ & The budget and the number of flips used; $\sup_q\E T\le B$
+ & \cref{sec:model}\\
+$\delta$ & The allowed failure probability of a confidence statement
+ & \eqref{eq:confidence-risk}\\
+$R_\mu(B)$, $r_\mu(B,\delta)$ & Minimax RMS error and minimax confidence
+ radius over all sign laws & \eqref{eq:risk}, \eqref{eq:confidence-risk}\\
+$\omega_\mu(h)$, $A_\mu(h)$ & The modulus $\E_\mu\min\{1,h/D\}$ and
+ $A_\mu(h)=\omega_\mu(h)/h$ & \eqref{eq:A-I}\\
+$I_\mu$ & The inverse-gap moment $\E_\mu D^{-1}$ & \eqref{eq:A-I}\\
+$\mathcal G(\mu)$, $\mathcal G_{\preceq\mu}$ & Populations with gap law
+ $\mu$, and those whose gaps are stochastically no smaller
+ & \eqref{eq:envelope-class}\\
+$\rho$, $\mathcal Q_\rho$ & The rarity bound and the sign laws with
+ $\int q\,d\mu\le\rho$ & \cref{sec:rare-model}\\
+$R_{\mu,\rho}(B)$ & Minimax RMS error over $\mathcal Q_\rho$
+ & \cref{sec:rare-model}\\
+$\Psi_{\mu,\rho}(h)$ & The variational lower modulus & \eqref{eq:v5-psi}\\
+$L$ & $1+\log(1/\rho)$ & \cref{thm:v5-critical}\\
+$I_j$, $b_j$ & The dyadic band $I_j=(b_j/2,b_j]$ with $b_j=2^{-(j+1)}$
+ & \cref{sec:entropy-tail}\\
+$\mathcal G(a)$, $\Gamma_\sigma$ & The cost entropy $A+\sum_ja_j\log(A/a_j)$ with
+ $A=\sum_ja_j$, and its value at the inverse-square band costs
+ $a_j(\sigma)=\int_{I_j}d^{-2}\,\sigma(dd)$ of a submeasure
+ $\sigma\le\mu$ & \eqref{eq:submeasure-entropy}\\
+$\mathcal K_{\mu,\rho}(B)$ & The entropy--tail selection functional
+ & \eqref{eq:scalar-selection}\\
+$\nu$, $\kappa$ & The mass $\rho$ of smallest gaps and the remaining core
+ $\kappa=\mu-\nu$ & \eqref{fg:eq:quantile-split}\\
+$T_h$, $\Q(B)$ & The tail cost $\int\min\{1,h/d\}\,\nu(dd)$ and the closed
+ quantile functional & \eqref{fg:eq:closed-functional}\\
+$A_\sigma$, $E_\kappa$, $\Q^0(B)$ & The inverse-square cost
+ $\int d^{-2}\,\sigma(dd)$, the entropy of the band costs of $\kappa$, and
+ $\Q$ with $\Gamma_\kappa$ replaced by $A_\kappa$ & \cref{sec:psi-window}\\
+$c_*$ & The least $c$ with $\Q\le c\,\mathcal K$ for every law, rarity and
+ budget & \cref{thm:sharp-quantile-factor}\\
+$P_N(B)$, $G_N(B)$ & The value of the cap-$N$ stopping program, and of
+ its lower counterpart in which a coin's latent state is revealed at the
+ cap & \cref{sec:certificates}\\
+\bottomrule
+\end{longtable}}

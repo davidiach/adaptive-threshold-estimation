@@ -1,5 +1,5 @@
 {
-  "description": "Single source for two v6 passages: the abstract's status paragraph (generated as status-abstract.tex) and the introduction's Verification boundary paragraph. tools/build_v6.py writes both from this file; do not edit those sentences in TeX. Each result has a status, lean or paper, and repository evidence paths for it. An optional summary phrase is used only by tools/build_status_docs.py for the README and results-guide tables. Phrases are written as objects so that the same phrase reads correctly in \"Lean checks ...\" and in \"For ..., the manuscript gives paper proofs only\". When a status changes, also update Section 18 (verification.tex), which keeps the exact formal scopes and fixed source links, and any per-section status remark by hand. Optional verification_rows name Section 18 claim-table rows; the generator requires each to cite a Lean source for a lean status, or to say paper and cite no Lean source for a paper status.",
+  "description": "Single source for three v6 passages: the abstract's status paragraph (generated as status-abstract.tex), the introduction's Verification boundary paragraph, and the status table of Section 1 (generated as status-table.tex). tools/build_v6.py writes all three from this file; do not edit them in TeX. The abstract counts the Lean-checked results and names each paper-proof result by its abstract phrase, or by its boundary phrase if it has none; the boundary paragraph names every result. Each result has a status, lean or paper, and repository evidence paths for it. An optional summary phrase is used only in tables: the manuscript's status table and the README and results-guide tables of tools/build_status_docs.py. For a paper-proof result the status table refers to the first labelled section of each paper/v6 TeX source among its evidence, and to Section 18 if it has none. Phrases are written as objects so that the same phrase reads correctly in \"Lean checks ...\" and in \"For ..., the manuscript gives paper proofs only\". When a status changes, also update Section 18 (verification.tex), which keeps the exact formal scopes and fixed source links, and any per-section status remark by hand. Optional verification_rows name Section 18 claim-table rows; the generator requires each to cite a Lean source for a lean status, or to say paper and cite no Lean source for a paper status.",
   "results": {
     "rms-law": {
       "status": "lean",
@@ -162,8 +162,9 @@
     "localization-transfers": {
       "status": "lean",
       "evidence": ["lean/ThresholdHC/ConfidenceLocalization/ConfidenceRate.lean", "lean/ThresholdHC/AdditiveConfidence/Full.lean", "lean/ThresholdHC/RMSLocalization/Full.lean", "results/common-pair-20261105/README.md", "results/additive-confidence-20261105/README.md", "results/rms-localization-20261105/README.md"],
-      "abstract": "lower-bound localization with coefficient $1/128$",
-      "boundary": "the common-pair, fractional-submeasure and RMS lower-bound localization with coefficient $1/128$"
+      "abstract": "conditional lower-bound localization with coefficient $1/128$",
+      "boundary": "the common-pair, fractional-submeasure and RMS lower-bound localization with coefficient $1/128$, conditional on a single-coin obstruction",
+      "summary": "lower-bound localization with coefficient $1/128$, conditional on a single-coin variance--null-work obstruction"
     },
     "finite-law-menus": {
       "status": "lean",
@@ -181,17 +182,25 @@
       "summary": "oracle-rate adaptation within a supplied finite family of gap laws, including its paid pilot"
     },
     "psi-lower-bound": {
-      "status": "paper",
+      "status": "lean",
       "verification_rows": ["General statistical $\\Psi$ lower bound"],
-      "evidence": ["paper/v6/appendix-localization.tex"],
+      "evidence": ["lean/ThresholdHC/PsiSelection/Full.lean", "results/psi-selection-20261109/README.md"],
       "abstract": "the arbitrary-law statistical $\\Psi$ lower bound",
-      "boundary": "the arbitrary-law statistical $\\Psi$ lower bound of \\cref{app:localization}"
+      "boundary": "the arbitrary-law statistical $\\Psi$ lower bound of \\cref{app:localization}",
+      "summary": "the arbitrary-law statistical $\\Psi$ lower bound with coefficient $10^{-17}$, through the entropy--tail law"
     },
     "arbitrary-law-adaptation": {
       "status": "paper",
       "evidence": ["paper/v6/arbitrary-law-adaptation.tex", "docs/ARBITRARY_LAW_ADAPTATION.md"],
       "abstract": "eventual oracle-rate adaptation over arbitrary unknown gap laws",
       "boundary": "arbitrary-law oracle adaptation after a law-dependent onset"
+    },
+    "psi-closed-form": {
+      "status": "paper",
+      "evidence": ["paper/v6/psi-window.tex", "research/2026-11-09-psi-closed-form/README.md"],
+      "summary": "the closed form of $\\Psi$ within a factor $\\sqrt2$, its distance from the rate, and the power-margin rate uniform in the exponent",
+      "abstract": "the closed form of $\\Psi$ with the power-margin rate uniform in the exponent",
+      "boundary": "the closed form of $\\Psi$ and the uniform power-margin rate of \\cref{sec:psi-window}"
     },
     "time-uniform-lower-bound": {
       "status": "lean",
@@ -204,13 +213,13 @@
     {"results": ["rms-law"]},
     {"results": ["critical-law", "psi-counterexample", "variational-optimizer", "unbiased", "confidence", "oracle-lower", "above-two"], "suffix": " in their stated models"},
     {"results": ["entropy-tail-law", "closed-quantile-law", "quantile-comparison", "stopping-program", "identification", "genie"]},
-    {"results": ["entropy-tail-coefficients"]},
+    {"results": ["entropy-tail-coefficients", "psi-lower-bound"]},
     {"results": ["finite-direct"]},
     {"results": ["power-margins-below-two", "smooth-density", "observed-states", "selected-type-transfer", "known-law-confidence", "time-uniform-lower-bound"]},
     {"results": ["sharp-factor"]},
-    {"text": "A separate exact-arithmetic certificate gives the sharp factor's decimal bracket."},
+    {"text": "A separate exact-arithmetic certificate gives the decimal bracket for $c_*$."},
     {"results": ["stochastic-envelope", "localization-transfers", "finite-law-menus", "finite-family-adaptation"]},
-    {"results": ["psi-lower-bound", "arbitrary-law-adaptation"]},
+    {"results": ["arbitrary-law-adaptation", "psi-closed-form"]},
     {"text": "This manuscript records each result's dependencies and verification scope."}
   ],
   "boundary": [
@@ -221,10 +230,10 @@
     {"results": ["confidence"]},
     {"results": ["oracle-lower"]},
     {"results": ["above-two"]},
-    {"results": ["entropy-tail-law", "closed-quantile-law", "sharp-factor", "stopping-program", "identification", "genie", "power-margins-below-two"]},
+    {"results": ["entropy-tail-law", "psi-lower-bound", "closed-quantile-law", "sharp-factor", "stopping-program", "identification", "genie", "power-margins-below-two"]},
     {"results": ["hard-cap", "known-law-confidence", "smooth-density", "observed-states", "time-uniform-lower-bound"]},
     {"results": ["stochastic-envelope", "localization-transfers", "finite-law-menus", "finite-family-adaptation"]},
-    {"results": ["psi-lower-bound", "arbitrary-law-adaptation"]},
+    {"results": ["arbitrary-law-adaptation", "psi-closed-form"]},
     {"text": "Section~\\ref{sec:verification} gives the exact scope and links."}
   ]
 }

@@ -1,0 +1,56 @@
+'ThresholdHC.ArbitraryLawAdaptation.cdfCoupling_closed_support' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.comap_mono_embedding' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.gapEmbedding' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.map_positivePart' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.mappedGap_zero_atom' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.measurable_zeroTailWeight' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pairGapEmbedding' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pairGapMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pairGap_comap_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pairGap_comap_marginals' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.positivePart' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.positivePart_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.realSelectionLift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.realSelectionLift_first' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.realSelectionLift_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.realTransportedSelection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.realTransportedSelection_costs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.realTransportedSelection_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.realTransportedSelection_mass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.realTransportedSelection_objective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.zeroGamma' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.zeroGamma_increasing_coupling' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.zeroGamma_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.zeroGamma_of_atom' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.zeroObjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.zeroObjective_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.zeroSelection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.zeroSelection_increasing_coupling' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.zeroSelection_le_sqrt_three_of_cdf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.zeroSelection_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.zeroTailCost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.zeroTailCost_increasing_coupling' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.zeroTailCost_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.zeroTailWeight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.zeroTailWeight_antitone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.zeroTailWeight_zero' depends on axioms: [propext, Classical.choice, Quot.sound]

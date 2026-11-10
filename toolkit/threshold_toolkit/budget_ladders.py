@@ -20,8 +20,10 @@ from __future__ import annotations
 from collections.abc import Callable, Generator, Mapping
 from dataclasses import dataclass
 from fractions import Fraction
+from functools import wraps
 import math
 import random
+from threading import Lock
 from typing import Union
 
 Exact = Union[int, str, Fraction]
@@ -30,6 +32,19 @@ ProgramFactory = Callable[[int, random.Random], Generator[int, int, object]]
 CoinFactory = Callable[[random.Random], Callable[[], int]]
 MAX_BITS = 4096
 SCHEMA = 'ate-geometric-fallback-v1'
+
+
+def _exclusive_advance(method: Callable) -> Callable:
+    """Reject overlapping advances before they can change a controller's ledger."""
+    @wraps(method)
+    def advance(self, total_budget):
+        if not self._advance_lock.acquire(blocking=False):
+            raise RuntimeError('advance_to is already running on this controller.')
+        try:
+            return method(self, total_budget)
+        finally:
+            self._advance_lock.release()
+    return advance
 
 
 def _exact(x: Exact) -> Fraction:
@@ -174,6 +189,7 @@ class RMSLadder:
     A stage is launched only once its whole cap fits in the reservation ledger.
     No fresh work is done for the unused remainder of an allowance. Changing
     the schedule after examining outcomes is outside the RMS theorem.
+    Overlapping advance_to calls, including callback re-entry, are rejected.
     """
     def __init__(self, program_factory: ProgramFactory, coin_factory: CoinFactory,
                  *, upper: Exact = 1, seed: int = 0):
@@ -190,7 +206,9 @@ class RMSLadder:
         self._runs: list[StageRun] = []
         self._authorized = self._flips = self._reserved = 0
         self._failed = False
+        self._advance_lock = Lock()
 
+    @_exclusive_advance
     def advance_to(self, total_budget: int) -> RMSState:
         n = _budget(total_budget)
         if self._failed:

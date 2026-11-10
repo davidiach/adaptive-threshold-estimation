@@ -1,38 +1,50 @@
 \begin{abstract}
-We estimate the fraction $\theta=\Prob(P>1/2)$ of a population of latent
-Bernoulli coins at unit cost per observed flip. Algorithms may create,
-revisit, and interleave coins under a uniform expected budget. For any law $\mu$ of $D=|P-1/2|$ on $(0,1/2]$, the minimax RMS
-error is comparable to $\omega_\mu(B^{-1/2})$, where
-$\omega_\mu(h)=\E_\mu\min\{1,h/D\}$. One algorithm depending only on
-the budget attains this rate for every $\mu$. Unbiased estimation with
-uniformly finite variance and expected work is possible exactly when
-$I_\mu=\E_\mu D^{-1}<\infty$; the optimal uniform variance--work
-product lies between $I_\mu^2/16$ and $713I_\mu^2$.
+A population of coins has unknown heads probabilities $P$, and we want the
+fraction $\theta=\Prob(P>1/2)$ that favour heads. Each flip costs one unit.
+An algorithm may create coins, return to old ones and interleave them
+adaptively, with an expected budget of $B$ flips. Let $\mu$ be the law of
+the gap $D=|P-1/2|$ on $(0,1/2]$. At each fixed $\mu$ we determine the
+minimax root-mean-square error, where the worst case is over every way the
+sign of $P-1/2$ can depend on the gap: it lies within universal constant
+factors of $\omega_\mu(B^{-1/2})$, where $\omega_\mu(h)=\E_\mu\min\{1,h/D\}$.
+No regularity of $\mu$ is assumed, and one algorithm that depends only on
+$B$ attains the rate for every $\mu$ at once. Confidence radii follow the same
+law with $B$ replaced by $B/\log(1/\delta)$. An estimator that is unbiased
+for every sign law, with uniformly bounded variance and expected work,
+exists exactly when $I_\mu=\E_\mu D^{-1}<\infty$; the best variance--work
+product then lies between $I_\mu^2/16$ and $713I_\mu^2$. For threshold
+probabilities in nested simulation this gives a lower bound of order
+$\varepsilon^{-2}\log^2(1/\varepsilon)$, which matches the adaptive
+multilevel upper rate on a class satisfying its assumptions.
 
-With the additional global rarity constraint $\theta\le\rho$, the
-variational quantity $\Psi_{\mu,\rho}$ gives a general lower bound and
-characterizes the power-margin regimes below and above exponent two, but
-fails at the boundary. For the fixed quadratic law $F(d)=(4d)^2$, put
-$L=1+\log(1/\rho)$. The sharp RMS order is
-$\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}$,
-whereas $\Psi$ gives only $\min\{\rho,\sqrt{\rho L/B}\}$.
-For every known magnitude law, rarity bound and positive budget, the
-risk is comparable to an entropy--tail selection functional: a selected
-part of the law pays its dyadic inverse-square cost entropy, and the
-remainder pays a truncated inverse-gap cost. Removing the smallest-gap
-mass $\rho$ gives a closed formula whose sharp universal comparison
-factor is approximately $1.46255455128$.
-For finite laws an exact optimizer selects an upper-gap suffix in each
-dyadic band, and a direct proof gives explicit risk bounds. A robust stopping program has
-an exact four-prior dual and certifies minimax risk within a factor of
-sixteen at a local cap of $\lceil4B/3\rceil$.
+The answer changes when positive coins are known to be rare,
+$\theta\le\rho$. A variational modulus $\Psi_{\mu,\rho}$ bounds the risk
+from below and gives the rate for power-law gap distributions with exponent
+below or above two. At exponent two it falls short: for $F(d)=(4d)^2$ the
+rate is $\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}$, with $L=1+\log(1/\rho)$,
+whereas $\Psi$ gives only $\min\{\rho,\sqrt{\rho L/B}\}$. For every known
+gap law, rarity bound and budget, the risk is within universal constants of
+an entropy--tail selection functional: a selected part of the law pays the
+entropy of its inverse-square costs across dyadic scales, and the rest pays
+a truncated inverse-gap cost. Selecting everything except the mass $\rho$
+of smallest gaps gives a closed formula within a factor
+$c_*\approx1.4626$ of the best selection, and no smaller universal factor
+is possible. The same formula without its entropy equals $\Psi$ within a
+factor $\sqrt2$, which measures how far $\Psi$ is from the rate for every
+law. For power laws the formula gives one rate, with constants
+independent of the exponent, through the critical exponent two. Further
+results cover deterministic observation caps, fixed
+and time-uniform confidence intervals, a stopping-program dual that
+certifies the minimax risk within a factor of sixteen, and adaptation to an
+unknown gap law.
 
 % Verification-status sentences are generated from status.json.
 \input{status-abstract}
 \end{abstract}
 \begin{center}\small
-Research draft combining consolidated v5, general-law rare events
-(revised v2), and finite-gap rare events (revision 2).
-No independent specialist review; agent review and formal verification
-have different scopes. Priority and practical superiority are not established.
+Research draft. AI agents carried out the research and formalization under
+the project lead's direction; \cref{sec:verification} records the scope of
+each check. There has been no independent specialist review, and agent
+review and formal verification have different scopes. Priority and
+practical superiority are not established.
 \end{center}

@@ -143,6 +143,12 @@ jobs:
         run: python -m unittest discover -s tools -p 'test_closed_quantile.py' -v
       - name: Regression tests for the quantile-comparison audit
         run: python -m unittest discover -s tools -p 'test_quantile_comparison.py' -v
+      - name: Regression tests for the direct finite-quantile audit
+        run: python -m unittest discover -s tools -p 'test_finite_quantile.py' -v
+      - name: Regression tests for the Psi lower-bound audit
+        run: python -m unittest discover -s tools -p 'test_psi_selection.py' -v
+      - name: Regression tests for the whole-project axiom audit
+        run: python -m unittest discover -s tools -p 'test_project_axioms.py' -v
       - name: Regression tests for the quantile-model and upper-theorem audits
         run: |
           python -m unittest discover -s tools -p 'test_entropy_tail_components.py' -v
@@ -288,6 +294,44 @@ jobs:
             .runtime/selection-lean/**/status.json
             .runtime/selection-lean/**/Audit.lean
             .runtime/selection-lean/**/*.log
+  lean-all-modules:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Lean tool manager
+        run: |
+          # The installer downloads elan from GitHub releases, which can return transient 5xx errors.
+          for attempt in 1 2 3; do
+            if curl -sSfL https://raw.githubusercontent.com/leanprover/elan/v4.2.4/elan-init.sh -o "$RUNNER_TEMP/elan-init.sh" \
+                && sh "$RUNNER_TEMP/elan-init.sh" -y --default-toolchain none; then
+              echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+              exit 0
+            fi
+            if [ "$attempt" -eq 3 ]; then
+              exit 1
+            fi
+            sleep 10
+          done
+      - name: Download pinned Mathlib cache
+        working-directory: lean
+        run: |
+          for attempt in 1 2 3; do
+            if lake exe cache get; then
+              exit 0
+            fi
+            if [ "$attempt" -eq 3 ]; then
+              exit 1
+            fi
+            sleep 10
+          done
+      - name: Build every Lean module and audit the axioms of every project constant
+        # The other Lean jobs build only what their audits name and check only
+        # registered theorems. This step registers nothing.
+        run: python tools/verify_project_axioms.py --replay-main-theorem --jobs 3
   entropy-tail-upper:
     runs-on: ubuntu-latest
     timeout-minutes: 180
@@ -374,6 +418,8 @@ jobs:
         run: python tools/verify_additive_confidence.py
       - name: Verify the sharper general-law confidence coefficient
         run: python tools/verify_confidence_entropy.py
+      - name: Verify the arbitrary-law Psi lower bound through the entropy-tail law
+        run: python tools/verify_psi_selection.py
       - name: Verify RMS obstruction transfer and submeasure localization
         run: python tools/verify_rms_localization.py
       - name: Verify the sharp finite-vector quantile factor and scalar root
@@ -406,6 +452,22 @@ jobs:
         run: python tools/verify_arbitrary_law_envelope.py
       - name: Verify observable learned-law stages
         run: python tools/verify_arbitrary_law_stage.py
+      - name: Verify countable band entropy transport and canonical Gamma
+        run: python tools/verify_arbitrary_law_countable.py
+      - name: Verify increasing-gap coupling entropy
+        run: python tools/verify_arbitrary_law_coupling.py
+      - name: Verify fractional selection transport
+        run: python tools/verify_arbitrary_law_selection.py
+      - name: Verify CDF-to-coupling construction
+        run: python tools/verify_arbitrary_law_cdf_coupling.py
+      - name: Verify zero-atom selection and CDF comparison
+        run: python tools/verify_arbitrary_law_zero.py
+      - name: Verify dominated-mass entropy-tail comparison
+        run: python tools/verify_arbitrary_law_dominated.py
+      - name: Verify light-contraction product entropy
+        run: python tools/verify_arbitrary_law_light_entropy.py
+      - name: Verify concrete light multiplier and selection comparison
+        run: python tools/verify_arbitrary_law_light.py
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
       - uses: actions/upload-artifact@v4

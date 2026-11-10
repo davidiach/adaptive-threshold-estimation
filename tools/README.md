@@ -17,8 +17,10 @@ behavior before running it in a checkout that contains published evidence.
 | Original Lean and tier audits | [verify_lean_checkpoint.py](verify_lean_checkpoint.py), [verify_uniform713.py](verify_uniform713.py), `verify_tier3.py` through `verify_tier6.py` | Build and audit frozen targets; write logs/status into tracked `results/`. Use a disposable checkout. |
 | Scalar constant lemmas | [verify_uniform_arithmetic.py](verify_uniform_arithmetic.py) | Runs `lake env lean` on the unfrozen `proposals/constants/UniformArithmetic.lean` and checks its seven lemmas' axiom reports with the shared proof-escape and `sorry` guards; writes `results/constants_uniform_lean_audit.log` and `_status.json`. |
 | Later theorem audits | `verify_*_components.py`, `verify_critical_psi.py`, `verify_critical_all_sizes.py`, `verify_unbiased_converse.py`, `verify_observable713.py`, `verify_confidence.py`, `verify_oracle_lower.py`, `verify_rare_above_two.py`, `verify_entropy_tail.py`, `verify_entropy_tail_upper.py`, `verify_entropy_tail_components.py`, `verify_entropy_tail_assembly.py`, `verify_quantile_comparison.py`, and the sixteen [stopping-program, identification and genie audits](../docs/VERIFY.md#stopping-program-identification-and-genie-certificates) (`stopping_program_lock.py` checks their specification lock) | Exact targets, source identities, and transitive axioms; timestamped directories under `.runtime/`, with an `--output-dir` option. The build options differ: the older audits accept `--sequential`; `verify_entropy_tail_upper.py`, `verify_entropy_tail_assembly.py`, `verify_entropy_tail_lower_components.py` and the sixteen stopping-program audits accept `--cached-dependencies` instead; `verify_entropy_tail_components.py` accepts neither. See the [theorem map](../lean/README.md#main-theorem-entry-points). |
+| Guarded experiment persistence | [run_real_guarded.py](run_real_guarded.py) | Opt-in launcher for distinct fresh direct-real experiments; exclusive ownership, once-only held-out intent and atomic stage snapshots. See the [transition audit](../docs/EXPERIMENT_PERSISTENCE.md). Never adopts or restarts archived results. |
 | Numerical and experiment checks | `check_targets*_numeric.py`, [check_power_bracket.py](check_power_bracket.py), [verify_experiment_lock.py](verify_experiment_lock.py), with [benchmark/verify_production.py](../benchmark/verify_production.py) | Finite/numerical diagnostics, stored-sample replay, the held-out record recomputed from its raw data, and exact replays of the production benchmark routines, with the scope described in [VERIFY.md](../docs/VERIFY.md#integrity-numerics-and-unit-tests). Some write `results/`; use a disposable checkout for the full sequence. |
 | Results drift check | [check_results_drift.py](check_results_drift.py) | Run after the numerical and experiment checks. Compares the five records they rewrite in place with the committed versions, ignoring line endings, wall-clock fields and last-digit float noise. Reads files only. |
+| Whole-project build and axiom audit | [verify_project_axioms.py](verify_project_axioms.py) | Registers nothing. Builds every module under `lean/ThresholdHC`, imports them all, and fails unless no project module declares an axiom and every constant depends only on `propext`, `Classical.choice` and `Quot.sound`. `--replay-main-theorem` also replays the modules behind both halves of the main RMS law through the toolchain's `leanchecker`. Prints its report; writes nothing. It complements the exact-type audits and says nothing about what a statement means. |
 | Lean source guard | [verify_lean_sources.py](verify_lean_sources.py) | Scans every project Lean source (`lean/`, without `.lake` and `.audit`, plus `proposals/constants/`) with the strengthened shared proof-escape pattern after comment stripping. Read-only and needs no Lean build; a textual guard, not a parser. |
 | Finite-menu cost grouping | [verify_band_cost_selection.py](verify_band_cost_selection.py) | Checks 14 exact statements and transitive axioms for compression, optimality, state counts, entropy prices, exact comparisons and interval certificates. |
 | Concrete gap-law menus | [verify_gap_law_menus.py](verify_gap_law_menus.py) | Checks 13 exact statements and transitive axioms connecting actual finite-law menus, atomic costs and savings, and the compressed optimum to the original $K$. |
@@ -33,7 +35,8 @@ behavior before running it in a checkout that contains published evidence.
 | Quantile-factor bounds | [Sharp-factor audit](verify_quantile_optimality.py), [31/20 Lean audit](verify_quantile_price_upper.py), [rational inequalities](verify_quantile_price_bounds.py), [sharp-root certificate](verify_optimal_quantile_factor.py) | Checks the exact factor and finite-law optimality in Lean. The numerical endpoints have separate exact-rational verification. |
 | Full quantile-selection comparison | [verify_quantile_selection.py](verify_quantile_selection.py) | Checks the two entropy lemmas, Theorem 4 and its statistical selection functional against their exact types and audits the transitive axioms. |
 | Explicit general-law entropy-tail audit | [verify_entropy_tail_sharp.py](verify_entropy_tail_sharp.py) | Checks the explicit constants against their advance statement, the original model lock, the estimator converse and transitive axioms. |
-| Direct finite-law quantile audit | [verify_finite_quantile.py](verify_finite_quantile.py) | Builds the finite-law theorem, the estimator witness and the converse with Lake. Checks the target, direct proof dependencies and transitive axioms. |
+| Direct finite-law quantile audit | [verify_finite_quantile.py](verify_finite_quantile.py) | Builds the finite-law theorem, the estimator witness and the converse with Lake. Checks the target, direct proof dependencies and transitive axioms. The exact statements are the seven `example` declarations of the committed `FiniteQuantile/Audit.lean`, which is pinned by hash. |
+| Arbitrary-law Psi lower bound | [verify_psi_selection.py](verify_psi_selection.py) | Pins the specification, restates the comparison $\Psi\le\mathcal K$ and both minimax corollaries in full, and reports the transitive axioms of every declaration in `PsiSelection/`. Prints its report; writes nothing. |
 | Closed-quantile minimax audit | [verify_closed_quantile.py](verify_closed_quantile.py) | Full universal two-sided corollary in the original experiment; full local rebuild by default, or explicit `--cached-dependencies`, which requires Lake to confirm reused dependencies are up to date (`--build-dependencies` builds them). Fresh logs under `.runtime/closed-quantile/`. |
 | Entropy-tail lower supporting audit | [verify_entropy_tail_lower_components.py](verify_entropy_tail_lower_components.py) | The complete finite-certificate lower proof, including packing and the finite-prefix limit; the canonical lower/law targets are checked separately by `verify_entropy_tail.py --require-complete`. Full dependency rebuild by default, or explicit `--cached-dependencies` with the same Lake up-to-date check and `--build-dependencies` option; fresh logs under `.runtime/entropy-tail-lower-components/`. |
 | Known-law fixed confidence | [verify_stopping_confidence.py](verify_stopping_confidence.py), [verify_confidence_amplification.py](verify_confidence_amplification.py) | Build the original observable experiment and check the [fixed-confidence statements](../results/known-law-confidence-20261104/README.md) and minimax radii. |
@@ -100,3 +103,39 @@ and CDF domination from finitely many grid bounds.
 Run `verify_arbitrary_law_stage.py` for 17 exact statements and 16 transitive
 reports covering observable paid learning stages: fresh continuation labels,
 physical caps, history readback and the joint original-experiment output law.
+
+Run `verify_arbitrary_law_countable.py` for 16 exact statements and transitive
+reports covering extended-valued countable entropy transport and its canonical
+Gamma connection. No finite total inverse-square moment is assumed; the
+destination-column summability condition remains explicit.
+
+Run `python tools/verify_arbitrary_law_coupling.py` for 19 exact statements
+and transitive axiom reports: measurable canonical band indices, countable
+cell integrals, and the factor-three Gamma comparison for finite increasing
+couplings on positive gaps. Run `python tools/verify_arbitrary_law_selection.py`
+for 13 more: Radon--Nikodym selection lifts, preserved mass and domination,
+residual tail contraction, and the square-root-three comparison of the
+original capped infimum. Neither result assumes a finite inverse moment.
+CDF-to-coupling existence and the zero-atom extension are checked below.
+
+Run `python tools/verify_arbitrary_law_cdf_coupling.py` for 11 exact statements
+and transitive reports proving the common-uniform coupling for bounded
+nonnegative laws. Run `python tools/verify_arbitrary_law_zero.py` for 36 more:
+the zero-atom functional, exact agreement with positive-gap K, entropy and
+selection transport on `[0,1/2]`, and the comparison starting from CDF
+domination. Atoms and infinite inverse moments and entropy are allowed.
+
+The dominated-mass comparison (A5) is checked by
+`python tools/verify_arbitrary_law_dominated.py`: 22 exact statements and
+22 transitive reports. Bounded density restriction transfers fractional
+selections and controls their residuals. For finite measures,
+`lambda <= c eta + e delta_0` gives `K(lambda) <= c K(eta) + e`
+when `c >= 1` and `e >= 0`, retaining infinite entropy and the cap.
+
+Run `python tools/verify_arbitrary_law_light_entropy.py` for 36 exact statements
+and transitive reports: product-reference entropy, explicit numerical budgets,
+two-band product geometry and the factor-1024 entropy bound for actual product
+measure cells. Run `python tools/verify_arbitrary_law_light.py` for 26 more
+exact statements and transitive reports: residual tails, the constructed
+multiplier's exact CDF, and the full capped selection comparison with factor 32.
+The final result imposes no inverse-moment or entropy condition on the input law.
