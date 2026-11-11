@@ -11,12 +11,15 @@ Lean now checks the single-coin test of the
 [section below](#a-sign-neutral-test-with-a-gap-dependent-cost): its sign
 neutrality, statement (2), the Hoeffding form (2a) and the work bound (4).
 The [formal scope](ARBITRARY_LAW_FORMALIZATION.md#sign-neutral-tail-test) gives
-the exact statements. Lean also checks one probe of the
-[inverse-sampling step](#inverse-sampling-under-a-physical-budget): its
-coverage at every budget with probability at least $7/8$, and the performance
-bound (5). The [formal scope](ARBITRARY_LAW_FORMALIZATION.md#capped-tail-probe)
-gives those statements. The median over probes, statement (1) and the oracle
-comparison (3) remain a paper proof.
+the exact statements. Lean also checks the
+[inverse-sampling step](#inverse-sampling-under-a-physical-budget). For one
+probe it checks coverage at every budget with probability at least $7/8$ and
+the performance bound (5); the
+[formal scope](ARBITRARY_LAW_FORMALIZATION.md#capped-tail-probe) gives those
+statements. For the median it checks statement (1), its pathwise flip cap and
+the simultaneous statement over depths; see the
+[median scope](ARBITRARY_LAW_FORMALIZATION.md#median-tail-certificate). The
+oracle comparison (3) remains a paper proof.
 
 Let the persistent magnitude of a fresh coin have any probability law $\mu$ on
 $(0,1/2]$. Its sign may depend arbitrarily on its magnitude. Fresh coins are
