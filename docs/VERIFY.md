@@ -977,3 +977,10 @@ and transitive reports on the oracle comparison of the tail certificate: the
 kernel bounds, the split of the gap law at its quantile, the onset condition
 and its existence, and the bound of the median by 524288 times the selection
 functional, at one depth and at every depth at once.
+Run `python tools/verify_arbitrary_law_tail_observable.py` for 68 exact
+statements and transitive reports on the tail certificate in the observable
+experiment: the probe's reader and its invariant, consecutive blocks on
+separate coin labels, the certificate as a function of the observed word, the
+transfer of events about that word to the law of the original experiment, and
+statements (1) and (3) for the estimator's output, at one depth and at every
+depth up to a horizon.

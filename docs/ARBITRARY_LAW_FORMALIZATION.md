@@ -331,7 +331,8 @@ identifies the proof checkpoint and source hashes.
 
 These are statements about one probe at one depth. The median over independent
 probes is the subject of the next section. The probe is defined on a stream of
-tapes and is not yet a reader in the observable stage.
+tapes; its reader of observed flips is the subject of
+[a later section](#tail-certificate-in-the-observable-experiment).
 
 ## Median tail certificate
 
@@ -385,7 +386,8 @@ identifies the proof checkpoint and source hashes.
 The oracle comparison (3) is the subject of the next section. The pilot of
 (A6) to (A8), which uses a common number of probes, the caps `b_j` and `M`,
 and a finite union over depths, is not formalized. The probes are defined on
-streams of tapes and are not yet readers in the observable stage.
+streams of tapes; their readers of observed flips are the subject of
+[a later section](#tail-certificate-in-the-observable-experiment).
 
 ## Oracle comparison of the tail certificate
 
@@ -429,9 +431,80 @@ The audit fails if a declaration is added without being registered. The
 identifies the proof checkpoint and source hashes.
 
 With this section, statements (1) to (4) of the tail certificate are checked
-for probes that read the coin array of the original experiment. The probes are
-not yet readers in the observable stage. Across all fifteen current component
-audits, 473 exact statements and 471 transitive axiom reports pass.
+for probes that read the coin array of the original experiment. The next
+section runs those probes as readers of observed flips.
+
+## Tail certificate in the observable experiment
+
+The sections above define the probes on the coin array of the original
+experiment. Here a **reader** runs them: a rule that chooses the next coin to
+flip from the flips observed so far. The estimator sees only flips, and its
+certificate is a function of the observed word.
+
+[TailProbeReader.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/TailProbeReader.lean)
+gives the reader of one probe. A state machine tests coin 0, then coin 1, and
+so on with the sign-neutral tail test, and keeps the probe's completed count:
+the count freezes once an unresolved coin is completed or `M` coins are
+counted. An invariant relates the state after `t` flips to the tape-level
+probe on the same table of coin tapes. Hence the count computed from the
+observed word equals `probeCompleted J t M` at every flip budget `t`. The word
+at a smaller budget is a prefix of the word at a larger one, so the count can
+be read from any prefix of a longer block. After `t` flips the reader is on
+the first coin whose test is not complete within `t` flips: it buys the flips
+of each coin consecutively and never returns to a coin. These statements are
+pathwise.
+
+[TailBlockReader.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/TailBlockReader.lean)
+runs blocks one after another. Block `n` buys its flips with its own reader on
+the coins `Nat.pair n i`; the part of the observed word that it bought is then
+the word its reader would observe alone on those coins, and the coins of
+blocks that have not run are untouched. With probe `j` as block `j`, the
+median computed from the observed word of `m` blocks of `b` flips equals the
+tape-level median certificate of probes reading the coins `Nat.pair j i`. Cut
+after `t` flips, it equals the tape-level median with probe `j` at flip budget
+`min(max(t - j b, 0), b)`: complete probes, at most one interrupted probe, and
+probes that have not started. With one more level of blocks, depth `J` reads
+the coins `Nat.pair J (Nat.pair j i)`.
+
+[TailObservable.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/TailObservable.lean)
+defines an estimator that buys a block of `n` flips with a reader and reports
+a function of the observed word. It buys at most `n` flips on every admissible
+path. Every event about the observed word has the same probability under the
+law of the original hidden-gap experiment as the same event about the reader's
+word on the coin array of the original simulation law. The coin-array
+statements therefore hold for the estimator, for every probability law `mu`
+of positive gaps and every measurable gap-dependent sign law:
+
+- **Statement (1).** For `m >= 8 log(2/delta)` probes with `4^J` flips each,
+  with probability at least `1 - delta` the output `U` is at most
+  `min(1, 128 max(u_J, W_J/4^J))`, and the certificate computed from the first
+  `t` observed flips is at least `F(2^-J)` for every `t` at once. With `b >= 1`
+  flips and coin cap `M >= 1` the upper bound is
+  `min(1, 128 max(u_J, W_J/b, 1/M))`.
+- **Statement (3).** For `0 < rho <= 1/4`, at a depth that meets the onset
+  condition the output is at most `524288 K(4^J)`, and every depth past a
+  finite onset that depends on `mu` and `rho` only meets it.
+- **Depths up to `L`.** One estimator runs the depths `J <= L` one after
+  another, with `m_J >= 8 log(2 J (J+1)/delta)` probes at depth `J`. With
+  probability at least `1 - delta` the bounds above hold at every depth
+  `1 <= J <= L` at once.
+
+The reader buys every block in full. Flips bought after a probe has stopped
+are charged and ignored, so the estimator's charge is its cap, `m b` flips at
+one depth. An estimator that stops buying when its probes stop is not
+constructed.
+
+Run `python tools/verify_arbitrary_law_tail_observable.py` for 68 exact
+statements and 68 transitive axiom reports, one for each declaration of the
+three modules. The audit fails if a declaration is added without being
+registered. The
+[tail-observable record](../results/arbitrary-law-tail-observable-20261111/README.md)
+identifies the proof checkpoint and source hashes.
+
+The pilot of (A6) to (A8) is not an instance of these estimators: it uses a
+common number of probes across depths and feeds the learned law to the paid
+learning stage. Across all sixteen current component audits, 541 exact
+statements and 539 transitive axiom reports pass.
 
 ## Work still needed for the full theorem
 
@@ -441,7 +514,8 @@ factor-32 light random contraction are also checked. The finite
 CDF envelope is checked, but still needs its statistical pilot event and
 law-dependent onset. The single-coin tail test, one capped probe over fresh
 coins, the median over independent probes, its form at every depth and its
-oracle comparison past the onset are checked; the multi-depth pilot built from
+oracle comparison past the onset are checked, on the coin array and for an
+estimator that reads only observed flips; the multi-depth pilot built from
 them is not. The observable stage is checked as an execution component;
 the concrete pilot and robust continuation must be instantiated and their
 statistical bounds proved. Finally the stages need to be joined into the

@@ -22,9 +22,12 @@ the simultaneous statement over depths; see the
 [median scope](ARBITRARY_LAW_FORMALIZATION.md#median-tail-certificate). It
 checks the oracle comparison (3) with its finite onset; see the
 [oracle scope](ARBITRARY_LAW_FORMALIZATION.md#oracle-comparison-of-the-tail-certificate).
-The checked statements are about probes that read the coin array of the
-original experiment. The probes are not yet readers in the observable stage,
-and Python execution is outside the Lean claim.
+The statements are checked for probes that read the coin array of the
+original experiment, and for an estimator that runs the probes as readers of
+observed flips, under the law of the original experiment; see the
+[observable scope](ARBITRARY_LAW_FORMALIZATION.md#tail-certificate-in-the-observable-experiment).
+That estimator buys every block in full, so its charge is its cap. Python
+execution is outside the Lean claim.
 
 Let the persistent magnitude of a fresh coin have any probability law $\mu$ on
 $(0,1/2]$. Its sign may depend arbitrarily on its magnitude. Fresh coins are

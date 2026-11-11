@@ -157,6 +157,8 @@ jobs:
         run: python -m unittest discover -s tools -p 'test_arbitrary_law_tail_median.py' -v
       - name: Regression tests for the tail-oracle audit
         run: python -m unittest discover -s tools -p 'test_arbitrary_law_tail_oracle.py' -v
+      - name: Regression tests for the tail-observable audit
+        run: python -m unittest discover -s tools -p 'test_arbitrary_law_tail_observable.py' -v
       - name: Regression tests for the quantile-model and upper-theorem audits
         run: |
           python -m unittest discover -s tools -p 'test_entropy_tail_components.py' -v
@@ -484,6 +486,8 @@ jobs:
         run: python tools/verify_arbitrary_law_tail_median.py
       - name: Verify the oracle comparison of the tail certificate
         run: python tools/verify_arbitrary_law_tail_oracle.py
+      - name: Verify the tail certificate in the observable experiment
+        run: python tools/verify_arbitrary_law_tail_observable.py
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
       - uses: actions/upload-artifact@v4

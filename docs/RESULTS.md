@@ -1108,8 +1108,8 @@ $C=2^{32}C_*\approx3.5\cdot10^{16}$ and $\rho=1/4$, the width bound is
 below the trivial width $\rho/2$ only beyond about $8\cdot10^{35}$ flips,
 and later for smaller $\rho$. For a point mass at $1/2$ with $\rho=1/4$
 the proof's onset needs pilot depth $29$, a budget above $10^{17}$ flips.
-The [Lean components](ARBITRARY_LAW_FORMALIZATION.md) now have 473 exact
-statements and 471 transitive-axiom reports: finite and countable entropy transport, the finite
+The [Lean components](ARBITRARY_LAW_FORMALIZATION.md) now have 541 exact
+statements and 539 transitive-axiom reports: finite and countable entropy transport, the finite
 CDF envelope including its zero atom, and an observable paid-pilot/selected-
 continuation stage with physical caps and its original-experiment joint law.
 The canonical band cells are constructed for every finite increasing-gap
@@ -1137,6 +1137,9 @@ coin array split by a pairing function.
 Past a finite onset that depends on the law and $\rho$ only, that median is
 at most $524288\,K_{\mu,\rho}(4^J)$, which is statement (3) of the tail
 certificate.
+Both statements also hold, under the law of the original experiment, for an
+estimator that runs the probes as readers of observed flips and buys at most
+$m4^J$ flips; its certificate covers the small-gap mass at every pause.
 The multi-depth
 pilot probability event, robust continuation
 bounds and the full all-budget controller remain to be formalized;

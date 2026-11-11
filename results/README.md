@@ -219,3 +219,11 @@ exact statements and transitive reports for the oracle comparison of the tail
 certificate: the kernel bounds, the split of the gap law at its quantile, the
 onset condition and its existence, and the bound of the median by 524288 times
 the selection functional. The pilot is not part of it.
+
+The [tail-observable audit](arbitrary-law-tail-observable-20261111/README.md)
+adds 68 exact statements and transitive reports for the tail certificate in
+the observable experiment: a reader that runs the probes from observed flips,
+the certificate as a function of the observed word, the transfer of events
+about that word to the law of the original experiment, and statements (1) and
+(3) for the estimator's output with coverage at every pause. The estimator
+buys every block in full. The pilot is not part of it.
