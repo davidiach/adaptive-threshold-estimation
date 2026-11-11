@@ -1,7 +1,8 @@
 # Oracle-scale tail certificates for an arbitrary unknown gap law
 
-This is a **paper proof with an executable implementation**, not a new Lean
-audit. It closes one part of arbitrary-law adaptation: learning an upper bound
+This note gives a paper proof and an executable implementation. Its statements
+(1) to (4) are now also Lean-checked, as described two paragraphs below.
+It closes one part of arbitrary-law adaptation: learning an upper bound
 on unobserved small-gap mass at the oracle scale, with a physical flip cap.
 It does **not** yet construct an oracle-rate confidence sequence for the
 positive fraction. In particular, it does not supply the core costs and null
@@ -18,8 +19,15 @@ the performance bound (5); the
 [formal scope](ARBITRARY_LAW_FORMALIZATION.md#capped-tail-probe) gives those
 statements. For the median it checks statement (1), its pathwise flip cap and
 the simultaneous statement over depths; see the
-[median scope](ARBITRARY_LAW_FORMALIZATION.md#median-tail-certificate). The
-oracle comparison (3) remains a paper proof.
+[median scope](ARBITRARY_LAW_FORMALIZATION.md#median-tail-certificate). It
+checks the oracle comparison (3) with its finite onset; see the
+[oracle scope](ARBITRARY_LAW_FORMALIZATION.md#oracle-comparison-of-the-tail-certificate).
+The statements are checked for probes that read the coin array of the
+original experiment, and for an estimator that runs the probes as readers of
+observed flips, under the law of the original experiment; see the
+[observable scope](ARBITRARY_LAW_FORMALIZATION.md#tail-certificate-in-the-observable-experiment).
+That estimator buys every block in full, so its charge is its cap. Python
+execution is outside the Lean claim.
 
 Let the persistent magnitude of a fresh coin have any probability law $\mu$ on
 $(0,1/2]$. Its sign may depend arbitrarily on its magnitude. Fresh coins are

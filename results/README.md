@@ -213,3 +213,24 @@ probes: the majority transfer to the median, Hoeffding across probes,
 statement (1) of the tail certificate with its pathwise flip cap, the
 statement at every depth at once, and both on a single coin array. The oracle
 comparison and the pilot are not part of it.
+
+The [tail-oracle audit](arbitrary-law-tail-oracle-20261111/README.md) adds 26
+exact statements and transitive reports for the oracle comparison of the tail
+certificate: the kernel bounds, the split of the gap law at its quantile, the
+onset condition and its existence, and the bound of the median by 524288 times
+the selection functional. The pilot is not part of it.
+
+The [tail-observable audit](arbitrary-law-tail-observable-20261111/README.md)
+adds 68 exact statements and transitive reports for the tail certificate in
+the observable experiment: a reader that runs the probes from observed flips,
+the certificate as a function of the observed word, the transfer of events
+about that word to the law of the original experiment, and statements (1) and
+(3) for the estimator's output with coverage at every pause. The estimator
+buys every block in full. The pilot is not part of it.
+
+The [pilot audit](arbitrary-law-pilot-20261111/README.md) adds 66 exact
+statements and transitive reports for the capped multi-depth pilot of the
+adaptation proof: its budgets and caps, the event (A8) at every depth at once
+with a common number of probes, the pilot installed in the paid learning
+stage, and the learned law (A9), which dominates the gap law on that event.
+The learned law's comparison with the oracle is not part of it.

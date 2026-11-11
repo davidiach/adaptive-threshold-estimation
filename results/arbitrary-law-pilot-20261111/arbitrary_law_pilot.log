@@ -1,0 +1,84 @@
+'ThresholdHC.ArbitraryLawAdaptation.DepthOneState' depends on axioms: [propext]
+'ThresholdHC.ArbitraryLawAdaptation.PilotGood' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.block_union_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.capped_bound_le_pilotBound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.depthOneState_run' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.depthOneState_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.exists_lt_eq_biUnion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.infinitePi_map_first_block' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.le_two_mul_pilotSpan' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.measurableSet_exists_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.measurableSet_pilotFailure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.measurable_pilotStreams' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.measurable_stageStreams' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.medianWordUpper_depth_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.medianWordUpper_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.medianWordUpper_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.observable_pilot_event' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.original_pilotFailure_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.original_pilotStage_event' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.original_pilot_event' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotBound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotBudget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotBudget_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotCoinCap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotCoinCap_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotCost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotCost_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotCost_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotEstimator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotEstimator_cap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotFailure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotGood_of_not_failure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotLength' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotReader' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotSpan' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotSpan_cast' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotSpan_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotStage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotStageWord' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotStage_cap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotStage_cap_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotStage_dominates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotStage_learnedLaw_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotStage_learnedLaw_grid' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotStage_learnedLaw_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotStage_learnedLaw_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotStage_pathwise' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotStage_tableInterval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotStage_upper_word' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotStreams' does not depend on any axioms
+'ThresholdHC.ArbitraryLawAdaptation.pilotStreams_law' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotUpper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotUpper_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotUpper_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotUpper_readBlock' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilotUpper_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilot_geometric_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.pilot_reciprocal_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.probeResolved_one_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.probeResolved_one_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.probeUpper_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.probeWordCompleted_depth_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.stageStreams' does not depend on any axioms
+'ThresholdHC.ArbitraryLawAdaptation.stageStreams_law' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.sum_inv_consecutive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ArbitraryLawAdaptation.sum_two_pow' depends on axioms: [propext, Classical.choice, Quot.sound]

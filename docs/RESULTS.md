@@ -1108,8 +1108,8 @@ $C=2^{32}C_*\approx3.5\cdot10^{16}$ and $\rho=1/4$, the width bound is
 below the trivial width $\rho/2$ only beyond about $8\cdot10^{35}$ flips,
 and later for smaller $\rho$. For a point mass at $1/2$ with $\rho=1/4$
 the proof's onset needs pilot depth $29$, a budget above $10^{17}$ flips.
-The [Lean components](ARBITRARY_LAW_FORMALIZATION.md) now have 447 exact
-statements and 445 transitive-axiom reports: finite and countable entropy transport, the finite
+The [Lean components](ARBITRARY_LAW_FORMALIZATION.md) now have 607 exact
+statements and 605 transitive-axiom reports: finite and countable entropy transport, the finite
 CDF envelope including its zero atom, and an observable paid-pilot/selected-
 continuation stage with physical caps and its original-experiment joint law.
 The canonical band cells are constructed for every finite increasing-gap
@@ -1134,8 +1134,19 @@ The median of $m\ge8\log(2/\delta)$ independent probes satisfies statement (1)
 of the tail certificate with probability at least $1-\delta$, within $m4^J$
 flips on every path; the same holds at every depth at once, and on a single
 coin array split by a pairing function.
-The oracle comparison past the onset, the multi-depth
-pilot probability event, robust continuation
+Past a finite onset that depends on the law and $\rho$ only, that median is
+at most $524288\,K_{\mu,\rho}(4^J)$, which is statement (3) of the tail
+certificate.
+Both statements also hold, under the law of the original experiment, for an
+estimator that runs the probes as readers of observed flips and buys at most
+$m4^J$ flips; its certificate covers the small-gap mass at every pause.
+The capped multi-depth pilot is checked with its event (A8): with a common
+number $m\ge8\log(2J/\varepsilon)$ of probes at every depth, its certificates
+satisfy $F(2^{-j})\le U_j\le128(u_j+W_j/b_j+1/M)$ at every depth
+$1\le j\le J$ with probability at least $1-\varepsilon$, within
+$m\sum_jb_j\le m4^J$ flips, and on that event the law it learns dominates the
+gap law.
+The learned law's oracle comparison, robust continuation
 bounds and the full all-budget controller remain to be formalized;
 Python execution and its PRNG also remain outside formal verification.
 An exact path count shows that repeatedly

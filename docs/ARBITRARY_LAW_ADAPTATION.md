@@ -175,7 +175,9 @@ The simultaneous coverage of one probe and (A7) are
 [median of independent probes](ARBITRARY_LAW_FORMALIZATION.md#median-tail-certificate)
 at one depth with the bound of (A7), with failure probability at most
 $2e^{-m/8}$. (A8) itself, with its common number of probes and the caps (A6),
-is not.
+is [Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#capped-multi-depth-pilot) for
+every $m\ge8\log(2J/\varepsilon)$, as are (A9), (A10) and the domination
+below. The checked pilot buys each probe's budget in full.
 
 Use a common odd $m\ge8\log(2J/\varepsilon)$ and take a median $U_j$ at each
 depth. A union bound gives, with probability at least $1-\varepsilon$,

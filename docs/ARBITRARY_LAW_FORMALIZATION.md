@@ -208,7 +208,8 @@ finitely many supplied grid bounds. No condition is imposed at unprobed cutoffs.
 
 Run `python tools/verify_arbitrary_law_envelope.py` for 25 exact statements
 and 24 transitive axiom reports. The hypotheses are deterministic finite grid
-bounds; the pilot's probability guarantee for those bounds remains to be proved.
+bounds; the pilot's probability guarantee for those bounds is proved in the
+[pilot section](#capped-multi-depth-pilot).
 
 The [native envelope record](../results/arbitrary-law-envelope-20261106/README.md)
 preserves its proof checkpoint, exact audit input, axiom reports and empty
@@ -230,8 +231,10 @@ original hidden-gap experiment, with arbitrary measurable gap-dependent signs.
 
 Run `python tools/verify_arbitrary_law_stage.py` for 17 exact statements and
 16 transitive axiom reports. This is a reusable execution construction. It
-does not instantiate the statistical pilot or robust continuation, or assume
-their desired risk bounds in place of proving them. It is a single stage,
+does not itself instantiate the statistical pilot or robust continuation, or
+assume their desired risk bounds in place of proving them; the pilot is
+installed in it in the [pilot section](#capped-multi-depth-pilot). It is a
+single stage,
 not yet the final all-budget confidence controller.
 
 The [native stage audit](../results/arbitrary-law-stage-20261106/README.md)
@@ -331,7 +334,8 @@ identifies the proof checkpoint and source hashes.
 
 These are statements about one probe at one depth. The median over independent
 probes is the subject of the next section. The probe is defined on a stream of
-tapes and is not yet a reader in the observable stage.
+tapes; its reader of observed flips is the subject of
+[a later section](#tail-certificate-in-the-observable-experiment).
 
 ## Median tail certificate
 
@@ -382,25 +386,202 @@ modules. The audit fails if a declaration is added without being registered.
 The [tail-median record](../results/arbitrary-law-tail-median-20261111/README.md)
 identifies the proof checkpoint and source hashes.
 
-The oracle comparison (3) with its onset is not formalized. Neither is the
-pilot of (A6) to (A8), which uses a common number of probes, the caps `b_j` and
-`M`, and a finite union over depths. The probes are defined on streams of
-tapes and are not yet readers in the observable stage. Across all fourteen
-current component audits, 447 exact statements and 445 transitive axiom
-reports pass.
+The oracle comparison (3) is the subject of the next section. The pilot of
+(A6) to (A8), which uses a common number of probes, the caps `b_j` and `M`,
+and a finite union over depths, is the subject of
+[a later section](#capped-multi-depth-pilot). The probes are defined on
+streams of tapes; their readers of observed flips are the subject of
+[a later section](#tail-certificate-in-the-observable-experiment).
+
+## Oracle comparison of the tail certificate
+
+This is the
+[comparison with the rare-event oracle](ARBITRARY_LAW_TAIL.md#comparison-with-the-rare-event-oracle),
+statement (3) of the tail certificate. `K` below is the entropy-tail selection
+functional `K_(mu,rho)(B)` of the rare-event theory, with its cap at `rho` and
+its infimum over all submeasures.
+
+[TailOracle.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/TailOracle.lean)
+works with one kernel: the unresolved probability of a coin of gap `d` plus its
+work envelope over `N = 4^J`. Its integral over the gap law is `u_J + W_J/N`.
+With `t = 2^-J`, the kernel is at most `2052 min(1, t/d)` on every gap, and at
+most `(1024 (J+1) + 16) t^2/a^2` on gaps at least `a`. The gap law is split at
+its lowest-gap quantile of mass `rho`, with a fraction of a boundary atom when
+needed. The existing quantile-tail floor bounds the quantile part by `2052 K`.
+The core has gaps at least the quantile threshold `a > 0`. The onset condition
+at depth `J` is `2048 (J+1) 2^-J / a^2 <= sqrt(rho)`. Under it the core part is
+at most `t sqrt(rho)`, which the existing objective floor bounds by `K/2`.
+Hence `u_J + W_J/N <= 4096 K(4^J)`, and the bound of statement (1) is at most
+`524288 K(4^J)`. The onset condition holds at every large depth.
+
+[TailOracleLaw.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/TailOracleLaw.lean)
+states the result for the median certificate `U`, for every probability law
+`mu` of positive gaps, every measurable gap-dependent sign law and
+`0 < rho <= 1/4`. With probability at least `1 - delta`,
+`F(2^-J) <= U <= 524288 K(4^J)` at every depth that meets the onset condition.
+There is a finite onset `J0`, depending on `mu` and `rho` only, past which
+every depth meets it. The procedure receives neither `rho` nor the onset. The
+statement is given on independent streams and on one coin array, at one depth
+and at every depth at once with `m_J >= 8 log(2 J (J+1)/delta)` probes.
+
+No inverse moment or tail regularity of the law is assumed. The onset is
+large: for a point mass at `1/2` and `rho = 1/4` the condition first holds at
+depth 19, which is `4^19` flips for each probe.
+
+Run `python tools/verify_arbitrary_law_tail_oracle.py` for 26 exact statements
+and 26 transitive axiom reports, one for each declaration of the two modules.
+The audit fails if a declaration is added without being registered. The
+[tail-oracle record](../results/arbitrary-law-tail-oracle-20261111/README.md)
+identifies the proof checkpoint and source hashes.
+
+With this section, statements (1) to (4) of the tail certificate are checked
+for probes that read the coin array of the original experiment. The next
+section runs those probes as readers of observed flips.
+
+## Tail certificate in the observable experiment
+
+The sections above define the probes on the coin array of the original
+experiment. Here a **reader** runs them: a rule that chooses the next coin to
+flip from the flips observed so far. The estimator sees only flips, and its
+certificate is a function of the observed word.
+
+[TailProbeReader.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/TailProbeReader.lean)
+gives the reader of one probe. A state machine tests coin 0, then coin 1, and
+so on with the sign-neutral tail test, and keeps the probe's completed count:
+the count freezes once an unresolved coin is completed or `M` coins are
+counted. An invariant relates the state after `t` flips to the tape-level
+probe on the same table of coin tapes. Hence the count computed from the
+observed word equals `probeCompleted J t M` at every flip budget `t`. The word
+at a smaller budget is a prefix of the word at a larger one, so the count can
+be read from any prefix of a longer block. After `t` flips the reader is on
+the first coin whose test is not complete within `t` flips: it buys the flips
+of each coin consecutively and never returns to a coin. These statements are
+pathwise.
+
+[TailBlockReader.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/TailBlockReader.lean)
+runs blocks one after another. Block `n` buys its flips with its own reader on
+the coins `Nat.pair n i`; the part of the observed word that it bought is then
+the word its reader would observe alone on those coins, and the coins of
+blocks that have not run are untouched. With probe `j` as block `j`, the
+median computed from the observed word of `m` blocks of `b` flips equals the
+tape-level median certificate of probes reading the coins `Nat.pair j i`. Cut
+after `t` flips, it equals the tape-level median with probe `j` at flip budget
+`min(max(t - j b, 0), b)`: complete probes, at most one interrupted probe, and
+probes that have not started. With one more level of blocks, depth `J` reads
+the coins `Nat.pair J (Nat.pair j i)`.
+
+[TailObservable.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/TailObservable.lean)
+defines an estimator that buys a block of `n` flips with a reader and reports
+a function of the observed word. It buys at most `n` flips on every admissible
+path. Every event about the observed word has the same probability under the
+law of the original hidden-gap experiment as the same event about the reader's
+word on the coin array of the original simulation law. The coin-array
+statements therefore hold for the estimator, for every probability law `mu`
+of positive gaps and every measurable gap-dependent sign law:
+
+- **Statement (1).** For `m >= 8 log(2/delta)` probes with `4^J` flips each,
+  with probability at least `1 - delta` the output `U` is at most
+  `min(1, 128 max(u_J, W_J/4^J))`, and the certificate computed from the first
+  `t` observed flips is at least `F(2^-J)` for every `t` at once. With `b >= 1`
+  flips and coin cap `M >= 1` the upper bound is
+  `min(1, 128 max(u_J, W_J/b, 1/M))`.
+- **Statement (3).** For `0 < rho <= 1/4`, at a depth that meets the onset
+  condition the output is at most `524288 K(4^J)`, and every depth past a
+  finite onset that depends on `mu` and `rho` only meets it.
+- **Depths up to `L`.** One estimator runs the depths `J <= L` one after
+  another, with `m_J >= 8 log(2 J (J+1)/delta)` probes at depth `J`. With
+  probability at least `1 - delta` the bounds above hold at every depth
+  `1 <= J <= L` at once.
+
+The reader buys every block in full. Flips bought after a probe has stopped
+are charged and ignored, so the estimator's charge is its cap, `m b` flips at
+one depth. An estimator that stops buying when its probes stop is not
+constructed.
+
+Run `python tools/verify_arbitrary_law_tail_observable.py` for 68 exact
+statements and 68 transitive axiom reports, one for each declaration of the
+three modules. The audit fails if a declaration is added without being
+registered. The
+[tail-observable record](../results/arbitrary-law-tail-observable-20261111/README.md)
+identifies the proof checkpoint and source hashes.
+
+The pilot of (A6) to (A8) is the subject of the next section.
+
+## Capped multi-depth pilot
+
+This is the pilot of the
+[adaptation proof](ARBITRARY_LAW_ADAPTATION.md#2-learning-the-envelope-under-one-physical-cap):
+(A6) and (A8) to (A10). For a target depth `J >= 1` with `N = 4^J`, it runs a
+common number `m` of probes at every depth `j = 1, ..., J`.
+
+[TailPilot.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/TailPilot.lean)
+defines the budgets `b_j = ceil(N/(2 j (j+1))) + 2^(J+j-2)` and the coin cap
+`M = ceil(sqrt(64 N/rho))` of (A6). It proves (A10): `N/2 <= sum_j b_j <= N`
+for every `J >= 1`, so the pilot buys `m sum_j b_j <= m N` flips. Block `i` of
+its reader runs the `m` probes of depth `i + 1`, probe `k` on the coins
+`Nat.pair i (Nat.pair k c)`. The certificate of each depth is computed from
+the observed word, equals the tape-level median of the probes on those coins,
+and lies in `(0, 1]`. At depth one no check can resolve a coin, so a depth-one
+probe counts at most one coin and its certificate is one. This holds for every
+word of flips, which the learning stage requires.
+
+[TailPilotLaw.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/TailPilotLaw.lean)
+proves the event (A8) for every probability law `mu` of positive gaps and
+every measurable gap-dependent sign law. For `m >= 8 log(2J/epsilon)`, with
+probability at least `1 - epsilon`,
+`F(2^-j) <= U_j <= 128 (u_j + W_j/b_j + 1/M)` at every depth `1 <= j <= J` at
+once. The union over depths is finite and uses the same number of probes at
+every depth; the failure probability is at most `2 J exp(-m/8)`. The event is
+proved in two settings:
+
+- **The pilot alone.** An estimator that runs only the pilot buys at most
+  `m sum_j b_j` flips on every admissible path, and (A8) holds for its
+  certificates under the law of the original hidden-gap experiment.
+- **The pilot in the learning stage.** The pilot is installed in the
+  [observable learning stage](#observable-learning-stage). Its probes read the
+  coins `Nat.pair 0 (Nat.pair i (Nat.pair k c))`, and the continuation reads
+  the fresh coins `Nat.pair 1 i`. (A8) holds for the certificates the stage
+  reads off the pilot's word, on the coin array of the original simulation
+  law.
+
+The stage's learned law is the finite law (A9). With `c_j` the prefix minima
+of the certificates, it puts mass `c_J` at zero and mass `c_j - c_(j+1)` at
+`2^-(j+1)`. It is a probability law on every observed word, and no latent
+count of small gaps enters it. When the certificates cover `F(2^-j)` at every
+depth, it dominates `mu` in distribution at every point; so it does on the
+event (A8). The stage buys at most `m sum_j b_j` flips plus the continuation's
+on every admissible path.
+
+The reader buys every block in full, so the pilot is charged its cap. The
+paper's remark that the coin cap lets easy-law pilots stop early is not
+formalized. (A8) is stated under the law of the original experiment for the
+pilot alone, and on the coin array for the stage.
+
+Run `python tools/verify_arbitrary_law_pilot.py` for 66 exact statements and
+66 transitive axiom reports, one for each declaration of the two modules. The
+audit fails if a declaration is added without being registered. The
+[pilot record](../results/arbitrary-law-pilot-20261111/README.md) identifies
+the proof checkpoint and source hashes.
+
+The learned law's comparison with the oracle past its onset, (A11) to (A14),
+is not formalized. Across all seventeen current component audits, 607 exact
+statements and 605 transitive axiom reports pass.
 
 ## Work still needed for the full theorem
 
 CDF domination now gives an increasing coupling and the selection
 comparison, including unresolved mass at zero. Dominated mass and the concrete
 factor-32 light random contraction are also checked. The finite
-CDF envelope is checked, but still needs its statistical pilot event and
-law-dependent onset. The single-coin tail test, one capped probe over fresh
-coins, the median over independent probes and its form at every depth are
-checked with their probability bounds; the oracle comparison past the onset
-and the multi-depth pilot built from them are not. The observable stage is checked as an execution component;
-the concrete pilot and robust continuation must be instantiated and their
-statistical bounds proved. Finally the stages need to be joined into the
+CDF envelope is checked, and the capped multi-depth pilot now supplies its
+statistical event; its law-dependent onset is not checked. The single-coin
+tail test, one capped probe over fresh
+coins, the median over independent probes, its form at every depth and its
+oracle comparison past the onset are checked, on the coin array and for an
+estimator that reads only observed flips; so is the multi-depth pilot built
+from them. The observable stage is checked as an execution component with
+the concrete pilot installed; the learned law's oracle comparison must be
+proved, and the robust continuation must be instantiated and its statistical
+bounds proved. Finally the stages need to be joined into the
 all-budget controller, with fresh stages, nested intervals, simultaneous
 coverage and eventual oracle width. These conclusions must be proved, not
 supplied as assumptions to a controller interface.

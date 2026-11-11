@@ -165,14 +165,16 @@ arbitrary-law statistical theorem.
 `ArbitraryLawAdaptation/CDFEnvelope.lean` constructs the conservative finite
 measure, including its zero atom and closed-CDF boundary values. Run
 `python tools/verify_arbitrary_law_envelope.py` for 25 exact statements and
-24 transitive reports. The statistical pilot event remains unproved in Lean.
+24 transitive reports. The statistical pilot event is proved in
+`ArbitraryLawAdaptation/TailPilotLaw.lean`.
 
 `ArbitraryLawAdaptation/LearnedStage.lean` joins a paid pilot to a continuation
 chosen from its observed finite envelope. Its cap, fresh labels, chronological
 readback and original-experiment joint endpoint law have 17 exact statements
 and 16 transitive reports in `python tools/verify_arbitrary_law_stage.py`.
-This component does not yet instantiate the statistical pilot or establish
-the full all-budget controller.
+The statistical pilot is installed in it in
+`ArbitraryLawAdaptation/TailPilotLaw.lean`. The full all-budget controller is
+not established.
 
 `ArbitraryLawAdaptation/CountableEntropy.lean`, `CountableTransport.lean` and
 `GammaTransport.lean` extend the factor-three bound to countably many cells
@@ -229,3 +231,20 @@ and transitive reports on the median over independent probes: the majority
 transfer to the median, Hoeffding across probes, statement (1) of the tail
 certificate with its pathwise flip cap, the statement at every depth at once,
 and both on a single coin array.
+Run `python tools/verify_arbitrary_law_tail_oracle.py` for 26 exact statements
+and transitive reports on the oracle comparison of the tail certificate: the
+kernel bounds, the split of the gap law at its quantile, the onset condition
+and its existence, and the bound of the median by 524288 times the selection
+functional, at one depth and at every depth at once.
+Run `python tools/verify_arbitrary_law_tail_observable.py` for 68 exact
+statements and transitive reports on the tail certificate in the observable
+experiment: the probe's reader and its invariant, consecutive blocks on
+separate coin labels, the certificate as a function of the observed word, the
+transfer of events about that word to the law of the original experiment, and
+statements (1) and (3) for the estimator's output, at one depth and at every
+depth up to a horizon.
+Run `python tools/verify_arbitrary_law_pilot.py` for 66 exact statements and
+transitive reports on the capped multi-depth pilot: the budgets and coin cap
+(A6), the cap inequalities (A10), the depth-one certificate, the event (A8)
+with a common number of probes, for the pilot alone and for the pilot in the
+learning stage, and the learned law (A9) with its domination of the gap law.
