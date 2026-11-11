@@ -213,3 +213,9 @@ probes: the majority transfer to the median, Hoeffding across probes,
 statement (1) of the tail certificate with its pathwise flip cap, the
 statement at every depth at once, and both on a single coin array. The oracle
 comparison and the pilot are not part of it.
+
+The [tail-oracle audit](arbitrary-law-tail-oracle-20261111/README.md) adds 26
+exact statements and transitive reports for the oracle comparison of the tail
+certificate: the kernel bounds, the split of the gap law at its quantile, the
+onset condition and its existence, and the bound of the median by 524288 times
+the selection functional. The pilot is not part of it.

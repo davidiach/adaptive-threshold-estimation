@@ -972,3 +972,8 @@ and transitive reports on the median over independent probes: the majority
 transfer to the median, Hoeffding across probes, statement (1) of the tail
 certificate with its pathwise flip cap, the statement at every depth at once,
 and both on a single coin array.
+Run `python tools/verify_arbitrary_law_tail_oracle.py` for 26 exact statements
+and transitive reports on the oracle comparison of the tail certificate: the
+kernel bounds, the split of the gap law at its quantile, the onset condition
+and its existence, and the bound of the median by 524288 times the selection
+functional, at one depth and at every depth at once.

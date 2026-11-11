@@ -382,12 +382,56 @@ modules. The audit fails if a declaration is added without being registered.
 The [tail-median record](../results/arbitrary-law-tail-median-20261111/README.md)
 identifies the proof checkpoint and source hashes.
 
-The oracle comparison (3) with its onset is not formalized. Neither is the
-pilot of (A6) to (A8), which uses a common number of probes, the caps `b_j` and
-`M`, and a finite union over depths. The probes are defined on streams of
-tapes and are not yet readers in the observable stage. Across all fourteen
-current component audits, 447 exact statements and 445 transitive axiom
-reports pass.
+The oracle comparison (3) is the subject of the next section. The pilot of
+(A6) to (A8), which uses a common number of probes, the caps `b_j` and `M`,
+and a finite union over depths, is not formalized. The probes are defined on
+streams of tapes and are not yet readers in the observable stage.
+
+## Oracle comparison of the tail certificate
+
+This is the
+[comparison with the rare-event oracle](ARBITRARY_LAW_TAIL.md#comparison-with-the-rare-event-oracle),
+statement (3) of the tail certificate. `K` below is the entropy-tail selection
+functional `K_(mu,rho)(B)` of the rare-event theory, with its cap at `rho` and
+its infimum over all submeasures.
+
+[TailOracle.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/TailOracle.lean)
+works with one kernel: the unresolved probability of a coin of gap `d` plus its
+work envelope over `N = 4^J`. Its integral over the gap law is `u_J + W_J/N`.
+With `t = 2^-J`, the kernel is at most `2052 min(1, t/d)` on every gap, and at
+most `(1024 (J+1) + 16) t^2/a^2` on gaps at least `a`. The gap law is split at
+its lowest-gap quantile of mass `rho`, with a fraction of a boundary atom when
+needed. The existing quantile-tail floor bounds the quantile part by `2052 K`.
+The core has gaps at least the quantile threshold `a > 0`. The onset condition
+at depth `J` is `2048 (J+1) 2^-J / a^2 <= sqrt(rho)`. Under it the core part is
+at most `t sqrt(rho)`, which the existing objective floor bounds by `K/2`.
+Hence `u_J + W_J/N <= 4096 K(4^J)`, and the bound of statement (1) is at most
+`524288 K(4^J)`. The onset condition holds at every large depth.
+
+[TailOracleLaw.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/TailOracleLaw.lean)
+states the result for the median certificate `U`, for every probability law
+`mu` of positive gaps, every measurable gap-dependent sign law and
+`0 < rho <= 1/4`. With probability at least `1 - delta`,
+`F(2^-J) <= U <= 524288 K(4^J)` at every depth that meets the onset condition.
+There is a finite onset `J0`, depending on `mu` and `rho` only, past which
+every depth meets it. The procedure receives neither `rho` nor the onset. The
+statement is given on independent streams and on one coin array, at one depth
+and at every depth at once with `m_J >= 8 log(2 J (J+1)/delta)` probes.
+
+No inverse moment or tail regularity of the law is assumed. The onset is
+large: for a point mass at `1/2` and `rho = 1/4` the condition first holds at
+depth 19, which is `4^19` flips for each probe.
+
+Run `python tools/verify_arbitrary_law_tail_oracle.py` for 26 exact statements
+and 26 transitive axiom reports, one for each declaration of the two modules.
+The audit fails if a declaration is added without being registered. The
+[tail-oracle record](../results/arbitrary-law-tail-oracle-20261111/README.md)
+identifies the proof checkpoint and source hashes.
+
+With this section, statements (1) to (4) of the tail certificate are checked
+for probes that read the coin array of the original experiment. The probes are
+not yet readers in the observable stage. Across all fifteen current component
+audits, 473 exact statements and 471 transitive axiom reports pass.
 
 ## Work still needed for the full theorem
 
@@ -396,9 +440,9 @@ comparison, including unresolved mass at zero. Dominated mass and the concrete
 factor-32 light random contraction are also checked. The finite
 CDF envelope is checked, but still needs its statistical pilot event and
 law-dependent onset. The single-coin tail test, one capped probe over fresh
-coins, the median over independent probes and its form at every depth are
-checked with their probability bounds; the oracle comparison past the onset
-and the multi-depth pilot built from them are not. The observable stage is checked as an execution component;
+coins, the median over independent probes, its form at every depth and its
+oracle comparison past the onset are checked; the multi-depth pilot built from
+them is not. The observable stage is checked as an execution component;
 the concrete pilot and robust continuation must be instantiated and their
 statistical bounds proved. Finally the stages need to be joined into the
 all-budget controller, with fresh stages, nested intervals, simultaneous

@@ -8,8 +8,8 @@ Later [Lean component audits](../../docs/ARBITRARY_LAW_FORMALIZATION.md) cover
 the CDF and zero-atom comparison, dominated mass, the concrete factor-32
 light contraction, the single-coin tail test of Appendix V.3 with its
 error and work bounds, and its inverse-sampling step: one capped probe with
-its coverage and performance bounds, and the median certificate at one depth
-and at every depth. The full arbitrary-law adaptation theorem remains a paper
+its coverage and performance bounds, the median certificate at one depth
+and at every depth, and its oracle comparison past a finite onset. The full arbitrary-law adaptation theorem remains a paper
 proof; the published PDF and its build record retain their original scope.
 
 This is the current single research paper. It combines three manuscripts:
