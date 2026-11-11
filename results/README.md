@@ -199,3 +199,17 @@ adds 91 exact statements and transitive reports for the single-coin test of
 the tail certificate: its work cap, flip symmetry and sign-neutral law, both
 unresolved-probability bounds, the multiplier comparison and the expected-work
 bound. Inverse sampling and the pilot are not part of it.
+
+The [capped tail-probe audit](arbitrary-law-tail-probe-20261110/README.md)
+adds 69 exact statements and transitive reports for one probe of the tail
+certificate's inverse-sampling step: its caps and charge, dependence on the
+bought flips, coverage at every budget with probability at least 7/8, and the
+fixed-budget performance bound with probability at least 3/4. The median over
+probes, the oracle comparison and the pilot are not part of it.
+
+The [tail-median audit](arbitrary-law-tail-median-20261111/README.md) adds 51
+exact statements and transitive reports for the median over independent
+probes: the majority transfer to the median, Hoeffding across probes,
+statement (1) of the tail certificate with its pathwise flip cap, the
+statement at every depth at once, and both on a single coin array. The oracle
+comparison and the pilot are not part of it.
