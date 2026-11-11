@@ -227,3 +227,10 @@ the certificate as a function of the observed word, the transfer of events
 about that word to the law of the original experiment, and statements (1) and
 (3) for the estimator's output with coverage at every pause. The estimator
 buys every block in full. The pilot is not part of it.
+
+The [pilot audit](arbitrary-law-pilot-20261111/README.md) adds 66 exact
+statements and transitive reports for the capped multi-depth pilot of the
+adaptation proof: its budgets and caps, the event (A8) at every depth at once
+with a common number of probes, the pilot installed in the paid learning
+stage, and the learned law (A9), which dominates the gap law on that event.
+The learned law's comparison with the oracle is not part of it.

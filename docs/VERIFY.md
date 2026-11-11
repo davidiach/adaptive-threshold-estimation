@@ -984,3 +984,8 @@ separate coin labels, the certificate as a function of the observed word, the
 transfer of events about that word to the law of the original experiment, and
 statements (1) and (3) for the estimator's output, at one depth and at every
 depth up to a horizon.
+Run `python tools/verify_arbitrary_law_pilot.py` for 66 exact statements and
+transitive reports on the capped multi-depth pilot: the budgets and coin cap
+(A6), the cap inequalities (A10), the depth-one certificate, the event (A8)
+with a common number of probes, for the pilot alone and for the pilot in the
+learning stage, and the learned law (A9) with its domination of the gap law.
