@@ -10,8 +10,9 @@ light contraction, the single-coin tail test of Appendix V.3 with its
 error and work bounds, and its inverse-sampling step: one capped probe with
 its coverage and performance bounds, the median certificate at one depth
 and at every depth, its oracle comparison past a finite onset, the same
-statements for an estimator that reads only observed flips, and the capped
-multi-depth pilot with the conservative law it learns. The full arbitrary-law adaptation theorem remains a paper
+statements for an estimator that reads only observed flips, the capped
+multi-depth pilot with the conservative law it learns, and the pilot's work
+estimates and onset. The full arbitrary-law adaptation theorem remains a paper
 proof; the published PDF and its build record retain their original scope.
 
 This is the current single research paper. It combines three manuscripts:

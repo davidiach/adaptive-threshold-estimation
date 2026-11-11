@@ -564,8 +564,52 @@ audit fails if a declaration is added without being registered. The
 the proof checkpoint and source hashes.
 
 The learned law's comparison with the oracle past its onset, (A11) to (A14),
-is not formalized. Across all seventeen current component audits, 607 exact
-statements and 605 transitive axiom reports pass.
+is begun in the next section.
+
+## Learned law against the oracle: work estimates and onset
+
+This is the first part of
+[section 3 of the adaptation proof](ARBITRARY_LAW_ADAPTATION.md#3-the-learned-law-retains-the-oracle-rate):
+the split of the gap law, the estimate (A12), the onset, and the two floors
+that (A14) uses. `K` is the entropy-tail selection functional
+`K_(mu,rho)(4^J)`.
+
+[PilotOnset.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/PilotOnset.lean)
+splits the gap law at its lowest-gap quantile of mass `rho`, `mu = nu + sigma`,
+with a fraction of a boundary atom when needed. The quantile part `nu` has
+mass `rho`, and the core `sigma` has gaps at least the quantile threshold
+`a > 0`. This is the project's existing quantile split; the module collects
+its properties in one statement. For the pilot of target depth `J`, with
+`t = 2^-J` and the budgets `b_j` of (A6), every depth `1 <= j <= J` satisfies
+
+- `W_(j,nu)/b_j <= 8192 tau_nu(t)`, and
+- `W_(j,sigma)/b_j <= 2048 (J+1)^3 t^2/a^2`,
+
+where `W_(j,.)` integrates the work envelope of depth `j` and `tau_nu` is the
+tail modulus. This is (A12). The first bound uses the geometric part
+`2^(J+j-2)` of the budget and the scaling `tau_nu(s) <= (s/t) tau_nu(t)`; the
+second uses the reciprocal part.
+
+The pilot's onset condition at depth `J` is
+`2048 (J+1)^3 2^-J / a^2 <= sqrt(rho)`. It holds at every large depth, and it
+implies the onset condition of the tail certificate. Under it, for
+`0 < rho <= 1/4`: `W_j/b_j <= 8193 K` at every depth of the pilot,
+`2 t sqrt(rho) <= K`, and the coin cap satisfies `16/M <= K`. The threshold `a`
+and the onset are proof quantities; the pilot receives neither. The onset is
+large: for a point mass at `1/2` and `rho = 1/4` the condition first holds at
+depth 29.
+
+Run `python tools/verify_arbitrary_law_pilot_onset.py` for 25 exact statements
+and 25 transitive axiom reports, one for each declaration of the module. The
+audit fails if a declaration is added without being registered. The
+[pilot-onset record](../results/arbitrary-law-pilot-onset-20261111/README.md)
+identifies the proof checkpoint and source hashes.
+
+The rest of (A11) is not formalized: the comparison of the unresolved
+probabilities with the multiplier law, the learned-CDF bound (A13), the bound
+`e < 2^22 K` of (A14), the clipped-CDF witness and the final `2^24`
+comparison. Across all eighteen current component audits, 632 exact
+statements and 630 transitive axiom reports pass.
 
 ## Work still needed for the full theorem
 
@@ -573,14 +617,15 @@ CDF domination now gives an increasing coupling and the selection
 comparison, including unresolved mass at zero. Dominated mass and the concrete
 factor-32 light random contraction are also checked. The finite
 CDF envelope is checked, and the capped multi-depth pilot now supplies its
-statistical event; its law-dependent onset is not checked. The single-coin
+statistical event; its law-dependent onset is checked. The single-coin
 tail test, one capped probe over fresh
 coins, the median over independent probes, its form at every depth and its
 oracle comparison past the onset are checked, on the coin array and for an
 estimator that reads only observed flips; so is the multi-depth pilot built
 from them. The observable stage is checked as an execution component with
-the concrete pilot installed; the learned law's oracle comparison must be
-proved, and the robust continuation must be instantiated and its statistical
+the concrete pilot installed; the learned law's oracle comparison has its
+work estimates and onset checked and the rest must be proved, and the robust
+continuation must be instantiated and its statistical
 bounds proved. Finally the stages need to be joined into the
 all-budget controller, with fresh stages, nested intervals, simultaneous
 coverage and eventual oracle width. These conclusions must be proved, not

@@ -237,6 +237,11 @@ $2048(J+1)^3t/a^2\le\sqrt\rho$. This also ensures
 $t\le\sqrt\rho/2$, so the elementary objective floor gives
 $K_{\mu,\rho}(N)\ge2\sqrt\rho\,t$. The core term in (A12) is at most
 $K/2$, and $1/M\le\sqrt\rho\,t/8\le K/16$.
+The split, (A12), this onset and its existence, the floor
+$K\ge2\sqrt\rho\,t$ and $1/M\le K/16$ are
+[Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#learned-law-against-the-oracle-work-estimates-and-onset),
+with $W_j/b_j\le8193K$ in place of $8192K+K/2$. The rest of this section is
+not.
 
 The Hoeffding form (2a) of the terminal unresolved bound in the
 [tail proof](ARBITRARY_LAW_TAIL.md), applied at depth $j$, bounds the

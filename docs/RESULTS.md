@@ -1108,8 +1108,8 @@ $C=2^{32}C_*\approx3.5\cdot10^{16}$ and $\rho=1/4$, the width bound is
 below the trivial width $\rho/2$ only beyond about $8\cdot10^{35}$ flips,
 and later for smaller $\rho$. For a point mass at $1/2$ with $\rho=1/4$
 the proof's onset needs pilot depth $29$, a budget above $10^{17}$ flips.
-The [Lean components](ARBITRARY_LAW_FORMALIZATION.md) now have 607 exact
-statements and 605 transitive-axiom reports: finite and countable entropy transport, the finite
+The [Lean components](ARBITRARY_LAW_FORMALIZATION.md) now have 632 exact
+statements and 630 transitive-axiom reports: finite and countable entropy transport, the finite
 CDF envelope including its zero atom, and an observable paid-pilot/selected-
 continuation stage with physical caps and its original-experiment joint law.
 The canonical band cells are constructed for every finite increasing-gap
@@ -1146,7 +1146,8 @@ satisfy $F(2^{-j})\le U_j\le128(u_j+W_j/b_j+1/M)$ at every depth
 $1\le j\le J$ with probability at least $1-\varepsilon$, within
 $m\sum_jb_j\le m4^J$ flips, and on that event the law it learns dominates the
 gap law.
-The learned law's oracle comparison, robust continuation
+For the learned law's oracle comparison, the work estimates (A12) and the
+finite onset are checked. The rest of that comparison, robust continuation
 bounds and the full all-budget controller remain to be formalized;
 Python execution and its PRNG also remain outside formal verification.
 An exact path count shows that repeatedly
