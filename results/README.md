@@ -254,3 +254,10 @@ The [zero-quantile audit](arbitrary-law-zero-quantile-20261112/README.md) adds
 a law with mass at zero, the comparison $Q_\alpha\le4K_\alpha$ with the
 selection functional, and the converse. The planner that uses the design is
 not part of it.
+
+The [known-law planner audit](known-law-planner-20261112/README.md) adds 49
+exact statements and transitive reports for the plan of the known-law
+estimator: its level races and level price, its cap search, its counts, and
+the validity of its squared-error certificate for every admissible plan. The
+price is that of the checked upper theorem. The plan's rate and the toolkit's
+own price are not part of it.

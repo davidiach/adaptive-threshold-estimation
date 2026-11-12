@@ -122,6 +122,12 @@ It uses the ordinary classifier, likelihood-bank estimates and cap schedule
 in Appendices D and F of the [paper](../paper/v6/README.md).
 The implementation and the following adaptations have executable tests.
 The existing Lean upper theorem is about the mathematical experiment.
+A [Lean specification of the plan](ARBITRARY_LAW_FORMALIZATION.md#known-law-plan-and-its-certificate)
+proves the certificate below for every admissible plan. It uses the level
+price $128(\ell+1)\Gamma+6H^2/\rho$ of the checked upper theorem in place of
+the price below, Poisson counts in place of randomized rounding, and
+corrections that read both races from the same flips. The price and those
+two choices of this implementation are not Lean-checked.
 
 Let $\bar a_j$ be the oracle's band bounds, $\pi_j=\bar a_j/\sum_i\bar a_i$
 on positive entries, and $\bar G$ the computed upper entropy of this vector

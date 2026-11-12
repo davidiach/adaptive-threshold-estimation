@@ -1003,3 +1003,7 @@ Run `python tools/verify_arbitrary_law_zero_quantile.py` for 22 exact
 statements and transitive reports on the quantile design of a law with mass
 at zero: its definition from the normalized positive part, the comparison
 (A16) with the selection functional, and the converse.
+Run `python tools/verify_known_law_planner.py` for 49 exact statements and
+transitive reports on the known-law plan: the level races at the plan's caps,
+the level price, the cap search, the counts from weights, and the validity of
+the plan's squared-error certificate.

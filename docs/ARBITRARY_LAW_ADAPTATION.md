@@ -475,8 +475,9 @@ entropy and fractional selection transport, including the zero-atom
 extension and its agreement with positive-gap K. It also checks the light
 random contraction with coefficient 32 and the dominated-mass inequality,
 the capped pilot with the law it learns, and the learned-envelope comparison
-(A11) on the pilot event. The quantile comparison (A16) is checked; the
-planner's certificates and the coefficients $C_0$ and $C_*$ are not.
+(A11) on the pilot event. The quantile comparison (A16) is checked, and so
+is the certificate of a known-law plan with the level price of the checked
+upper theorem; the plan's rate and the coefficients $C_0$ and $C_*$ are not.
 Formalization remains for them, the robustness
 transfer and full adaptive controller. Existing Lean
 results establish the positive-gap quantile-tail floor, objective floor,

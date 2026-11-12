@@ -704,10 +704,62 @@ module. The audit fails if a declaration is added without being registered.
 The [zero-quantile record](../results/arbitrary-law-zero-quantile-20261112/README.md)
 identifies the proof checkpoint and source hashes.
 
-The planner that uses this design is not formalized: its cap search,
-multilevel allocation, integral enclosures and certificate, and the
-coefficients `C_0` and `C_*`. Across all twenty current component audits,
-685 exact statements and 683 transitive axiom reports pass.
+The plan that uses this design is specified in the next section. Its rate
+and the coefficients `C_0` and `C_*` are not formalized.
+
+## Known-law plan and its certificate
+
+The [known-law estimator](KNOWN_LAW_ESTIMATOR.md#work-and-error-of-a-returned-plan)
+plans from a split `sigma + tau + zeta` of its gap law: the selected core, the
+resolved tail and the unresolved part. A plan has a terminal level `J`, a cap
+`4^(kappa_l)` and a price `C_l` for each level, and positive mean counts
+`r_l`. With `delta_l = rho 16^-(l+1)`, its certificate is
+`delta_J^2 + sum_l 17 delta_l / r_l`. The modules in
+[KnownLawPlanner](../lean/ThresholdHC/KnownLawPlanner/PlanCertificate.lean)
+specify the plan and prove the certificate for the level price of the checked
+upper theorem.
+
+- [PlanFamily.lean](../lean/ThresholdHC/KnownLawPlanner/PlanFamily.lean) runs
+  the race of level `l` at any cap whose resolved error is at most
+  `delta_l/8`. Its bias is at most `delta_l`, a correction has second moment
+  at most `17 delta_l`, and its expected work is at most the level price
+  `min(2 4^k, 128 (l+1) Gamma + 6 H^2/rho + 2 O_tau(4^k) + 2 z 4^k)`.
+- [PlannedEstimator.lean](../lean/ThresholdHC/KnownLawPlanner/PlannedEstimator.lean)
+  runs the Poisson multilevel estimator with any positive rates.
+- [PlanCaps.lean](../lean/ThresholdHC/KnownLawPlanner/PlanCaps.lean) is the
+  cap search: from the cap 4, multiply by four until an error envelope is at
+  most `delta_l/8`, and carry the cap to the next level. It states the
+  termination requirement on the envelope and proves that the exact resolved
+  error of a finite measure meets it.
+- [PlanAllocation.lean](../lean/ThresholdHC/KnownLawPlanner/PlanAllocation.lean)
+  turns weights into mean counts `n_i = B w_i / sum_j k_j w_j`. They spend the
+  budget exactly, and weights within a factor `theta` of `sqrt(v_i/k_i)` cost
+  at most that factor in the variance term.
+- [PlanCertificate.lean](../lean/ThresholdHC/KnownLawPlanner/PlanCertificate.lean)
+  defines enclosures, upper bounds of the five design integrals, and proves:
+  a plan whose caps pass the test against the enclosure's envelope, whose
+  terminal level has `delta_J/8` at least the enclosure's unresolved mass and
+  whose counts are priced by the enclosure spends at most `B` in expectation
+  and has squared risk at most its certificate, under every rare prior. The
+  plan with the searched caps and counts from any positive weights is such a
+  plan.
+
+The estimator observes flips only. The statements hold for every plan that
+meets the conditions, so they cover a planner that works from upper bounds.
+They do not cover the toolkit's planner as written: it uses the smaller price
+`80 (l+2) G-bar + 4 H^2/rho`, rounds its counts at random, and runs the
+coarse race of a correction on further flips of the same coin.
+
+Run `python tools/verify_known_law_planner.py` for 49 exact statements and 49
+transitive axiom reports, one for each declaration of the five modules. The
+audit fails if a declaration is added without being registered. The
+[planner record](../results/known-law-planner-20261112/README.md) identifies
+the proof checkpoint and source hashes.
+
+The plan's rate is not formalized: the comparison of the certificate with
+the selection functional, the terminal rule, and the coefficients `C_0` and
+`C_*`. Across all twenty-one current component audits, 734 exact statements
+and 732 transitive axiom reports pass.
 
 ## Work still needed for the full theorem
 
@@ -723,8 +775,9 @@ estimator that reads only observed flips; so is the multi-depth pilot built
 from them. The observable stage is checked as an execution component with
 the concrete pilot installed, and the learned law's oracle comparison is
 checked past its finite onset, on the coin array. The quantile design of a
-law with mass at zero is compared with the selection functional; the
-planner's certificates and radius coefficients must be proved. The robust
+law with mass at zero is compared with the selection functional, and the
+certificate of a known-law plan is checked for the level price of the upper
+theorem; the plan's rate and radius coefficients must be proved. The robust
 continuation must be instantiated and its statistical
 bounds proved. Finally the stages need to be joined into the
 all-budget controller, with fresh stages, nested intervals, simultaneous
