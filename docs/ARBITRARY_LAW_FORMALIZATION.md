@@ -857,8 +857,39 @@ Run `python tools/verify_known_law_plan_tight_rate.py` for 31 exact statements
 and 31 transitive axiom reports, one for each declaration of the three
 modules. The audit fails if a declaration is added without being registered.
 The [tight-rate record](../results/known-law-plan-tight-rate-20261112/README.md)
-identifies the proof checkpoint and source hashes. Across all twenty-three
-current component audits, 783 exact statements and 781 transitive axiom
+identifies the proof checkpoint and source hashes.
+
+## Output of the planner end to end
+
+The rate theorems of the two sections above are stated for a split with
+hypotheses that identify it as the quantile split cut at the budget scale.
+[PlannerOutput.lean](../lean/ThresholdHC/KnownLawPlanner/PlannerOutput.lean)
+constructs that split for every probability law of positive gaps, so the
+hypotheses can be met, and joins the validity of the plan to its rate:
+
+- for an enclosure whose envelope meets the termination requirement, the
+  minimax risk at budget `B` is at most `min(rho/2, sqrt(certificate))`;
+- for every tight enclosure of the quantile split and weights within a factor
+  `theta`, the planner's output, the plan when `2048 z-bar <= rho` and the
+  constant otherwise, gives minimax risk at most
+  `(1 + (8/5) max(4096, 224000 sqrt(theta))) K`;
+- with the exact integrals and the optimal weights, for every probability law
+  `mu` of positive gaps, `0 < rho <= 1/4` and `B > 0`, the minimax risk is at
+  most `44801 K_(mu,rho)(B)`.
+
+The existing upper theorem bounds the minimax risk by 28000 times the
+selection value of every selection, with an estimator that runs each level
+at its least admissible cap. The statement here is for the output of the
+specified planner. For a reference law with mass at zero the module
+constructs the scaled quantile split and shows that its exact integrals, with
+the mass at zero added to the unresolved mass, are a tight enclosure.
+
+Run `python tools/verify_known_law_planner_output.py` for 9 exact statements
+and 9 transitive axiom reports, one for each declaration of the module. The
+audit fails if a declaration is added without being registered. The
+[planner-output record](../results/known-law-planner-output-20261112/README.md)
+identifies the proof checkpoint and source hashes. Across all twenty-four
+current component audits, 792 exact statements and 790 transitive axiom
 reports pass.
 
 ## Work still needed for the full theorem

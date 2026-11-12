@@ -238,4 +238,7 @@ for the Lean plan and every enclosure whose bounds are within a factor two,
 and whose entropy bound is within a factor four: its certified RMS is at
 most $(1+\tfrac85\max\{4096,8\cdot28000\sqrt\theta\})K$. This
 implementation's smaller price and its rational enclosures are not
-Lean-checked.
+Lean-checked. The [output of the Lean planner](ARBITRARY_LAW_FORMALIZATION.md#output-of-the-planner-end-to-end)
+is checked end to end: run on the quantile split with exact integrals and
+optimal weights, it gives minimax risk at most $44801\,K$ for every law of
+positive gaps.

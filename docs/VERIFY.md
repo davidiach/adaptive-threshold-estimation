@@ -1018,3 +1018,8 @@ within a factor two: the caps and prices against the next level, the
 multilevel sum, the rate for the quantile split, and the plan of a reference
 law with mass at zero with the planned coefficient and the radius
 coefficient.
+Run `python tools/verify_known_law_planner_output.py` for 9 exact statements
+and transitive reports on the planner's output end to end: the constructed
+quantile split, the output in minimax form, the rate from upper bounds and
+from exact integrals for every law, and the design of a reference law with
+mass at zero.

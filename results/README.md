@@ -277,3 +277,10 @@ the latter is at most $C_0K_\alpha$ with
 $C_0=1+4\max\{4096,8\sqrt2\cdot28000\}$, and the reported radius at most
 $6C_0K_\alpha$. These are statements about the plan's certificate; an
 experiment with coins of gap zero is not part of it.
+
+The [planner-output audit](known-law-planner-output-20261112/README.md) adds
+9 exact statements and transitive reports for the planner end to end: the
+quantile split is constructed for every law of positive gaps, and the
+planner's output gives minimax risk at most $44801$ times the selection
+functional with exact integrals, and the factor-two coefficient for every
+tight enclosure.

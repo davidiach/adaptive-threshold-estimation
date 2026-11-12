@@ -14,7 +14,8 @@ statements for an estimator that reads only observed flips, the capped
 multi-depth pilot with the conservative law it learns, that law's oracle
 comparison past a finite onset, the quantile comparison for laws with mass
 at zero, and the certificate and rate of a known-law plan, for exact
-integrals and for upper bounds within a factor two.
+integrals and for upper bounds within a factor two, with the planner's
+output end to end.
 The full arbitrary-law adaptation theorem remains a paper
 proof; the published PDF and its build record retain their original scope.
 
