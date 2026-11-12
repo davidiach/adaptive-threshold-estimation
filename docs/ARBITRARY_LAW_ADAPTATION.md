@@ -366,6 +366,9 @@ $$
 The positive-gap $8/5$ comparison proves (A16). If $z\ge\rho$, the cap gives
 $K_\alpha=\rho$ directly. The elementary objective floor also extends:
 finite-entropy selections have no zero mass, and zero has tail cost one.
+(A16) is [Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#quantile-design-with-a-zero-atom)
+for every probability law on $[0,1/2]$, together with the converse
+$K_\alpha\le Q_\alpha$.
 
 Thus the [executable known-law rate argument](KNOWN_LAW_ESTIMATOR.md#comparison-with-the-paper-rate)
 applies with 4 in place of $8/5$. If $C_{\rm sum}$ is the finite universal
@@ -472,8 +475,9 @@ entropy and fractional selection transport, including the zero-atom
 extension and its agreement with positive-gap K. It also checks the light
 random contraction with coefficient 32 and the dominated-mass inequality,
 the capped pilot with the law it learns, and the learned-envelope comparison
-(A11) on the pilot event.
-Formalization remains for the robustness
+(A11) on the pilot event. The quantile comparison (A16) is checked; the
+planner's certificates and the coefficients $C_0$ and $C_*$ are not.
+Formalization remains for them, the robustness
 transfer and full adaptive controller. Existing Lean
 results establish the positive-gap quantile-tail floor, objective floor,
 budget scaling and known-law foundations used here; they do not automatically

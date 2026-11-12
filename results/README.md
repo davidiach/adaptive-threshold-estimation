@@ -248,3 +248,9 @@ comparison: the learned-CDF bound (A13), the slack bound (A14), the
 clipped-CDF witness, and the comparison (A11) of the learned law with the
 oracle, with factor $2^{24}$ past a finite onset, on the pilot event. The
 robust continuation is not part of it.
+
+The [zero-quantile audit](arbitrary-law-zero-quantile-20261112/README.md) adds
+22 exact statements and transitive reports for (A16): the quantile design of
+a law with mass at zero, the comparison $Q_\alpha\le4K_\alpha$ with the
+selection functional, and the converse. The planner that uses the design is
+not part of it.

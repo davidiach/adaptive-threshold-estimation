@@ -666,8 +666,48 @@ registered. The
 identifies the proof checkpoint and source hashes.
 
 The event is stated on the coin array, as (A8) is, not under the law of the
-experiment of the whole stage. Across all nineteen current component audits,
-663 exact statements and 661 transitive axiom reports pass.
+experiment of the whole stage.
+
+## Quantile design with a zero atom
+
+This is (A16) of
+[section 4 of the adaptation proof](ARBITRARY_LAW_ADAPTATION.md#4-robust-use-of-the-known-law-estimator).
+A reference law with unresolved mass is `alpha = z delta_0 + (1 - z) eta`,
+with `eta` a probability law of positive gaps.
+[ZeroQuantile.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/ZeroQuantile.lean)
+defines its quantile design value. The design removes the zero atom and the
+lowest-gap mass `rho - z` of the positive part, which under `eta` is the
+quantile part `nu` of mass `r = (rho - z)/(1 - z)`; `sigma` is the remaining
+quantile core. With `h = B^(-1/2)`,
+
+- `Q_alpha = min(rho, z + (1 - z) tau_nu(h) + h sqrt(rho (1 - z) Gamma_sigma))`
+  for `z < rho`, and `Q_alpha = rho` for `z >= rho`.
+
+For every probability law `alpha` on `[0, 1/2]`, the module proves that
+`alpha` has this form with `z = alpha{0}` and `eta` its normalized positive
+part when `alpha{0} < 1`, and that
+
+- `K_alpha <= Q_alpha <= 4 K_alpha` for `0 < rho <= 1/4` and `B > 0`,
+
+where `K_alpha` is the selection functional extended to laws with mass at
+zero. The lower bound holds for `rho <= 1` and every `B`: for `z < rho` the
+second term of `Q_alpha` is the selection objective at the admissible
+selection `(1 - z) sigma`. The upper bound uses the zero floor
+`K_alpha >= min(rho, z)`, the scaling `K_alpha >= (1 - z) K_(eta,r)`, the
+bound `Q_alpha <= z + sqrt(2) (1 - z) Q_(eta,r)` for `z <= rho/2` in both cap
+cases, and the positive-gap 8/5 comparison. Without a zero atom `Q_alpha` is
+the closed quantile value.
+
+Run `python tools/verify_arbitrary_law_zero_quantile.py` for 22 exact
+statements and 22 transitive axiom reports, one for each declaration of the
+module. The audit fails if a declaration is added without being registered.
+The [zero-quantile record](../results/arbitrary-law-zero-quantile-20261112/README.md)
+identifies the proof checkpoint and source hashes.
+
+The planner that uses this design is not formalized: its cap search,
+multilevel allocation, integral enclosures and certificate, and the
+coefficients `C_0` and `C_*`. Across all twenty current component audits,
+685 exact statements and 683 transitive axiom reports pass.
 
 ## Work still needed for the full theorem
 
@@ -682,8 +722,10 @@ oracle comparison past the onset are checked, on the coin array and for an
 estimator that reads only observed flips; so is the multi-depth pilot built
 from them. The observable stage is checked as an execution component with
 the concrete pilot installed, and the learned law's oracle comparison is
-checked past its finite onset, on the coin array. The robust continuation
-must be instantiated and its statistical
+checked past its finite onset, on the coin array. The quantile design of a
+law with mass at zero is compared with the selection functional; the
+planner's certificates and radius coefficients must be proved. The robust
+continuation must be instantiated and its statistical
 bounds proved. Finally the stages need to be joined into the
 all-budget controller, with fresh stages, nested intervals, simultaneous
 coverage and eventual oracle width. These conclusions must be proved, not

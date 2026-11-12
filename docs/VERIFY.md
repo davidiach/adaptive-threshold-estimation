@@ -999,3 +999,7 @@ statements and transitive reports on the rest of that comparison: the
 multiplier law and its bound on the unresolved probabilities, the learned-CDF
 bound (A13), the slack bound (A14), the clipped-CDF witness, and the
 comparison (A11) with its finite onset and on the pilot event.
+Run `python tools/verify_arbitrary_law_zero_quantile.py` for 22 exact
+statements and transitive reports on the quantile design of a law with mass
+at zero: its definition from the normalized positive part, the comparison
+(A16) with the selection functional, and the converse.
