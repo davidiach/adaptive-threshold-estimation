@@ -165,6 +165,16 @@ jobs:
         run: python -m unittest discover -s tools -p 'test_arbitrary_law_pilot_onset.py' -v
       - name: Regression tests for the learned-oracle audit
         run: python -m unittest discover -s tools -p 'test_arbitrary_law_learned_oracle.py' -v
+      - name: Regression tests for the zero-quantile audit
+        run: python -m unittest discover -s tools -p 'test_arbitrary_law_zero_quantile.py' -v
+      - name: Regression tests for the known-law planner audit
+        run: python -m unittest discover -s tools -p 'test_known_law_planner.py' -v
+      - name: Regression tests for the plan-rate audit
+        run: python -m unittest discover -s tools -p 'test_known_law_plan_rate.py' -v
+      - name: Regression tests for the tight-rate audit
+        run: python -m unittest discover -s tools -p 'test_known_law_plan_tight_rate.py' -v
+      - name: Regression tests for the planner-output audit
+        run: python -m unittest discover -s tools -p 'test_known_law_planner_output.py' -v
       - name: Regression tests for the quantile-model and upper-theorem audits
         run: |
           python -m unittest discover -s tools -p 'test_entropy_tail_components.py' -v
@@ -500,6 +510,16 @@ jobs:
         run: python tools/verify_arbitrary_law_pilot_onset.py
       - name: Verify the learned law's oracle comparison
         run: python tools/verify_arbitrary_law_learned_oracle.py
+      - name: Verify the quantile design with a zero atom
+        run: python tools/verify_arbitrary_law_zero_quantile.py
+      - name: Verify the known-law plan and its certificate
+        run: python tools/verify_known_law_planner.py
+      - name: Verify the rate of the exact known-law plan
+        run: python tools/verify_known_law_plan_rate.py
+      - name: Verify the rate of a known-law plan computed from upper bounds
+        run: python tools/verify_known_law_plan_tight_rate.py
+      - name: Verify the output of the known-law planner end to end
+        run: python tools/verify_known_law_planner_output.py
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
       - uses: actions/upload-artifact@v4

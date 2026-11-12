@@ -666,8 +666,231 @@ registered. The
 identifies the proof checkpoint and source hashes.
 
 The event is stated on the coin array, as (A8) is, not under the law of the
-experiment of the whole stage. Across all nineteen current component audits,
-663 exact statements and 661 transitive axiom reports pass.
+experiment of the whole stage.
+
+## Quantile design with a zero atom
+
+This is (A16) of
+[section 4 of the adaptation proof](ARBITRARY_LAW_ADAPTATION.md#4-robust-use-of-the-known-law-estimator).
+A reference law with unresolved mass is `alpha = z delta_0 + (1 - z) eta`,
+with `eta` a probability law of positive gaps.
+[ZeroQuantile.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/ZeroQuantile.lean)
+defines its quantile design value. The design removes the zero atom and the
+lowest-gap mass `rho - z` of the positive part, which under `eta` is the
+quantile part `nu` of mass `r = (rho - z)/(1 - z)`; `sigma` is the remaining
+quantile core. With `h = B^(-1/2)`,
+
+- `Q_alpha = min(rho, z + (1 - z) tau_nu(h) + h sqrt(rho (1 - z) Gamma_sigma))`
+  for `z < rho`, and `Q_alpha = rho` for `z >= rho`.
+
+For every probability law `alpha` on `[0, 1/2]`, the module proves that
+`alpha` has this form with `z = alpha{0}` and `eta` its normalized positive
+part when `alpha{0} < 1`, and that
+
+- `K_alpha <= Q_alpha <= 4 K_alpha` for `0 < rho <= 1/4` and `B > 0`,
+
+where `K_alpha` is the selection functional extended to laws with mass at
+zero. The lower bound holds for `rho <= 1` and every `B`: for `z < rho` the
+second term of `Q_alpha` is the selection objective at the admissible
+selection `(1 - z) sigma`. The upper bound uses the zero floor
+`K_alpha >= min(rho, z)`, the scaling `K_alpha >= (1 - z) K_(eta,r)`, the
+bound `Q_alpha <= z + sqrt(2) (1 - z) Q_(eta,r)` for `z <= rho/2` in both cap
+cases, and the positive-gap 8/5 comparison. Without a zero atom `Q_alpha` is
+the closed quantile value.
+
+Run `python tools/verify_arbitrary_law_zero_quantile.py` for 22 exact
+statements and 22 transitive axiom reports, one for each declaration of the
+module. The audit fails if a declaration is added without being registered.
+The [zero-quantile record](../results/arbitrary-law-zero-quantile-20261112/README.md)
+identifies the proof checkpoint and source hashes.
+
+The plan that uses this design is specified in the next section, and its
+rate for exact integrals in the one after. The coefficients `C_0` and `C_*`
+are not formalized.
+
+## Known-law plan and its certificate
+
+The [known-law estimator](KNOWN_LAW_ESTIMATOR.md#work-and-error-of-a-returned-plan)
+plans from a split `sigma + tau + zeta` of its gap law: the selected core, the
+resolved tail and the unresolved part. A plan has a terminal level `J`, a cap
+`4^(kappa_l)` and a price `C_l` for each level, and positive mean counts
+`r_l`. With `delta_l = rho 16^-(l+1)`, its certificate is
+`delta_J^2 + sum_l 17 delta_l / r_l`. The modules in
+[KnownLawPlanner](../lean/ThresholdHC/KnownLawPlanner/PlanCertificate.lean)
+specify the plan and prove the certificate for the level price of the checked
+upper theorem.
+
+- [PlanFamily.lean](../lean/ThresholdHC/KnownLawPlanner/PlanFamily.lean) runs
+  the race of level `l` at any cap whose resolved error is at most
+  `delta_l/8`. Its bias is at most `delta_l`, a correction has second moment
+  at most `17 delta_l`, and its expected work is at most the level price
+  `min(2 4^k, 128 (l+1) Gamma + 6 H^2/rho + 2 O_tau(4^k) + 2 z 4^k)`.
+- [PlannedEstimator.lean](../lean/ThresholdHC/KnownLawPlanner/PlannedEstimator.lean)
+  runs the Poisson multilevel estimator with any positive rates.
+- [PlanCaps.lean](../lean/ThresholdHC/KnownLawPlanner/PlanCaps.lean) is the
+  cap search: from the cap 4, multiply by four until an error envelope is at
+  most `delta_l/8`, and carry the cap to the next level. It states the
+  termination requirement on the envelope and proves that the exact resolved
+  error of a finite measure meets it.
+- [PlanAllocation.lean](../lean/ThresholdHC/KnownLawPlanner/PlanAllocation.lean)
+  turns weights into mean counts `n_i = B w_i / sum_j k_j w_j`. They spend the
+  budget exactly, and weights within a factor `theta` of `sqrt(v_i/k_i)` cost
+  at most that factor in the variance term.
+- [PlanCertificate.lean](../lean/ThresholdHC/KnownLawPlanner/PlanCertificate.lean)
+  defines enclosures, upper bounds of the five design integrals, and proves:
+  a plan whose caps pass the test against the enclosure's envelope, whose
+  terminal level has `delta_J/8` at least the enclosure's unresolved mass and
+  whose counts are priced by the enclosure spends at most `B` in expectation
+  and has squared risk at most its certificate, under every rare prior. The
+  plan with the searched caps and counts from any positive weights is such a
+  plan.
+
+The estimator observes flips only. The statements hold for every plan that
+meets the conditions, so they cover a planner that works from upper bounds.
+They do not cover the toolkit's planner as written: it uses the smaller price
+`80 (l+2) G-bar + 4 H^2/rho`, rounds its counts at random, and runs the
+coarse race of a correction on further flips of the same coin.
+
+Run `python tools/verify_known_law_planner.py` for 49 exact statements and 49
+transitive axiom reports, one for each declaration of the five modules. The
+audit fails if a declaration is added without being registered. The
+[planner record](../results/known-law-planner-20261112/README.md) identifies
+the proof checkpoint and source hashes.
+
+The plan's rate is in the next section.
+
+## Rate of the exact known-law plan
+
+Let the plan use the quantile split of its gap law `mu`: the core `sigma` is
+the quantile core at rarity `rho`, and the quantile part is cut at
+`h = B^(-1/2)` into the resolved tail, on gaps at least `h`, and the
+unresolved part, on gaps at most `h`, of mass `z`. Let it take the exact
+resolved error as its envelope and the exact integrals in its prices.
+
+[PlanRate.lean](../lean/ThresholdHC/KnownLawPlanner/PlanRate.lean) proves that
+the carried cap search then returns the least admissible cap of each level,
+so each price is at most the level work certificate of the upper theorem and
+`sum_(l <= J) sqrt(17 delta_l k_l) <= 28000 (sqrt(rho Gamma) + H)`. The
+terminal rule stops at the first level `J` with `delta_J/16` below
+`max(128 z, rho/(16 (1 + sqrt B)))`. Outside the constant fallback,
+`2048 z <= rho`, that level has `z <= delta_J/128`, and
+`delta_J < 2048 z + rho/(1 + sqrt B)`. With weights within a factor `theta`
+of the optimal ones, the square root of the certificate is at most
+`delta_J + sqrt(theta) 28000 (sqrt(rho Gamma) + H)/sqrt B`.
+
+[PlanQuantileRate.lean](../lean/ThresholdHC/KnownLawPlanner/PlanQuantileRate.lean)
+proves the floor `rho/(1 + sqrt B) <= K` at every budget and compares with the
+selection functional `K = K_(mu,rho)(B)`:
+
+- `min(rho/2, sqrt(certificate)) <= (1 + (8/5) max(2048, 28000 sqrt(theta))) K`,
+  and the constant `rho/2` of the fallback obeys the same bound;
+- a radius `r <= kappa sqrt(8 min(rho^2/4, certificate))` with
+  `kappa sqrt(8) <= 6` is at most six times that coefficient times `K`.
+
+For `theta = 2` the two coefficients are below 63,358 and 380,148. The radius
+statement holds for every relative upper square root. These are the
+coefficients for exact integrals and a law of positive gaps. The coefficients
+`C_0 = 1 + 4 max(4096, 8 sqrt(2) C_sum)` and `C_* = 6 C_0` of the adaptation
+proof, for a planner that works from upper bounds within a factor two and for
+a reference law with mass at zero, are in the next section.
+
+Run `python tools/verify_known_law_plan_rate.py` for 18 exact statements and
+18 transitive axiom reports, one for each declaration of the two modules. The
+audit fails if a declaration is added without being registered. The
+[plan-rate record](../results/known-law-plan-rate-20261112/README.md)
+identifies the proof checkpoint and source hashes.
+
+## Rate of a plan computed from upper bounds
+
+The planner does not have the exact design integrals. An enclosure is tight
+when its bounds for `H`, the unresolved mass, the resolved error and the
+ordinary work are at most twice the true quantities, and its entropy bound is
+at most four times the entropy; the last two bounds are needed at the powers
+of four only. The unresolved mass `z` of the design is a parameter: the mass
+of the unresolved part for a law of positive gaps, and that mass plus the mass
+at zero for a reference law that has one.
+
+[PlanTightRate.lean](../lean/ThresholdHC/KnownLawPlanner/PlanTightRate.lean)
+proves that band costs within a factor two give a cost entropy within a
+factor two, that the searched cap of level `l` is at most the least
+admissible cap of level `l+1`, and that the price of level `l` is at most
+four times the level work certificate of level `l+1`. With
+`delta_l = 16 delta_(l+1)` the multilevel sum of the upper theorem gives
+`sum_(l <= J) sqrt(17 delta_l k_l) <= 8 * 28000 (sqrt(rho Gamma) + H)` for a
+terminal level with `z <= delta_J/128`. The planner chooses the terminal
+level from its bound `z-bar` and falls back to the constant when
+`2048 z-bar > rho`; otherwise `z <= delta_J/128` and
+`delta_J < 4096 z + rho/(1 + sqrt B)`. None of these statements needs the
+split to be a probability measure.
+
+[PlanTightQuantileRate.lean](../lean/ThresholdHC/KnownLawPlanner/PlanTightQuantileRate.lean)
+gives the rate for the quantile split of a law of positive gaps:
+`min(rho/2, sqrt(certificate)) <= (1 + (8/5) max(4096, 224000 sqrt(theta))) K`,
+with the same bound for the fallback constant and six times the coefficient
+for the radius.
+
+[PlanZeroAtomRate.lean](../lean/ThresholdHC/KnownLawPlanner/PlanZeroAtomRate.lean)
+treats a reference law `alpha = z_0 delta_0 + (1 - z_0) eta`. The split is the
+quantile split of `eta` at the conditional rarity `(rho - z_0)/(1 - z_0)`,
+scaled by `1 - z_0`, and the mass at zero is part of the unresolved mass
+`z`. Then:
+
+- `rho/(1 + sqrt B) <= K_alpha` for `rho <= 1/2`;
+- for `z_0 < rho` the [zero-atom quantile value](#quantile-design-with-a-zero-atom)
+  is `min(rho, z + h H + h sqrt(rho Gamma_sigma))`, so the capped design value
+  is at most `4 K_alpha` by (A16);
+- `min(rho/2, sqrt(certificate)) <= (1 + 4 max(4096, 224000 sqrt(theta))) K_alpha`
+  outside the fallback, and the constant `rho/2` obeys the same bound when
+  `2048 z-bar > rho`, for every `z_0 >= 0`;
+- for upper square roots within a factor two this coefficient is
+  `C_0 = 1 + 4 max(4096, 8 sqrt(2) C_sum)` at `C_sum = 28000`, and the radius
+  is at most `6 C_0 K_alpha`. `C_0` does not decrease with `C_sum`, so the
+  bounds also hold with the paper's value at `C_sum = 30000`.
+
+These are statements about the numbers the planner computes. The experiment
+of the upper theorem has positive gaps only, so the estimator of a reference
+law with mass at zero, with the fair-coin likelihood its bank uses for that
+mass, is not formalized. Nor is the rational arithmetic that produces a tight
+enclosure for a finite law.
+
+Run `python tools/verify_known_law_plan_tight_rate.py` for 31 exact statements
+and 31 transitive axiom reports, one for each declaration of the three
+modules. The audit fails if a declaration is added without being registered.
+The [tight-rate record](../results/known-law-plan-tight-rate-20261112/README.md)
+identifies the proof checkpoint and source hashes.
+
+## Output of the planner end to end
+
+The rate theorems of the two sections above are stated for a split with
+hypotheses that identify it as the quantile split cut at the budget scale.
+[PlannerOutput.lean](../lean/ThresholdHC/KnownLawPlanner/PlannerOutput.lean)
+constructs that split for every probability law of positive gaps, so the
+hypotheses can be met, and joins the validity of the plan to its rate:
+
+- for an enclosure whose envelope meets the termination requirement, the
+  minimax risk at budget `B` is at most `min(rho/2, sqrt(certificate))`;
+- for every tight enclosure of the quantile split and weights within a factor
+  `theta`, the planner's output, the plan when `2048 z-bar <= rho` and the
+  constant otherwise, gives minimax risk at most
+  `(1 + (8/5) max(4096, 224000 sqrt(theta))) K`;
+- with the exact integrals and the optimal weights, for every probability law
+  `mu` of positive gaps, `0 < rho <= 1/4` and `B > 0`, the minimax risk is at
+  most `44801 K_(mu,rho)(B)`.
+
+The existing upper theorem bounds the minimax risk by 28000 times the
+selection value of every selection, with an estimator that runs each level
+at its least admissible cap. The statement here is for the output of the
+specified planner. For a reference law with mass at zero the module
+constructs the scaled quantile split and shows that its exact integrals, with
+the mass at zero added to the unresolved mass, are a tight enclosure.
+
+Run `python tools/verify_known_law_planner_output.py` for 9 exact statements
+and 9 transitive axiom reports, one for each declaration of the module. The
+audit fails if a declaration is added without being registered. The
+[planner-output record](../results/known-law-planner-output-20261112/README.md)
+identifies the proof checkpoint and source hashes. Across all twenty-four
+current component audits, 792 exact statements and 790 transitive axiom
+reports pass.
 
 ## Work still needed for the full theorem
 
@@ -682,8 +905,14 @@ oracle comparison past the onset are checked, on the coin array and for an
 estimator that reads only observed flips; so is the multi-depth pilot built
 from them. The observable stage is checked as an execution component with
 the concrete pilot installed, and the learned law's oracle comparison is
-checked past its finite onset, on the coin array. The robust continuation
-must be instantiated and its statistical
+checked past its finite onset, on the coin array. The quantile design of a
+law with mass at zero is compared with the selection functional, and the
+certificate of a known-law plan is checked for the level price of the upper
+theorem. Its rate is checked for exact integrals and for upper bounds within
+a factor two, including the design of a reference law with mass at zero.
+Running that design needs an experiment with coins of gap zero, and a tight
+enclosure must be computed for finite laws. The robust
+continuation must be instantiated and its statistical
 bounds proved. Finally the stages need to be joined into the
 all-budget controller, with fresh stages, nested intervals, simultaneous
 coverage and eventual oracle width. These conclusions must be proved, not

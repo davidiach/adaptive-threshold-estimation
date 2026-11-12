@@ -258,3 +258,27 @@ statements and transitive reports on the rest of that comparison: the
 multiplier law and its bound on the unresolved probabilities, the learned-CDF
 bound (A13), the slack bound (A14), the clipped-CDF witness, and the
 comparison (A11) with its finite onset and on the pilot event.
+Run `python tools/verify_arbitrary_law_zero_quantile.py` for 22 exact
+statements and transitive reports on the quantile design of a law with mass
+at zero: its definition from the normalized positive part, the comparison
+(A16) with the selection functional, and the converse.
+Run `python tools/verify_known_law_planner.py` for 49 exact statements and
+transitive reports on the known-law plan: the level races at the plan's caps,
+the level price, the cap search, the counts from weights, and the validity of
+the plan's squared-error certificate.
+Run `python tools/verify_known_law_plan_rate.py` for 18 exact statements and
+transitive reports on the rate of the exact plan: the least caps, the
+multilevel sum, the terminal rule, the comparison of the certified risk with
+the selection functional for the quantile split, the constant fallback and
+the reported radius.
+Run `python tools/verify_known_law_plan_tight_rate.py` for 31 exact statements
+and transitive reports on the rate of a plan computed from upper bounds
+within a factor two: the caps and prices against the next level, the
+multilevel sum, the rate for the quantile split, and the plan of a reference
+law with mass at zero with the planned coefficient and the radius
+coefficient.
+Run `python tools/verify_known_law_planner_output.py` for 9 exact statements
+and transitive reports on the planner's output end to end: the constructed
+quantile split, the output in minimax form, the rate from upper bounds and
+from exact integrals for every law, and the design of a reference law with
+mass at zero.

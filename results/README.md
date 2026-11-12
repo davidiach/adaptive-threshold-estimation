@@ -248,3 +248,39 @@ comparison: the learned-CDF bound (A13), the slack bound (A14), the
 clipped-CDF witness, and the comparison (A11) of the learned law with the
 oracle, with factor $2^{24}$ past a finite onset, on the pilot event. The
 robust continuation is not part of it.
+
+The [zero-quantile audit](arbitrary-law-zero-quantile-20261112/README.md) adds
+22 exact statements and transitive reports for (A16): the quantile design of
+a law with mass at zero, the comparison $Q_\alpha\le4K_\alpha$ with the
+selection functional, and the converse. The planner that uses the design is
+not part of it.
+
+The [known-law planner audit](known-law-planner-20261112/README.md) adds 49
+exact statements and transitive reports for the plan of the known-law
+estimator: its level races and level price, its cap search, its counts, and
+the validity of its squared-error certificate for every admissible plan. The
+price is that of the checked upper theorem. The plan's rate and the toolkit's
+own price are not part of it.
+
+The [plan-rate audit](known-law-plan-rate-20261112/README.md) adds 18 exact
+statements and transitive reports for the rate of that plan with the exact
+integrals of the quantile split: the smaller of $\rho/2$ and its certified
+risk is at most $(1+\tfrac85\max\{2048,28000\sqrt\theta\})$ times the
+selection functional, and its reported radius at most six times that. The
+rate of a plan computed from upper bounds is not part of it.
+
+The [tight-rate audit](known-law-plan-tight-rate-20261112/README.md) adds 31
+exact statements and transitive reports for the rate of that plan computed
+from upper bounds within a factor two, for a law of positive gaps and for a
+reference law with mass at zero. For dyadic weights the smaller of $\rho/2$
+and the certified risk of the latter is at most $C_0K_\alpha$ with
+$C_0=1+4\max\{4096,8\sqrt2\cdot28000\}$, and the reported radius at most
+$6C_0K_\alpha$. These are statements about the plan's certificate; an
+experiment with coins of gap zero is not part of it.
+
+The [planner-output audit](known-law-planner-output-20261112/README.md) adds
+9 exact statements and transitive reports for the planner end to end: the
+quantile split is constructed for every law of positive gaps, and the
+planner's output gives minimax risk at most $44801$ times the selection
+functional with exact integrals, and the factor-two coefficient for every
+tight enclosure.
