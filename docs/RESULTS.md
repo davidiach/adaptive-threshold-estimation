@@ -1153,13 +1153,17 @@ the oracle's. For a law $\alpha$ on $[0,1/2]$ with mass at zero, the quantile
 design satisfies $K_\alpha\le Q_\alpha\le4K_\alpha$, (A16). The squared-error
 certificate of a known-law plan is checked for every admissible plan, with
 the level price of the checked upper theorem and not the toolkit's smaller
-price. With the exact integrals of the quantile split, that plan's certified
-risk is at most $(1+\tfrac85\max\{2048,28000\sqrt\theta\})K$. Computed from
+price. The planner returns the plan or the constant estimate, whichever has
+the smaller bound, so its certified risk is $\min\{\rho/2,\sqrt c\}$ for the
+plan's certificate $c$. With the exact integrals of the quantile split, that
+minimum is at most $(1+\tfrac85\max\{2048,28000\sqrt\theta\})K$. Computed from
 upper bounds within a factor two it is at most
 $(1+\tfrac85\max\{4096,224000\sqrt\theta\})K$, and for a reference law with
 mass at zero and dyadic weights at most $C_0K_\alpha$ with
 $C_0=1+4\max\{4096,8\sqrt2\cdot28000\}$; the reported radius is at most six
-times that. These are statements about the plan's certificate. End to end,
+times that. The plan's certificate alone has no such bound: for small $\rho$
+the constant estimate is the better one. These are statements about the
+planner's numbers. End to end,
 the output of the exact planner gives minimax risk at most $44801\,K$ for
 every law of positive gaps. An
 experiment with coins of gap zero, the robust continuation

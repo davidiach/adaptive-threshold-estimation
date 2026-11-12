@@ -230,13 +230,16 @@ stated oracle accuracy assumptions. The per-plan MSE certificate above
 is available even when those tighter relative bounds are unavailable.
 
 For exact integrals, the [Lean rate](ARBITRARY_LAW_FORMALIZATION.md#rate-of-the-exact-known-law-plan)
-proves that the Lean plan has certified RMS at most
+proves that the smaller of $\rho/2$, the bound of the constant estimate, and
+the certified RMS of the Lean plan is at most
 $(1+\tfrac85\max\{2048,28000\sqrt\theta\})K$, for weights within a factor
 $\theta$ of the optimal ones. The argument of this section is
 [Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#rate-of-a-plan-computed-from-upper-bounds)
 for the Lean plan and every enclosure whose bounds are within a factor two,
-and whose entropy bound is within a factor four: its certified RMS is at
-most $(1+\tfrac85\max\{4096,8\cdot28000\sqrt\theta\})K$. This
+and whose entropy bound is within a factor four: that minimum is at
+most $(1+\tfrac85\max\{4096,8\cdot28000\sqrt\theta\})K$. The certified RMS
+of the plan alone has no such bound; when $Q=\rho$ the constant estimate is
+the one that attains the rate, as above. This
 implementation's smaller price and its rational enclosures are not
 Lean-checked. The [output of the Lean planner](ARBITRARY_LAW_FORMALIZATION.md#output-of-the-planner-end-to-end)
 is checked end to end: run on the quantile split with exact integrals and

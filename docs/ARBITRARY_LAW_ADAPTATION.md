@@ -386,7 +386,8 @@ claim; the implementation now retains relative precision for tiny radii.
 
 Both bounds are [Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#rate-of-a-plan-computed-from-upper-bounds)
 at $C_{\rm sum}=28000$, the multilevel coefficient of the checked upper
-theorem, as statements about the certificate of a plan: for the plan with
+theorem, as statements about the planner's output, the smaller of the
+constant's bound $\rho/2$ and the certified risk of the plan: for the plan with
 the level price of that theorem, every enclosure within a factor two of the
 design integrals, and weights within a factor two. The constant fallback
 for a large unresolved mass obeys the same bound. The estimator that runs
