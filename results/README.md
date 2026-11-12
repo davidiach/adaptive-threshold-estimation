@@ -234,3 +234,17 @@ adaptation proof: its budgets and caps, the event (A8) at every depth at once
 with a common number of probes, the pilot installed in the paid learning
 stage, and the learned law (A9), which dominates the gap law on that event.
 The learned law's comparison with the oracle is not part of it.
+
+The [pilot-onset audit](arbitrary-law-pilot-onset-20261111/README.md) adds 25
+exact statements and transitive reports for the first part of that
+comparison: the lowest-gap split of the gap law, the pilot's work estimates
+(A12), its onset, and the bounds of the work and of the coin cap by the
+selection functional. The learned-CDF bound and the final comparison are not
+part of it.
+
+The [learned-oracle audit](arbitrary-law-learned-oracle-20261111/README.md)
+adds 31 exact statements and transitive reports for the rest of that
+comparison: the learned-CDF bound (A13), the slack bound (A14), the
+clipped-CDF witness, and the comparison (A11) of the learned law with the
+oracle, with factor $2^{24}$ past a finite onset, on the pilot event. The
+robust continuation is not part of it.
