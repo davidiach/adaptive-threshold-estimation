@@ -384,6 +384,14 @@ coverage guarantee under the actual law, conditional on a valid reference
 envelope. Fixed absolute rounding would not suffice for this asymptotic
 claim; the implementation now retains relative precision for tiny radii.
 
+Both bounds are [Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#rate-of-a-plan-computed-from-upper-bounds)
+at $C_{\rm sum}=28000$, the multilevel coefficient of the checked upper
+theorem, as statements about the certificate of a plan: for the plan with
+the level price of that theorem, every enclosure within a factor two of the
+design integrals, and weights within a factor two. The constant fallback
+for a large unresolved mass obeys the same bound. The estimator that runs
+the plan of a reference law with mass at zero is not formalized.
+
 ## 5. Online composition and the effective budget
 
 Use the existing confidence ladder with stage caps $c_s=4\,2^s$ and
@@ -477,9 +485,11 @@ random contraction with coefficient 32 and the dominated-mass inequality,
 the capped pilot with the law it learns, and the learned-envelope comparison
 (A11) on the pilot event. The quantile comparison (A16) is checked, and so
 is the certificate of a known-law plan with the level price of the checked
-upper theorem. Its rate is checked for exact integrals of a positive-gap law,
-with coefficients of its own; the coefficients $C_0$ and $C_*$ of section 4
-are not. Formalization remains for them, the robustness
+upper theorem. The rate of that plan is checked for upper bounds within a
+factor two and for a reference law with mass at zero, with $C_0$ and $C_*$
+of section 4 at the multilevel coefficient 28000, as statements about the
+plan's certificate. Formalization remains for the estimator of a reference
+law with mass at zero, the robustness
 transfer and full adaptive controller. Existing Lean
 results establish the positive-gap quantile-tail floor, objective floor,
 budget scaling and known-law foundations used here; they do not automatically

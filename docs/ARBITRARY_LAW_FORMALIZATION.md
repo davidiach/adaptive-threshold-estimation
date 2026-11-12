@@ -792,14 +792,73 @@ statement holds for every relative upper square root. These are the
 coefficients for exact integrals and a law of positive gaps. The coefficients
 `C_0 = 1 + 4 max(4096, 8 sqrt(2) C_sum)` and `C_* = 6 C_0` of the adaptation
 proof, for a planner that works from upper bounds within a factor two and for
-a reference law with mass at zero, are not formalized.
+a reference law with mass at zero, are in the next section.
 
 Run `python tools/verify_known_law_plan_rate.py` for 18 exact statements and
 18 transitive axiom reports, one for each declaration of the two modules. The
 audit fails if a declaration is added without being registered. The
 [plan-rate record](../results/known-law-plan-rate-20261112/README.md)
-identifies the proof checkpoint and source hashes. Across all twenty-two
-current component audits, 752 exact statements and 750 transitive axiom
+identifies the proof checkpoint and source hashes.
+
+## Rate of a plan computed from upper bounds
+
+The planner does not have the exact design integrals. An enclosure is tight
+when its bounds for `H`, the unresolved mass, the resolved error and the
+ordinary work are at most twice the true quantities, and its entropy bound is
+at most four times the entropy; the last two bounds are needed at the powers
+of four only. The unresolved mass `z` of the design is a parameter: the mass
+of the unresolved part for a law of positive gaps, and that mass plus the mass
+at zero for a reference law that has one.
+
+[PlanTightRate.lean](../lean/ThresholdHC/KnownLawPlanner/PlanTightRate.lean)
+proves that band costs within a factor two give a cost entropy within a
+factor two, that the searched cap of level `l` is at most the least
+admissible cap of level `l+1`, and that the price of level `l` is at most
+four times the level work certificate of level `l+1`. With
+`delta_l = 16 delta_(l+1)` the multilevel sum of the upper theorem gives
+`sum_(l <= J) sqrt(17 delta_l k_l) <= 8 * 28000 (sqrt(rho Gamma) + H)` for a
+terminal level with `z <= delta_J/128`. The planner chooses the terminal
+level from its bound `z-bar` and falls back to the constant when
+`2048 z-bar > rho`; otherwise `z <= delta_J/128` and
+`delta_J < 4096 z + rho/(1 + sqrt B)`. None of these statements needs the
+split to be a probability measure.
+
+[PlanTightQuantileRate.lean](../lean/ThresholdHC/KnownLawPlanner/PlanTightQuantileRate.lean)
+gives the rate for the quantile split of a law of positive gaps:
+`min(rho/2, sqrt(certificate)) <= (1 + (8/5) max(4096, 224000 sqrt(theta))) K`,
+with the same bound for the fallback constant and six times the coefficient
+for the radius.
+
+[PlanZeroAtomRate.lean](../lean/ThresholdHC/KnownLawPlanner/PlanZeroAtomRate.lean)
+treats a reference law `alpha = z_0 delta_0 + (1 - z_0) eta`. The split is the
+quantile split of `eta` at the conditional rarity `(rho - z_0)/(1 - z_0)`,
+scaled by `1 - z_0`, and the mass at zero is part of the unresolved mass
+`z`. Then:
+
+- `rho/(1 + sqrt B) <= K_alpha` for `rho <= 1/2`;
+- for `z_0 < rho` the [zero-atom quantile value](#quantile-design-with-a-zero-atom)
+  is `min(rho, z + h H + h sqrt(rho Gamma_sigma))`, so the capped design value
+  is at most `4 K_alpha` by (A16);
+- `min(rho/2, sqrt(certificate)) <= (1 + 4 max(4096, 224000 sqrt(theta))) K_alpha`
+  outside the fallback, and the constant `rho/2` obeys the same bound when
+  `2048 z-bar > rho`, for every `z_0 >= 0`;
+- for upper square roots within a factor two this coefficient is
+  `C_0 = 1 + 4 max(4096, 8 sqrt(2) C_sum)` at `C_sum = 28000`, and the radius
+  is at most `6 C_0 K_alpha`. `C_0` does not decrease with `C_sum`, so the
+  bounds also hold with the paper's value at `C_sum = 30000`.
+
+These are statements about the numbers the planner computes. The experiment
+of the upper theorem has positive gaps only, so the estimator of a reference
+law with mass at zero, with the fair-coin likelihood its bank uses for that
+mass, is not formalized. Nor is the rational arithmetic that produces a tight
+enclosure for a finite law.
+
+Run `python tools/verify_known_law_plan_tight_rate.py` for 31 exact statements
+and 31 transitive axiom reports, one for each declaration of the three
+modules. The audit fails if a declaration is added without being registered.
+The [tight-rate record](../results/known-law-plan-tight-rate-20261112/README.md)
+identifies the proof checkpoint and source hashes. Across all twenty-three
+current component audits, 783 exact statements and 781 transitive axiom
 reports pass.
 
 ## Work still needed for the full theorem
@@ -818,9 +877,10 @@ the concrete pilot installed, and the learned law's oracle comparison is
 checked past its finite onset, on the coin array. The quantile design of a
 law with mass at zero is compared with the selection functional, and the
 certificate of a known-law plan is checked for the level price of the upper
-theorem. Its rate is checked for exact integrals; it must be proved for a
-planner that works from upper bounds and for a reference law with mass at
-zero. The robust
+theorem. Its rate is checked for exact integrals and for upper bounds within
+a factor two, including the design of a reference law with mass at zero.
+Running that design needs an experiment with coins of gap zero, and a tight
+enclosure must be computed for finite laws. The robust
 continuation must be instantiated and its statistical
 bounds proved. Finally the stages need to be joined into the
 all-budget controller, with fresh stages, nested intervals, simultaneous

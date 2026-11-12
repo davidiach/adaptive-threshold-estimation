@@ -232,5 +232,10 @@ is available even when those tighter relative bounds are unavailable.
 For exact integrals, the [Lean rate](ARBITRARY_LAW_FORMALIZATION.md#rate-of-the-exact-known-law-plan)
 proves that the Lean plan has certified RMS at most
 $(1+\tfrac85\max\{2048,28000\sqrt\theta\})K$, for weights within a factor
-$\theta$ of the optimal ones. The argument of this section, for bounds within
-a factor two and this implementation's price, is not Lean-checked.
+$\theta$ of the optimal ones. The argument of this section is
+[Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#rate-of-a-plan-computed-from-upper-bounds)
+for the Lean plan and every enclosure whose bounds are within a factor two,
+and whose entropy bound is within a factor four: its certified RMS is at
+most $(1+\tfrac85\max\{4096,8\cdot28000\sqrt\theta\})K$. This
+implementation's smaller price and its rational enclosures are not
+Lean-checked.

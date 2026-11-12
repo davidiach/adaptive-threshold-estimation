@@ -268,3 +268,12 @@ integrals of the quantile split: its certified risk is at most
 $(1+\tfrac85\max\{2048,28000\sqrt\theta\})$ times the selection functional,
 and its reported radius at most six times that. The rate of a plan computed
 from upper bounds is not part of it.
+
+The [tight-rate audit](known-law-plan-tight-rate-20261112/README.md) adds 31
+exact statements and transitive reports for the rate of that plan computed
+from upper bounds within a factor two, for a law of positive gaps and for a
+reference law with mass at zero. For dyadic weights the certified risk of
+the latter is at most $C_0K_\alpha$ with
+$C_0=1+4\max\{4096,8\sqrt2\cdot28000\}$, and the reported radius at most
+$6C_0K_\alpha$. These are statements about the plan's certificate; an
+experiment with coins of gap zero is not part of it.

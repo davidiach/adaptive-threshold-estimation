@@ -194,3 +194,9 @@ transitive reports on the rate of the exact plan: the least caps, the
 multilevel sum, the terminal rule, the comparison of the certified risk with
 the selection functional for the quantile split, the constant fallback and
 the reported radius.
+Run `python tools/verify_known_law_plan_tight_rate.py` for 31 exact statements
+and transitive reports on the rate of a plan computed from upper bounds
+within a factor two: the caps and prices against the next level, the
+multilevel sum, the rate for the quantile split, and the plan of a reference
+law with mass at zero with the planned coefficient and the radius
+coefficient.

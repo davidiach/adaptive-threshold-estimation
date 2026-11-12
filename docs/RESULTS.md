@@ -1108,8 +1108,8 @@ $C=2^{32}C_*\approx3.5\cdot10^{16}$ and $\rho=1/4$, the width bound is
 below the trivial width $\rho/2$ only beyond about $8\cdot10^{35}$ flips,
 and later for smaller $\rho$. For a point mass at $1/2$ with $\rho=1/4$
 the proof's onset needs pilot depth $29$, a budget above $10^{17}$ flips.
-The [Lean components](ARBITRARY_LAW_FORMALIZATION.md) now have 752 exact
-statements and 750 transitive-axiom reports: finite and countable entropy transport, the finite
+The [Lean components](ARBITRARY_LAW_FORMALIZATION.md) now have 783 exact
+statements and 781 transitive-axiom reports: finite and countable entropy transport, the finite
 CDF envelope including its zero atom, and an observable paid-pilot/selected-
 continuation stage with physical caps and its original-experiment joint law.
 The canonical band cells are constructed for every finite increasing-gap
@@ -1154,8 +1154,13 @@ design satisfies $K_\alpha\le Q_\alpha\le4K_\alpha$, (A16). The squared-error
 certificate of a known-law plan is checked for every admissible plan, with
 the level price of the checked upper theorem and not the toolkit's smaller
 price. With the exact integrals of the quantile split, that plan's certified
-risk is at most $(1+\tfrac85\max\{2048,28000\sqrt\theta\})K$. The rate of a
-plan computed from upper bounds, the robust continuation
+risk is at most $(1+\tfrac85\max\{2048,28000\sqrt\theta\})K$. Computed from
+upper bounds within a factor two it is at most
+$(1+\tfrac85\max\{4096,224000\sqrt\theta\})K$, and for a reference law with
+mass at zero and dyadic weights at most $C_0K_\alpha$ with
+$C_0=1+4\max\{4096,8\sqrt2\cdot28000\}$; the reported radius is at most six
+times that. These are statements about the plan's certificate. An
+experiment with coins of gap zero, the robust continuation
 bounds and the full all-budget controller remain to be formalized;
 Python execution and its PRNG also remain outside formal verification.
 An exact path count shows that repeatedly
