@@ -240,8 +240,7 @@ $K/2$, and $1/M\le\sqrt\rho\,t/8\le K/16$.
 The split, (A12), this onset and its existence, the floor
 $K\ge2\sqrt\rho\,t$ and $1/M\le K/16$ are
 [Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#learned-law-against-the-oracle-work-estimates-and-onset),
-with $W_j/b_j\le8193K$ in place of $8192K+K/2$. The rest of this section is
-not.
+with $W_j/b_j\le8193K$ in place of $8192K+K/2$.
 
 The Hoeffding form (2a) of the terminal unresolved bound in the
 [tail proof](ARBITRARY_LAW_TAIL.md), applied at depth $j$, bounds the
@@ -276,6 +275,14 @@ This comparison holds for the original infimum over all fractional
 selections. It neither restricts the true law to finite support nor replaces
 $K$ by an ordinary-rate surrogate. The auxiliary $V$, $\mu'$ and $\lambda$
 are proof witnesses; the learner never samples or computes them.
+
+(A13), (A14), the witness $\lambda$ and (A11) are
+[Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#learned-law-against-the-oracle-the-comparison).
+(A13) is checked with one bound on $W_j/b_j$ for all depths in place of the
+maximum. (A11) is checked for certificates that satisfy the upper half of
+(A8), with a finite onset that depends on $\mu$ and $\rho$ only, and on the
+pilot event for the learned law of the paid learning stage, on the coin array
+of the original simulation law.
 
 ## 4. Robust use of the known-law estimator
 
@@ -463,8 +470,10 @@ It does not prove the general theorem.
 Lean now constructs increasing couplings from CDF domination and checks
 entropy and fractional selection transport, including the zero-atom
 extension and its agreement with positive-gap K. It also checks the light
-random contraction with coefficient 32 and the dominated-mass inequality.
-Formalization remains for the learned-envelope comparison, robustness
+random contraction with coefficient 32 and the dominated-mass inequality,
+the capped pilot with the law it learns, and the learned-envelope comparison
+(A11) on the pilot event.
+Formalization remains for the robustness
 transfer and full adaptive controller. Existing Lean
 results establish the positive-gap quantile-tail floor, objective floor,
 budget scaling and known-law foundations used here; they do not automatically

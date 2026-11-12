@@ -241,3 +241,10 @@ comparison: the lowest-gap split of the gap law, the pilot's work estimates
 (A12), its onset, and the bounds of the work and of the coin cap by the
 selection functional. The learned-CDF bound and the final comparison are not
 part of it.
+
+The [learned-oracle audit](arbitrary-law-learned-oracle-20261111/README.md)
+adds 31 exact statements and transitive reports for the rest of that
+comparison: the learned-CDF bound (A13), the slack bound (A14), the
+clipped-CDF witness, and the comparison (A11) of the learned law with the
+oracle, with factor $2^{24}$ past a finite onset, on the pilot event. The
+robust continuation is not part of it.

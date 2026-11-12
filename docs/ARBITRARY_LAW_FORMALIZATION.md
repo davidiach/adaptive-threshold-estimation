@@ -564,7 +564,7 @@ audit fails if a declaration is added without being registered. The
 the proof checkpoint and source hashes.
 
 The learned law's comparison with the oracle past its onset, (A11) to (A14),
-is begun in the next section.
+is in the next two sections.
 
 ## Learned law against the oracle: work estimates and onset
 
@@ -605,11 +605,69 @@ audit fails if a declaration is added without being registered. The
 [pilot-onset record](../results/arbitrary-law-pilot-onset-20261111/README.md)
 identifies the proof checkpoint and source hashes.
 
-The rest of (A11) is not formalized: the comparison of the unresolved
-probabilities with the multiplier law, the learned-CDF bound (A13), the bound
-`e < 2^22 K` of (A14), the clipped-CDF witness and the final `2^24`
-comparison. Across all eighteen current component audits, 632 exact
-statements and 630 transitive axiom reports pass.
+The rest of (A11) is in the next section.
+
+## Learned law against the oracle: the comparison
+
+This is the second part of
+[section 3 of the adaptation proof](ARBITRARY_LAW_ADAPTATION.md#3-the-learned-law-retains-the-oracle-rate):
+(A13), (A14), the clipped-CDF witness and (A11). `U_1 = 1, U_2, ..., U_J` are
+nonnegative certificates, `c_j` their prefix minima and `mu_bar` the learned
+law (A9). The upper half of (A8) is `U_j <= 128 (u_j + W_j/b_j + 1/M)` at
+every depth `1 <= j <= J`.
+
+[LearnedCDF.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/LearnedCDF.lean)
+defines `mu' = L(V D / 2)`, the gap times the independent light multiplier of
+the contraction, divided by two. The terminal estimate of the tail test gives
+`u_j <= F_(mu')(2^-(j+1))`. Under the upper half of (A8), at every real `x`,
+
+- `F_(mu_bar)(x) <= min(1, 128 F_(mu')(x) + e)`, with `e = 128 w + 128/M + c_J`,
+
+where `w = 8192 tau_nu(t) + 2048 (J+1)^3 t^2/a^2` is the bound of (A12) on
+`W_j/b_j` at every depth. This is (A13), with `w` in place of the maximum
+over depths; it needs no onset. Under the pilot's onset condition and
+`0 < rho <= 1/4`, `w <= 8193 K`, and when `U_J` satisfies the upper half of
+(A8), `e <= 2621712 K`. There `K` is positive and finite, so `e < 2^22 K`.
+This is (A14).
+
+[LearnedOracle.lean](../lean/ThresholdHC/ArbitraryLawAdaptation/LearnedOracle.lean)
+proves that the lowest-gap quantile part of mass `r` of a law `eta` has
+distribution function `min(r, F_eta)`. The witness `lambda` for a law `eta`
+of positive gaps and `e >= 0` is the unit mass at zero when `e >= 1`, and
+otherwise mass `e` at zero plus 128 times the quantile part of `eta` of mass
+`(1 - e)/128`. It is a probability law dominated by `128 eta + e delta_0`,
+and `F_lambda(x) = min(1, 128 F_eta(x) + e)` for every `x >= 0`. With
+`eta = mu'`, (A13) says that `lambda` lies below `mu_bar` in the distribution
+order, and
+
+- `K_(mu_bar) <= sqrt(3) K_lambda <= 2 (128 K_(mu') + e) <= 2 (4096 + 2^22) K`,
+
+by the CDF comparison, dominated mass, the light contraction and (A14). So
+under the onset condition and the upper half of (A8),
+`K_(mu_bar,rho)(4^J) <= 2^24 K_(mu,rho)(4^J)`, which is (A11). `K_(mu_bar)` is
+the selection functional extended to laws with mass at zero, with the
+infimum over all fractional selections. There is a depth `J_0 >= 1`,
+depending on the gap law and `rho` only, such that (A11) holds at every
+`J >= J_0`.
+
+For the pilot installed in the learning stage with `m >= 8 log(2J/eps)`
+probes at every depth, under the onset condition: with probability at least
+`1 - eps` on the coin array of the original simulation law, the stage's
+learned law dominates the gap law in distribution and satisfies (A11). This
+holds at every `J >= J_0`, for every measurable gap-dependent sign law and
+every stage. `V`, `mu'`, `lambda`, `e`, the threshold `a` and the onset are
+proof quantities; the pilot neither samples nor computes them.
+
+Run `python tools/verify_arbitrary_law_learned_oracle.py` for 31 exact
+statements and 31 transitive axiom reports, one for each declaration of the
+two modules. The audit fails if a declaration is added without being
+registered. The
+[learned-oracle record](../results/arbitrary-law-learned-oracle-20261111/README.md)
+identifies the proof checkpoint and source hashes.
+
+The event is stated on the coin array, as (A8) is, not under the law of the
+experiment of the whole stage. Across all nineteen current component audits,
+663 exact statements and 661 transitive axiom reports pass.
 
 ## Work still needed for the full theorem
 
@@ -623,9 +681,9 @@ coins, the median over independent probes, its form at every depth and its
 oracle comparison past the onset are checked, on the coin array and for an
 estimator that reads only observed flips; so is the multi-depth pilot built
 from them. The observable stage is checked as an execution component with
-the concrete pilot installed; the learned law's oracle comparison has its
-work estimates and onset checked and the rest must be proved, and the robust
-continuation must be instantiated and its statistical
+the concrete pilot installed, and the learned law's oracle comparison is
+checked past its finite onset, on the coin array. The robust continuation
+must be instantiated and its statistical
 bounds proved. Finally the stages need to be joined into the
 all-budget controller, with fresh stages, nested intervals, simultaneous
 coverage and eventual oracle width. These conclusions must be proved, not

@@ -163,6 +163,8 @@ jobs:
         run: python -m unittest discover -s tools -p 'test_arbitrary_law_pilot.py' -v
       - name: Regression tests for the pilot-onset audit
         run: python -m unittest discover -s tools -p 'test_arbitrary_law_pilot_onset.py' -v
+      - name: Regression tests for the learned-oracle audit
+        run: python -m unittest discover -s tools -p 'test_arbitrary_law_learned_oracle.py' -v
       - name: Regression tests for the quantile-model and upper-theorem audits
         run: |
           python -m unittest discover -s tools -p 'test_entropy_tail_components.py' -v
@@ -496,6 +498,8 @@ jobs:
         run: python tools/verify_arbitrary_law_pilot.py
       - name: Verify the pilot's work estimates and onset
         run: python tools/verify_arbitrary_law_pilot_onset.py
+      - name: Verify the learned law's oracle comparison
+        run: python tools/verify_arbitrary_law_learned_oracle.py
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
       - uses: actions/upload-artifact@v4

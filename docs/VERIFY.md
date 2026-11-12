@@ -994,3 +994,8 @@ and transitive reports on the first part of the learned law's oracle
 comparison: the lowest-gap split of the gap law, the pilot's work estimates
 (A12), its onset condition and its existence, and the bounds of the work and
 of the coin cap by the selection functional.
+Run `python tools/verify_arbitrary_law_learned_oracle.py` for 31 exact
+statements and transitive reports on the rest of that comparison: the
+multiplier law and its bound on the unresolved probabilities, the learned-CDF
+bound (A13), the slack bound (A14), the clipped-CDF witness, and the
+comparison (A11) with its finite onset and on the pilot event.
