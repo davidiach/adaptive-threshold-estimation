@@ -228,3 +228,9 @@ $K+\max\{4096,8\sqrt2 C_{\rm sum}\}Q$. Using $Q\le(8/5)K$ proves a
 uniform constant multiple of $K$ for this implementation under the
 stated oracle accuracy assumptions. The per-plan MSE certificate above
 is available even when those tighter relative bounds are unavailable.
+
+For exact integrals, the [Lean rate](ARBITRARY_LAW_FORMALIZATION.md#rate-of-the-exact-known-law-plan)
+proves that the Lean plan has certified RMS at most
+$(1+\tfrac85\max\{2048,28000\sqrt\theta\})K$, for weights within a factor
+$\theta$ of the optimal ones. The argument of this section, for bounds within
+a factor two and this implementation's price, is not Lean-checked.

@@ -261,3 +261,10 @@ estimator: its level races and level price, its cap search, its counts, and
 the validity of its squared-error certificate for every admissible plan. The
 price is that of the checked upper theorem. The plan's rate and the toolkit's
 own price are not part of it.
+
+The [plan-rate audit](known-law-plan-rate-20261112/README.md) adds 18 exact
+statements and transitive reports for the rate of that plan with the exact
+integrals of the quantile split: its certified risk is at most
+$(1+\tfrac85\max\{2048,28000\sqrt\theta\})$ times the selection functional,
+and its reported radius at most six times that. The rate of a plan computed
+from upper bounds is not part of it.

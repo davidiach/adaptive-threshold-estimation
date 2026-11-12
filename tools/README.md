@@ -189,3 +189,8 @@ Run `python tools/verify_known_law_planner.py` for 49 exact statements and
 transitive reports on the known-law plan: the level races at the plan's caps,
 the level price, the cap search, the counts from weights, and the validity of
 the plan's squared-error certificate.
+Run `python tools/verify_known_law_plan_rate.py` for 18 exact statements and
+transitive reports on the rate of the exact plan: the least caps, the
+multilevel sum, the terminal rule, the comparison of the certified risk with
+the selection functional for the quantile split, the constant fallback and
+the reported radius.

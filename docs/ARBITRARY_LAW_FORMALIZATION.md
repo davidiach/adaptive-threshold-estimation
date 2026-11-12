@@ -704,8 +704,9 @@ module. The audit fails if a declaration is added without being registered.
 The [zero-quantile record](../results/arbitrary-law-zero-quantile-20261112/README.md)
 identifies the proof checkpoint and source hashes.
 
-The plan that uses this design is specified in the next section. Its rate
-and the coefficients `C_0` and `C_*` are not formalized.
+The plan that uses this design is specified in the next section, and its
+rate for exact integrals in the one after. The coefficients `C_0` and `C_*`
+are not formalized.
 
 ## Known-law plan and its certificate
 
@@ -756,10 +757,50 @@ audit fails if a declaration is added without being registered. The
 [planner record](../results/known-law-planner-20261112/README.md) identifies
 the proof checkpoint and source hashes.
 
-The plan's rate is not formalized: the comparison of the certificate with
-the selection functional, the terminal rule, and the coefficients `C_0` and
-`C_*`. Across all twenty-one current component audits, 734 exact statements
-and 732 transitive axiom reports pass.
+The plan's rate is in the next section.
+
+## Rate of the exact known-law plan
+
+Let the plan use the quantile split of its gap law `mu`: the core `sigma` is
+the quantile core at rarity `rho`, and the quantile part is cut at
+`h = B^(-1/2)` into the resolved tail, on gaps at least `h`, and the
+unresolved part, on gaps at most `h`, of mass `z`. Let it take the exact
+resolved error as its envelope and the exact integrals in its prices.
+
+[PlanRate.lean](../lean/ThresholdHC/KnownLawPlanner/PlanRate.lean) proves that
+the carried cap search then returns the least admissible cap of each level,
+so each price is at most the level work certificate of the upper theorem and
+`sum_(l <= J) sqrt(17 delta_l k_l) <= 28000 (sqrt(rho Gamma) + H)`. The
+terminal rule stops at the first level `J` with `delta_J/16` below
+`max(128 z, rho/(16 (1 + sqrt B)))`. Outside the constant fallback,
+`2048 z <= rho`, that level has `z <= delta_J/128`, and
+`delta_J < 2048 z + rho/(1 + sqrt B)`. With weights within a factor `theta`
+of the optimal ones, the square root of the certificate is at most
+`delta_J + sqrt(theta) 28000 (sqrt(rho Gamma) + H)/sqrt B`.
+
+[PlanQuantileRate.lean](../lean/ThresholdHC/KnownLawPlanner/PlanQuantileRate.lean)
+proves the floor `rho/(1 + sqrt B) <= K` at every budget and compares with the
+selection functional `K = K_(mu,rho)(B)`:
+
+- `min(rho/2, sqrt(certificate)) <= (1 + (8/5) max(2048, 28000 sqrt(theta))) K`,
+  and the constant `rho/2` of the fallback obeys the same bound;
+- a radius `r <= kappa sqrt(8 min(rho^2/4, certificate))` with
+  `kappa sqrt(8) <= 6` is at most six times that coefficient times `K`.
+
+For `theta = 2` the two coefficients are below 63,358 and 380,148. The radius
+statement holds for every relative upper square root. These are the
+coefficients for exact integrals and a law of positive gaps. The coefficients
+`C_0 = 1 + 4 max(4096, 8 sqrt(2) C_sum)` and `C_* = 6 C_0` of the adaptation
+proof, for a planner that works from upper bounds within a factor two and for
+a reference law with mass at zero, are not formalized.
+
+Run `python tools/verify_known_law_plan_rate.py` for 18 exact statements and
+18 transitive axiom reports, one for each declaration of the two modules. The
+audit fails if a declaration is added without being registered. The
+[plan-rate record](../results/known-law-plan-rate-20261112/README.md)
+identifies the proof checkpoint and source hashes. Across all twenty-two
+current component audits, 752 exact statements and 750 transitive axiom
+reports pass.
 
 ## Work still needed for the full theorem
 
@@ -777,7 +818,9 @@ the concrete pilot installed, and the learned law's oracle comparison is
 checked past its finite onset, on the coin array. The quantile design of a
 law with mass at zero is compared with the selection functional, and the
 certificate of a known-law plan is checked for the level price of the upper
-theorem; the plan's rate and radius coefficients must be proved. The robust
+theorem. Its rate is checked for exact integrals; it must be proved for a
+planner that works from upper bounds and for a reference law with mass at
+zero. The robust
 continuation must be instantiated and its statistical
 bounds proved. Finally the stages need to be joined into the
 all-budget controller, with fresh stages, nested intervals, simultaneous

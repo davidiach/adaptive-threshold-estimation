@@ -13,7 +13,8 @@ and at every depth, its oracle comparison past a finite onset, the same
 statements for an estimator that reads only observed flips, the capped
 multi-depth pilot with the conservative law it learns, that law's oracle
 comparison past a finite onset, the quantile comparison for laws with mass
-at zero, and the certificate of a known-law plan. The full arbitrary-law adaptation theorem remains a paper
+at zero, and the certificate and exact-integral rate of a known-law plan.
+The full arbitrary-law adaptation theorem remains a paper
 proof; the published PDF and its build record retain their original scope.
 
 This is the current single research paper. It combines three manuscripts:
