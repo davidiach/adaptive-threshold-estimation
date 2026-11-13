@@ -935,16 +935,47 @@ the case `c = 1 - z_0` with `mu_0` the part of the true law coupled to the
 atom: its mass is charged in full, the positive bank's null law is that of
 `eta`, and no coin of gap zero is used.
 
-The coupling is a hypothesis here, and the work of the race is not covered:
-increasing a gap can remove a wrong early exit, so the stopping time is not
-monotone.
+The coupling is a hypothesis here. The work of the race is in the next
+section: increasing a gap can remove a wrong early exit, so the stopping
+time is not monotone.
 
 Run `python tools/verify_robust_error_transfer.py` for 33 exact statements and
 33 transitive axiom reports, one for each declaration of the four modules.
 The audit fails if a declaration is added without being registered. The
 [robust-error record](../results/robust-error-transfer-20261113/README.md)
-identifies the proof checkpoint and source hashes. Across all twenty-five
-current component audits, 825 exact statements and 823 transitive axiom
+identifies the proof checkpoint and source hashes.
+
+## Robust continuation: work on a coin with a larger gap
+
+The stopping time of the race is not monotone in the flips, so its work does
+not transfer the way its error does.
+[RobustCoinWork.lean](../lean/ThresholdHC/RobustContinuation/RobustCoinWork.lean)
+proves instead that each of the three work bounds of the known-law theorem
+holds at a reference gap `d_0` for a coin of every gap `d >= d_0`:
+
+- the ordinary work kernel `min(M, 17 d^-2 (1 + log+(M d^2)))` does not
+  increase with the gap, so the work of any race is at most twice the kernel
+  at `d_0`;
+- for a negative coin and a reference gap `d_0` in band `j`, the work of the
+  bank race is at most `(3/(2 d_0^2)) (1 + log(1/(eps w_j)))`: the race stops
+  by the crossing time of the matching negative reference, and the drift of
+  its score increases with the gap of the coin;
+- for a positive coin, the race is still running after `n` rounds with
+  probability at most `exp(-n d_0^2/2)`, and its work is at most
+  `12 A(d_0)/d_0^2` with the three-piece surcharge at `d_0`: the race has
+  stopped once the running mean of the bank's flips is above `1/2 + d_0/2`,
+  and a low running mean is a lower set of tapes.
+
+No crossing time that ignores wrong exits is needed. The bounds are for one
+coin. Integrating them over a true law coupled above the reference, with the
+rarity budget of the induced sign allocation, is not done here.
+
+Run `python tools/verify_robust_coin_work.py` for 9 exact statements and 9
+transitive axiom reports, one for each declaration of the module. The audit
+fails if a declaration is added without being registered. The
+[robust-work record](../results/robust-coin-work-20261113/README.md)
+identifies the proof checkpoint and source hashes. Across all twenty-six
+current component audits, 834 exact statements and 832 transitive axiom
 reports pass.
 
 ## Work still needed for the full theorem
@@ -968,10 +999,11 @@ a factor two, including the design of a reference law with mass at zero.
 A tight enclosure must be computed for finite laws. For the robust
 continuation, the race is monotone in the flips and its population error
 transfers to a true law coupled above the reference, with mass at zero in
-the reference charged in full and no coin of gap zero. The coupling with
-its induced sign allocation, the work of the race, the corrections and the
-plan under the true law, the physical-cap median and the connection to the
-paid stage must still be proved. Finally the stages need to be joined into the
+the reference charged in full and no coin of gap zero. Its work bounds on
+one coin hold at the reference gap for every larger gap. The coupling with
+its induced sign allocation, the level work under the coupling, the
+corrections and the plan under the true law, the physical-cap median and
+the connection to the paid stage must still be proved. Finally the stages need to be joined into the
 all-budget controller, with fresh stages, nested intervals, simultaneous
 coverage and eventual oracle width. These conclusions must be proved, not
 supplied as assumptions to a controller interface.

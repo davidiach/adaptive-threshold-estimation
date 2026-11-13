@@ -339,6 +339,13 @@ constant 17 are unchanged. On unresolved mass, use the deterministic cap.
 Integrating (A15) therefore recovers the original level-work certificate.
 The global rarity surcharge uses the induced reference sign allocation,
 whose total positive mass is still at most $\rho$.
+The three per-coin work bounds are
+[Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#robust-continuation-work-on-a-coin-with-a-larger-gap)
+at the reference gap for a coin of every larger gap. The Lean proof does
+not use crossing times that ignore wrong exits: the ordinary kernel
+decreases with the gap, the negative reference's drift grows with it, and
+positive survival is bounded through a lower set of tapes. The
+integration over the coupling is not yet checked.
 
 Assign a reference zero atom entirely to the unresolved part. It contributes
 at most its mass to error and its mass times $M$ to work. All selected-core
@@ -494,9 +501,10 @@ upper theorem. The rate of that plan is checked for upper bounds within a
 factor two and for a reference law with mass at zero, with $C_0$ and $C_*$
 of section 4 at the multilevel coefficient 28000, as statements about the
 plan's certificate. The error of the race is checked to transfer to a true
-law coupled above its reference. Formalization remains for the rest of the
-robustness transfer, its work bound first, and for the full adaptive
-controller. Existing Lean
+law coupled above its reference, and its work bounds on one coin to hold
+for every larger gap. Formalization remains for the rest of the robustness
+transfer, the level work under the coupling first, and for the full
+adaptive controller. Existing Lean
 results establish the positive-gap quantile-tail floor, objective floor,
 budget scaling and known-law foundations used here; they do not automatically
 formalize this new composition. Python and its PRNG remain unverified.

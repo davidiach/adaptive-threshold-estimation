@@ -1108,8 +1108,8 @@ $C=2^{32}C_*\approx3.5\cdot10^{16}$ and $\rho=1/4$, the width bound is
 below the trivial width $\rho/2$ only beyond about $8\cdot10^{35}$ flips,
 and later for smaller $\rho$. For a point mass at $1/2$ with $\rho=1/4$
 the proof's onset needs pilot depth $29$, a budget above $10^{17}$ flips.
-The [Lean components](ARBITRARY_LAW_FORMALIZATION.md) now have 825 exact
-statements and 823 transitive-axiom reports: finite and countable entropy transport, the finite
+The [Lean components](ARBITRARY_LAW_FORMALIZATION.md) now have 834 exact
+statements and 832 transitive-axiom reports: finite and countable entropy transport, the finite
 CDF envelope including its zero atom, and an observable paid-pilot/selected-
 continuation stage with physical caps and its original-experiment joint law.
 The canonical band cells are constructed for every finite increasing-gap
@@ -1169,8 +1169,10 @@ every law of positive gaps. For the robust continuation, the race is
 monotone in the flips, and its population error under a true law coupled
 above the reference is at most the reference bound plus the uncoupled mass;
 mass at zero in the reference is charged in full and no coin of gap zero is
-used. The work of the race under the true law, the rest of the robust
-continuation and the full all-budget controller remain to be formalized;
+used. The work bounds of the race on one coin hold at the reference gap for
+a coin of every larger gap. The level work under the coupling, the rest of
+the robust continuation and the full all-budget controller remain to be
+formalized;
 Python execution and its PRNG also remain outside formal verification.
 An exact path count shows that repeatedly
 checking a fixed-time interval fails: a check with fixed-time failure at most

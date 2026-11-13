@@ -177,6 +177,8 @@ jobs:
         run: python -m unittest discover -s tools -p 'test_known_law_planner_output.py' -v
       - name: Regression tests for the robust-error audit
         run: python -m unittest discover -s tools -p 'test_robust_error_transfer.py' -v
+      - name: Regression tests for the robust-work audit
+        run: python -m unittest discover -s tools -p 'test_robust_coin_work.py' -v
       - name: Regression tests for the quantile-model and upper-theorem audits
         run: |
           python -m unittest discover -s tools -p 'test_entropy_tail_components.py' -v
@@ -524,6 +526,8 @@ jobs:
         run: python tools/verify_known_law_planner_output.py
       - name: Verify the monotone race and the transfer of its error
         run: python tools/verify_robust_error_transfer.py
+      - name: Verify the work of the race for a coin with a larger gap
+        run: python tools/verify_robust_coin_work.py
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
       - uses: actions/upload-artifact@v4

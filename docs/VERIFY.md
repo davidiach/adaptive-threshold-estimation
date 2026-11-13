@@ -1028,3 +1028,7 @@ and transitive reports on the first part of the robust continuation: the
 order on tapes of flips, the monotone ordinary classifier and race, the
 downward and upward banks, and the transfer of the race's population error
 to a true law coupled above its reference.
+Run `python tools/verify_robust_coin_work.py` for 9 exact statements and
+transitive reports on the work of the race for a coin with a larger gap
+than the reference: the ordinary kernel, the negative bank and the positive
+bank, each at the reference gap.

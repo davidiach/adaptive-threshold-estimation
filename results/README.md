@@ -292,3 +292,9 @@ one coin does not increase with the gap, and its population error under a
 true law coupled above the reference is at most the reference bound plus
 the uncoupled mass. The coupling is a hypothesis, and the work of the race
 is not part of it.
+
+The [robust-work audit](robust-coin-work-20261113/README.md) adds 9 exact
+statements and transitive reports for the work of the race on one coin: the
+ordinary, negative-bank and positive-bank bounds of the known-law theorem
+hold at a reference gap for a coin of every larger gap. The level work
+under a coupling is not part of it.
