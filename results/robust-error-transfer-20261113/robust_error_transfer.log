@@ -1,0 +1,39 @@
+'ThresholdHC.RobustContinuation.DownwardTest' does not depend on any axioms
+'ThresholdHC.RobustContinuation.UpwardTest' does not depend on any axioms
+'ThresholdHC.RobustContinuation.bit_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.classifierStop_le_of_value_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.classifierValue_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.classifierValue_one_of_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.classifierValue_one_of_stop_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.coupledRaceError' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.coupled_population_error_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.dyadicMean_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.firstDecision_one_of_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.firstDecision_one_of_stop_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.firstStop_le_of_decision_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.half_lt_of_firstDecision_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.integrable_coupledIntegrand' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.measurable_coupledIntegrand' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.negativeBankTest_downward' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.null_prefix_anti' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.parityTape_mono' does not depend on any axioms
+'ThresholdHC.RobustContinuation.positiveBankTest_upward' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.positiveBank_prefix_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.raceConditionalError_antitone' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.raceValue_eq_one_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.raceValue_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.raceValue_one_of_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.robust_bank_population_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.streamProb_anti' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.streamProb_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.tapeMeasure_le_of_isLowerSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.tapeMeasure_le_of_isUpperSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.tapePrefix_mono' does not depend on any axioms
+'ThresholdHC.RobustContinuation.uniformCoinFlip_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.uniformCoinTape_mono' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,19 @@
+'ThresholdHC.RobustContinuation.bank_race_negative_work_of_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.bank_race_positive_work_of_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.negativeReferenceDrift_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.negative_scoreStop_work_of_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.ordinaryWorkKernel_antitone_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.positive_raceRounds_work_of_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.positive_race_survival_of_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.prefixMean_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.race_work_le_ordinary_of_le' depends on axioms: [propext, Classical.choice, Quot.sound]
