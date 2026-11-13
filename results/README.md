@@ -298,3 +298,13 @@ statements and transitive reports for the work of the race on one coin: the
 ordinary, negative-bank and positive-bank bounds of the known-law theorem
 hold at a reference gap for a coin of every larger gap. The level work
 under a coupling is not part of it.
+
+The [robust-level audit](robust-level-certificates-20261113/README.md) adds
+18 exact statements and transitive reports for the two certificates of a
+level race under a true law coupled above its reference: its expected work
+is at most the level-work certificate of the known-law theorem with the
+uncoupled mass added to the unresolved mass, and its error at most
+$\delta_l$. The bank's null law is the positive part of the reference, so a
+reference with mass at zero needs no coin of gap zero. The coupling in that
+form is a hypothesis, and the corrections and the plan under the true law
+are not part of it.

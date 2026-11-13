@@ -291,3 +291,8 @@ Run `python tools/verify_robust_coin_work.py` for 9 exact statements and
 transitive reports on the work of the race for a coin with a larger gap
 than the reference: the ordinary kernel, the negative bank and the positive
 bank, each at the reference gap.
+Run `python tools/verify_robust_level_certificates.py` for 18 exact
+statements and transitive reports on the level certificates of the race
+under a true law coupled above its reference: the split of a coupling along
+the design, the selected core, resolved tail and unresolved part, and the
+level work and level error.

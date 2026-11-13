@@ -851,7 +851,10 @@ These are statements about the numbers the planner computes. The experiment
 of the upper theorem has positive gaps only, so the estimator of a reference
 law with mass at zero, with the fair-coin likelihood its bank uses for that
 mass, is not formalized. Nor is the rational arithmetic that produces a tight
-enclosure for a finite law.
+enclosure for a finite law. The level races of such a reference are covered
+[below](#robust-continuation-level-certificates-under-a-coupled-law) with a
+bank whose null law is the positive part, which needs no fair-coin
+likelihood.
 
 Run `python tools/verify_known_law_plan_tight_rate.py` for 31 exact statements
 and 31 transitive axiom reports, one for each declaration of the three
@@ -967,15 +970,72 @@ holds at a reference gap `d_0` for a coin of every gap `d >= d_0`:
   and a low running mean is a lower set of tapes.
 
 No crossing time that ignores wrong exits is needed. The bounds are for one
-coin. Integrating them over a true law coupled above the reference, with the
-rarity budget of the induced sign allocation, is not done here.
+coin. The next section integrates them over a true law coupled above the
+reference.
 
 Run `python tools/verify_robust_coin_work.py` for 9 exact statements and 9
 transitive axiom reports, one for each declaration of the module. The audit
 fails if a declaration is added without being registered. The
 [robust-work record](../results/robust-coin-work-20261113/README.md)
-identifies the proof checkpoint and source hashes. Across all twenty-six
-current component audits, 834 exact statements and 832 transitive axiom
+identifies the proof checkpoint and source hashes.
+
+## Robust continuation: level certificates under a coupled law
+
+[RobustLevelCertificates.lean](../lean/ThresholdHC/RobustContinuation/RobustLevelCertificates.lean)
+integrates the bounds on one coin over a coupling and gives the two
+certificates of a level race under a true law with larger gaps than the
+reference.
+
+The positive part of the reference law is `c eta`, with `c > 0` and `eta` a
+probability law of positive gaps, and its design is `sigma + tau + zeta =
+c eta`. The bank has the band weights of `sigma`, null law `eta`, negative
+allowance `eps` and positive allowance `rho eps / c`; with `c = 1` it is the
+bank of the known-law theorem. A finite measure `pi` on pairs of gaps has
+first marginal `c eta` and `z_1 <= z_2` almost everywhere. The true law is
+the second marginal of `pi` plus a finite part `mu_0`, and the sign law `q`
+of the true gaps has positive fraction at most `rho` under the true law.
+
+- **Level work.** With `zeta(all gaps) <= rho`, the expected work of the
+  level race at cap `M = 2^L` is at most
+  `128 (l+1) Gamma + 6 H^2/rho + 2 O_tau(M) + 2 M (zeta(all gaps) + mu_0(all gaps))`,
+  with `Gamma` the cost entropy of the band costs of `sigma`,
+  `H = int d^-1 d tau` and `O_tau` the ordinary work of `tau`. This is the
+  level-work certificate of the known-law theorem with `mu_0` added to the
+  unresolved mass.
+- **Level error.** At a cap `4^k` whose resolved error for `sigma + tau` is
+  at most `delta_l/8`, with `zeta(all gaps) + mu_0(all gaps) <= delta_l/8`,
+  the error of the level race is at most `delta_l`.
+- **Parts.** The selected core is bounded over a coupling with first
+  marginal `sigma`, the resolved tail by twice the ordinary work of `tau`,
+  and the unresolved part by the cap. The coupling of the unresolved part
+  need not be increasing.
+- **Split.** [CouplingSplit.lean](../lean/ThresholdHC/RobustContinuation/CouplingSplit.lean)
+  splits a measure whose image is a sum of finite measures into parts with
+  those images, so one coupling with first marginal `c eta` gives the three.
+
+The rarity surcharge is integrated against the sign law at the true gap,
+read at the reference gap through the coupling: at a reference gap it is at
+most `log 3 d_0^-2 + A/rho + H^2/(2 rho^2)`, and the positive mass under the
+coupling is at most `rho`. The conditional law of the sign given the
+reference gap is not formed.
+
+A reference law `z_0 delta_0 + (1 - z_0) eta` is the case `c = 1 - z_0`, with
+`mu_0` the part of the true law coupled to the atom. The bank's null law is
+`eta`, so no coin of gap zero and no fair-coin likelihood is used, and the
+work bound is the level price of the zero-atom design with unresolved mass
+`z_0 + zeta(all gaps)`. A bank that evaluates the null mixture of the whole
+reference law is a different test and is not the one checked.
+
+The coupling in this form is a hypothesis. The second moments of the
+corrections and the plan under the true law are not covered.
+
+Run `python tools/verify_robust_level_certificates.py` for 18 exact
+statements and 18 transitive axiom reports, one for each declaration of the
+two modules. The audit fails if a declaration is added without being
+registered. The
+[robust-level record](../results/robust-level-certificates-20261113/README.md)
+identifies the proof checkpoint and source hashes. Across all twenty-seven
+current component audits, 852 exact statements and 850 transitive axiom
 reports pass.
 
 ## Work still needed for the full theorem
@@ -1000,9 +1060,11 @@ A tight enclosure must be computed for finite laws. For the robust
 continuation, the race is monotone in the flips and its population error
 transfers to a true law coupled above the reference, with mass at zero in
 the reference charged in full and no coin of gap zero. Its work bounds on
-one coin hold at the reference gap for every larger gap. The coupling with
-its induced sign allocation, the level work under the coupling, the
-corrections and the plan under the true law, the physical-cap median and
+one coin hold at the reference gap for every larger gap, and the error and
+work certificates of each level race hold under a true law coupled above
+the reference, including a reference with mass at zero. The coupling in
+the form used there must be derived from CDF domination. The corrections
+and the plan under the true law, the physical-cap median and
 the connection to the paid stage must still be proved. Finally the stages need to be joined into the
 all-budget controller, with fresh stages, nested intervals, simultaneous
 coverage and eventual oracle width. These conclusions must be proved, not
