@@ -888,8 +888,63 @@ Run `python tools/verify_known_law_planner_output.py` for 9 exact statements
 and 9 transitive axiom reports, one for each declaration of the module. The
 audit fails if a declaration is added without being registered. The
 [planner-output record](../results/known-law-planner-output-20261112/README.md)
-identifies the proof checkpoint and source hashes. Across all twenty-four
-current component audits, 792 exact statements and 790 transitive axiom
+identifies the proof checkpoint and source hashes.
+
+## Robust continuation: the race is monotone and its error transfers
+
+The robust continuation runs the estimator designed from a reference law
+under a true law with larger gaps. Its first step is checked in
+[four modules](../lean/ThresholdHC/RobustContinuation/RobustLevelError.lean).
+
+Tapes of flips are ordered pointwise, with tails below heads. Flips built
+from common uniforms are monotone in the success probability, so an upper
+set of tapes is at least as likely under the coin with the larger success
+probability
+([TapeOrder.lean](../lean/ThresholdHC/RobustContinuation/TapeOrder.lean)).
+With more heads, a positive decision of the ordinary classifier stays
+positive and is not delayed, and a strictly earlier stop is a positive
+decision; a terminal tie is negative
+([ClassifierOrder.lean](../lean/ThresholdHC/RobustContinuation/ClassifierOrder.lean)).
+
+[RaceOrder.lean](../lean/ThresholdHC/RobustContinuation/RaceOrder.lean) calls
+a prefix test downward when turning tails into heads cannot make it fire, and
+upward when that cannot stop it from firing. For a downward negative test and
+an upward positive test the output of the race is monotone in the flips. The
+negative bank is downward and the positive bank is upward, for every
+reference law. Hence the error of the race on a coin of either sign does not
+increase when the gap grows.
+
+[RobustLevelError.lean](../lean/ThresholdHC/RobustContinuation/RobustLevelError.lean)
+transfers the population error. Let `pi` be a finite measure on pairs of
+gaps with `z_1 <= z_2` almost everywhere, and let the true law be its second
+marginal plus a finite part `mu_0`. Then for every sign law `q` of the true
+gaps:
+
+- the population error of the race is at most
+  `int [q(z_2) e_+(z_1) + (1 - q(z_2)) e_-(z_1)] d pi + mu_0(all gaps)`, where
+  `e_+` and `e_-` are its errors on one coin;
+- for the bank designed from a probability law `eta` with allowances
+  `eps` and `u`, when the first marginal of `pi` is `c eta` and `q` has
+  positive fraction at most `rho` under the true law, the error at cap `2^L`
+  is at most `rho eps + c u + c int min(1, (2^L d^2)^-2) d eta + mu_0(all gaps)`.
+
+The integral in the first statement is the error under the sign allocation
+that the coupling induces on the reference gaps, written without a
+conditional expectation. A reference law `z_0 delta_0 + (1 - z_0) eta` is
+the case `c = 1 - z_0` with `mu_0` the part of the true law coupled to the
+atom: its mass is charged in full, the positive bank's null law is that of
+`eta`, and no coin of gap zero is used.
+
+The coupling is a hypothesis here, and the work of the race is not covered:
+increasing a gap can remove a wrong early exit, so the stopping time is not
+monotone.
+
+Run `python tools/verify_robust_error_transfer.py` for 33 exact statements and
+33 transitive axiom reports, one for each declaration of the four modules.
+The audit fails if a declaration is added without being registered. The
+[robust-error record](../results/robust-error-transfer-20261113/README.md)
+identifies the proof checkpoint and source hashes. Across all twenty-five
+current component audits, 825 exact statements and 823 transitive axiom
 reports pass.
 
 ## Work still needed for the full theorem
@@ -910,10 +965,13 @@ law with mass at zero is compared with the selection functional, and the
 certificate of a known-law plan is checked for the level price of the upper
 theorem. Its rate is checked for exact integrals and for upper bounds within
 a factor two, including the design of a reference law with mass at zero.
-Running that design needs an experiment with coins of gap zero, and a tight
-enclosure must be computed for finite laws. The robust
-continuation must be instantiated and its statistical
-bounds proved. Finally the stages need to be joined into the
+A tight enclosure must be computed for finite laws. For the robust
+continuation, the race is monotone in the flips and its population error
+transfers to a true law coupled above the reference, with mass at zero in
+the reference charged in full and no coin of gap zero. The coupling with
+its induced sign allocation, the work of the race, the corrections and the
+plan under the true law, the physical-cap median and the connection to the
+paid stage must still be proved. Finally the stages need to be joined into the
 all-budget controller, with fresh stages, nested intervals, simultaneous
 coverage and eventual oracle width. These conclusions must be proved, not
 supplied as assumptions to a controller interface.

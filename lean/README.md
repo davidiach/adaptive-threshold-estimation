@@ -282,3 +282,8 @@ and transitive reports on the planner's output end to end: the constructed
 quantile split, the output in minimax form, the rate from upper bounds and
 from exact integrals for every law, and the design of a reference law with
 mass at zero.
+Run `python tools/verify_robust_error_transfer.py` for 33 exact statements
+and transitive reports on the first part of the robust continuation: the
+order on tapes of flips, the monotone ordinary classifier and race, the
+downward and upward banks, and the transfer of the race's population error
+to a true law coupled above its reference.

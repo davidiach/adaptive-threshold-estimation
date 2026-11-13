@@ -284,3 +284,11 @@ quantile split is constructed for every law of positive gaps, and the
 planner's output gives minimax risk at most $44801$ times the selection
 functional with exact integrals, and the factor-two coefficient for every
 tight enclosure.
+
+The [robust-error audit](robust-error-transfer-20261113/README.md) adds 33
+exact statements and transitive reports for the first part of the robust
+continuation: the raced classifier is monotone in the flips, its error on
+one coin does not increase with the gap, and its population error under a
+true law coupled above the reference is at most the reference bound plus
+the uncoupled mass. The coupling is a hypothesis, and the work of the race
+is not part of it.

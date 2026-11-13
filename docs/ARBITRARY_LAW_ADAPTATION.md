@@ -311,6 +311,10 @@ crossing. Terminal majority with a negative tie has the same property.
 Thus its error indicator under the actual law is bounded pathwise by that
 under the coupled reference law. The usual joint false-positive and total
 error bounds transfer, even when signs depend on the magnitude.
+The monotonicity of the race and this transfer of its error are
+[Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#robust-continuation-the-race-is-monotone-and-its-error-transfers)
+for a given increasing coupling; a reference zero atom is charged as
+uncoupled mass there, and no coin of gap zero is used.
 
 **Work requires a different argument.** Increasing a gap can eliminate a
 wrong early exit, so the actual stopping time need not decrease. Instead
@@ -489,9 +493,10 @@ is the certificate of a known-law plan with the level price of the checked
 upper theorem. The rate of that plan is checked for upper bounds within a
 factor two and for a reference law with mass at zero, with $C_0$ and $C_*$
 of section 4 at the multilevel coefficient 28000, as statements about the
-plan's certificate. Formalization remains for the estimator of a reference
-law with mass at zero, the robustness
-transfer and full adaptive controller. Existing Lean
+plan's certificate. The error of the race is checked to transfer to a true
+law coupled above its reference. Formalization remains for the rest of the
+robustness transfer, its work bound first, and for the full adaptive
+controller. Existing Lean
 results establish the positive-gap quantile-tail floor, objective floor,
 budget scaling and known-law foundations used here; they do not automatically
 formalize this new composition. Python and its PRNG remain unverified.

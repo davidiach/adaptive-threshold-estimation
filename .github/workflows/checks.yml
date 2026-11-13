@@ -175,6 +175,8 @@ jobs:
         run: python -m unittest discover -s tools -p 'test_known_law_plan_tight_rate.py' -v
       - name: Regression tests for the planner-output audit
         run: python -m unittest discover -s tools -p 'test_known_law_planner_output.py' -v
+      - name: Regression tests for the robust-error audit
+        run: python -m unittest discover -s tools -p 'test_robust_error_transfer.py' -v
       - name: Regression tests for the quantile-model and upper-theorem audits
         run: |
           python -m unittest discover -s tools -p 'test_entropy_tail_components.py' -v
@@ -520,6 +522,8 @@ jobs:
         run: python tools/verify_known_law_plan_tight_rate.py
       - name: Verify the output of the known-law planner end to end
         run: python tools/verify_known_law_planner_output.py
+      - name: Verify the monotone race and the transfer of its error
+        run: python tools/verify_robust_error_transfer.py
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
       - uses: actions/upload-artifact@v4
