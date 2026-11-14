@@ -1,0 +1,42 @@
+{
+  "valid": true,
+  "proof_checkpoint": "b4a88c43a7ad7f4b68dfeb78f69d205102e7e359",
+  "base_checkpoint": "b471d6b2fd4168812bd84ccb59fd5c7723acf259",
+  "compiler": "Lean (version 4.36.0-rc1, x86_64-unknown-linux-gnu, commit c9afcddf514a6772bd4d649f7cfc04eff0b9f15e, Release)",
+  "mathlib_revision": "9bdd0bc71aaae0fd83889f9aacd70c32fccd1bcd",
+  "build": "Built from source on Linux with Lake, on top of a build of every project module made in the same environment, against the Mathlib cache for the pinned revision. Lake checks source hashes before reusing a compiled module. The new module compiled without warnings.",
+  "source_sha256": {
+    "lean/lean-toolchain": "d581a24b57a4ae9e0b2132ca8ac7cc3ac336a9fc2751fe6b29414e2d434d54c4",
+    "lean/lakefile.toml": "273cfe4674e97219b22f7de1428bdadfb45379c7fa582882c59624ab7fbc3189",
+    "lean/lake-manifest.json": "a7058b14db1034b58735d82f1cf9a82a938855e93decc1960ca7d21e786fdfe2",
+    "tools/verify_blind_upper_components.py": "8b4b2c3ca57acad8ad0b32100f6e823754ac43f12fa91b07900fa2ed68431b14",
+    "tools/verify_dyadic_summability.py": "b2e6d5d5c037e0142bea9d077ed8416f2878995304fe78aa31944f732d17f819",
+    "tools/test_dyadic_summability.py": "56bc29be4b851c058ab0b71c154a85320138d8eee55019d42b4a95385570ea5a"
+  },
+  "audits": {
+    "dyadic_summability": {
+      "command": "python tools/verify_dyadic_summability.py",
+      "input": "dyadic_summability.lean",
+      "log": "dyadic_summability.log",
+      "exact_statements": 7,
+      "axiom_reports": 5,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "declarations_without_axioms": [],
+      "exit_code": 0
+    }
+  },
+  "project_closure": {
+    "root": "ThresholdHC.Proofs.DyadicSummable",
+    "modules": 3,
+    "note": "Every project module the root imports, directly or transitively, with the SHA-256 of its source at the proof checkpoint.",
+    "sha256": {
+      "lean/ThresholdHC/Proofs/Classifier.lean": "9558e82d1c6714256642a96e4660c79e21b5594495a23e02bf6d1d545aa260dc",
+      "lean/ThresholdHC/Proofs/DyadicSummable.lean": "bbdf3bc0d9a51ad7c0fe356f1f3b367787fb98b33ceb852704f4ee12aede0aa0",
+      "lean/ThresholdHC/Statements.lean": "0873505b7c133561e82f63dcbba7f7a0a3da39d0c3692daee99d01882a757abf"
+    }
+  }
+}

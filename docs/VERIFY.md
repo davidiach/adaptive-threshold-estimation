@@ -813,9 +813,13 @@ constant depends only on `propext`, `Classical.choice` and `Quot.sound`. The
 replay runs the toolchain's `leanchecker`, one process per module, on the
 import closure of `Tier6/Full.lean` and `BlindUpper/Full.lean`. The audit
 catches a `sorry` that the textual source scanner cannot see, for example a
-proof closed with the `stop` tactic. It does not check statement types.
+proof closed with the `stop` tactic. It also checks every exported instance
+and compares a fingerprint of every project definition, proofs erased, with
+`tools/definition_lock.json`; a new definition is added with
+`--add-definitions`. It does not check statement types.
 CI runs it in the `lean-all-modules` job.
-[First record](../results/project-axioms-20261109/README.md)
+[First record](../results/project-axioms-20261109/README.md) ·
+[instances and definition lock](../results/project-definitions-20261114/README.md)
 
 ## Rare-event margins below one
 

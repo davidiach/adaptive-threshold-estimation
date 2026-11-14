@@ -33,6 +33,7 @@ statement. For the current tree the evidence is the CI run on that commit.
 | Explicit arbitrary-law entropy-tail and quantile lower bounds | [entropy-tail-explicit-20261104](entropy-tail-explicit-20261104/README.md) |
 | Arbitrary-law $\Psi$ lower bound through the entropy-tail law | [psi-selection-20261109](psi-selection-20261109/README.md) |
 | Whole-project build, axiom audit and main-theorem kernel replay | [project-axioms-20261109](project-axioms-20261109/README.md) |
+| Whole-project audit with the exported-instance checks and the definition lock | [project-definitions-20261114](project-definitions-20261114/README.md) |
 | Finite-law bandwise-suffix optimizer and sufficient search family | [bandwise-suffix-20261104](bandwise-suffix-20261104/README.md) |
 | Total variation, rounding, transported enclosures and finite approximation | [selection-stability-20261104](selection-stability-20261104/README.md) |
 | Quarter smoothing in both KL directions | [quarter-smoothing-20261104](quarter-smoothing-20261104/README.md) |

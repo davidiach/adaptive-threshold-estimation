@@ -1,0 +1,51 @@
+{
+  "valid": true,
+  "commit": "b4a88c43a7ad7f4b68dfeb78f69d205102e7e359",
+  "base_checkpoint": "b471d6b2fd4168812bd84ccb59fd5c7723acf259",
+  "compiler": "Lean (version 4.36.0-rc1, x86_64-unknown-linux-gnu, commit c9afcddf514a6772bd4d649f7cfc04eff0b9f15e, Release)",
+  "command": "python tools/verify_project_axioms.py --replay-main-theorem --jobs 3",
+  "modules": 1190,
+  "constants": 12625,
+  "theorems": 10196,
+  "declared_axioms": [],
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "instances": {
+    "exported": 123,
+    "by_kind": {
+      "prop": 84,
+      "data": 33,
+      "orphan": 6
+    },
+    "scoped": 0,
+    "non_default_priority": 0,
+    "registered_orphans": [
+      "ThresholdHC.BlindUpper.boolListMeasurableSpace",
+      "ThresholdHC.CriticalUpper.boolWordsMeasurableSpace",
+      "ThresholdHC.OracleLower.selectedRequestMeasurableSpace",
+      "ThresholdHC.RareAboveTwo.boolWordsMeasurableSpace",
+      "ThresholdHC.Tier4.tapeSymbolMeasurableSpace",
+      "ThresholdHC.Tier5.creationActionMeasurableSpace"
+    ]
+  },
+  "definitions": {
+    "locked": 2318,
+    "changed": 0,
+    "removed": 0,
+    "new": 0
+  },
+  "kernel_replay_modules": 204,
+  "source_sha256": {
+    "tools/verify_project_axioms.py": "ba6ff95a75f54e496e3f0eb5049b25f41fb7e1cd060609cc7b7c464737b62e64",
+    "tools/definition_lock.json": "b782c536fe7b9aca8139ede04f4e41f1221b993b4c820199caa050ddd9c26cd5",
+    "tools/verify_blind_upper_components.py": "8b4b2c3ca57acad8ad0b32100f6e823754ac43f12fa91b07900fa2ed68431b14",
+    "lean/lean-toolchain": "d581a24b57a4ae9e0b2132ca8ac7cc3ac336a9fc2751fe6b29414e2d434d54c4",
+    "lean/lake-manifest.json": "a7058b14db1034b58735d82f1cf9a82a938855e93decc1960ca7d21e786fdfe2",
+    "lean/lakefile.toml": "273cfe4674e97219b22f7de1428bdadfb45379c7fa582882c59624ab7fbc3189"
+  },
+  "report": "report.log",
+  "note": "The report omits the 2318 per-definition fingerprint lines, which equal the entries of tools/definition_lock.json."
+}
