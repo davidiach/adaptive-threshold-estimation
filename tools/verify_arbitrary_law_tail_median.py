@@ -8,7 +8,8 @@ report; writes nothing.
 """
 
 import subprocess
-from verify_blind_upper_components import (DECLARATION, FORBIDDEN, LEAN, strip_comments,
+from verify_blind_upper_components import (FORBIDDEN, LEAN, bind_restatements,
+                                           registered_names, strip_comments,
                                            validate_reports)
 
 MODULE = "ThresholdHC.ArbitraryLawAdaptation.TailMedianLaw"
@@ -39,7 +40,7 @@ def declared_names():
         source = strip_comments(path.read_text(encoding="utf-8"))
         if FORBIDDEN.search(source):
             raise ValueError("Forbidden proof escape in " + path.name)
-        found += DECLARATION.findall(source)
+        found += registered_names(source)
     return found
 
 
@@ -241,8 +242,7 @@ example : ∀ (μ : Measure Gap) [IsProbabilityMeasure μ] (q : SignLaw) (m b M 
       min 1 (128 * max (max (tailUnresolvedMass μ J)
       ((∫ d : Gap, tailWorkEnvelope J d ∂μ) / b J)) (1 / M J))} := @original_median_all_depths_array
 """
-    if source.count("example ") != len(NAMES):
-        raise ValueError("Each tail-median declaration needs exactly one restated statement")
+    bind_restatements(source, NAMES)
     roots = {"ThresholdHC.ArbitraryLawAdaptation." + name for name in NAMES}
     return source + "".join("#print axioms " + name + "\n" for name in sorted(roots)), roots
 

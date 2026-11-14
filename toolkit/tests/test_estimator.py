@@ -10,7 +10,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from threshold_toolkit.estimator import (block_flipper, budget_level, coupled_call,
+from threshold_toolkit.estimator import (R_LEVEL, block_flipper, budget_level, coupled_call,
                                          estimate_fraction, level_probability,
                                          majority_vote_estimate, sample_level,
                                          two_success_average)
@@ -73,6 +73,25 @@ class BudgetTests(unittest.TestCase):
             p = level_probability(level)
             freq = draws.count(level) / len(draws)
             self.assertLess(abs(freq - p), 5 * math.sqrt(p * (1 - p) / len(draws)))
+
+    def test_level_law_has_no_cap(self):
+        # A 53-bit uniform alone would cap the level near 106. The eight
+        # smallest values of 1 - u carry mass 2^-50 = r^100 and restart the
+        # memoryless tail at level 100.
+        class Draws:
+            def __init__(self, values):
+                self.values = iter(values)
+
+            def random(self):
+                return next(self.values)
+
+        self.assertAlmostEqual(R_LEVEL ** 100, 2.0 ** -50, delta=1e-27)
+        top = 1 - 2.0 ** -53
+        self.assertEqual(sample_level(Draws([top, 0.0])), 100)
+        self.assertEqual(sample_level(Draws([top, top, 0.0])), 200)
+        self.assertEqual(sample_level(Draws([1 - 2.0 ** -50, 0.5])), 100 + sample_level(Draws([0.5])))
+        # Just above the restart region the inversion gives level 99.
+        self.assertEqual(sample_level(Draws([1 - 9 * 2.0 ** -53])), 99)
 
 
 class CallTests(unittest.TestCase):

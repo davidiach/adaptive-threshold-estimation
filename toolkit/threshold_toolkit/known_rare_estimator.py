@@ -25,6 +25,11 @@ from .rare_event_functional import (
     sqrt_interval,
 )
 
+# The cap search stops here: an oracle whose resolved-error envelope does not
+# reach the level's allowance by cap 4^100 breaks the contract that it tends to
+# zero, and the planner raises instead of searching forever.
+MAX_CAP = 4 ** 100
+
 
 @dataclass(frozen=True)
 class Level:
@@ -94,6 +99,10 @@ def plan_known_rare(
     previous = F(0)
     while True:
         while _bound(design.resolved_error(cap), "resolved error") > delta / 8:
+            if cap >= MAX_CAP:
+                raise ValueError(
+                    "the oracle's resolved error stays above delta/8 = "
+                    f"{delta / 8} at cap {cap}; resolved_error must tend to zero")
             cap *= 4
         ordinary = _bound(design.tail_work(cap), "ordinary work")
         # Positive crossings use a certified upper null likelihood. Their time

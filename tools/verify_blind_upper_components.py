@@ -27,6 +27,13 @@ DECLARATION = re.compile(
     r"(?:def|abbrev|structure|theorem|lemma|instance|inductive)\s+"
     r"([A-Za-z_][\w']*(?:\.[A-Za-z_][\w']*)*)", re.M)
 IMPORT = re.compile(r"^import\s+([\w.]+)\s*$", re.M)
+# Every declaration form, with any attributes and modifiers. DECLARATION reads
+# the name of the plain forms only; registered_names fails on the others, so
+# a private, protected or anonymous declaration cannot escape a registry.
+ANY_DECLARATION = re.compile(
+    r"^\s*(?:@\[[^\]]*\]\s*)*(?:(?:private|protected|noncomputable|nonrec|partial|unsafe|scoped"
+    r"|local)\s+)*(?:def|abbrev|structure|class|theorem|lemma|instance|inductive|irreducible_def"
+    r"|alias|opaque|axiom)\b", re.M)
 # The frozen Tier 6 pattern misses the `admit` tactic, which is Lean's synonym
 # for `sorry`. Audited sources also contain no string literals or escaped
 # identifiers: strip_comments parses neither, so "/-" or «--» inside one could
@@ -42,10 +49,24 @@ IMPORT = re.compile(r"^import\s+([\w.]+)\s*$", re.M)
 # elab_rules, by_elab, simprocs and direct calls into Lean's API. Proof sources
 # need none of these, so reject them anywhere, along with every `Lean` name.
 # (`_` is a word character, so each keyword family is spelled out.) The
-# `decide +native` form trusts compiled code, as native_decide does.
+# `decide +native` form trusts compiled code, as native_decide does; so do
+# `decide (native := true)` and `decide (config := { native := true })`, so the
+# word `native` is rejected anywhere. Inside an `example` such a proof leaves
+# no auxiliary axiom in the environment for any report to see.
+# Lean ends a numeral at the first letter, so `1axiom x : False` declares an
+# axiom, while `\b` sees no word boundary between `1` and `a`: a keyword right
+# after a digit is rejected as well.
+# A scoped, prioritised or default instance can change what a restated
+# statement elaborates to once the audited namespace is opened; the
+# whole-project audit checks every exported instance, and these forms are
+# rejected here first.
+_KEYWORDS = (r"sorry|sorryAx|axiom|admit|native_decide|native|implemented_by|extern|unsafe|opaque"
+             r"|run_cmd|run_elab|run_meta|run_tac|elab\w*|macro\w*|syntax|initialize|Lean|debug")
 FORBIDDEN = re.compile(
     TIER6_FORBIDDEN.pattern + r'|\badmit\b|"|«|#guard_msgs\b'
     r'|\bLean\b|\b(?:by_)?elab(?:_\w+)?\b|\b(?:builtin_)?d?simproc(?:_decl)?\b|\+\s*native\b'
+    r'|\bnative\b|\d(?:' + _KEYWORDS + r')'
+    r'|\bscoped\s+instance\b|\bpriority\s*:=|\bdefault_instance\b|\battribute\s*\[[^\]]*\bscoped\b'
     r'|\b(?:macro|macro_rules|syntax|initialize|builtin_initialize)\b'
     r'|(?:@|\battribute\s*)\[[^\]]*\b(?:command_elab|term_elab|tactic|macro|d?simproc)\b',
     TIER6_FORBIDDEN.flags)
@@ -100,6 +121,71 @@ def imports(source: str) -> list[str]:
                 raise ValueError("Unsupported import syntax: " + line.strip())
             result.append(match[1])
     return result
+
+
+def registered_names(source: str) -> list[str]:
+    """The names DECLARATION reads, failing on any declaration it cannot read.
+
+    For the audits that register every declaration of their modules: an
+    unreadable form would otherwise be neither registered nor reported.
+    """
+    for match in ANY_DECLARATION.finditer(source):
+        if DECLARATION.match(source, match.start()) is None:
+            line = source[match.start():source.find("\n", match.end())].strip()
+            raise ValueError("Declaration the registry cannot read: " + line)
+    return DECLARATION.findall(source)
+
+
+def bind_restatements(source: str, names: list[str], prefix: str = "") -> None:
+    """Each registered name is restated once, by an example that names it.
+
+    A count of examples alone would accept a restatement of one theorem twice
+    in place of another.
+    """
+    examples = re.split(r"^example\b", source, flags=re.M)[1:]
+    if len(examples) != len(names):
+        raise ValueError("Each declaration needs exactly one restated statement")
+    used = []
+    for name in names:
+        # A namespaced definition can also appear in field notation, `E.Tight`.
+        field = ("|(?<=[\\w)'])\\." + re.escape(name.rsplit(".", 1)[1])) if "." in name else ""
+        pattern = re.compile(r"(?:(?<![\w.'])@?" + re.escape(prefix + name) + field + r")(?![\w'])")
+        hits = [i for i, example in enumerate(examples) if pattern.search(example)]
+        if not hits:
+            raise ValueError("No restated statement names " + name)
+        used.extend(hits)
+    if sorted(set(used)) != list(range(len(examples))):
+        raise ValueError("A restated statement names no registered declaration")
+
+
+def check_reused_objects(lake: str, rebuilt: list[Path], audited: list[Path], output: Path) -> dict:
+    """Ask Lake to confirm that every compiled module the audit reuses is up to date.
+
+    The cached and audit-only modes compile some modules directly, or none, and
+    link the rest from earlier builds. Lake compares the current sources with
+    its traces, so an object compiled from older sources is rejected instead of
+    being trusted. The reused modules are the audited modules not rebuilt and
+    the project modules the rebuilt ones import.
+    """
+    rebuilt_paths = set(rebuilt)
+    reused = {".".join(p.relative_to(LEAN).with_suffix("").parts) for p in audited
+              if p not in rebuilt_paths}
+    for path in rebuilt:
+        for name in imports(strip_comments(path.read_text(encoding="utf-8"))):
+            if name.startswith("ThresholdHC.") and module_path(name) not in rebuilt_paths:
+                reused.add(name)
+    if not reused:
+        return dict(command=None, exit_code=0)
+    command = [lake, "build", "--no-build", *sorted(reused)]
+    result = subprocess.run(command, cwd=LEAN, capture_output=True, text=True, encoding="utf-8")
+    (output / "dependencies.log").write_text(result.stdout + result.stderr, encoding="utf-8")
+    print(f"reused objects, Lake up-to-date check of {len(reused)} modules: exit {result.returncode}",
+          flush=True)
+    if result.returncode:
+        print(result.stdout + result.stderr, flush=True)
+        print("Reused objects are missing or not up to date. Build the modules with Lake first.",
+              flush=True)
+    return dict(command=command, exit_code=result.returncode)
 
 
 def validate_dependency_freeze(specification: Path, freeze: dict) -> None:

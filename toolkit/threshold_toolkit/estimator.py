@@ -42,9 +42,22 @@ def budget_level(budget: float) -> int:
     return level
 
 
+# r^TAIL_LEVEL = 2^-50 is exactly the mass of the eight smallest values of
+# 1 - random(), which are multiples of 2^-53.
+TAIL_LEVEL = 100
+
+
 def sample_level(rng: random.Random) -> int:
-    """Draw J with P(J >= l) = r^l."""
-    return int(math.floor(math.log1p(-rng.random()) / math.log(R_LEVEL)))
+    """Draw J with P(J >= l) = r^l, for every level l.
+
+    One uniform draw is inverted. Its 53-bit resolution would cap J near 106,
+    so the draws with 1 - u <= 2^-50, of total mass r^100 exactly, restart the
+    memoryless tail from level 100 instead.
+    """
+    u = rng.random()
+    if 1 - u <= 2.0 ** -50:
+        return TAIL_LEVEL + sample_level(rng)
+    return int(math.floor(math.log1p(-u) / math.log(R_LEVEL)))
 
 
 def block_flipper(flip: Callable, batched: bool) -> Callable[[int], int]:

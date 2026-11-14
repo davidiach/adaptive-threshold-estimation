@@ -1108,8 +1108,8 @@ $C=2^{32}C_*\approx3.5\cdot10^{16}$ and $\rho=1/4$, the width bound is
 below the trivial width $\rho/2$ only beyond about $8\cdot10^{35}$ flips,
 and later for smaller $\rho$. For a point mass at $1/2$ with $\rho=1/4$
 the proof's onset needs pilot depth $29$, a budget above $10^{17}$ flips.
-The [Lean components](ARBITRARY_LAW_FORMALIZATION.md) now have 834 exact
-statements and 832 transitive-axiom reports: finite and countable entropy transport, the finite
+The [Lean components](ARBITRARY_LAW_FORMALIZATION.md) now have 842 exact
+statements and 840 transitive-axiom reports: finite and countable entropy transport, the finite
 CDF envelope including its zero atom, and an observable paid-pilot/selected-
 continuation stage with physical caps and its original-experiment joint law.
 The canonical band cells are constructed for every finite increasing-gap
@@ -1163,9 +1163,17 @@ mass at zero and dyadic weights at most $C_0K_\alpha$ with
 $C_0=1+4\max\{4096,8\sqrt2\cdot28000\}$; the reported radius is at most six
 times that. The plan's certificate alone has no such bound: for small $\rho$
 the constant estimate is the better one. These are statements about the
-planner's numbers. End to end,
-the output of the exact planner gives minimax risk at most $44801\,K$ for
-every law of positive gaps. For the robust continuation, the race is
+planner's numbers. End to end, the estimator the planner returns is named in
+the statement: on the quantile split of every law of positive gaps, the plan
+or the constant $\rho/2$, whichever the planner chooses, has budget $B$ and
+risk at most $44801\,K$ with the exact integrals, and at most
+$(1+\tfrac85\max\{4096,224000\sqrt\theta\})K$ from a tight enclosure. The
+earlier minimax form of the $44801\,K$ bound names no estimator and already
+follows from the $28000\,K$ upper theorem. Because $\rho/(1+\sqrt B)\le K$,
+every one of these bounds holds for the constant alone once
+$B\le(2C-1)^2$, about $8\cdot10^9$ flips for $C=44801$; they have content
+beyond that budget. The plan's estimator uses the exact bank weights and null
+mixture of the reference law. For the robust continuation, the race is
 monotone in the flips, and its population error under a true law coupled
 above the reference is at most the reference bound plus the uncoupled mass;
 mass at zero in the reference is charged in full and no coin of gap zero is

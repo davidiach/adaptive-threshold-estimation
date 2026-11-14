@@ -36,16 +36,16 @@ statement. For the current tree the evidence is the CI run on that commit.
 | Finite-law bandwise-suffix optimizer and sufficient search family | [bandwise-suffix-20261104](bandwise-suffix-20261104/README.md) |
 | Total variation, rounding, transported enclosures and finite approximation | [selection-stability-20261104](selection-stability-20261104/README.md) |
 | Quarter smoothing in both KL directions | [quarter-smoothing-20261104](quarter-smoothing-20261104/README.md) |
-| Generic RMS obstruction transfer and additive submeasure localization with coefficient $1/128$ | [rms-localization-20261105](rms-localization-20261105/README.md) |
+| Generic RMS obstruction transfer and additive submeasure localization with coefficient $1/128$, conditional on a single-coin obstruction premise that Lean establishes for no gap law | [rms-localization-20261105](rms-localization-20261105/README.md) |
 | General-law confidence coefficients $10^{-17}$ and $750000$ | [entropy-confidence-20261105](entropy-confidence-20261105/README.md) |
-| Fractional-submeasure additive confidence localization with coefficient $1/128$ | [additive-confidence-20261105](additive-confidence-20261105/README.md) |
-| Common pairs from variance–null-work obstructions and the $1/128$ confidence consequence | [common-pair-20261105](common-pair-20261105/README.md) |
+| Fractional-submeasure additive confidence localization with coefficient $1/128$, from the same unestablished obstruction premise | [additive-confidence-20261105](additive-confidence-20261105/README.md) |
+| Common pairs from variance–null-work obstructions and the $1/128$ confidence consequence, given such an obstruction | [common-pair-20261105](common-pair-20261105/README.md) |
 | Selected-type information transfer through unbounded stopping | [adaptive-types-20261105](adaptive-types-20261105/README.md) |
 | Fresh-state upper-bound transfer and complete observed-state rates | [observed-state-upper-20261105](observed-state-upper-20261105/README.md) |
 | Continuous-magnitude observed-state lower bounds and regularity | [continuous-observed-lower-20261105](continuous-observed-lower-20261105/README.md) |
 | Finite-cell observed-state lower bound | [finite-observed-20261105](finite-observed-20261105/README.md) |
 | Smooth-density complexity and unbiased impossibility | [smooth-density-20261105](smooth-density-20261105/README.md) |
-| Prior-family and per-flip information inequalities for the all-law time-uniform lower bound (the complete theorem is a paper proof) | [anytime-lower-20261105](anytime-lower-20261105/README.md) |
+| Prior-family and per-flip information inequalities for the all-law time-uniform lower bound (the complete theorem is checked separately in [anytime-asymptotic-20261105](anytime-asymptotic-20261105/README.md)) | [anytime-lower-20261105](anytime-lower-20261105/README.md) |
 | Observable time-uniform confidence for known laws | [anytime-confidence-20261105](anytime-confidence-20261105/README.md) |
 | Logarithmic and intermediate rare power margins | [shifted-power-20261105](shifted-power-20261105/README.md) |
 | Rare power margins below exponent one | [sublinear-power-20261105](sublinear-power-20261105/README.md) |
@@ -281,9 +281,19 @@ experiment with coins of gap zero is not part of it.
 The [planner-output audit](known-law-planner-output-20261112/README.md) adds
 9 exact statements and transitive reports for the planner end to end: the
 quantile split is constructed for every law of positive gaps, and the
-planner's output gives minimax risk at most $44801$ times the selection
-functional with exact integrals, and the factor-two coefficient for every
-tight enclosure.
+minimax risk is at most $44801$ times the selection functional with exact
+integrals, and the factor-two coefficient for every tight enclosure. Those
+minimax statements name no estimator and already follow from the $28000$
+upper theorem. The [planner-estimator audit](known-law-planner-estimator-20261114/README.md)
+adds 8 exact statements and transitive reports in which the estimator the
+planner returns, the plan or the constant $\rho/2$, is named: it has budget
+$B$ and risk at most $44801$ times the selection functional with exact
+integrals, and the factor-two coefficient for every tight enclosure.
+
+The [dyadic-summability audit](dyadic-summability-20261114/README.md) adds 5
+exact statements and transitive reports proving that the two dyadic series of
+the frozen targets H3 and H4 converge. Those frozen targets bound `∑'` sums,
+which Mathlib sets to zero for a series that does not converge.
 
 The [robust-error audit](robust-error-transfer-20261113/README.md) adds 33
 exact statements and transitive reports for the first part of the robust

@@ -85,6 +85,46 @@ class RareEstimatorTests(unittest.TestCase):
             )
             self.assertLess(p.mse_bound, (p.rho / 2) ** 2)
 
+    def test_simulated_work_and_error_stay_within_the_plan(self):
+        # The plan's work formula and MSE certificate are not Lean-checked, so
+        # check them against seeded simulations rather than against the plan's
+        # own fields. Each law's population has every positive on its
+        # smallest gap, the hardest placement for the classifiers.
+        cases = (
+            (self.law, 100_000, 40, lambda pop: (1.0 if pop.random() < 0.1 else 0.0), 0.1),
+            (FiniteGapOracle(FiniteGapLaw([("1/2", "3/4"), ("1/16", "1/4")])), 200_000, 12,
+             lambda pop: 0.0 if pop.random() < 0.75 else 0.5 + 1 / 16, 0.25),
+        )
+        for law, budget, runs, bias, theta in cases:
+            with self.subTest(budget=budget):
+                plan = plan_known_rare(law, rho="1/4", budget=budget)
+                self.assertGreater(len(plan.levels), 1)
+                pop = Random(5)
+
+                def item():
+                    p = bias(pop)
+                    return lambda: int(pop.random() < p)
+
+                flips, squared = 0, 0.0
+                for run in range(runs):
+                    out = estimate_known_rare(item, plan, rng=Random(1000 + run))
+                    flips += out.flips
+                    squared += (float(out.value) - theta) ** 2
+                self.assertLess(flips / runs, float(plan.budget))
+                self.assertLess(squared / runs, float(plan.mse_bound))
+
+    def test_cap_search_stops_for_an_envelope_that_does_not_vanish(self):
+        class Stuck:
+            def split(self, rho, budget, precision):
+                return SplitIntegrals({0: F(4)}, F(0), F(0), lambda cap: F(1, 100),
+                                      lambda cap: F(0))
+
+            def null_prefix(self, h, t, tol):
+                return Interval(F(0), F(0))
+
+        with self.assertRaisesRegex(ValueError, "resolved_error must tend to zero"):
+            plan_known_rare(Stuck(), rho="1/4", budget=10**6)
+
     def test_continuous_null_integral(self):
         u = UniformUpperBand()
         self.assertEqual(u.null_prefix(1, 1, F(1, 100)).upper, F(1, 8) - F(1, 48))

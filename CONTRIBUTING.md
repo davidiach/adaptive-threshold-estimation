@@ -78,6 +78,10 @@ Frozen sources and manifests are part of the research contract. This includes
 `FROZEN.sha256`, the tier manifests, specification/dependency locks, and package
 manifests. Obtain explicit owner authorization for changes to frozen material
 and record the reason; never update a hash merely to silence a failed check.
+The [definition lock](tools/definition_lock.json) works the same way for
+project definitions: add entries for new definitions with
+`python tools/verify_project_axioms.py --add-definitions`, which never changes
+an existing entry, and treat a changed entry as a change to frozen material.
 Keep the pinned Lean/Mathlib dependencies and exact line endings intact.
 
 Published audits describe a particular source state and scope. Add a new,
@@ -89,11 +93,11 @@ instead of revising a historical report to claim it verified them.
 
 Choose checks from [VERIFY.md](docs/VERIFY.md#choose-checks-by-task). For a
 documentation-only change, validate relative links and heading anchors, run
-`git -c core.whitespace=cr-at-eol diff --check` and `python tools/freeze.py --verify`, and confirm that the
+`git -c core.whitespace=cr-at-eol diff --check` and `python tools/verify_locks.py`, and confirm that the
 diff contains only intended documentation. The `cr-at-eol` setting keeps
 CRLF files such as `docs/VERIFY.md` from being reported as trailing whitespace;
-`freeze.py --verify` covers only `FROZEN.sha256`, so run the matching verifier
-if the diff touches another locked path. Use the relevant proof, tool, toolkit,
+`verify_locks.py` covers the hash manifests, so run the matching audit if the
+diff touches a path in a specification lock. Use the relevant proof, tool, toolkit,
 or manuscript checks when those areas change.
 
 Before submitting, inspect `git diff --stat` and `git status --short` for generated
