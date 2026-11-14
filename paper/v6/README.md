@@ -15,8 +15,8 @@ multi-depth pilot with the conservative law it learns, that law's oracle
 comparison past a finite onset, the quantile comparison for laws with mass
 at zero, and the certificate and rate of a known-law plan, for exact
 integrals and for upper bounds within a factor two, with the planner's
-output end to end, and the transfer of the race's error and of its work
-bounds on one coin to larger gaps than the reference.
+output end to end, and the validity and rate of the plan of a reference law
+under every true law coupled above it, for a given coupling.
 The full arbitrary-law adaptation theorem remains a paper
 proof; the published PDF and its build record retain their original scope.
 
