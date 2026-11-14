@@ -5,7 +5,10 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import check_results_drift as drift  # noqa: E402
 from check_results_drift import RECORDS, check, compare  # noqa: E402
+import os
+import tempfile
 
 RECORD = {"config": {"k1": 0.25, "k2": 0.5}, "valid": True, "count": 3,
           "ratio": "533/183", "values": [4.281742112936694, 2.55351295663786e-15],
@@ -65,6 +68,29 @@ class DriftTests(unittest.TestCase):
     def test_nan_matches_only_nan(self):
         self.assertEqual(compare(float("nan"), float("nan")), [])
         self.assertTrue(compare(float("nan"), 1.0))
+
+    def test_a_record_its_check_stopped_writing_is_reported(self):
+        with tempfile.TemporaryDirectory(dir=drift.ROOT) as directory:
+            root = Path(directory)
+            old, new = root / "old.json", root / "new.json"
+            old.write_text("{}\n", encoding="utf-8")
+            marker = root / "marker"
+            marker.write_text("", encoding="utf-8")
+            os.utime(old, (marker.stat().st_mtime - 10,) * 2)
+            new.write_text("{}\n", encoding="utf-8")
+            os.utime(new, (marker.stat().st_mtime + 10,) * 2)
+            relative = lambda p: p.relative_to(drift.ROOT).as_posix()
+            self.assertEqual(drift.stale([relative(new)], marker), [])
+            self.assertEqual(len(drift.stale([relative(old)], marker)), 1)
+            self.assertEqual(len(drift.stale([relative(root / "missing.json")], marker)), 1)
+
+    def test_kept_copies_name_a_committed_record(self):
+        self.assertEqual(drift.extra_pairs([".runtime/a.json=results/constants_theory.json"]),
+                         {".runtime/a.json": "results/constants_theory.json"})
+        for bad in ("results/constants_theory.json", "=results/x.json", "a.json=docs/x.json"):
+            with self.subTest(bad=bad):
+                with self.assertRaises(ValueError):
+                    drift.extra_pairs([bad])
 
     def test_registered_records_exist(self):
         root = Path(__file__).resolve().parents[1]

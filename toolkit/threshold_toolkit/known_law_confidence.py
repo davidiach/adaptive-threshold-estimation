@@ -51,15 +51,18 @@ def known_law_interval(law: KnownGapOracle, *, rho: Exact, cap: int,
 
     Each median block has its own coin namespace and private seed. It is
     forcibly stopped at its share of cap, including between classifier flips.
-    The radius rounds sqrt(8 * plan.mse_bound) upwards. A vacuous bound returns
-    [0,rho] without sampling. Oracle validity remains the caller's premise.
+    The radius rounds sqrt(8 * plan.mse_bound) upwards. A radius of at least rho
+    returns [0,rho] without sampling: then [c-r,c+r] contains [0,rho] for every
+    centre c in [0,rho]. A smaller radius can still narrow [0,rho] when the
+    centre lies near an end, so it samples. Oracle validity remains the
+    caller's premise.
     """
     schedule = MedianSchedule(cap, rho=rho, delta=delta)
     base = plan_known_rare(law, rho=schedule.rho,
                            budget=schedule.base_expected_budget)
     radius = sqrt_interval(8 * base.mse_bound).upper
     full = ClosedInterval(0, schedule.rho)
-    if 2 * radius >= schedule.rho:
+    if radius >= schedule.rho:
         return full
     outputs = []
     offset = 0

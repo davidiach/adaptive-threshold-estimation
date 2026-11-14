@@ -8,7 +8,8 @@ registered here is an error. Prints the kernel report; writes nothing.
 """
 
 import subprocess
-from verify_blind_upper_components import (DECLARATION, FORBIDDEN, LEAN, strip_comments,
+from verify_blind_upper_components import (FORBIDDEN, LEAN, bind_restatements,
+                                           registered_names, strip_comments,
                                            validate_reports)
 
 MODULE = "ThresholdHC.ArbitraryLawAdaptation.TailObservable"
@@ -44,7 +45,7 @@ def declared_names():
         source = strip_comments(path.read_text(encoding="utf-8"))
         if FORBIDDEN.search(source):
             raise ValueError("Forbidden proof escape in " + path.name)
-        found += DECLARATION.findall(source)
+        found += registered_names(source)
     return found
 
 
@@ -315,8 +316,7 @@ example : ∀ (μ : Measure Gap) [IsProbabilityMeasure μ] (q : SignLaw) {ρ : �
       (z.1.1, z.2)) ≤
       524288 * ThresholdHC.EntropyTail.selection μ ρ (4 ^ J))} := @observable_tail_oracle_depths_eventually
 """
-    if source.count("example ") != len(NAMES):
-        raise ValueError("Each tail-observable declaration needs exactly one restated statement")
+    bind_restatements(source, NAMES)
     roots = {"ThresholdHC.ArbitraryLawAdaptation." + name for name in NAMES}
     return source + "".join("#print axioms " + name + "\n" for name in sorted(roots)), roots
 

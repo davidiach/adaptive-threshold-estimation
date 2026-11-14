@@ -159,3 +159,25 @@ unrestricted minimax model. These dependency hashes were recorded during review.
   which locked file matched only after line-ending normalization.
 - `verify_real.py` is unchanged. It still uses `assert`, and its locked record
   still describes what was verified before selection.
+
+## tools/definition_lock.json — new lock of project definitions, 14 November 2026
+
+- Created at the review of `b471d6b`, with the owner's request to fix the
+  review's findings. It is a new lock; no existing lock or frozen file changed.
+- The review found that the exact-type audits restate statements in terms of
+  project definitions that no lock or audit pinned, so a definition such as
+  `ordinaryWorkKernel` could change (17 to 170, say) while its proofs were
+  adjusted and every audit still passed. The lock records, for each of the
+  2,318 project definitions and inductive types reachable from a definition
+  that is not part of a proof, a fingerprint of its type and value with every
+  proof replaced by `True.intro`. A proof can change without changing it.
+- `tools/verify_project_axioms.py` compares the lock on every run, in CI's
+  whole-project job. A changed or removed entry fails. A new definition fails
+  until `--add-definitions` adds it; that option writes only new entries.
+- The fingerprints are of printed Lean terms, so a toolchain or Mathlib update
+  can change all of them at once. Regenerating the lock after such an update
+  needs the same authorization as any other change to frozen material.
+- The same audit now rejects exported instances that are scoped, prioritised,
+  outside the project, or new data-carrying instances on types the project
+  does not define. Six existing `MeasurableSpace` instances on `Option` and
+  `List` types are registered as the only such instances.

@@ -8,7 +8,8 @@ report; writes nothing.
 """
 
 import subprocess
-from verify_blind_upper_components import (DECLARATION, FORBIDDEN, LEAN, strip_comments,
+from verify_blind_upper_components import (FORBIDDEN, LEAN, bind_restatements,
+                                           registered_names, strip_comments,
                                            validate_reports)
 
 MODULE = "ThresholdHC.KnownLawPlanner.PlanCertificate"
@@ -38,7 +39,7 @@ def declared_names():
         source = strip_comments(path.read_text(encoding="utf-8"))
         if FORBIDDEN.search(source):
             raise ValueError("Forbidden proof escape in " + path.name)
-        found += DECLARATION.findall(source)
+        found += registered_names(source)
     return found
 
 
@@ -220,8 +221,7 @@ example : ∀ {ρ B θ : ℝ} (hρ : 0 < ρ) (hB : 0 < B) {J : ℕ} {k w : Fin (
       levelAccuracy ρ J ^ 2 +
       θ * (allocationCertificate (fun i : Fin (J+1) => 17*levelAccuracy ρ i.val) k) ^ 2 / B := @planCertificate_le_of_weights
 """
-    if source.count("example ") != len(NAMES):
-        raise ValueError("Each planner declaration needs exactly one restated statement")
+    bind_restatements(source, NAMES)
     roots = {"ThresholdHC.KnownLawPlanner." + name for name in NAMES}
     return source + "".join("#print axioms " + name + "\n" for name in sorted(roots)), roots
 

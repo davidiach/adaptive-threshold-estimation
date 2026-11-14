@@ -50,6 +50,7 @@ class BuildRecordTests(unittest.TestCase):
             "field": lambda r: r.pop("source_commit"),
             "status hash": lambda r: r.pop("status_manifest_sha256"),
             "unchecked change": lambda r: r["visual_pages_checked"].remove(7),
+            "unrecorded visual check": lambda r: r.pop("visual_pages_checked"),
             "page range": lambda r: r["changed_pages"].append(11),
             "relocation": lambda r: r["relocated_pages"].__setitem__("x", 2),
         }

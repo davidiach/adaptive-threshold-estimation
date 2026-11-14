@@ -381,7 +381,11 @@ read.
   every project module, checks the transitive axioms of every constant, not
   only registered theorems, and replays the project modules behind both
   halves of the main RMS law through the toolchain's `leanchecker`
-  ([first record](../results/project-axioms-20261109/README.md)). Modules
+  ([first record](../results/project-axioms-20261109/README.md)). Since
+  14 November 2026 it also rejects scoped, prioritised or new orphan
+  data-carrying instances and checks every project definition against a
+  [definition lock](../tools/definition_lock.json)
+  ([record](../results/project-definitions-20261114/README.md)). Modules
   outside that import closure are still not replayed. Mathlib `.olean` files
   come from the cache for the pinned revision `9bdd0bc`, with Lean
   `v4.36.0-rc1`.

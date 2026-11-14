@@ -706,7 +706,8 @@ identifies the proof checkpoint and source hashes.
 
 The plan that uses this design is specified in the next section, and its
 rate for exact integrals in the one after. The coefficients `C_0` and `C_*`
-are not formalized.
+are checked, for the planner's numbers, in the
+[section on upper bounds](#rate-of-a-plan-computed-from-upper-bounds).
 
 ## Known-law plan and its certificate
 
@@ -746,10 +747,17 @@ upper theorem.
   plan.
 
 The estimator observes flips only. The statements hold for every plan that
-meets the conditions, so they cover a planner that works from upper bounds.
-They do not cover the toolkit's planner as written: it uses the smaller price
-`80 (l+2) G-bar + 4 H^2/rho`, rounds its counts at random, and runs the
-coarse race of a correction on further flips of the same coin.
+meets the conditions, so they cover a planner that sets its caps, prices,
+terminal level and counts from upper bounds. The estimator itself still uses
+two exact quantities of the reference law: the bank weights
+`bandCost sigma j / integral d^-2 d sigma` of the core, and the null mixture
+of the whole law in the positive bank test. A planner that knew the law only
+through bounds would also need those from bounds; that is not covered.
+The statements do not cover the toolkit's planner as written: it uses the
+smaller price `80 (l+2) G-bar + 4 H^2/rho`, bank weights `a-bar_j / sum a-bar_i`
+built from the bounds and an interval test of the null likelihood, rounds its
+counts at random, and runs the coarse race of a correction on further flips
+of the same coin.
 
 Run `python tools/verify_known_law_planner.py` for 49 exact statements and 49
 transitive axiom reports, one for each declaration of the five modules. The
@@ -870,24 +878,58 @@ hypotheses can be met, and joins the validity of the plan to its rate:
 - for an enclosure whose envelope meets the termination requirement, the
   minimax risk at budget `B` is at most `min(rho/2, sqrt(certificate))`;
 - for every tight enclosure of the quantile split and weights within a factor
-  `theta`, the planner's output, the plan when `2048 z-bar <= rho` and the
-  constant otherwise, gives minimax risk at most
+  `theta`, the minimax risk is at most
   `(1 + (8/5) max(4096, 224000 sqrt(theta))) K`;
 - with the exact integrals and the optimal weights, for every probability law
   `mu` of positive gaps, `0 < rho <= 1/4` and `B > 0`, the minimax risk is at
   most `44801 K_(mu,rho)(B)`.
 
-The existing upper theorem bounds the minimax risk by 28000 times the
-selection value of every selection, with an estimator that runs each level
-at its least admissible cap. The statement here is for the output of the
-specified planner. For a reference law with mass at zero the module
-constructs the scaled quantile split and shows that its exact integrals, with
-the mass at zero added to the unresolved mass, are a tight enclosure.
+These three conclusions bound the minimax risk, an infimum over all
+estimators, and name no estimator. Their proofs go through the planner's
+output, but as statements they follow from the existing upper theorem, which
+bounds the minimax risk by `28000 K` under the same hypotheses; the weight
+bounds of the second can hold only when `theta >= 1`, where its coefficient
+exceeds 28000. The statement about the planner's own estimator is in the
+[next section](#the-planners-output-as-a-named-estimator). For a reference
+law with mass at zero the module constructs the scaled quantile split and
+shows that its exact integrals, with the mass at zero added to the unresolved
+mass, are a tight enclosure.
 
 Run `python tools/verify_known_law_planner_output.py` for 9 exact statements
 and 9 transitive axiom reports, one for each declaration of the module. The
 audit fails if a declaration is added without being registered. The
 [planner-output record](../results/known-law-planner-output-20261112/README.md)
+identifies the proof checkpoint and source hashes.
+
+## The planner's output as a named estimator
+
+[PlannerEstimator.lean](../lean/ThresholdHC/KnownLawPlanner/PlannerEstimator.lean)
+states the result for the estimator the planner returns. The planner runs its
+plan when `2048 z-bar <= rho` and the plan's certified risk
+`sqrt(certificate)` is at most `rho/2`, and returns the constant `rho/2`
+otherwise: the rate theorems bound the smaller of the two, so the comparison
+is part of the planner. In both branches the returned estimator, named in the
+statement, has expected work at most `B` under every sign law of rarity
+`rho`, and risk at most `C K_(mu,rho)(B)`:
+
+- `C = 44801` on the quantile split cut at the budget scale, with the exact
+  integrals and the optimal weights `sqrt(17 delta_l / k_l)`;
+- `C = 1 + (8/5) max(4096, 224000 sqrt(theta))` for a tight enclosure of that
+  split and weights within a factor `theta` of the optimal ones.
+
+The quantile split exists for every probability law of positive gaps, by
+`exists_quantile_split` of the section above, and so does a band index below
+its threshold (`exists_bandEdge_lt`), so the hypotheses can be met for every
+law. The plan's estimator uses the exact bank weights and null mixture
+described in the [plan section](#known-law-plan-and-its-certificate).
+Because `rho/(1+sqrt(B)) <= K`, the constant `rho/2` alone is within
+`C K` once `B <= (2C - 1)^2`, about `8.0 * 10^9` flips for `C = 44801`; the
+bound has content beyond that budget.
+
+Run `python tools/verify_known_law_planner_estimator.py` for 8 exact
+statements and 8 transitive axiom reports, one for each declaration of the
+module. The audit fails if a declaration is added without being registered.
+The [planner-estimator record](../results/known-law-planner-estimator-20261114/README.md)
 identifies the proof checkpoint and source hashes.
 
 ## Robust continuation: the race is monotone and its error transfers
@@ -956,12 +998,16 @@ holds at a reference gap `d_0` for a coin of every gap `d >= d_0`:
 - the ordinary work kernel `min(M, 17 d^-2 (1 + log+(M d^2)))` does not
   increase with the gap, so the work of any race is at most twice the kernel
   at `d_0`;
-- for a negative coin and a reference gap `d_0` in band `j`, the work of the
-  bank race is at most `(3/(2 d_0^2)) (1 + log(1/(eps w_j)))`: the race stops
-  by the crossing time of the matching negative reference, and the drift of
-  its score increases with the gap of the coin;
-- for a positive coin, the race is still running after `n` rounds with
-  probability at most `exp(-n d_0^2/2)`, and its work is at most
+- for a negative coin and a reference gap `d_0` in band `j`, with
+  `0 < eps <= 1` and `0 < w_j <= 1`, the work of the bank race is at most
+  `(3/(2 d_0^2)) (1 + log(1/(eps w_j)))`: the race stops by the crossing time
+  of the matching negative reference, and the drift of its score increases
+  with the gap of the coin;
+- for a positive coin, the race is still running after `n > 0` rounds with
+  probability at most `exp(-n d_0^2/2)` when the bank's allowance `U` and
+  null-likelihood bound `V` satisfy `U <= n d_0^2/3` and
+  `nullLaplace(mu, n) <= V <= u w_j e^U`, the conditions of the known-law
+  theorem; its work is at most
   `12 A(d_0)/d_0^2` with the three-piece surcharge at `d_0`: the race has
   stopped once the running mean of the bank's flips is above `1/2 + d_0/2`,
   and a low running mean is a lower set of tapes.
@@ -974,8 +1020,8 @@ Run `python tools/verify_robust_coin_work.py` for 9 exact statements and 9
 transitive axiom reports, one for each declaration of the module. The audit
 fails if a declaration is added without being registered. The
 [robust-work record](../results/robust-coin-work-20261113/README.md)
-identifies the proof checkpoint and source hashes. Across all twenty-six
-current component audits, 834 exact statements and 832 transitive axiom
+identifies the proof checkpoint and source hashes. Across all twenty-seven
+current component audits, 842 exact statements and 840 transitive axiom
 reports pass.
 
 ## Work still needed for the full theorem
