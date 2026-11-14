@@ -8,7 +8,8 @@ report; writes nothing.
 """
 
 import subprocess
-from verify_blind_upper_components import (DECLARATION, FORBIDDEN, LEAN, strip_comments,
+from verify_blind_upper_components import (FORBIDDEN, LEAN, bind_restatements,
+                                           registered_names, strip_comments,
                                            validate_reports)
 
 MODULE = "ThresholdHC.ArbitraryLawAdaptation.ZeroQuantile"
@@ -32,7 +33,7 @@ def declared_names():
         source = strip_comments(path.read_text(encoding="utf-8"))
         if FORBIDDEN.search(source):
             raise ValueError("Forbidden proof escape in " + path.name)
-        found += DECLARATION.findall(source)
+        found += registered_names(source)
     return found
 
 
@@ -114,8 +115,7 @@ example : ∀ (α : Measure ℝ) [IsProbabilityMeasure α] (hsupp : α (Set.Icc 
 example : ∀ (α : Measure ℝ) [IsProbabilityMeasure α] (hsupp : α (Set.Icc 0 (1 / 2))ᶜ = 0) {ρ : ℝ} (hρ1 : ρ ≤ 1) (B : ℝ),
     zeroSelection α ρ B ≤ quantileDesignValue α ρ B := @zeroSelection_le_quantileDesignValue
 """
-    if source.count("example ") != len(NAMES):
-        raise ValueError("Each zero-quantile declaration needs exactly one restated statement")
+    bind_restatements(source, NAMES)
     roots = {"ThresholdHC.ArbitraryLawAdaptation." + name for name in NAMES}
     return source + "".join("#print axioms " + name + "\n" for name in sorted(roots)), roots
 

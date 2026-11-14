@@ -98,6 +98,13 @@ At an average budget of 16,384 flips:
     (50% is the best case, when every item is far from 50/50.)
 ```
 
+The simulated lines use numpy's random generators, whose streams can change
+between numpy releases. The output above is from numpy 2.4.4 and scipy 1.17.1,
+the versions pinned in the repository's
+[requirements.txt](../requirements.txt); other versions can differ in the last
+digits of the simulated figures. The bounds and the simple plan are computed,
+not simulated, and do not depend on the version.
+
 How to read it:
 
 - **Hard to call** counts items within $B^{-1/2}$ of 50/50. This is the gap
@@ -511,8 +518,10 @@ $\Pr(D\le2^{-J})$ using flips alone, without candidate laws or integrals.
 allowance. See the [paper proof and example](../docs/ARBITRARY_LAW_TAIL.md).
 The bound has an eventual oracle-rate comparison for every positive-gap
 law, with a law-dependent onset. It is a tail-mass certificate, not a
-confidence interval for the positive fraction. Neither the new paper proof
-nor the Python execution is Lean-verified.
+confidence interval for the positive fraction. Statements (1) to (4) of the
+paper proof are Lean-checked for probes that read the original experiment's
+coins; see the [formal scope](../docs/ARBITRARY_LAW_TAIL.md). The Python
+execution is not Lean-verified.
 
 ## Adapt to an arbitrary unknown gap law
 

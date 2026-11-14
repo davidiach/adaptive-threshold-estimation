@@ -8,7 +8,8 @@ report; writes nothing.
 """
 
 import subprocess
-from verify_blind_upper_components import (DECLARATION, FORBIDDEN, LEAN, strip_comments,
+from verify_blind_upper_components import (FORBIDDEN, LEAN, bind_restatements,
+                                           registered_names, strip_comments,
                                            validate_reports)
 
 MODULE = "ThresholdHC.ArbitraryLawAdaptation.LearnedOracle"
@@ -34,7 +35,7 @@ def declared_names():
         source = strip_comments(path.read_text(encoding="utf-8"))
         if FORBIDDEN.search(source):
             raise ValueError("Forbidden proof escape in " + path.name)
-        found += DECLARATION.findall(source)
+        found += registered_names(source)
     return found
 
 
@@ -152,8 +153,7 @@ example : ∀ {R : Type} [MeasurableSpace R] (μ : Measure Gap) [IsProbabilityMe
       (4 ^ J) ≤
       16777216 * ThresholdHC.EntropyTail.selection μ ρ (4 ^ J)} := @original_pilotStage_oracle_eventually
 """
-    if source.count("example ") != len(NAMES):
-        raise ValueError("Each learned-oracle declaration needs exactly one restated statement")
+    bind_restatements(source, NAMES)
     roots = {"ThresholdHC.ArbitraryLawAdaptation." + name for name in NAMES}
     return source + "".join("#print axioms " + name + "\n" for name in sorted(roots)), roots
 

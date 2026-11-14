@@ -9,7 +9,7 @@ the [evidence index](../results/README.md) explains published checkpoints.
 
 | Task | Commands or command guide | Output and scope |
 |---|---|---|
-| Navigation or ordinary documentation | `git -c core.whitespace=cr-at-eol diff --check`; `python tools/freeze.py --verify`; check relative links and heading anchors | No proof rebuild needed when sources, specifications, tools, and dependencies are unchanged. This file and some others use CRLF line endings, which plain `--check` reports as trailing whitespace. `freeze.py --verify` covers only `FROZEN.sha256`; run the matching verifier for any other locked path. Inspect the final diff for unintended files. |
+| Navigation or ordinary documentation | `git -c core.whitespace=cr-at-eol diff --check`; `python tools/verify_locks.py`; check relative links and heading anchors | No proof rebuild needed when sources, specifications, tools, and dependencies are unchanged. This file and some others use CRLF line endings, which plain `--check` reports as trailing whitespace. `verify_locks.py` covers `FROZEN.sha256` (including a deleted line, which `freeze.py --verify` misses), the Tier 3 to Tier 6 locks and the published checksum manifests; run the matching audit for a path in a specification lock. Inspect the final diff for unintended files. |
 | Python toolkit | `python -m pip install -e ./toolkit`; `python -m unittest discover -s toolkit/tests -v`; `python toolkit/examples/quickstart.py`; `python toolkit/examples/rare_events.py` | Python implementation tests and examples; do not certify the implementation in Lean. |
 | Consolidated v6 manuscript | `python tools/build_v6.py --check`; `python -m unittest discover -s tools -p 'test_build_v6.py' -v`; `python tools/build_status_docs.py --check`; `python tools/check_build_record.py` | Checks inherited source identities, the merge of the shared rare-event appendices, assembly, references, and citations. After changing `paper/v6/status.json`, run `python tools/build_v6.py` and `python tools/build_status_docs.py`, which regenerates the status tables in `README.md` and `docs/RESULTS.md`. `check_build_record.py` confirms that the build the [v6 README](../paper/v6/README.md) links as current still describes its PDF, and warns when the sources have changed since. The [manuscript workflow](../.github/workflows/manuscript.yml) compiles the PDF and keeps the abstract and provenance note on page 1; [build and visually review](../paper/v6/README.md#reproduce) it when typeset content changes. |
 | Consolidated v5 manuscript | `python tools/build_v5.py --check`; `python -m unittest discover -s tools -p 'test_build_v5.py' -v` | Checks inherited source identities, assembly, references, and citations. [Build and visually review](../paper/v5/README.md#reproduce) the PDF when typeset content changes. |
@@ -21,7 +21,7 @@ the [evidence index](../results/README.md) explains published checkpoints.
 | Confidence-transfer research package | `python -m unittest discover -s toolkit/tests -p 'test_confidence*.py' -v`; `python research/2026-10-30-confidence-transfer/verify_transfer.py --output .runtime/confidence-transfer/transfer.json`; `python research/2026-10-30-confidence-transfer/verify_anytime.py` | Driver unit tests; exact rational smoothing, likelihood-factorization and null-work audits; exact error-spending identities and the optional-stopping path count, written to `.runtime/confidence-transfer/`. There are no tracked evidence records to compare with. They check finite computations, not the [paper proof](../research/2026-10-30-confidence-transfer/NOTE.md). |
 | Imported inputs and research packages | `python tools/verify_inputs.py`; `python tools/verify_research.py`; `python tools/verify_population_research.py` | Input identities and maintained research replay. Research diagnostics use temporary output and `.runtime/`; original records remain intact. |
 | Main RMS law | `python tools/verify_tier6.py --sequential --require-complete`; `python tools/verify_blind_upper_components.py --sequential` | Exact formal audits of both directions. Tier 6 writes tracked `results/`; use a disposable checkout. The upper audit writes `.runtime/`. |
-| Any Lean source | `python tools/verify_project_axioms.py`; add `--replay-main-theorem` for the kernel replay | Builds every module under `lean/ThresholdHC` and checks the transitive axioms of every constant they declare. Registers nothing and writes nothing. It does not check exact statement types; run the affected result's audit as well. |
+| Any Lean source | `python tools/verify_project_axioms.py`; add `--replay-main-theorem` for the kernel replay | Builds every module under `lean/ThresholdHC` and checks the transitive axioms of every constant they declare, every exported instance (named, global, default priority, no new data-carrying instance on a type the project does not define) and the fingerprint of every project definition against `tools/definition_lock.json`. A changed or removed definition fails; a new one fails until `--add-definitions` adds it, which never rewrites an existing entry. Registers no theorem and writes only with `--add-definitions`. It does not check exact statement types; run the affected result's audit as well. |
 | Another Lean result | [Theorem-to-audit map](../lean/README.md#main-theorem-entry-points), [baseline and tier sequence](#lean-kernel-checks) | Run the affected result's exact-target/axiom audit, including affected downstream results when shared dependencies change. Check locks first. |
 | Verification logic or registration | Relevant audit plus its matching `test_*.py` module; `python -m unittest discover -s tools -p 'test_*.py' -v` for all guard tests | Tests exercise validation guards; they do not replace the mathematical kernel audits. Use a disposable checkout for audits that overwrite published files. |
 | Numerical checks and recorded benchmarks | [Integrity and numerical sequence](#integrity-numerics-and-unit-tests), [benchmark protocol](../benchmark/README.md) | Some commands write `results/`. Replaying stored samples is distinct from rerunning held-out experiments. |
@@ -678,6 +678,7 @@ Both commands rewrite tracked records in their own directories (`construction-ch
 python tools/verify_inputs.py
 python tools/verify_experiment_lock.py
 python tools/freeze.py --verify
+python tools/verify_locks.py
 python tools/verify_lean_sources.py
 python tools/check_targets_numeric.py
 python tools/check_targets2_numeric.py
@@ -687,15 +688,18 @@ python -m unittest discover -s tools -p 'test_tier4_validation.py' -v
 python tools/check_power_bracket.py
 python proposals/constants/bias_audit.py
 python proposals/constants/uniform_constant_checks.py
+mkdir -p .runtime/drift && touch .runtime/drift/start
 python constants/score_constants.py constants/candidate.json
+cp results/constants_last.json .runtime/drift/constants_candidate.json
 python constants/score_constants.py constants/candidate_theory.json
+cp results/constants_last.json .runtime/drift/constants_candidate_theory.json
 python constants/score_constants.py constants/candidate_finite_grid.json
 python benchmark/verify_real.py
 python benchmark/verify_production.py
-python tools/check_results_drift.py
+python tools/check_results_drift.py --rewritten-since .runtime/drift/start --extra .runtime/drift/constants_candidate.json=results/constants_theory.json --extra .runtime/drift/constants_candidate_theory.json=results/constants_theory.json
 ```
 
-The shorter `python -m unittest discover -s tools -p 'test_*.py' -v` runs all validation test modules present in the checkout. Constant scoring without `--accept` evaluates the recorded configurations without changing the best-score ledger. Each run overwrites `results/constants_last.json`, so the candidates run in CI's order, which scores `candidate_finite_grid.json` last as in the committed record. `check_results_drift.py` then compares the five records these commands rewrite in place with the committed versions, ignoring line endings, wall-clock fields and last-digit float noise; a difference means a replay changed a published result. `verify_experiment_lock.py` requires the held-out record to hold exactly the locked selection's cells and recomputes every summary and the accept decision from the stored samples; it does not repeat the held-out experiment. CI runs it with `--strict`, before `verify_real.py` rewrites its locked record with the platform's line endings. `verify_lean_sources.py` scans every project Lean source with the strengthened proof-escape pattern: the frozen Tier 3–6 verifiers also scan unfrozen proof modules, with a pattern that misses `admit`, `#guard_msgs`, metaprogramming entry points such as `elab_rules`, and code hidden from its comment stripper by a string literal, an escaped identifier or the doc-comment opener `/--/`. The strengthened pattern rejects these forms; it is a textual guard, not a Lean parser. The locked `verify_real.py` compares tape copies of the benchmark's stopping state machines with an independent classifier; `verify_production.py` replays the production routines' exact draws across every recorded training and tuning configuration and checks them against the same kind of classifier. Full benchmark resimulation is a separate procedure in [benchmark/README.md](../benchmark/README.md).
+The shorter `python -m unittest discover -s tools -p 'test_*.py' -v` runs all validation test modules present in the checkout. Constant scoring without `--accept` evaluates the recorded configurations without changing the best-score ledger. Each run overwrites `results/constants_last.json`, so the candidates run in CI's order, which scores `candidate_finite_grid.json` last as in the committed record. `check_results_drift.py` then compares the five records these commands rewrite in place, and the kept copies of the first two constants runs, with the committed versions, ignoring line endings, wall-clock fields and last-digit float noise; a difference means a replay changed a published result. With `--rewritten-since` every record must also be newer than the marker, so a check that stopped writing its record fails instead of leaving the committed bytes in place. CI creates the marker at the start of its numerical job, before the first rewriting check. `verify_experiment_lock.py` requires the held-out record to hold exactly the locked selection's cells and recomputes every summary and the accept decision from the stored samples; it does not repeat the held-out experiment. CI runs it with `--strict`, before `verify_real.py` rewrites its locked record with the platform's line endings. `verify_lean_sources.py` scans every project Lean source with the strengthened proof-escape pattern: the frozen Tier 3–6 verifiers also scan unfrozen proof modules, with a pattern that misses `admit`, `#guard_msgs`, metaprogramming entry points such as `elab_rules`, and code hidden from its comment stripper by a string literal, an escaped identifier or the doc-comment opener `/--/`. The strengthened pattern rejects these forms; it is a textual guard, not a Lean parser. The locked `verify_real.py` compares tape copies of the benchmark's stopping state machines with an independent classifier; `verify_production.py` replays the production routines' exact draws across every recorded training and tuning configuration and checks them against the same kind of classifier. Full benchmark resimulation is a separate procedure in [benchmark/README.md](../benchmark/README.md).
 
 ## Lean kernel checks
 
@@ -1019,10 +1023,18 @@ multilevel sum, the rate for the quantile split, and the plan of a reference
 law with mass at zero with the planned coefficient and the radius
 coefficient.
 Run `python tools/verify_known_law_planner_output.py` for 9 exact statements
-and transitive reports on the planner's output end to end: the constructed
-quantile split, the output in minimax form, the rate from upper bounds and
-from exact integrals for every law, and the design of a reference law with
-mass at zero.
+and transitive reports on the planner end to end: the constructed quantile
+split, the plan in minimax form, the minimax rate from upper bounds and from
+exact integrals for every law, and the design of a reference law with mass
+at zero. The minimax statements name no estimator.
+Run `python tools/verify_known_law_planner_estimator.py` for 8 exact
+statements and transitive reports in which the estimator the planner returns
+is named: its choice between the plan and the constant `ρ/2`, and in both
+branches budget `B` and risk at most `44801 K` with exact integrals, or the
+factor-two coefficient for every tight enclosure.
+Run `python tools/verify_dyadic_summability.py` for 5 exact statements and
+transitive reports proving that the dyadic series of the frozen targets H3
+and H4 converge, with their frozen bounds as `HasSum` statements.
 Run `python tools/verify_robust_error_transfer.py` for 33 exact statements
 and transitive reports on the first part of the robust continuation: the
 order on tapes of flips, the monotone ordinary classifier and race, the

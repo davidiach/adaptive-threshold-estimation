@@ -68,8 +68,9 @@ The schedule controls the probability that a majority of blocks fail. Its
 total flip cap holds on every execution, including timed-out blocks.
 
 At this allowance the certificate is not yet informative. The radius is
-about $0.152$, more than $\rho/2$, so the reported interval is all of
-$[0,\rho]$. For the same law the radius is about $0.088$ at
+about $0.152$, more than $\rho/2$; the target here is $1/8=\rho/2$, so an
+interval centred near it contains all of $[0,\rho]$. A radius below $\rho$
+can still narrow $[0,\rho]$ when the centre lies near an end. For the same law the radius is about $0.088$ at
 $3\cdot10^7$ flips and $0.048$ at $10^8$ flips.
 
 For a complete cumulative-budget confidence sequence, use
@@ -82,10 +83,14 @@ fixed absolute floor. The [arbitrary-law adaptation proof](ARBITRARY_LAW_ADAPTAT
 also explains when a learned conservative law, including unresolved mass
 at zero, can replace the exact true law in this construction.
 All median blocks use separate coin namespaces; the driver purchases every
-flip. A vacuous radius returns $[0,\rho]$ without sampling. For the point
-mass at $1/2$ above, with $\rho=1/4$ and $\delta=1/20$, every stage is
-vacuous until the cumulative allowance reaches $268{,}435{,}452$ flips
-(stage 25, radius about $0.102$). Widths use the
+flip. A stage whose radius is at least $\rho$ returns $[0,\rho]$ without
+sampling: its interval would contain $[0,\rho]$ whatever the centre. For the
+point mass at $1/2$ above, with $\rho=1/4$ and $\delta=1/20$, every stage is
+skipped until the cumulative allowance reaches $67{,}108{,}860$ flips
+(stage 23, radius about $0.188$). Stages 23 and 24 (radius about $0.145$)
+narrow $[0,\rho]$ only when the median lies near an end; from stage 25
+($268{,}435{,}452$ flips, radius about $0.102$) the width $2r$ is below
+$\rho$. Widths use the
 executable plan's MSE certificate, rather than the noncomputable Lean
 controller's exact constant. The same sampling and oracle assumptions apply.
 
@@ -124,8 +129,8 @@ The implementation and the following adaptations have executable tests.
 The existing Lean upper theorem is about the mathematical experiment.
 A [Lean specification of the plan](ARBITRARY_LAW_FORMALIZATION.md#known-law-plan-and-its-certificate)
 proves the certificate below for every admissible plan. It uses the level
-price $128(\ell+1)\Gamma+6H^2/\rho$ of the checked upper theorem in place of
-the price below, Poisson counts in place of randomized rounding, and
+price $\min\{2\cdot4^k,\;128(\ell+1)\Gamma+6H^2/\rho+2O_\tau(4^k)+2z\,4^k\}$
+of the checked upper theorem at cap $4^k$ in place of the price below, Poisson counts in place of randomized rounding, and
 corrections that read both races from the same flips. The price and those
 two choices of this implementation are not Lean-checked.
 
@@ -241,7 +246,9 @@ most $(1+\tfrac85\max\{4096,8\cdot28000\sqrt\theta\})K$. The certified RMS
 of the plan alone has no such bound; when $Q=\rho$ the constant estimate is
 the one that attains the rate, as above. This
 implementation's smaller price and its rational enclosures are not
-Lean-checked. The [output of the Lean planner](ARBITRARY_LAW_FORMALIZATION.md#output-of-the-planner-end-to-end)
-is checked end to end: run on the quantile split with exact integrals and
-optimal weights, it gives minimax risk at most $44801\,K$ for every law of
-positive gaps.
+Lean-checked. The [estimator the Lean planner returns](ARBITRARY_LAW_FORMALIZATION.md#the-planners-output-as-a-named-estimator)
+is checked by name: run on the quantile split of any law of positive gaps,
+with exact integrals and optimal weights, the plan or the constant it chooses
+has budget $B$ and risk at most $44801\,K$. The Lean plan uses the exact bank
+weights and null mixture of the reference law, where this implementation
+uses weights from the oracle's bounds and an interval null test.

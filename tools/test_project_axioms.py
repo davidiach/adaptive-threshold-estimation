@@ -28,7 +28,7 @@ class ProjectAxiomAuditTests(unittest.TestCase):
         source = audit.audit_source(modules)
         for module in modules:
             self.assertIn(f"import {module}\n", source)
-        self.assertTrue(source.rstrip().endswith("#project_axioms"))
+        self.assertTrue(source.rstrip().endswith("#project_axioms\n#project_definitions"))
 
     def test_new_file_becomes_a_module_without_registration(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -89,6 +89,89 @@ class ProjectAxiomAuditTests(unittest.TestCase):
         self.assertNotIn("ThresholdHC.EntropyTail.Law", closure)
         with self.assertRaisesRegex(ValueError, "Missing project module"):
             audit.import_closure(("ThresholdHC.DoesNotExist",))
+
+    def test_import_closure_fails_closed_on_unreadable_imports(self):
+        # An indented import or two modules on one line would otherwise be
+        # skipped silently, and the replay would omit their modules.
+        for line in ("  import ThresholdHC.B\n", "import ThresholdHC.B import ThresholdHC.C\n"):
+            with self.subTest(line=line), tempfile.TemporaryDirectory() as directory:
+                root = Path(directory)
+                (root / "ThresholdHC").mkdir()
+                (root / "ThresholdHC" / "A.lean").write_text(line, encoding="utf-8")
+                (root / "ThresholdHC" / "B.lean").write_text("", encoding="utf-8")
+                (root / "ThresholdHC" / "C.lean").write_text("", encoding="utf-8")
+                if line.startswith(" "):
+                    self.assertEqual(audit.import_closure(("ThresholdHC.A",), root),
+                                     ["ThresholdHC.A", "ThresholdHC.B"])
+                else:
+                    with self.assertRaisesRegex(ValueError, "Unsupported import syntax"):
+                        audit.import_closure(("ThresholdHC.A",), root)
+
+    def test_instances_are_named_global_default_and_not_new_orphans(self):
+        orphans = "".join(f"PROJECT_INSTANCE {name} global 1000 orphan\n"
+                          for name in sorted(audit.ORPHAN_INSTANCES))
+        clean = ("PROJECT_INSTANCE ThresholdHC.A.law_probability global 1000 prop\n"
+                 "PROJECT_INSTANCE ThresholdHC.A.controlSpace global 1000 data\n" + orphans)
+        self.assertEqual(len(audit.validate_instances(clean)), 2 + len(audit.ORPHAN_INSTANCES))
+        cases = (
+            ("", "report is missing"),
+            (clean + "PROJECT_INSTANCE Mathlib.foo global 1000 data\n", "outside the project"),
+            (clean + "PROJECT_INSTANCE [anonymous] global 1000 data\n", "outside the project"),
+            (clean + "PROJECT_INSTANCE ThresholdHC.A.hijack scoped:ThresholdHC.A 1000 data\n",
+             "Scoped project instance"),
+            (clean + "PROJECT_INSTANCE ThresholdHC.A.hijack global 10000 data\n", "priority"),
+            (clean + "PROJECT_INSTANCE ThresholdHC.A.hijack global 1000 orphan\n",
+             "New data-carrying instance"),
+            (clean.replace(orphans.splitlines(True)[0], ""), "orphan instance missing"),
+        )
+        for output, message in cases:
+            with self.subTest(message=message):
+                with self.assertRaisesRegex(ValueError, message):
+                    audit.validate_instances(output)
+
+    def test_definition_fingerprints_are_read_completely(self):
+        output = ("PROJECT_DEFINITIONS count=2\n"
+                  "PROJECT_DEFINITION ThresholdHC.A.f 12:34\nPROJECT_DEFINITION ThresholdHC.A.g 5\n")
+        self.assertEqual(audit.definition_fingerprints(output),
+                         {"ThresholdHC.A.f": "12:34", "ThresholdHC.A.g": "5"})
+        for bad, message in (
+            (output.replace("count=2", "count=3"), "incomplete"),
+            (output.replace("PROJECT_DEFINITIONS count=2\n", ""), "incomplete"),
+            ("PROJECT_DEFINITIONS count=0\n", "incomplete"),
+            (output.replace("count=2", "count=3") + "PROJECT_DEFINITION ThresholdHC.A.f 1\n",
+             "Duplicate"),
+        ):
+            with self.subTest(message=message):
+                with self.assertRaisesRegex(ValueError, message):
+                    audit.definition_fingerprints(bad)
+
+    def test_locked_definitions_cannot_change_or_disappear(self):
+        locked = {"ThresholdHC.A.f": "1:2", "ThresholdHC.A.g": "3:4"}
+        self.assertEqual(audit.compare_definitions(locked, dict(locked)), [])
+        self.assertEqual(audit.compare_definitions(locked, {**locked, "ThresholdHC.A.h": "5"}),
+                         ["ThresholdHC.A.h"])
+        with self.assertRaisesRegex(ValueError, "changed: ThresholdHC.A.f"):
+            audit.compare_definitions(locked, {**locked, "ThresholdHC.A.f": "1:9"})
+        with self.assertRaisesRegex(ValueError, "removed: ThresholdHC.A.g"):
+            audit.compare_definitions(locked, {"ThresholdHC.A.f": "1:2"})
+
+    def test_adding_definitions_keeps_existing_entries(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "lock.json"
+            lock = {"description": "test", "definitions": {"ThresholdHC.A.f": "1:2"}}
+            actual = {"ThresholdHC.A.f": "1:2", "ThresholdHC.A.g": "3:4"}
+            audit.add_definitions(path, lock, actual, ["ThresholdHC.A.g"])
+            written = audit.read_lock(path)
+            self.assertEqual(written["definitions"], actual)
+            self.assertEqual(written["description"], "test")
+            self.assertEqual(written["added"][-1]["count"], 1)
+
+    def test_committed_lock_is_well_formed(self):
+        lock = audit.read_lock(audit.DEFINITION_LOCK)
+        self.assertGreater(len(lock["definitions"]), 2000)
+        self.assertIn("ThresholdHC.KnownLawPlanner.quantilePlanEstimator", lock["definitions"])
+        self.assertTrue(all(name.startswith("ThresholdHC.") or name.startswith("_private.ThresholdHC.")
+                            for name in lock["definitions"]))
 
 
 if __name__ == "__main__":

@@ -36,6 +36,36 @@ class LeanSourceGuardTests(unittest.TestCase):
             found = guard.violations(paths)
         self.assertEqual(len(found), 5, found)
 
+    def test_compiled_code_numeral_keywords_and_instance_overrides_are_rejected(self):
+        # Each of these elaborates in Lean 4.36, and the frozen pattern misses it.
+        sources = {
+            "native.lean": "example : 2 + 2 = 4 := by decide (native := true)\n",
+            "config.lean": "example : 2 + 2 = 4 := by decide (config := { native := true })\n",
+            # Lean ends the numeral at the letter, so this declares an axiom.
+            "numeral.lean": "def x : Nat := 1axiom bad : False\n",
+            "scoped.lean": "scoped instance hijack : LE Nat := ⟨fun _ _ => True⟩\n",
+            "priority.lean": "instance (priority := high) hijack : LE Nat := ⟨fun _ _ => True⟩\n",
+            "attribute.lean": "attribute [scoped instance] Nat.instLE\n",
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            paths = []
+            for name, text in sources.items():
+                path = Path(directory) / name
+                path.write_text(text, encoding="utf-8")
+                paths.append(path)
+                self.assertIsNone(TIER6_FORBIDDEN.search(strip_comments(text)), name)
+            found = guard.violations(paths)
+        self.assertEqual(len(found), len(sources), found)
+
+    def test_ordinary_words_are_not_mistaken_for_escapes(self):
+        sources = {"words.lean": "open scoped ENNReal\ndef stop_x (hρ1 : 1 ≤ 2) : Nat := 0\n"
+                                 "-- an Alternative and nativeish name in a comment\n"
+                                 "def selectedAlternative : Nat := 1\n"}
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "words.lean"
+            path.write_text(sources["words.lean"], encoding="utf-8")
+            self.assertEqual(guard.violations([path]), [])
+
     def test_unclosed_comment_is_reported(self):
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory) / "open.lean"

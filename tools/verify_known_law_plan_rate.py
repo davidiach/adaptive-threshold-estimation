@@ -8,7 +8,8 @@ writes nothing.
 """
 
 import subprocess
-from verify_blind_upper_components import (DECLARATION, FORBIDDEN, LEAN, strip_comments,
+from verify_blind_upper_components import (FORBIDDEN, LEAN, bind_restatements,
+                                           registered_names, strip_comments,
                                            validate_reports)
 
 MODULE = "ThresholdHC.KnownLawPlanner.PlanQuantileRate"
@@ -30,7 +31,7 @@ def declared_names():
         source = strip_comments(path.read_text(encoding="utf-8"))
         if FORBIDDEN.search(source):
             raise ValueError("Forbidden proof escape in " + path.name)
-        found += DECLARATION.findall(source)
+        found += registered_names(source)
     return found
 
 
@@ -109,8 +110,7 @@ example : ∀ (σ τ ζ : Measure Gap) [IsFiniteMeasure σ] [IsFiniteMeasure τ]
       ENNReal.ofReal (6 * (1 + 8/5 * max 2048 (28000 * sqrt θ))) *
       ThresholdHC.EntropyTail.selection (σ+τ+ζ) ρ B := @quantile_plan_radius
 """
-    if source.count("example ") != len(NAMES):
-        raise ValueError("Each plan-rate declaration needs exactly one restated statement")
+    bind_restatements(source, NAMES)
     roots = {"ThresholdHC.KnownLawPlanner." + name for name in NAMES}
     return source + "".join("#print axioms " + name + "\n" for name in sorted(roots)), roots
 
