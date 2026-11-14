@@ -369,6 +369,13 @@ unused flips of the same persistent coin; conditional on its parameters,
 these suffixes remain fresh iid tapes. Fresh production coins and private
 randomness remain independent of the pilot. Finally, the capped-median
 argument supplies a physical cap on all paths.
+The correction second moments, the telescoping sum and the expected-work
+allocation are
+[Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#robust-continuation-the-plan-under-the-true-law)
+under the true law for the plan of the reference, in the Poisson multilevel
+estimator of the checked known-law plan, which reads both races of a
+correction from the same flips. Clipping, the capped median and the
+independence from the pilot are not yet checked.
 
 For completeness, the quantile design used by the executable planner also
 has a universal comparison in the presence of a zero atom. Write
@@ -412,7 +419,12 @@ constant's bound $\rho/2$ and the certified risk of the plan: for the plan with
 the level price of that theorem, every enclosure within a factor two of the
 design integrals, and weights within a factor two. The constant fallback
 for a large unresolved mass obeys the same bound. The estimator that runs
-the plan of a reference law with mass at zero is not formalized.
+the plan of a reference law with mass at zero is
+[Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#robust-continuation-the-plan-under-the-true-law)
+with the bank whose null law is the positive part: under every true law
+coupled above the reference its expected work is at most the budget and its
+root-mean-square risk at most $C_0K_\alpha(b)$. The coupling is a
+hypothesis there, and the median with its radius is not covered.
 
 ## 5. Online composition and the effective budget
 
@@ -512,9 +524,10 @@ factor two and for a reference law with mass at zero, with $C_0$ and $C_*$
 of section 4 at the multilevel coefficient 28000, as statements about the
 plan's certificate. The error and work certificates of each level race are
 checked under a true law coupled above its reference, including a
-reference with mass at zero. Formalization remains for the rest of the
-robustness transfer, the corrections and the plan under the true law
-first, and for the full adaptive controller. Existing Lean
+reference with mass at zero, and so is the plan of the reference as an
+estimator, with risk at most $C_0K_\alpha$. Formalization remains for the
+rest of the robustness transfer, the coupling from CDF domination and the
+capped median first, and for the full adaptive controller. Existing Lean
 results establish the positive-gap quantile-tail floor, objective floor,
 budget scaling and known-law foundations used here; they do not automatically
 formalize this new composition. Python and its PRNG remain unverified.

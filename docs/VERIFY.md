@@ -1037,3 +1037,8 @@ statements and transitive reports on the level certificates of the race
 under a true law coupled above its reference: the split of a coupling along
 the design, the selected core, resolved tail and unresolved part, and the
 level work and level error.
+Run `python tools/verify_robust_plan.py` for 20 exact statements and
+transitive reports on the plan of a reference law under the true law: the
+level races designed from the reference, the validity of an admissible
+plan, and one estimator with risk at most `C_0 K_alpha` under every true law
+coupled above the reference.

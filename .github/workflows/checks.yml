@@ -181,6 +181,8 @@ jobs:
         run: python -m unittest discover -s tools -p 'test_robust_coin_work.py' -v
       - name: Regression tests for the robust-level audit
         run: python -m unittest discover -s tools -p 'test_robust_level_certificates.py' -v
+      - name: Regression tests for the robust-plan audit
+        run: python -m unittest discover -s tools -p 'test_robust_plan.py' -v
       - name: Regression tests for the quantile-model and upper-theorem audits
         run: |
           python -m unittest discover -s tools -p 'test_entropy_tail_components.py' -v
@@ -532,6 +534,8 @@ jobs:
         run: python tools/verify_robust_coin_work.py
       - name: Verify the level certificates of the race under a coupled law
         run: python tools/verify_robust_level_certificates.py
+      - name: Verify the plan of a reference law under the true law
+        run: python tools/verify_robust_plan.py
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
       - uses: actions/upload-artifact@v4

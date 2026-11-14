@@ -851,10 +851,11 @@ These are statements about the numbers the planner computes. The experiment
 of the upper theorem has positive gaps only, so the estimator of a reference
 law with mass at zero, with the fair-coin likelihood its bank uses for that
 mass, is not formalized. Nor is the rational arithmetic that produces a tight
-enclosure for a finite law. The level races of such a reference are covered
-[below](#robust-continuation-level-certificates-under-a-coupled-law) with a
-bank whose null law is the positive part, which needs no fair-coin
-likelihood.
+enclosure for a finite law. The level races of such a reference and the
+estimator that runs its plan are covered below
+([levels](#robust-continuation-level-certificates-under-a-coupled-law),
+[plan](#robust-continuation-the-plan-under-the-true-law)) with a bank whose
+null law is the positive part, which needs no fair-coin likelihood.
 
 Run `python tools/verify_known_law_plan_tight_rate.py` for 31 exact statements
 and 31 transitive axiom reports, one for each declaration of the three
@@ -1026,16 +1027,76 @@ work bound is the level price of the zero-atom design with unresolved mass
 `z_0 + zeta(all gaps)`. A bank that evaluates the null mixture of the whole
 reference law is a different test and is not the one checked.
 
-The coupling in this form is a hypothesis. The second moments of the
-corrections and the plan under the true law are not covered.
+The coupling in this form is a hypothesis. The corrections and the plan
+under the true law are in the next section.
 
 Run `python tools/verify_robust_level_certificates.py` for 18 exact
 statements and 18 transitive axiom reports, one for each declaration of the
 two modules. The audit fails if a declaration is added without being
 registered. The
 [robust-level record](../results/robust-level-certificates-20261113/README.md)
-identifies the proof checkpoint and source hashes. Across all twenty-seven
-current component audits, 852 exact statements and 850 transitive axiom
+identifies the proof checkpoint and source hashes.
+
+## Robust continuation: the plan under the true law
+
+[RobustPlan.lean](../lean/ThresholdHC/RobustContinuation/RobustPlan.lean)
+runs the plan of the reference under the true law. The level race of level
+`l` is designed from the reference alone: band weights of `sigma`, null law
+`eta`, allowances `eps_l` and `rho eps_l / c`, and a cap `4^(kappa l)`, for
+`rho <= c`. The plan's estimator is the Poisson multilevel estimator of the
+known-law plan over the corrections of these races. It has no argument for
+the true law.
+
+The true law `mu` is a probability law of the form `pi_2 + mu_0`, with `pi`
+and `mu_0` as in the previous section. Under `mu`, for every sign law with
+positive fraction at most `rho`:
+
+- the race of level `l` has bias at most `delta_l`, and its correction has
+  second moment at most `17 delta_l`, at caps that pass the error test of the
+  reference design and with `zeta(all gaps) + mu_0(all gaps) <= delta_l/8`;
+- the expected work of the race is at most the level price of the reference
+  design with unresolved mass `zeta(all gaps) + mu_0(all gaps)`;
+- a plan computed from an enclosure of the reference design whose unresolved
+  mass covers `zeta(all gaps) + mu_0(all gaps)` spends at most `B` in
+  expectation and has root-mean-square risk at most the square root of its
+  certificate `delta_J^2 + sum_l 17 delta_l / r_l`. This holds for any
+  admissible caps and counts, and for the planner's searched caps and counts.
+
+The work and risk bounds of the known-law plan are stated for an arbitrary
+family of calls and an arbitrary law of the experiment, so the reference
+enters through the calls and the true law through the experiment.
+
+[RobustPlannerOutput.lean](../lean/ThresholdHC/RobustContinuation/RobustPlannerOutput.lean)
+combines this with the rate of the zero-atom plan. For a reference law
+`alpha = z_0 delta_0 + (1 - z_0) eta` the uncoupled part has mass `z_0`.
+
+- **From upper bounds.** For the zero-atom quantile design of `alpha`, every
+  enclosure tight at `z_0 + zeta(all gaps)` and weights within a factor two
+  of the optimal ones, there is one estimator such that under every true law
+  coupled above `alpha` the expected work is at most `B` and the
+  root-mean-square risk at most `C_0 K_alpha(B)`, with `C_0` at the
+  multilevel coefficient 28000.
+- **Exact planner.** For every `eta`, `0 <= z_0 < rho <= 1/4` and `B > 0`
+  there is one estimator with the same two bounds under every true law
+  coupled above `alpha`.
+
+The estimator is fixed by the reference before the true law is chosen: the
+statements have the form "there is an estimator such that for every true
+law". It is the plan's estimator, or the constant `rho/2` when the unresolved
+mass is large or the plan's certified risk is above `rho/2`.
+
+The coupling is a hypothesis. The Lean estimator draws Poisson counts, reads
+both races of a correction from the same flips, and uses the bank whose null
+law is the positive part of the reference; the toolkit's estimator differs.
+The physical-cap median and the connection to the paid stage are not
+covered.
+
+Run `python tools/verify_robust_plan.py` for 20 exact statements and 20
+transitive axiom reports, one for each declaration of the two modules. The
+audit fails if a declaration is added without being registered. The
+[robust-plan record](../results/robust-plan-20261114/README.md)
+identifies the proof checkpoint and source hashes. Across all twenty-eight
+current component audits, 872 exact statements and 870 transitive axiom
 reports pass.
 
 ## Work still needed for the full theorem
@@ -1062,9 +1123,11 @@ transfers to a true law coupled above the reference, with mass at zero in
 the reference charged in full and no coin of gap zero. Its work bounds on
 one coin hold at the reference gap for every larger gap, and the error and
 work certificates of each level race hold under a true law coupled above
-the reference, including a reference with mass at zero. The coupling in
-the form used there must be derived from CDF domination. The corrections
-and the plan under the true law, the physical-cap median and
+the reference, including a reference with mass at zero. The plan of the
+reference is valid under the true law, and one estimator fixed by the
+reference has risk at most `C_0 K_alpha` under every true law coupled
+above it. The coupling in the form used there must be derived from CDF
+domination. The physical-cap median and
 the connection to the paid stage must still be proved. Finally the stages need to be joined into the
 all-budget controller, with fresh stages, nested intervals, simultaneous
 coverage and eventual oracle width. These conclusions must be proved, not

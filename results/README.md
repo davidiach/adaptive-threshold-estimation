@@ -308,3 +308,11 @@ $\delta_l$. The bank's null law is the positive part of the reference, so a
 reference with mass at zero needs no coin of gap zero. The coupling in that
 form is a hypothesis, and the corrections and the plan under the true law
 are not part of it.
+
+The [robust-plan audit](robust-plan-20261114/README.md) adds 20 exact
+statements and transitive reports for the plan of a reference law under the
+true law. An admissible plan spends at most the budget and has
+root-mean-square risk at most the square root of its certificate, and one
+estimator, fixed by the reference $\alpha$, has risk at most $C_0K_\alpha$
+under every true law coupled above $\alpha$. The coupling is a hypothesis;
+the capped median and the connection to the paid stage are not part of it.
