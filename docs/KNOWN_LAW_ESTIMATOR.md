@@ -110,6 +110,10 @@ endpoints for logarithmic work integrals.
   $H^+\ge\int d^{-1}\,d\tau$.
   The two functions of the cap $M$ bound $\eta_{\sigma+\tau}(M)$ and
   $O_\tau(M)$ as defined in the interface. The error envelope must tend to zero.
+  The contract sets no rate, so the cap search stops at
+  $\max\{4^{100},\lceil B\rceil^2\}$; if a level's allowance is not reached
+  by then, the planner returns the constant $\rho/2$, whose certificate holds
+  whatever the oracle says. An unlimited search might have found a better plan.
 - `null_prefix(heads,tails,tolerance)` encloses the probability of one
   particular ordered prefix under the full all-negative mixture. Integrate
   $(1/2-d)^{\mathrm{heads}}(1/2+d)^{\mathrm{tails}}$ under the original
