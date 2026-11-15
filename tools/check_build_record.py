@@ -6,7 +6,9 @@ typeset, so this check guards the facts a reader relies on.
 
 Errors (exit 1): the record does not describe its own PDF (SHA-256, size or
 page count), lacks a required field, or lists a changed page that its visual
-check does not cover or that lies outside the document.
+check does not cover, or does not record, or that lies outside the document.
+The page count needs pdfinfo (poppler); without it the count is skipped with a
+warning, and --require-page-count, which CI passes, makes that an error.
 
 Staleness (warning; exit 1 only with --strict): the record's TeX and
 status.json hashes no longer match the current sources, so the linked PDF no
@@ -74,7 +76,9 @@ def record_errors(record: dict, pdf: Path, pages: int | None) -> list[str]:
     for page in changed + list(visual or []):
         if not (isinstance(page, int) and 1 <= page <= total):
             errors.append(f"page {page!r} lies outside 1..{total}")
-    if visual is not None and set(changed) - set(visual):
+    if changed and visual is None:
+        errors.append("changed pages listed but no visual_pages_checked recorded")
+    elif visual is not None and set(changed) - set(visual):
         errors.append("changed pages not visually checked: "
                       + ", ".join(map(str, sorted(set(changed) - set(visual)))))
     for new, old in record.get("relocated_pages", {}).items():
@@ -100,11 +104,19 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--strict", action="store_true",
                         help="also fail when the current build no longer matches the sources")
+    parser.add_argument("--require-page-count", action="store_true",
+                        help="fail when pdfinfo cannot read the page count")
     args = parser.parse_args(argv)
     pdf, record_path = current_links()
     record = json.loads(record_path.read_text(encoding="utf-8"))
     name = record_path.relative_to(ROOT).as_posix()
-    errors = record_errors(record, pdf, pdf_pages(pdf))
+    pages = pdf_pages(pdf) if pdf.is_file() else None
+    if pages is None and pdf.is_file():
+        if args.require_page_count:
+            print(f"::error::{name}: pdfinfo could not read the page count of {pdf.name}")
+            return 1
+        print(f"::warning::{name}: pdfinfo is unavailable; the page count was not checked")
+    errors = record_errors(record, pdf, pages)
     if errors:
         print("\n".join(f"::error::{name}: {error}" for error in errors))
         return 1

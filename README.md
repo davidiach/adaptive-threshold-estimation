@@ -65,11 +65,11 @@ the gap law is known unless a row says otherwise.
 
 | Result | Status | Details |
 |---|---|---|
-| For every gap law the risk $R$ satisfies $10^{-17}\mathcal K\le R\le28000\,\mathcal K$, where $\mathcal K$ is an entropy–tail selection functional | Lean-checked | [Scope](docs/RESULTS.md#general-law-rare-event-characterization) |
-| A closed formula $Q$ with $\mathcal K\le Q\le\frac{31}{20}\mathcal K$; the least possible factor is about $1.4626$ | Lean-checked | [Scope](docs/RESULTS.md#known-finite-gap-rare-events-closed-quantile-characterization) · [Factor](docs/RESULTS.md#sharp-finite-vector-quantile-factor) |
+| For every gap law, every rarity $0<\rho\le1/4$ and every budget $B>0$, the risk $R$ satisfies $10^{-17}\mathcal K\le R\le28000\,\mathcal K$, where $\mathcal K$ is an entropy–tail selection functional | Lean-checked | [Scope](docs/RESULTS.md#general-law-rare-event-characterization) |
+| A closed formula $Q$ with $\mathcal K\le Q\le\frac{31}{20}\mathcal K$; the least possible factor is the unique root of a scalar equation, which Lean places in $(\sqrt2,\frac{31}{20})$ and an exact-rational check puts at about $1.4626$ | Lean-checked; decimal by rational certificate | [Scope](docs/RESULTS.md#known-finite-gap-rare-events-closed-quantile-characterization) · [Factor](docs/RESULTS.md#sharp-finite-vector-quantile-factor) |
 | Critical quadratic law $F(d)=(4d)^2$: the rate is $\min(\rho,\sqrt{\rho L(1+\log L)/B})$ with $L=1+\log(1/\rho)$, which refutes a proposed characterization by a simpler modulus $\Psi$ | Lean-checked | [Scope](docs/RESULTS.md#critical-power-margin-full-minimax-characterization) |
 | Power-law gaps: the rates for exponents below and above two | Lean-checked | [Above two](docs/RESULTS.md#rare-event-power-margins-above-two) · [One to two](docs/RESULTS.md#logarithmic-and-intermediate-rare-power-margins) · [Below one](docs/RESULTS.md#rare-event-power-margins-below-exponent-one) |
-| $\Psi$ still bounds the risk from below for every gap law, with coefficient $10^{-17}$ | Lean-checked | [Scope](docs/RESULTS.md#rare-event-optimizer) |
+| $\Psi$ still bounds the risk from below for every gap law, $0<\rho\le1/4$ and $B>0$, with coefficient $10^{-17}$ | Lean-checked | [Scope](docs/RESULTS.md#rare-event-optimizer) |
 | $\Psi$ in closed form within a factor $\sqrt2$, and one power-law rate with constants independent of the exponent | Paper proof | [Scope](docs/RESULTS.md#the-variational-modulus-in-closed-form) |
 | A stopping program with an exact dual, and certificates within a factor sixteen of the minimax risk | Lean-checked | [Scope](docs/RESULTS.md#general-law-rare-event-characterization) |
 | Hard caps on the number of flips; fixed-confidence radius of order $\mathcal K(B/\log(1/\delta))$; a time-uniform rate for a known law and a lower bound of the same order, not composed in Lean | Lean-checked | [Caps](docs/RESULTS.md#hard-observation-caps-for-the-rms-rates) · [Confidence](docs/RESULTS.md#confidence-rates-and-sequential-stopping) |
@@ -107,7 +107,7 @@ Current material:
 | Path | What it holds | Start with |
 |---|---|---|
 | [paper/](paper/README.md) | The manuscripts. Version 6 is the current paper; the others are its preserved sources | [paper/README.md](paper/README.md) |
-| [lean/](lean/README.md) | The Lean 4 formalization, about 1,150 modules | [lean/README.md](lean/README.md) |
+| [lean/](lean/README.md) | The Lean 4 formalization, about 1,190 modules | [lean/README.md](lean/README.md) |
 | [docs/](docs/README.md) | Guides: results and scope, verification commands, work plan, and one note for each result | [docs/README.md](docs/README.md) |
 | [tools/](tools/README.md) | Audit scripts that check exact statements and axioms, their tests, and the manuscript generators | [tools/README.md](tools/README.md) |
 | [results/](results/README.md) | Evidence records of audits and experiments. A record describes one checkpoint and is not edited afterwards | [results/README.md](results/README.md) |
@@ -146,7 +146,9 @@ python tools/verify_blind_upper_components.py --sequential
 
 The [verification guide](docs/VERIFY.md) covers the other theorems, exact target
 types, transitive-axiom audits, source hashes, and numerical checks.
-[GitHub Actions](.github/workflows/checks.yml) runs the complete suite.
+[GitHub Actions](.github/workflows/checks.yml) runs every maintained audit; the two
+intermediate entropy-tail audits that [VERIFY.md](docs/VERIFY.md) lists as outside
+CI are the exception.
 Use a disposable checkout for reproduction: some checks write diagnostic files.
 
 ## Open work

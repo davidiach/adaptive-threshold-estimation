@@ -8,7 +8,8 @@ writes nothing.
 """
 
 import subprocess
-from verify_blind_upper_components import (DECLARATION, FORBIDDEN, LEAN, strip_comments,
+from verify_blind_upper_components import (FORBIDDEN, LEAN, bind_restatements,
+                                           registered_names, strip_comments,
                                            validate_reports)
 
 MODULE = "ThresholdHC.ArbitraryLawAdaptation.PilotOnset"
@@ -32,7 +33,7 @@ def declared_names():
         source = strip_comments(path.read_text(encoding="utf-8"))
         if FORBIDDEN.search(source):
             raise ValueError("Forbidden proof escape in " + path.name)
-        found += DECLARATION.findall(source)
+        found += registered_names(source)
     return found
 
 
@@ -116,8 +117,7 @@ example : ∀ (μ : Measure Gap) [IsProbabilityMeasure μ] {ρ : ℝ} (hρ : 0 <
 example : ∀ (μ : Measure Gap) [IsProbabilityMeasure μ] {ρ : ℝ} (hρ : 0 < ρ) (hρ4 : ρ ≤ 1 / 4) {J : ℕ} (hon : PilotOnset μ ρ J),
     ENNReal.ofReal (16 / (pilotCoinCap J ρ : ℝ)) ≤ ThresholdHC.EntropyTail.selection μ ρ (4 ^ J) := @pilotOnset_coin_cap
 """
-    if source.count("example ") != len(NAMES):
-        raise ValueError("Each pilot-onset declaration needs exactly one restated statement")
+    bind_restatements(source, NAMES)
     roots = {"ThresholdHC.ArbitraryLawAdaptation." + name for name in NAMES}
     return source + "".join("#print axioms " + name + "\n" for name in sorted(roots)), roots
 

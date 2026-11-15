@@ -13,7 +13,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-from verify_blind_upper_components import DECLARATION, FORBIDDEN, sha, strip_comments, validate_reports
+from verify_blind_upper_components import check_reused_objects, DECLARATION, FORBIDDEN, sha, strip_comments, validate_reports
 from verify_entropy_tail_components import dependency_order
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -117,6 +117,11 @@ def main() -> int:
         (output / "status.json").write_text(json.dumps(status, indent=2) + "\n", encoding="utf-8")
 
     save()
+    if args.cached_dependencies or getattr(args, "audit_only", False):
+        status["dependency_check"] = check_reused_objects(args.lake, rebuilt, paths, output)
+        save()
+        if status["dependency_check"]["exit_code"]:
+            return status["dependency_check"]["exit_code"]
     commands = []
     for path in rebuilt:
         rel = path.relative_to(LEAN)

@@ -1,0 +1,8 @@
+'ThresholdHC.KnownLawPlanner.RunsPlan' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.KnownLawPlanner.core_support_of_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.KnownLawPlanner.exactWeights' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.KnownLawPlanner.exact_planner_output' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.KnownLawPlanner.exists_bandEdge_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.KnownLawPlanner.planner_output_of_rates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.KnownLawPlanner.quantilePlanEstimator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.KnownLawPlanner.tight_planner_output' depends on axioms: [propext, Classical.choice, Quot.sound]

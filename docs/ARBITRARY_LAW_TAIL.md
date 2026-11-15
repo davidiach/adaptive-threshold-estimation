@@ -261,5 +261,7 @@ and error paths; they do not replace the general-law paper proof above.
 The new [arbitrary-law adaptation paper proof](ARBITRARY_LAW_ADAPTATION.md)
 uses these certificates to learn a conservative finite law, transfers
 the classifier bank to that law, and proves the full eventual oracle
-width bound for the positive fraction. That additional construction,
-like this tail theorem, still requires Lean formalization.
+width bound for the positive fraction. That additional construction is
+only partly formalized; its [formal scope](ARBITRARY_LAW_FORMALIZATION.md)
+lists what remains. Statements (1) to (4) of this tail theorem are
+Lean-checked, as the opening of this note describes.

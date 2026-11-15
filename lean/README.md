@@ -59,10 +59,10 @@ definitions with the paper for that review.
 | Continuous-magnitude observed-state complexity and RMS lower bounds in the actual selected-query experiment, with density regularity | [UniformLower](ThresholdHC/ContinuousObserved/UniformLower.lean), [UniformRMSLower](ThresholdHC/ContinuousObserved/UniformRMSLower.lean), [Regularity](ThresholdHC/ContinuousObserved/Regularity.lean), [proof map](../docs/CONTINUOUS_OBSERVED.md), [record](../results/continuous-observed-lower-20261105/README.md) | `python tools/verify_continuous_observed.py` |
 | Fresh-state upper bounds transferred to selected-state queries, and uniform-gap rates | [Upper](ThresholdHC/ContinuousObserved/Upper.lean), [UniformUpper](ThresholdHC/ContinuousObserved/UniformUpper.lean), [proof map](../docs/OBSERVED_UPPER.md), [record](../results/observed-state-upper-20261105/README.md) | `python tools/verify_observed_upper.py` |
 | Selected-type information transfer, coefficient $16/3$, for the actual randomized countable population through unbounded stopping | [SignTransfer](ThresholdHC/TypedConfidence/SignTransfer.lean), [type labels](ThresholdHC/TypedConfidence/Labels.lean), [proof map](../docs/ADAPTIVE_TYPES.md), [record](../results/adaptive-types-20261105/README.md) | `python tools/verify_typed_confidence.py` |
-| Common pair for every capped local policy from a variance–null-work obstruction; estimator and minimax confidence coefficient $1/128$ | [CommonPair](ThresholdHC/ConfidenceLocalization/CommonPair.lean), [ConfidenceRate](ThresholdHC/ConfidenceLocalization/ConfidenceRate.lean), [proof map](../docs/COMMON_PAIRS.md), [record](../results/common-pair-20261105/README.md) | `python tools/verify_confidence_localization.py` |
-| Additive confidence localization, coefficient $1/128$, for finite overlapping submeasures with original observation laws and weighted work | [Full](ThresholdHC/AdditiveConfidence/Full.lean), [proof map](../docs/ADDITIVE_CONFIDENCE.md), [record](../results/additive-confidence-20261105/README.md) | `python tools/verify_additive_confidence.py` |
+| Common pair for every capped local policy from a variance–null-work obstruction; estimator and minimax confidence coefficient $1/128$, given that obstruction, which Lean establishes for no gap law | [CommonPair](ThresholdHC/ConfidenceLocalization/CommonPair.lean), [ConfidenceRate](ThresholdHC/ConfidenceLocalization/ConfidenceRate.lean), [proof map](../docs/COMMON_PAIRS.md), [record](../results/common-pair-20261105/README.md) | `python tools/verify_confidence_localization.py` |
+| Additive confidence localization, coefficient $1/128$, for finite overlapping submeasures with original observation laws and weighted work, from the same unestablished obstruction premise | [Full](ThresholdHC/AdditiveConfidence/Full.lean), [proof map](../docs/ADDITIVE_CONFIDENCE.md), [record](../results/additive-confidence-20261105/README.md) | `python tools/verify_additive_confidence.py` |
 | Sharper general-law confidence: lower coefficient $10^{-17}$ and hard-cap upper coefficient $750000$, through a direct retained-entropy program comparison | [Full](ThresholdHC/ConfidenceEntropy/Full.lean), [Program](ThresholdHC/ConfidenceEntropy/Program.lean), [proof map](../docs/ENTROPY_CONFIDENCE.md), [record](../results/entropy-confidence-20261105/README.md) | `python tools/verify_confidence_entropy.py` |
-| Generic RMS transfer and additive submeasure localization, coefficient $1/128$ in the original experiment | [CommonPair](ThresholdHC/RMSLocalization/CommonPair.lean), [Full](ThresholdHC/RMSLocalization/Full.lean), [proof map](../docs/RMS_LOCALIZATION.md), [record](../results/rms-localization-20261105/README.md) | `python tools/verify_rms_localization.py` |
+| Generic RMS transfer and additive submeasure localization, coefficient $1/128$ in the original experiment, from a single-coin obstruction premise that Lean establishes for no gap law | [CommonPair](ThresholdHC/RMSLocalization/CommonPair.lean), [Full](ThresholdHC/RMSLocalization/Full.lean), [proof map](../docs/RMS_LOCALIZATION.md), [record](../results/rms-localization-20261105/README.md) | `python tools/verify_rms_localization.py` |
 | Sharp quantile factor: the finite-vector factor is equivalent to the unique scalar root for every real factor | [FiniteSharp](ThresholdHC/OptimalQuantile/FiniteSharp.lean), [Root](ThresholdHC/OptimalQuantile/Root.lean), [record](../results/optimal-quantile-root-20261105/README.md) | `python tools/verify_optimal_quantile.py` |
 | Finite-core selection reduction at the exact scalar-root factor, and the all-law comparison on the original selection functional | [Lipschitz](ThresholdHC/QuantileSharpLaw/Lipschitz.lean), [CoreReduction](ThresholdHC/QuantileSharpLaw/CoreReduction.lean), [Full](ThresholdHC/QuantileSharpLaw/Full.lean), [reduction record](../results/quantile-core-reduction-20261105/README.md), [comparison record](../results/sharp-quantile-upper-20261105/README.md) | `python tools/verify_quantile_sharp_law.py` |
 | Finite-law sharpness and exact optimality: general and finite-support laws have the same least comparison factor | [Full](ThresholdHC/QuantileOptimality/Full.lean), [record](../results/quantile-optimality-20261105/README.md) | `python tools/verify_quantile_optimality.py` |
@@ -109,7 +109,8 @@ not interchangeable versions of the same theorem.
 
 The [kernel-check sequence](../docs/VERIFY.md#lean-kernel-checks) covers the
 baseline, Uniform713, and tiers. The [CI workflow](../.github/workflows/checks.yml)
-records the complete suite and ordering. `ThresholdHC.lean` is the frozen
+records the suite and its ordering; the two intermediate entropy-tail audits
+listed in [VERIFY.md](../docs/VERIFY.md) are outside it. `ThresholdHC.lean` is the frozen
 original import entry point; use the development-specific specifications and
 audits above to navigate later results.
 
@@ -123,7 +124,12 @@ change to frozen material.
 Every file under `ThresholdHC/` must compile, whether or not a result audit
 names it. `python tools/verify_project_axioms.py` builds all of them and
 checks the transitive axioms of every constant they declare; CI runs it with a
-kernel replay of the main theorem's modules. A default `lake build` reaches
+kernel replay of the main theorem's modules. The same audit rejects scoped,
+prioritised or new orphan data-carrying instances, which could change what a
+restated statement elaborates to, and compares a fingerprint of every project
+definition with [definition_lock.json](../tools/definition_lock.json). When you
+add definitions, add their entries with `--add-definitions`; an existing entry
+never changes without the owner's authorization. A default `lake build` reaches
 only the original root's 33 modules, so do not rely on it for coverage.
 
 Use `--sequential` on the audits that accept it when memory is constrained. Baseline,
@@ -278,10 +284,18 @@ multilevel sum, the rate for the quantile split, and the plan of a reference
 law with mass at zero with the planned coefficient and the radius
 coefficient.
 Run `python tools/verify_known_law_planner_output.py` for 9 exact statements
-and transitive reports on the planner's output end to end: the constructed
-quantile split, the output in minimax form, the rate from upper bounds and
-from exact integrals for every law, and the design of a reference law with
-mass at zero.
+and transitive reports on the planner end to end: the constructed quantile
+split, the plan in minimax form, the minimax rate from upper bounds and from
+exact integrals for every law, and the design of a reference law with mass
+at zero. The minimax statements name no estimator.
+Run `python tools/verify_known_law_planner_estimator.py` for 8 exact
+statements and transitive reports in which the estimator the planner
+returns is named: the planner's choice between the plan and the constant
+`ρ/2`, and in both branches budget `B` and risk at most `44801 K` with exact
+integrals, or the factor-two coefficient for every tight enclosure.
+Run `python tools/verify_dyadic_summability.py` for 5 exact statements and
+transitive reports proving that the dyadic series of the frozen targets H3
+and H4 converge, with their frozen bounds as `HasSum` statements.
 Run `python tools/verify_robust_error_transfer.py` for 33 exact statements
 and transitive reports on the first part of the robust continuation: the
 order on tapes of flips, the monotone ordinary classifier and race, the

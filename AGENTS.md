@@ -36,6 +36,12 @@ revert instruction. The frozen-source and held-out-data constraints remain in fo
   and verification tools as well as statements. Never regenerate a lock, run
   `tools/freeze.py --init`, or run `lake update` to make a check pass. Changes to
   frozen material require explicit owner authorization and a recorded explanation.
+- `tools/definition_lock.json` fingerprints every project definition, proofs
+  erased. When a change adds definitions, add their entries with
+  `python tools/verify_project_axioms.py --add-definitions`, which never
+  rewrites an existing entry. A changed or removed entry means a definition
+  behind a checked statement changed: restore it, or obtain the owner's
+  authorization and record the change in `FREEZE_LOG.md`.
 - Preserve imported `inputs/`, sealed `research/` packages, published records in
   `results/`, `paper/rare-event/v2/`, `paper/rare-event/audit/`, and the
   hash-listed files of `paper/finite-gap-rare-events/` byte for byte.
@@ -66,9 +72,11 @@ published evidence with a local rerun as a side effect of validation.
 
 For navigation-only edits, check relative links and heading anchors, run
 `git -c core.whitespace=cr-at-eol diff --check` (plain `--check` reports the CR of CRLF files as trailing
-whitespace) and `python tools/freeze.py --verify`, and inspect the final file
-list. `freeze.py --verify` checks only `FROZEN.sha256`; if the diff touches any
-other locked path, run that lock's verifier too. A full Lean rebuild is
+whitespace) and `python tools/verify_locks.py`, and inspect the final file
+list. `verify_locks.py` checks `FROZEN.sha256` (including a deleted line, which
+`freeze.py --verify` misses), the tier locks and the published checksum
+manifests; if the diff touches a path in a specification lock, run that
+lock's audit too. A full Lean rebuild is
 unnecessary when proof sources, specifications, tools, and dependencies are
 unchanged.
 

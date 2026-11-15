@@ -12,15 +12,17 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from threshold_toolkit.confidence_amplification import MedianSchedule, run_capped_median
 from threshold_toolkit.known_law_oracle import FiniteGapOracle, SplitIntegrals
 from threshold_toolkit.known_rare_estimator import (
+    CAP_LIMIT_FLOOR,
     Level,
     RarePlan,
     _classify,
     _ordinary_stop,
+    cap_limit,
     estimate_known_rare,
     known_rare_program,
     plan_known_rare,
 )
-from threshold_toolkit.rare_event_functional import FiniteGapLaw, Interval
+from threshold_toolkit.rare_event_functional import FiniteGapLaw, Interval, Precision
 
 
 class UniformUpperBand:
@@ -84,6 +86,86 @@ class RareEstimatorTests(unittest.TestCase):
                 + sum(17 * level.error / level.mean_count for level in p.levels),
             )
             self.assertLess(p.mse_bound, (p.rho / 2) ** 2)
+
+    def test_simulated_work_and_error_stay_within_the_plan(self):
+        # The plan's work formula and MSE certificate are not Lean-checked, so
+        # check them against seeded simulations rather than against the plan's
+        # own fields. Each law's population has every positive on its
+        # smallest gap, the hardest placement for the classifiers.
+        cases = (
+            (self.law, 100_000, 40, lambda pop: (1.0 if pop.random() < 0.1 else 0.0), 0.1),
+            (FiniteGapOracle(FiniteGapLaw([("1/2", "3/4"), ("1/16", "1/4")])), 200_000, 12,
+             lambda pop: 0.0 if pop.random() < 0.75 else 0.5 + 1 / 16, 0.25),
+        )
+        for law, budget, runs, bias, theta in cases:
+            with self.subTest(budget=budget):
+                plan = plan_known_rare(law, rho="1/4", budget=budget)
+                self.assertGreater(len(plan.levels), 1)
+                pop = Random(5)
+
+                def item():
+                    p = bias(pop)
+                    return lambda: int(pop.random() < p)
+
+                flips, squared = 0, 0.0
+                for run in range(runs):
+                    out = estimate_known_rare(item, plan, rng=Random(1000 + run))
+                    flips += out.flips
+                    squared += (float(out.value) - theta) ** 2
+                self.assertLess(flips / runs, float(plan.budget))
+                self.assertLess(squared / runs, float(plan.mse_bound))
+
+    def test_cap_search_ends_with_the_constant_at_its_limit(self):
+        # An envelope that never reaches the allowance ends the search at the
+        # cap limit with the constant, whose certificate holds whatever the
+        # oracle says, instead of searching forever.
+        class Stuck:
+            def __init__(self):
+                self.caps = []
+
+            def split(self, rho, budget, precision):
+                def error(cap):
+                    self.caps.append(cap)
+                    return F(1, 100)
+                return SplitIntegrals({0: F(4)}, F(0), F(0), error, lambda cap: F(0))
+
+            def null_prefix(self, h, t, tol):
+                return Interval(F(0), F(0))
+
+        stuck = Stuck()
+        plan = plan_known_rare(stuck, rho="1/4", budget=10**6)
+        self.assertEqual((plan.levels, plan.mse_bound), ((), F(1, 64)))
+        self.assertEqual(max(stuck.caps), cap_limit(F(10**6)))
+        self.assertEqual(cap_limit(F(10**6)), CAP_LIMIT_FLOOR)
+        self.assertEqual(cap_limit(F(2**230) + F(1, 3)), (2**230 + 1) ** 2)
+
+    def test_slow_valid_envelopes_are_searched_past_the_floor(self):
+        # The oracle contract sets no rate. A point mass at a tiny gap needs
+        # caps beyond 4^100; with a budget to match, the search reaches them
+        # and the plan is decided by its certificate, as without a limit.
+        for exponent, budget in ((90, 2**190), (110, 2**230)):
+            with self.subTest(gap=f"2^-{exponent}"):
+                law = FiniteGapOracle(FiniteGapLaw([(F(1, 2**exponent), 1)]))
+                caps = []
+                design = law.split(F(1, 4), F(budget), Precision())
+
+                class Traced:
+                    def split(self, rho, b, precision):
+                        def error(cap):
+                            caps.append(cap)
+                            return design.resolved_error(cap)
+                        return SplitIntegrals(
+                            band_costs=design.band_costs, unresolved_mass=design.unresolved_mass,
+                            tail_inverse=design.tail_inverse, resolved_error=error,
+                            tail_work=design.tail_work)
+
+                    def null_prefix(self, h, t, tol):
+                        return law.null_prefix(h, t, tol)
+
+                plan = plan_known_rare(Traced(), rho="1/4", budget=budget)
+                self.assertGreater(max(caps), CAP_LIMIT_FLOOR)
+                self.assertLess(max(caps), cap_limit(F(budget)))
+                self.assertEqual(plan.mse_bound, F(1, 64))
 
     def test_continuous_null_integral(self):
         u = UniformUpperBand()

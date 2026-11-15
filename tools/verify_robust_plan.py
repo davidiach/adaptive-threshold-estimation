@@ -8,7 +8,8 @@ writes nothing.
 """
 
 import subprocess
-from verify_blind_upper_components import (DECLARATION, FORBIDDEN, LEAN, strip_comments,
+from verify_blind_upper_components import (FORBIDDEN, LEAN, bind_restatements,
+                                           registered_names, strip_comments,
                                            validate_reports)
 
 MODULE = "ThresholdHC.RobustContinuation.RobustPlannerOutput"
@@ -31,7 +32,7 @@ def declared_names():
         source = strip_comments(path.read_text(encoding="utf-8"))
         if FORBIDDEN.search(source):
             raise ValueError("Forbidden proof escape in " + path.name)
-        found += DECLARATION.findall(source)
+        found += registered_names(source)
     return found
 
 
@@ -143,6 +144,7 @@ example : ∀ (η : Measure Gap) [IsProbabilityMeasure η] {z₀ ρ B : ℝ} (hz
 """
     if source.count("example ") != len(NAMES):
         raise ValueError("Each robust-plan declaration needs exactly one restated statement")
+    bind_restatements(source, NAMES)
     roots = {"ThresholdHC.RobustContinuation." + name for name in NAMES}
     return source + "".join("#print axioms " + name + "\n" for name in sorted(roots)), roots
 

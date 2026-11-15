@@ -92,6 +92,38 @@ class BlindUpperAuditTests(unittest.TestCase):
             with self.subTest(source=source):
                 self.assertIsNone(audit.FORBIDDEN.search(audit.strip_comments(source)))
 
+    def test_registries_fail_on_declarations_they_cannot_read(self):
+        self.assertEqual(audit.registered_names("theorem a : True := trivial\n"
+                                                "noncomputable def b : Nat := 0\n"
+                                                "@[simp] lemma c : True := trivial\n"), ["a", "b", "c"])
+        for source in ("private theorem a : True := trivial\n",
+                       "protected def a : Nat := 0\n",
+                       "instance : Inhabited Nat := ⟨0⟩\n",
+                       "instance (p : Nat) : Inhabited (Fin (p+1)) := ⟨0⟩\n",
+                       "@[simp] @[reducible] def a : Nat := 0\n",
+                       "nonrec def a : Nat := 0\n",
+                       "local instance a : Inhabited Nat := ⟨0⟩\n",
+                       "class A where\n"):
+            with self.subTest(source=source):
+                with self.assertRaisesRegex(ValueError, "registry cannot read"):
+                    audit.registered_names(source)
+
+    def test_each_registered_name_has_its_own_restatement(self):
+        source = ("example : P := @thm_a\nexample : Q := @thm_b\n"
+                  "example : ∀ E : S, E.Tight ↔ True := fun _ => Iff.rfl\n")
+        audit.bind_restatements(source, ["thm_a", "thm_b", "S.Tight"])
+        cases = (
+            ("example : P := @thm_a\nexample : P := @thm_a\n", ["thm_a", "thm_b"], "names thm_b"),
+            ("example : P := @thm_a\n", ["thm_a", "thm_b"], "exactly one"),
+            ("example : P := @thm_a\nexample : Q := @other\n", ["thm_a", "thm_a2"], "names thm_a2"),
+            ("example : P := ⟨@thm_a, @thm_b⟩\nexample : Q := @other\n", ["thm_a", "thm_b"],
+             "names no registered"),
+        )
+        for text, names, message in cases:
+            with self.subTest(message=message):
+                with self.assertRaisesRegex(ValueError, message):
+                    audit.bind_restatements(text, names)
+
     def test_sorry_warning_cannot_be_silenced(self):
         # The frozen pattern's \bsorry\b also matches the option name.
         for option in ("warn.sorry", "«warn.sorry»", "«warn».«sorry»"):

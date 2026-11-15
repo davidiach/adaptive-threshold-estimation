@@ -7,7 +7,8 @@ here is an error. Prints the kernel report; writes nothing.
 """
 
 import subprocess
-from verify_blind_upper_components import (DECLARATION, FORBIDDEN, LEAN, strip_comments,
+from verify_blind_upper_components import (FORBIDDEN, LEAN, bind_restatements,
+                                           registered_names, strip_comments,
                                            validate_reports)
 
 MODULE = "ThresholdHC.RobustContinuation.RobustCoinWork"
@@ -25,7 +26,7 @@ def declared_names():
     source = strip_comments(SOURCE.read_text(encoding="utf-8"))
     if FORBIDDEN.search(source):
         raise ValueError("Forbidden proof escape in " + SOURCE.name)
-    return DECLARATION.findall(source)
+    return registered_names(source)
 
 
 def audit_input():
@@ -69,8 +70,7 @@ example : ∀ (σ τ ζ : Measure Gap) [IsFiniteMeasure σ] [IsFiniteMeasure τ]
       ∂tapeMeasure (gapParameter true d)) ≤
       12*positiveAllowance ε (weights j:ℝ) ρ (threePieceEnvelope σ τ ζ d₀)/(d₀:ℝ)^2 := @bank_race_positive_work_of_le
 """
-    if source.count("example ") != len(NAMES):
-        raise ValueError("Each robust-work declaration needs exactly one restated statement")
+    bind_restatements(source, NAMES)
     roots = {"ThresholdHC.RobustContinuation." + name for name in NAMES}
     return source + "".join("#print axioms " + name + "\n" for name in sorted(roots)), roots
 

@@ -1,0 +1,5 @@
+'ThresholdHC.Proofs.dyadic_hasSum_v1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Proofs.dyadic_hasSum_v2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Proofs.dyadic_partial_v1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Proofs.dyadic_partial_v2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.Proofs.dyadic_term_v2' depends on axioms: [propext, Classical.choice, Quot.sound]

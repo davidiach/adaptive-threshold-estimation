@@ -134,6 +134,25 @@ class RobustPlanAuditTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "Unregistered or missing"):
                 audit.audit_input()
 
+    def test_unreadable_declaration_rejected(self):
+        for declaration in ("private theorem hidden : True := by trivial",
+                            "protected def hidden : Nat := 0"):
+            with self.subTest(declaration=declaration):
+                with patch.object(audit, "strip_comments", side_effect=
+                                  lambda source: source + "\n" + declaration + "\n"):
+                    with self.assertRaisesRegex(ValueError, "registry cannot read"):
+                        audit.declared_names()
+
+    def test_each_restatement_is_bound_to_its_declaration(self):
+        with patch.object(audit, "bind_restatements", wraps=shared.bind_restatements) as bind:
+            source, _ = audit.audit_input()
+            bind.assert_called_once()
+        target = audit.NAMES[-1]
+        altered = source.replace("@" + target, "@" + audit.NAMES[-2])
+        self.assertNotEqual(source, altered)
+        with self.assertRaisesRegex(ValueError, "No restated statement names " + target):
+            shared.bind_restatements(altered, audit.NAMES)
+
     def test_proof_escape_rejected(self):
         escaped = lambda source: source + "\ntheorem hidden : False := by sorry\n"
         with patch.object(audit, "strip_comments", side_effect=escaped):

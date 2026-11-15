@@ -10,6 +10,7 @@ from collections.abc import Generator
 from dataclasses import dataclass
 from fractions import Fraction as F
 from functools import lru_cache
+import math
 from random import Random
 from typing import Callable
 
@@ -24,6 +25,18 @@ from .rare_event_functional import (
     cost_entropy,
     sqrt_interval,
 )
+
+# The cap search has a limit, max(4^100, ceil(B)^2), so it always ends. The
+# oracle contract sets no rate at which the resolved-error envelope tends to
+# zero, so reaching the limit is not evidence of an invalid oracle. The planner
+# then returns the constant rho/2, whose certificate holds whatever the oracle
+# says; an unlimited search might have found a better plan.
+CAP_LIMIT_FLOOR = 4 ** 100
+
+
+def cap_limit(budget: F) -> int:
+    """The largest cap the search tries before returning the constant."""
+    return max(CAP_LIMIT_FLOOR, math.ceil(budget) ** 2)
 
 
 @dataclass(frozen=True)
@@ -60,8 +73,10 @@ def plan_known_rare(
     """Plan the quantile-core classifier bank and independent telescoping marks.
 
     The plan may return the constant rho/2 when its squared-error certificate
-    wins. A plan with nonconstant output schedules rational mean counts whose
-    total certified expected work equals the supplied budget.
+    wins, or when a level's cap search reaches cap_limit(budget) before the
+    oracle's resolved error falls below the level's allowance. A plan with
+    nonconstant output schedules rational mean counts whose total certified
+    expected work equals the supplied budget.
     """
     rho, budget = _parameters(rho, budget)
     constant = RarePlan(law, rho, budget, (), (), (rho / 2) ** 2)
@@ -92,8 +107,11 @@ def plan_known_rare(
     cap = 4
     delta = rho / 16
     previous = F(0)
+    limit = cap_limit(budget)
     while True:
         while _bound(design.resolved_error(cap), "resolved error") > delta / 8:
+            if cap >= limit:
+                return constant
             cap *= 4
         ordinary = _bound(design.tail_work(cap), "ordinary work")
         # Positive crossings use a certified upper null likelihood. Their time
