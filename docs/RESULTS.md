@@ -371,6 +371,10 @@ below with the cost entropy $\Gamma_\kappa$ of the quantile core replaced by its
 $A_\kappa$, and write $\Gamma_\kappa=A_\kappa(1+E_\kappa)$.
 
 - $\mathcal Q^0/\sqrt2\le\Psi_{\mu,\rho}(h)\le\mathcal Q^0$, and both constants are attained.
+  The chain $\mathcal Q^0\le\sqrt2\,\Psi\le\sqrt2\,\mathcal K^0\le\sqrt2\,\mathcal Q^0$ is **Lean-checked**
+  ([`psi_closed_form`](../lean/ThresholdHC/PsiClosedForm/Full.lean)), with $\mathcal K^0\le\mathcal K$ and
+  $\mathcal Q^0\le\mathcal Q$, and so is the equality $\Psi=\mathcal Q^0=\rho$ when $h$ is at least the
+  quantile threshold. The two-atom law that attains the factor $\sqrt2$ is a paper proof.
 - $\Psi\le\mathcal K\le\mathcal Q$. With the entropy-tail and known-law confidence lower bounds this gives
   $R\ge10^{-17}\Psi(B^{-1/2})$ and $r_{\rm exp}\ge10^{-17}\Psi(\sqrt{\log(1/\delta)/B})$ for every $B>0$,
   without the Lee-Valiant input used in Appendix A. This item is the Lean-checked comparison and
@@ -381,7 +385,11 @@ $A_\kappa$, and write $\Gamma_\kappa=A_\kappa(1+E_\kappa)$.
   $\mathcal R_\alpha/\sqrt2\le\mathcal Q\le2\mathcal R_\alpha$, which gives the RMS rate and both confidence
   radii with constants independent of $\alpha$, including through $\alpha=2$.
 
-Apart from the second item, these statements are not Lean-checked. The statistical conclusions use Corollary 14.6 and Theorem S.6 of
+The third and fourth items are not Lean-checked, and of the first only the part just named is. The Lean proof
+of $\mathcal Q^0\le\sqrt2\,\Psi$ uses the paper's allocation but a shorter argument, without splitting
+the tail at the optimizer's cutoff.
+[Record](../results/psi-closed-form-20261116/README.md) · `python tools/verify_psi_closed_form.py`
+The statistical conclusions use Corollary 14.6 and Theorem S.6 of
 the paper in their recorded scopes. A [floating-point script](../research/2026-11-09-psi-closed-form/README.md)
 tests the inequalities and constants; it is numerical evidence only.
 

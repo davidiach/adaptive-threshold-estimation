@@ -804,6 +804,18 @@ the two minimax lower bounds with coefficient $10^{-17}$ that follow from the
 entropy-tail law. Every declaration in `PsiSelection/` is an audit root.
 [Native record](../results/psi-selection-20261109/README.md)
 
+## Closed form of Psi
+
+Run `python tools/verify_psi_closed_form.py` for six exact statements and 36
+transitive axiom reports: the comparisons $\mathcal K^0\le\mathcal K$,
+$\mathcal Q^0\le\mathcal Q$ and $\mathcal K^0\le\mathcal Q^0$, the chain
+$\mathcal Q^0\le\sqrt2\,\Psi$, $\Psi\le\mathcal K^0\le\mathcal Q^0$, and
+$\Psi=\mathcal Q^0=\rho$ when the resolution is at least the quantile
+threshold. The restatements write out the entropy-free functionals. Every
+declaration in `PsiClosedForm/` is an audit root. The two-atom sharpness
+example and the rest of v6 §14.8 are outside this audit.
+[Native record](../results/psi-closed-form-20261116/README.md)
+
 ## Whole-project build, axioms and kernel replay
 
 Run `python tools/verify_project_axioms.py --replay-main-theorem`. It builds
