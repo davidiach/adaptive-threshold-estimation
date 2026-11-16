@@ -134,6 +134,8 @@ jobs:
         run: python -m unittest discover -s tools -p 'test_confidence.py' -v
       - name: Regression tests for the entropy perturbation and compression audit
         run: python -m unittest discover -s tools -p 'test_selection_approximation.py' -v
+      - name: Regression tests for the assembled finite-law approximation audit
+        run: python -m unittest discover -s tools -p 'test_finite_selection_approximation.py' -v
       - name: Scan every project Lean source for proof escapes
         run: |
           python -m unittest discover -s tools -p 'test_lean_sources.py' -v
@@ -282,6 +284,8 @@ jobs:
           done
       - name: Verify entropy perturbation and state compression against locked targets
         run: python tools/verify_selection_approximation.py
+      - name: Verify the assembled finite-law approximation and original-objective certificate
+        run: python tools/verify_finite_selection_approximation.py
       - name: Build sequentially and require complete kernel audit
         run: python tools/verify_lean_checkpoint.py --sequential
       - name: Verify unscored arithmetic for the paper bound
