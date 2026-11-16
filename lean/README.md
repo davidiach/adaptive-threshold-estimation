@@ -327,3 +327,11 @@ statements and transitive reports: clipping preserves the experiment and
 work and cannot increase risk; the production stream and private seed
 retain their original joint law after a positive-probability pilot history,
 including the installed multi-depth pilot and its selected continuation.
+
+Run `python tools/verify_paid_median.py` for 48 exact statements and
+transitive reports: a reference-law base including the large-zero-atom
+fallback, the physical-cap median, and its conditional and unconditional
+coverage in the actual paid stage. The cap includes the pilot, the reported
+radius is determined by the learned law, and total failure is at most the
+sum of the pilot and continuation allowances. The full all-budget controller
+and finite-law numerical implementation remain outside this audit.

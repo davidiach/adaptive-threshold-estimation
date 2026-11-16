@@ -1212,15 +1212,64 @@ Conditionally on a pilot word, the selected continuation's interval has
 exactly the law obtained by fixing that learned law and running its reader
 on the original independent seed and fresh production stream. This proves
 an execution identity without assuming a continuation-risk or coverage
-oracle. Constructing the robust capped-median continuation and proving its
-conditional coverage and reported radius still remain.
+oracle. The next section constructs the robust capped-median continuation
+and proves its conditional coverage and reported radius.
 
 Run `python tools/verify_clipping_pilot_independence.py` for 26 exact
 statements and 26 transitive axiom reports, covering every declaration of
 the two modules. The [verification record](../results/clipping-pilot-independence-20261116/README.md)
 identifies the proof checkpoint, source closure and audit scope. Across all
-thirty-one current component audits, 918 exact statements and 916 transitive
-axiom reports pass.
+thirty-one component audits through that checkpoint, 918 exact statements
+and 916 transitive axiom reports pass.
+
+## Conditional capped median and the paid stage
+
+[ReferenceBase.lean](../lean/ThresholdHC/RobustContinuation/ReferenceBase.lean)
+selects `referenceBase alpha rho b` from the CDF-robust existence theorem,
+before the true law or sign allocation is chosen. Every probability law
+`alpha` supported on `[0,1/2]` is allowed. If its zero atom is at least
+`rho`, the constant `rho/2` has the required bound because `K_alpha = rho`.
+Otherwise the normalized positive part supplies the existing clipped CDF
+planner. For `0 < rho <= 1/4` and `b > 0`, the selected base has output in
+`[0,rho]`, expected work at most `b`, and RMS risk at most `C_0 K_alpha(b)`
+under every CDF-dominated true law and every globally rare sign law.
+
+[CappedMedian.lean](../lean/ThresholdHC/RobustContinuation/CappedMedian.lean)
+uses the already checked `cappedMedian` with `2m+1` copies, base budget
+`b = B/[8(2m+1)]`, and per-copy reservation `floor(B/(2m+1))`. Its failure
+probability is at most `(3/4)^m/2` at radius
+`sqrt(8) C_0 K_alpha(b) <= 6 C_0 K_alpha(b)`. The cap is at most `floor(B)`
+even when a copy times out or its reservation is zero. `medianStage` reads
+the actual reserved words and uses the same timeout fallback and median.
+A product of private seed laws indexed by reference law allows the seed
+space and distribution to vary with the learned law. This is a classical
+formal construction, not a finite-law numerical implementation.
+
+[PaidCoverage.lean](../lean/ThresholdHC/RobustContinuation/PaidCoverage.lean)
+transfers restrictions and normalized conditioning on the paid chronological
+pilot prefix to the original hidden-gap experiment, jointly with both
+reported endpoints. Restrictions include null histories; normalized
+conditional statements require positive probability. Integrating the
+fixed-history bounds charges invalid envelopes at their actual probability.
+
+[PaidMedian.lean](../lean/ThresholdHC/RobustContinuation/PaidMedian.lean)
+installs the concrete multi-depth pilot and proves that its selected
+interval has exactly the capped-median law on fresh production inputs.
+For every valid learned envelope, conditional failure is at most
+`(3/4)^m/2`. With `0 < rho <= 1/4`, `B > 0`, depth `J >= 1`, `k > 0` probes per depth,
+`k >= 8 log(2J/epsilon)`, `epsilon > 0`, and `m = ceil(4 log(1/delta))`
+for `delta > 0`, `paidMedianStage_at_level` proves failure at most
+`epsilon + delta` under the original experiment. Both endpoints have an
+unconditional cap of `k * pilotSpan J + floor(B)`. The radius depends only
+on the learned pilot law and design parameters; its identity and bound
+also hold on failed pilot and continuation paths. No base-risk or
+continuation-coverage oracle is assumed in the final stage theorem.
+
+Run `python tools/verify_paid_median.py` for 48 exact statements and
+48 transitive axiom reports covering all four new modules. The
+[verification record](../results/paid-median-20261116/README.md) identifies
+the proof checkpoint, source closure and audit scope. Across the thirty-two
+component audits, 966 exact statements and 964 transitive reports pass.
 
 ## Work still needed for the full theorem
 
@@ -1252,8 +1301,9 @@ reference has risk at most `C_0 K_alpha` under every CDF-dominated true
 law: the required coupling and zero-atom split are now constructed.
 Clipping preserves its budget and risk, and the production input law is
 unchanged after conditioning on any positive-probability finite pilot
-history. The conditional physical-cap median and its statistical connection
-to the paid stage must still be proved. Finally the stages need to be joined into the
-all-budget controller, with fresh stages, nested intervals, simultaneous
+history. The conditional physical-cap median, deterministic reported radius
+and statistical connection to the paid stage are now checked, with failure
+at most the sum of the pilot and continuation allowances. The stages still
+need to be joined into the all-budget controller, with fresh stages, nested intervals, simultaneous
 coverage and eventual oracle width. These conclusions must be proved, not
 supplied as assumptions to a controller interface.

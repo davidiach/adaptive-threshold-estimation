@@ -1,0 +1,69 @@
+'ThresholdHC.RobustContinuation.MedianSeed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.ReferenceSeed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.ValidReference' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.failureProbability_simulation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.intervalFailure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.intervalFailure_center' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.learnedLaw_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.learnedLaw_valid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.learnedStage_failure_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.learnedStage_restrict_interval_law' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.measurableSet_intervalFailure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.measurable_endpoints' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.measurable_medianWord' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.measurable_median_reader' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.measurable_tableInterval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.medianBaseBudget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.medianCopyCap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.medianRadius' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.medianRadius_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.medianRadius_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.medianStage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.medianStage_fixed_failure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.medianStage_fixed_interval_law' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.medianStage_radius' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.medianStage_seed_law' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.medianWord' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.medianWord_output' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.median_reservations_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.ofReal_referenceRadius' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.original_conditional_interval_law' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.original_pilot_probability' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.original_restrict_interval_law' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.paidMedianStage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.paidMedianStage_at_level' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.paidMedianStage_cap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.paidMedianStage_conditional_coverage' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.paidMedianStage_coverage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.paidMedianStage_fixed_failure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.paidMedianStage_pilot_failure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.paidMedianStage_reported_radius' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.plannedCoefficient_ge_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.referenceBase' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.referenceBase_valid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.referenceRadius' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.referenceRadius_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.referenceSeedMeasurableSpace' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.reference_base_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.reference_median_coverage' depends on axioms: [propext, Classical.choice, Quot.sound]
+Verified 48 exact statements and 48 transitive reports
