@@ -24,6 +24,11 @@ class PowerWindowAuditTests(unittest.TestCase):
         for text in ("(ρ ^ (1/α))..1", "Real.log (1/ρ)", "min 1 ((x/a)^α)",
                      "(Set.Ioc ρ 1)", "∫⁻ d : Gap", "power_quantile_tail μ"):
             self.assertIn(text, audit.EXACT)
+        self.assertEqual(audit.EXACT.count("example (hQ : ∀"), 2)
+        for name in ("power_risk_of_quantile", "power_confidence_of_quantile"):
+            self.assertIn(audit.PREFIX + name, roots)
+        for text in ("60002 * uniformRate", "1500000 * uniformRate", "hδ4 : δ ≤ 1/4"):
+            self.assertIn(text, audit.EXACT)
         shared.validate_reports(report(roots), 0, roots)
 
     def test_changed_specification_rejected(self):

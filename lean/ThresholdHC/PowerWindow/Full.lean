@@ -1,8 +1,10 @@
 import ThresholdHC.PowerWindow.CoreCost
+import ThresholdHC.PowerWindow.Statistics
 
 /-! Checked foundation for the uniform power-law window. This module proves
-the cost identity, not the entropy bounds or the uniform statistical targets
-in Specification. Those remain separate, unproved targets. -/
+the cost identity and the statistical implications of the uniform quantile
+comparison. The entropy and quantile estimates remain unproved, so the
+unconditional statistical targets in Specification remain unproved as well. -/
 noncomputable section
 open MeasureTheory
 namespace ThresholdHC.PowerWindow
