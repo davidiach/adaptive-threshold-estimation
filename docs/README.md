@@ -11,6 +11,7 @@ describes the other folders.
 | [RESULTS.md](RESULTS.md) | Find any claim with its exact assumptions, its verification status and its evidence |
 | [VERIFY.md](VERIFY.md) | Reproduce a check; the [task table](VERIFY.md#choose-checks-by-task) picks the commands |
 | [WORKPLAN.md](WORKPLAN.md) | See the current priorities and what is finished |
+| [SECONDARY_CLAIMS.md](SECONDARY_CLAIMS.md) | Find the exact disposition of secondary paper claims and their relationship to checked theorems |
 | [MODEL_FIDELITY.md](MODEL_FIDELITY.md) | Compare the paper's model with the Lean definitions; written for a specialist reviewer |
 
 ## Notes on individual results
