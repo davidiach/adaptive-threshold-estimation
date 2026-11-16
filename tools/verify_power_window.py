@@ -1,9 +1,6 @@
-"""Audit the power-law quantile split and inverse-square cost identity.
+"""Audit the uniform power-law entropy, quantile, RMS and confidence bounds.
 
-This also checks the RMS/confidence implications of the uniform quantile
-comparison. It is not a proof of the unconditional statistical targets.
-PowerCoreStatement (which includes entropy), PowerQuantileStatement,
-PowerRiskStatement and PowerConfidenceStatement remain unproved specifications.
+The critical-window corollary and asymptotic reading remain outside this scope.
 """
 import subprocess
 
@@ -13,12 +10,14 @@ from verify_blind_upper_components import (
 
 PREFIX = "ThresholdHC.PowerWindow."
 SOURCES = LEAN / "ThresholdHC/PowerWindow"
-MODULES = ("Specification", "Phi", "Law", "CoreCost", "Statistics", "Full")
+MODULES = ("Specification", "Phi", "Law", "CoreCost", "Statistics", "TailIntegral",
+           "Quantile", "FiniteEntropy", "LogMoments", "EntropyBounds", "DensityBounds",
+           "WindowBands", "CoreCoordinates", "BandCost", "CoreEntropy", "Full")
 SPEC_HASH = "924c8032dbabaaabddec452d35e2bb0aa68781c7201517ed6cf47dd8d5445a06"
-TARGETS = {"power_phi_closed": "PowerPhiStatement"}
-PENDING = ("PowerCoreStatement", "PowerQuantileStatement", "PowerRiskStatement",
-           "PowerConfidenceStatement")
-EXACT_COUNT = 8
+TARGETS = {"power_phi_closed": "PowerPhiStatement", "power_core": "PowerCoreStatement",
+           "power_quantile": "PowerQuantileStatement", "power_risk": "PowerRiskStatement",
+           "power_confidence": "PowerConfidenceStatement"}
+EXACT_COUNT = 16
 
 EXACT = """
 example (α ρ : ℝ) (hα : 0 < α) (hρ : 0 < ρ) (hρ1 : ρ < 1) :
@@ -85,6 +84,47 @@ example (hQ : ∀ (μ : Measure Gap) [IsProbabilityMeasure μ] (α a ρ B : ℝ)
     ThresholdHC.ConfidenceProgram.hardConfidenceRadius μ ρ B δ ≤
       ENNReal.ofReal (1500000 * uniformRate α x ρ) :=
   power_confidence_of_quantile hQ μ α a ρ B δ hα hα4 ha ha2 hρ hρ4 hB hδ hδ4 hm
+
+example (μ : Measure Gap) [IsProbabilityMeasure μ] (α a ρ : ℝ)
+    (hα : 0 < α) (hα4 : α ≤ 4) (ha : 0 < a) (ha2 : a ≤ 1/2)
+    (hρ : 0 < ρ) (hρ1 : ρ < 1)
+    (hm : ∀ x : ℝ, 0 < x → μ.real {d : Gap | (d : ℝ) ≤ x} = min 1 ((x/a)^α)) :
+    a^2 * (∫⁻ d : Gap, ENNReal.ofReal (((d : ℝ)⁻¹)^2) ∂quantileCore μ ρ).toReal =
+        powerPhi α ρ ∧
+    (1/2 : ℝ) * (1 + Real.log (effectiveScales α ρ)) ≤ 1 + ThresholdHC.PsiGap.coreEntropy μ ρ ∧
+    1 + ThresholdHC.PsiGap.coreEntropy μ ρ ≤ (383/100 : ℝ) * (1 + Real.log (effectiveScales α ρ)) :=
+  power_core μ α a ρ hα hα4 ha ha2 hρ hρ1 hm
+
+example (μ : Measure Gap) [IsProbabilityMeasure μ] (α a ρ B : ℝ)
+    (hα : 0 < α) (hα4 : α ≤ 4) (ha : 0 < a) (ha2 : a ≤ 1/2)
+    (hρ : 0 < ρ) (hρ4 : ρ ≤ 1/4) (hB : 0 < B)
+    (hm : ∀ x : ℝ, 0 < x → μ.real {d : Gap | (d : ℝ) ≤ x} = min 1 ((x/a)^α)) :
+    ENNReal.ofReal (uniformRate α (1 / (a * Real.sqrt B)) ρ / Real.sqrt 2) ≤
+      closedQuantileValue μ ρ B ∧
+    closedQuantileValue μ ρ B ≤ ENNReal.ofReal (2 * uniformRate α (1 / (a * Real.sqrt B)) ρ) :=
+  power_quantile μ α a ρ B hα hα4 ha ha2 hρ hρ4 hB hm
+
+example (μ : Measure Gap) [IsProbabilityMeasure μ] (α a ρ B : ℝ)
+    (hα : 0 < α) (hα4 : α ≤ 4) (ha : 0 < a) (ha2 : a ≤ 1/2)
+    (hρ : 0 < ρ) (hρ4 : ρ ≤ 1/4) (hB : 0 < B)
+    (hm : ∀ x : ℝ, 0 < x → μ.real {d : Gap | (d : ℝ) ≤ x} = min 1 ((x/a)^α)) :
+    ENNReal.ofReal ((10 : ℝ)⁻¹^17 / Real.sqrt 2 * uniformRate α (1 / (a * Real.sqrt B)) ρ) ≤
+      rareMinimaxRisk μ ρ B ∧
+    rareMinimaxRisk μ ρ B ≤ ENNReal.ofReal (60002 * uniformRate α (1 / (a * Real.sqrt B)) ρ) :=
+  power_risk μ α a ρ B hα hα4 ha ha2 hρ hρ4 hB hm
+
+example (μ : Measure Gap) [IsProbabilityMeasure μ] (α a ρ B δ : ℝ)
+    (hα : 0 < α) (hα4 : α ≤ 4) (ha : 0 < a) (ha2 : a ≤ 1/2)
+    (hρ : 0 < ρ) (hρ4 : ρ ≤ 1/4) (hB : 0 < B) (hδ : 0 < δ) (hδ4 : δ ≤ 1/4)
+    (hm : ∀ x : ℝ, 0 < x → μ.real {d : Gap | (d : ℝ) ≤ x} = min 1 ((x/a)^α)) :
+    let x := Real.sqrt (Real.log (1 / δ) / B) / a
+    ENNReal.ofReal ((10 : ℝ)⁻¹^17 / Real.sqrt 2 * uniformRate α x ρ) ≤
+      ThresholdHC.ConfidenceTransfer.rareConfidenceRadius μ ρ B δ ∧
+    ThresholdHC.ConfidenceTransfer.rareConfidenceRadius μ ρ B δ ≤
+      ThresholdHC.ConfidenceProgram.hardConfidenceRadius μ ρ B δ ∧
+    ThresholdHC.ConfidenceProgram.hardConfidenceRadius μ ρ B δ ≤
+      ENNReal.ofReal (1500000 * uniformRate α x ρ) :=
+  power_confidence μ α a ρ B δ hα hα4 ha ha2 hρ hρ4 hB hδ hδ4 hm
 """
 
 
@@ -97,7 +137,7 @@ def declared_roots() -> set[str]:
         if FORBIDDEN.search(source):
             raise ValueError(f"Forbidden proof escape in PowerWindow/{name}.lean")
         roots.update(PREFIX + declaration for declaration in registered_names(source))
-    required = {name for pair in TARGETS.items() for name in pair} | set(PENDING) | {
+    required = {name for pair in TARGETS.items() for name in pair} | {
         "power_core_cost", "power_quantile_tail", "power_quantile_core", "quadratic_core_cost",
         "power_risk_of_quantile", "power_confidence_of_quantile"}
     missing = {PREFIX + name for name in required} - roots
@@ -131,7 +171,7 @@ def main() -> None:
     print(output, end="")
     validate_reports(output, run.returncode, roots)
     print(f"Verified {EXACT_COUNT} exact statements and {len(roots)} transitive axiom reports")
-    print("Unproved targets (not certified by this audit): " + ", ".join(PENDING))
+    print("All five frozen power-window target statements are certified")
 
 
 if __name__ == "__main__":

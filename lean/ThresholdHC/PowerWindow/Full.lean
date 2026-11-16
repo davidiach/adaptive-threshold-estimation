@@ -1,14 +1,19 @@
-import ThresholdHC.PowerWindow.CoreCost
+import ThresholdHC.PowerWindow.CoreEntropy
 import ThresholdHC.PowerWindow.Statistics
 
-/-! Checked foundation for the uniform power-law window. This module proves
-the cost identity and the statistical implications of the uniform quantile
-comparison. The entropy and quantile estimates remain unproved, so the
-unconditional statistical targets in Specification remain unproved as well. -/
+/-! The uniform power-law window: actual core entropy, deterministic quantile
+comparison, and the resulting RMS and confidence bounds. The critical-window
+corollary and its asymptotic interpretation remain separate paper results. -/
 noncomputable section
 open MeasureTheory
 namespace ThresholdHC.PowerWindow
 open ThresholdHC.Tier6 ThresholdHC.RareAboveTwo ThresholdHC.PsiGap
+
+theorem power_quantile : PowerQuantileStatement := power_quantile_of_core power_core
+
+theorem power_risk : PowerRiskStatement := power_risk_of_quantile power_quantile
+
+theorem power_confidence : PowerConfidenceStatement := power_confidence_of_quantile power_quantile
 
 theorem quadratic_core_cost (μ : Measure Gap) [IsProbabilityMeasure μ]
     {a ρ : ℝ} (ha : 0 < a) (ha2 : a ≤ 1/2) (hρ : 0 < ρ) (hρ1 : ρ < 1)

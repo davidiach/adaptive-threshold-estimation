@@ -1,8 +1,8 @@
 import ThresholdHC.PowerWindow.CoreCost
 import ThresholdHC.PsiGap.Full
 
-/-! The statistical composition is conditional on the uniform deterministic
-quantile comparison. It does not supply that still-unproved comparison. -/
+/-! Statistical composition from the deterministic quantile comparison.
+The unconditional comparison and resulting bounds are assembled in Full. -/
 noncomputable section
 open MeasureTheory
 open scoped ENNReal
