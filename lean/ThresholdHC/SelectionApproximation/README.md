@@ -51,12 +51,13 @@ positive intervals, and the upper/lower endpoint ratio bound.
 The audit also instantiates this at `scale=1, M=2, j=0` with distinct endpoints,
 and checks the concrete identity bin map.
 
-The executable bin-index function has not been connected to those certificates.
-Nor have the finite-law menu bridge, parameter choice, state count, rational
-endpoint evaluation and final `(1+epsilon)` guarantee been assembled in Lean.
-Those parts retain the paper-proof status in the research note. No new
-statistical-risk theorem, exact polynomial-time optimizer, independent review,
-or CI pass is claimed.
+This component record leaves the bin index, finite-law composition, parameters,
+state count and endpoint guarantee outside its original scope. The separate
+[FiniteSelectionApproximation development](../FiniteSelectionApproximation/README.md)
+now assembles those mathematical conclusions under a new specification lock.
+It preserves this model and evidence unchanged. Polynomial bit complexity and
+numerical/Python execution retain their separate boundaries; no new statistical
+risk theorem or exact polynomial-time optimizer is claimed.
 
 ## Reproduce
 

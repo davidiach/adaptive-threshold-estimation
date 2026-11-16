@@ -35,6 +35,7 @@ Each note states one result, its scope and how it was checked.
 |---|---|
 | [RARE_ABOVE_TWO.md](RARE_ABOVE_TWO.md) | Power-law gaps above the inverse-square boundary |
 | [CRITICAL_AUDIT.md](CRITICAL_AUDIT.md) | The critical quadratic theorem and its follow-up audit |
+| [FINITE_SELECTION_APPROXIMATION.md](FINITE_SELECTION_APPROXIMATION.md) | Finite-law relative approximation, certified original-K endpoints and the execution boundary |
 | [RARE_EVENT_COMPUTATION.md](RARE_EVENT_COMPUTATION.md) | Computing the rare-event rate, and a tighter selection comparison |
 | [QUANTILE_PRICE_BOUNDS.md](QUANTILE_PRICE_BOUNDS.md) | Sharper bounds on the quantile-to-selection factor |
 | [OPTIMAL_QUANTILE_FACTOR.md](OPTIMAL_QUANTILE_FACTOR.md) | The optimal universal quantile-to-selection factor |
