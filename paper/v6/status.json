@@ -176,7 +176,7 @@
     },
     "finite-family-adaptation": {
       "status": "lean",
-      "evidence": ["lean/ThresholdHC/LawAdaptation/Full.lean", "results/law-adaptation-realization-20261105/README.md"],
+      "evidence": ["lean/ThresholdHC/LawAdaptation/Full.lean", "results/law-adaptation-20261105/README.md", "results/law-adaptation-realization-20261105/README.md"],
       "abstract": "finite-family oracle adaptation",
       "boundary": "finite-family oracle adaptation with its paid pilot",
       "summary": "oracle-rate adaptation within a supplied finite family of gap laws, including its paid pilot"
@@ -191,7 +191,7 @@
     },
     "arbitrary-law-adaptation": {
       "status": "lean",
-      "evidence": ["lean/ThresholdHC/ArbitraryLawController/Full.lean", "results/arbitrary-law-controller-20261116/README.md", "docs/ARBITRARY_LAW_FORMALIZATION.md"],
+      "evidence": ["lean/ThresholdHC/ArbitraryLawController/Full.lean", "results/arbitrary-law-controller-20261116/README.md", "docs/ARBITRARY_LAW_FORMALIZATION.md", "results/adaptation-publication-20261116/README.md"],
       "abstract": "eventual oracle-rate adaptation over arbitrary unknown gap laws",
       "boundary": "arbitrary-law oracle adaptation after a law-dependent onset"
     },

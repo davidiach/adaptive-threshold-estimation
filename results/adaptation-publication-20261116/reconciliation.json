@@ -1,0 +1,418 @@
+{
+  "source_commit": "ab67c39108931528d52acd42856e33343dbb2e31",
+  "proof_ci_head": "0fbe4b78731acce7d5de426d90a75046cdc33e34",
+  "merge_of_proof_pr": "39e3587b5a8f4d9466df7762f455ff587a40202e",
+  "pdf": "paper/v6/builds/arbitrary-law-complete-20261116.pdf",
+  "pdf_sha256": "2a4d5b1818a102de1c858675bc2777830a2a0386835c38f1b395f602ee81bc2d",
+  "pdf_record": "paper/v6/builds/arbitrary-law-complete-20261116.json",
+  "status_manifest_sha256": "e518e35abe74006953ad46ea492a3a1e56f4d2365287dabcb97483191b2df64f",
+  "tracked_status_counts": {
+    "lean": 30,
+    "paper": 1
+  },
+  "tracked_results": {
+    "rms-law": {
+      "status": "lean",
+      "verification_rows": [
+        "Original RMS minimax lower bound",
+        "Original RMS upper bound"
+      ],
+      "evidence": [
+        "lean/ThresholdHC/Tier6/Full.lean",
+        "lean/ThresholdHC/BlindUpper/Full.lean"
+      ],
+      "abstract": "the original RMS law in both directions, with coefficients $1/64$ and $512$ and one distribution-blind upper algorithm",
+      "boundary": "both directions of the original RMS law, with coefficients $1/64$ and $512$ and one distribution-blind upper algorithm"
+    },
+    "critical-law": {
+      "status": "lean",
+      "verification_rows": [
+        "Critical minimax lower bound",
+        "Critical minimax upper bound"
+      ],
+      "evidence": [
+        "lean/ThresholdHC/CriticalEntropy/CriticalMinimax.lean",
+        "lean/ThresholdHC/CriticalUpper/Full.lean"
+      ],
+      "abstract": "the critical minimax law",
+      "boundary": "the critical minimax law"
+    },
+    "psi-counterexample": {
+      "status": "lean",
+      "verification_rows": [
+        "Exact $\\Psi$ comparison and counterexample"
+      ],
+      "evidence": [
+        "lean/ThresholdHC/CriticalPsi/Full.lean"
+      ],
+      "abstract": "the exact $\\Psi$ comparison and counterexample",
+      "boundary": "the exact $\\Psi$ comparison and counterexample"
+    },
+    "variational-optimizer": {
+      "status": "lean",
+      "verification_rows": [
+        "Variational optimizer"
+      ],
+      "evidence": [
+        "lean/ThresholdHC/Tier3/Optimizer.lean"
+      ],
+      "abstract": "the variational optimizer",
+      "boundary": "the variational optimizer, which has a separate formal specification"
+    },
+    "unbiased": {
+      "status": "lean",
+      "verification_rows": [
+        "Unbiased characterization"
+      ],
+      "evidence": [
+        "lean/ThresholdHC/UnbiasedConverse/Full.lean",
+        "lean/ThresholdHC/Observable713/Full.lean"
+      ],
+      "abstract": "the unbiased characterization with coefficients $1/16$ and $713$",
+      "boundary": "the unbiased characterization with coefficients $1/16$ and $713$"
+    },
+    "confidence": {
+      "status": "lean",
+      "verification_rows": [
+        "Confidence characterization"
+      ],
+      "evidence": [
+        "lean/ThresholdHC/Confidence/Full.lean"
+      ],
+      "abstract": "the confidence characterization",
+      "boundary": "the confidence characterization in the observable model, with coefficients $1/64$ and $8192$ and one upper family depending only on budget and failure probability"
+    },
+    "oracle-lower": {
+      "status": "lean",
+      "verification_rows": [
+        "Magnitude-oracle lower bounds"
+      ],
+      "evidence": [
+        "lean/ThresholdHC/OracleLower/Full.lean"
+      ],
+      "abstract": "the magnitude-oracle lower bounds",
+      "boundary": "the stronger revealed- and selected-magnitude RMS and confidence lower bounds, including the paper's confidence coefficient $15/(256\\sqrt2)$"
+    },
+    "above-two": {
+      "status": "lean",
+      "verification_rows": [
+        "Rare-event rate above two"
+      ],
+      "evidence": [
+        "lean/ThresholdHC/RareAboveTwo/Full.lean"
+      ],
+      "abstract": "the rare-event rate above exponent two",
+      "boundary": "the rare-event rate for power margins above exponent two, in the observable model and by a construction different from \\cref{app:above-two}"
+    },
+    "entropy-tail-law": {
+      "status": "lean",
+      "verification_rows": [
+        "Entropy--tail law"
+      ],
+      "evidence": [
+        "lean/ThresholdHC/EntropyTail/Law.lean",
+        "results/entropy-tail-complete-20261101/README.md"
+      ],
+      "abstract": "the two-sided entropy--tail law",
+      "boundary": "the entropy--tail law"
+    },
+    "entropy-tail-coefficients": {
+      "status": "lean",
+      "verification_rows": [
+        "Entropy--tail law"
+      ],
+      "evidence": [
+        "lean/ThresholdHC/EntropyTailSharp/Full.lean",
+        "results/entropy-tail-explicit-20261104/README.md"
+      ],
+      "abstract": "the entropy--tail coefficients $10^{-17}$ and $28000$ for every known gap law"
+    },
+    "closed-quantile-law": {
+      "status": "lean",
+      "verification_rows": [
+        "Closed quantile form"
+      ],
+      "evidence": [
+        "lean/ThresholdHC/ClosedQuantile/Full.lean",
+        "results/closed-quantile-law-20261101/README.md"
+      ],
+      "abstract": "the two-sided closed-quantile law",
+      "boundary": "the closed quantile form"
+    },
+    "finite-direct": {
+      "status": "lean",
+      "verification_rows": [
+        "Closed quantile form"
+      ],
+      "evidence": [
+        "lean/ThresholdHC/FiniteQuantile/Full.lean",
+        "results/direct-finite-quantile-20261104/README.md"
+      ],
+      "abstract": "the separate direct closed-quantile bounds for finite laws, with coefficients $10^{-20}$ and $30001$"
+    },
+    "quantile-comparison": {
+      "status": "lean",
+      "verification_rows": [
+        "Quantile comparison and finite selection"
+      ],
+      "evidence": [
+        "lean/ThresholdHC/QuantilePrice/Full.lean",
+        "results/quantile-price-20261104/README.md"
+      ],
+      "abstract": "the deterministic quantile comparison"
+    },
+    "sharp-factor": {
+      "status": "lean",
+      "verification_rows": [
+        "Quantile comparison and finite selection"
+      ],
+      "evidence": [
+        "lean/ThresholdHC/QuantileOptimality/Full.lean",
+        "results/quantile-optimality-20261105/README.md"
+      ],
+      "abstract": "the characterization of the sharp quantile factor as the unique root of its scalar equation, over all gap laws and over finite-support laws",
+      "boundary": "the exact quantile comparison factor"
+    },
+    "stopping-program": {
+      "status": "lean",
+      "verification_rows": [
+        "Stopping programs and certificates"
+      ],
+      "evidence": [
+        "lean/ThresholdHC/StoppingProgram/BellmanTheorem.lean",
+        "lean/ThresholdHC/StoppingProgram/FiniteCertificate.lean",
+        "results/rare-event-full-20261031"
+      ],
+      "abstract": "stopping-program duality and the risk certificates",
+      "boundary": "the stopping-program results"
+    },
+    "identification": {
+      "status": "lean",
+      "verification_rows": [
+        "Stopping programs and certificates"
+      ],
+      "evidence": [
+        "lean/ThresholdHC/CapIdentification/Full.lean"
+      ],
+      "abstract": "fixed-cap identification",
+      "boundary": "fixed-cap identification"
+    },
+    "genie": {
+      "status": "lean",
+      "verification_rows": [
+        "Stopping programs and certificates"
+      ],
+      "evidence": [
+        "lean/ThresholdHC/Genie/OptimizedConvergence.lean",
+        "lean/ThresholdHC/GenieRate/Full.lean"
+      ],
+      "abstract": "the genie limits",
+      "boundary": "the genie results"
+    },
+    "power-margins-below-two": {
+      "status": "lean",
+      "verification_rows": [
+        "Rare-event rates below two"
+      ],
+      "evidence": [
+        "lean/ThresholdHC/SubcriticalPower/Full.lean",
+        "lean/ThresholdHC/ShiftedPower/Full.lean"
+      ],
+      "abstract": "the power-margin rates below exponent two",
+      "boundary": "the other power-margin rows"
+    },
+    "hard-cap": {
+      "status": "lean",
+      "evidence": [
+        "lean/ThresholdHC/HardBudget/Full.lean",
+        "results/hard-budget-rms-20261104/README.md"
+      ],
+      "boundary": "the hard-cap results of \\cref{app:hard-budget}"
+    },
+    "known-law-confidence": {
+      "status": "lean",
+      "evidence": [
+        "lean/ThresholdHC/ConfidenceProgram/Upper.lean",
+        "lean/ThresholdHC/ConfidenceEntropy/Full.lean",
+        "lean/ThresholdHC/Anytime/Full.lean"
+      ],
+      "abstract": "the general-law confidence coefficients $10^{-17}$ and $750000$",
+      "boundary": "the fixed-confidence rates of \\cref{app:known-confidence} and the time-uniform upper bound of \\cref{app:anytime}"
+    },
+    "smooth-density": {
+      "status": "lean",
+      "evidence": [
+        "lean/ThresholdHC/SmoothDensity/Full.lean"
+      ],
+      "abstract": "the smooth-density rates",
+      "boundary": "the smooth-density results"
+    },
+    "observed-states": {
+      "status": "lean",
+      "evidence": [
+        "lean/ThresholdHC/ObservedState/Finite.lean",
+        "lean/ThresholdHC/ContinuousObserved/UniformLower.lean",
+        "lean/ThresholdHC/ContinuousObserved/UniformUpper.lean"
+      ],
+      "abstract": "the observed-state rates",
+      "boundary": "the observed-state results"
+    },
+    "selected-type-transfer": {
+      "status": "lean",
+      "evidence": [
+        "lean/ThresholdHC/TypedConfidence/SignTransfer.lean",
+        "results/adaptive-types-20261105/README.md"
+      ],
+      "abstract": "selected-type information transfer"
+    },
+    "stochastic-envelope": {
+      "status": "lean",
+      "evidence": [
+        "lean/ThresholdHC/Envelope/Minimax.lean",
+        "lean/ThresholdHC/Envelope/Unbiased.lean",
+        "results/stochastic-envelope-20261105/README.md"
+      ],
+      "abstract": "the stochastic-envelope extension to unknown gap laws",
+      "boundary": "the stochastic-envelope extension for RMS, confidence and unbiased estimation",
+      "summary": "the stochastic-envelope extension to unknown gap laws for RMS, confidence and unbiased estimation"
+    },
+    "localization-transfers": {
+      "status": "lean",
+      "evidence": [
+        "lean/ThresholdHC/ConfidenceLocalization/ConfidenceRate.lean",
+        "lean/ThresholdHC/AdditiveConfidence/Full.lean",
+        "lean/ThresholdHC/RMSLocalization/Full.lean",
+        "results/common-pair-20261105/README.md",
+        "results/additive-confidence-20261105/README.md",
+        "results/rms-localization-20261105/README.md"
+      ],
+      "abstract": "conditional lower-bound localization with coefficient $1/128$",
+      "boundary": "the common-pair, fractional-submeasure and RMS lower-bound localization with coefficient $1/128$, conditional on a single-coin obstruction",
+      "summary": "lower-bound localization with coefficient $1/128$, conditional on a single-coin variance--null-work obstruction"
+    },
+    "finite-law-menus": {
+      "status": "lean",
+      "verification_rows": [
+        "Finite-menu cost grouping"
+      ],
+      "evidence": [
+        "lean/ThresholdHC/BandCostSelection/Counting.lean",
+        "lean/ThresholdHC/GapLawMenus/Full.lean",
+        "results/band-cost-formal-20261105/README.md",
+        "results/gap-law-menus-20261105/README.md"
+      ],
+      "abstract": "finite-menu cost grouping",
+      "boundary": "finite-menu cost grouping and its concrete finite-law menus",
+      "summary": "finite-menu cost grouping and the exact optimized value of concrete finite-law menus"
+    },
+    "finite-family-adaptation": {
+      "status": "lean",
+      "evidence": [
+        "lean/ThresholdHC/LawAdaptation/Full.lean",
+        "results/law-adaptation-20261105/README.md",
+        "results/law-adaptation-realization-20261105/README.md"
+      ],
+      "abstract": "finite-family oracle adaptation",
+      "boundary": "finite-family oracle adaptation with its paid pilot",
+      "summary": "oracle-rate adaptation within a supplied finite family of gap laws, including its paid pilot"
+    },
+    "psi-lower-bound": {
+      "status": "lean",
+      "verification_rows": [
+        "General statistical $\\Psi$ lower bound"
+      ],
+      "evidence": [
+        "lean/ThresholdHC/PsiSelection/Full.lean",
+        "results/psi-selection-20261109/README.md"
+      ],
+      "abstract": "the arbitrary-law statistical $\\Psi$ lower bound",
+      "boundary": "the arbitrary-law statistical $\\Psi$ lower bound of \\cref{app:localization}",
+      "summary": "the arbitrary-law statistical $\\Psi$ lower bound with coefficient $10^{-17}$, through the entropy--tail law"
+    },
+    "arbitrary-law-adaptation": {
+      "status": "lean",
+      "evidence": [
+        "lean/ThresholdHC/ArbitraryLawController/Full.lean",
+        "results/arbitrary-law-controller-20261116/README.md",
+        "docs/ARBITRARY_LAW_FORMALIZATION.md",
+        "results/adaptation-publication-20261116/README.md"
+      ],
+      "abstract": "eventual oracle-rate adaptation over arbitrary unknown gap laws",
+      "boundary": "arbitrary-law oracle adaptation after a law-dependent onset"
+    },
+    "psi-closed-form": {
+      "status": "paper",
+      "evidence": [
+        "paper/v6/psi-window.tex",
+        "research/2026-11-09-psi-closed-form/README.md"
+      ],
+      "summary": "the closed form of $\\Psi$ within a factor $\\sqrt2$, its distance from the rate, and the power-margin rate uniform in the exponent",
+      "abstract": "the closed form of $\\Psi$ with the power-margin rate uniform in the exponent",
+      "boundary": "the closed form of $\\Psi$ and the uniform power-margin rate of \\cref{sec:psi-window}"
+    },
+    "time-uniform-lower-bound": {
+      "status": "lean",
+      "evidence": [
+        "lean/ThresholdHC/AnytimeLower/Full.lean",
+        "lean/ThresholdHC/AnytimeLower/Intervals.lean",
+        "results/anytime-asymptotic-20261105/README.md"
+      ],
+      "abstract": "the matching all-law time-uniform lower bound",
+      "boundary": "the matching all-law time-uniform lower bound for deterministic half-width envelopes"
+    }
+  },
+  "arbitrary_law_component_audits": {
+    "audit_count": 33,
+    "exact_statements": 1065,
+    "transitive_axiom_reports": 1063,
+    "scope": "docs/ARBITRARY_LAW_FORMALIZATION.md",
+    "final_controller_record": "results/arbitrary-law-controller-20261116/status.json"
+  },
+  "proof_ci_scope": {
+    "modules": 1213,
+    "constants": 12993,
+    "theorems": 10509,
+    "instances": 125,
+    "registered_orphans": 6,
+    "locked_definitions": 2373,
+    "main_kernel_replay_modules": 204,
+    "controller_kernel_replay_modules": 12,
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "preservation": "The publication changes no Lean source, proof verifier, definition lock, existing result record or historical PDF/build record; current navigation, status and manuscript sources are reconciled separately.",
+  "remaining": {
+    "verification": [
+      85,
+      86,
+      89,
+      93,
+      100
+    ],
+    "research": [
+      87,
+      88
+    ],
+    "maintenance": [
+      90,
+      91
+    ],
+    "scope_notes": [
+      "The simpler unknown-law confidence sequence retains its separate paper-proof scope.",
+      "Localization retains its single-coin obstruction premise.",
+      "A physical zero-gap coin is not used by the completed adaptation proof.",
+      "Python/PRNG verification, numerical enclosure certification, practical superiority and external specialist review are not claimed."
+    ]
+  },
+  "final_integration_ci": "Reported on the final PR head and in tracker #76; the earlier proof-CI result and these two manuscript builds do not substitute for that run.",
+  "record_sha256": {
+    "manuscript-build-1.log": "9e655c0e88393032f7ffcbb935fa4d2b33432c614fe99cfbcfe60d1a45a08c77",
+    "manuscript-build-2.log": "9e655c0e88393032f7ffcbb935fa4d2b33432c614fe99cfbcfe60d1a45a08c77",
+    "manuscript-ci.json": "15f7baec2ce3072b823e34590e26eef89daf5eea17dba2b8951a0e7ccceb2a11",
+    "proof-ci.json": "66e79bac17e16550b4a52be5867dc594058e8a92cb97051f6e85e2892d3aa33f",
+    "proof-source-manifest.json": "096e26649a41d4536b1951c688eef3b626d713f367ed5a9f9feeda45e8985114"
+  }
+}
