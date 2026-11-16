@@ -336,3 +336,12 @@ and the named plan's budget/risk certificate and uniform reference-law
 rate directly under CDF domination. Its local project audit covers the
 364-module import closure; it does not claim a whole-project kernel replay
 or the conditional capped median and paid-stage composition.
+
+The [clipping and pilot-independence record](clipping-pilot-independence-20261116/README.md)
+checks 26 exact statements and transitive axiom reports. It covers the
+clipped estimator's unchanged experiment and work, risk contraction and
+bounded CDF planner, and the joint and conditional law of the complete
+production stream and private seed after the paid adaptive pilot. It also
+identifies the observed pilot word jointly with the interval in the
+original experiment and fixes the learned law inside the conditional
+continuation. Conditional capped-median coverage remains open.

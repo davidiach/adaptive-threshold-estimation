@@ -240,3 +240,9 @@ transitive reports deriving that coupling from CDF domination, including
 the zero-atom split, the original sign mass and rarity budget, and direct
 budget/risk guarantees for the named plan and one reference-dependent
 estimator valid for every CDF-dominated true law.
+
+Run `python tools/verify_clipping_pilot_independence.py` for 26 exact
+statements and transitive reports: clipping preserves the experiment and
+work and cannot increase risk; the production stream and private seed
+retain their original joint law after a positive-probability pilot history,
+including the installed multi-depth pilot and its selected continuation.

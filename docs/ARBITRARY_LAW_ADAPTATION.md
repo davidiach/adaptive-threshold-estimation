@@ -374,8 +374,13 @@ allocation are
 [Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#robust-continuation-the-plan-under-the-true-law)
 under the true law for the plan of the reference, in the Poisson multilevel
 estimator of the checked known-law plan, which reads both races of a
-correction from the same flips. Clipping, the capped median and the
-independence from the pilot are not yet checked.
+correction from the same flips.
+[Clipping and independence from the pilot](ARBITRARY_LAW_FORMALIZATION.md#clipping-and-independence-from-the-pilot)
+are now checked: clipping preserves the experiment and work and cannot
+increase risk, and conditioning on a positive-probability pilot word leaves
+the entire production stream and private seed with their original law.
+The conditional capped-median coverage and its connection to the paid stage
+remain open.
 
 For completeness, the quantile design used by the executable planner also
 has a universal comparison in the presence of a zero atom. Write
@@ -527,9 +532,10 @@ checked under a true law coupled above its reference, including a
 reference with mass at zero, and so is the plan of the reference as an
 estimator, with risk at most $C_0K_\alpha$. The coupling is now constructed
 from CDF domination, including the zero-atom split and preservation of the
-original sign mass and rarity budget. Formalization remains for clipping,
-independence from the pilot, the conditional physical-cap median, the
-connection to the paid stage and the full adaptive controller. Existing Lean
+original sign mass and rarity budget. Clipping and independence of the
+production input from the finite pilot history are also checked.
+Formalization remains for the conditional physical-cap median, its
+statistical connection to the paid stage and the full adaptive controller. Existing Lean
 results establish the positive-gap quantile-tail floor, objective floor,
 budget scaling and known-law foundations used here; they do not automatically
 formalize this new composition. Python and its PRNG remain unverified.
