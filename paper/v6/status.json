@@ -190,8 +190,8 @@
       "summary": "the arbitrary-law statistical $\\Psi$ lower bound with coefficient $10^{-17}$, through the entropy--tail law"
     },
     "arbitrary-law-adaptation": {
-      "status": "paper",
-      "evidence": ["paper/v6/arbitrary-law-adaptation.tex", "docs/ARBITRARY_LAW_ADAPTATION.md"],
+      "status": "lean",
+      "evidence": ["lean/ThresholdHC/ArbitraryLawController/Full.lean", "results/arbitrary-law-controller-20261116/README.md", "docs/ARBITRARY_LAW_FORMALIZATION.md"],
       "abstract": "eventual oracle-rate adaptation over arbitrary unknown gap laws",
       "boundary": "arbitrary-law oracle adaptation after a law-dependent onset"
     },

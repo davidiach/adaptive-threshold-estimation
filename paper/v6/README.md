@@ -774,3 +774,14 @@ inspected for layout; the [build record](builds/combined-psi-20261109.json)
 says what each contains. Earlier published PDFs and records are unchanged.
 
 [Updated manuscript](builds/combined-psi-20261109.pdf) · [Build record](builds/combined-psi-20261109.json)
+
+## All-budget controller source update
+
+The current source records the [complete arbitrary-law controller theorem](../../lean/ThresholdHC/ArbitraryLawController/Full.lean)
+and its [99-statement proof audit](../../results/arbitrary-law-controller-20261116/README.md).
+The status source and generated summaries now mark this theorem Lean-checked.
+The proof uses the exact pilot schedule and that repetition count for the
+continuation median; its scope and constants are in the
+[formalization guide](../../docs/ARBITRARY_LAW_FORMALIZATION.md#full-arbitrary-law-all-budget-controller).
+Previously published PDFs and build records above remain unchanged. A newly
+identified PDF and final publication reconciliation remain tracked in #84.

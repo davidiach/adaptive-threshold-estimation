@@ -1,0 +1,13 @@
+✔ [19591/19627] Built ThresholdHC.ArbitraryLawController.ZeroScale (19s)
+✔ [19593/19627] Built ThresholdHC.ArbitraryLawController.Schedule (20s)
+✔ [19608/19627] Built ThresholdHC.ArbitraryLawController.Execution (19s)
+✔ [19609/19627] Built ThresholdHC.ArbitraryLawController.Budget (26s)
+✔ [19612/19627] Built ThresholdHC.ArbitraryLawController.JointFailure (19s)
+✔ [19614/19627] Built ThresholdHC.ArbitraryLawController.Intervals (18s)
+✔ [19616/19627] Built ThresholdHC.ArbitraryLawController.LogSchedule (21s)
+✔ [19618/19627] Built ThresholdHC.ArbitraryLawController.Onset (23s)
+✔ [19620/19627] Built ThresholdHC.ArbitraryLawController.Stages (23s)
+✔ [19622/19627] Built ThresholdHC.ArbitraryLawController.Coverage (20s)
+✔ [19624/19627] Built ThresholdHC.ArbitraryLawController.Rate (21s)
+✔ [19626/19627] Built ThresholdHC.ArbitraryLawController.Full (19s)
+Build completed successfully (19627 jobs).

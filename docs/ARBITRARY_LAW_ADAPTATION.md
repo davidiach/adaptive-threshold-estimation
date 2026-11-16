@@ -1,8 +1,9 @@
 # Eventual oracle-rate adaptation over arbitrary unknown gap laws
 
-This is a **paper proof**, with an executable construction. Its
-[entropy and selection transport, CDF-envelope and observable-stage components](ARBITRARY_LAW_FORMALIZATION.md)
-are now Lean-checked; the full theorem and Python execution are not formally verified. The previous
+This theorem has a **complete Lean proof** and a separate executable
+construction. The [formalization scope](ARBITRARY_LAW_FORMALIZATION.md#full-arbitrary-law-all-budget-controller)
+identifies its concrete controller, schedule and exact audit. Python execution
+and numerical implementation remain outside the formal guarantee. The previous
 [tail-certificate theorem](ARBITRARY_LAW_TAIL.md) supplies the single-coin
 probe and its physical work bound. The additional steps here are a learned
 stochastic envelope, its entropy comparison, and a robustness proof for the
@@ -379,8 +380,8 @@ correction from the same flips.
 are now checked: clipping preserves the experiment and work and cannot
 increase risk, and conditioning on a positive-probability pilot word leaves
 the entire production stream and private seed with their original law.
-The conditional capped-median coverage and its connection to the paid stage
-remain open.
+The [conditional capped-median and paid-stage proof](ARBITRARY_LAW_FORMALIZATION.md#conditional-capped-median-and-the-paid-stage)
+now supplies the statistical connection to the concrete continuation.
 
 For completeness, the quantile design used by the executable planner also
 has a universal comparison in the presence of a zero atom. Write
@@ -435,7 +436,9 @@ now constructs that coupling. The
 checks the concrete median, its radius bound and the paid stage's failure
 probability in the original experiment. Its explicit schedule uses
 $2\lceil4\log(1/\delta)\rceil+1$ copies and the corresponding base budget;
-it does not yet formalize the all-budget composition below.
+the [full controller](ARBITRARY_LAW_FORMALIZATION.md#full-arbitrary-law-all-budget-controller)
+now specializes the generic median to the pilot repetition count for the
+all-budget composition below.
 
 ## 5. Online composition and the effective budget
 
@@ -490,6 +493,12 @@ $$
  K_{\mu,\rho}(B/\Lambda(B,\delta))
  =2^{32}C_*K_{\mu,\rho}(B/\Lambda(B,\delta)).
 $$
+The Lean controller uses exactly $m_J$ capped copies in each active
+continuation, with a checked failure bound $\delta_s/2$. It does not minimize
+the admissible odd copy count; (A17), (A18), the base-budget bound and the
+final constant are unchanged. Its [99-statement audit](../results/arbitrary-law-controller-20261116/README.md)
+checks the concrete procedure and this full same-event theorem.
+
 This completes the theorem. The procedure and confidence schedule are fixed
 before the law, while the theorem's finite onset is allowed to depend on it.
 
@@ -540,8 +549,8 @@ estimator, with risk at most $C_0K_\alpha$. The coupling is now constructed
 from CDF domination, including the zero-atom split and preservation of the
 original sign mass and rarity budget. Clipping and independence of the
 production input from the finite pilot history are also checked.
-Formalization remains for the conditional physical-cap median, its
-statistical connection to the paid stage and the full adaptive controller. Existing Lean
-results establish the positive-gap quantile-tail floor, objective floor,
-budget scaling and known-law foundations used here; they do not automatically
-formalize this new composition. Python and its PRNG remain unverified.
+The conditional physical-cap median, its statistical connection to the paid
+stage and the full adaptive controller are now Lean-checked, including the
+finite onset and the simultaneous oracle-width event. Finite-law numerical
+enclosures, Python and its PRNG remain unverified. A newly identified
+manuscript/PDF publication remains tracked in #84.

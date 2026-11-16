@@ -355,3 +355,11 @@ a cap including the pilot on every path, and a deterministic reported-radius
 bound. The final guarantee is under the original hidden-gap experiment and
 assumes no continuation-risk oracle. Finite-law numerical enclosures,
 the complete all-budget controller and Python execution remain separate.
+
+The [full arbitrary-law controller record](arbitrary-law-controller-20261116/README.md)
+adds 99 exact statements and transitive reports for the concrete procedure
+and final theorem of #83. One event gives all-budget coverage and eventual
+oracle width for every positive-gap probability law and globally rare sign
+allocation, with unconditional work caps and consistent observable prefixes.
+The record identifies its proof checkpoint and 730-module project closure.
+The historical component records keep their earlier scope.

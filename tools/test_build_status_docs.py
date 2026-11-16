@@ -66,7 +66,7 @@ class BlockTests(unittest.TestCase):
         status = load_status()
         with tempfile.TemporaryDirectory() as tmp:
             document = Path(tmp) / "doc.md"
-            document.write_text(f"intro\n{docs.BEGIN}\nstale\n{docs.END}\nend\n", encoding="utf-8")
+            document.write_text(f"intro\n{docs.BEGIN}\nstale\n{docs.END}\nend\n", encoding="utf-8", newline="\n")
             self.assertEqual(docs.update(status, (document,), write=False), [document])
             self.assertIn("stale", document.read_text(encoding="utf-8"))
             docs.update(status, (document,), write=True)
@@ -158,7 +158,7 @@ class RepositoryTests(unittest.TestCase):
         status = load_status()
         with tempfile.TemporaryDirectory() as tmp:
             document = Path(tmp) / "RESULTS.md"
-            document.write_text(f"intro\n{docs.BEGIN}\nold\n{docs.END}\n", encoding="utf-8")
+            document.write_text(f"intro\n{docs.BEGIN}\nold\n{docs.END}\n", encoding="utf-8", newline="\n")
             with unittest.mock.patch.object(docs, "TABLE", document):
                 with self.assertRaisesRegex(ValueError, "needs the heading"):
                     docs.update(status, (document,), write=False)
