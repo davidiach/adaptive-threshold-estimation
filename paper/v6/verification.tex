@@ -80,6 +80,15 @@ General statistical $\Psi$ lower bound &
 and \texttt{psi\_confidence\_lower} prove \cref{loc:thm:PsiLower}
 with $c=10^{-17}$ via $\Psi\le\mathcal K$, without the Lee--Valiant input.
 Corollary~\ref{cor:psi-from-law} states this derivation.\\[5pt]
+Sharp closed form and entropy gap of $\Psi$ &
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/88db689b926fc11e52ced01d53a6bc44d42a3d3e/lean/ThresholdHC/PsiClosedForm/Full.lean}{\texttt{psi\_closed\_form}}
+and \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/a5edeef11ce9ca2737acf4b11f9dd871e80135ee/lean/ThresholdHC/PsiSharpness/TwoAtom.lean}{\texttt{two\_atom\_sharpness}}
+check Proposition~\ref{prop:psi-closed}, including both sharpness cases.
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/88db689b926fc11e52ced01d53a6bc44d42a3d3e/lean/ThresholdHC/PsiGap/Full.lean}{\texttt{psi\_gap}}
+and \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/a5edeef11ce9ca2737acf4b11f9dd871e80135ee/lean/ThresholdHC/PsiSharpness/OccupiedBands.lean}{\texttt{occupied\_band\_entropy}}
+check Theorem~\ref{thm:psi-gap}, with $E_\kappa\le\log n_\kappa\le\log\log_2(1/t)$,
+upper risk coefficient $30001$ and reverse coefficient $10^{-17}/2$.
+Every probability law, $0<\rho\le1/4$ and $B>0$ is included.\\[5pt]
 Rare-event rate above two &
 \abovetwoleanref{above\_two\_theory} proves both minimax bounds for the
 exact power law with $\alpha>2$, $0<a\le1/2$, $0<\rho\le1/4$ and $B\ge1$,
@@ -560,16 +569,27 @@ verify selected-type transfer, common pairs and RMS and confidence
 localization, including the $10^{-17}$ general-law confidence coefficient.
 
 \paragraph{Paper proofs, open questions and model limits.}
-The results of \cref{sec:psi-window} have paper proofs: the comparison of
-$\Psi$ with the quantile functional, the bound on its distance from the
-rate, and the power-margin rate that is uniform in the exponent. They are
-deterministic consequences of Corollary~\ref{fg:cor:general-laws} and
-\cref{thm:entropy-confidence-explicit}. Of their elementary inequalities,
-Lean checks only $\Psi\le\mathcal K$ and the two bounds of
-Corollary~\ref{cor:psi-from-law}, in the row for the general statistical
-$\Psi$ lower bound above; the floating-point script
-\path{research/2026-11-09-psi-closed-form/check.py} is numerical evidence
-only.
+In \cref{sec:psi-window}, Proposition~\ref{prop:psi-closed},
+Corollary~\ref{cor:psi-from-law} and Theorem~\ref{thm:psi-gap} are
+Lean-checked in the scopes above. The separate
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/ddb8872d91d185ae7e3acee5a9f554c97557abdf/lean/ThresholdHC/PowerWindow/Full.lean}{power-law foundation}
+checks the exact-CDF law's quantile split, $a^2A_\kappa=\Phi_\alpha(\rho)$
+and its closed formula for every $\alpha>0$, $0<a\le1/2$ and $0<\rho<1$,
+including $\alpha=2$. It also checks that the uniform quantile comparison
+implies the RMS and both confidence bounds, with RMS coefficients
+$10^{-17}/\sqrt2$ and $60002$ and confidence upper coefficient $1500000$.
+The quantile comparison remains an explicit premise. It does not prove the uniform entropy bounds in
+Lemma~\ref{lem:power-core}, or the quantile, RMS and confidence comparisons
+in Theorem~\ref{thm:power-uniform}; these remain formal targets with paper
+proofs. Corollary~\ref{cor:critical-window} and Remark~\ref{rem:window}
+remain paper results, outside those targets. The two new audits are
+\path{tools/verify_psi_sharpness.py} (five exact statements) and
+\path{tools/verify_power_window.py} (eight exact statements); each reports
+the transitive axioms of every declaration in its directory. Their records
+are in \path{results/psi-sharpness-20261116/} and
+\path{results/power-window-foundation-20261116/}.
+The floating-point script
+\path{research/2026-11-09-psi-closed-form/check.py} remains numerical evidence only.
 A separate \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/a3b00cd8962060ca13768e5d3567168105e7ccfd/docs/UNKNOWN_LAW_CONFIDENCE.md}{confidence sequence}
 has a paper proof, not a Lean proof. It shrinks for every positive-gap law
 without using that law, but its proved width depends on the small-gap tail

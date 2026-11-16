@@ -1,0 +1,30 @@
+{
+  "manuscript_source_commit": "70e1638c00d7a38f7775acb68c45f0a09b98cbdb",
+  "validation_checkpoint": "f13202a5a3611d0371d9db5b4d8606b072ec4f54",
+  "pdf": "paper/v6/builds/psi-sharpness-20261116.pdf",
+  "pdf_sha256": "085c7419a088958746b3f9f1480cba6979cf624f1029d9ff4e2c16462615731b",
+  "tracked_status_counts": {
+    "lean": 31,
+    "paper": 1
+  },
+  "local_new_audits": {
+    "exact_statements": 13,
+    "transitive_axiom_reports": 42,
+    "guard_tests": 12
+  },
+  "generator_tests": 42,
+  "all_psi_guard_tests": 24,
+  "whole_project_summary": [
+    "Verified 13175 constants (10662 theorems) in 1230 modules: axioms propext, Classical.choice, Quot.sound",
+    "Verified 125 exported project instances: named, global, default priority, 6 registered orphans",
+    "Added 15 new definitions to C:\\Users\\User\\Desktop\\Projects\\math\\pr108-integration-20261115\\tools\\definition_lock.json",
+    "Verified 2387 locked definition fingerprints"
+  ],
+  "remaining_formal_work": [
+    "Uniform power-law band-cost entropy estimate, including the arbitrary-scale band offset",
+    "Deterministic uniform quantile comparison"
+  ],
+  "conditional_statistical_results": "The quantile comparison implies the full RMS and both confidence targets; the premise remains unproved.",
+  "paper_only_choice": "Corollary 14.14 and Remark 14.15 remain paper results, outside the current formal targets.",
+  "ci_scope": "base-pr116-ci.json records the merged base head, not the new proofs. New proof CI must be read at the actual review PR head; this record claims only the local audits above."
+}

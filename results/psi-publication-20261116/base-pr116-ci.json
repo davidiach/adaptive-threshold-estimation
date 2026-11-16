@@ -1,0 +1,162 @@
+{
+  "baseRefOid": "01f483f34209e4a7e343f045d778c51538e2d901",
+  "headRefOid": "88db689b926fc11e52ced01d53a6bc44d42a3d3e",
+  "mergeCommit": {
+    "oid": "0f37cfa6449b1e99931510ecc4a89ea99ef3937e"
+  },
+  "mergedAt": "2026-11-16T18:59:58Z",
+  "state": "MERGED",
+  "statusCheckRollup": [
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-16T18:00:06Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/43923870980/job/133498009989",
+      "name": "v6-pdf",
+      "startedAt": "2026-11-16T17:58:08Z",
+      "status": "COMPLETED",
+      "workflowName": "Manuscript build"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-16T17:59:26Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/43923883590/job/133498056334",
+      "name": "research-evidence",
+      "startedAt": "2026-11-16T17:58:12Z",
+      "status": "COMPLETED",
+      "workflowName": "Reproducible checks"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-16T17:59:59Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/43923870320/job/133498175623",
+      "name": "research-evidence",
+      "startedAt": "2026-11-16T17:58:24Z",
+      "status": "COMPLETED",
+      "workflowName": "Reproducible checks"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-16T17:59:14Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/43923883942/job/133498057465",
+      "name": "toolkit (3.10)",
+      "startedAt": "2026-11-16T17:58:12Z",
+      "status": "COMPLETED",
+      "workflowName": "Toolkit tests"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-16T17:59:01Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/43923883942/job/133498058098",
+      "name": "toolkit (3.12)",
+      "startedAt": "2026-11-16T17:58:16Z",
+      "status": "COMPLETED",
+      "workflowName": "Toolkit tests"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-16T18:03:35Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/43923883590/job/133498056808",
+      "name": "numerical-evidence",
+      "startedAt": "2026-11-16T17:58:12Z",
+      "status": "COMPLETED",
+      "workflowName": "Reproducible checks"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-16T18:03:59Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/43923870320/job/133498176131",
+      "name": "numerical-evidence",
+      "startedAt": "2026-11-16T17:59:03Z",
+      "status": "COMPLETED",
+      "workflowName": "Reproducible checks"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-16T18:24:08Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/43923883590/job/133498056687",
+      "name": "lean-kernel",
+      "startedAt": "2026-11-16T17:58:12Z",
+      "status": "COMPLETED",
+      "workflowName": "Reproducible checks"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-16T18:25:57Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/43923870320/job/133498175925",
+      "name": "lean-kernel",
+      "startedAt": "2026-11-16T17:58:25Z",
+      "status": "COMPLETED",
+      "workflowName": "Reproducible checks"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-16T18:46:28Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/43923883590/job/133498056744",
+      "name": "lean-all-modules",
+      "startedAt": "2026-11-16T17:58:12Z",
+      "status": "COMPLETED",
+      "workflowName": "Reproducible checks"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-16T18:39:15Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/43923870320/job/133498176172",
+      "name": "lean-all-modules",
+      "startedAt": "2026-11-16T17:58:25Z",
+      "status": "COMPLETED",
+      "workflowName": "Reproducible checks"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-16T18:58:35Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/43923883590/job/133498056714",
+      "name": "entropy-tail-upper",
+      "startedAt": "2026-11-16T17:58:12Z",
+      "status": "COMPLETED",
+      "workflowName": "Reproducible checks"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-16T18:44:31Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/43923870320/job/133498175891",
+      "name": "entropy-tail-upper",
+      "startedAt": "2026-11-16T17:58:24Z",
+      "status": "COMPLETED",
+      "workflowName": "Reproducible checks"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-16T18:41:59Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/43923883590/job/133498056773",
+      "name": "stopping-program",
+      "startedAt": "2026-11-16T17:58:12Z",
+      "status": "COMPLETED",
+      "workflowName": "Reproducible checks"
+    },
+    {
+      "__typename": "CheckRun",
+      "completedAt": "2026-11-16T18:36:33Z",
+      "conclusion": "SUCCESS",
+      "detailsUrl": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/43923870320/job/133498176287",
+      "name": "stopping-program",
+      "startedAt": "2026-11-16T17:58:46Z",
+      "status": "COMPLETED",
+      "workflowName": "Reproducible checks"
+    }
+  ],
+  "url": "https://github.com/davidiach/adaptive-threshold-estimation/pull/116"
+}

@@ -437,14 +437,19 @@ order $\log(1/\rho)$.
 \end{remark}
 
 \paragraph{Status.}
-Lean checks the inequality $\Psi\le\mathcal K$ and the two bounds
-\eqref{eq:psi-window-lower} of Corollary~\ref{cor:psi-from-law}, in the
-scope recorded in \cref{sec:verification}. The other statements of this
-subsection have paper proofs. They use
-Corollary~\ref{fg:cor:general-laws} and
-\cref{thm:entropy-confidence-explicit}, whose scopes are recorded in
-\cref{sec:verification}, and elementary inequalities that have not been
-formalized. The floating-point script
-\path{research/2026-11-09-psi-closed-form/check.py} tests every inequality
-and constant above on random finite laws and on a grid of power laws; it
-is numerical evidence only.
+Lean checks Proposition~\ref{prop:psi-closed}, including both sharpness
+statements, Corollary~\ref{cor:psi-from-law}, and
+Theorem~\ref{thm:psi-gap}, including the occupied-band entropy bound.
+The checked risk coefficients are $10^{-17}$ and $30001$ for $\Q$;
+the paper's display retains its coefficient $33000$.
+For Lemma~\ref{lem:power-core}, Lean checks the quantile split and
+$a^2A_\kappa=\Phi_\alpha(\rho)$ for every $\alpha>0$, including
+$\Phi_2(\rho)=\log(1/\rho)$ and arbitrary $0<a\le1/2$.
+Its uniform entropy bounds and Theorem~\ref{thm:power-uniform} still
+have paper proofs only. Lean does check the statistical implications of
+the uniform quantile comparison, with that comparison retained as a premise.
+Corollary~\ref{cor:critical-window} and
+Remark~\ref{rem:window} remain paper results, outside the current formal
+targets. Section~\ref{sec:verification} records the exact checked scope.
+The floating-point script
+\path{research/2026-11-09-psi-closed-form/check.py} is numerical evidence only.

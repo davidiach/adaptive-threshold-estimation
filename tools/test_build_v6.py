@@ -367,7 +367,8 @@ class VerificationStatusTests(unittest.TestCase):
         noun = "result" if counts["paper"] == 1 else "results"
         self.assertIn(f"({counts['paper']} {noun})", paper)
         # A paper proof points to the section that holds it; a checked result to its modules.
-        self.assertIn("uniform in the exponent & \\cref{sec:psi-window}", paper)
+        self.assertIn("uniform in the exponent, including the critical-window corollary & "
+                      "\\cref{sec:psi-window}", paper)
         self.assertIn("unknown gap laws & \\path{ArbitraryLawController/Full.lean}", checked)
         self.assertNotIn("\\path{", paper)
         self.assertIn("\\path{Tier6/Full.lean}", checked)
