@@ -837,12 +837,13 @@ Run `python tools/verify_psi_sharpness.py` for five exact statements and
 instance and the entropy bound by the finite positive occupied-band count.
 [Record](../results/psi-sharpness-20261116/README.md).
 
-Run `python tools/verify_power_window.py` for eight exact statements and
-27 transitive axiom reports: the exact-CDF quantile split, the power-law
-core-cost identity, the closed formula for Phi and its exponent-two case.
-The statistical implications of the uniform quantile comparison are also
-checked, with that comparison retained as a premise. The uniform entropy,
-quantile and unconditional statistical targets remain unproved. [Record](../results/power-window-foundation-20261116/README.md).
+Run `python tools/verify_power_window.py` for 16 exact statements and
+78 transitive axiom reports. It checks all five frozen power-window targets:
+the Phi formula, actual core cost and uniform entropy bounds, deterministic
+quantile comparison, RMS bounds and both confidence bounds. This includes
+exponent two and arbitrary scale. Independent restatements retain every
+assumption and the explicit constants. Corollary 14.14 and Remark 14.15
+remain outside the formal scope. [Record](../results/power-window-complete-20261116/README.md).
 
 Each audit pins its new specification, restates the checked targets and
 reports every new declaration's transitive axioms. Their six-test guard
