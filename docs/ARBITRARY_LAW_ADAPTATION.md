@@ -552,5 +552,6 @@ production input from the finite pilot history are also checked.
 The conditional physical-cap median, its statistical connection to the paid
 stage and the full adaptive controller are now Lean-checked, including the
 finite onset and the simultaneous oracle-width event. Finite-law numerical
-enclosures, Python and its PRNG remain unverified. A newly identified
-manuscript/PDF publication remains tracked in #84.
+enclosures, Python and its PRNG remain unverified. The
+[publication record](../results/adaptation-publication-20261116/README.md)
+reconciles the proof checkpoints, current manuscript and remaining backlog.

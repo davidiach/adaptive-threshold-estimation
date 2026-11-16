@@ -74,7 +74,7 @@ the gap law is known unless a row says otherwise.
 | A stopping program with an exact dual, and certificates within a factor sixteen of the minimax risk | Lean-checked | [Scope](docs/RESULTS.md#general-law-rare-event-characterization) |
 | Hard caps on the number of flips; fixed-confidence radius of order $\mathcal K(B/\log(1/\delta))$; a time-uniform rate for a known law and a lower bound of the same order, not composed in Lean | Lean-checked | [Caps](docs/RESULTS.md#hard-observation-caps-for-the-rms-rates) · [Confidence](docs/RESULTS.md#confidence-rates-and-sequential-stopping) |
 | Unknown gap law: the same time-uniform rate within a supplied finite family of laws | Lean-checked | [Scope](docs/RESULTS.md#confidence-rates-and-sequential-stopping) |
-| Unknown gap law: the same rate for arbitrary laws, after an onset that depends on the law | Paper proof, with [Lean-checked components](docs/ARBITRARY_LAW_FORMALIZATION.md) | [Proof](docs/ARBITRARY_LAW_ADAPTATION.md) |
+| Unknown gap law: the same rate for arbitrary laws, after an onset that depends on the law | Lean-checked | [Theorem and construction](docs/ARBITRARY_LAW_FORMALIZATION.md#full-arbitrary-law-all-budget-controller) · [Publication evidence](results/adaptation-publication-20261116/README.md) |
 
 ## Scope and review
 

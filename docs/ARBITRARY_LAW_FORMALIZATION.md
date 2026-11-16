@@ -1322,6 +1322,6 @@ external specialist review remain separate. The Lean construction selects
 its reference estimator classically and evaluates its reference functional
 exactly; it uses no integration oracle for the unknown true law. The checked
 bank and median schedules are identified above and in the paid-median scope.
-Publication issue [#84](https://github.com/davidiach/adaptive-threshold-estimation/issues/84)
-still requires the newly identified manuscript/PDF build and final evidence
-reconciliation. Historical records retain their original claims.
+The [publication record](../results/adaptation-publication-20261116/README.md)
+reconciles the new manuscript/PDF with its proof checkpoints and the
+remaining optional backlog. Historical records retain their original claims.

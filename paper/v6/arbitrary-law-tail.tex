@@ -1,8 +1,10 @@
 \subsection{Oracle-scale tail certificates without a known gap law}
 \label{sec:arbitrary-law-tail}
 
-The next result addresses unobserved small-gap mass. It is a paper proof,
-with a tested executable controller, and is not part of the Lean audit.
+The next result addresses unobserved small-gap mass. Its observable
+tail certificate, physical cap and eventual oracle comparison are
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/39e3587b5a8f4d9466df7762f455ff587a40202e/lean/ThresholdHC/ArbitraryLawAdaptation/TailObservable.lean}{Lean-checked}.
+The separate Python implementation and its PRNG remain unverified.
 The additional core allocation and null-likelihood argument needed for
 oracle-rate estimation of the positive fraction is supplied in
 \cref{sec:arbitrary-law-adaptation}.
@@ -170,6 +172,9 @@ The implementation uses integer thresholds, exact rational endpoints and
 $m=8\lceil\log_2(2/\delta)\rceil+1$. A resumable probe preserves its current
 coin and charges every flip; the median driver validates full authorization
 before acquisition. Its tests cover pause points, reflection, threshold ties,
-partial work, finite exact probabilities and failure paths. Neither Python
-execution nor the new probability theorem is Lean-verified. Existing Lean
-results support (AT10) and the elementary objective floor used above.
+partial work, finite exact probabilities and failure paths. Lean checks
+the single-coin test, capped probe, median certificate, oracle comparison
+and their realization by observed flips. The exact-type and axiom audits
+are recorded in \path{results/arbitrary-law-tail-observable-20261111/}
+and its linked component records. These mathematical proofs do not verify
+Python execution or its PRNG.

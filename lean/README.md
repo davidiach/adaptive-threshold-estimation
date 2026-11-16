@@ -348,4 +348,6 @@ consistency, nested intervals, joint pilot-and-coverage event, (A17)–(A18),
 finite onset and final same-event width `2^32 C_* K(B/Lambda)`. The theorem
 assumes no statistical stage oracle. CI also replays these twelve modules
 through the independent kernel checker. Finite-law numerical enclosures,
-Python/PRNG verification and manuscript/PDF publication remain separate.
+Python/PRNG verification remains separate. The
+[publication record](../results/adaptation-publication-20261116/README.md)
+links the manuscript build and the final proof evidence.
