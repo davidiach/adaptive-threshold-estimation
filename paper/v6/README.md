@@ -2,26 +2,12 @@
 
 [Current manuscript](builds/combined-psi-20261109.pdf) · [LaTeX sources](main.tex) · [Build record](builds/combined-psi-20261109.json) · [Previous build](builds/psi-closed-form-20261109.pdf)
 
-The current build combines two builds that were published from the same base on 9 November 2026; see the [last section](#combined-build). The [closed-form and exposition build](#closed-form-and-exposition-build) adds [§14.8](psi-window.tex), which gives the variational modulus Ψ in closed form and the power-margin rate with constants uniform in the exponent, and revises the presentation: a rewritten abstract, a results overview with a generated status table, a reading guide and notation table, and a grouped table of contents. The [Psi lower bound build](#psi-lower-bound-and-tail-proof-build) records the arbitrary-law Ψ lower bound as Lean-checked and repairs one step of the arbitrary-law tail proof. The [earlier build](builds/status-coverage-20261107.pdf) added four results to the generated status paragraphs of the [arbitrary-law adaptation build](builds/arbitrary-law-adaptation-20261106.pdf), which combines the finite-gap menu and status-reconciliation changes with the arbitrary-law tail certificate and full eventual oracle-adaptation paper proof. The [finite-gap menu PDF](builds/gap-law-menus-20261105.pdf) and [status-reconciliation PDF](builds/status-reconciliation-20261105.pdf) retain their respective published source identities.
-
-Later [Lean component audits](../../docs/ARBITRARY_LAW_FORMALIZATION.md) cover
-the CDF and zero-atom comparison, dominated mass, the concrete factor-32
-light contraction, the single-coin tail test of Appendix V.3 with its
-error and work bounds, and its inverse-sampling step: one capped probe with
-its coverage and performance bounds, the median certificate at one depth
-and at every depth, its oracle comparison past a finite onset, the same
-statements for an estimator that reads only observed flips, the capped
-multi-depth pilot with the conservative law it learns, that law's oracle
-comparison past a finite onset, the quantile comparison for laws with mass
-at zero, and the certificate and rate of a known-law plan, for exact
-integrals and for upper bounds within a factor two, with the planner's
-output end to end, and the validity and rate of the plan of a reference law
-under every CDF-dominated true law, with the required increasing coupling
-and zero-atom split now constructed. Clipping preserves those guarantees,
-and conditioning on a finite pilot history of positive probability leaves
-the production stream and private seed with their original joint law.
-The full arbitrary-law adaptation theorem remains a paper
-proof; the published PDF and its build record retain their original scope.
+The current sources publish the complete arbitrary-law all-budget controller
+and reconcile its proof and implementation boundaries. The new publication
+is described in the [all-budget controller build](#all-budget-controller-build)
+and [evidence record](../../results/adaptation-publication-20261116/README.md).
+The earlier [combined build](#combined-build) retains its original source,
+PDF and verification scope; every earlier published package is unchanged.
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -62,7 +48,7 @@ unchanged.
 | Appendix R | RMS guarantees under a deterministic observation cap |
 | Appendix S | Rare-event confidence at the effective budget, with subsections on adaptively selected component types, common pairs, fractional-submeasure localization, the sharper general-law confidence coefficient and RMS localization |
 | Appendices T–U | The direct proof below margin exponent one; the logarithmic and intermediate power-margin rows |
-| Appendix V | Known-law time-uniform confidence, the matching lower bound, finite-family adaptation, and the arbitrary-law tail and oracle-adaptation paper proofs |
+| Appendix V | Known-law time-uniform confidence, the matching lower bound, finite-family adaptation, and the Lean-checked arbitrary-law tail certificate and full oracle-adaptation controller |
 | Appendix W | The smooth-density theorem in the adaptive experiment |
 | Appendices X–Z | Observed states: the finite-cell lower bound, continuous-magnitude lower bounds and the fresh-outer-state upper-bound transfer |
 
@@ -83,7 +69,10 @@ It also checks the arbitrary-law statistical Ψ lower bound of Appendix A,
 with coefficient $10^{-17}$, as a corollary of the entropy–tail law.
 It also checks the stochastic-envelope extension, lower-bound localization
 with coefficient $1/128$ conditional on a single-coin obstruction, finite-menu cost grouping and finite-family oracle
-adaptation. The [status table](../../docs/RESULTS.md#verification-status), generated
+adaptation, and the full arbitrary-law all-budget controller with eventual
+width after a deterministic law-dependent onset. Its physical caps hold
+unconditionally, and the coverage event also protects observation-dependent
+stopping budgets. The [status table](../../docs/RESULTS.md#verification-status), generated
 from [status.json](status.json), lists every result the abstract tracks.
 Section 18 states each formal scope and links the fixed source revisions.
 
@@ -775,13 +764,23 @@ says what each contains. Earlier published PDFs and records are unchanged.
 
 [Updated manuscript](builds/combined-psi-20261109.pdf) · [Build record](builds/combined-psi-20261109.json)
 
-## All-budget controller source update
+## All-budget controller build
 
-The current source records the [complete arbitrary-law controller theorem](../../lean/ThresholdHC/ArbitraryLawController/Full.lean)
-and its [99-statement proof audit](../../results/arbitrary-law-controller-20261116/README.md).
-The status source and generated summaries now mark this theorem Lean-checked.
-The proof uses the exact pilot schedule and that repetition count for the
-continuation median; its scope and constants are in the
-[formalization guide](../../docs/ARBITRARY_LAW_FORMALIZATION.md#full-arbitrary-law-all-budget-controller).
-Previously published PDFs and build records above remain unchanged. A newly
-identified PDF and final publication reconciliation remain tracked in #84.
+This publication records the [complete arbitrary-law controller theorem](../../lean/ThresholdHC/ArbitraryLawController/Full.lean)
+and its [99-statement audit](../../results/arbitrary-law-controller-20261116/README.md).
+The status source and generated summaries list 30 of 31 tracked results as
+Lean-checked. The remaining entry comprises the paper-only claims of §14.8;
+its checked inequality and statistical lower bounds retain their separate row.
+
+Appendix V now consistently identifies the tail certificate, learned-law
+comparison, robust continuation and full interval composition as checked.
+The formal controller uses the exact pilot schedule and that repetition
+count for the continuation median, preserving the stated budget bounds and
+final constant. Its reference functional is evaluated exactly; numerical
+enclosures and Python/PRNG execution remain separate. The
+[formalization guide](../../docs/ARBITRARY_LAW_FORMALIZATION.md#full-arbitrary-law-all-budget-controller)
+states the precise construction and scope.
+
+The [publication record](../../results/adaptation-publication-20261116/README.md)
+maps the current manuscript to its source checkpoint, existing proof records
+and exact-head CI. All prior PDFs, source packages and evidence remain unchanged.

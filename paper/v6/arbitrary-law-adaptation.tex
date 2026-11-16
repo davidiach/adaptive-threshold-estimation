@@ -452,8 +452,14 @@ probabilities and arithmetic, controller accounting, namespaces, partial
 coins, zero atoms, split boundaries, tiny-radius rounding and failure paths.
 It does not prove the general theorem.
 
-Lean formalization remains for the new entropy transports, learned-envelope
-comparison, robustness transfer and full adaptive controller. Existing Lean
-results establish the positive-gap quantile-tail floor, objective floor,
-budget scaling and known-law foundations used here; they do not automatically
-formalize this new composition. Python and its PRNG remain unverified.
+The entropy transports, learned-envelope comparison, robustness transfer
+and full adaptive controller are now Lean-checked. The thirty-three component
+audits contain 1,065 exact statements and 1,063 transitive axiom reports.
+The final controller audit independently restates all 99 declarations of
+its twelve modules; \path{results/arbitrary-law-controller-20261116/}
+identifies its proof checkpoint, audit inputs and source closure.
+The formal controller uses the pilot repetition count for its continuation
+median, as stated at the beginning of this section. The reference estimator
+is selected classically and its reference functional is evaluated exactly;
+no integration oracle for the unknown true law is assumed. Numerical
+enclosures, Python execution and its PRNG remain unverified.

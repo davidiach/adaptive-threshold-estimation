@@ -21,8 +21,8 @@ class BuildRecordTests(unittest.TestCase):
         self.dir = Path(self.tmp.name)
         self.pdf = self.dir / "build.pdf"
         self.pdf.write_bytes(b"%PDF-1.5 example")
-        (self.dir / "a.tex").write_text("A\n", encoding="utf-8")
-        (self.dir / "status.json").write_text("{}\n", encoding="utf-8")
+        (self.dir / "a.tex").write_bytes(b"A\n")
+        (self.dir / "status.json").write_bytes(b"{}\n")
         self.record = {
             "pages": 10, "pdf_sha256": sha(self.pdf.read_bytes()), "pdf_bytes": 16,
             "tex_sources": {"a.tex": sha(b"A\n")}, "source_commit": "abc",

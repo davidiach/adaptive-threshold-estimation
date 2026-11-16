@@ -4,9 +4,9 @@ This note gives a paper proof and an executable implementation. Its statements
 (1) to (4) are now also Lean-checked, as described two paragraphs below.
 It closes one part of arbitrary-law adaptation: learning an upper bound
 on unobserved small-gap mass at the oracle scale, with a physical flip cap.
-It does **not** yet construct an oracle-rate confidence sequence for the
-positive fraction. In particular, it does not supply the core costs and null
-likelihood integrals needed by the known-law estimator.
+This tail theorem is a component of the separate
+[complete oracle-rate confidence sequence](ARBITRARY_LAW_ADAPTATION.md),
+which supplies the learned-law design and continuation for the positive fraction.
 
 Lean now checks the single-coin test of the
 [section below](#a-sign-neutral-test-with-a-gap-dependent-cost): its sign
@@ -258,10 +258,10 @@ are not Lean-verified. The [tests](../toolkit/tests/test_tail_mass.py) check
 physical accounting, pauses, reflection, exact finite sampling calculations
 and error paths; they do not replace the general-law paper proof above.
 
-The new [arbitrary-law adaptation paper proof](ARBITRARY_LAW_ADAPTATION.md)
+The [arbitrary-law adaptation theorem](ARBITRARY_LAW_ADAPTATION.md)
 uses these certificates to learn a conservative finite law, transfers
 the classifier bank to that law, and proves the full eventual oracle
-width bound for the positive fraction. That additional construction is
-only partly formalized; its [formal scope](ARBITRARY_LAW_FORMALIZATION.md)
-lists what remains. Statements (1) to (4) of this tail theorem are
-Lean-checked, as the opening of this note describes.
+width bound for the positive fraction. That construction now has a
+[complete Lean proof](ARBITRARY_LAW_FORMALIZATION.md#full-arbitrary-law-all-budget-controller).
+Statements (1) to (4) of this tail theorem are also Lean-checked, as the
+opening of this note describes. Python execution remains separate.
