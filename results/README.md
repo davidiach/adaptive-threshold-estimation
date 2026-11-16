@@ -14,6 +14,7 @@ statement. For the current tree the evidence is the CI run on that commit.
 
 | Claim or check | Published record |
 |---|---|
+| Sharp Psi results, power-law foundation and manuscript scope reconciliation | [psi-publication-20261116](psi-publication-20261116/README.md) |
 | Completed arbitrary-law manuscript, status and proof-evidence reconciliation | [adaptation-publication-20261116](adaptation-publication-20261116/README.md) |
 | Entropy perturbation and certified-bin state-compression invariant | [selection-approximation-20261106](selection-approximation-20261106/README.md) |
 | Original frozen Lean target audit | [lean_checkpoint.json](lean_checkpoint.json), [lean_score.json](lean_score.json) |
