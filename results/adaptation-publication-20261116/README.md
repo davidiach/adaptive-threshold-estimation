@@ -40,8 +40,15 @@ component are in the [formalization guide](../../docs/ARBITRARY_LAW_FORMALIZATIO
   by independent kernel replay of the twelve controller modules.
 
 The publication changes no Lean source, proof audit or definition lock.
-The machine-readable reconciliation and source manifest added with the PDF
-bind the manuscript checkpoint to this reused proof evidence. CI on the final
+The [machine-readable reconciliation](reconciliation.json) and
+[proof-source manifest](proof-source-manifest.json) bind manuscript checkpoint
+`ab67c39108931528d52acd42856e33343dbb2e31` to this reused evidence.
+The [proof CI snapshot](proof-ci.json), [two manuscript runs](manuscript-ci.json)
+and their [first](manuscript-build-1.log) and [second](manuscript-build-2.log)
+TeX logs preserve the run identities and build outputs.
+The [new PDF](../../paper/v6/builds/arbitrary-law-complete-20261116.pdf) and
+[build record](../../paper/v6/builds/arbitrary-law-complete-20261116.json) identify the exact bytes,
+source hashes, reproducibility and visual checks. CI on the final
 publication head is recorded separately in its PR and the completion tracker;
 the earlier successful run is not a claim about a later commit.
 

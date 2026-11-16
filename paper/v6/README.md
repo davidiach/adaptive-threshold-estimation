@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Current manuscript](builds/combined-psi-20261109.pdf) · [LaTeX sources](main.tex) · [Build record](builds/combined-psi-20261109.json) · [Previous build](builds/psi-closed-form-20261109.pdf)
+[Current manuscript](builds/arbitrary-law-complete-20261116.pdf) · [LaTeX sources](main.tex) · [Build record](builds/arbitrary-law-complete-20261116.json) · [Previous build](builds/combined-psi-20261109.pdf)
 
 The current sources publish the complete arbitrary-law all-budget controller
 and reconcile its proof and implementation boundaries. The new publication
@@ -782,5 +782,15 @@ enclosures and Python/PRNG execution remain separate. The
 states the precise construction and scope.
 
 The [publication record](../../results/adaptation-publication-20261116/README.md)
-maps the current manuscript to its source checkpoint, existing proof records
-and exact-head CI. All prior PDFs, source packages and evidence remain unchanged.
+maps the current manuscript to source checkpoint `ab67c39108931528d52acd42856e33343dbb2e31`,
+existing proof records and exact-head CI. Two independent GitHub workflow
+builds are byte-identical: 192 pages, 33 embedded fonts, 402 source labels
+and 29 resolved citations. All eleven changed pages and the contents page
+were rendered and visually inspected; the other 181 pages have identical
+extracted body text and word positions to the preceding publication. No page
+is renumbered. The only warning is the inherited overfull line in Appendix C;
+there are no unresolved references or new layout defects.
+
+[Published manuscript](builds/arbitrary-law-complete-20261116.pdf) · [Build record](builds/arbitrary-law-complete-20261116.json)
+
+All prior PDFs, source packages and evidence remain unchanged.

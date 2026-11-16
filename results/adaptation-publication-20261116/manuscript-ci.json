@@ -1,0 +1,36 @@
+[
+  {
+    "id": 43912070423,
+    "event": "push",
+    "head_sha": "ab67c39108931528d52acd42856e33343dbb2e31",
+    "html_url": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/43912070423",
+    "conclusion": "success",
+    "run_started_at": "2026-11-16T16:51:19Z",
+    "updated_at": "2026-11-16T16:52:21Z",
+    "artifacts": [
+      {
+        "id": 14247278584,
+        "name": "v6-paper",
+        "size_in_bytes": 1494364,
+        "digest": "sha256:0301add5f2e91c7c15686b4f55d303d77e1f60dbb1e9caa51404fe4d5b34d981"
+      }
+    ]
+  },
+  {
+    "id": 43912309743,
+    "event": "workflow_dispatch",
+    "head_sha": "ab67c39108931528d52acd42856e33343dbb2e31",
+    "html_url": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/43912309743",
+    "conclusion": "success",
+    "run_started_at": "2026-11-16T16:52:40Z",
+    "updated_at": "2026-11-16T16:54:36Z",
+    "artifacts": [
+      {
+        "id": 14248832118,
+        "name": "v6-paper",
+        "size_in_bytes": 1494364,
+        "digest": "sha256:3c439d9b0cb63a7e601606f752b7cc58212d571571e93ea7620421f24c731eab"
+      }
+    ]
+  }
+]
