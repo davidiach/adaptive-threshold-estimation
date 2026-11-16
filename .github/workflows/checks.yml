@@ -156,6 +156,8 @@ jobs:
         run: python -m unittest discover -s tools -p 'test_psi_selection.py' -v
       - name: Regression tests for the Psi closed-form audit
         run: python -m unittest discover -s tools -p 'test_psi_closed_form.py' -v
+      - name: Regression tests for the Psi gap audit
+        run: python -m unittest discover -s tools -p 'test_psi_gap.py' -v
       - name: Regression tests for the whole-project axiom audit
         run: python -m unittest discover -s tools -p 'test_project_axioms.py' -v
       - name: Regression tests for the sign-neutral tail-test audit
@@ -486,6 +488,8 @@ jobs:
         run: python tools/verify_psi_selection.py
       - name: Verify the closed form of Psi within a factor sqrt 2
         run: python tools/verify_psi_closed_form.py
+      - name: Verify the distance of Psi from the rate
+        run: python tools/verify_psi_gap.py
       - name: Verify RMS obstruction transfer and submeasure localization
         run: python tools/verify_rms_localization.py
       - name: Verify the sharp finite-vector quantile factor and scalar root
