@@ -35,6 +35,8 @@ statement. For the current tree the evidence is the CI run on that commit.
 | Arbitrary-law $\Psi$ lower bound through the entropy-tail law | [psi-selection-20261109](psi-selection-20261109/README.md) |
 | Closed form of $\Psi$ within a factor $\sqrt2$ | [psi-closed-form-20261116](psi-closed-form-20261116/README.md) |
 | Distance of $\Psi$ from the rate, through the entropy of the quantile core | [psi-gap-20261116](psi-gap-20261116/README.md) |
+| Two-atom sharpness and occupied-band entropy | [psi-sharpness-20261116](psi-sharpness-20261116/README.md) |
+| Power-law quantile split and inverse-square core cost | [power-window-foundation-20261116](power-window-foundation-20261116/README.md) |
 | Whole-project build, axiom audit and main-theorem kernel replay | [project-axioms-20261109](project-axioms-20261109/README.md) |
 | Whole-project audit with the exported-instance checks and the definition lock | [project-definitions-20261114](project-definitions-20261114/README.md) |
 | Finite-law bandwise-suffix optimizer and sufficient search family | [bandwise-suffix-20261104](bandwise-suffix-20261104/README.md) |

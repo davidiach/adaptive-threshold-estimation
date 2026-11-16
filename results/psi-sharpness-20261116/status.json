@@ -1,0 +1,25 @@
+{
+  "proof_commit": "a5edeef11ce9ca2737acf4b11f9dd871e80135ee",
+  "specification_commit": "144e75d",
+  "audit_command": "python tools/verify_psi_sharpness.py",
+  "platform": "Windows native Lean v4.36.0-rc1; pinned Mathlib",
+  "exact_statements": 5,
+  "transitive_axiom_reports": 15,
+  "allowed_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "regression_tests": 6,
+  "regression_tests_passed": true,
+  "sha256": {
+    "lean/ThresholdHC/PsiSharpness/Full.lean": "3fdbac503fbdbf66d9ec5a12b6a903d4a8ee6fcddcc8e94547334de7669b2a8f",
+    "lean/ThresholdHC/PsiSharpness/OccupiedBands.lean": "3fbbcd27d9abab727d7375758d3d5853060619611976e78547a3554c7904333a",
+    "lean/ThresholdHC/PsiSharpness/Specification.lean": "5f32b4e683c1f6abfec405e694b1e92d741fb995729099e2ba99c38049ac0123",
+    "lean/ThresholdHC/PsiSharpness/TwoAtom.lean": "e73d0cc1187bdda2e39c7c65754db1e6edfed35ec34666385dbef041623d3f5f",
+    "tools/test_psi_sharpness.py": "82463322eeb2ce6e5f39b2cdc6b5e7c852b42f9cf480b78c750bf4abb24a04ec",
+    "tools/verify_psi_sharpness.py": "6126e53a7c6e32a94471de34e5894ab99a91fc082cfda54c62c0236e3bc4d9b8"
+  },
+  "scope": "See README.md. Local exact-type/axiom evidence; no claim of CI success on an untested head.",
+  "unproved_targets": []
+}

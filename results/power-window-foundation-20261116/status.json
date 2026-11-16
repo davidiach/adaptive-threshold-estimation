@@ -1,0 +1,36 @@
+{
+  "proof_commit": "ddb8872d91d185ae7e3acee5a9f554c97557abdf",
+  "specification_commit": "ced5fcb",
+  "audit_command": "python tools/verify_power_window.py",
+  "platform": "Windows native Lean v4.36.0-rc1; pinned Mathlib",
+  "exact_statements": 8,
+  "transitive_axiom_reports": 27,
+  "allowed_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "regression_tests": 6,
+  "regression_tests_passed": true,
+  "sha256": {
+    "lean/ThresholdHC/PowerWindow/CoreCost.lean": "efa5b15eaad4df9a408e5c0e57221a901ec03161cf3f6efb1a373caedff21537",
+    "lean/ThresholdHC/PowerWindow/Full.lean": "9d4ee16a832d4b17e604b74a73b3aa899752947bba263326f15bc34c2a00a12a",
+    "lean/ThresholdHC/PowerWindow/Law.lean": "855135585c9c7814c6a50bce32badbe35f69f4c3c3debeec445c515e57a23712",
+    "lean/ThresholdHC/PowerWindow/Phi.lean": "6d87644ac472ebd559c8777df2c88db7f4814c508b246a14d7805de301abcb47",
+    "lean/ThresholdHC/PowerWindow/Specification.lean": "924c8032dbabaaabddec452d35e2bb0aa68781c7201517ed6cf47dd8d5445a06",
+    "lean/ThresholdHC/PowerWindow/Statistics.lean": "9085cf776591cad7fe690274fa6d9892268efb6de586cbcdf473eecd58ce1d32",
+    "tools/test_power_window.py": "79786e2698ed35650f69b0e5fafd8370d587db52669be7ff02b9e7df78da7050",
+    "tools/verify_power_window.py": "7baa9daa4421f428a37c8743c50730e40b1e6e844b8a2b72664cf766728b557e"
+  },
+  "scope": "See README.md. Local exact-type/axiom evidence; no claim of CI success on an untested head.",
+  "unproved_targets": [
+    "PowerCoreStatement",
+    "PowerQuantileStatement",
+    "PowerRiskStatement",
+    "PowerConfidenceStatement"
+  ],
+  "conditional_results": [
+    "PowerQuantileStatement -> PowerRiskStatement",
+    "PowerQuantileStatement -> PowerConfidenceStatement"
+  ]
+}

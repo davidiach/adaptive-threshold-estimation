@@ -830,6 +830,25 @@ by the number of occupied bands and the power-law statements of v6 §14.8 are
 outside this audit.
 [Native record](../results/psi-gap-20261116/README.md)
 
+## Psi sharpness and power-law foundation
+
+Run `python tools/verify_psi_sharpness.py` for five exact statements and
+15 transitive axiom reports: the two-atom equality, a concrete sharpness
+instance and the entropy bound by the finite positive occupied-band count.
+[Record](../results/psi-sharpness-20261116/README.md).
+
+Run `python tools/verify_power_window.py` for eight exact statements and
+27 transitive axiom reports: the exact-CDF quantile split, the power-law
+core-cost identity, the closed formula for Phi and its exponent-two case.
+The statistical implications of the uniform quantile comparison are also
+checked, with that comparison retained as a premise. The uniform entropy,
+quantile and unconditional statistical targets remain unproved. [Record](../results/power-window-foundation-20261116/README.md).
+
+Each audit pins its new specification, restates the checked targets and
+reports every new declaration's transitive axioms. Their six-test guard
+suites are `test_psi_sharpness.py` and `test_power_window.py`; CI runs both
+suites and both audits. Existing published records retain their original scope.
+
 ## Whole-project build, axioms and kernel replay
 
 Run `python tools/verify_project_axioms.py --replay-main-theorem`. It builds
