@@ -65,9 +65,9 @@ Each note states one result, its scope and how it was checked.
 |---|---|
 | [UNKNOWN_LAW_CONFIDENCE.md](UNKNOWN_LAW_CONFIDENCE.md) | Confidence intervals from flips alone when the gap law is unknown |
 | [FINITE_FAMILY_ADAPTATION.md](FINITE_FAMILY_ADAPTATION.md) | Oracle-rate adaptation over a supplied finite family of gap laws |
-| [ARBITRARY_LAW_ADAPTATION.md](ARBITRARY_LAW_ADAPTATION.md) | The paper proof of eventual oracle-rate adaptation for arbitrary gap laws |
+| [ARBITRARY_LAW_ADAPTATION.md](ARBITRARY_LAW_ADAPTATION.md) | Eventual oracle-rate adaptation for arbitrary gap laws: the paper proof of the Lean-checked theorem |
 | [ARBITRARY_LAW_TAIL.md](ARBITRARY_LAW_TAIL.md) | Tail certificates at the oracle scale, one part of that proof |
-| [ARBITRARY_LAW_FORMALIZATION.md](ARBITRARY_LAW_FORMALIZATION.md) | Which components of that proof are Lean-checked, and what remains |
+| [ARBITRARY_LAW_FORMALIZATION.md](ARBITRARY_LAW_FORMALIZATION.md) | The Lean proof of that theorem: its components, the full controller and what stays outside it |
 
 ### Toolkit and experiments
 

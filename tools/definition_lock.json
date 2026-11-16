@@ -1567,6 +1567,20 @@
     "ThresholdHC.Proofs.stepProb._sparseCasesOn_1": "13208648013163033065:1049624919728822254",
     "ThresholdHC.Proofs.stepProb._sparseCasesOn_2": "14373928458666162397:43935152848607679",
     "ThresholdHC.Proofs.stepProb.match_1": "7385276953789884035:9880333799569990956",
+    "ThresholdHC.PsiClosedForm.EntropyFreeOrderStatement": "4762494857145497995:18060925628907914118",
+    "ThresholdHC.PsiClosedForm.PsiClosedFormStatement": "4762494857145497995:9101967755320189078",
+    "ThresholdHC.PsiClosedForm.PsiTrivialRegimeStatement": "4762494857145497995:5843985421992055220",
+    "ThresholdHC.PsiClosedForm.inverseSquareCost": "12553442774180996230:4064684475312728669",
+    "ThresholdHC.PsiClosedForm.quantileZero": "17993522273744119061:11676697123639795415",
+    "ThresholdHC.PsiClosedForm.rootAllocation": "14599578583427873890:3272232853362918442",
+    "ThresholdHC.PsiClosedForm.selectionZero": "17993522273744119061:10856980043100688382",
+    "ThresholdHC.PsiClosedForm.tailKernel": "14599578583427873890:6765178619264513619",
+    "ThresholdHC.PsiGap.CoreEntropyStatement": "4762494857145497995:1562733054135072170",
+    "ThresholdHC.PsiGap.PsiGapReverseStatement": "4762494857145497995:9905062517008353310",
+    "ThresholdHC.PsiGap.PsiGapRiskStatement": "4762494857145497995:15294184071375651364",
+    "ThresholdHC.PsiGap.PsiGapStatement": "4762494857145497995:16324396047881139787",
+    "ThresholdHC.PsiGap.coreCost": "11709136789403681613:9908235509534212809",
+    "ThresholdHC.PsiGap.coreEntropy": "11709136789403681613:8991851623341376515",
     "ThresholdHC.PsiSelection.PsiConfidenceLowerStatement": "4762494857145497995:8098242220366657162",
     "ThresholdHC.PsiSelection.PsiRiskLowerStatement": "4762494857145497995:4606347027223051104",
     "ThresholdHC.PsiSelection.PsiSelectionStatement": "4762494857145497995:6724307736138068239",
@@ -2397,6 +2411,14 @@
     {
       "at": "2026-11-16T15:42:57+00:00",
       "count": 39
+    },
+    {
+      "at": "2026-11-16T17:54:15+00:00",
+      "count": 8
+    },
+    {
+      "at": "2026-11-16T17:55:15+00:00",
+      "count": 6
     }
   ]
 }

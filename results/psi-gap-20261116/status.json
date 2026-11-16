@@ -1,0 +1,51 @@
+{
+ "valid": true,
+ "proof_checkpoint": "bea093c3b08f1a97e3acb26a0773aa92ee62283e",
+ "base_checkpoint": "39e3587b5a8f4d9466df7762f455ff587a40202e",
+ "compiler": "Lean (version 4.36.0-rc1, x86_64-unknown-linux-gnu, commit c9afcddf514a6772bd4d649f7cfc04eff0b9f15e, Release)",
+ "mathlib_revision": "9bdd0bc71aaae0fd83889f9aacd70c32fccd1bcd",
+ "build": "Every project module was built from source on Linux against the Mathlib cache for the pinned revision, in one checkout over several lake invocations. The whole-project audit then verified 13,072 constants (10,574 theorems) in 1,220 modules, 125 exported instances and 2,387 definition fingerprints, without kernel replay.",
+ "specification_sha256": "388626ff8735a44986ff008aeb616c0943c7e79f15e61384c178589c92c403d3",
+ "source_sha256": {
+  "lean/lean-toolchain": "d581a24b57a4ae9e0b2132ca8ac7cc3ac336a9fc2751fe6b29414e2d434d54c4",
+  "lean/lakefile.toml": "273cfe4674e97219b22f7de1428bdadfb45379c7fa582882c59624ab7fbc3189",
+  "lean/lake-manifest.json": "a7058b14db1034b58735d82f1cf9a82a938855e93decc1960ca7d21e786fdfe2",
+  "lean/ThresholdHC/PsiGap/Specification.lean": "388626ff8735a44986ff008aeb616c0943c7e79f15e61384c178589c92c403d3",
+  "lean/ThresholdHC/PsiGap/Entropy.lean": "db8defd8a5c216701930f8e54cd28ff7c4f9f53c9ae61cf74a355a27ecaf94a7",
+  "lean/ThresholdHC/PsiGap/Full.lean": "af3acfa1e20c3b9117b714427af2a5ec8214e6c99beed12376cdc43fb60ac730",
+  "lean/ThresholdHC/PsiClosedForm/Specification.lean": "93eb75ccf99a9213181c922c7bc5c441d95aa2fa893805d1d59a9f78ba786f72",
+  "lean/ThresholdHC/PsiClosedForm/Order.lean": "f9c8b683fef29c48f7211b40bb593350f6332b5aff618dcfe01cafe380c359cb",
+  "lean/ThresholdHC/PsiClosedForm/Lower.lean": "4da4a4d3d8469da98c5e4a87c0acde2aa8d38c6fb641e2bc09fd1298759df383",
+  "lean/ThresholdHC/PsiClosedForm/Full.lean": "0ae2d39c068016e563d5ad45efe6e02439ffb3a4606828e4ce181b906893b182",
+  "lean/ThresholdHC/PsiSelection/Specification.lean": "b18fe14fc8be24db36e132013e85c91197da6b368d511bb2dd014752c60faca9",
+  "lean/ThresholdHC/PsiSelection/Full.lean": "5871793920b5bb002bc255128e51a2af596288c7c8527db899bc22a1a59c4af7",
+  "lean/ThresholdHC/EntropyTail/Model.lean": "399bf6b492253773188a625df2c5453600a71137637c0684540704663dc7436f",
+  "lean/ThresholdHC/EntropyTail/Upper.lean": "103b1b6c9eed6b0f2574a1b5b9a168d55e2bb3dac9f7bea381e8278da57fa6d9",
+  "lean/ThresholdHC/EntropyTail/Band.lean": "c17a4c422029ae887bdf6892e8eabde53c19f0669276b097ef23323fee755134",
+  "lean/ThresholdHC/EntropyTailQuantile/Model.lean": "9ace9b713b268d085c6eb281c424410987dfb37177e704d4b5c6e4c7fcb5f5c9",
+  "lean/ThresholdHC/EntropyTailQuantile/CostEntropy.lean": "cfd71fb622f3e2a794de5ecb5f087ae0c96e65af5335beb44040aa690c483939",
+  "lean/ThresholdHC/EntropyTailQuantile/CostEntropySeries.lean": "0fd8973ee918b402c63bb423a0c939f3ddef56d5b0257c14937ecc6e08a595b4",
+  "lean/ThresholdHC/EntropyTailQuantile/BandGeometry.lean": "bfe5a7362790066cae5f599354aecc23c1e246d0750b1835113190ca8c3f63a8",
+  "lean/ThresholdHC/EntropyTailQuantile/QuantileSplit.lean": "f597bbd2df7d32defc0002fee63682f96863517d315a9d3de8d68a6c38af9908",
+  "lean/ThresholdHC/EntropyTailExecution/UpperTheorem.lean": "8ac7b8c42034648373f0fc625bd4d917e6b98210df4fec1ff5a244f0fa5f6d4a",
+  "lean/ThresholdHC/EntropyTailSharp/Full.lean": "4025c92ce0e51381ccc80bf9dae7e7c1d7b009c6ce874c4eb8311e1db6328f93",
+  "lean/ThresholdHC/RareAboveTwo/Model.lean": "e73349c6b4297fde20d3b3038e9eda089c60df0af3cab001caf7c58e9b0aa6a7",
+  "tools/verify_psi_gap.py": "bb9f7b4cce879a5a6a6b17ff140579e5f151ff8d429998cadd953137bbba066f",
+  "tools/test_psi_gap.py": "c8519125b90a9046044bb7acc493dcfbcff2f530ff380cef120cf65668233979",
+  "tools/verify_blind_upper_components.py": "8b4b2c3ca57acad8ad0b32100f6e823754ac43f12fa91b07900fa2ed68431b14"
+ },
+ "audits": {
+  "psi_gap": {
+   "input": "psi_gap.lean",
+   "log": "psi_gap.log",
+   "exact_statements": 8,
+   "axiom_reports": 18,
+   "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+   ],
+   "exit_code": 0
+  }
+ }
+}
