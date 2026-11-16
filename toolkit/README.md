@@ -537,4 +537,5 @@ Its zero atom records unresolved mass; it is included in the null likelihood
 and excluded from inverse-gap core costs. See the
 [full paper proof and verification boundary](../docs/ARBITRARY_LAW_ADAPTATION.md).
 The oracle comparison has a universal constant and a law-dependent onset.
-The new theorem, Python execution and PRNG are not Lean-verified.
+The theorem has a [complete Lean proof](../docs/ARBITRARY_LAW_FORMALIZATION.md#full-arbitrary-law-all-budget-controller);
+this Python implementation, its numerical enclosures and its PRNG are not Lean-verified.
