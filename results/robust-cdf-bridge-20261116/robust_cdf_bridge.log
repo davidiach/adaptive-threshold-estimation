@@ -1,0 +1,18 @@
+'ThresholdHC.RobustContinuation.cdf_robust_enclosed_plan_valid' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.cdf_robust_planner_rate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.cdf_robust_searched_plan_valid' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.coupling_sign_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.coupling_sign_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.exists_robust_coupling_of_cdf' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.mappedGap_below_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.mappedGap_cdf_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.mappedGap_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.zeroAtomLaw_below_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.zeroAtomLaw_cdf_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.zeroAtomLaw_probability' depends on axioms: [propext, Classical.choice, Quot.sound]

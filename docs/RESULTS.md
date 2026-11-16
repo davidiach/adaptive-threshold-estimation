@@ -1108,8 +1108,8 @@ $C=2^{32}C_*\approx3.5\cdot10^{16}$ and $\rho=1/4$, the width bound is
 below the trivial width $\rho/2$ only beyond about $8\cdot10^{35}$ flips,
 and later for smaller $\rho$. For a point mass at $1/2$ with $\rho=1/4$
 the proof's onset needs pilot depth $29$, a budget above $10^{17}$ flips.
-The [Lean components](ARBITRARY_LAW_FORMALIZATION.md) now have 880 exact
-statements and 878 transitive-axiom reports: finite and countable entropy transport, the finite
+The [Lean components](ARBITRARY_LAW_FORMALIZATION.md) now have 892 exact
+statements and 890 transitive-axiom reports: finite and countable entropy transport, the finite
 CDF envelope including its zero atom, and an observable paid-pilot/selected-
 continuation stage with physical caps and its original-experiment joint law.
 The canonical band cells are constructed for every finite increasing-gap
@@ -1183,10 +1183,11 @@ level race hold under a true law coupled above the reference, with the
 uncoupled mass added to the unresolved mass. The plan of the reference is
 valid under the true law: one estimator, fixed by the reference, spends at
 most the budget and has root-mean-square risk at most $C_0K_\alpha$ under
-every true law coupled above the reference. The coupling is a hypothesis
-in these statements. Its derivation from CDF domination, the capped
-median, the connection to the paid stage and the full all-budget
-controller remain to be formalized;
+every true law whose CDF is dominated by the reference CDF. The required
+coupling is now constructed, including the zero-atom split and preservation
+of the original sign mass and rarity budget. Clipping, independence from
+the pilot, the conditional physical-cap median, the connection to the paid
+stage and the full all-budget controller remain to be formalized;
 Python execution and its PRNG also remain outside formal verification.
 An exact path count shows that repeatedly
 checking a fixed-time interval fails: a check with fixed-time failure at most

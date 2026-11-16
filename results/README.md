@@ -327,3 +327,12 @@ root-mean-square risk at most the square root of its certificate, and one
 estimator, fixed by the reference $\alpha$, has risk at most $C_0K_\alpha$
 under every true law coupled above $\alpha$. The coupling is a hypothesis;
 the capped median and the connection to the paid stage are not part of it.
+
+The [CDF-to-continuation record](robust-cdf-bridge-20261116/README.md)
+checks 12 exact statements and 12 transitive axiom reports: the increasing
+coupling constructed from CDF domination, its positive-reference and
+zero-atom split, preservation of the original sign mass and rarity budget,
+and the named plan's budget/risk certificate and uniform reference-law
+rate directly under CDF domination. Its local project audit covers the
+364-module import closure; it does not claim a whole-project kernel replay
+or the conditional capped median and paid-stage composition.

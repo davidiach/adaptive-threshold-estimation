@@ -525,9 +525,11 @@ of section 4 at the multilevel coefficient 28000, as statements about the
 plan's certificate. The error and work certificates of each level race are
 checked under a true law coupled above its reference, including a
 reference with mass at zero, and so is the plan of the reference as an
-estimator, with risk at most $C_0K_\alpha$. Formalization remains for the
-rest of the robustness transfer, the coupling from CDF domination and the
-capped median first, and for the full adaptive controller. Existing Lean
+estimator, with risk at most $C_0K_\alpha$. The coupling is now constructed
+from CDF domination, including the zero-atom split and preservation of the
+original sign mass and rarity budget. Formalization remains for clipping,
+independence from the pilot, the conditional physical-cap median, the
+connection to the paid stage and the full adaptive controller. Existing Lean
 results establish the positive-gap quantile-tail floor, objective floor,
 budget scaling and known-law foundations used here; they do not automatically
 formalize this new composition. Python and its PRNG remain unverified.
