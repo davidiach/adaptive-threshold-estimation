@@ -234,3 +234,9 @@ transitive reports on the plan of a reference law under the true law: the
 level races designed from the reference, the validity of an admissible
 plan, and one estimator with risk at most `C_0 K_alpha` under every true law
 coupled above the reference.
+
+Run `python tools/verify_robust_cdf_bridge.py` for 12 exact statements and
+transitive reports deriving that coupling from CDF domination, including
+the zero-atom split, the original sign mass and rarity budget, and direct
+budget/risk guarantees for the named plan and one reference-dependent
+estimator valid for every CDF-dominated true law.

@@ -1141,9 +1141,46 @@ Run `python tools/verify_robust_plan.py` for 20 exact statements and 20
 transitive axiom reports, one for each declaration of the two modules. The
 audit fails if a declaration is added without being registered. The
 [robust-plan record](../results/robust-plan-20261114/README.md)
-identifies the proof checkpoint and source hashes. Across all twenty-nine
-current component audits, 880 exact statements and 878 transitive axiom
-reports pass.
+identifies the proof checkpoint and source hashes.
+
+## Robust continuation from CDF domination
+
+[CDFBridge.lean](../lean/ThresholdHC/RobustContinuation/CDFBridge.lean)
+now constructs the coupling required by the robust plan. Let
+`alpha = z_0 delta_0 + (1 - z_0) eta`, where `eta` is a probability law on
+positive gaps and `0 <= z_0 <= 1`. If `F_mu <= F_alpha`, the common-uniform
+CDF coupling gives an increasing real-gap coupling. A bounded-density lift
+selects its positive-reference part, and pulling back to `Gap x Gap` gives
+a finite measure `pi` with
+
+- `pi.fst = (1 - z_0) eta`;
+- the reference gap at most the true gap almost everywhere;
+- `mu = pi.snd + mu_0`, with `mu_0` of mass exactly `z_0`.
+
+The construction is independent of the true sign law. Integrating the
+original sign law at the true gap through this decomposition preserves its
+total positive fraction, and the coupled part spends at most the original
+global rarity budget. No conditional reference-sign allocation is needed
+for this route through the robust plan.
+
+The enclosed and searched plans now have direct CDF-domination theorems
+for the named `robustPlanEstimator`, with their original budget and risk
+certificates. The unresolved-mass check uses `zeta(univ) + z_0`, so it does
+not depend on an unknown coupling remainder. With `0 <= z_0 < rho <= 1/4`
+and `B > 0`, one estimator fixed by the reference has expected work at most
+`B` and root-mean-square risk at most `C_0 K_alpha` under every probability
+law `mu` satisfying `F_mu <= F_alpha`. The existential estimator precedes
+the universal true law. The construction allows arbitrary positive-part
+reference laws, including finite learned laws.
+
+Run `python tools/verify_robust_cdf_bridge.py` for 12 exact statements and
+12 transitive axiom reports. The
+[CDF-bridge record](../results/robust-cdf-bridge-20261116/README.md) identifies
+the proof checkpoint, source hashes and local import-closure audit.
+Across all thirty current component audits, 892 exact statements and 890
+transitive axiom reports pass. Clipping, independence from the pilot, the
+conditional physical-cap median and the paid-stage connection remain
+outside this component.
 
 ## Work still needed for the full theorem
 
@@ -1171,10 +1208,10 @@ one coin hold at the reference gap for every larger gap, and the error and
 work certificates of each level race hold under a true law coupled above
 the reference, including a reference with mass at zero. The plan of the
 reference is valid under the true law, and one estimator fixed by the
-reference has risk at most `C_0 K_alpha` under every true law coupled
-above it. The coupling in the form used there must be derived from CDF
-domination. The physical-cap median and
-the connection to the paid stage must still be proved. Finally the stages need to be joined into the
+reference has risk at most `C_0 K_alpha` under every CDF-dominated true
+law: the required coupling and zero-atom split are now constructed.
+Clipping, independence from the pilot, the conditional physical-cap median
+and the connection to the paid stage must still be proved. Finally the stages need to be joined into the
 all-budget controller, with fresh stages, nested intervals, simultaneous
 coverage and eventual oracle width. These conclusions must be proved, not
 supplied as assumptions to a controller interface.
