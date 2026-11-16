@@ -1,0 +1,62 @@
+[
+  {
+    "module": "ThresholdHC.ArbitraryLawController.Schedule",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "module": "ThresholdHC.ArbitraryLawController.Budget",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "module": "ThresholdHC.ArbitraryLawController.LogSchedule",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "module": "ThresholdHC.ArbitraryLawController.Execution",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "module": "ThresholdHC.ArbitraryLawController.Intervals",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "module": "ThresholdHC.ArbitraryLawController.JointFailure",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "module": "ThresholdHC.ArbitraryLawController.Stages",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "module": "ThresholdHC.ArbitraryLawController.Onset",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "module": "ThresholdHC.ArbitraryLawController.ZeroScale",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "module": "ThresholdHC.ArbitraryLawController.Coverage",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "module": "ThresholdHC.ArbitraryLawController.Rate",
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "module": "ThresholdHC.ArbitraryLawController.Full",
+    "exit_code": 0,
+    "output": ""
+  }
+]

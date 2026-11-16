@@ -1,8 +1,12 @@
 \subsection{Eventual oracle-rate adaptation over arbitrary unknown gap laws}
 \label{sec:arbitrary-law-adaptation}
 
-This is a \textbf{paper proof}, with an executable construction. It is not a
-Lean theorem or a formal verification of Python. The
+The theorem now has a \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/3f07e30a9a74a3b2b28c24ff5d017d3d60e093b1/lean/ThresholdHC/ArbitraryLawController/Full.lean}{complete Lean proof}
+for a concrete observable controller. The formal continuation uses exactly
+the pilot repetition count as its number of capped median copies, rather
+than the least admissible odd count; the stated constants and budget bounds
+are unchanged. Finite-law numerical enclosures and Python execution remain
+outside this verification claim. The
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/9dbddf6622c17f37fb98c79bcf4407f579318a45/docs/ARBITRARY_LAW_TAIL.md}{tail-certificate theorem} of \cref{sec:arbitrary-law-tail} supplies the single-coin
 probe and its physical work bound. The additional steps here are a learned
 stochastic envelope, its entropy comparison, and a robustness proof for the

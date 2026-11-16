@@ -574,10 +574,16 @@ A separate \href{https://github.com/davidiach/adaptive-threshold-estimation/blob
 has a paper proof, not a Lean proof. It shrinks for every positive-gap law
 without using that law, but its proved width depends on the small-gap tail
 and can be slower than the known-law rate. Section~\ref{sec:arbitrary-law-adaptation}
-gives a paper proof of the oracle time-uniform rate for arbitrary
-unknown laws, after a law-dependent onset, using a learned conservative law.
-The new entropy transport, envelope learning, robustness and controller
-arguments are not Lean-checked. Section~\ref{sec:finite-family-adaptation}
+gives the oracle time-uniform rate for arbitrary unknown laws, after a
+law-dependent onset, using a learned conservative law. Its
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/3f07e30a9a74a3b2b28c24ff5d017d3d60e093b1/lean/ThresholdHC/ArbitraryLawController/Full.lean}{complete observable controller is now Lean-checked}:
+unconditional caps, compatible prefixes, nested intervals, simultaneous
+coverage and eventual width $2^{32}C_*K(B/\Lambda)$ hold in the stated
+model. The controller uses the exact pilot schedule and the same repetition
+count for its capped median. The 99-statement audit is
+\path{tools/verify_arbitrary_law_controller.py}; its source-identified record
+is \path{results/arbitrary-law-controller-20261116/}. Numerical implementation
+and Python execution remain separate. Section~\ref{sec:finite-family-adaptation}
 Lean-checks adaptation over a supplied finite family, including the observable
 pilot and selected controller. The earlier unknown-law note gives a paper proof, using a
 cited external lower bound, that for every known gap law a deterministic
@@ -587,9 +593,10 @@ budgets $B$. This matches the known-law order at $D=1/2$.
 Section~\ref{sec:arbitrary-law-tail} gives a paper proof of an observable,
 physically capped tail-mass certificate for every unknown gap law. Its
 upper endpoint has a universal-constant oracle comparison after a
-law-dependent onset. This theorem and its tested Python controller are
-not Lean-verified. Section~\ref{sec:arbitrary-law-adaptation} supplies the
-additional core, null-likelihood and full interval adaptation argument on paper.
+law-dependent onset. Its mathematical tail-certificate components and
+the additional learned-law, robustness and full interval composition in
+Section~\ref{sec:arbitrary-law-adaptation} are now Lean-checked. The tested
+Python controller and its PRNG remain unverified.
 Efficient exact
 selection for finite laws with many bands and unrestricted costs is open;
 the Lean-checked sufficient family can have $\prod_j(n_j+1)$ members. The

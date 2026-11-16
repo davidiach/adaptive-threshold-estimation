@@ -1078,3 +1078,15 @@ coverage in the actual paid stage. The cap includes the pilot, the reported
 radius is determined by the learned law, and total failure is at most the
 sum of the pilot and continuation allowances. The full all-budget controller
 and finite-law numerical implementation remain outside this audit.
+
+## Full arbitrary-law all-budget controller
+
+Run `python tools/verify_arbitrary_law_controller.py` for 99 exact statements
+and transitive axiom reports from all twelve modules of
+`ThresholdHC.ArbitraryLawController`. The audit covers the concrete schedule,
+zero-work fallback, chronological controller, unconditional caps and prefix
+consistency, nested intervals, joint pilot-and-coverage event, (A17)–(A18),
+finite onset and final same-event width `2^32 C_* K(B/Lambda)`. The theorem
+assumes no statistical stage oracle. CI also replays these twelve modules
+through the independent kernel checker. Finite-law numerical enclosures,
+Python/PRNG verification and manuscript/PDF publication remain separate.

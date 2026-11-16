@@ -1,9 +1,10 @@
 # Arbitrary-law adaptation: formalization scope
 
 The [arbitrary-law adaptation theorem](ARBITRARY_LAW_ADAPTATION.md) has a
-paper proof. The new `ThresholdHC.ArbitraryLawAdaptation` namespace formalizes
-components of that proof; it does not yet contain its full statistical theorem.
-Python execution is outside the Lean verification claim.
+paper proof and a [complete Lean theorem](#full-arbitrary-law-all-budget-controller).
+`ThresholdHC.ArbitraryLawAdaptation` supplies the learned-law components,
+`RobustContinuation` the paid median, and `ArbitraryLawController` their
+all-budget composition. Python execution is outside the verification claim.
 
 ## Finite entropy transport
 
@@ -1268,42 +1269,59 @@ continuation-coverage oracle is assumed in the final stage theorem.
 Run `python tools/verify_paid_median.py` for 48 exact statements and
 48 transitive axiom reports covering all four new modules. The
 [verification record](../results/paid-median-20261116/README.md) identifies
-the proof checkpoint, source closure and audit scope. Across the thirty-two
-component audits, 966 exact statements and 964 transitive reports pass.
+the proof checkpoint, source closure and audit scope. Through that checkpoint,
+the thirty-two component audits have 966 exact statements and 964 transitive reports.
 
-## Work still needed for the full theorem
+## Full arbitrary-law all-budget controller
 
-CDF domination now gives an increasing coupling and the selection
-comparison, including unresolved mass at zero. Dominated mass and the concrete
-factor-32 light random contraction are also checked. The finite
-CDF envelope is checked, and the capped multi-depth pilot now supplies its
-statistical event; its law-dependent onset is checked. The single-coin
-tail test, one capped probe over fresh
-coins, the median over independent probes, its form at every depth and its
-oracle comparison past the onset are checked, on the coin array and for an
-estimator that reads only observed flips; so is the multi-depth pilot built
-from them. The observable stage is checked as an execution component with
-the concrete pilot installed, and the learned law's oracle comparison is
-checked past its finite onset, on the coin array. The quantile design of a
-law with mass at zero is compared with the selection functional, and the
-certificate of a known-law plan is checked for the level price of the upper
-theorem. Its rate is checked for exact integrals and for upper bounds within
-a factor two, including the design of a reference law with mass at zero.
-A tight enclosure must be computed for finite laws. For the robust
-continuation, the race is monotone in the flips and its population error
-transfers to a true law coupled above the reference, with mass at zero in
-the reference charged in full and no coin of gap zero. Its work bounds on
-one coin hold at the reference gap for every larger gap, and the error and
-work certificates of each level race hold under a true law coupled above
-the reference, including a reference with mass at zero. The plan of the
-reference is valid under the true law, and one estimator fixed by the
-reference has risk at most `C_0 K_alpha` under every CDF-dominated true
-law: the required coupling and zero-atom split are now constructed.
-Clipping preserves its budget and risk, and the production input law is
-unchanged after conditioning on any positive-probability finite pilot
-history. The conditional physical-cap median, deterministic reported radius
-and statistical connection to the paid stage are now checked, with failure
-at most the sum of the pilot and continuation allowances. The stages still
-need to be joined into the all-budget controller, with fresh stages, nested intervals, simultaneous
-coverage and eventual oracle width. These conclusions must be proved, not
-supplied as assumptions to a controller interface.
+[Full.lean](../lean/ThresholdHC/ArbitraryLawController/Full.lean) proves
+`arbitrary_law_controller` for the concrete observable procedure. Its only
+design inputs are known `0 < rho, delta <= 1/4`. For every positive-gap
+probability law, a deterministic finite onset is shared by every measurable
+sign allocation with total positive mass at most `rho`. With probability at
+least `1-delta`, all integer budgets have coverage, and every budget past
+the onset has half-width at most `2^32 C_* K_mu,rho(B/Lambda)`, with
+`C_* = 6 * plannedCoefficient 28000`. The same event protects every
+observation-dependent stopping budget. No stage-risk, coverage, coupling,
+onset or candidate-family guarantee is a premise of the final theorem.
+
+`Schedule`, `Budget` and `LogSchedule` use `c_s = 4*2^s`, the telescoping
+failure allocation `delta_s = delta/((s+1)(s+2))`, and the exact pilot cost.
+The selected depth is the largest fitting positive depth; when none fits,
+the stage returns `[0,rho]` with zero observations. Pilot repetitions are
+`m_J = 8 ceil(log_2(4J/delta_s)) + 1`. The continuation uses exactly `m_J`
+capped median copies on the remaining reservation, rather than minimizing
+the admissible odd copy count. Its failure bound is `delta_s/2`; this
+choice preserves (A17), base budget at least `4^J/16`, and (A18),
+`4^J > B/(4096 Lambda(B,delta))`, with the advertised final constant.
+
+`Execution` and `Intervals` concatenate the actual reservations on disjoint
+coin labels, including zero-length fallback stages. They identify both
+observable endpoints with the table construction, prove consistency of
+finite prefixes, unconditional caps, pauses, and nested intersections.
+`Stages`, `JointFailure` and `Coverage` install the paid pilot and robust
+median. A bad pilot is charged once while retaining its upper certificate
+on the same event as interval coverage. Summing the stage failures gives
+simultaneous coverage in the original experiment. `Onset`, `ZeroScale`
+and `Rate` prove that selected depths tend to infinity and connect the
+learned-law comparison to the final all-budget width.
+
+Run `python tools/verify_arbitrary_law_controller.py` for 99 independently
+restated exact statements and 99 transitive axiom reports covering every
+declaration of all twelve modules. The [verification record](../results/arbitrary-law-controller-20261116/README.md)
+identifies the proof checkpoint and all 730 project modules in its import
+closure. The current thirty-three component audits contain 1,065 exact
+statements and 1,063 transitive reports. All permitted axioms are
+`propext`, `Classical.choice`, and `Quot.sound`.
+
+## Remaining verification boundaries
+
+The mathematical all-budget theorem is now checked. Finite-law numerical
+enclosures, execution of Python and its PRNG, practical constants, and
+external specialist review remain separate. The Lean construction selects
+its reference estimator classically and evaluates its reference functional
+exactly; it uses no integration oracle for the unknown true law. The checked
+bank and median schedules are identified above and in the paid-median scope.
+Publication issue [#84](https://github.com/davidiach/adaptive-threshold-estimation/issues/84)
+still requires the newly identified manuscript/PDF build and final evidence
+reconciliation. Historical records retain their original claims.

@@ -344,8 +344,9 @@ class VerificationStatusTests(unittest.TestCase):
         # One more checked result changes the count, not the length of the list.
         more = copy.deepcopy(self.status)
         more["results"][paper[0]]["status"] = "lean"
-        self.assertIn(f"Lean checks {total - len(paper) + 1} of the {total} results",
-                      self.generated(more, "abstract"))
+        expected = (f"Lean checks all {total} results" if len(paper) == 1 else
+                    f"Lean checks {total - len(paper) + 1} of the {total} results")
+        self.assertIn(expected, self.generated(more, "abstract"))
 
     def test_status_table_lists_every_result_once_under_its_status(self):
         results = self.status["results"]
@@ -363,9 +364,11 @@ class VerificationStatusTests(unittest.TestCase):
         counts = {kind: sum(r["status"] == kind for r in results.values())
                   for kind in ("lean", "paper")}
         self.assertIn(f"\\emph{{Checked in Lean ({counts['lean']} results)}}", table)
-        self.assertIn(f"({counts['paper']} results)", paper)
+        noun = "result" if counts["paper"] == 1 else "results"
+        self.assertIn(f"({counts['paper']} {noun})", paper)
         # A paper proof points to the section that holds it; a checked result to its modules.
-        self.assertIn("unknown gap laws & \\cref{sec:arbitrary-law-adaptation}", paper)
+        self.assertIn("uniform in the exponent & \\cref{sec:psi-window}", paper)
+        self.assertIn("unknown gap laws & \\path{ArbitraryLawController/Full.lean}", checked)
         self.assertNotIn("\\path{", paper)
         self.assertIn("\\path{Tier6/Full.lean}", checked)
         flipped = copy.deepcopy(self.status)
