@@ -1177,10 +1177,50 @@ Run `python tools/verify_robust_cdf_bridge.py` for 12 exact statements and
 12 transitive axiom reports. The
 [CDF-bridge record](../results/robust-cdf-bridge-20261116/README.md) identifies
 the proof checkpoint, source hashes and local import-closure audit.
-Across all thirty current component audits, 892 exact statements and 890
-transitive axiom reports pass. Clipping, independence from the pilot, the
-conditional physical-cap median and the paid-stage connection remain
-outside this component.
+The CDF bridge's scope ends before clipping and conditioning on the pilot.
+
+## Clipping and independence from the pilot
+
+[Clipping.lean](../lean/ThresholdHC/RobustContinuation/Clipping.lean)
+defines `clippedEstimator A M` by clipping the reported value to `[0,M]`
+for `M >= 0`.
+It preserves the private random law, policy, original experiment, expected
+work and any pathwise cap. For a target in `[0,M]`, squared risk cannot
+increase, including when the original risk is infinite. With `M = rho`,
+the rare-prior risk cannot increase and every budget/risk certificate of
+the named reference plan remains valid after clipping. The direct CDF
+planner theorem now also supplies one estimator with output in `[0,rho]`
+on every input, fixed before the true law is chosen.
+
+[PilotIndependence.lean](../lean/ThresholdHC/RobustContinuation/PilotIndependence.lean)
+proves the joint input law for the pilot's labels `Nat.pair 0 i` and the
+production labels `Nat.pair 1 i`. The pilot reader is deterministic given
+its flips and does not inspect the production seed. The entire production stream of persistent
+coin tapes and the private seed have their original product law, independent
+of the finite adaptive pilot word. Restricting to a particular history
+multiplies that law by the probability of the history, including histories
+of probability zero. For any history of positive probability, normalizing
+the restriction leaves the production input law unchanged. A family of
+private seeds indexed by pilot word also permits different seed spaces
+and distributions for different histories: the selected seed has its
+selected law, independently of the fresh production coins.
+
+The installed multi-depth pilot satisfies this joint and conditional law.
+The stage's pilot word is identified with its paid chronological prefix,
+jointly with both reported endpoints in the original hidden-gap experiment.
+Conditionally on a pilot word, the selected continuation's interval has
+exactly the law obtained by fixing that learned law and running its reader
+on the original independent seed and fresh production stream. This proves
+an execution identity without assuming a continuation-risk or coverage
+oracle. Constructing the robust capped-median continuation and proving its
+conditional coverage and reported radius still remain.
+
+Run `python tools/verify_clipping_pilot_independence.py` for 26 exact
+statements and 26 transitive axiom reports, covering every declaration of
+the two modules. The [verification record](../results/clipping-pilot-independence-20261116/README.md)
+identifies the proof checkpoint, source closure and audit scope. Across all
+thirty-one current component audits, 918 exact statements and 916 transitive
+axiom reports pass.
 
 ## Work still needed for the full theorem
 
@@ -1210,8 +1250,10 @@ the reference, including a reference with mass at zero. The plan of the
 reference is valid under the true law, and one estimator fixed by the
 reference has risk at most `C_0 K_alpha` under every CDF-dominated true
 law: the required coupling and zero-atom split are now constructed.
-Clipping, independence from the pilot, the conditional physical-cap median
-and the connection to the paid stage must still be proved. Finally the stages need to be joined into the
+Clipping preserves its budget and risk, and the production input law is
+unchanged after conditioning on any positive-probability finite pilot
+history. The conditional physical-cap median and its statistical connection
+to the paid stage must still be proved. Finally the stages need to be joined into the
 all-budget controller, with fresh stages, nested intervals, simultaneous
 coverage and eventual oracle width. These conclusions must be proved, not
 supplied as assumptions to a controller interface.

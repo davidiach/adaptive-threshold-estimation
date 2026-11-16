@@ -17,7 +17,9 @@ at zero, and the certificate and rate of a known-law plan, for exact
 integrals and for upper bounds within a factor two, with the planner's
 output end to end, and the validity and rate of the plan of a reference law
 under every CDF-dominated true law, with the required increasing coupling
-and zero-atom split now constructed.
+and zero-atom split now constructed. Clipping preserves those guarantees,
+and conditioning on a finite pilot history of positive probability leaves
+the production stream and private seed with their original joint law.
 The full arbitrary-law adaptation theorem remains a paper
 proof; the published PDF and its build record retain their original scope.
 

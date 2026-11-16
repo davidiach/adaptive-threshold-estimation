@@ -1,0 +1,44 @@
+'ThresholdHC.RobustContinuation.clippedEstimator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.clippedEstimator_expectedWork' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.clippedEstimator_experimentLaw' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.clippedEstimator_output_range' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.clippedEstimator_pathwiseCap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.clippedEstimator_policy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.clippedEstimator_rareBudget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.clippedEstimator_rareRisk_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.clippedEstimator_squaredRisk_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.clippedEstimator_valid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.clipped_cdf_planner_rate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.infinitePi_two_blocks' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.learnedStage_conditional_interval_law' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.learnedStage_pilot_history' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.measurable_pilot_word' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.measurable_seeded_word' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.measurable_selected_interval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.original_pilot_interval_law' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.pilotStage_conditional_production_law' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.pilotStage_production_joint_law' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.pilot_conditional_production_law' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.pilot_history_probability' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.pilot_production_joint_law' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.pilot_restrict_production_law' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.RobustContinuation.pilot_selected_seed_law' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RobustContinuation.seed_two_blocks' depends on axioms: [propext, Classical.choice, Quot.sound]

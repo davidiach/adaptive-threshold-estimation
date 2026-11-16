@@ -1659,6 +1659,7 @@
     "ThresholdHC.ResearchRouteA.UniformFamilyBoundsStatement": "4762494857145497995:4019469352008831600",
     "ThresholdHC.RobustContinuation.DownwardTest": "3473256954544449577:6189543645655764170",
     "ThresholdHC.RobustContinuation.UpwardTest": "3473256954544449577:1103856739091788230",
+    "ThresholdHC.RobustContinuation.clippedEstimator": "16563032253818051828:15262972606480388649",
     "ThresholdHC.RobustContinuation.coupledRaceError": "16192390018150009044:7434285314343137101",
     "ThresholdHC.RobustContinuation.robustFamily": "4365576328206715346:4847994972781546046",
     "ThresholdHC.RobustContinuation.robustPlanEstimator": "10629034122877835268:11699180352223463773",
@@ -2332,6 +2333,10 @@
     {
       "at": "2026-11-15T19:39:00+00:00",
       "count": 2
+    },
+    {
+      "at": "2026-11-16T10:47:47+00:00",
+      "count": 1
     }
   ]
 }
