@@ -368,6 +368,7 @@ jobs:
             .runtime/selection-lean/**/status.json
             .runtime/selection-lean/**/Audit.lean
             .runtime/selection-lean/**/*.log
+            .runtime/finite-selection/
   lean-all-modules:
     runs-on: ubuntu-latest
     timeout-minutes: 150
