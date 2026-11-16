@@ -97,7 +97,7 @@ What the verification does and does not cover:
 
 Two sets of Lean-checked components are not counted above, because the paper
 does not yet describe them as checked: parts of the
-[arbitrary-law adaptation proof](docs/ARBITRARY_LAW_FORMALIZATION.md), and
+[closed form of $\Psi$](docs/RESULTS.md#the-variational-modulus-in-closed-form), and
 parts of the [finite-law selection approximation](lean/ThresholdHC/SelectionApproximation/README.md).
 
 ## Repository map
@@ -153,8 +153,10 @@ Use a disposable checkout for reproduction: some checks write diagnostic files.
 
 ## Open work
 
-The main unfinished item is a Lean proof of adaptation to an arbitrary unknown
-gap law, which has a paper proof today. [docs/WORKPLAN.md](docs/WORKPLAN.md)
+The one tracked result that still has only a paper proof is the rest of
+[v6 §14.8](docs/RESULTS.md#the-variational-modulus-in-closed-form), chiefly the
+power-margin rate with constants independent of the exponent.
+[docs/WORKPLAN.md](docs/WORKPLAN.md)
 gives the current priorities, and the
 [tracking issue](https://github.com/davidiach/adaptive-threshold-estimation/issues/76)
 lists every open task with its dependencies.

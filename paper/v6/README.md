@@ -9,6 +9,11 @@ and [evidence record](../../results/adaptation-publication-20261116/README.md).
 The earlier [combined build](#combined-build) retains its original source,
 PDF and verification scope; every earlier published package is unchanged.
 
+The LaTeX sources are three wording corrections ahead of that PDF: the
+exponent range $0<\alpha\le4$ of the uniform confidence radii in §11.3, and the two
+[appendix wording](#source-and-editorial-scope) changes in Appendices A and B.
+They change no statement or proof, and the PDF has not been rebuilt for them.
+
 This is the current single research paper. It combines three manuscripts:
 
 - the [consolidated v5 paper](../v5/README.md): the original minimax law,
@@ -146,6 +151,12 @@ The editorial changes are explicit in the generator:
   The introduction says "the whole function" where v5 said "the entire
   function", and the proof outline of Appendix C no longer points to the
   v5 source manifest, whose provenance §18 records.
+- **Appendix wording.** In the bounded-ratio lemma of Appendix A the hybrid
+  law for coin $i$ is written $P^{(i)}$; v5's $P_i$ collided at $i=1$ with
+  the full alternative law $P_1$. The closing remark of Appendix B says that
+  the global rarity constraint is used in integrated form in (B.3) and
+  elsewhere only as $\theta\le\rho$, where v5 said "precisely in (B.3)".
+  Neither change alters a statement or a proof.
 - **Internal citations.** Citations of the companion manuscripts become
   cross-references. The finite-gap manuscript's conditional remark on
   general laws becomes a corollary in §14, whose proof cites the

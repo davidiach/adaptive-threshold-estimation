@@ -121,21 +121,21 @@ For $d\ge d_*>0$, reveal the sign at the first requested observation. Before tha
 \end{proof}
 
 \begin{lemma}[Bounded-ratio decomposition]\label{loc:lem:hybrid}
-Consider two independent-coin population laws $\nu_0,\nu_1$ whose latent Radon--Nikodym ratio lies in $[1-\kappa,1+\kappa]$ for some fixed $\kappa<1$. For a fully adaptive experiment stopped after at most $n$ observations, let $P_0,P_1$ be its transcript laws. Let $P_i$ be the hybrid law using $\nu_1$ only for coin $i$ and $\nu_0$ for every other coin. Then
+Consider two independent-coin population laws $\nu_0,\nu_1$ whose latent Radon--Nikodym ratio lies in $[1-\kappa,1+\kappa]$ for some fixed $\kappa<1$. For a fully adaptive experiment stopped after at most $n$ observations, let $P_0,P_1$ be its transcript laws. Let $P^{(i)}$ be the hybrid law using $\nu_1$ only for coin $i$ and $\nu_0$ for every other coin. Then
 \[
- \KL(P_0,P_1)\le C_\kappa\sum_i H^2(P_0,P_i).
+ \KL(P_0,P_1)\le C_\kappa\sum_i H^2(P_0,P^{(i)}).
 \]
 The same conclusion holds by finite-prefix limits for almost-surely terminating experiments whenever the right-hand side is uniformly bounded along the prefixes.
 \end{lemma}
 \begin{proof}
-Index coins in order of their first observation, so at most $n$ indices occur. Include the algorithm's independent random seed in the transcript. For a fixed transcript, let $L_i=dP_i/dP_0$. This is the local coin likelihood ratio, marginalized over that coin's latent state, so $1-\kappa\le L_i\le1+\kappa$. Independence of latent coins and the parameter-independent action rule give
+Index coins in order of their first observation, so at most $n$ indices occur. Include the algorithm's independent random seed in the transcript. For a fixed transcript, let $L_i=dP^{(i)}/dP_0$. This is the local coin likelihood ratio, marginalized over that coin's latent state, so $1-\kappa\le L_i\le1+\kappa$. Independence of latent coins and the parameter-independent action rule give
 \[
  \frac{dP_1}{dP_0}=\prod_iL_i.
 \]
 This identity holds even though the local sequence lengths were chosen using other coins' outcomes. Also $\E_0L_i=1$. On this compact ratio interval,
 $-\log x+(x-1)\le C_\kappa(x-1)^2$, and
 $(x-1)^2\le C_\kappa(\sqrt x-1)^2$. Taking expectations and using
-$\E_0(\sqrt{L_i}-1)^2=2H^2(P_0,P_i)$ proves the finite-prefix claim. Increasing stopped-transcript sigma fields and the standard monotone limit of relative entropy prove the last assertion. Applying the argument at finite prefixes avoids any unjustified interchange of an unbounded stopping sum and a likelihood derivative.
+$\E_0(\sqrt{L_i}-1)^2=2H^2(P_0,P^{(i)})$ proves the finite-prefix claim. Increasing stopped-transcript sigma fields and the standard monotone limit of relative entropy prove the last assertion. Applying the argument at finite prefixes avoids any unjustified interchange of an unbounded stopping sum and a likelihood derivative.
 \end{proof}
 
 This lemma is the bounded-relative-change mechanism of Lee--Valiant Lemma 18, stated for the present magnitude-dependent perturbations. It is not a new general decomposition principle. Unlike an attempted uniform posterior bound, it charges informative but rare histories by their expected frequency.
@@ -162,7 +162,7 @@ Where $w=0$ the two laws agree. The sign-prior likelihood ratios, and hence the 
 
 At a finite observation prefix, apply Lemma~\ref{loc:lem:hybrid}. To bound its $i$th term, simulate all other coins under $q_0$ as external randomness, and reveal $D_i$ only for the purpose of bounding information. Conditional on $D_i=d$, this is a single-coin stopped experiment with priors $u(d),u(d)+v(d)$. Data processing, Lemma~\ref{loc:lem:LV}, and \eqref{loc:eq:localcost} give
 \[
- H^2(P_0,P_i)\le C h^2\E_0\tau_i.
+ H^2(P_0,P^{(i)})\le C h^2\E_0\tau_i.
 \]
 Here the conditional distributions of all simulated coins and the algorithmic seed are the same in both worlds. Summing over coins counts each observation once. Thus
 \[
