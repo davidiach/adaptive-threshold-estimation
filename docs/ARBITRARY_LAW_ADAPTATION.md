@@ -428,8 +428,14 @@ the plan of a reference law with mass at zero is
 [Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#robust-continuation-the-plan-under-the-true-law)
 with the bank whose null law is the positive part: under every true law
 coupled above the reference its expected work is at most the budget and its
-root-mean-square risk at most $C_0K_\alpha(b)$. The coupling is a
-hypothesis there, and the median with its radius is not covered.
+root-mean-square risk at most $C_0K_\alpha(b)$. The
+[CDF bridge](ARBITRARY_LAW_FORMALIZATION.md#robust-continuation-from-cdf-domination)
+now constructs that coupling. The
+[conditional capped-median and paid-stage proof](ARBITRARY_LAW_FORMALIZATION.md#conditional-capped-median-and-the-paid-stage)
+checks the concrete median, its radius bound and the paid stage's failure
+probability in the original experiment. Its explicit schedule uses
+$2\lceil4\log(1/\delta)\rceil+1$ copies and the corresponding base budget;
+it does not yet formalize the all-budget composition below.
 
 ## 5. Online composition and the effective budget
 

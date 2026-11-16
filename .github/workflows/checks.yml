@@ -198,6 +198,8 @@ jobs:
         run: python -m unittest discover -s tools -p 'test_robust_cdf_bridge.py' -v
       - name: Regression tests for clipping and pilot independence
         run: python -m unittest discover -s tools -p 'test_clipping_pilot_independence.py' -v
+      - name: Regression tests for conditional capped-median coverage
+        run: python -m unittest discover -s tools -p 'test_paid_median.py' -v
       - name: Regression tests for the quantile-model and upper-theorem audits
         run: |
           python -m unittest discover -s tools -p 'test_entropy_tail_components.py' -v
@@ -568,6 +570,8 @@ jobs:
         run: python tools/verify_robust_cdf_bridge.py
       - name: Verify clipping and independence from the paid pilot
         run: python tools/verify_clipping_pilot_independence.py
+      - name: Verify conditional capped-median and paid-stage coverage
+        run: python tools/verify_paid_median.py
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
       - uses: actions/upload-artifact@v4

@@ -344,4 +344,14 @@ bounded CDF planner, and the joint and conditional law of the complete
 production stream and private seed after the paid adaptive pilot. It also
 identifies the observed pilot word jointly with the interval in the
 original experiment and fixes the learned law inside the conditional
-continuation. Conditional capped-median coverage remains open.
+continuation. Its scope ends before conditional capped-median coverage.
+
+The [paid-median record](paid-median-20261116/README.md) adds 48 exact
+statements and transitive reports. It selects a robust reference base for
+every supported probability law, including large zero atoms, and proves
+conditional capped-median coverage given a valid paid pilot prefix. The
+concrete installed stage has unconditional failure at most `epsilon + delta`,
+a cap including the pilot on every path, and a deterministic reported-radius
+bound. The final guarantee is under the original hidden-gap experiment and
+assumes no continuation-risk oracle. Finite-law numerical enclosures,
+the complete all-budget controller and Python execution remain separate.
