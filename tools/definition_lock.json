@@ -1660,6 +1660,8 @@
     "ThresholdHC.RobustContinuation.DownwardTest": "3473256954544449577:6189543645655764170",
     "ThresholdHC.RobustContinuation.UpwardTest": "3473256954544449577:1103856739091788230",
     "ThresholdHC.RobustContinuation.coupledRaceError": "16192390018150009044:7434285314343137101",
+    "ThresholdHC.RobustContinuation.robustFamily": "4365576328206715346:4847994972781546046",
+    "ThresholdHC.RobustContinuation.robustPlanEstimator": "10629034122877835268:11699180352223463773",
     "ThresholdHC.SelectionApproximation.Close": "6260903681879417698:6437984760488833766",
     "ThresholdHC.SelectionApproximation.CompressionInvariantStatement": "4762494857145497995:1624681639357607702",
     "ThresholdHC.SelectionApproximation.EntropyPerturbationStatement": "4762494857145497995:12183283816804658596",
@@ -2326,6 +2328,10 @@
     {
       "at": "2026-11-14T19:00:42+00:00",
       "count": 2318
+    },
+    {
+      "at": "2026-11-15T19:39:00+00:00",
+      "count": 2
     }
   ]
 }

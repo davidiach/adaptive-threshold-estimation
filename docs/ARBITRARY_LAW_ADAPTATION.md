@@ -344,14 +344,24 @@ The three per-coin work bounds are
 at the reference gap for a coin of every larger gap. The Lean proof does
 not use crossing times that ignore wrong exits: the ordinary kernel
 decreases with the gap, the negative reference's drift grows with it, and
-positive survival is bounded through a lower set of tapes. The
-integration over the coupling is not yet checked.
+positive survival is bounded through a lower set of tapes. Integrated
+over the coupling they give the level-work certificate, which is
+[Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#robust-continuation-level-certificates-under-a-coupled-law)
+together with the level error. The Lean proof integrates the surcharge
+against the sign law at the true gap through the coupling and does not
+form the induced sign allocation.
 
 Assign a reference zero atom entirely to the unresolved part. It contributes
 at most its mass to error and its mass times $M$ to work. All selected-core
 and ordinary-tail formulas are evaluated only at positive gaps. The null
 prefix probability includes the zero atom's fair-coin likelihood exactly.
 Large unresolved mass uses the existing constant-estimator fallback.
+The Lean-checked level certificates use a different bank for
+$\alpha=z\delta_0+(1-z)\eta$: its null law is the positive part $\eta$
+alone and its positive allowance is $\rho\varepsilon/(1-z)$. The error and
+work bounds above hold for it, and it needs neither a coin of gap zero nor
+the fair-coin likelihood. The bank with the exact null mixture of $\alpha$
+is not the one checked.
 
 The binary correction variances, finite multilevel telescoping, clipping and
 expected-work allocation now follow unchanged. Successive corrections use
@@ -359,6 +369,13 @@ unused flips of the same persistent coin; conditional on its parameters,
 these suffixes remain fresh iid tapes. Fresh production coins and private
 randomness remain independent of the pilot. Finally, the capped-median
 argument supplies a physical cap on all paths.
+The correction second moments, the telescoping sum and the expected-work
+allocation are
+[Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#robust-continuation-the-plan-under-the-true-law)
+under the true law for the plan of the reference, in the Poisson multilevel
+estimator of the checked known-law plan, which reads both races of a
+correction from the same flips. Clipping, the capped median and the
+independence from the pilot are not yet checked.
 
 For completeness, the quantile design used by the executable planner also
 has a universal comparison in the presence of a zero atom. Write
@@ -402,7 +419,12 @@ constant's bound $\rho/2$ and the certified risk of the plan: for the plan with
 the level price of that theorem, every enclosure within a factor two of the
 design integrals, and weights within a factor two. The constant fallback
 for a large unresolved mass obeys the same bound. The estimator that runs
-the plan of a reference law with mass at zero is not formalized.
+the plan of a reference law with mass at zero is
+[Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#robust-continuation-the-plan-under-the-true-law)
+with the bank whose null law is the positive part: under every true law
+coupled above the reference its expected work is at most the budget and its
+root-mean-square risk at most $C_0K_\alpha(b)$. The coupling is a
+hypothesis there, and the median with its radius is not covered.
 
 ## 5. Online composition and the effective budget
 
@@ -500,11 +522,12 @@ is the certificate of a known-law plan with the level price of the checked
 upper theorem. The rate of that plan is checked for upper bounds within a
 factor two and for a reference law with mass at zero, with $C_0$ and $C_*$
 of section 4 at the multilevel coefficient 28000, as statements about the
-plan's certificate. The error of the race is checked to transfer to a true
-law coupled above its reference, and its work bounds on one coin to hold
-for every larger gap. Formalization remains for the rest of the robustness
-transfer, the level work under the coupling first, and for the full
-adaptive controller. Existing Lean
+plan's certificate. The error and work certificates of each level race are
+checked under a true law coupled above its reference, including a
+reference with mass at zero, and so is the plan of the reference as an
+estimator, with risk at most $C_0K_\alpha$. Formalization remains for the
+rest of the robustness transfer, the coupling from CDF domination and the
+capped median first, and for the full adaptive controller. Existing Lean
 results establish the positive-gap quantile-tail floor, objective floor,
 budget scaling and known-law foundations used here; they do not automatically
 formalize this new composition. Python and its PRNG remain unverified.

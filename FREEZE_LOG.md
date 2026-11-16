@@ -181,3 +181,14 @@ unrestricted minimax model. These dependency hashes were recorded during review.
   outside the project, or new data-carrying instances on types the project
   does not define. Six existing `MeasurableSpace` instances on `Option` and
   `List` types are registered as the only such instances.
+
+## Robust-continuation definition additions — 15 November 2026
+
+- Integration of PR #108 with current main adds only the fingerprints for
+  `ThresholdHC.RobustContinuation.robustFamily` and
+  `ThresholdHC.RobustContinuation.robustPlanEstimator`.
+- The canonical definition-audit generator computes the entries from the
+  `RobustPlannerOutput` import closure, using the repository's pinned Lean and
+  Mathlib versions. The additive lock writer preserves all 2,318 existing
+  entries; no existing definition, frozen specification, or published evidence
+  is rewritten. CI checks the resulting lock against the whole project.
