@@ -157,7 +157,7 @@ theorem cutoff_lt_threshold (μ ν κ : Measure Gap) [IsProbabilityMeasure μ]
   linarith
 
 /-- `√(ρ x) + √(ρ (ρ - x)) ≤ √2 ρ`, in the form used below. -/
-theorem root_sum_le {ρ s x w : ℝ} (hρ : 0 < ρ) (hs : 0 ≤ s) (hw : 0 ≤ w)
+theorem root_sum_le {ρ s x w : ℝ} (hρ : 0 < ρ) (hw : 0 ≤ w)
     (hsx : s ^ 2 ≤ ρ * x) (hxw : x + w = ρ) :
     s + Real.sqrt (ρ * w) ≤ Real.sqrt 2 * ρ := by
   have hr := Real.sqrt_nonneg (ρ * w)
@@ -198,7 +198,7 @@ theorem closed_form_real (μ ν κ : Measure Gap) [IsProbabilityMeasure μ]
   have haki : ∀ (σ : Measure Gap) [IsFiniteMeasure σ],
       Integrable (fun d => rootAllocation c d * tailKernel h d) σ := fun σ _ =>
     integrable_unit σ (ham.mul hkm) (fun d => mul_nonneg (ha0 d) (hk0 d))
-      (fun d => mul_le_one₀ (ha1 d) (hk0 d) (hk1 d))
+      (fun d => (mul_le_mul (ha1 d) (hk1 d) (hk0 d) zero_le_one).trans (by norm_num))
   have ha2i : Integrable (fun d => rootAllocation c d ^ 2) ν :=
     integrable_unit ν (ham.pow_const 2) (fun d => sq_nonneg _)
       (fun d => pow_le_one₀ (ha0 d) (ha1 d))
@@ -257,9 +257,16 @@ theorem closed_form_real (μ ν κ : Measure Gap) [IsProbabilityMeasure μ]
           exact sq_nonneg _
       have hexp : ∫ d, (ρ ^ 2 * rootAllocation c d ^ 2 - 2 * ρ * s * rootAllocation c d
           + s ^ 2) ∂ν = ρ ^ 2 * x - 2 * ρ * s * s + ρ * s ^ 2 := by
-        rw [integral_add ((ha2i.const_mul _).sub (hai.const_mul _)) (integrable_const _),
-          integral_sub (ha2i.const_mul _) (hai.const_mul _), integral_const_mul,
-          integral_const_mul, integral_const, smul_eq_mul, hνreal]
+        have e1 : ∫ d, (ρ ^ 2 * rootAllocation c d ^ 2 - 2 * ρ * s * rootAllocation c d
+            + s ^ 2) ∂ν =
+            ∫ d, (ρ ^ 2 * rootAllocation c d ^ 2 - 2 * ρ * s * rootAllocation c d) ∂ν
+              + ∫ _d : Gap, s ^ 2 ∂ν :=
+          integral_add ((ha2i.const_mul (ρ ^ 2)).sub (hai.const_mul (2 * ρ * s)))
+            (integrable_const _)
+        have e2 : ∫ d, (ρ ^ 2 * rootAllocation c d ^ 2 - 2 * ρ * s * rootAllocation c d) ∂ν =
+            ∫ d, ρ ^ 2 * rootAllocation c d ^ 2 ∂ν - ∫ d, 2 * ρ * s * rootAllocation c d ∂ν :=
+          integral_sub (ha2i.const_mul (ρ ^ 2)) (hai.const_mul (2 * ρ * s))
+        rw [e1, e2, integral_const_mul, integral_const_mul, integral_const, smul_eq_mul, hνreal]
       rw [hexp] at hnn
       nlinarith
     -- The pointwise comparison, integrated over the tail.
@@ -268,13 +275,32 @@ theorem closed_form_real (μ ν κ : Measure Gap) [IsProbabilityMeasure μ]
           ∫ d, h / c * (rootAllocation c d - Real.sqrt 2 * rootAllocation c d ^ 2) ∂ν :=
         integral_mono (hki.sub ((haki ν).const_mul _))
           ((hai.sub (ha2i.const_mul _)).const_mul _) (kernel_pointwise hh hhc)
-      rw [integral_sub hki ((haki ν).const_mul _), integral_const_mul, integral_const_mul,
-        integral_sub hai (ha2i.const_mul _), integral_const_mul] at hmono
+      have e1 : ∫ d, (tailKernel h d -
+          Real.sqrt 2 * (rootAllocation c d * tailKernel h d)) ∂ν = T - Real.sqrt 2 * AK := by
+        have := integral_sub hki ((haki ν).const_mul (Real.sqrt 2))
+        rw [integral_const_mul] at this
+        exact this
+      have e2 : ∫ d, h / c * (rootAllocation c d - Real.sqrt 2 * rootAllocation c d ^ 2) ∂ν =
+          h / c * (s - Real.sqrt 2 * x) := by
+        have := integral_sub hai (ha2i.const_mul (Real.sqrt 2))
+        rw [integral_const_mul] at this
+        rw [integral_const_mul]
+        exact congrArg (fun z => h / c * z) this
+      rw [e1, e2] at hmono
       exact hmono
-    have hroot := root_sum_le hρ hs0 hw0 hcs hbudget
+    have hroot := root_sum_le hρ hw0 hcs hbudget
     have hhc0 : 0 < h / c := div_pos hh hc
+    have e : Real.sqrt 2 * w = Real.sqrt 2 * ρ - Real.sqrt 2 * x := by
+      rw [← hbudget]; ring
+    have hlin : (s - Real.sqrt 2 * x) + Real.sqrt (ρ * w) ≤ Real.sqrt 2 * w := by linarith
+    have key : h / c * (s - Real.sqrt 2 * x) + h / c * Real.sqrt (ρ * w) ≤
+        h / c * (Real.sqrt 2 * w) := by
+      rw [← mul_add]
+      exact mul_le_mul_of_nonneg_left hlin hhc0.le
     rw [hV]
-    have hx' : x = ρ - w := by linarith
-    nlinarith [mul_le_mul_of_nonneg_left hroot hhc0.le]
+    have e3 : Real.sqrt 2 * (AK + h / c * w) = Real.sqrt 2 * AK + h / c * (Real.sqrt 2 * w) := by
+      ring
+    rw [e3]
+    linarith
 
 end ThresholdHC.PsiClosedForm

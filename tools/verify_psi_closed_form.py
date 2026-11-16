@@ -20,7 +20,7 @@ from verify_blind_upper_components import (DECLARATION, FORBIDDEN, LEAN, sha, st
 PREFIX = "ThresholdHC.PsiClosedForm."
 SOURCES = LEAN / "ThresholdHC/PsiClosedForm"
 MODULES = ("Specification", "Order", "Lower", "Full")
-SPEC_HASH = "@SPEC_HASH@"
+SPEC_HASH = "93eb75ccf99a9213181c922c7bc5c441d95aa2fa893805d1d59a9f78ba786f72"
 TARGETS = {
     "entropy_free_order": "EntropyFreeOrderStatement",
     "psi_closed_form": "PsiClosedFormStatement",
