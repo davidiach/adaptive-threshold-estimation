@@ -381,14 +381,22 @@ $A_\kappa$, and write $\Gamma_\kappa=A_\kappa(1+E_\kappa)$.
   lower bound of the preceding paragraph.
 - $\mathcal Q\le\sqrt{2(1+E_\kappa)}\,\Psi$, so $\Psi$ gives the rate whenever the core entropy is bounded;
   when the core term dominates and the cap is inactive, $\mathcal Q\ge\tfrac12\sqrt{1+E_\kappa}\,\Psi$.
+  This item is **Lean-checked** ([`psi_gap`](../lean/ThresholdHC/PsiGap/Full.lean) and the three statements
+  beside it): $\Gamma_\kappa=A_\kappa(1+E_\kappa)$ with $0\le E_\kappa\le\log\log_2(1/t)$,
+  $\mathcal Q\le\sqrt{1+E_\kappa}\,\mathcal Q^0\le\sqrt{2(1+E_\kappa)}\,\Psi$,
+  $10^{-17}\Psi\le R\le30001\sqrt{2(1+E_\kappa)}\,\Psi$, and under the two conditions
+  $\mathcal Q\ge\tfrac12\sqrt{1+E_\kappa}\,\mathcal Q^0$ and $R\ge\tfrac12\,10^{-17}\sqrt{1+E_\kappa}\,\Psi$.
+  The upper coefficient 30001 is the checked one; the paper's display has its own constant 33000. The
+  intermediate bound $E_\kappa\le\log n_\kappa$ by the number of occupied bands is not stated in Lean.
 - For the power law $F(d)=(d/a)^\alpha$ with $0<\alpha\le4$, an explicit $\mathcal R_\alpha$ satisfies
   $\mathcal R_\alpha/\sqrt2\le\mathcal Q\le2\mathcal R_\alpha$, which gives the RMS rate and both confidence
   radii with constants independent of $\alpha$, including through $\alpha=2$.
 
-The third and fourth items are not Lean-checked, and of the first only the part just named is. The Lean proof
+The fourth item is not Lean-checked, and of the first only the part just named is. The Lean proof
 of $\mathcal Q^0\le\sqrt2\,\Psi$ uses the paper's allocation but a shorter argument, without splitting
 the tail at the optimizer's cutoff.
-[Record](../results/psi-closed-form-20261116/README.md) · `python tools/verify_psi_closed_form.py`
+[Record](../results/psi-closed-form-20261116/README.md) · `python tools/verify_psi_closed_form.py` ·
+[Record of the third item](../results/psi-gap-20261116/README.md) · `python tools/verify_psi_gap.py`
 The statistical conclusions use Corollary 14.6 and Theorem S.6 of
 the paper in their recorded scopes. A [floating-point script](../research/2026-11-09-psi-closed-form/README.md)
 tests the inequalities and constants; it is numerical evidence only.
