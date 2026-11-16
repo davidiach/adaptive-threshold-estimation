@@ -1,0 +1,99 @@
+power-psi-guards.log
+test_changed_specification_rejected (test_psi_closed_form.PsiClosedFormAuditTests.test_changed_specification_rejected) ... ok
+test_every_declaration_is_a_root_and_every_target_is_restated (test_psi_closed_form.PsiClosedFormAuditTests.test_every_declaration_is_a_root_and_every_target_is_restated) ... ok
+test_hidden_or_missing_module_rejected (test_psi_closed_form.PsiClosedFormAuditTests.test_hidden_or_missing_module_rejected) ... ok
+test_missing_target_theorem_rejected (test_psi_closed_form.PsiClosedFormAuditTests.test_missing_target_theorem_rejected) ... ok
+test_proof_escape_rejected (test_psi_closed_form.PsiClosedFormAuditTests.test_proof_escape_rejected) ... ok
+test_unsound_reports_rejected (test_psi_closed_form.PsiClosedFormAuditTests.test_unsound_reports_rejected) ... ok
+test_changed_specification_rejected (test_psi_gap.PsiGapAuditTests.test_changed_specification_rejected) ... ok
+test_every_declaration_is_a_root_and_every_target_is_restated (test_psi_gap.PsiGapAuditTests.test_every_declaration_is_a_root_and_every_target_is_restated) ... ok
+test_hidden_or_missing_module_rejected (test_psi_gap.PsiGapAuditTests.test_hidden_or_missing_module_rejected) ... ok
+test_missing_target_theorem_rejected (test_psi_gap.PsiGapAuditTests.test_missing_target_theorem_rejected) ... ok
+test_proof_escape_rejected (test_psi_gap.PsiGapAuditTests.test_proof_escape_rejected) ... ok
+test_unsound_reports_rejected (test_psi_gap.PsiGapAuditTests.test_unsound_reports_rejected) ... ok
+test_changed_specification_rejected (test_psi_selection.PsiSelectionAuditTests.test_changed_specification_rejected) ... ok
+test_every_declaration_is_a_root_and_every_target_is_restated (test_psi_selection.PsiSelectionAuditTests.test_every_declaration_is_a_root_and_every_target_is_restated) ... ok
+test_hidden_or_missing_module_rejected (test_psi_selection.PsiSelectionAuditTests.test_hidden_or_missing_module_rejected) ... ok
+test_missing_target_theorem_rejected (test_psi_selection.PsiSelectionAuditTests.test_missing_target_theorem_rejected) ... ok
+test_proof_escape_rejected (test_psi_selection.PsiSelectionAuditTests.test_proof_escape_rejected) ... ok
+test_unsound_reports_rejected (test_psi_selection.PsiSelectionAuditTests.test_unsound_reports_rejected) ... ok
+test_changed_specification_rejected (test_psi_sharpness.PsiSharpnessAuditTests.test_changed_specification_rejected) ... ok
+test_escapes_and_unregistered_declaration_forms_rejected (test_psi_sharpness.PsiSharpnessAuditTests.test_escapes_and_unregistered_declaration_forms_rejected) ... ok
+test_hidden_and_missing_modules_rejected (test_psi_sharpness.PsiSharpnessAuditTests.test_hidden_and_missing_modules_rejected) ... ok
+test_missing_and_unsound_reports_rejected (test_psi_sharpness.PsiSharpnessAuditTests.test_missing_and_unsound_reports_rejected) ... ok
+test_missing_target_rejected (test_psi_sharpness.PsiSharpnessAuditTests.test_missing_target_rejected) ... ok
+test_targets_are_independently_restated (test_psi_sharpness.PsiSharpnessAuditTests.test_targets_are_independently_restated) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.169s
+
+OK
+
+power-guards.log
+test_changed_specification_rejected (test_power_window.PowerWindowAuditTests.test_changed_specification_rejected) ... ok
+test_escapes_and_unregistered_declaration_forms_rejected (test_power_window.PowerWindowAuditTests.test_escapes_and_unregistered_declaration_forms_rejected) ... ok
+test_hidden_and_missing_modules_rejected (test_power_window.PowerWindowAuditTests.test_hidden_and_missing_modules_rejected) ... ok
+test_missing_and_unsound_reports_rejected (test_power_window.PowerWindowAuditTests.test_missing_and_unsound_reports_rejected) ... ok
+test_missing_target_rejected (test_power_window.PowerWindowAuditTests.test_missing_target_rejected) ... ok
+test_targets_are_independently_restated_with_explicit_scope (test_power_window.PowerWindowAuditTests.test_targets_are_independently_restated_with_explicit_scope) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.184s
+
+OK
+
+power-v6-tests.log
+test_check_rejects_line_ending_drift (test_build_v6.ConsolidatedAssemblyTests.test_check_rejects_line_ending_drift) ... ok
+test_entropy_tier_lemma_keeps_both_versions (test_build_v6.ConsolidatedAssemblyTests.test_entropy_tier_lemma_keeps_both_versions) ... ok
+test_finite_gap_labels_do_not_collide_with_version_5 (test_build_v6.ConsolidatedAssemblyTests.test_finite_gap_labels_do_not_collide_with_version_5) ... ok
+test_finite_upper_bound_cites_the_general_construction (test_build_v6.ConsolidatedAssemblyTests.test_finite_upper_bound_cites_the_general_construction) ... ok
+test_generated_sources_are_current (test_build_v6.ConsolidatedAssemblyTests.test_generated_sources_are_current) ... ok
+test_hellinger_distance_never_shares_the_budget_scale_symbol (test_build_v6.ConsolidatedAssemblyTests.test_hellinger_distance_never_shares_the_budget_scale_symbol) ... ok
+test_merged_appendices_change_only_listed_general_law_lines (test_build_v6.ConsolidatedAssemblyTests.test_merged_appendices_change_only_listed_general_law_lines) ... ok
+test_merged_appendices_keep_every_finite_gap_line (test_build_v6.ConsolidatedAssemblyTests.test_merged_appendices_keep_every_finite_gap_line) ... ok
+test_merged_appendices_use_stronger_sign_entropy_constant (test_build_v6.ConsolidatedAssemblyTests.test_merged_appendices_use_stronger_sign_entropy_constant) ... ok
+test_no_companion_or_supplied_manuscript_citations_remain (test_build_v6.ConsolidatedAssemblyTests.test_no_companion_or_supplied_manuscript_citations_remain) ... ok
+test_project_labels_references_and_citations_resolve (test_build_v6.ConsolidatedAssemblyTests.test_project_labels_references_and_citations_resolve) ... ok
+test_rekey_changes_only_listed_keys (test_build_v6.ConsolidatedAssemblyTests.test_rekey_changes_only_listed_keys) ... ok
+test_repeated_construction_matches_the_general_construction (test_build_v6.ConsolidatedAssemblyTests.test_repeated_construction_matches_the_general_construction) ... ok
+test_abstract_counts_checked_results_and_names_only_paper_proofs (test_build_v6.VerificationStatusTests.test_abstract_counts_checked_results_and_names_only_paper_proofs) ... ok
+test_abstract_has_no_hand_written_status (test_build_v6.VerificationStatusTests.test_abstract_has_no_hand_written_status) ... ok
+test_duplicate_keys_are_rejected (test_build_v6.VerificationStatusTests.test_duplicate_keys_are_rejected) ... ok
+test_entries_are_used_and_phrased_for_their_venues (test_build_v6.VerificationStatusTests.test_entries_are_used_and_phrased_for_their_venues) ... ok
+test_every_entry_reads_correctly_under_either_status (test_build_v6.VerificationStatusTests.test_every_entry_reads_correctly_under_either_status) ... ok
+test_every_status_needs_existing_evidence_in_the_repository (test_build_v6.VerificationStatusTests.test_every_status_needs_existing_evidence_in_the_repository) ... ok
+test_generated_status_matches_the_source (test_build_v6.VerificationStatusTests.test_generated_status_matches_the_source) ... ok
+test_list_joins_ignore_braced_and_math_commas (test_build_v6.VerificationStatusTests.test_list_joins_ignore_braced_and_math_commas) ... ok
+test_phrases_are_safe_tex (test_build_v6.VerificationStatusTests.test_phrases_are_safe_tex) ... ok
+test_section18_rows_agree_with_status (test_build_v6.VerificationStatusTests.test_section18_rows_agree_with_status) ... ok
+test_status_change_moves_a_result_in_every_venue (test_build_v6.VerificationStatusTests.test_status_change_moves_a_result_in_every_venue) ... ok
+test_status_table_lists_every_result_once_under_its_status (test_build_v6.VerificationStatusTests.test_status_table_lists_every_result_once_under_its_status) ... ok
+test_status_words_match_only_status_uses (test_build_v6.VerificationStatusTests.test_status_words_match_only_status_uses) ... ok
+test_status_words_stay_in_the_status_field (test_build_v6.VerificationStatusTests.test_status_words_stay_in_the_status_field) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 1.653s
+
+OK
+
+power-status-tests.log
+test_check_detects_and_write_repairs_a_stale_summary (test_build_status_docs.BlockTests.test_check_detects_and_write_repairs_a_stale_summary) ... ok
+test_missing_repeated_or_reversed_markers_fail (test_build_status_docs.BlockTests.test_missing_repeated_or_reversed_markers_fail) ... ok
+test_only_the_marked_block_changes (test_build_status_docs.BlockTests.test_only_the_marked_block_changes) ... ok
+test_duplicate_labels_fail (test_build_status_docs.ConversionTests.test_duplicate_labels_fail) ... ok
+test_math_dashes_and_spaces (test_build_status_docs.ConversionTests.test_math_dashes_and_spaces) ... ok
+test_references_link_to_the_defining_section (test_build_status_docs.ConversionTests.test_references_link_to_the_defining_section) ... ok
+test_unsupported_latex_fails_closed (test_build_status_docs.ConversionTests.test_unsupported_latex_fails_closed) ... ok
+test_a_status_change_changes_the_summary (test_build_status_docs.RepositoryTests.test_a_status_change_changes_the_summary) ... ok
+test_every_result_has_one_row_with_its_status (test_build_status_docs.RepositoryTests.test_every_result_has_one_row_with_its_status) ... ok
+test_landing_page_gets_counts_and_names_but_no_table (test_build_status_docs.RepositoryTests.test_landing_page_gets_counts_and_names_but_no_table) ... ok
+test_landing_page_link_reaches_the_table_heading (test_build_status_docs.RepositoryTests.test_landing_page_link_reaches_the_table_heading) ... ok
+test_landing_page_summary_follows_the_status_source (test_build_status_docs.RepositoryTests.test_landing_page_summary_follows_the_status_source) ... ok
+test_links_resolve_from_both_documents (test_build_status_docs.RepositoryTests.test_links_resolve_from_both_documents) ... ok
+test_summary_phrase_is_preferred_and_kept_out_of_the_manuscript (test_build_status_docs.RepositoryTests.test_summary_phrase_is_preferred_and_kept_out_of_the_manuscript) ... ok
+test_table_document_without_its_heading_fails (test_build_status_docs.RepositoryTests.test_table_document_without_its_heading_fails) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.451s
+
+OK

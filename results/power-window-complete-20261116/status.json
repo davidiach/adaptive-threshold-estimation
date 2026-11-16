@@ -1,0 +1,44 @@
+{
+  "proof_commit": "6965262b95490eeabf5d5158ad55e0393027f28c",
+  "specification_sha256": "924c8032dbabaaabddec452d35e2bb0aa68781c7201517ed6cf47dd8d5445a06",
+  "exact_statements": 16,
+  "transitive_axiom_reports": 78,
+  "allowed_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "targets": {
+    "power_phi_closed": "PowerPhiStatement",
+    "power_core": "PowerCoreStatement",
+    "power_quantile": "PowerQuantileStatement",
+    "power_risk": "PowerRiskStatement",
+    "power_confidence": "PowerConfidenceStatement"
+  },
+  "pending_formal_targets": [],
+  "outside_formal_scope": [
+    "Corollary 14.14",
+    "Remark 14.15"
+  ],
+  "validation": "Local native Lean audit; no PR-head CI claim",
+  "sha256": {
+    "lean/ThresholdHC/PowerWindow/Specification.lean": "924c8032dbabaaabddec452d35e2bb0aa68781c7201517ed6cf47dd8d5445a06",
+    "lean/ThresholdHC/PowerWindow/Phi.lean": "6d87644ac472ebd559c8777df2c88db7f4814c508b246a14d7805de301abcb47",
+    "lean/ThresholdHC/PowerWindow/Law.lean": "855135585c9c7814c6a50bce32badbe35f69f4c3c3debeec445c515e57a23712",
+    "lean/ThresholdHC/PowerWindow/CoreCost.lean": "efa5b15eaad4df9a408e5c0e57221a901ec03161cf3f6efb1a373caedff21537",
+    "lean/ThresholdHC/PowerWindow/Statistics.lean": "78374b0e30e5eef6ca02c6ae5932f5f3650c5dc112b0a9063b687b38b3749441",
+    "lean/ThresholdHC/PowerWindow/TailIntegral.lean": "ca71ad4d2bed704f9ea61c6b4e7ef5e59f4cbc68c48337ce7616be339b7bab3c",
+    "lean/ThresholdHC/PowerWindow/Quantile.lean": "7db669f047fad8fb9834fa65eff4e9b69c0998ae1f38bacf08cc62971de2fdd4",
+    "lean/ThresholdHC/PowerWindow/FiniteEntropy.lean": "278ea38c9e8f744669bccff4ba290c33b6220455c2e039676c2ccf8d316a78bf",
+    "lean/ThresholdHC/PowerWindow/LogMoments.lean": "00c8dae11a09c0dc1f5332ecc7ed89de37c4f4755b2b824edf433ddf6caa513d",
+    "lean/ThresholdHC/PowerWindow/EntropyBounds.lean": "c9a8fbcc98159b5a9b4a6b128f651291abfdfde7e6c69daaa72b56b4ae4b754d",
+    "lean/ThresholdHC/PowerWindow/DensityBounds.lean": "0a0311e4a4e65aa5b2c2872e1acb1bee727e0aaacb67602c9522e8063200a2b1",
+    "lean/ThresholdHC/PowerWindow/WindowBands.lean": "d938ae3a5acde63a7fab8a4290327d23c92d64e1939dbfffdbe08ed19a3f2e78",
+    "lean/ThresholdHC/PowerWindow/CoreCoordinates.lean": "1439769e1ac71e453dd1482426fea135c9812372def2c4e2b0628a31cad3fec6",
+    "lean/ThresholdHC/PowerWindow/BandCost.lean": "cef4415ae9d4d0228caba4e78e20ea4a19140c6089fa687e233d052b10f95593",
+    "lean/ThresholdHC/PowerWindow/CoreEntropy.lean": "910f9ee38d297038eac8d229a1d63af38b4875668987a6e2c5e3d4626146df1d",
+    "lean/ThresholdHC/PowerWindow/Full.lean": "63eca8daf776175423022d54865ebf29f42ca03b6f915a0e55a71a78d7f78f46",
+    "tools/verify_power_window.py": "ac44141a75a4d21f876f3b30a114197b291d32238364ee9f78c04af55534085f",
+    "tools/test_power_window.py": "39d738401adc8369f8571b2f967a7c7f9856cf174438a63a212f5365c79bbdea"
+  }
+}

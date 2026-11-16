@@ -442,12 +442,14 @@ statements, Corollary~\ref{cor:psi-from-law}, and
 Theorem~\ref{thm:psi-gap}, including the occupied-band entropy bound.
 The checked risk coefficients are $10^{-17}$ and $30001$ for $\Q$;
 the paper's display retains its coefficient $33000$.
-For Lemma~\ref{lem:power-core}, Lean checks the quantile split and
-$a^2A_\kappa=\Phi_\alpha(\rho)$ for every $\alpha>0$, including
-$\Phi_2(\rho)=\log(1/\rho)$ and arbitrary $0<a\le1/2$.
-Its uniform entropy bounds and Theorem~\ref{thm:power-uniform} still
-have paper proofs only. Lean does check the statistical implications of
-the uniform quantile comparison, with that comparison retained as a premise.
+Lean also checks Lemma~\ref{lem:power-core}, including the entropy
+constants $1/2$ and $3.83$, exponent two and arbitrary $0<a\le1/2$,
+and the deterministic comparison in Theorem~\ref{thm:power-uniform}.
+The resulting RMS coefficients are $10^{-17}/\sqrt2$ and $60002$,
+compared with the displayed $10^{-18}$ and $66000$. Both confidence
+bounds are checked, with lower coefficient $10^{-17}/\sqrt2$ and the
+same upper coefficient $1500000$. These conclusions have no unproved
+entropy or quantile premise.
 Corollary~\ref{cor:critical-window} and
 Remark~\ref{rem:window} remain paper results, outside the current formal
 targets. Section~\ref{sec:verification} records the exact checked scope.

@@ -1,4 +1,4 @@
-"""Guard regression tests for the scoped power-window foundation audit."""
+"""Guard regression tests for the uniform power-window audit."""
 from pathlib import Path
 import unittest
 from unittest.mock import patch
@@ -18,9 +18,9 @@ class PowerWindowAuditTests(unittest.TestCase):
         self.assertEqual(source.count("#print axioms "), len(roots))
         for theorem, statement in audit.TARGETS.items():
             self.assertIn(f"example : {statement} := {theorem}", source)
-        for pending in audit.PENDING:
-            self.assertIn(audit.PREFIX + pending, roots)
-            self.assertNotIn(f"example : {pending}", source)
+        self.assertEqual(set(audit.TARGETS.values()), {
+            "PowerPhiStatement", "PowerCoreStatement", "PowerQuantileStatement",
+            "PowerRiskStatement", "PowerConfidenceStatement"})
         for text in ("(ρ ^ (1/α))..1", "Real.log (1/ρ)", "min 1 ((x/a)^α)",
                      "(Set.Ioc ρ 1)", "∫⁻ d : Gap", "power_quantile_tail μ"):
             self.assertIn(text, audit.EXACT)
@@ -28,6 +28,9 @@ class PowerWindowAuditTests(unittest.TestCase):
         for name in ("power_risk_of_quantile", "power_confidence_of_quantile"):
             self.assertIn(audit.PREFIX + name, roots)
         for text in ("60002 * uniformRate", "1500000 * uniformRate", "hδ4 : δ ≤ 1/4"):
+            self.assertIn(text, audit.EXACT)
+        for text in ("(383/100 : ℝ)", "Real.log (effectiveScales α ρ)",
+                     "power_core μ", "power_quantile μ", "power_risk μ", "power_confidence μ"):
             self.assertIn(text, audit.EXACT)
         shared.validate_reports(report(roots), 0, roots)
 

@@ -1,0 +1,28 @@
+{
+  "manuscript_source_commit": "cbfd73ef3d4a5db1481f9a55ce9e1640ad3c916b",
+  "proof_commit": "6965262b95490eeabf5d5158ad55e0393027f28c",
+  "validation_checkpoint": "41a999e9c3dd9c7413bc5f9a72994217603a69ea",
+  "pdf": "paper/v6/builds/power-window-complete-20261116.pdf",
+  "pdf_sha256": "dbdbd77cf32e06890cd03277db5f7ec996415783e5aac4a2525443bd7fedb372",
+  "tracked_status_counts": {
+    "lean": 32,
+    "paper": 1
+  },
+  "local_power_audit": {
+    "exact_statements": 16,
+    "transitive_axiom_reports": 78,
+    "guard_tests": 6
+  },
+  "generator_tests": 42,
+  "psi_guard_tests": 24,
+  "whole_project_summary": [
+    "Verified 13276 constants (10763 theorems) in 1240 modules: axioms propext, Classical.choice, Quot.sound",
+    "Verified 125 exported project instances: named, global, default priority, 6 registered orphans",
+    "Verified 2402 locked definition fingerprints"
+  ],
+  "remaining_frozen_formal_targets": [],
+  "statistical_scope": "The core entropy and deterministic quantile comparison are proved; the RMS and both confidence bounds have no unproved quantile premise.",
+  "paper_only_choice": "Corollary 14.14 and Remark 14.15 remain paper results outside the formal targets.",
+  "integration_boundary": "Issue #100 awaits the follow-up PR merge and actual-head CI; this record does not assert that unmerged work is on main.",
+  "ci_scope": "base-pr117-ci.json records the merged base head. The new proof audit is local; manuscript-ci.json records two successful builds at the manuscript source commit. Follow-up PR checks must be read at its actual head."
+}
