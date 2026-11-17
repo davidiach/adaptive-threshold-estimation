@@ -1,6 +1,7 @@
 import SharpAttainment
 import SharpEntropy
-import SharpPrefixCost
+import SharpWeakPopulation
+import SharpSimulation
 
 open MeasureTheory InformationTheory
 open scoped ENNReal
@@ -47,6 +48,24 @@ example : ∀ {n : ℕ} (pol : List Bool → Option ℕ) (s B : ℝ),
       (creationLaw pol (fun _ => s/2) (fun _ => (1+ -(7/10))/2)) ≤ 2*3283/3150 :=
   @creation_paired_cost
 
+example : ∀ (g : Gap) (B : ℝ), 2*g.val ≤ 2/5 → (2*g.val)^2*B = 4 →
+    ENNReal.ofReal (Real.sqrt (59/2100:ℝ)) ≤ minimaxRisk (Measure.dirac g) B :=
+  weak_gap_minimax_lower
+
+example : ∀ (a s z : ℝ), 0 < s → s < a → |z| ≤ 1 → (z=0 ∨ a ≤ |z|) →
+    let f := s/a
+    let c := copyProbability f z
+    0 ≤ c ∧ c ≤ 1 ∧ |fallbackMean a z| ≤ 1 ∧
+      ∀ e : ℝ, (e = -1 ∨ e = 1) →
+        c*(s*e)+(1-c)*fallbackMean a z = a*(z+f*e)/(1+f*z*e) :=
+  critical_step_kernel
+
+example : ∀ a : ℝ, 0 < a → a < 1 → ∀ k : ℤ, k ≠ 0 →
+    a ≤ |Real.tanh ((k:ℝ)*Real.artanh a)| := posterior_lattice_gap
+
+#print axioms weak_gap_minimax_lower
+#print axioms critical_step_kernel
+#print axioms posterior_lattice_gap
 #print axioms creation_paired_cost
 #print axioms four_flips_budget
 #print axioms four_flips_squared_risk

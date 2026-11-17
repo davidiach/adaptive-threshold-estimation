@@ -33,6 +33,8 @@ For the sharp unrestricted theorem, the standard-library checker covers 140 bias
 
 The [four-flip Lean construction](SharpAttainment.lean) proves uniform budget four, exact squared risk $1/36$ at every sign law for the endpoint gap, and an upper bound of $1/6$ on the original minimax risk. The [testing theorem](SharpEntropy.lean) handles any measurable real-valued output under three probability laws, subject to the stated reverse-KL bound. For every finite horizon, arbitrary adaptive coin labels and a common flip bias, Lean proves the [fair-posterior work identity](SharpTranscript.lean) and the [summed reverse-KL bound](SharpPrefixCost.lean) for $0<s\le 2/5$ and $s^2 B=4$. The [scalar price proof](SharpInformation.lean) uses derivatives and exact rational comparisons.
 
+For a point mass at the critical gap $d=1/\sqrt B$ and every $B\ge25$, Lean proves the stronger minimax lower bound $\sqrt{59/2100}\approx 0.16761634$. The [finite risk inequality](SharpWeakRisk.lean) is linear in the three risks and the expected work under the fair law. The [population proof](SharpWeakPopulation.lean) averages it over the algorithm's random seed and uses eventual reconstruction of the stopped tape to pass to unbounded stopping. The [local simulation lemma](SharpSimulation.lean) checks the one-step probability and posterior-lattice constraint. The transfer across arbitrary gap laws and the lower bound over the other budgets still require a formal proof.
+
 The [exact theorem statements](AuditSharpRMS.lean) and [kernel replay record](sharp-rms-audit.json) cover these components. To reproduce the record from a built checkout with the same Lean source tree, run
 
 ```sh

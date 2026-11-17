@@ -12,9 +12,11 @@ import tempfile
 
 from verify_cap import AXIOMS, HERE, digest, run
 
-MODULES = ("SharpAttainment", "SharpEntropy", "SharpTranscript", "SharpInformation", "SharpPrefixCost")
+MODULES = ("SharpAttainment", "SharpEntropy", "SharpTranscript", "SharpInformation", "SharpPrefixCost",
+           "SharpWeakRisk", "SharpWeakPopulation", "SharpSimulation")
 THEOREMS = {"four_flips_budget", "four_flips_squared_risk", "endpoint_minimax_upper",
-            "three_bias_risk", "creation_tilt", "creation_wald", "creation_paired_cost"}
+            "three_bias_risk", "creation_tilt", "creation_wald", "creation_paired_cost",
+            "weak_gap_minimax_lower", "critical_step_kernel", "posterior_lattice_gap"}
 AUDIT = "AuditSharpRMS"
 
 
@@ -39,6 +41,7 @@ def main():
         env = dict(os.environ, LEAN_PATH=os.pathsep.join(map(str, [tmp, *libs])))
         for name in files:
             shutil.copyfile(HERE / name, tmp / name)
+        hashes = {name: digest(tmp / name) for name in files}
         for module in MODULES:
             run([compiler, "-j2", "-DwarningAsError=true", "-o", f"{module}.olean",
                  f"{module}.lean"], cwd=tmp, env=env)
@@ -55,12 +58,12 @@ def main():
         "compiler": run([compiler, "--version"], cwd=lean_dir),
         "imported_checkout_commit": run(["git", "rev-parse", "HEAD"], cwd=repo),
         "lean_source_tree": tree,
-        "source_sha256": {name: digest(HERE / name) for name in files},
+        "source_sha256": hashes,
         "exact_type_checks": sorted(THEOREMS),
         "transitive_axioms": {name: names.split(", ") for name, names in reports},
         "kernel_replay": list(MODULES),
         "dependencies": "Existing compiled project and Mathlib imports",
-        "scope": "Four-flip attainment, conditional three-bias risk, finite-prefix likelihood, work and paired KL",
+        "scope": "Endpoint attainment, weak critical single-gap minimax lower bound, finite-prefix information and local simulation",
     }, indent=2))
 
 

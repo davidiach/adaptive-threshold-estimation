@@ -8,18 +8,39 @@
     "SharpTranscript.lean": "1d9564fd6e41d0a15b7564028f909b9e66b199b863452db3e27077b6d6c23a9e",
     "SharpInformation.lean": "12f33886d6a03aad88180f251c81bbcc1ffe8adaceaf02138bd2f1745b1445d2",
     "SharpPrefixCost.lean": "e9ecf27b5ff1ac7403240475074ad66f3da025caa16a0e2ace3fd2a55e65b778",
-    "AuditSharpRMS.lean": "8098e7a1d68d6f232b1cf2e64fd9ef7a68d6b48229bca9bd5d08a02dd8e2adc6"
+    "SharpWeakRisk.lean": "44e8038c7a6e83bba197e5d7689dbbc2e06cabafee2b8e6e864e43acff298640",
+    "SharpWeakPopulation.lean": "4b2451ee5d1fe1ed88c6ded76704c7286aee3e227640c83fdd2ed371296d992c",
+    "SharpSimulation.lean": "92c00dd9338a95c672001b5e968cf0d7933ffc7a65803b7228794d92c1331810",
+    "AuditSharpRMS.lean": "bbec410f9f9b74fe5a70594e5e82302ef3c5b81375f971fa9e9d74564d67d5d5"
   },
   "exact_type_checks": [
     "creation_paired_cost",
     "creation_tilt",
     "creation_wald",
+    "critical_step_kernel",
     "endpoint_minimax_upper",
     "four_flips_budget",
     "four_flips_squared_risk",
-    "three_bias_risk"
+    "posterior_lattice_gap",
+    "three_bias_risk",
+    "weak_gap_minimax_lower"
   ],
   "transitive_axioms": {
+    "weak_gap_minimax_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "critical_step_kernel": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "posterior_lattice_gap": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
     "creation_paired_cost": [
       "propext",
       "Classical.choice",
@@ -61,8 +82,11 @@
     "SharpEntropy",
     "SharpTranscript",
     "SharpInformation",
-    "SharpPrefixCost"
+    "SharpPrefixCost",
+    "SharpWeakRisk",
+    "SharpWeakPopulation",
+    "SharpSimulation"
   ],
   "dependencies": "Existing compiled project and Mathlib imports",
-  "scope": "Four-flip attainment, conditional three-bias risk, finite-prefix likelihood, work and paired KL"
+  "scope": "Endpoint attainment, weak critical single-gap minimax lower bound, finite-prefix information and local simulation"
 }
