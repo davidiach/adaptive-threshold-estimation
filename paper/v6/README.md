@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Current manuscript](builds/review-corrections-20261117.pdf) · [LaTeX sources](main.tex) · [Build record](builds/review-corrections-20261117.json) · [Previous build](builds/power-window-complete-20261116.pdf)
+[Current manuscript](builds/sharp-rms-constant-20261117.pdf) · [LaTeX sources](main.tex) · [Build record](builds/sharp-rms-constant-20261117.json) · [Previous build](builds/review-corrections-20261117.pdf)
 
 The current sources publish the complete uniform power-law entropy and
 quantile bounds and their unconditional RMS/confidence consequences.
@@ -10,11 +10,12 @@ separate these checked results from the critical-window corollary and
 asymptotic remark, which remain paper results. Every earlier published
 package retains its original PDF and verification scope.
 
-The current PDF is the [review corrections build](#review-corrections-build).
-It typesets the corrections of a line-by-line review of the paper's text.
-No proof changes, and the verification status of every result is the same.
-One correction widens a stated range, in Appendices J–L; that section lists
-every correction.
+The current PDF is the [sharp RMS constant build](#sharp-rms-constant-build).
+It states the sharp lower constant $1/6$ of the RMS law, where earlier
+builds stated $1/64$, and proves it in the new Appendix AA. Lean checks the
+constant and its sharpness. The upper constant $512$ and every other result
+are unchanged. The build before it is the
+[review corrections build](#review-corrections-build).
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -930,3 +931,53 @@ holds the build logs, the page comparison, the toolchain check and the
 workflow runs. All earlier PDFs and records remain unchanged.
 
 [Published manuscript](builds/review-corrections-20261117.pdf) · [Build record](builds/review-corrections-20261117.json)
+
+## Sharp RMS constant build
+
+This publication states the sharp constant of the RMS lower bound. For
+every gap law and every $B\ge1$,
+
+$$R_\mu(B)\ge\tfrac16\,\omega_\mu(B^{-1/2}),$$
+
+with equality for the point law at gap $1/2$ and $B=4$, so no larger
+constant holds for all laws and budgets. For $B\ge25$ the constant improves
+to $\sqrt{59/2100}$. The same bounds hold when every magnitude is revealed
+and when the algorithm selects magnitudes. Earlier builds stated $1/64$.
+
+- Appendix AA is new. It proves Theorem AA.1 in five steps: the reduction
+  to one gap, the single-gap experiment, three sign biases for large
+  budgets, the exact one-coin information price for intermediate budgets,
+  and budgets at most four with the equality case.
+- Theorem 2.1, the overview table, the abstract and the verification
+  boundary state $1/6$. §5 still proves $1/64$, the coefficient of the
+  frozen lower-bound target. §18 names the new audit.
+- The status table keeps 33 entries, 32 Lean-checked and one paper proof.
+  The sharp constant is added evidence for the existing RMS-law entry.
+- The upper constant $512$ is unchanged.
+
+Lean checks the theorem as
+[`lean/ThresholdHC/SharpRMS`](../../lean/ThresholdHC/SharpRMS/Specification.lean).
+For intermediate budgets the proof compares 140 integer upper sums with
+$2/3$, which the Lean kernel evaluates without native code. The
+[library audit record](../../results/sharp-rms-20261117/README.md) gives the
+checked statements, the axiom reports and the kernel replay.
+
+Two builds at source checkpoint `10de700fd72eaa474f20bd0bbfcca21ddf85c301`
+are byte-identical: 197 pages, 33 embedded font objects, 421 unique source
+labels and 29 resolved citations. They were typeset locally with the
+manuscript workflow's command and TeX Live packages. The same toolchain
+rebuilds the two previous PDFs byte for byte from their source checkpoints.
+No workflow build is cited: the manuscript workflow no longer builds branch
+pushes, and the first pull-request build of these sources had not finished
+when the record was written.
+
+Thirteen pages change: 1, 3, 5, 6, 8, 12, 62, 63 and the five pages of
+Appendix AA, 191–195. The references move from pages 191–192 to 196–197.
+The other 182 pages retain identical body text and word positions. The
+changed pages, contents page 2 and the two reference pages were rendered
+and visually inspected. The only warning is the inherited overfull line in
+Appendix C. The [publication record](../../results/sharp-rms-constant-publication-20261117/README.md)
+holds the build logs, the page comparison and the toolchain check. All
+earlier PDFs and records remain unchanged.
+
+[Published manuscript](builds/sharp-rms-constant-20261117.pdf) · [Build record](builds/sharp-rms-constant-20261117.json)

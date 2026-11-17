@@ -15,6 +15,7 @@ statement. For the current tree the evidence is the CI run on that commit.
 | Claim or check | Published record |
 |---|---|
 | Sharp RMS lower constant $1/6$ in all three models and the square-root cap comparison: library statement, axiom and kernel-replay audits | [sharp-rms-20261117](sharp-rms-20261117/README.md) |
+| Typeset v6 manuscript with the sharp RMS constant and Appendix AA: build logs, page comparison and toolchain check | [sharp-rms-constant-publication-20261117](sharp-rms-constant-publication-20261117/README.md) |
 | Typeset v6 manuscript with the review corrections: build logs, page comparison and toolchain check | [review-corrections-publication-20261117](review-corrections-publication-20261117/README.md) |
 | Zero-residual envelope, rounding and conditional transfer certificates (#85) | [envelope-transfer-certificates-20261117](envelope-transfer-certificates-20261117/README.md) |
 | Bounded global menu/DP/approximation output certificates (#85) | [global-selection-certificates-20261117](global-selection-certificates-20261117/README.md) |
