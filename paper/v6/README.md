@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Current manuscript](builds/power-window-complete-20261116.pdf) · [LaTeX sources](main.tex) · [Build record](builds/power-window-complete-20261116.json) · [Previous build](builds/psi-sharpness-20261116.pdf)
+[Current manuscript](builds/review-corrections-20261117.pdf) · [LaTeX sources](main.tex) · [Build record](builds/review-corrections-20261117.json) · [Previous build](builds/power-window-complete-20261116.pdf)
 
 The current sources publish the complete uniform power-law entropy and
 quantile bounds and their unconditional RMS/confidence consequences.
@@ -10,28 +10,11 @@ separate these checked results from the critical-window corollary and
 asymptotic remark, which remain paper results. Every earlier published
 package retains its original PDF and verification scope.
 
-The LaTeX sources are ahead of that PDF, which has not been rebuilt, by the
-corrections of a line-by-line review. No proof changes. One correction
-widens a stated range: Appendices J–L state the
-[rarity range](#source-and-editorial-scope) $0<\rho\le1/2$ that Appendix Q
-and Theorem S.1 use, and keep $\rho\le1/4$ for the explicit cap $N_*$. The
-others make no statement stronger:
-
-- §11.3: the uniform confidence radii hold for exponents $0<\alpha\le4$.
-- Appendices A and B: the two
-  [appendix wording](#source-and-editorial-scope) changes.
-- Appendix E: the displayed upper constant $33000$ is a conservative
-  rounding of coefficients below $27000$.
-- Appendix G: the gate lemma and the annular proposition state the range
-  $0<\rho\le1/4$ that their proofs use.
-- Appendix S: Theorem S.1 states $0<\rho\le1/4$ for the critical law. Its
-  proof covers base budgets below one and names the general-law base rule at
-  an arbitrary allowance.
-- Appendix U: the level count at exponent one uses the sharpened bias bound
-  $4r_{k+J}/3$, with an explicit $J$.
-- Appendix V: finiteness of the coefficient $C$ is equivalent to inverse-gap
-  integrability, not weaker; and a reference zero atom costs its mass times
-  the race cap $2M$ in work, not $M$.
+The current PDF is the [review corrections build](#review-corrections-build).
+It typesets the corrections of a line-by-line review of the paper's text.
+No proof changes, and the verification status of every result is the same.
+One correction widens a stated range, in Appendices J–L; that section lists
+every correction.
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -893,3 +876,49 @@ links source identities, test logs, the whole-project audit and the merged
 PDFs and records remain unchanged.
 
 [Published manuscript](builds/power-window-complete-20261116.pdf) · [Build record](builds/power-window-complete-20261116.json)
+
+## Review corrections build
+
+This publication typesets the corrections of a line-by-line review of the
+paper's text, merged in
+[#120](https://github.com/davidiach/adaptive-threshold-estimation/pull/120).
+No proof, Lean source or status entry changes: the status table keeps
+32 Lean-checked entries and one paper entry. One correction widens a stated
+range: Appendices J–L state the
+[rarity range](#source-and-editorial-scope) $0<\rho\le1/2$ that Appendix Q
+and Theorem S.1 use, and keep $\rho\le1/4$ for the explicit cap $N_*$. The
+others make no statement stronger:
+
+- §11.3: the uniform confidence radii hold for exponents $0<\alpha\le4$.
+- Appendices A and B: the two
+  [appendix wording](#source-and-editorial-scope) changes.
+- Appendix E: the displayed upper constant $33000$ is a conservative
+  rounding of coefficients below $27000$.
+- Appendix G: the gate lemma and the annular proposition state the range
+  $0<\rho\le1/4$ that their proofs use.
+- Appendix S: Theorem S.1 states $0<\rho\le1/4$ for the critical law. Its
+  proof covers base budgets below one and names the general-law base rule at
+  an arbitrary allowance.
+- Appendix U: the level count at exponent one uses the sharpened bias bound
+  $4r_{k+J}/3$, with an explicit $J$.
+- Appendix V: finiteness of the coefficient $C$ is equivalent to inverse-gap
+  integrability, not weaker; and a reference zero atom costs its mass times
+  the race cap $2M$ in work, not $M$.
+
+Two builds at source checkpoint `97a501383083cc0fa64cb96405444048b8fd4053`
+are byte-identical: 192 pages, 33 embedded font objects, 402 unique source
+labels and 29 resolved citations. They were typeset locally with the
+manuscript workflow's command and TeX Live packages. The same toolchain
+rebuilds the previous PDF byte for byte from its source checkpoint. Three
+workflow builds of the same sources report the same page count and file
+size. Their artifacts were not downloaded, so byte identity with them is
+not claimed.
+
+All 17 changed pages and contents page 2 were rendered and visually
+inspected; 175 pages retain identical body text and word positions, and no
+page is renumbered. The only warning is the inherited overfull line in
+Appendix C. The [publication record](../../results/review-corrections-publication-20261117/README.md)
+holds the build logs, the page comparison, the toolchain check and the
+workflow runs. All earlier PDFs and records remain unchanged.
+
+[Published manuscript](builds/review-corrections-20261117.pdf) · [Build record](builds/review-corrections-20261117.json)

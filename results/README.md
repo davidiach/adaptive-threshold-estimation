@@ -14,6 +14,7 @@ statement. For the current tree the evidence is the CI run on that commit.
 
 | Claim or check | Published record |
 |---|---|
+| Typeset v6 manuscript with the review corrections: build logs, page comparison and toolchain check | [review-corrections-publication-20261117](review-corrections-publication-20261117/README.md) |
 | Zero-residual envelope, rounding and conditional transfer certificates (#85) | [envelope-transfer-certificates-20261117](envelope-transfer-certificates-20261117/README.md) |
 | Bounded global menu/DP/approximation output certificates (#85) | [global-selection-certificates-20261117](global-selection-certificates-20261117/README.md) |
 | Finite-law measure, feasible-objective and oracle output certificates (#85) | [finite-law-certificates-20261117](finite-law-certificates-20261117/README.md) |
