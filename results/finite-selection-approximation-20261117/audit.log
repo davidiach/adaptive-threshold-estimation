@@ -1,0 +1,137 @@
+'ThresholdHC.FiniteSelectionApproximation.FiniteLawApproximationStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.all_extensions_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.beta' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.beta_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.binKey' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.binKey_cell' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.binKey_eq_none' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.binKey_mem_positive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.binKey_valid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.binKey_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.capped_objective_comparison' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.cellCount' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.cellCount_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.complete_trace' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.compression_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.cost_empty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.dyadic_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.empty_suffix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.endpoint_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.endpoint_certificate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.endpoint_minima' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.every_stage_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.extensionCount' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.extensionCount_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.feasible_key_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.finite_law_approximation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.finite_law_near_optimal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.frontier' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.lawFrontier' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.lawMenus' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.lawMenus_empty_option' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.lawMenus_input' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.lawMenus_option_count' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.le_menuMax' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.leastLower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.logScale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.logScale_derivative' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.logScale_ge_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.lowerEndpoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.maxCost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.maxCost_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.mem_options' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.menuMax' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.menuMax_le_maxCost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.menuMax_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.menuObjective_floor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.menuObjective_form' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.menuObjective_nonneg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.minCost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.minCost_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.minCost_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.one_band_options' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.options' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.positiveCosts' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.positiveFloor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.positiveFloor_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.positiveKeys' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.positiveKeys_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.positive_support_cost' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.precision_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.rationalKey' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.rationalKey_cast' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.refinement_terminates' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.retained_entropy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.saving_le_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.selection_le_menu' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.self_suffix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.slice_eq_fiber' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.slice_eq_self_of_subset' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.stateCount' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.stateKeys' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.stateKeys_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.sufficientPrecision' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.summary' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.summaryKey_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.summary_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.tailRemainder' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.tailRemainder_nonneg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.traceEntropy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.traceSaved_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.traceTotal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.trace_le_maxCost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.trace_mem_options' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.trace_summary_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.trace_zero_or_lower' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.trimSolve_card_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.upperEndpoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.upperLog' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.upperLog_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.upperLog_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.upperWitness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.upperWitness_spec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.FiniteSelectionApproximation.zero_cost_objective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

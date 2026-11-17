@@ -1,13 +1,14 @@
 # Consolidated version 6
 
-[Current manuscript](builds/arbitrary-law-complete-20261116.pdf) · [LaTeX sources](main.tex) · [Build record](builds/arbitrary-law-complete-20261116.json) · [Previous build](builds/combined-psi-20261109.pdf)
+[Current manuscript](builds/power-window-complete-20261116.pdf) · [LaTeX sources](main.tex) · [Build record](builds/power-window-complete-20261116.json) · [Previous build](builds/psi-sharpness-20261116.pdf)
 
-The current sources publish the complete arbitrary-law all-budget controller
-and reconcile its proof and implementation boundaries. The new publication
-is described in the [all-budget controller build](#all-budget-controller-build)
-and [evidence record](../../results/adaptation-publication-20261116/README.md).
-The earlier [combined build](#combined-build) retains its original source,
-PDF and verification scope; every earlier published package is unchanged.
+The current sources publish the complete uniform power-law entropy and
+quantile bounds and their unconditional RMS/confidence consequences.
+The [uniform power-law build](#uniform-power-law-build) and its
+[evidence record](../../results/power-window-publication-20261116/README.md)
+separate these checked results from the critical-window corollary and
+asymptotic remark, which remain paper results. Every earlier published
+package retains its original PDF and verification scope.
 
 The LaTeX sources are three wording corrections ahead of that PDF: the
 exponent range $0<\alpha\le4$ of the uniform confidence radii in §11.3, and the two
@@ -80,6 +81,10 @@ unconditionally, and the coverage event also protects observation-dependent
 stopping budgets. The [status table](../../docs/RESULTS.md#verification-status), generated
 from [status.json](status.json), lists every result the abstract tracks.
 Section 18 states each formal scope and links the fixed source revisions.
+The uniform power-law core entropy and deterministic quantile comparison
+are now checked, including exponent two and arbitrary scale. Their RMS
+and confidence consequences have no unproved quantile premise. Corollary
+14.14 and Remark 14.15 remain outside the formal scope.
 
 For finite laws a [direct Lean proof](../../lean/ThresholdHC/FiniteQuantile/Full.lean)
 now establishes both explicit coefficients, $10^{-20}$ and $30001$. The
@@ -805,3 +810,54 @@ there are no unresolved references or new layout defects.
 [Published manuscript](builds/arbitrary-law-complete-20261116.pdf) · [Build record](builds/arbitrary-law-complete-20261116.json)
 
 All prior PDFs, source packages and evidence remain unchanged.
+
+## Psi sharpness build
+
+This publication separates the checked statements of Proposition 14.9 and
+Theorem 14.11 from the remaining uniform-power results in Lemma 14.12 and
+Theorem 14.13. The status table now has 31 Lean-checked entries and one
+paper-proof entry, each within its stated scope.
+
+The [sharpness record](../../results/psi-sharpness-20261116/README.md)
+checks the two-atom equality and the bound by the number of occupied bands.
+The [power-law foundation](../../results/power-window-foundation-20261116/README.md)
+checks the actual quantile split and inverse-square core cost, including
+exponent two and arbitrary scale. The RMS and both confidence consequences
+of the uniform quantile comparison are checked with that comparison as an
+explicit premise. The uniform entropy estimate and deterministic quantile
+comparison remain unproved in Lean. Corollary 14.14 and Remark 14.15 remain
+paper results outside the current formal targets.
+
+Two independent workflow builds from source checkpoint
+`70e1638c00d7a38f7775acb68c45f0a09b98cbdb` are byte-identical: 192 pages,
+33 embedded font objects, 402 unique source labels and 29 resolved citations.
+All 32 changed pages and contents page 2 were rendered and visually inspected;
+160 pages retain identical extracted body text and word positions. No new
+layout defect was found. The only warning is the inherited overfull line
+in Appendix C. The [publication record](../../results/psi-publication-20261116/README.md)
+identifies the build runs, source identities, local proof audits and the
+remaining proof boundary. All previous PDFs and records remain unchanged.
+
+[Published manuscript](builds/psi-sharpness-20261116.pdf) · [Build record](builds/psi-sharpness-20261116.json)
+
+## Uniform power-law build
+
+This publication completes the frozen targets for Lemma 14.12 and
+Theorem 14.13: actual core entropy, deterministic quantile comparison,
+RMS bounds and both confidence bounds. The [proof record](../../results/power-window-complete-20261116/README.md)
+checks 16 exact statements and all 78 declarations in the registered
+modules. The entropy constants remain 1/2 and 3.83, including exponent
+two and arbitrary scale. The status table now has 32 Lean-checked entries
+and one separate paper entry for Corollary 14.14 and Remark 14.15.
+
+Two builds at source checkpoint `cbfd73ef3d4a5db1481f9a55ce9e1640ad3c916b`
+are byte-identical: 192 pages, 33 embedded font objects, 402 unique source
+labels and 29 resolved citations. All ten changed pages and contents page 2
+were rendered and visually inspected; 182 pages retain identical body
+text and word positions. The only warning is the inherited overfull line
+in Appendix C. The [publication record](../../results/power-window-publication-20261116/README.md)
+links source identities, test logs, the whole-project audit and the merged
+#117 checks, keeping those separate from follow-up-head CI. All earlier
+PDFs and records remain unchanged.
+
+[Published manuscript](builds/power-window-complete-20261116.pdf) · [Build record](builds/power-window-complete-20261116.json)

@@ -367,7 +367,10 @@ class VerificationStatusTests(unittest.TestCase):
         noun = "result" if counts["paper"] == 1 else "results"
         self.assertIn(f"({counts['paper']} {noun})", paper)
         # A paper proof points to the section that holds it; a checked result to its modules.
-        self.assertIn("uniform in the exponent & \\cref{sec:psi-window}", paper)
+        self.assertIn("Critical-window simplification and its asymptotic interpretation & "
+                      "\\cref{sec:psi-window}", paper)
+        self.assertIn("Power-margin entropy bounds and rate uniform in the exponent & "
+                      "\\path{PowerWindow/Full.lean}", checked)
         self.assertIn("unknown gap laws & \\path{ArbitraryLawController/Full.lean}", checked)
         self.assertNotIn("\\path{", paper)
         self.assertIn("\\path{Tier6/Full.lean}", checked)

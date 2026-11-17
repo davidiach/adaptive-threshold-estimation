@@ -22,6 +22,7 @@ the [evidence index](../results/README.md) explains published checkpoints.
 | Imported inputs and research packages | `python tools/verify_inputs.py`; `python tools/verify_research.py`; `python tools/verify_population_research.py` | Input identities and maintained research replay. Research diagnostics use temporary output and `.runtime/`; original records remain intact. |
 | Main RMS law | `python tools/verify_tier6.py --sequential --require-complete`; `python tools/verify_blind_upper_components.py --sequential` | Exact formal audits of both directions. Tier 6 writes tracked `results/`; use a disposable checkout. The upper audit writes `.runtime/`. |
 | Any Lean source | `python tools/verify_project_axioms.py`; add `--replay-main-theorem` for the kernel replay | Builds every module under `lean/ThresholdHC` and checks the transitive axioms of every constant they declare, every exported instance (named, global, default priority, no new data-carrying instance on a type the project does not define) and the fingerprint of every project definition against `tools/definition_lock.json`. A changed or removed definition fails; a new one fails until `--add-definitions` adds it, which never rewrites an existing entry. Registers no theorem and writes only with `--add-definitions`. It does not check exact statement types; run the affected result's audit as well. |
+| Finite-law relative approximation | `python tools/verify_finite_selection_approximation.py`; `python -m unittest discover -s tools -p 'test_finite_selection_approximation.py' -v` | Checks the new 79-file specification/dependency lock, 12 exact statements and 93 transitive reports; writes fresh `.runtime/finite-selection/` evidence. The [scope](FINITE_SELECTION_APPROXIMATION.md) separates mathematical endpoints and extension counts from bit complexity and numerical/Python execution. |
 | Another Lean result | [Theorem-to-audit map](../lean/README.md#main-theorem-entry-points), [baseline and tier sequence](#lean-kernel-checks) | Run the affected result's exact-target/axiom audit, including affected downstream results when shared dependencies change. Check locks first. |
 | Verification logic or registration | Relevant audit plus its matching `test_*.py` module; `python -m unittest discover -s tools -p 'test_*.py' -v` for all guard tests | Tests exercise validation guards; they do not replace the mathematical kernel audits. Use a disposable checkout for audits that overwrite published files. |
 | Numerical checks and recorded benchmarks | [Integrity and numerical sequence](#integrity-numerics-and-unit-tests), [benchmark protocol](../benchmark/README.md) | Some commands write `results/`. Replaying stored samples is distinct from rerunning held-out experiments. |
@@ -829,6 +830,26 @@ the core entropy. Every declaration in `PsiGap/` is an audit root. The bound
 by the number of occupied bands and the power-law statements of v6 §14.8 are
 outside this audit.
 [Native record](../results/psi-gap-20261116/README.md)
+
+## Psi sharpness and power-law foundation
+
+Run `python tools/verify_psi_sharpness.py` for five exact statements and
+15 transitive axiom reports: the two-atom equality, a concrete sharpness
+instance and the entropy bound by the finite positive occupied-band count.
+[Record](../results/psi-sharpness-20261116/README.md).
+
+Run `python tools/verify_power_window.py` for 16 exact statements and
+78 transitive axiom reports. It checks all five frozen power-window targets:
+the Phi formula, actual core cost and uniform entropy bounds, deterministic
+quantile comparison, RMS bounds and both confidence bounds. This includes
+exponent two and arbitrary scale. Independent restatements retain every
+assumption and the explicit constants. Corollary 14.14 and Remark 14.15
+remain outside the formal scope. [Record](../results/power-window-complete-20261116/README.md).
+
+Each audit pins its new specification, restates the checked targets and
+reports every new declaration's transitive axioms. Their six-test guard
+suites are `test_psi_sharpness.py` and `test_power_window.py`; CI runs both
+suites and both audits. Existing published records retain their original scope.
 
 ## Whole-project build, axioms and kernel replay
 

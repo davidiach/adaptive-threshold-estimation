@@ -11,6 +11,7 @@ describes the other folders.
 | [RESULTS.md](RESULTS.md) | Find any claim with its exact assumptions, its verification status and its evidence |
 | [VERIFY.md](VERIFY.md) | Reproduce a check; the [task table](VERIFY.md#choose-checks-by-task) picks the commands |
 | [WORKPLAN.md](WORKPLAN.md) | See the current priorities and what is finished |
+| [SECONDARY_CLAIMS.md](SECONDARY_CLAIMS.md) | Find the exact disposition of secondary paper claims and their relationship to checked theorems |
 | [MODEL_FIDELITY.md](MODEL_FIDELITY.md) | Compare the paper's model with the Lean definitions; written for a specialist reviewer |
 
 ## Notes on individual results
@@ -34,6 +35,7 @@ Each note states one result, its scope and how it was checked.
 |---|---|
 | [RARE_ABOVE_TWO.md](RARE_ABOVE_TWO.md) | Power-law gaps above the inverse-square boundary |
 | [CRITICAL_AUDIT.md](CRITICAL_AUDIT.md) | The critical quadratic theorem and its follow-up audit |
+| [FINITE_SELECTION_APPROXIMATION.md](FINITE_SELECTION_APPROXIMATION.md) | Finite-law relative approximation, certified original-K endpoints and the execution boundary |
 | [RARE_EVENT_COMPUTATION.md](RARE_EVENT_COMPUTATION.md) | Computing the rare-event rate, and a tighter selection comparison |
 | [QUANTILE_PRICE_BOUNDS.md](QUANTILE_PRICE_BOUNDS.md) | Sharper bounds on the quantile-to-selection factor |
 | [OPTIMAL_QUANTILE_FACTOR.md](OPTIMAL_QUANTILE_FACTOR.md) | The optimal universal quantile-to-selection factor |

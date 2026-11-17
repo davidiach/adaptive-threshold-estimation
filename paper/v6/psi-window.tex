@@ -437,14 +437,21 @@ order $\log(1/\rho)$.
 \end{remark}
 
 \paragraph{Status.}
-Lean checks the inequality $\Psi\le\mathcal K$ and the two bounds
-\eqref{eq:psi-window-lower} of Corollary~\ref{cor:psi-from-law}, in the
-scope recorded in \cref{sec:verification}. The other statements of this
-subsection have paper proofs. They use
-Corollary~\ref{fg:cor:general-laws} and
-\cref{thm:entropy-confidence-explicit}, whose scopes are recorded in
-\cref{sec:verification}, and elementary inequalities that have not been
-formalized. The floating-point script
-\path{research/2026-11-09-psi-closed-form/check.py} tests every inequality
-and constant above on random finite laws and on a grid of power laws; it
-is numerical evidence only.
+Lean checks Proposition~\ref{prop:psi-closed}, including both sharpness
+statements, Corollary~\ref{cor:psi-from-law}, and
+Theorem~\ref{thm:psi-gap}, including the occupied-band entropy bound.
+The checked risk coefficients are $10^{-17}$ and $30001$ for $\Q$;
+the paper's display retains its coefficient $33000$.
+Lean also checks Lemma~\ref{lem:power-core}, including the entropy
+constants $1/2$ and $3.83$, exponent two and arbitrary $0<a\le1/2$,
+and the deterministic comparison in Theorem~\ref{thm:power-uniform}.
+The resulting RMS coefficients are $10^{-17}/\sqrt2$ and $60002$,
+compared with the displayed $10^{-18}$ and $66000$. Both confidence
+bounds are checked, with lower coefficient $10^{-17}/\sqrt2$ and the
+same upper coefficient $1500000$. These conclusions have no unproved
+entropy or quantile premise.
+Corollary~\ref{cor:critical-window} and
+Remark~\ref{rem:window} remain paper results, outside the current formal
+targets. Section~\ref{sec:verification} records the exact checked scope.
+The floating-point script
+\path{research/2026-11-09-psi-closed-form/check.py} is numerical evidence only.
