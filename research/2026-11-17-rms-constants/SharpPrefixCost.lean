@@ -7,7 +7,7 @@ noncomputable section
 namespace ThresholdHC.SharpRMS
 open Proofs Tier3 Tier5 Real
 
-private theorem posterior_odds {m n : ℕ} (pol : List Bool → Option (Fin m))
+theorem posterior_odds {m n : ℕ} (pol : List Bool → Option (Fin m))
     (w : Prefix n) (s : ℝ) (hs : 0 < s) (hs' : s < 1)
     (hw : transcriptLaw pol (fun _ => s/2) (fun _ => 1/2) w ≠ 0) (i : Fin m) :
     |posterior pol w (fun _ => s/2) i| < 1 ∧

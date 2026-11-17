@@ -1,6 +1,6 @@
 import SharpAttainment
 import SharpEntropy
-import SharpFourBudget
+import SharpCriticalBudget
 import SharpSimulation
 
 open MeasureTheory InformationTheory
@@ -69,6 +69,31 @@ example : ∀ (μ : Measure Gap) [IsProbabilityMeasure μ] (B : ℝ), 0 ≤ B �
 example : minimaxRisk (Measure.dirac endpointGap) 4 = ENNReal.ofReal (1/6:ℝ) :=
   endpoint_minimax_eq
 
+example : ∀ {n : ℕ} (pol : List Bool → Option ℕ) (s t P : ℝ), 0 < s → s < 1 →
+    |t| < 1 → P ≤ 1 → admissibleExitPrice s |t| P →
+    let Q := fun (y : ℝ) (w : Prefix n) => creationLaw pol (fun _=>s/2) (fun _=>(1+y)/2) w
+    P*(∑ w, (deriv (fun y => Q y w) t)^2/Q t w) ≤ s^2*∑ w, Q t w*workOf w :=
+  @adaptive_fisher_price
+
+example : ∀ (s : ℝ), 39/40 ≤ s → s < 1 →
+    IntervalIntegrable (nearPerfectEnvelope s) volume 0 1 ∧
+    (∫ t in (0:ℝ)..1, nearPerfectEnvelope s t) ≤ 2/3 := near_perfect_integral
+
+example : ∀ (g : Gap) (B : ℝ), 2*g.val < 1 → (2*g.val)^2*B=4 →
+    ∀ (K : ℝ → ℝ), Measurable K → IntervalIntegrable K volume (-1) 1 →
+    (∃ C : ℝ, ∀ t ∈ Set.Icc (-1:ℝ) 1, 0 ≤ K t ∧ K t ≤ C) →
+    (∫ t in (-1:ℝ)..1, K t) ≤ 4/3 →
+    (∀ t, |t| < 1 → ∃ P, 0 < P ∧ P ≤ 1 ∧ admissibleExitPrice (2*g.val) |t| P ∧
+      (1-t^2)^2 ≤ K t*P) → ENNReal.ofReal (1/6:ℝ) ≤ minimaxRisk (Measure.dirac g) B :=
+  minimax_from_tapered_price
+
+example : ∀ (g : Gap) (B : ℝ), 39/40 ≤ 2*g.val → 2*g.val < 1 → (2*g.val)^2*B = 4 →
+    ENNReal.ofReal (1/6:ℝ) ≤ minimaxRisk (Measure.dirac g) B := near_perfect_minimax_lower
+
+#print axioms near_perfect_minimax_lower
+#print axioms minimax_from_tapered_price
+#print axioms near_perfect_integral
+#print axioms adaptive_fisher_price
 #print axioms four_budget_minimax_lower
 #print axioms endpoint_minimax_eq
 #print axioms weak_gap_minimax_lower

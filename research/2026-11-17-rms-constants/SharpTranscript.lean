@@ -167,4 +167,80 @@ theorem creation_wald {n : ℕ} (pol : List Bool → Option ℕ) (s : ℝ)
     s * ∑ w : Prefix n, creationLaw pol (fun _ => s/2) (fun _ => 1/2) w * workOf w :=
   transcript_wald _ s hs hs'
 
+private theorem tilted_posterior_ratio (a b t : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b)
+    (ht : |t| < 1) :
+    let q := (1+t)/2
+    let z := (a-b)/(a+b)
+    (q*a+(1-q)*b)*((z+t)/(1+t*z)) = q*a-(1-q)*b := by
+  dsimp
+  by_cases hz : a+b=0
+  · have := show a=0 by linarith
+    have := show b=0 by linarith
+    simp_all
+  have hp := lt_of_le_of_ne (add_nonneg ha hb) (Ne.symm hz)
+  have hz' : |(a-b)/(a+b)| ≤ 1 := by
+    rw [abs_div,abs_of_pos hp,div_le_one hp,abs_le]
+    constructor <;> linarith
+  have hm : |t*((a-b)/(a+b))| < 1 := by
+    rw [abs_mul]
+    exact (mul_le_mul_of_nonneg_left hz' (abs_nonneg t)).trans_lt (by simpa using ht)
+  rw [← mul_div_assoc,div_eq_iff (show 1+t*((a-b)/(a+b)) ≠ 0 by linarith [(abs_lt.mp hm).1])]
+  field_simp
+  ring
+
+/-- The Wald identity away from the reference prior. This gives the
+observable posterior mean for every interleaved label at nonzero bias. -/
+theorem biased_wald {m n : ℕ} (pol : List Bool → Option (Fin m)) (s t : ℝ)
+    (hs : 0 ≤ s) (hs' : s ≤ 1) (ht : |t| < 1) :
+    let Q := transcriptLaw (n := n) pol (fun _ => s/2) (fun _ => (1+t)/2)
+    let z := fun (w : Prefix n) => posterior pol w (fun _ => s/2)
+    (∑ w, Q w * ∑ i, ((z w i+t)/(1+t*z w i))*netCount pol w i) =
+    s*∑ w, Q w*workOf w := by
+  let q := (1+t)/2
+  let Q := transcriptLaw (n := n) pol (fun _ => s/2) (fun _ => q)
+  let z := fun (w : Prefix n) => posterior pol w (fun _ => s/2)
+  let prior := fun (σ : Fin m → Bool) => ∏ i, if σ i then q else 1-q
+  let joint := fun (σ : Fin m → Bool) (w : Prefix n) => prior σ * pathProb pol (coinP s σ) w
+  have mass (w : Prefix n) : Q w = ∑ σ, joint σ w := rfl
+  have coord (w : Prefix n) (i : Fin m) :
+      ∑ σ, joint σ w * signValue (σ i) = Q w*((z w i+t)/(1+t*z w i)) := by
+    let f := fun (j : Fin m) (b : Bool) =>
+      (if b then q else 1-q) * coinLike pol w j (1/2 + if b then s/2 else -(s/2))
+    have factor (σ : Fin m → Bool) : joint σ w = pathValidity pol w * ∏ j, f j (σ j) := by
+      dsimp [joint,prior,f,coinP]
+      rw [pathProb_factor,Finset.prod_mul_distrib]
+      unfold coinP
+      ring
+    simp_rw [factor,mul_assoc,← Finset.mul_sum]
+    rw [sum_prod_coordinate]
+    dsimp only [Q]
+    rw [transcriptLaw_split pol _ _ w i]
+    let a := coinLike pol w i (1/2+s/2)
+    let b := coinLike pol w i (1/2-s/2)
+    have ha : 0 ≤ a := coinLike_nonneg _ _ _ (by linarith) (by linarith)
+    have hb : 0 ≤ b := coinLike_nonneg _ _ _ (by linarith) (by linarith)
+    have ratio := tilted_posterior_ratio a b t ha hb ht
+    change (q*a+(1-q)*b)*((z w i+t)/(1+t*z w i))=q*a-(1-q)*b at ratio
+    simp only [f,signValue,Fintype.sum_bool,Bool.false_eq_true,↓reduceIte,
+      ← sub_eq_add_neg,mul_one,mul_neg_one,otherMass,coinMix]
+    rw [mul_assoc (pathValidity pol w * _) _ _,ratio]
+    ring
+  have word (w : Prefix n) :
+      Q w*(∑ i, ((z w i+t)/(1+t*z w i))*netCount pol w i) =
+      ∑ σ, joint σ w*agreement pol w σ := by
+    simp only [agreement, Finset.mul_sum]
+    rw [Finset.sum_comm (s := Finset.univ) (t := Finset.univ) (f := fun σ i =>
+      joint σ w * (signValue (σ i)*netCount pol w i))]
+    apply Finset.sum_congr rfl
+    intro i _
+    simp only [← mul_assoc,← Finset.sum_mul,coord]
+  change (∑ w, Q w*(∑ i, ((z w i+t)/(1+t*z w i))*netCount pol w i)) = s*∑ w, Q w*workOf w
+  apply sub_eq_zero.mp
+  simp_rw [word,mass,Finset.sum_mul,Finset.mul_sum,← Finset.sum_sub_distrib,
+    show ∀ (a b : ℝ), s*(a*b) = a*(s*b) from fun _ _ => by ring, ← mul_sub]
+  rw [Finset.sum_comm]
+  apply Finset.sum_eq_zero
+  intro σ _
+  simp only [joint,mul_assoc,← Finset.mul_sum,wald_fixed,mul_zero]
+
 end ThresholdHC.SharpRMS

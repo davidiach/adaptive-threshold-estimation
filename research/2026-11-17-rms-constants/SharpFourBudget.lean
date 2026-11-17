@@ -11,11 +11,14 @@ open scoped ENNReal Topology unitInterval
 private def flatPrior (p : unitInterval) : SignLaw :=
   ⟨fun _ => p.val, measurable_const, fun _ => p.property⟩
 
-/-- At expected budget at most four the minimax RMS is at least 1/6 for
-every population gap law. The policy may use unbounded stopping and private
-randomness. -/
-theorem four_budget_minimax_lower (μ : Measure Gap) [IsProbabilityMeasure μ] (B : ℝ)
-    (hB : 0 ≤ B) (hfour : B ≤ 4) : ENNReal.ofReal (1/6:ℝ) ≤ minimaxRisk μ B := by
+/-- A finite-prefix Bayes lower bound that is uniform in the horizon passes
+to the population minimax risk for all finite-expected-work estimators. -/
+theorem minimax_from_prefix_bayes (μ : Measure Gap) [IsProbabilityMeasure μ] (B : ℝ)
+    (priorBound : ∀ (R : Type) [MeasurableSpace R] (A : AdaptiveEstimator R), UniformBudget μ A B →
+      ∀ n (X : PopulationSeed R → Prefix n → ℝ), (∀ w, Measurable (fun u => X u w)) →
+      (∀ u w, X u w ∈ Icc 0 1) → (1/36:ℝ) ≤ ∫ p : unitInterval, ∫ u,
+        priorExpect (populationPolicy A) populationGap (fun q v w => (X v w-q.val)^2) (p,u)
+          ∂populationSeedLaw μ A) : ENNReal.ofReal (1/6:ℝ) ≤ minimaxRisk μ B := by
   apply le_sInf
   rintro _ ⟨R,mR,A,hb,rfl⟩
   by_contra! hsmall
@@ -68,19 +71,11 @@ theorem four_budget_minimax_lower (μ : Measure Gap) [IsProbabilityMeasure μ] (
     (hYm.comp (measurable_padJoint n)).comp (measurable_id.prodMk measurable_const)
   let L := fun n => priorExpect (populationPolicy A) populationGap
     (fun p u w => (F n u w-p.val)^2)
-  let W := fun n => priorExpect (populationPolicy A) populationGap (fun _ _ => @workOf n)
   let N := fun n (p : unitInterval) => ∫ u, L n (p,u) ∂ν
   have eqn (n) (p : unitInterval) : (∫ z, f p (observePrefix n z) ∂P p) = N n p :=
     (population_realization R μ A (flatPrior p)).2 n (fun u w => (F n u w-p.val)^2)
       (fun w => ((Fm n w).sub measurable_const).pow_const 2) ⟨1,fun u w => bound _ (hY _) p⟩
-  have wle (n) (p : unitInterval) : (∫ u, W n (p,u) ∂ν) ≤ 4 := by
-    have he := (population_realization R μ A (flatPrior p)).2 n (fun _ => @workOf n)
-      (fun _ => measurable_const) ⟨(n:ℝ), fun u w => by
-        rw [abs_of_nonneg (workOf_nonneg _)]; exact workOf_le_length _⟩
-    exact he.ge.trans ((prefix_work_le A μ (flatPrior p) B hB hb n).trans hfour)
-  have avg (n : ℕ) : 1/36 ≤ ∫ p : unitInterval, N n p :=
-    four_budget_prefix_bayes ν (populationPolicy A) (measurable_populationPolicy A) populationGap
-      measurable_populationGap (fun u i => ⟨(u.2 i).property.1.le,(u.2 i).property.2⟩) (F n) (Fm n) (fun _ _ => hY _) (wle n)
+  have avg (n : ℕ) : 1/36 ≤ ∫ p : unitInterval, N n p := priorBound R A hb n (F n) (Fm n) (fun _ _ => hY _)
   have lim (p : unitInterval) : Tendsto (fun n => N n p) atTop (𝓝 (risk p)) :=
     (limit_prefix A μ (flatPrior p) B hb (f p) (fm p) 1 (fun z => bound _ (hY z) p)).congr (fun n => eqn n p)
   have hLm (n : ℕ) : Measurable (L n) := measurable_priorExpect (populationPolicy A)
@@ -102,6 +97,26 @@ theorem four_budget_minimax_lower (μ : Measure Gap) [IsProbabilityMeasure μ] (
   simp only [integral_const,probReal_univ,one_smul] at up
   nlinarith only [low,up,mul_pos (show 0 < 1/6-c by linarith) (show 0 < 1/6+c by
     have := show 0 ≤ c from ENNReal.toReal_nonneg; linarith)]
+
+theorem population_prefix_work_budget {R : Type} [MeasurableSpace R]
+    (μ : Measure Gap) [IsProbabilityMeasure μ] (A : AdaptiveEstimator R) (B : ℝ) (hB : 0 ≤ B)
+    (hb : UniformBudget μ A B) (n : ℕ) (p : unitInterval) :
+    (∫ u, priorExpect (populationPolicy A) populationGap (fun _ _ => @workOf n) (p,u)
+      ∂populationSeedLaw μ A) ≤ B := by
+  have he := (population_realization R μ A (flatPrior p)).2 n (fun _ => @workOf n)
+    (fun _ => measurable_const) ⟨(n:ℝ), fun u w => by
+      rw [abs_of_nonneg (workOf_nonneg _)]; exact workOf_le_length _⟩
+  exact he.ge.trans (prefix_work_le A μ (flatPrior p) B hB hb n)
+
+/-- At most four expected flips for arbitrary gap laws, including private
+randomness and unbounded stopping. -/
+theorem four_budget_minimax_lower (μ : Measure Gap) [IsProbabilityMeasure μ] (B : ℝ)
+    (hB : 0 ≤ B) (hfour : B ≤ 4) : ENNReal.ofReal (1/6:ℝ) ≤ minimaxRisk μ B := by
+  apply minimax_from_prefix_bayes
+  intro R _ A hb n X hm hX
+  exact four_budget_prefix_bayes (populationSeedLaw μ A) (populationPolicy A) (measurable_populationPolicy A)
+    populationGap measurable_populationGap (fun u i => ⟨(u.2 i).property.1.le,(u.2 i).property.2⟩)
+    X hm hX (fun p => (population_prefix_work_budget μ A B hB hb n p).trans hfour)
 
 /-- Exact equality for the endpoint gap at budget four in the original
 unrestricted population experiment. -/
