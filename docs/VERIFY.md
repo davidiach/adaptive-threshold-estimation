@@ -1149,3 +1149,11 @@ Run `python -m unittest discover -s tools -p test_deterministic_certificates_aud
 for the audit guards and the toolkit suite for input/runner rejection tests.
 The proof covers checker soundness; concrete examples are finite execution
 evidence. Global selection and planner implementation remain outside this audit.
+
+## Finite-law objective and oracle certificates
+
+Run `python tools/verify_finite_law_certificates.py` for the locked measure
+bridges, exact statements, transitive axioms, five-module kernel replay and
+actual-output certificates. Run `python -m unittest discover -s tools -p
+test_finite_law_certificates_audit.py -v` for audit guards. Fresh results go to
+`.runtime/finite-law-certificates/`; see [scope and limits](FINITE_LAW_CERTIFICATES.md).

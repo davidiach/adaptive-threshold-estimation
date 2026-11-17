@@ -29,8 +29,9 @@ separates these remaining extensions from the core theorem:
   The [assembled finite-law approximation theorem](FINITE_SELECTION_APPROXIMATION.md)
   for #93 is merged through #121 (`2e8e8b5`); #119 (`8ca1ddd`) closed #89.
   The [deterministic verification work](DETERMINISTIC_VERIFICATION.md) now
-  adds an opt-in kernel checker for actual sqrt/log/entropy outputs; global
-  selection, integration oracles and planners remain in #85.
+  adds an opt-in kernel checker for actual sqrt/log/entropy outputs and
+  [positive finite-law objective/oracle certificates](FINITE_LAW_CERTIFICATES.md).
+  Global selection, zero-residual envelope integration and planners remain in #85.
   The selected v6 §14.8 targets in #100 are complete; Corollary 14.14 and
   Remark 14.15 intentionally remain paper-only. Conditional localization
   retains its single-coin obstruction premise.

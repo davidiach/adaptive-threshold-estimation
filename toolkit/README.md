@@ -548,3 +548,7 @@ exact square-root, logarithm and entropy outputs using the pinned Lean project.
 for the caller's expected input and the claimed output. It also checks the
 square-root width contract. See [usage, limits and the deterministic API inventory](../docs/DETERMINISTIC_VERIFICATION.md).
 This does not verify global selection, the planner, Python execution or the PRNG.
+
+The opt-in `threshold_toolkit.finite_law_certificates` module also checks
+actual finite-law feasible objectives and `FiniteGapOracle` outputs against
+the original measures. See [contracts, use and limits](../docs/FINITE_LAW_CERTIFICATES.md).

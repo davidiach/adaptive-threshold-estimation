@@ -280,3 +280,7 @@ sqrt/log/entropy outputs and rejects invalid numerical certificates in Lean.
 It records input/output proof source, axiom reports, source hashes and toolchain
 identity under `.runtime/deterministic-certificates/`. See the
 [implementation boundary](../docs/DETERMINISTIC_VERIFICATION.md).
+
+`python tools/verify_finite_law_certificates.py` checks ten exact types and
+52 transitive reports, replays five modules and tests actual objective/oracle
+certificates with adversarial rejections. See the [finite-law scope](../docs/FINITE_LAW_CERTIFICATES.md).
