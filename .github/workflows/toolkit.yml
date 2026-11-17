@@ -1,6 +1,7 @@
 name: Toolkit tests
 on:
   push:
+    branches: [main]
     paths:
       - '.github/workflows/toolkit.yml'
       - 'toolkit/**'
