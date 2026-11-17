@@ -1,0 +1,341 @@
+{
+  "research_checkpoint": "86bf31e (research/2026-11-17-rms-constants)",
+  "library_commit": "f1425008ea71094d900b8cbb9a90b485f0884d33",
+  "line_endings": "Library modules use LF. 48 of the 50 research Lean files mix CRLF and LF.",
+  "modules": {
+    "lean/ThresholdHC/SharpRMS/AdaptivePrice.lean": {
+      "research_file": "SharpAdaptivePrice.lean",
+      "research_sha256": "25f04d1677d24fbde8bbfa46833e76caaf37a4575b49e5bec7f3904d94c85a60",
+      "library_sha256": "e08a783866ce8b6fc643643ee6041d5de6776ee9130a01c4cca0e51b2b8fd38b",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/AdaptiveSimulation.lean": {
+      "research_file": "SharpAdaptiveSimulation.lean",
+      "research_sha256": "7fa53951d77bd7fea10835e56f83bf3080313904e108b37459bdfa8c5bf35baa",
+      "library_sha256": "d98f622c6346b978e0c2346202c8404c7ac81e23faee2c939ba1c6fa51bc6b05",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/ArrayLaw.lean": {
+      "research_file": "SharpArrayLaw.lean",
+      "research_sha256": "393749c086bcc33f95175f98c9552b79c11e439b0eca0571c80e7bb033518e13",
+      "library_sha256": "611dddae8d8b1e077ed4588bfa15184e8a4a6b7d077770665233619c380706be",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/Attainment.lean": {
+      "research_file": "SharpAttainment.lean",
+      "research_sha256": "93cdd6438ab45186987d63623a3a5eaeddbd85feecdadb0af4cde7cf9284ce1a",
+      "library_sha256": "f95bab94f5452a77642e6357ec508f7ec6039b9293041018394a47dd817668bc",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/Barrier.lean": {
+      "research_file": "SharpBarrier.lean",
+      "research_sha256": "1abae3db35527f76617606d9f1294a7b54bab621344e93adc07ab93f88690d79",
+      "library_sha256": "f9a27b1600950a081c3f95e1d664220b0b45d67fd3f8a84ae71c221c3dd4251b",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/BayesBudget.lean": {
+      "research_file": "SharpBayesBudget.lean",
+      "research_sha256": "9a12dd40669e5616ab1c60eab29e52829fae7b1b320a65a0c677b12872212f50",
+      "library_sha256": "d7e290be78f3d6eaf62c70882167861e41296552973e13c4fed943726dfc8959",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/Causal.lean": {
+      "research_file": "SharpCausal.lean",
+      "research_sha256": "2973cb2238241c9be9d5685bd1d1db11abf653092fe3ae8924743e70db962bd8",
+      "library_sha256": "a0e8bf76fe9cfd2ebc7ac05b099957a08e9132861927f20dc6b81d2917788802",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/CriticalBudget.lean": {
+      "research_file": "SharpCriticalBudget.lean",
+      "research_sha256": "98da02376a0c7518c7075776507971dc1b080925d5254d55a0721dfa7ba97069",
+      "library_sha256": "465651d39857abb1176c9021e424bdfd6ead4fa844d60e44e42f2c03733a6dfc",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/Entropy.lean": {
+      "research_file": "SharpEntropy.lean",
+      "research_sha256": "c1f7d5e19ffb72ce65eb3acc4b26d00df7514523a73901694221b39c1c658a3c",
+      "library_sha256": "680d346c59ff5089f9f828b7c464fe6cb0c534be5760960f8642be370eddda6a",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/Fisher.lean": {
+      "research_file": "SharpFisher.lean",
+      "research_sha256": "168121bec6f42a851a70ab4e2e5a8c72d7555f409047ae32686c2139d074dc36",
+      "library_sha256": "c9d2441ad1376d6524fa9e215624dcd613f7ddecdfab9663e971444a5a158f56",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/FourBudget.lean": {
+      "research_file": "SharpFourBudget.lean",
+      "research_sha256": "072012842c0cf9835f108af72f23b2d561aee9b6cf0a505c44f7c26588044ea1",
+      "library_sha256": "24293851a95852fe43f1d50fec89ee08a53136ef4d95dc87780c520d00bdd586",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/FreshLabels.lean": {
+      "research_file": "SharpFreshLabels.lean",
+      "research_sha256": "40c046503b03e28a2a881db58d87ca66931ed690cd063e0cd1e91b331aa1e072",
+      "library_sha256": "ed5721a488d8ce6ed1b00108b85742d22cd6d48c01596a3b38bec6a3c2b7592c",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/GridArithmetic.lean": {
+      "research_file": "SharpGridArithmetic.lean",
+      "research_sha256": "f19bf7b6f0cf8f460a991ad1e1c6bfdefb7d0baf1400e59cf24da1fa36ad0596",
+      "library_sha256": "897fda6504daa38aa7b405d7d763ce411b2d81fc0e7d0429401120b52a396de5",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/GridIntegral.lean": {
+      "research_file": "SharpGridIntegral.lean",
+      "research_sha256": "9c5397d2283c39c3f7bad9fd20f0366fb2509a96758d819b83b3db6b171d562f",
+      "library_sha256": "d874b95c1c04c2586cc2b46f6e0a8724d730f6aca8eac3c08d65fb70d6ed8288",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/GridPrices.lean": {
+      "research_file": "SharpGridPrices.lean",
+      "research_sha256": "d7183a6f88b0f4b8071cee7f2d7c24ec9ae6aa67d053e62ed9f5bcd52f808c7e",
+      "library_sha256": "e085d154736daf4f4c9885a92d853db3b0d5887035eb35ebe265ca3f5a70be92",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/GridSum.lean": {
+      "research_file": "SharpGridSum.lean",
+      "research_sha256": "7fbe75fdbdcdf1eea34d47f8904aeb3382803acaac4dc8367c90037ef7206389",
+      "library_sha256": "7316a881049349275653bb98784097082aa98ee5329db492dfa2e069f0778658",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/Heterogeneous.lean": {
+      "research_file": "SharpHeterogeneous.lean",
+      "research_sha256": "5a337ff06cb29c876fcb19bd4d5c89fc2b694da3c2eb0e1993c90f5edc29ca08",
+      "library_sha256": "d97a156207e0a22d6db24a4a9c1dcdccb4777b72a2bbee7a865c10ea6dede5eb",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/Information.lean": {
+      "research_file": "SharpInformation.lean",
+      "research_sha256": "12f33886d6a03aad88180f251c81bbcc1ffe8adaceaf02138bd2f1745b1445d2",
+      "library_sha256": "cc2ba6c59b5504621add175f4494a28a3a08e174b0b38e2c072f2d0f220bd2fa",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/Interpolation.lean": {
+      "research_file": "SharpInterpolation.lean",
+      "research_sha256": "57d764065afd73d2ce34cb25bdae501926838f4f65a4fbc96c7dcf60d982f01b",
+      "library_sha256": "528f507c264b92bbd64c04600df54effba91934502c2867c1bf426fa45813fd8",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/MiddleBudget.lean": {
+      "research_file": "SharpMiddleBudget.lean",
+      "research_sha256": "85bd8a6a99c4f507753e5663e69a7920a2c9be22293f20c673adfcbfac766843",
+      "library_sha256": "0bd58040f51989160bc555cb13991edadc7729264c96ac1b7cfb10f5d976fc65",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/OracleAttainment.lean": {
+      "research_file": "SharpOracleAttainment.lean",
+      "research_sha256": "c4852269620ce171e103b425acd8f2206aed1f028f702e393c70347396eccc47",
+      "library_sha256": "2654f83c292ce512a992fcd1fb06406de1f0b5564e46ec9ceb852bd8bc22d245",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/OracleBounds.lean": {
+      "research_file": "SharpOracleBounds.lean",
+      "research_sha256": "adeec361f5bd25743222fd9df495c70e9bc84972e536f50c082e65e6de1264ad",
+      "library_sha256": "b4f4949f40e7785f6f19f986564c247822112fcd0897dbe58da2067730ac05a2",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/OracleLaw.lean": {
+      "research_file": "SharpOracleLaw.lean",
+      "research_sha256": "18f010f67b3557d5b5bdc0f42af24adb06260bf21341e9ed43b5a7323328e1da",
+      "library_sha256": "9e709b361321d4d171475bde3b016773f372879e44260ec02fd956c6769cf959",
+      "change": "import lines and line endings; the anonymous probability-measure instance is named oracleArrayLaw_probability"
+    },
+    "lean/ThresholdHC/SharpRMS/OracleReduction.lean": {
+      "research_file": "SharpOracleReduction.lean",
+      "research_sha256": "5ad393a9c71b27d6fa71d54817076225994b9d2335ee45293f5eaae9185524a5",
+      "library_sha256": "20401b9f1fbf12b02f5d6f4fcfcc101aa1e71bd14f8ef84074aa7285f4c1967e",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/OracleTapes.lean": {
+      "research_file": "SharpOracleTapes.lean",
+      "research_sha256": "a1aa1f000b5675890b2fc0bae72b5a6ff19f65c69b33777b8775eb58f224317f",
+      "library_sha256": "fc5ec761e37beb8adb6d7dd45f585e05f051ca47874817f22c2b1bb65f6a065e",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/PopulationTransfer.lean": {
+      "research_file": "SharpPopulationTransfer.lean",
+      "research_sha256": "51f31e5b46df2bcd9f5b59667f03b5101817890b10750a646ccb773fc3aba5ac",
+      "library_sha256": "378d386bd680c7e8e393c8f7ff396e0451fec4bfb47ad431b3197976541118c8",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/PrefixCost.lean": {
+      "research_file": "SharpPrefixCost.lean",
+      "research_sha256": "a97bccd1c3e245e671a46e10ab9630784f02db674d3c88e440aeb4f3f0bba226",
+      "library_sha256": "9cfac90d2ed8eb3db7dee518c9513976c905c433ba12f880456b8f3cc78231d8",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/PriceBounds.lean": {
+      "research_file": "SharpPriceBounds.lean",
+      "research_sha256": "7ca6a08c9f5571835de7368d33139cec580e58db7150beb077434b40fd530644",
+      "library_sha256": "5371642f1735292fb91386d2e07e4fbf3078c2483a92b99a2efb8be7bf38b5be",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/Rectangles.lean": {
+      "research_file": "SharpRectangles.lean",
+      "research_sha256": "e0bb51d1223aeef8f0d98f4037acdb0047a6ed380bd9204e6892d11f27eac0e2",
+      "library_sha256": "6a8fa6dae95a4230d50340c87a64028101450c36a980ea475cc170d6c18b5bdb",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/Reduction.lean": {
+      "research_file": "SharpReduction.lean",
+      "research_sha256": "2ba4f68b85471aec6e82e7ac9c17eec958ef9e43777e686bb92ab6c04945c570",
+      "library_sha256": "3fbd3fc836eafe202d9586bd63f06889213fecb65acad11b39d7a70594f069bf",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/Score.lean": {
+      "research_file": "SharpScore.lean",
+      "research_sha256": "833c629f8cb5f6ed51e4c9b004fbb4bc311c3194b9312a5595d39442a437bbe4",
+      "library_sha256": "091f5a955617e389e3f84bb85ad56e60f45006dbcfd0f5d7004e45ffd965c328",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/Simulation.lean": {
+      "research_file": "SharpSimulation.lean",
+      "research_sha256": "92c00dd9338a95c672001b5e968cf0d7933ffc7a65803b7228794d92c1331810",
+      "library_sha256": "7748990e4db84542e2b040ae0eec92a8ed26a805f664ece45700841cd257d5fa",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/SingleTape.lean": {
+      "research_file": "SharpSingleTape.lean",
+      "research_sha256": "6d3fec2f1954940fba2c2c2dfe038c651521464c546191624be51de9aa16c167",
+      "library_sha256": "9e370478214dd0942cb88f343b9630fd0ae5bf18033c091a38206c9844b4b03a",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/SmallBudget.lean": {
+      "research_file": "SharpSmallBudget.lean",
+      "research_sha256": "7b0b1844362d99ff3db5086854bdefb774057ed08fe53a8ed0a3ccf01d6a1569",
+      "library_sha256": "d99a36c5297cc3032e87781b626d07f7625f683de7eec8b5f9bd538d8e3734f5",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/SmallPrefix.lean": {
+      "research_file": "SharpSmallPrefix.lean",
+      "research_sha256": "be0fcd0572ac2d8cc86fec1e43f14a1be1ee80f610f1fabfe1267f8322cefb80",
+      "library_sha256": "e16454a951eb0f1623b0e8ad906e3d5b10a728a0ce329933affd81200ed323ff",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/TapeLaw.lean": {
+      "research_file": "SharpTapeLaw.lean",
+      "research_sha256": "b2aa15b3d2b1845d2e5ee651636ef8263819d1059a04b3e4fccdcfab6d7aac0e",
+      "library_sha256": "0542e81d8cccb2122f2f1e357306ff51ff00372dcf083547273d164fa419a855",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/TapeMixture.lean": {
+      "research_file": "SharpTapeMixture.lean",
+      "research_sha256": "e689f493ec280009353d24ce58cc0401dcee130f6f143934c5a0c8da1b64a9e2",
+      "library_sha256": "e64171d2c10e4cf74392c74107887a709346711af236c99c31c378faf8a223f3",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/Transcript.lean": {
+      "research_file": "SharpTranscript.lean",
+      "research_sha256": "18c0bede0deb2891a4e7e533fbc06d906cc82d6da258433cf4598ca40aa0f9ee",
+      "library_sha256": "5fe545ddb870990f9d3960381ecd385f34f07b7a8c0cca95b284c61184f628bb",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/Unrestricted.lean": {
+      "research_file": "SharpUnrestricted.lean",
+      "research_sha256": "94b10ae9e586873c9b63c456e41a9330ce2ce531ea28d9ef892b71462e2c6765",
+      "library_sha256": "328cc44c70fbcd69840cfe2d5070df79c1212ad64d391c2db37cbc3cdd7c8e22",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/WeakPopulation.lean": {
+      "research_file": "SharpWeakPopulation.lean",
+      "research_sha256": "87259de301bfadf6b77e5a0fb445f7434158d38b50a56f1c3ce1095bd3f79321",
+      "library_sha256": "4481bdab0c6a7ed200c1b83e1cb29fb51e0fed3f4c30eb075c872a4e001c67ce",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/WeakRisk.lean": {
+      "research_file": "SharpWeakRisk.lean",
+      "research_sha256": "44e8038c7a6e83bba197e5d7689dbbc2e06cabafee2b8e6e864e43acff298640",
+      "library_sha256": "0a7fb65a39510158d5e8f15c765c65b1970499b6c6b980add845dda16e1a0946",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/Window.lean": {
+      "research_file": "SharpWindow.lean",
+      "research_sha256": "01ad4c6f39d505f3bfc5f61e9e306f6e03e8bdb94d0c7a9a6daef6a23d0dc045",
+      "library_sha256": "0b189eb8e18ce2de4ee08c31fb2095e8fbde0894e6c32bfdb3bd1120635bd2a8",
+      "change": "split into WindowBound, WindowPart1..7 and Window; interval theorems public; the Decidable instance is named decidableGridBound"
+    },
+    "lean/ThresholdHC/SharpRMS/WindowReal.lean": {
+      "research_file": "SharpWindowReal.lean",
+      "research_sha256": "cf505989ac536b1733d5ca307ffbc260fc605970b99abf4a48bc6313479bf60a",
+      "library_sha256": "828267026aa23870465b543ea33f2cf588db1cb9f81beccc790ed75b9132d9c3",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SharpRMS/WordSimulation.lean": {
+      "research_file": "SharpWordSimulation.lean",
+      "research_sha256": "10821e69dfa92e9ff245c22f7263f67b9804f602164514da19b99790dde87d5f",
+      "library_sha256": "b840b543f2005fe5f7b18be46d4b860e98ea83d452ad46db01a4a502204e1c32",
+      "change": "import lines and line endings only"
+    },
+    "lean/ThresholdHC/SquareRootCap/Full.lean": {
+      "research_file": "SharpCap.lean",
+      "research_sha256": "12831732355e89b1124aef94c1ed3eebc1abcd8e7379d216c5f852ecca1215ce",
+      "library_sha256": "d1be9cd7328a4ba10b2636d3140dc1edf1c3262605fed9a3f26d15b191b6d071",
+      "change": "namespace renamed to ThresholdHC.SquareRootCap; imports the specification; two target theorems appended"
+    },
+    "lean/ThresholdHC/SharpRMS/WindowBound.lean": {
+      "research_file": "SharpWindow.lean",
+      "research_sha256": "01ad4c6f39d505f3bfc5f61e9e306f6e03e8bdb94d0c7a9a6daef6a23d0dc045",
+      "library_sha256": "0f3db75b71c5562f94d2073517135af9063e9b87ce7ee8a3a2086a9ebc325349",
+      "change": "part of the split integer certificate"
+    },
+    "lean/ThresholdHC/SharpRMS/WindowPart1.lean": {
+      "research_file": "SharpWindow.lean",
+      "research_sha256": "01ad4c6f39d505f3bfc5f61e9e306f6e03e8bdb94d0c7a9a6daef6a23d0dc045",
+      "library_sha256": "31350f7ba20c2728d0fee9204a7f1f4d2697c912d1922e47b15d9473f5577593",
+      "change": "part of the split integer certificate"
+    },
+    "lean/ThresholdHC/SharpRMS/WindowPart2.lean": {
+      "research_file": "SharpWindow.lean",
+      "research_sha256": "01ad4c6f39d505f3bfc5f61e9e306f6e03e8bdb94d0c7a9a6daef6a23d0dc045",
+      "library_sha256": "17b9e3a971f94b9164bfb82047b0518def2b7e44d658aa669a9c6028e849f2ce",
+      "change": "part of the split integer certificate"
+    },
+    "lean/ThresholdHC/SharpRMS/WindowPart3.lean": {
+      "research_file": "SharpWindow.lean",
+      "research_sha256": "01ad4c6f39d505f3bfc5f61e9e306f6e03e8bdb94d0c7a9a6daef6a23d0dc045",
+      "library_sha256": "411ed04aed9f94998a73da472b0dcd3679dbde386dc574a4b6e7402ee18587ed",
+      "change": "part of the split integer certificate"
+    },
+    "lean/ThresholdHC/SharpRMS/WindowPart4.lean": {
+      "research_file": "SharpWindow.lean",
+      "research_sha256": "01ad4c6f39d505f3bfc5f61e9e306f6e03e8bdb94d0c7a9a6daef6a23d0dc045",
+      "library_sha256": "7380e1d929e9747a4b91e7afd0a9e66d9b1375cc7871d744872b72bac760bfee",
+      "change": "part of the split integer certificate"
+    },
+    "lean/ThresholdHC/SharpRMS/WindowPart5.lean": {
+      "research_file": "SharpWindow.lean",
+      "research_sha256": "01ad4c6f39d505f3bfc5f61e9e306f6e03e8bdb94d0c7a9a6daef6a23d0dc045",
+      "library_sha256": "bc5e12a09629b520383270979f85ee0de9b43a67c4ba0b100517d2dda96ad976",
+      "change": "part of the split integer certificate"
+    },
+    "lean/ThresholdHC/SharpRMS/WindowPart6.lean": {
+      "research_file": "SharpWindow.lean",
+      "research_sha256": "01ad4c6f39d505f3bfc5f61e9e306f6e03e8bdb94d0c7a9a6daef6a23d0dc045",
+      "library_sha256": "3e6f5449648548da25b485bed6a94739f6f68dfefcec995588d4804113423017",
+      "change": "part of the split integer certificate"
+    },
+    "lean/ThresholdHC/SharpRMS/WindowPart7.lean": {
+      "research_file": "SharpWindow.lean",
+      "research_sha256": "01ad4c6f39d505f3bfc5f61e9e306f6e03e8bdb94d0c7a9a6daef6a23d0dc045",
+      "library_sha256": "892588eddf642f07e547e1e3d667e60b44ec3fee183bcfff7a65112cb1d7e9e8",
+      "change": "part of the split integer certificate"
+    },
+    "lean/ThresholdHC/SharpRMS/Specification.lean": {
+      "research_file": null,
+      "library_sha256": "29858340e7d3d937aa6ce1d2b0e9060f85199cc207fecc74982274ed6b71e2b4",
+      "change": "new: target statements"
+    },
+    "lean/ThresholdHC/SharpRMS/Full.lean": {
+      "research_file": null,
+      "library_sha256": "78f19527cf813646f9959df57649067af98e614465860cfdea3df5cd7cbf30bd",
+      "change": "new: target theorems proved from the research theorems"
+    },
+    "lean/ThresholdHC/SquareRootCap/Specification.lean": {
+      "research_file": null,
+      "library_sha256": "113661a4a80d33d3da28c77f702fbd5e3ee045a71a3a05a5cb37dd9eb91612bb",
+      "change": "new: target statements"
+    }
+  },
+  "integer_certificate": "The 140 comparisons of WindowPart1..7 are the 140 of SharpWindow.lean: same names, bounds and order."
+}

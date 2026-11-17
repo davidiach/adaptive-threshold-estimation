@@ -18,7 +18,7 @@ The [status source](../paper/v6/status.json) of the v6 abstract lists 33 results
 
 | Result | Status | Evidence |
 |---|---|---|
-| Original RMS law in both directions, with coefficients $1/64$ and $512$ and one distribution-blind upper algorithm | Lean-checked | [Tier6/Full.lean](../lean/ThresholdHC/Tier6/Full.lean) · [BlindUpper/Full.lean](../lean/ThresholdHC/BlindUpper/Full.lean) |
+| Original RMS law in both directions, with coefficients $1/6$ (sharp) and $512$ and one distribution-blind upper algorithm | Lean-checked | [Tier6/Full.lean](../lean/ThresholdHC/Tier6/Full.lean) · [BlindUpper/Full.lean](../lean/ThresholdHC/BlindUpper/Full.lean) · [SharpRMS/Full.lean](../lean/ThresholdHC/SharpRMS/Full.lean) |
 | Critical minimax law | Lean-checked | [CriticalEntropy/CriticalMinimax.lean](../lean/ThresholdHC/CriticalEntropy/CriticalMinimax.lean) · [CriticalUpper/Full.lean](../lean/ThresholdHC/CriticalUpper/Full.lean) |
 | Exact $\Psi$ comparison and counterexample | Lean-checked | [CriticalPsi/Full.lean](../lean/ThresholdHC/CriticalPsi/Full.lean) |
 | Variational optimizer | Lean-checked | [Tier3/Optimizer.lean](../lean/ThresholdHC/Tier3/Optimizer.lean) |
@@ -80,6 +80,32 @@ For every probability law $\mu$ on $(0,1/2]$, $B\ge1$, and $0<\delta\le1/4$, it 
 $$R_\mu(B)\asymp\omega_\mu(B^{-1/2}),\qquad r_\mu(B,\delta)\asymp\omega_\mu\!\left(\sqrt{\log(1/\delta)/B}\right),\qquad \omega_\mu(h)=\mathbb E_\mu\min\{1,h/D\}.$$
 
 Here $r_\mu(B,\delta)$ is the minimax uniform error radius at failure probability at most $\delta$, with the same expected-budget constraint. The constants are universal. The algorithms depend only on $B$, or on $(B,\delta)$, and observe neither magnitudes nor their law. The proof is in §5. Both the RMS and confidence characterizations now have Lean proofs in both directions in the original observable adaptive model.
+
+The lower constant of the RMS law is sharp. For every gap law and every $B\ge1$,
+
+$$R_\mu(B)\ \ge\ \tfrac16\,\omega_\mu(B^{-1/2}),$$
+
+and $1/6$ is the largest constant valid for all gap laws and budgets: four
+fresh flips attain equality at $B=4$ and $\mu=\delta_{1/2}$. For $B\ge25$ the
+constant improves to $\sqrt{59/2100}\approx0.1676$. The experiment is the
+original one: arbitrary measurable private randomness, interleaving,
+revisits and unbounded stopping under the uniform expected-work budget.
+These statements are Lean-checked
+([specification](../lean/ThresholdHC/SharpRMS/Specification.lean),
+[theorems](../lean/ThresholdHC/SharpRMS/Full.lean),
+[audit record](../results/sharp-rms-20261117/README.md)).
+
+The proof first reduces any gap law to a single gap: for every gap $g$,
+$R_\mu(B)\ge\omega_\mu(g)\,R_{\delta_g}(B)$, by simulating each requested coin
+from a coin of gap $g$ at the same cost. At the gap $g=1/\sqrt B$ it then
+uses three arguments. For $B\le4$, a Bayes bound under the uniform prior.
+For $4<B<25$, a weighted score inequality with the exact one-coin
+information price, whose integral is bounded analytically near $B=4$ and by
+an integer certificate over 140 bias intervals elsewhere; the Lean kernel
+evaluates that certificate. For $B\ge25$, three sign biases compared under
+one reference law. The [research note](../research/2026-11-17-rms-constants/sharp-unrestricted.pdf)
+gives the written proof. The upper constant $512$ is unchanged, so the two
+sides of the RMS law remain a factor $3072$ apart.
 
 The confidence theorem [`confidence_characterization`](../lean/ThresholdHC/Confidence/Full.lean)
 proves the explicit bounds
@@ -153,7 +179,15 @@ oracle results below concern RMS and confidence, not an extended unbiased conver
 
 ## Magnitude-oracle lower bounds
 
-For the ordinary adaptive experiment, Lean proves that **$1/6$ is the largest universal coefficient** in $R_\mu(B)\ge c\int\min(1,B^{-1/2}/d)\,\mu(dd)$ for every gap law and every $B\ge1$. The model permits arbitrary measurable private randomness, interleaving and revisits under a uniform expected-work budget. At $B=4$ and $\mu=\delta_{1/2}$, four fresh flips attain equality. For every law and $B\ge25$, Lean gives the stronger coefficient $\sqrt{59/2100}\approx0.16761634$. The proof includes the intermediate-budget integer certificate and the transfer from one gap to arbitrary populations. [Lean theorems](../research/2026-11-17-rms-constants/SharpUnrestricted.lean) · [Exact statement checks](../research/2026-11-17-rms-constants/AuditSharpUnrestricted.lean) · [Proof and reproduction guide](../research/2026-11-17-rms-constants/README.md). Lean also proves both lower bounds, and the same four-flip endpoint equality, for the revealed- and selected-magnitude oracles. [Oracle statements](../research/2026-11-17-rms-constants/AuditSharpOracles.lean) · [Research note](../research/2026-11-17-rms-constants/sharp-unrestricted.pdf).
+The [sharp coefficient](#minimax-law-and-unbiasedness) of the RMS law holds
+for both oracles as well. For either oracle and every $B\ge1$,
+$R_\mu^{\mathrm{oracle}}(B)\ge\omega_\mu(B^{-1/2})/6$, with equality at $B=4$
+and $\mu=\delta_{1/2}$, and the constant improves to $\sqrt{59/2100}$ for
+$B\ge25$. The reduction to one gap allows an arbitrary measurable array of
+magnitudes conditional on the oracle seed, which covers free inspection of
+the whole iid array and a magnitude selected at each creation.
+[Lean theorems](../lean/ThresholdHC/SharpRMS/Full.lean) ·
+[oracle proofs](../lean/ThresholdHC/SharpRMS/OracleAttainment.lean).
 
 Theorem 1's stronger RMS and confidence lower bounds are now Lean-checked
 for both revealed and adaptively selected magnitudes. For either oracle,
@@ -455,7 +489,7 @@ are also checked.
 |---|---|
 | Matching entropy-tail upper/lower bounds | Every law, known rarity, and positive expected budget in the model; hard measurable assignments suffice. |
 | Attained four-prior stopping dual | Exact identity for the robust certificate program; its connection to minimax risk is a comparison inequality. |
-| Factor-sixteen risk certificate | For $0<\rho\le1/2$, the [uniform cap theorem](FINITE_CAP_RATE.md) gives $P_N\le2G_N$ and $R\le P_N\le16R$ whenever $N\ge4B/3$. |
+| Factor-sixteen risk certificate | For $0<\rho\le1/2$, the [uniform cap theorem](FINITE_CAP_RATE.md) gives $P_N\le2G_N$ and $R\le P_N\le16R$ whenever $N\ge4B/3$. The [square-root cap comparison](../lean/ThresholdHC/SquareRootCap/Full.lean) lowers that cap to $N\ge4B/9$: $P_N\le kG_N$ once $B\le N(k-1/k)^2$, for every $k>1$. [Lean record](../results/sharp-rms-20261117/README.md) |
 | Ordinary cap convergence | The [truncation theorem](FINITE_CAP_RATE.md#a-sharper-rate-for-the-ordinary-upper-program) gives $P_\infty\le P_N\le(1+\sqrt{B/(N+1)})P_\infty$ uniformly in the law. For $0<\rho\le1/2$ and $B>0$, $P_N\le8(1+\sqrt{B/(N+1)})R$, so $N+1\ge B$ suffices for factor sixteen. This does not give a matching genie rate or prove optimality. [Lean record](../results/finite-cap-truncation-20261105/README.md) |
 | Genie convergence | Pointwise convergence assumes finite latent divergence. An explicit infinite-divergence counterexample is included. Mixing the variance and work references with the endpoint midpoint gives $P_N/G_N\le1+2(B/N)^{1/3}$ for $N\ge B$. [Lean record](../results/genie-rate-20261104/README.md) |
 | Fixed-cap identification | For $m$ distinct positive magnitudes, the zero-bias threshold is $N\ge2m-1$. This identifies the target, not necessarily the full allocation $q$. Infinite support has a positive floor at every fixed cap; the cap may grow. |

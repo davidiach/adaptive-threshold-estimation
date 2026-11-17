@@ -851,6 +851,24 @@ reports every new declaration's transitive axioms. Their six-test guard
 suites are `test_psi_sharpness.py` and `test_power_window.py`; CI runs both
 suites and both audits. Existing published records retain their original scope.
 
+Run `python tools/verify_sharp_rms.py --replay` for 38 exact statements and
+343 transitive axiom reports over the 54 modules of `lean/ThresholdHC/SharpRMS`.
+It checks the sharp RMS lower coefficient $1/6$ for every gap law and every
+$B\ge1$, its optimality, the stronger coefficient for $B\ge25$, the reduction
+to one gap, and the same bounds under both magnitude oracles. With `--replay`
+every module also goes through the independent kernel checker, which
+re-evaluates the 140 integer comparisons of the intermediate budgets. Seven
+window modules hold those comparisons, so Lake builds them in parallel.
+Run `python tools/verify_square_root_cap.py` for the square-root cap
+comparison of the optimized stopping programs and its $4B/9$ corollary: two
+exact statements and six axiom reports. Both specifications were written
+after the proofs and are pinned from these audits onward. The proofs keep
+helper lemmas private; those are not audit roots here, and
+`verify_project_axioms.py` checks their axioms with every other constant.
+The guard suites are `test_sharp_rms.py` and `test_square_root_cap.py`; CI
+runs both suites and both audits.
+[Record](../results/sharp-rms-20261117/README.md).
+
 ## Whole-project build, axioms and kernel replay
 
 Run `python tools/verify_project_axioms.py --replay-main-theorem`. It builds

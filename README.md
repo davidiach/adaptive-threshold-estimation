@@ -55,7 +55,7 @@ on the gap, at a fixed gap law $\mu$.
 
 | Result | Status | Details |
 |---|---|---|
-| For $B\ge1$, the sharp universal minimax RMS lower bound is $\omega_\mu(B^{-1/2})/6$ in the ordinary model and both magnitude oracles. Four fresh flips attain equality at $B=4$ and $\mu=\delta_{1/2}$. | Lean-checked | [Proof and verification](research/2026-11-17-rms-constants/README.md) |
+| For $B\ge1$, the sharp universal minimax RMS lower bound is $\omega_\mu(B^{-1/2})/6$ in the ordinary model and both magnitude oracles. Four fresh flips attain equality at $B=4$ and $\mu=\delta_{1/2}$. | Lean-checked | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) · [written proof](research/2026-11-17-rms-constants/README.md) |
 | One algorithm that knows only the budget attains RMS error at most $512\,\omega_\mu(B^{-1/2})$. | Lean-checked | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) |
 | Confidence radius of order $\omega_\mu\bigl(\sqrt{\log(1/\delta)/B}\bigr)$ | Lean-checked | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) |
 | An unbiased estimator with finite variance and expected work exists exactly when $I=\mathbb E_\mu[D^{-1}]$ is finite; the best variance–work product lies between $I^2/16$ and $713I^2$ | Lean-checked | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) · [713](docs/RESULTS.md#the-713-construction) |

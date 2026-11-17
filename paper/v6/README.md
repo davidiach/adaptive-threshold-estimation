@@ -58,10 +58,12 @@ unchanged.
 | Appendix V | Known-law time-uniform confidence, the matching lower bound, finite-family adaptation, and the Lean-checked arbitrary-law tail certificate and full oracle-adaptation controller |
 | Appendix W | The smooth-density theorem in the adaptive experiment |
 | Appendices X–Z | Observed states: the finite-cell lower bound, continuous-magnitude lower bounds and the fresh-outer-state upper-bound transfer |
+| Appendix AA | The sharp constant $1/6$ of the RMS lower bound, also under both magnitude oracles: the reduction to one gap, three sign biases for large budgets, the exact one-coin information price with an integer certificate for intermediate budgets, and four fresh flips for equality |
 
 ## Verification status
 
-Lean checks both directions of the original RMS law, the critical quadratic
+Lean checks both directions of the original RMS law, its sharp lower
+constant $1/6$ (Appendix AA), the critical quadratic
 law, the exact Ψ comparison and counterexample, the variational optimizer,
 the unbiased characterization with constants 1/16 and 713, the confidence
 characterization, the magnitude-oracle lower bounds, and the rare-event
@@ -126,7 +128,7 @@ the exposition in `frontmatter.tex`, `overview.tex` (§§1.2–1.5),
 `rare-events.tex`, `entropy-tail.tex`,
 `finite-laws.tex`, `psi-window.tex` (§14.8), `certificates.tex`,
 `finite-proof.tex` and `verification.tex`; Appendices P–Z (`appendix-optimal-factor.tex` through
-`appendix-observed-upper.tex`); and the confidence subsections that
+`appendix-observed-upper.tex`); Appendix AA (`appendix-sharp-rms.tex`); and the confidence subsections that
 `appendix-known-confidence.tex` inputs (`typed-confidence.tex`,
 `common-pair-confidence.tex`, `additive-confidence.tex`,
 `entropy-confidence.tex` and `rms-localization.tex`). `main.tex` controls the
@@ -177,6 +179,12 @@ The editorial changes are explicit in the generator:
   it are below $27000$. Appendix G states $0<\rho\le1/4$ for the gate lemma
   and the annular proposition; the inherited text relied on the standing
   convention of §11.1.
+- **Sharp constant.** Theorem 2.1 says that one may take $c=1/6$ for RMS,
+  which is sharp, and cites Theorem AA.1, where v5 gave $1/64$. Its formal
+  scope paragraph names the Lean theorem with the sharp coefficient beside
+  the two original ones. §5 still proves $1/64$; Appendix AA proves $1/6$.
+  The 26 appendix letters are used, so `main.tex` letters later appendices
+  AA, AB and so on.
 - **Internal citations.** Citations of the companion manuscripts become
   cross-references. The finite-gap manuscript's conditional remark on
   general laws becomes a corollary in §14, whose proof cites the

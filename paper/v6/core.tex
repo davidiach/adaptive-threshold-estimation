@@ -69,8 +69,8 @@ on $B$, that simultaneously for all $\mu,q$ satisfies
 \end{equation}
 There is likewise one algorithm depending only on $(B,\delta)$ for the
 upper confidence bound. Neither algorithm observes $D$ or knows $\mu$.
-In the lower bounds one may take $c=1/64$ for RMS and
-$c=15/(256\sqrt2)$ for confidence.
+In the lower bounds one may take $c=1/6$ for RMS, which is sharp
+(\cref{thm:sharp-rms}), and $c=15/(256\sqrt2)$ for confidence.
 The lower bounds hold even if every coin's magnitude is revealed for free,
 or if the algorithm selects the magnitude of each fresh coin. In the latter
 experiment $q$ is defined on all $(0,1/2]$ and the target is still
@@ -80,7 +80,9 @@ $\int q\,\mathrm d\mu$.
 \paragraph{Formal scope.}
 The RMS law in the ordinary hidden-magnitude experiment is proved by
 \leanref{Tier6/Full.lean}{minimax\_lower\_bound}, with coefficient
-$1/64$, and \leanref{BlindUpper/Full.lean}{minimax\_upper\_bound}, with
+$1/64$, \sharprmsleanref{Full.lean}{sharp\_lower}, with the sharp
+coefficient $1/6$, and
+\leanref{BlindUpper/Full.lean}{minimax\_upper\_bound}, with
 coefficient $512$. The frozen target
 \leanref{BlindUpper/Full.lean}{distribution\_blind\_upper} chooses the
 upper family before every gap law and asserts a positive constant; the
