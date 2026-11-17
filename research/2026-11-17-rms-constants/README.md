@@ -29,4 +29,13 @@ python "$P/verify_cap.py" .
 
 The price certificate covers 303,086 boxes and bounds the final integral on 65,536 intervals using outward-rounded integer arithmetic. The stopping-tree certificate checks all 25 active trees of depth at most three on 34 polynomial cones and computes the exact excess at depth four. The statistical arguments are in the linked notes.
 
-For the sharp unrestricted theorem, the standard-library checker covers 140 bias intervals and bounds a one-dimensional integral on 2,048 bins at each accepted upper endpoint. An analytic bound covers all exit barriers of height 20 and above. The statistical theorem is a paper proof with this computational step. The separate Lean checks concern the stopping cap.
+For the sharp unrestricted theorem, the standard-library checker covers 140 bias intervals and bounds a one-dimensional integral on 2,048 bins at each accepted upper endpoint. An analytic bound covers all exit barriers of height 20 and above. The full unrestricted lower bound is a paper proof with this computational step.
+
+The [four-flip Lean construction](SharpAttainment.lean) proves uniform budget four, exact squared risk $1/36$ at every sign law for the endpoint gap, and an upper bound of $1/6$ on the original minimax risk. The [testing theorem](SharpEntropy.lean) handles any measurable real-valued output under three probability laws, subject to the stated reverse-KL bound. For every finite horizon, arbitrary adaptive coin labels and a common flip bias, Lean proves the [fair-posterior work identity](SharpTranscript.lean) and the [summed reverse-KL bound](SharpPrefixCost.lean) for $0<s\le 2/5$ and $s^2 B=4$. The [scalar price proof](SharpInformation.lean) uses derivatives and exact rational comparisons.
+
+The [exact theorem statements](AuditSharpRMS.lean) and [kernel replay record](sharp-rms-audit.json) cover these components. To reproduce the record from a built checkout with the same Lean source tree, run
+
+```sh
+(cd lean && lake build ThresholdHC.HardBudget.Application ThresholdHC.Tier5.CreationFresh)
+python research/2026-11-17-rms-constants/verify_sharp_rms.py .
+```

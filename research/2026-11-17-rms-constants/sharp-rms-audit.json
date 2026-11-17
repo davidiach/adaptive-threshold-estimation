@@ -1,0 +1,68 @@
+{
+  "compiler": "Lean (version 4.36.0-rc1, x86_64-w64-windows-gnu, commit c9afcddf514a6772bd4d649f7cfc04eff0b9f15e, Release)",
+  "imported_checkout_commit": "992762844d2983ed6b9c1569c60690a47ef7b6c9",
+  "lean_source_tree": "71ebb71cdc57f16898b35fb988848cdd2381631c",
+  "source_sha256": {
+    "SharpAttainment.lean": "93cdd6438ab45186987d63623a3a5eaeddbd85feecdadb0af4cde7cf9284ce1a",
+    "SharpEntropy.lean": "c1f7d5e19ffb72ce65eb3acc4b26d00df7514523a73901694221b39c1c658a3c",
+    "SharpTranscript.lean": "1d9564fd6e41d0a15b7564028f909b9e66b199b863452db3e27077b6d6c23a9e",
+    "SharpInformation.lean": "12f33886d6a03aad88180f251c81bbcc1ffe8adaceaf02138bd2f1745b1445d2",
+    "SharpPrefixCost.lean": "e9ecf27b5ff1ac7403240475074ad66f3da025caa16a0e2ace3fd2a55e65b778",
+    "AuditSharpRMS.lean": "8098e7a1d68d6f232b1cf2e64fd9ef7a68d6b48229bca9bd5d08a02dd8e2adc6"
+  },
+  "exact_type_checks": [
+    "creation_paired_cost",
+    "creation_tilt",
+    "creation_wald",
+    "endpoint_minimax_upper",
+    "four_flips_budget",
+    "four_flips_squared_risk",
+    "three_bias_risk"
+  ],
+  "transitive_axioms": {
+    "creation_paired_cost": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "four_flips_budget": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "four_flips_squared_risk": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "endpoint_minimax_upper": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "three_bias_risk": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "creation_tilt": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "creation_wald": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "kernel_replay": [
+    "SharpAttainment",
+    "SharpEntropy",
+    "SharpTranscript",
+    "SharpInformation",
+    "SharpPrefixCost"
+  ],
+  "dependencies": "Existing compiled project and Mathlib imports",
+  "scope": "Four-flip attainment, conditional three-bias risk, finite-prefix likelihood, work and paired KL"
+}
