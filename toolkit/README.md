@@ -547,7 +547,8 @@ exact square-root, logarithm and entropy outputs using the pinned Lean project.
 `produce` returns untrusted data; `verify` requires a successful kernel proof
 for the caller's expected input and the claimed output. It also checks the
 square-root width contract. See [usage, limits and the deterministic API inventory](../docs/DETERMINISTIC_VERIFICATION.md).
-This does not verify global selection, the planner, Python execution or the PRNG.
+This primitive checker does not verify the planner, Python execution or the PRNG.
+The separate global selection checker is described below.
 
 The opt-in `threshold_toolkit.finite_law_certificates` module also checks
 actual finite-law feasible objectives and `FiniteGapOracle` outputs against
@@ -556,3 +557,10 @@ the original measures. See [contracts, use and limits](../docs/FINITE_LAW_CERTIF
 The [envelope/transfer certificate adapter](threshold_toolkit/envelope_transfer_certificates.py)
 checks residual-zero `GapEnvelope` outputs, rounded pushforward laws and conditional
 transfer endpoints. See [contracts and limits](../docs/ENVELOPE_TRANSFER_CERTIFICATES.md).
+
+The [global selection adapter](threshold_toolkit/global_selection_certificates.py)
+checks bounded exhaustive, DP and approximation output contracts against the
+original all-submeasure optimum. It certifies complete suffix counts, global
+intervals, true optimizer flags and relative approximation. Internal solver
+traces and polynomial verification cost remain unverified. See
+[usage and exact scope](../docs/GLOBAL_SELECTION_CERTIFICATES.md).

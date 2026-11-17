@@ -17,6 +17,7 @@ definitions with the paper for that review.
 | Result | Formal entry point | Audit command |
 |---|---|---|
 | Zero-residual envelope and rounding/transfer certificates | [Transfer](ThresholdHC/EnvelopeTransferCertificates/Transfer.lean), [scope](../docs/ENVELOPE_TRANSFER_CERTIFICATES.md) | `python tools/verify_envelope_transfer_certificates.py` |
+| Global menu/DP/approximation output certificates | [Menu](ThresholdHC/GlobalSelectionCertificates/Menu.lean), [Trace](ThresholdHC/GlobalSelectionCertificates/Trace.lean), [scope](../docs/GLOBAL_SELECTION_CERTIFICATES.md) | `python tools/verify_global_selection_certificates.py` |
 | Finite-law measures, fractional quantile cores, feasible objectives and oracle output certificates | [Oracles](ThresholdHC/FiniteLawCertificates/Oracles.lean), [scope](../docs/FINITE_LAW_CERTIFICATES.md) | `python tools/verify_finite_law_certificates.py` |
 | Deterministic numerical certificates and actual sqrt/log/entropy outputs | [Checker](ThresholdHC/DeterministicCertificates/Checker.lean), [entropy bridge](ThresholdHC/DeterministicCertificates/Entropy.lean), [scope](../docs/DETERMINISTIC_VERIFICATION.md) | `python tools/verify_deterministic_certificates.py` |
 | Finite-law `(1+epsilon)` approximation, original-K endpoints and state bound | [New specification](ThresholdHC/FiniteSelectionApproximation/Specification.lean), [assembled theorem](ThresholdHC/FiniteSelectionApproximation/Full.lean), [scope](../docs/FINITE_SELECTION_APPROXIMATION.md) | `python tools/verify_finite_selection_approximation.py` |
