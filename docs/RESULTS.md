@@ -743,20 +743,26 @@ atomic formulas, and the equality of its optimized value with the original
 $K$. Python execution remains unverified. Efficient exact selection with
 unrestricted distinct band costs remains open.
 
-**Prescribed relative accuracy has a paper proof.** The new
-[finite-law approximation scheme](../research/2026-11-06-selection-approximation/NOTE.md)
-returns an actual selection with capped objective between $K$ and
-$(1+\epsilon)K$, in time polynomial in rational input length and $1/\epsilon$.
-It does not require repeated costs. Two additive summaries control the entropy
-under state trimming. The rational prototype and adversarial subset tests are
-[reproducible](../research/2026-11-06-selection-approximation/README.md).
-The [entropy perturbation and state-compression components](../lean/ThresholdHC/SelectionApproximation/README.md)
-are now Lean-checked against locked statements. They control actual cost entropy
-and preserve a feasible witness with no worse saving and both summaries within
-the stage factor, assuming a certified bin map. The full approximation theorem,
-bit complexity and Python execution remain unverified in Lean. No independent
-review is claimed; this neither settles exact optimization nor changes the
-statistical minimax theorem.
+**Prescribed relative accuracy is Lean-checked for the mathematical finite scheme.**
+The [assembled theorem](FINITE_SELECTION_APPROXIMATION.md) covers every finitely
+supported gap law, including rational finite laws, for $0<\rho\le1/4$, $B>0$
+and $0<\epsilon\le1$. It returns a feasible bandwise suffix witness and rational
+endpoints with $\ell/\beta\le K\le J(\mathrm{witness})\le u
+\le(1+\epsilon)\ell/\beta$, where $\beta=1+\epsilon/4$. The objective is
+the original capped $K$, compared against all fractional submeasures. The proof
+derives concrete valid bins, input parameters, the zero-cost case, finite endpoint
+precision, the per-stage state bound $S$, and at most $(n+m)S$ extensions. It
+requires no repeated-cost assumption and reuses the unchanged
+[entropy/compression components](../lean/ThresholdHC/SelectionApproximation/README.md).
+The [new evidence](../results/finite-selection-approximation-20261117/README.md)
+checks 12 exact statements and 93 transitive reports.
+
+The [note's polynomial bit-complexity argument](../research/2026-11-06-selection-approximation/NOTE.md)
+remains paper-only. The formal real-log/floor/ceiling specifications and rational
+endpoint certificates do not certify execution of numerical oracles or the
+[Python prototype](../research/2026-11-06-selection-approximation/README.md).
+Those remain in #85. This does not settle exact optimization (#87) or change
+the statistical minimax theorem; earlier records and PDFs retain their scopes.
 
 **Lean verifies Theorems 7–8 and Corollary 9.** Changing a law by total variation
 $\eta$ changes $K$ by at most $\eta$. Within-band upward rounding by a factor

@@ -14,6 +14,7 @@ statement. For the current tree the evidence is the CI run on that commit.
 
 | Claim or check | Published record |
 |---|---|
+| Finite-law relative approximation, original-K endpoints and `Q*S` extensions (#93) | [finite-selection-approximation-20261117](finite-selection-approximation-20261117/README.md) |
 | Secondary-claim inventory and explicit paper-only dispositions (#89) | [secondary-claims-20261116](secondary-claims-20261116/README.md) |
 | Complete uniform power-law manuscript and evidence reconciliation | [power-window-publication-20261116](power-window-publication-20261116/README.md) |
 | Sharp Psi results, power-law foundation and manuscript scope reconciliation | [psi-publication-20261116](psi-publication-20261116/README.md) |

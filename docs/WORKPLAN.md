@@ -26,7 +26,8 @@ separates these remaining extensions from the core theorem:
 - Numerical specification and stochastic Python/PRNG refinement: #85 and #86.
 - The [secondary-claim inventory](SECONDARY_CLAIMS.md) reconciles #89 by
   recording existing checked components and explicit paper-only dispositions.
-  The next selected proof is #93: the assembled finite-law approximation theorem.
+  The [assembled finite-law approximation theorem](FINITE_SELECTION_APPROXIMATION.md)
+  for #93 is now checked locally and awaits its focused PR integration.
   The selected v6 §14.8 targets in #100 are complete; Corollary 14.14 and
   Remark 14.15 intentionally remain paper-only. Conditional localization
   retains its single-coin obstruction premise.
@@ -90,12 +91,12 @@ reduces the search to a polynomial number of states when the number of distinct
 positive costs is fixed. The general many-band exact complexity remains open. A new
 [paper proof and rational prototype](../research/2026-11-06-selection-approximation/README.md)
 give a fully polynomial `(1+epsilon)` approximation without repeated costs.
-Its [entropy perturbation bound and trimming invariant](../lean/ThresholdHC/SelectionApproximation/README.md)
-are now Lean-checked against locked statements. The next formal steps are the
-concrete bin-index certificate, parameter and state-count bounds, and composition
-with the concrete finite-law menus and rational endpoint selection. The full
-approximation theorem and Python execution are not yet Lean-checked; no
-independent review is claimed.
+The [assembled theorem](FINITE_SELECTION_APPROXIMATION.md) now checks the
+concrete bins, parameters, all-stage state count, suffix witness and rational
+endpoint chain for the original K, with a proved finite precision bound.
+The polynomial bit-complexity claim remains paper-only; numerical-oracle and
+Python execution remain #85's separate boundary. The new proof record does not
+upgrade the earlier component evidence or published PDFs.
 
 For a new contribution, follow [CONTRIBUTING.md](../CONTRIBUTING.md) and
 [AGENTS.md](../AGENTS.md). The project owner does not plan human specialist
