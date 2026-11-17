@@ -1,0 +1,146 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[letterpaper,margin=0.86in,top=0.72in,bottom=0.77in]{geometry}
+\usepackage{amsmath,amssymb,xcolor,hyperref}
+\definecolor{ink}{HTML}{183E55}
+\hypersetup{colorlinks=true,urlcolor=ink,pdftitle={Narrowing the universal RMS constant}}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt plus 1pt minus 1pt}
+\setlength{\abovedisplayskip}{6pt}\setlength{\belowdisplayskip}{6pt}
+\raggedbottom
+\newcommand{\E}{\mathbb E}
+\newcommand{\atanh}{\operatorname{atanh}}
+\newcommand{\heading}[1]{{\LARGE\bfseries\color{ink} #1}\par\smallskip}
+\begin{document}
+{\small\color{ink} ADAPTIVE THRESHOLD ESTIMATION \hfill RESEARCH NOTE \quad 17 NOVEMBER 2026}\par
+\heading{Narrowing the universal RMS constant}
+Let $R_\mu(B)$ be the ordinary minimax root-mean-square error at uniform expected flip budget $B\ge1$. Put $h=B^{-1/2}$, $f(d)=\min(1,h/d)$ and $\omega=\int f\,d\mu$ for any gap law on $(0,1/2]$. The best universal lower coefficient satisfies
+\[
+ \frac{150870587516911616}{930883296209686575}
+ \ \le\ \inf_{\mu,B\ge1}\frac{R_\mu(B)}{\omega}
+ \ \le\ \frac16 .
+\]
+The left endpoint exceeds $0.16207250$. The same bounds hold for either magnitude oracle. Restricting the infimum to $1\le B\le4$ gives exactly $1/6$. The infimum over all budgets is also $1/6$ when every protocol is limited to three flips per coin, including adaptive revisiting and interleaving. Pages 2 and 3 prove the general lower bound. Page 4 proves the restricted results and a four-flip obstruction. Page 5 gives two further sharp classes with unlimited revisits.
+
+\textbf{A one-dimensional family.} Give a coin of gap $d$ sign mean $m=t f(d)$, $-1<t<1$. With sign encoded as $\pm1$, the population target is $\theta(t)=(1+t\omega)/2$. Write $a=2d$. For a single coin with sign mean $m$, let $I_m$ be the Fisher information in its stopped transcript about $m$, and let $W_m$ be its expected paid flips. A bound $I_m\le a^2 C(|m|)W_m$ for every capped local policy, with $C$ nondecreasing, gives population information in $t$ at most $4C(|t|)$, since $a^2 f(d)^2\le4h^2$.
+
+To justify this transfer, augment the experiment by the seed and magnitudes. At a bounded total horizon the conditional flip scores have zero mean given the past. Their squared expectations therefore add. Group the terms by coin. Conditional on its birth history and gap, simulate the remaining coins using independent tapes at the parameter value under consideration. The simulated tapes serve as a fixed-law auxiliary seed when differentiating only this coin's prior. Its expected sum of squared local score increments equals its stopped Fisher information, and the chain rule from $m$ to $t$ multiplies it by $f(d)^2$. The expected local works sum to total expected work, at most $B$. Choices of new magnitudes are predictable given the seed and history. This argument also permits conditional inactivity. Ignoring the added data preserves the lower bound.
+
+For a bounded-horizon estimator and a nonnegative differentiable weight $u$ with $u(\pm1)=0$, integration by parts and Cauchy--Schwarz give
+\[
+ R\int_{-1}^1\sqrt{u'(t)^2+4u(t)^2 C(|t|)}\,dt
+ \ \ge\ \frac{\omega}{2}\int_{-1}^1 u(t)\,dt .
+ \tag{1}
+\]
+Indeed the right side equals $\int\E_t[(\widehat\theta-\theta)(u S_t+u')]\,dt$, where $S_t$ is the centered population score. One may clip the output to $[0,1]$, truncate at $M$ flips and use a fixed fallback. The MSE increases by at most $B/M$, uniformly in $t$. Thus (1) passes to arbitrary finite-expected-work stopping. On compact subintervals the finite-prefix likelihoods are differentiable with integrable derivatives; the weights below give integrable endpoint bounds.
+\newpage
+\heading{Charging information to elapsed flips}
+Fix $0<a<1$, $0\le m<1$ and a bounded local stopping time $T$. Reversing the signs of all flips covers negative $m$. Let $K$ be the number of positive flips minus negative flips at the stop, and let $Z=\tanh(K\atanh a)$ be the conditional mean sign under the fair prior. Relative to the stopped fair-prior law, the likelihood at $m$ is $1+mZ$. Consequently
+\[
+ \E_0 Z=0,\qquad I_m=\E_0\frac{Z^2}{1+mZ},\qquad
+ a^2W_m=\E_0\frac{(Z+m)\atanh Z}{L(a^2)},\quad
+ L(w)=\int_0^1\frac{ds}{1-ws^2}.
+ \tag{2}
+\]
+For the work identity, conditional on the true sign $S$ each increment of $SK$ has mean $a$. Hence $\E_m[SK]=aW_m$, while changing to the fair prior gives $\E_m[SK]=\E_0[(Z+m)K]$. Use $\atanh Z=K\atanh a$ and $L(a^2)=\atanh(a)/a$.
+
+Set $v=1-m^2$, $m_0=1023/1024$ and
+\[
+ H_{12}(m)=\sum_{j=0}^{11}\frac{m^{2j}}{2j+1},\qquad
+ P(m)=\frac{v(1+vH_{12}(m))}{2(2001/2000+2m^8/25)} .
+\]
+We prove $P(m)I_m\le a^2W_m$ for $0\le m\le m_0$. For $a=1$ a first flip reveals the sign and all later flips have zero score, giving the claim since $P(m)\le v$. For $a<1$, it suffices by (2) to prove for every reachable $z$ that
+\[
+ P(m)\left(\frac{z^2}{1+mz}+\frac{ma^2z}{1-m^2a^2}\right)
+ \ \le\ \frac{(z+m)\atanh z}{L(a^2)}-mz .
+ \tag{3}
+\]
+Both added linear terms have zero fair expectation. The case $z=0$ is immediate. Otherwise $b=|z|\ge a$ since $K$ is a nonzero integer. Write $r=a^2/b^2\in[0,1]$ and $\sigma=\operatorname{sign}(z)$. Dividing (3) by $z^2$ gives
+\[
+ P(m)\frac{1+\sigma mrb}{(1+\sigma mb)(1-rm^2b^2)}
+ \ \le\ 1+(1-r)b(b+\sigma m)H ,
+ \quad H=\frac{\int_0^1 s^2/[(1-b^2s^2)(1-rb^2s^2)]\,ds}{L(rb^2)} .
+ \tag{4}
+\]
+For $\sigma=+1$ the left side is at most $P(m)/(1-m^2)\le1$. For $\sigma=-1$ use
+\[
+ H\ge\sum_{j=0}^{255}\frac{b^{2j}}{2j+3},\qquad
+ H\le\frac{1}{2(1-b^2)} .
+\]
+Indeed $H$ is the expectation of the increasing function $s^2/(1-b^2s^2)$ under density proportional to $(1-rb^2s^2)^{-1}$. The monotone likelihood ratio makes $H$ increasing in $r$. At zero, expand the geometric series. At one, $H=L'(w)/L(w)$ with $w=b^2$ and $2wL'(w)=(1-w)^{-1}-L(w)$, which gives the upper bound since $L(w)\ge1$. Use the lower estimate when $b\ge m$ and the upper estimate when $b<m$.
+\newpage
+\heading{Exact enclosure of the price and the risk}
+The script \texttt{check\_gap.py} checks the remaining two-variable inequality on the entire rectangle $0\le m\le m_0$, $0\le b\le1$. It uses integer arithmetic with scale $2^{40}$. Each box supplies bounds $x_-\le mb\le x_+$, a lower bound $y$ on $b(b-m)H$, and an upper bound $p$ on $P(m)$. For $b<m$ use $b\le\min(b_{\max},m_{\max})$ in the upper estimate on $H$. The program checks $1+y>0$ and the following quadratic inequality for \emph{every} $r\in[0,1]$:
+\[
+ (1-x_+)(1+y-ry)(1-r x_+^2)-p(1-r x_-)\ge0 .
+\]
+The implementation rounds $x_+^2$ upwards. The minimum is tested at both endpoints and, for an interior convex vertex, by the exact discriminant test. Inconclusive boxes are bisected and both children are checked. The completed cover has 303,086 leaves. The bound on $p$ uses that $P$ decreases: $vH_{12}$ has constant term one and all remaining coefficients nonpositive as a polynomial in $m^2$. The verifier uses the rational series bounds on page 2 even at the edge of each box.
+
+For all $m$ there is also the direct bound $I_m\le a^2W_m/v^2$. At a prefix let $z_m$ be the posterior mean sign at $m$. Its derivative is $(1-z_m^2)/v$, by the binary odds formula. The next flip has mean $az_m$ and hence information at most $a^2/v^2$, since $(1-z_m^2)^2\le1-a^2z_m^2$. A deterministic revisit contributes zero. Thus an admissible nondecreasing price in (1) is
+\[
+ C(m)=
+ \begin{cases}
+ \min\{v^{-2},\,1/P(m)\},&0\le m\le m_0,\\
+ v^{-2},&m_0<m<1 .
+ \end{cases}
+\]
+Use $u(t)=(1-t^2)(1-t^4/2)$. Symmetry in (1) gives
+\[
+ \frac{R_\mu(B)}{\omega}\ge
+ \frac{67/105}{2\int_0^1\sqrt{u'(t)^2+4u(t)^2 C(t)}\,dt}.
+ \tag{5}
+\]
+The numerator is the exact integral of $u$ on $[0,1]$. The program divides that interval into $2^{16}$ pieces. It bounds the absolute derivative $|-2t-2t^3+3t^5|$, the factor $1-t^4/2$ and $v^2C(t)$ from above on each piece. Square roots round upwards by integer square root. Summing the upper rectangles and dividing the exact numerator gives the rational endpoint on page 1. Neither a grid of point evaluations nor floating-point quadrature enters this bound.
+
+\textbf{Reproduction.} Run \texttt{python check\_gap.py} with Python 3. The price and integral certificate uses the standard library. The separate three-flip polynomial certificate on page 4 uses SymPy. These statistical results have paper proofs with exact arithmetic certificates. The Lean audit in this package concerns the stopping-program comparison in the first review.
+\newpage
+\heading{Where one sixth is exact}
+\textbf{Small budgets.} Use the submodel with the same sign mean $t$ at every magnitude. Revealing the sign on each first paid flip dominates the original data. Its Fisher information is at most $B/(1-t^2)$, since a new sign is independent and a revisit adds zero information. If $1\le B\le4$, use $u(t)=1-t^2$ in the integrated score identity for the target $(1+t)/2$. Its integrand is at most $\sqrt{4t^2+B(1-t^2)}\le2$, giving $R_\mu(B)\ge1/6\ge\omega/6$.
+
+\textbf{At most three flips per coin.} For every such local policy, every $0<a\le1$ and $|m|<1$, one has the sharper bound
+\[
+                 (1-m^2)I_m\le a^2 W_m . \tag{6}
+\]
+Condition on the independent seed. Stopping before activation contributes zero. There are 25 root-active binary stopping trees of depth at most three: each child admits five subtrees, since it may stop immediately or continue with either choice at each of its children. Fix one tree. An ordered leaf with $n$ flips and $k$ positive flips has probability
+\[
+ p=\frac{(1+m)P_++(1-m)P_-}{2},\qquad
+ P_\pm=((1\pm a)/2)^k((1\mp a)/2)^{n-k}.
+\]
+Sum $np$ and $(P_+-P_-)^2/(4p)$ over its leaves to obtain $W_m$ and $I_m$. For $0\le a<1$, $0\le m<1$, substitute $a=X/(2+X)$ and $m=Y/(2+Y)$. All denominators are positive on $X,Y\ge0$. Clearing them from $a^2W_m-(1-m^2)I_m$ leaves a polynomial in two variables with integer coefficients. The script \texttt{check\_three\_flips.py} expands these exact polynomials. When a coefficient is negative it splits the quadrant into $X\ge Y$ and $Y\ge X$, substituting $(s+t,t)$ or $(t,s+t)$ with $s,t\ge0$. It verifies nonnegative coefficients in every resulting cone, with at most two subdivisions along any path. Reflection handles $m<0$; $a=1$ follows by direct revelation.
+
+The population transfer on page 1 and (6) give $I(t)\le4/(1-t^2)$, since $m=t f(d)$. For $u(t)=1-t^2$ the information integrand in (1) is at most $2$ everywhere. Therefore $R_\mu(B)\ge\omega/6$ for every $B\ge1$ in this class. For sharpness in both restricted results take $B=4$ and $\mu=\delta_{1/2}$. The estimator $(X+1)/6$ from four fresh flips, $X\sim{\rm Bin}(4,q)$, has MSE $1/36$ for every $q$ and $\omega=1$.
+
+\textbf{A four-flip obstruction.} In the local model take $a=6/7$ and $m=19/20$. Stop at the leaves $+$, $-+$, $---$, $--++$, $--+-$. The exact leaf formulas give
+\[
+ (1-m^2)I_m-a^2W_m=\frac{11469627}{2937056864}>0 .
+\]
+This is a counterexample to (6) for deeper local policies. The unrestricted minimax coefficient remains open. A single information/work ratio at one prior does not determine the risk of an estimator over all priors.
+\newpage
+\heading{Unlimited revisits in two sharp classes}
+\textbf{Averaging over opposite sign biases.} Consider any one fixed local stopping rule at gap $a/2$. It may choose whether to continue after every observed flip. Its expected work is affine in $m$, because the stopped likelihood relative to the fair law is $1+mZ$. From (2), for $|m|<1$,
+\[
+ \frac{W_m+W_{-m}}{2}=W_0,\qquad
+ \frac{I_m+I_{-m}}{2}
+ =\E_0\frac{Z^2}{1-m^2Z^2}
+ \le\frac{\E_0 Z^2}{1-m^2}
+ \le\frac{a^2W_0}{1-m^2}.
+\]
+The last step follows from the direct bound on page 3 at $m=0$. This argument includes $a=1$, since $Z$ is then the observed sign after activation.
+
+\textbf{Preassigned local experiments.} Suppose the seed and magnitudes determine the list of coins and the rule for each coin before observing any flips. Each rule may use its own coin's history to decide when to stop. The final estimator may combine all transcripts. There is no fixed upper limit on flips per coin. Conditional on the seed and magnitudes, different coins' transcripts are independent. Write $J(t)$ for the information in the experiment augmented with the seed and magnitudes. Information adds across the coins. Apply the paired inequality above with $m=t f(d)$ separately at each gap. Since $a^2 f(d)^2\le4/B$,
+\[
+ \frac{J(t)+J(-t)}{2}
+ \le\frac{4}{B(1-t^2)}\,
+       \E_0\!\left[\sum_i T_i\right]
+ \le\frac{4}{1-t^2}.
+\]
+Here the outer expectation includes the common seed and the magnitude array; their distribution is parameter independent. In the integrated score identity on page 1 take $u(t)=1-t^2$. At $t$ and $-t$ the squared weights and squared derivatives coincide. By concavity of the square root, the average of the two integrands is bounded by
+\[
+ \sqrt{4t^2+(1-t^2)^2[J(t)+J(-t)]/2}\ \le\ 2 .
+\]
+Thus $R_\mu(B)\ge\omega/6$. To justify the bounded calculation, keep at most the first $M$ root-active coins and truncate each of their rules at $M$ flips. The truncated experiment still consists of preassigned local rules and its expected work can only decrease. It reconstructs the full data whenever the original total work is at most $M$. Clipping and a fallback cost at most $B/M$ in MSE.
+
+\textbf{Adaptive selection of sign-symmetric rules.} Allow the policy to select its next coin and stopping tree using all previously completed transcripts, and to decide after each completed coin whether to start another one. Suppose each chosen tree has the same stopping decision at a word and at its sign reversal. The conditional fair law of $Z$ is then symmetric, even with the earlier history fixed. For this tree, $I_m=I_{-m}$ and $W_m=W_{-m}=W_0$. The paired inequality now gives the pointwise estimate $(1-m^2)I_m\le a^2W_m$. Summing conditional block scores along the experiment yields $J(t)\le4/(1-t^2)$. A deterministic cap on total work preserves the symmetry of each tree selected with the remaining budget. The same score argument and truncation prove $R_\mu(B)\ge\omega/6$ here as well.
+
+The four fresh deterministic-sign flips on page 4 belong to both classes and attain $1/6$.
+\end{document}

@@ -153,6 +153,8 @@ oracle results below concern RMS and confidence, not an extended unbiased conver
 
 ## Magnitude-oracle lower bounds
 
+For the ordinary adaptive experiment, Lean proves that **$1/6$ is the largest universal coefficient** in $R_\mu(B)\ge c\int\min(1,B^{-1/2}/d)\,\mu(dd)$ for every gap law and every $B\ge1$. The model permits arbitrary measurable private randomness, interleaving and revisits under a uniform expected-work budget. At $B=4$ and $\mu=\delta_{1/2}$, four fresh flips attain equality. For every law and $B\ge25$, Lean gives the stronger coefficient $\sqrt{59/2100}\approx0.16761634$. The proof includes the intermediate-budget integer certificate and the transfer from one gap to arbitrary populations. [Lean theorems](../research/2026-11-17-rms-constants/SharpUnrestricted.lean) · [Exact statement checks](../research/2026-11-17-rms-constants/AuditSharpUnrestricted.lean) · [Proof and reproduction guide](../research/2026-11-17-rms-constants/README.md). Lean also proves both lower bounds, and the same four-flip endpoint equality, for the revealed- and selected-magnitude oracles. [Oracle statements](../research/2026-11-17-rms-constants/AuditSharpOracles.lean) · [Research note](../research/2026-11-17-rms-constants/sharp-unrestricted.pdf).
+
 Theorem 1's stronger RMS and confidence lower bounds are now Lean-checked
 for both revealed and adaptively selected magnitudes. For either oracle,
 
