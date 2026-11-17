@@ -153,6 +153,8 @@ oracle results below concern RMS and confidence, not an extended unbiased conver
 
 ## Magnitude-oracle lower bounds
 
+A [later paper proof](../research/2026-11-17-rms-constants/sharp-unrestricted.pdf) gives the sharp universal RMS lower coefficient $1/6$ for the ordinary model and both magnitude oracles. It permits arbitrary adaptive revisiting and interleaving under uniform expected budgets. Four fresh deterministic-sign flips attain equality at $B=4$. The proof includes an [exact arithmetic certificate](../research/2026-11-17-rms-constants/check_budget_window.py) for an intermediate range of budgets.
+
 Theorem 1's stronger RMS and confidence lower bounds are now Lean-checked
 for both revealed and adaptively selected magnitudes. For either oracle,
 
