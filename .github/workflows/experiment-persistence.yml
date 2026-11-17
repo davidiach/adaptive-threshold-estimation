@@ -1,6 +1,7 @@
 name: Experiment persistence
 on:
   push:
+    branches: [main]
     paths:
       - '.github/workflows/experiment-persistence.yml'
       - 'tools/run_real_guarded.py'

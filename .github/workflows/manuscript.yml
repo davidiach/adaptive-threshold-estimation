@@ -1,6 +1,7 @@
 name: Manuscript build
 on:
   push:
+    branches: [main]
     paths:
       - '.github/workflows/manuscript.yml'
       - 'paper/v6/**'

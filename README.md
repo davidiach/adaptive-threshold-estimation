@@ -150,9 +150,13 @@ python tools/verify_blind_upper_components.py --sequential
 
 The [verification guide](docs/VERIFY.md) covers the other theorems, exact target
 types, transitive-axiom audits, source hashes, and numerical checks.
-[GitHub Actions](.github/workflows/checks.yml) runs every maintained audit; the two
-intermediate entropy-tail audits that [VERIFY.md](docs/VERIFY.md) lists as outside
-CI are the exception.
+[GitHub Actions](.github/workflows/checks.yml) runs the research and numerical
+checks on pull requests and pushes to `main`. It selects Lean audits from the
+files changed by the entire PR or push. Changes to project proofs or the pinned
+toolchain run all four Lean jobs. To run the full CI audit suite on any branch,
+start **Reproducible checks** manually from the Actions tab.
+[VERIFY.md](docs/VERIFY.md) also lists two intermediate entropy-tail audits
+available for local reproduction.
 Use a disposable checkout for reproduction: some checks write diagnostic files.
 
 ## Open work

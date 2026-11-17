@@ -1,31 +1,7 @@
 name: Reproducible checks
 on:
   push:
-    paths:
-      - '.github/workflows/checks.yml'
-      - '.gitattributes'
-      - 'README.md'
-      - 'docs/**'
-      - 'paper/**'
-      - 'LICENSE*'
-      - 'CITATION.cff'
-      - 'lean/**'
-      - 'tools/**'
-      - 'toolkit/**'
-      - 'constants/**'
-      - 'benchmark/**'
-      - 'results/**'
-      - 'research/**'
-      - 'inputs/**'
-      - 'requirements.txt'
-      - 'FROZEN.sha256'
-      - 'TIER3_FROZEN.sha256'
-      - 'TIER4_FROZEN.sha256'
-      - 'TIER5_FROZEN.sha256'
-      - 'TIER6_FROZEN.sha256'
-      - 'proposals/constants/*.lean'
-      - 'proposals/constants/*.py'
-      - 'proposals/constants/*.md'
+    branches: [main]
   pull_request:
   workflow_dispatch:
 concurrency:
@@ -34,6 +10,25 @@ concurrency:
 permissions:
   contents: read
 jobs:
+  lean-inputs:
+    runs-on: ubuntu-latest
+    outputs:
+      kernel: ${{ steps.select.outputs.lean-kernel }}
+      modules: ${{ steps.select.outputs.lean-all-modules }}
+      entropy: ${{ steps.select.outputs.entropy-tail-upper }}
+      stopping: ${{ steps.select.outputs.stopping-program }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The PR checkout is the proposed merge. Compare its tree to its base,
+          # or on main compare the entire push to the previous tip.
+          fetch-depth: 0
+          sparse-checkout: .github
+      - run: python3 -m unittest discover -s .github -p 'test_lean_ci.py' -v
+      - id: select
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: python3 .github/lean_ci.py
   research-evidence:
     runs-on: ubuntu-latest
     steps:
@@ -249,6 +244,8 @@ jobs:
           --extra .runtime/drift/constants_candidate.json=results/constants_theory.json
           --extra .runtime/drift/constants_candidate_theory.json=results/constants_theory.json
   lean-kernel:
+    needs: lean-inputs
+    if: ${{ !cancelled() && needs.lean-inputs.outputs.kernel != 'false' }}
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
@@ -390,6 +387,8 @@ jobs:
             .runtime/envelope-transfer-certificates/
             .runtime/global-selection-certificates/
   lean-all-modules:
+    needs: lean-inputs
+    if: ${{ !cancelled() && needs.lean-inputs.outputs.modules != 'false' }}
     runs-on: ubuntu-latest
     timeout-minutes: 150
     steps:
@@ -428,6 +427,8 @@ jobs:
         # registered theorems. This step registers nothing.
         run: python tools/verify_project_axioms.py --replay-main-theorem --jobs 3
   entropy-tail-upper:
+    needs: lean-inputs
+    if: ${{ !cancelled() && needs.lean-inputs.outputs.entropy != 'false' }}
     runs-on: ubuntu-latest
     timeout-minutes: 180
     steps:
@@ -631,6 +632,8 @@ jobs:
             .runtime/entropy-tail-upper/
             .runtime/closed-quantile/
   stopping-program:
+    needs: lean-inputs
+    if: ${{ !cancelled() && needs.lean-inputs.outputs.stopping != 'false' }}
     runs-on: ubuntu-latest
     timeout-minutes: 180
     steps:
