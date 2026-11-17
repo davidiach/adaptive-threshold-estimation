@@ -1047,17 +1047,14 @@ scopes stated in Section~\\ref{sec:verification}.""")
     # The general-law manuscript fixed rho <= 1/4 for the dual. The cap-rate
     # theorems and the confidence theorem use it for rho <= 1/2, and only the
     # explicit cap N_*, through the Bernoulli-label floor, needs rho <= 1/4.
+    # The replacement keeps the line count: a longer sentence here pushes the
+    # end of Appendix K onto a new page and renumbers every later page.
     dual = once(gl("dual_transfer"),
         "Throughout this section, $\\mu$ is any probability measure on $(0,1/2]$,\n"
         "$0<\\rho\\le1/4$, $B>0$, and $N\\ge1$ is an integer. Put",
         "Throughout this section, \\cref{sec:midpoint-dual} and \\cref{sec:genie},\n"
-        "$\\mu$ is any probability measure on $(0,1/2]$, $0<\\rho\\le1/2$, $B>0$,\n"
-        "and $N\\ge1$ is an integer; the class, risk and budget of\n"
-        "\\cref{sec:rare-model} are read with this $\\rho$. This is the range used\n"
-        "in \\cref{app:uniform-cap-rate} and \\cref{thm:confidence-stopping-dual}.\n"
-        "Only the explicit cap $N_*$ of\n"
-        "Corollary~\\ref{cor:dual-finite-characterization} needs $\\rho\\le1/4$,\n"
-        "through Lemma~\\ref{lem:tf-floor}. Put")
+        "$\\mu$ is any probability measure on $(0,1/2]$,\n"
+        "$0<\\rho\\le1/2$, $B>0$, and $N\\ge1$ is an integer. Put")
     dual = once(dual,
         "At the explicit cap\n\\[\n N_*=",
         "If moreover $\\rho\\le1/4$, then at the explicit cap\n\\[\n N_*=")

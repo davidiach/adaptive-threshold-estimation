@@ -185,7 +185,9 @@ The editorial changes are explicit in the generator:
   $0<\rho\le1/2$, the range that the cap-rate theorems of Appendix Q and
   Theorem S.1 use. Their proofs use the rarity bound only through the class
   $\mathcal Q_\rho$ and the constant priors $\rho/2$ and $\rho$. The explicit
-  cap $N_*$ keeps $\rho\le1/4$, which its Bernoulli-label floor needs. Lean
+  cap $N_*$ keeps $\rho\le1/4$, which its Bernoulli-label floor needs; the
+  corollary states that condition itself. The standing sentence keeps its
+  line count, so no page of Appendices J–K moves. Lean
   states the duality and the cap-rate theorems for $\rho\le1/2$.
 - **Constant and range made explicit.** Appendix E says that the displayed
   upper constant $33000$ is a conservative rounding: the coefficients beside
