@@ -37,7 +37,32 @@
       }
     ]
   },
-  "build_runs": [],
+  "build_runs": [
+    {
+      "id": 44197171748,
+      "event": "pull_request",
+      "pull_request": 128,
+      "head_branch": "claude/kind-turing-pqjssw",
+      "head_sha": "c8b0eb9dbb58495e93cf9aa6f78383dbd0fa34a7",
+      "html_url": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/44197171748",
+      "conclusion": "success",
+      "run_started_at": "2026-11-17T23:11:37Z",
+      "updated_at": "2026-11-17T23:25:22Z",
+      "job_id": 134441696766,
+      "pdfinfo": {
+        "pages": 197,
+        "file_size_bytes": 1549771
+      },
+      "artifacts": [
+        {
+          "id": 14379668808,
+          "name": "v6-paper",
+          "size_in_bytes": 1533171,
+          "digest": "sha256:77dc7b3641bf2ed68fef6801d7bd8f9a8b928f2c824489907793ff7840e1bdc4"
+        }
+      ]
+    }
+  ],
   "inherited_manifest_sha256": "ab75faa88e1916a8ac47c5f86e3b800b4ac05f3b735133cfc2cc9a3973a69e38",
   "status_manifest_sha256": "3f39d7dfdb8dc1962f967e655063308e48f5fee368fb538579e0bafbc2fc5b2a",
   "tex_sources": {
@@ -155,7 +180,7 @@
     "unchanged_body_pages": 182,
     "method": "Poppler pdftotext -bbox word text and bounding boxes rounded to 0.001 pt, excluding a 60 pt band at the top and at the bottom of each page (running header and page number). No pixel-identity claim."
   },
-  "build_runs_note": "No workflow build is cited. The manuscript workflow now runs on pull requests and on pushes to main only, so the source commit has no push build. The first pull-request build of these sources, run 44196014649 for pull request 128 at head 3cff4fe, had not finished when this record was written. The PDF comes from the two local builds, and the toolchain validation above is its link to the workflow's toolchain.",
+  "build_runs_note": "Supporting evidence, not the source of the PDF. The manuscript workflow now runs on pull requests and on pushes to main only, so the source commit has no push build. The listed run built pull request 128 at head c8b0eb9, the commit that published this PDF. There the 60 TeX files, status.json and sources.json are the files of the source commit; paper/v6 differs only in README.md and in builds/, which the build does not read. The job log reports pdfinfo Pages 197 and File size 1549771 bytes, the size of this PDF. An earlier run for head 3cff4fe, 44196014649, was cancelled by that push while it was still installing TeX Live. The artifact was not downloaded: the build session's network policy blocks GitHub's artifact storage. Byte identity with a workflow artifact is therefore not claimed.",
   "paper_v6_tree": "c571c0aa61375118520649847ea98a97565b1e27",
   "proof_revisions": {
     "lean/ThresholdHC/Envelope/Minimax.lean": "b59e043a3f504c412f6ca482fb96bc7626063888",

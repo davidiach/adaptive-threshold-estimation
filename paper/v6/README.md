@@ -967,9 +967,9 @@ are byte-identical: 197 pages, 33 embedded font objects, 421 unique source
 labels and 29 resolved citations. They were typeset locally with the
 manuscript workflow's command and TeX Live packages. The same toolchain
 rebuilds the two previous PDFs byte for byte from their source checkpoints.
-No workflow build is cited: the manuscript workflow no longer builds branch
-pushes, and the first pull-request build of these sources had not finished
-when the record was written.
+One workflow build of the same TeX sources reports the same page count and
+file size. Its artifact was not downloaded, so byte identity with it is not
+claimed.
 
 Thirteen pages change: 1, 3, 5, 6, 8, 12, 62, 63 and the five pages of
 Appendix AA, 191–195. The references move from pages 191–192 to 196–197.
@@ -977,7 +977,7 @@ The other 182 pages retain identical body text and word positions. The
 changed pages, contents page 2 and the two reference pages were rendered
 and visually inspected. The only warning is the inherited overfull line in
 Appendix C. The [publication record](../../results/sharp-rms-constant-publication-20261117/README.md)
-holds the build logs, the page comparison and the toolchain check. All
-earlier PDFs and records remain unchanged.
+holds the build logs, the page comparison, the toolchain check and the
+workflow run. All earlier PDFs and records remain unchanged.
 
 [Published manuscript](builds/sharp-rms-constant-20261117.pdf) · [Build record](builds/sharp-rms-constant-20261117.json)

@@ -82,16 +82,22 @@ was published from a workflow build.
 
 ## Workflow build
 
-No workflow build is cited. The manuscript workflow now runs on pull
-requests and on pushes to `main`, so the source commit has no push build.
-The first pull-request build of these sources, run
-[44196014649](https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/44196014649)
-for [#128](https://github.com/davidiach/adaptive-threshold-estimation/pull/128)
-at head `3cff4fe`, had not finished when this record was written.
+The manuscript workflow now runs on pull requests and on pushes to `main`,
+so the source commit has no push build. [manuscript-ci.json](manuscript-ci.json)
+identifies one successful run, for
+[#128](https://github.com/davidiach/adaptive-threshold-estimation/pull/128)
+at head `c8b0eb9`, the commit that published this PDF. There the 60 TeX
+files, `status.json` and `sources.json` are the files of the source commit.
+The job log reports 197 pages and a file size of 1,549,771 bytes, the size
+of the published PDF.
 
-The published PDF therefore rests on the two local builds. Its link to the
-workflow is the toolchain check above: the same packages and command
-reproduce a PDF that the workflow built.
+An earlier run for head `3cff4fe` was cancelled by that push while it was
+still installing TeX Live. This record was first published without a
+workflow run and gained this one when the run finished.
+
+The workflow artifact was not downloaded, because the build session could
+not reach GitHub's artifact storage. This record therefore does not claim
+byte identity between the published PDF and a workflow artifact.
 
 ## Page comparison
 
@@ -111,7 +117,8 @@ This record adds no Lean audit and no numerical experiment. The audit of
 the sharp constant is in the [library audit record](../sharp-rms-20261117/README.md).
 The proof evidence for every other claim of the manuscript is unchanged: it
 is that of the [previous publication record](../review-corrections-publication-20261117/README.md)
-and of the records in the [index](../README.md).
+and of the records in the [index](../README.md). The CI run named here built
+the manuscript at its own commit; it is not evidence about a later commit.
 
 [SHA256SUMS](SHA256SUMS) identifies the files of this record, the PDF and
 the build record. All earlier PDFs and records retain their original bytes.
