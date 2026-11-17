@@ -1157,3 +1157,13 @@ bridges, exact statements, transitive axioms, five-module kernel replay and
 actual-output certificates. Run `python -m unittest discover -s tools -p
 test_finite_law_certificates_audit.py -v` for audit guards. Fresh results go to
 `.runtime/finite-law-certificates/`; see [scope and limits](FINITE_LAW_CERTIFICATES.md).
+
+## Envelope, rounding and transfer output certificates
+
+Run `python tools/verify_envelope_transfer_certificates.py`, followed by
+`python -m unittest discover -s tools -p test_envelope_transfer_certificates_audit.py -v`.
+The audit checks twelve exact types, all declaration axioms, independent kernel
+replay of the three new modules, actual outputs and numerical rejection cases.
+It preserves source/compiler/artifact hashes under a fresh
+`.runtime/envelope-transfer-certificates/`; see [contracts and limits](ENVELOPE_TRANSFER_CERTIFICATES.md).
+CI uploads both this directory and `.runtime/finite-law-certificates/`.

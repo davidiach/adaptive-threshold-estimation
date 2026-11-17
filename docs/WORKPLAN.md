@@ -31,7 +31,9 @@ separates these remaining extensions from the core theorem:
   The [deterministic verification work](DETERMINISTIC_VERIFICATION.md) now
   adds an opt-in kernel checker for actual sqrt/log/entropy outputs and
   [positive finite-law objective/oracle certificates](FINITE_LAW_CERTIFICATES.md).
-  Global selection, zero-residual envelope integration and planners remain in #85.
+  The [envelope/transfer certificates](ENVELOPE_TRANSFER_CERTIFICATES.md) add
+  residual-zero integration, rounding and conditional transfer. Global selection,
+  concrete planners/schedules and floating calculators remain in #85.
   The selected v6 §14.8 targets in #100 are complete; Corollary 14.14 and
   Remark 14.15 intentionally remain paper-only. Conditional localization
   retains its single-coin obstruction premise.

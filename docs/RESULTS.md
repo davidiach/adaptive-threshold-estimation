@@ -1361,8 +1361,11 @@ An opt-in [proved rational checker](DETERMINISTIC_VERIFICATION.md) connects actu
 `sqrt_interval`, `log_interval` and `cost_entropy` outputs to closed Lean
 enclosure theorems. Square-root width is also checked, and entropy targets the
 existing mathematical `costEntropy`. The adapter fails on invalid certificates
-or exhausted verification limits. This is a bounded certificate-checking path;
+or exhausted verification limits. This is a bounded certificate-checking path.
 The [finite-law extension](FINITE_LAW_CERTIFICATES.md) checks canonical measure
 identities and actual feasible-objective, quantile-split and finite-oracle outputs.
-CPython refinement, global selection, zero-residual envelope integration and
-planner execution remain open in #85. The API inventory records those boundaries.
+The [envelope/transfer extension](ENVELOPE_TRANSFER_CERTIFICATES.md) adds residual-zero
+mixture/split identities, rounding pushforwards and conditional transfer bounds.
+Global selection, concrete planners/schedules and floating calculators remain
+open in #85; CPython and stochastic execution remain separate in #86. The API
+inventory records those boundaries.

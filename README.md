@@ -100,6 +100,11 @@ does not yet describe them as checked: parts of the
 [arbitrary-law adaptation proof](docs/ARBITRARY_LAW_FORMALIZATION.md), and
 parts of the [finite-law selection approximation](lean/ThresholdHC/SelectionApproximation/README.md).
 
+The opt-in [numerical certificate path](docs/DETERMINISTIC_VERIFICATION.md) now
+covers finite-law objectives/oracles and [zero-residual envelopes, rounding and
+conditional transfer](docs/ENVELOPE_TRANSFER_CERTIFICATES.md). Global numerical
+selection and concrete planners remain open in #85; stochastic execution is #86.
+
 ## Repository map
 
 Current material:

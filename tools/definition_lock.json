@@ -1276,6 +1276,14 @@
     "ThresholdHC.Envelope.minimaxRMS": "10850261107739373973:14704121583908634222",
     "ThresholdHC.Envelope.minimaxRadius": "17993522273744119061:10692801802533915116",
     "ThresholdHC.Envelope.varianceWork": "12553442774180996230:16553570933585317027",
+    "ThresholdHC.EnvelopeTransferCertificates.extendCDF": "11407945730368051702:6149331734365758513",
+    "ThresholdHC.EnvelopeTransferCertificates.extendedAtomic": "13457237765940038279:14888985351521888447",
+    "ThresholdHC.EnvelopeTransferCertificates.pointMap": "5201099579525978323:7195071577066515000",
+    "ThresholdHC.EnvelopeTransferCertificates.pointMap._f": "2438028993955510421:9185576685609092674",
+    "ThresholdHC.EnvelopeTransferCertificates.pointMap._sunfold": "5201099579525978323:18336446150999026479",
+    "ThresholdHC.EnvelopeTransferCertificates.pointMap._unsafe_rec": "5201099579525978323:10548736155159915739",
+    "ThresholdHC.EnvelopeTransferCertificates.pointMap.match_1": "2297858043081383054:2971654980888778852",
+    "ThresholdHC.EnvelopeTransferCertificates.transferCheck": "3314190491927523138:350379918326502293",
     "ThresholdHC.FiniteCapTruncation.capCertificate": "8328039496499656394:2277270573146115961",
     "ThresholdHC.FiniteCapTruncation.capFlow": "8883207573819834653:17912944308524359175",
     "ThresholdHC.FiniteCapTruncation.discardedMean": "4030656061861035135:6212000943580522811",
@@ -2637,6 +2645,10 @@
     {
       "at": "2026-11-17T07:55:59+00:00",
       "count": 14
+    },
+    {
+      "at": "2026-11-17T12:46:05+00:00",
+      "count": 8
     }
   ]
 }
