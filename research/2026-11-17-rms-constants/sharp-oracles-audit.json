@@ -1,6 +1,6 @@
 {
-  "compiler": "Lean (version 4.36.0-rc1, x86_64-unknown-linux-gnu, commit c9afcddf514a6772bd4d649f7cfc04eff0b9f15e, Release)",
-  "imported_checkout_commit": "f67647c24121d78798991f5994c67752c3ba26f2",
+  "compiler": "Lean (version 4.36.0-rc1, x86_64-w64-windows-gnu, commit c9afcddf514a6772bd4d649f7cfc04eff0b9f15e, Release)",
+  "imported_checkout_commit": "992762844d2983ed6b9c1569c60690a47ef7b6c9",
   "lean_source_tree": "71ebb71cdc57f16898b35fb988848cdd2381631c",
   "source_sha256": {
     "SharpAttainment.lean": "93cdd6438ab45186987d63623a3a5eaeddbd85feecdadb0af4cde7cf9284ce1a",
@@ -124,6 +124,5 @@
     "SharpOracleAttainment"
   ],
   "dependencies": "Existing compiled project and Mathlib imports",
-  "scope": "Sharp coefficient, stronger large-budget bound and exact endpoint equality for the revealed- and selected-magnitude oracles, and the oracle gap reduction",
-  "procedure": "Each module was compiled once with the flags of verify_sharp_rms.py and replayed once through leanchecker; AuditSharpOracles.lean was then compiled against those modules. SharpWindow was compiled and replayed by verify_sharp_rms.py --window in the same checkout. The script's --oracles mode, which recompiles the integer certificate, was not run to completion."
+  "scope": "Both magnitude oracles: all gap laws, stronger large-budget bound, and exact endpoint attainment"
 }

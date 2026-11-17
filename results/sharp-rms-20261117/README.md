@@ -102,7 +102,8 @@ the sharp oracle upper constant $1/2$, and the oracle asymptotics.
 The research package keeps its own replay records for its files:
 [critical window](../../research/2026-11-17-rms-constants/sharp-critical-window-audit.json),
 [ordinary model](../../research/2026-11-17-rms-constants/sharp-unrestricted-audit.json),
-[oracles](../../research/2026-11-17-rms-constants/sharp-oracles-audit.json)
+[oracles](../../research/2026-11-17-rms-constants/sharp-oracles-audit.json),
+with a [second run on Linux](../../research/2026-11-17-rms-constants/sharp-oracles-linux-audit.json),
 and [cap](../../research/2026-11-17-rms-constants/audit.json).
 
 [SHA256SUMS](SHA256SUMS) identifies the files of this record.
