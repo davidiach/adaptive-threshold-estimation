@@ -12,7 +12,7 @@ private def constantLaw (t : ℝ) (ht : |t| ≤ 1) : SignLaw :=
   ⟨fun _ => (1+t)/2, measurable_const, fun _ =>
     ⟨by linarith [(abs_le.mp ht).1], by linarith [(abs_le.mp ht).2]⟩⟩
 
-private def observePrefix {R : Type} (n : ℕ) (z : PopulationSeed R × ProcessTape) :
+def observePrefix {R : Type} (n : ℕ) (z : PopulationSeed R × ProcessTape) :
     PopulationSeed R × ProcessTape := padJoint n (z.1,processPrefix n z.2)
 
 private theorem measurable_observePrefix {R : Type} [MeasurableSpace R] (n : ℕ) :
@@ -39,7 +39,7 @@ private theorem eventually_observed {R : Type} [MeasurableSpace R] (A : Adaptive
   · simpa only [stoppingFlagPolicy, Option.isSome_map] using hvz
   · exact ⟨N,hn,by simp [stoppingFlagPolicy,hN]⟩
 
-private theorem limit_prefix {R : Type} [MeasurableSpace R] (A : AdaptiveEstimator R)
+theorem limit_prefix {R : Type} [MeasurableSpace R] (A : AdaptiveEstimator R)
     (μ : Measure Gap) [IsProbabilityMeasure μ] (q : SignLaw) (B : ℝ) (hb : UniformBudget μ A B)
     (f : PopulationSeed R × ProcessTape → ℝ) (hm : Measurable f)
     (C : ℝ) (hC : ∀ z, |f z| ≤ C) :
@@ -104,7 +104,7 @@ private theorem dirac_prefix {R : Type} [MeasurableSpace R] (A : AdaptiveEstimat
   exact hr
 
 set_option maxHeartbeats 900000 in
-private theorem prefix_work_le {R : Type} [MeasurableSpace R] (A : AdaptiveEstimator R)
+theorem prefix_work_le {R : Type} [MeasurableSpace R] (A : AdaptiveEstimator R)
     (μ : Measure Gap) [IsProbabilityMeasure μ] (q : SignLaw) (B : ℝ) (hB : 0 ≤ B)
     (hb : UniformBudget μ A B) (n : ℕ) :
     (∫ z, workOf (processPrefix n z.2) ∂experimentLaw μ A q) ≤ B := by

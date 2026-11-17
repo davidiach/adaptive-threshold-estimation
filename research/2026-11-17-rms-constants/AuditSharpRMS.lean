@@ -1,6 +1,6 @@
 import SharpAttainment
 import SharpEntropy
-import SharpWeakPopulation
+import SharpFourBudget
 import SharpSimulation
 
 open MeasureTheory InformationTheory
@@ -63,6 +63,14 @@ example : ∀ (a s z : ℝ), 0 < s → s < a → |z| ≤ 1 → (z=0 ∨ a ≤ |z
 example : ∀ a : ℝ, 0 < a → a < 1 → ∀ k : ℤ, k ≠ 0 →
     a ≤ |Real.tanh ((k:ℝ)*Real.artanh a)| := posterior_lattice_gap
 
+example : ∀ (μ : Measure Gap) [IsProbabilityMeasure μ] (B : ℝ), 0 ≤ B → B ≤ 4 →
+    ENNReal.ofReal (1/6:ℝ) ≤ minimaxRisk μ B := @four_budget_minimax_lower
+
+example : minimaxRisk (Measure.dirac endpointGap) 4 = ENNReal.ofReal (1/6:ℝ) :=
+  endpoint_minimax_eq
+
+#print axioms four_budget_minimax_lower
+#print axioms endpoint_minimax_eq
 #print axioms weak_gap_minimax_lower
 #print axioms critical_step_kernel
 #print axioms posterior_lattice_gap

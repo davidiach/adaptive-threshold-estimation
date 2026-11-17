@@ -13,10 +13,12 @@ import tempfile
 from verify_cap import AXIOMS, HERE, digest, run
 
 MODULES = ("SharpAttainment", "SharpEntropy", "SharpTranscript", "SharpInformation", "SharpPrefixCost",
-           "SharpWeakRisk", "SharpWeakPopulation", "SharpSimulation")
+           "SharpWeakRisk", "SharpWeakPopulation", "SharpSimulation", "SharpSmallBudget",
+           "SharpSmallPrefix", "SharpBayesBudget", "SharpFourBudget")
 THEOREMS = {"four_flips_budget", "four_flips_squared_risk", "endpoint_minimax_upper",
             "three_bias_risk", "creation_tilt", "creation_wald", "creation_paired_cost",
-            "weak_gap_minimax_lower", "critical_step_kernel", "posterior_lattice_gap"}
+            "weak_gap_minimax_lower", "critical_step_kernel", "posterior_lattice_gap",
+            "four_budget_minimax_lower", "endpoint_minimax_eq"}
 AUDIT = "AuditSharpRMS"
 
 
@@ -63,7 +65,7 @@ def main():
         "transitive_axioms": {name: names.split(", ") for name, names in reports},
         "kernel_replay": list(MODULES),
         "dependencies": "Existing compiled project and Mathlib imports",
-        "scope": "Endpoint attainment, weak critical single-gap minimax lower bound, finite-prefix information and local simulation",
+        "scope": "All gap laws at budgets up to four, exact endpoint minimax risk, weak critical single-gap lower bound, finite-prefix information and local simulation",
     }, indent=2))
 
 

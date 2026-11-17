@@ -9,16 +9,22 @@
     "SharpInformation.lean": "12f33886d6a03aad88180f251c81bbcc1ffe8adaceaf02138bd2f1745b1445d2",
     "SharpPrefixCost.lean": "e9ecf27b5ff1ac7403240475074ad66f3da025caa16a0e2ace3fd2a55e65b778",
     "SharpWeakRisk.lean": "44e8038c7a6e83bba197e5d7689dbbc2e06cabafee2b8e6e864e43acff298640",
-    "SharpWeakPopulation.lean": "4b2451ee5d1fe1ed88c6ded76704c7286aee3e227640c83fdd2ed371296d992c",
+    "SharpWeakPopulation.lean": "87259de301bfadf6b77e5a0fb445f7434158d38b50a56f1c3ce1095bd3f79321",
     "SharpSimulation.lean": "92c00dd9338a95c672001b5e968cf0d7933ffc7a65803b7228794d92c1331810",
-    "AuditSharpRMS.lean": "bbec410f9f9b74fe5a70594e5e82302ef3c5b81375f971fa9e9d74564d67d5d5"
+    "SharpSmallBudget.lean": "7b0b1844362d99ff3db5086854bdefb774057ed08fe53a8ed0a3ccf01d6a1569",
+    "SharpSmallPrefix.lean": "be0fcd0572ac2d8cc86fec1e43f14a1be1ee80f610f1fabfe1267f8322cefb80",
+    "SharpBayesBudget.lean": "9a12dd40669e5616ab1c60eab29e52829fae7b1b320a65a0c677b12872212f50",
+    "SharpFourBudget.lean": "ed7540e4293c5c1728e44a543bec27de0e8eef09f12502c09221af7608f01326",
+    "AuditSharpRMS.lean": "20ac0d58b6a5f0e1da02f7bb02f193a05fc2ebeac8bb784023c265bed8ea9fb2"
   },
   "exact_type_checks": [
     "creation_paired_cost",
     "creation_tilt",
     "creation_wald",
     "critical_step_kernel",
+    "endpoint_minimax_eq",
     "endpoint_minimax_upper",
+    "four_budget_minimax_lower",
     "four_flips_budget",
     "four_flips_squared_risk",
     "posterior_lattice_gap",
@@ -26,6 +32,16 @@
     "weak_gap_minimax_lower"
   ],
   "transitive_axioms": {
+    "four_budget_minimax_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "endpoint_minimax_eq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
     "weak_gap_minimax_lower": [
       "propext",
       "Classical.choice",
@@ -85,8 +101,12 @@
     "SharpPrefixCost",
     "SharpWeakRisk",
     "SharpWeakPopulation",
-    "SharpSimulation"
+    "SharpSimulation",
+    "SharpSmallBudget",
+    "SharpSmallPrefix",
+    "SharpBayesBudget",
+    "SharpFourBudget"
   ],
   "dependencies": "Existing compiled project and Mathlib imports",
-  "scope": "Endpoint attainment, weak critical single-gap minimax lower bound, finite-prefix information and local simulation"
+  "scope": "All gap laws at budgets up to four, exact endpoint minimax risk, weak critical single-gap lower bound, finite-prefix information and local simulation"
 }
