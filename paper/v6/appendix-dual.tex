@@ -10,8 +10,9 @@ program and absorb its variance and work references into the endpoints.
 Appendix~\ref{sec:flow-foundations} proves the stopping-flow representation
 and its observable realization in full.
 
-Throughout this section, $\mu$ is any probability measure on $(0,1/2]$,
-$0<\rho\le1/4$, $B>0$, and $N\ge1$ is an integer. Put
+Throughout this section, \cref{sec:midpoint-dual} and \cref{sec:genie},
+$\mu$ is any probability measure on $(0,1/2]$,
+$0<\rho\le1/2$, $B>0$, and $N\ge1$ is an integer. Put
 \[
  \mathcal Q_\rho=\{q\in L^\infty(\mu):0\le q\le1,\
                 \theta(q)=\textstyle\int q\,d\mu\le\rho\}.
@@ -438,7 +439,7 @@ For every integer $N\ge1$,
  \le R_{\mu,\rho}(B)\le P_N(B).
  \label{eq:dual-finite-certificate}
 \end{equation}
-At the explicit cap
+If moreover $\rho\le1/4$, then at the explicit cap
 \[
  N_*=\left\lceil64\max\{B,\rho B^2\}\right\rceil,
 \]

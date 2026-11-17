@@ -94,7 +94,9 @@ $8\sqrt{W_\alpha}\rho^{1-1/\alpha}/[a(1-s)]$.
 Choose a finite $J$ so that the bias is at most
 $\rho^{1-1/\alpha}/(a\sqrt B)$. This gives $C_\alpha$.
 For $\alpha=1$ the allocation sum is
-$4\sqrt{W_1}(J+1)/a$. If $x<\rho$, a geometric rounding argument chooses
+$4\sqrt{W_1}(J+1)/a$. If $x<\rho$, a geometric rounding argument with the
+sharpened bias bound $4r_{k+J}/3$, for instance
+$J=\lceil2\log_2(8\rho/(3x))\rceil$, chooses
 $J$ with bias at most $x$ and
 $J+1\le5[1+\log(\rho/x)]$. This gives $C_1$.
 In either row, use the zero-work midpoint $\rho/2$ whenever the rate

@@ -353,7 +353,7 @@ against the sign law at the true gap through the coupling and does not
 form the induced sign allocation.
 
 Assign a reference zero atom entirely to the unresolved part. It contributes
-at most its mass to error and its mass times $M$ to work. All selected-core
+at most its mass to error and its mass times the race cap $2M$ to work. All selected-core
 and ordinary-tail formulas are evaluated only at positive gaps. The null
 prefix probability includes the zero atom's fair-coin likelihood exactly.
 Large unresolved mass uses the existing constant-estimator fallback.

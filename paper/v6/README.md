@@ -10,6 +10,29 @@ separate these checked results from the critical-window corollary and
 asymptotic remark, which remain paper results. Every earlier published
 package retains its original PDF and verification scope.
 
+The LaTeX sources are ahead of that PDF, which has not been rebuilt, by the
+corrections of a line-by-line review. No proof changes. One correction
+widens a stated range: Appendices J–L state the
+[rarity range](#source-and-editorial-scope) $0<\rho\le1/2$ that Appendix Q
+and Theorem S.1 use, and keep $\rho\le1/4$ for the explicit cap $N_*$. The
+others make no statement stronger:
+
+- §11.3: the uniform confidence radii hold for exponents $0<\alpha\le4$.
+- Appendices A and B: the two
+  [appendix wording](#source-and-editorial-scope) changes.
+- Appendix E: the displayed upper constant $33000$ is a conservative
+  rounding of coefficients below $27000$.
+- Appendix G: the gate lemma and the annular proposition state the range
+  $0<\rho\le1/4$ that their proofs use.
+- Appendix S: Theorem S.1 states $0<\rho\le1/4$ for the critical law. Its
+  proof covers base budgets below one and names the general-law base rule at
+  an arbitrary allowance.
+- Appendix U: the level count at exponent one uses the sharpened bias bound
+  $4r_{k+J}/3$, with an explicit $J$.
+- Appendix V: finiteness of the coefficient $C$ is equivalent to inverse-gap
+  integrability, not weaker; and a reference zero atom costs its mass times
+  the race cap $2M$ in work, not $M$.
+
 This is the current single research paper. It combines three manuscripts:
 
 - the [consolidated v5 paper](../v5/README.md): the original minimax law,
@@ -151,6 +174,26 @@ The editorial changes are explicit in the generator:
   The introduction says "the whole function" where v5 said "the entire
   function", and the proof outline of Appendix C no longer points to the
   v5 source manifest, whose provenance §18 records.
+- **Appendix wording.** In the bounded-ratio lemma of Appendix A the hybrid
+  law for coin $i$ is written $P^{(i)}$; v5's $P_i$ collided at $i=1$ with
+  the full alternative law $P_1$. The closing remark of Appendix B says that
+  the global rarity constraint is used in integrated form in (B.3) and
+  elsewhere only as $\theta\le\rho$, where v5 said "precisely in (B.3)".
+  Neither change alters a statement or a proof.
+- **Rarity range of the stopping programs.** The general-law manuscript
+  fixed $0<\rho\le1/4$ for the exact dual. Appendices J–L now state
+  $0<\rho\le1/2$, the range that the cap-rate theorems of Appendix Q and
+  Theorem S.1 use. Their proofs use the rarity bound only through the class
+  $\mathcal Q_\rho$ and the constant priors $\rho/2$ and $\rho$. The explicit
+  cap $N_*$ keeps $\rho\le1/4$, which its Bernoulli-label floor needs; the
+  corollary states that condition itself. The standing sentence keeps its
+  line count, so no page of Appendices J–K moves. Lean
+  states the duality and the cap-rate theorems for $\rho\le1/2$.
+- **Constant and range made explicit.** Appendix E says that the displayed
+  upper constant $33000$ is a conservative rounding: the coefficients beside
+  it are below $27000$. Appendix G states $0<\rho\le1/4$ for the gate lemma
+  and the annular proposition; the inherited text relied on the standing
+  convention of §11.1.
 - **Internal citations.** Citations of the companion manuscripts become
   cross-references. The finite-gap manuscript's conditional remark on
   general laws becomes a corollary in §14, whose proof cites the

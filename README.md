@@ -70,7 +70,7 @@ the gap law is known unless a row says otherwise.
 | Critical quadratic law $F(d)=(4d)^2$: the rate is $\min(\rho,\sqrt{\rho L(1+\log L)/B})$ with $L=1+\log(1/\rho)$, which refutes a proposed characterization by a simpler modulus $\Psi$ | Lean-checked | [Scope](docs/RESULTS.md#critical-power-margin-full-minimax-characterization) |
 | Power-law gaps: the rates for exponents below and above two | Lean-checked | [Above two](docs/RESULTS.md#rare-event-power-margins-above-two) · [One to two](docs/RESULTS.md#logarithmic-and-intermediate-rare-power-margins) · [Below one](docs/RESULTS.md#rare-event-power-margins-below-exponent-one) |
 | $\Psi$ still bounds the risk from below for every gap law, $0<\rho\le1/4$ and $B>0$, with coefficient $10^{-17}$ | Lean-checked | [Scope](docs/RESULTS.md#rare-event-optimizer) |
-| $\Psi$ in closed form within a factor $\sqrt2$, and one power-law rate with constants independent of the exponent | Paper proof | [Scope](docs/RESULTS.md#the-variational-modulus-in-closed-form) |
+| $\Psi$ in closed form within a factor $\sqrt2$, and one power-law rate with constants independent of the exponent | Lean-checked | [Scope](docs/RESULTS.md#the-variational-modulus-in-closed-form) |
 | A stopping program with an exact dual, and certificates within a factor sixteen of the minimax risk | Lean-checked | [Scope](docs/RESULTS.md#general-law-rare-event-characterization) |
 | Hard caps on the number of flips; fixed-confidence radius of order $\mathcal K(B/\log(1/\delta))$; a time-uniform rate for a known law and a lower bound of the same order, not composed in Lean | Lean-checked | [Caps](docs/RESULTS.md#hard-observation-caps-for-the-rms-rates) · [Confidence](docs/RESULTS.md#confidence-rates-and-sequential-stopping) |
 | Unknown gap law: the same time-uniform rate within a supplied finite family of laws | Lean-checked | [Scope](docs/RESULTS.md#confidence-rates-and-sequential-stopping) |
@@ -95,10 +95,9 @@ What the verification does and does not cover:
 - Numerical experiments are supporting evidence, not proofs. The Python
   toolkit is tested and is not formally verified.
 
-Two sets of Lean-checked components are not counted above, because the paper
-does not yet describe them as checked: parts of the
-[arbitrary-law adaptation proof](docs/ARBITRARY_LAW_FORMALIZATION.md), and
-parts of the [finite-law selection approximation](lean/ThresholdHC/SelectionApproximation/README.md).
+Lean also checks the
+[finite-law selection approximation](docs/FINITE_SELECTION_APPROXIMATION.md).
+It is not counted above, because the paper does not describe it.
 
 The opt-in [numerical certificate path](docs/DETERMINISTIC_VERIFICATION.md) now
 covers finite-law objectives/oracles and [zero-residual envelopes, rounding and
@@ -158,8 +157,11 @@ Use a disposable checkout for reproduction: some checks write diagnostic files.
 
 ## Open work
 
-The main unfinished item is a Lean proof of adaptation to an arbitrary unknown
-gap law, which has a paper proof today. [docs/WORKPLAN.md](docs/WORKPLAN.md)
+The one tracked result that still has only a paper proof is the
+critical-window simplification that closes
+[v6 §14.8](docs/RESULTS.md#the-variational-modulus-in-closed-form), with its
+asymptotic interpretation.
+[docs/WORKPLAN.md](docs/WORKPLAN.md)
 gives the current priorities, and the
 [tracking issue](https://github.com/davidiach/adaptive-threshold-estimation/issues/76)
 lists every open task with its dependencies.
