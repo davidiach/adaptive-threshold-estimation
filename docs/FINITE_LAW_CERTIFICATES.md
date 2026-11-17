@@ -114,6 +114,8 @@ and only the allowed transitive axioms `propext`, `Classical.choice`, `Quot.soun
 
 ## Evidence and remaining work
 
+The [published verification record](../results/finite-law-certificates-20261117/README.md)
+binds the audited sources to commit `8243b72bd4b22beea396bc3f0e8b2d2f92986b06`.
 The focused audit restates ten exact types, audits all 52 declared roots, and
 independently replays all five new modules. It checks actual output certificates
 for empty/full/fractional selections, deterministic endpoint coins, fractional

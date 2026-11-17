@@ -1,0 +1,10 @@
+<stdin>:22:107: error: unsolved goals
+case hs
+⊢ False
+<stdin>:53:2: error: unsolved goals
+case refine_2.«1»
+⊢ False
+<stdin>:59:2: error: unsolved goals
+case refine_4
+⊢ False
+'certified_value' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
