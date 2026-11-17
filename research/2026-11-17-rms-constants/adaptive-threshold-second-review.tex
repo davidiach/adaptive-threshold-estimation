@@ -1,0 +1,100 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[letterpaper,margin=0.86in,top=0.72in,bottom=0.77in]{geometry}
+\usepackage{amsmath,amssymb,xcolor,hyperref}
+\definecolor{ink}{HTML}{183E55}
+\hypersetup{colorlinks=true,urlcolor=ink,pdftitle={RMS constants and magnitude-oracle efficiency}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt minus 1pt}
+\setlength{\abovedisplayskip}{6pt}
+\setlength{\belowdisplayskip}{6pt}
+\raggedbottom
+\newcommand{\E}{\mathbb E}
+\newcommand{\sech}{\operatorname{sech}}
+\newcommand{\heading}[1]{{\LARGE\bfseries\color{ink} #1}\par\smallskip}
+\newcommand{\src}[2]{\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/97a501383083cc0fa64cb96405444048b8fd4053/#1}{#2}}
+\begin{document}
+{\small\color{ink} ADAPTIVE THRESHOLD ESTIMATION \hfill SECOND REVIEW \quad 17 NOVEMBER 2026}\par
+\heading{A universal RMS lower coefficient of 0.152799}
+Let $h=B^{-1/2}$, $f(d)=\min(1,h/d)$ and $\omega=\int f\,d\mu$. For every law on $(0,1/2]$ and $B\ge1$, the ordinary, revealed-magnitude and selected-magnitude minimax RMS risks all satisfy
+\[
+ R_\mu(B)\ \ge\ c\,\omega,\qquad
+ c=\frac{128}{15\{17\operatorname{arsinh}(2)+14\sqrt5\}}
+     =0.15279909\ldots .
+\]
+This improves the first review's coefficient $0.13321211\ldots$. A four-flip experiment on page 3 gives the upper endpoint $1/6$ for the best universal lower coefficient.
+
+\textbf{Information per paid observation.}
+Consider sign probabilities $q_s(d)=(1+\tanh(f(d)s))/2$, $s\in\mathbb R$, and $\theta(s)=\int q_s\,d\mu$. Reveal the random seed and the gaps as in the magnitude-oracle model. Conditional on a fixed history and the gap $d$ of the next coin, its posterior mean sign is $z=\tanh(f(d)s+\ell/2)$, where $\ell$ is the log likelihood ratio of that coin's previous flips given its sign. Independence across coins justifies this formula on an interleaved history. A fresh coin has $\ell=0$. The next flip $Y\in\{-1,1\}$ has mean $2dz$. Its conditional Fisher information in $s$ is
+\[
+ \frac{4d^2 f(d)^2(1-z^2)^2}{1-4d^2z^2}\ \le\ 4d^2 f(d)^2\ \le\ 4h^2 .
+\]
+A known sign gives zero information on a revisit, covering the deterministic boundary. Predictable choices and the common seed add zero score. Summing orthogonal score increments up to a deterministic total cap bounds transcript information by $4h^2\E_s T\le4$. For unbounded stopping, clip outputs to $[0,1]$, stop at $M$ and use a fixed fallback on overflow. The MSE changes by at most $B/M$ uniformly in $s$. This allows all score calculations at finite caps.
+
+\textbf{Integrating the score.}
+Use $t=\tanh s$ so that $I(t)\le4/(1-t^2)^2$. Since $\sech^2(fs)\ge\sech^2(s)$, $\theta'(t)\ge\omega/2$. For any smooth nonnegative weight $u$ vanishing at both endpoints, integration by parts against the transcript density with score $S_t$ gives
+\[
+ \int u\theta'=\int \E_t[(\widehat\theta-\theta)(uS_t+u')]\,
+ dt\ \le\ R\int\sqrt{u^2 I(t)+(u')^2}\,dt .
+\]
+Here $R$ bounds the RMS of the capped estimator. The identity follows first on interior subintervals. For $u=(1-t^2)^2$, bounded outputs kill the endpoint terms and the displayed integrable bound permits the limit. Finite histories have parameter-independent support and smooth likelihoods on the interior. Apply symmetry and then $M\to\infty$ to obtain
+\[
+ \frac{R_\mu(B)}{\omega}\ \ge\
+ \frac{\int_0^1(1-t^2)^2\,dt}{4\int_0^1(1-t^2)\sqrt{1+4t^2}\,dt}=c .
+\]
+{\small Sources: \src{paper/v6/core.tex}{statistical model}, \src{lean/ThresholdHC/OracleLower/Model.lean}{magnitude oracles},
+\href{https://dspace.library.uu.nl/bitstream/handle/1874/1190/van_trees.pdf?sequence=1}{Gill and Levit on Bayesian information bounds}.}
+\newpage
+\heading{The exact large-budget constant for magnitude oracles}
+Let $I_\mu=\int d^{-1}\,\mu(dd)<\infty$. For the ordinary hidden-magnitude experiment and each of the two oracle experiments,
+\[
+  \liminf_{B\to\infty} \sqrt B\, R_\mu(B)\ \ge\ I_\mu/4 .
+\]
+This includes biased estimators. In both oracle experiments the limit exists and equals $I_\mu/4$. For the hidden-magnitude experiment equality follows here for every point-mass gap law. Attainment for a general hidden gap law remains open in this review.
+
+\textbf{Lower bound.} Keep the parameter $s$ and the information bound $I(s)\le4$ from page 1. For every fixed $s$,
+\[
+ h^{-1}\theta'(s)=\tfrac12\int (f(d)/h)\sech^2(f(d)s)\,\mu(dd)
+ \longrightarrow I_\mu/2 .
+\]
+Indeed $f(d)/h\to1/d$ and $f(d)s\to0$ at each $d>0$, with integrable dominator $1/d$. In the integrated score inequality use the triangular weight $u_L(s)=(1-|s|/L)_+$. Integration by parts on its two linear pieces is valid. Its area is $L$ and its total variation is 2, so $\int\sqrt{4u_L^2+(u_L')^2}\le2L+2$. First let $B\to\infty$ at fixed $L$ and then let $L\to\infty$. This gives $\liminf R_\mu(B)/h\ge I_\mu/4$.
+
+\textbf{An estimator for both oracles.}
+Let $n=\lfloor B\rfloor\ge1$, $a=1/(2\sqrt n)$ and $A=\int_{d\ge a}d^{-1}\,\mu(dd)$. If $A>0$, choose $n$ independent fresh magnitudes with law $\nu(dd)=\mathbf1_{\{d\ge a\}}\,\mu(dd)/(Ad)$ and buy one flip $Y_i\in\{-1,1\}$ from each. Return
+\[
+             \widehat\theta=\tfrac12+\tfrac A4\,\overline Y .
+\]
+If $A=0$ return $1/2$. The selected oracle draws from $\nu$ using its random seed. In the paper's revealed oracle the full iid $\mu$-array is visible for free. Accept a fresh candidate of gap $d\ge a$ with probability $a/d$, using independent uniforms. Each accepted state has law $\nu$, and the positive acceptance rate $aA$ gives almost-sure termination. Only the $n$ purchased flips enter the budget. The construction uses the known law $\mu$.
+
+The estimator's bias has magnitude at most $\mu(d<a)/2$ and its standard deviation is at most $A/(4\sqrt n)$. Since $\mu(d<a)\le a\int_{d<a}d^{-1}\,d\mu=o(a)$ and $A\to I_\mu$, its asymptotic upper coefficient is $I_\mu/4$. For a point mass $\delta_d$, the same one-flip estimator is available in the hidden experiment for all sufficiently large $B$.
+
+\textbf{Finite budgets, every gap law.} The same calculation requires no inverse moment at fixed $n$. Adding the bias and standard deviation gives the sharper scale
+\[
+ R_\mu^{\rm oracle}(B)\le \tfrac12\,\omega_\mu(1/(2\sqrt n))
+                          \le \tfrac12\,\omega_\mu(B^{-1/2}).
+\]
+Here $B<n+1\le 4n$. Page 3 shows that the factor $1/2$ is the best universal upper coefficient for either oracle.
+
+{\small Sources: \src{lean/ThresholdHC/OracleLower/Model.lean}{revealed array and selected requests},
+\src{docs/RESULTS.md}{repository statement of the oracle lower bounds}.}
+\newpage
+\heading{Sharpness and an unbiased one-flip estimator}
+\textbf{Sharp upper coefficient for the oracles.} Fix any $B\ge1$ and take $\mu=\delta_d$ with $d\downarrow0$. Use sign laws that agree at every other magnitude and are respectively zero and one at $d$. At that gap, the two flip laws have KL divergence $2d\log[(1/2+d)/(1/2-d)]$ per paid flip, including revisits because the sign is fixed under either law. Conditional on a common history, flips at other gaps have the same law. The stopped KL chain rule gives total KL at most $B$ times the displayed divergence, tending to zero. Terminal affinity therefore tends to one. The squared-loss two-point bound gives $\liminf R_\mu(B)\ge1/2$, while $\omega_\mu(B^{-1/2})=1$ for small $d$. This proves sharpness of the universal \emph{upper} factor $1/2$.
+
+\textbf{Four flips and the lower coefficient ceiling.} Take $\mu=\delta_{1/2}$ and $B=4$. The target is $q\in[0,1]$. A fresh informative flip is $\operatorname{Bernoulli}(q)$, while a revisit reveals a known sign. For the selected oracle fix the off-support sign law independently of $q$. Thus $I(q)\le4/[q(1-q)]$ through every bounded prefix. Use the integrated score identity with uniform prior, $u=q(1-q)$ and Cauchy--Schwarz over both $q$ and the transcript. Removing the cap as on page 1,
+\[
+ R^2\ge \frac{(\int_0^1 u\,dq)^2}{\int_0^1 [4u+(1-2q)^2]\,dq}=\frac1{36}.
+\]
+Four fresh flips give $X\sim{\rm Bin}(4,q)$, and $(X+1)/6$ attains this MSE for every $q$. Hence the minimax RMS is \emph{exactly} $1/6$ even with an adaptive expected-work budget. This gives a ceiling on the universal \emph{lower} coefficient of page 1; its exact value over all laws and budgets remains undetermined.
+
+\textbf{Unbiased oracle variance--work optimum.} Suppose $I_\mu<\infty$. In the selected model draw one gap with law $\mu(dd)/(I_\mu d)$ and return $1/2+I_\mu Y/4$ after one flip. Its expectation is $\theta$ and its worst-case variance equals $I_\mu^2/16$, attained at sign law $q\equiv1/2$. The revealed array implements the same draw: partition $(0,1/2]$ into bands $(2^{-j-1},2^{-j}]$, $j\ge1$. Select a band according to its mass under the desired tilted law; conditional on that band, accept iid candidates in it with probability $2^{-j-1}/d$. Positive-mass bands have positive acceptance probability. Candidate inspections are free in this model.
+
+Conversely, repeat any unbiased oracle estimator with finite uniform work $W>0$ and finite uniform variance $V$ independently $m$ times. The average has worst-case RMS at most $\sqrt{V/m}$ at budget $mW$ (use disjoint iid input arrays for the revealed oracle). The large-budget lower bound gives $VW\ge I_\mu^2/16$. Zero work cannot give an unbiased estimator for two distinct targets. Thus the oracle optimum equals $I_\mu^2/16$ at every integrable law.
+
+{\small Sources: \src{paper/v6/appendix-dual.tex}{squared-loss testing by affinity},
+\src{paper/v6/core.tex}{stopped KL and the published unbiased comparison}.}
+
+\vspace{5pt}\hrule\vspace{5pt}
+{\small\textbf{Verification status.} These statistical results are paper proofs. Separately, the cap comparison from the first review was compiled against the repository's program definitions. Two exact-type checks, transitive-axiom reports and kernel replay cover the square-root cap comparison and its $4B/9$ factor-sixteen corollary. The sharper risk multiplier $3\sqrt7$ from the first review remains a paper derivation. The reviewed repository commit is \texttt{97a5013}.}
+\end{document}
