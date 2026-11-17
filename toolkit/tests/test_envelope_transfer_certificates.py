@@ -73,7 +73,7 @@ class EnvelopeTransferTests(unittest.TestCase):
         r = self.envelope()
         source = ec.proof_source(r, ec.produce(r))
         for target in ("zeroAtomLaw", "conditionalRarity", "quantileThreshold", "tailWorkIntegral",
-                       "envelopeLaw_dominates", "extended_integral"):
+                       "envelopeLaw_dominates", "extended_integral", "bands_cover"):
             self.assertIn(target, source)
         r = self.requests()[-1]
         source = ec.proof_source(r, ec.produce(r))

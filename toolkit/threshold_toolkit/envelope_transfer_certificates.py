@@ -393,6 +393,8 @@ def _active_envelope_proof(r,out,atoms,common,intro):
     return f"""private def normalizedWeights := {fc._vec(nv)}
 private def selected := {fc._vec(core)}
 private def labels := {fc._vec(labels,'ℕ')}
+private theorem bands_cover : ∀ i, ∃ j, inBand (gaps i) (labels j) = true := by
+  norm_num [gaps, labels, inBand, Fin.forall_fin_succ, Fin.exists_fin_succ]
 private theorem hs : ∀ i, 0 ≤ selected i ∧ selected i ≤ 1 := by norm_num [selected, Fin.forall_fin_succ]
 private theorem hws (i) : 0 ≤ weights i*selected i := mul_nonneg (hw i) (hs i).1
 private theorem hn : ∀ i, 0 ≤ normalizedWeights i := by norm_num [normalizedWeights, Fin.forall_fin_succ]
@@ -432,12 +434,13 @@ theorem certified_value : {common}
     conditionalRarity ({rho}:ℝ) ({z}:ℝ) = ({conditional}:ℝ) ∧
     ThresholdHC.EntropyTailQuantile.quantileThreshold conditionalLaw ({conditional}:ℝ) = ({dc._q(t)}:ℝ) ∧
     core = atomicMeasure (points gaps hg) (fun i => weights i*selected i) ∧
+    (∀ i, ∃ j, inBand (gaps i) (labels j) = true) ∧
     (∀ j, ThresholdHC.EntropyTail.bandCost core (labels j) = ENNReal.ofReal ({costs} j:ℝ)) ∧
     ({z}:ℝ)+unresolved.real Set.univ = ({dc._q(F(out['unresolved_mass']))}:ℝ) ∧
     (∫ x : Gap, (x:ℝ)⁻¹ ∂tail) = ({dc._q(F(out['tail_inverse']))}:ℝ) ∧
     (∫ x : Gap, min 1 (1/(({cap}:ℝ)*(x:ℝ)^2)^2) ∂(core+tail)) = ({dc._q(F(out['resolved_error']))}:ℝ) ∧
     Contains {claimed} (tailWorkIntegral tail ({cap}:ℝ)) := by
-{intro}  · refine ⟨by norm_num, conditional_probability, ?_, split_rarity, ?_, core_eq, ?_, ?_, ?_, ?_, ?_⟩
+{intro}  · refine ⟨by norm_num, conditional_probability, ?_, split_rarity, ?_, core_eq, bands_cover, ?_, ?_, ?_, ?_, ?_⟩
     · rw [construction, normalized_identity {z} _ weights (by norm_num), conditionalLaw, normalization]
     · let : IsProbabilityMeasure conditionalLaw := conditional_probability
       apply quantileThreshold_eq_of_mass conditionalLaw (ρ := ({conditional}:ℝ)) (by norm_num) (by norm_num)
