@@ -704,6 +704,16 @@ the same already-constructed restart test is run at all of them; it is
 not retuned to the selected point. The weights remain the normalized
 band costs $\\pi_j$, not the original band probabilities.
 Apply Lemma~\\ref{lem:weighted-sign}"""),
+    # The gate lemma and the annular proposition use rho <= 1/4 in their
+    # proofs; the inherited text relied on the model's standing convention.
+    (""" \\{q:0\\le q\\le\\tfrac12,\\ \\textstyle\\int q\\,d\\mu\\le\\rho\\}.
+\\]
+Let \\((Y,T)\\) be an observable one-coin procedure with uniform bias at""",
+     """ \\{q:0\\le q\\le\\tfrac12,\\ \\textstyle\\int q\\,d\\mu\\le\\rho\\}.
+\\]
+The rarity is $0<\\rho\\le1/4$ throughout this subsection and the next,
+as in \\cref{sec:rare-model}.
+Let \\((Y,T)\\) be an observable one-coin procedure with uniform bias at"""),
 ]
 
 TRANSFER_RULES = [
@@ -928,6 +938,13 @@ def general_law(sources: dict[str, str]) -> dict[str, str]:
     lower = once(lower, "by the variational modulus proved in Appendix~\\ref{sec:transfer-foundations}.",
                  "by the variational modulus of Section~\\ref{sec:rare}, through the\n"
                  "null-work obstruction proved in Appendix~\\ref{sec:transfer-foundations}.")
+    # The displayed 33000 is looser than the coefficients beside it.
+    lower = once(lower,
+        "Together with the $128z$ bias term and the constant estimator, these\n"
+        "give the rounded upper constant.",
+        "Together with the $128z$ bias term and the constant estimator, these\n"
+        "give the upper constant: every coefficient is below $27000$, and the\n"
+        "displayed $33000$ is a conservative rounding.")
 
     related = gl("related_work")
     related = once(related,

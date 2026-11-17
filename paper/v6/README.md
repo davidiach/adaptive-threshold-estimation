@@ -10,15 +10,28 @@ separate these checked results from the critical-window corollary and
 asymptotic remark, which remain paper results. Every earlier published
 package retains its original PDF and verification scope.
 
-The LaTeX sources are five corrections ahead of that PDF, which has not been
-rebuilt for them. Three are wording only: the exponent range $0<\alpha\le4$ of
-the uniform confidence radii in §11.3, and the two
-[appendix wording](#source-and-editorial-scope) changes in Appendices A and B.
-The fourth states the [rarity range](#source-and-editorial-scope) of
-Appendices J–L as $0<\rho\le1/2$, the range that Appendix Q and Theorem S.1
-use, and keeps $\rho\le1/4$ for the explicit cap $N_*$. The fifth corrects a
-remark in Appendix V: finiteness of the coefficient $C$ is equivalent to
-inverse-gap integrability, not weaker. No proof changes.
+The LaTeX sources are ahead of that PDF, which has not been rebuilt, by the
+corrections of a line-by-line review. No proof changes. One correction
+widens a stated range: Appendices J–L state the
+[rarity range](#source-and-editorial-scope) $0<\rho\le1/2$ that Appendix Q
+and Theorem S.1 use, and keep $\rho\le1/4$ for the explicit cap $N_*$. The
+others make no statement stronger:
+
+- §11.3: the uniform confidence radii hold for exponents $0<\alpha\le4$.
+- Appendices A and B: the two
+  [appendix wording](#source-and-editorial-scope) changes.
+- Appendix E: the displayed upper constant $33000$ is a conservative
+  rounding of coefficients below $27000$.
+- Appendix G: the gate lemma and the annular proposition state the range
+  $0<\rho\le1/4$ that their proofs use.
+- Appendix S: Theorem S.1 states $0<\rho\le1/4$ for the critical law. Its
+  proof covers base budgets below one and names the general-law base rule at
+  an arbitrary allowance.
+- Appendix U: the level count at exponent one uses the sharpened bias bound
+  $4r_{k+J}/3$, with an explicit $J$.
+- Appendix V: finiteness of the coefficient $C$ is equivalent to inverse-gap
+  integrability, not weaker; and a reference zero atom costs its mass times
+  the race cap $2M$ in work, not $M$.
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -174,6 +187,11 @@ The editorial changes are explicit in the generator:
   $\mathcal Q_\rho$ and the constant priors $\rho/2$ and $\rho$. The explicit
   cap $N_*$ keeps $\rho\le1/4$, which its Bernoulli-label floor needs. Lean
   states the duality and the cap-rate theorems for $\rho\le1/2$.
+- **Constant and range made explicit.** Appendix E says that the displayed
+  upper constant $33000$ is a conservative rounding: the coefficients beside
+  it are below $27000$. Appendix G states $0<\rho\le1/4$ for the gate lemma
+  and the annular proposition; the inherited text relied on the standing
+  convention of §11.1.
 - **Internal citations.** Citations of the companion manuscripts become
   cross-references. The finite-gap manuscript's conditional remark on
   general laws becomes a corollary in §14, whose proof cites the

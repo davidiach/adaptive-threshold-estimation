@@ -15,7 +15,8 @@ For $0<\rho\le1/4$ the entropy--tail functional consequently satisfies
  10^{-17}\mathcal K(\beta)\le r_{\rm exp}(B,\delta)
  \le r_{\rm hard}(B,\delta)\le 750000\,\mathcal K(\beta).
 \]
-For the critical quadratic law let $L=1+\log(1/\rho)$. Both radii are
+For the critical quadratic law and $0<\rho\le1/4$, let
+$L=1+\log(1/\rho)$. Both radii are
 within universal factors of $\min\{\rho,\sqrt{\rho L(1+\log L)/\beta}\}$.
 The upper coefficient is $2670000$.
 \end{theorem}
@@ -79,9 +80,14 @@ has \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/fb4989
 Since $\log(3/4)\le-1/4$ and $\ell\ge1$, the failure probability is at
 most $\delta$, $b\le\beta$, and $\beta/b=8k/\ell\le88$. The already
 proved budget scaling bounds the base rate at $b$ by $\sqrt{88}$ times
-its value at $\beta$. Use the general-law RMS witness of
-Appendix~\ref{app:hard-budget} with coefficient $28001$, or the critical estimator with coefficient $100000$. Multiplying
-each by $\sqrt{8\cdot88}\le26.7$ gives the two asserted upper bounds.
+its value at $\beta$. For a general law use a base rule with RMS at most
+$28001\,\mathcal K(b)$; one exists at every allowance $b>0$ by the positive
+rate and the expected-budget coefficient $28000$, as in
+Appendix~\ref{app:hard-budget}. For the critical law use the critical
+estimator with coefficient $100000$ when $b\ge1$. When $b<1$ the critical
+rate equals $\rho$, and the constant $\rho/2$ has zero work and error at
+most $\rho/2$. Multiplying
+each coefficient by $\sqrt{8\cdot88}\le26.7$ gives the two asserted upper bounds.
 Finally every hard-cap rule satisfies the expected-work constraint.
 \end{proof}
 
