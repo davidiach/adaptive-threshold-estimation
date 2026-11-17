@@ -1,0 +1,11 @@
+test_changed_source_rejected (test_envelope_transfer_certificates_audit.EnvelopeTransferAuditTests.test_changed_source_rejected) ... ok
+test_complete_scope (test_envelope_transfer_certificates_audit.EnvelopeTransferAuditTests.test_complete_scope) ... ok
+test_extra_module_rejected (test_envelope_transfer_certificates_audit.EnvelopeTransferAuditTests.test_extra_module_rejected) ... ok
+test_incomplete_or_unsound_reports (test_envelope_transfer_certificates_audit.EnvelopeTransferAuditTests.test_incomplete_or_unsound_reports) ... ok
+test_registry_and_escapes (test_envelope_transfer_certificates_audit.EnvelopeTransferAuditTests.test_registry_and_escapes) ... ok
+test_snapshot_covers_execution_sources (test_envelope_transfer_certificates_audit.EnvelopeTransferAuditTests.test_snapshot_covers_execution_sources) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 1.708s
+
+OK

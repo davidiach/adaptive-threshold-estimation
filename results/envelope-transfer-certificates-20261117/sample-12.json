@@ -1,0 +1,16 @@
+{
+  "schema": "ate-kernel-envelope-transfer-v1",
+  "request": {
+    "operation": "transfer",
+    "lower": "1/32",
+    "upper": "1/16",
+    "rounding_factor": "3/2",
+    "tv_radius": "1/128",
+    "rho": "1/4",
+    "budget": "256"
+  },
+  "output": {
+    "lower": "3/128",
+    "upper": "13/128"
+  }
+}

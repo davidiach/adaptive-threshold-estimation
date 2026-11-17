@@ -1,0 +1,34 @@
+'ThresholdHC.EnvelopeTransferCertificates.atomic_group' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EnvelopeTransferCertificates.common_band' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EnvelopeTransferCertificates.extendCDF' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EnvelopeTransferCertificates.extendCDF_antitone' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EnvelopeTransferCertificates.extendCDF_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EnvelopeTransferCertificates.extendedAtomic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EnvelopeTransferCertificates.extendedAtomic_finite' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EnvelopeTransferCertificates.extendedAtomic_probability' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EnvelopeTransferCertificates.extendedAtomic_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EnvelopeTransferCertificates.extended_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EnvelopeTransferCertificates.fallback_selection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EnvelopeTransferCertificates.map_atomic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EnvelopeTransferCertificates.map_atomic_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EnvelopeTransferCertificates.normalized_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EnvelopeTransferCertificates.pointMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EnvelopeTransferCertificates.pointMap_bands' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EnvelopeTransferCertificates.pointMap_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EnvelopeTransferCertificates.pointMap_measurable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EnvelopeTransferCertificates.scaled_core' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EnvelopeTransferCertificates.transferCheck' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.EnvelopeTransferCertificates.transferCheck_sound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.EnvelopeTransferCertificates.transfer_original' depends on axioms: [propext, Classical.choice, Quot.sound]

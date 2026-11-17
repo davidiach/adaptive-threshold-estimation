@@ -1,0 +1,27 @@
+{
+  "schema": "ate-kernel-envelope-transfer-v1",
+  "request": {
+    "operation": "rounding",
+    "atoms": [
+      [
+        "1/4",
+        "1"
+      ]
+    ],
+    "subdivisions": 1,
+    "rho": "1/4",
+    "budget": "256"
+  },
+  "output": {
+    "atoms": [
+      [
+        "1/4",
+        "1"
+      ]
+    ],
+    "factor": "1",
+    "destinations": [
+      "1/4"
+    ]
+  }
+}
