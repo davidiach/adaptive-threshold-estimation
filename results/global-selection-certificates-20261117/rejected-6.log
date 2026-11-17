@@ -1,0 +1,24 @@
+<stdin>:20:14: warning: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+<stdin>:20:30: warning: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+<stdin>:20:14: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+<stdin>:20:30: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+<stdin>:31:89: error: unsolved goals
+case true.true
+s : Fin (Nat.succ 1) → Bool
+he : s = ![s 0, s 1]
+h0 : s 0 = true
+h1 : s 1 = true
+hs : True
+⊢ False
+<stdin>:39:75: error: Tactic `decide` proved that the proposition
+  False
+is false
+'certified_value' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

@@ -1366,6 +1366,9 @@ The [finite-law extension](FINITE_LAW_CERTIFICATES.md) checks canonical measure
 identities and actual feasible-objective, quantile-split and finite-oracle outputs.
 The [envelope/transfer extension](ENVELOPE_TRANSFER_CERTIFICATES.md) adds residual-zero
 mixture/split identities, rounding pushforwards and conditional transfer bounds.
-Global selection, concrete planners/schedules and floating calculators remain
-open in #85; CPython and stochastic execution remain separate in #86. The API
+The [global selection extension](GLOBAL_SELECTION_CERTIFICATES.md) certifies
+bounded complete menus, original-`K` intervals, DP optimality claims and relative
+approximation outputs. Full internal solver transcripts and complexity accounting,
+other selection entry points, concrete planners/schedules and floating calculators
+remain open in #85; CPython and stochastic execution remain separate in #86. The API
 inventory records those boundaries.

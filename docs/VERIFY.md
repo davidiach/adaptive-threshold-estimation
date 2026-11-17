@@ -1167,3 +1167,14 @@ replay of the three new modules, actual outputs and numerical rejection cases.
 It preserves source/compiler/artifact hashes under a fresh
 `.runtime/envelope-transfer-certificates/`; see [contracts and limits](ENVELOPE_TRANSFER_CERTIFICATES.md).
 CI uploads both this directory and `.runtime/finite-law-certificates/`.
+
+## Global selection output certificates
+
+Run `python tools/verify_global_selection_certificates.py`, followed by
+`python -m unittest discover -s tools -p test_global_selection_certificates_audit.py -v`.
+The focused audit checks eleven exact statements, all declaration roots and
+independent replay of two new modules, then actual bounded exhaustive/DP/approximation
+outputs and adversarial rejections. Evidence is written under
+`.runtime/global-selection-certificates/`. The [scope](GLOBAL_SELECTION_CERTIFICATES.md)
+distinguishes global output proofs from internal solver execution and polynomial
+verification cost. The normal toolkit suite covers parser and failure boundaries.

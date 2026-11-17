@@ -1,0 +1,53 @@
+{
+  "schema": "ate-kernel-global-selection-v1",
+  "request": {
+    "operation": "approximate",
+    "atoms": [
+      [
+        "1/64",
+        "1/128"
+      ],
+      [
+        "1/8",
+        "1/4"
+      ],
+      [
+        "1/2",
+        "95/128"
+      ]
+    ],
+    "rho": "1/4",
+    "budget": "1024",
+    "epsilon": "1/4",
+    "bits": 16,
+    "log_terms": 4,
+    "max_work": 4096
+  },
+  "output": {
+    "value": {
+      "lower": "93637/1114112",
+      "upper": "46819/524288"
+    },
+    "selected": [
+      false,
+      true,
+      true
+    ],
+    "suffix_count": 8,
+    "witness_value": {
+      "lower": "93637/1048576",
+      "upper": "46819/524288"
+    },
+    "epsilon": "1/4"
+  },
+  "menu": [
+    0,
+    4,
+    2,
+    6,
+    1,
+    5,
+    3,
+    7
+  ]
+}

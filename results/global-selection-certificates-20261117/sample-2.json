@@ -1,0 +1,33 @@
+{
+  "schema": "ate-kernel-global-selection-v1",
+  "request": {
+    "operation": "dp",
+    "atoms": [
+      [
+        "1/2",
+        "1"
+      ]
+    ],
+    "rho": "1/4",
+    "budget": "1024",
+    "epsilon": "1/10",
+    "bits": 16,
+    "log_terms": 4,
+    "max_work": 4096
+  },
+  "output": {
+    "value": {
+      "lower": "1/32",
+      "upper": "1/32"
+    },
+    "selected": [
+      true
+    ],
+    "suffix_count": 2,
+    "optimality_proved": true
+  },
+  "menu": [
+    0,
+    1
+  ]
+}

@@ -12,6 +12,7 @@ describes the other folders.
 | [VERIFY.md](VERIFY.md) | Reproduce a check; the [task table](VERIFY.md#choose-checks-by-task) picks the commands |
 | [WORKPLAN.md](WORKPLAN.md) | See the current priorities and what is finished |
 | [ENVELOPE_TRANSFER_CERTIFICATES.md](ENVELOPE_TRANSFER_CERTIFICATES.md) | Check zero-residual envelopes, rounding pushforwards and conditional transfer outputs |
+| [GLOBAL_SELECTION_CERTIFICATES.md](GLOBAL_SELECTION_CERTIFICATES.md) | Check bounded complete menus, global solver intervals, exact-optimality claims and relative approximation |
 | [FINITE_LAW_CERTIFICATES.md](FINITE_LAW_CERTIFICATES.md) | Connect finite laws to original measures and check actual objective/oracle outputs |
 | [DETERMINISTIC_VERIFICATION.md](DETERMINISTIC_VERIFICATION.md) | Inventory deterministic APIs, use the numerical certificate checker and see the remaining implementation boundary |
 | [SECONDARY_CLAIMS.md](SECONDARY_CLAIMS.md) | Find the exact disposition of secondary paper claims and their relationship to checked theorems |

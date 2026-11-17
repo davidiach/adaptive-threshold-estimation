@@ -1450,6 +1450,29 @@
     "ThresholdHC.Genie.uniformMonomial": "10394737814777886938:13984833173345649464",
     "ThresholdHC.Genie.uniformSignPrior": "12783342425771617565:2272027898855345473",
     "ThresholdHC.GenieRate.mixedReferences": "332339554610433432:8712875917793223703",
+    "ThresholdHC.GlobalSelectionCertificates.extendMasks": "7655206841145796050:4633389036330847551",
+    "ThresholdHC.GlobalSelectionCertificates.fixedSaving": "3602624714592085540:10824598212251548238",
+    "ThresholdHC.GlobalSelectionCertificates.fractions": "3648013827897579529:2374909203032608230",
+    "ThresholdHC.GlobalSelectionCertificates.instDecidableSavingPositiveQ": "643280808757254332:10051146449976732717",
+    "ThresholdHC.GlobalSelectionCertificates.mergeMask": "15645760083444412204:5570064094654929473",
+    "ThresholdHC.GlobalSelectionCertificates.peakCount": "4130708766799120457:2652759939814854682",
+    "ThresholdHC.GlobalSelectionCertificates.runCheck": "6551827964961644457:7541814562324904284",
+    "ThresholdHC.GlobalSelectionCertificates.runCheck._f": "2969602072460486936:10838826489424151314",
+    "ThresholdHC.GlobalSelectionCertificates.runCheck._sparseCasesOn_1": "16791640986512770301:7456908155610074692",
+    "ThresholdHC.GlobalSelectionCertificates.runCheck._sparseCasesOn_2": "13559188295171588226:7972242363864456599",
+    "ThresholdHC.GlobalSelectionCertificates.runCheck._sunfold": "6551827964961644457:5741213814097113684",
+    "ThresholdHC.GlobalSelectionCertificates.runCheck._unsafe_rec": "6551827964961644457:18003311867539340687",
+    "ThresholdHC.GlobalSelectionCertificates.runCheck.match_1": "16732370586432948962:13189301046879150496",
+    "ThresholdHC.GlobalSelectionCertificates.savingLE": "14635302136512913341:7536522556956200089",
+    "ThresholdHC.GlobalSelectionCertificates.savingPositiveQ": "6186938886440516905:13633618913444134898",
+    "ThresholdHC.GlobalSelectionCertificates.scaledSaving": "3602624714592085540:9431933186967750867",
+    "ThresholdHC.GlobalSelectionCertificates.stageCheck": "5772933817522966105:929571177448227045",
+    "ThresholdHC.GlobalSelectionCertificates.suffixCheck": "3876743528584525756:5169628542560579776",
+    "ThresholdHC.GlobalSelectionCertificates.transitionCount": "3197446294552427209:9113810331766586807",
+    "ThresholdHC.GlobalSelectionCertificates.transitionCount._f": "5968843156111948998:5988685719646973248",
+    "ThresholdHC.GlobalSelectionCertificates.transitionCount._sunfold": "3197446294552427209:11283742271463331216",
+    "ThresholdHC.GlobalSelectionCertificates.transitionCount._unsafe_rec": "3197446294552427209:8998543234769213572",
+    "ThresholdHC.GlobalSelectionCertificates.transitionCount.match_1": "7561436045296419933:330920973957571211",
     "ThresholdHC.HardBudget.ObservableFallbackStatement": "4762494857145497995:5930038765106214213",
     "ThresholdHC.HardBudget.Outcome": "12841156711311012099:16511098089835869787",
     "ThresholdHC.HardBudget.PathwiseCap": "16887574662335199167:15013368398778738828",
@@ -2545,6 +2568,7 @@
     "_private.ThresholdHC.EntropyTailExecution.CallMachine.0.ThresholdHC.EntropyTailExecution.instCountablePlanState.countableToNat._@.ThresholdHC.EntropyTailExecution.CallMachine.3902759816._hygCtx._hyg.28": "9473174145655191477:13341827522917269068",
     "_private.ThresholdHC.EntropyTailExecution.CallMachine.0.ThresholdHC.EntropyTailExecution.instCountablePlanState.countableToNat.match_1._@.ThresholdHC.EntropyTailExecution.CallMachine.3902759816._hygCtx._hyg.28": "6966589650861270736:11451058395357308697",
     "_private.ThresholdHC.Genie.InfiniteCoordinates.0.ThresholdHC.Genie.allPriorCoordinates.match_1.splitter": "10988461606930485582:5468332058401361991",
+    "_private.ThresholdHC.GlobalSelectionCertificates.Trace.0.ThresholdHC.GlobalSelectionCertificates.runCheck.match_1.splitter": "5877759561623671510:17011033937054198019",
     "_private.ThresholdHC.HardBudget.Stage.0.ThresholdHC.HardBudget.decode_correct.match_1.splitter": "5146101292650204729:11326430047172387012",
     "_private.ThresholdHC.ObservableSimulation.PopulationPath.0.ThresholdHC.ObservableSimulation.measurable_seeded_populationSimulation.match_1_1.splitter": "2768292523083620860:13544452639429970733",
     "_private.ThresholdHC.OracleLower.Examples.0.ThresholdHC.OracleLower.selectedLabel.match_1.splitter": "13132223457540246259:14909000597956114508",
@@ -2649,6 +2673,10 @@
     {
       "at": "2026-11-17T12:46:05+00:00",
       "count": 8
+    },
+    {
+      "at": "2026-11-17T14:12:36+00:00",
+      "count": 24
     }
   ]
 }

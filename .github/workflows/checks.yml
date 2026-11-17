@@ -250,7 +250,7 @@ jobs:
           --extra .runtime/drift/constants_candidate_theory.json=results/constants_theory.json
   lean-kernel:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -298,6 +298,10 @@ jobs:
         run: python tools/verify_envelope_transfer_certificates.py
       - name: Check envelope/transfer certificate audit guards
         run: python -m unittest discover -s tools -p "test_envelope_transfer_certificates_audit.py" -v
+      - name: Verify bounded global menu and solver output certificates
+        run: python tools/verify_global_selection_certificates.py
+      - name: Check global selection certificate audit guards
+        run: python -m unittest discover -s tools -p "test_global_selection_certificates_audit.py" -v
       - name: Build sequentially and require complete kernel audit
         run: python tools/verify_lean_checkpoint.py --sequential
       - name: Verify unscored arithmetic for the paper bound
@@ -384,6 +388,7 @@ jobs:
             .runtime/deterministic-certificates/
             .runtime/finite-law-certificates/
             .runtime/envelope-transfer-certificates/
+            .runtime/global-selection-certificates/
   lean-all-modules:
     runs-on: ubuntu-latest
     timeout-minutes: 150
