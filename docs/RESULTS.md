@@ -59,7 +59,9 @@ the original minimax law and its extensions first, then the rare-event
 results, then hard caps, confidence and the remaining follow-ups.
 
 This guide gives the exact Lean specifications and remaining paper-proof
-boundaries. Historical source pointers below refer to the unchanged
+boundaries. The [secondary-claim reconciliation](SECONDARY_CLAIMS.md) records
+the disposition of every item in #89, including the precise differences between
+historical constructions and later checked results. Historical source pointers below refer to the unchanged
 [v4 paper](../paper/paper.pdf), its [TeX](../paper/paper.tex), and the
 [rare-event continuation](../inputs/next-phase/report/research_note.pdf).
 
