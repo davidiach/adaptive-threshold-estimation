@@ -1,0 +1,188 @@
+{
+  "accepted": [
+    {
+      "verified": true,
+      "request": {
+        "operation": "sqrt",
+        "values": [
+          "0"
+        ],
+        "bits": 80,
+        "log_terms": 32
+      },
+      "output": {
+        "lower": "0",
+        "upper": "0"
+      },
+      "proof_sha256": "27838fa18b2ba507eb7be3011988edee4305f320bebeccd205fc715ad5384a4f",
+      "scope": "numerical_enclosure_and_sqrt_precision_not_statistical_risk",
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "sqrt",
+        "values": [
+          "3/100000000000000000000000000000000000000000000000000000000000000000000000000000000"
+        ],
+        "bits": 80,
+        "log_terms": 32
+      },
+      "output": {
+        "lower": "2280077997893170290067005/13164036458569648337239753460458804039861886925068638906788872192",
+        "upper": "1140038998946585145033503/6582018229284824168619876730229402019930943462534319453394436096"
+      },
+      "proof_sha256": "71f7cf47a563eeb7b25bae0e1557d13393ed56b52b53e0f615bd97d2031b09d1",
+      "scope": "numerical_enclosure_and_sqrt_precision_not_statistical_risk",
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "sqrt",
+        "values": [
+          "9/16"
+        ],
+        "bits": 80,
+        "log_terms": 32
+      },
+      "output": {
+        "lower": "3/4",
+        "upper": "3/4"
+      },
+      "proof_sha256": "e28490c836bdc5bbfc726e584213b7776c9955d9d0c5e3ba04e973ce000b5f1d",
+      "scope": "numerical_enclosure_and_sqrt_precision_not_statistical_risk",
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "log",
+        "values": [
+          "1/8"
+        ],
+        "bits": 80,
+        "log_terms": 4
+      },
+      "output": {
+        "lower": "-1910051/918540",
+        "upper": "-53056/25515"
+      },
+      "proof_sha256": "8c41304b599e945667b6f11d692346c95a770f111a899c2f68c6def903f9308a",
+      "scope": "numerical_enclosure_and_sqrt_precision_not_statistical_risk",
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "log",
+        "values": [
+          "3"
+        ],
+        "bits": 80,
+        "log_terms": 32
+      },
+      "output": {
+        "lower": "33579023363127687480064053860059558223030221669457398564116670143844553464361994205784170220033536/30564944256937850676078031637949268574642284363582982989644698523790111721609719097614288330078125",
+        "upper": "25830017971636682676972349123122816102055064619534461390141724763856176742269569458910285185313601/23511495582259885135444639721499437365109449510448448453572845018300085939699783921241760253906250"
+      },
+      "proof_sha256": "5ef899343671b97c71f07faace491b77cdcc3e783f621445d8529b28181d31e7",
+      "scope": "numerical_enclosure_and_sqrt_precision_not_statistical_risk",
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "entropy",
+        "values": [],
+        "bits": 80,
+        "log_terms": 32
+      },
+      "output": {
+        "lower": "0",
+        "upper": "0"
+      },
+      "proof_sha256": "73357f7626c6c151c691a2fdaaaec2e2b85fec17ae83133749f2e17cf7ece659",
+      "scope": "numerical_enclosure_and_sqrt_precision_not_statistical_risk",
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "entropy",
+        "values": [
+          "0",
+          "0"
+        ],
+        "bits": 80,
+        "log_terms": 32
+      },
+      "output": {
+        "lower": "0",
+        "upper": "0"
+      },
+      "proof_sha256": "03a2e733ba7fe24736e7be7ca686317dcd1335f6ecc5e7f9ea8f708f99f0c888",
+      "scope": "numerical_enclosure_and_sqrt_precision_not_statistical_risk",
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "entropy",
+        "values": [
+          "1",
+          "0",
+          "2"
+        ],
+        "bits": 80,
+        "log_terms": 4
+      },
+      "output": {
+        "lower": "838839181/170859375",
+        "upper": "7549572707/1537734375"
+      },
+      "proof_sha256": "3ab7bd52aaea8eba3d492d98bef51ce5fc73df7d45d74ad8d7f0dd97a037f833",
+      "scope": "numerical_enclosure_and_sqrt_precision_not_statistical_risk",
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    }
+  ],
+  "rejected": [
+    {
+      "operation": "sqrt",
+      "output": {
+        "lower": "3",
+        "upper": "3"
+      }
+    },
+    {
+      "operation": "sqrt",
+      "output": {
+        "lower": "0",
+        "upper": "2"
+      }
+    },
+    {
+      "operation": "log",
+      "output": {
+        "lower": "-4",
+        "upper": "-3"
+      }
+    },
+    {
+      "operation": "entropy",
+      "output": {
+        "lower": "0",
+        "upper": "0"
+      }
+    }
+  ],
+  "regression_scope": "finite execution evidence, not universal producer correctness"
+}

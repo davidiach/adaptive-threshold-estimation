@@ -1,0 +1,5 @@
+'certified_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+<stdin>:15:2: error: unsolved goals
+case h
+⊢ False
+'certified_precision' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

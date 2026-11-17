@@ -1137,3 +1137,23 @@ finite onset and final same-event width `2^32 C_* K(B/Lambda)`. The theorem
 assumes no statistical stage oracle. CI also replays these twelve modules
 through the independent kernel checker. Finite-law numerical enclosures,
 Python/PRNG verification and manuscript/PDF publication remain separate.
+
+## Deterministic output certificates
+
+Run `python tools/verify_deterministic_certificates.py` to build the new checker,
+check eight exact statements and all declared roots, replay its four modules
+through the independent kernel checker, and check actual toolkit outputs plus
+adversarial certificates. The output goes to a fresh directory under
+`.runtime/deterministic-certificates/`. See the [contract and API inventory](DETERMINISTIC_VERIFICATION.md).
+Run `python -m unittest discover -s tools -p test_deterministic_certificates_audit.py -v`
+for the audit guards and the toolkit suite for input/runner rejection tests.
+The proof covers checker soundness; concrete examples are finite execution
+evidence. Global selection and planner implementation remain outside this audit.
+
+## Finite-law objective and oracle certificates
+
+Run `python tools/verify_finite_law_certificates.py` for the locked measure
+bridges, exact statements, transitive axioms, five-module kernel replay and
+actual-output certificates. Run `python -m unittest discover -s tools -p
+test_finite_law_certificates_audit.py -v` for audit guards. Fresh results go to
+`.runtime/finite-law-certificates/`; see [scope and limits](FINITE_LAW_CERTIFICATES.md).

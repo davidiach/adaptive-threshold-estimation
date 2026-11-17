@@ -1,0 +1,15 @@
+{
+  "schema": "ate-kernel-numerics-v1",
+  "request": {
+    "operation": "log",
+    "values": [
+      "1/8"
+    ],
+    "bits": 80,
+    "log_terms": 4
+  },
+  "output": {
+    "lower": "-1910051/918540",
+    "upper": "-53056/25515"
+  }
+}

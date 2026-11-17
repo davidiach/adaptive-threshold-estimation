@@ -1,0 +1,4 @@
+<stdin>:57:2: error: unsolved goals
+case refine_3
+⊢ False
+'certified_value' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

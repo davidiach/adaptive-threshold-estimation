@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "scope": "Rational certificate checker and bridge to the existing cost entropy; Python execution is not verified.",
+  "sha256": {
+    "lean/lake-manifest.json": "a7058b14db1034b58735d82f1cf9a82a938855e93decc1960ca7d21e786fdfe2",
+    "lean/lakefile.toml": "273cfe4674e97219b22f7de1428bdadfb45379c7fa582882c59624ab7fbc3189",
+    "lean/lean-toolchain": "d581a24b57a4ae9e0b2132ca8ac7cc3ac336a9fc2751fe6b29414e2d434d54c4",
+    "lean/ThresholdHC/DeterministicCertificates/Checker.lean": "4d4d834c8b2194f72e9d66d02c8b781e67e30b5ee330107eabd90f879b33b4f0",
+    "lean/ThresholdHC/DeterministicCertificates/Entropy.lean": "803b2f7ea27c2c5cc4053751848878b07b72bc0a4edb9a9b36a8d315a54b7dda",
+    "lean/ThresholdHC/DeterministicCertificates/Intervals.lean": "d755d8c821f558b9a440e0ed9120cf66c5c96ac891b4fdc678a425bf532c0efb",
+    "lean/ThresholdHC/DeterministicCertificates/Logarithm.lean": "d6a04e12a2c18b87cb0ab657404b2d932fa96350ee1001214373826387041980",
+    "lean/ThresholdHC/EntropyTailQuantile/CostEntropy.lean": "cfd71fb622f3e2a794de5ecb5f087ae0c96e65af5335beb44040aa690c483939"
+  }
+}

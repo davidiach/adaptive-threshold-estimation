@@ -16,6 +16,8 @@ definitions with the paper for that review.
 
 | Result | Formal entry point | Audit command |
 |---|---|---|
+| Finite-law measures, fractional quantile cores, feasible objectives and oracle output certificates | [Oracles](ThresholdHC/FiniteLawCertificates/Oracles.lean), [scope](../docs/FINITE_LAW_CERTIFICATES.md) | `python tools/verify_finite_law_certificates.py` |
+| Deterministic numerical certificates and actual sqrt/log/entropy outputs | [Checker](ThresholdHC/DeterministicCertificates/Checker.lean), [entropy bridge](ThresholdHC/DeterministicCertificates/Entropy.lean), [scope](../docs/DETERMINISTIC_VERIFICATION.md) | `python tools/verify_deterministic_certificates.py` |
 | Finite-law `(1+epsilon)` approximation, original-K endpoints and state bound | [New specification](ThresholdHC/FiniteSelectionApproximation/Specification.lean), [assembled theorem](ThresholdHC/FiniteSelectionApproximation/Full.lean), [scope](../docs/FINITE_SELECTION_APPROXIMATION.md) | `python tools/verify_finite_selection_approximation.py` |
 | Entropy perturbation and feasible two-summary state compression for approximation | [Locked model](ThresholdHC/SelectionApproximation/Model.lean), [Entropy](ThresholdHC/SelectionApproximation/Entropy.lean), [Compression](ThresholdHC/SelectionApproximation/Compression.lean), [scope and reproduction](ThresholdHC/SelectionApproximation/README.md) | `python tools/verify_selection_approximation.py` |
 | General RMS lower bound in the observable experiment | [Tier6 specification](ThresholdHC/Tier6/Specification.lean), [Full](ThresholdHC/Tier6/Full.lean) | `python tools/verify_tier6.py --sequential --require-complete` |

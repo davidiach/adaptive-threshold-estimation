@@ -271,3 +271,16 @@ finite onset and final same-event width `2^32 C_* K(B/Lambda)`. The theorem
 assumes no statistical stage oracle. CI also replays these twelve modules
 through the independent kernel checker. Finite-law numerical enclosures,
 Python/PRNG verification and manuscript/PDF publication remain separate.
+
+## Deterministic certificate checker
+
+`python tools/verify_deterministic_certificates.py` audits eight exact statements,
+all declarations and four independently replayed modules, then checks actual
+sqrt/log/entropy outputs and rejects invalid numerical certificates in Lean.
+It records input/output proof source, axiom reports, source hashes and toolchain
+identity under `.runtime/deterministic-certificates/`. See the
+[implementation boundary](../docs/DETERMINISTIC_VERIFICATION.md).
+
+`python tools/verify_finite_law_certificates.py` checks ten exact types and
+52 transitive reports, replays five modules and tests actual objective/oracle
+certificates with adversarial rejections. See the [finite-law scope](../docs/FINITE_LAW_CERTIFICATES.md).
