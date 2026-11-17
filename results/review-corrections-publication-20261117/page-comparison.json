@@ -1,0 +1,94 @@
+{
+  "baseline_pdf": "paper/v6/builds/power-window-complete-20261116.pdf",
+  "baseline_pdf_sha256": "dbdbd77cf32e06890cd03277db5f7ec996415783e5aac4a2525443bd7fedb372",
+  "baseline_pages": 192,
+  "pdf": "paper/v6/builds/review-corrections-20261117.pdf",
+  "pdf_sha256": "9f98e4f9329f772764b6d818cbb1fe670ed52fb2af808d59e034a4b6c4a56af7",
+  "pages": 192,
+  "method": "Poppler pdftotext -bbox word text and bounding boxes rounded to 0.001 pt, excluding a 60 pt band at the top and at the bottom of each page (running header and page number). No pixel-identity claim.",
+  "unchanged_pages_same_number": 175,
+  "relocated_pages": {},
+  "same_text_new_word_positions": [],
+  "changed_pages": [
+    31,
+    66,
+    67,
+    77,
+    99,
+    108,
+    109,
+    110,
+    111,
+    112,
+    126,
+    131,
+    155,
+    156,
+    167,
+    170,
+    181
+  ],
+  "changed_pages_by_correction": {
+    "Section 11.3: confidence radii for exponents at most four": [
+      31
+    ],
+    "Appendix A: hybrid law written P^(i)": [
+      66,
+      67
+    ],
+    "Appendix B: closing remark on the rarity constraint": [
+      77
+    ],
+    "Appendix E: the displayed 33000 is a conservative rounding": [
+      99
+    ],
+    "Appendix G: rarity range stated; the inserted sentence reflows the rest of the appendix": [
+      108,
+      109,
+      110,
+      111,
+      112
+    ],
+    "Appendix J: standing rarity range of the stopping programs": [
+      126
+    ],
+    "Appendix K: the explicit cap keeps rarity at most one quarter": [
+      131
+    ],
+    "Appendix S: Theorem S.1 and the base rules of its proof": [
+      155,
+      156
+    ],
+    "Appendix U: level count at exponent one": [
+      167
+    ],
+    "Appendix V: finiteness of the coefficient C": [
+      170
+    ],
+    "Appendix V: work of a reference zero atom": [
+      181
+    ]
+  },
+  "table_of_contents": "main.toc of this build is byte-identical to main.toc of the baseline rebuild: every section and subsection keeps its page.",
+  "visual_pages_checked": [
+    2,
+    31,
+    66,
+    67,
+    77,
+    99,
+    108,
+    109,
+    110,
+    111,
+    112,
+    126,
+    131,
+    155,
+    156,
+    167,
+    170,
+    181
+  ],
+  "visual_check": "Rendered with Poppler pdftoppm at 110 dpi and inspected: no clipping, overlap, missing text or displaced header or footer."
+}

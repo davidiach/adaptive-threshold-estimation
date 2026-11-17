@@ -1,0 +1,71 @@
+[
+  {
+    "id": 44142378816,
+    "event": "push",
+    "head_branch": "main",
+    "head_sha": "97a501383083cc0fa64cb96405444048b8fd4053",
+    "html_url": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/44142378816",
+    "conclusion": "success",
+    "run_started_at": "2026-11-17T17:56:05Z",
+    "updated_at": "2026-11-17T17:57:32Z",
+    "job_id": 134248322409,
+    "pdfinfo": {
+      "pages": 192,
+      "file_size_bytes": 1515796
+    },
+    "artifacts": [
+      {
+        "id": 14353414981,
+        "name": "v6-paper",
+        "size_in_bytes": 1499843,
+        "digest": "sha256:57af1cd2e241dd58559f24cda26328e71028200570caba2bf9aa9d89e6f01bf6"
+      }
+    ]
+  },
+  {
+    "id": 44130152227,
+    "event": "push",
+    "head_branch": "claude/kind-turing-pqjssw",
+    "head_sha": "5dd314a16928af6739504eb171d572a9927fd483",
+    "html_url": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/44130152227",
+    "conclusion": "success",
+    "run_started_at": "2026-11-17T16:49:34Z",
+    "updated_at": "2026-11-17T16:51:04Z",
+    "job_id": 134204687281,
+    "pdfinfo": {
+      "pages": 192,
+      "file_size_bytes": 1515796
+    },
+    "artifacts": [
+      {
+        "id": 14348369465,
+        "name": "v6-paper",
+        "size_in_bytes": 1499843,
+        "digest": "sha256:240da2255084b5adf63a8548a998d10a7b69b8a5c2f8b2f666d4d5660c1a69e1"
+      }
+    ]
+  },
+  {
+    "id": 44130163439,
+    "event": "pull_request",
+    "head_branch": "claude/kind-turing-pqjssw",
+    "head_sha": "5dd314a16928af6739504eb171d572a9927fd483",
+    "html_url": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/44130163439",
+    "conclusion": "success",
+    "run_started_at": "2026-11-17T16:49:38Z",
+    "updated_at": "2026-11-17T16:51:05Z",
+    "job_id": 134204724902,
+    "pdfinfo": {
+      "pages": 192,
+      "file_size_bytes": 1515796
+    },
+    "artifacts": [
+      {
+        "id": 14348244383,
+        "name": "v6-paper",
+        "size_in_bytes": 1499843,
+        "digest": "sha256:744d3d24e2e65bd952ea07c350b1881f8eeeffabf8da85a9e99a97ca6f0b71e5"
+      }
+    ]
+  }
+]
