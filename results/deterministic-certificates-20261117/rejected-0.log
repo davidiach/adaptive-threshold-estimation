@@ -1,0 +1,4 @@
+<stdin>:5:81: error: unsolved goals
+⊢ False
+'certified_value' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'certified_precision' depends on axioms: [propext, Classical.choice, Quot.sound]

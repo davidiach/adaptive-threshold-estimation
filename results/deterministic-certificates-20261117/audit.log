@@ -1,0 +1,43 @@
+'ThresholdHC.DeterministicCertificates.Contains' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.DeterministicCertificates.Evidence' does not depend on any axioms
+'ThresholdHC.DeterministicCertificates.Evidence.bounds' does not depend on any axioms
+'ThresholdHC.DeterministicCertificates.Expr' does not depend on any axioms
+'ThresholdHC.DeterministicCertificates.Expr.eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.DeterministicCertificates.Interval' does not depend on any axioms
+'ThresholdHC.DeterministicCertificates.LogWitness' does not depend on any axioms
+'ThresholdHC.DeterministicCertificates.accepted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.DeterministicCertificates.accepted_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.DeterministicCertificates.add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.DeterministicCertificates.add_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.DeterministicCertificates.check' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.DeterministicCertificates.check_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.DeterministicCertificates.encloses' does not depend on any axioms
+'ThresholdHC.DeterministicCertificates.encloses_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.DeterministicCertificates.entropyExpr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.DeterministicCertificates.entropyExpr_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.DeterministicCertificates.entropy_accepted_sound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.DeterministicCertificates.imax' does not depend on any axioms
+'ThresholdHC.DeterministicCertificates.imin' does not depend on any axioms
+'ThresholdHC.DeterministicCertificates.logBounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.DeterministicCertificates.logBounds_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.DeterministicCertificates.logCheck' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.DeterministicCertificates.logCheck_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.DeterministicCertificates.logRange' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.DeterministicCertificates.max_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.DeterministicCertificates.min_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.DeterministicCertificates.point' does not depend on any axioms
+'ThresholdHC.DeterministicCertificates.point_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.DeterministicCertificates.scale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.DeterministicCertificates.scale_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.DeterministicCertificates.sqrtCheck' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.DeterministicCertificates.sqrtCheck_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.DeterministicCertificates.sqrtPrecisionCheck' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.DeterministicCertificates.sqrtPrecisionCheck_sound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.DeterministicCertificates.sumExpr' depends on axioms: [propext, Quot.sound]
+'ThresholdHC.DeterministicCertificates.sumExpr_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.DeterministicCertificates.unitLog' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.DeterministicCertificates.unitLog_sound' depends on axioms: [propext, Classical.choice, Quot.sound]

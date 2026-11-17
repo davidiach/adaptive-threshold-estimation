@@ -15,6 +15,8 @@ requires Lean to check that theorem. The
 identifies its expression with the existing, unchanged
 [`EntropyTailQuantile.costEntropy`](../lean/ThresholdHC/EntropyTailQuantile/CostEntropy.lean).
 The original numerical routines and their sealed research package are unchanged.
+The [clean-checkpoint evidence](../results/deterministic-certificates-20261117/README.md)
+records the exact statements, actual outputs, rejection cases and whole-project audit.
 
 ## Contract and execution boundary
 
