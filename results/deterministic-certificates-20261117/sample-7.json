@@ -1,0 +1,17 @@
+{
+  "schema": "ate-kernel-numerics-v1",
+  "request": {
+    "operation": "entropy",
+    "values": [
+      "1",
+      "0",
+      "2"
+    ],
+    "bits": 80,
+    "log_terms": 4
+  },
+  "output": {
+    "lower": "838839181/170859375",
+    "upper": "7549572707/1537734375"
+  }
+}

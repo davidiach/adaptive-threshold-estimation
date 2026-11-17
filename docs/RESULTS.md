@@ -1354,3 +1354,13 @@ with 599 flips each give another qualifying plan at 256,372 flips.
 To reproduce the grid result from `toolkit/`, run
 `python -m threshold_toolkit --rates 0.9,0.8,0.7,0.6,0.55,0.52,0.45,0.3,0.2,0.1`
 with `--budget 16384` or `--target-error 0.03`. The seed defaults to 0.
+
+## Deterministic numerical certificates
+
+An opt-in [proved rational checker](DETERMINISTIC_VERIFICATION.md) connects actual
+`sqrt_interval`, `log_interval` and `cost_entropy` outputs to closed Lean
+enclosure theorems. Square-root width is also checked, and entropy targets the
+existing mathematical `costEntropy`. The adapter fails on invalid certificates
+or exhausted verification limits. This is a bounded certificate-checking path;
+CPython refinement, global selection, finite integration oracles and planner
+execution remain open in #85. The API inventory records those boundaries.

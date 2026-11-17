@@ -539,3 +539,12 @@ and excluded from inverse-gap core costs. See the
 The oracle comparison has a universal constant and a law-dependent onset.
 The theorem has a [complete Lean proof](../docs/ARBITRARY_LAW_FORMALIZATION.md#full-arbitrary-law-all-budget-controller);
 this Python implementation, its numerical enclosures and its PRNG are not Lean-verified.
+
+## Kernel-checked numerical outputs
+
+The opt-in `threshold_toolkit.deterministic_certificates` module checks actual
+exact square-root, logarithm and entropy outputs using the pinned Lean project.
+`produce` returns untrusted data; `verify` requires a successful kernel proof
+for the caller's expected input and the claimed output. It also checks the
+square-root width contract. See [usage, limits and the deterministic API inventory](../docs/DETERMINISTIC_VERIFICATION.md).
+This does not verify global selection, the planner, Python execution or the PRNG.

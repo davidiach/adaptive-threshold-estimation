@@ -1,0 +1,2 @@
+'certified_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+'certified_precision' depends on axioms: [propext, Classical.choice, Quot.sound]
