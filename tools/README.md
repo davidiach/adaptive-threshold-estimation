@@ -284,3 +284,8 @@ identity under `.runtime/deterministic-certificates/`. See the
 `python tools/verify_finite_law_certificates.py` checks ten exact types and
 52 transitive reports, replays five modules and tests actual objective/oracle
 certificates with adversarial rejections. See the [finite-law scope](../docs/FINITE_LAW_CERTIFICATES.md).
+
+`verify_envelope_transfer_certificates.py` checks twelve exact types, all roots
+and independent kernel replay for three envelope/transfer modules, then actual
+output and rejection cases. It snapshots sources and writes fresh evidence to
+`.runtime/envelope-transfer-certificates/`. See the [scope](../docs/ENVELOPE_TRANSFER_CERTIFICATES.md).

@@ -1,0 +1,49 @@
+{
+  "schema": "ate-kernel-envelope-transfer-v1",
+  "request": {
+    "operation": "envelope",
+    "cdf": [
+      "1",
+      "0"
+    ],
+    "rho": "1/4",
+    "budget": "256",
+    "cap": 1024,
+    "heads": 0,
+    "tails": 0,
+    "bits": 16,
+    "log_terms": 4
+  },
+  "output": {
+    "mode": "active",
+    "zero_mass": "0",
+    "atoms": [
+      [
+        "1/4",
+        "1"
+      ]
+    ],
+    "normalized": [
+      [
+        "1/4",
+        "1"
+      ]
+    ],
+    "conditional_rho": "1/4",
+    "core": [
+      "3/4"
+    ],
+    "threshold": "1/4",
+    "band_costs": {
+      "1": "12"
+    },
+    "unresolved_mass": "0",
+    "tail_inverse": "1",
+    "resolved_error": "1/4096",
+    "tail_work": "256",
+    "prefix": {
+      "lower": "1",
+      "upper": "1"
+    }
+  }
+}

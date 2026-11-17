@@ -1,0 +1,1139 @@
+{
+  "accepted": [
+    {
+      "verified": true,
+      "request": {
+        "operation": "envelope",
+        "cdf": [
+          "1"
+        ],
+        "rho": "1/4",
+        "budget": "256",
+        "cap": 1024,
+        "heads": 0,
+        "tails": 0,
+        "bits": 16,
+        "log_terms": 4
+      },
+      "output": {
+        "mode": "fallback",
+        "atoms": [],
+        "normalized": [],
+        "core": [],
+        "conditional_rho": null,
+        "threshold": null,
+        "band_costs": {},
+        "prefix": {
+          "lower": "1",
+          "upper": "1"
+        },
+        "zero_mass": "1",
+        "unresolved_mass": "1",
+        "tail_inverse": "0",
+        "resolved_error": "0",
+        "tail_work": "0"
+      },
+      "proof_sha256": "fd55325cb93e8129f360c96f4db63c09b1ec1e7513805ba8c01da28fe108b97b",
+      "scope": "envelope_rounding_or_conditional_transfer_not_statistical_execution",
+      "transfer_premises_verified": false,
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "envelope",
+        "cdf": [
+          "1",
+          "1",
+          "1"
+        ],
+        "rho": "1/4",
+        "budget": "256",
+        "cap": 1024,
+        "heads": 2,
+        "tails": 3,
+        "bits": 16,
+        "log_terms": 4
+      },
+      "output": {
+        "mode": "fallback",
+        "atoms": [],
+        "normalized": [],
+        "core": [],
+        "conditional_rho": null,
+        "threshold": null,
+        "band_costs": {},
+        "prefix": {
+          "lower": "1/32",
+          "upper": "1/32"
+        },
+        "zero_mass": "1",
+        "unresolved_mass": "1",
+        "tail_inverse": "0",
+        "resolved_error": "0",
+        "tail_work": "0"
+      },
+      "proof_sha256": "86da32b7598971032a865ce9dd21d5dd75abcd7da0f9ca1fe21deef61fda1598",
+      "scope": "envelope_rounding_or_conditional_transfer_not_statistical_execution",
+      "transfer_premises_verified": false,
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "envelope",
+        "cdf": [
+          "1",
+          "1/4"
+        ],
+        "rho": "1/4",
+        "budget": "256",
+        "cap": 1024,
+        "heads": 1,
+        "tails": 0,
+        "bits": 16,
+        "log_terms": 4
+      },
+      "output": {
+        "mode": "fallback",
+        "atoms": [
+          [
+            "1/4",
+            "3/4"
+          ]
+        ],
+        "normalized": [],
+        "core": [],
+        "conditional_rho": null,
+        "threshold": null,
+        "band_costs": {},
+        "prefix": {
+          "lower": "5/16",
+          "upper": "5/16"
+        },
+        "zero_mass": "1/4",
+        "unresolved_mass": "1/4",
+        "tail_inverse": "0",
+        "resolved_error": "0",
+        "tail_work": "0"
+      },
+      "proof_sha256": "009e61898015fe3562c3fc32fc358ec90e959818b745113172a456dd39da45ca",
+      "scope": "envelope_rounding_or_conditional_transfer_not_statistical_execution",
+      "transfer_premises_verified": false,
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "envelope",
+        "cdf": [
+          "1",
+          "1/2"
+        ],
+        "rho": "1/4",
+        "budget": "256",
+        "cap": 1024,
+        "heads": 0,
+        "tails": 0,
+        "bits": 16,
+        "log_terms": 4
+      },
+      "output": {
+        "mode": "fallback",
+        "atoms": [
+          [
+            "1/4",
+            "1/2"
+          ]
+        ],
+        "normalized": [],
+        "core": [],
+        "conditional_rho": null,
+        "threshold": null,
+        "band_costs": {},
+        "prefix": {
+          "lower": "1",
+          "upper": "1"
+        },
+        "zero_mass": "1/2",
+        "unresolved_mass": "1/2",
+        "tail_inverse": "0",
+        "resolved_error": "0",
+        "tail_work": "0"
+      },
+      "proof_sha256": "15c2f4192f74349287d1a584d198accf6e4d1db50202790913c424d4f2f8c907",
+      "scope": "envelope_rounding_or_conditional_transfer_not_statistical_execution",
+      "transfer_premises_verified": false,
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "envelope",
+        "cdf": [
+          "1",
+          "1/2",
+          "1/8"
+        ],
+        "rho": "1/4",
+        "budget": "64",
+        "cap": 1,
+        "heads": 0,
+        "tails": 0,
+        "bits": 16,
+        "log_terms": 4
+      },
+      "output": {
+        "mode": "active",
+        "atoms": [
+          [
+            "1/4",
+            "1/2"
+          ],
+          [
+            "1/8",
+            "3/8"
+          ]
+        ],
+        "normalized": [
+          [
+            "1/8",
+            "3/7"
+          ],
+          [
+            "1/4",
+            "4/7"
+          ]
+        ],
+        "core": [
+          "2/3",
+          "1"
+        ],
+        "conditional_rho": "1/7",
+        "threshold": "1/8",
+        "band_costs": {
+          "2": "16",
+          "1": "8"
+        },
+        "prefix": {
+          "lower": "1",
+          "upper": "1"
+        },
+        "zero_mass": "1/8",
+        "unresolved_mass": "1/8",
+        "tail_inverse": "1",
+        "resolved_error": "7/8",
+        "tail_work": "1/8"
+      },
+      "proof_sha256": "0b7971fe295bd0966233d6bc385195bdfc00bb1b47d2f3b4ef5b2ba6bcaf9a52",
+      "scope": "envelope_rounding_or_conditional_transfer_not_statistical_execution",
+      "transfer_premises_verified": false,
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "envelope",
+        "cdf": [
+          "1",
+          "1/2",
+          "1/8"
+        ],
+        "rho": "1/4",
+        "budget": "64",
+        "cap": 1024,
+        "heads": 2,
+        "tails": 3,
+        "bits": 16,
+        "log_terms": 4
+      },
+      "output": {
+        "mode": "active",
+        "atoms": [
+          [
+            "1/4",
+            "1/2"
+          ],
+          [
+            "1/8",
+            "3/8"
+          ]
+        ],
+        "normalized": [
+          [
+            "1/8",
+            "3/7"
+          ],
+          [
+            "1/4",
+            "4/7"
+          ]
+        ],
+        "core": [
+          "2/3",
+          "1"
+        ],
+        "conditional_rho": "1/7",
+        "threshold": "1/8",
+        "band_costs": {
+          "2": "16",
+          "1": "8"
+        },
+        "prefix": {
+          "lower": "7855/262144",
+          "upper": "7855/262144"
+        },
+        "zero_mass": "1/8",
+        "unresolved_mass": "1/8",
+        "tail_inverse": "1",
+        "resolved_error": "13/8192",
+        "tail_work": "128"
+      },
+      "proof_sha256": "8b035ccf8f9dd3d01f77a3d18944c31b7c0ac987fa8104c66ee6acaef488de83",
+      "scope": "envelope_rounding_or_conditional_transfer_not_statistical_execution",
+      "transfer_premises_verified": false,
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "envelope",
+        "cdf": [
+          "1",
+          "3/4",
+          "3/4",
+          "0"
+        ],
+        "rho": "1/4",
+        "budget": "256",
+        "cap": 1024,
+        "heads": 0,
+        "tails": 0,
+        "bits": 16,
+        "log_terms": 4
+      },
+      "output": {
+        "mode": "active",
+        "atoms": [
+          [
+            "1/4",
+            "1/4"
+          ],
+          [
+            "1/16",
+            "3/4"
+          ]
+        ],
+        "normalized": [
+          [
+            "1/16",
+            "3/4"
+          ],
+          [
+            "1/4",
+            "1/4"
+          ]
+        ],
+        "core": [
+          "2/3",
+          "1"
+        ],
+        "conditional_rho": "1/4",
+        "threshold": "1/16",
+        "band_costs": {
+          "3": "128",
+          "1": "4"
+        },
+        "prefix": {
+          "lower": "1",
+          "upper": "1"
+        },
+        "zero_mass": "0",
+        "unresolved_mass": "0",
+        "tail_inverse": "4",
+        "resolved_error": "769/16384",
+        "tail_work": "256"
+      },
+      "proof_sha256": "aff04fd3227ea8bb39790e828a40ce4f78dc54c893a4321bda30dba77b125e4c",
+      "scope": "envelope_rounding_or_conditional_transfer_not_statistical_execution",
+      "transfer_premises_verified": false,
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "envelope",
+        "cdf": [
+          "1",
+          "0"
+        ],
+        "rho": "1/4",
+        "budget": "256",
+        "cap": 1024,
+        "heads": 0,
+        "tails": 0,
+        "bits": 16,
+        "log_terms": 4
+      },
+      "output": {
+        "mode": "active",
+        "atoms": [
+          [
+            "1/4",
+            "1"
+          ]
+        ],
+        "normalized": [
+          [
+            "1/4",
+            "1"
+          ]
+        ],
+        "core": [
+          "3/4"
+        ],
+        "conditional_rho": "1/4",
+        "threshold": "1/4",
+        "band_costs": {
+          "1": "12"
+        },
+        "prefix": {
+          "lower": "1",
+          "upper": "1"
+        },
+        "zero_mass": "0",
+        "unresolved_mass": "0",
+        "tail_inverse": "1",
+        "resolved_error": "1/4096",
+        "tail_work": "256"
+      },
+      "proof_sha256": "5d3ffc073fe778f2f9b29ff0776a21dbe27e15ca8cfb8801da708283ae2a9be8",
+      "scope": "envelope_rounding_or_conditional_transfer_not_statistical_execution",
+      "transfer_premises_verified": false,
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "rounding",
+        "atoms": [
+          [
+            "1/2",
+            "1"
+          ]
+        ],
+        "subdivisions": 16,
+        "rho": "1/4",
+        "budget": "256"
+      },
+      "output": {
+        "atoms": [
+          [
+            "1/2",
+            "1"
+          ]
+        ],
+        "factor": "1",
+        "destinations": [
+          "1/2"
+        ]
+      },
+      "proof_sha256": "b195eb6dd1f67efcd6d69d5b6eb8fc209ab0a9925bbf898dce6e98ff5b4795b5",
+      "scope": "envelope_rounding_or_conditional_transfer_not_statistical_execution",
+      "transfer_premises_verified": false,
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "rounding",
+        "atoms": [
+          [
+            "1/3",
+            "1/2"
+          ],
+          [
+            "3/8",
+            "1/2"
+          ]
+        ],
+        "subdivisions": 1,
+        "rho": "1/4",
+        "budget": "256"
+      },
+      "output": {
+        "atoms": [
+          [
+            "1/2",
+            "1"
+          ]
+        ],
+        "factor": "3/2",
+        "destinations": [
+          "1/2",
+          "1/2"
+        ]
+      },
+      "proof_sha256": "ec024b66383b2cc3a0b479c5ef18cf267498103625480b53a696110514ff2c31",
+      "scope": "envelope_rounding_or_conditional_transfer_not_statistical_execution",
+      "transfer_premises_verified": false,
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "rounding",
+        "atoms": [
+          [
+            "1/8",
+            "1/3"
+          ],
+          [
+            "1/4",
+            "1/3"
+          ],
+          [
+            "1/3",
+            "1/3"
+          ]
+        ],
+        "subdivisions": 16,
+        "rho": "1/4",
+        "budget": "256"
+      },
+      "output": {
+        "atoms": [
+          [
+            "1/8",
+            "1/3"
+          ],
+          [
+            "1/4",
+            "1/3"
+          ],
+          [
+            "11/32",
+            "1/3"
+          ]
+        ],
+        "factor": "33/32",
+        "destinations": [
+          "1/8",
+          "1/4",
+          "11/32"
+        ]
+      },
+      "proof_sha256": "80d4f9040000ef27558d0a4179448ef9fb00ceac06e13a5edcc32c19474dac18",
+      "scope": "envelope_rounding_or_conditional_transfer_not_statistical_execution",
+      "transfer_premises_verified": false,
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "transfer",
+        "lower": "1/32",
+        "upper": "1/16",
+        "rounding_factor": "1",
+        "tv_radius": "0",
+        "rho": "1/4",
+        "budget": "256"
+      },
+      "output": {
+        "lower": "1/32",
+        "upper": "1/16"
+      },
+      "proof_sha256": "6227836e7a480891db807dc25c45a8115fa2757c1375e5d3858b5c254e8a93a4",
+      "scope": "envelope_rounding_or_conditional_transfer_not_statistical_execution",
+      "transfer_premises_verified": false,
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "transfer",
+        "lower": "1/32",
+        "upper": "1/16",
+        "rounding_factor": "3/2",
+        "tv_radius": "1/128",
+        "rho": "1/4",
+        "budget": "256"
+      },
+      "output": {
+        "lower": "3/128",
+        "upper": "13/128"
+      },
+      "proof_sha256": "18980724d437ea0cf920f4fe68b3036787c273d5944f4b24cec8414446d20724",
+      "scope": "envelope_rounding_or_conditional_transfer_not_statistical_execution",
+      "transfer_premises_verified": false,
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "transfer",
+        "lower": "1/16",
+        "upper": "1/8",
+        "rounding_factor": "2",
+        "tv_radius": "1/8",
+        "rho": "1/4",
+        "budget": "256"
+      },
+      "output": {
+        "lower": "0",
+        "upper": "1/4"
+      },
+      "proof_sha256": "454ab7e0d91ddb1589c059166deb3ffa4af15e4d22d51c5c11e5e061f2bba847",
+      "scope": "envelope_rounding_or_conditional_transfer_not_statistical_execution",
+      "transfer_premises_verified": false,
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "transfer",
+        "lower": "0",
+        "upper": "0",
+        "rounding_factor": "1",
+        "tv_radius": "0",
+        "rho": "1/4",
+        "budget": "256"
+      },
+      "output": {
+        "lower": "0",
+        "upper": "0"
+      },
+      "proof_sha256": "00c5adf75ec14ba838594c65f0a1ae405f6acc34fed97f826981da45e45ce1f1",
+      "scope": "envelope_rounding_or_conditional_transfer_not_statistical_execution",
+      "transfer_premises_verified": false,
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "rounding",
+        "atoms": [
+          [
+            "1/4",
+            "1"
+          ]
+        ],
+        "subdivisions": 1,
+        "rho": "1/4",
+        "budget": "256"
+      },
+      "output": {
+        "atoms": [
+          [
+            "1/4",
+            "1"
+          ]
+        ],
+        "factor": "1",
+        "destinations": [
+          "1/4"
+        ]
+      },
+      "proof_sha256": "a5b94ad62f8e8dab5bc25e550206b6bb693f3678752cf1b6b2f71871ab8ea38e",
+      "scope": "envelope_rounding_or_conditional_transfer_not_statistical_execution",
+      "transfer_premises_verified": false,
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    }
+  ],
+  "rejected": [
+    {
+      "operation": "envelope",
+      "changed_field": "tail_inverse",
+      "output": {
+        "mode": "fallback",
+        "zero_mass": "1/4",
+        "atoms": [
+          [
+            "1/4",
+            "3/4"
+          ]
+        ],
+        "normalized": [],
+        "conditional_rho": null,
+        "core": [],
+        "threshold": null,
+        "band_costs": {},
+        "unresolved_mass": "1/4",
+        "tail_inverse": "1",
+        "resolved_error": "0",
+        "tail_work": "0",
+        "prefix": {
+          "lower": "5/16",
+          "upper": "5/16"
+        }
+      }
+    },
+    {
+      "operation": "envelope",
+      "changed_field": "prefix",
+      "output": {
+        "mode": "active",
+        "zero_mass": "1/8",
+        "atoms": [
+          [
+            "1/4",
+            "1/2"
+          ],
+          [
+            "1/8",
+            "3/8"
+          ]
+        ],
+        "normalized": [
+          [
+            "1/8",
+            "3/7"
+          ],
+          [
+            "1/4",
+            "4/7"
+          ]
+        ],
+        "conditional_rho": "1/7",
+        "core": [
+          "2/3",
+          "1"
+        ],
+        "threshold": "1/8",
+        "band_costs": {
+          "2": "16",
+          "1": "8"
+        },
+        "unresolved_mass": "1/8",
+        "tail_inverse": "1",
+        "resolved_error": "13/8192",
+        "tail_work": "128",
+        "prefix": {
+          "lower": "0",
+          "upper": "0"
+        }
+      }
+    },
+    {
+      "operation": "envelope",
+      "changed_field": "conditional_rho",
+      "output": {
+        "mode": "active",
+        "zero_mass": "1/8",
+        "atoms": [
+          [
+            "1/4",
+            "1/2"
+          ],
+          [
+            "1/8",
+            "3/8"
+          ]
+        ],
+        "normalized": [
+          [
+            "1/8",
+            "3/7"
+          ],
+          [
+            "1/4",
+            "4/7"
+          ]
+        ],
+        "conditional_rho": "1/4",
+        "core": [
+          "2/3",
+          "1"
+        ],
+        "threshold": "1/8",
+        "band_costs": {
+          "2": "16",
+          "1": "8"
+        },
+        "unresolved_mass": "1/8",
+        "tail_inverse": "1",
+        "resolved_error": "13/8192",
+        "tail_work": "128",
+        "prefix": {
+          "lower": "7855/262144",
+          "upper": "7855/262144"
+        }
+      }
+    },
+    {
+      "operation": "envelope",
+      "changed_field": "core",
+      "output": {
+        "mode": "active",
+        "zero_mass": "1/8",
+        "atoms": [
+          [
+            "1/4",
+            "1/2"
+          ],
+          [
+            "1/8",
+            "3/8"
+          ]
+        ],
+        "normalized": [
+          [
+            "1/8",
+            "3/7"
+          ],
+          [
+            "1/4",
+            "4/7"
+          ]
+        ],
+        "conditional_rho": "1/7",
+        "core": [
+          "1",
+          "1"
+        ],
+        "threshold": "1/8",
+        "band_costs": {
+          "2": "16",
+          "1": "8"
+        },
+        "unresolved_mass": "1/8",
+        "tail_inverse": "1",
+        "resolved_error": "13/8192",
+        "tail_work": "128",
+        "prefix": {
+          "lower": "7855/262144",
+          "upper": "7855/262144"
+        }
+      }
+    },
+    {
+      "operation": "envelope",
+      "changed_field": "band_costs",
+      "output": {
+        "mode": "active",
+        "zero_mass": "1/8",
+        "atoms": [
+          [
+            "1/4",
+            "1/2"
+          ],
+          [
+            "1/8",
+            "3/8"
+          ]
+        ],
+        "normalized": [
+          [
+            "1/8",
+            "3/7"
+          ],
+          [
+            "1/4",
+            "4/7"
+          ]
+        ],
+        "conditional_rho": "1/7",
+        "core": [
+          "2/3",
+          "1"
+        ],
+        "threshold": "1/8",
+        "band_costs": {
+          "1": "0",
+          "2": "0"
+        },
+        "unresolved_mass": "1/8",
+        "tail_inverse": "1",
+        "resolved_error": "13/8192",
+        "tail_work": "128",
+        "prefix": {
+          "lower": "7855/262144",
+          "upper": "7855/262144"
+        }
+      }
+    },
+    {
+      "operation": "envelope",
+      "changed_field": "unresolved_mass",
+      "output": {
+        "mode": "active",
+        "zero_mass": "1/8",
+        "atoms": [
+          [
+            "1/4",
+            "1/2"
+          ],
+          [
+            "1/8",
+            "3/8"
+          ]
+        ],
+        "normalized": [
+          [
+            "1/8",
+            "3/7"
+          ],
+          [
+            "1/4",
+            "4/7"
+          ]
+        ],
+        "conditional_rho": "1/7",
+        "core": [
+          "2/3",
+          "1"
+        ],
+        "threshold": "1/8",
+        "band_costs": {
+          "2": "16",
+          "1": "8"
+        },
+        "unresolved_mass": "0",
+        "tail_inverse": "1",
+        "resolved_error": "13/8192",
+        "tail_work": "128",
+        "prefix": {
+          "lower": "7855/262144",
+          "upper": "7855/262144"
+        }
+      }
+    },
+    {
+      "operation": "envelope",
+      "changed_field": "tail_inverse",
+      "output": {
+        "mode": "active",
+        "zero_mass": "1/8",
+        "atoms": [
+          [
+            "1/4",
+            "1/2"
+          ],
+          [
+            "1/8",
+            "3/8"
+          ]
+        ],
+        "normalized": [
+          [
+            "1/8",
+            "3/7"
+          ],
+          [
+            "1/4",
+            "4/7"
+          ]
+        ],
+        "conditional_rho": "1/7",
+        "core": [
+          "2/3",
+          "1"
+        ],
+        "threshold": "1/8",
+        "band_costs": {
+          "2": "16",
+          "1": "8"
+        },
+        "unresolved_mass": "1/8",
+        "tail_inverse": "0",
+        "resolved_error": "13/8192",
+        "tail_work": "128",
+        "prefix": {
+          "lower": "7855/262144",
+          "upper": "7855/262144"
+        }
+      }
+    },
+    {
+      "operation": "envelope",
+      "changed_field": "resolved_error",
+      "output": {
+        "mode": "active",
+        "zero_mass": "1/8",
+        "atoms": [
+          [
+            "1/4",
+            "1/2"
+          ],
+          [
+            "1/8",
+            "3/8"
+          ]
+        ],
+        "normalized": [
+          [
+            "1/8",
+            "3/7"
+          ],
+          [
+            "1/4",
+            "4/7"
+          ]
+        ],
+        "conditional_rho": "1/7",
+        "core": [
+          "2/3",
+          "1"
+        ],
+        "threshold": "1/8",
+        "band_costs": {
+          "2": "16",
+          "1": "8"
+        },
+        "unresolved_mass": "1/8",
+        "tail_inverse": "1",
+        "resolved_error": "0",
+        "tail_work": "128",
+        "prefix": {
+          "lower": "7855/262144",
+          "upper": "7855/262144"
+        }
+      }
+    },
+    {
+      "operation": "envelope",
+      "changed_field": "tail_work",
+      "output": {
+        "mode": "active",
+        "zero_mass": "1/8",
+        "atoms": [
+          [
+            "1/4",
+            "1/2"
+          ],
+          [
+            "1/8",
+            "3/8"
+          ]
+        ],
+        "normalized": [
+          [
+            "1/8",
+            "3/7"
+          ],
+          [
+            "1/4",
+            "4/7"
+          ]
+        ],
+        "conditional_rho": "1/7",
+        "core": [
+          "2/3",
+          "1"
+        ],
+        "threshold": "1/8",
+        "band_costs": {
+          "2": "16",
+          "1": "8"
+        },
+        "unresolved_mass": "1/8",
+        "tail_inverse": "1",
+        "resolved_error": "13/8192",
+        "tail_work": "0",
+        "prefix": {
+          "lower": "7855/262144",
+          "upper": "7855/262144"
+        }
+      }
+    },
+    {
+      "operation": "rounding",
+      "changed_field": "factor",
+      "output": {
+        "atoms": [
+          [
+            "1/2",
+            "1"
+          ]
+        ],
+        "factor": "1",
+        "destinations": [
+          "1/2",
+          "1/2"
+        ]
+      }
+    },
+    {
+      "operation": "rounding",
+      "changed_field": "atoms",
+      "output": {
+        "atoms": [
+          [
+            "1/2",
+            "1/2"
+          ]
+        ],
+        "factor": "3/2",
+        "destinations": [
+          "1/2",
+          "1/2"
+        ]
+      }
+    },
+    {
+      "operation": "transfer",
+      "changed_field": "lower",
+      "output": {
+        "lower": "1/32",
+        "upper": "13/128"
+      }
+    },
+    {
+      "operation": "transfer",
+      "changed_field": "upper",
+      "output": {
+        "lower": "3/128",
+        "upper": "1/32"
+      }
+    },
+    {
+      "operation": "rounding",
+      "changed_field": "output",
+      "output": {
+        "atoms": [
+          [
+            "1/4",
+            "1"
+          ]
+        ],
+        "factor": "1",
+        "destinations": [
+          "1/4"
+        ]
+      }
+    },
+    {
+      "operation": "rounding",
+      "changed_field": "output",
+      "output": {
+        "atoms": [
+          [
+            "5/16",
+            "1"
+          ]
+        ],
+        "factor": "5/4",
+        "destinations": [
+          "5/16"
+        ]
+      }
+    }
+  ],
+  "regression_scope": "finite execution evidence, not universal producer correctness"
+}

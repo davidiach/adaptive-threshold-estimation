@@ -1,0 +1,8 @@
+<stdin>:34:61: error: unsolved goals
+case e_w.«0»
+he : (fun i => transport (points gaps hg i)) = fun i => points roundedGaps hn (![0, 0] i)
+⊢ False
+<stdin>:53:5: error: unsolved goals
+hp : IsProbabilityMeasure law
+⊢ False
+'certified_value' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

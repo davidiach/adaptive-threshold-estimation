@@ -99,6 +99,11 @@ Lean also checks the
 [finite-law selection approximation](docs/FINITE_SELECTION_APPROXIMATION.md).
 It is not counted above, because the paper does not describe it.
 
+The opt-in [numerical certificate path](docs/DETERMINISTIC_VERIFICATION.md) now
+covers finite-law objectives/oracles and [zero-residual envelopes, rounding and
+conditional transfer](docs/ENVELOPE_TRANSFER_CERTIFICATES.md). Global numerical
+selection and concrete planners remain open in #85; stochastic execution is #86.
+
 ## Repository map
 
 Current material:
