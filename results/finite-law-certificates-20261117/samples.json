@@ -1,0 +1,437 @@
+{
+  "accepted": [
+    {
+      "verified": true,
+      "request": {
+        "operation": "objective",
+        "atoms": [
+          [
+            "1/2",
+            "1"
+          ]
+        ],
+        "selected": [
+          "0"
+        ],
+        "rho": "1/4",
+        "budget": "1024",
+        "cap": 16,
+        "heads": 0,
+        "tails": 0,
+        "bits": 16,
+        "log_terms": 4
+      },
+      "output": {
+        "lower": "1/16",
+        "upper": "1/16"
+      },
+      "proof_sha256": "c49641e4ec070cdbc3ba4fb5d21336c3517bcca37609a64161966718063e2c85",
+      "scope": "finite_law_measure_objective_oracle_certificate_not_statistical_risk",
+      "global_optimum_verified": false,
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "objective",
+        "atoms": [
+          [
+            "1/2",
+            "1"
+          ]
+        ],
+        "selected": [
+          "1"
+        ],
+        "rho": "1/4",
+        "budget": "4096",
+        "cap": 16,
+        "heads": 0,
+        "tails": 0,
+        "bits": 16,
+        "log_terms": 4
+      },
+      "output": {
+        "lower": "1/64",
+        "upper": "1/64"
+      },
+      "proof_sha256": "8dd6b3173bbc3549b8fcd08fbbf5ebccdb53bc67ce0b12e3161b502291264b60",
+      "scope": "finite_law_measure_objective_oracle_certificate_not_statistical_risk",
+      "global_optimum_verified": false,
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "objective",
+        "atoms": [
+          [
+            "1/8",
+            "1/3"
+          ],
+          [
+            "1/2",
+            "2/3"
+          ]
+        ],
+        "selected": [
+          "1/2",
+          "1/4"
+        ],
+        "rho": "1/4",
+        "budget": "256",
+        "cap": 16,
+        "heads": 0,
+        "tails": 0,
+        "bits": 16,
+        "log_terms": 4
+      },
+      "output": {
+        "lower": "1/4",
+        "upper": "1/4"
+      },
+      "proof_sha256": "7c2b4193575e64a641d994abce31dad076b8ebb379d31c8bfef87013572472a2",
+      "scope": "finite_law_measure_objective_oracle_certificate_not_statistical_risk",
+      "global_optimum_verified": false,
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "prefix",
+        "atoms": [
+          [
+            "1/2",
+            "1"
+          ]
+        ],
+        "selected": [],
+        "rho": "1/4",
+        "budget": "16",
+        "cap": 16,
+        "heads": 0,
+        "tails": 0,
+        "bits": 80,
+        "log_terms": 32
+      },
+      "output": {
+        "lower": "1",
+        "upper": "1"
+      },
+      "proof_sha256": "c7e885b4204a29dd092d179fb9aa345570c12369e3723db0e45c49e1ed3d8799",
+      "scope": "finite_law_measure_objective_oracle_certificate_not_statistical_risk",
+      "global_optimum_verified": false,
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "prefix",
+        "atoms": [
+          [
+            "1/8",
+            "1/3"
+          ],
+          [
+            "1/2",
+            "2/3"
+          ]
+        ],
+        "selected": [],
+        "rho": "1/4",
+        "budget": "16",
+        "cap": 16,
+        "heads": 2,
+        "tails": 3,
+        "bits": 80,
+        "log_terms": 32
+      },
+      "output": {
+        "lower": "375/32768",
+        "upper": "375/32768"
+      },
+      "proof_sha256": "d80563d0020e81420641804689cb45655661f85a906eea6c2a3f02cae7aa4964",
+      "scope": "finite_law_measure_objective_oracle_certificate_not_statistical_risk",
+      "global_optimum_verified": false,
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "oracle",
+        "atoms": [
+          [
+            "1/8",
+            "1/3"
+          ],
+          [
+            "1/2",
+            "2/3"
+          ]
+        ],
+        "selected": [],
+        "rho": "1/4",
+        "budget": "256",
+        "cap": 1024,
+        "heads": 0,
+        "tails": 0,
+        "bits": 16,
+        "log_terms": 4
+      },
+      "output": {
+        "core": [
+          "1/4",
+          "1"
+        ],
+        "band_costs": {
+          "2": "16/3",
+          "0": "8/3"
+        },
+        "threshold": "1/8",
+        "resolved_error": "43/32768",
+        "unresolved_mass": "0",
+        "tail_inverse": "2",
+        "tail_work": "256"
+      },
+      "proof_sha256": "fba41247d6a066b321fc1fbd1110ab41e7e85a321d5cb764c1de9b1211dd7334",
+      "scope": "finite_law_measure_objective_oracle_certificate_not_statistical_risk",
+      "global_optimum_verified": false,
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "oracle",
+        "atoms": [
+          [
+            "1/16",
+            "1/8"
+          ],
+          [
+            "1/8",
+            "1/8"
+          ],
+          [
+            "1/2",
+            "3/4"
+          ]
+        ],
+        "selected": [],
+        "rho": "1/4",
+        "budget": "64",
+        "cap": 1,
+        "heads": 0,
+        "tails": 0,
+        "bits": 16,
+        "log_terms": 4
+      },
+      "output": {
+        "core": [
+          "0",
+          "0",
+          "1"
+        ],
+        "band_costs": {
+          "0": "3"
+        },
+        "threshold": "1/8",
+        "resolved_error": "7/8",
+        "unresolved_mass": "1/8",
+        "tail_inverse": "1",
+        "tail_work": "1/8"
+      },
+      "proof_sha256": "1eef16e9bd9d942fadad28e05b14afb1f338749cbe4b002935cd55de367c04c8",
+      "scope": "finite_law_measure_objective_oracle_certificate_not_statistical_risk",
+      "global_optimum_verified": false,
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "oracle",
+        "atoms": [
+          [
+            "1/16",
+            "1/8"
+          ],
+          [
+            "1/8",
+            "1/8"
+          ],
+          [
+            "1/2",
+            "3/4"
+          ]
+        ],
+        "selected": [],
+        "rho": "1/4",
+        "budget": "64",
+        "cap": 1024,
+        "heads": 0,
+        "tails": 0,
+        "bits": 16,
+        "log_terms": 4
+      },
+      "output": {
+        "core": [
+          "0",
+          "0",
+          "1"
+        ],
+        "band_costs": {
+          "0": "3"
+        },
+        "threshold": "1/8",
+        "resolved_error": "131/262144",
+        "unresolved_mass": "1/8",
+        "tail_inverse": "1",
+        "tail_work": "128"
+      },
+      "proof_sha256": "b597963f3c3be743fcf602e3268bed02ff7f2780010538c44a81d361c0eb9798",
+      "scope": "finite_law_measure_objective_oracle_certificate_not_statistical_risk",
+      "global_optimum_verified": false,
+      "python_execution_verified": false,
+      "external_compiled_cache_trusted": true
+    }
+  ],
+  "rejected": [
+    {
+      "operation": "objective",
+      "changed_field": "output",
+      "output": {
+        "lower": "0",
+        "upper": "0"
+      }
+    },
+    {
+      "operation": "prefix",
+      "changed_field": "output",
+      "output": {
+        "lower": "0",
+        "upper": "0"
+      }
+    },
+    {
+      "operation": "oracle",
+      "changed_field": "core",
+      "output": {
+        "core": [
+          "1",
+          "1"
+        ],
+        "threshold": "1/8",
+        "band_costs": {
+          "2": "16/3",
+          "0": "8/3"
+        },
+        "unresolved_mass": "0",
+        "tail_inverse": "2",
+        "resolved_error": "43/32768",
+        "tail_work": "256"
+      }
+    },
+    {
+      "operation": "oracle",
+      "changed_field": "band_costs",
+      "output": {
+        "core": [
+          "1/4",
+          "1"
+        ],
+        "threshold": "1/8",
+        "band_costs": {
+          "0": "0",
+          "2": "0"
+        },
+        "unresolved_mass": "0",
+        "tail_inverse": "2",
+        "resolved_error": "43/32768",
+        "tail_work": "256"
+      }
+    },
+    {
+      "operation": "oracle",
+      "changed_field": "unresolved_mass",
+      "output": {
+        "core": [
+          "0",
+          "0",
+          "1"
+        ],
+        "threshold": "1/8",
+        "band_costs": {
+          "0": "3"
+        },
+        "unresolved_mass": "0",
+        "tail_inverse": "1",
+        "resolved_error": "131/262144",
+        "tail_work": "128"
+      }
+    },
+    {
+      "operation": "oracle",
+      "changed_field": "tail_inverse",
+      "output": {
+        "core": [
+          "0",
+          "0",
+          "1"
+        ],
+        "threshold": "1/8",
+        "band_costs": {
+          "0": "3"
+        },
+        "unresolved_mass": "1/8",
+        "tail_inverse": "0",
+        "resolved_error": "131/262144",
+        "tail_work": "128"
+      }
+    },
+    {
+      "operation": "oracle",
+      "changed_field": "resolved_error",
+      "output": {
+        "core": [
+          "0",
+          "0",
+          "1"
+        ],
+        "threshold": "1/8",
+        "band_costs": {
+          "0": "3"
+        },
+        "unresolved_mass": "1/8",
+        "tail_inverse": "1",
+        "resolved_error": "0",
+        "tail_work": "128"
+      }
+    },
+    {
+      "operation": "oracle",
+      "changed_field": "tail_work",
+      "output": {
+        "core": [
+          "0",
+          "0",
+          "1"
+        ],
+        "threshold": "1/8",
+        "band_costs": {
+          "0": "3"
+        },
+        "unresolved_mass": "1/8",
+        "tail_inverse": "1",
+        "resolved_error": "131/262144",
+        "tail_work": "0"
+      }
+    }
+  ],
+  "regression_scope": "finite execution evidence, not universal producer correctness"
+}

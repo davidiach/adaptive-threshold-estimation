@@ -1,0 +1,43 @@
+{
+  "schema": "ate-kernel-finite-law-v1",
+  "request": {
+    "operation": "oracle",
+    "atoms": [
+      [
+        "1/16",
+        "1/8"
+      ],
+      [
+        "1/8",
+        "1/8"
+      ],
+      [
+        "1/2",
+        "3/4"
+      ]
+    ],
+    "selected": [],
+    "rho": "1/4",
+    "budget": "64",
+    "cap": 1024,
+    "heads": 0,
+    "tails": 0,
+    "bits": 16,
+    "log_terms": 4
+  },
+  "output": {
+    "core": [
+      "0",
+      "0",
+      "1"
+    ],
+    "threshold": "1/8",
+    "band_costs": {
+      "0": "3"
+    },
+    "unresolved_mass": "1/8",
+    "tail_inverse": "1",
+    "resolved_error": "131/262144",
+    "tail_work": "128"
+  }
+}

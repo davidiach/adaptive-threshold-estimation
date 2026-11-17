@@ -1280,6 +1280,20 @@
     "ThresholdHC.FiniteCapTruncation.capFlow": "8883207573819834653:17912944308524359175",
     "ThresholdHC.FiniteCapTruncation.discardedMean": "4030656061861035135:6212000943580522811",
     "ThresholdHC.FiniteCapTruncation.liftState": "13973241956409672958:3230467018989671660",
+    "ThresholdHC.FiniteLawCertificates.atomicMeasure": "12922074357574839470:12622090790099464396",
+    "ThresholdHC.FiniteLawCertificates.costs": "9424954462821477935:3917870239622101413",
+    "ThresholdHC.FiniteLawCertificates.errorValue": "16521312326086869767:8075155152554099559",
+    "ThresholdHC.FiniteLawCertificates.inBand": "17825139887168012537:8356187415431122704",
+    "ThresholdHC.FiniteLawCertificates.inverseValue": "7498521768183731879:6637302734237935300",
+    "ThresholdHC.FiniteLawCertificates.nullPrefixIntegral": "564065082783112908:14663253165480629961",
+    "ThresholdHC.FiniteLawCertificates.nullPrefixValue": "13329327694870569931:15127279433568707417",
+    "ThresholdHC.FiniteLawCertificates.objectiveExpr": "16818896928471874008:15511171772424860080",
+    "ThresholdHC.FiniteLawCertificates.points": "4861072885391299795:14257382259052630072",
+    "ThresholdHC.FiniteLawCertificates.resolvedWeights": "7271299286802476318:16010827626087306450",
+    "ThresholdHC.FiniteLawCertificates.tailWeights": "7271299286802476318:12525460381292370106",
+    "ThresholdHC.FiniteLawCertificates.tailWorkExpr": "6020335782472975305:6497194136304394903",
+    "ThresholdHC.FiniteLawCertificates.tailWorkIntegral": "11709136789403681613:10118524120411265102",
+    "ThresholdHC.FiniteLawCertificates.unresolvedWeights": "7271299286802476318:16460855388586121834",
     "ThresholdHC.FiniteQuantile.DirectFiniteLawStatement": "4762494857145497995:15194419992698186579",
     "ThresholdHC.FiniteQuantile.ExplicitBounds": "16517804977271690940:16830547031902367625",
     "ThresholdHC.FiniteQuantile.cutWeight": "12945996716995331585:7761388801519698608",
@@ -2619,6 +2633,10 @@
     {
       "at": "2026-11-17T06:46:22+00:00",
       "count": 142
+    },
+    {
+      "at": "2026-11-17T07:55:59+00:00",
+      "count": 14
     }
   ]
 }

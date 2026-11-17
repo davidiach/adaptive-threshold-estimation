@@ -1,0 +1,3 @@
+<stdin>:29:1347: error: unsolved goals
+⊢ False
+'certified_value' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]

@@ -1362,5 +1362,7 @@ An opt-in [proved rational checker](DETERMINISTIC_VERIFICATION.md) connects actu
 enclosure theorems. Square-root width is also checked, and entropy targets the
 existing mathematical `costEntropy`. The adapter fails on invalid certificates
 or exhausted verification limits. This is a bounded certificate-checking path;
-CPython refinement, global selection, finite integration oracles and planner
-execution remain open in #85. The API inventory records those boundaries.
+The [finite-law extension](FINITE_LAW_CERTIFICATES.md) checks canonical measure
+identities and actual feasible-objective, quantile-split and finite-oracle outputs.
+CPython refinement, global selection, zero-residual envelope integration and
+planner execution remain open in #85. The API inventory records those boundaries.

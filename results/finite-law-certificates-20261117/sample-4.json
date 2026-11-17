@@ -1,0 +1,28 @@
+{
+  "schema": "ate-kernel-finite-law-v1",
+  "request": {
+    "operation": "prefix",
+    "atoms": [
+      [
+        "1/8",
+        "1/3"
+      ],
+      [
+        "1/2",
+        "2/3"
+      ]
+    ],
+    "selected": [],
+    "rho": "1/4",
+    "budget": "16",
+    "cap": 16,
+    "heads": 2,
+    "tails": 3,
+    "bits": 80,
+    "log_terms": 32
+  },
+  "output": {
+    "lower": "375/32768",
+    "upper": "375/32768"
+  }
+}
