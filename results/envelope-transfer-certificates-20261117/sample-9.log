@@ -1,0 +1,7 @@
+<stdin>:42:14: warning: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+<stdin>:42:14: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+'certified_value' depends on axioms: [propext, Classical.choice, Quot.sound]

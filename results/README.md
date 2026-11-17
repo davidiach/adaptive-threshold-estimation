@@ -14,6 +14,7 @@ statement. For the current tree the evidence is the CI run on that commit.
 
 | Claim or check | Published record |
 |---|---|
+| Zero-residual envelope, rounding and conditional transfer certificates (#85) | [envelope-transfer-certificates-20261117](envelope-transfer-certificates-20261117/README.md) |
 | Finite-law measure, feasible-objective and oracle output certificates (#85) | [finite-law-certificates-20261117](finite-law-certificates-20261117/README.md) |
 | Deterministic sqrt/log/entropy output certificates and checker soundness (#85) | [deterministic-certificates-20261117](deterministic-certificates-20261117/README.md) |
 | Finite-law relative approximation, original-K endpoints and `Q*S` extensions (#93) | [finite-selection-approximation-20261117](finite-selection-approximation-20261117/README.md) |

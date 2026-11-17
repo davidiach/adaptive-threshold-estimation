@@ -552,3 +552,7 @@ This does not verify global selection, the planner, Python execution or the PRNG
 The opt-in `threshold_toolkit.finite_law_certificates` module also checks
 actual finite-law feasible objectives and `FiniteGapOracle` outputs against
 the original measures. See [contracts, use and limits](../docs/FINITE_LAW_CERTIFICATES.md).
+
+The [envelope/transfer certificate adapter](threshold_toolkit/envelope_transfer_certificates.py)
+checks residual-zero `GapEnvelope` outputs, rounded pushforward laws and conditional
+transfer endpoints. See [contracts and limits](../docs/ENVELOPE_TRANSFER_CERTIFICATES.md).

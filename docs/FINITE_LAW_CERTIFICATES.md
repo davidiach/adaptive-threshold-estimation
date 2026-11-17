@@ -130,8 +130,9 @@ kernel, the imported compiled cache and the operating system remain execution
 boundaries. The source is available for independent inspection and rechecking;
 replay of every external Mathlib module is not claimed.
 
-Remaining #85 work includes the zero-residual `GapEnvelope` adapter, transfer
-and rounding outputs, global menu/DP/approximation certificates, concrete
+The [envelope/transfer extension](ENVELOPE_TRANSFER_CERTIFICATES.md) now covers
+zero-residual `GapEnvelope`, rounding and conditional transfer outputs. Remaining
+#85 work includes global menu/DP/approximation certificates, concrete
 planner prices/allocations/schedules, and floating calculators. Arbitrary
 external-oracle promises remain assumptions. Statistical observation models and
 Python/PRNG execution remain separate in #86. The mathematical core and its

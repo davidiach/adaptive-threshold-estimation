@@ -294,6 +294,10 @@ jobs:
         run: python tools/verify_finite_law_certificates.py
       - name: Check finite-law certificate audit guards
         run: python -m unittest discover -s tools -p "test_finite_law_certificates_audit.py" -v
+      - name: Verify zero-residual envelopes and rounding/transfer output certificates
+        run: python tools/verify_envelope_transfer_certificates.py
+      - name: Check envelope/transfer certificate audit guards
+        run: python -m unittest discover -s tools -p "test_envelope_transfer_certificates_audit.py" -v
       - name: Build sequentially and require complete kernel audit
         run: python tools/verify_lean_checkpoint.py --sequential
       - name: Verify unscored arithmetic for the paper bound
@@ -378,6 +382,8 @@ jobs:
             .runtime/selection-lean/**/*.log
             .runtime/finite-selection/
             .runtime/deterministic-certificates/
+            .runtime/finite-law-certificates/
+            .runtime/envelope-transfer-certificates/
   lean-all-modules:
     runs-on: ubuntu-latest
     timeout-minutes: 150
