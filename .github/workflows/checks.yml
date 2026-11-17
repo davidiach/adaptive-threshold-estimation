@@ -159,6 +159,10 @@ jobs:
         run: |
           python -m unittest discover -s tools -p 'test_psi_sharpness.py' -v
           python -m unittest discover -s tools -p 'test_power_window.py' -v
+      - name: Regression tests for the sharp RMS coefficient and square-root cap audits
+        run: |
+          python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
+          python -m unittest discover -s tools -p 'test_square_root_cap.py' -v
       - name: Regression tests for the whole-project axiom audit
         run: python -m unittest discover -s tools -p 'test_project_axioms.py' -v
       - name: Regression tests for the sign-neutral tail-test audit
@@ -333,6 +337,11 @@ jobs:
         run: python tools/verify_confidence.py
       - name: Verify the canonical magnitude-oracle lower bounds
         run: python tools/verify_oracle_lower.py
+      # The audit builds its 54 modules; the seven window parts hold the 140
+      # integer comparisons and compile in parallel. The replay re-evaluates
+      # them in the independent kernel checker.
+      - name: Verify the sharp universal RMS coefficient in all three models and replay its modules
+        run: python tools/verify_sharp_rms.py --replay --jobs 3
       - name: Verify the full observable above-two rare-event theory
         run: python tools/verify_rare_above_two.py --sequential
       - name: Verify the registered quantile-comparison target
@@ -681,6 +690,8 @@ jobs:
         run: python tools/verify_genie_rate.py
       - name: Verify square-root convergence of the ordinary cap program
         run: python tools/verify_finite_cap_truncation.py
+      - name: Verify the square-root cap comparison of the optimized programs
+        run: python tools/verify_square_root_cap.py
       # Lake builds only the reused dependencies; the 57 registered modules are
       # compiled once, natively, by the audit itself.
       - name: Build dependencies and audit supporting entropy-tail lower lemmas

@@ -24,7 +24,7 @@ VERIFIERS = {
         observable713 confidence oracle_lower rare_above_two quantile_comparison
         selection_approximation finite_selection_approximation deterministic_certificates
         finite_law_certificates envelope_transfer_certificates global_selection_certificates
-        entropy_tail_components
+        entropy_tail_components sharp_rms project_axioms
     """,
     "entropy-tail-upper": """
         entropy_tail entropy_tail_components entropy_tail_sharp entropy_tail_upper
@@ -41,6 +41,7 @@ VERIFIERS = {
         stopping_dual information_bellman reference_absorption ordered_information
         adaptive_information stopping_program_upper finite_risk_certificate infinite_cap_dual
         genie_* finite_cap_truncation entropy_tail entropy_tail_components entropy_tail_lower_components
+        square_root_cap sharp_rms
     """,
 }
 

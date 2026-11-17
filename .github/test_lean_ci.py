@@ -26,7 +26,9 @@ class LeanRoutingTests(unittest.TestCase):
     def test_job_specific_inputs(self):
         cases = {
             "tools/definition_lock.json": {"lean-all-modules"},
-            "tools/verify_project_axioms.py": {"lean-all-modules", "entropy-tail-upper"},
+            "tools/verify_project_axioms.py": {"lean-all-modules", "lean-kernel", "entropy-tail-upper"},
+            "tools/verify_sharp_rms.py": {"lean-kernel", "stopping-program"},
+            "tools/verify_square_root_cap.py": {"stopping-program"},
             "tools/quantile_comparison_specification_freeze.json": {"lean-kernel", "entropy-tail-upper"},
             "tools/stopping_program_lock.py": {"stopping-program"},
             "tools/verify_genie_convergence.py": {"stopping-program"},
