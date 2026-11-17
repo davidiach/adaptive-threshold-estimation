@@ -1,0 +1,984 @@
+{
+  "accepted": [
+    {
+      "verified": true,
+      "request": {
+        "operation": "exhaustive",
+        "atoms": [
+          [
+            "1/2",
+            "1"
+          ]
+        ],
+        "rho": "1/4",
+        "budget": "1",
+        "epsilon": "1/10",
+        "bits": 16,
+        "log_terms": 4,
+        "max_work": 4096
+      },
+      "output": {
+        "value": {
+          "lower": "1/4",
+          "upper": "1/4"
+        },
+        "selected": null,
+        "suffix_count": 2
+      },
+      "menu": [
+        0,
+        1
+      ],
+      "proof_sha256": "4d7bd461e6428e8301b306d083b9c4024704eddcd5556581a4b8e0863e88cb9a",
+      "scope": "bounded_global_selection_output_not_statistical_risk",
+      "global_enclosure_verified": true,
+      "exact_optimum_verified": false,
+      "relative_approximation_verified": false,
+      "python_execution_verified": false,
+      "internal_solver_trace_verified": false,
+      "polynomial_verification_cost_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "exhaustive",
+        "atoms": [
+          [
+            "1/2",
+            "1"
+          ]
+        ],
+        "rho": "1/4",
+        "budget": "1024",
+        "epsilon": "1/10",
+        "bits": 16,
+        "log_terms": 4,
+        "max_work": 4096
+      },
+      "output": {
+        "value": {
+          "lower": "1/32",
+          "upper": "1/32"
+        },
+        "selected": [
+          true
+        ],
+        "suffix_count": 2
+      },
+      "menu": [
+        0,
+        1
+      ],
+      "proof_sha256": "c41b27835696748613be5321b2596e6130ffe3cb74620af5e9c79011160ffd3d",
+      "scope": "bounded_global_selection_output_not_statistical_risk",
+      "global_enclosure_verified": true,
+      "exact_optimum_verified": false,
+      "relative_approximation_verified": false,
+      "python_execution_verified": false,
+      "internal_solver_trace_verified": false,
+      "polynomial_verification_cost_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "dp",
+        "atoms": [
+          [
+            "1/2",
+            "1"
+          ]
+        ],
+        "rho": "1/4",
+        "budget": "1024",
+        "epsilon": "1/10",
+        "bits": 16,
+        "log_terms": 4,
+        "max_work": 4096
+      },
+      "output": {
+        "value": {
+          "lower": "1/32",
+          "upper": "1/32"
+        },
+        "selected": [
+          true
+        ],
+        "suffix_count": 2,
+        "optimality_proved": true
+      },
+      "menu": [
+        0,
+        1
+      ],
+      "proof_sha256": "a4c19894b7f6ff2d029d2d5529927c8658196c4fdfa9a39ce56cd5bb0a6ec2aa",
+      "scope": "bounded_global_selection_output_not_statistical_risk",
+      "global_enclosure_verified": true,
+      "exact_optimum_verified": true,
+      "relative_approximation_verified": false,
+      "python_execution_verified": false,
+      "internal_solver_trace_verified": false,
+      "polynomial_verification_cost_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "approximate",
+        "atoms": [
+          [
+            "1/2",
+            "1"
+          ]
+        ],
+        "rho": "1/4",
+        "budget": "1024",
+        "epsilon": "1/10",
+        "bits": 16,
+        "log_terms": 4,
+        "max_work": 4096
+      },
+      "output": {
+        "value": {
+          "lower": "5/164",
+          "upper": "1/32"
+        },
+        "selected": [
+          true
+        ],
+        "suffix_count": 2,
+        "witness_value": {
+          "lower": "1/32",
+          "upper": "1/32"
+        },
+        "epsilon": "1/10"
+      },
+      "menu": [
+        0,
+        1
+      ],
+      "proof_sha256": "73671a93a8e459fff2390912dc2e0f7bdc7d46cf3d76d9656b0de609c4fc8a46",
+      "scope": "bounded_global_selection_output_not_statistical_risk",
+      "global_enclosure_verified": true,
+      "exact_optimum_verified": false,
+      "relative_approximation_verified": true,
+      "python_execution_verified": false,
+      "internal_solver_trace_verified": false,
+      "polynomial_verification_cost_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "exhaustive",
+        "atoms": [
+          [
+            "1/3",
+            "1/2"
+          ],
+          [
+            "3/8",
+            "1/2"
+          ]
+        ],
+        "rho": "1/4",
+        "budget": "256",
+        "epsilon": "1/10",
+        "bits": 16,
+        "log_terms": 4,
+        "max_work": 4096
+      },
+      "output": {
+        "value": {
+          "lower": "93003/1048576",
+          "upper": "23251/262144"
+        },
+        "selected": [
+          true,
+          true
+        ],
+        "suffix_count": 3
+      },
+      "menu": [
+        0,
+        2,
+        3
+      ],
+      "proof_sha256": "f5d9493855e0df5cb95e142bb352cb19a1f231881a5cce689420e80c3aec815a",
+      "scope": "bounded_global_selection_output_not_statistical_risk",
+      "global_enclosure_verified": true,
+      "exact_optimum_verified": false,
+      "relative_approximation_verified": false,
+      "python_execution_verified": false,
+      "internal_solver_trace_verified": false,
+      "polynomial_verification_cost_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "dp",
+        "atoms": [
+          [
+            "1/3",
+            "1/2"
+          ],
+          [
+            "3/8",
+            "1/2"
+          ]
+        ],
+        "rho": "1/4",
+        "budget": "256",
+        "epsilon": "1/10",
+        "bits": 16,
+        "log_terms": 4,
+        "max_work": 4096
+      },
+      "output": {
+        "value": {
+          "lower": "93003/1048576",
+          "upper": "23251/262144"
+        },
+        "selected": [
+          true,
+          true
+        ],
+        "suffix_count": 3,
+        "optimality_proved": true
+      },
+      "menu": [
+        0,
+        2,
+        3
+      ],
+      "proof_sha256": "cf07b15c5d13a0b94d42d0253b75513ef36a9c3b15c9114dae750b9ab17409b8",
+      "scope": "bounded_global_selection_output_not_statistical_risk",
+      "global_enclosure_verified": true,
+      "exact_optimum_verified": true,
+      "relative_approximation_verified": false,
+      "python_execution_verified": false,
+      "internal_solver_trace_verified": false,
+      "polynomial_verification_cost_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "approximate",
+        "atoms": [
+          [
+            "1/3",
+            "1/2"
+          ],
+          [
+            "3/8",
+            "1/2"
+          ]
+        ],
+        "rho": "1/4",
+        "budget": "256",
+        "epsilon": "1/2",
+        "bits": 16,
+        "log_terms": 4,
+        "max_work": 4096
+      },
+      "output": {
+        "value": {
+          "lower": "31001/393216",
+          "upper": "23251/262144"
+        },
+        "selected": [
+          true,
+          true
+        ],
+        "suffix_count": 3,
+        "witness_value": {
+          "lower": "93003/1048576",
+          "upper": "23251/262144"
+        },
+        "epsilon": "1/2"
+      },
+      "menu": [
+        0,
+        2,
+        3
+      ],
+      "proof_sha256": "1abdbda3a26f5a86db2cdf293acf61dbe8762ad62c4a532f35d8cd2bde3d2cf7",
+      "scope": "bounded_global_selection_output_not_statistical_risk",
+      "global_enclosure_verified": true,
+      "exact_optimum_verified": false,
+      "relative_approximation_verified": true,
+      "python_execution_verified": false,
+      "internal_solver_trace_verified": false,
+      "polynomial_verification_cost_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "exhaustive",
+        "atoms": [
+          [
+            "1/64",
+            "1/128"
+          ],
+          [
+            "1/8",
+            "1/4"
+          ],
+          [
+            "1/2",
+            "95/128"
+          ]
+        ],
+        "rho": "1/4",
+        "budget": "1024",
+        "epsilon": "1/10",
+        "bits": 16,
+        "log_terms": 4,
+        "max_work": 4096
+      },
+      "output": {
+        "value": {
+          "lower": "93637/1048576",
+          "upper": "46819/524288"
+        },
+        "selected": [
+          false,
+          true,
+          true
+        ],
+        "suffix_count": 8
+      },
+      "menu": [
+        0,
+        4,
+        2,
+        6,
+        1,
+        5,
+        3,
+        7
+      ],
+      "proof_sha256": "fa0b6c0fa6e2407d71e3ac35751b792cb1955b150139352dc7ab6bdfc362bc84",
+      "scope": "bounded_global_selection_output_not_statistical_risk",
+      "global_enclosure_verified": true,
+      "exact_optimum_verified": false,
+      "relative_approximation_verified": false,
+      "python_execution_verified": false,
+      "internal_solver_trace_verified": false,
+      "polynomial_verification_cost_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "dp",
+        "atoms": [
+          [
+            "1/64",
+            "1/128"
+          ],
+          [
+            "1/8",
+            "1/4"
+          ],
+          [
+            "1/2",
+            "95/128"
+          ]
+        ],
+        "rho": "1/4",
+        "budget": "1024",
+        "epsilon": "1/10",
+        "bits": 16,
+        "log_terms": 4,
+        "max_work": 4096
+      },
+      "output": {
+        "value": {
+          "lower": "93637/1048576",
+          "upper": "46819/524288"
+        },
+        "selected": [
+          false,
+          true,
+          true
+        ],
+        "suffix_count": 8,
+        "optimality_proved": true
+      },
+      "menu": [
+        0,
+        4,
+        2,
+        6,
+        1,
+        5,
+        3,
+        7
+      ],
+      "proof_sha256": "96522976495da52a11c7ea5aa522418af66632a3695ecba456ea7fd3e4be866c",
+      "scope": "bounded_global_selection_output_not_statistical_risk",
+      "global_enclosure_verified": true,
+      "exact_optimum_verified": true,
+      "relative_approximation_verified": false,
+      "python_execution_verified": false,
+      "internal_solver_trace_verified": false,
+      "polynomial_verification_cost_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "approximate",
+        "atoms": [
+          [
+            "1/64",
+            "1/128"
+          ],
+          [
+            "1/8",
+            "1/4"
+          ],
+          [
+            "1/2",
+            "95/128"
+          ]
+        ],
+        "rho": "1/4",
+        "budget": "1024",
+        "epsilon": "1/4",
+        "bits": 16,
+        "log_terms": 4,
+        "max_work": 4096
+      },
+      "output": {
+        "value": {
+          "lower": "93637/1114112",
+          "upper": "46819/524288"
+        },
+        "selected": [
+          false,
+          true,
+          true
+        ],
+        "suffix_count": 8,
+        "witness_value": {
+          "lower": "93637/1048576",
+          "upper": "46819/524288"
+        },
+        "epsilon": "1/4"
+      },
+      "menu": [
+        0,
+        4,
+        2,
+        6,
+        1,
+        5,
+        3,
+        7
+      ],
+      "proof_sha256": "79457d89cd265c44861d5f7a5e9b37e9c678d56c9841a5611df8ef7e306b852f",
+      "scope": "bounded_global_selection_output_not_statistical_risk",
+      "global_enclosure_verified": true,
+      "exact_optimum_verified": false,
+      "relative_approximation_verified": true,
+      "python_execution_verified": false,
+      "internal_solver_trace_verified": false,
+      "polynomial_verification_cost_verified": false,
+      "external_compiled_cache_trusted": true
+    },
+    {
+      "verified": true,
+      "request": {
+        "operation": "dp",
+        "atoms": [
+          [
+            "1/3",
+            "1/2"
+          ],
+          [
+            "3/8",
+            "1/2"
+          ]
+        ],
+        "rho": "1/4",
+        "budget": "1",
+        "epsilon": "1/10",
+        "bits": 16,
+        "log_terms": 4,
+        "max_work": 4096
+      },
+      "output": {
+        "value": {
+          "lower": "1/4",
+          "upper": "1/4"
+        },
+        "selected": [
+          false,
+          false
+        ],
+        "suffix_count": 3,
+        "optimality_proved": true
+      },
+      "menu": [
+        0,
+        2,
+        3
+      ],
+      "proof_sha256": "6a9efa4106431009d03ece9c421a1dd1105018d2a78b53fde404a66346ba77dd",
+      "scope": "bounded_global_selection_output_not_statistical_risk",
+      "global_enclosure_verified": true,
+      "exact_optimum_verified": true,
+      "relative_approximation_verified": false,
+      "python_execution_verified": false,
+      "internal_solver_trace_verified": false,
+      "polynomial_verification_cost_verified": false,
+      "external_compiled_cache_trusted": true
+    }
+  ],
+  "rejected": [
+    {
+      "operation": "exhaustive",
+      "changed_field": "upper",
+      "certificate": {
+        "schema": "ate-kernel-global-selection-v1",
+        "request": {
+          "operation": "exhaustive",
+          "atoms": [
+            [
+              "1/2",
+              "1"
+            ]
+          ],
+          "rho": "1/4",
+          "budget": "1024",
+          "epsilon": "1/10",
+          "bits": 16,
+          "log_terms": 4,
+          "max_work": 4096
+        },
+        "output": {
+          "value": {
+            "lower": "0",
+            "upper": "0"
+          },
+          "selected": [
+            true
+          ],
+          "suffix_count": 2
+        },
+        "menu": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "operation": "exhaustive",
+      "changed_field": "lower",
+      "certificate": {
+        "schema": "ate-kernel-global-selection-v1",
+        "request": {
+          "operation": "exhaustive",
+          "atoms": [
+            [
+              "1/2",
+              "1"
+            ]
+          ],
+          "rho": "1/4",
+          "budget": "1024",
+          "epsilon": "1/10",
+          "bits": 16,
+          "log_terms": 4,
+          "max_work": 4096
+        },
+        "output": {
+          "value": {
+            "lower": "1/4",
+            "upper": "1/4"
+          },
+          "selected": [
+            true
+          ],
+          "suffix_count": 2
+        },
+        "menu": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "operation": "dp",
+      "changed_field": "selected",
+      "certificate": {
+        "schema": "ate-kernel-global-selection-v1",
+        "request": {
+          "operation": "dp",
+          "atoms": [
+            [
+              "1/2",
+              "1"
+            ]
+          ],
+          "rho": "1/4",
+          "budget": "1024",
+          "epsilon": "1/10",
+          "bits": 16,
+          "log_terms": 4,
+          "max_work": 4096
+        },
+        "output": {
+          "value": {
+            "lower": "1/32",
+            "upper": "1/32"
+          },
+          "selected": [
+            false
+          ],
+          "suffix_count": 2,
+          "optimality_proved": true
+        },
+        "menu": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "operation": "approximate",
+      "changed_field": "epsilon",
+      "certificate": {
+        "schema": "ate-kernel-global-selection-v1",
+        "request": {
+          "operation": "approximate",
+          "atoms": [
+            [
+              "1/2",
+              "1"
+            ]
+          ],
+          "rho": "1/4",
+          "budget": "1024",
+          "epsilon": "1/10",
+          "bits": 16,
+          "log_terms": 4,
+          "max_work": 4096
+        },
+        "output": {
+          "value": {
+            "lower": "5/164",
+            "upper": "1/32"
+          },
+          "selected": [
+            true
+          ],
+          "suffix_count": 2,
+          "witness_value": {
+            "lower": "1/32",
+            "upper": "1/32"
+          },
+          "epsilon": "1/2"
+        },
+        "menu": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "operation": "approximate",
+      "changed_field": "witness_value",
+      "certificate": {
+        "schema": "ate-kernel-global-selection-v1",
+        "request": {
+          "operation": "approximate",
+          "atoms": [
+            [
+              "1/2",
+              "1"
+            ]
+          ],
+          "rho": "1/4",
+          "budget": "1024",
+          "epsilon": "1/10",
+          "bits": 16,
+          "log_terms": 4,
+          "max_work": 4096
+        },
+        "output": {
+          "value": {
+            "lower": "5/164",
+            "upper": "1/32"
+          },
+          "selected": [
+            true
+          ],
+          "suffix_count": 2,
+          "witness_value": {
+            "lower": "0",
+            "upper": "0"
+          },
+          "epsilon": "1/10"
+        },
+        "menu": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "operation": "exhaustive",
+      "changed_field": "menu",
+      "certificate": {
+        "schema": "ate-kernel-global-selection-v1",
+        "request": {
+          "operation": "exhaustive",
+          "atoms": [
+            [
+              "1/3",
+              "1/2"
+            ],
+            [
+              "3/8",
+              "1/2"
+            ]
+          ],
+          "rho": "1/4",
+          "budget": "256",
+          "epsilon": "1/10",
+          "bits": 16,
+          "log_terms": 4,
+          "max_work": 4096
+        },
+        "output": {
+          "value": {
+            "lower": "93003/1048576",
+            "upper": "23251/262144"
+          },
+          "selected": [
+            true,
+            true
+          ],
+          "suffix_count": 2
+        },
+        "menu": [
+          0,
+          3
+        ]
+      }
+    },
+    {
+      "operation": "exhaustive",
+      "changed_field": "menu",
+      "certificate": {
+        "schema": "ate-kernel-global-selection-v1",
+        "request": {
+          "operation": "exhaustive",
+          "atoms": [
+            [
+              "1/3",
+              "1/2"
+            ],
+            [
+              "3/8",
+              "1/2"
+            ]
+          ],
+          "rho": "1/4",
+          "budget": "256",
+          "epsilon": "1/10",
+          "bits": 16,
+          "log_terms": 4,
+          "max_work": 4096
+        },
+        "output": {
+          "value": {
+            "lower": "93003/1048576",
+            "upper": "23251/262144"
+          },
+          "selected": [
+            true,
+            true
+          ],
+          "suffix_count": 3
+        },
+        "menu": [
+          0,
+          2,
+          2
+        ]
+      }
+    },
+    {
+      "operation": "exhaustive",
+      "changed_field": "suffix_count",
+      "certificate": {
+        "schema": "ate-kernel-global-selection-v1",
+        "request": {
+          "operation": "exhaustive",
+          "atoms": [
+            [
+              "1/3",
+              "1/2"
+            ],
+            [
+              "3/8",
+              "1/2"
+            ]
+          ],
+          "rho": "1/4",
+          "budget": "256",
+          "epsilon": "1/10",
+          "bits": 16,
+          "log_terms": 4,
+          "max_work": 4096
+        },
+        "output": {
+          "value": {
+            "lower": "93003/1048576",
+            "upper": "23251/262144"
+          },
+          "selected": [
+            true,
+            true
+          ],
+          "suffix_count": 2
+        },
+        "menu": [
+          0,
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "operation": "dp",
+      "changed_field": "output",
+      "certificate": {
+        "schema": "ate-kernel-global-selection-v1",
+        "request": {
+          "operation": "dp",
+          "atoms": [
+            [
+              "1/2",
+              "1"
+            ]
+          ],
+          "rho": "1/4",
+          "budget": "1024",
+          "epsilon": "1/10",
+          "bits": 16,
+          "log_terms": 4,
+          "max_work": 4096
+        },
+        "output": {
+          "value": {
+            "lower": "0",
+            "upper": "1/4"
+          },
+          "selected": [
+            false
+          ],
+          "suffix_count": 2,
+          "optimality_proved": true
+        },
+        "menu": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "operation": "approximate",
+      "changed_field": "value",
+      "certificate": {
+        "schema": "ate-kernel-global-selection-v1",
+        "request": {
+          "operation": "approximate",
+          "atoms": [
+            [
+              "1/2",
+              "1"
+            ]
+          ],
+          "rho": "1/4",
+          "budget": "1024",
+          "epsilon": "1/10",
+          "bits": 16,
+          "log_terms": 4,
+          "max_work": 4096
+        },
+        "output": {
+          "value": {
+            "lower": "0",
+            "upper": "1/4"
+          },
+          "selected": [
+            true
+          ],
+          "suffix_count": 2,
+          "witness_value": {
+            "lower": "1/32",
+            "upper": "1/32"
+          },
+          "epsilon": "1/10"
+        },
+        "menu": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "operation": "dp",
+      "changed_field": "selected",
+      "certificate": {
+        "schema": "ate-kernel-global-selection-v1",
+        "request": {
+          "operation": "dp",
+          "atoms": [
+            [
+              "1/3",
+              "1/2"
+            ],
+            [
+              "3/8",
+              "1/2"
+            ]
+          ],
+          "rho": "1/4",
+          "budget": "1",
+          "epsilon": "1/10",
+          "bits": 16,
+          "log_terms": 4,
+          "max_work": 4096
+        },
+        "output": {
+          "value": {
+            "lower": "1/4",
+            "upper": "1/4"
+          },
+          "selected": [
+            true,
+            false
+          ],
+          "suffix_count": 3,
+          "optimality_proved": true
+        },
+        "menu": [
+          0,
+          2,
+          3
+        ]
+      }
+    }
+  ],
+  "regression_scope": "bounded actual output evidence, not universal producer correctness"
+}

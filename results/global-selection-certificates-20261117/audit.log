@@ -1,0 +1,28 @@
+'ThresholdHC.GlobalSelectionCertificates.atomic_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.GlobalSelectionCertificates.extendMasks' does not depend on any axioms
+'ThresholdHC.GlobalSelectionCertificates.fixedSaving' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.GlobalSelectionCertificates.fractions' depends on axioms: [propext, Quot.sound]
+'ThresholdHC.GlobalSelectionCertificates.fractions_valid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.GlobalSelectionCertificates.global_enclosure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.GlobalSelectionCertificates.global_optimality' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.GlobalSelectionCertificates.instDecidableSavingPositiveQ' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.GlobalSelectionCertificates.mergeMask' does not depend on any axioms
+'ThresholdHC.GlobalSelectionCertificates.peakCount' does not depend on any axioms
+'ThresholdHC.GlobalSelectionCertificates.rational_same_cell' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.GlobalSelectionCertificates.relative_certificate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.GlobalSelectionCertificates.runCheck' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.GlobalSelectionCertificates.runCheck_lengths' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.GlobalSelectionCertificates.savingLE' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.GlobalSelectionCertificates.savingLE_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.GlobalSelectionCertificates.savingPositiveQ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.GlobalSelectionCertificates.scaledSaving' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.GlobalSelectionCertificates.selection_le_expr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.GlobalSelectionCertificates.stageCheck' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.GlobalSelectionCertificates.stageCheck_sound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.GlobalSelectionCertificates.suffixCheck' does not depend on any axioms
+'ThresholdHC.GlobalSelectionCertificates.suffix_attains' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.GlobalSelectionCertificates.transitionCount' does not depend on any axioms

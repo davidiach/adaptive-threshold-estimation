@@ -289,3 +289,10 @@ certificates with adversarial rejections. See the [finite-law scope](../docs/FIN
 and independent kernel replay for three envelope/transfer modules, then actual
 output and rejection cases. It snapshots sources and writes fresh evidence to
 `.runtime/envelope-transfer-certificates/`. See the [scope](../docs/ENVELOPE_TRANSFER_CERTIFICATES.md).
+
+`verify_global_selection_certificates.py` checks eleven exact types, all roots
+and independent replay of two modules for complete menus and pruning primitives,
+then bounded actual global output certificates and rejection cases. Evidence is
+written to `.runtime/global-selection-certificates/`; the matching audit guards
+are `test_global_selection_certificates_audit.py`. See the
+[contract and limits](../docs/GLOBAL_SELECTION_CERTIFICATES.md).

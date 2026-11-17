@@ -1,0 +1,32 @@
+<stdin>:20:14: warning: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+<stdin>:20:30: warning: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+<stdin>:20:14: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+<stdin>:20:30: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+<stdin>:33:51: warning: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+<stdin>:33:51: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+<stdin>:39:71: warning: Unused tactic linter: `<;>` can be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+<stdin>:39:75: warning: Unused tactic linter: `decide` is never executed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+<stdin>:39:75: warning: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+<stdin>:51:91: error: unsolved goals
+⊢ False
+<stdin>:57:90: error: unsolved goals
+⊢ False
+'certified_value' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
