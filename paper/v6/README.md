@@ -10,10 +10,15 @@ separate these checked results from the critical-window corollary and
 asymptotic remark, which remain paper results. Every earlier published
 package retains its original PDF and verification scope.
 
-The LaTeX sources are three wording corrections ahead of that PDF: the
-exponent range $0<\alpha\le4$ of the uniform confidence radii in §11.3, and the two
+The LaTeX sources are five corrections ahead of that PDF, which has not been
+rebuilt for them. Three are wording only: the exponent range $0<\alpha\le4$ of
+the uniform confidence radii in §11.3, and the two
 [appendix wording](#source-and-editorial-scope) changes in Appendices A and B.
-They change no statement or proof, and the PDF has not been rebuilt for them.
+The fourth states the [rarity range](#source-and-editorial-scope) of
+Appendices J–L as $0<\rho\le1/2$, the range that Appendix Q and Theorem S.1
+use, and keeps $\rho\le1/4$ for the explicit cap $N_*$. The fifth corrects a
+remark in Appendix V: finiteness of the coefficient $C$ is equivalent to
+inverse-gap integrability, not weaker. No proof changes.
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -162,6 +167,13 @@ The editorial changes are explicit in the generator:
   the global rarity constraint is used in integrated form in (B.3) and
   elsewhere only as $\theta\le\rho$, where v5 said "precisely in (B.3)".
   Neither change alters a statement or a proof.
+- **Rarity range of the stopping programs.** The general-law manuscript
+  fixed $0<\rho\le1/4$ for the exact dual. Appendices J–L now state
+  $0<\rho\le1/2$, the range that the cap-rate theorems of Appendix Q and
+  Theorem S.1 use. Their proofs use the rarity bound only through the class
+  $\mathcal Q_\rho$ and the constant priors $\rho/2$ and $\rho$. The explicit
+  cap $N_*$ keeps $\rho\le1/4$, which its Bernoulli-label floor needs. Lean
+  states the duality and the cap-rate theorems for $\rho\le1/2$.
 - **Internal citations.** Citations of the companion manuscripts become
   cross-references. The finite-gap manuscript's conditional remark on
   general laws becomes a corollary in §14, whose proof cites the

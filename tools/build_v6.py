@@ -1027,6 +1027,24 @@ scopes stated in Section~\\ref{sec:verification}.""")
         "$P_N\\le2G_N$ at $N=\\lceil4B/3\\rceil$, without covering solver accuracy.\n"
         "The certificates concern the particular rational inputs displayed above.")
 
+    # The general-law manuscript fixed rho <= 1/4 for the dual. The cap-rate
+    # theorems and the confidence theorem use it for rho <= 1/2, and only the
+    # explicit cap N_*, through the Bernoulli-label floor, needs rho <= 1/4.
+    dual = once(gl("dual_transfer"),
+        "Throughout this section, $\\mu$ is any probability measure on $(0,1/2]$,\n"
+        "$0<\\rho\\le1/4$, $B>0$, and $N\\ge1$ is an integer. Put",
+        "Throughout this section, \\cref{sec:midpoint-dual} and \\cref{sec:genie},\n"
+        "$\\mu$ is any probability measure on $(0,1/2]$, $0<\\rho\\le1/2$, $B>0$,\n"
+        "and $N\\ge1$ is an integer; the class, risk and budget of\n"
+        "\\cref{sec:rare-model} are read with this $\\rho$. This is the range used\n"
+        "in \\cref{app:uniform-cap-rate} and \\cref{thm:confidence-stopping-dual}.\n"
+        "Only the explicit cap $N_*$ of\n"
+        "Corollary~\\ref{cor:dual-finite-characterization} needs $\\rho\\le1/4$,\n"
+        "through Lemma~\\ref{lem:tf-floor}. Put")
+    dual = once(dual,
+        "At the explicit cap\n\\[\n N_*=",
+        "If moreover $\\rho\\le1/4$, then at the explicit cap\n\\[\n N_*=")
+
     return {
         "entropy-tail-statement.tex": statement,
         "rare-related-work.tex": related,
@@ -1037,7 +1055,7 @@ scopes stated in Section~\\ref{sec:verification}.""")
         "appendix-lower-foundations.tex": lowerf,
         "appendix-transfer-foundations.tex": transfer,
         "appendix-flow.tex": gl("flow_foundations"),
-        "appendix-dual.tex": gl("dual_transfer"),
+        "appendix-dual.tex": dual,
         "appendix-genie.tex": once(gl("genie_brackets"),
             "criterion therefore succeeds at a finite cap, with no claimed uniform\n"
             "rate for that cap.",
