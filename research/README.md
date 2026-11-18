@@ -21,6 +21,7 @@ later results do not rewrite those historical records.
 
 | Package | Accepted scope | Evidence |
 |---|---|---|
+| [Feedback after the 18-flip pilot](2026-11-18-pilot-feedback/README.md) | At gap 1/5, every policy committing to its seven distinct-label follow-ups after the pilot has worst RMS at least 0.18735887. The adaptive policy attains less than 0.186752. | Exact rational Bayes calculation and Lean proofs of ordered-transcript reconstruction and the strict comparison in the original randomized experiment. |
 | [RMS constants, oracle efficiency and stopping caps](2026-11-17-rms-constants/README.md) | The sharp unrestricted RMS lower coefficient is $1/6$ in the ordinary model and both magnitude oracles. For $B\ge25$ the best coefficient lies in $[0.175198,\,0.186752]$; its exact value is open. Also gives sharp oracle asymptotics and a smaller sufficient cap for the optimized stopping programs. | In the audited library and checked in CI: the constant $1/6$, its optimality, equality at $B=4$, $\sqrt{59/2100}$ for $B\ge25$, both oracles ([SharpRMS](../lean/ThresholdHC/SharpRMS/Full.lean)) and the cap comparison ([SquareRootCap](../lean/ThresholdHC/SquareRootCap/Full.lean)); see the [audit record](../results/sharp-rms-20261117/README.md). The paper proves $1/6$ in Appendix AA. Lean-checked in this package only, with its own replay records, and not in CI or the paper: the bracket for $B\ge25$. Paper proofs with exact-arithmetic checks: the oracle asymptotics and the $3\sqrt7/2$ bound for the infinite stopping program. |
 | [$\Psi$ in closed form and the critical window](2026-11-09-psi-closed-form/README.md) | $\Psi$ equals the entropy-free quantile form within a factor $\sqrt2$; $\Psi\le\mathcal K$, which derives the $\Psi$ lower bound from the entropy-tail law; the distance of $\Psi$ from the rate; power-margin rates with constants independent of the exponent. | Paper proofs in v6 §14.8, resting on Corollary 14.6 and Theorem S.6. Floating-point check of every inequality and constant. Not Lean-checked at this checkpoint. Since then Lean checks $\Psi\le\mathcal K$ ([PsiSelection](../lean/ThresholdHC/PsiSelection/Full.lean)) and Proposition 14.9, Theorem 14.11, Lemma 14.12 and Theorem 14.13 ([PsiClosedForm](../lean/ThresholdHC/PsiClosedForm/Full.lean), [PsiGap](../lean/ThresholdHC/PsiGap/Full.lean), [PsiSharpness](../lean/ThresholdHC/PsiSharpness/Full.lean), [PowerWindow](../lean/ThresholdHC/PowerWindow/Full.lean)). Corollary 14.14 and Remark 14.15 remain paper proofs. |
 | [Prescribed-accuracy finite-law selection](2026-11-06-selection-approximation/README.md) | A fully polynomial `(1+epsilon)` approximation to the capped entropy-tail functional, with an actual suffix witness and no repeated-cost assumption. Exact efficient selection remains open. | Paper proof and rational prototype with exhaustive subset comparisons. Entropy perturbation and certified-bin state compression are Lean-checked. The assembled approximation theorem is since Lean-checked as well ([note](../docs/FINITE_SELECTION_APPROXIMATION.md)); the polynomial bit-complexity argument and Python execution are not. No independent review. |
@@ -67,10 +68,11 @@ The confidence-transfer package's
 [audits](2026-10-30-confidence-transfer/README.md#reproduce-from-the-repository-root)
 write only to `.runtime/confidence-transfer/` and likewise have none.
 
-The three newest packages are replayed from their own guides and are not
+The four newest packages are replayed from their own guides and are not
 part of the two commands above or of CI:
 [selection approximation](2026-11-06-selection-approximation/README.md#verification-performed),
-[$\Psi$ in closed form](2026-11-09-psi-closed-form/README.md#numerical-check) and
-[RMS constants](2026-11-17-rms-constants/README.md#reproducing-the-formal-checks).
+[$\Psi$ in closed form](2026-11-09-psi-closed-form/README.md#numerical-check),
+[RMS constants](2026-11-17-rms-constants/README.md#reproducing-the-formal-checks) and
+[pilot feedback](2026-11-18-pilot-feedback/README.md#verification-scope-and-replay).
 Three checkers of the RMS-constants package import SymPy, which
 `requirements.txt` does not list.

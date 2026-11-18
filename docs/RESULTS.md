@@ -199,6 +199,17 @@ which state the weaker $\sqrt{59/2100}$.
 [Adaptive upper witness](../research/2026-11-17-rms-constants/PilotWitness.lean) ·
 [Exact statements and audit](../research/2026-11-17-rms-constants/README.md#the-coefficient-for-budgets-of-at-least-25)
 
+**Feedback helps at the upper witness.** At the same gap $1/5$ and the same
+18-flip pilot, every policy that commits to all seven follow-up choices
+before seeing their answers has worst-case RMS at least $0.18735887$. That
+holds for randomized designs and for estimates that use the full
+transcript. The adaptive policy above stays below $0.186752$, so feedback
+strictly helps at this fixed budget of 25 flips. Lean checks the
+reconstruction of ordered histories from counts and the strict comparison in
+the original population experiment, in a second
+[research package](../research/2026-11-18-pilot-feedback/README.md) with its
+own replay record; it is not in the CI-audited library or the paper.
+
 The confidence theorem [`confidence_characterization`](../lean/ThresholdHC/Confidence/Full.lean)
 proves the explicit bounds
 

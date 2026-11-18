@@ -1,0 +1,84 @@
+{
+  "compiler": "Lean (version 4.36.0-rc1, x86_64-w64-windows-gnu, commit c9afcddf514a6772bd4d649f7cfc04eff0b9f15e, Release)",
+  "built_lean_tree": "71ebb71cdc57f16898b35fb988848cdd2381631c",
+  "proof_checkout_lean_tree": "e0d1ec4ec74abfa899e89738a980bb6fa5ae34c2",
+  "existing_dependencies": "Compiled repository and Mathlib modules",
+  "rebuilt_pilot": [
+    "SharpAttainment",
+    "LargeBudgetFresh",
+    "RevisitKernel",
+    "RevisitPolicy",
+    "PilotPolicy",
+    "LargeBudgetBinomial",
+    "PilotExperiment",
+    "RevisitPolynomial",
+    "PilotPolynomial",
+    "PilotTable",
+    "PilotCertificate",
+    "SharpEntropy",
+    "LargeBudgetTable",
+    "LargeBudgetWitness",
+    "PilotWitness"
+  ],
+  "pilot_source_audit_sha256": "4856527ea918d0b5f40979e477f0794ec24d31b6ae9f4ced15ad8a4211c84067",
+  "new_source_sha256": {
+    "FeedbackTable.lean": "c68395f17567cbd81419c29dadbaaa621607d54ba0dce2d813abb22f723656bf",
+    "FeedbackRisk.lean": "a222b55caaeeaa656c390e9a3625cc3c0076ff5f9b951e49268e7425b8b75204",
+    "FeedbackComparison.lean": "e92fc577701aac60d91f8864e41977373a5eec8a05ade9be4379d31f79b8d8e1",
+    "FeedbackSeparation.lean": "7732af0ce23609e2d1a400587aea8ffcc67d333dcae0c7a88d6d445318437c7b",
+    "OrderedPolicy.lean": "18140fabe797f3cea12c5a07b83777ce4262facc13c6fee19508346d72e34951",
+    "OrderedExperiment.lean": "8972a92dcf0c1b0dd8f11bb379df0e8c3e33fe2913673c29011c11c83bf53e8e",
+    "OrderedCounts.lean": "8ff38140f1aa51d8cb0c21812b50bd954c665cfd831b65bdbea25604737e5302",
+    "OrderedBayes.lean": "753bb3bea44a8cb2f9e4e4f805a5b3b440ed43eb6b3c72e420bed0e2f245289b",
+    "OrderedReduction.lean": "2cb3d4c9390b58faca3c86814ef9076270154db6dc6a5a055740d35c740b16ab",
+    "OrderedPopulation.lean": "909edce8c38e4d24c4b8d5edf31a9e729659ab1ba7ac486119f4fb190d748e20",
+    "AuditFeedback.lean": "d259e2fe9030b97fc4e4e668b2b2adbabe2b0c7f09fe445b4b50e7bda2f18a8b"
+  },
+  "axioms": {
+    "all_rows": [
+      "propext"
+    ],
+    "worstFour_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "strict_separation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Ordered.ordered_reduction": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Ordered.counts_marginal": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Ordered.original_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "Ordered.original_separation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "kernel_replay": [
+    "FeedbackTable",
+    "FeedbackRisk",
+    "FeedbackComparison",
+    "FeedbackSeparation",
+    "OrderedPolicy",
+    "OrderedExperiment",
+    "OrderedCounts",
+    "OrderedBayes",
+    "OrderedReduction",
+    "OrderedPopulation"
+  ]
+}
