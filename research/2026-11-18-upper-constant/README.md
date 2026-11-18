@@ -4,6 +4,13 @@
 grids, with no proof and no Lean check. Nothing here changes a claimed
 result.
 
+*Since this study,* Lean checks the constant $119$ for the same estimator
+([`UpperConstant`](../../lean/ThresholdHC/UpperConstant/Full.lean),
+[record](../../results/upper-constant-20261118/README.md)). It keeps the
+library's sharper level sums, $23$ and $527/7$, in place of $85$ and $149$,
+and compares the budget by $17/6$ in place of $4$. The per-level bounds
+discussed below are unchanged.
+
 The RMS law states
 $\tfrac16\,\omega_\mu(B^{-1/2})\le R_\mu(B)\le512\,\omega_\mu(B^{-1/2})$
 for every gap law and every $B\ge1$. Lean checks both constants, and $1/6$

@@ -145,9 +145,22 @@ Here $r_\mu(B,\delta)$ is the minimax uniform error radius at failure probabilit
 | Lower, $B\ge25$ | $\sqrt{59/2100}\approx0.1676$ | `large_budget_lower` in the same file | CI, the same audit | Appendix AA |
 | Lower, $B\ge25$, best known | $0.175198$, and $0.17807955$ for $B\ge100$; the best constant is at most $0.186752$ | `bracket_lower`, `hundred_lower` and `bracket_upper` in [LargeBudgetRMS/Full.lean](../lean/ThresholdHC/LargeBudgetRMS/Full.lean) | CI, `tools/verify_large_budget_rms.py` | Appendix AA, Theorem AA.7 |
 | Lower, original frozen target | $1/64$ | `minimax_lower_bound` in [Tier6/Full.lean](../lean/ThresholdHC/Tier6/Full.lean) | CI, `tools/verify_tier6.py` | §5 |
-| Upper, $B\ge1$ | $512$ | `minimax_upper_bound` in [BlindUpper/Full.lean](../lean/ThresholdHC/BlindUpper/Full.lean) | CI, `tools/verify_blind_upper_components.py` | §18 derives $512$; §5 proves the bound with a larger constant |
+| Upper, $B\ge1$ | $119$ | `minimax_upper_119` and `blind_upper_119` in [UpperConstant/Full.lean](../lean/ThresholdHC/UpperConstant/Full.lean) | CI, `tools/verify_upper_constant.py` | No: the paper states $512$ |
+| Upper, frozen target | $512$ | `minimax_upper_bound` in [BlindUpper/Full.lean](../lean/ThresholdHC/BlindUpper/Full.lean) | CI, `tools/verify_blind_upper_components.py` | §18 derives $512$; §5 proves the bound with a larger constant |
 
-The lower constant is settled for $B\ge1$. The upper constant is not, so the two sides remain a factor $3072$ apart.
+The lower constant is settled for $B\ge1$. The upper constant is not, so the two sides remain a factor $714$ apart.
+
+**The upper constant 119.** Both upper constants come from the same
+distribution-blind estimator, which knows only the budget. Its analysis bounds
+the second moment and the cost of one call by level sums. The library proves
+those sums below $23$ and $527/7$, but the proofs of the frozen Tier 2 targets
+weaken them to $85$ and $149$. Kept sharp, they give a mean-square error of at
+most $12289/7$ times the squared modulus at the dyadic budget level. Comparing
+the level with the budget by the factor $17/6$ in place of $4$ then gives
+$119$ ([audit record](../results/upper-constant-20261118/README.md)). A
+[numerical study](../research/2026-11-18-upper-constant/README.md) puts the
+estimator's actual worst ratio near $7.6$. The remaining slack is in the
+per-level bounds on its classifiers.
 
 The lower constant of the RMS law is sharp. For every gap law and every $B\ge1$,
 
@@ -176,7 +189,7 @@ an integer certificate over 140 bias intervals elsewhere; the Lean kernel
 evaluates that certificate. For $B\ge25$, three sign biases compared under
 one reference law. Appendix AA of the v6 paper and the
 [research note](../research/2026-11-17-rms-constants/sharp-unrestricted.pdf)
-give the written proof. The upper constant $512$ is unchanged.
+give the written proof. The upper constant is $119$ (below).
 
 **Budgets of at least 25.** Let $c_{25}$ be the largest constant with
 $R_\mu(B)\ge c_{25}\,\omega_\mu(B^{-1/2})$ for every gap law and every
@@ -264,7 +277,11 @@ The original simulation law, actual controller cost/output identities,
 almost-sure pilot termination and budget selection are proved. The
 [full audit](../results/blind_upper_components_002.json) checks the unchanged
 frozen specification and all 373 declaration roots; coefficient 512 is not
-claimed optimal.
+claimed optimal. The same family has the constant $119$:
+[`UpperConstant/Full.lean`](../lean/ThresholdHC/UpperConstant/Full.lean)
+proves `budgetEstimator_maximalRMSRisk` and the minimax bound with $119$ in
+place of $512$, audited exactly by `tools/verify_upper_constant.py`
+([record](../results/upper-constant-20261118/README.md)).
 
 The original lower target is frozen and kept unchanged. `ThresholdHC.Tier6.minimax_lower_bound` in [Full.lean](../lean/ThresholdHC/Tier6/Full.lean) proves
 
