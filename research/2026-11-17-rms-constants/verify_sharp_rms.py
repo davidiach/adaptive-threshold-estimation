@@ -50,6 +50,7 @@ def main():
     modes.add_argument("--large-budget", action="store_true", help="Check the improved logarithmic bound in all three models.")
     modes.add_argument("--revisit", action="store_true", help="Check the adaptive 25-flip upper witness.")
     modes.add_argument("--pilot", action="store_true", help="Check the 18-flip pilot and seven adaptive follow-up choices.")
+    modes.add_argument("--multi-bias", action="store_true", help="Check the five symmetric bias pairs and their uniform lower bounds.")
     args = parser.parse_args()
     window_modules = ("SharpGridArithmetic", "SharpWindow", "SharpWindowReal",
                       "SharpInterpolation", "SharpRectangles", "SharpGridPrices",
@@ -91,6 +92,11 @@ def main():
         modules = local_dependencies(audit)
         namespace = r"ThresholdHC\.SharpRMS\.Pilot"
         theorems = {"pilot_worst_squared", "pilot_cap", "pilot_budget", "pilot_squared_risk", "pilot_upper_25", "pilot_coefficient_upper"}
+    if args.multi_bias:
+        audit = "AuditMultiBias"
+        modules = local_dependencies(audit)
+        namespace = r"ThresholdHC\.SharpRMS\.MultiBias"
+        theorems = {"scalar_test", "lower_of_price", "lower_curve", "lower_25", "lower_100"}
     repo = args.repo.resolve()
     lean_dir = repo / "lean"
     tree = run(["git", "rev-parse", "HEAD:lean"], cwd=repo)
@@ -160,7 +166,8 @@ def main():
         "transitive_axioms": {name: names.split(", ") for name, names in reports},
         "kernel_replay": list(modules),
         "dependencies": "Existing compiled project and Mathlib imports",
-        "scope": ("Eighteen fresh flips and seven adaptive choices, pathwise work cap, uniform squared risk, and ordinary large-budget coefficient upper bound" if args.pilot else
+        "scope": ("Five symmetric sign-bias pairs, a budget-dependent lower bound, and explicit coefficients for B >= 25 and B >= 100 in all three models" if args.multi_bias else
+                  "Eighteen fresh flips and seven adaptive choices, pathwise work cap, uniform squared risk, and ordinary large-budget coefficient upper bound" if args.pilot else
                   "Adaptive 20-plus-5 revisit rule, uniform work cap, squared risk for every sign law, and ordinary large-budget coefficient upper bound" if args.revisit else
                   "Symmetric adaptive entropy cost, exact three-bias test, and improved uniform constants for B >= 25 and B >= 100 in all three models, and an ordinary 25-flip upper witness" if args.large_budget else
                   "Both magnitude oracles: all gap laws, stronger large-budget bound, and exact endpoint attainment" if args.oracles else

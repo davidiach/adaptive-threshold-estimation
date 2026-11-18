@@ -46,18 +46,28 @@ For both magnitude oracles, the [oracle reduction](SharpOracleReduction.lean) al
 Write $c_{25}$ for the largest ordinary-model coefficient such that $R_\mu(B)\ge c_{25}\,\omega_\mu(B^{-1/2})$ for every gap law and every real $B\ge25$. The certified interval is
 
 $$
-0.17356166\ \le\ c_{25}\ \le\ 0.186752.
+0.175198\ \le\ c_{25}\ \le\ 0.186752.
 $$
 
-The lower endpoint also applies to the revealed- and selected-magnitude oracles. For $B\ge100$ the lower coefficient increases to $0.17623782$. The sharp value for $B\ge25$ remains open. [Lower theorems](LargeBudgetBounds.lean) · [Adaptive upper witness](PilotWitness.lean) · [Exact statements](AuditLargeBudget.lean) · [Kernel replay](large-budget-audit.json)
+The lower endpoint also applies to the revealed- and selected-magnitude oracles. For $B\ge100$ the lower coefficient increases to $0.17807955$. The sharp value for $B\ge25$ remains open. [Lower theorems](MultiBiasBounds.lean) · [Adaptive upper witness](PilotWitness.lean) · [Lower-bound statements](AuditMultiBias.lean) · [Kernel replay](multi-bias-audit.json)
 
-At the critical gap $d=B^{-1/2}$, write $s=2d$ and let $P_t$ be the transcript law at sign mean $t$. The summed reverse divergences from $P_0$ to $P_{\pm t}$ are at most $-\log(1-t^2s^2)\,\mathbb E_0 W$ when $t^2\le2/3$. This follows by bounding the log likelihood of each sampled coin in terms of its posterior and applying the Wald identity. For $t=29/40$, the three-bias test then gives the following sufficient condition on a positive RMS coefficient $r$, with $k=11774928000/2595112129$ and $b=29/4$.
+At the critical gap $d=B^{-1/2}$, write $s=2d$ and let $P_t$ be the transcript law at sign mean $t$. The summed reverse divergences from $P_0$ to $P_{\pm t}$ are at most $-\log(1-t^2s^2)\,\mathbb E_0 W$ when $t^2\le2/3$. This follows by bounding the log likelihood of each sampled coin in terms of its posterior and applying the Wald identity. For $t=29/40$, the earlier three-bias test then gives the following sufficient condition on a positive RMS coefficient $r$, with $k=11774928000/2595112129$ and $b=29/4$.
 
 $$
 4(k+2b)r^2\ \le\ 2.7401+2(1-1/8)+B\log(1-4t^2/B).
 $$
 
 The right side increases with $B$. The proof checks the logarithm at the cutoff with a finite rational Taylor sum, averages over private randomness and passes to unbounded stopping under the original expected-work budget. [Entropy per flip](LargeBudgetTranscript.lean) · [Three-bias inequality](LargeBudgetTest.lean) · [Population risk](LargeBudgetPopulation.lean) · [Budget dependence](LargeBudgetPrice.lean)
+
+The stronger lower bound uses the fair-sign law together with five pairs of alternatives $\pm t_i$, where the positive biases are $0.527436$, $0.679980$, $0.753283$, $0.798023$ and $0.816490$. For a clipped estimate $x$ of the sign mean, each alternative uses a positive test $1+b_i((x-t_i)^2-R)$, where $R=4(0.175198)^2$. If the mean squared error is at most $R$ under that alternative, its expected test value is at most one. All ten logarithmic tests can therefore be bounded using divergence from the same fair law. Their sum and a positive multiple of $x^2$ give a pointwise lower bound for every $|x|\le1$. Lean verifies it using a degree-27 Taylor lower bound for the exponential and exact polynomial checks on nine intervals in $x^2$. [Test coefficients](MultiBiasData.lean) · [Scalar certificate](MultiBiasCertificate.lean) · [Finite-transcript inequality](MultiBiasPrefix.lean)
+
+For the total divergence bound $P(B)=-B\sum_i\log(1-4t_i^2/B)$ and $D=93.534911$, the resulting coefficient at each real $B\ge25$ is at least
+
+$
+\frac12\sqrt{R+\frac{P(25)-P(B)}{D}}.
+$
+
+The factor of two converts sign mean to positive-sign fraction. $P(B)$ decreases with $B$, which yields both reported cutoffs. The proof averages over private randomness and uses finite expected work to pass from finite transcripts to the stopped experiment. The single-gap reduction then gives the result for every gap law in each of the three models. [Budget calculation](MultiBiasPrice.lean) · [Stopping and randomization](MultiBiasPopulation.lean) · [Uniform lower bounds](MultiBiasBounds.lean)
 
 The earlier fixed-sample upper bound takes $B=25$ and $\mu=\delta_{1/5}$, where the modulus equals one. The protocol queries 25 distinct coins once each and returns a rational estimate indexed by the head count. When the positive-sign fraction is $p$, each observation has head probability $3/10+2p/5$. The mean squared error is a degree-13 polynomial in $(2p-1)^2$. Four exact Bernstein expansions certify that it is at most $0.195454^2$ on the full parameter interval. [Fresh-flip law](LargeBudgetFresh.lean) · [Estimator and polynomial certificate](LargeBudgetTable.lean)
 
@@ -82,4 +92,5 @@ python research/2026-11-17-rms-constants/verify_sharp_rms.py . --oracles
 python research/2026-11-17-rms-constants/verify_sharp_rms.py . --large-budget
 python research/2026-11-17-rms-constants/verify_sharp_rms.py . --revisit
 python research/2026-11-17-rms-constants/verify_sharp_rms.py . --pilot
+python research/2026-11-17-rms-constants/verify_sharp_rms.py . --multi-bias
 ```
