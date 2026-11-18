@@ -21,6 +21,7 @@ later results do not rewrite those historical records.
 
 | Package | Accepted scope | Evidence |
 |---|---|---|
+| [How loose is the upper constant 512?](2026-11-18-upper-constant/README.md) | For the distribution-blind algorithm behind the upper constant, the worst RMS-to-modulus ratio found is about 7.6, and a proof along the paper's route with sharp per-gap constants would give about 9; the proven constant is 512. | Exact floating-point risk formula over finite grids of gaps, sign laws and budgets, cross-checked by simulation of the toolkit implementation. Numerical evidence only; no proof and no Lean check. |
 | [One scheduled update after the pilot](2026-11-18-scheduled-update/README.md) | With a pilot-chosen split and a second batch chosen from ordered first-batch answers, worst RMS is at least 0.186960371. | Lean population-risk lower bound and strict comparison against the adaptive witness, with an independent integer calculation. |
 | [Feedback after the 18-flip pilot](2026-11-18-pilot-feedback/README.md) | At gap 1/5, every policy committing to its seven distinct-label follow-ups after the pilot has worst RMS at least 0.18735887. The adaptive policy attains less than 0.186752. | Exact rational Bayes calculation and Lean proofs of ordered-transcript reconstruction and the strict comparison in the original randomized experiment. |
 | [RMS constants, oracle efficiency and stopping caps](2026-11-17-rms-constants/README.md) | The sharp unrestricted RMS lower coefficient is $1/6$ in the ordinary model and both magnitude oracles. For $B\ge25$ the best coefficient lies in $[0.175198,\,0.186752]$; its exact value is open. Also gives sharp oracle asymptotics and a smaller sufficient cap for the optimized stopping programs. | In the audited library and checked in CI: the constant $1/6$, its optimality, equality at $B=4$, $\sqrt{59/2100}$ for $B\ge25$, both oracles ([SharpRMS](../lean/ThresholdHC/SharpRMS/Full.lean)) and the cap comparison ([SquareRootCap](../lean/ThresholdHC/SquareRootCap/Full.lean)); see the [audit record](../results/sharp-rms-20261117/README.md). The paper proves $1/6$ in Appendix AA. Since 18 November 2026 also in the audited library and CI: the bracket for $B\ge25$ ([LargeBudgetRMS](../lean/ThresholdHC/LargeBudgetRMS/Full.lean), [audit record](../results/large-budget-rms-20261118/README.md)), stated in Appendix AA as Theorem AA.7. Paper proofs with exact-arithmetic checks: the oracle asymptotics and the $3\sqrt7/2$ bound for the infinite stopping program. |
@@ -69,11 +70,16 @@ The confidence-transfer package's
 [audits](2026-10-30-confidence-transfer/README.md#reproduce-from-the-repository-root)
 write only to `.runtime/confidence-transfer/` and likewise have none.
 
-The four newest packages are replayed from their own guides and are not
+Five recent packages are replayed from their own guides and are not
 part of the two commands above or of CI:
 [selection approximation](2026-11-06-selection-approximation/README.md#verification-performed),
 [$\Psi$ in closed form](2026-11-09-psi-closed-form/README.md#numerical-check),
-[RMS constants](2026-11-17-rms-constants/README.md#reproducing-the-formal-checks) and
-[pilot feedback](2026-11-18-pilot-feedback/README.md#verification-scope-and-replay).
+[RMS constants](2026-11-17-rms-constants/README.md#reproducing-the-formal-checks),
+[pilot feedback](2026-11-18-pilot-feedback/README.md#verification-scope-and-replay) and
+[the upper-constant study](2026-11-18-upper-constant/README.md#reproduce).
+For the [scheduled-update package](2026-11-18-scheduled-update/README.md#replay),
+`python tools/verify_population_research.py` checks the proof-source hashes
+and reruns the independent integer calculation; its Lean replay is in its
+guide.
 Three checkers of the RMS-constants package import SymPy, which
 `requirements.txt` does not list.
