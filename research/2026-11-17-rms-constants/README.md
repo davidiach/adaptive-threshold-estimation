@@ -61,7 +61,13 @@ The right side increases with $B$. The proof checks the logarithm at the cutoff 
 
 The stronger lower bound uses the fair-sign law together with five pairs of alternatives $\pm t_i$, where the positive biases are $0.527436$, $0.679980$, $0.753283$, $0.798023$ and $0.816490$. For a clipped estimate $x$ of the sign mean, each alternative uses a positive test $1+b_i((x-t_i)^2-R)$, where $R=4(0.175198)^2$. If the mean squared error is at most $R$ under that alternative, its expected test value is at most one. All ten logarithmic tests can therefore be bounded using divergence from the same fair law. Their sum and a positive multiple of $x^2$ give a pointwise lower bound for every $|x|\le1$. Lean verifies it using a degree-27 Taylor lower bound for the exponential and exact polynomial checks on nine intervals in $x^2$. [Test coefficients](MultiBiasData.lean) · [Scalar certificate](MultiBiasCertificate.lean) · [Finite-transcript inequality](MultiBiasPrefix.lean)
 
-For the total divergence bound $P(B)=-B\sum_i\log(1-4t_i^2/B)$ and $D=93.534911$, the resulting coefficient at each real $B\ge25$ is at least
+Write $P(B)=-B\sum_i\log(1-4t_i^2/B)$, $a=19.780099$ and $g_{i,t}(x)=1+b_i((x-t)^2-R)$. The pointwise inequality checked by Lean is
+
+$
+a x^2+\sum_i\bigl(\log g_{i,t_i}(x)+\log g_{i,-t_i}(x)\bigr)\ \ge\ aR+P(25).
+$
+
+If all eleven sign-mean squared errors are at most $S$, the fair-law expectation of the left side is at most $aS+P(B)+2\sum_i b_i(S-R)$. Comparing these two bounds gives the following RMS coefficient at each real $B\ge25$, with $D=a+2\sum_i b_i=93.534911$.
 
 $
 \frac12\sqrt{R+\frac{P(25)-P(B)}{D}}.
