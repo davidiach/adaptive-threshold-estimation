@@ -1,6 +1,62 @@
 # Results and verification scope
 
-Start with the [consolidated v6 manuscript](../paper/v6/README.md), which
+This page states every result of the project with its exact assumptions, its
+verification status and its evidence. Read the relevant section before you
+rely on a claim or change one. The paper gives the mathematics; this page
+says what has been checked, and how.
+
+## How to read this page
+
+- The [status table](#verification-status) lists the 33 results that the
+  paper tracks. It is generated from [status.json](../paper/v6/status.json).
+- Each later section covers one result or one group of results, in the order
+  of the paper: the main law for every sign law, then rare events, then caps,
+  confidence and follow-ups.
+- Many sections grew as the work progressed, so a later paragraph can sharpen
+  an earlier one. Where a constant has improved, the section says which value
+  is current.
+
+| Status label | Meaning |
+|---|---|
+| Lean-checked | A Lean theorem under `lean/ThresholdHC/` states the result. An audit script restates its exact type and checks its transitive axioms; [VERIFY.md](VERIFY.md) gives the command. |
+| Lean-checked in a research package | Lean files inside a dated package under `research/`, with that package's own replay record. Not part of the audited library, and not run by CI. |
+| Paper proof | A written proof with no Lean statement. It has had AI review only. |
+| Numerical evidence | Computation that supports a claim. It proves nothing. |
+
+**Every sign law.**
+[Minimax law and unbiasedness](#minimax-law-and-unbiasedness) ·
+[Magnitude oracles](#magnitude-oracle-lower-bounds) ·
+[The 713 construction](#the-713-construction) ·
+[Information and stopping](#information-and-stopping) ·
+[Stochastic envelope](#unknown-gap-laws-under-a-stochastic-envelope) ·
+[Smooth densities](#fixed-finite-order-smooth-densities) ·
+[Observed states, finite cells](#finite-cell-observed-state-obstruction) ·
+[Observed states, continuous](#continuous-magnitude-observed-state-obstruction) ·
+[Fresh-state upper bound](#fresh-state-upper-bound-transfer)
+
+**Rare events.**
+[Optimizer and Ψ](#rare-event-optimizer) ·
+[Ψ in closed form](#the-variational-modulus-in-closed-form) ·
+[General-law characterization](#general-law-rare-event-characterization) ·
+[Power margins above two](#rare-event-power-margins-above-two) ·
+[One to two](#logarithmic-and-intermediate-rare-power-margins) ·
+[Below one](#rare-event-power-margins-below-exponent-one) ·
+[Closed quantile form](#known-finite-gap-rare-events-closed-quantile-characterization) ·
+[Sharp quantile factor](#sharp-finite-vector-quantile-factor) ·
+[Critical quadratic law](#critical-power-margin-full-minimax-characterization)
+
+**Caps, confidence and follow-ups.**
+[Hard caps](#hard-observation-caps-for-the-rms-rates) ·
+[Confidence and sequential stopping](#confidence-rates-and-sequential-stopping) ·
+[Population and nonlinear feedback](#population-and-nonlinear-feedback-follow-ups) ·
+[Earlier critical obstruction](#earlier-critical-power-margin-additive-class-obstruction) ·
+[Unknown rarity](#unknown-rarity-and-numerical-evidence) ·
+[Comparison with a fixed plan](#practical-comparison-with-a-fixed-plan) ·
+[Numerical certificates](#deterministic-numerical-certificates)
+
+## Manuscripts
+
+The mathematics is in the [consolidated v6 manuscript](../paper/v6/README.md), which
 combines the [v5 manuscript](../paper/v5/README.md) with the
 [general-law rare-event manuscript](../paper/rare-event/README.md) and the
 [finite-gap rare-event manuscript](../paper/finite-gap-rare-events/README.md).
@@ -81,6 +137,18 @@ $$R_\mu(B)\asymp\omega_\mu(B^{-1/2}),\qquad r_\mu(B,\delta)\asymp\omega_\mu\!\le
 
 Here $r_\mu(B,\delta)$ is the minimax uniform error radius at failure probability at most $\delta$, with the same expected-budget constraint. The constants are universal. The algorithms depend only on $B$, or on $(B,\delta)$, and observe neither magnitudes nor their law. The proof is in §5. Both the RMS and confidence characterizations now have Lean proofs in both directions in the original observable adaptive model.
 
+**The constants of the RMS law, and where each is proved.**
+
+| Bound | Constant | Lean theorem | Checked by | In the v6 paper |
+|---|---|---|---|---|
+| Lower, every gap law, $B\ge1$ | $1/6$, the largest possible | `sharp_lower`, `sharp_coefficient` and `sharp_endpoint` in [SharpRMS/Full.lean](../lean/ThresholdHC/SharpRMS/Full.lean) | CI, `tools/verify_sharp_rms.py` | Appendix AA |
+| Lower, $B\ge25$ | $\sqrt{59/2100}\approx0.1676$ | `large_budget_lower` in the same file | CI, the same audit | Appendix AA |
+| Lower, $B\ge25$, stronger | $0.175198$; the best constant is at most $0.186752$ | `lower_25` and `pilot_coefficient_upper` in the [research package](../research/2026-11-17-rms-constants/README.md#the-coefficient-for-budgets-of-at-least-25) | The package's own kernel replay records; not in CI | No |
+| Lower, original frozen target | $1/64$ | `minimax_lower_bound` in [Tier6/Full.lean](../lean/ThresholdHC/Tier6/Full.lean) | CI, `tools/verify_tier6.py` | §5 |
+| Upper, $B\ge1$ | $512$ | `minimax_upper_bound` in [BlindUpper/Full.lean](../lean/ThresholdHC/BlindUpper/Full.lean) | CI, `tools/verify_blind_upper_components.py` | §§4 and 5 |
+
+The lower constant is settled for $B\ge1$. The upper constant is not, so the two sides remain a factor $3072$ apart.
+
 The lower constant of the RMS law is sharp. For every gap law and every $B\ge1$,
 
 $$R_\mu(B)\ \ge\ \tfrac16\,\omega_\mu(B^{-1/2}),$$
@@ -90,10 +158,12 @@ fresh flips attain equality at $B=4$ and $\mu=\delta_{1/2}$. For $B\ge25$ the
 constant improves to $\sqrt{59/2100}\approx0.1676$. The experiment is the
 original one: arbitrary measurable private randomness, interleaving,
 revisits and unbounded stopping under the uniform expected-work budget.
-These statements are Lean-checked
+These statements are Lean-checked in the audited library
 ([specification](../lean/ThresholdHC/SharpRMS/Specification.lean),
 [theorems](../lean/ThresholdHC/SharpRMS/Full.lean),
-[audit record](../results/sharp-rms-20261117/README.md)).
+[audit record](../results/sharp-rms-20261117/README.md)); CI runs their
+audit, `tools/verify_sharp_rms.py`. Appendix AA of the v6 paper proves them
+as Theorem AA.1.
 
 The proof first reduces any gap law to a single gap: for every gap $g$,
 $R_\mu(B)\ge\omega_\mu(g)\,R_{\delta_g}(B)$, by simulating each requested coin
@@ -103,9 +173,31 @@ For $4<B<25$, a weighted score inequality with the exact one-coin
 information price, whose integral is bounded analytically near $B=4$ and by
 an integer certificate over 140 bias intervals elsewhere; the Lean kernel
 evaluates that certificate. For $B\ge25$, three sign biases compared under
-one reference law. The [research note](../research/2026-11-17-rms-constants/sharp-unrestricted.pdf)
-gives the written proof. The upper constant $512$ is unchanged, so the two
-sides of the RMS law remain a factor $3072$ apart.
+one reference law. Appendix AA of the v6 paper and the
+[research note](../research/2026-11-17-rms-constants/sharp-unrestricted.pdf)
+give the written proof. The upper constant $512$ is unchanged.
+
+**Budgets of at least 25.** Let $c_{25}$ be the largest constant with
+$R_\mu(B)\ge c_{25}\,\omega_\mu(B^{-1/2})$ for every gap law and every
+$B\ge25$. Then
+
+$$0.175198\ \le\ c_{25}\ \le\ 0.186752,$$
+
+and the exact value is open. The lower bound holds for every gap law, in
+the ordinary model and under both magnitude oracles, and rises to
+$0.17807955$ for $B\ge100$. It combines five symmetric pairs of sign biases
+under a common fair-sign law. The upper bound comes from $\mu=\delta_{1/5}$
+at $B=25$: an 18-flip pilot is followed by seven decisions, and each
+decision uses the pilot count and the earlier follow-up answers to choose a
+fresh coin or revisit a distinct pilot coin. An exact risk certificate
+covers every sign probability.
+
+These bounds are Lean-checked in the research package, with its own kernel
+replay records. They are not in the CI-audited library or in the paper,
+which state the weaker $\sqrt{59/2100}$.
+[Lower bounds](../research/2026-11-17-rms-constants/MultiBiasBounds.lean) ·
+[Adaptive upper witness](../research/2026-11-17-rms-constants/PilotWitness.lean) ·
+[Exact statements and audit](../research/2026-11-17-rms-constants/README.md#the-coefficient-for-budgets-of-at-least-25)
 
 The confidence theorem [`confidence_characterization`](../lean/ThresholdHC/Confidence/Full.lean)
 proves the explicit bounds
@@ -119,7 +211,10 @@ The [frozen specification](../lean/ThresholdHC/Confidence/Specification.lean)
 also states the lower bound for every budget-admissible algorithm, one upper
 family chosen before every gap law, and a nonvacuity theorem. The failure
 event is $|\widehat\theta-\theta|>r$, uniformly over every measurable sign
-law; work is the original extended-real expectation of actual flips.
+law; work is the original extended-real expectation of actual flips. The
+[oracle theorem](#magnitude-oracle-lower-bounds) improves the lower
+coefficient to $15/(256\sqrt2)$ in this model as well; the frozen statement
+keeps $1/64$.
 
 The upper construction runs $2\lceil2\log(1/\delta)\rceil+1$ independent
 calibrated batches and takes their median. Pair-numbered coin labels and
@@ -141,19 +236,21 @@ satisfies the uniform expected budget with maximal RMS risk at most a positive
 constant times the modulus; its frozen statement names no constant. The
 companion theorem `budgetEstimator_maximalRMSRisk` bounds that family's risk by
 `512 * modulus μ (1 / Real.sqrt B)` for every `B ≥ 1`, and
-`minimax_upper_bound` gives the same bound for the minimax risk of the lower
-theorem below. Both companions are axiom-audited roots, not exact-type targets.
+`minimax_upper_bound` gives the same bound for the minimax risk that the
+lower theorems bound. Both companions are axiom-audited roots, not exact-type targets.
 The original simulation law, actual controller cost/output identities,
 almost-sure pilot termination and budget selection are proved. The
 [full audit](../results/blind_upper_components_002.json) checks the unchanged
 frozen specification and all 373 declaration roots; coefficient 512 is not
 claimed optimal.
 
-The RMS lower-bound side is now formalized end to end. `ThresholdHC.Tier6.minimax_lower_bound` in [Full.lean](../lean/ThresholdHC/Tier6/Full.lean) proves
+The original lower target is frozen and kept unchanged. `ThresholdHC.Tier6.minimax_lower_bound` in [Full.lean](../lean/ThresholdHC/Tier6/Full.lean) proves
 
 $$R_\mu(B)\ge\frac1{64}\omega_\mu(B^{-1/2})\qquad(B\ge1).$$
 
-The [algorithm model](../lean/ThresholdHC/Tier6/AlgorithmModel.lean) takes the infimum over all measurable random-seed spaces and adaptive estimators, with expected work uniformly bounded over every measurable sign law. It permits unrestricted natural-number coin creation, revisits, interleaving, and unbounded stopping. The iid hidden magnitude environment is independent of algorithm randomness and is not visible to policy or output. Squared error and RMS use extended-real values, retaining infinite risk. `process_realization` constructs the infinite probability laws and proves their cylinder identities; realization, KL, absolute continuity, and testing bounds are not assumptions of the final minimax theorem. An immediate-stopping estimator proves the class nonempty and its minimax RMS risk at most one. See the [exact specification](../lean/ThresholdHC/Tier6/Specification.lean), [complete audit](../results/tier6_status.json), and [verification record](TIER6.md). Optimality of the coefficient $1/64$ is not asserted.
+This is the constant that §5 of the paper proves. `sharp_lower` above replaces it by the optimal $1/6$ in the same model, which the next paragraph describes.
+
+The [algorithm model](../lean/ThresholdHC/Tier6/AlgorithmModel.lean) takes the infimum over all measurable random-seed spaces and adaptive estimators, with expected work uniformly bounded over every measurable sign law. It permits unrestricted natural-number coin creation, revisits, interleaving, and unbounded stopping. The iid hidden magnitude environment is independent of algorithm randomness and is not visible to policy or output. Squared error and RMS use extended-real values, retaining infinite risk. `process_realization` constructs the infinite probability laws and proves their cylinder identities; realization, KL, absolute continuity, and testing bounds are not assumptions of the final minimax theorem. An immediate-stopping estimator proves the class nonempty and its minimax RMS risk at most one. See the [exact specification](../lean/ThresholdHC/Tier6/Specification.lean), [complete audit](../results/tier6_status.json), and [verification record](TIER6.md). The coefficient $1/64$ is not optimal; the sharp value is $1/6$.
 
 [Theorem 2 and §6](../paper/paper.tex#L272) quantify over every measurable sign function $q$ at a fixed $\mu$. Put $I=\mathbb E_\mu[D^{-1}]$, $V=\sup_q\operatorname{Var}_{\mu,q}(Y)$, and $\overline W=\sup_q\mathbb E_{\mu,q}W$. An estimator unbiased for all such $q$ can have $V,\overline W<\infty$ exactly when $I<\infty$, and every such estimator satisfies $V\overline W\ge I^2/16$. These are uniform bounds, not a lower bound for each individual population. The fixed-gap example attaining the lower coefficient is in §6, equation `eq:fixed-gap-sharp`; it does not identify the optimum for every nondegenerate law.
 
@@ -188,11 +285,14 @@ magnitudes conditional on the oracle seed, which covers free inspection of
 the whole iid array and a magnitude selected at each creation.
 [Lean theorems](../lean/ThresholdHC/SharpRMS/Full.lean) ·
 [oracle proofs](../lean/ThresholdHC/SharpRMS/OracleAttainment.lean).
+The stronger [lower bounds for budgets of at least 25](#minimax-law-and-unbiasedness),
+which are checked in the research package only, hold for both oracles too.
 
-For **$B\ge25$**, the sharp ordinary-model coefficient lies in **$[0.175198,\ 0.186752]$**. The lower bound applies to every gap law in all three models and rises to $0.17807955$ for $B\ge100$. It combines five symmetric pairs of sign biases under a common fair-sign law. At $\mu=\delta_{1/5}$, an 18-flip pilot is followed by seven decisions. Each decision uses the pilot count and earlier follow-up answers to choose a fresh coin or revisit a distinct pilot coin. The exact risk certificate covers every sign probability. A 20-flip pilot with one decision for the whole suffix gave $0.188087$. The sharp large-budget coefficient remains open. [Lower bounds](../research/2026-11-17-rms-constants/MultiBiasBounds.lean) · [Adaptive upper witness](../research/2026-11-17-rms-constants/PilotWitness.lean) · [Exact statements and audit](../research/2026-11-17-rms-constants/README.md#the-coefficient-for-budgets-of-at-least-25).
-
-Theorem 1's stronger RMS and confidence lower bounds are now Lean-checked
-for both revealed and adaptively selected magnitudes. For either oracle,
+The original oracle theorems are frozen targets, Lean-checked for both
+revealed and adaptively selected magnitudes. They prove the RMS bound with
+the constant $1/64$, which the sharp $1/6$ above supersedes, and the
+confidence bound with $15/(256\sqrt2)$, which is still the checked
+confidence coefficient. For either oracle,
 
 $$R_\mu^{\mathrm{oracle}}(B)\ge\frac{\omega_\mu(B^{-1/2})}{64},\qquad
 r_\mu^{\mathrm{oracle}}(B,\delta)\ge
@@ -281,7 +381,9 @@ Only plus-hypothesis finite expected work is required. Minus-hypothesis nontermi
 Suppose the actual gap law $\nu$ satisfies $\nu((0,t])\le\mu((0,t])$
 for every $t>0$. One observable estimator family works over that whole
 class before the reference $\mu$ is chosen. For $B\ge1$ the RMS minimax
-coefficients on $\omega_\mu(1/\sqrt B)$ are $1/64$ and $512$. For $B\ge1$ and
+coefficients on $\omega_\mu(1/\sqrt B)$ are $1/64$ and $512$ in the Lean
+statement. The sharp lower coefficient $1/6$ applies as well, because the
+reference law belongs to the class; that step is not restated in Lean. For $B\ge1$ and
 $0<\delta\le1/4$, the confidence coefficients at scale
 $\sqrt{\log(1/\delta)/B}$ are $15/(256\sqrt2)$ and $8192$.
 
@@ -406,8 +508,10 @@ proof is kept unchanged. The specification was written with the proof.
 
 ### The variational modulus in closed form
 
-[Section 14.8 of the v6 paper](../paper/v6/psi-window.tex) gives **paper proofs** of four deterministic
-statements, for every probability law on $(0,1/2]$, $0<\rho\le1/4$ and $B>0$, with $h=B^{-1/2}$.
+[Section 14.8 of the v6 paper](../paper/v6/psi-window.tex) proves four deterministic
+statements, all now Lean-checked (the records are at the end of this
+subsection). Only Corollary 14.14 and Remark 14.15, which close that
+section, remain paper proofs. The four statements hold for every probability law on $(0,1/2]$, $0<\rho\le1/4$ and $B>0$, with $h=B^{-1/2}$.
 Let $\mathcal Q^0=\min\{\rho,T_h+h\sqrt{\rho A_\kappa}\}$ be the closed quantile functional
 below with the cost entropy $\Gamma_\kappa$ of the quantile core replaced by its inverse-square cost
 $A_\kappa$, and write $\Gamma_\kappa=A_\kappa(1+E_\kappa)$.
@@ -458,8 +562,18 @@ tests the inequalities and constants; it is numerical evidence only.
 
 ## General-law rare-event characterization
 
+**Current statement.** For every probability law $\mu$ on $(0,1/2]$, every
+known rarity $0<\rho\le1/4$ and every $B>0$, Lean checks
+
+$$10^{-17}\,\mathcal K_{\mu,\rho}(B)\le R_{\mu,\rho}(B)\le28000\,\mathcal K_{\mu,\rho}(B),$$
+
+where $\mathcal K$ is the entropy–tail selection functional defined below
+([statement](../lean/ThresholdHC/EntropyTailSharp/Specification.lean)). The
+rest of this section gives the model, the original paper proof and the scope
+of each component.
+
 The separate [55-page rare-event manuscript, revised v2](../paper/rare-event/README.md)
-provides a **paper proof with adversarial AI audits** for every known probability
+gave the original **paper proof with adversarial AI audits** for every known probability
 law $\mu$ on $(0,1/2]$, known $0<\rho\le1/4$, and every $B>0$. The parameter
 class is $0\le q\le1$ with $\int q\,d\mu\le\rho$. Every Bernoulli observation
 is charged under a uniform expected-work budget. Creation, revisiting,
@@ -491,9 +605,9 @@ are also checked.
 |---|---|
 | Matching entropy-tail upper/lower bounds | Every law, known rarity, and positive expected budget in the model; hard measurable assignments suffice. |
 | Attained four-prior stopping dual | Exact identity for the robust certificate program; its connection to minimax risk is a comparison inequality. |
-| Factor-sixteen risk certificate | For $0<\rho\le1/2$, the [uniform cap theorem](FINITE_CAP_RATE.md) gives $P_N\le2G_N$ and $R\le P_N\le16R$ whenever $N\ge4B/3$. The [square-root cap comparison](../lean/ThresholdHC/SquareRootCap/Full.lean) lowers that cap to $N\ge4B/9$: $P_N\le kG_N$ once $B\le N(k-1/k)^2$, for every $k>1$. [Lean record](../results/sharp-rms-20261117/README.md) |
-| Ordinary cap convergence | The [truncation theorem](FINITE_CAP_RATE.md#a-sharper-rate-for-the-ordinary-upper-program) gives $P_\infty\le P_N\le(1+\sqrt{B/(N+1)})P_\infty$ uniformly in the law. For $0<\rho\le1/2$ and $B>0$, $P_N\le8(1+\sqrt{B/(N+1)})R$, so $N+1\ge B$ suffices for factor sixteen. This does not give a matching genie rate or prove optimality. [Lean record](../results/finite-cap-truncation-20261105/README.md) |
-| Genie convergence | Pointwise convergence assumes finite latent divergence. An explicit infinite-divergence counterexample is included. Mixing the variance and work references with the endpoint midpoint gives $P_N/G_N\le1+2(B/N)^{1/3}$ for $N\ge B$. [Lean record](../results/genie-rate-20261104/README.md) |
+| Factor-sixteen risk certificate | For $0<\rho\le1/2$: $P_N\le2G_N$ and $R\le P_N\le16R$ whenever $N\ge4B/9$. This is the current cap. It follows from the [square-root cap comparison](../lean/ThresholdHC/SquareRootCap/Full.lean): $P_N\le kG_N$ once $B\le N(k-1/k)^2$, for every $k>1$ ([Lean record](../results/sharp-rms-20261117/README.md)). The earlier [uniform cap theorem](FINITE_CAP_RATE.md) needed $N\ge4B/3$. |
+| Ordinary cap convergence | The [truncation theorem](FINITE_CAP_RATE.md#a-sharper-rate-for-the-ordinary-upper-program) gives $P_\infty\le P_N\le(1+\sqrt{B/(N+1)})P_\infty$ uniformly in the law. For $0<\rho\le1/2$ and $B>0$, $P_N\le8(1+\sqrt{B/(N+1)})R$, so $N+1\ge B$ suffices for factor sixteen; the square-root cap comparison above gives the smaller cap $N\ge4B/9$ and the comparison with the genie program. Optimality is not proved. [Lean record](../results/finite-cap-truncation-20261105/README.md) |
+| Genie convergence | Pointwise convergence assumes finite latent divergence. An explicit infinite-divergence counterexample is included. Mixing the variance and work references with the endpoint midpoint gives $P_N/G_N\le1+2(B/N)^{1/3}$ for $N\ge B$. The square-root cap comparison above improves this rate: $P_N/G_N\le k$ with $k-1/k=\sqrt{B/N}$, which is $1+O(\sqrt{B/N})$. [Lean record](../results/genie-rate-20261104/README.md) |
 | Fixed-cap identification | For $m$ distinct positive magnitudes, the zero-bias threshold is $N\ge2m-1$. This identifies the target, not necessarily the full allocation $q$. Infinite support has a positive floor at every fixed cap; the cap may grow. |
 
 The [audit index](../paper/rare-event/audit/README.md) distinguishes the original
@@ -606,7 +720,7 @@ minimax risk.
 | Paper claim | Lean result |
 |---|---|
 | Attained four-prior stopping dual | `AttainedDualStatement`: exact value identity, primal and dual optimizers, positive value and finite optimal information ratio, for $0<\rho\le1/4$, $B>0$, $N>0$. `ProgramUpperStatement`: every feasible certificate is realized by an observable estimator, so $R\le P_N$. The finite-cap value lies between the two-prior midpoint modulus and three times it. At infinite cap the dual is attained, with factor-three midpoint and factor-eight minimax comparisons and monotone cap limits, for $0<\rho\le1/2$. |
-| Factor-sixteen risk certificate | `FiniteCertificateStatement`: $R\le P_N\le16R$ at $N=\lceil64\max(B,\rho B^2)\rceil$, through the exact truncation penalty and a universal Bernoulli-label floor. It does not use the entropy-tail lower bound. Also: exact finite cone/cutoff representation for finitely supported laws, the rarity-support optimizer, Bellman attainment of the information/work ratio, and information bounds for arbitrary seeded, order-dependent capped procedures. |
+| Factor-sixteen risk certificate, first form | `FiniteCertificateStatement`: for $0<\rho\le1/4$, $R\le P_N\le16R$ at $N=\lceil64\max(B,\rho B^2)\rceil$ (the later cap theorems above lower the cap to $N\ge4B/9$), through the exact truncation penalty and a universal Bernoulli-label floor. It does not use the entropy-tail lower bound. Also: exact finite cone/cutoff representation for finitely supported laws, the rarity-support optimizer, Bellman attainment of the information/work ratio, and information bounds for arbitrary seeded, order-dependent capped procedures. |
 | Genie convergence | Monotone latent-reveal brackets and exact Bellman certificates. Residual convergence assumes finite latent divergence. Optimized convergence uses variance-reference regularization before the cap limit. Risk brackets give finite termination of the factor-sixteen test, for $0<\rho\le1/2$ and $B>0$. The direct squared-risk certificate and an exact finite-atom SOCP for $G_N^2$ are included. So is the uniform-gap counterexample: infinite latent divergence, infinite genie ratios and failure of pointwise convergence. |
 | Fixed-cap identification | `fixed_cap_identification`: on $m$ distinct positive magnitudes the target is identified exactly when $N\ge2m-1$, via odd moments and count coefficients. For infinite support, every fixed cap has a positive bias floor uniform in the budget, and $P_N(B)\to\Delta_N/2$ as $B\to\infty$, where $\Delta_N$ is the largest target gap between rare priors whose capped count laws agree. |
 
@@ -658,6 +772,19 @@ The same upper family works for every law under the power margin envelope.
 
 ## Known finite-gap rare events: closed quantile characterization
 
+**Current statement.** For every gap law, $0<\rho\le1/4$ and $B>0$, Lean
+checks $10^{-17}Q\le R\le30001\,Q$ for the closed formula $Q$ defined below,
+and $\mathcal K\le Q\le\frac{31}{20}\mathcal K$. The least possible factor
+in that comparison is the unique root of a scalar equation, which Lean
+places in $(\sqrt2,31/20)$; see
+[Sharp finite-vector quantile factor](#sharp-finite-vector-quantile-factor).
+The paragraphs below follow the order in which these results were obtained:
+first finite laws with the coefficient $10^{-20}$, then every law, and the
+comparison factor $1+2\sqrt2$, then $5/3$, $8/5$ and $31/20$. Each constant
+is true; the last in each sequence is current.
+
+### The rate in closed form
+
 Theorem 1.1 of the [standalone manuscript](../paper/finite-gap-rare-events/paper.pdf)
 states, for every known finite positive-gap law, $0<\rho\le1/4$ and $B>0$,
 
@@ -682,7 +809,9 @@ give one feasible estimator with worst-case error at most $30001Q$, and the
 converse for every feasible estimator. See the [verification record](../results/direct-finite-quantile-20261104/README.md).
 The separate
 [general-law closed-quantile theorem](../lean/ThresholdHC/ClosedQuantile/Full.lean)
-now proves the two-sided rate with a conservative universal lower coefficient
+now proves the two-sided rate with a universal lower coefficient, made
+explicit as $10^{-17}$ by `closed_quantile_lower_explicit` in
+[EntropyTailSharp/Full.lean](../lean/ThresholdHC/EntropyTailSharp/Full.lean),
 and upper coefficient 30001, using the completed entropy-tail lower bound
 and deterministic comparison. Its [exact-type audit](../results/closed-quantile-law-20261101/README.md)
 covers both new modules and both declaration roots. The new corollary target
@@ -693,7 +822,9 @@ The precursor received fresh-context AI review; the
 [provenance note](../paper/finite-gap-rare-events/PROVENANCE.md) records its
 limits. The standalone finite-law manuscript does not establish an unknown-law guarantee, a
 general infinite-support extension, a deterministic budget or a
-high-confidence result.
+high-confidence result. Later results supply them: the general-law theorem
+in the previous paragraph, [hard caps](#hard-observation-caps-for-the-rms-rates),
+and [confidence and unknown laws](#confidence-rates-and-sequential-stopping).
 
 [Revision 2](../paper/finite-gap-rare-events/revision-2/README.md) of the
 manuscript ([PDF](../paper/finite-gap-rare-events/revision-2/paper.pdf)) adds a deterministic comparison with the
@@ -709,6 +840,8 @@ The consolidated v6 manuscript derives $R\asymp Q$ for general laws from
 the entropy–tail theorem. Lean checks this [general-law corollary](../results/closed-quantile-law-20261101/README.md)
 and the [explicit lower coefficient](../results/entropy-tail-explicit-20261104/README.md).
 The deterministic comparison in revision 2 grew out of an external review of revision 1.
+
+### Comparison with the selection functional
 
 The additive [computation note](RARE_EVENT_COMPUTATION.md) improves the
 deterministic comparison to $\mathcal K\le Q\le(5/3)\mathcal K$ for every
@@ -762,6 +895,8 @@ strict lower example. A [sharp-factor proof](OPTIMAL_QUANTILE_FACTOR.md) reduces
 supremum over laws to the unique root of a scalar equation. Its rational
 certificate gives $1.462554551279<c_*<1.462554551280$. The scalar characterization, all-law comparison and finite-law sharpness are Lean-checked. The numerical bracket retains separate exact-arithmetic verification. [Complete native record](../results/quantile-optimality-20261105/README.md)
 
+### Computing the selection functional
+
 **Lean verifies the finite-law bandwise-suffix theorem.** For a probability
 law with finite support, a hard restriction minimizes the raw objective over
 all submeasures and attains $K$ after clipping at $\rho$. If a larger atom in
@@ -807,7 +942,7 @@ $\eta$ changes $K$ by at most $\eta$. Within-band upward rounding by a factor
 at most $r$ gives a value between $K/r$ and $K$. For every $\eta>0$ and
 $r>1$ the proof constructs a finite approximation. Its interval $[L,U]$
 gives $[\max(0,L-\eta),\min(\rho,rU+\eta)]$ for the original law.
-The quantile choice is $L=5Q/8$, $U=Q$. The Python certificate evaluator
+The quantile choice is $L=5Q/8$, $U=Q$ (the Lean corollary uses the earlier $8/5$ comparison; $20Q/31$ also holds, by the later one). The Python certificate evaluator
 remains unverified. [Verification record](../results/selection-stability-20261104/README.md)
 
 ## Sharp finite-vector quantile factor
@@ -1052,7 +1187,7 @@ essential.
 
 | Application | Lean-checked hard-cap conclusion | Statistical input |
 |---|---|---|
-| Distribution-blind RMS law | $\frac1{64}\omega_\mu(B^{-1/2})\le R^{\rm hard}_\mu(B)\le3000\,\omega_\mu(B^{-1/2})$ for $B\ge1$, with one family for every $\mu$ | Both expected-budget bounds Lean-checked |
+| Distribution-blind RMS law | $\frac1{64}\omega_\mu(B^{-1/2})\le R^{\rm hard}_\mu(B)\le3000\,\omega_\mu(B^{-1/2})$ for $B\ge1$, with one family for every $\mu$. This is the Lean statement; since $R\le R^{\rm hard}$, the sharp lower coefficient $1/6$ holds too. | Both expected-budget bounds Lean-checked |
 | Critical quadratic law | $R^{\rm hard}_{\mu,\rho}(B)\asymp\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}$ for $0<\rho\le1/4$ and $B>0$, upper coefficient $570000$ | Both expected-budget bounds Lean-checked |
 | Known general law, known rarity | $10^{-17}\mathcal K_{\mu,\rho}(B)\le R^{\rm hard}_{\mu,\rho}(B)\le160000\mathcal K_{\mu,\rho}(B)$ for $0<\rho\le1/4$ and $B>0$ | The expected-budget upper coefficient $28000$ and positivity supply dyadic base rules with coefficient $28001$. |
 
@@ -1074,8 +1209,9 @@ shared across stages, leaves a nonvanishing error floor.
 ## Confidence rates and sequential stopping
 
 The [confidence-transfer package](../research/2026-10-30-confidence-transfer/README.md)
-gives a **paper proof** that the high-confidence error radius
-follows the same rates with the budget divided by $\ell=\log(1/\delta)$. Write
+gave the original paper proof that the high-confidence error radius
+follows the same rates with the budget divided by $\ell=\log(1/\delta)$. Lean
+now checks the transfers and the rates in the table below. Write
 $r^{\rm exp}_{\mu,\rho}(B,\delta)$ for the smallest radius achievable with failure
 probability at most $\delta$ under a uniform expected budget $B$, and
 $r^{\rm hard}_{\mu,\rho}(B,\delta)\ge r^{\rm exp}_{\mu,\rho}(B,\delta)$ for the
@@ -1089,15 +1225,13 @@ adaptive population at a factor $16/3$ and half the separation. A
 variance–null-work obstruction $(b,J)$ then gives
 $r^{\rm exp}(B,\delta)\ge\frac1{128}\min\{b,\sqrt{J\ell/B}\}$. This is the RMS
 transfer with $B$ replaced by $B/\ell$, and additive localization carries over
-with the same coefficient in the paper proof. Lean checks the single-type
+with the same coefficient. Lean checks the single-type
 and selected-type $16/3$ transfers through unbounded stopping, including
 private randomization, countably many persistent labels and exact physical
-work. Finite expected work is required at both endpoints. The minimax
-$1/128$ conclusion is checked given the quantitative policy-uniform
-common-pair premise. The policy-uniform pair is now constructed in Lean
-from a variance–null-work obstruction for every known gap law, including
-endpoint atoms. The resulting $1/128$ estimator and minimax confidence
-bounds are checked. Fractional-submeasure confidence localization now
+work. Finite expected work is required at both endpoints. The
+policy-uniform common pair is constructed in Lean from a variance–null-work
+obstruction for every known gap law, including endpoint atoms, and the
+resulting $1/128$ estimator and minimax confidence bounds are checked. Fractional-submeasure confidence localization now
 has a checked additive coefficient $1/128$, including overlapping
 components and the original observation model. A direct retained-entropy
 comparison with the stopping program also checks the sharper general-law
@@ -1133,9 +1267,13 @@ It derives the common pair from the fixed quadratic law. Lean also verifies a
 For all known laws and $0<\rho\le1/4$, the checked coefficients on $\mathcal K(B/\ell)$
 are now $10^{-17}$ and $750000$. The critical upper coefficient is $2670000$.
 The stronger lower coefficient follows from the direct checked inequality $30\cdot10^{-17}Q(b)\le P_\infty(b)$ and the stopped confidence bound $P_\infty(B/\ell)/30$. The retained-core comparison applies to every positive cap before taking the infimum.
+
+### Time-uniform confidence
+
 The known-law time-uniform width row now has a [Lean proof](../results/anytime-confidence-20261105/README.md), with half-width coefficient $1500002$. It uses one common observable experiment and consistent acquisition prefixes across budgets. The
 algorithms in the table may know $\mu$, $\rho$, $B$ and $\delta$. A separate
-[unknown-law construction and lower bound](UNKNOWN_LAW_CONFIDENCE.md) gives
+[unknown-law construction and lower bound](UNKNOWN_LAW_CONFIDENCE.md), which
+are paper proofs and not Lean-checked, give
 observable, simultaneously valid intervals that shrink for every fixed
 positive-gap law. Its width bound depends on unresolved small gaps.
 A Bernoulli subfamily forces the iterated logarithm infinitely often and
@@ -1158,7 +1296,10 @@ The [sequential testing step](ANYTIME_SEQUENTIAL.md), [infinite-moment
 construction and adaptive acquisition transfer](ANYTIME_TAIL.md), and
 [complete asymptotic and interval comparison](../results/anytime-asymptotic-20261105/README.md)
 are formalized in the original observable experiment.
-A new [finite-family adaptation theorem](FINITE_FAMILY_ADAPTATION.md) gives the
+
+### Unknown gap law: a supplied finite family
+
+A [finite-family adaptation theorem](FINITE_FAMILY_ADAPTATION.md) gives the
 known-law time-uniform rate after an explicit paid identification pilot, when
 the unknown law belongs to a supplied finite family. Its parity, concentration,
 identification and rate-transfer components have a 17-statement Lean audit.
@@ -1172,6 +1313,9 @@ now joins a resumable pilot to known-law confidence stages under one cumulative
 physical flip budget. Its radii use the executable planner's own MSE certificate;
 it does not claim the formal construction's exact constant. Python execution
 remains outside Lean verification.
+
+### Unknown gap law: arbitrary laws
+
 The [arbitrary-law oracle-adaptation theorem](ARBITRARY_LAW_ADAPTATION.md)
 now has a complete Lean proof and a separate executable controller. It builds a finite
 conservative law from [tail certificates](ARBITRARY_LAW_TAIL.md), including
@@ -1185,6 +1329,9 @@ $C=2^{32}C_*\approx3.5\cdot10^{16}$ and $\rho=1/4$, the width bound is
 below the trivial width $\rho/2$ only beyond about $8\cdot10^{35}$ flips,
 and later for smaller $\rho$. For a point mass at $1/2$ with $\rho=1/4$
 the proof's onset needs pilot depth $29$, a budget above $10^{17}$ flips.
+
+### Lean components of the arbitrary-law theorem
+
 The [Lean components](ARBITRARY_LAW_FORMALIZATION.md) now have 1,065 exact
 statements and 1,063 transitive-axiom reports: finite and countable entropy transport, the finite
 CDF envelope including its zero atom, and an observable paid-pilot/selected-
@@ -1280,7 +1427,7 @@ $2^{32}C_*K_{\mu,\rho}(B/\Lambda)$ on the same event. Its continuation
 uses the pilot repetition count as its number of capped copies. Finite-law
 numerical enclosures, Python execution and its PRNG remain outside formal
 verification. The [publication record](../results/adaptation-publication-20261116/README.md)
-links the current manuscript, exact proof evidence and remaining backlog.
+links the manuscript build of 16 November, the exact proof evidence and the backlog at that date.
 An exact path count shows that repeatedly
 checking a fixed-time interval fails: a check with fixed-time failure at most
 $1/4$ fails with probability about $0.428$ when checked at every step up to
@@ -1313,7 +1460,7 @@ a uniform risk guarantee, practical superiority claim, or confidence result.
 
 These packages retain their original statements and source locks. Statements
 that the matching-Psi conjecture was unresolved describe their historical
-scope; the full critical-law paper result above supplies the counterexample.
+scope; the Lean-checked critical-law theorem above supplies the counterexample.
 The later [general-law entropy-tail manuscript](#general-law-rare-event-characterization)
 provides the arbitrary-law replacement as an audited paper proof, since Lean-checked in both directions with conservative universal constants. The finite-gap manuscript above gives a separate
 closed quantile formula for known finite laws. See the
