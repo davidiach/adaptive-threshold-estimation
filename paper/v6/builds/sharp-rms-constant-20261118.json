@@ -1,13 +1,13 @@
 {
-  "source_commit": "10de700fd72eaa474f20bd0bbfcca21ddf85c301",
+  "source_commit": "c8c3001681a4fb99263ac99c74787ebbbc3673b3",
   "pages": 197,
   "fonts": 33,
   "all_fonts_embedded": true,
   "source_labels": 421,
   "source_citations": 29,
   "unresolved_references": false,
-  "pdf_sha256": "63fc6c138526c7ef1d83c407150473bc3b28fe57f980a378428a7db28eab5464",
-  "pdf_bytes": 1549771,
+  "pdf_sha256": "f56c14c3ab41c4dd9714b97b919d4b685246999086fce4b5fcb1ea9e6a264f34",
+  "pdf_bytes": 1551312,
   "byte_identical_rebuilds": true,
   "rebuild_method": "Two builds in separate fresh copies of paper/v6 at the source commit, on one machine, with the command, engine and environment below. Their PDFs have the same SHA-256.",
   "source_date_epoch": 1793232000,
@@ -39,26 +39,26 @@
   },
   "build_runs": [
     {
-      "id": 44197171748,
+      "id": 44260921299,
       "event": "pull_request",
       "pull_request": 128,
       "head_branch": "claude/kind-turing-pqjssw",
-      "head_sha": "c8b0eb9dbb58495e93cf9aa6f78383dbd0fa34a7",
-      "html_url": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/44197171748",
+      "head_sha": "c8c3001681a4fb99263ac99c74787ebbbc3673b3",
+      "html_url": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/44260921299",
       "conclusion": "success",
-      "run_started_at": "2026-11-17T23:11:37Z",
-      "updated_at": "2026-11-17T23:25:22Z",
-      "job_id": 134441696766,
+      "run_started_at": "2026-11-18T07:42:02Z",
+      "updated_at": "2026-11-18T08:02:53Z",
+      "job_id": 134653889542,
       "pdfinfo": {
         "pages": 197,
-        "file_size_bytes": 1549771
+        "file_size_bytes": 1551312
       },
       "artifacts": [
         {
-          "id": 14379668808,
+          "id": 14409441404,
           "name": "v6-paper",
-          "size_in_bytes": 1533171,
-          "digest": "sha256:77dc7b3641bf2ed68fef6801d7bd8f9a8b928f2c824489907793ff7840e1bdc4"
+          "size_in_bytes": 1534797,
+          "digest": "sha256:5bc2bdd88aa1e1818a1bb8e0d5a128b574698d85bcae1aba57b2917c8bb4ce93"
         }
       ]
     }
@@ -87,7 +87,7 @@
     "appendix-lower-foundations.tex": "365fd3347108b73fc136a59507929ef86e1ef3a85f3cee374eefec9abfb3403d",
     "appendix-observed-upper.tex": "3c30019b0aa0c5744ded7a744c5f1d145a5122c9e1a29d2cdfcbf4c6d69f26f5",
     "appendix-optimal-factor.tex": "091636b89334c5ae90ba246466d3247b1d210c4ab36a7c0fa4239d12926f9450",
-    "appendix-sharp-rms.tex": "ae13111f68aa684775785354b44b2a6cc9bd35414f7d65becd308c075e268f69",
+    "appendix-sharp-rms.tex": "414089a489bd2a2ac8862bc89597aa1504d5cc827fe1a66514cb792d23f68a54",
     "appendix-shifted-power.tex": "18d59e05be5f848d7a058d6e017e8cc528fab84529cb93f6aa196071f54b33bc",
     "appendix-smooth-density.tex": "3e9a502e84c09cb282319b20a7a7018d4820f1aa1c0912225a6349387ef78726",
     "appendix-sublinear-power.tex": "643d8afb34e48ebeb86d37f374dcc81f68199136f7cdb52db054c387c14e25a2",
@@ -114,8 +114,8 @@
     "finite-upper.tex": "fa71be8a77f49758733119666b9f11003d054bc58b4d5785edefc06a17ff2a76",
     "frontmatter.tex": "796eb3b72b99a55986d6ccce26ceef1da74d18793a25561074d50fafedd15dc0",
     "introduction.tex": "24536bf2b802aec36e20cffc11cbce5e9c63cb19bbf691a6b2b8785a3983a832",
-    "main.tex": "2e325ce2ea4be9d433b7981c6c93564b16db84d8a6a86748b83f04388e764172",
-    "overview.tex": "c603597ff2c94ee05c8f83a2b263c1d199542db43c8366709b56a88cad0f0e45",
+    "main.tex": "feb346f462a3530c0d3c82f292d454c4e3fd83f3c47810ad7b2ea6e93bb9a210",
+    "overview.tex": "8d2be8e7d0315ed1ad965ce3eff1f15c2f0d4105494c4b031b85959f3d5f2657",
     "psi-window.tex": "d61ac90a0fa69362f0171c87ccfdb3878330bcf5e4631bc0ea12c364ef95bb1f",
     "rare-discussion.tex": "95be88a11801c828db1cdf6c28820d6af21f2d4084c01841b9bf2bdda7945194",
     "rare-events.tex": "f65e4876e8660ad2a2f1423bb4886f3c95e64cd3011f26665599466276f28ef0",
@@ -143,6 +143,7 @@
     5,
     6,
     8,
+    10,
     12,
     62,
     63,
@@ -164,6 +165,7 @@
     5,
     6,
     8,
+    10,
     12,
     62,
     63,
@@ -177,11 +179,11 @@
   ],
   "no_new_layout_defects": true,
   "page_comparison": {
-    "unchanged_body_pages": 182,
+    "unchanged_body_pages": 181,
     "method": "Poppler pdftotext -bbox word text and bounding boxes rounded to 0.001 pt, excluding a 60 pt band at the top and at the bottom of each page (running header and page number). No pixel-identity claim."
   },
-  "build_runs_note": "Supporting evidence, not the source of the PDF. The manuscript workflow now runs on pull requests and on pushes to main only, so the source commit has no push build. The listed run built pull request 128 at head c8b0eb9, the commit that published this PDF. There the 60 TeX files, status.json and sources.json are the files of the source commit; paper/v6 differs only in README.md and in builds/, which the build does not read. The job log reports pdfinfo Pages 197 and File size 1549771 bytes, the size of this PDF. An earlier run for head 3cff4fe, 44196014649, was cancelled by that push while it was still installing TeX Live. The artifact was not downloaded: the build session's network policy blocks GitHub's artifact storage. Byte identity with a workflow artifact is therefore not claimed.",
-  "paper_v6_tree": "c571c0aa61375118520649847ea98a97565b1e27",
+  "build_runs_note": "Supporting evidence, not the source of the PDF. The manuscript workflow runs on pull requests and on pushes to main only. The listed run built pull request 128 at the source commit. Its job log reports pdfinfo Pages 197 and File size 1551312 bytes, the size of this PDF. The artifact was not downloaded: the build session's network policy blocks GitHub's artifact storage. Byte identity with a workflow artifact is therefore not claimed.",
+  "paper_v6_tree": "35423bd31fc88d2c8dcdd2e71733ff0a4c2638d9",
   "proof_revisions": {
     "lean/ThresholdHC/Envelope/Minimax.lean": "b59e043a3f504c412f6ca482fb96bc7626063888",
     "lean/ThresholdHC/Envelope/Unbiased.lean": "eb5a2ffdb9af6a52dc47cd2aa5a31a1dfb21ad16",
@@ -202,12 +204,13 @@
   },
   "proof_revisions_note": "Carried over from review-corrections-20261117, with one addition. The sources pin one new revision, f1425008ea71094d900b8cbb9a90b485f0884d33, for the sixteen links to lean/ThresholdHC/SharpRMS: fifteen through the macro \\sharprmsleanref (Appendix AA and the formal scope of Theorem 2.1) and one in Section 18. Every other pinned source link is the same at the baseline commit and at the source commit.",
   "layout_notes": [
-    "All 13 changed pages, contents page 2 and the two relocated reference pages were rendered with Poppler at 100 dpi and visually inspected. No new clipping, overlap, missing text or displaced headers/footers was found.",
-    "Changed pages: page 1 (abstract coefficients and date), page 3 (contents entry for Appendix AA), page 5 (verification boundary), page 6 (overview table row for the RMS law), page 8 (status table row for the RMS law), page 12 (Theorem 2.1 and its formal scope), pages 62-63 (three added lines in Section 18 move two lines to the next page), and pages 191-195 (the new Appendix AA).",
-    "The references move from pages 191-192 to pages 196-197 with identical body text and word positions. The other 182 pages retain identical extracted body text and word positions, and every section and subsection before Appendix AA starts on the page it started on in the baseline.",
+    "All 14 changed pages, contents page 2 and the two relocated reference pages were rendered with Poppler at 100 dpi and visually inspected. No new clipping, overlap, missing text or displaced headers/footers was found.",
+    "Changed pages: page 1 (abstract coefficients and date), page 3 (contents entry for Appendix AA), page 5 (verification boundary), page 6 (overview table row for the RMS law), page 8 (status table row for the RMS law), page 10 (the Notation subsection lists Appendix AA among the places that use signs in {-1,+1}; the paragraph keeps its line count), page 12 (Theorem 2.1 and its formal scope), pages 62-63 (three added lines in Section 18 move two lines to the next page), and pages 191-195 (the new Appendix AA).",
+    "The references move from pages 191-192 to pages 196-197 with identical body text and word positions. The other 181 pages retain identical extracted body text and word positions, and every section and subsection before Appendix AA starts on the page it started on in the baseline.",
     "The complete abstract and provenance note remain on page 1. The status table keeps 33 entries: 32 Lean-checked and one paper proof. The sharp constant is added evidence for the existing RMS-law entry.",
     "The only TeX warning is the inherited 5.16461 pt overfull line in Appendix C. Prior PDFs and evidence records remain unchanged."
   ],
-  "proof_scope_record": "results/sharp-rms-constant-publication-20261117/README.md",
+  "replaced_unmerged_build": "An earlier build of this publication, sharp-rms-constant-20261117 from source commit 10de700fd72eaa474f20bd0bbfcca21ddf85c301, existed only on the branch of pull request 128. It was replaced by this build before the pull request was merged, after an independent read of Appendix AA led to corrections of its prose.",
+  "proof_scope_record": "results/sharp-rms-constant-publication-20261118/README.md",
   "lean_audit_record": "results/sharp-rms-20261117/README.md"
 }

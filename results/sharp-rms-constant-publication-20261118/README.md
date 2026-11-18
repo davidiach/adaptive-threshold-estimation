@@ -1,6 +1,6 @@
 # Publication of the sharp RMS constant
 
-The [197-page manuscript](../../paper/v6/builds/sharp-rms-constant-20261117.pdf)
+The [197-page manuscript](../../paper/v6/builds/sharp-rms-constant-20261118.pdf)
 typesets the v6 sources with the sharp constant of the RMS lower bound. For
 every gap law and every $B\ge1$,
 
@@ -18,11 +18,12 @@ the Lean statements, their axiom reports and the kernel replay.
 
 | Location | Pages | Change |
 |---|---|---|
-| Abstract | 1 | The RMS law has coefficients $1/6$ (sharp) and $512$. The date is 17 November 2026. |
+| Title page | 1 | The date is 18 November 2026. |
 | Contents | 3 | A part heading and an entry for Appendix AA. |
 | §1.1, verification boundary | 5 | Coefficients $1/6$ and $512$. |
 | §1.2, overview table | 6 | The RMS-law row states $1/6$, says that it is sharp and cites Theorem AA.1. |
 | §1.3, status table | 8 | The RMS-law row states $1/6$ (sharp) and lists `SharpRMS/Full.lean`. |
+| §1.5, Notation | 10 | Appendix AA joins the places that write signs as $\pm1$. The paragraph keeps its line count. |
 | Theorem 2.1 | 12 | One may take $c=1/6$ for RMS, which is sharp. The formal scope names the Lean theorem `sharp_lower`. |
 | §18 | 62–63 | One sentence on the audit of Appendix AA. It adds three lines, so two lines move to page 63. |
 | Appendix AA | 191–195 | New: the proof of the sharp constant, also under both magnitude oracles. |
@@ -33,11 +34,33 @@ sharp constant is added evidence for the existing RMS-law entry. §5 still
 proves $1/64$, the coefficient of the frozen lower-bound target. The upper
 constant $512$ is unchanged.
 
+## Review of Appendix AA
+
+Lean checks the theorem. The written proof in Appendix AA is separate
+text, so it was read line by line by a reviewer that had not written it,
+with the constants recomputed in exact arithmetic and the integer
+certificate reimplemented from the appendix's description. That read found
+no mathematical error. It found three steps whose justification the first
+draft had dropped, one inaccurate sentence about how the Lean proof differs
+from the written one, one display without its range, and notation that
+clashed with the main text or within the appendix. Commits
+[`cf08dc7`](https://github.com/davidiach/adaptive-threshold-estimation/commit/cf08dc78f285f1f3344a31d771b3e2462d3e481f)
+and
+[`c8c3001`](https://github.com/davidiach/adaptive-threshold-estimation/commit/c8c3001681a4fb99263ac99c74787ebbbc3673b3)
+fix these, and the same reviewer re-read the result. No theorem, lemma,
+constant or formula changed except by renaming symbols.
+
+This was a review by an AI agent. It is not a specialist referee report.
+Two cosmetic points remain as they were: the appendix writes $a=2d$ for a
+flip bias, where §2 uses $a$ for the largest gap, and $r_s$ for a
+single-gap risk, where §2 writes $r_\mu(B,\delta)$ for a confidence radius.
+Both are defined where they are used.
+
 ## Source identity
 
 The TeX sources are pinned to
-[`10de700fd72eaa474f20bd0bbfcca21ddf85c301`](https://github.com/davidiach/adaptive-threshold-estimation/commit/10de700fd72eaa474f20bd0bbfcca21ddf85c301).
-The [build record](../../paper/v6/builds/sharp-rms-constant-20261117.json)
+[`c8c3001681a4fb99263ac99c74787ebbbc3673b3`](https://github.com/davidiach/adaptive-threshold-estimation/commit/c8c3001681a4fb99263ac99c74787ebbbc3673b3).
+The [build record](../../paper/v6/builds/sharp-rms-constant-20261118.json)
 lists the SHA-256 of all 60 TeX files, of `status.json` and of
 `sources.json`. Against the previous build's checkpoint
 [`97a501383083cc0fa64cb96405444048b8fd4053`](https://github.com/davidiach/adaptive-threshold-estimation/commit/97a501383083cc0fa64cb96405444048b8fd4053),
@@ -64,8 +87,8 @@ command and environment of the
 SOURCE_DATE_EPOCH=1793232000 FORCE_SOURCE_DATE=1 latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
 ```
 
-The two PDFs are byte-identical: 197 pages, 1,549,771 bytes, SHA-256
-`63fc6c138526c7ef1d83c407150473bc3b28fe57f980a378428a7db28eab5464`. The two
+The two PDFs are byte-identical: 197 pages, 1,551,312 bytes, SHA-256
+`f56c14c3ab41c4dd9714b97b919d4b685246999086fce4b5fcb1ea9e6a264f34`. The two
 logs ([first](manuscript-build-1.log), [second](manuscript-build-2.log)) are
 identical as well. The PDF has 33 embedded font objects, 421 unique source
 labels and 29 resolved citations, and no unresolved or duplicate reference.
@@ -82,18 +105,12 @@ was published from a workflow build.
 
 ## Workflow build
 
-The manuscript workflow now runs on pull requests and on pushes to `main`,
-so the source commit has no push build. [manuscript-ci.json](manuscript-ci.json)
-identifies one successful run, for
-[#128](https://github.com/davidiach/adaptive-threshold-estimation/pull/128)
-at head `c8b0eb9`, the commit that published this PDF. There the 60 TeX
-files, `status.json` and `sources.json` are the files of the source commit.
-The job log reports 197 pages and a file size of 1,549,771 bytes, the size
-of the published PDF.
-
-An earlier run for head `3cff4fe` was cancelled by that push while it was
-still installing TeX Live. This record was first published without a
-workflow run and gained this one when the run finished.
+The manuscript workflow runs on pull requests and on pushes to `main`.
+[manuscript-ci.json](manuscript-ci.json) identifies one successful run,
+for [#128](https://github.com/davidiach/adaptive-threshold-estimation/pull/128)
+at the source commit. The job log reports 197 pages and a file size of
+1,551,312 bytes, the size of the published PDF. Its only warning is the
+same overfull line.
 
 The workflow artifact was not downloaded, because the build session could
 not reach GitHub's artifact storage. This record therefore does not claim
@@ -102,14 +119,23 @@ byte identity between the published PDF and a workflow artifact.
 ## Page comparison
 
 [page-comparison.json](page-comparison.json) compares the PDF with the
-previous build. Thirteen pages differ, as listed above. The two reference
-pages are renumbered and otherwise identical. The other 182 pages retain
+previous build. Fourteen pages differ, as listed above. The two reference
+pages are renumbered and otherwise identical. The other 181 pages retain
 identical extracted body text and word positions. Every section and
 subsection before Appendix AA starts on the page it started on.
 
-The 13 changed pages, contents page 2 and the two reference pages were
+The 14 changed pages, contents page 2 and the two reference pages were
 rendered with Poppler at 100 dpi and visually inspected. No clipping,
 overlap, missing text or displaced header or footer was found.
+
+## An earlier build on the pull-request branch
+
+A first build of this publication, `sharp-rms-constant-20261117` from
+source commit `10de700`, existed only on the branch of
+[#128](https://github.com/davidiach/adaptive-threshold-estimation/pull/128).
+It typeset Appendix AA before the review above. This build and this record
+replaced it before the pull request was merged, so it was never part of
+`main`. Its files remain in the branch history, at commit `6f09ac0`.
 
 ## Scope
 
@@ -121,4 +147,5 @@ and of the records in the [index](../README.md). The CI run named here built
 the manuscript at its own commit; it is not evidence about a later commit.
 
 [SHA256SUMS](SHA256SUMS) identifies the files of this record, the PDF and
-the build record. All earlier PDFs and records retain their original bytes.
+the build record. All PDFs and records that reached `main` retain their
+original bytes.

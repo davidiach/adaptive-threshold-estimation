@@ -189,7 +189,7 @@ positive at $0$, negative at $19/50$ and positive at $39/100$. The minimum
 is at $0$ or at the larger root, which lies in $[19/50,39/100]$. At $0$
 the value is $\log(907/225)>\log4>4/3$. On that interval $G$ decreases
 and $G(39/100)=(67/45)^2$, so the value at the larger root is at least
-$\log(67/45)+19/20\ge11/28+19/20>4/3$, by $\log x\ge2(x-1)/(x+1)$.
+$\log(67/45)+19/20\ge11/28+19/20>4/3$, by $\log x\ge2(x-1)/(x+1)$ for $x\ge1$.
 \sharprmsleanref{WeakPopulation.lean}{weak\_gap\_minimax\_lower} is the
 Lean statement of this case.
 
@@ -262,10 +262,11 @@ and a randomized rule by averaging.
 \paragraph{Any adaptive protocol.}
 By \eqref{eq:sharp-likelihood}, $J(t)=\E_t\sum_iz_i^2/(1+tz_i)^2$. For each
 coin, condition on the seed and on the transcript before its first flip.
-Given that past, the coin's sign and flips are independent of all later
-flips of the other coins, at the same $t$. With those flips as private
-randomness, the protocol is a randomized rule for the one coin. Its
-information is the expectation of the coin's
+Each other coin has a sequence of outcomes that its later flips would
+give, whether or not the protocol requests them. Given that past and at
+the same $t$, these sequences are independent of the coin's sign and
+flips. With them as private randomness, the protocol is a randomized rule
+for the one coin. Its information is the expectation of the coin's
 summand and its work is the number of flips paid for the coin.
 \Cref{lem:sharp-price} and the budget give
 \[
@@ -321,7 +322,8 @@ equal subintervals of $[0,1]$ let $v_0$ be the value of $v$ at the left
 endpoint. Multiply each of these twenty expressions at the right endpoint
 by $v_0^2$, round up to a multiple of $2^{-32}$ and take the largest. The
 height of the subinterval is the smaller of this and $v_0/s^2$, also
-rounded up. Let $U(u)$ be the mean of these heights for the bias $u$; it
+rounded up. On the last subinterval the twentieth expression is infinite
+at the right endpoint, and the height is $v_0/s^2$. Let $U(u)$ be the mean of these heights for the bias $u$; it
 bounds the integral in \eqref{eq:sharp-window} at $s=u$. By
 \cref{lem:sharp-scale}, $(u/\ell)^2U(u)\le2/3$ proves
 \eqref{eq:sharp-window} for every $s\in[\ell,u]$. This inequality holds on $140$ adjacent intervals that
