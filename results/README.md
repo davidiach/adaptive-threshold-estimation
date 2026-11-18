@@ -10,7 +10,7 @@ can differ from the current files after a later proof-only change: the
 eight Lean files that were refactored afterwards without changing a
 statement. For the current tree the evidence is the CI run on that commit.
 
-The folder holds 98 dated record directories, named for a result and a
+The folder holds 100 dated record directories, named for a result and a
 date, and the loose JSON and log files of the first phases of the project.
 The table below indexes the records that the guides cite. Later sections
 describe the remaining records in prose: the time-uniform bounds, cost
@@ -22,6 +22,8 @@ is the current evidence for that result.
 
 | Claim or check | Published record |
 |---|---|
+| RMS lower coefficient for $B\ge25$ in $[0.175198,0.186752]$: library statement, axiom and kernel-replay audits | [large-budget-rms-20261118](large-budget-rms-20261118/README.md) |
+| Typeset v6 manuscript with the large-budget bracket (Theorem AA.7) and the $4B/9$ cap (Theorem Q.1): build logs, page comparison and toolchain check | [large-budget-publication-20261118](large-budget-publication-20261118/README.md) |
 | Sharp RMS lower constant $1/6$ in all three models and the square-root cap comparison: library statement, axiom and kernel-replay audits | [sharp-rms-20261117](sharp-rms-20261117/README.md) |
 | Typeset v6 manuscript with the sharp RMS constant and Appendix AA: build logs, page comparison and toolchain check | [sharp-rms-constant-publication-20261118](sharp-rms-constant-publication-20261118/README.md) |
 | Typeset v6 manuscript with the review corrections: build logs, page comparison and toolchain check | [review-corrections-publication-20261117](review-corrections-publication-20261117/README.md) |

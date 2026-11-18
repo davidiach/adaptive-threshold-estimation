@@ -53,6 +53,8 @@ $$
 
 The lower endpoint also applies to the revealed- and selected-magnitude oracles. For $B\ge100$ the lower coefficient increases to $0.17807955$. The sharp value for $B\ge25$ remains open. [Lower theorems](MultiBiasBounds.lean) · [Adaptive upper witness](PilotWitness.lean) · [Lower-bound statements](AuditMultiBias.lean) · [Kernel replay](multi-bias-audit.json)
 
+These bounds are also in the audited library, as [`lean/ThresholdHC/LargeBudgetRMS`](../../lean/ThresholdHC/LargeBudgetRMS/Specification.lean). CI builds them, [`tools/verify_large_budget_rms.py`](../../tools/verify_large_budget_rms.py) audits their statements and axioms, and Appendix AA of the v6 paper states them as Theorem AA.7. The [library record](../../results/large-budget-rms-20261118/README.md) maps each library module to the file of this package it was copied from; the five Revisit files of the $0.188087$ witness stay here only. The files and records below remain the research checkpoint.
+
 At the critical gap $d=B^{-1/2}$, write $s=2d$ and let $P_t$ be the transcript law at sign mean $t$. The summed reverse divergences from $P_0$ to $P_{\pm t}$ are at most $-\log(1-t^2s^2)\,\mathbb E_0 W$ when $t^2\le2/3$. This follows by bounding the log likelihood of each sampled coin in terms of its posterior and applying the Wald identity. For $t=29/40$, the earlier three-bias test then gives the following sufficient condition on a positive RMS coefficient $r$, with $k=11774928000/2595112129$ and $b=29/4$.
 
 $$

@@ -114,17 +114,19 @@ class FloorTests(unittest.TestCase):
         population = GuessedRates([0.9, 0.6, 0.52, 0.3])
         target = 0.002
         budget = floor_budget(population, target)
-        self.assertLessEqual(difficulty(population, budget) / 64, target)
-        self.assertGreater(difficulty(population, budget * 0.99) / 64, target)
-        self.assertEqual(floor_budget(population, 0.1), 1.0)
+        self.assertLessEqual(difficulty(population, budget) / 6, target)
+        self.assertGreater(difficulty(population, budget * 0.99) / 6, target)
+        # The floor at one flip is one sixth of the difficulty, which is 1 there.
+        self.assertEqual(floor_budget(population, 1 / 6), 1.0)
+        self.assertGreater(floor_budget(population, 0.16), 1.0)
 
     def test_finite_floor_beyond_old_search_cap(self):
         population = GuessedRates([0.5000000000000001, 0.1])
         budget = floor_budget(population, 0.005)
         self.assertTrue(math.isfinite(budget))
         self.assertGreater(budget, 1e30)
-        self.assertLessEqual(difficulty(population, budget) / 64, 0.005 * (1 + 1e-14))
-        self.assertGreater(difficulty(population, budget * 0.99) / 64, 0.005)
+        self.assertLessEqual(difficulty(population, budget) / 6, 0.005 * (1 + 1e-14))
+        self.assertGreater(difficulty(population, budget * 0.99) / 6, 0.005)
 
 
 class MajorityPlanTests(unittest.TestCase):

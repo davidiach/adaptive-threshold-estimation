@@ -5,7 +5,7 @@ Use this map to find a formal statement, its proof, and the audit that checks it
 [verification setup](../docs/VERIFY.md#setup) covers Python, Lean, and Mathlib.
 Commands below run from the repository root.
 
-`ThresholdHC/` holds 1,320 Lean files: 77 top-level directories and seven root
+`ThresholdHC/` holds 1,348 Lean files: 78 top-level directories and seven root
 files beside them. Most results have a
 directory with a `Specification.lean`, which states the targets, and a
 `Full.lean`, which proves them. `ThresholdHC.lean` is the frozen root of the
@@ -47,6 +47,7 @@ overwrite tracked files under `results/`. Run them in a disposable checkout.
 |---|---|---|
 | RMS lower bound in the observable experiment, frozen coefficient $1/64$ (the sharp coefficient $1/6$ is the next row) | [Tier6 specification](ThresholdHC/Tier6/Specification.lean), [Full](ThresholdHC/Tier6/Full.lean) | `python tools/verify_tier6.py --sequential --require-complete` |
 | Sharp RMS lower coefficient $1/6$ for every gap law and $B\ge1$, and no larger constant (equality at $\delta_{1/2}$, $B=4$); $\sqrt{59/2100}$ for $B\ge25$; the same under both magnitude oracles; the reduction to one gap; the integer certificate for intermediate budgets | [Specification](ThresholdHC/SharpRMS/Specification.lean), [Full](ThresholdHC/SharpRMS/Full.lean), [ordinary model](ThresholdHC/SharpRMS/Unrestricted.lean), [oracles](ThresholdHC/SharpRMS/OracleAttainment.lean), [record](../results/sharp-rms-20261117/README.md) | `python tools/verify_sharp_rms.py --replay` |
+| Best RMS lower coefficient for $B\ge25$ between $0.175198$ and $0.186752$: the lower bound in all three models ($0.17807955$ for $B\ge100$) from five pairs of sign biases, and the upper bound from an adaptive 25-flip policy at gap $1/5$ | [Specification](ThresholdHC/LargeBudgetRMS/Specification.lean), [Full](ThresholdHC/LargeBudgetRMS/Full.lean), [lower bounds](ThresholdHC/LargeBudgetRMS/MultiBiasBounds.lean), [upper witness](ThresholdHC/LargeBudgetRMS/PilotWitness.lean), [record](../results/large-budget-rms-20261118/README.md) | `python tools/verify_large_budget_rms.py --replay` |
 | Distribution-blind RMS upper bound, coefficient $512$ | [BlindUpper specification](ThresholdHC/BlindUpper/Specification.lean), [Full](ThresholdHC/BlindUpper/Full.lean) | `python tools/verify_blind_upper_components.py --sequential` |
 | Confidence characterization | [Confidence specification](ThresholdHC/Confidence/Specification.lean), [Full](ThresholdHC/Confidence/Full.lean) | `python tools/verify_confidence.py --sequential` |
 | Revealed/selected magnitude-oracle lower bounds | [OracleLower specification](ThresholdHC/OracleLower/Specification.lean), [Full](ThresholdHC/OracleLower/Full.lean) | `python tools/verify_oracle_lower.py --sequential` |

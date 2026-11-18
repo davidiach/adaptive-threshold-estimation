@@ -4,7 +4,7 @@
     "rms-law": {
       "status": "lean",
       "verification_rows": ["Original RMS minimax lower bound", "Original RMS upper bound"],
-      "evidence": ["lean/ThresholdHC/Tier6/Full.lean", "lean/ThresholdHC/BlindUpper/Full.lean", "lean/ThresholdHC/SharpRMS/Full.lean"],
+      "evidence": ["lean/ThresholdHC/Tier6/Full.lean", "lean/ThresholdHC/BlindUpper/Full.lean", "lean/ThresholdHC/SharpRMS/Full.lean", "lean/ThresholdHC/LargeBudgetRMS/Full.lean"],
       "abstract": "the original RMS law in both directions, with coefficients $1/6$ (sharp) and $512$ and one distribution-blind upper algorithm",
       "boundary": "both directions of the original RMS law, with coefficients $1/6$ and $512$ and one distribution-blind upper algorithm"
     },
@@ -113,7 +113,7 @@
     "genie": {
       "status": "lean",
       "verification_rows": ["Stopping programs and certificates"],
-      "evidence": ["lean/ThresholdHC/Genie/OptimizedConvergence.lean", "lean/ThresholdHC/GenieRate/Full.lean"],
+      "evidence": ["lean/ThresholdHC/Genie/OptimizedConvergence.lean", "lean/ThresholdHC/SquareRootCap/Full.lean"],
       "abstract": "the genie limits",
       "boundary": "the genie results"
     },

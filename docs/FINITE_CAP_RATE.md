@@ -29,6 +29,8 @@ passes the factor-two test and gives $R\le P_N\le16R$, and $P_N/G_N\le k$
 with $k-1/k=\sqrt{B/N}$, a square-root rate that supersedes the cube-root
 rate above. Run `python tools/verify_square_root_cap.py`; the
 [audit record](../results/sharp-rms-20261117/README.md) gives the scope.
+Theorem Q.1 of the [v6 paper](../paper/v6/appendix-cap-rate.tex) states
+and proves this improved comparison; the proof below is the earlier one.
 
 ## Proof
 

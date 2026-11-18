@@ -1,13 +1,15 @@
 # Consolidated version 6
 
-[Current manuscript](builds/sharp-rms-constant-20261118.pdf) · [LaTeX sources](main.tex) · [Build record](builds/sharp-rms-constant-20261118.json) · [Previous build](builds/review-corrections-20261117.pdf)
+[Current manuscript](builds/large-budget-bracket-20261118.pdf) · [LaTeX sources](main.tex) · [Build record](builds/large-budget-bracket-20261118.json) · [Previous build](builds/sharp-rms-constant-20261118.pdf)
 
-The current PDF is the [sharp RMS constant build](#sharp-rms-constant-build)
-of 18 November 2026, with 197 pages. It states the sharp lower constant
-$1/6$ of the RMS law, where earlier builds stated $1/64$, and proves it in
-the new Appendix AA. Lean checks the constant and its sharpness. The upper
+The current PDF is the [large-budget bracket build](#large-budget-bracket-build)
+of 18 November 2026, with 199 pages. It states the sharp lower constant
+$1/6$ of the RMS law and proves it in Appendix AA. New in this build,
+Theorem AA.7 places the best constant for budgets of at least 25 in
+$[0.175198,0.186752]$, and Theorem Q.1 states the smaller cap $N\ge4B/9$
+for the factor-sixteen certificate. Lean checks all three. The upper
 constant $512$ and every other result are unchanged. The build before it is
-the [review corrections build](#review-corrections-build), with 192 pages.
+the [sharp RMS constant build](#sharp-rms-constant-build), with 197 pages.
 
 [status.json](status.json) tracks 33 results. Lean checks 32 of them. One,
 the critical-window simplification (Corollary 14.14 and Remark 14.15), has a
@@ -51,14 +53,14 @@ unchanged.
 | Appendices I–N | Stopping-flow representation, exact dual, midpoint comparison, genie certificates, fixed-cap identification and exact numerical certificates |
 | Appendix O | The direct proof of the closed quantile law for finite laws |
 | Appendix P | The optimal general-law quantile comparison factor, its scalar equation and rational numerical bracket |
-| Appendix Q | A uniform convergence rate for the optimized cap programs |
+| Appendix Q | A uniform convergence rate for the optimized cap programs: the cap $N\ge4B/9$ for the factor-sixteen certificate, and the truncation of the ordinary program |
 | Appendix R | RMS guarantees under a deterministic observation cap |
 | Appendix S | Rare-event confidence at the effective budget, with subsections on adaptively selected component types, common pairs, fractional-submeasure localization, the sharper general-law confidence coefficient and RMS localization |
 | Appendices T–U | The direct proof below margin exponent one; the logarithmic and intermediate power-margin rows |
 | Appendix V | Known-law time-uniform confidence, the matching lower bound, finite-family adaptation, and the Lean-checked arbitrary-law tail certificate and full oracle-adaptation controller |
 | Appendix W | The smooth-density theorem in the adaptive experiment |
 | Appendices X–Z | Observed states: the finite-cell lower bound, continuous-magnitude lower bounds and the fresh-outer-state upper-bound transfer |
-| Appendix AA | The sharp constant $1/6$ of the RMS lower bound, also under both magnitude oracles: the reduction to one gap, three sign biases for large budgets, the exact one-coin information price with an integer certificate for intermediate budgets, and four fresh flips for equality |
+| Appendix AA | The sharp constant $1/6$ of the RMS lower bound, also under both magnitude oracles: the reduction to one gap, three sign biases for large budgets, the exact one-coin information price with an integer certificate for intermediate budgets, four fresh flips for equality, and the bracket $[0.175198,0.186752]$ for budgets of at least 25 |
 
 ## Verification status
 
@@ -218,12 +220,13 @@ published build or source change at its own date and is kept as written:
 current state use the sections above and the
 [status table](../../docs/RESULTS.md#verification-status).
 
-The table lists all 48 published builds, newest first. `paper.pdf` in
+The table lists all 49 published builds, newest first. `paper.pdf` in
 this folder, the earliest v6 build kept in the repository, is described under
 [Preserved build record](#preserved-build-record).
 
 | Date | Pages | Build | Files | Described in |
 |---|---:|---|---|---|
+| 2026-11-18 | 199 | `large-budget-bracket-20261118` | [PDF](builds/large-budget-bracket-20261118.pdf) · [record](builds/large-budget-bracket-20261118.json) | [Large-budget bracket build](#large-budget-bracket-build) |
 | 2026-11-18 | 197 | `sharp-rms-constant-20261118` | [PDF](builds/sharp-rms-constant-20261118.pdf) · [record](builds/sharp-rms-constant-20261118.json) | [Sharp RMS constant build](#sharp-rms-constant-build) |
 | 2026-11-17 | 192 | `review-corrections-20261117` | [PDF](builds/review-corrections-20261117.pdf) · [record](builds/review-corrections-20261117.json) | [Review corrections build](#review-corrections-build) |
 | 2026-11-16 | 192 | `arbitrary-law-complete-20261116` | [PDF](builds/arbitrary-law-complete-20261116.pdf) · [record](builds/arbitrary-law-complete-20261116.json) | [All-budget controller build](#all-budget-controller-build) |
@@ -1039,3 +1042,56 @@ holds the build logs, the page comparison, the toolchain check and the
 workflow run. All earlier PDFs and records remain unchanged.
 
 [Published manuscript](builds/sharp-rms-constant-20261118.pdf) · [Build record](builds/sharp-rms-constant-20261118.json)
+
+### Large-budget bracket build
+
+This publication states two results that Lean already checked in the
+library.
+
+- Appendix AA gains §AA.6. Its Theorem AA.7 says that the best constant
+  $c_{25}$ in $R_\mu(B)\ge c_{25}\,\omega_\mu(B^{-1/2})$, over every gap law
+  and every $B\ge25$, satisfies $0.175198\le c_{25}\le0.186752$. The lower
+  bound holds under both magnitude oracles, and $0.17807955$ holds for
+  $B\ge100$. The section outlines the Lean proof: five pairs of sign biases
+  for the lower bound, and an 18-flip pilot with seven adaptive follow-ups
+  at gap $1/5$ for the upper bound.
+- Theorem Q.1 states the square-root cap comparison, $P_N\le kG_N$ once
+  $B\le N(k-1/k)^2$, so $N\ge4B/9$ gives the factor-sixteen certificate.
+  Earlier builds stated $\lceil4B/3\rceil$. Six other places that cited the
+  cap now cite $4B/9$.
+- The status table keeps 33 entries. It lists `LargeBudgetRMS/Full.lean`
+  for the RMS law and `SquareRootCap/Full.lean` for the genie results.
+
+Lean checks the bracket as
+[`lean/ThresholdHC/LargeBudgetRMS`](../../lean/ThresholdHC/LargeBudgetRMS/Specification.lean);
+the [library audit record](../../results/large-budget-rms-20261118/README.md)
+gives the statements, the axiom reports and the kernel replay. The cap is
+`lean/ThresholdHC/SquareRootCap`, audited in the
+[sharp RMS record](../../results/sharp-rms-20261117/README.md).
+
+An AI reviewer that had not written the new text read it against the Lean
+statements and recomputed its constants. It found no mathematical error. It
+found a sentence in Appendix Q.1 that the new theorem had made false, three
+unstated conditions, an unclear description of the interval check and
+clashing symbols; these were fixed before the build. This is not a
+specialist referee report.
+
+Two builds at source checkpoint `a8b4e46a5bc0147b88a1af7bb9f06e8c23e140d8`
+are byte-identical: 199 pages, 33 embedded font objects, 425 unique source
+labels and 29 resolved citations. They were typeset locally with the
+manuscript workflow's command and TeX Live packages. The same toolchain
+rebuilds the three previous PDFs byte for byte from their source
+checkpoints. One workflow build of the source checkpoint reports the same
+page count and file size. Its artifact was not downloaded, so byte identity
+with it is not claimed.
+
+Fifteen pages change: 7, 8, 49, 52, 57, 62, 63, 135, 139, 152, 153, 191 and
+195–197. The references move from pages 196–197 to 198–199. The other 182
+pages retain identical body text and word positions. The changed pages,
+contents page 2 and the two reference pages were rendered and visually
+inspected. The only warning is the inherited overfull line in Appendix C.
+The [publication record](../../results/large-budget-publication-20261118/README.md)
+holds the build logs, the page comparison, the toolchain check and the
+workflow run. All earlier PDFs and records remain unchanged.
+
+[Published manuscript](builds/large-budget-bracket-20261118.pdf) · [Build record](builds/large-budget-bracket-20261118.json)

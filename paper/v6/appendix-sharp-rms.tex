@@ -36,6 +36,8 @@ inequality at each stopped transcript, summed over the coins; it proves
 \cref{lem:sharp-scale} by algebra on each exit; and it proves
 \eqref{eq:sharp-scalar} by a polynomial bound. The Lean kernel evaluates
 the integer comparisons behind \eqref{eq:sharp-window}.
+\Cref{thm:sharp-bracket} in \cref{sec:sharp-bracket} narrows the best
+constant for $B\ge25$ to the interval $[0.175198,0.186752]$.
 
 Throughout, a flip is $Y\in\{-1,1\}$, and a coin of gap $d$ and sign
 $S\in\{-1,1\}$ has $\E[Y\mid S]=2dS$. Write $a=2d$ for its bias. A sign
@@ -367,3 +369,108 @@ is strict for $B\ne4$. The upper constant of \cref{thm:main} is not
 improved, so the two sides of \eqref{eq:main-rms} remain a factor $3072$
 apart.
 \end{remark}
+
+\subsection{Budgets of at least 25}\label{sec:sharp-bracket}
+
+\Cref{sec:sharp-large} gives the constant $\sqrt{59/2100}>0.1676$ for
+$B\ge25$. Two further arguments narrow the best constant for these
+budgets. Lean checks both. The text below outlines the Lean proofs; their
+numerical certificates are checked there in exact rational and integer
+arithmetic and are not repeated here.
+
+\begin{theorem}\label{thm:sharp-bracket}
+Let $c_{25}$ be the supremum of the constants $c$ such that
+$R_\mu(B)\ge c\,\om(B^{-1/2})$ for every law $\mu$ and every $B\ge25$.
+Then
+\[
+ 0.175198\ \le\ c_{25}\ \le\ 0.186752 .
+\]
+The lower bound also holds for both oracle risks. For $B\ge100$ the
+constant $0.17807955$ holds in all three models.
+\end{theorem}
+
+\paragraph{Formal scope.}
+\largermsleanref{Full.lean}{bracket\_lower} proves the lower bound in the
+three models, \largermsleanref{Full.lean}{hundred\_lower} the bound for
+$B\ge100$, \largermsleanref{Full.lean}{fifth\_gap\_upper} the bound
+$R_{\delta_{1/5}}(25)\le0.186752$, and
+\largermsleanref{Full.lean}{bracket\_upper} the upper bound on $c_{25}$.
+They use the same definitions as \cref{thm:sharp-rms}.
+
+\paragraph{The lower bound.}
+By \cref{lem:sharp-reduction} with $g=1/\sqrt B$ it suffices to bound
+$r_s$ for $s=2/\sqrt B\le2/5$, in the experiment of
+\cref{sec:sharp-single} and at a bounded horizon. For $t^2\le2/3$,
+\begin{equation}\label{eq:sharp-paired}
+ \KL(P_0\Vert P_t)+\KL(P_0\Vert P_{-t})
+ \le-\log(1-t^2s^2)\,\E_0T
+ \le-B\log(1-4t^2/B).
+\end{equation}
+Lean proves the first inequality from \eqref{eq:sharp-likelihood} and
+\eqref{eq:sharp-wald}, by bounding each coin's term through its
+posterior. It replaces \eqref{eq:sharp-cost}.
+
+Take five sign biases $t_i$, namely $0.527436$, $0.679980$, $0.753283$,
+$0.798023$ and $0.816490$, each with $t_i^2<2/3$, slopes $b_i$, namely
+$6.121167$, $7.070320$, $7.599955$, $7.966557$ and $8.119407$, and put
+$\alpha=19.780099$ and $\varrho_0^2=4\cdot0.175198^2$. Write
+\[
+ \pi(B)=-B\sum_{i=1}^5\log\bigl(1-4t_i^2/B\bigr),\qquad
+ D=\alpha+2\sum_{i=1}^5b_i=93.534911 .
+\]
+Clip the estimate $X$ of the sign mean to $[-1,1]$. The tests
+$g_{i,\pm}(x)=1+b_i\bigl((x\mp t_i)^2-\varrho_0^2\bigr)$ are positive,
+since $b_i\varrho_0^2<1$. Apply
+$\E_P\log\phi\le\KL(P\Vert Q)+\E_Q\phi-1$ with $P=P_0$,
+$Q=P_{\pm t_i}$ and $\phi=g_{i,\pm}(X)$, sum over the ten alternatives
+and use \eqref{eq:sharp-paired}:
+\[
+ \E_0\Bigl[\alpha X^2+\sum_{i,\pm}\log g_{i,\pm}(X)\Bigr]
+ \le \alpha\,\E_0X^2+\pi(B)
+ +\sum_{i,\pm}b_i\bigl(\E_{\pm t_i}(X\mp t_i)^2-\varrho_0^2\bigr).
+\]
+Lean checks the pointwise inequality
+\begin{equation}\label{eq:sharp-five}
+ \alpha x^2+\sum_{i,\pm}\log g_{i,\pm}(x)\ \ge\ \alpha\varrho_0^2+\pi(25),\qquad |x|\le1,
+\end{equation}
+with a Taylor lower bound of degree $27$ for the exponential and exact
+polynomial checks on nine intervals in $x^2$. If the eleven squared
+risks $\E_0X^2$ and $\E_{\pm t_i}(X\mp t_i)^2$ are at most $\varrho^2$, the
+two displays give $D(\varrho^2-\varrho_0^2)\ge\pi(25)-\pi(B)$. The risk for
+the target is half the RMS error of $X$, so
+\[
+ r_s\ \ge\ \frac12\sqrt{\varrho_0^2+\frac{\pi(25)-\pi(B)}{D}} .
+\]
+The function $\pi$ decreases in $B$. The right side is therefore at
+least $\varrho_0/2=0.175198$ for $B\ge25$, and at least $0.17807955$ for
+$B\ge100$. \Cref{lem:sharp-reduction} carries both bounds to every law
+and to both oracles.
+
+\paragraph{The upper bound.}
+Take $\mu=\delta_{1/5}$ and $B=25$, so that $s=2/5$ and
+$\om(B^{-1/2})=1$. Flip $18$ fresh coins and let $j$ be the number of
+flips equal to $+1$. Then make seven more flips. Before the $(k+1)$st of
+them, a fixed table indexed by $j$ and the $k$ earlier answers chooses a
+fresh coin, the $(k+1)$st coin whose first flip was $+1$, or the
+$(k+1)$st coin whose first flip was $-1$, counted in the order of the
+first $18$ flips. A missing coin is replaced by a fresh one. Distinct
+follow-up flips therefore use distinct coins, and no coin is flipped more
+than twice. The estimate is a rational with denominator $100{,}000$,
+indexed by $j$ and the seven answers. Every path uses exactly $25$
+flips. The table was found by backward minimization of the Bayes squared
+loss under a symmetric four-point prior; only the risk of the resulting
+policy is checked.
+
+If a fraction $p$ of the coins have positive sign, a fresh flip is $+1$
+with probability $(3+4p)/10$. Two flips of one coin are both $+1$ with
+probability $(9+40p)/100$, and they differ with probability $21/100$ in
+either order. The squared risk of the estimate for the target $p$ is
+therefore a polynomial in $p$. Lean computes it exactly and checks, on
+each of eight dyadic subintervals covering $[0,1]$, that it is at most
+its common value at $p=0$ and $p=1$. That value is
+\[
+ 348763093753675683898541718818533\cdot10^{-34}\ <\ 0.186752^2 .
+\]
+Hence $R_{\delta_{1/5}}(25)\le0.186752$,
+and no constant above $0.186752$ is valid at $\mu=\delta_{1/5}$ and
+$B=25$. The value of $c_{25}$ remains open.

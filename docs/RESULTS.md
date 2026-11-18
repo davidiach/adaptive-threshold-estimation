@@ -74,7 +74,7 @@ The [status source](../paper/v6/status.json) of the v6 abstract lists 33 results
 
 | Result | Status | Evidence |
 |---|---|---|
-| Original RMS law in both directions, with coefficients $1/6$ (sharp) and $512$ and one distribution-blind upper algorithm | Lean-checked | [Tier6/Full.lean](../lean/ThresholdHC/Tier6/Full.lean) · [BlindUpper/Full.lean](../lean/ThresholdHC/BlindUpper/Full.lean) · [SharpRMS/Full.lean](../lean/ThresholdHC/SharpRMS/Full.lean) |
+| Original RMS law in both directions, with coefficients $1/6$ (sharp) and $512$ and one distribution-blind upper algorithm | Lean-checked | [Tier6/Full.lean](../lean/ThresholdHC/Tier6/Full.lean) · [BlindUpper/Full.lean](../lean/ThresholdHC/BlindUpper/Full.lean) · [SharpRMS/Full.lean](../lean/ThresholdHC/SharpRMS/Full.lean) · [LargeBudgetRMS/Full.lean](../lean/ThresholdHC/LargeBudgetRMS/Full.lean) |
 | Critical minimax law | Lean-checked | [CriticalEntropy/CriticalMinimax.lean](../lean/ThresholdHC/CriticalEntropy/CriticalMinimax.lean) · [CriticalUpper/Full.lean](../lean/ThresholdHC/CriticalUpper/Full.lean) |
 | Exact $\Psi$ comparison and counterexample | Lean-checked | [CriticalPsi/Full.lean](../lean/ThresholdHC/CriticalPsi/Full.lean) |
 | Variational optimizer | Lean-checked | [Tier3/Optimizer.lean](../lean/ThresholdHC/Tier3/Optimizer.lean) |
@@ -87,7 +87,7 @@ The [status source](../paper/v6/status.json) of the v6 abstract lists 33 results
 | Deterministic quantile comparison | Lean-checked | [QuantilePrice/Full.lean](../lean/ThresholdHC/QuantilePrice/Full.lean) · [quantile-price-20261104 record](../results/quantile-price-20261104/README.md) |
 | Stopping-program duality and the risk certificates | Lean-checked | [StoppingProgram/BellmanTheorem.lean](../lean/ThresholdHC/StoppingProgram/BellmanTheorem.lean) · [StoppingProgram/FiniteCertificate.lean](../lean/ThresholdHC/StoppingProgram/FiniteCertificate.lean) · [rare-event-full-20261031 record](../results/rare-event-full-20261031) |
 | Fixed-cap identification | Lean-checked | [CapIdentification/Full.lean](../lean/ThresholdHC/CapIdentification/Full.lean) |
-| Genie limits | Lean-checked | [Genie/OptimizedConvergence.lean](../lean/ThresholdHC/Genie/OptimizedConvergence.lean) · [GenieRate/Full.lean](../lean/ThresholdHC/GenieRate/Full.lean) |
+| Genie limits | Lean-checked | [Genie/OptimizedConvergence.lean](../lean/ThresholdHC/Genie/OptimizedConvergence.lean) · [SquareRootCap/Full.lean](../lean/ThresholdHC/SquareRootCap/Full.lean) |
 | Entropy–tail coefficients $10^{-17}$ and $28000$ for every known gap law | Lean-checked | [EntropyTailSharp/Full.lean](../lean/ThresholdHC/EntropyTailSharp/Full.lean) · [entropy-tail-explicit-20261104 record](../results/entropy-tail-explicit-20261104/README.md) |
 | Arbitrary-law statistical $\Psi$ lower bound with coefficient $10^{-17}$, through the entropy–tail law | Lean-checked | [PsiSelection/Full.lean](../lean/ThresholdHC/PsiSelection/Full.lean) · [psi-selection-20261109 record](../results/psi-selection-20261109/README.md) |
 | Separate direct closed-quantile bounds for finite laws, with coefficients $10^{-20}$ and $30001$ | Lean-checked | [FiniteQuantile/Full.lean](../lean/ThresholdHC/FiniteQuantile/Full.lean) · [direct-finite-quantile-20261104 record](../results/direct-finite-quantile-20261104/README.md) |
@@ -143,7 +143,7 @@ Here $r_\mu(B,\delta)$ is the minimax uniform error radius at failure probabilit
 |---|---|---|---|---|
 | Lower, every gap law, $B\ge1$ | $1/6$, the largest possible | `sharp_lower`, `sharp_coefficient` and `sharp_endpoint` in [SharpRMS/Full.lean](../lean/ThresholdHC/SharpRMS/Full.lean) | CI, `tools/verify_sharp_rms.py` | Appendix AA |
 | Lower, $B\ge25$ | $\sqrt{59/2100}\approx0.1676$ | `large_budget_lower` in the same file | CI, the same audit | Appendix AA |
-| Lower, $B\ge25$, stronger | $0.175198$; the best constant is at most $0.186752$ | `lower_25` and `pilot_coefficient_upper` in the [research package](../research/2026-11-17-rms-constants/README.md#the-coefficient-for-budgets-of-at-least-25) | The package's own kernel replay records; not in CI | No |
+| Lower, $B\ge25$, best known | $0.175198$, and $0.17807955$ for $B\ge100$; the best constant is at most $0.186752$ | `bracket_lower`, `hundred_lower` and `bracket_upper` in [LargeBudgetRMS/Full.lean](../lean/ThresholdHC/LargeBudgetRMS/Full.lean) | CI, `tools/verify_large_budget_rms.py` | Appendix AA, Theorem AA.7 |
 | Lower, original frozen target | $1/64$ | `minimax_lower_bound` in [Tier6/Full.lean](../lean/ThresholdHC/Tier6/Full.lean) | CI, `tools/verify_tier6.py` | §5 |
 | Upper, $B\ge1$ | $512$ | `minimax_upper_bound` in [BlindUpper/Full.lean](../lean/ThresholdHC/BlindUpper/Full.lean) | CI, `tools/verify_blind_upper_components.py` | §18 derives $512$; §5 proves the bound with a larger constant |
 
@@ -155,7 +155,8 @@ $$R_\mu(B)\ \ge\ \tfrac16\,\omega_\mu(B^{-1/2}),$$
 
 and $1/6$ is the largest constant valid for all gap laws and budgets: four
 fresh flips attain equality at $B=4$ and $\mu=\delta_{1/2}$. For $B\ge25$ the
-constant improves to $\sqrt{59/2100}\approx0.1676$. The experiment is the
+constant improves to $\sqrt{59/2100}\approx0.1676$, and further to $0.175198$
+(below). The experiment is the
 original one: arbitrary measurable private randomness, interleaving,
 revisits and unbounded stopping under the uniform expected-work budget.
 These statements are Lean-checked in the audited library
@@ -192,12 +193,14 @@ decision uses the pilot count and the earlier follow-up answers to choose a
 fresh coin or revisit a distinct pilot coin. An exact risk certificate
 covers every sign probability.
 
-These bounds are Lean-checked in the research package, with its own kernel
-replay records. They are not in the CI-audited library or in the paper,
-which state the weaker $\sqrt{59/2100}$.
-[Lower bounds](../research/2026-11-17-rms-constants/MultiBiasBounds.lean) ·
-[Adaptive upper witness](../research/2026-11-17-rms-constants/PilotWitness.lean) ·
-[Exact statements and audit](../research/2026-11-17-rms-constants/README.md#the-coefficient-for-budgets-of-at-least-25)
+These bounds are Lean-checked in the audited library
+([specification](../lean/ThresholdHC/LargeBudgetRMS/Specification.lean),
+[theorems](../lean/ThresholdHC/LargeBudgetRMS/Full.lean),
+[audit record](../results/large-budget-rms-20261118/README.md)); CI runs their
+audit, `tools/verify_large_budget_rms.py`. Appendix AA of the v6 paper
+states them as Theorem AA.7 and outlines the Lean proof. The proofs come
+from the [research package](../research/2026-11-17-rms-constants/README.md#the-coefficient-for-budgets-of-at-least-25),
+which keeps its own replay records.
 
 **Feedback helps at the upper witness.** At the same gap $1/5$ and the same
 18-flip pilot, every policy that commits to all seven follow-up choices
@@ -303,7 +306,7 @@ the whole iid array and a magnitude selected at each creation.
 [Lean theorems](../lean/ThresholdHC/SharpRMS/Full.lean) ·
 [oracle proofs](../lean/ThresholdHC/SharpRMS/OracleAttainment.lean).
 The stronger [lower bounds for budgets of at least 25](#minimax-law-and-unbiasedness),
-which are checked in the research package only, hold for both oracles too.
+$0.175198$ and $0.17807955$ for $B\ge100$, hold for both oracles too.
 
 The original oracle theorems are frozen targets, Lean-checked for both
 revealed and adaptively selected magnitudes. They prove the RMS bound with
@@ -622,7 +625,7 @@ are also checked.
 |---|---|
 | Matching entropy-tail upper/lower bounds | Every law, known rarity, and positive expected budget in the model; hard measurable assignments suffice. |
 | Attained four-prior stopping dual | Exact identity for the robust certificate program; its connection to minimax risk is a comparison inequality. |
-| Factor-sixteen risk certificate | For $0<\rho\le1/2$: $P_N\le2G_N$ and $R\le P_N\le16R$ whenever $N\ge4B/9$. This is the current cap. It follows from the [square-root cap comparison](../lean/ThresholdHC/SquareRootCap/Full.lean): $P_N\le kG_N$ once $B\le N(k-1/k)^2$, for every $k>1$ ([Lean record](../results/sharp-rms-20261117/README.md)). The earlier [uniform cap theorem](FINITE_CAP_RATE.md) needed $N\ge4B/3$. |
+| Factor-sixteen risk certificate | For $0<\rho\le1/2$: $P_N\le2G_N$ and $R\le P_N\le16R$ whenever $N\ge4B/9$. This is the current cap. It follows from the [square-root cap comparison](../lean/ThresholdHC/SquareRootCap/Full.lean): $P_N\le kG_N$ once $B\le N(k-1/k)^2$, for every $k>1$ ([Lean record](../results/sharp-rms-20261117/README.md)); the v6 paper states it as Theorem Q.1. The earlier [uniform cap theorem](FINITE_CAP_RATE.md) needed $N\ge4B/3$. |
 | Ordinary cap convergence | The [truncation theorem](FINITE_CAP_RATE.md#a-sharper-rate-for-the-ordinary-upper-program) gives $P_\infty\le P_N\le(1+\sqrt{B/(N+1)})P_\infty$ uniformly in the law. For $0<\rho\le1/2$ and $B>0$, $P_N\le8(1+\sqrt{B/(N+1)})R$, so $N+1\ge B$ suffices for factor sixteen; the square-root cap comparison above gives the smaller cap $N\ge4B/9$ and the comparison with the genie program. Optimality is not proved. [Lean record](../results/finite-cap-truncation-20261105/README.md) |
 | Genie convergence | Pointwise convergence assumes finite latent divergence. An explicit infinite-divergence counterexample is included. Mixing the variance and work references with the endpoint midpoint gives $P_N/G_N\le1+2(B/N)^{1/3}$ for $N\ge B$. The square-root cap comparison above improves this rate: $P_N/G_N\le k$ with $k-1/k=\sqrt{B/N}$, which is $1+O(\sqrt{B/N})$. [Lean record](../results/genie-rate-20261104/README.md) |
 | Fixed-cap identification | For $m$ distinct positive magnitudes, the zero-bias threshold is $N\ge2m-1$. This identifies the target, not necessarily the full allocation $q$. Infinite support has a positive floor at every fixed cap; the cap may grow. |
