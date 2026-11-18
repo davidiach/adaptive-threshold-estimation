@@ -92,7 +92,7 @@ def _budget_report(population: Population, budget: float, runs: int, seed: int,
         "",
         "  Proven limits, over every split of items this close to 50/50 between the two sides:",
         f"    difficulty score: {plan.difficulty:.3g}",
-        f"    no method can promise a typical error below {plan.proven_floor:.3g} (difficulty / 64)",
+        f"    no method can promise a typical error below {plan.proven_floor:.3g} (difficulty / 6)",
         f"    the no-tuning method is proven to stay within {ceiling}",
         "",
         f"  Returns on more flips: 4x the budget would cut the difficulty score to "

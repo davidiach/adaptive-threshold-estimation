@@ -96,7 +96,7 @@ At an average budget of 16,384 flips:
 
   Proven limits, over every split of items this close to 50/50 between the two sides:
     difficulty score: 0.0951
-    no method can promise a typical error below 0.00149 (difficulty / 64)
+    no method can promise a typical error below 0.0158 (difficulty / 6)
     the no-tuning method is proven to stay within 48.7 (difficulty x 512), too loose to be useful here
 
   Returns on more flips: 4x the budget would cut the difficulty score to 50% of today's.
@@ -136,12 +136,11 @@ How to read it:
   your population between the two sides, where any share of the items at each
   closeness to 50/50 may be above it. It is not a floor for a fixed list of
   items whose sides are merely unknown: a single item at 90% or 10% is settled
-  far more accurately by flipping it repeatedly. Both limits are
-  very loose (a factor of about 30,000 apart), which is why the simulation is
-  there. The calculator still prints the original floor, difficulty / 64.
-  Lean has since checked the sharp floor, difficulty / 6
-  ([`SharpRMS/Full.lean`](../lean/ThresholdHC/SharpRMS/Full.lean)), which
-  brings the two limits to a factor of 3,072 apart.
+  far more accurately by flipping it repeatedly. The floor's constant, 1/6,
+  is the best possible for a bound of this form
+  ([`SharpRMS/Full.lean`](../lean/ThresholdHC/SharpRMS/Full.lean)); the
+  ceiling's 512 is not. The two limits are a factor of 3,072 apart, which is
+  why the simulation is there.
 - **Returns on more flips**: when many items sit near 50/50, extra flips buy
   less.
 
@@ -305,9 +304,9 @@ python toolkit/examples/rare_events.py
   pilot, as are calls whose cost divided by the cap underflows to zero.
 - What is machine-checked is the mathematical guarantee of the proven method, in
   [`BlindUpper/Full.lean`](../lean/ThresholdHC/BlindUpper/Full.lean), and the
-  floor: difficulty / 64 in [`Tier6/Full.lean`](../lean/ThresholdHC/Tier6/Full.lean),
-  sharpened to difficulty / 6 in
-  [`SharpRMS/Full.lean`](../lean/ThresholdHC/SharpRMS/Full.lean). This Python
+  floor the calculator prints, difficulty / 6, in
+  [`SharpRMS/Full.lean`](../lean/ThresholdHC/SharpRMS/Full.lean) (the frozen
+  [`Tier6/Full.lean`](../lean/ThresholdHC/Tier6/Full.lean) proves difficulty / 64). This Python
   code is not itself verified. Its tests check it against a separate
   implementation of the paper's definitions, exact enumeration and the
   calibration identities.

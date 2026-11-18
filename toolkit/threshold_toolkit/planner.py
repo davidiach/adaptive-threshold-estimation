@@ -14,12 +14,14 @@ The proven limits use only how close the items are to 50/50:
 
     difficulty(B) = omega(1/sqrt(B)),  omega(h) = average of min(1, h / |p - 1/2|).
 
-For any method with average budget B, some split of the population between
-the two sides forces root-mean-square error at least difficulty / 64
-(Tier6/Full.lean, `minimax_lower_bound`). A split sets any share of the items
-at each closeness to 50/50 above it, so the floor need not hold for one fixed
-list of items whose sides are only unknown: one item at 0.9 or 0.1, flipped
-101 times, gives error about 1e-12 either way, below its floor of 0.0039.
+For any method with average budget B >= 1, some split of the population
+between the two sides forces root-mean-square error at least difficulty / 6
+(SharpRMS/Full.lean, `sharp_lower`), and 1/6 is the largest constant that
+holds for every population and budget (`sharp_coefficient`). The frozen
+Tier6/Full.lean proves the same floor with 1/64. A split sets any share of the
+items at each closeness to 50/50 above it, so the floor need not hold for one
+fixed list of items whose sides are only unknown: one item at 0.9 or 0.1,
+flipped 101 times, gives error about 1e-12 either way, below its floor of 0.041.
 The no-tuning estimator has error at most 512 * difficulty for every split
 (BlindUpper/Full.lean).
 """
@@ -35,7 +37,7 @@ from scipy.special import betainc, betaln
 
 from .estimator import R_LEVEL, budget_level, level_probability, threshold
 
-FLOOR_FACTOR = 1 / 64
+FLOOR_FACTOR = 1 / 6
 CEILING_FACTOR = 512
 
 
