@@ -1,8 +1,8 @@
 \section{The sharp constant of the RMS lower bound}
 \label{app:sharp-rms}
 
-\Cref{thm:main} holds with the lower constant $1/64$. The best constant is
-$1/6$.
+The proof of \cref{thm:main} in \cref{sec:minimax-proof} gives the lower
+constant $1/64$. The best constant is $1/6$.
 
 \begin{theorem}\label{thm:sharp-rms}
 For every probability law $\mu$ on $(0,1/2]$ and every $B\ge1$,
@@ -30,10 +30,12 @@ for $B\ge25$. The oracle forms are
 \sharprmsleanref{Full.lean}{oracle\_sharp\_lower},
 \sharprmsleanref{Full.lean}{oracle\_large\_budget\_lower\_bound} and
 \sharprmsleanref{Full.lean}{oracle\_endpoint}. The Lean proof follows the
-steps below, with two differences: for $B\le4$ it integrates the exact
-Bayes risk under the uniform prior, and it proves \cref{lem:sharp-scale}
-by algebra on each exit. The Lean kernel evaluates the integer comparisons
-behind \eqref{eq:sharp-window}.
+route below. Among its differences: for $B\le4$ it integrates the exact
+Bayes risk under the uniform prior; it proves the bound on $J(t)$ by an
+inequality at each stopped transcript, summed over the coins; it proves
+\cref{lem:sharp-scale} by algebra on each exit; and it proves
+\eqref{eq:sharp-scalar} by a polynomial bound. The Lean kernel evaluates
+the integer comparisons behind \eqref{eq:sharp-window}.
 
 Throughout, a flip is $Y\in\{-1,1\}$, and a coin of gap $d$ and sign
 $S\in\{-1,1\}$ has $\E[Y\mid S]=2dS$. Write $a=2d$ for its bias. A sign
@@ -68,7 +70,8 @@ are independent with mean $aS$.
 
 If $a>s$, then $f=s/a$. The required coin has a sign $S'$ with
 $\E[S'\mid S]=fS$, which the simulation never draws. Suppose the simulated
-flips so far have net count $K$, and put $z=\tanh(K\artanh a)$ if $a<1$.
+flips so far have net count $K$, the sum of their values, and put
+$z=\tanh(K\artanh a)$ if $a<1$.
 Given $S$ and these flips, the next flip of the required coin has mean
 \[
  a\,\frac{z+fS}{1+fzS}=b+c\,sS,\qquad
@@ -156,15 +159,16 @@ $\E_0T\le4/s^2$ give
 The last step uses
 $\artanh(s)/s\le1+s^2/(3(1-s^2))\le67/63$ for $s\le2/5$.
 
-For the risk, put $g_\pm(x)=1+8\bigl((x\mp\beta)^2-1/9\bigr)\ge1/9$. For
-probability laws $P,Q$ and a positive function $g$,
-$\E_P\log g\le\KL(P\Vert Q)+\E_Qg-1$. With $P=P_0$, $Q=P_{\pm\beta}$ and
-$g=g_\pm(X)$ this gives
+For the risk, put
+$\phi_\pm(x)=1+8\bigl((x\mp\beta)^2-1/9\bigr)\ge1/9$. For probability
+laws $P,Q$ and a positive function $\phi$,
+$\E_P\log\phi\le\KL(P\Vert Q)+\E_Q\phi-1$. With $P=P_0$,
+$Q=P_{\pm\beta}$ and $\phi=\phi_\pm(X)$ this gives
 \[
- \KL(P_0\Vert P_{\pm\beta})\ge\E_0\log g_\pm(X)
+ \KL(P_0\Vert P_{\pm\beta})\ge\E_0\log\phi_\pm(X)
    -8\,\E_{\pm\beta}(X\mp\beta)^2+\tfrac89 .
 \]
-The product is $g_+(X)g_-(X)=G(X^2)$ with
+The product is $\phi_+(X)\phi_-(X)=G(X^2)$ with
 $G(y)=(907/225+8y)^2-(3136/25)\,y$, and for $y\ge0$
 \begin{equation}\label{eq:sharp-scalar}
  \tfrac12\log G(y)+\tfrac52\,y\ \ge\ \tfrac43 .
@@ -185,7 +189,7 @@ positive at $0$, negative at $19/50$ and positive at $39/100$. The minimum
 is at $0$ or at the larger root, which lies in $[19/50,39/100]$. At $0$
 the value is $\log(907/225)>\log4>4/3$. On that interval $G$ decreases
 and $G(39/100)=(67/45)^2$, so the value at the larger root is at least
-$\log(67/45)+19/20\ge11/28+19/20>4/3$, by $\log u\ge2(u-1)/(u+1)$.
+$\log(67/45)+19/20\ge11/28+19/20>4/3$, by $\log x\ge2(x-1)/(x+1)$.
 \sharprmsleanref{WeakPopulation.lean}{weak\_gap\_minimax\_lower} is the
 Lean statement of this case.
 
@@ -194,12 +198,13 @@ Lean statement of this case.
 
 Let $J(t)$ be the Fisher information of the transcript and $v=1-t^2$.
 Give $t$ the uniform prior on $(-1,1)$ and write $\overline\E$ for the
-average over $t$ and the transcript, and $S_t$ for the score. For a
+average over $t$ and the transcript, and $\xi_t$ for the score. For a
 bounded-horizon estimator $X$ with values in $[-1,1]$, integration by
 parts gives
 \begin{equation}\label{eq:sharp-score}
- \overline\E\bigl[(X-t)(vS_t-2t)\bigr]=\tfrac23,\qquad
- \overline\E\bigl[(vS_t-2t)^2\bigr]=\tfrac43+\tfrac12\int_{-1}^1v^2J(t)\,dt .
+ \overline\E\bigl[(X-t)(v\xi_t-2t)\bigr]=\tfrac23,\qquad
+ \overline\E\bigl[(v\xi_t-2t)^2\bigr]
+ =\tfrac43+\tfrac12\int_{-1}^1v^2J(t)\,dt .
 \end{equation}
 The boundary term vanishes because $v(\pm1)=0$. If the second quantity is
 at most $4$, the Cauchy--Schwarz inequality gives
@@ -214,79 +219,88 @@ flips and $I_t$ its Fisher information about $t$. By
  \E_0Z=0,\qquad I_t=\E_0\frac{Z^2}{1+tZ},\qquad
  sW_t=\E_0\bigl[(Z+t)K\bigr].
 \end{equation}
+These identities are proved at a bounded horizon. They extend to every
+rule with finite expected work, by stopping it after $n$ flips and letting
+$n\to\infty$.
+
 Put $x_k=\tanh(k\artanh s)$. The rule that stops when the net count
 reaches $+1$ or $-k$ ends at $Z=s$ or $Z=-x_k$, with fair probabilities
-$x_k/(s+x_k)$ and $s/(s+x_k)$. Substituting in \eqref{eq:sharp-local},
+$x_k/(s+x_k)$ and $s/(s+x_k)$. Its work has finite mean, since $k+1$ equal
+flips in a row end it. Substituting in \eqref{eq:sharp-local},
 \begin{equation}\label{eq:sharp-exit}
- H_k(s,t)=\frac{I_t}{s^2W_t}
+ \eta_k(s,t)=\frac{I_t}{s^2W_t}
  =\frac{1+x_k/s}{(1-tx_k)(1+ts)\bigl[k+1-t(k/x_k-1/s)\bigr]},
- \qquad H_s(t)=\sup_{k\ge1}H_k(s,t).
+ \qquad \eta_s(t)=\sup_{k\ge1}\eta_k(s,t).
 \end{equation}
 Revealing the sign bounds $I_t$ by $1/v$, and $W_t\ge1$, so
-$H_s(t)\le1/(s^2v)$.
+$\eta_s(t)\le1/(s^2v)$.
 
 \begin{lemma}\label{lem:sharp-price}
-Every stopping rule for one coin satisfies $I_t\le s^2H_s(|t|)\,W_t$.
+Every stopping rule for one coin satisfies $I_t\le s^2\eta_s(|t|)\,W_t$.
 \end{lemma}
 
 \begin{proof}
-Let $t\ge0$ and $P=1/H_s(t)$. The exit with $k=1$ gives $P\le1-s^2t^2\le1$.
+Let $t\ge0$ and $\lambda=1/\eta_s(t)$. The exit with $k=1$ gives
+$\lambda\le1-s^2t^2\le1$.
 For a net count $K\ne0$ with $z=\tanh(K\artanh s)$ put
 \[
- F(K)=\frac{s(z+t)K}{z}-\frac{Pz}{1+tz}.
+ F(K)=\frac{s(z+t)K}{z}-\frac{\lambda z}{1+tz}.
 \]
-By \eqref{eq:sharp-local}, $s^2W_t-PI_t=\E_0[ZF(K)]$, with the term at
+By \eqref{eq:sharp-local}, $s^2W_t-\lambda I_t=\E_0[ZF(K)]$, with the term at
 $K=0$ equal to zero, and $\E_0[ZF(K)]=\E_0[Z(F(K)-F(1))]$ because
 $\E_0Z=0$. For $K\ge1$ the first term of $F$ is $sK+stK/z$. It increases
 by at least $s$ at each step, since $K/z$ increases. The second term
 increases by at most $s$, since $z$ increases by at most $s$ and
-$z\mapsto Pz/(1+tz)$ has slope at most one. Thus $F(K)\ge F(1)$. For
-$K=-k$, the exit at $+1$ or $-k$ satisfies $PI_t\le s^2W_t$ by the
-definition of $P$, which reads $F(-k)\le F(1)$. Hence $Z(F(K)-F(1))\ge0$
+$z\mapsto\lambda z/(1+tz)$ has slope at most one. Thus $F(K)\ge F(1)$. For
+$K=-k$, the exit at $+1$ or $-k$ satisfies $\lambda I_t\le s^2W_t$ by the
+definition of $\lambda$, which reads $F(-k)\le F(1)$. Hence
+$Z(F(K)-F(1))\ge0$
 at every reachable count. A negative $t$ follows by reversing the flips,
 and a randomized rule by averaging.
 \end{proof}
 
 \paragraph{Any adaptive protocol.}
 By \eqref{eq:sharp-likelihood}, $J(t)=\E_t\sum_iz_i^2/(1+tz_i)^2$. For each
-coin, condition on its birth history and the seed, and generate the other
-coins from their own tapes at the same $t$. Given its birth the coin's sign
-and later flips are independent of those tapes, so this is a randomized
-rule for one coin. Its information is the expectation of the coin's
+coin, condition on the seed and on the transcript before its first flip.
+Given that past, the coin's sign and flips are independent of all later
+flips of the other coins, at the same $t$. With those flips as private
+randomness, the protocol is a randomized rule for the one coin. Its
+information is the expectation of the coin's
 summand and its work is the number of flips paid for the coin.
 \Cref{lem:sharp-price} and the budget give
 \[
- J(t)\le s^2H_s(|t|)\,\E_tT\le4H_s(|t|).
+ J(t)\le s^2\eta_s(|t|)\,\E_tT\le4\eta_s(|t|).
 \]
 This is \sharprmsleanref{AdaptivePrice.lean}{adaptive\_fisher\_price}. By
-\eqref{eq:sharp-score} it suffices to prove
+\eqref{eq:sharp-score} it suffices to prove that, for $2/5\le s<1$,
 \begin{equation}\label{eq:sharp-window}
- \int_0^1(1-t^2)^2H_s(t)\,dt\ \le\ \tfrac23 .
+ \int_0^1(1-t^2)^2\eta_s(t)\,dt\ \le\ \tfrac23 .
 \end{equation}
 
 \begin{lemma}\label{lem:sharp-scale}
-If $0<s\le h<1$, then $s^2H_s(t)\le h^2H_h(t)$.
+If $0<s\le u<1$, then $s^2\eta_s(t)\le u^2\eta_u(t)$.
 \end{lemma}
 
 \begin{proof}
-Negate each flip of a coin of bias $h$ independently with probability
-$(1-s/h)/2$. Given the sign, the results are the flips of a coin of bias
+Negate each flip of a coin of bias $u$ independently with probability
+$(1-s/u)/2$. Given the sign, the results are the flips of a coin of bias
 $s$. A stopping rule for the latter becomes a randomized rule for the
 former with the same work, and keeping the original flips can only
-increase information. Apply \cref{lem:sharp-price} at bias $h$.
+increase information. Apply \cref{lem:sharp-price} at bias $u$.
 \end{proof}
 
 \paragraph{Near-perfect coins.}
-Let $39/40\le s<1$. The exit with $k=1$ has $H_1=1/(1-s^2t^2)$. For
+Let $39/40\le s<1$. The exit with $k=1$ has $\eta_1(s,t)=1/(1-s^2t^2)$. For
 $k\ge2$ the rule pays for a second flip when the first is negative, so
-$W_t\ge1+(1-st)/2$ and $H_k\le1/\bigl(s^2v[1+(1-st)/2]\bigr)$. For
+$W_t\ge1+(1-st)/2$ and $\eta_k(s,t)\le1/\bigl(s^2v[1+(1-st)/2]\bigr)$. For
 $t\le3/4$,
 \[
  s^2v\,\frac{1-st}2\ \ge\ \Bigl(\frac{39}{40}\Bigr)^2\frac7{16}\cdot\frac18
  \ >\ 1-\Bigl(\frac{39}{40}\Bigr)^2\ \ge\ 1-s^2,
 \]
-which gives $H_k\le H_1$, so $H_s=H_1$ there. For $t>3/4$ use
-$H_s\le1/(s^2v)$. Compared with $v$, the integrand $v^2H_1$ is smaller by
+which gives $\eta_k(s,t)\le \eta_1(s,t)$, so $\eta_s(t)=\eta_1(s,t)$ there. For
+$t>3/4$ use $\eta_s(t)\le1/(s^2v)$. Compared with $v$, the integrand
+$v^2\eta_1(s,t)$ is smaller by
 at least $(1-s^2)vt^2$ on $[0,3/4]$, and $v/s^2$ is larger by
 $(1-s^2)v/s^2$ on $[3/4,1]$. Since
 \[
@@ -299,19 +313,20 @@ and $\int_0^1v\,dt=2/3$, \eqref{eq:sharp-window} holds.
 \paragraph{The window $2/5\le s\le39/40$.}
 Here \eqref{eq:sharp-window} is checked by integer arithmetic. For a
 rational bias, $x_1=s$ and $x_{k+1}=(x_k+s)/(1+sx_k)$ are rational. Each
-$H_k$ increases with $t\ge0$. The factor $k+1-t(k/x_k-1/s)$ is positive
-and increases with $k$. For $k\ge20$, replace it by its value at $k=20$
-and replace $x_k$ by $1$ elsewhere in \eqref{eq:sharp-exit}; the result
-bounds $H_k$ and also increases with $t$. On each of $2048$ equal
-subintervals of $[0,1]$, bound $v^2$ at the left endpoint and these twenty
-expressions at the right endpoint, take the smaller of their maximum and
-the bound $v/s^2$, and round up to a multiple of $2^{-32}$. Let $U(h)$ be
-the mean of these heights for the bias $h$; it bounds the integral in
-\eqref{eq:sharp-window} at $s=h$. By \cref{lem:sharp-scale},
-$(h/\ell)^2U(h)\le2/3$ proves \eqref{eq:sharp-window} for every
-$s\in[\ell,h]$. This inequality holds on $140$ adjacent intervals with
-endpoints in $\mathbb Z/40960$ that cover $[2/5,39/40]$; the largest value
-is below $0.66666$. The comparisons are
+$\eta_k(s,t)$ increases with $t\ge0$. The factor $k+1-t(k/x_k-1/s)$ is
+positive and increases with $k$. For $k\ge20$, replace it by its value at
+$k=20$ and replace $x_k$ by $1$ elsewhere in \eqref{eq:sharp-exit}; the
+result bounds $\eta_k(s,t)$ and also increases with $t$. On each of $2048$
+equal subintervals of $[0,1]$ let $v_0$ be the value of $v$ at the left
+endpoint. Multiply each of these twenty expressions at the right endpoint
+by $v_0^2$, round up to a multiple of $2^{-32}$ and take the largest. The
+height of the subinterval is the smaller of this and $v_0/s^2$, also
+rounded up. Let $U(u)$ be the mean of these heights for the bias $u$; it
+bounds the integral in \eqref{eq:sharp-window} at $s=u$. By
+\cref{lem:sharp-scale}, $(u/\ell)^2U(u)\le2/3$ proves
+\eqref{eq:sharp-window} for every $s\in[\ell,u]$. This inequality holds on $140$ adjacent intervals that
+cover $[2/5,39/40]$, with endpoints that are multiples of $1/40960$; the
+largest value is below $0.66666$. The comparisons are
 \sharprmsleanref{Window.lean}{checked\_window}, and
 \sharprmsleanref{MiddleBudget.lean}{critical\_minimax\_lower} is the
 resulting bound $r_s\ge1/6$ for every $0<s\le1$.
@@ -322,7 +337,9 @@ Let $B\le4$ and let $\mu$ be arbitrary. Consider the sign laws with the
 same sign mean $t$ at every magnitude; the target is $(1+t)/2$. Reveal the
 sign of a coin at its first paid flip. This can only help the estimator.
 A fresh sign has information $1/v$ about $t$, and a revisit has none, so
-$J(t)\le B/v$ at a bounded horizon. In \eqref{eq:sharp-score},
+$J(t)\le B/v$ at a bounded horizon. The identities
+\eqref{eq:sharp-score} hold in this experiment by the same integration by
+parts, and
 $\tfrac43+\tfrac12\int_{-1}^1v^2J\le\tfrac43+\tfrac23B\le4$. Hence
 $R_\mu(B)\ge1/6\ge\om(B^{-1/2})/6$ for every $B\le4$, and $r_1\ge1/6$.
 This completes the proofs of \cref{prop:sharp-critical} and of
@@ -330,16 +347,17 @@ This completes the proofs of \cref{prop:sharp-critical} and of
 \sharprmsleanref{FourBudget.lean}{four\_budget\_minimax\_lower}.
 
 For equality take $\mu=\delta_{1/2}$ and $B=4$, so that
-$\om(B^{-1/2})=1$. One flip reveals the sign of a fresh coin. If $X$ is
+$\om(B^{-1/2})=1$. One flip reveals the sign of a fresh coin. If $N$ is
 the number of positive signs among four fresh coins and $q$ is the
-fraction of positive coins, then $(X+1)/6$ has squared risk
+fraction of positive coins, then $(N+1)/6$ has squared risk
 \[
  \frac{4q(1-q)+(1-2q)^2}{36}=\frac1{36}
 \]
 for every $q$. Hence $R_{\delta_{1/2}}(4)=1/6$, which is
 \sharprmsleanref{FourBudget.lean}{endpoint\_minimax\_eq}. The same four
-flips are available to both oracles, and \cref{lem:sharp-reduction} covers
-their lower bounds.
+flips are available to both oracles. Their lower bounds follow from
+\cref{lem:sharp-reduction} and the bounds above for one gap: take
+$g=1/\sqrt B$ if $B\ge4$, and $g=1/2$ if $B\le4$, where $\om(1/2)=1$.
 
 \begin{remark}
 Equality in \eqref{eq:sharp-rms} requires $B=4$: every case of the proof
