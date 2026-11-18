@@ -46,10 +46,10 @@ For both magnitude oracles, the [oracle reduction](SharpOracleReduction.lean) al
 Write $c_{25}$ for the largest ordinary-model coefficient such that $R_\mu(B)\ge c_{25}\,\omega_\mu(B^{-1/2})$ for every gap law and every real $B\ge25$. The certified interval is
 
 $$
-0.17356166\ \le\ c_{25}\ \le\ 0.188087.
+0.17356166\ \le\ c_{25}\ \le\ 0.186752.
 $$
 
-The lower endpoint also applies to the revealed- and selected-magnitude oracles. For $B\ge100$ the lower coefficient increases to $0.17623782$. The sharp value for $B\ge25$ remains open. [Lower theorems](LargeBudgetBounds.lean) · [Adaptive upper witness](RevisitWitness.lean) · [Exact statements](AuditLargeBudget.lean) · [Kernel replay](large-budget-audit.json)
+The lower endpoint also applies to the revealed- and selected-magnitude oracles. For $B\ge100$ the lower coefficient increases to $0.17623782$. The sharp value for $B\ge25$ remains open. [Lower theorems](LargeBudgetBounds.lean) · [Adaptive upper witness](PilotWitness.lean) · [Exact statements](AuditLargeBudget.lean) · [Kernel replay](large-budget-audit.json)
 
 At the critical gap $d=B^{-1/2}$, write $s=2d$ and let $P_t$ be the transcript law at sign mean $t$. The summed reverse divergences from $P_0$ to $P_{\pm t}$ are at most $-\log(1-t^2s^2)\,\mathbb E_0 W$ when $t^2\le2/3$. This follows by bounding the log likelihood of each sampled coin in terms of its posterior and applying the Wald identity. For $t=29/40$, the three-bias test then gives the following sufficient condition on a positive RMS coefficient $r$, with $k=11774928000/2595112129$ and $b=29/4$.
 
@@ -61,9 +61,13 @@ The right side increases with $B$. The proof checks the logarithm at the cutoff 
 
 The earlier fixed-sample upper bound takes $B=25$ and $\mu=\delta_{1/5}$, where the modulus equals one. The protocol queries 25 distinct coins once each and returns a rational estimate indexed by the head count. When the positive-sign fraction is $p$, each observation has head probability $3/10+2p/5$. The mean squared error is a degree-13 polynomial in $(2p-1)^2$. Four exact Bernstein expansions certify that it is at most $0.195454^2$ on the full parameter interval. [Fresh-flip law](LargeBudgetFresh.lean) · [Estimator and polynomial certificate](LargeBudgetTable.lean)
 
-The improved upper bound uses the same gap and a hard cap of 25 flips. Flip 20 distinct coins and let $j$ be the number of heads. For $5\le j\le9$, revisit five distinct coins that showed heads. For $11\le j\le15$, revisit five that showed tails. In the other cases use five fresh coins. The estimate depends on $j$ and the head count among the final five flips. [Policy](RevisitPolicy.lean) · [Estimator table](RevisitCertificate.lean)
+The 20-flip pilot uses the same gap and a hard cap of 25 flips. Flip 20 distinct coins and let $j$ be the number of heads. For $5\le j\le9$, revisit five distinct coins that showed heads. For $11\le j\le15$, revisit five that showed tails. In the other cases use five fresh coins. The estimate depends on $j$ and the head count among the final five flips. [Policy](RevisitPolicy.lean) · [Estimator table](RevisitCertificate.lean)
 
 If the positive-sign fraction is $p$, a fresh head has probability $b=(3+4p)/10$. A previously observed head has repeat-head probability $(9+40p)/(100b)$, and a previously observed tail has repeat-head probability $21/(100(1-b))$. Since the five chosen labels are distinct, their outcomes are conditionally binomial given the pilot. Lean proves this from the original transcript likelihood. It checks the resulting risk polynomial over the full interval by exact integer arithmetic and gives RMS at most $0.188087$. [Conditional law](RevisitHistory.lean) · [Two-stage expectation](RevisitExperiment.lean) · [Squared-risk proof](RevisitRisk.lean) · [Exact statements](AuditRevisit.lean) · [Replay record](revisit-audit.json)
+
+The $0.186752$ upper bound uses 18 fresh flips at the same critical gap. Let $j$ be their head count. At follow-up position $k=0,\ldots,6$, the decision depends on $j$ and all $k$ earlier follow-up answers. It can request a fresh coin, the $(k+1)$st pilot head, or the $(k+1)$st pilot tail, in pilot order. A missing candidate defaults to fresh. Distinct positions always select distinct labels during the follow-up. To find the rule, we minimized Bayes squared loss backwards through the seven choices under a symmetric four-point prior on $0,x,1-x,1$, with $x\approx0.298645$ and total endpoint mass about $0.392448$. The terminal estimate is a rational number with denominator 100,000. [Policy and history law](PilotPolicy.lean) · [Actions and estimates](PilotTable.lean)
+
+The suffix expectation obeys a binary recursion. When it queries a pilot coin, the likelihood replaces the single observed flip by the joint probability of the pair. For example, two heads contribute $(9+40p)/100$, and a head and a tail contribute $21/100$ in either order. After summing over the 19 pilot counts, Lean compares the risk polynomial to its endpoint value on eight rational subintervals covering $[0,1]$. The exact worst squared error of this protocol is $348763093753675683898541718818533/10^{34}$, attained at both $p=0$ and $p=1$. Its square root is approximately $0.186751999656$. [Experiment](PilotExperiment.lean) · [Likelihood polynomial](PilotPolynomial.lean) · [Interval certificate](PilotCertificate.lean) · [Exact statements](AuditPilot.lean) · [Kernel replay](pilot-audit.json)
 
 ## Reproducing the formal checks
 
@@ -77,4 +81,5 @@ python research/2026-11-17-rms-constants/verify_sharp_rms.py . --unrestricted
 python research/2026-11-17-rms-constants/verify_sharp_rms.py . --oracles
 python research/2026-11-17-rms-constants/verify_sharp_rms.py . --large-budget
 python research/2026-11-17-rms-constants/verify_sharp_rms.py . --revisit
+python research/2026-11-17-rms-constants/verify_sharp_rms.py . --pilot
 ```
