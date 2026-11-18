@@ -116,10 +116,11 @@ reduce to `False`; a timeout or missing dependency is not rejection evidence.
 Its source snapshot and compiler/artifact hashes are recorded in a fresh
 `.runtime/envelope-transfer-certificates/` directory. See the
 [published record](../results/envelope-transfer-certificates-20261117/README.md).
-CI retains both this output and the earlier finite-law output in the
-`lean-verification` artifact.
+CI retains the four certificate outputs in the `lean-verification` artifact.
 
-#85 remains open for global menu/DP/approximation outputs, concrete planner
-prices and allocations, schedules and floating calculators. Arbitrary external
+The [global selection certificates](GLOBAL_SELECTION_CERTIFICATES.md) cover
+bounded menu, DP and approximation outputs. #85 remains open for full solver
+transcripts, other selection entry points, concrete planner prices and
+allocations, schedules and floating calculators. Arbitrary external
 oracle promises and the statistical CDF/transfer premises remain assumptions.
 Observation models and Python/PRNG execution remain separate in #86.

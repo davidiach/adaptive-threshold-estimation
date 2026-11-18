@@ -17,7 +17,7 @@ behavior before running it in a checkout that contains published evidence.
 | Rare-event manuscript replay | [verify_rare_event_manuscript.py](verify_rare_event_manuscript.py) | Publication manifests and finite certificates in a temporary copy; prints the report and preserves the published payload. |
 | Original Lean and tier audits | [verify_lean_checkpoint.py](verify_lean_checkpoint.py), [verify_uniform713.py](verify_uniform713.py), `verify_tier3.py` through `verify_tier6.py` | Build and audit frozen targets; write logs/status into tracked `results/`. Use a disposable checkout. |
 | Scalar constant lemmas | [verify_uniform_arithmetic.py](verify_uniform_arithmetic.py) | Runs `lake env lean` on the unfrozen `proposals/constants/UniformArithmetic.lean` and checks its seven lemmas' axiom reports with the shared proof-escape and `sorry` guards; writes `results/constants_uniform_lean_audit.log` and `_status.json`. |
-| Later theorem audits | `verify_*_components.py`, `verify_critical_psi.py`, `verify_critical_all_sizes.py`, `verify_unbiased_converse.py`, `verify_observable713.py`, `verify_confidence.py`, `verify_oracle_lower.py`, `verify_rare_above_two.py`, `verify_entropy_tail.py`, `verify_entropy_tail_upper.py`, `verify_entropy_tail_components.py`, `verify_entropy_tail_assembly.py`, `verify_quantile_comparison.py`, and the sixteen [stopping-program, identification and genie audits](../docs/VERIFY.md#stopping-program-identification-and-genie-certificates) (`stopping_program_lock.py` checks their specification lock) | Exact targets, source identities, and transitive axioms; timestamped directories under `.runtime/`, with an `--output-dir` option. The build options differ: the older audits accept `--sequential`; `verify_entropy_tail_upper.py`, `verify_entropy_tail_assembly.py`, `verify_entropy_tail_lower_components.py` and the sixteen stopping-program audits accept `--cached-dependencies` instead (`verify_stopping_components.py` also `--audit-only`), and in those modes Lake must first confirm that every reused module is up to date; `verify_entropy_tail_components.py` accepts neither. See the [theorem map](../lean/README.md#main-theorem-entry-points). |
+| Later theorem audits | `verify_*_components.py`, `verify_critical_psi.py`, `verify_critical_all_sizes.py`, `verify_unbiased_converse.py`, `verify_observable713.py`, `verify_confidence.py`, `verify_oracle_lower.py`, `verify_rare_above_two.py`, `verify_entropy_tail.py`, `verify_entropy_tail_upper.py`, `verify_entropy_tail_components.py`, `verify_entropy_tail_assembly.py`, `verify_quantile_comparison.py`, and the sixteen [stopping-program, identification and genie audits](../docs/VERIFY.md#stopping-program-identification-and-genie-certificates): `verify_stopping_components.py`, `verify_stopping_flow_mixture.py`, `verify_finite_stopping_program.py`, `verify_rarity_support.py`, `verify_stopping_dual.py`, `verify_information_bellman.py`, `verify_reference_absorption.py`, `verify_ordered_information.py`, `verify_adaptive_information.py`, `verify_stopping_program_upper.py`, `verify_finite_risk_certificate.py`, `verify_infinite_cap_dual.py`, `verify_genie_brackets.py`, `verify_genie_conic.py`, `verify_genie_convergence.py`, `verify_genie_counterexample.py` (three of them check the specification lock through `stopping_program_lock.py`) | Exact targets, source identities, and transitive axioms; timestamped directories under `.runtime/`, with an `--output-dir` option. The build options differ: the older audits accept `--sequential`; `verify_entropy_tail_upper.py`, `verify_entropy_tail_assembly.py`, `verify_entropy_tail_lower_components.py` and the sixteen stopping-program audits accept `--cached-dependencies` instead (`verify_stopping_components.py` also `--audit-only`), and in those modes Lake must first confirm that every reused module is up to date; `verify_entropy_tail_components.py` accepts neither. See the [theorem map](../lean/README.md#main-theorem-entry-points). |
 | Guarded experiment persistence | [run_real_guarded.py](run_real_guarded.py) | Opt-in launcher for distinct fresh direct-real experiments; exclusive ownership, once-only held-out intent and atomic stage snapshots. See the [transition audit](../docs/EXPERIMENT_PERSISTENCE.md). Never adopts or restarts archived results. |
 | Numerical and experiment checks | `check_targets*_numeric.py`, [check_power_bracket.py](check_power_bracket.py), [verify_experiment_lock.py](verify_experiment_lock.py), with [benchmark/verify_production.py](../benchmark/verify_production.py) | Finite/numerical diagnostics, stored-sample replay, the held-out record recomputed from its raw data, and exact replays of the production benchmark routines, with the scope described in [VERIFY.md](../docs/VERIFY.md#integrity-numerics-and-unit-tests). Some write `results/`; use a disposable checkout for the full sequence. |
 | Results drift check | [check_results_drift.py](check_results_drift.py) | Run after the numerical and experiment checks. Compares the five records they rewrite in place with the committed versions, ignoring line endings, wall-clock fields and last-digit float noise. Reads files only. |
@@ -65,18 +65,26 @@ python -m unittest discover -s tools -p 'test_*.py' -v
 ```
 
 Regression tests do not replace the Lean kernel audits. The
-[CI workflow](../.github/workflows/checks.yml) is the integration sequence; it
-runs every maintained audit except the two intermediate entropy-tail audits
-that [VERIFY.md](../docs/VERIFY.md) lists as outside CI.
+[CI workflow](../.github/workflows/checks.yml) is the integration sequence. It
+runs on pull requests and on pushes to `main`. The research and numerical
+jobs always run. The four Lean jobs run when `.github/lean_ci.py` selects
+them from the changed files; a manual run, or a change to proofs, the
+toolchain or the workflow, runs all of them. A full run covers every
+maintained audit except `verify_entropy_tail_components.py` and
+`verify_entropy_tail_assembly.py`, which CI does not run.
 [Toolkit CI](../.github/workflows/toolkit.yml) separately checks the Python
-package.
+package, and two further workflows build the v6 PDF and test experiment
+persistence.
 
 ## Registries and locks
 
 `targets.json`, tier target registries, and `blind_upper_components.json` identify
 the declarations and modules an audit expects. Specification freeze/lock JSON
-files record exact source identities and dependency snapshots. Some verifier
-scripts are themselves frozen. Inspect the relevant lock before editing a
+files record exact source identities and dependency snapshots. Some tools
+are themselves frozen: `freeze.py`, `score.py`, `check_targets_numeric.py`,
+`check_targets2_numeric.py`, `verify_uniform713.py`, `verify_tier3.py` to
+`verify_tier6.py`, and the registries `targets.json`, `tier3_targets.json` to
+`tier6_targets.json` and `uniform713_targets.json`. Inspect the relevant lock before editing a
 registry or tool, and never regenerate hashes to suppress a failure.
 
 For fresh outputs, keep the source commit and actual verification scope with
@@ -85,194 +93,35 @@ new evidence. Historical research validators can intentionally reject the
 integrated checkout; use the maintained replay entry points above instead of
 altering the original snapshots.
 
-The Lean kernel audits added from 4 November onward take no build options
+Most Lean kernel audits added from 4 November onward take no build options
 (two accept only `--lake`). They build with Lake, check exact statements and
-transitive axioms, print the report and write no files.
+transitive axioms, print the report and write no files. Some take options:
+`verify_sharp_rms.py` (`--replay`, `--jobs`) and `verify_project_axioms.py`
+(`--replay-main-theorem`, `--jobs`, `--add-definitions` and others) still
+write no files, except that `--add-definitions` adds entries to
+`definition_lock.json`. The output-certificate audits and
+`verify_finite_selection_approximation.py` accept `--no-build` and
+`--output-dir`, and `verify_selection_approximation.py` accepts `--lean-exe`,
+`--package-cache` and `--output-dir`; these six write a fresh directory under
+`.runtime/`.
 
-Run `verify_law_adaptation.py` for 17 exact types and transitive axiom reports
-covering [finite-family unknown-law adaptation components](../docs/FINITE_FAMILY_ADAPTATION.md):
-sign-neutral parity, bounded-average concentration, identification, probability
-transfer, physical cap arithmetic and the delayed oracle-rate comparison.
+## Unknown-law adaptation audits
 
-Run `verify_law_adaptation_realization.py` for 22 exact types and transitive
-axiom reports covering moment determinacy, the actual shared-prefix pilot,
-the full selected controller, unconditional physical caps and history
-compatibility, joint all-budget coverage and oracle width, nesting, and the
-original-experiment endpoint law.
-[Native record](../results/law-adaptation-realization-20261105/README.md).
+These audits check the adaptation theorems for an unknown gap law: 35 of
+them, plus the dyadic-summability audit of two frozen targets, which shares
+their style and is listed here for that reason. Each
+builds with Lake, restates its exact statements and reports transitive
+axioms. The verification guide describes every one with its statement count;
+the links below go to those sections.
 
-Run `verify_arbitrary_law_entropy.py` for the 15 finite entropy-transport
-statements in `ArbitraryLawAdaptation`. See the [formal scope](../docs/ARBITRARY_LAW_FORMALIZATION.md);
-the full arbitrary-law adaptation theorem remains a paper proof.
-
-Run `verify_arbitrary_law_envelope.py` for 25 exact statements and 24 transitive
-reports covering prefix minima, the finite probability measure, its zero atom,
-and CDF domination from finitely many grid bounds.
-
-Run `verify_arbitrary_law_stage.py` for 17 exact statements and 16 transitive
-reports covering observable paid learning stages: fresh continuation labels,
-physical caps, history readback and the joint original-experiment output law.
-
-Run `verify_arbitrary_law_countable.py` for 16 exact statements and transitive
-reports covering extended-valued countable entropy transport and its canonical
-Gamma connection. No finite total inverse-square moment is assumed; the
-destination-column summability condition remains explicit.
-
-Run `python tools/verify_arbitrary_law_coupling.py` for 19 exact statements
-and transitive axiom reports: measurable canonical band indices, countable
-cell integrals, and the factor-three Gamma comparison for finite increasing
-couplings on positive gaps. Run `python tools/verify_arbitrary_law_selection.py`
-for 13 more: Radon--Nikodym selection lifts, preserved mass and domination,
-residual tail contraction, and the square-root-three comparison of the
-original capped infimum. Neither result assumes a finite inverse moment.
-CDF-to-coupling existence and the zero-atom extension are checked below.
-
-Run `python tools/verify_arbitrary_law_cdf_coupling.py` for 11 exact statements
-and transitive reports proving the common-uniform coupling for bounded
-nonnegative laws. Run `python tools/verify_arbitrary_law_zero.py` for 36 more:
-the zero-atom functional, exact agreement with positive-gap K, entropy and
-selection transport on `[0,1/2]`, and the comparison starting from CDF
-domination. Atoms and infinite inverse moments and entropy are allowed.
-
-The dominated-mass comparison (A5) is checked by
-`python tools/verify_arbitrary_law_dominated.py`: 22 exact statements and
-22 transitive reports. Bounded density restriction transfers fractional
-selections and controls their residuals. For finite measures,
-`lambda <= c eta + e delta_0` gives `K(lambda) <= c K(eta) + e`
-when `c >= 1` and `e >= 0`, retaining infinite entropy and the cap.
-
-Run `python tools/verify_arbitrary_law_light_entropy.py` for 36 exact statements
-and transitive reports: product-reference entropy, explicit numerical budgets,
-two-band product geometry and the factor-1024 entropy bound for actual product
-measure cells. Run `python tools/verify_arbitrary_law_light.py` for 26 more
-exact statements and transitive reports: residual tails, the constructed
-multiplier's exact CDF, and the full capped selection comparison with factor 32.
-The final result imposes no inverse-moment or entropy condition on the input law.
-Run `python tools/verify_arbitrary_law_tail_test.py` for 91 exact statements
-and transitive reports on the sign-neutral single-coin tail test: its work cap,
-dependence on the observed prefix, flip symmetry, the sign-neutral law on the
-original population, both unresolved-probability bounds, the comparison with
-the constructed multiplier, and the expected-work bound.
-Run `python tools/verify_arbitrary_law_tail_probe.py` for 69 exact statements
-and transitive reports on one capped probe over fresh coins: its caps and
-charge, dependence on the bought flips, coverage of the small-gap mass at every
-budget with probability at least 7/8, and the fixed-budget performance bound
-with probability at least 3/4, with and without the coin cap.
-Run `python tools/verify_arbitrary_law_tail_median.py` for 51 exact statements
-and transitive reports on the median over independent probes: the majority
-transfer to the median, Hoeffding across probes, statement (1) of the tail
-certificate with its pathwise flip cap, the statement at every depth at once,
-and both on a single coin array.
-Run `python tools/verify_arbitrary_law_tail_oracle.py` for 26 exact statements
-and transitive reports on the oracle comparison of the tail certificate: the
-kernel bounds, the split of the gap law at its quantile, the onset condition
-and its existence, and the bound of the median by 524288 times the selection
-functional, at one depth and at every depth at once.
-Run `python tools/verify_arbitrary_law_tail_observable.py` for 68 exact
-statements and transitive reports on the tail certificate in the observable
-experiment: the probe's reader and its invariant, consecutive blocks on
-separate coin labels, the certificate as a function of the observed word, the
-transfer of events about that word to the law of the original experiment, and
-statements (1) and (3) for the estimator's output, at one depth and at every
-depth up to a horizon.
-Run `python tools/verify_arbitrary_law_pilot.py` for 66 exact statements and
-transitive reports on the capped multi-depth pilot: the budgets and coin cap
-(A6), the cap inequalities (A10), the depth-one certificate, the event (A8)
-with a common number of probes, for the pilot alone and for the pilot in the
-learning stage, and the learned law (A9) with its domination of the gap law.
-Run `python tools/verify_arbitrary_law_pilot_onset.py` for 25 exact statements
-and transitive reports on the first part of the learned law's oracle
-comparison: the lowest-gap split of the gap law, the pilot's work estimates
-(A12), its onset condition and its existence, and the bounds of the work and
-of the coin cap by the selection functional.
-Run `python tools/verify_arbitrary_law_learned_oracle.py` for 31 exact
-statements and transitive reports on the rest of that comparison: the
-multiplier law and its bound on the unresolved probabilities, the learned-CDF
-bound (A13), the slack bound (A14), the clipped-CDF witness, and the
-comparison (A11) with its finite onset and on the pilot event.
-Run `python tools/verify_arbitrary_law_zero_quantile.py` for 22 exact
-statements and transitive reports on the quantile design of a law with mass
-at zero: its definition from the normalized positive part, the comparison
-(A16) with the selection functional, and the converse.
-Run `python tools/verify_known_law_planner.py` for 49 exact statements and
-transitive reports on the known-law plan: the level races at the plan's caps,
-the level price, the cap search, the counts from weights, and the validity of
-the plan's squared-error certificate.
-Run `python tools/verify_known_law_plan_rate.py` for 18 exact statements and
-transitive reports on the rate of the exact plan: the least caps, the
-multilevel sum, the terminal rule, the comparison of the certified risk with
-the selection functional for the quantile split, the constant fallback and
-the reported radius.
-Run `python tools/verify_known_law_plan_tight_rate.py` for 31 exact statements
-and transitive reports on the rate of a plan computed from upper bounds
-within a factor two: the caps and prices against the next level, the
-multilevel sum, the rate for the quantile split, and the plan of a reference
-law with mass at zero with the planned coefficient and the radius
-coefficient.
-Run `python tools/verify_known_law_planner_output.py` for 9 exact statements
-and transitive reports on the planner end to end: the constructed quantile
-split, the plan in minimax form, the minimax rate from upper bounds and from
-exact integrals for every law, and the design of a reference law with mass
-at zero. The minimax statements name no estimator.
-Run `python tools/verify_known_law_planner_estimator.py` for 8 exact
-statements and transitive reports in which the estimator the planner returns
-is named: its choice between the plan and the constant `ρ/2`, and in both
-branches budget `B` and risk at most `44801 K` with exact integrals, or the
-factor-two coefficient for every tight enclosure.
-Run `python tools/verify_dyadic_summability.py` for 5 exact statements and
-transitive reports proving that the dyadic series of the frozen targets H3
-and H4 converge, with their frozen bounds as `HasSum` statements.
-Run `python tools/verify_robust_error_transfer.py` for 33 exact statements
-and transitive reports on the first part of the robust continuation: the
-order on tapes of flips, the monotone ordinary classifier and race, the
-downward and upward banks, and the transfer of the race's population error
-to a true law coupled above its reference.
-Run `python tools/verify_robust_coin_work.py` for 9 exact statements and
-transitive reports on the work of the race for a coin with a larger gap
-than the reference: the ordinary kernel, the negative bank and the positive
-bank, each at the reference gap.
-Run `python tools/verify_robust_level_certificates.py` for 18 exact
-statements and transitive reports on the level certificates of the race
-under a true law coupled above its reference: the split of a coupling along
-the design, the selected core, resolved tail and unresolved part, and the
-level work and level error.
-Run `python tools/verify_robust_plan.py` for 20 exact statements and
-transitive reports on the plan of a reference law under the true law: the
-level races designed from the reference, the validity of an admissible
-plan, and one estimator with risk at most `C_0 K_alpha` under every true law
-coupled above the reference.
-
-Run `python tools/verify_robust_cdf_bridge.py` for 12 exact statements and
-transitive reports deriving that coupling from CDF domination, including
-the zero-atom split, the original sign mass and rarity budget, and direct
-budget/risk guarantees for the named plan and one reference-dependent
-estimator valid for every CDF-dominated true law.
-
-Run `python tools/verify_clipping_pilot_independence.py` for 26 exact
-statements and transitive reports: clipping preserves the experiment and
-work and cannot increase risk; the production stream and private seed
-retain their original joint law after a positive-probability pilot history,
-including the installed multi-depth pilot and its selected continuation.
-
-Run `python tools/verify_paid_median.py` for 48 exact statements and
-transitive reports: a reference-law base including the large-zero-atom
-fallback, the physical-cap median, and its conditional and unconditional
-coverage in the actual paid stage. The cap includes the pilot, the reported
-radius is determined by the learned law, and total failure is at most the
-sum of the pilot and continuation allowances. The full all-budget controller
-and finite-law numerical implementation remain outside this audit.
-
-## Full arbitrary-law all-budget controller
-
-Run `python tools/verify_arbitrary_law_controller.py` for 99 exact statements
-and transitive axiom reports from all twelve modules of
-`ThresholdHC.ArbitraryLawController`. The audit covers the concrete schedule,
-zero-work fallback, chronological controller, unconditional caps and prefix
-consistency, nested intervals, joint pilot-and-coverage event, (A17)–(A18),
-finite onset and final same-event width `2^32 C_* K(B/Lambda)`. The theorem
-assumes no statistical stage oracle. CI also replays these twelve modules
-through the independent kernel checker. Finite-law numerical enclosures,
-Python/PRNG verification and manuscript/PDF publication remain separate.
+| Scripts | Checks | Details |
+|---|---|---|
+| `verify_law_adaptation.py`, `verify_law_adaptation_realization.py` | Adaptation over a supplied finite family of gap laws: 17 component statements and the 22 statements of the observable construction | [VERIFY.md](../docs/VERIFY.md#finite-family-unknown-law-adaptation-components), [record](../results/law-adaptation-realization-20261105/README.md) |
+| `verify_arbitrary_law_cdf_coupling.py`, `verify_arbitrary_law_countable.py`, `verify_arbitrary_law_coupling.py`, `verify_arbitrary_law_dominated.py`, `verify_arbitrary_law_entropy.py`, `verify_arbitrary_law_envelope.py`, `verify_arbitrary_law_learned_oracle.py`, `verify_arbitrary_law_light.py`, `verify_arbitrary_law_light_entropy.py`, `verify_arbitrary_law_pilot.py`, `verify_arbitrary_law_pilot_onset.py`, `verify_arbitrary_law_selection.py`, `verify_arbitrary_law_stage.py`, `verify_arbitrary_law_tail_median.py`, `verify_arbitrary_law_tail_observable.py`, `verify_arbitrary_law_tail_oracle.py`, `verify_arbitrary_law_tail_probe.py`, `verify_arbitrary_law_tail_test.py`, `verify_arbitrary_law_zero.py`, `verify_arbitrary_law_zero_quantile.py` | The components of the arbitrary-law proof: entropy transport, the conservative envelope, couplings, the pilot and the tail certificate | [VERIFY.md](../docs/VERIFY.md#arbitrary-law-adaptation-components), [formal scope](../docs/ARBITRARY_LAW_FORMALIZATION.md) |
+| `verify_known_law_plan_rate.py`, `verify_known_law_plan_tight_rate.py`, `verify_known_law_planner.py`, `verify_known_law_planner_estimator.py`, `verify_known_law_planner_output.py` | The known-law plan, its rate and the named estimator | [VERIFY.md](../docs/VERIFY.md#arbitrary-law-adaptation-components) |
+| `verify_robust_cdf_bridge.py`, `verify_robust_coin_work.py`, `verify_robust_error_transfer.py`, `verify_robust_level_certificates.py`, `verify_robust_plan.py`, `verify_clipping_pilot_independence.py`, `verify_paid_median.py` | The plan under a dominated true law, pilot independence and paid-median coverage | [VERIFY.md](../docs/VERIFY.md#arbitrary-law-adaptation-components) |
+| `verify_dyadic_summability.py` | The dyadic series behind the frozen targets H3 and H4: 7 exact statements and 5 transitive axiom reports | [record](../results/dyadic-summability-20261114/README.md) |
+| `verify_arbitrary_law_controller.py` | The all-budget controller, which completes the arbitrary-law theorem: 99 exact statements from twelve modules. CI also replays those modules through the independent kernel checker | [VERIFY.md](../docs/VERIFY.md#full-arbitrary-law-all-budget-controller), [record](../results/arbitrary-law-controller-20261116/README.md) |
 
 ## Deterministic certificate checker
 

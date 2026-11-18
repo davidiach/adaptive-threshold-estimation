@@ -10,8 +10,8 @@ generators.
 | [v6/](v6/README.md) | Consolidated version 6: the whole theory in one paper, with its published PDF builds and build records | Current |
 | [v5/](v5/README.md) | Consolidated version 5, the combined draft before version 6 | Preserved; an input of version 6 |
 | [rare-event/](rare-event/README.md) | The general-law rare-event manuscript, revised v2, with its audit | Preserved; an input of version 6 |
-| [finite-gap-rare-events/](finite-gap-rare-events/README.md) | The finite-gap rare-event manuscript and its revision 2 | Preserved; its files are hash-listed |
-| [critical-review/](critical-review/README.md) | A review packet for specialists on the critical quadratic law | Generated from the sources below |
+| [finite-gap-rare-events/](finite-gap-rare-events/README.md) | The finite-gap rare-event manuscript and its revision 2 | Preserved; its files are hash-listed; revision 2 is an input of version 6 |
+| [critical-review/](critical-review/README.md) | A review packet for specialists on the critical quadratic law | Generated from the locked critical-law note, its own `overview.tex` and the shared addendum below |
 | [paper.pdf](paper.pdf), `paper.tex`, `verification_table.tex` | Version 4 of 26 October 2026, the original 21-page paper | Unchanged |
 | [UPDATES.md](UPDATES.md) | A chronological guide to the results that followed version 4 | Historical guide |
 | `finite-gap-extension.tex`, `gap-entropy-references.tex` | A shared addendum and its references, read by the version 5 and review-packet generators | Edit only as the [editing guide](../CONTRIBUTING.md#where-to-edit) describes |

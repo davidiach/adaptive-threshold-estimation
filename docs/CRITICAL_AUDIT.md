@@ -1,5 +1,23 @@
 # Critical quadratic theorem: follow-up audit
 
+This page records how the critical quadratic law $F(d)=(4d)^2$ was checked.
+The law is Lean-checked in both directions; the
+[results guide](RESULTS.md#critical-power-margin-full-minimax-characterization)
+states it with its assumptions. The final theorems are:
+
+- lower bound: `critical_minimax_lower_bound` in
+  [CriticalEntropy/CriticalMinimax.lean](../lean/ThresholdHC/CriticalEntropy/CriticalMinimax.lean);
+- upper bound, coefficient $100000$: `critical_minimax_upper_bound` in
+  [CriticalUpper/Full.lean](../lean/ThresholdHC/CriticalUpper/Full.lean);
+- rate in terms of $\Psi$ and refutation of the matching-$\Psi$ conjecture:
+  `critical_psi_rate` and `critical_matching_psi_refuted` in
+  [CriticalPsi/Full.lean](../lean/ThresholdHC/CriticalPsi/Full.lean).
+
+The first three sections describe the final checkpoints, and
+[Current formal boundary](#current-formal-boundary) gives the scope. From
+[Initial dependency audit](#initial-dependency-audit) on, the page is the
+dated record of the audit; what it calls open there was proved later.
+
 ## Upper construction checkpoint
 
 The [CriticalUpper modules](../lean/ThresholdHC/CriticalUpper/) prove an
@@ -558,14 +576,16 @@ Lean audit using only `propext`, `Classical.choice`, and `Quot.sound`:
 * [Packing.lean](../lean/ThresholdHC/CriticalEntropy/Packing.lean) proves the
   probability-space event-packing inequality and the implication from BC4 to
   `c >= log(K)/512` for `log(K)>=32`. BC4 is an explicit hypothesis of the
-  latter theorem. Constructing the sign-test events is still required.
+  latter theorem. Constructing the sign-test events was still required at
+  that checkpoint.
 * [CommonPoint.lean](../lean/ThresholdHC/CriticalEntropy/CommonPoint.lean) proves
   the abstract quantifier interchange: on a nonempty compact convex set, a
   family of continuous convex constraints admits one point satisfying all of
   them if every finite convex mixture has some feasible point. The proof uses
   a finite-simplex saddle point and compactness. Realizing the population-pair
   set, proving its weak-star compactness, and establishing the statistical
-  mixture bound remain separate obligations.
+  mixture bound were separate obligations at that checkpoint; later
+  checkpoints discharge them.
 
 [Specification.lean](../lean/ThresholdHC/CriticalEntropy/Specification.lean)
 states explicit target types, and the audit checks that their proof terms
@@ -577,7 +597,7 @@ the ignored `.runtime/critical-components/` directory.
 
 That checkpoint did not prove the finite-gap sign-testing theorem, the
 base-cost theorem, or the full critical minimax law. Later checkpoints prove
-the first two, as recorded in the current formal boundary above.
+all three, as recorded in the current formal boundary above.
 The full completion criteria remain in [WORKPLAN.md](WORKPLAN.md).
 
 ## Constructed Bernoulli prefix information
@@ -600,8 +620,8 @@ termination hypothesis occurs.
 
 At that checkpoint, constructing the events from a general stopping rule
 remained open. The current finite-gap theorem above completes that step and
-its overlap argument. The continuum null-cost base theorem still needs the
-restart and good-gap selection arguments. Four exact component targets and
+its overlap argument. Later checkpoints supply the restart and good-gap
+selection arguments and prove the continuum null-cost base theorem. Four exact component targets and
 25 declarations were checked in [the second record](../results/critical_components_002.json), which preserves
 their source identities and axiom reports. The original record remains a
 record of the earlier, narrower checkpoint.

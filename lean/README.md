@@ -5,6 +5,30 @@ Use this map to find a formal statement, its proof, and the audit that checks it
 [verification setup](../docs/VERIFY.md#setup) covers Python, Lean, and Mathlib.
 Commands below run from the repository root.
 
+`ThresholdHC/` holds 1,320 Lean files: 77 top-level directories and seven root
+files beside them. Most results have a
+directory with a `Specification.lean`, which states the targets, and a
+`Full.lean`, which proves them. `ThresholdHC.lean` is the frozen root of the
+original 33 modules; a default `lake build` reaches only those.
+
+## Start here
+
+| To check | Open | Run |
+|---|---|---|
+| The main RMS law, lower side: sharp constant $1/6$ | [SharpRMS](ThresholdHC/SharpRMS/Specification.lean) | `python tools/verify_sharp_rms.py` |
+| The main RMS law, upper side: constant $512$ | [BlindUpper](ThresholdHC/BlindUpper/Specification.lean) | `python tools/verify_blind_upper_components.py --sequential` |
+| The original frozen lower target, constant $1/64$ | [Tier6](ThresholdHC/Tier6/Specification.lean) | `python tools/verify_tier6.py --sequential --require-complete` |
+| Confidence radius | [Confidence](ThresholdHC/Confidence/Specification.lean) | `python tools/verify_confidence.py` |
+| Unbiased estimation | [UnbiasedConverse](ThresholdHC/UnbiasedConverse/Specification.lean), [Observable713](ThresholdHC/Observable713/Full.lean) | `python tools/verify_unbiased_converse.py`, `python tools/verify_observable713.py` |
+| Rare events for every gap law | [EntropyTailSharp](ThresholdHC/EntropyTailSharp/Specification.lean) | `python tools/verify_entropy_tail_sharp.py` |
+| The critical quadratic law | [CriticalEntropy](ThresholdHC/CriticalEntropy/CriticalMinimax.lean), [CriticalUpper](ThresholdHC/CriticalUpper/Full.lean) | `python tools/verify_critical_components.py --sequential`, `python tools/verify_critical_upper_components.py --sequential` |
+| Adaptation to an unknown gap law | [ArbitraryLawController](ThresholdHC/ArbitraryLawController/Full.lean) | `python tools/verify_arbitrary_law_controller.py` |
+
+The sections below list every development:
+[main theorem entry points](#main-theorem-entry-points) by topic,
+[foundations](#foundations-and-supporting-developments), and
+[how to make and check a proof change](#making-and-checking-a-proof-change).
+
 ## Main theorem entry points
 
 Read a development's `Specification.lean` first, where one exists, then its
@@ -14,144 +38,148 @@ The audit does not show that a type means what the paper says; the
 [model-fidelity brief](../docs/MODEL_FIDELITY.md) compares the central
 definitions with the paper for that review.
 
+The baseline, Uniform713 and tier audits, including `verify_tier6.py`,
+overwrite tracked files under `results/`. Run them in a disposable checkout.
+
+### The original experiment: the main law, confidence, unbiased estimation
+
 | Result | Formal entry point | Audit command |
 |---|---|---|
-| Zero-residual envelope and rounding/transfer certificates | [Transfer](ThresholdHC/EnvelopeTransferCertificates/Transfer.lean), [scope](../docs/ENVELOPE_TRANSFER_CERTIFICATES.md) | `python tools/verify_envelope_transfer_certificates.py` |
-| Global menu/DP/approximation output certificates | [Menu](ThresholdHC/GlobalSelectionCertificates/Menu.lean), [Trace](ThresholdHC/GlobalSelectionCertificates/Trace.lean), [scope](../docs/GLOBAL_SELECTION_CERTIFICATES.md) | `python tools/verify_global_selection_certificates.py` |
-| Finite-law measures, fractional quantile cores, feasible objectives and oracle output certificates | [Oracles](ThresholdHC/FiniteLawCertificates/Oracles.lean), [scope](../docs/FINITE_LAW_CERTIFICATES.md) | `python tools/verify_finite_law_certificates.py` |
-| Deterministic numerical certificates and actual sqrt/log/entropy outputs | [Checker](ThresholdHC/DeterministicCertificates/Checker.lean), [entropy bridge](ThresholdHC/DeterministicCertificates/Entropy.lean), [scope](../docs/DETERMINISTIC_VERIFICATION.md) | `python tools/verify_deterministic_certificates.py` |
-| Finite-law `(1+epsilon)` approximation, original-K endpoints and state bound | [New specification](ThresholdHC/FiniteSelectionApproximation/Specification.lean), [assembled theorem](ThresholdHC/FiniteSelectionApproximation/Full.lean), [scope](../docs/FINITE_SELECTION_APPROXIMATION.md) | `python tools/verify_finite_selection_approximation.py` |
-| Entropy perturbation and feasible two-summary state compression for approximation | [Locked model](ThresholdHC/SelectionApproximation/Model.lean), [Entropy](ThresholdHC/SelectionApproximation/Entropy.lean), [Compression](ThresholdHC/SelectionApproximation/Compression.lean), [scope and reproduction](ThresholdHC/SelectionApproximation/README.md) | `python tools/verify_selection_approximation.py` |
-| General RMS lower bound in the observable experiment | [Tier6 specification](ThresholdHC/Tier6/Specification.lean), [Full](ThresholdHC/Tier6/Full.lean) | `python tools/verify_tier6.py --sequential --require-complete` |
-| Distribution-blind RMS upper bound | [BlindUpper specification](ThresholdHC/BlindUpper/Specification.lean), [Full](ThresholdHC/BlindUpper/Full.lean) | `python tools/verify_blind_upper_components.py --sequential` |
+| RMS lower bound in the observable experiment, frozen coefficient $1/64$ (the sharp coefficient $1/6$ is the next row) | [Tier6 specification](ThresholdHC/Tier6/Specification.lean), [Full](ThresholdHC/Tier6/Full.lean) | `python tools/verify_tier6.py --sequential --require-complete` |
+| Sharp RMS lower coefficient $1/6$ for every gap law and $B\ge1$, and no larger constant (equality at $\delta_{1/2}$, $B=4$); $\sqrt{59/2100}$ for $B\ge25$; the same under both magnitude oracles; the reduction to one gap; the integer certificate for intermediate budgets | [Specification](ThresholdHC/SharpRMS/Specification.lean), [Full](ThresholdHC/SharpRMS/Full.lean), [ordinary model](ThresholdHC/SharpRMS/Unrestricted.lean), [oracles](ThresholdHC/SharpRMS/OracleAttainment.lean), [record](../results/sharp-rms-20261117/README.md) | `python tools/verify_sharp_rms.py --replay` |
+| Distribution-blind RMS upper bound, coefficient $512$ | [BlindUpper specification](ThresholdHC/BlindUpper/Specification.lean), [Full](ThresholdHC/BlindUpper/Full.lean) | `python tools/verify_blind_upper_components.py --sequential` |
+| Confidence characterization | [Confidence specification](ThresholdHC/Confidence/Specification.lean), [Full](ThresholdHC/Confidence/Full.lean) | `python tools/verify_confidence.py --sequential` |
+| Revealed/selected magnitude-oracle lower bounds | [OracleLower specification](ThresholdHC/OracleLower/Specification.lean), [Full](ThresholdHC/OracleLower/Full.lean) | `python tools/verify_oracle_lower.py --sequential` |
+| Unbiased-estimation converse | [UnbiasedConverse specification](ThresholdHC/UnbiasedConverse/Specification.lean), [Full](ThresholdHC/UnbiasedConverse/Full.lean) | `python tools/verify_unbiased_converse.py --sequential` |
+| Observable 713 construction and unbiased existence characterization | [Observable713 specification](ThresholdHC/Observable713/Specification.lean), [Full](ThresholdHC/Observable713/Full.lean) | `python tools/verify_observable713.py --sequential` |
+
+### The critical quadratic law
+
+| Result | Formal entry point | Audit command |
+|---|---|---|
 | Critical quadratic rare-event lower bound | [CriticalEntropy specification](ThresholdHC/CriticalEntropy/Specification.lean), [CriticalMinimax](ThresholdHC/CriticalEntropy/CriticalMinimax.lean) | `python tools/verify_critical_components.py --sequential` |
 | Critical quadratic rare-event upper bound | [CriticalUpper specification](ThresholdHC/CriticalUpper/Specification.lean), [Full](ThresholdHC/CriticalUpper/Full.lean) | `python tools/verify_critical_upper_components.py --sequential` |
 | Critical Psi formula and counterexample | [CriticalPsi specification](ThresholdHC/CriticalPsi/Specification.lean), [Full](ThresholdHC/CriticalPsi/Full.lean) | `python tools/verify_critical_psi.py --sequential` |
 | Entropy at every finite gap count and single-coin base costs | [CriticalAllSizes](ThresholdHC/CriticalAllSizes/) | `python tools/verify_critical_all_sizes.py --sequential` |
-| Unbiased-estimation converse | [UnbiasedConverse specification](ThresholdHC/UnbiasedConverse/Specification.lean), [Full](ThresholdHC/UnbiasedConverse/Full.lean) | `python tools/verify_unbiased_converse.py --sequential` |
-| Observable 713 construction and unbiased existence characterization | [Observable713 specification](ThresholdHC/Observable713/Specification.lean), [Full](ThresholdHC/Observable713/Full.lean) | `python tools/verify_observable713.py --sequential` |
-| Confidence characterization | [Confidence specification](ThresholdHC/Confidence/Specification.lean), [Full](ThresholdHC/Confidence/Full.lean) | `python tools/verify_confidence.py --sequential` |
-| Revealed/selected magnitude-oracle lower bounds | [OracleLower specification](ThresholdHC/OracleLower/Specification.lean), [Full](ThresholdHC/OracleLower/Full.lean) | `python tools/verify_oracle_lower.py --sequential` |
-| Sharp universal RMS lower coefficient $1/6$ for every gap law and $B\ge1$, in the ordinary experiment and under both magnitude oracles; the reduction to one gap; the integer certificate for intermediate budgets | [Specification](ThresholdHC/SharpRMS/Specification.lean), [Full](ThresholdHC/SharpRMS/Full.lean), [ordinary model](ThresholdHC/SharpRMS/Unrestricted.lean), [oracles](ThresholdHC/SharpRMS/OracleAttainment.lean), [record](../results/sharp-rms-20261117/README.md) | `python tools/verify_sharp_rms.py --replay` |
-| Observable rare-event rate above alpha two | [RareAboveTwo specification](ThresholdHC/RareAboveTwo/Specification.lean), [Full](ThresholdHC/RareAboveTwo/Full.lean), [scope guide](../docs/RARE_ABOVE_TWO.md) | `python tools/verify_rare_above_two.py --sequential` |
-| Finite-menu cost grouping and exact certificates | [Dynamic](ThresholdHC/BandCostSelection/Dynamic.lean), [Counting](ThresholdHC/BandCostSelection/Counting.lean), [Entropy](ThresholdHC/BandCostSelection/Entropy.lean), [Comparison](ThresholdHC/BandCostSelection/Comparison.lean), [Certificates](ThresholdHC/BandCostSelection/Certificates.lean) | `python tools/verify_band_cost_selection.py` |
-| Concrete finite-law menus and original selection value | [Menus](ThresholdHC/GapLawMenus/Menus.lean), [Entropy and costs](ThresholdHC/GapLawMenus/Costs.lean), [Full solver](ThresholdHC/GapLawMenus/Full.lean), [Atomic formulas](ThresholdHC/GapLawMenus/Atoms.lean) | `python tools/verify_gap_law_menus.py` |
-| Finite-law bandwise-suffix optimizer and search bound | [Specification](ThresholdHC/BandwiseSuffix/Specification.lean), [Theorem 5](ThresholdHC/BandwiseSuffix/Full.lean), [Search](ThresholdHC/BandwiseSuffix/Search.lean) | `python tools/verify_bandwise_suffix.py` |
-| Selection stability and finite approximation | [Variation](ThresholdHC/SelectionStability/Variation.lean), [Rounding](ThresholdHC/SelectionStability/Rounding.lean), [Enclosures](ThresholdHC/SelectionStability/Approximation.lean), [Finite approximation](ThresholdHC/SelectionStability/FiniteApproximation.lean) | `python tools/verify_selection_stability.py` |
-| Confidence transfer, Lemma 1 | [Specification](ThresholdHC/ConfidenceTransfer/Specification.lean), [Quarter smoothing](ThresholdHC/ConfidenceTransfer/Quarter.lean) | `python tools/verify_quarter_smoothing.py` |
-| Confidence transfer in the observable population | [Hybrid identity](ThresholdHC/ConfidenceTransfer/Hybrid.lean), [Observable prefixes](ThresholdHC/ConfidenceTransfer/Observable.lean), [Stopped law](ThresholdHC/ConfidenceTransfer/Terminal.lean), [Common-pair rate](ThresholdHC/ConfidenceTransfer/CommonPairRate.lean) | `python tools/verify_confidence_population.py` |
-| Hard-cap controller and RMS minimax applications | [Locked statement](ThresholdHC/HardBudget/Specification.lean), [controller](ThresholdHC/HardBudget/Full.lean), [applications and record](../results/hard-budget-rms-20261104/README.md) | `python tools/verify_hard_budget.py` |
 | Critical confidence lower bound from the fixed gap law | [Rate](ThresholdHC/ConfidenceTransfer/CriticalRate.lean) | `python tools/verify_critical_confidence.py` |
-| Ordinary cap square-root convergence | [Truncation and optimized value](ThresholdHC/FiniteCapTruncation/Full.lean), [risk certificate](ThresholdHC/FiniteCapTruncation/Risk.lean) | `python tools/verify_finite_cap_truncation.py` |
-| Uniform finite-cap convergence | [Original program values and risk](ThresholdHC/GenieRate/Full.lean) | `python tools/verify_genie_rate.py` |
-| Square-root cap comparison of the optimized programs; the cap $4B/9$ passes the factor-two test | [Specification](ThresholdHC/SquareRootCap/Specification.lean), [Full](ThresholdHC/SquareRootCap/Full.lean), [record](../results/sharp-rms-20261117/README.md) | `python tools/verify_square_root_cap.py` |
-| Sharper $31/20$ quantile-selection comparison and $16/9$ separated cost | [Original functional](ThresholdHC/QuantilePrice/Full.lean), [kernel record](../results/quantile-price-20261104/README.md) | `python tools/verify_quantile_price_upper.py` |
-| Full $8/5$ quantile-selection comparison, Lemmas 1 and 2, saturation and the tail floor | [Statements](ThresholdHC/QuantileSelection/Specification.lean), [Theorem 4](ThresholdHC/QuantileSelection/Full.lean) | `python tools/verify_quantile_selection.py` |
-| Scalar inequality (Lemma 3) of the 8/5 quantile-selection comparison | [QuantileComparison specification](ThresholdHC/QuantileComparison/Specification.lean), [Scalar](ThresholdHC/QuantileComparison/Scalar.lean) | `python tools/verify_quantile_comparison.py --sequential --require-complete` |
+
+### Power margins
+
+| Result | Formal entry point | Audit command |
+|---|---|---|
+| Observable rare-event rate above alpha two | [RareAboveTwo specification](ThresholdHC/RareAboveTwo/Specification.lean), [Full](ThresholdHC/RareAboveTwo/Full.lean), [scope guide](../docs/RARE_ABOVE_TWO.md) | `python tools/verify_rare_above_two.py --sequential` |
+| Sublinear power margins: both rare-event minimax rates and one estimator family across the margin class | [Full](ThresholdHC/SubcriticalPower/Full.lean), [record](../results/sublinear-power-20261105/README.md) | `python tools/verify_sublinear_power.py` |
+| Shifted power margins: both remaining rare-event rows, including hard-cap confidence and uniformity over the margin class | [Full](ThresholdHC/ShiftedPower/Full.lean), [record](../results/shifted-power-20261105/README.md) | `python tools/verify_shifted_power.py` |
+| Uniform power-law core entropy, deterministic quantile comparison and unconditional RMS/confidence bounds, including exponent two and arbitrary scale. Corollary 14.14 and Remark 14.15 remain paper results | [Specification](ThresholdHC/PowerWindow/Specification.lean), [CoreEntropy](ThresholdHC/PowerWindow/CoreEntropy.lean), [Quantile](ThresholdHC/PowerWindow/Quantile.lean), [Full](ThresholdHC/PowerWindow/Full.lean), [record](../results/power-window-complete-20261116/README.md) | `python tools/verify_power_window.py` |
+
+### The entropy–tail law and Ψ
+
+| Result | Formal entry point | Audit command |
+|---|---|---|
 | Full entropy-tail law: both halves and five selection-functional properties | [EntropyTail specification](ThresholdHC/EntropyTail/Specification.lean), [Upper](ThresholdHC/EntropyTail/Upper.lean), [Lower](ThresholdHC/EntropyTail/Lower.lean), [Law](ThresholdHC/EntropyTail/Law.lean), [Bridge](ThresholdHC/EntropyTail/Bridge.lean), [HardSelection](ThresholdHC/EntropyTail/HardSelection.lean) | `python tools/verify_entropy_tail.py --sequential --require-complete` |
+| Observable entropy-tail and closed-quantile upper theorems ($R\le28000\,\mathcal K$, $R\le30001\,Q$), quantile split and $\mathcal K\le Q\le(1+2\sqrt2)\mathcal K$ | [EntropyTailQuantile specification](ThresholdHC/EntropyTailQuantile/Specification.lean), [UpperTheorem](ThresholdHC/EntropyTailExecution/UpperTheorem.lean), [QuantileComparison](ThresholdHC/EntropyTailQuantile/QuantileComparison.lean) | `python tools/verify_entropy_tail_upper.py` |
 | Complete finite-certificate lower proof: weighted signs, annular localization, retained-band packing and finite-prefix limit | [EntropyTailLower](ThresholdHC/EntropyTailLower/), [proof map and scope](../docs/ENTROPY_TAIL_LOWER_PROGRESS.md) | `python tools/verify_entropy_tail_lower_components.py` |
 | Explicit general-law entropy-tail comparison, $10^{-17}\mathcal K\le R\le28000\mathcal K$ and $10^{-17}Q\le R$ | [Specification](ThresholdHC/EntropyTailSharp/Specification.lean), [Full](ThresholdHC/EntropyTailSharp/Full.lean) | `python tools/verify_entropy_tail_sharp.py` |
 | Arbitrary-law $\Psi$ lower bound through the entropy-tail law: $\Psi(B^{-1/2})\le\mathcal K(B)$ for every law, hence $10^{-17}\Psi\le R$ and the same coefficient for the confidence radius | [Specification](ThresholdHC/PsiSelection/Specification.lean), [Comparison](ThresholdHC/PsiSelection/Comparison.lean), [Full](ThresholdHC/PsiSelection/Full.lean), [record](../results/psi-selection-20261109/README.md) | `python tools/verify_psi_selection.py` |
 | Closed form of $\Psi$ (v6 Proposition 14.9): $\mathcal Q^0\le\sqrt2\,\Psi$, $\Psi\le\mathcal K^0\le\mathcal Q^0$, $\mathcal K^0\le\mathcal K$, $\mathcal Q^0\le\mathcal Q$, and $\Psi=\mathcal Q^0=\rho$ when the resolution is at least the quantile threshold. Two-atom sharpness is checked by the separate audit below; the uniform power-law rates are checked by the separate audit below | [Specification](ThresholdHC/PsiClosedForm/Specification.lean), [Order](ThresholdHC/PsiClosedForm/Order.lean), [Lower](ThresholdHC/PsiClosedForm/Lower.lean), [Full](ThresholdHC/PsiClosedForm/Full.lean), [record](../results/psi-closed-form-20261116/README.md) | `python tools/verify_psi_closed_form.py` |
 | Distance of $\Psi$ from the rate (v6 Theorem 14.11): $\Gamma_\kappa=A_\kappa(1+E_\kappa)$ with $0\le E_\kappa\le\log\log_2(1/t)$, $\mathcal Q\le\sqrt{1+E_\kappa}\,\mathcal Q^0\le\sqrt{2(1+E_\kappa)}\,\Psi$, $10^{-17}\Psi\le R\le30001\sqrt{2(1+E_\kappa)}\,\Psi$, and the reverse bound under its two conditions | [Specification](ThresholdHC/PsiGap/Specification.lean), [Entropy](ThresholdHC/PsiGap/Entropy.lean), [Full](ThresholdHC/PsiGap/Full.lean), [record](../results/psi-gap-20261116/README.md) | `python tools/verify_psi_gap.py` |
 | Two-atom sharpness and occupied-band entropy: $\Psi=\mathcal Q^0/\sqrt2$ and $E_\kappa\le\log n_\kappa$ | [Specification](ThresholdHC/PsiSharpness/Specification.lean), [Full](ThresholdHC/PsiSharpness/Full.lean), [record](../results/psi-sharpness-20261116/README.md) | `python tools/verify_psi_sharpness.py` |
-| Uniform power-law core entropy, deterministic quantile comparison and unconditional RMS/confidence bounds, including exponent two and arbitrary scale. Corollary 14.14 and Remark 14.15 remain paper results | [Specification](ThresholdHC/PowerWindow/Specification.lean), [CoreEntropy](ThresholdHC/PowerWindow/CoreEntropy.lean), [Quantile](ThresholdHC/PowerWindow/Quantile.lean), [Full](ThresholdHC/PowerWindow/Full.lean), [record](../results/power-window-complete-20261116/README.md) | `python tools/verify_power_window.py` |
-| Direct finite-law quantile bounds with constants $10^{-20}$ and 30001 | [Full theorem](ThresholdHC/FiniteQuantile/Full.lean), [estimator and converse](ThresholdHC/FiniteQuantile/Operational.lean) | `python tools/verify_finite_quantile.py` |
+
+Records and manuscripts behind these rows:
+
+- The entropy–tail law (v6 Theorem 13.2) is checked against all eight frozen
+  target types. The [completion evidence](../results/entropy-tail-complete-20261101/README.md)
+  gives the exact audit scope and the reused dependencies.
+- The upper half is audited by `python tools/verify_entropy_tail_upper.py`,
+  which covers five directories: `EntropyTailQuantile`,
+  [EntropyTailUpper](ThresholdHC/EntropyTailUpper/) (single-coin classifiers,
+  weighted bank races, Poisson counts and budget allocation),
+  [EntropyTailAssembly](ThresholdHC/EntropyTailAssembly/) (the multilevel
+  certificate: accuracy schedule, band weights and level certificates),
+  [EntropyTailSampling](ThresholdHC/EntropyTailSampling/) (marked Poisson
+  sampling and race moments under the population law) and
+  `EntropyTailExecution`.
+- The source manuscripts are the [rare-event manuscript](../paper/rare-event/README.md)
+  and the [finite-gap manuscript](../paper/finite-gap-rare-events/README.md).
+  The closed-quantile corollary has its own
+  [audit evidence](../results/closed-quantile-law-20261101/README.md).
+
+### Quantile forms and the selection comparison
+
+| Result | Formal entry point | Audit command |
+|---|---|---|
 | Universal two-sided closed-quantile minimax rate | [ClosedQuantile specification](ThresholdHC/ClosedQuantile/Specification.lean), [Full](ThresholdHC/ClosedQuantile/Full.lean) | `python tools/verify_closed_quantile.py` |
-| Observable entropy-tail and closed-quantile upper theorems ($R\le28000\,\mathcal K$, $R\le30001\,Q$), quantile split and $\mathcal K\le Q\le(1+2\sqrt2)\mathcal K$ | [EntropyTailQuantile specification](ThresholdHC/EntropyTailQuantile/Specification.lean), [UpperTheorem](ThresholdHC/EntropyTailExecution/UpperTheorem.lean), [QuantileComparison](ThresholdHC/EntropyTailQuantile/QuantileComparison.lean) | `python tools/verify_entropy_tail_upper.py` |
+| Direct finite-law quantile bounds with constants $10^{-20}$ and 30001 | [Full theorem](ThresholdHC/FiniteQuantile/Full.lean), [estimator and converse](ThresholdHC/FiniteQuantile/Operational.lean) | `python tools/verify_finite_quantile.py` |
+| Full $8/5$ quantile-selection comparison, Lemmas 1 and 2, saturation and the tail floor | [Statements](ThresholdHC/QuantileSelection/Specification.lean), [Theorem 4](ThresholdHC/QuantileSelection/Full.lean) | `python tools/verify_quantile_selection.py` |
+| Scalar inequality (Lemma 3) of the 8/5 quantile-selection comparison | [QuantileComparison specification](ThresholdHC/QuantileComparison/Specification.lean), [Scalar](ThresholdHC/QuantileComparison/Scalar.lean) | `python tools/verify_quantile_comparison.py --sequential --require-complete` |
+| Sharper $31/20$ quantile-selection comparison and $16/9$ separated cost | [Original functional](ThresholdHC/QuantilePrice/Full.lean), [kernel record](../results/quantile-price-20261104/README.md) | `python tools/verify_quantile_price_upper.py` |
+| Sharp quantile factor: the finite-vector factor is equivalent to the unique scalar root for every real factor | [FiniteSharp](ThresholdHC/OptimalQuantile/FiniteSharp.lean), [Root](ThresholdHC/OptimalQuantile/Root.lean), [record](../results/optimal-quantile-root-20261105/README.md) | `python tools/verify_optimal_quantile.py` |
+| Finite-core selection reduction at the exact scalar-root factor, and the all-law comparison on the original selection functional | [Lipschitz](ThresholdHC/QuantileSharpLaw/Lipschitz.lean), [CoreReduction](ThresholdHC/QuantileSharpLaw/CoreReduction.lean), [Full](ThresholdHC/QuantileSharpLaw/Full.lean), [reduction record](../results/quantile-core-reduction-20261105/README.md), [comparison record](../results/sharp-quantile-upper-20261105/README.md) | `python tools/verify_quantile_sharp_law.py` |
+| Finite-law sharpness and exact optimality: general and finite-support laws have the same least comparison factor | [Full](ThresholdHC/QuantileOptimality/Full.lean), [record](../results/quantile-optimality-20261105/README.md) | `python tools/verify_quantile_optimality.py` |
+| Finite-law bandwise-suffix optimizer and search bound | [Specification](ThresholdHC/BandwiseSuffix/Specification.lean), [Theorem 5](ThresholdHC/BandwiseSuffix/Full.lean), [Search](ThresholdHC/BandwiseSuffix/Search.lean) | `python tools/verify_bandwise_suffix.py` |
+
+The $8/5$ comparison comes from the
+[certified-selection package](../research/2026-10-30-certified-selection/README.md).
+The $31/20$ row and the sharp-factor rows above have since improved it.
+
+### Stopping programs, caps and hard budgets
+
+| Result | Formal entry point | Audit command |
+|---|---|---|
 | Robust stopping program ($R\le P_N$, attained four-prior dual, $R\le P_N\le16R$), fixed-cap identification and genie certificates | [StoppingProgram specification](ThresholdHC/StoppingProgram/Specification.lean), [FiniteCertificate](ThresholdHC/StoppingProgram/FiniteCertificate.lean), [CapIdentification](ThresholdHC/CapIdentification/Full.lean), [Genie](ThresholdHC/Genie/) | [Sixteen audits](../docs/VERIFY.md#stopping-program-identification-and-genie-certificates), e.g. `python tools/verify_finite_risk_certificate.py` |
+| Ordinary cap square-root convergence | [Truncation and optimized value](ThresholdHC/FiniteCapTruncation/Full.lean), [risk certificate](ThresholdHC/FiniteCapTruncation/Risk.lean) | `python tools/verify_finite_cap_truncation.py` |
+| Uniform finite-cap convergence | [Original program values and risk](ThresholdHC/GenieRate/Full.lean) | `python tools/verify_genie_rate.py` |
+| Square-root cap comparison of the optimized programs; the cap $4B/9$ passes the factor-two test | [Specification](ThresholdHC/SquareRootCap/Specification.lean), [Full](ThresholdHC/SquareRootCap/Full.lean), [record](../results/sharp-rms-20261117/README.md) | `python tools/verify_square_root_cap.py` |
+| Hard-cap controller and RMS minimax applications | [Locked statement](ThresholdHC/HardBudget/Specification.lean), [controller](ThresholdHC/HardBudget/Full.lean), [applications and record](../results/hard-budget-rms-20261104/README.md) | `python tools/verify_hard_budget.py` |
+
+### Confidence and localization
+
+| Result | Formal entry point | Audit command |
+|---|---|---|
 | Fixed confidence for every known positive-gap law, both budget models | [Upper](ThresholdHC/ConfidenceProgram/Upper.lean), [stopping-program lower bound](ThresholdHC/ConfidenceProgram/Lower.lean), [observable median](ThresholdHC/ConfidenceProgram/Amplify.lean), [record](../results/known-law-confidence-20261104/README.md) | `python tools/verify_stopping_confidence.py`; `python tools/verify_confidence_amplification.py` |
-| Envelope minimax rates and unbiased variance and work for unknown laws ordered by their gap CDFs | [Minimax](ThresholdHC/Envelope/Minimax.lean), [Unbiased](ThresholdHC/Envelope/Unbiased.lean), [record](../results/stochastic-envelope-20261105/README.md) | `python tools/verify_stochastic_envelope.py` |
-| Sublinear power margins: both rare-event minimax rates and one estimator family across the margin class | [Full](ThresholdHC/SubcriticalPower/Full.lean), [record](../results/sublinear-power-20261105/README.md) | `python tools/verify_sublinear_power.py` |
-| Shifted power margins: both remaining rare-event rows, including hard-cap confidence and uniformity over the margin class | [Full](ThresholdHC/ShiftedPower/Full.lean), [record](../results/shifted-power-20261105/README.md) | `python tools/verify_shifted_power.py` |
+| Confidence transfer, Lemma 1 | [Specification](ThresholdHC/ConfidenceTransfer/Specification.lean), [Quarter smoothing](ThresholdHC/ConfidenceTransfer/Quarter.lean) | `python tools/verify_quarter_smoothing.py` |
+| Confidence transfer in the observable population | [Hybrid identity](ThresholdHC/ConfidenceTransfer/Hybrid.lean), [Observable prefixes](ThresholdHC/ConfidenceTransfer/Observable.lean), [Stopped law](ThresholdHC/ConfidenceTransfer/Terminal.lean), [Common-pair rate](ThresholdHC/ConfidenceTransfer/CommonPairRate.lean) | `python tools/verify_confidence_population.py` |
+| Sharper general-law confidence: lower coefficient $10^{-17}$ and hard-cap upper coefficient $750000$, through a direct retained-entropy program comparison | [Full](ThresholdHC/ConfidenceEntropy/Full.lean), [Program](ThresholdHC/ConfidenceEntropy/Program.lean), [proof map](../docs/ENTROPY_CONFIDENCE.md), [record](../results/entropy-confidence-20261105/README.md) | `python tools/verify_confidence_entropy.py` |
+| Selected-type information transfer, coefficient $16/3$, for the actual randomized countable population through unbounded stopping | [SignTransfer](ThresholdHC/TypedConfidence/SignTransfer.lean), [type labels](ThresholdHC/TypedConfidence/Labels.lean), [proof map](../docs/ADAPTIVE_TYPES.md), [record](../results/adaptive-types-20261105/README.md) | `python tools/verify_typed_confidence.py` |
+| Common pair for every capped local policy from a variance–null-work obstruction; estimator and minimax confidence coefficient $1/128$, given that obstruction, which Lean establishes for no gap law | [CommonPair](ThresholdHC/ConfidenceLocalization/CommonPair.lean), [ConfidenceRate](ThresholdHC/ConfidenceLocalization/ConfidenceRate.lean), [proof map](../docs/COMMON_PAIRS.md), [record](../results/common-pair-20261105/README.md) | `python tools/verify_confidence_localization.py` |
+| Additive confidence localization, coefficient $1/128$, for finite overlapping submeasures with original observation laws and weighted work, from the same unestablished obstruction premise | [Full](ThresholdHC/AdditiveConfidence/Full.lean), [proof map](../docs/ADDITIVE_CONFIDENCE.md), [record](../results/additive-confidence-20261105/README.md) | `python tools/verify_additive_confidence.py` |
+| Generic RMS transfer and additive submeasure localization, coefficient $1/128$ in the original experiment, from a single-coin obstruction premise that Lean establishes for no gap law | [CommonPair](ThresholdHC/RMSLocalization/CommonPair.lean), [Full](ThresholdHC/RMSLocalization/Full.lean), [proof map](../docs/RMS_LOCALIZATION.md), [record](../results/rms-localization-20261105/README.md) | `python tools/verify_rms_localization.py` |
 | Time-uniform confidence: nested observable intervals, a shared purchase history, data-dependent stopping and the known-law iterated-logarithm width | [Full](ThresholdHC/Anytime/Full.lean), [record](../results/anytime-confidence-20261105/README.md) | `python tools/verify_anytime_confidence.py` |
+| All-law time-uniform lower bound: every nonnegative deterministic half-width envelope with joint simultaneous coverage and width control is at least $10^{-22}\mathcal K(n/[\log(1/\delta)+\log\log n])$ at arbitrarily late integer budgets, with no monotonicity assumption, in the original observable experiment. Prior families preserve admissibility and mean separation; every adaptive observable prefix has a quadratic KL bound; first-crossing testing, the infinite-moment tail family with adaptive acquisition, the asymptotic cases and the interval consequence are checked ([research note](../docs/TIME_UNIFORM_LOWER.md), [sequential step](../docs/ANYTIME_SEQUENTIAL.md), [tail family](../docs/ANYTIME_TAIL.md)) | [Full](ThresholdHC/AnytimeLower/Full.lean), [Intervals](ThresholdHC/AnytimeLower/Intervals.lean), [Quartet](ThresholdHC/AnytimeLower/Quartet.lean), [final record](../results/anytime-asymptotic-20261105/README.md), [information record](../results/anytime-lower-20261105/README.md) | `python tools/verify_anytime_asymptotics.py`, `python tools/verify_anytime_sequential.py`, `python tools/verify_anytime_tail.py`, `python tools/verify_anytime_lower.py`; profile regression checks: `python tools/verify_anytime_lower_profiles.py` |
+
+### Smooth densities and observed states
+
+| Result | Formal entry point | Audit command |
+|---|---|---|
 | Smooth-density robustness: both expected-complexity bounds and uniform unbiased impossibility in the original adaptive experiment | [Full](ThresholdHC/SmoothDensity/Full.lean), [proof map](../docs/SMOOTH_DENSITY.md), [record](../results/smooth-density-20261105/README.md) | `python tools/verify_smooth_density.py` |
 | Finite-cell observed-state lower bound: a measurable uniform-state partition and the exact testing bound for arbitrary selected-state policies | [Finite](ThresholdHC/ObservedState/Finite.lean), [proof map](../docs/OBSERVED_STATES.md), [record](../results/finite-observed-20261105/README.md) | `python tools/verify_observed_states.py` |
 | Continuous-magnitude observed-state complexity and RMS lower bounds in the actual selected-query experiment, with density regularity | [UniformLower](ThresholdHC/ContinuousObserved/UniformLower.lean), [UniformRMSLower](ThresholdHC/ContinuousObserved/UniformRMSLower.lean), [Regularity](ThresholdHC/ContinuousObserved/Regularity.lean), [proof map](../docs/CONTINUOUS_OBSERVED.md), [record](../results/continuous-observed-lower-20261105/README.md) | `python tools/verify_continuous_observed.py` |
 | Fresh-state upper bounds transferred to selected-state queries, and uniform-gap rates | [Upper](ThresholdHC/ContinuousObserved/Upper.lean), [UniformUpper](ThresholdHC/ContinuousObserved/UniformUpper.lean), [proof map](../docs/OBSERVED_UPPER.md), [record](../results/observed-state-upper-20261105/README.md) | `python tools/verify_observed_upper.py` |
-| Selected-type information transfer, coefficient $16/3$, for the actual randomized countable population through unbounded stopping | [SignTransfer](ThresholdHC/TypedConfidence/SignTransfer.lean), [type labels](ThresholdHC/TypedConfidence/Labels.lean), [proof map](../docs/ADAPTIVE_TYPES.md), [record](../results/adaptive-types-20261105/README.md) | `python tools/verify_typed_confidence.py` |
-| Common pair for every capped local policy from a variance–null-work obstruction; estimator and minimax confidence coefficient $1/128$, given that obstruction, which Lean establishes for no gap law | [CommonPair](ThresholdHC/ConfidenceLocalization/CommonPair.lean), [ConfidenceRate](ThresholdHC/ConfidenceLocalization/ConfidenceRate.lean), [proof map](../docs/COMMON_PAIRS.md), [record](../results/common-pair-20261105/README.md) | `python tools/verify_confidence_localization.py` |
-| Additive confidence localization, coefficient $1/128$, for finite overlapping submeasures with original observation laws and weighted work, from the same unestablished obstruction premise | [Full](ThresholdHC/AdditiveConfidence/Full.lean), [proof map](../docs/ADDITIVE_CONFIDENCE.md), [record](../results/additive-confidence-20261105/README.md) | `python tools/verify_additive_confidence.py` |
-| Sharper general-law confidence: lower coefficient $10^{-17}$ and hard-cap upper coefficient $750000$, through a direct retained-entropy program comparison | [Full](ThresholdHC/ConfidenceEntropy/Full.lean), [Program](ThresholdHC/ConfidenceEntropy/Program.lean), [proof map](../docs/ENTROPY_CONFIDENCE.md), [record](../results/entropy-confidence-20261105/README.md) | `python tools/verify_confidence_entropy.py` |
-| Generic RMS transfer and additive submeasure localization, coefficient $1/128$ in the original experiment, from a single-coin obstruction premise that Lean establishes for no gap law | [CommonPair](ThresholdHC/RMSLocalization/CommonPair.lean), [Full](ThresholdHC/RMSLocalization/Full.lean), [proof map](../docs/RMS_LOCALIZATION.md), [record](../results/rms-localization-20261105/README.md) | `python tools/verify_rms_localization.py` |
-| Sharp quantile factor: the finite-vector factor is equivalent to the unique scalar root for every real factor | [FiniteSharp](ThresholdHC/OptimalQuantile/FiniteSharp.lean), [Root](ThresholdHC/OptimalQuantile/Root.lean), [record](../results/optimal-quantile-root-20261105/README.md) | `python tools/verify_optimal_quantile.py` |
-| Finite-core selection reduction at the exact scalar-root factor, and the all-law comparison on the original selection functional | [Lipschitz](ThresholdHC/QuantileSharpLaw/Lipschitz.lean), [CoreReduction](ThresholdHC/QuantileSharpLaw/CoreReduction.lean), [Full](ThresholdHC/QuantileSharpLaw/Full.lean), [reduction record](../results/quantile-core-reduction-20261105/README.md), [comparison record](../results/sharp-quantile-upper-20261105/README.md) | `python tools/verify_quantile_sharp_law.py` |
-| Finite-law sharpness and exact optimality: general and finite-support laws have the same least comparison factor | [Full](ThresholdHC/QuantileOptimality/Full.lean), [record](../results/quantile-optimality-20261105/README.md) | `python tools/verify_quantile_optimality.py` |
-| All-law time-uniform lower bound: every nonnegative deterministic half-width envelope with joint simultaneous coverage and width control is at least $10^{-22}\mathcal K(n/[\log(1/\delta)+\log\log n])$ at arbitrarily late integer budgets, with no monotonicity assumption, in the original observable experiment. Prior families preserve admissibility and mean separation; every adaptive observable prefix has a quadratic KL bound; first-crossing testing, the infinite-moment tail family with adaptive acquisition, the asymptotic cases and the interval consequence are checked ([research note](../docs/TIME_UNIFORM_LOWER.md), [sequential step](../docs/ANYTIME_SEQUENTIAL.md), [tail family](../docs/ANYTIME_TAIL.md)) | [Full](ThresholdHC/AnytimeLower/Full.lean), [Intervals](ThresholdHC/AnytimeLower/Intervals.lean), [Quartet](ThresholdHC/AnytimeLower/Quartet.lean), [final record](../results/anytime-asymptotic-20261105/README.md), [information record](../results/anytime-lower-20261105/README.md) | `python tools/verify_anytime_asymptotics.py`, `python tools/verify_anytime_sequential.py`, `python tools/verify_anytime_tail.py`, `python tools/verify_anytime_lower.py`; profile regression checks: `python tools/verify_anytime_lower_profiles.py` |
 
-The general-law entropy-tail law (v6 Theorem 13.2) is now Lean-checked
-against all eight frozen target types: the two-sided comparison, both halves,
-hard selection, elementary bounds, single-atom and small-budget values, and
-nonvacuity. The upper half uses the observable EntropyTailQuantile development;
-the lower half uses finite certificates and the additive EntropyTailLower
-development. The constants are conservative and the original experiment is
-unchanged. See the [completion evidence](../results/entropy-tail-complete-20261101/README.md)
-for exact audit scope and reused dependencies.
-Its stopping-program, fixed-cap identification and genie results are also
-proved, in the StoppingProgram, CapIdentification and Genie modules.
-The existing critical-law and optimizer formalizations do not certify its
-general claims.
-See its [separate status](../paper/rare-event/README.md). The two-sided closed
-quantile law of the [finite-gap manuscript](../paper/finite-gap-rare-events/README.md)
-has a [direct proof with its explicit coefficients](ThresholdHC/FiniteQuantile/Full.lean). The
-separate `ClosedQuantile` corollary now proves a two-sided rate for every law
-with conservative universal constants; its upper coefficient is 30001.
-See its [audit evidence](../results/closed-quantile-law-20261101/README.md).
-The [certified-selection package](../research/2026-10-30-certified-selection/README.md)
-sharpens its comparison with the selection functional to $\mathcal K\le Q\le\frac85\mathcal K$.
-Lemmas 1–3, the comparison and the finite-law bandwise-suffix theorem
-are Lean-checked. The suffix optimizer minimizes over all submeasures.
+### Finite-law computation and output certificates
 
-## Foundations and supporting developments
+| Result | Formal entry point | Audit command |
+|---|---|---|
+| Finite-menu cost grouping and exact certificates | [Dynamic](ThresholdHC/BandCostSelection/Dynamic.lean), [Counting](ThresholdHC/BandCostSelection/Counting.lean), [Entropy](ThresholdHC/BandCostSelection/Entropy.lean), [Comparison](ThresholdHC/BandCostSelection/Comparison.lean), [Certificates](ThresholdHC/BandCostSelection/Certificates.lean) | `python tools/verify_band_cost_selection.py` |
+| Concrete finite-law menus and original selection value | [Menus](ThresholdHC/GapLawMenus/Menus.lean), [Entropy and costs](ThresholdHC/GapLawMenus/Costs.lean), [Full solver](ThresholdHC/GapLawMenus/Full.lean), [Atomic formulas](ThresholdHC/GapLawMenus/Atoms.lean) | `python tools/verify_gap_law_menus.py` |
+| Selection stability and finite approximation | [Variation](ThresholdHC/SelectionStability/Variation.lean), [Rounding](ThresholdHC/SelectionStability/Rounding.lean), [Enclosures](ThresholdHC/SelectionStability/Approximation.lean), [Finite approximation](ThresholdHC/SelectionStability/FiniteApproximation.lean) | `python tools/verify_selection_stability.py` |
+| Entropy perturbation and feasible two-summary state compression for approximation | [Locked model](ThresholdHC/SelectionApproximation/Model.lean), [Entropy](ThresholdHC/SelectionApproximation/Entropy.lean), [Compression](ThresholdHC/SelectionApproximation/Compression.lean), [scope and reproduction](ThresholdHC/SelectionApproximation/README.md) | `python tools/verify_selection_approximation.py` |
+| Finite-law `(1+epsilon)` approximation, original-K endpoints and state bound | [Specification](ThresholdHC/FiniteSelectionApproximation/Specification.lean), [module table](ThresholdHC/FiniteSelectionApproximation/README.md), [assembled theorem](ThresholdHC/FiniteSelectionApproximation/Full.lean), [scope](../docs/FINITE_SELECTION_APPROXIMATION.md) | `python tools/verify_finite_selection_approximation.py` |
+| Deterministic numerical certificates and actual sqrt/log/entropy outputs | [Checker](ThresholdHC/DeterministicCertificates/Checker.lean), [entropy bridge](ThresholdHC/DeterministicCertificates/Entropy.lean), [scope](../docs/DETERMINISTIC_VERIFICATION.md) | `python tools/verify_deterministic_certificates.py` |
+| Finite-law measures, fractional quantile cores, feasible objectives and oracle output certificates | [Oracles](ThresholdHC/FiniteLawCertificates/Oracles.lean), [scope](../docs/FINITE_LAW_CERTIFICATES.md) | `python tools/verify_finite_law_certificates.py` |
+| Global menu/DP/approximation output certificates | [Menu](ThresholdHC/GlobalSelectionCertificates/Menu.lean), [Trace](ThresholdHC/GlobalSelectionCertificates/Trace.lean), [scope](../docs/GLOBAL_SELECTION_CERTIFICATES.md) | `python tools/verify_global_selection_certificates.py` |
+| Zero-residual envelope and rounding/transfer certificates | [Transfer](ThresholdHC/EnvelopeTransferCertificates/Transfer.lean), [scope](../docs/ENVELOPE_TRANSFER_CERTIFICATES.md) | `python tools/verify_envelope_transfer_certificates.py` |
 
-The tier numbers name development milestones. They remain useful dependencies,
-not interchangeable versions of the same theorem.
+### Unknown gap law
 
-| Area | Role |
-|---|---|
-| [Statements](ThresholdHC/Statements.lean), [Statements2](ThresholdHC/Statements2.lean), and [Proofs](ThresholdHC/Proofs/) | Original frozen scalar, classifier, information, and rare-event targets and their proofs; checked by `tools/verify_lean_checkpoint.py`. |
-| [Tier3](ThresholdHC/Tier3/) | Randomized information bounds, unbounded stopping, and the arbitrary-law variational optimizer. |
-| [Tier4](ThresholdHC/Tier4/) | Infinite-transcript KL for a fixed finite coin family. |
-| [Tier5](ThresholdHC/Tier5/) | Information/work bounds with unrestricted adaptive coin creation. |
-| [Tier6](ThresholdHC/Tier6/) | Observable population realization, risk model, testing reduction, and main RMS lower bound. |
-| [Uniform713](ThresholdHC/Uniform713/) | Earlier separate 713 development, with its own frozen specification and audit. |
-| [ObservableSimulation](ThresholdHC/ObservableSimulation/) | Shared execution/law identities used to connect constructions to the original observable experiment. |
-| [ResearchRouteA](ThresholdHC/ResearchRouteA/) | Locked separate-moment bridge with a limited scope; it does not establish the whole above-two paper result. |
-
-The [kernel-check sequence](../docs/VERIFY.md#lean-kernel-checks) covers the
-baseline, Uniform713, and tiers. The [CI workflow](../.github/workflows/checks.yml)
-records the suite and its ordering; the two intermediate entropy-tail audits
-listed in [VERIFY.md](../docs/VERIFY.md) are outside it. `ThresholdHC.lean` is the frozen
-original import entry point; use the development-specific specifications and
-audits above to navigate later results.
-
-## Making and checking a proof change
-
-Inspect the applicable frozen manifest and specification/dependency lock first.
-Even a supporting module may be locked by another result. Follow
-[contribution rules](../CONTRIBUTING.md#preserve-reproducibility) for any proposed
-change to frozen material.
-
-Every file under `ThresholdHC/` must compile, whether or not a result audit
-names it. `python tools/verify_project_axioms.py` builds all of them and
-checks the transitive axioms of every constant they declare; CI runs it with a
-kernel replay of the main theorem's modules. The same audit rejects scoped,
-prioritised or new orphan data-carrying instances, which could change what a
-restated statement elaborates to, and compares a fingerprint of every project
-definition with [definition_lock.json](../tools/definition_lock.json). When you
-add definitions, add their entries with `--add-definitions`; an existing entry
-never changes without the owner's authorization. A default `lake build` reaches
-only the original root's 33 modules, so do not rely on it for coverage.
-
-Use `--sequential` on the audits that accept it when memory is constrained. Baseline,
-Uniform713, and tier audits write tracked `results/` files, so reproduce those
-in a disposable checkout containing your changes. Every audit added from
-4 November onward, for example the bandwise-suffix, hard-budget and
-finite-quantile audits, prints its kernel report and writes no evidence files.
-The other tabled audits write timestamped directories under `.runtime/`;
-[tools/README.md](../tools/README.md) maps those locations.
-Run the corresponding verifier regression tests when proof registration or
-verification logic changes. Keep published checkpoints intact.
+| Result | Formal entry point | Audit command |
+|---|---|---|
+| Envelope minimax rates and unbiased variance and work for unknown laws ordered by their gap CDFs | [Minimax](ThresholdHC/Envelope/Minimax.lean), [Unbiased](ThresholdHC/Envelope/Unbiased.lean), [record](../results/stochastic-envelope-20261105/README.md) | `python tools/verify_stochastic_envelope.py` |
+| Adaptation over a supplied finite family of gap laws | [LawAdaptation/Full](ThresholdHC/LawAdaptation/Full.lean), [note](../docs/FINITE_FAMILY_ADAPTATION.md) | `python tools/verify_law_adaptation.py`, `python tools/verify_law_adaptation_realization.py` |
+| Components of the arbitrary-law proof: entropy transport, the conservative envelope, the pilot and the tail certificate | [ArbitraryLawAdaptation](ThresholdHC/ArbitraryLawAdaptation/), [component inventory](../docs/ARBITRARY_LAW_FORMALIZATION.md) | The 20 `tools/verify_arbitrary_law_*.py` component audits |
+| The known-law plan and its rate: a valid plan certificate, the planner's minimax rate with risk at most $44801\,\mathcal K$, and the named estimator | [KnownLawPlanner](ThresholdHC/KnownLawPlanner/) | The 5 `tools/verify_known_law_*.py` audits |
+| The plan under a true law dominated by the reference, the coupling from CDF domination, clipping and pilot independence, and paid-median coverage | [RobustContinuation](ThresholdHC/RobustContinuation/) | The 5 `tools/verify_robust_*.py` audits, `python tools/verify_clipping_pilot_independence.py`, `python tools/verify_paid_median.py` |
+| The all-budget controller for arbitrary unknown gap laws: schedule, caps, nested intervals, finite onset and the final width on one event | [ArbitraryLawController/Full](ThresholdHC/ArbitraryLawController/Full.lean) | `python tools/verify_arbitrary_law_controller.py` |
 
 [Finite-family law adaptation](../docs/FINITE_FAMILY_ADAPTATION.md) has 17 checked
 components in [Parity](ThresholdHC/LawAdaptation/Parity.lean),
@@ -171,192 +199,74 @@ separation; [Observation](ThresholdHC/LawAdaptation/Observation.lean) and
 probability; [Full](ThresholdHC/LawAdaptation/Full.lean) constructs the family
 with its joint coverage-and-width guarantee; [Properties](ThresholdHC/LawAdaptation/Properties.lean)
 checks nesting and the original-experiment endpoint law.
-[Native record](../results/law-adaptation-realization-20261105/README.md).
 
-The [arbitrary-law adaptation formalization](../docs/ARBITRARY_LAW_FORMALIZATION.md)
-starts with `ArbitraryLawAdaptation/EntropyTransport.lean` and `BandPenalty.lean`.
-Run `python tools/verify_arbitrary_law_entropy.py` for 15 exact statements and
-transitive axiom reports. This is finite entropy transport, not the full
-arbitrary-law statistical theorem.
+The audits of the arbitrary-law proof are described one by one, with their
+statement counts, in the verification guide:
+[finite family](../docs/VERIFY.md#finite-family-unknown-law-adaptation-components),
+[arbitrary-law components](../docs/VERIFY.md#arbitrary-law-adaptation-components) and
+[the controller](../docs/VERIFY.md#full-arbitrary-law-all-budget-controller).
+The controller audit restates 99 statements from the twelve modules of
+`ThresholdHC.ArbitraryLawController`, and CI replays those modules through
+the independent kernel checker. The theorem assumes no statistical stage
+oracle. Finite-law numerical enclosures and Python/PRNG verification remain
+separate ([#86](https://github.com/davidiach/adaptive-threshold-estimation/issues/86)).
+The [publication record](../results/adaptation-publication-20261116/README.md)
+links the manuscript build of 16 November and the final proof evidence.
 
-`ArbitraryLawAdaptation/CDFEnvelope.lean` constructs the conservative finite
-measure, including its zero atom and closed-CDF boundary values. Run
-`python tools/verify_arbitrary_law_envelope.py` for 25 exact statements and
-24 transitive reports. The statistical pilot event is proved in
-`ArbitraryLawAdaptation/TailPilotLaw.lean`.
+## Foundations and supporting developments
 
-`ArbitraryLawAdaptation/LearnedStage.lean` joins a paid pilot to a continuation
-chosen from its observed finite envelope. Its cap, fresh labels, chronological
-readback and original-experiment joint endpoint law have 17 exact statements
-and 16 transitive reports in `python tools/verify_arbitrary_law_stage.py`.
-The statistical pilot is installed in it in
-`ArbitraryLawAdaptation/TailPilotLaw.lean`. The full all-budget controller is
-not established.
+The tier numbers name development milestones. They remain useful dependencies,
+not interchangeable versions of the same theorem.
 
-`ArbitraryLawAdaptation/CountableEntropy.lean`, `CountableTransport.lean` and
-`GammaTransport.lean` extend the factor-three bound to countably many cells
-and identify its entropy with canonical Gamma. Run
-`python tools/verify_arbitrary_law_countable.py` for 16 exact statements and
-axiom reports. Individual destination columns are summable; the full moment
-and entropy may be infinite. The coupling construction is checked below.
+| Area | Role |
+|---|---|
+| [Statements](ThresholdHC/Statements.lean), [Statements2](ThresholdHC/Statements2.lean), and [Proofs](ThresholdHC/Proofs/) | Original frozen scalar, classifier, information, and rare-event targets and their proofs; checked by `tools/verify_lean_checkpoint.py`. |
+| [Tier3](ThresholdHC/Tier3/) | Randomized information bounds, unbounded stopping, and the arbitrary-law variational [optimizer](ThresholdHC/Tier3/Optimizer.lean). Audit: `python tools/verify_tier3.py`. |
+| [Tier4](ThresholdHC/Tier4/) | Infinite-transcript KL for a fixed finite coin family. Audit: `python tools/verify_tier4.py`. |
+| [Tier5](ThresholdHC/Tier5/) | Information/work bounds with unrestricted adaptive coin creation. Audit: `python tools/verify_tier5.py`. |
+| [Tier6](ThresholdHC/Tier6/) | Observable population realization, risk model, testing reduction, and the frozen RMS lower bound with coefficient $1/64$. Audit: `python tools/verify_tier6.py`. |
+| [Uniform713](ThresholdHC/Uniform713/) | Earlier separate 713 development, with its own frozen specification. Audit: `python tools/verify_uniform713.py`. |
+| [ObservableSimulation](ThresholdHC/ObservableSimulation/) | Shared execution/law identities used to connect constructions to the original observable experiment. |
+| [ResearchRouteA](ThresholdHC/ResearchRouteA/) | Locked separate-moment bridge with a limited scope; it does not establish the whole above-two paper result. |
 
-`ArbitraryLawAdaptation/BandGeometry.lean`, `TransportCells.lean` and
-`CouplingEntropy.lean` construct the canonical cells of an increasing-gap
-coupling and prove its factor-three Gamma comparison. Run
-`python tools/verify_arbitrary_law_coupling.py` for 19 exact statements and
-axiom reports. `SelectionLift.lean` and `IncreasingSelection.lean` transport
-all fractional selections and prove `K(new) <= sqrt(3) K(old)`. Run
-`python tools/verify_arbitrary_law_selection.py` for 13 exact statements and
-reports. These are positive-gap results under a supplied coupling; the
-following modules construct it and include unresolved mass at zero.
+The [kernel-check sequence](../docs/VERIFY.md#lean-kernel-checks) covers the
+baseline, Uniform713, and tiers. The [CI workflow](../.github/workflows/checks.yml)
+records the suite and its ordering; the two intermediate entropy-tail audits
+listed in [VERIFY.md](../docs/VERIFY.md) are outside it. `ThresholdHC.lean` is the frozen
+original import entry point; use the development-specific specifications and
+audits above to navigate later results. The files `Tier3.lean` to `Tier6.lean`
+and `Uniform713.lean` beside these directories each import one development.
+`lean/setup.sh` is historical.
 
-`ArbitraryLawAdaptation/CDFCoupling.lean` constructs a common-uniform coupling
-from CDF domination, including atoms at zero. Run
-`python tools/verify_arbitrary_law_cdf_coupling.py` for 11 exact statements and
-reports. `ZeroModel.lean`, `ZeroCoupling.lean`, `ZeroSelection.lean` and
-`CDFSelection.lean` extend the functional to `[0,1/2]`, prove exact agreement
-with positive-gap K, and derive `K(new) <= sqrt(3) K(old)` from CDF domination.
-Run `python tools/verify_arbitrary_law_zero.py` for 36 exact statements and
-reports. The light random contraction and statistical composition remain.
+The dyadic series of the frozen targets H3 and H4 is proved in
+`Proofs/DyadicSummable.lean`; `python tools/verify_dyadic_summability.py`
+restates 7 statements and reports 5 axiom sets.
 
-The dominated-mass comparison (A5) is checked by
-`python tools/verify_arbitrary_law_dominated.py`: 22 exact statements and
-22 transitive reports. Bounded density restriction transfers fractional
-selections and controls their residuals. For finite measures,
-`lambda <= c eta + e delta_0` gives `K(lambda) <= c K(eta) + e`
-when `c >= 1` and `e >= 0`, retaining infinite entropy and the cap.
+## Making and checking a proof change
 
-Run `python tools/verify_arbitrary_law_light_entropy.py` for 36 exact statements
-and transitive reports: product-reference entropy, explicit numerical budgets,
-two-band product geometry and the factor-1024 entropy bound for actual product
-measure cells. Run `python tools/verify_arbitrary_law_light.py` for 26 more
-exact statements and transitive reports: residual tails, the constructed
-multiplier's exact CDF, and the full capped selection comparison with factor 32.
-The final result imposes no inverse-moment or entropy condition on the input law.
-Run `python tools/verify_arbitrary_law_tail_test.py` for 91 exact statements
-and transitive reports on the sign-neutral single-coin tail test: its work cap,
-dependence on the observed prefix, flip symmetry, the sign-neutral law on the
-original population, both unresolved-probability bounds, the comparison with
-the constructed multiplier, and the expected-work bound.
-Run `python tools/verify_arbitrary_law_tail_probe.py` for 69 exact statements
-and transitive reports on one capped probe over fresh coins: its caps and
-charge, dependence on the bought flips, coverage of the small-gap mass at every
-budget with probability at least 7/8, and the fixed-budget performance bound
-with probability at least 3/4, with and without the coin cap.
-Run `python tools/verify_arbitrary_law_tail_median.py` for 51 exact statements
-and transitive reports on the median over independent probes: the majority
-transfer to the median, Hoeffding across probes, statement (1) of the tail
-certificate with its pathwise flip cap, the statement at every depth at once,
-and both on a single coin array.
-Run `python tools/verify_arbitrary_law_tail_oracle.py` for 26 exact statements
-and transitive reports on the oracle comparison of the tail certificate: the
-kernel bounds, the split of the gap law at its quantile, the onset condition
-and its existence, and the bound of the median by 524288 times the selection
-functional, at one depth and at every depth at once.
-Run `python tools/verify_arbitrary_law_tail_observable.py` for 68 exact
-statements and transitive reports on the tail certificate in the observable
-experiment: the probe's reader and its invariant, consecutive blocks on
-separate coin labels, the certificate as a function of the observed word, the
-transfer of events about that word to the law of the original experiment, and
-statements (1) and (3) for the estimator's output, at one depth and at every
-depth up to a horizon.
-Run `python tools/verify_arbitrary_law_pilot.py` for 66 exact statements and
-transitive reports on the capped multi-depth pilot: the budgets and coin cap
-(A6), the cap inequalities (A10), the depth-one certificate, the event (A8)
-with a common number of probes, for the pilot alone and for the pilot in the
-learning stage, and the learned law (A9) with its domination of the gap law.
-Run `python tools/verify_arbitrary_law_pilot_onset.py` for 25 exact statements
-and transitive reports on the first part of the learned law's oracle
-comparison: the lowest-gap split of the gap law, the pilot's work estimates
-(A12), its onset condition and its existence, and the bounds of the work and
-of the coin cap by the selection functional.
-Run `python tools/verify_arbitrary_law_learned_oracle.py` for 31 exact
-statements and transitive reports on the rest of that comparison: the
-multiplier law and its bound on the unresolved probabilities, the learned-CDF
-bound (A13), the slack bound (A14), the clipped-CDF witness, and the
-comparison (A11) with its finite onset and on the pilot event.
-Run `python tools/verify_arbitrary_law_zero_quantile.py` for 22 exact
-statements and transitive reports on the quantile design of a law with mass
-at zero: its definition from the normalized positive part, the comparison
-(A16) with the selection functional, and the converse.
-Run `python tools/verify_known_law_planner.py` for 49 exact statements and
-transitive reports on the known-law plan: the level races at the plan's caps,
-the level price, the cap search, the counts from weights, and the validity of
-the plan's squared-error certificate.
-Run `python tools/verify_known_law_plan_rate.py` for 18 exact statements and
-transitive reports on the rate of the exact plan: the least caps, the
-multilevel sum, the terminal rule, the comparison of the certified risk with
-the selection functional for the quantile split, the constant fallback and
-the reported radius.
-Run `python tools/verify_known_law_plan_tight_rate.py` for 31 exact statements
-and transitive reports on the rate of a plan computed from upper bounds
-within a factor two: the caps and prices against the next level, the
-multilevel sum, the rate for the quantile split, and the plan of a reference
-law with mass at zero with the planned coefficient and the radius
-coefficient.
-Run `python tools/verify_known_law_planner_output.py` for 9 exact statements
-and transitive reports on the planner end to end: the constructed quantile
-split, the plan in minimax form, the minimax rate from upper bounds and from
-exact integrals for every law, and the design of a reference law with mass
-at zero. The minimax statements name no estimator.
-Run `python tools/verify_known_law_planner_estimator.py` for 8 exact
-statements and transitive reports in which the estimator the planner
-returns is named: the planner's choice between the plan and the constant
-`ρ/2`, and in both branches budget `B` and risk at most `44801 K` with exact
-integrals, or the factor-two coefficient for every tight enclosure.
-Run `python tools/verify_dyadic_summability.py` for 5 exact statements and
-transitive reports proving that the dyadic series of the frozen targets H3
-and H4 converge, with their frozen bounds as `HasSum` statements.
-Run `python tools/verify_robust_error_transfer.py` for 33 exact statements
-and transitive reports on the first part of the robust continuation: the
-order on tapes of flips, the monotone ordinary classifier and race, the
-downward and upward banks, and the transfer of the race's population error
-to a true law coupled above its reference.
-Run `python tools/verify_robust_coin_work.py` for 9 exact statements and
-transitive reports on the work of the race for a coin with a larger gap
-than the reference: the ordinary kernel, the negative bank and the positive
-bank, each at the reference gap.
-Run `python tools/verify_robust_level_certificates.py` for 18 exact
-statements and transitive reports on the level certificates of the race
-under a true law coupled above its reference: the split of a coupling along
-the design, the selected core, resolved tail and unresolved part, and the
-level work and level error.
-Run `python tools/verify_robust_plan.py` for 20 exact statements and
-transitive reports on the plan of a reference law under the true law: the
-level races designed from the reference, the validity of an admissible
-plan, and one estimator with risk at most `C_0 K_alpha` under every true law
-coupled above the reference.
+Inspect the applicable frozen manifest and specification/dependency lock first.
+Even a supporting module may be locked by another result. Follow
+[contribution rules](../CONTRIBUTING.md#preserve-reproducibility) for any proposed
+change to frozen material.
 
-Run `python tools/verify_robust_cdf_bridge.py` for 12 exact statements and
-transitive reports deriving that coupling from CDF domination, including
-the zero-atom split, the original sign mass and rarity budget, and direct
-budget/risk guarantees for the named plan and one reference-dependent
-estimator valid for every CDF-dominated true law.
+Every file under `ThresholdHC/` must compile, whether or not a result audit
+names it. `python tools/verify_project_axioms.py` builds all of them and
+checks the transitive axioms of every constant they declare; CI runs it with a
+kernel replay of the modules of `Tier6.Full` and `BlindUpper.Full`. The same audit rejects scoped,
+prioritised or new orphan data-carrying instances, which could change what a
+restated statement elaborates to, and compares a fingerprint of every project
+definition with [definition_lock.json](../tools/definition_lock.json). When you
+add definitions, add their entries with `--add-definitions`; an existing entry
+never changes without the owner's authorization. A default `lake build` reaches
+only the original root's 33 modules, so do not rely on it for coverage.
 
-Run `python tools/verify_clipping_pilot_independence.py` for 26 exact
-statements and transitive reports: clipping preserves the experiment and
-work and cannot increase risk; the production stream and private seed
-retain their original joint law after a positive-probability pilot history,
-including the installed multi-depth pilot and its selected continuation.
-
-Run `python tools/verify_paid_median.py` for 48 exact statements and
-transitive reports: a reference-law base including the large-zero-atom
-fallback, the physical-cap median, and its conditional and unconditional
-coverage in the actual paid stage. The cap includes the pilot, the reported
-radius is determined by the learned law, and total failure is at most the
-sum of the pilot and continuation allowances. The full all-budget controller
-and finite-law numerical implementation remain outside this audit.
-
-## Full arbitrary-law all-budget controller
-
-Run `python tools/verify_arbitrary_law_controller.py` for 99 exact statements
-and transitive axiom reports from all twelve modules of
-`ThresholdHC.ArbitraryLawController`. The audit covers the concrete schedule,
-zero-work fallback, chronological controller, unconditional caps and prefix
-consistency, nested intervals, joint pilot-and-coverage event, (A17)–(A18),
-finite onset and final same-event width `2^32 C_* K(B/Lambda)`. The theorem
-assumes no statistical stage oracle. CI also replays these twelve modules
-through the independent kernel checker. Finite-law numerical enclosures,
-Python/PRNG verification remains separate. The
-[publication record](../results/adaptation-publication-20261116/README.md)
-links the manuscript build and the final proof evidence.
+Use `--sequential` on the audits that accept it when memory is constrained. Baseline,
+Uniform713, and tier audits write tracked `results/` files, so reproduce those
+in a disposable checkout containing your changes. Most audits added from
+4 November onward, for example the bandwise-suffix, hard-budget and
+finite-quantile audits, print their kernel report and write no evidence files.
+The four output-certificate audits and the two selection-approximation audits
+write a timestamped directory under `.runtime/`, as do the older tabled audits;
+[tools/README.md](../tools/README.md) maps those locations.
+Run the corresponding verifier regression tests when proof registration or
+verification logic changes. Keep published checkpoints intact.

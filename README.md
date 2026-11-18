@@ -33,17 +33,20 @@ laws at uniform expected budget $B\ge1$, and define
 $\omega_\mu(h)=\mathbb E_\mu[\min(1,h/D)]$ for $h>0$. Then
 
 ```math
-\frac{1}{64}\,\omega_\mu(B^{-1/2})
+\frac{1}{6}\,\omega_\mu(B^{-1/2})
 \;\le\; R_\mu(B)
 \;\le\; 512\,\omega_\mu(B^{-1/2}).
 ```
 
 Both bounds are proved in Lean for the observable adaptive experiment.
-One upper algorithm works for every gap law without knowing $\mu$.
-The [lower theorem](lean/ThresholdHC/Tier6/Full.lean),
+The lower constant $1/6$ is sharp: no larger constant holds for every gap
+law and budget. The upper constant $512$ is not optimized. One upper
+algorithm works for every gap law without knowing $\mu$. The
+[lower theorem](lean/ThresholdHC/SharpRMS/Full.lean),
 [upper theorem](lean/ThresholdHC/BlindUpper/Full.lean), and
 [model and scope](docs/RESULTS.md#minimax-law-and-unbiasedness) give the
-precise statements.
+precise statements. The original lower theorem, with the constant $1/64$,
+is kept as a [frozen target](lean/ThresholdHC/Tier6/Full.lean).
 
 ## Results at a glance
 
@@ -55,7 +58,8 @@ on the gap, at a fixed gap law $\mu$.
 
 | Result | Status | Details |
 |---|---|---|
-| For $B\ge1$, the sharp universal minimax RMS lower bound is $\omega_\mu(B^{-1/2})/6$ in the ordinary model and both magnitude oracles. Four fresh flips attain equality at $B=4$ and $\mu=\delta_{1/2}$. | Lean-checked | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) · [written proof](research/2026-11-17-rms-constants/README.md) |
+| For $B\ge1$, the sharp universal minimax RMS lower bound is $\omega_\mu(B^{-1/2})/6$ in the ordinary model and both magnitude oracles. Four fresh flips attain equality at $B=4$ and $\mu=\delta_{1/2}$. | Lean-checked | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) · written proof in Appendix AA of the [paper](paper/v6/README.md) |
+| For $B\ge25$ the best universal lower constant lies between $0.175198$ and $0.186752$; its exact value is open. | Lean-checked in a research package, outside CI and the paper | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) · [package](research/2026-11-17-rms-constants/README.md#the-coefficient-for-budgets-of-at-least-25) |
 | One algorithm that knows only the budget attains RMS error at most $512\,\omega_\mu(B^{-1/2})$. | Lean-checked | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) |
 | Confidence radius of order $\omega_\mu\bigl(\sqrt{\log(1/\delta)/B}\bigr)$ | Lean-checked | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) |
 | An unbiased estimator with finite variance and expected work exists exactly when $I=\mathbb E_\mu[D^{-1}]$ is finite; the best variance–work product lies between $I^2/16$ and $713I^2$ | Lean-checked | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) · [713](docs/RESULTS.md#the-713-construction) |
@@ -100,10 +104,16 @@ Lean also checks the
 [finite-law selection approximation](docs/FINITE_SELECTION_APPROXIMATION.md).
 It is not counted above, because the paper does not describe it.
 
-The opt-in [numerical certificate path](docs/DETERMINISTIC_VERIFICATION.md) now
-covers finite-law objectives/oracles and [zero-residual envelopes, rounding and
-conditional transfer](docs/ENVELOPE_TRANSFER_CERTIFICATES.md). Global numerical
-selection and concrete planners remain open in #85; stochastic execution is #86.
+The opt-in [numerical certificate path](docs/DETERMINISTIC_VERIFICATION.md)
+lets the Lean kernel check individual outputs of the toolkit. It covers
+finite-law objectives and oracles,
+[zero-residual envelopes, rounding and conditional transfer](docs/ENVELOPE_TRANSFER_CERTIFICATES.md),
+and [bounded global-selection outputs](docs/GLOBAL_SELECTION_CERTIFICATES.md).
+Solver transcripts, other selection entry points and concrete planners
+remain open in
+[#85](https://github.com/davidiach/adaptive-threshold-estimation/issues/85);
+stochastic execution is
+[#86](https://github.com/davidiach/adaptive-threshold-estimation/issues/86).
 
 ## Repository map
 
@@ -112,7 +122,7 @@ Current material:
 | Path | What it holds | Start with |
 |---|---|---|
 | [paper/](paper/README.md) | The manuscripts. Version 6 is the current paper; the others are its preserved sources | [paper/README.md](paper/README.md) |
-| [lean/](lean/README.md) | The Lean 4 formalization, about 1,190 modules | [lean/README.md](lean/README.md) |
+| [lean/](lean/README.md) | The Lean 4 formalization, about 1,320 modules | [lean/README.md](lean/README.md) |
 | [docs/](docs/README.md) | Guides: results and scope, verification commands, work plan, and one note for each result | [docs/README.md](docs/README.md) |
 | [tools/](tools/README.md) | Audit scripts that check exact statements and axioms, their tests, and the manuscript generators | [tools/README.md](tools/README.md) |
 | [results/](results/README.md) | Evidence records of audits and experiments. A record describes one checkpoint and is not edited afterwards | [results/README.md](results/README.md) |
@@ -132,6 +142,16 @@ started and is not a starting point:
 | [proposals/](proposals/README.md) | Proposals to change frozen items |
 | [docs/process/](docs/process/README.md) | The process record: method, provenance and run logs |
 
+Project files at the top level:
+
+| Path | What it is |
+|---|---|
+| [CONTRIBUTING.md](CONTRIBUTING.md), [AGENTS.md](AGENTS.md) | Setup, where to edit and how to check a change; the second is the working guide for AI agents |
+| [CITATION.cff](CITATION.cff), [LICENSE](LICENSE), [LICENSE-CC-BY-4.0](LICENSE-CC-BY-4.0), [LICENSES.md](LICENSES.md) | How to cite the work, the two licenses and which files each covers |
+| `requirements.txt` | Pinned Python packages for the tools and the numerical checks |
+| `.github/` | The CI workflows, such as [checks.yml](.github/workflows/checks.yml), and [lean_ci.py](.github/lean_ci.py), which selects the Lean audits a change needs |
+| `.gitattributes`, `.gitignore` | Byte-exact storage of tracked files, which the hash locks rely on, and ignored build output |
+
 ## Check the proofs
 
 Install Python 3.12 and Lean's `elan` tool manager. The repository pins its
@@ -145,9 +165,15 @@ python -m pip install -r requirements.txt
 cd lean
 lake exe cache get
 cd ..
-python tools/verify_tier6.py --sequential --require-complete
+python tools/verify_sharp_rms.py
 python tools/verify_blind_upper_components.py --sequential
+python tools/verify_tier6.py --sequential --require-complete
 ```
+
+The first command checks the sharp lower bound with the constant $1/6$,
+the second the upper bound with $512$, and the third the original frozen
+lower target with $1/64$. Each one builds what it needs, restates the
+target types exactly and reports the axioms the proofs use.
 
 The [verification guide](docs/VERIFY.md) covers the other theorems, exact target
 types, transitive-axiom audits, source hashes, and numerical checks.
@@ -162,12 +188,18 @@ Use a disposable checkout for reproduction: some checks write diagnostic files.
 
 ## Open work
 
-The one tracked result that still has only a paper proof is the
-critical-window simplification that closes
-[v6 §14.8](docs/RESULTS.md#the-variational-modulus-in-closed-form), with its
-asymptotic interpretation.
-[docs/WORKPLAN.md](docs/WORKPLAN.md)
-gives the current priorities, and the
+- **Paper proof only.** One tracked result: the critical-window
+  simplification that closes
+  [v6 §14.8](docs/RESULTS.md#the-variational-modulus-in-closed-form), with
+  its asymptotic interpretation.
+- **Constants of the main law.** The lower constant $1/6$ is sharp and the
+  upper constant is $512$, so the two sides are a factor $3072$ apart. For
+  budgets of at least 25 the best lower constant is known only to lie in
+  $[0.175198,\,0.186752]$.
+- **Toolkit verification.** The Python toolkit is tested and not formally
+  verified; #85 and #86 track the connection to the Lean statements.
+
+[docs/WORKPLAN.md](docs/WORKPLAN.md) gives the current priorities, and the
 [tracking issue](https://github.com/davidiach/adaptive-threshold-estimation/issues/76)
 lists every open task with its dependencies.
 

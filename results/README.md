@@ -10,6 +10,14 @@ can differ from the current files after a later proof-only change: the
 eight Lean files that were refactored afterwards without changing a
 statement. For the current tree the evidence is the CI run on that commit.
 
+The folder holds 98 dated record directories, named for a result and a
+date, and the loose JSON and log files of the first phases of the project.
+The table below indexes the records that the guides cite. Later sections
+describe the remaining records in prose: the time-uniform bounds, cost
+grouping, cap truncation and the unknown-law adaptation proof. A record
+that a later one extends says so in its row or paragraph; the later record
+is the current evidence for that result.
+
 ## Records referenced by the current guides
 
 | Claim or check | Published record |
@@ -29,7 +37,7 @@ statement. For the current tree the evidence is the CI run on that commit.
 | Entropy perturbation and certified-bin state-compression invariant | [selection-approximation-20261106](selection-approximation-20261106/README.md) |
 | Original frozen Lean target audit | [lean_checkpoint.json](lean_checkpoint.json), [lean_score.json](lean_score.json) |
 | Uniform713 and information milestones | [uniform713_status.json](uniform713_status.json), [tier3_status.json](tier3_status.json), [tier4_status.json](tier4_status.json), [tier5_status.json](tier5_status.json) |
-| Main RMS lower bound | [tier6_status.json](tier6_status.json) |
+| Main RMS lower bound, original frozen target with constant $1/64$ (the sharp $1/6$ is in the first row) | [tier6_status.json](tier6_status.json) |
 | Distribution-blind RMS upper bound | [blind_upper_components_002.json](blind_upper_components_002.json) |
 | Full critical quadratic lower bound | [critical_components_016.json](critical_components_016.json) |
 | Full critical quadratic upper bound | [critical_upper_components_003.json](critical_upper_components_003.json) |
@@ -64,6 +72,7 @@ statement. For the current tree the evidence is the CI run on that commit.
 | Finite-cell observed-state lower bound | [finite-observed-20261105](finite-observed-20261105/README.md) |
 | Smooth-density complexity and unbiased impossibility | [smooth-density-20261105](smooth-density-20261105/README.md) |
 | Prior-family and per-flip information inequalities for the all-law time-uniform lower bound (the complete theorem is checked separately in [anytime-asymptotic-20261105](anytime-asymptotic-20261105/README.md)) | [anytime-lower-20261105](anytime-lower-20261105/README.md) |
+| Common prior families and information bounds for the time-uniform lower bounds: 11 exact statements. The earlier checkpoint of the record above | [anytime-lower-family-20261105](anytime-lower-family-20261105/README.md) |
 | Observable time-uniform confidence for known laws | [anytime-confidence-20261105](anytime-confidence-20261105/README.md) |
 | Logarithmic and intermediate rare power margins | [shifted-power-20261105](shifted-power-20261105/README.md) |
 | Rare power margins below exponent one | [sublinear-power-20261105](sublinear-power-20261105/README.md) |
@@ -73,9 +82,13 @@ statement. For the current tree the evidence is the CI run on that commit.
 | Critical-law minimax confidence lower bound | [critical-confidence-20261104](critical-confidence-20261104/README.md) |
 | Uniform finite-cap convergence and the linear sufficient cap | [genie-rate-20261104](genie-rate-20261104/README.md) |
 | Exact scalar-root quantile factor and finite-law sharpness | [quantile-optimality-20261105](quantile-optimality-20261105/README.md) |
+| The finite laws that realize sharpness of the quantile factor: 50 exact statements. A component of the record above | [finite-law-family-20261105](finite-law-family-20261105/README.md) |
 | All-law quantile upper comparison at the exact scalar-root factor | [sharp-quantile-upper-20261105](sharp-quantile-upper-20261105/README.md) |
 | Sharp finite-core selection reduction and entropy Lipschitz bound | [quantile-core-reduction-20261105](quantile-core-reduction-20261105/README.md) |
+| The 1-Lipschitz square-root cost entropy and skipped-tail absorption: 17 exact statements. A component of the record above | [quantile-lipschitz-20261105](quantile-lipschitz-20261105/README.md) |
 | Sharp finite-vector quantile factor and unique scalar root | [optimal-quantile-root-20261105](optimal-quantile-root-20261105/README.md) |
+| The finite-vector characterization of the quantile factor: 13 exact statements. An earlier component of the record above | [optimal-quantile-finite-20261105](optimal-quantile-finite-20261105/README.md) |
+| Equivalence of the quantile factor with the infinite partition-series inequality: 29 exact statements. An earlier component of the record above | [optimal-quantile-series-20261105](optimal-quantile-series-20261105/README.md) |
 | General-law $31/20$ quantile comparison | [quantile-price-20261104](quantile-price-20261104/README.md) |
 | Single-type population confidence transfer and common-pair lower bound | [confidence-population-20261104](confidence-population-20261104/README.md) |
 | Eight-fifths quantile-selection comparison for arbitrary laws | [quantile-selection-20261104](quantile-selection-20261104/README.md) |
@@ -126,8 +139,9 @@ current CI status from a historical log.
 
 Several baseline and tier verifiers overwrite tracked files here. Run those in
 a disposable checkout containing the change being checked. The later theorem
-audits that save logs write them under `.runtime/`; audits added from
-4 November onward only print their kernel report. The [tool index](../tools/README.md) describes the
+audits that save logs write them under `.runtime/`. Most audits added from
+4 November onward only print their kernel report; the selection-approximation
+and output-certificate audits write a fresh directory under `.runtime/`. The [tool index](../tools/README.md) describes the
 other temporary output locations. Keep local reruns out of the published records.
 
 When a task calls for publishing new evidence, add a separately identified
@@ -165,8 +179,10 @@ identification, selected-event transfer and the delayed oracle-rate comparison.
 The [22-statement realization audit](law-adaptation-realization-20261105/README.md)
 adds moment determinacy and the complete observable finite-family controller,
 with actual flip accounting, nested compatible intervals and joint all-budget
-coverage and oracle width. Arbitrary-law adaptation has a
-[paper proof](../docs/ARBITRARY_LAW_ADAPTATION.md); Lean checks components of it only.
+coverage and oracle width. At that checkpoint arbitrary-law adaptation had a
+[paper proof](../docs/ARBITRARY_LAW_ADAPTATION.md) only; the
+[full controller record](arbitrary-law-controller-20261116/README.md) below now
+checks the complete theorem.
 
 The [finite arbitrary-law entropy transport audit](arbitrary-law-entropy-20261106/README.md)
 adds 15 exact statements, including the geometric factor-three comparison.
@@ -308,8 +324,8 @@ planner returns, the plan or the constant $\rho/2$, is named: it has budget
 $B$ and risk at most $44801$ times the selection functional with exact
 integrals, and the factor-two coefficient for every tight enclosure.
 
-The [dyadic-summability audit](dyadic-summability-20261114/README.md) adds 5
-exact statements and transitive reports proving that the two dyadic series of
+The [dyadic-summability audit](dyadic-summability-20261114/README.md) adds 7
+exact statements and 5 transitive axiom reports proving that the two dyadic series of
 the frozen targets H3 and H4 converge. Those frozen targets bound `∑'` sums,
 which Mathlib sets to zero for a series that does not converge.
 

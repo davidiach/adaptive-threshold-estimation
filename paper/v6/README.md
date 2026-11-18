@@ -2,20 +2,19 @@
 
 [Current manuscript](builds/sharp-rms-constant-20261118.pdf) · [LaTeX sources](main.tex) · [Build record](builds/sharp-rms-constant-20261118.json) · [Previous build](builds/review-corrections-20261117.pdf)
 
-The current sources publish the complete uniform power-law entropy and
-quantile bounds and their unconditional RMS/confidence consequences.
-The [uniform power-law build](#uniform-power-law-build) and its
-[evidence record](../../results/power-window-publication-20261116/README.md)
-separate these checked results from the critical-window corollary and
-asymptotic remark, which remain paper results. Every earlier published
-package retains its original PDF and verification scope.
+The current PDF is the [sharp RMS constant build](#sharp-rms-constant-build)
+of 18 November 2026, with 197 pages. It states the sharp lower constant
+$1/6$ of the RMS law, where earlier builds stated $1/64$, and proves it in
+the new Appendix AA. Lean checks the constant and its sharpness. The upper
+constant $512$ and every other result are unchanged. The build before it is
+the [review corrections build](#review-corrections-build), with 192 pages.
 
-The current PDF is the [sharp RMS constant build](#sharp-rms-constant-build).
-It states the sharp lower constant $1/6$ of the RMS law, where earlier
-builds stated $1/64$, and proves it in the new Appendix AA. Lean checks the
-constant and its sharpness. The upper constant $512$ and every other result
-are unchanged. The build before it is the
-[review corrections build](#review-corrections-build).
+[status.json](status.json) tracks 33 results. Lean checks 32 of them. One,
+the critical-window simplification (Corollary 14.14 and Remark 14.15), has a
+paper proof only. `paper.pdf` in this folder is the earliest v6 build kept in
+the repository, from commit `ac1fbb7`, with 134 pages; it predates `builds/`. The published builds are in `builds/`, and the
+[build history](#build-history) lists them. Every published build keeps its
+original PDF and verification scope.
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -63,32 +62,12 @@ unchanged.
 
 ## Verification status
 
-Lean checks both directions of the original RMS law, its sharp lower
-constant $1/6$ (Appendix AA), the critical quadratic
-law, the exact Ψ comparison and counterexample, the variational optimizer,
-the unbiased characterization with constants 1/16 and 713, the confidence
-characterization, the magnitude-oracle lower bounds, and the rare-event
-rate above exponent two. It also checks both halves and the full entropy–tail
-law, the two-sided closed quantile rate for every law, the comparison
-$K\le Q\le(31/20)K$ and the exact least comparison factor of Appendix P,
-and the existence of a finite-law optimizer that selects
-a suffix in each dyadic band. For arbitrary laws it checks variation and
-rounding stability and the finite-approximation enclosures. It also checks the stopping-program, fixed-cap
-identification and genie results of §15, in the scope stated in §18.
-It also checks the arbitrary-law statistical Ψ lower bound of Appendix A,
-with coefficient $10^{-17}$, as a corollary of the entropy–tail law.
-It also checks the stochastic-envelope extension, lower-bound localization
-with coefficient $1/128$ conditional on a single-coin obstruction, finite-menu cost grouping and finite-family oracle
-adaptation, and the full arbitrary-law all-budget controller with eventual
-width after a deterministic law-dependent onset. Its physical caps hold
-unconditionally, and the coverage event also protects observation-dependent
-stopping budgets. The [status table](../../docs/RESULTS.md#verification-status), generated
-from [status.json](status.json), lists every result the abstract tracks.
-Section 18 states each formal scope and links the fixed source revisions.
-The uniform power-law core entropy and deterministic quantile comparison
-are now checked, including exponent two and arbitrary scale. Their RMS
-and confidence consequences have no unproved quantile premise. Corollary
-14.14 and Remark 14.15 remain outside the formal scope.
+Lean checks 32 of the 33 tracked results. The exception is the
+critical-window simplification: Corollary 14.14 and Remark 14.15 are paper
+proofs. The [status table](../../docs/RESULTS.md#verification-status),
+generated from [status.json](status.json), lists every result with its
+status and evidence. Section 18 of the paper states each formal scope and
+links the fixed source revisions.
 
 For finite laws a [direct Lean proof](../../lean/ThresholdHC/FiniteQuantile/Full.lean)
 now establishes both explicit coefficients, $10^{-20}$ and $30001$. The
@@ -129,7 +108,9 @@ the exposition in `frontmatter.tex`, `overview.tex` (§§1.2–1.5),
 `rare-events.tex`, `entropy-tail.tex`,
 `finite-laws.tex`, `psi-window.tex` (§14.8), `certificates.tex`,
 `finite-proof.tex` and `verification.tex`; Appendices P–Z (`appendix-optimal-factor.tex` through
-`appendix-observed-upper.tex`); Appendix AA (`appendix-sharp-rms.tex`); and the confidence subsections that
+`appendix-observed-upper.tex`); Appendix AA (`appendix-sharp-rms.tex`); the three subsections that
+`appendix-anytime.tex` inputs (`finite-family-adaptation.tex`,
+`arbitrary-law-tail.tex` and `arbitrary-law-adaptation.tex`); and the confidence subsections that
 `appendix-known-confidence.tex` inputs (`typed-confidence.tex`,
 `common-pair-confidence.tex`, `additive-confidence.tex`,
 `entropy-confidence.tex` and `rms-localization.tex`). `main.tex` controls the
@@ -229,14 +210,77 @@ the same way with TeX Live from the Ubuntu 24.04 archive and uploads the PDF
 and log as the `v6-paper` artifact. Typesetting and source checks do not
 constitute a new mathematical proof or independent review.
 
-## Hard-budget RMS build
+## Build history
+
+Everything below this heading is history. Each section describes one
+published build or source change at its own date and is kept as written:
+"remains a paper proof" or "now Lean-checked" was true on that date. For the
+current state use the sections above and the
+[status table](../../docs/RESULTS.md#verification-status).
+
+The table lists all 48 published builds, newest first. `paper.pdf` in
+this folder, the earliest v6 build kept in the repository, is described under
+[Preserved build record](#preserved-build-record).
+
+| Date | Pages | Build | Files | Described in |
+|---|---:|---|---|---|
+| 2026-11-18 | 197 | `sharp-rms-constant-20261118` | [PDF](builds/sharp-rms-constant-20261118.pdf) · [record](builds/sharp-rms-constant-20261118.json) | [Sharp RMS constant build](#sharp-rms-constant-build) |
+| 2026-11-17 | 192 | `review-corrections-20261117` | [PDF](builds/review-corrections-20261117.pdf) · [record](builds/review-corrections-20261117.json) | [Review corrections build](#review-corrections-build) |
+| 2026-11-16 | 192 | `arbitrary-law-complete-20261116` | [PDF](builds/arbitrary-law-complete-20261116.pdf) · [record](builds/arbitrary-law-complete-20261116.json) | [All-budget controller build](#all-budget-controller-build) |
+| 2026-11-16 | 192 | `power-window-complete-20261116` | [PDF](builds/power-window-complete-20261116.pdf) · [record](builds/power-window-complete-20261116.json) | [Uniform power-law build](#uniform-power-law-build) |
+| 2026-11-16 | 192 | `psi-sharpness-20261116` | [PDF](builds/psi-sharpness-20261116.pdf) · [record](builds/psi-sharpness-20261116.json) | [Psi sharpness build](#psi-sharpness-build) |
+| 2026-11-09 | 192 | `combined-psi-20261109` | [PDF](builds/combined-psi-20261109.pdf) · [record](builds/combined-psi-20261109.json) | [Combined build](#combined-build) |
+| 2026-11-09 | 192 | `psi-closed-form-20261109` | [PDF](builds/psi-closed-form-20261109.pdf) · [record](builds/psi-closed-form-20261109.json) | [Closed-form and exposition build](#closed-form-and-exposition-build) |
+| 2026-11-09 | 180 | `psi-lower-bound-20261109` | [PDF](builds/psi-lower-bound-20261109.pdf) · [record](builds/psi-lower-bound-20261109.json) | [Psi lower bound and tail-proof build](#psi-lower-bound-and-tail-proof-build) |
+| 2026-11-07 | 180 | `status-coverage-20261107` | [PDF](builds/status-coverage-20261107.pdf) · [record](builds/status-coverage-20261107.json) | [Status coverage build](#status-coverage-build) |
+| 2026-11-06 | 181 | `arbitrary-law-adaptation-20261106` | [PDF](builds/arbitrary-law-adaptation-20261106.pdf) · [record](builds/arbitrary-law-adaptation-20261106.json) | [Eventual oracle adaptation for arbitrary unknown laws](#eventual-oracle-adaptation-for-arbitrary-unknown-laws) |
+| 2026-11-06 | 174 | `arbitrary-law-tail-20261106` | [PDF](builds/arbitrary-law-tail-20261106.pdf) · [record](builds/arbitrary-law-tail-20261106.json) | [Arbitrary-law tail certificates](#arbitrary-law-tail-certificates) |
+| 2026-11-05 | 169 | `gap-law-menus-20261105` | [PDF](builds/gap-law-menus-20261105.pdf) · [record](builds/gap-law-menus-20261105.json) | [Concrete finite-law selection menus](#concrete-finite-law-selection-menus) |
+| 2026-11-05 | 169 | `law-adaptation-20261105` | [PDF](builds/law-adaptation-20261105.pdf) · [record](builds/law-adaptation-20261105.json) | [Eventual adaptation within a finite candidate family](#eventual-adaptation-within-a-finite-candidate-family) |
+| 2026-11-05 | 169 | `law-adaptation-realization-20261105` | [PDF](builds/law-adaptation-realization-20261105.pdf) · [record](builds/law-adaptation-realization-20261105.json) | [Formal realization of finite-family adaptation](#formal-realization-of-finite-family-adaptation) |
+| 2026-11-05 | 169 | `law-adaptation-shared-pilot-20261105` | [PDF](builds/law-adaptation-shared-pilot-20261105.pdf) · [record](builds/law-adaptation-shared-pilot-20261105.json) | [Shared-prefix refinement of the adaptation pilot](#shared-prefix-refinement-of-the-adaptation-pilot) |
+| 2026-11-05 | 168 | `time-uniform-lower-20261105` | [PDF](builds/time-uniform-lower-20261105.pdf) · [record](builds/time-uniform-lower-20261105.json) | [Matching time-uniform lower-bound build](#matching-time-uniform-lower-bound-build) |
+| 2026-11-05 | 167 | `finite-cap-truncation-20261105` | [PDF](builds/finite-cap-truncation-20261105.pdf) · [record](builds/finite-cap-truncation-20261105.json) | [Square-root convergence of the ordinary cap program](#square-root-convergence-of-the-ordinary-cap-program) |
+| 2026-11-05 | 167 | `status-reconciliation-20261105` | [PDF](builds/status-reconciliation-20261105.pdf) · [record](builds/status-reconciliation-20261105.json) | [Status reconciliation build](#status-reconciliation-build) |
+| 2026-11-05 | 166 | `band-cost-formal-20261105` | [PDF](builds/band-cost-formal-20261105.pdf) · [record](builds/band-cost-formal-20261105.json) | [Finite-menu cost grouping](#finite-menu-cost-grouping) |
+| 2026-11-05 | 166 | `time-uniform-formal-20261105` | [PDF](builds/time-uniform-formal-20261105.pdf) · [record](builds/time-uniform-formal-20261105.json) | [Complete time-uniform lower-bound formalization](#complete-time-uniform-lower-bound-formalization) |
+| 2026-11-05 | 163 | `finite-vector-root-20261105` | [PDF](builds/finite-vector-root-20261105.pdf) · [record](builds/finite-vector-root-20261105.json) | [Known-law fixed confidence](#known-law-fixed-confidence) |
+| 2026-11-05 | 163 | `quantile-core-reduction-20261105` | [PDF](builds/quantile-core-reduction-20261105.pdf) · [record](builds/quantile-core-reduction-20261105.json) | [Known-law fixed confidence](#known-law-fixed-confidence) |
+| 2026-11-05 | 163 | `quantile-optimality-20261105` | [PDF](builds/quantile-optimality-20261105.pdf) · [record](builds/quantile-optimality-20261105.json) | [Known-law fixed confidence](#known-law-fixed-confidence) |
+| 2026-11-05 | 163 | `sharp-quantile-upper-20261105` | [PDF](builds/sharp-quantile-upper-20261105.pdf) · [record](builds/sharp-quantile-upper-20261105.json) | [Known-law fixed confidence](#known-law-fixed-confidence) |
+| 2026-11-05 | 162 | `rms-localization-20261105` | [PDF](builds/rms-localization-20261105.pdf) · [record](builds/rms-localization-20261105.json) | [Known-law fixed confidence](#known-law-fixed-confidence) |
+| 2026-11-05 | 161 | `entropy-confidence-20261105` | [PDF](builds/entropy-confidence-20261105.pdf) · [record](builds/entropy-confidence-20261105.json) | [Known-law fixed confidence](#known-law-fixed-confidence) |
+| 2026-11-05 | 160 | `additive-confidence-20261105` | [PDF](builds/additive-confidence-20261105.pdf) · [record](builds/additive-confidence-20261105.json) | [Known-law fixed confidence](#known-law-fixed-confidence) |
+| 2026-11-05 | 158 | `common-pair-20261105` | [PDF](builds/common-pair-20261105.pdf) · [record](builds/common-pair-20261105.json) | [Known-law fixed confidence](#known-law-fixed-confidence) |
+| 2026-11-05 | 156 | `adaptive-types-20261105` | [PDF](builds/adaptive-types-20261105.pdf) · [record](builds/adaptive-types-20261105.json) | [Known-law fixed confidence](#known-law-fixed-confidence) |
+| 2026-11-05 | 154 | `observed-state-upper-20261105` | [PDF](builds/observed-state-upper-20261105.pdf) · [record](builds/observed-state-upper-20261105.json) | [Known-law fixed confidence](#known-law-fixed-confidence) |
+| 2026-11-05 | 152 | `continuous-observed-lower-20261105` | [PDF](builds/continuous-observed-lower-20261105.pdf) · [record](builds/continuous-observed-lower-20261105.json) | [Known-law fixed confidence](#known-law-fixed-confidence) |
+| 2026-11-05 | 150 | `finite-observed-20261105` | [PDF](builds/finite-observed-20261105.pdf) · [record](builds/finite-observed-20261105.json) | [Known-law fixed confidence](#known-law-fixed-confidence) |
+| 2026-11-05 | 149 | `smooth-density-20261105` | [PDF](builds/smooth-density-20261105.pdf) · [record](builds/smooth-density-20261105.json) | [Known-law fixed confidence](#known-law-fixed-confidence) |
+| 2026-11-05 | 147 | `anytime-confidence-20261105` | [PDF](builds/anytime-confidence-20261105.pdf) · [record](builds/anytime-confidence-20261105.json) | [Known-law fixed confidence](#known-law-fixed-confidence) |
+| 2026-11-05 | 146 | `shifted-power-20261105` | [PDF](builds/shifted-power-20261105.pdf) · [record](builds/shifted-power-20261105.json) | [Known-law fixed confidence](#known-law-fixed-confidence) |
+| 2026-11-05 | 144 | `sublinear-power-20261105` | [PDF](builds/sublinear-power-20261105.pdf) · [record](builds/sublinear-power-20261105.json) | [Known-law fixed confidence](#known-law-fixed-confidence) |
+| 2026-11-05 | 143 | `stochastic-envelope-20261105` | [PDF](builds/stochastic-envelope-20261105.pdf) · [record](builds/stochastic-envelope-20261105.json) | [Known-law fixed confidence](#known-law-fixed-confidence) |
+| 2026-11-04 | 143 | `known-law-confidence-20261104` | [PDF](builds/known-law-confidence-20261104.pdf) · [record](builds/known-law-confidence-20261104.json) | [Known-law fixed confidence](#known-law-fixed-confidence) |
+| 2026-11-04 | 141 | `hard-budget-rms-20261104` | [PDF](builds/hard-budget-rms-20261104.pdf) · [record](builds/hard-budget-rms-20261104.json) | [Hard-budget RMS build](#hard-budget-rms-build) |
+| 2026-11-04 | 140 | `critical-confidence-cap-rate-20261104` | [PDF](builds/critical-confidence-cap-rate-20261104.pdf) · [record](builds/critical-confidence-cap-rate-20261104.json) | [Critical confidence and cap-rate build](#critical-confidence-and-cap-rate-build) |
+| 2026-11-04 | 139 | `optimal-quantile-factor-20261104` | [PDF](builds/optimal-quantile-factor-20261104.pdf) · [record](builds/optimal-quantile-factor-20261104.json) | [Optimal quantile factor build](#optimal-quantile-factor-build) |
+| 2026-11-04 | 137 | `confidence-followups-20261104` | [PDF](builds/confidence-followups-20261104.pdf) · [record](builds/confidence-followups-20261104.json) | [Confidence follow-up build](#confidence-follow-up-build) |
+| 2026-11-04 | 137 | `confidence-population-20261104` | [PDF](builds/confidence-population-20261104.pdf) · [record](builds/confidence-population-20261104.json) | [Population confidence build](#population-confidence-build) |
+| 2026-11-04 | 137 | `entropy-tail-explicit-20261104` | [PDF](builds/entropy-tail-explicit-20261104.pdf) · [record](builds/entropy-tail-explicit-20261104.json) | [Explicit general-law build](#explicit-general-law-build) |
+| 2026-11-04 | 137 | `quantile-selection-suffix-20261104` | [PDF](builds/quantile-selection-suffix-20261104.pdf) · [record](builds/quantile-selection-suffix-20261104.json) | [Quantile comparison and finite selection build](#quantile-comparison-and-finite-selection-build) |
+| 2026-11-04 | 137 | `selection-stability-20261104` | [PDF](builds/selection-stability-20261104.pdf) · [record](builds/selection-stability-20261104.json) | [Selection stability build](#selection-stability-build) |
+| 2026-11-04 | 136 | `direct-finite-quantile-20261104` | [PDF](builds/direct-finite-quantile-20261104.pdf) · [record](builds/direct-finite-quantile-20261104.json) | [Finite-law build](#finite-law-build) |
+| 2026-11-01 | 136 | `entropy-tail-complete-20261101` | [PDF](builds/entropy-tail-complete-20261101.pdf) · [record](builds/entropy-tail-complete-20261101.json) | [Completion build](#completion-build) |
+
+### Hard-budget RMS build
 
 Appendix R proves the hard-budget reduction and records the constants for
 the three applications. The [Lean record](../../results/hard-budget-rms-20261104/README.md)
 audits the observable experiment, its cap and risk. The [PDF build record](builds/hard-budget-rms-20261104.json)
 lists the source hashes and changed pages.
 
-## Critical confidence and cap-rate build
+### Critical confidence and cap-rate build
 
 Appendix Q gives a quantitative comparison of the optimized ordinary and
 latent-reveal programs. A cap of $\lceil4B/3\rceil$ already guarantees the
@@ -246,7 +290,7 @@ factor-sixteen risk certificate for every gap law. Section 18 records the
 The [build record](builds/critical-confidence-cap-rate-20261104.json) gives
 the hashes of the typeset sources and PDF and records the visual checks.
 
-## Optimal quantile factor build
+### Optimal quantile factor build
 
 Appendix P proves that the best factor for all positive-gap laws is a unique
 scalar root. It also gives matching finite-law constructions. The
@@ -259,14 +303,14 @@ The [published PDF](builds/optimal-quantile-factor-20261104.pdf) has 139 pages.
 Two independent builds produced identical bytes. The [build record](builds/optimal-quantile-factor-20261104.json)
 lists the source hashes, changed pages and visual checks.
 
-## Population confidence build
+### Population confidence build
 
 Page 50 of the [updated paper](builds/confidence-population-20261104.pdf)
 records the one-type KL transfer through unbounded stopping and the $1/128$
 confidence lower bound under the common-pair premise. The [kernel audit](../../results/confidence-population-20261104/README.md)
 and [build record](builds/confidence-population-20261104.json) identify the exact inputs.
 
-## Confidence follow-up build
+### Confidence follow-up build
 
 Page 50 of the [updated paper](builds/confidence-followups-20261104.pdf)
 distinguishes the [Lean quarter-smoothing theorem](../../results/quarter-smoothing-20261104/README.md)
@@ -274,7 +318,7 @@ from the [unknown-law confidence sequence and time-uniform lower bound](../../do
 proved on paper. The [build record](builds/confidence-followups-20261104.json)
 lists the pinned revisions and matching hashes of two offline builds.
 
-## Selection stability build
+### Selection stability build
 
 Sections 14 and 18 of the [updated manuscript](builds/selection-stability-20261104.pdf)
 locate Theorems 7 and 8 and the finite-approximation corollary.
@@ -283,7 +327,7 @@ the approximation construction and both numerical enclosures. The [build
 record](builds/selection-stability-20261104.json) identifies the source and PDF
 hashes, the two identical builds, and the eight pages reviewed.
 
-## Quantile comparison and finite selection build
+### Quantile comparison and finite selection build
 
 The [4 November manuscript](builds/quantile-selection-suffix-20261104.pdf)
 gives the sharper comparison and the finite-law suffix search bound in §14.
@@ -291,7 +335,7 @@ Section 18 links the Lean statements. The [build record](builds/quantile-selecti
 records the pinned proof revisions, matching hashes from two offline builds,
 embedded fonts and the pages reviewed.
 
-## Explicit general-law build
+### Explicit general-law build
 
 The [updated PDF](builds/entropy-tail-explicit-20261104.pdf) records the
 explicit arbitrary-law comparison in §§13 and 18. The theorem links use
@@ -299,7 +343,7 @@ proof revision `8a701c8db6c42930ad2a187f3d895ca55265afd6`. Two offline builds
 produced identical PDFs. The [build record](builds/entropy-tail-explicit-20261104.json)
 gives the source and PDF hashes, page count, font checks and visual review.
 
-## Finite-law build
+### Finite-law build
 
 The [4 November PDF](builds/direct-finite-quantile-20261104.pdf) records the
 finite-law theorem and its direct lower proof in §§14 and 18. The new theorem
@@ -309,7 +353,7 @@ are embedded, the references resolve, and the final TeX warnings match the
 1 November build. The [build record](builds/direct-finite-quantile-20261104.json)
 identifies the exact inputs, PDF and pages inspected.
 
-## Completion build
+### Completion build
 
 The [updated PDF](builds/entropy-tail-complete-20261101.pdf) records the
 completed entropy-tail and general-law closed-quantile proofs. Its new theorem
@@ -325,7 +369,7 @@ unchanged-source baseline under this engine. The changed verification pages
 were rendered and inspected; they have no new layout defects. Different
 engines may paginate differently from the preserved pdfTeX build below.
 
-## Preserved build record
+### Preserved build record
 
 The tracked `paper.pdf` below preserves the earlier published checkpoint.
 The updated sources include the later entropy-tail completion; the
@@ -361,7 +405,7 @@ above. Its SHA-256 is
 
 A fresh build with another engine or TeX Live release may differ in bytes.
 
-## Known-law fixed confidence
+### Known-law fixed confidence
 
 [Appendix S](appendix-known-confidence.tex) proves a direct stopping-program
 lower bound and constructs the budgeted median in the observable experiment.
@@ -404,7 +448,7 @@ The upper comparison at the exact scalar-root factor is now Lean-checked for eve
 
 The exact scalar-root characterization, all-law comparison and finite-law sharpness in Appendix P are now Lean-checked. The decimal bracket retains separate rational verification. [Updated manuscript](builds/quantile-optimality-20261105.pdf) · [Build record](builds/quantile-optimality-20261105.json) · [Complete native record](../../results/quantile-optimality-20261105/README.md)
 
-## Matching time-uniform lower-bound build
+### Matching time-uniform lower-bound build
 
 Appendix V.1 proves the matching gap-law-dependent lower bound on paper for
 every positive-gap law, including infinite inverse moment. The native audit
@@ -416,7 +460,7 @@ page numbers. The build retains the two previously recorded layout warnings.
 
 [Updated manuscript](builds/time-uniform-lower-20261105.pdf) · [Build record](builds/time-uniform-lower-20261105.json) · [Native record](../../results/anytime-lower-20261105/README.md)
 
-## Complete time-uniform lower-bound formalization
+### Complete time-uniform lower-bound formalization
 
 Appendix V.1 now follows the complete Lean proof: first-crossing testing,
 the infinite-moment prior construction and observable acquisition transfer,
@@ -433,7 +477,7 @@ or new layout warnings. The previous PDF and its record remain unchanged.
 [Updated manuscript](builds/time-uniform-formal-20261105.pdf) · [Build record](builds/time-uniform-formal-20261105.json) · [Complete native record](../../results/anytime-asymptotic-20261105/README.md)
 
 
-## Finite-menu cost grouping
+### Finite-menu cost grouping
 
 The verification table now includes the 14-statement Lean audit of the
 mathematical finite-menu solver, its state and transition bounds, entropy
@@ -449,7 +493,7 @@ appears. Earlier publications remain unchanged.
 [Updated manuscript](builds/band-cost-formal-20261105.pdf) · [Build record](builds/band-cost-formal-20261105.json) · [Native audit](../../results/band-cost-formal-20261105/README.md)
 
 
-## Square-root convergence of the ordinary cap program
+### Square-root convergence of the ordinary cap program
 
 Appendix Q.1 adds the output-preserving truncation proof and its checked
 ordinary-program bound: $P_N\le(1+\sqrt{B/(N+1)})P_\infty$. The minimax
@@ -464,7 +508,7 @@ new layout warning appears. Earlier publications remain unchanged.
 [Updated manuscript](builds/finite-cap-truncation-20261105.pdf) · [Build record](builds/finite-cap-truncation-20261105.json) · [Native audit](../../results/finite-cap-truncation-20261105/README.md)
 
 
-## Eventual adaptation within a finite candidate family
+### Eventual adaptation within a finite candidate family
 
 Section V.2 proves that a paid sign-neutral moment pilot identifies the true
 member of a supplied finite family and then recovers its known-law time-uniform
@@ -481,7 +525,7 @@ new layout warning appears. Prior publications remain unchanged.
 [Updated manuscript](builds/law-adaptation-20261105.pdf) · [Build record](builds/law-adaptation-20261105.json) · [Native component audit](../../results/law-adaptation-20261105/README.md)
 
 
-## Shared-prefix refinement of the adaptation pilot
+### Shared-prefix refinement of the adaptation pilot
 
 The current Section V.2 uses each coin's first 2m flips to supply all m parity
 coordinates. The pilot therefore costs exactly 2mn flips on n fresh coins,
@@ -497,7 +541,7 @@ publication and its record remain unchanged.
 [Updated manuscript](builds/law-adaptation-shared-pilot-20261105.pdf) · [Build record](builds/law-adaptation-shared-pilot-20261105.json)
 
 
-## Formal realization of finite-family adaptation
+### Formal realization of finite-family adaptation
 
 The current Section V.2 now has a complete Lean construction of the observable
 pilot and selected confidence controller. A new 22-statement audit includes
@@ -515,7 +559,7 @@ publications and their records remain unchanged.
 [Updated manuscript](builds/law-adaptation-realization-20261105.pdf) · [Build record](builds/law-adaptation-realization-20261105.json) · [Native proof record](../../results/law-adaptation-realization-20261105/README.md)
 
 
-## Concrete finite-law selection menus
+### Concrete finite-law selection menus
 
 The verification table now records the formal connection from a finite gap
 law to the cost-compressed suffix solver. Thirteen exact statements verify
@@ -530,7 +574,7 @@ their records remain unchanged.
 
 [Updated manuscript](builds/gap-law-menus-20261105.pdf) · [Build record](builds/gap-law-menus-20261105.json) · [Native proof record](../../results/gap-law-menus-20261105/README.md)
 
-## Status reconciliation build
+### Status reconciliation build
 
 This build corrects verification-status statements that later appendices
 had made stale: the abstract, the introduction's Verification boundary,
@@ -558,7 +602,7 @@ record lists the inherited cosmetic issues seen.
 [Updated manuscript](builds/status-reconciliation-20261105.pdf) · [Build record](builds/status-reconciliation-20261105.json)
 
 
-## Arbitrary-law tail certificates
+### Arbitrary-law tail certificates
 
 [Section V.3](arbitrary-law-tail.tex) proves an observable small-gap mass
 certificate for every unknown probability law on positive gaps. A dyadic
@@ -580,7 +624,7 @@ visually inspected, references resolve, and the existing layout-warning
 baseline is unchanged. Prior published PDFs and records remain unchanged.
 
 
-## Eventual oracle adaptation for arbitrary unknown laws
+### Eventual oracle adaptation for arbitrary unknown laws
 
 [Section V.4](arbitrary-law-adaptation.tex) proves a single observable
 confidence sequence for every unknown probability law on positive gaps,
@@ -609,7 +653,7 @@ and build records, including the tail-certificate checkpoint, are unchanged.
 
 [Updated manuscript](builds/arbitrary-law-adaptation-20261106.pdf) · [Build record](builds/arbitrary-law-adaptation-20261106.json) · [Tail-certificate checkpoint](builds/arbitrary-law-tail-20261106.pdf)
 
-## Status coverage build
+### Status coverage build
 
 The abstract's status paragraph and the introduction's verification
 boundary now also name four results that the manuscript already presents
@@ -639,7 +683,13 @@ its PDF and the current sources.
 
 [Updated manuscript](builds/status-coverage-20261107.pdf) · [Build record](builds/status-coverage-20261107.json)
 
-## Closed form of Ψ and the critical window
+### Closed form of Ψ and the critical window
+
+*Source change of 9 November 2026. What this section says about Lean
+describes that date. Since then Lean checks Proposition 14.9, Theorem
+14.11, Lemma 14.12 and Theorem 14.13; only Corollary 14.14 and Remark 14.15
+remain paper proofs. See the [Psi sharpness build](#psi-sharpness-build) and
+the [uniform power-law build](#uniform-power-law-build).*
 
 [§14.8](psi-window.tex) is new mathematics, with paper proofs and no
 independent review. Lean checks one part of it, the inequality
@@ -676,7 +726,7 @@ old limits. The [check script](../../research/2026-11-09-psi-closed-form/README.
 tests every inequality and constant in floating point; it is numerical
 evidence, not a proof.
 
-## Exposition revision
+### Exposition revision
 
 These source changes follow the status coverage build. They are published,
 together with §14.8, in the
@@ -703,7 +753,7 @@ numbers are unchanged. The changes are to the presentation:
 
 The existing tables are renumbered from 1–3 to 4–6.
 
-## Closed-form and exposition build
+### Closed-form and exposition build
 
 This build publishes the two preceding changes: §14.8 and the exposition
 revision. The PDF has 192 pages, twelve more than the status coverage build:
@@ -736,7 +786,7 @@ this build.
 
 [Updated manuscript](builds/psi-closed-form-20261109.pdf) · [Build record](builds/psi-closed-form-20261109.json)
 
-## Psi lower bound and tail-proof build
+### Psi lower bound and tail-proof build
 
 Three things change. None alters a theorem statement.
 
@@ -768,7 +818,7 @@ are unchanged.
 
 [Updated manuscript](builds/psi-lower-bound-20261109.pdf) · [Build record](builds/psi-lower-bound-20261109.json)
 
-## Combined build
+### Combined build
 
 The two preceding builds were prepared independently from the same base, so
 neither contains the other's changes. This build typesets their merged
@@ -804,7 +854,7 @@ says what each contains. Earlier published PDFs and records are unchanged.
 
 [Updated manuscript](builds/combined-psi-20261109.pdf) · [Build record](builds/combined-psi-20261109.json)
 
-## All-budget controller build
+### All-budget controller build
 
 This publication records the [complete arbitrary-law controller theorem](../../lean/ThresholdHC/ArbitraryLawController/Full.lean)
 and its [99-statement audit](../../results/arbitrary-law-controller-20261116/README.md).
@@ -835,7 +885,7 @@ there are no unresolved references or new layout defects.
 
 All prior PDFs, source packages and evidence remain unchanged.
 
-## Psi sharpness build
+### Psi sharpness build
 
 This publication separates the checked statements of Proposition 14.9 and
 Theorem 14.11 from the remaining uniform-power results in Lemma 14.12 and
@@ -864,7 +914,7 @@ remaining proof boundary. All previous PDFs and records remain unchanged.
 
 [Published manuscript](builds/psi-sharpness-20261116.pdf) · [Build record](builds/psi-sharpness-20261116.json)
 
-## Uniform power-law build
+### Uniform power-law build
 
 This publication completes the frozen targets for Lemma 14.12 and
 Theorem 14.13: actual core entropy, deterministic quantile comparison,
@@ -886,7 +936,7 @@ PDFs and records remain unchanged.
 
 [Published manuscript](builds/power-window-complete-20261116.pdf) · [Build record](builds/power-window-complete-20261116.json)
 
-## Review corrections build
+### Review corrections build
 
 This publication typesets the corrections of a line-by-line review of the
 paper's text, merged in
@@ -932,7 +982,7 @@ workflow runs. All earlier PDFs and records remain unchanged.
 
 [Published manuscript](builds/review-corrections-20261117.pdf) · [Build record](builds/review-corrections-20261117.json)
 
-## Sharp RMS constant build
+### Sharp RMS constant build
 
 This publication states the sharp constant of the RMS lower bound. For
 every gap law and every $B\ge1$,

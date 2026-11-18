@@ -60,5 +60,6 @@ All modules are in [SmoothDensity](../lean/ThresholdHC/SmoothDensity/Full.lean).
 The [native audit](../results/smooth-density-20261105/README.md) checks
 15 independent exact statements and 46 transitive axiom reports.
 [Appendix W](../paper/v6/appendix-smooth-density.tex) supplies the updated
-paper proof. The [149-page manuscript](../paper/v6/builds/smooth-density-20261105.pdf)
-includes that appendix and the revised verification scope.
+paper proof. It first appeared in the
+[149-page build of 5 November](../paper/v6/builds/smooth-density-20261105.pdf);
+the [current manuscript](../paper/v6/README.md) keeps it as Appendix W.

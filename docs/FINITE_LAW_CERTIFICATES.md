@@ -131,9 +131,11 @@ boundaries. The source is available for independent inspection and rechecking;
 replay of every external Mathlib module is not claimed.
 
 The [envelope/transfer extension](ENVELOPE_TRANSFER_CERTIFICATES.md) now covers
-zero-residual `GapEnvelope`, rounding and conditional transfer outputs. Remaining
-#85 work includes global menu/DP/approximation certificates, concrete
-planner prices/allocations/schedules, and floating calculators. Arbitrary
+zero-residual `GapEnvelope`, rounding and conditional transfer outputs. The
+[global selection certificates](GLOBAL_SELECTION_CERTIFICATES.md) cover
+bounded menu, DP and approximation outputs. Remaining #85 work: full solver
+transcripts, other selection entry points, concrete planner
+prices/allocations/schedules, and floating calculators. Arbitrary
 external-oracle promises remain assumptions. Statistical observation models and
 Python/PRNG execution remain separate in #86. The mathematical core and its
 published statistical theorems are unchanged.

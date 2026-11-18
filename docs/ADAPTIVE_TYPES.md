@@ -33,7 +33,7 @@ decision tree can address. The likelihood ratio is bounded by $3^n$,
 where $n$ is the observation horizon, even when labels are arbitrarily
 large. Local work is measured under the same reference law throughout.
 
-## Verification and remaining work
+## Verification and later results
 
 The [native record](../results/adaptive-types-20261105/README.md) checks
 48 exact statements and 48 transitive axiom reports over a 332-module

@@ -20,16 +20,23 @@ the [evidence index](../results/README.md) explains published checkpoints.
 | Hard-budget RMS research package | `python -m unittest discover -s toolkit/tests -p 'test_budget_ladders.py' -v`; `python research/2026-10-30-hard-budget-rms/verify.py` | Driver unit tests and exact rational recurrence, schedule and timeout-counterexample audits, written to `.runtime/hard-budget-rms/validation.json`. There are no tracked evidence records to compare with. They check finite computations, not the [paper proof](../research/2026-10-30-hard-budget-rms/NOTE.md). |
 | Confidence-transfer research package | `python -m unittest discover -s toolkit/tests -p 'test_confidence*.py' -v`; `python research/2026-10-30-confidence-transfer/verify_transfer.py --output .runtime/confidence-transfer/transfer.json`; `python research/2026-10-30-confidence-transfer/verify_anytime.py` | Driver unit tests; exact rational smoothing, likelihood-factorization and null-work audits; exact error-spending identities and the optional-stopping path count, written to `.runtime/confidence-transfer/`. There are no tracked evidence records to compare with. They check finite computations, not the [paper proof](../research/2026-10-30-confidence-transfer/NOTE.md). |
 | Imported inputs and research packages | `python tools/verify_inputs.py`; `python tools/verify_research.py`; `python tools/verify_population_research.py` | Input identities and maintained research replay. Research diagnostics use temporary output and `.runtime/`; original records remain intact. |
-| Main RMS law | `python tools/verify_tier6.py --sequential --require-complete`; `python tools/verify_blind_upper_components.py --sequential` | Exact formal audits of both directions. Tier 6 writes tracked `results/`; use a disposable checkout. The upper audit writes `.runtime/`. |
+| Main RMS law | `python tools/verify_sharp_rms.py --replay`; `python tools/verify_blind_upper_components.py --sequential`; `python tools/verify_tier6.py --sequential --require-complete` | Exact formal audits of both directions. The first checks the sharp lower coefficient $1/6$ and writes nothing; the second checks the upper coefficient $512$ and writes `.runtime/`; the third checks the original frozen lower target with $1/64$ and writes tracked `results/`, so use a disposable checkout. |
 | Any Lean source | `python tools/verify_project_axioms.py`; add `--replay-main-theorem` for the kernel replay | Builds every module under `lean/ThresholdHC` and checks the transitive axioms of every constant they declare, every exported instance (named, global, default priority, no new data-carrying instance on a type the project does not define) and the fingerprint of every project definition against `tools/definition_lock.json`. A changed or removed definition fails; a new one fails until `--add-definitions` adds it, which never rewrites an existing entry. Registers no theorem and writes only with `--add-definitions`. It does not check exact statement types; run the affected result's audit as well. |
-| Finite-law relative approximation | `python tools/verify_finite_selection_approximation.py`; `python -m unittest discover -s tools -p 'test_finite_selection_approximation.py' -v` | Checks the new 79-file specification/dependency lock, 12 exact statements and 93 transitive reports; writes fresh `.runtime/finite-selection/` evidence. The [scope](FINITE_SELECTION_APPROXIMATION.md) separates mathematical endpoints and extension counts from bit complexity and numerical/Python execution. |
+| Finite-law relative approximation | `python tools/verify_finite_selection_approximation.py`; `python -m unittest discover -s tools -p 'test_finite_selection_approximation.py' -v`; for the two component targets, `python tools/verify_selection_approximation.py` | Checks the 79-file specification/dependency lock, 12 exact statements and 93 transitive reports; writes fresh `.runtime/finite-selection/` evidence. The [scope](FINITE_SELECTION_APPROXIMATION.md) separates mathematical endpoints and extension counts from bit complexity and numerical/Python execution. |
 | Another Lean result | [Theorem-to-audit map](../lean/README.md#main-theorem-entry-points), [baseline and tier sequence](#lean-kernel-checks) | Run the affected result's exact-target/axiom audit, including affected downstream results when shared dependencies change. Check locks first. |
 | Verification logic or registration | Relevant audit plus its matching `test_*.py` module; `python -m unittest discover -s tools -p 'test_*.py' -v` for all guard tests | Tests exercise validation guards; they do not replace the mathematical kernel audits. Use a disposable checkout for audits that overwrite published files. |
 | Numerical checks and recorded benchmarks | [Integrity and numerical sequence](#integrity-numerics-and-unit-tests), [benchmark protocol](../benchmark/README.md) | Some commands write `results/`. Replaying stored samples is distinct from rerunning held-out experiments. |
 
-For complete integration coverage and ordering, follow
-[checks.yml](../.github/workflows/checks.yml) and the separate
-[toolkit workflow](../.github/workflows/toolkit.yml). Run only the relevant checks
+CI runs on pull requests and on pushes to `main`. In
+[checks.yml](../.github/workflows/checks.yml) the `research-evidence` and
+`numerical-evidence` jobs always run. The four Lean jobs, `lean-kernel`,
+`lean-all-modules`, `entropy-tail-upper` and `stopping-program`, run when
+[lean_ci.py](../.github/lean_ci.py) selects them from the changed files, or on
+a manual run; a green run on a documentation-only change ran no Lean audit.
+Three further workflows cover the [toolkit](../.github/workflows/toolkit.yml),
+the [v6 PDF](../.github/workflows/manuscript.yml) and
+[experiment persistence](../.github/workflows/experiment-persistence.yml).
+For complete integration coverage and ordering, follow those files. Run only the relevant checks
 for a focused local change; report exactly what ran. The detailed sections below
 retain the scope and limitations of each audit.
 
@@ -316,7 +323,8 @@ axioms of every declaration in the five upper-bound module groups. Without
 takes much longer. With the flag it recompiles only the sampling and execution
 groups and reuses objects built earlier, so run it after the first audit.
 `verify_entropy_tail_components.py` audits the quantile model alone, and
-`verify_entropy_tail_assembly.py` an intermediate stage. Their
+`verify_entropy_tail_assembly.py` an intermediate stage. CI does not run
+these two. Their
 [lock](../tools/entropy_tail_quantile_specification_freeze.json) records the
 rename of #33's namespace and the superseded lock's hashes. All three write
 timestamped evidence under `.runtime/`.
@@ -416,6 +424,9 @@ Run `python tools/verify_quantile_price_upper.py` for the original arbitrary-law
 comparison $K\le Q\le(31/20)K$ and the $16/9$ separated-cost bound. The audit
 includes the earlier $8/5$ endpoints after sharing their pointwise reduction.
 [Six exact statements and 31 axiom reports](../results/quantile-price-20261104/README.md)
+`python tools/verify_quantile_price_bounds.py` replays, in exact rational
+arithmetic, the inequalities of that comparison and of its lower example;
+CI runs it in `research-evidence`.
 
 Run `python tools/verify_optimal_quantile_factor.py` for the strict rational
 bracket of width $10^{-12}$ around the sharp factor. The reduction to the
@@ -640,8 +651,9 @@ unchanged. Run the guard regressions listed below as well. See the
 [validation record](../research/2026-10-27-nonlinear-critical/validation.json).
 These are reproducibility and sanity checks for the preserved paper bundle.
 The completed statistical Lean theorems are checked by the separate audits
-above. CI runs this replay on research changes and checks the five locked
-Route A Lean roots after the complete Tier 6 audit. These replay checks do
+above. CI runs this replay on every pull request and push to `main`, and
+checks the five locked Route A Lean roots in `lean-kernel` after the complete
+Tier 6 audit. These replay checks do
 not themselves certify the continuum paper proof.
 
 Historical research `validate.py` and acceptance scripts preserve their original
@@ -683,13 +695,11 @@ python tools/verify_locks.py
 python tools/verify_lean_sources.py
 python tools/check_targets_numeric.py
 python tools/check_targets2_numeric.py
-python -m unittest discover -s tools -p 'test_validation.py' -v
-python -m unittest discover -s tools -p 'test_tier3_validation.py' -v
-python -m unittest discover -s tools -p 'test_tier4_validation.py' -v
+python -m unittest discover -s tools -p 'test_*.py' -v
+mkdir -p .runtime/drift && touch .runtime/drift/start && sleep 1
 python tools/check_power_bracket.py
 python proposals/constants/bias_audit.py
 python proposals/constants/uniform_constant_checks.py
-mkdir -p .runtime/drift && touch .runtime/drift/start
 python constants/score_constants.py constants/candidate.json
 cp results/constants_last.json .runtime/drift/constants_candidate.json
 python constants/score_constants.py constants/candidate_theory.json
@@ -851,6 +861,8 @@ reports every new declaration's transitive axioms. Their six-test guard
 suites are `test_psi_sharpness.py` and `test_power_window.py`; CI runs both
 suites and both audits. Existing published records retain their original scope.
 
+## Sharp RMS coefficient and square-root cap
+
 Run `python tools/verify_sharp_rms.py --replay` for 38 exact statements and
 343 transitive axiom reports over the 54 modules of `lean/ThresholdHC/SharpRMS`.
 It checks the sharp RMS lower coefficient $1/6$ for every gap law and every
@@ -972,7 +984,7 @@ and the original-experiment endpoint law. The
 [full construction record](../results/law-adaptation-realization-20261105/README.md)
 binds eight fresh empty compiler logs and the complete 648-source closure.
 The [theorem and boundary](FINITE_FAMILY_ADAPTATION.md) retain the finite-family
-premise and the open unrestricted adaptation question.
+premise; the arbitrary-law theorem has its own audits below.
 Run `python -m unittest discover -s toolkit/tests -p test_law_identification.py -v`
 for the executable rational pilot. Those tests do not formally verify Python.
 
@@ -983,16 +995,19 @@ for the executable rational pilot. Those tests do not formally verify Python.
 Run `python tools/verify_arbitrary_law_entropy.py` for 15 exact statements and
 transitive axiom reports covering finite entropy transport and its factor-three
 band penalty. The [scope](ARBITRARY_LAW_FORMALIZATION.md) separates this from
-the remaining countable measure and statistical controller work.
+the countable measure and statistical controller work, which have their own
+audits below.
 
 Run `python tools/verify_arbitrary_law_envelope.py` for 25 exact statements
-and 24 transitive reports for the deterministic finite CDF envelope. It does
-not yet prove the statistical pilot event supplying the grid bounds.
+and 24 transitive reports for the deterministic finite CDF envelope. The
+statistical pilot event that supplies the grid bounds is proved by a later
+audit below.
 
 Run `python tools/verify_arbitrary_law_stage.py` for 17 exact statements and
 16 transitive reports for observable paid-pilot/selected-continuation stages.
 The [formal scope](ARBITRARY_LAW_FORMALIZATION.md) distinguishes this execution
-component from the unproved statistical instantiation and final controller.
+component from the statistical instantiation and the final controller, which
+later audits below check.
 
 Run `python tools/verify_arbitrary_law_countable.py` for 16 exact statements
 and transitive reports for countable entropy transport and its canonical
@@ -1101,8 +1116,8 @@ statements and transitive reports in which the estimator the planner returns
 is named: its choice between the plan and the constant `ρ/2`, and in both
 branches budget `B` and risk at most `44801 K` with exact integrals, or the
 factor-two coefficient for every tight enclosure.
-Run `python tools/verify_dyadic_summability.py` for 5 exact statements and
-transitive reports proving that the dyadic series of the frozen targets H3
+Run `python tools/verify_dyadic_summability.py` for 7 exact statements and
+5 transitive reports proving that the dyadic series of the frozen targets H3
 and H4 converge, with their frozen bounds as `HasSum` statements.
 Run `python tools/verify_robust_error_transfer.py` for 33 exact statements
 and transitive reports on the first part of the robust continuation: the

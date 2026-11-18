@@ -3,7 +3,9 @@
 [Read the manuscript](paper.pdf) · [Open the LaTeX project](main.tex)
 
 This was the combined research draft before the [consolidated v6 paper](../v6/README.md),
-which is now the current single paper and includes this one unchanged. It
+which is now the current single paper. Version 6 incorporates this one with
+the editorial changes its README lists; this manuscript and its PDF are
+unchanged. It
 contains the original minimax law and
 unbiased characterization, the 713 construction, rare-event power regimes,
 and the critical quadratic result correcting the matching-Psi conjecture.
@@ -28,7 +30,10 @@ and small budgets are included in the proof. See the
 in the theorem and is not a data-computable confidence interval for unknown laws.
 
 The original RMS law is Lean-checked in both directions, with lower coefficient
-1/64 and upper coefficient 512 and one distribution-blind algorithm. The full
+1/64 and upper coefficient 512 and one distribution-blind algorithm. Lean later
+proved the sharp lower coefficient 1/6, for revealed and selected magnitudes
+too; see Appendix AA of version 6 and
+[`SharpRMS`](../../lean/ThresholdHC/SharpRMS/Specification.lean). The full
 critical minimax law is also proved in Lean in both directions, including the
 common pair, population transfer, endpoint termination and observable upper
 construction with coefficient 100000. The exact Psi formula, rate and failure

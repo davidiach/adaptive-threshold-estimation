@@ -1,16 +1,22 @@
 # Distribution-blind minimax upper bound
 
-The original RMS minimax law is now Lean-checked in both directions:
+The RMS minimax law is Lean-checked in both directions:
 
-$$\frac1{64}\,\omega_\mu(B^{-1/2})\le R_\mu(B)\le512\,\omega_\mu(B^{-1/2}),\qquad B\ge1.$$
+$$\frac16\,\omega_\mu(B^{-1/2})\le R_\mu(B)\le512\,\omega_\mu(B^{-1/2}),\qquad B\ge1.$$
+
+This note is about the upper side.
 
 The [upper theorem](../lean/ThresholdHC/BlindUpper/Full.lean),
 `distribution_blind_upper`, inhabits the unchanged
 [frozen specification](../lean/ThresholdHC/BlindUpper/Specification.lean).
 It chooses a single seed space and budget-indexed estimator family before
 quantifying over every probability gap law. `minimax_upper_bound` gives the
-displayed upper inequality. The [lower theorem](../lean/ThresholdHC/Tier6/Full.lean)
-uses the same `minimaxRisk`. Neither coefficient is claimed optimal.
+displayed upper inequality. Both lower theorems use the same `minimaxRisk`:
+`sharp_lower` in [SharpRMS/Full.lean](../lean/ThresholdHC/SharpRMS/Full.lean),
+with coefficient $1/6$, and the frozen `minimax_lower_bound` in
+[Tier6/Full.lean](../lean/ThresholdHC/Tier6/Full.lean), with $1/64$. The lower
+coefficient $1/6$ is the largest possible (`sharp_coefficient`); the upper
+coefficient $512$ is not claimed optimal.
 
 The policy and output observe only the random seed and requested flips. The
 seed contains independent geometric levels and uniform marks. It contains no
@@ -61,5 +67,5 @@ coefficients 1/64 and 8192 and a law-independent family indexed by budget
 and failure probability. The uniform unbiasedness converse, observable 713 construction, matching critical
 rare-event upper, and exact Psi comparison have separate completed audits
 in [VERIFY](VERIFY.md). The original upper, critical upper, and Psi theorem
-links use checkpoint `eabf274`; the [current v5 guide](../paper/v5/README.md)
-records the later checkpoints for the converse, 713 realization, and confidence law.
+links use checkpoint `eabf274`; the [v5 guide](../paper/v5/README.md), which
+version 6 supersedes, records the later checkpoints for the converse, 713 realization, and confidence law.

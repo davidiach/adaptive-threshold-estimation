@@ -18,10 +18,17 @@ $$
 In particular $N=\max(1,\lceil4B/3\rceil)$ guarantees the factor-two
 stopping test and therefore $R(B)\le P_N(B)\le16R(B)$. For $N\ge B$ one
 may take $k=1+2(B/N)^{1/3}$. This gives relative convergence of both
-optimized values uniformly in the law and rarity. The exponent is a
-sufficient rate. Its optimality is open. The [Lean proof](../lean/ThresholdHC/GenieRate/Full.lean)
+optimized values uniformly in the law and rarity. The [Lean proof](../lean/ThresholdHC/GenieRate/Full.lean)
 checks the general comparison and both corollaries against the original programs.
 [Exact statements and kernel output](../results/genie-rate-20261104/README.md)
+
+**A smaller cap and a faster rate.** For $0<\rho\le1/2$ and $B>0$, the
+[square-root cap comparison](../lean/ThresholdHC/SquareRootCap/Full.lean)
+improves the condition above to $B\le N(k-1/k)^2$. So every $N\ge4B/9$
+passes the factor-two test and gives $R\le P_N\le16R$, and $P_N/G_N\le k$
+with $k-1/k=\sqrt{B/N}$, a square-root rate that supersedes the cube-root
+rate above. Run `python tools/verify_square_root_cap.py`; the
+[audit record](../results/sharp-rms-20261117/README.md) gives the scope.
 
 ## Proof
 
@@ -92,8 +99,9 @@ This is a uniform square-root rate for the ordinary program. The
 for every real $\rho$ and $B\ge0$; in the statistical domain
 $0<\rho\le1/2$, $B>0$, its [risk corollary](../lean/ThresholdHC/FiniteCapTruncation/Risk.lean)
 gives $R\le P_N\le8(1+\sqrt{B/(N+1)})R$. Thus $N+1\ge B$ suffices for
-$P_N\le16R$. This last bound does not assert the genie stopping criterion
-$P_N\le2G_N$ at that smaller cap.
+$P_N\le16R$. The genie stopping criterion $P_N\le2G_N$ at that cap follows
+from the square-root cap comparison above, since every integer $N\ge1$ with
+$N+1\ge B$ satisfies $N\ge4B/9$.
 [Ten exact statements and native evidence](../results/finite-cap-truncation-20261105/README.md)
 
 To prove the rate, take a feasible certificate at cap $M\ge N$ with bias
@@ -116,8 +124,9 @@ claim. The construction does not assume root intensity one, finite support,
 a lower gap bound, or a finite inverse moment.
 
 The square-root bound improves the earlier cube-root consequence for
-$P_N/P_\infty$. Its optimality and the optimal relative convergence of
-the genie program remain open.
+$P_N/P_\infty$, and the square-root cap comparison gives the genie program
+the same order. The sharp constants and rate remain open
+([#88](https://github.com/davidiach/adaptive-threshold-estimation/issues/88)).
 
 ## Scope
 
