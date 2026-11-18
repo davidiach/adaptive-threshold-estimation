@@ -71,7 +71,10 @@ Regression tests do not replace the Lean kernel audits. The
 runs on pull requests and on pushes to `main`. The research and numerical
 jobs always run. The four Lean jobs run when `.github/lean_ci.py` selects
 them from the changed files; a manual run, or a change to proofs, the
-toolchain or the workflow, runs all of them. A full run covers every
+toolchain or the workflow, runs all of them. On pull requests the Lean jobs
+restore compiled project modules from earlier runs and rebuild only the
+modules whose sources, imports or toolchain changed; pushes to `main` and
+manual runs build from scratch. A full run covers every
 maintained audit except `verify_entropy_tail_components.py` and
 `verify_entropy_tail_assembly.py`, which CI does not run.
 [Toolkit CI](../.github/workflows/toolkit.yml) separately checks the Python
