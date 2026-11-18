@@ -1,0 +1,84 @@
+{
+  "compiler": "Lean (version 4.36.0-rc1, x86_64-w64-windows-gnu, commit c9afcddf514a6772bd4d649f7cfc04eff0b9f15e, Release)",
+  "built_lean_tree": "71ebb71cdc57f16898b35fb988848cdd2381631c",
+  "proof_checkout_lean_tree": "32c4200a09ba4655589de36f2d2ca0beb85d7ddf",
+  "dependency_audit_sha256": {
+    "2026-11-17-rms-constants": "4856527ea918d0b5f40979e477f0794ec24d31b6ae9f4ced15ad8a4211c84067",
+    "2026-11-18-pilot-feedback": "e5b06f28d025a3f029b99e36802de24a6eb66b3d8d993c31a11fbe1fc7916268"
+  },
+  "rebuilt_dependencies": [
+    "SharpAttainment",
+    "LargeBudgetFresh",
+    "RevisitKernel",
+    "RevisitPolicy",
+    "PilotPolicy",
+    "LargeBudgetBinomial",
+    "PilotExperiment",
+    "RevisitPolynomial",
+    "PilotPolynomial",
+    "PilotTable",
+    "PilotCertificate",
+    "SharpEntropy",
+    "LargeBudgetTable",
+    "LargeBudgetWitness",
+    "PilotWitness",
+    "FeedbackTable",
+    "FeedbackRisk",
+    "FeedbackComparison",
+    "FeedbackSeparation",
+    "OrderedPolicy",
+    "OrderedExperiment",
+    "OrderedCounts",
+    "OrderedBayes",
+    "OrderedReduction",
+    "OrderedPopulation"
+  ],
+  "source_sha256": {
+    "ScheduledBounds.lean": "a1df758179b8f8577624caf029ff527709bb4d8a6c97aefe8bb5375cd6f97b8c",
+    "ScheduledPolicy.lean": "ed473880fdf0ebe3bce02cb0cdc6d32756e64664d302dcd0fb33779b9898cc5d",
+    "FixedHorizonRisk.lean": "464302f6226bd7c7242904ec42c1b9e85b7add0f7bd394f552926ea05168e2ed",
+    "ScheduledBayes.lean": "6b065b1a86aecfc6bf98dac14be8b612d974c8669a1867887811213485eeac96",
+    "ScheduledCertificate.lean": "a4cad6a40eeb78474b3586a6cb277e951d0ff6f710d5965eda04990184b6d6d3",
+    "ScheduledPopulation.lean": "35df980a4532b9e39050e377b8f5b693c2f9629b8ad2d458de382cedc9376e21",
+    "AuditScheduled.lean": "6814bd2ce9c8e2cf98dbd655b12938b9e9bb08b8d9ed512d2225c04cf2c45e15"
+  },
+  "axioms": {
+    "certified": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "certificate_total": [
+      "propext"
+    ],
+    "expect": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "four_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "rms_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "rms_separation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "kernel_replay": [
+    "ScheduledBounds",
+    "ScheduledPolicy",
+    "FixedHorizonRisk",
+    "ScheduledBayes",
+    "ScheduledCertificate",
+    "ScheduledPopulation"
+  ],
+  "independent_calculation": "MSE >= 34954180699172566/1000000000000000000, RMS > 186960371/10^9"
+}

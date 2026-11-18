@@ -210,6 +210,12 @@ the original population experiment, in a second
 [research package](../research/2026-11-18-pilot-feedback/README.md) with its
 own replay record; it is not in the CI-audited library or the paper.
 
+Even if the ordered pilot chooses when to update once during the seven
+follow-ups, and all answers so far determine the second batch, the worst-case
+RMS is at least $0.186960371$. The fully adaptive policy still beats this
+larger class. The [scheduled-update proof](../research/2026-11-18-scheduled-update/README.md)
+covers randomized plans and full-transcript estimates in the population experiment.
+
 The confidence theorem [`confidence_characterization`](../lean/ThresholdHC/Confidence/Full.lean)
 proves the explicit bounds
 
