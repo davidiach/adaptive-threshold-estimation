@@ -50,10 +50,11 @@ later changes bear on it:
   [`SharpCoefficientStatement`][SharpLower] proves that no larger constant
   holds, and the oracle forms carry $1/6$ too. Their audit pins the
   specification by hash. Sections 9 and 10 list it.
-- **Kernel replay.** CI now replays three closures through the independent
-  kernel checker: the modules behind the main RMS law (`Tier6.Full` and
-  `BlindUpper.Full`), the 54 `SharpRMS` modules and the twelve
-  `ArbitraryLawController` modules. The rest of the tree is not replayed.
+- **Kernel replay.** CI now replays, through the independent kernel checker,
+  the import closure of the main RMS law (`Tier6.Full` and `BlindUpper.Full`)
+  and the 54 `SharpRMS` modules and twelve `ArbitraryLawController` modules
+  themselves. The rest of the tree, including the other modules those two
+  sets import, is not replayed.
 - **Definition lock.** Since 14 November the whole-project audit checks a
   fingerprint of every project definition (section 10).
 

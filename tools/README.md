@@ -95,17 +95,21 @@ altering the original snapshots.
 
 Most Lean kernel audits added from 4 November onward take no build options
 (two accept only `--lake`). They build with Lake, check exact statements and
-transitive axioms, print the report and write no files. The exceptions are
-`verify_sharp_rms.py` (`--replay`, `--jobs`), `verify_project_axioms.py`
-(`--replay-main-theorem`, `--jobs`, `--add-definitions` and others), and the
-output-certificate audits and `verify_finite_selection_approximation.py`,
-which accept `--no-build` and `--output-dir`, and
-`verify_selection_approximation.py` (`--lean-exe`, `--package-cache`,
-`--output-dir`). All of these write a fresh directory under `.runtime/`.
+transitive axioms, print the report and write no files. Some take options:
+`verify_sharp_rms.py` (`--replay`, `--jobs`) and `verify_project_axioms.py`
+(`--replay-main-theorem`, `--jobs`, `--add-definitions` and others) still
+write no files, except that `--add-definitions` adds entries to
+`definition_lock.json`. The output-certificate audits and
+`verify_finite_selection_approximation.py` accept `--no-build` and
+`--output-dir`, and `verify_selection_approximation.py` accepts `--lean-exe`,
+`--package-cache` and `--output-dir`; these six write a fresh directory under
+`.runtime/`.
 
 ## Unknown-law adaptation audits
 
-These 36 audits check the adaptation theorems for an unknown gap law. Each
+These audits check the adaptation theorems for an unknown gap law: 35 of
+them, plus the dyadic-summability audit of two frozen targets, which shares
+their style and is listed here for that reason. Each
 builds with Lake, restates its exact statements and reports transitive
 axioms. The verification guide describes every one with its statement count;
 the links below go to those sections.

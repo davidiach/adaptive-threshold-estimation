@@ -149,7 +149,7 @@ Project files at the top level:
 | [CONTRIBUTING.md](CONTRIBUTING.md), [AGENTS.md](AGENTS.md) | Setup, where to edit and how to check a change; the second is the working guide for AI agents |
 | [CITATION.cff](CITATION.cff), [LICENSE](LICENSE), [LICENSE-CC-BY-4.0](LICENSE-CC-BY-4.0), [LICENSES.md](LICENSES.md) | How to cite the work, the two licenses and which files each covers |
 | `requirements.txt` | Pinned Python packages for the tools and the numerical checks |
-| [.github/](.github/workflows/checks.yml) | The CI workflows, and `lean_ci.py`, which selects the Lean audits a change needs |
+| `.github/` | The CI workflows, such as [checks.yml](.github/workflows/checks.yml), and [lean_ci.py](.github/lean_ci.py), which selects the Lean audits a change needs |
 | `.gitattributes`, `.gitignore` | Byte-exact storage of tracked files, which the hash locks rely on, and ignored build output |
 
 ## Check the proofs

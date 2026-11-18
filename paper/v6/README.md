@@ -11,8 +11,8 @@ the [review corrections build](#review-corrections-build), with 192 pages.
 
 [status.json](status.json) tracks 33 results. Lean checks 32 of them. One,
 the critical-window simplification (Corollary 14.14 and Remark 14.15), has a
-paper proof only. `paper.pdf` in this folder is the preserved first build of
-version 6, with 134 pages. The published builds are in `builds/`, and the
+paper proof only. `paper.pdf` in this folder is the earliest v6 build kept in
+the repository, from commit `ac1fbb7`, with 134 pages; it predates `builds/`. The published builds are in `builds/`, and the
 [build history](#build-history) lists them. Every published build keeps its
 original PDF and verification scope.
 
@@ -219,7 +219,7 @@ current state use the sections above and the
 [status table](../../docs/RESULTS.md#verification-status).
 
 The table lists all 48 published builds, newest first. `paper.pdf` in
-this folder, the first build of version 6, is described under
+this folder, the earliest v6 build kept in the repository, is described under
 [Preserved build record](#preserved-build-record).
 
 | Date | Pages | Build | Files | Described in |
@@ -234,7 +234,7 @@ this folder, the first build of version 6, is described under
 | 2026-11-09 | 180 | `psi-lower-bound-20261109` | [PDF](builds/psi-lower-bound-20261109.pdf) · [record](builds/psi-lower-bound-20261109.json) | [Psi lower bound and tail-proof build](#psi-lower-bound-and-tail-proof-build) |
 | 2026-11-07 | 180 | `status-coverage-20261107` | [PDF](builds/status-coverage-20261107.pdf) · [record](builds/status-coverage-20261107.json) | [Status coverage build](#status-coverage-build) |
 | 2026-11-06 | 181 | `arbitrary-law-adaptation-20261106` | [PDF](builds/arbitrary-law-adaptation-20261106.pdf) · [record](builds/arbitrary-law-adaptation-20261106.json) | [Eventual oracle adaptation for arbitrary unknown laws](#eventual-oracle-adaptation-for-arbitrary-unknown-laws) |
-| 2026-11-06 | 174 | `arbitrary-law-tail-20261106` | [PDF](builds/arbitrary-law-tail-20261106.pdf) · [record](builds/arbitrary-law-tail-20261106.json) | [Eventual oracle adaptation for arbitrary unknown laws](#eventual-oracle-adaptation-for-arbitrary-unknown-laws) |
+| 2026-11-06 | 174 | `arbitrary-law-tail-20261106` | [PDF](builds/arbitrary-law-tail-20261106.pdf) · [record](builds/arbitrary-law-tail-20261106.json) | [Arbitrary-law tail certificates](#arbitrary-law-tail-certificates) |
 | 2026-11-05 | 169 | `gap-law-menus-20261105` | [PDF](builds/gap-law-menus-20261105.pdf) · [record](builds/gap-law-menus-20261105.json) | [Concrete finite-law selection menus](#concrete-finite-law-selection-menus) |
 | 2026-11-05 | 169 | `law-adaptation-20261105` | [PDF](builds/law-adaptation-20261105.pdf) · [record](builds/law-adaptation-20261105.json) | [Eventual adaptation within a finite candidate family](#eventual-adaptation-within-a-finite-candidate-family) |
 | 2026-11-05 | 169 | `law-adaptation-realization-20261105` | [PDF](builds/law-adaptation-realization-20261105.pdf) · [record](builds/law-adaptation-realization-20261105.json) | [Formal realization of finite-family adaptation](#formal-realization-of-finite-family-adaptation) |

@@ -23,7 +23,7 @@ Each note states one result, its scope and how it was checked.
 
 | Page | Subject |
 |---|---|
-| [RESULTS.md, minimax law](RESULTS.md#minimax-law-and-unbiasedness) | The sharp lower constant $1/6$ and the constants for large budgets. They have no separate note; the written proof is Appendix AA of the paper |
+| [RESULTS.md, minimax law](RESULTS.md#minimax-law-and-unbiasedness) | The sharp lower constant $1/6$ and the constants for large budgets. They have no separate note. Appendix AA of the paper proves $1/6$ and $\sqrt{59/2100}$; the bracket for $B\ge25$ is written up only in the [research package](../research/2026-11-17-rms-constants/README.md#the-coefficient-for-budgets-of-at-least-25) |
 | [BLIND_UPPER.md](BLIND_UPPER.md) | The distribution-blind minimax upper bound |
 | [SMOOTH_DENSITY.md](SMOOTH_DENSITY.md) | The smooth-density theorem |
 | [OBSERVED_STATES.md](OBSERVED_STATES.md) | Observed-state lower bounds for finitely many cells |

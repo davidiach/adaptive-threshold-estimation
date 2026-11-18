@@ -145,7 +145,7 @@ Here $r_\mu(B,\delta)$ is the minimax uniform error radius at failure probabilit
 | Lower, $B\ge25$ | $\sqrt{59/2100}\approx0.1676$ | `large_budget_lower` in the same file | CI, the same audit | Appendix AA |
 | Lower, $B\ge25$, stronger | $0.175198$; the best constant is at most $0.186752$ | `lower_25` and `pilot_coefficient_upper` in the [research package](../research/2026-11-17-rms-constants/README.md#the-coefficient-for-budgets-of-at-least-25) | The package's own kernel replay records; not in CI | No |
 | Lower, original frozen target | $1/64$ | `minimax_lower_bound` in [Tier6/Full.lean](../lean/ThresholdHC/Tier6/Full.lean) | CI, `tools/verify_tier6.py` | §5 |
-| Upper, $B\ge1$ | $512$ | `minimax_upper_bound` in [BlindUpper/Full.lean](../lean/ThresholdHC/BlindUpper/Full.lean) | CI, `tools/verify_blind_upper_components.py` | §§4 and 5 |
+| Upper, $B\ge1$ | $512$ | `minimax_upper_bound` in [BlindUpper/Full.lean](../lean/ThresholdHC/BlindUpper/Full.lean) | CI, `tools/verify_blind_upper_components.py` | §18 derives $512$; §5 proves the bound with a larger constant |
 
 The lower constant is settled for $B\ge1$. The upper constant is not, so the two sides remain a factor $3072$ apart.
 

@@ -5,7 +5,8 @@ Use this map to find a formal statement, its proof, and the audit that checks it
 [verification setup](../docs/VERIFY.md#setup) covers Python, Lean, and Mathlib.
 Commands below run from the repository root.
 
-`ThresholdHC/` holds 1,320 Lean files in 77 directories. Most results have a
+`ThresholdHC/` holds 1,320 Lean files: 77 top-level directories and seven root
+files beside them. Most results have a
 directory with a `Specification.lean`, which states the targets, and a
 `Full.lean`, which proves them. `ThresholdHC.lean` is the frozen root of the
 original 33 modules; a default `lake build` reaches only those.
@@ -20,7 +21,7 @@ original 33 modules; a default `lake build` reaches only those.
 | Confidence radius | [Confidence](ThresholdHC/Confidence/Specification.lean) | `python tools/verify_confidence.py` |
 | Unbiased estimation | [UnbiasedConverse](ThresholdHC/UnbiasedConverse/Specification.lean), [Observable713](ThresholdHC/Observable713/Full.lean) | `python tools/verify_unbiased_converse.py`, `python tools/verify_observable713.py` |
 | Rare events for every gap law | [EntropyTailSharp](ThresholdHC/EntropyTailSharp/Specification.lean) | `python tools/verify_entropy_tail_sharp.py` |
-| The critical quadratic law | [CriticalEntropy](ThresholdHC/CriticalEntropy/CriticalMinimax.lean), [CriticalUpper](ThresholdHC/CriticalUpper/Full.lean) | `python tools/verify_critical_all_sizes.py`, `python tools/verify_critical_upper_components.py --sequential` |
+| The critical quadratic law | [CriticalEntropy](ThresholdHC/CriticalEntropy/CriticalMinimax.lean), [CriticalUpper](ThresholdHC/CriticalUpper/Full.lean) | `python tools/verify_critical_components.py --sequential`, `python tools/verify_critical_upper_components.py --sequential` |
 | Adaptation to an unknown gap law | [ArbitraryLawController](ThresholdHC/ArbitraryLawController/Full.lean) | `python tools/verify_arbitrary_law_controller.py` |
 
 The sections below list every development:
