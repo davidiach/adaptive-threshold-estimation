@@ -1,0 +1,85 @@
+{
+  "compiler": "Lean (version 4.36.0-rc1, x86_64-w64-windows-gnu, commit c9afcddf514a6772bd4d649f7cfc04eff0b9f15e, Release)",
+  "built_lean_tree": "71ebb71cdc57f16898b35fb988848cdd2381631c",
+  "proof_checkout_lean_tree": "24607497c7491d725327b43f0bfe177b0f8a0736",
+  "dependency_audit_sha256": {
+    "2026-11-17-rms-constants": "4856527ea918d0b5f40979e477f0794ec24d31b6ae9f4ced15ad8a4211c84067",
+    "2026-11-18-pilot-feedback": "e5b06f28d025a3f029b99e36802de24a6eb66b3d8d993c31a11fbe1fc7916268",
+    "2026-11-18-scheduled-update": "f89ad0e7c164832ae69889ba0fc9c3702ce6018d4dd0e80d1c5df43103b8017e"
+  },
+  "rebuilt_dependencies": [
+    "SharpAttainment",
+    "LargeBudgetFresh",
+    "RevisitKernel",
+    "RevisitPolicy",
+    "PilotPolicy",
+    "LargeBudgetBinomial",
+    "PilotExperiment",
+    "RevisitPolynomial",
+    "PilotPolynomial",
+    "PilotTable",
+    "PilotCertificate",
+    "SharpEntropy",
+    "LargeBudgetTable",
+    "LargeBudgetWitness",
+    "PilotWitness",
+    "FeedbackTable",
+    "FeedbackRisk",
+    "FeedbackComparison",
+    "FeedbackSeparation",
+    "OrderedPolicy",
+    "OrderedExperiment",
+    "OrderedCounts",
+    "OrderedBayes",
+    "OrderedReduction",
+    "OrderedPopulation",
+    "ScheduledBounds",
+    "FixedHorizonRisk"
+  ],
+  "source_sha256": {
+    "StoppingBounds.lean": "8b096837daa2e46996998e08053a0da86af3674ba0ee53c69cf85b6594c575c4",
+    "StoppingPolicy.lean": "b4f33edbed353c7702b6ded4ca2962841411d71afbe0f17586ef86f78e94653d",
+    "StoppingBayes.lean": "07adcbe514f5c292f034354fe54e63086640769ac749c479abe09e71ecfec2b7",
+    "StoppingCertificate.lean": "e35648bd921c02e97484f63444bcfa3cd27226a27d171973ad8bbefddd3e279a",
+    "StoppingPopulation.lean": "d691d8a73c099e6bd5577ebeefa2bfb0e89fa64a79d8c1c338c335051e28df52",
+    "AuditStopping.lean": "16c2f8de1f407eafe270713ad99987a0917eefddb744b01cafa7f4d1f0b6441d"
+  },
+  "axioms": {
+    "certified": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "total": [
+      "propext"
+    ],
+    "expect": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "four_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "rms_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "rms_separation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "kernel_replay": [
+    "StoppingBounds",
+    "StoppingPolicy",
+    "StoppingBayes",
+    "StoppingCertificate",
+    "StoppingPopulation"
+  ],
+  "independent_calculation": "Certified Bayes MSE lower bound: 34910783257159239188322/1000000000000000000000000\nExact optimal Bayes RMS, rounded down to 12 places: 186844275419 / 10^12"
+}

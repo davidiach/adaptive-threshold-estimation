@@ -221,6 +221,14 @@ covers randomized plans and full-transcript estimates in the population experime
 Lean checks it in that third research package, with its own replay record; it
 is not in the CI-audited library or the paper.
 
+Allowing the update time itself to depend on the follow-up answers still gives
+worst-case RMS at least $0.186844275$. At each prefix the policy may continue
+its initial plan or use its one update to commit the remaining actions.
+The fully adaptive witness stays below $0.186752$ under the same budget and
+menu. The research package includes the independent Lean replay record. CI
+checks the proof-source hashes and reruns the rational calculation.
+[Exact calculation and Lean proof](../research/2026-11-18-stopping-update/README.md)
+
 The confidence theorem [`confidence_characterization`](../lean/ThresholdHC/Confidence/Full.lean)
 proves the explicit bounds
 
