@@ -25,6 +25,20 @@ THEOREMS = {"four_flips_budget", "four_flips_squared_risk", "endpoint_minimax_up
 AUDIT = "AuditSharpRMS"
 
 
+def local_dependencies(module):
+    """Collect the research imports in dependency order, excluding the audit itself."""
+    ordered = {}
+    def visit(name):
+        if name in ordered:
+            return
+        for dependency in re.findall(r"^import (\w+)$", (HERE / f"{name}.lean").read_text(encoding="utf-8-sig"), re.M):
+            if (HERE / f"{dependency}.lean").is_file():
+                visit(dependency)
+        ordered[name] = None
+    visit(module)
+    return tuple(name for name in ordered if name != module)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("repo", type=Path)
@@ -33,6 +47,8 @@ def main():
     modes.add_argument("--window", action="store_true", help="Check all critical point masses.")
     modes.add_argument("--unrestricted", action="store_true", help="Check the sharp theorem for every ordinary gap law.")
     modes.add_argument("--oracles", action="store_true", help="Include the revealed- and selected-magnitude experiments.")
+    modes.add_argument("--large-budget", action="store_true", help="Check the improved logarithmic bound in all three models.")
+    modes.add_argument("--revisit", action="store_true", help="Check the adaptive 25-flip upper witness.")
     args = parser.parse_args()
     window_modules = ("SharpGridArithmetic", "SharpWindow", "SharpWindowReal",
                       "SharpInterpolation", "SharpRectangles", "SharpGridPrices",
@@ -58,6 +74,17 @@ def main():
         modules = (*modules, *oracle_modules)
         audit = "AuditSharpOracles"
         theorems = {"oracle_minimax_lower", "oracle_large_budget_lower", "oracle_endpoint_eq", "oracle_gap_reduction"}
+    if args.large_budget:
+        audit = "AuditLargeBudget"
+        modules = local_dependencies(audit)
+        namespace = r"ThresholdHC\.SharpRMS\.LargeBudget"
+        theorems = {"adaptive_reverse_cost", "log_tests", "logarithmic_lower", "lower_25", "lower_100",
+                    "twenty_five_budget", "twenty_five_squared_risk", "upper_25", "coefficient_upper"}
+    if args.revisit:
+        audit = "AuditRevisit"
+        modules = local_dependencies(audit)
+        namespace = r"ThresholdHC\.SharpRMS\.Revisit"
+        theorems = {"revisit_cap", "revisit_budget", "revisit_squared_risk", "revisit_upper_25", "revisit_coefficient_upper"}
     repo = args.repo.resolve()
     lean_dir = repo / "lean"
     tree = run(["git", "rev-parse", "HEAD:lean"], cwd=repo)
@@ -127,7 +154,9 @@ def main():
         "transitive_axioms": {name: names.split(", ") for name, names in reports},
         "kernel_replay": list(modules),
         "dependencies": "Existing compiled project and Mathlib imports",
-        "scope": ("Both magnitude oracles: all gap laws, stronger large-budget bound, and exact endpoint attainment" if args.oracles else
+        "scope": ("Adaptive 20-plus-5 revisit rule, uniform work cap, squared risk for every sign law, and ordinary large-budget coefficient upper bound" if args.revisit else
+                  "Symmetric adaptive entropy cost, exact three-bias test, and improved uniform constants for B >= 25 and B >= 100 in all three models, and an ordinary 25-flip upper witness" if args.large_budget else
+                  "Both magnitude oracles: all gap laws, stronger large-budget bound, and exact endpoint attainment" if args.oracles else
                   "Sharp universal ordinary-model coefficient, stronger large-budget bound, and exact adaptive simulation identities" if args.unrestricted else
                   "All critical point masses, including the continuous intermediate window and its exact integer certificate" if args.window else
                   "All gap laws at budgets up to four, exact endpoint minimax risk, weak and near-perfect critical single-gap lower bounds, tapered Fisher-information reduction, and local simulation"),

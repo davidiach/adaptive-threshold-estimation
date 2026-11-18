@@ -1,0 +1,74 @@
+{
+  "compiler": "Lean (version 4.36.0-rc1, x86_64-w64-windows-gnu, commit c9afcddf514a6772bd4d649f7cfc04eff0b9f15e, Release)",
+  "imported_checkout_commit": "992762844d2983ed6b9c1569c60690a47ef7b6c9",
+  "lean_source_tree": "71ebb71cdc57f16898b35fb988848cdd2381631c",
+  "source_sha256": {
+    "SharpAttainment.lean": "93cdd6438ab45186987d63623a3a5eaeddbd85feecdadb0af4cde7cf9284ce1a",
+    "LargeBudgetFresh.lean": "ac97008cab893e52c43d3efd879b6e3e6a1ade0d8b2f6c39c11a980554bab20f",
+    "RevisitPolicy.lean": "dedeceaad3564b0dd11c763dfd2c67cbe196040bb37b44a32b5624ae5c168f18",
+    "RevisitKernel.lean": "b5661775d296f547e35038578eaf924bd3e3588a91886a8f2b17c345f31938a9",
+    "RevisitHistory.lean": "7391c0272f34db6ca727a7f1d3e3d504b4bbe6c6af2d091729fd1969bc979303",
+    "LargeBudgetBinomial.lean": "2f4ec8bdd6ee2889ca29ff3f89c37aa3c02208f658d41504dd989605898a897b",
+    "RevisitExperiment.lean": "722461a3ae27119a722a6014a705877ff03f042fdf8e21170300616f87584049",
+    "RevisitPolynomial.lean": "f0fbcbdf265aaf7afcdf434b81263fdfab1200845deb62f27efc6d8f31062f85",
+    "RevisitCertificate.lean": "304194af7b769c7b38aca41b6b9efbba31b144374f7c327158a04e42909161c1",
+    "RevisitRisk.lean": "a4762299083e930b817cb32550cd24d621f58af231a37db041d821e548ab544d",
+    "SharpEntropy.lean": "c1f7d5e19ffb72ce65eb3acc4b26d00df7514523a73901694221b39c1c658a3c",
+    "LargeBudgetTable.lean": "fb6954e4c039b15548058f6ff22a471de688a386e269717776228c25c69ca64d",
+    "LargeBudgetWitness.lean": "b0e69b10908529542a02e9ed95605ec10eac107689dc1ddeaafeb487367f4c75",
+    "RevisitWitness.lean": "2de3185e430f95ece0fe9905e553898fb4962805fa074a09de380d0597a19bc7",
+    "AuditRevisit.lean": "b0c9b4e236622da12650b2edbed5a3c7a54c0f05c4c04547ea389df71f3cb620"
+  },
+  "exact_type_checks": [
+    "revisit_budget",
+    "revisit_cap",
+    "revisit_coefficient_upper",
+    "revisit_squared_risk",
+    "revisit_upper_25"
+  ],
+  "transitive_axioms": {
+    "revisit_cap": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "revisit_budget": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "revisit_squared_risk": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "revisit_upper_25": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "revisit_coefficient_upper": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "kernel_replay": [
+    "SharpAttainment",
+    "LargeBudgetFresh",
+    "RevisitPolicy",
+    "RevisitKernel",
+    "RevisitHistory",
+    "LargeBudgetBinomial",
+    "RevisitExperiment",
+    "RevisitPolynomial",
+    "RevisitCertificate",
+    "RevisitRisk",
+    "SharpEntropy",
+    "LargeBudgetTable",
+    "LargeBudgetWitness",
+    "RevisitWitness"
+  ],
+  "dependencies": "Existing compiled project and Mathlib imports",
+  "scope": "Adaptive 20-plus-5 revisit rule, uniform work cap, squared risk for every sign law, and ordinary large-budget coefficient upper bound"
+}

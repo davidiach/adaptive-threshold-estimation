@@ -189,6 +189,8 @@ the whole iid array and a magnitude selected at each creation.
 [Lean theorems](../lean/ThresholdHC/SharpRMS/Full.lean) ·
 [oracle proofs](../lean/ThresholdHC/SharpRMS/OracleAttainment.lean).
 
+For **$B\ge25$**, the sharp ordinary-model coefficient lies in **$[0.17356166,\ 0.188087]$**. The lower bound applies to every gap law in all three models and rises to $0.17623782$ for $B\ge100$. At $\mu=\delta_{1/5}$, a protocol flips 20 fresh coins and uses their head count to choose between five minority-outcome revisits and five fresh flips. Its exact risk certificate covers every sign probability. The previous 25-fresh-flip upper bound was $0.195454$. The sharp large-budget coefficient remains open. [Lower bounds](../research/2026-11-17-rms-constants/LargeBudgetBounds.lean) · [Adaptive upper witness](../research/2026-11-17-rms-constants/RevisitWitness.lean) · [Exact statements and audit](../research/2026-11-17-rms-constants/README.md#the-coefficient-for-budgets-of-at-least-25).
+
 Theorem 1's stronger RMS and confidence lower bounds are now Lean-checked
 for both revealed and adaptively selected magnitudes. For either oracle,
 
