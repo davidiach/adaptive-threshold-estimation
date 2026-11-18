@@ -258,6 +258,12 @@ menu. The research package includes the independent Lean replay record. CI
 checks the proof-source hashes and reruns the rational calculation.
 [Exact calculation and Lean proof](../research/2026-11-18-stopping-update/README.md)
 
+With two updates triggered by follow-up answers, worst-case RMS is still at
+least $0.186764460$, above the fully adaptive witness's $0.186752$ upper
+bound. Both triggers can use the full ordered history. The research package
+includes the exact rational calculation and the independent Lean replay.
+[Two-update proof and audit](../research/2026-11-18-two-stopping-updates/README.md)
+
 The confidence theorem [`confidence_characterization`](../lean/ThresholdHC/Confidence/Full.lean)
 proves the explicit bounds
 
