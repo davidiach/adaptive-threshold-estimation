@@ -43,6 +43,52 @@ For both magnitude oracles, the [oracle reduction](SharpOracleReduction.lean) al
 
 These proofs are also in the audited library, as [`lean/ThresholdHC/SharpRMS`](../../lean/ThresholdHC/SharpRMS/Specification.lean) and [`lean/ThresholdHC/SquareRootCap`](../../lean/ThresholdHC/SquareRootCap/Specification.lean). CI builds them, [`tools/verify_sharp_rms.py`](../../tools/verify_sharp_rms.py) and [`tools/verify_square_root_cap.py`](../../tools/verify_square_root_cap.py) audit their statements and axioms, and the definition lock pins their definitions. The [library record](../../results/sharp-rms-20261117/README.md) maps each library module to the file of this package it was derived from. The files and records below remain the research checkpoint.
 
+## The coefficient for budgets of at least 25
+
+Write $c_{25}$ for the largest ordinary-model coefficient such that $R_\mu(B)\ge c_{25}\,\omega_\mu(B^{-1/2})$ for every gap law and every real $B\ge25$. The certified interval is
+
+$$
+0.175198\ \le\ c_{25}\ \le\ 0.186752.
+$$
+
+The lower endpoint also applies to the revealed- and selected-magnitude oracles. For $B\ge100$ the lower coefficient increases to $0.17807955$. The sharp value for $B\ge25$ remains open. [Lower theorems](MultiBiasBounds.lean) · [Adaptive upper witness](PilotWitness.lean) · [Lower-bound statements](AuditMultiBias.lean) · [Kernel replay](multi-bias-audit.json)
+
+At the critical gap $d=B^{-1/2}$, write $s=2d$ and let $P_t$ be the transcript law at sign mean $t$. The summed reverse divergences from $P_0$ to $P_{\pm t}$ are at most $-\log(1-t^2s^2)\,\mathbb E_0 W$ when $t^2\le2/3$. This follows by bounding the log likelihood of each sampled coin in terms of its posterior and applying the Wald identity. For $t=29/40$, the earlier three-bias test then gives the following sufficient condition on a positive RMS coefficient $r$, with $k=11774928000/2595112129$ and $b=29/4$.
+
+$$
+4(k+2b)r^2\ \le\ 2.7401+2(1-1/8)+B\log(1-4t^2/B).
+$$
+
+The right side increases with $B$. The proof checks the logarithm at the cutoff with a finite rational Taylor sum, averages over private randomness and passes to unbounded stopping under the original expected-work budget. [Entropy per flip](LargeBudgetTranscript.lean) · [Three-bias inequality](LargeBudgetTest.lean) · [Population risk](LargeBudgetPopulation.lean) · [Budget dependence](LargeBudgetPrice.lean)
+
+The stronger lower bound uses the fair-sign law together with five pairs of alternatives $\pm t_i$, where the positive biases are $0.527436$, $0.679980$, $0.753283$, $0.798023$ and $0.816490$. For a clipped estimate $x$ of the sign mean, each alternative uses a positive test $1+b_i((x-t_i)^2-R)$, where $R=4(0.175198)^2$. If the mean squared error is at most $R$ under that alternative, its expected test value is at most one. All ten logarithmic tests can therefore be bounded using divergence from the same fair law. Their sum and a positive multiple of $x^2$ give a pointwise lower bound for every $|x|\le1$. Lean verifies it using a degree-27 Taylor lower bound for the exponential and exact polynomial checks on nine intervals in $x^2$. [Test coefficients](MultiBiasData.lean) · [Scalar certificate](MultiBiasCertificate.lean) · [Finite-transcript inequality](MultiBiasPrefix.lean)
+
+Write $P(B)=-B\sum_i\log(1-4t_i^2/B)$, $a=19.780099$ and $g_{i,t}(x)=1+b_i((x-t)^2-R)$. The pointwise inequality checked by Lean is
+
+$$
+a x^2+\sum_i\bigl(\log g_{i,t_i}(x)+\log g_{i,-t_i}(x)\bigr)\ \ge\ aR+P(25).
+$$
+
+If all eleven sign-mean squared errors are at most $S$, the fair-law expectation of the left side is at most $aS+P(B)+2\sum_i b_i(S-R)$. Comparing these two bounds gives the following RMS coefficient at each real $B\ge25$, with $D=a+2\sum_i b_i=93.534911$.
+
+$$
+\frac12\sqrt{R+\frac{P(25)-P(B)}{D}}.
+$$
+
+The factor of two converts sign mean to positive-sign fraction. $P(B)$ decreases with $B$, which yields both reported cutoffs. The proof averages over private randomness and uses finite expected work to pass from finite transcripts to the stopped experiment. The single-gap reduction then gives the result for every gap law in each of the three models. [Budget calculation](MultiBiasPrice.lean) · [Stopping and randomization](MultiBiasPopulation.lean) · [Uniform lower bounds](MultiBiasBounds.lean)
+
+The earlier fixed-sample upper bound takes $B=25$ and $\mu=\delta_{1/5}$, where the modulus equals one. The protocol queries 25 distinct coins once each and returns a rational estimate indexed by the head count. When the positive-sign fraction is $p$, each observation has head probability $3/10+2p/5$. The mean squared error is a degree-13 polynomial in $(2p-1)^2$. Four exact Bernstein expansions certify that it is at most $0.195454^2$ on the full parameter interval. [Fresh-flip law](LargeBudgetFresh.lean) · [Estimator and polynomial certificate](LargeBudgetTable.lean)
+
+The 20-flip pilot uses the same gap and a hard cap of 25 flips. Flip 20 distinct coins and let $j$ be the number of heads. For $5\le j\le9$, revisit five distinct coins that showed heads. For $11\le j\le15$, revisit five that showed tails. In the other cases use five fresh coins. The estimate depends on $j$ and the head count among the final five flips. [Policy](RevisitPolicy.lean) · [Estimator table](RevisitCertificate.lean)
+
+If the positive-sign fraction is $p$, a fresh head has probability $b=(3+4p)/10$. A previously observed head has repeat-head probability $(9+40p)/(100b)$, and a previously observed tail has repeat-head probability $21/(100(1-b))$. Since the five chosen labels are distinct, their outcomes are conditionally binomial given the pilot. Lean proves this from the original transcript likelihood. It checks the resulting risk polynomial over the full interval by exact integer arithmetic and gives RMS at most $0.188087$. [Conditional law](RevisitHistory.lean) · [Two-stage expectation](RevisitExperiment.lean) · [Squared-risk proof](RevisitRisk.lean) · [Exact statements](AuditRevisit.lean) · [Replay record](revisit-audit.json)
+
+The $0.186752$ upper bound uses 18 fresh flips at the same critical gap. Let $j$ be their head count. At follow-up position $k=0,\ldots,6$, the decision depends on $j$ and all $k$ earlier follow-up answers. It can request a fresh coin, the $(k+1)$st pilot head, or the $(k+1)$st pilot tail, in pilot order. A missing candidate defaults to fresh. For example, after eight pilot heads, the rule revisits the first head. If that flip is tails, it revisits the second head next. If it is heads, it flips a fresh coin next. Distinct positions always select distinct labels during the follow-up. To find the rule, we minimized Bayes squared loss backwards through the seven choices under a symmetric four-point prior on $0,x,1-x,1$, with $x\approx0.298645$ and total endpoint mass about $0.392448$. The terminal estimate is a rational number with denominator 100,000. [Policy and history law](PilotPolicy.lean) · [Actions and estimates](PilotTable.lean)
+
+The suffix expectation obeys a binary recursion. When it queries a pilot coin, the likelihood replaces the single observed flip by the joint probability of the pair. For example, two heads contribute $(9+40p)/100$, and a head and a tail contribute $21/100$ in either order. After summing over the 19 pilot counts, Lean compares the risk polynomial to its endpoint value on eight rational subintervals covering $[0,1]$. The exact worst squared error of this protocol is $348763093753675683898541718818533/10^{34}$, attained at both $p=0$ and $p=1$. Its square root is approximately $0.186751999656$. [Experiment](PilotExperiment.lean) · [Likelihood polynomial](PilotPolynomial.lean) · [Interval certificate](PilotCertificate.lean) · [Exact statements](AuditPilot.lean) · [Kernel replay](pilot-audit.json)
+
+## Reproducing the formal checks
+
 The [ordinary](AuditSharpUnrestricted.lean) and [oracle](AuditSharpOracles.lean) statement audits check these inequalities against the original definitions. The [critical-window audit](AuditSharpWindow.lean) and [earlier component checks](AuditSharpRMS.lean) give the intermediate statements. The [ordinary-model verification record](sharp-unrestricted-audit.json) covers 38 proof modules and six exact statement checks. The [oracle verification record](sharp-oracles-audit.json) covers all 44 proof modules and checks four oracle statements. A [second oracle record](sharp-oracles-linux-audit.json) repeats that check on Linux; its `procedure` field says how it differs from running `--oracles`. Each run rebuilt the listed research modules from source against the compiled project and Mathlib dependencies. The [critical-window record](sharp-critical-window-audit.json) covers 27 modules, and the [earlier component record](sharp-rms-audit.json) covers 18. Each records the source hashes and transitive axioms. To replay the unrestricted proof from a built checkout with the same Lean source tree, run
 
 ```sh
@@ -51,4 +97,8 @@ The [ordinary](AuditSharpUnrestricted.lean) and [oracle](AuditSharpOracles.lean)
   ThresholdHC.ContinuousObserved.Prefix ThresholdHC.Tier6.Full ThresholdHC.OracleLower.Realization)
 python research/2026-11-17-rms-constants/verify_sharp_rms.py . --unrestricted
 python research/2026-11-17-rms-constants/verify_sharp_rms.py . --oracles
+python research/2026-11-17-rms-constants/verify_sharp_rms.py . --large-budget
+python research/2026-11-17-rms-constants/verify_sharp_rms.py . --revisit
+python research/2026-11-17-rms-constants/verify_sharp_rms.py . --pilot
+python research/2026-11-17-rms-constants/verify_sharp_rms.py . --multi-bias
 ```
