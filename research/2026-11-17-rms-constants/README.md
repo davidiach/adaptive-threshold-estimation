@@ -65,15 +65,15 @@ The stronger lower bound uses the fair-sign law together with five pairs of alte
 
 Write $P(B)=-B\sum_i\log(1-4t_i^2/B)$, $a=19.780099$ and $g_{i,t}(x)=1+b_i((x-t)^2-R)$. The pointwise inequality checked by Lean is
 
-$
+$$
 a x^2+\sum_i\bigl(\log g_{i,t_i}(x)+\log g_{i,-t_i}(x)\bigr)\ \ge\ aR+P(25).
-$
+$$
 
 If all eleven sign-mean squared errors are at most $S$, the fair-law expectation of the left side is at most $aS+P(B)+2\sum_i b_i(S-R)$. Comparing these two bounds gives the following RMS coefficient at each real $B\ge25$, with $D=a+2\sum_i b_i=93.534911$.
 
-$
+$$
 \frac12\sqrt{R+\frac{P(25)-P(B)}{D}}.
-$
+$$
 
 The factor of two converts sign mean to positive-sign fraction. $P(B)$ decreases with $B$, which yields both reported cutoffs. The proof averages over private randomness and uses finite expected work to pass from finite transcripts to the stopped experiment. The single-gap reduction then gives the result for every gap law in each of the three models. [Budget calculation](MultiBiasPrice.lean) · [Stopping and randomization](MultiBiasPopulation.lean) · [Uniform lower bounds](MultiBiasBounds.lean)
 
