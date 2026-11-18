@@ -191,6 +191,8 @@ the whole iid array and a magnitude selected at each creation.
 
 For **$B\ge25$**, the sharp ordinary-model coefficient lies in **$[0.175198,\ 0.186752]$**. The lower bound applies to every gap law in all three models and rises to $0.17807955$ for $B\ge100$. It combines five symmetric pairs of sign biases under a common fair-sign law. At $\mu=\delta_{1/5}$, an 18-flip pilot is followed by seven decisions. Each decision uses the pilot count and earlier follow-up answers to choose a fresh coin or revisit a distinct pilot coin. The exact risk certificate covers every sign probability. A 20-flip pilot with one decision for the whole suffix gave $0.188087$. The sharp large-budget coefficient remains open. [Lower bounds](../research/2026-11-17-rms-constants/MultiBiasBounds.lean) · [Adaptive upper witness](../research/2026-11-17-rms-constants/PilotWitness.lean) · [Exact statements and audit](../research/2026-11-17-rms-constants/README.md#the-coefficient-for-budgets-of-at-least-25).
 
+At the same gap and pilot length, a policy committing to all seven follow-up choices before their answers has worst-case RMS at least **0.18735887**, including randomized designs and estimates using the full transcript. This proves a strict feedback advantage at the fixed 25-flip budget. Lean checks the parameter-independent reconstruction of ordered histories from counts and the strict comparison in the original population experiment, including arbitrary private randomness and measurable output. [Proof and replay](../research/2026-11-18-pilot-feedback/README.md).
+
 Theorem 1's stronger RMS and confidence lower bounds are now Lean-checked
 for both revealed and adaptively selected magnitudes. For either oracle,
 
