@@ -48,6 +48,7 @@ def main():
     modes.add_argument("--unrestricted", action="store_true", help="Check the sharp theorem for every ordinary gap law.")
     modes.add_argument("--oracles", action="store_true", help="Include the revealed- and selected-magnitude experiments.")
     modes.add_argument("--large-budget", action="store_true", help="Check the improved logarithmic bound in all three models.")
+    modes.add_argument("--revisit", action="store_true", help="Check the adaptive 25-flip upper witness.")
     args = parser.parse_args()
     window_modules = ("SharpGridArithmetic", "SharpWindow", "SharpWindowReal",
                       "SharpInterpolation", "SharpRectangles", "SharpGridPrices",
@@ -79,6 +80,11 @@ def main():
         namespace = r"ThresholdHC\.SharpRMS\.LargeBudget"
         theorems = {"adaptive_reverse_cost", "log_tests", "logarithmic_lower", "lower_25", "lower_100",
                     "twenty_five_budget", "twenty_five_squared_risk", "upper_25", "coefficient_upper"}
+    if args.revisit:
+        audit = "AuditRevisit"
+        modules = local_dependencies(audit)
+        namespace = r"ThresholdHC\.SharpRMS\.Revisit"
+        theorems = {"revisit_cap", "revisit_budget", "revisit_squared_risk", "revisit_upper_25", "revisit_coefficient_upper"}
     repo = args.repo.resolve()
     lean_dir = repo / "lean"
     tree = run(["git", "rev-parse", "HEAD:lean"], cwd=repo)
@@ -148,7 +154,8 @@ def main():
         "transitive_axioms": {name: names.split(", ") for name, names in reports},
         "kernel_replay": list(modules),
         "dependencies": "Existing compiled project and Mathlib imports",
-        "scope": ("Symmetric adaptive entropy cost, exact three-bias test, and improved uniform constants for B >= 25 and B >= 100 in all three models, and an ordinary 25-flip upper witness" if args.large_budget else
+        "scope": ("Adaptive 20-plus-5 revisit rule, uniform work cap, squared risk for every sign law, and ordinary large-budget coefficient upper bound" if args.revisit else
+                  "Symmetric adaptive entropy cost, exact three-bias test, and improved uniform constants for B >= 25 and B >= 100 in all three models, and an ordinary 25-flip upper witness" if args.large_budget else
                   "Both magnitude oracles: all gap laws, stronger large-budget bound, and exact endpoint attainment" if args.oracles else
                   "Sharp universal ordinary-model coefficient, stronger large-budget bound, and exact adaptive simulation identities" if args.unrestricted else
                   "All critical point masses, including the continuous intermediate window and its exact integer certificate" if args.window else
