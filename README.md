@@ -184,8 +184,10 @@ types, transitive-axiom audits, source hashes, and numerical checks.
 [GitHub Actions](.github/workflows/checks.yml) runs the research and numerical
 checks on pull requests and pushes to `main`. It selects Lean audits from the
 files changed by the entire PR or push. Changes to project proofs or the pinned
-toolchain run all four Lean jobs. To run the full CI audit suite on any branch,
-start **Reproducible checks** manually from the Actions tab.
+toolchain run all four Lean jobs. On pull requests these jobs reuse compiled
+modules from earlier runs and rebuild only what changed; pushes to `main`
+build from scratch. To run the full CI audit suite on any branch, with a
+build from scratch, start **Reproducible checks** manually from the Actions tab.
 [VERIFY.md](docs/VERIFY.md) also lists two intermediate entropy-tail audits
 available for local reproduction.
 Use a disposable checkout for reproduction: some checks write diagnostic files.

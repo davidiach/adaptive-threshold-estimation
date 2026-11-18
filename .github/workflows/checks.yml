@@ -285,6 +285,27 @@ jobs:
             fi
             sleep 10
           done
+      # Pull requests reuse the project's compiled modules from earlier runs of
+      # this job on the same branch or on main. Lake still rebuilds every module
+      # whose source, imports or toolchain changed: its traces hash them. Pushes
+      # to main and manual runs build from scratch and refresh the cache. Lake's
+      # per-module setup files, about 9 GB, are left out; it does not need them
+      # to reuse a module.
+      - name: Compute the build cache key
+        id: build-key
+        run: |
+          echo "prefix=lean-build-v1-${{ github.job }}-${{ hashFiles('lean/lean-toolchain', 'lean/lake-manifest.json', 'lean/lakefile.toml') }}-" >> "$GITHUB_OUTPUT"
+          echo "sources=${{ hashFiles('lean/ThresholdHC.lean', 'lean/ThresholdHC/**/*.lean') }}" >> "$GITHUB_OUTPUT"
+      - name: Restore compiled project modules
+        id: build-cache
+        if: github.event_name == 'pull_request'
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            lean/.lake/build
+            !lean/.lake/build/ir/**/*.setup.json
+          key: ${{ steps.build-key.outputs.prefix }}${{ steps.build-key.outputs.sources }}
+          restore-keys: ${{ steps.build-key.outputs.prefix }}
       - name: Verify entropy perturbation and state compression against locked targets
         run: python tools/verify_selection_approximation.py
       - name: Verify the assembled finite-law approximation and original-objective certificate
@@ -404,6 +425,14 @@ jobs:
             .runtime/finite-law-certificates/
             .runtime/envelope-transfer-certificates/
             .runtime/global-selection-certificates/
+      - name: Save compiled project modules
+        if: success() && steps.build-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            lean/.lake/build
+            !lean/.lake/build/ir/**/*.setup.json
+          key: ${{ steps.build-key.outputs.prefix }}${{ steps.build-key.outputs.sources }}
   lean-all-modules:
     needs: lean-inputs
     if: ${{ !cancelled() && needs.lean-inputs.outputs.modules != 'false' }}
@@ -440,10 +469,39 @@ jobs:
             fi
             sleep 10
           done
+      # Pull requests reuse the project's compiled modules from earlier runs of
+      # this job on the same branch or on main. Lake still rebuilds every module
+      # whose source, imports or toolchain changed: its traces hash them. Pushes
+      # to main and manual runs build from scratch and refresh the cache. Lake's
+      # per-module setup files, about 9 GB, are left out; it does not need them
+      # to reuse a module.
+      - name: Compute the build cache key
+        id: build-key
+        run: |
+          echo "prefix=lean-build-v1-${{ github.job }}-${{ hashFiles('lean/lean-toolchain', 'lean/lake-manifest.json', 'lean/lakefile.toml') }}-" >> "$GITHUB_OUTPUT"
+          echo "sources=${{ hashFiles('lean/ThresholdHC.lean', 'lean/ThresholdHC/**/*.lean') }}" >> "$GITHUB_OUTPUT"
+      - name: Restore compiled project modules
+        id: build-cache
+        if: github.event_name == 'pull_request'
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            lean/.lake/build
+            !lean/.lake/build/ir/**/*.setup.json
+          key: ${{ steps.build-key.outputs.prefix }}${{ steps.build-key.outputs.sources }}
+          restore-keys: ${{ steps.build-key.outputs.prefix }}
       - name: Build every Lean module and audit the axioms of every project constant
         # The other Lean jobs build only what their audits name and check only
         # registered theorems. This step registers nothing.
         run: python tools/verify_project_axioms.py --replay-main-theorem --jobs 3
+      - name: Save compiled project modules
+        if: success() && steps.build-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            lean/.lake/build
+            !lean/.lake/build/ir/**/*.setup.json
+          key: ${{ steps.build-key.outputs.prefix }}${{ steps.build-key.outputs.sources }}
   entropy-tail-upper:
     needs: lean-inputs
     if: ${{ !cancelled() && needs.lean-inputs.outputs.entropy != 'false' }}
@@ -480,6 +538,27 @@ jobs:
             fi
             sleep 10
           done
+      # Pull requests reuse the project's compiled modules from earlier runs of
+      # this job on the same branch or on main. Lake still rebuilds every module
+      # whose source, imports or toolchain changed: its traces hash them. Pushes
+      # to main and manual runs build from scratch and refresh the cache. Lake's
+      # per-module setup files, about 9 GB, are left out; it does not need them
+      # to reuse a module.
+      - name: Compute the build cache key
+        id: build-key
+        run: |
+          echo "prefix=lean-build-v1-${{ github.job }}-${{ hashFiles('lean/lean-toolchain', 'lean/lake-manifest.json', 'lean/lakefile.toml') }}-" >> "$GITHUB_OUTPUT"
+          echo "sources=${{ hashFiles('lean/ThresholdHC.lean', 'lean/ThresholdHC/**/*.lean') }}" >> "$GITHUB_OUTPUT"
+      - name: Restore compiled project modules
+        id: build-cache
+        if: github.event_name == 'pull_request'
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            lean/.lake/build
+            !lean/.lake/build/ir/**/*.setup.json
+          key: ${{ steps.build-key.outputs.prefix }}${{ steps.build-key.outputs.sources }}
+          restore-keys: ${{ steps.build-key.outputs.prefix }}
       - name: Require all eight entropy-tail targets, including the two-sided law
         run: python tools/verify_entropy_tail.py --sequential --require-complete
       - name: Verify the universal closed-quantile minimax law
@@ -649,6 +728,14 @@ jobs:
             .runtime/entropy-tail/
             .runtime/entropy-tail-upper/
             .runtime/closed-quantile/
+      - name: Save compiled project modules
+        if: success() && steps.build-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            lean/.lake/build
+            !lean/.lake/build/ir/**/*.setup.json
+          key: ${{ steps.build-key.outputs.prefix }}${{ steps.build-key.outputs.sources }}
   stopping-program:
     needs: lean-inputs
     if: ${{ !cancelled() && needs.lean-inputs.outputs.stopping != 'false' }}
@@ -685,6 +772,27 @@ jobs:
             fi
             sleep 10
           done
+      # Pull requests reuse the project's compiled modules from earlier runs of
+      # this job on the same branch or on main. Lake still rebuilds every module
+      # whose source, imports or toolchain changed: its traces hash them. Pushes
+      # to main and manual runs build from scratch and refresh the cache. Lake's
+      # per-module setup files, about 9 GB, are left out; it does not need them
+      # to reuse a module.
+      - name: Compute the build cache key
+        id: build-key
+        run: |
+          echo "prefix=lean-build-v1-${{ github.job }}-${{ hashFiles('lean/lean-toolchain', 'lean/lake-manifest.json', 'lean/lakefile.toml') }}-" >> "$GITHUB_OUTPUT"
+          echo "sources=${{ hashFiles('lean/ThresholdHC.lean', 'lean/ThresholdHC/**/*.lean') }}" >> "$GITHUB_OUTPUT"
+      - name: Restore compiled project modules
+        id: build-cache
+        if: github.event_name == 'pull_request'
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            lean/.lake/build
+            !lean/.lake/build/ir/**/*.setup.json
+          key: ${{ steps.build-key.outputs.prefix }}${{ steps.build-key.outputs.sources }}
+          restore-keys: ${{ steps.build-key.outputs.prefix }}
       - name: Build the stopping-program, cap-identification and genie modules
         working-directory: lean
         run: lake build ThresholdHC.StoppingProgram.BellmanTheorem ThresholdHC.StoppingProgram.FiniteCertificate ThresholdHC.CapIdentification.FiniteSeparation ThresholdHC.CapIdentification.Full ThresholdHC.Genie.AtomConicRealization ThresholdHC.Genie.DirectRisk ThresholdHC.Genie.InfiniteDivergenceExample ThresholdHC.Genie.OptimizedConvergence
@@ -728,3 +836,11 @@ jobs:
             .runtime/genie-conic/
             .runtime/genie-counterexample/
             .runtime/entropy-tail-lower-components/
+      - name: Save compiled project modules
+        if: success() && steps.build-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            lean/.lake/build
+            !lean/.lake/build/ir/**/*.setup.json
+          key: ${{ steps.build-key.outputs.prefix }}${{ steps.build-key.outputs.sources }}

@@ -33,6 +33,10 @@ CI runs on pull requests and on pushes to `main`. In
 `lean-all-modules`, `entropy-tail-upper` and `stopping-program`, run when
 [lean_ci.py](../.github/lean_ci.py) selects them from the changed files, or on
 a manual run; a green run on a documentation-only change ran no Lean audit.
+On pull requests each Lean job restores the project's compiled modules from
+an earlier run of the same job on the branch or on `main`, and Lake rebuilds
+every module whose source, imports or toolchain changed. Pushes to `main` and
+manual runs build every module from scratch.
 Three further workflows cover the [toolkit](../.github/workflows/toolkit.yml),
 the [v6 PDF](../.github/workflows/manuscript.yml) and
 [experiment persistence](../.github/workflows/experiment-persistence.yml).
