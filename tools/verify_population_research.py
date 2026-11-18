@@ -54,8 +54,13 @@ def main():
         package = RESEARCH / name
         verify_mapping(package, read(package / 'CHECKPOINT_SHA256.json')['files'])
 
+    scheduled = RESEARCH / '2026-11-18-scheduled-update'
+    scheduled_sources = verify_mapping(scheduled, read(scheduled / 'audit.json')['source_sha256'])
+    run(scheduled / 'check.py')
+
     result = dict(valid=True, package_lock_entries=entries, finite_bayes_cases=16,
                   independent_finite_comparisons=10, feedback_replay_cells=sampled['cells'],
+                  scheduled_update_audited_sources=scheduled_sources,
                   scope='Source identities, exact finite certificates, and frozen experiment replay; no new theorem certification')
     (scratch / 'summary.json').write_text(json.dumps(result, indent=2) + '\n', encoding='utf-8')
     print(json.dumps(result, indent=2))
