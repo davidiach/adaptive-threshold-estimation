@@ -45,6 +45,9 @@ establish practical efficiency or publication priority.
   ZIP by SHA256 and records the repository base and imported payload manifest.
 - The existing [v5 manuscript](../v5/README.md), [v4 manuscript](../paper.pdf),
   and [critical review packet](../critical-review/README.md) are unchanged.
+- This manuscript is preserved as published. The
+  [consolidated v6 paper](../v6/README.md) is the current paper and includes it
+  (§§13 and 15 and Appendices D–N) with the editorial changes listed there.
 
 This is editorial v2 of the new standalone rare-event manuscript, not a
 renumbering of the repository's existing v5 paper. V2 applies exactly two

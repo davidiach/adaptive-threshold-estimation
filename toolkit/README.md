@@ -54,6 +54,11 @@ pip install ./toolkit
 or run from the `toolkit/` folder without installing. The estimators themselves
 need only the standard library; NumPy and SciPy are used by the calculator.
 
+Commands below that begin `python -m threshold_toolkit` work from any folder
+once the package is installed, and from `toolkit/` without installing.
+Commands that name a path, such as `python toolkit/examples/rare_events.py`,
+run from the repository root.
+
 ## 1. Plan the budget
 
 Tell the calculator roughly what the items' success rates look like. There are
@@ -133,7 +138,10 @@ How to read it:
   items whose sides are merely unknown: a single item at 90% or 10% is settled
   far more accurately by flipping it repeatedly. Both limits are
   very loose (a factor of about 30,000 apart), which is why the simulation is
-  there.
+  there. The calculator still prints the original floor, difficulty / 64.
+  Lean has since checked the sharp floor, difficulty / 6
+  ([`SharpRMS/Full.lean`](../lean/ThresholdHC/SharpRMS/Full.lean)), which
+  brings the two limits to a factor of 3,072 apart.
 - **Returns on more flips**: when many items sit near 50/50, extra flips buy
   less.
 
@@ -269,7 +277,7 @@ range returns infinity with status `overflow` and a finite `log_budget`;
 that is a representation limit, not an impossibility result. Finite returned
 budgets approximate the threshold and can differ by roundoff.
 
-The new API and its direct command need only the standard library:
+This API and its direct command need only the standard library:
 
 ```sh
 python -m threshold_toolkit.rare_event_cli --gaps 0.01,0.1,0.4 --weights 1,2,7 --rarity 0.05 --budget 100000
@@ -297,7 +305,9 @@ python toolkit/examples/rare_events.py
   pilot, as are calls whose cost divided by the cap underflows to zero.
 - What is machine-checked is the mathematical guarantee of the proven method, in
   [`BlindUpper/Full.lean`](../lean/ThresholdHC/BlindUpper/Full.lean), and the
-  floor, in [`Tier6/Full.lean`](../lean/ThresholdHC/Tier6/Full.lean). This Python
+  floor: difficulty / 64 in [`Tier6/Full.lean`](../lean/ThresholdHC/Tier6/Full.lean),
+  sharpened to difficulty / 6 in
+  [`SharpRMS/Full.lean`](../lean/ThresholdHC/SharpRMS/Full.lean). This Python
   code is not itself verified. Its tests check it against a separate
   implementation of the paper's definitions, exact enumeration and the
   calibration identities.
@@ -337,8 +347,9 @@ For arbitrary distinct costs, `threshold_toolkit.approximate_selection.select_ap
 returns a feasible selection and rational enclosure within a requested factor
 `1+epsilon`. Its [paper proof and example](../research/2026-11-06-selection-approximation/README.md)
 give a fully polynomial approximation scheme; exact efficient selection remains
-open. The [entropy perturbation and compression components](../lean/ThresholdHC/SelectionApproximation/README.md)
-are Lean-checked; the full guarantee and Python implementation are not. Resource
+open. The [assembled finite-law theorem](../docs/FINITE_SELECTION_APPROXIMATION.md)
+is Lean-checked, with its [entropy perturbation and compression components](../lean/ThresholdHC/SelectionApproximation/README.md);
+the polynomial bit-complexity argument and this Python implementation are not. Resource
 or precision exhaustion raises an error instead of returning a partial result.
 
 ## Research module: hard observation caps
