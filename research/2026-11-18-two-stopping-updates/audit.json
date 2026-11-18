@@ -1,0 +1,84 @@
+{
+  "compiler": "Lean (version 4.36.0-rc1, x86_64-w64-windows-gnu, commit c9afcddf514a6772bd4d649f7cfc04eff0b9f15e, Release)",
+  "built_lean_tree": "71ebb71cdc57f16898b35fb988848cdd2381631c",
+  "proof_checkout_lean_tree": "fa8976808abd3d5bae8ff2f74ae724533b4dfb56",
+  "dependency_audit_sha256": {
+    "2026-11-17-rms-constants": "4856527ea918d0b5f40979e477f0794ec24d31b6ae9f4ced15ad8a4211c84067",
+    "2026-11-18-pilot-feedback": "e5b06f28d025a3f029b99e36802de24a6eb66b3d8d993c31a11fbe1fc7916268",
+    "2026-11-18-scheduled-update": "f89ad0e7c164832ae69889ba0fc9c3702ce6018d4dd0e80d1c5df43103b8017e"
+  },
+  "rebuilt_dependencies": [
+    "SharpAttainment",
+    "LargeBudgetFresh",
+    "RevisitKernel",
+    "RevisitPolicy",
+    "PilotPolicy",
+    "LargeBudgetBinomial",
+    "PilotExperiment",
+    "RevisitPolynomial",
+    "PilotPolynomial",
+    "PilotTable",
+    "PilotCertificate",
+    "SharpEntropy",
+    "LargeBudgetTable",
+    "LargeBudgetWitness",
+    "PilotWitness",
+    "FeedbackTable",
+    "FeedbackRisk",
+    "FeedbackComparison",
+    "FeedbackSeparation",
+    "OrderedPolicy",
+    "OrderedExperiment",
+    "OrderedCounts",
+    "OrderedBayes",
+    "OrderedReduction",
+    "OrderedPopulation",
+    "FixedHorizonRisk"
+  ],
+  "source_sha256": {
+    "TwoUpdateBellman.lean": "d404a5d8db059f88972ace7d9bc57585ddc7b85847e5065d1cda177aff784549",
+    "TwoUpdatePolicy.lean": "4b51d3fa843cdd1d8a6f2ba63ea978c395f410d2f545d9dbf297534f8df65222",
+    "TwoUpdateBayes.lean": "52f0d319f1e949be3537696a77434d07d34bc600c54ec5a2df434e746c528aa8",
+    "TwoUpdateCertificate.lean": "36c19ec7c6b2c0b213c9c9d76235cc22a97ee754576839be6cd9b6398ecc9718",
+    "TwoUpdatePopulation.lean": "8ff7cb431afb2ff8e9ca2b865aab7b4d5e2b7362d1666d6c5ac769d0f1c01b8b",
+    "AuditTwoUpdates.lean": "b4f27eeb06b252fbd372e04d4e6e52c65f40019a733578f58a7f2a32c223b941"
+  },
+  "axioms": {
+    "certified": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "total": [
+      "propext"
+    ],
+    "expect": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "four_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "rms_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "rms_separation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "kernel_replay": [
+    "TwoUpdateBellman",
+    "TwoUpdatePolicy",
+    "TwoUpdateBayes",
+    "TwoUpdateCertificate",
+    "TwoUpdatePopulation"
+  ],
+  "independent_calculation": "0 updates: optimal Bayes RMS in [187358878065, 187358878066) / 10^12\n1 updates: optimal Bayes RMS in [186844275419, 186844275420) / 10^12\n2 updates: optimal Bayes RMS in [186764460020, 186764460021) / 10^12\nTwo-update Bayes MSE lower bound: 34880963526638591801106/1000000000000000000000000"
+}

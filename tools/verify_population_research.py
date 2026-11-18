@@ -60,11 +60,15 @@ def main():
     stopping = RESEARCH / '2026-11-18-stopping-update'
     stopping_sources = verify_mapping(stopping, read(stopping / 'audit.json')['source_sha256'])
     run(stopping / 'check.py')
+    two_updates = RESEARCH / '2026-11-18-two-stopping-updates'
+    two_update_sources = verify_mapping(two_updates, read(two_updates / 'audit.json')['source_sha256'])
+    run(two_updates / 'check.py')
 
     result = dict(valid=True, package_lock_entries=entries, finite_bayes_cases=16,
                   independent_finite_comparisons=10, feedback_replay_cells=sampled['cells'],
                   scheduled_update_audited_sources=scheduled_sources,
                   stopping_update_audited_sources=stopping_sources,
+                  two_update_audited_sources=two_update_sources,
                   scope='Source identities, exact finite certificates, and frozen experiment replay; no new theorem certification')
     (scratch / 'summary.json').write_text(json.dumps(result, indent=2) + '\n', encoding='utf-8')
     print(json.dumps(result, indent=2))
