@@ -201,9 +201,9 @@ realizes every feasible certificate in the observable experiment, so
 $R\le P_N$, and \tailleanref{StoppingProgram/FiniteCertificate.lean}{finite\_certificate}
 gives a sufficient cap without the entropy--tail lower bound.
 
-The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/537543ca0ea813d9eecbc165b0e4af1beb71a06e/lean/ThresholdHC/GenieRate/Full.lean}{uniform cap theorem}
+The \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/f1425008ea71094d900b8cbb9a90b485f0884d33/lean/ThresholdHC/SquareRootCap/Full.lean}{uniform cap theorem}
 in \cref{app:uniform-cap-rate} gives $P_N\le2G_N$ and $R\le P_N\le16R$ at
-$N=\lceil4B/3\rceil$ for $0<\rho\le1/2$. Lean checks
+$N=\lceil4B/9\rceil$ for $0<\rho\le1/2$. Lean checks
 \cref{thm:ordinary-cap-rate}, the infinite-cap factor eight,
 the finite-divergence genie residual, the finite-atom conic program
 and the uniform-gap counterexample.
@@ -571,6 +571,10 @@ localization, including the $10^{-17}$ general-law confidence coefficient.
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/f1425008ea71094d900b8cbb9a90b485f0884d33/lean/ThresholdHC/SharpRMS/Full.lean}{sharp RMS lower constant} $1/6$ in the original
 experiment and under both magnitude oracles, with an audit that restates
 38 statements. The Lean kernel evaluates its 140 integer comparisons.
+\Cref{sec:sharp-bracket} verifies the
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/7ed941f198939a95f282e491c66a2defeef0528b/lean/ThresholdHC/LargeBudgetRMS/Full.lean}{bracket}
+$[0.175198,0.186752]$ for the best constant at $B\ge25$, with an audit
+that restates 25 statements.
 
 \paragraph{Paper proofs, open questions and model limits.}
 In \cref{sec:psi-window}, Proposition~\ref{prop:psi-closed},

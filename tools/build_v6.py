@@ -999,7 +999,7 @@ finite numerical certificates.""")
     discussion = once(discussion,
         "using the large universal cap. They do not give a uniform runtime bound.",
         "using the large universal cap. Theorem~\\ref{thm:uniform-cap-rate} shows that\n"
-        "$N=\\lceil4B/3\\rceil$ suffices for every input with $0<\\rho\\le1/2$.\n"
+        "$N=\\lceil4B/9\\rceil$ suffices for every input with $0<\\rho\\le1/2$.\n"
         "Neither gives a solver runtime or bit-complexity bound.")
     discussion = once(discussion,
         "The remaining quantitative questions include sharp comparison constants,\n"
@@ -1049,7 +1049,7 @@ scopes stated in Section~\\ref{sec:verification}.""")
         "certificates concern the particular rational inputs displayed above.",
         "The convergence theorem of \\cref{sec:genie} is qualitative;\n"
         "\\cref{app:uniform-cap-rate} shows that the exact program values satisfy\n"
-        "$P_N\\le2G_N$ at $N=\\lceil4B/3\\rceil$, without covering solver accuracy.\n"
+        "$P_N\\le2G_N$ at $N=\\lceil4B/9\\rceil$, without covering solver accuracy.\n"
         "The certificates concern the particular rational inputs displayed above.")
 
     # The general-law manuscript fixed rho <= 1/4 for the dual. The cap-rate
@@ -1083,7 +1083,7 @@ scopes stated in Section~\\ref{sec:verification}.""")
             "rate for that cap.",
             "criterion therefore succeeds at a finite cap. Separately,\n"
             "\\cref{app:uniform-cap-rate} uses this theorem to show that, for the\n"
-            "exact program values, $N\\ge4B/3$ suffices for every law with\n"
+            "exact program values, $N\\ge4B/9$ suffices for every law with\n"
             "$0<\\rho\\le1/2$."),
         "appendix-identifiability.tex": gl("identifiability"),
         "appendix-computation.tex": computation,

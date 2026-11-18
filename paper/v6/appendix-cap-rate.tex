@@ -5,13 +5,13 @@
 Let $\mu$ be any gap law, $0<\rho\le1/2$, $B>0$, and let $N\ge1$ be an
 integer. For $k>1$ the programs of \cref{sec:genie} satisfy
 \[
- N\ge\frac{B}{(1-1/k)^2(k^2-1)}
+ B\le N\,(k-1/k)^2
  \quad\Longrightarrow\quad
  G_N(B)\le P_\infty(B)\le P_N(B)\le kG_N(B).
 \]
-In particular $N=\lceil4B/3\rceil$ suffices for $P_N\le2G_N$ and
-$R(B)\le P_N(B)\le16R(B)$. For $N\ge B$ the factor may be taken to be
-$1+2(B/N)^{1/3}$.
+Equivalently, the factor $k=\bigl(\sqrt{4+t^2}+t\bigr)/2\le1+t$ holds with
+$t=\sqrt{B/N}$. In particular $N\ge4B/9$ suffices for $P_N\le2G_N$ and
+$R(B)\le P_N(B)\le16R(B)$.
 \end{theorem}
 
 \begin{proof}
@@ -46,15 +46,29 @@ maximization over policies give
  K_N^+(q_L,q_H;v',w')
  \le \max\{K/(1-e)^2,\,4/(e^2 N)\}.
 \]
-Set $e=1-1/k$. The cap condition implies
-$4+B K_N^+(q_L,q_H;v',w')\le k^2(4+BK)$.
+Put $t=k-1/k$, so that $B/N\le t^2$, and $x=\sqrt{BK}/2$. If $x>0$,
+take $e=t/(x+t)$. Then $x/(1-e)=t/e=x+t$, so
+$BK_N^+(q_L,q_H;v',w')/4\le(x+t)^2$, and the identity
+\[
+ k^2(1+x^2)-1-(x+t)^2=(k^2-1)(x-1/k)^2
+\]
+gives $4+BK_N^+(q_L,q_H;v',w')\le k^2(4+BK)$. If $x=0$, the same bound
+holds for $e$ close to $1$, since $1+t^2<k^2$.
 The target separation did not change. Maximizing the original quotient
 in \eqref{eq:exact-four-prior-dual} gives $P_N\le kG_N$ by
 \eqref{eq:genie-program}. The other inequalities follow from
-\cref{thm:genie-program}. For $k=2$ the cap condition is $N\ge4B/3$.
-For $t=(B/N)^{1/3}\le1$ and $k=1+2t$, its denominator is
-$16t^3(1+t)/(1+2t)^2\ge t^3$.
+\cref{thm:genie-program}. For $k=2$ the cap condition is $N\ge4B/9$.
+Solving $t=k-1/k$ for $k>1$ gives the stated factor, and
+$\sqrt{4+t^2}\le2+t$ gives $k\le1+t$.
 \end{proof}
+
+The Lean statements are the
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/f1425008ea71094d900b8cbb9a90b485f0884d33/lean/ThresholdHC/SquareRootCap/Full.lean}{square-root cap comparison}
+\texttt{square\_root\_cap} and its corollary \texttt{four\_ninths} for
+$N\ge4B/9$. An
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/537543ca0ea813d9eecbc165b0e4af1beb71a06e/lean/ThresholdHC/GenieRate/Full.lean}{earlier formal proof}
+checks the cap condition $N\ge B/\bigl((1-1/k)^2(k^2-1)\bigr)$ and the cap
+$\lceil4B/3\rceil$.
 
 The bound concerns the optimized programs. An individual unregularized
 quartet can have infinite genie information at every cap, as in
@@ -121,10 +135,9 @@ claim, using monotonicity of the cap programs. The established
 $R\le P_\infty\le8R$ gives the risk bounds.
 \end{proof}
 
-This argument improves the sufficient relative rate for $P_N/P_\infty$
-from a cube root to a square root. It does not establish optimality,
-a matching convergence lower bound, or a square-root rate for
-$P_\infty/G_N$. The
+Like \cref{thm:uniform-cap-rate}, this argument gives a square-root
+relative rate. Neither theorem establishes optimality or a matching
+convergence lower bound. The
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/2dc570206292ce88a0636d82e9bdfff54663e80d/lean/ThresholdHC/FiniteCapTruncation/Full.lean}{complete ordinary-program proof}
 and its
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/2dc570206292ce88a0636d82e9bdfff54663e80d/lean/ThresholdHC/FiniteCapTruncation/Risk.lean}{risk corollaries}
