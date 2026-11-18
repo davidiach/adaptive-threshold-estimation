@@ -5,7 +5,7 @@ $45$ for the RMS law's upper bound by sharpening the expected work of the
 distribution-blind estimator. Sharpening its call second moment as well
 gives $36$. The audit runs below were made when the proof was added, at
 commit
-[`LEAN_COMMIT`](https://github.com/davidiach/adaptive-threshold-estimation/commit/LEAN_COMMIT).
+[`c112a4dd5e3e5592369a75e65360ae1c05d89424`](https://github.com/davidiach/adaptive-threshold-estimation/commit/c112a4dd5e3e5592369a75e65360ae1c05d89424).
 
 ## Statements
 
@@ -71,9 +71,9 @@ budget factor $17/6$ then gives $\tfrac{63}{5}\cdot\tfrac{17}{6}=\tfrac{357}{10}
 | Command | Outcome | Log |
 |---|---|---|
 | `python tools/verify_upper_moment.py --replay --jobs 3` | 10 exact statements and 21 transitive axiom reports over 6 registered modules, all within `propext`, `Classical.choice` and `Quot.sound`. All 6 modules replayed through the independent kernel checker. | [upper-moment-audit.log](upper-moment-audit.log) |
-| `python tools/verify_project_axioms.py` | PROJECT_SUMMARY | [project-audit.log](project-audit.log) |
+| `python tools/verify_project_axioms.py` | 15,719 constants (12,612 theorems) in 1,366 modules, same axioms. 141 exported instances. 2,973 locked definition fingerprints. | [project-audit.log](project-audit.log) |
 | `python -m unittest discover -s tools -p 'test_upper_moment.py'` | 10 guard tests pass. | |
-| `python tools/verify_lean_sources.py` | SOURCES_SUMMARY | |
+| `python tools/verify_lean_sources.py` | 1,367 Lean sources, no proof escapes. | |
 
 The whole-project audit was first run with `--add-definitions`. It added
 the two statement definitions to `tools/definition_lock.json`. No existing
