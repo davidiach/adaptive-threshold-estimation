@@ -23,7 +23,11 @@ checks $27$ ([`UpperMixture`](../../lean/ThresholdHC/UpperMixture/Full.lean),
 [record](../../results/upper-mixture-20261118/README.md)) for a variant that
 runs level $L+1$ with probability $B/(4\cdot2^L)-1$ and level $L$ otherwise,
 so that it uses the whole budget. This study does not compute that variant;
-its ratios are for the single-level estimator.
+its ratios are for the single-level estimator. A fifth stage checks $19$ for
+the same variant ([`UpperCost`](../../lean/ThresholdHC/UpperCost/Full.lean),
+[record](../../results/upper-cost-20261118/README.md)). It sums the survival
+bounds of the early-stopping classifiers by the difference of level and
+check, which brings the padded call cost from $273/25$ to $11/2$.
 
 The RMS law states
 $\tfrac16\,\omega_\mu(B^{-1/2})\le R_\mu(B)\le512\,\omega_\mu(B^{-1/2})$
