@@ -1,0 +1,132 @@
+{
+  "compiler": "Lean (version 4.36.0-rc1, x86_64-w64-windows-gnu, commit c9afcddf514a6772bd4d649f7cfc04eff0b9f15e, Release)",
+  "imported_checkout_commit": "992762844d2983ed6b9c1569c60690a47ef7b6c9",
+  "lean_source_tree": "71ebb71cdc57f16898b35fb988848cdd2381631c",
+  "source_sha256": {
+    "SharpEntropy.lean": "c1f7d5e19ffb72ce65eb3acc4b26d00df7514523a73901694221b39c1c658a3c",
+    "LargeBudgetTest.lean": "653f958ab71b847d5bcc9903f6d3bd5c5cb0ab5628e2f034803a7e5420e54849",
+    "LargeBudgetPrice.lean": "1d3c2bc8f448ced28684084d927aa8bf1382b7b931e5226bc25ce5fb5784c71b",
+    "SharpInformation.lean": "12f33886d6a03aad88180f251c81bbcc1ffe8adaceaf02138bd2f1745b1445d2",
+    "LargeBudgetInformation.lean": "f6b3cfb203ce64cd5c7680e07cd68e06e457b766c31fc2817b8b6805e49f0439",
+    "SharpTranscript.lean": "18c0bede0deb2891a4e7e533fbc06d906cc82d6da258433cf4598ca40aa0f9ee",
+    "SharpPrefixCost.lean": "a97bccd1c3e245e671a46e10ab9630784f02db674d3c88e440aeb4f3f0bba226",
+    "SharpSimulation.lean": "92c00dd9338a95c672001b5e968cf0d7933ffc7a65803b7228794d92c1331810",
+    "LargeBudgetTranscript.lean": "e78a14925632fcbfca8c15f430ec686f1e0e41261247b6839ca39fd7ae213d02",
+    "SharpWeakRisk.lean": "44e8038c7a6e83bba197e5d7689dbbc2e06cabafee2b8e6e864e43acff298640",
+    "LargeBudgetRisk.lean": "c014fdb108f43bc32da0b9ff232853449e1ee6d7eec2074b23a9865717c239a1",
+    "SharpWeakPopulation.lean": "87259de301bfadf6b77e5a0fb445f7434158d38b50a56f1c3ce1095bd3f79321",
+    "LargeBudgetPopulation.lean": "61d186512961f96b2ea173b8ce4d880e12a0ba644a2a77074e22d58523340131",
+    "SharpCausal.lean": "2973cb2238241c9be9d5685bd1d1db11abf653092fe3ae8924743e70db962bd8",
+    "SharpHeterogeneous.lean": "5a337ff06cb29c876fcb19bd4d5c89fc2b694da3c2eb0e1993c90f5edc29ca08",
+    "SharpWordSimulation.lean": "10821e69dfa92e9ff245c22f7263f67b9804f602164514da19b99790dde87d5f",
+    "SharpTapeLaw.lean": "b2aa15b3d2b1845d2e5ee651636ef8263819d1059a04b3e4fccdcfab6d7aac0e",
+    "SharpTapeMixture.lean": "e689f493ec280009353d24ce58cc0401dcee130f6f143934c5a0c8da1b64a9e2",
+    "SharpSingleTape.lean": "6d3fec2f1954940fba2c2c2dfe038c651521464c546191624be51de9aa16c167",
+    "SharpArrayLaw.lean": "393749c086bcc33f95175f98c9552b79c11e439b0eca0571c80e7bb033518e13",
+    "SharpPopulationTransfer.lean": "51f31e5b46df2bcd9f5b59667f03b5101817890b10750a646ccb773fc3aba5ac",
+    "SharpReduction.lean": "2ba4f68b85471aec6e82e7ac9c17eec958ef9e43777e686bb92ab6c04945c570",
+    "SharpOracleTapes.lean": "a1aa1f000b5675890b2fc0bae72b5a6ff19f65c69b33777b8775eb58f224317f",
+    "SharpOracleLaw.lean": "18f010f67b3557d5b5bdc0f42af24adb06260bf21341e9ed43b5a7323328e1da",
+    "SharpOracleReduction.lean": "5ad393a9c71b27d6fa71d54817076225994b9d2335ee45293f5eaae9185524a5",
+    "LargeBudgetBounds.lean": "cae07650c6cb6087568e18dcd7c62f9b2325fe7321b45301166e35d68aed3526",
+    "SharpAttainment.lean": "93cdd6438ab45186987d63623a3a5eaeddbd85feecdadb0af4cde7cf9284ce1a",
+    "LargeBudgetFresh.lean": "ac97008cab893e52c43d3efd879b6e3e6a1ade0d8b2f6c39c11a980554bab20f",
+    "LargeBudgetBinomial.lean": "2f4ec8bdd6ee2889ca29ff3f89c37aa3c02208f658d41504dd989605898a897b",
+    "LargeBudgetTable.lean": "fb6954e4c039b15548058f6ff22a471de688a386e269717776228c25c69ca64d",
+    "LargeBudgetWitness.lean": "b0e69b10908529542a02e9ed95605ec10eac107689dc1ddeaafeb487367f4c75",
+    "AuditLargeBudget.lean": "68170f5d2fd8ae914c30df30b529233b3bf0b005810daaa03b0ad0e2f811a63c"
+  },
+  "exact_type_checks": [
+    "adaptive_reverse_cost",
+    "coefficient_upper",
+    "log_tests",
+    "logarithmic_lower",
+    "lower_100",
+    "lower_25",
+    "twenty_five_budget",
+    "twenty_five_squared_risk",
+    "upper_25"
+  ],
+  "transitive_axioms": {
+    "twenty_five_budget": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "twenty_five_squared_risk": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "upper_25": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "coefficient_upper": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "adaptive_reverse_cost": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "log_tests": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "logarithmic_lower": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "lower_25": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "lower_100": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "kernel_replay": [
+    "SharpEntropy",
+    "LargeBudgetTest",
+    "LargeBudgetPrice",
+    "SharpInformation",
+    "LargeBudgetInformation",
+    "SharpTranscript",
+    "SharpPrefixCost",
+    "SharpSimulation",
+    "LargeBudgetTranscript",
+    "SharpWeakRisk",
+    "LargeBudgetRisk",
+    "SharpWeakPopulation",
+    "LargeBudgetPopulation",
+    "SharpCausal",
+    "SharpHeterogeneous",
+    "SharpWordSimulation",
+    "SharpTapeLaw",
+    "SharpTapeMixture",
+    "SharpSingleTape",
+    "SharpArrayLaw",
+    "SharpPopulationTransfer",
+    "SharpReduction",
+    "SharpOracleTapes",
+    "SharpOracleLaw",
+    "SharpOracleReduction",
+    "LargeBudgetBounds",
+    "SharpAttainment",
+    "LargeBudgetFresh",
+    "LargeBudgetBinomial",
+    "LargeBudgetTable",
+    "LargeBudgetWitness"
+  ],
+  "dependencies": "Existing compiled project and Mathlib imports",
+  "scope": "Symmetric adaptive entropy cost, exact three-bias test, and improved uniform constants for B >= 25 and B >= 100 in all three models, and an ordinary 25-flip upper witness"
+}

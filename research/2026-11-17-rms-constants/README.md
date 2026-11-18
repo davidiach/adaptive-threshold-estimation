@@ -41,6 +41,28 @@ The [unrestricted ordinary-model theorem](SharpUnrestricted.lean) proves $R_\mu(
 
 For both magnitude oracles, the [oracle reduction](SharpOracleReduction.lean) allows an arbitrary measurable array of magnitudes conditional on the oracle seed. This covers free inspection of the entire iid gap array and a magnitude selected adaptively at each creation. Lean proves the [same two lower bounds](SharpOracleBounds.lean) and [exact endpoint equality](SharpOracleAttainment.lean) in each model. The selected-oracle proof shows that naming a fresh coin by its birth history preserves the distribution of the four observed flips.
 
+## The coefficient for budgets of at least 25
+
+Write $c_{25}$ for the largest ordinary-model coefficient such that $R_\mu(B)\ge c_{25}\,\omega_\mu(B^{-1/2})$ for every gap law and every real $B\ge25$. The certified interval is
+
+$$
+0.17356166\ \le\ c_{25}\ \le\ 0.195454.
+$$
+
+The lower endpoint also applies to the revealed- and selected-magnitude oracles. For $B\ge100$ the lower coefficient increases to $0.17623782$. The sharp value for $B\ge25$ remains open. [Lower theorems](LargeBudgetBounds.lean) · [25-flip upper witness](LargeBudgetWitness.lean) · [Exact statements](AuditLargeBudget.lean) · [Kernel replay](large-budget-audit.json)
+
+At the critical gap $d=B^{-1/2}$, write $s=2d$ and let $P_t$ be the transcript law at sign mean $t$. The summed reverse divergences from $P_0$ to $P_{\pm t}$ are at most $-\log(1-t^2s^2)\,\mathbb E_0 W$ when $t^2\le2/3$. This follows by bounding the log likelihood of each sampled coin in terms of its posterior and applying the Wald identity. For $t=29/40$, the three-bias test then gives the following sufficient condition on a positive RMS coefficient $r$, with $k=11774928000/2595112129$ and $b=29/4$.
+
+$$
+4(k+2b)r^2\ \le\ 2.7401+2(1-1/8)+B\log(1-4t^2/B).
+$$
+
+The right side increases with $B$. The proof checks the logarithm at the cutoff with a finite rational Taylor sum, averages over private randomness and passes to unbounded stopping under the original expected-work budget. [Entropy per flip](LargeBudgetTranscript.lean) · [Three-bias inequality](LargeBudgetTest.lean) · [Population risk](LargeBudgetPopulation.lean) · [Budget dependence](LargeBudgetPrice.lean)
+
+For the upper endpoint take $B=25$ and $\mu=\delta_{1/5}$, where the modulus equals one. The protocol queries 25 distinct coins once each and returns a rational estimate indexed by the head count. When the positive-sign fraction is $p$, each observation has head probability $3/10+2p/5$. The mean squared error is a degree-13 polynomial in $(2p-1)^2$. Four exact Bernstein expansions certify that it is at most $0.195454^2$ on the full parameter interval. [Fresh-flip law](LargeBudgetFresh.lean) · [Estimator and polynomial certificate](LargeBudgetTable.lean)
+
+## Reproducing the formal checks
+
 The [ordinary](AuditSharpUnrestricted.lean) and [oracle](AuditSharpOracles.lean) statement audits check these inequalities against the original definitions. The [critical-window audit](AuditSharpWindow.lean) and [earlier component checks](AuditSharpRMS.lean) give the intermediate statements. The [ordinary-model verification record](sharp-unrestricted-audit.json) covers 38 proof modules and six exact statement checks. The [oracle verification record](sharp-oracles-audit.json) covers all 44 proof modules and checks four oracle statements. Each run rebuilt the listed research modules from source against the compiled project and Mathlib dependencies. The [critical-window record](sharp-critical-window-audit.json) covers 27 modules, and the [earlier component record](sharp-rms-audit.json) covers 18. Each records the source hashes and transitive axioms. To replay the unrestricted proof from a built checkout with the same Lean source tree, run
 
 ```sh
@@ -49,4 +71,5 @@ The [ordinary](AuditSharpUnrestricted.lean) and [oracle](AuditSharpOracles.lean)
   ThresholdHC.ContinuousObserved.Prefix ThresholdHC.Tier6.Full ThresholdHC.OracleLower.Realization)
 python research/2026-11-17-rms-constants/verify_sharp_rms.py . --unrestricted
 python research/2026-11-17-rms-constants/verify_sharp_rms.py . --oracles
+python research/2026-11-17-rms-constants/verify_sharp_rms.py . --large-budget
 ```
