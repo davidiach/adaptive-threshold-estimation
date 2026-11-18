@@ -159,12 +159,13 @@ jobs:
         run: |
           python -m unittest discover -s tools -p 'test_psi_sharpness.py' -v
           python -m unittest discover -s tools -p 'test_power_window.py' -v
-      - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper constant, upper work and square-root cap audits
+      - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper-constant (119, 45, 36) and square-root cap audits
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
           python -m unittest discover -s tools -p 'test_large_budget_rms.py' -v
           python -m unittest discover -s tools -p 'test_upper_constant.py' -v
           python -m unittest discover -s tools -p 'test_upper_work.py' -v
+          python -m unittest discover -s tools -p 'test_upper_moment.py' -v
           python -m unittest discover -s tools -p 'test_square_root_cap.py' -v
       - name: Regression tests for the whole-project axiom audit
         run: python -m unittest discover -s tools -p 'test_project_axioms.py' -v
@@ -377,6 +378,10 @@ jobs:
       # per-level expected work of the early-stopping classifiers.
       - name: Verify the upper constant 45 of the RMS law and replay its modules
         run: python tools/verify_upper_work.py --replay --jobs 3
+      # Its 6 modules build on the upper-work modules above and sharpen the
+      # call second moment through the disagreement of consecutive classifiers.
+      - name: Verify the upper constant 36 of the RMS law and replay its modules
+        run: python tools/verify_upper_moment.py --replay --jobs 3
       - name: Verify the full observable above-two rare-event theory
         run: python tools/verify_rare_above_two.py --sequential
       - name: Verify the registered quantile-comparison target

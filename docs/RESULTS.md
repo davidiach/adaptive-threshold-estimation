@@ -145,13 +145,14 @@ Here $r_\mu(B,\delta)$ is the minimax uniform error radius at failure probabilit
 | Lower, $B\ge25$ | $\sqrt{59/2100}\approx0.1676$ | `large_budget_lower` in the same file | CI, the same audit | Appendix AA |
 | Lower, $B\ge25$, best known | $0.175198$, and $0.17807955$ for $B\ge100$; the best constant is at most $0.186752$ | `bracket_lower`, `hundred_lower` and `bracket_upper` in [LargeBudgetRMS/Full.lean](../lean/ThresholdHC/LargeBudgetRMS/Full.lean) | CI, `tools/verify_large_budget_rms.py` | Appendix AA, Theorem AA.7 |
 | Lower, original frozen target | $1/64$ | `minimax_lower_bound` in [Tier6/Full.lean](../lean/ThresholdHC/Tier6/Full.lean) | CI, `tools/verify_tier6.py` | §5 |
-| Upper, $B\ge1$ | $45$ | `minimax_upper_45` and `blind_upper_45` in [UpperWork/Full.lean](../lean/ThresholdHC/UpperWork/Full.lean) | CI, `tools/verify_upper_work.py` | No: the paper states $512$ |
+| Upper, $B\ge1$ | $36$ | `minimax_upper_36` and `blind_upper_36` in [UpperMoment/Full.lean](../lean/ThresholdHC/UpperMoment/Full.lean) | CI, `tools/verify_upper_moment.py` | No: the paper states $512$ |
+| Upper, $B\ge1$, earlier stage | $45$ | `minimax_upper_45` and `blind_upper_45` in [UpperWork/Full.lean](../lean/ThresholdHC/UpperWork/Full.lean) | CI, `tools/verify_upper_work.py` | No |
 | Upper, $B\ge1$, earlier stage | $119$ | `minimax_upper_119` and `blind_upper_119` in [UpperConstant/Full.lean](../lean/ThresholdHC/UpperConstant/Full.lean) | CI, `tools/verify_upper_constant.py` | No |
 | Upper, frozen target | $512$ | `minimax_upper_bound` in [BlindUpper/Full.lean](../lean/ThresholdHC/BlindUpper/Full.lean) | CI, `tools/verify_blind_upper_components.py` | §18 derives $512$; §5 proves the bound with a larger constant |
 
-The lower constant is settled for $B\ge1$. The upper constant is not, so the two sides remain a factor $270$ apart.
+The lower constant is settled for $B\ge1$. The upper constant is not, so the two sides remain a factor $216$ apart.
 
-**The upper constants 119 and 45.** All three upper constants come from the
+**The upper constants 119, 45 and 36.** All four upper constants come from the
 same distribution-blind estimator, which knows only the budget. Its analysis
 bounds the second moment and the cost of one call by level sums. The library
 proves those sums below $23$ and $527/7$, but the proofs of the frozen Tier 2
@@ -172,11 +173,22 @@ cap satisfies $Nd^2\le32$ bounded by that cap, bounds the call cost by
 $248/25$ in place of $527/7$. The
 mean-square error is then at most $6304/25$ times the squared modulus, and
 $\sqrt{6304/25}\cdot17/6<45$
-([record](../results/upper-work-20261118/README.md)). A
+([record](../results/upper-work-20261118/README.md)).
+
+The constant $36$ also sharpens the call second moment. Two consecutive
+classifiers disagree only if one of them errs, and each errs with probability
+at most $\tfrac53e^{-2}/(Nd^2)^2$, so they disagree with probability at most
+$\tfrac{25}{3}e^{-2}/(Nd^2)^2\le\tfrac{113}{100}/(Nd^2)^2$; the frozen Tier 2
+proof rounds the factor up to $3$. Summing over levels, with the levels whose
+cap satisfies $Nd^2\le1$ bounded by $1$, bounds the call second moment by
+$72/5$ in place of $23$. The mean-square error is then at most $19781/125$
+times the squared modulus, and $\sqrt{19781/125}\cdot17/6<36$
+([record](../results/upper-moment-20261118/README.md)). A
 [numerical study](../research/2026-11-18-upper-constant/README.md) puts the
-estimator's actual worst ratio near $7.6$. The remaining slack is mostly in the
-second moment $23$ and in the per-level disagreement bound $\min\{1,3/x^2\}$
-behind it.
+estimator's actual worst ratio near $7.6$. The remaining slack is in the
+per-level bounds themselves: the exact disagreement probability is at most
+$0.25$ and $0.115/x^2$, and the exact expected flips at most $1.26$ times the
+work envelope.
 
 The lower constant of the RMS law is sharp. For every gap law and every $B\ge1$,
 
@@ -205,7 +217,7 @@ an integer certificate over 140 bias intervals elsewhere; the Lean kernel
 evaluates that certificate. For $B\ge25$, three sign biases compared under
 one reference law. Appendix AA of the v6 paper and the
 [research note](../research/2026-11-17-rms-constants/sharp-unrestricted.pdf)
-give the written proof. The upper constant is $45$ (below).
+give the written proof. The upper constant is $36$ (below).
 
 **Budgets of at least 25.** Let $c_{25}$ be the largest constant with
 $R_\mu(B)\ge c_{25}\,\omega_\mu(B^{-1/2})$ for every gap law and every
@@ -307,13 +319,15 @@ The original simulation law, actual controller cost/output identities,
 almost-sure pilot termination and budget selection are proved. The
 [full audit](../results/blind_upper_components_002.json) checks the unchanged
 frozen specification and all 373 declaration roots; coefficient 512 is not
-claimed optimal. The same family has the constant $45$:
-[`UpperWork/Full.lean`](../lean/ThresholdHC/UpperWork/Full.lean)
-proves `budgetEstimator_maximalRMSRisk` and the minimax bound with $45$ in
-place of $512$, audited exactly by `tools/verify_upper_work.py`
-([record](../results/upper-work-20261118/README.md)). The earlier stage
-[`UpperConstant/Full.lean`](../lean/ThresholdHC/UpperConstant/Full.lean)
-proves $119$ ([record](../results/upper-constant-20261118/README.md)).
+claimed optimal. The same family has the constant $36$:
+[`UpperMoment/Full.lean`](../lean/ThresholdHC/UpperMoment/Full.lean)
+proves `budgetEstimator_maximalRMSRisk` and the minimax bound with $36$ in
+place of $512$, audited exactly by `tools/verify_upper_moment.py`
+([record](../results/upper-moment-20261118/README.md)). The earlier stages
+[`UpperConstant/Full.lean`](../lean/ThresholdHC/UpperConstant/Full.lean) and
+[`UpperWork/Full.lean`](../lean/ThresholdHC/UpperWork/Full.lean) prove $119$
+and $45$ ([record for 119](../results/upper-constant-20261118/README.md),
+[record for 45](../results/upper-work-20261118/README.md)).
 
 The original lower target is frozen and kept unchanged. `ThresholdHC.Tier6.minimax_lower_bound` in [Full.lean](../lean/ThresholdHC/Tier6/Full.lean) proves
 

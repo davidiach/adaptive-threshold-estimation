@@ -13,8 +13,12 @@ $45$ ([`UpperWork`](../../lean/ThresholdHC/UpperWork/Full.lean),
 [record](../../results/upper-work-20261118/README.md)). It replaces the
 expected-flips bound of $17$ times the work envelope by
 $\tfrac{49}{10}\,d^{-2}(1+\log(Nd^2))$, which brings the cost constant
-$\kappa$ from $527/7$ to $248/25$. The disagreement bound and the second
-moment $23$ discussed below are unchanged.
+$\kappa$ from $527/7$ to $248/25$. A third stage checks $36$
+([`UpperMoment`](../../lean/ThresholdHC/UpperMoment/Full.lean),
+[record](../../results/upper-moment-20261118/README.md)). It keeps the
+disagreement factor $\tfrac{25}{3}e^{-2}\le\tfrac{113}{100}$ in place of $3$,
+which brings $\sigma$ from $23$ to $72/5$. The per-level bounds themselves,
+discussed below, are otherwise those of the original proof.
 
 The RMS law states
 $\tfrac16\,\omega_\mu(B^{-1/2})\le R_\mu(B)\le512\,\omega_\mu(B^{-1/2})$

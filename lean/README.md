@@ -16,7 +16,7 @@ original 33 modules; a default `lake build` reaches only those.
 | To check | Open | Run |
 |---|---|---|
 | The main RMS law, lower side: sharp constant $1/6$ | [SharpRMS](ThresholdHC/SharpRMS/Specification.lean) | `python tools/verify_sharp_rms.py` |
-| The main RMS law, upper side: constant $45$ | [UpperWork](ThresholdHC/UpperWork/Specification.lean) | `python tools/verify_upper_work.py` |
+| The main RMS law, upper side: constant $36$ | [UpperMoment](ThresholdHC/UpperMoment/Specification.lean) | `python tools/verify_upper_moment.py` |
 | The frozen upper target, constant $512$ | [BlindUpper](ThresholdHC/BlindUpper/Specification.lean) | `python tools/verify_blind_upper_components.py --sequential` |
 | The original frozen lower target, constant $1/64$ | [Tier6](ThresholdHC/Tier6/Specification.lean) | `python tools/verify_tier6.py --sequential --require-complete` |
 | Confidence radius | [Confidence](ThresholdHC/Confidence/Specification.lean) | `python tools/verify_confidence.py` |
@@ -52,6 +52,7 @@ overwrite tracked files under `results/`. Run them in a disposable checkout.
 | Distribution-blind RMS upper bound, coefficient $512$ | [BlindUpper specification](ThresholdHC/BlindUpper/Specification.lean), [Full](ThresholdHC/BlindUpper/Full.lean) | `python tools/verify_blind_upper_components.py --sequential` |
 | The same family with coefficient $119$: sharp level sums ($23$ and $527/7$) for the call moments and the budget factor $17/6$ | [Specification](ThresholdHC/UpperConstant/Specification.lean), [Full](ThresholdHC/UpperConstant/Full.lean), [record](../results/upper-constant-20261118/README.md) | `python tools/verify_upper_constant.py --replay` |
 | The same family with coefficient $45$: a Hoeffding bound on each check of the early-stopping classifier gives at most $\tfrac{49}{10}d^{-2}(1+\log(Nd^2))$ flips per level, and the call cost $248/25$ | [Specification](ThresholdHC/UpperWork/Specification.lean), [Full](ThresholdHC/UpperWork/Full.lean), [work bound](ThresholdHC/UpperWork/Survival.lean), [level sum](ThresholdHC/UpperWork/LevelSum.lean), [record](../results/upper-work-20261118/README.md) | `python tools/verify_upper_work.py --replay` |
+| The same family with coefficient $36$: consecutive classifiers disagree with probability at most $\min\{1,\tfrac{113}{100}/(Nd^2)^2\}$, and the call second moment is at most $72/5$ | [Specification](ThresholdHC/UpperMoment/Specification.lean), [Full](ThresholdHC/UpperMoment/Full.lean), [disagreement](ThresholdHC/UpperMoment/Disagreement.lean), [level sum](ThresholdHC/UpperMoment/LevelSum.lean), [record](../results/upper-moment-20261118/README.md) | `python tools/verify_upper_moment.py --replay` |
 | Confidence characterization | [Confidence specification](ThresholdHC/Confidence/Specification.lean), [Full](ThresholdHC/Confidence/Full.lean) | `python tools/verify_confidence.py --sequential` |
 | Revealed/selected magnitude-oracle lower bounds | [OracleLower specification](ThresholdHC/OracleLower/Specification.lean), [Full](ThresholdHC/OracleLower/Full.lean) | `python tools/verify_oracle_lower.py --sequential` |
 | Unbiased-estimation converse | [UnbiasedConverse specification](ThresholdHC/UnbiasedConverse/Specification.lean), [Full](ThresholdHC/UnbiasedConverse/Full.lean) | `python tools/verify_unbiased_converse.py --sequential` |
