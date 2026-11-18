@@ -31,6 +31,7 @@ class LeanRoutingTests(unittest.TestCase):
             "tools/verify_square_root_cap.py": {"stopping-program"},
             "tools/verify_large_budget_rms.py": {"lean-kernel"},
             "tools/verify_upper_constant.py": {"lean-kernel"},
+            "tools/verify_upper_work.py": {"lean-kernel"},
             "tools/quantile_comparison_specification_freeze.json": {"lean-kernel", "entropy-tail-upper"},
             "tools/stopping_program_lock.py": {"stopping-program"},
             "tools/verify_genie_convergence.py": {"stopping-program"},
