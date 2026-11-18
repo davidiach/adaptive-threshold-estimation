@@ -8,8 +8,13 @@ result.
 ([`UpperConstant`](../../lean/ThresholdHC/UpperConstant/Full.lean),
 [record](../../results/upper-constant-20261118/README.md)). It keeps the
 library's sharper level sums, $23$ and $527/7$, in place of $85$ and $149$,
-and compares the budget by $17/6$ in place of $4$. The per-level bounds
-discussed below are unchanged.
+and compares the budget by $17/6$ in place of $4$. A second stage checks
+$45$ ([`UpperWork`](../../lean/ThresholdHC/UpperWork/Full.lean),
+[record](../../results/upper-work-20261118/README.md)). It replaces the
+expected-flips bound of $17$ times the work envelope by
+$\tfrac{49}{10}\,d^{-2}(1+\log(Nd^2))$, which brings the cost constant
+$\kappa$ from $527/7$ to $248/25$. The disagreement bound and the second
+moment $23$ discussed below are unchanged.
 
 The RMS law states
 $\tfrac16\,\omega_\mu(B^{-1/2})\le R_\mu(B)\le512\,\omega_\mu(B^{-1/2})$
