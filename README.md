@@ -59,7 +59,7 @@ on the gap, at a fixed gap law $\mu$.
 | Result | Status | Details |
 |---|---|---|
 | For $B\ge1$, the sharp universal minimax RMS lower bound is $\omega_\mu(B^{-1/2})/6$ in the ordinary model and both magnitude oracles. Four fresh flips attain equality at $B=4$ and $\mu=\delta_{1/2}$. | Lean-checked | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) · written proof in Appendix AA of the [paper](paper/v6/README.md) |
-| For $B\ge25$ the best universal lower constant lies between $0.175198$ and $0.186752$; its exact value is open. | Lean-checked in a research package, outside CI and the paper | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) · [package](research/2026-11-17-rms-constants/README.md#the-coefficient-for-budgets-of-at-least-25) |
+| For $B\ge25$ the best universal lower constant lies between $0.175198$ and $0.186752$; its exact value is open. | Lean-checked | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) · outline in Appendix AA of the [paper](paper/v6/README.md) |
 | One algorithm that knows only the budget attains RMS error at most $512\,\omega_\mu(B^{-1/2})$. | Lean-checked | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) |
 | Confidence radius of order $\omega_\mu\bigl(\sqrt{\log(1/\delta)/B}\bigr)$ | Lean-checked | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) |
 | An unbiased estimator with finite variance and expected work exists exactly when $I=\mathbb E_\mu[D^{-1}]$ is finite; the best variance–work product lies between $I^2/16$ and $713I^2$ | Lean-checked | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) · [713](docs/RESULTS.md#the-713-construction) |
@@ -122,7 +122,7 @@ Current material:
 | Path | What it holds | Start with |
 |---|---|---|
 | [paper/](paper/README.md) | The manuscripts. Version 6 is the current paper; the others are its preserved sources | [paper/README.md](paper/README.md) |
-| [lean/](lean/README.md) | The Lean 4 formalization, about 1,320 modules | [lean/README.md](lean/README.md) |
+| [lean/](lean/README.md) | The Lean 4 formalization, about 1,350 modules | [lean/README.md](lean/README.md) |
 | [docs/](docs/README.md) | Guides: results and scope, verification commands, work plan, and one note for each result | [docs/README.md](docs/README.md) |
 | [tools/](tools/README.md) | Audit scripts that check exact statements and axioms, their tests, and the manuscript generators | [tools/README.md](tools/README.md) |
 | [results/](results/README.md) | Evidence records of audits and experiments. A record describes one checkpoint and is not edited afterwards | [results/README.md](results/README.md) |

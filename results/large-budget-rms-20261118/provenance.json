@@ -1,0 +1,183 @@
+{
+ "research_checkpoint": "289438a01d5970f7db91f1795db81b4e5293248b (research/2026-11-17-rms-constants)",
+ "library_commit": "7ed941f198939a95f282e491c66a2defeef0528b",
+ "line_endings": "Library modules use LF. 14 of the 26 research files use CRLF on some or all lines; the other 12 use LF.",
+ "not_promoted": [
+  "RevisitCertificate.lean",
+  "RevisitExperiment.lean",
+  "RevisitHistory.lean",
+  "RevisitRisk.lean",
+  "RevisitWitness.lean"
+ ],
+ "not_promoted_note": "The 0.188087 revisit witness, which the 0.186752 pilot witness supersedes. No promoted module imports them.",
+ "modules": {
+  "lean/ThresholdHC/LargeBudgetRMS/Full.lean": {
+   "research_file": null,
+   "research_sha256": null,
+   "library_sha256": "5ea3b4d28111b6db054d1d3e350fa73aff6df71d43db217ed22aa22242d89ac2",
+   "change": "new: target theorems proved from the research theorems"
+  },
+  "lean/ThresholdHC/LargeBudgetRMS/LargeBudgetBinomial.lean": {
+   "research_file": "LargeBudgetBinomial.lean",
+   "research_sha256": "2f4ec8bdd6ee2889ca29ff3f89c37aa3c02208f658d41504dd989605898a897b",
+   "library_sha256": "9b56797431a4b0f254b8ff5e185aca510ace3f8704158f2e41a5959d6934ba79",
+   "change": "import lines and line endings only"
+  },
+  "lean/ThresholdHC/LargeBudgetRMS/LargeBudgetBounds.lean": {
+   "research_file": "LargeBudgetBounds.lean",
+   "research_sha256": "cae07650c6cb6087568e18dcd7c62f9b2325fe7321b45301166e35d68aed3526",
+   "library_sha256": "2e3200ad813abb97584fb2f1fe8b01dd31ab7be1bc2aa070f256403143d9b026",
+   "change": "import lines and line endings only"
+  },
+  "lean/ThresholdHC/LargeBudgetRMS/LargeBudgetFresh.lean": {
+   "research_file": "LargeBudgetFresh.lean",
+   "research_sha256": "ac97008cab893e52c43d3efd879b6e3e6a1ade0d8b2f6c39c11a980554bab20f",
+   "library_sha256": "30053ffb258ab100f7d88b2ce9cbed6b88287df43b17bf0d86d0e1e04d89edc9",
+   "change": "import lines and line endings only"
+  },
+  "lean/ThresholdHC/LargeBudgetRMS/LargeBudgetInformation.lean": {
+   "research_file": "LargeBudgetInformation.lean",
+   "research_sha256": "f6b3cfb203ce64cd5c7680e07cd68e06e457b766c31fc2817b8b6805e49f0439",
+   "library_sha256": "489328eb4b16172228bb9bc84d8f7dd55391ac08bb5d8c708617868fafc1b9da",
+   "change": "import lines and line endings only"
+  },
+  "lean/ThresholdHC/LargeBudgetRMS/LargeBudgetPopulation.lean": {
+   "research_file": "LargeBudgetPopulation.lean",
+   "research_sha256": "61d186512961f96b2ea173b8ce4d880e12a0ba644a2a77074e22d58523340131",
+   "library_sha256": "1c58a1a44e593aac180f4451a08931e9cdadcc037fb996235e0c64d896367ac9",
+   "change": "import lines and line endings only"
+  },
+  "lean/ThresholdHC/LargeBudgetRMS/LargeBudgetPrice.lean": {
+   "research_file": "LargeBudgetPrice.lean",
+   "research_sha256": "1d3c2bc8f448ced28684084d927aa8bf1382b7b931e5226bc25ce5fb5784c71b",
+   "library_sha256": "174e0f11e780985f0447e1820baed162cc1dc1db1e6260d85cb0e794b4621d67",
+   "change": "import lines and line endings only"
+  },
+  "lean/ThresholdHC/LargeBudgetRMS/LargeBudgetRisk.lean": {
+   "research_file": "LargeBudgetRisk.lean",
+   "research_sha256": "c014fdb108f43bc32da0b9ff232853449e1ee6d7eec2074b23a9865717c239a1",
+   "library_sha256": "ad3af92676c425620c3358fb8fb8922d17008d4f24c75f929417466c06209efb",
+   "change": "import lines and line endings only"
+  },
+  "lean/ThresholdHC/LargeBudgetRMS/LargeBudgetTable.lean": {
+   "research_file": "LargeBudgetTable.lean",
+   "research_sha256": "fb6954e4c039b15548058f6ff22a471de688a386e269717776228c25c69ca64d",
+   "library_sha256": "8273f6a5e24cc20b4a08ccc379f599fc4f33a263f7212d3ae81249dfd75500f2",
+   "change": "import lines and line endings only"
+  },
+  "lean/ThresholdHC/LargeBudgetRMS/LargeBudgetTest.lean": {
+   "research_file": "LargeBudgetTest.lean",
+   "research_sha256": "653f958ab71b847d5bcc9903f6d3bd5c5cb0ab5628e2f034803a7e5420e54849",
+   "library_sha256": "61d0d611b4cb080bb2e2e031b144cc964324a9913c7f5397ed19d016d0cf3253",
+   "change": "import lines and line endings only"
+  },
+  "lean/ThresholdHC/LargeBudgetRMS/LargeBudgetTranscript.lean": {
+   "research_file": "LargeBudgetTranscript.lean",
+   "research_sha256": "e78a14925632fcbfca8c15f430ec686f1e0e41261247b6839ca39fd7ae213d02",
+   "library_sha256": "7a45d294cefb61e5f5ec615fc06f5b77a0e2d6d0ebf2608e77412f73cc20b635",
+   "change": "import lines and line endings only"
+  },
+  "lean/ThresholdHC/LargeBudgetRMS/LargeBudgetWitness.lean": {
+   "research_file": "LargeBudgetWitness.lean",
+   "research_sha256": "b0e69b10908529542a02e9ed95605ec10eac107689dc1ddeaafeb487367f4c75",
+   "library_sha256": "f63e9a8c6402d6260ccd55ca8fafb1c807d3cc33e390525495c01868888144a3",
+   "change": "import lines and line endings only"
+  },
+  "lean/ThresholdHC/LargeBudgetRMS/MultiBiasBounds.lean": {
+   "research_file": "MultiBiasBounds.lean",
+   "research_sha256": "56747c46520214a5785ac87599f210b6176f5561e5ef3389ffd075e0dcac907e",
+   "library_sha256": "dc429d0a5e243a53537317e4ec16604d7daa98308938c824d6edceba7fd2667a",
+   "change": "import lines only"
+  },
+  "lean/ThresholdHC/LargeBudgetRMS/MultiBiasCertificate.lean": {
+   "research_file": "MultiBiasCertificate.lean",
+   "research_sha256": "ec6a25c2e187e83a525ae1533b0ca49bc2f7f197378bfcdcca3a9ff995a7eefb",
+   "library_sha256": "63a996255cf699049341bec44b103b7f21ec521f985c647328f7a4ecb5f5fe6d",
+   "change": "import lines only"
+  },
+  "lean/ThresholdHC/LargeBudgetRMS/MultiBiasData.lean": {
+   "research_file": "MultiBiasData.lean",
+   "research_sha256": "2bea157ec14fd22708e4c17d946374c89acf45498aa28760cff937bb9d36ab7c",
+   "library_sha256": "5cb26f8150be704f6c970b112f12c9626274a88d169f013fee5d3142f1fe91ca",
+   "change": "import lines only"
+  },
+  "lean/ThresholdHC/LargeBudgetRMS/MultiBiasPopulation.lean": {
+   "research_file": "MultiBiasPopulation.lean",
+   "research_sha256": "aad9b2f361349b4e9733491705f8f0ded876e6ab75b07d74c13e80b0f13edb3b",
+   "library_sha256": "91c490d3d8cacc1e6eaa9ceb16805c43fed7d146cc69c31cd7a92264bf219a97",
+   "change": "import lines only"
+  },
+  "lean/ThresholdHC/LargeBudgetRMS/MultiBiasPrefix.lean": {
+   "research_file": "MultiBiasPrefix.lean",
+   "research_sha256": "01dbc5f5f717215699173e9fa4760bff3435432fc5827791b8678741e3db02af",
+   "library_sha256": "28a28c6c583b806c0994109bdc85ddf4c0db57ad3191a06aff60883e7a2de3e3",
+   "change": "import lines only"
+  },
+  "lean/ThresholdHC/LargeBudgetRMS/MultiBiasPrice.lean": {
+   "research_file": "MultiBiasPrice.lean",
+   "research_sha256": "cbc83a553a18b774f5f7e1cbaf6b03c5f330a6f26dc10d06a1ffd68cedddc936",
+   "library_sha256": "9224d6f3e5c419c7382f515eeb3b4681a2a604050c3129768f63858c1010503e",
+   "change": "import lines only"
+  },
+  "lean/ThresholdHC/LargeBudgetRMS/PilotCertificate.lean": {
+   "research_file": "PilotCertificate.lean",
+   "research_sha256": "bbea10a0b92cd5c0ede5254f52a47cfe192f7a21950092bea44e50e5a913ff92",
+   "library_sha256": "1901dc3f769860773f682c9c8f91a9e45bd8c7036030113d1e594a01654ba5f5",
+   "change": "import lines only"
+  },
+  "lean/ThresholdHC/LargeBudgetRMS/PilotExperiment.lean": {
+   "research_file": "PilotExperiment.lean",
+   "research_sha256": "62634e9301c260f5f1ec58a1be05f345e4d0b99784da2d854f539146b9585458",
+   "library_sha256": "897f80624f8fd380f579be0fa2910999740c024efa86cfb36e665a02a6bb1ffb",
+   "change": "import lines only"
+  },
+  "lean/ThresholdHC/LargeBudgetRMS/PilotPolicy.lean": {
+   "research_file": "PilotPolicy.lean",
+   "research_sha256": "394b0290ff226dbf0a988ea1aed1bd4fdca8510be1d10369c1ce3dc8cf861781",
+   "library_sha256": "0564d953f7518680d91abd8e1f879aadffde6d7987a6a1b8009fe9b4ff8ee865",
+   "change": "import lines only"
+  },
+  "lean/ThresholdHC/LargeBudgetRMS/PilotPolynomial.lean": {
+   "research_file": "PilotPolynomial.lean",
+   "research_sha256": "160bd9bcef408b6129642c10cc4da231ee96ccde0e3bfd93def19ab36b44bedf",
+   "library_sha256": "ccdd4628166d2b4801ace3b4461c60a5ec104b93c71df3d5a70e70c70065e666",
+   "change": "import lines only"
+  },
+  "lean/ThresholdHC/LargeBudgetRMS/PilotTable.lean": {
+   "research_file": "PilotTable.lean",
+   "research_sha256": "080499d1cc37b596474c2c42352d284cedd58a03ea343899d29d4192ca8bb2d8",
+   "library_sha256": "c67751f2c507de2c295ef4c714b725e75ccd5b593bc0c8a10c21b784e072421e",
+   "change": "import lines only"
+  },
+  "lean/ThresholdHC/LargeBudgetRMS/PilotWitness.lean": {
+   "research_file": "PilotWitness.lean",
+   "research_sha256": "fcc7bd6420d8793df7e052bb612ecd47fad0b26eaacbdc9488a00cab8ca1a729",
+   "library_sha256": "e832bb09a6ce1e8af047ded2c945657baaa5377d3a0905cfbe2b95518eaa8824",
+   "change": "import lines only"
+  },
+  "lean/ThresholdHC/LargeBudgetRMS/RevisitKernel.lean": {
+   "research_file": "RevisitKernel.lean",
+   "research_sha256": "b5661775d296f547e35038578eaf924bd3e3588a91886a8f2b17c345f31938a9",
+   "library_sha256": "4d9e274c4463da5e2eaaea3d38379433e251fbef4a7f9f129c49be51c7869557",
+   "change": "import lines and line endings only"
+  },
+  "lean/ThresholdHC/LargeBudgetRMS/RevisitPolicy.lean": {
+   "research_file": "RevisitPolicy.lean",
+   "research_sha256": "dedeceaad3564b0dd11c763dfd2c67cbe196040bb37b44a32b5624ae5c168f18",
+   "library_sha256": "cbb640b2968f789bb57a45db837305627e70acd65b645e7a69f13249dcf27bab",
+   "change": "import lines and line endings only"
+  },
+  "lean/ThresholdHC/LargeBudgetRMS/RevisitPolynomial.lean": {
+   "research_file": "RevisitPolynomial.lean",
+   "research_sha256": "f0fbcbdf265aaf7afcdf434b81263fdfab1200845deb62f27efc6d8f31062f85",
+   "library_sha256": "e14ffd19c63e8aac8ca5502c08f81f6465d1545ebcb745f203c83b84c6a95de8",
+   "change": "import lines and line endings only"
+  },
+  "lean/ThresholdHC/LargeBudgetRMS/Specification.lean": {
+   "research_file": null,
+   "research_sha256": null,
+   "library_sha256": "35d347e6fdf9148118f2ff417b1786294a877375ae65fc0b63f1ef232f6500cc",
+   "change": "new: target statements"
+  }
+ }
+}

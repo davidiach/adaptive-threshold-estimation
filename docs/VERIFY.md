@@ -20,7 +20,7 @@ the [evidence index](../results/README.md) explains published checkpoints.
 | Hard-budget RMS research package | `python -m unittest discover -s toolkit/tests -p 'test_budget_ladders.py' -v`; `python research/2026-10-30-hard-budget-rms/verify.py` | Driver unit tests and exact rational recurrence, schedule and timeout-counterexample audits, written to `.runtime/hard-budget-rms/validation.json`. There are no tracked evidence records to compare with. They check finite computations, not the [paper proof](../research/2026-10-30-hard-budget-rms/NOTE.md). |
 | Confidence-transfer research package | `python -m unittest discover -s toolkit/tests -p 'test_confidence*.py' -v`; `python research/2026-10-30-confidence-transfer/verify_transfer.py --output .runtime/confidence-transfer/transfer.json`; `python research/2026-10-30-confidence-transfer/verify_anytime.py` | Driver unit tests; exact rational smoothing, likelihood-factorization and null-work audits; exact error-spending identities and the optional-stopping path count, written to `.runtime/confidence-transfer/`. There are no tracked evidence records to compare with. They check finite computations, not the [paper proof](../research/2026-10-30-confidence-transfer/NOTE.md). |
 | Imported inputs and research packages | `python tools/verify_inputs.py`; `python tools/verify_research.py`; `python tools/verify_population_research.py` | Input identities and maintained research replay. Research diagnostics use temporary output and `.runtime/`; original records remain intact. |
-| Main RMS law | `python tools/verify_sharp_rms.py --replay`; `python tools/verify_blind_upper_components.py --sequential`; `python tools/verify_tier6.py --sequential --require-complete` | Exact formal audits of both directions. The first checks the sharp lower coefficient $1/6$ and writes nothing; the second checks the upper coefficient $512$ and writes `.runtime/`; the third checks the original frozen lower target with $1/64$ and writes tracked `results/`, so use a disposable checkout. |
+| Main RMS law | `python tools/verify_sharp_rms.py --replay`; `python tools/verify_large_budget_rms.py --replay`; `python tools/verify_blind_upper_components.py --sequential`; `python tools/verify_tier6.py --sequential --require-complete` | Exact formal audits of both directions. The first checks the sharp lower coefficient $1/6$ and writes nothing; the second checks the upper coefficient $512$ and writes `.runtime/`; the third checks the original frozen lower target with $1/64$ and writes tracked `results/`, so use a disposable checkout. |
 | Any Lean source | `python tools/verify_project_axioms.py`; add `--replay-main-theorem` for the kernel replay | Builds every module under `lean/ThresholdHC` and checks the transitive axioms of every constant they declare, every exported instance (named, global, default priority, no new data-carrying instance on a type the project does not define) and the fingerprint of every project definition against `tools/definition_lock.json`. A changed or removed definition fails; a new one fails until `--add-definitions` adds it, which never rewrites an existing entry. Registers no theorem and writes only with `--add-definitions`. It does not check exact statement types; run the affected result's audit as well. |
 | Finite-law relative approximation | `python tools/verify_finite_selection_approximation.py`; `python -m unittest discover -s tools -p 'test_finite_selection_approximation.py' -v`; for the two component targets, `python tools/verify_selection_approximation.py` | Checks the 79-file specification/dependency lock, 12 exact statements and 93 transitive reports; writes fresh `.runtime/finite-selection/` evidence. The [scope](FINITE_SELECTION_APPROXIMATION.md) separates mathematical endpoints and extension counts from bit complexity and numerical/Python execution. |
 | Another Lean result | [Theorem-to-audit map](../lean/README.md#main-theorem-entry-points), [baseline and tier sequence](#lean-kernel-checks) | Run the affected result's exact-target/axiom audit, including affected downstream results when shared dependencies change. Check locks first. |
@@ -880,6 +880,16 @@ helper lemmas private; those are not audit roots here, and
 The guard suites are `test_sharp_rms.py` and `test_square_root_cap.py`; CI
 runs both suites and both audits.
 [Record](../results/sharp-rms-20261117/README.md).
+
+Run `python tools/verify_large_budget_rms.py --replay` for the bracket
+$[0.175198,0.186752]$ on the best RMS lower coefficient at budgets of at least
+25: 25 exact statements and 147 transitive axiom reports over the 28 modules
+of `lean/ThresholdHC/LargeBudgetRMS`. It checks the lower coefficient in all
+three models, $0.17807955$ for $B\ge100$, the adaptive 25-flip witness at gap
+$1/5$ and the upper bound on the coefficient. The modules build on
+`SharpRMS`; with `--replay` they also go through the independent kernel
+checker. The guard suite is `test_large_budget_rms.py`; CI runs it and the
+audit. [Record](../results/large-budget-rms-20261118/README.md).
 
 ## Whole-project build, axioms and kernel replay
 
