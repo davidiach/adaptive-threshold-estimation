@@ -140,7 +140,9 @@ not establish that every legacy output is accepted.
 ## Deterministic API inventory
 
 The table inventories the public deterministic surfaces at integrated main
-`2e8e8b5e2a06a39f83db41376317f705789f9e0f`. Public record types include their
+`2e8e8b5e2a06a39f83db41376317f705789f9e0f`. Its verification-connection
+column also covers the certificates merged afterwards, through #125
+(`80b7742`). Public record types include their
 deterministic properties/serialization methods. Numerical helpers used only
 inside stochastic execution are included where they affect certificates;
 coin callbacks, sampling, simulation and controller execution belong to #86.

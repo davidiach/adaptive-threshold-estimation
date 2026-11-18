@@ -74,8 +74,9 @@ For navigation-only edits, check relative links and heading anchors, run
 `git -c core.whitespace=cr-at-eol diff --check` (plain `--check` reports the CR of CRLF files as trailing
 whitespace) and `python tools/verify_locks.py`, and inspect the final file
 list. `verify_locks.py` checks `FROZEN.sha256` (including a deleted line, which
-`freeze.py --verify` misses), the tier locks and the published checksum
-manifests; if the diff touches a path in a specification lock, run that
+`freeze.py --verify` misses), the tier locks and the five published
+checksum manifests named in the script; if the diff touches a path in a
+specification lock, run that
 lock's audit too. A full Lean rebuild is
 unnecessary when proof sources, specifications, tools, and dependencies are
 unchanged.

@@ -1,8 +1,9 @@
 # Guides
 
-This folder holds the project's written guides. Four pages are entry points;
-the rest are notes on one result each. The [repository map](../README.md#repository-map)
-describes the other folders.
+This folder holds the project's written guides. Four pages are entry points.
+The rest are notes on one result each, guides to the toolkit's output
+certificates, and historical records. The
+[repository map](../README.md#repository-map) describes the other folders.
 
 ## Start here
 
@@ -10,23 +11,19 @@ describes the other folders.
 |---|---|
 | [RESULTS.md](RESULTS.md) | Find any claim with its exact assumptions, its verification status and its evidence |
 | [VERIFY.md](VERIFY.md) | Reproduce a check; the [task table](VERIFY.md#choose-checks-by-task) picks the commands |
-| [WORKPLAN.md](WORKPLAN.md) | See the current priorities and what is finished |
-| [ENVELOPE_TRANSFER_CERTIFICATES.md](ENVELOPE_TRANSFER_CERTIFICATES.md) | Check zero-residual envelopes, rounding pushforwards and conditional transfer outputs |
-| [GLOBAL_SELECTION_CERTIFICATES.md](GLOBAL_SELECTION_CERTIFICATES.md) | Check bounded complete menus, global solver intervals, exact-optimality claims and relative approximation |
-| [FINITE_LAW_CERTIFICATES.md](FINITE_LAW_CERTIFICATES.md) | Connect finite laws to original measures and check actual objective/oracle outputs |
-| [DETERMINISTIC_VERIFICATION.md](DETERMINISTIC_VERIFICATION.md) | Inventory deterministic APIs, use the numerical certificate checker and see the remaining implementation boundary |
-| [SECONDARY_CLAIMS.md](SECONDARY_CLAIMS.md) | Find the exact disposition of secondary paper claims and their relationship to checked theorems |
+| [WORKPLAN.md](WORKPLAN.md) | See what is open and what is finished |
 | [MODEL_FIDELITY.md](MODEL_FIDELITY.md) | Compare the paper's model with the Lean definitions; written for a specialist reviewer |
 
 ## Notes on individual results
 
 Each note states one result, its scope and how it was checked.
-[RESULTS.md](RESULTS.md) links to them from the matching section.
+[RESULTS.md](RESULTS.md) links to most of them from the matching section.
 
 ### The main law, for every sign law
 
 | Page | Subject |
 |---|---|
+| [RESULTS.md, minimax law](RESULTS.md#minimax-law-and-unbiasedness) | The sharp lower constant $1/6$ and the constants for large budgets. They have no separate note; the written proof is Appendix AA of the paper |
 | [BLIND_UPPER.md](BLIND_UPPER.md) | The distribution-blind minimax upper bound |
 | [SMOOTH_DENSITY.md](SMOOTH_DENSITY.md) | The smooth-density theorem |
 | [OBSERVED_STATES.md](OBSERVED_STATES.md) | Observed-state lower bounds for finitely many cells |
@@ -38,7 +35,7 @@ Each note states one result, its scope and how it was checked.
 | Page | Subject |
 |---|---|
 | [RARE_ABOVE_TWO.md](RARE_ABOVE_TWO.md) | Power-law gaps above the inverse-square boundary |
-| [CRITICAL_AUDIT.md](CRITICAL_AUDIT.md) | The critical quadratic theorem and its follow-up audit |
+| [CRITICAL_AUDIT.md](CRITICAL_AUDIT.md) | The critical quadratic theorem: its current formal boundary, then the record of the follow-up audit |
 | [FINITE_SELECTION_APPROXIMATION.md](FINITE_SELECTION_APPROXIMATION.md) | Finite-law relative approximation, certified original-K endpoints and the execution boundary |
 | [RARE_EVENT_COMPUTATION.md](RARE_EVENT_COMPUTATION.md) | Computing the rare-event rate, and a tighter selection comparison |
 | [QUANTILE_PRICE_BOUNDS.md](QUANTILE_PRICE_BOUNDS.md) | Sharper bounds on the quantile-to-selection factor |
@@ -80,8 +77,22 @@ Each note states one result, its scope and how it was checked.
 | Page | Subject |
 |---|---|
 | [KNOWN_LAW_ESTIMATOR.md](KNOWN_LAW_ESTIMATOR.md) | Running the known-law rare-event estimator |
-| [BUDGET_CONTROLLER_TRANSITIONS.md](BUDGET_CONTROLLER_TRANSITIONS.md) | Execution contracts of the Python budget controllers, and their audit |
-| [EXPERIMENT_PERSISTENCE.md](EXPERIMENT_PERSISTENCE.md) | Persistence audit of the benchmark runs |
+| [BUDGET_CONTROLLER_TRANSITIONS.md](BUDGET_CONTROLLER_TRANSITIONS.md) | Execution contracts of the Python budget controllers, followed by their audit of 6 November |
+| [EXPERIMENT_PERSISTENCE.md](EXPERIMENT_PERSISTENCE.md) | How the benchmark runs are stored and recovered, followed by the persistence audit of 6 November |
+
+### Toolkit output certificates
+
+These guides belong to
+[#85](https://github.com/davidiach/adaptive-threshold-estimation/issues/85):
+the Lean kernel checks individual outputs of the Python toolkit. The Python
+code itself is not verified.
+
+| Page | Subject |
+|---|---|
+| [DETERMINISTIC_VERIFICATION.md](DETERMINISTIC_VERIFICATION.md) | Start here: the inventory of deterministic toolkit functions, the numerical certificate checker and what remains outside it |
+| [FINITE_LAW_CERTIFICATES.md](FINITE_LAW_CERTIFICATES.md) | Finite laws as original measures, and certificates for objective and oracle outputs |
+| [ENVELOPE_TRANSFER_CERTIFICATES.md](ENVELOPE_TRANSFER_CERTIFICATES.md) | Zero-residual envelopes, rounding pushforwards and conditional transfer outputs |
+| [GLOBAL_SELECTION_CERTIFICATES.md](GLOBAL_SELECTION_CERTIFICATES.md) | Bounded complete menus, global solver intervals, exact-optimality claims and relative approximation |
 
 ## Historical records
 
@@ -92,4 +103,5 @@ pages above for the current state.
 |---|---|
 | [TIER4.md](TIER4.md), [TIER5.md](TIER5.md), [TIER6.md](TIER6.md) | Run notes for three stages of the main lower-bound formalization |
 | [ENTROPY_TAIL_LOWER_PROGRESS.md](ENTROPY_TAIL_LOWER_PROGRESS.md) | Progress record of the entropy–tail lower-bound formalization |
+| [SECONDARY_CLAIMS.md](SECONDARY_CLAIMS.md) | The disposition of the paper's secondary claims as of 16 November 2026, kept byte for byte because a [record](../results/secondary-claims-20261116/README.md) pins it. The approximation theorem it names as the next step is since Lean-checked: see [FINITE_SELECTION_APPROXIMATION.md](FINITE_SELECTION_APPROXIMATION.md) |
 | [process/](process/README.md) | The process record: method, provenance, reports and run logs |
