@@ -67,7 +67,11 @@ its explicit component variance–null-work premises.
 The sharp quantile-factor characterization is now [Lean-checked](../results/quantile-optimality-20261105/README.md).
 The law-dependent time-uniform lower bound is now
 [Lean-checked](../results/anytime-asymptotic-20261105/README.md) for
-deterministic half-width envelopes. Unknown-law oracle-rate adaptation,
-unrestricted exact-selection complexity and the optimal cap convergence
-rate remain open research. Human specialist review is
+deterministic half-width envelopes. Unknown-law oracle-rate adaptation
+now has a [Lean-checked eventual form](ARBITRARY_LAW_ADAPTATION.md).
+Unrestricted exact-selection complexity
+([#87](https://github.com/davidiach/adaptive-threshold-estimation/issues/87))
+and the sharp cap convergence rate
+([#88](https://github.com/davidiach/adaptive-threshold-estimation/issues/88))
+remain open research. Human specialist review is
 absent, as recorded in the project scope.

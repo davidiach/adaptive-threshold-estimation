@@ -9,6 +9,10 @@ documentation. It does not change statistical assumptions, Lean specifications,
 frozen sources, or published verification records. Python execution and its
 PRNG remain outside the Lean proofs.
 
+The sections up to [Finite-family handoff](#finite-family-handoff) state the
+current execution contracts. [Findings and regression coverage](#findings-and-regression-coverage)
+and the validation notes after it record the audit of 6 November 2026.
+
 ## Common lifecycle
 
 `advance_to(B)` authorizes a **cumulative** nonnegative integer allowance.

@@ -39,7 +39,7 @@ finite observation support while preserving the physical acquisition
 rule. Compactness and finite policy mixtures then place the pair before
 the policy quantifiers.
 
-## Verification and remaining work
+## Verification and later results
 
 The [native record](../results/common-pair-20261105/README.md) checks
 40 exact statements and 40 transitive axiom reports over 341 project

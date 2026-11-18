@@ -6,6 +6,15 @@ paper proof and a [complete Lean theorem](#full-arbitrary-law-all-budget-control
 `RobustContinuation` the paid median, and `ArbitraryLawController` their
 all-budget composition. Python execution is outside the verification claim.
 
+This page is the inventory of that Lean proof, for a reader who wants to
+check a step of the paper proof against its Lean statement. The final
+theorem is in [Full arbitrary-law all-budget controller](#full-arbitrary-law-all-budget-controller),
+near the end, and [Remaining verification boundaries](#remaining-verification-boundaries)
+says what it leaves out. The sections in between follow the order in which
+the components were built; each names its Lean files, its audit and its
+record. A sentence there that calls a later step open describes that
+section's own checkpoint. There are 31 sections.
+
 ## Finite entropy transport
 
 For a nonnegative finite cost vector, write
@@ -235,8 +244,9 @@ Run `python tools/verify_arbitrary_law_stage.py` for 17 exact statements and
 does not itself instantiate the statistical pilot or robust continuation, or
 assume their desired risk bounds in place of proving them; the pilot is
 installed in it in the [pilot section](#capped-multi-depth-pilot). It is a
-single stage,
-not yet the final all-budget confidence controller.
+single stage; the
+[all-budget controller](#full-arbitrary-law-all-budget-controller) composes
+such stages.
 
 The [native stage audit](../results/arbitrary-law-stage-20261106/README.md)
 identifies the 644-source project closure, exact statements and compiled
@@ -284,8 +294,8 @@ The [tail-test record](../results/arbitrary-law-tail-test-20261110/README.md)
 identifies the proof checkpoint and source hashes.
 
 These are statements about one coin. Inverse sampling over fresh coins is the
-subject of the next section. The test is not yet embedded as a reader in the
-observable stage.
+subject of the next section. Its reader of observed flips is the subject of
+[a later section](#tail-certificate-in-the-observable-experiment).
 
 ## Capped tail probe
 
@@ -1323,5 +1333,5 @@ its reference estimator classically and evaluates its reference functional
 exactly; it uses no integration oracle for the unknown true law. The checked
 bank and median schedules are identified above and in the paid-median scope.
 The [publication record](../results/adaptation-publication-20261116/README.md)
-reconciles the new manuscript/PDF with its proof checkpoints and the
-remaining optional backlog. Historical records retain their original claims.
+reconciles the manuscript build of 16 November with its proof checkpoints and
+the optional backlog at that date. Historical records retain their original claims.

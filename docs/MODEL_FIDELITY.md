@@ -20,8 +20,9 @@ of the paper proofs.
   [`43d9fba`](https://github.com/davidiach/adaptive-threshold-estimation/tree/43d9fba720332fe7f3b5dfbcfef137839e6cfef5).
   GitHub Actions run 42003950396 on that commit passed all five jobs,
   including the three Lean jobs. Every Lean file cited here is byte-identical
-  at the commit that adds this brief; later commits only add the
-  `AnytimeLower` files and edit `lean/README.md`.
+  at the commit that adds this brief. No Lean file present at `43d9fba` has
+  been modified since (checked at `ffba65d` on 18 November 2026); later
+  commits only add files.
 - **Paper references** give the rendered numbers of the
   [current v6 build](../paper/v6/README.md) and the `.tex` source file in
   `paper/v6/`. Do not use `paper/v6/paper.pdf`, which predates later status
@@ -36,6 +37,27 @@ of the paper proofs.
   citation at `43d9fba` and corrected the extraction. Lean was not compiled
   for this brief. Statements about audits rest on the saved records and on the
   CI run above.
+
+## Changes since the pin
+
+Most of this brief describes the tree at `43d9fba` (5 November 2026). These
+later changes bear on it:
+
+- **Sharp RMS constant.** Theorem 2.1 of the paper now states the lower
+  coefficient $1/6$, which is optimal. Lean proves it as
+  [`sharp_lower : SharpLowerStatement`][SharpLower], against the same
+  `minimaxRisk` and `modulus` as the frozen Tier 6 target, which keeps $1/64$.
+  [`SharpCoefficientStatement`][SharpLower] proves that no larger constant
+  holds, and the oracle forms carry $1/6$ too. Their audit pins the
+  specification by hash. Sections 9 and 10 list it.
+- **Kernel replay.** CI now replays three closures through the independent
+  kernel checker: the modules behind the main RMS law (`Tier6.Full` and
+  `BlindUpper.Full`), the 54 `SharpRMS` modules and the twelve
+  `ArbitraryLawController` modules. The rest of the tree is not replayed.
+- **Definition lock.** Since 14 November the whole-project audit checks a
+  fingerprint of every project definition (section 10).
+
+Counts below that are not marked with a commit describe `43d9fba`.
 
 ## Five checks that carry most of the weight
 
@@ -363,6 +385,7 @@ read.
 | Hard-cap fallback (Theorem R.1) | wider | Lean needs the base-rule premise only at the $(\mu,q)$ where it concludes, and allows any $M\ge0$. |
 | Hard-cap critical rate | wider | Lean covers every $B>0$; Theorem 11.2 states $B\ge1$. |
 | Explicit upper coefficients | see §10 | 512, 28000, 30001 and others are in companion theorems, not in the locked types. |
+| Theorem 2.1's RMS lower coefficient $1/6$ | matches | [`sharp_lower : SharpLowerStatement`][SharpLower], added after the pin. It uses the same `minimaxRisk` and `modulus` as Tier 6 and is hash-pinned by its audit; the frozen Tier 6 type carries $1/64$. |
 
 ## 10. What protects the statements, and the limits
 
@@ -385,8 +408,9 @@ read.
   14 November 2026 it also rejects scoped, prioritised or new orphan
   data-carrying instances and checks every project definition against a
   [definition lock](../tools/definition_lock.json)
-  ([record](../results/project-definitions-20261114/README.md)). Modules
-  outside that import closure are still not replayed. Mathlib `.olean` files
+  ([record](../results/project-definitions-20261114/README.md)). CI also
+  replays the 54 `SharpRMS` modules and the twelve `ArbitraryLawController`
+  modules. Other modules are not replayed. Mathlib `.olean` files
   come from the cache for the pinned revision `9bdd0bc`, with Lean
   `v4.36.0-rc1`.
 - **Locks.** `FROZEN.sha256`, the Tier 3-6 manifests, the 15 specification
@@ -422,7 +446,8 @@ read.
   that run Lake reference no lock. Their statements are protected by git history and by the
   source hashes in the published records.
 - **Explicit constants.** Locked types that state their coefficients: Tier 6
-  ($1/64$), Confidence ($1/64$, $8192$), OracleLower ($1/64$,
+  ($1/64$), SharpRMS ($1/6$; $\sqrt{59/2100}$ for $B\ge25$; specification
+  added after the pin and hash-pinned by its audit), Confidence ($1/64$, $8192$), OracleLower ($1/64$,
   $15/(256\sqrt2)$), Observable713 ($23$, $31$, $713$), UnbiasedConverse
   ($1/16$), StoppingProgram ($16$) and EntropyTailQuantile ($33000$). Locked
   types that assert only a positive constant: BlindUpper, EntropyTail,
@@ -437,7 +462,7 @@ read.
   it. The 512 companions use only locked Tier 6 definitions.
 - **Instances.** Inline audit statements are elaborated after the proof
   modules are imported, so an imported instance could change how their type
-  classes resolve. The tree has 137 `instance` declarations and two global
+  classes resolve. At `43d9fba` the tree has 137 `instance` declarations and two global
   `attribute [instance]` lines. Both of those register structure-field
   projections and cannot change how `MeasurableSpace R` resolves for a bound
   `R : Type`.
@@ -474,7 +499,8 @@ read.
    `CriticalMinimaxLowerStatement` directly; no lock fixes them.
 9. If kernel trust matters, rebuild with Lean `v4.36.0-rc1` and Mathlib
    `9bdd0bc` and replay the environment with `lean4checker`. CI now does
-   this for the main RMS law's modules (section 10); the rest is open.
+   this for the modules of the main RMS law, of `SharpRMS` and of the
+   arbitrary-law controller (section 10); the rest is open.
 
 ## Corrections made while preparing this brief
 
@@ -527,6 +553,7 @@ Related guides: [claims and assumptions](RESULTS.md),
 [original_sim]: https://github.com/davidiach/adaptive-threshold-estimation/blob/43d9fba720332fe7f3b5dfbcfef137839e6cfef5/lean/ThresholdHC/ObservableSimulation/OriginalExperiment.lean#L42-L45
 [BatchSeed]: https://github.com/davidiach/adaptive-threshold-estimation/blob/43d9fba720332fe7f3b5dfbcfef137839e6cfef5/lean/ThresholdHC/BlindUpper/SeedInput.lean#L23-L26
 [BlindUpperSpec]: https://github.com/davidiach/adaptive-threshold-estimation/blob/43d9fba720332fe7f3b5dfbcfef137839e6cfef5/lean/ThresholdHC/BlindUpper/Specification.lean#L11-L16
+[SharpLower]: https://github.com/davidiach/adaptive-threshold-estimation/blob/f1425008ea71094d900b8cbb9a90b485f0884d33/lean/ThresholdHC/SharpRMS/Specification.lean
 [minimax_upper_bound]: https://github.com/davidiach/adaptive-threshold-estimation/blob/43d9fba720332fe7f3b5dfbcfef137839e6cfef5/lean/ThresholdHC/BlindUpper/Full.lean#L57-L58
 [SelectedSemantics]: https://github.com/davidiach/adaptive-threshold-estimation/blob/43d9fba720332fe7f3b5dfbcfef137839e6cfef5/lean/ThresholdHC/OracleLower/Specification.lean#L21-L30
 [oracle_stops]: https://github.com/davidiach/adaptive-threshold-estimation/blob/43d9fba720332fe7f3b5dfbcfef137839e6cfef5/lean/ThresholdHC/OracleLower/Nonvacuity.lean#L10-L18

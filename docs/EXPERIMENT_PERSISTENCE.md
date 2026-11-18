@@ -5,6 +5,11 @@ held-out lifecycle. It began at `ee189ec` on 6 November 2026, after the
 [budget-controller audit](BUDGET_CONTROLLER_TRANSITIONS.md). It concerns storage
 and execution transitions, not statistical validity or Lean proofs.
 
+For current use, read [Guarded transitions](#guarded-transitions),
+[Publication and recovery boundaries](#publication-and-recovery-boundaries)
+and [Usage and checks](#usage-and-checks). The first section and the
+validation notes record the audit of 6 November 2026.
+
 The original [`benchmark/run_real.py`](../benchmark/run_real.py) is hash-locked
 by [`results/real_selection.json`](../results/real_selection.json). It and the
 published evidence remain unchanged. The new
@@ -174,7 +179,8 @@ incomplete tuning, marker binding, raw/summary mismatch, competing threads and
 processes, abrupt process exit, failed writes/copies/publication, terminal
 held-out behavior, and failure to record the interruption itself. A dedicated
 [CI workflow](../.github/workflows/experiment-persistence.yml) runs the suite on
-Windows and Ubuntu; adding it is not evidence that CI has already passed.
+Windows and Ubuntu. Its run on `main` at `b530a11` (17 November 2026)
+passed on both.
 
 ### Local validation on 6 November 2026
 
@@ -194,4 +200,5 @@ Windows and Ubuntu; adding it is not evidence that CI has already passed.
   the frozen runner, every tracked `results/`, `inputs/` and `research/` file,
   the preserved rare-event packages and tracked lock/manifest files.
 - Relative file links and the whitespace check passed. No Lean rebuild or new
-  scientific experiment was run. The new CI workflow has not run locally.
+  scientific experiment was run. The new CI workflow had not yet run on
+  that date.

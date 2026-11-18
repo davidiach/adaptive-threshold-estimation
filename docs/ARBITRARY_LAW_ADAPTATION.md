@@ -502,7 +502,7 @@ checks the concrete procedure and this full same-event theorem.
 This completes the theorem. The procedure and confidence schedule are fixed
 before the law, while the theorem's finite onset is allowed to depend on it.
 
-## Executable interfaces and remaining formal work
+## Executable interfaces and verification boundary
 
 The [finite envelope learner](../toolkit/threshold_toolkit/gap_envelope.py)
 uses exact rational masses, integer thresholds, separate probe namespaces,
@@ -554,4 +554,5 @@ stage and the full adaptive controller are now Lean-checked, including the
 finite onset and the simultaneous oracle-width event. Finite-law numerical
 enclosures, Python and its PRNG remain unverified. The
 [publication record](../results/adaptation-publication-20261116/README.md)
-reconciles the proof checkpoints, current manuscript and remaining backlog.
+reconciles the proof checkpoints, the manuscript build of 16 November and the
+backlog at that date.

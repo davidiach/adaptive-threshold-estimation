@@ -1,5 +1,13 @@
 # Computing the rare-event rate and a tighter selection comparison
 
+**Current status.** The computation and the inversion below are current.
+The comparison this note proves, with factor $5/3$, has since been improved:
+Lean checks $\mathcal K\le Q\le\frac{31}{20}\mathcal K$ for every probability
+law on $(0,1/2]$, and the least possible factor is about $1.4626$
+([results guide](RESULTS.md#sharp-finite-vector-quantile-factor)). The note
+below is kept as written on its date; the paragraph headed *Later status*
+gives the details.
+
 The closed quantile functional can be evaluated without searching over subsets
 or submeasures. This note gives the computation, an algebraic inversion for a
 target value, and a stronger deterministic comparison:

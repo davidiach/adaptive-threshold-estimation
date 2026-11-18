@@ -58,7 +58,7 @@ $16/3$ KL bound and confidence test finish the proof.
 | Uniform component coefficient and confidence test | [ComponentPair](../lean/ThresholdHC/AdditiveConfidence/ComponentPair.lean), [ConfidenceRate](../lean/ThresholdHC/AdditiveConfidence/ConfidenceRate.lean) |
 | Estimator and minimax conclusions for submeasures | [Full](../lean/ThresholdHC/AdditiveConfidence/Full.lean) |
 
-## Verification and remaining work
+## Verification and later results
 
 The [native record](../results/additive-confidence-20261105/README.md)
 checks 41 exact statements and 41 transitive axiom reports.

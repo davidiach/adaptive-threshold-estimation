@@ -193,7 +193,7 @@ implementation does not claim the exact coefficient $3000004$ from the Lean
 construction. Its code and PRNG are not formally verified; its execution
 regressions are not a proof of coverage.
 
-## Verification boundary and next work
+## Verification boundary
 
 The [full observable construction](../lean/ThresholdHC/LawAdaptation/Full.lean)
 is now Lean-checked. The original 17 component statements are supplemented by
