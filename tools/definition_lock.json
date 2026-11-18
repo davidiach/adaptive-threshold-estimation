@@ -2765,6 +2765,8 @@
     "ThresholdHC.Uniform713.uniformWork": "11832211714127730738:6149869951253863118",
     "ThresholdHC.Uniform713.work": "15070467639815682564:14350974232019653022",
     "ThresholdHC.Uniform713.workEnvelope": "15687204093786460919:2881883496541012723",
+    "ThresholdHC.UpperConstant.BlindUpper119Statement": "4762494857145497995:13136368238912912254",
+    "ThresholdHC.UpperConstant.MinimaxUpper119Statement": "4762494857145497995:13326688895613944597",
     "ThresholdHC.checkpointK": "416736479123539982:6681553361166407854",
     "ThresholdHC.classifyK": "11992021862951762388:3947292422365675078",
     "ThresholdHC.classifyK.match_1": "2115373487647785129:318329409616365605",
@@ -3029,6 +3031,10 @@
     {
       "at": "2026-11-18T12:33:07+00:00",
       "count": 166
+    },
+    {
+      "at": "2026-11-18T15:58:44+00:00",
+      "count": 2
     }
   ]
 }
