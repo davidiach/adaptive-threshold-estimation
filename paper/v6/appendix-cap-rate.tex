@@ -46,29 +46,30 @@ maximization over policies give
  K_N^+(q_L,q_H;v',w')
  \le \max\{K/(1-e)^2,\,4/(e^2 N)\}.
 \]
-Put $t=k-1/k$, so that $B/N\le t^2$, and $x=\sqrt{BK}/2$. If $x>0$,
-take $e=t/(x+t)$. Then $x/(1-e)=t/e=x+t$, so
-$BK_N^+(q_L,q_H;v',w')/4\le(x+t)^2$, and the identity
+Put $\tau=k-1/k$, so that $B/N\le\tau^2$, and $x=\sqrt{BK}/2$. If $x>0$,
+take $e=\tau/(x+\tau)$. Then $x/(1-e)=\tau/e=x+\tau$, so
+$BK_N^+(q_L,q_H;v',w')/4\le(x+\tau)^2$, and the identity
 \[
- k^2(1+x^2)-1-(x+t)^2=(k^2-1)(x-1/k)^2
+ k^2(1+x^2)-1-(x+\tau)^2=(k^2-1)(x-1/k)^2
 \]
-gives $4+BK_N^+(q_L,q_H;v',w')\le k^2(4+BK)$. If $x=0$, the same bound
-holds for $e$ close to $1$, since $1+t^2<k^2$.
+gives $4+BK_N^+(q_L,q_H;v',w')\le k^2(4+BK)$. If $x=0$, every
+$e\ge\sqrt{1-1/k^2}$ gives the same bound, since $\tau^2=(k^2-1)^2/k^2$.
 The target separation did not change. Maximizing the original quotient
 in \eqref{eq:exact-four-prior-dual} gives $P_N\le kG_N$ by
 \eqref{eq:genie-program}. The other inequalities follow from
 \cref{thm:genie-program}. For $k=2$ the cap condition is $N\ge4B/9$.
-Solving $t=k-1/k$ for $k>1$ gives the stated factor, and
-$\sqrt{4+t^2}\le2+t$ gives $k\le1+t$.
+Since $k-1/k$ increases on $k>1$, the cap condition holds exactly when
+$k\ge\bigl(\sqrt{4+t^2}+t\bigr)/2$ with $t=\sqrt{B/N}$, and
+$\sqrt{4+t^2}\le2+t$ bounds that factor by $1+t$.
 \end{proof}
 
-The Lean statements are the
+Lean checks the
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/f1425008ea71094d900b8cbb9a90b485f0884d33/lean/ThresholdHC/SquareRootCap/Full.lean}{square-root cap comparison}
-\texttt{square\_root\_cap} and its corollary \texttt{four\_ninths} for
-$N\ge4B/9$. An
+$P_N\le kG_N$ as \texttt{square\_root\_cap} and the factor-sixteen
+certificate for $N\ge4B/9$ as \texttt{four\_ninths}. An
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/537543ca0ea813d9eecbc165b0e4af1beb71a06e/lean/ThresholdHC/GenieRate/Full.lean}{earlier formal proof}
 checks the cap condition $N\ge B/\bigl((1-1/k)^2(k^2-1)\bigr)$ and the cap
-$\lceil4B/3\rceil$.
+$N\ge4B/3$.
 
 The bound concerns the optimized programs. An individual unregularized
 quartet can have infinite genie information at every cap, as in
@@ -77,8 +78,11 @@ quartet can have infinite genie information at every cap, as in
 \clearpage
 \subsection{Truncating the ordinary program}
 
-The ordinary upper program admits a stronger one-sided comparison with its
-limit. This does not give the same rate for the genie lower program.
+The ordinary upper program also admits a direct one-sided comparison with
+its limit, by truncating certificates, without the genie program. Its
+factor $1+\sqrt{B/(N+1)}$ is larger than the factor of
+\cref{thm:uniform-cap-rate}, which also bounds $P_N/P_\infty$, whenever
+$B\le4N$.
 
 \begin{theorem}\label{thm:ordinary-cap-rate}
 For every gap law, $0<\rho\le1/2$, $B>0$ and integer $N\ge1$,
