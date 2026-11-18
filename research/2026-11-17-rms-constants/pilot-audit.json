@@ -1,0 +1,82 @@
+{
+  "compiler": "Lean (version 4.36.0-rc1, x86_64-w64-windows-gnu, commit c9afcddf514a6772bd4d649f7cfc04eff0b9f15e, Release)",
+  "imported_checkout_commit": "992762844d2983ed6b9c1569c60690a47ef7b6c9",
+  "lean_source_tree": "71ebb71cdc57f16898b35fb988848cdd2381631c",
+  "source_sha256": {
+    "SharpAttainment.lean": "93cdd6438ab45186987d63623a3a5eaeddbd85feecdadb0af4cde7cf9284ce1a",
+    "LargeBudgetFresh.lean": "ac97008cab893e52c43d3efd879b6e3e6a1ade0d8b2f6c39c11a980554bab20f",
+    "RevisitKernel.lean": "b5661775d296f547e35038578eaf924bd3e3588a91886a8f2b17c345f31938a9",
+    "RevisitPolicy.lean": "dedeceaad3564b0dd11c763dfd2c67cbe196040bb37b44a32b5624ae5c168f18",
+    "PilotPolicy.lean": "394b0290ff226dbf0a988ea1aed1bd4fdca8510be1d10369c1ce3dc8cf861781",
+    "LargeBudgetBinomial.lean": "2f4ec8bdd6ee2889ca29ff3f89c37aa3c02208f658d41504dd989605898a897b",
+    "PilotExperiment.lean": "62634e9301c260f5f1ec58a1be05f345e4d0b99784da2d854f539146b9585458",
+    "RevisitPolynomial.lean": "f0fbcbdf265aaf7afcdf434b81263fdfab1200845deb62f27efc6d8f31062f85",
+    "PilotPolynomial.lean": "160bd9bcef408b6129642c10cc4da231ee96ccde0e3bfd93def19ab36b44bedf",
+    "PilotTable.lean": "080499d1cc37b596474c2c42352d284cedd58a03ea343899d29d4192ca8bb2d8",
+    "PilotCertificate.lean": "bbea10a0b92cd5c0ede5254f52a47cfe192f7a21950092bea44e50e5a913ff92",
+    "SharpEntropy.lean": "c1f7d5e19ffb72ce65eb3acc4b26d00df7514523a73901694221b39c1c658a3c",
+    "LargeBudgetTable.lean": "fb6954e4c039b15548058f6ff22a471de688a386e269717776228c25c69ca64d",
+    "LargeBudgetWitness.lean": "b0e69b10908529542a02e9ed95605ec10eac107689dc1ddeaafeb487367f4c75",
+    "PilotWitness.lean": "fcc7bd6420d8793df7e052bb612ecd47fad0b26eaacbdc9488a00cab8ca1a729",
+    "AuditPilot.lean": "bcb53e140b7c679784865a071c8b1d574d45b8d253dd9498ed4ba0a44a6c250a"
+  },
+  "exact_type_checks": [
+    "pilot_budget",
+    "pilot_cap",
+    "pilot_coefficient_upper",
+    "pilot_squared_risk",
+    "pilot_upper_25",
+    "pilot_worst_squared"
+  ],
+  "transitive_axioms": {
+    "pilot_worst_squared": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "pilot_cap": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "pilot_budget": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "pilot_squared_risk": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "pilot_upper_25": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "pilot_coefficient_upper": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "kernel_replay": [
+    "SharpAttainment",
+    "LargeBudgetFresh",
+    "RevisitKernel",
+    "RevisitPolicy",
+    "PilotPolicy",
+    "LargeBudgetBinomial",
+    "PilotExperiment",
+    "RevisitPolynomial",
+    "PilotPolynomial",
+    "PilotTable",
+    "PilotCertificate",
+    "SharpEntropy",
+    "LargeBudgetTable",
+    "LargeBudgetWitness",
+    "PilotWitness"
+  ],
+  "dependencies": "Existing compiled project and Mathlib imports",
+  "scope": "Eighteen fresh flips and seven adaptive choices, pathwise work cap, uniform squared risk, and ordinary large-budget coefficient upper bound"
+}
