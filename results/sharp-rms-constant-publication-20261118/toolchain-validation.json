@@ -1,5 +1,5 @@
 {
- "purpose": "Shows that the local toolchain that typeset sharp-rms-constant-20261117 reproduces the two previous published PDFs, one of which was published from the manuscript workflow.",
+ "purpose": "Shows that the local toolchain that typeset sharp-rms-constant-20261118 reproduces the two previous published PDFs, one of which was published from the manuscript workflow.",
  "rebuilds": [
   {
    "rebuilt_pdf": "paper/v6/builds/power-window-complete-20261116.pdf",
@@ -20,6 +20,7 @@
    "local_rebuild_bytes": 1515796
   }
  ],
+ "rebuilds_made": "2026-11-18, in the session that typeset this build",
  "build_command": "SOURCE_DATE_EPOCH=1793232000 FORCE_SOURCE_DATE=1 latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex",
  "host": "Ubuntu 24.04.5 LTS",
  "packages": {

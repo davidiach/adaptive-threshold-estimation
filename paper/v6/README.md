@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Current manuscript](builds/sharp-rms-constant-20261117.pdf) · [LaTeX sources](main.tex) · [Build record](builds/sharp-rms-constant-20261117.json) · [Previous build](builds/review-corrections-20261117.pdf)
+[Current manuscript](builds/sharp-rms-constant-20261118.pdf) · [LaTeX sources](main.tex) · [Build record](builds/sharp-rms-constant-20261118.json) · [Previous build](builds/review-corrections-20261117.pdf)
 
 The current sources publish the complete uniform power-law entropy and
 quantile bounds and their unconditional RMS/confidence consequences.
@@ -948,11 +948,13 @@ and when the algorithm selects magnitudes. Earlier builds stated $1/64$.
   to one gap, the single-gap experiment, three sign biases for large
   budgets, the exact one-coin information price for intermediate budgets,
   and budgets at most four with the equality case.
-- Theorem 2.1, the overview table, the abstract and the verification
+- Theorem 2.1, the overview table, the status table and the verification
   boundary state $1/6$. §5 still proves $1/64$, the coefficient of the
   frozen lower-bound target. §18 names the new audit.
 - The status table keeps 33 entries, 32 Lean-checked and one paper proof.
   The sharp constant is added evidence for the existing RMS-law entry.
+- The Notation subsection lists Appendix AA among the places that write
+  signs as $\pm1$.
 - The upper constant $512$ is unchanged.
 
 Lean checks the theorem as
@@ -962,22 +964,28 @@ $2/3$, which the Lean kernel evaluates without native code. The
 [library audit record](../../results/sharp-rms-20261117/README.md) gives the
 checked statements, the axiom reports and the kernel replay.
 
-Two builds at source checkpoint `10de700fd72eaa474f20bd0bbfcca21ddf85c301`
+The written proof in Appendix AA was read line by line by an AI reviewer
+that had not written it. The read found no mathematical error. It led to
+corrections of the prose: three restored justifications, an accurate
+account of how the Lean proof differs, a stated range, and notation that no
+longer clashes with the main text. This is not a specialist referee report.
+
+Two builds at source checkpoint `c8c3001681a4fb99263ac99c74787ebbbc3673b3`
 are byte-identical: 197 pages, 33 embedded font objects, 421 unique source
 labels and 29 resolved citations. They were typeset locally with the
 manuscript workflow's command and TeX Live packages. The same toolchain
 rebuilds the two previous PDFs byte for byte from their source checkpoints.
-One workflow build of the same TeX sources reports the same page count and
+One workflow build of the source checkpoint reports the same page count and
 file size. Its artifact was not downloaded, so byte identity with it is not
 claimed.
 
-Thirteen pages change: 1, 3, 5, 6, 8, 12, 62, 63 and the five pages of
+Fourteen pages change: 1, 3, 5, 6, 8, 10, 12, 62, 63 and the five pages of
 Appendix AA, 191–195. The references move from pages 191–192 to 196–197.
-The other 182 pages retain identical body text and word positions. The
+The other 181 pages retain identical body text and word positions. The
 changed pages, contents page 2 and the two reference pages were rendered
 and visually inspected. The only warning is the inherited overfull line in
-Appendix C. The [publication record](../../results/sharp-rms-constant-publication-20261117/README.md)
+Appendix C. The [publication record](../../results/sharp-rms-constant-publication-20261118/README.md)
 holds the build logs, the page comparison, the toolchain check and the
 workflow run. All earlier PDFs and records remain unchanged.
 
-[Published manuscript](builds/sharp-rms-constant-20261117.pdf) · [Build record](builds/sharp-rms-constant-20261117.json)
+[Published manuscript](builds/sharp-rms-constant-20261118.pdf) · [Build record](builds/sharp-rms-constant-20261118.json)

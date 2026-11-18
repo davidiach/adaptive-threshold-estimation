@@ -715,7 +715,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <9> on input line 13.
  [8]) [9]
-LaTeX Font Info:    Trying to load font information for U+euf on input line 224
+LaTeX Font Info:    Trying to load font information for U+euf on input line 225
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueuf.fd
@@ -894,10 +894,10 @@ usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/p
 ublic/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt9.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (197 pages, 1549771 bytes).
+Output written on main.pdf (197 pages, 1551312 bytes).
 PDF statistics:
- 3311 PDF objects out of 3580 (max. 8388607)
- 3003 compressed objects within 31 object streams
+ 3314 PDF objects out of 3580 (max. 8388607)
+ 3006 compressed objects within 31 object streams
  946 named destinations out of 1000 (max. 500000)
  85353 words of extra memory for PDF output out of 89155 (max. 10000000)
 
