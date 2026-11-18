@@ -1,0 +1,97 @@
+{
+ "baseline_pdf": "paper/v6/builds/sharp-rms-constant-20261118.pdf",
+ "baseline_pdf_sha256": "f56c14c3ab41c4dd9714b97b919d4b685246999086fce4b5fcb1ea9e6a264f34",
+ "baseline_pages": 197,
+ "pdf": "paper/v6/builds/large-budget-bracket-20261118.pdf",
+ "pdf_sha256": "4fcac1c7c123743eaf9be731bc9a63699632026656d4deb04f41d02dec661a5b",
+ "pages": 199,
+ "method": "Poppler pdftotext -bbox word text and bounding boxes rounded to 0.001 pt, excluding a 60 pt band at the top and at the bottom of each page (running header and page number). No pixel-identity claim.",
+ "unchanged_pages_same_number": 182,
+ "relocated_pages": {
+  "198": 196,
+  "199": 197
+ },
+ "relocated_pages_note": "New page number to baseline page number. The two reference pages keep identical body text and word positions.",
+ "same_text_new_word_positions": [],
+ "changed_pages": [
+  7,
+  8,
+  49,
+  52,
+  57,
+  62,
+  63,
+  135,
+  139,
+  152,
+  153,
+  191,
+  195,
+  196,
+  197
+ ],
+ "changed_pages_by_cause": {
+  "Section 1.2, overview table: the stopping-programs row states the cap 4B/9": [
+   7
+  ],
+  "Section 1.3, status table: LargeBudgetRMS/Full.lean joins the RMS-law row; SquareRootCap/Full.lean replaces GenieRate/Full.lean in the genie row; the table keeps its height": [
+   8
+  ],
+  "Section 15: the cap 4B/9": [
+   49
+  ],
+  "Section 17: the cap 4B/9": [
+   52
+  ],
+  "Section 18: the cap 4B/9 and the link to SquareRootCap/Full.lean": [
+   57
+  ],
+  "Section 18: one sentence on the audit of Appendix AA.6 adds three lines, and lines move to the next page": [
+   62,
+   63
+  ],
+  "Appendix L: the cap 4B/9": [
+   135
+  ],
+  "Appendix N: the cap 4B/9": [
+   139
+  ],
+  "Appendix Q: Theorem Q.1 with the cap condition B <= N(k-1/k)^2 and its proof, the Lean paragraph, and the opening and closing paragraphs of Q.1": [
+   152,
+   153
+  ],
+  "Appendix AA: one sentence points to Theorem AA.7": [
+   191
+  ],
+  "Appendix AA.6 (new): the bracket for budgets of at least 25, after the end of AA.5 on page 195": [
+   195,
+   196,
+   197
+  ]
+ },
+ "table_of_contents": "All 288 lines of main.toc of the baseline rebuild are byte-identical to the first 288 lines of main.toc of this build: every section and subsection starts on the page it started on. The build appends 4 lines for Appendix AA.6, which starts on page 195.",
+ "visual_check": {
+  "pages": [
+   2,
+   7,
+   8,
+   49,
+   52,
+   57,
+   62,
+   63,
+   135,
+   139,
+   152,
+   153,
+   191,
+   195,
+   196,
+   197,
+   198,
+   199
+  ],
+  "rendering": "Poppler pdftoppm at 100 dpi",
+  "result": "No clipping, overlap, missing text or displaced header or footer."
+ }
+}
