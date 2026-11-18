@@ -10,7 +10,7 @@ can differ from the current files after a later proof-only change: the
 eight Lean files that were refactored afterwards without changing a
 statement. For the current tree the evidence is the CI run on that commit.
 
-The folder holds 103 dated record directories, named for a result and a
+The folder holds 104 dated record directories, named for a result and a
 date, and the loose JSON and log files of the first phases of the project.
 The table below indexes the records that the guides cite. Later sections
 describe the remaining records in prose: the time-uniform bounds, cost
@@ -22,7 +22,8 @@ is the current evidence for that result.
 
 | Claim or check | Published record |
 |---|---|
-| RMS upper constant $36$ for the distribution-blind algorithm, from a sharper call second moment: library statement, axiom and kernel-replay audits | [upper-moment-20261118](upper-moment-20261118/README.md) |
+| RMS upper constant $27$ for a distribution-blind mixture of two budget levels of the algorithm below, which uses the whole budget: library statement, axiom and kernel-replay audits | [upper-mixture-20261118](upper-mixture-20261118/README.md) |
+| RMS upper constant $36$ for the distribution-blind algorithm, from a sharper call second moment, the stage that `upper-mixture-20261118` extends: library statement, axiom and kernel-replay audits | [upper-moment-20261118](upper-moment-20261118/README.md) |
 | RMS upper constant $45$ for the same algorithm, from a sharper per-level work bound, the stage that `upper-moment-20261118` extends: library statement, axiom and kernel-replay audits | [upper-work-20261118](upper-work-20261118/README.md) |
 | RMS upper constant $119$ for the same algorithm, the earlier stage that `upper-work-20261118` extends: library statement, axiom and kernel-replay audits | [upper-constant-20261118](upper-constant-20261118/README.md) |
 | RMS lower coefficient for $B\ge25$ in $[0.175198,0.186752]$: library statement, axiom and kernel-replay audits | [large-budget-rms-20261118](large-budget-rms-20261118/README.md) |

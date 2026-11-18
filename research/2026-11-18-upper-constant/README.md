@@ -18,7 +18,12 @@ $\kappa$ from $527/7$ to $248/25$. A third stage checks $36$
 [record](../../results/upper-moment-20261118/README.md)). It keeps the
 disagreement factor $\tfrac{25}{3}e^{-2}\le\tfrac{113}{100}$ in place of $3$,
 which brings $\sigma$ from $23$ to $72/5$. The per-level bounds themselves,
-discussed below, are otherwise those of the original proof.
+discussed below, are otherwise those of the original proof. A fourth stage
+checks $27$ ([`UpperMixture`](../../lean/ThresholdHC/UpperMixture/Full.lean),
+[record](../../results/upper-mixture-20261118/README.md)) for a variant that
+runs level $L+1$ with probability $B/(4\cdot2^L)-1$ and level $L$ otherwise,
+so that it uses the whole budget. This study does not compute that variant;
+its ratios are for the single-level estimator.
 
 The RMS law states
 $\tfrac16\,\omega_\mu(B^{-1/2})\le R_\mu(B)\le512\,\omega_\mu(B^{-1/2})$

@@ -2767,6 +2767,13 @@
     "ThresholdHC.Uniform713.workEnvelope": "15687204093786460919:2881883496541012723",
     "ThresholdHC.UpperConstant.BlindUpper119Statement": "4762494857145497995:13136368238912912254",
     "ThresholdHC.UpperConstant.MinimaxUpper119Statement": "4762494857145497995:13326688895613944597",
+    "ThresholdHC.UpperMixture.BlindUpper27Statement": "4762494857145497995:286895682976129496",
+    "ThresholdHC.UpperMixture.MinimaxUpper27Statement": "4762494857145497995:15722284388380880548",
+    "ThresholdHC.UpperMixture.budgetMixture": "10480305565590345481:7672193882952363545",
+    "ThresholdHC.UpperMixture.clip": "18133891100220672328:6675773595478008049",
+    "ThresholdHC.UpperMixture.coinLaw": "8323849775267043884:1289490919221805024",
+    "ThresholdHC.UpperMixture.levelWeight": "18133891100220672328:7502265950176809277",
+    "ThresholdHC.UpperMixture.mixEstimator": "6912316442925404910:1949776050215199182",
     "ThresholdHC.UpperMoment.BlindUpper36Statement": "4762494857145497995:823291444558196657",
     "ThresholdHC.UpperMoment.MinimaxUpper36Statement": "4762494857145497995:7154172743550025559",
     "ThresholdHC.UpperWork.BlindUpper45Statement": "4762494857145497995:15018850749603950551",
@@ -3049,6 +3056,10 @@
     {
       "at": "2026-11-18T18:38:06+00:00",
       "count": 2
+    },
+    {
+      "at": "2026-11-18T22:24:20+00:00",
+      "count": 7
     }
   ]
 }
