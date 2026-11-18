@@ -4,3 +4,6 @@ L=8 d=0.2 q=1.0: exact raw RMS=0.6421  simulated raw RMS=0.6566  clipped RMS=0.3
 L=8 d=0.02 q=0.5: exact raw RMS=1.5650  simulated raw RMS=1.5370  clipped RMS=0.4296  mean flips=1008.6 (budget 1024)
 L=10 d=0.12 q=1.0: exact raw RMS=0.5598  simulated raw RMS=0.5496  clipped RMS=0.3222  mean flips=4086.3 (budget 4096)
 == clipped
+8 clipped sup RMS/omega(1/sqrt(8N)) ~ 3.762 at (d, q, RMS, ratio vs omega(1/sqrt N)) (0.3, 0.5, 0.277, 1.33)
+10 clipped sup RMS/omega(1/sqrt(8N)) ~ 4.949 at (d, q, RMS, ratio vs omega(1/sqrt N)) (0.3, 0.8, 0.182, 1.75)
+exit=0

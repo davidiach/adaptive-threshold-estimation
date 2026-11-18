@@ -18,7 +18,7 @@ from.
 | Proven constant, `minimax_upper_bound` in [BlindUpper/Full.lean](../../lean/ThresholdHC/BlindUpper/Full.lean) | 512 |
 | Same algorithm, raw output, worst point mass, budgets $4\le B<2^{17}$ (exact formula) | 7.17 |
 | Same algorithm, raw output, limit as $B\to\infty$ (worst gap $d\approx0.12$) | 7.57 |
-| Same algorithm, output clipped to $[0,1]$, worst simulated case at $N=2^8$ | about 3.8 |
+| Same algorithm, output clipped to $[0,1]$, worst simulated case at $N=2^8$ and $N=2^{10}$ | about 3.8 and 4.9 |
 | Constant reachable along the paper's own proof route, with sharp per-gap constants ($N=2^{14}$) | 8.7, rising to about 9.3 |
 | Any algorithm that may use $\mu$, point masses only (proof below) | at most 1/2 |
 | Sharp lower constant | 1/6 |
@@ -100,8 +100,15 @@ agree to three decimals.
 
 **Clipping** ([clipped.py](clipped.py), [clipped.json](clipped.json)).
 Clipping the output to $[0,1]$ can only help, and the Lean theorem does
-not use it. Simulation, with 12,000 runs per setting, gives a worst clipped
-RMS$/\omega((8N)^{-1/2})$ of about $3.76$ at $N=2^8$.
+not use it. Simulation over 7 gaps and 3 sign fractions gives a worst
+clipped RMS$/\omega((8N)^{-1/2})$ of about $3.76$ at $N=2^8$ (12,000 runs
+per setting) and $4.95$ at $N=2^{10}$ (4,000 runs). Clipping helps less as
+$N$ grows. For a fixed gap and a sign fraction strictly between $0$ and
+$1$, the output's spread shrinks with $N$, so it rarely leaves $[0,1]$.
+The raw ratio for such sign fractions approaches nearly the same limit:
+the exact formula gives $7.16$ at $d=0.12$, sign fraction $0.8$ and
+$N=2^{18}$, against $7.42$ with all signs positive. Clipping therefore
+lowers the constant mainly at small budgets.
 
 ## Where the factor 512 goes
 
@@ -136,7 +143,8 @@ $512$ down to the true $7.6$:
 Two further factors are changes to the algorithm or the statement, not to
 its analysis:
 
-- **About 2:** clipping the output to $[0,1]$.
+- **Clipping** the output to $[0,1]$ gains a factor of $1.3$ to $1.6$ at
+  the budgets simulated, but little for large budgets (see above).
 - **$\sqrt2$:** the expected cost $4N-c$ uses at most half of a budget
   just below $8N$. Setting the marking cap to $B/4$ in place of $N$ would
   spend the whole budget.
@@ -164,10 +172,11 @@ general laws with $\mu$ known is not addressed here.
    that combines them in `PopulationBounds.lean`, `CutoffBatch.lean` and
    `Full.lean`. The target is a constant near $10$ in place
    of $512$, about 50 times smaller.
-2. **Then the algorithm.** Clipping and spending the whole budget would
-   bring the constant toward $3$ to $4$. Tuning $r$ and the classifier
-   thresholds may help further. These change the algorithm and need a new
-   Lean realization.
+2. **Then the algorithm.** Spending the whole budget would gain $\sqrt2$,
+   bringing the limit from about $7.57$ to about $5.35$. Clipping helps mainly
+   at small budgets. Further gains would have to come from the algorithm's
+   design: the level law $r$, the classifier thresholds and the pilot
+   scheme. These change the algorithm and need a new Lean realization.
 
 ## Reproduce
 
