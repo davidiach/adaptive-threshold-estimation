@@ -30,10 +30,10 @@ Result & Statement & Where\\
 \multicolumn{3}{@{}l}{\emph{Every sign law: any gap law $\mu$ on $(0,1/2]$,
  $B\ge1$, $0<\delta\le1/4$}}\\[3pt]
 Minimax RMS error
- & $\tfrac1{64}\,\omega_\mu(B^{-1/2})\le R_\mu(B)\le C\,\omega_\mu(B^{-1/2})$,
-   where $\omega_\mu(h)=\E_\mu\min\{1,h/D\}$. One algorithm that depends
-   only on $B$ attains the upper bound for every $\mu$.
- & \cref{thm:main}; proof in \cref{sec:lower,sec:classifier,sec:minimax-proof}\\[3pt]
+ & $\tfrac16\,\omega_\mu(B^{-1/2})\le R_\mu(B)\le C\,\omega_\mu(B^{-1/2})$,
+   where $\omega_\mu(h)=\E_\mu\min\{1,h/D\}$. The constant $1/6$ is sharp.
+   One algorithm that depends only on $B$ attains the upper bound for every $\mu$.
+ & \cref{thm:main,thm:sharp-rms}; proof in \cref{sec:lower,sec:classifier,sec:minimax-proof,app:sharp-rms}\\[3pt]
 Confidence radius
  & $r_\mu(B,\delta)\asymp\omega_\mu\bigl(\sqrt{\log(1/\delta)/B}\bigr)$, again
    with one algorithm for every $\mu$.
@@ -216,7 +216,8 @@ stopping programs.
 \Cref{tab:notation} lists the symbols used throughout. Several letters
 change meaning between parts of the paper, because the parts were written
 separately. The sign of a coin is $S\in\{0,1\}$, with observation mean
-$1/2+(2S-1)D$, except in \cref{fg:sec:model} and \cref{app:finite-direct},
+$1/2+(2S-1)D$, except in \cref{fg:sec:model} and
+\cref{app:finite-direct,app:sharp-rms},
 where it is $S\in\{-1,+1\}$ with mean $1/2+SD$. The letter $h$ is a free
 gap scale up to \cref{sec:rare} and is fixed as the budget scale
 $B^{-1/2}$ from \cref{sec:entropy-tail} on. Squared Hellinger distance is

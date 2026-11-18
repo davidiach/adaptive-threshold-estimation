@@ -1,0 +1,90 @@
+{
+ "baseline_pdf": "paper/v6/builds/review-corrections-20261117.pdf",
+ "baseline_pdf_sha256": "9f98e4f9329f772764b6d818cbb1fe670ed52fb2af808d59e034a4b6c4a56af7",
+ "baseline_pages": 192,
+ "pdf": "paper/v6/builds/sharp-rms-constant-20261118.pdf",
+ "pdf_sha256": "f56c14c3ab41c4dd9714b97b919d4b685246999086fce4b5fcb1ea9e6a264f34",
+ "pages": 197,
+ "method": "Poppler pdftotext -bbox word text and bounding boxes rounded to 0.001 pt, excluding a 60 pt band at the top and at the bottom of each page (running header and page number). No pixel-identity claim.",
+ "unchanged_pages_same_number": 181,
+ "relocated_pages": {
+  "196": 191,
+  "197": 192
+ },
+ "relocated_pages_note": "New page number to baseline page number. The two reference pages keep identical body text and word positions.",
+ "same_text_new_word_positions": [],
+ "changed_pages": [
+  1,
+  3,
+  5,
+  6,
+  8,
+  10,
+  12,
+  62,
+  63,
+  191,
+  192,
+  193,
+  194,
+  195
+ ],
+ "changed_pages_by_cause": {
+  "Title page: the date is 18 November 2026": [
+   1
+  ],
+  "Contents: a part heading and an entry for Appendix AA": [
+   3
+  ],
+  "Section 1.1, verification boundary: coefficients 1/6 and 512": [
+   5
+  ],
+  "Section 1.2, overview table: the RMS-law row states 1/6, says it is sharp and cites Theorem AA.1": [
+   6
+  ],
+  "Section 1.3, status table: the RMS-law row states 1/6 (sharp) and lists SharpRMS/Full.lean": [
+   8
+  ],
+  "Section 1.5, Notation: Appendix AA joins the places that use signs in {-1,+1}; five lines break differently and the paragraph keeps its line count": [
+   10
+  ],
+  "Section 2, Theorem 2.1: c = 1/6 for RMS, sharp by Theorem AA.1; the formal scope names sharp_lower": [
+   12
+  ],
+  "Section 18: one sentence on the audit of Appendix AA adds three lines, and two lines move to the next page": [
+   62,
+   63
+  ],
+  "Appendix AA (new): the sharp constant of the RMS lower bound": [
+   191,
+   192,
+   193,
+   194,
+   195
+  ]
+ },
+ "table_of_contents": "The first 275 lines of main.toc of this build are byte-identical to main.toc of the baseline rebuild: every section and subsection before Appendix AA starts on the page it started on. The build appends 13 lines for Appendix AA, which starts on page 191.",
+ "visual_check": {
+  "pages": [
+   1,
+   2,
+   3,
+   5,
+   6,
+   8,
+   10,
+   12,
+   62,
+   63,
+   191,
+   192,
+   193,
+   194,
+   195,
+   196,
+   197
+  ],
+  "rendering": "Poppler pdftoppm at 100 dpi",
+  "result": "No clipping, overlap, missing text or displaced header or footer."
+ }
+}

@@ -1,6 +1,6 @@
 # Consolidated version 6
 
-[Current manuscript](builds/review-corrections-20261117.pdf) · [LaTeX sources](main.tex) · [Build record](builds/review-corrections-20261117.json) · [Previous build](builds/power-window-complete-20261116.pdf)
+[Current manuscript](builds/sharp-rms-constant-20261118.pdf) · [LaTeX sources](main.tex) · [Build record](builds/sharp-rms-constant-20261118.json) · [Previous build](builds/review-corrections-20261117.pdf)
 
 The current sources publish the complete uniform power-law entropy and
 quantile bounds and their unconditional RMS/confidence consequences.
@@ -10,11 +10,12 @@ separate these checked results from the critical-window corollary and
 asymptotic remark, which remain paper results. Every earlier published
 package retains its original PDF and verification scope.
 
-The current PDF is the [review corrections build](#review-corrections-build).
-It typesets the corrections of a line-by-line review of the paper's text.
-No proof changes, and the verification status of every result is the same.
-One correction widens a stated range, in Appendices J–L; that section lists
-every correction.
+The current PDF is the [sharp RMS constant build](#sharp-rms-constant-build).
+It states the sharp lower constant $1/6$ of the RMS law, where earlier
+builds stated $1/64$, and proves it in the new Appendix AA. Lean checks the
+constant and its sharpness. The upper constant $512$ and every other result
+are unchanged. The build before it is the
+[review corrections build](#review-corrections-build).
 
 This is the current single research paper. It combines three manuscripts:
 
@@ -58,10 +59,12 @@ unchanged.
 | Appendix V | Known-law time-uniform confidence, the matching lower bound, finite-family adaptation, and the Lean-checked arbitrary-law tail certificate and full oracle-adaptation controller |
 | Appendix W | The smooth-density theorem in the adaptive experiment |
 | Appendices X–Z | Observed states: the finite-cell lower bound, continuous-magnitude lower bounds and the fresh-outer-state upper-bound transfer |
+| Appendix AA | The sharp constant $1/6$ of the RMS lower bound, also under both magnitude oracles: the reduction to one gap, three sign biases for large budgets, the exact one-coin information price with an integer certificate for intermediate budgets, and four fresh flips for equality |
 
 ## Verification status
 
-Lean checks both directions of the original RMS law, the critical quadratic
+Lean checks both directions of the original RMS law, its sharp lower
+constant $1/6$ (Appendix AA), the critical quadratic
 law, the exact Ψ comparison and counterexample, the variational optimizer,
 the unbiased characterization with constants 1/16 and 713, the confidence
 characterization, the magnitude-oracle lower bounds, and the rare-event
@@ -126,7 +129,7 @@ the exposition in `frontmatter.tex`, `overview.tex` (§§1.2–1.5),
 `rare-events.tex`, `entropy-tail.tex`,
 `finite-laws.tex`, `psi-window.tex` (§14.8), `certificates.tex`,
 `finite-proof.tex` and `verification.tex`; Appendices P–Z (`appendix-optimal-factor.tex` through
-`appendix-observed-upper.tex`); and the confidence subsections that
+`appendix-observed-upper.tex`); Appendix AA (`appendix-sharp-rms.tex`); and the confidence subsections that
 `appendix-known-confidence.tex` inputs (`typed-confidence.tex`,
 `common-pair-confidence.tex`, `additive-confidence.tex`,
 `entropy-confidence.tex` and `rms-localization.tex`). `main.tex` controls the
@@ -177,6 +180,12 @@ The editorial changes are explicit in the generator:
   it are below $27000$. Appendix G states $0<\rho\le1/4$ for the gate lemma
   and the annular proposition; the inherited text relied on the standing
   convention of §11.1.
+- **Sharp constant.** Theorem 2.1 says that one may take $c=1/6$ for RMS,
+  which is sharp, and cites Theorem AA.1, where v5 gave $1/64$. Its formal
+  scope paragraph names the Lean theorem with the sharp coefficient beside
+  the two original ones. §5 still proves $1/64$; Appendix AA proves $1/6$.
+  The 26 appendix letters are used, so `main.tex` letters later appendices
+  AA, AB and so on.
 - **Internal citations.** Citations of the companion manuscripts become
   cross-references. The finite-gap manuscript's conditional remark on
   general laws becomes a corollary in §14, whose proof cites the
@@ -922,3 +931,61 @@ holds the build logs, the page comparison, the toolchain check and the
 workflow runs. All earlier PDFs and records remain unchanged.
 
 [Published manuscript](builds/review-corrections-20261117.pdf) · [Build record](builds/review-corrections-20261117.json)
+
+## Sharp RMS constant build
+
+This publication states the sharp constant of the RMS lower bound. For
+every gap law and every $B\ge1$,
+
+$$R_\mu(B)\ge\tfrac16\,\omega_\mu(B^{-1/2}),$$
+
+with equality for the point law at gap $1/2$ and $B=4$, so no larger
+constant holds for all laws and budgets. For $B\ge25$ the constant improves
+to $\sqrt{59/2100}$. The same bounds hold when every magnitude is revealed
+and when the algorithm selects magnitudes. Earlier builds stated $1/64$.
+
+- Appendix AA is new. It proves Theorem AA.1 in five steps: the reduction
+  to one gap, the single-gap experiment, three sign biases for large
+  budgets, the exact one-coin information price for intermediate budgets,
+  and budgets at most four with the equality case.
+- Theorem 2.1, the overview table, the status table and the verification
+  boundary state $1/6$. §5 still proves $1/64$, the coefficient of the
+  frozen lower-bound target. §18 names the new audit.
+- The status table keeps 33 entries, 32 Lean-checked and one paper proof.
+  The sharp constant is added evidence for the existing RMS-law entry.
+- The Notation subsection lists Appendix AA among the places that write
+  signs as $\pm1$.
+- The upper constant $512$ is unchanged.
+
+Lean checks the theorem as
+[`lean/ThresholdHC/SharpRMS`](../../lean/ThresholdHC/SharpRMS/Specification.lean).
+For intermediate budgets the proof compares 140 integer upper sums with
+$2/3$, which the Lean kernel evaluates without native code. The
+[library audit record](../../results/sharp-rms-20261117/README.md) gives the
+checked statements, the axiom reports and the kernel replay.
+
+The written proof in Appendix AA was read line by line by an AI reviewer
+that had not written it. The read found no mathematical error. It led to
+corrections of the prose: three restored justifications, an accurate
+account of how the Lean proof differs, a stated range, and notation that no
+longer clashes with the main text. This is not a specialist referee report.
+
+Two builds at source checkpoint `c8c3001681a4fb99263ac99c74787ebbbc3673b3`
+are byte-identical: 197 pages, 33 embedded font objects, 421 unique source
+labels and 29 resolved citations. They were typeset locally with the
+manuscript workflow's command and TeX Live packages. The same toolchain
+rebuilds the two previous PDFs byte for byte from their source checkpoints.
+One workflow build of the source checkpoint reports the same page count and
+file size. Its artifact was not downloaded, so byte identity with it is not
+claimed.
+
+Fourteen pages change: 1, 3, 5, 6, 8, 10, 12, 62, 63 and the five pages of
+Appendix AA, 191–195. The references move from pages 191–192 to 196–197.
+The other 181 pages retain identical body text and word positions. The
+changed pages, contents page 2 and the two reference pages were rendered
+and visually inspected. The only warning is the inherited overfull line in
+Appendix C. The [publication record](../../results/sharp-rms-constant-publication-20261118/README.md)
+holds the build logs, the page comparison, the toolchain check and the
+workflow run. All earlier PDFs and records remain unchanged.
+
+[Published manuscript](builds/sharp-rms-constant-20261118.pdf) · [Build record](builds/sharp-rms-constant-20261118.json)

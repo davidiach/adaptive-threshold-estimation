@@ -57,20 +57,23 @@
 \title{\vspace{-1.2em}\textbf{Adaptive Threshold Estimation}\\[0.4em]\large Minimax laws, unbiased estimation, and rare events}
 \author{Project lead: David Iach\\\small AI-assisted research and formalization}
 \newcommand{\finiteleanref}[2]{\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/fc61852123b37c723bbb671d0b4ed294d3b6ee06/lean/ThresholdHC/FiniteQuantile/#1}{\textnormal{\texttt{#2}}}}
+\newcommand{\sharprmsleanref}[2]{\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/f1425008ea71094d900b8cbb9a90b485f0884d33/lean/ThresholdHC/SharpRMS/#1}{\textnormal{\texttt{#2}}}}
+\newcommand{\artanh}{\operatorname{artanh}}
 \newcommand{\sharpleanref}[2]{\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/8a701c8db6c42930ad2a187f3d895ca55265afd6/lean/ThresholdHC/EntropyTailSharp/#1}{\textnormal{\texttt{#2}}}}
-\date{Version 6 \quad\textbullet\quad 16 November 2026}
+\date{Version 6 \quad\textbullet\quad 18 November 2026}
 % Group headings for the table of contents only. They add no sectioning
 % level, so section, theorem and equation numbers are unchanged.
 \newcommand{\tocgroup}[1]{\addtocontents{toc}{\protect\addvspace{1.1em}%
   \protect\noindent{\protect\small\protect\scshape #1}\protect\par\protect\nopagebreak}}
 % The article class's section entry, with less space above it so that the
 % grouped contents fit on two pages, and a wider box for the letters M and W.
+\newcommand\tocnumberwidth{1.8em}
 \makeatletter
 \renewcommand*\l@section[2]{%
   \ifnum \c@tocdepth >\z@
     \addpenalty\@secpenalty
     \addvspace{0.5em \@plus\p@}%
-    \setlength\@tempdima{1.8em}%
+    \setlength\@tempdima{\tocnumberwidth}%
     \begingroup
       \parindent \z@ \rightskip \@pnumwidth
       \parfillskip -\@pnumwidth
@@ -80,6 +83,10 @@
       #1\nobreak\hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
     \endgroup
   \fi}
+\makeatother
+% Appendices after Z are lettered AA, AB, and so on.
+\makeatletter
+\newcommand*\appendixletter[1]{\ifnum#1>26 A\@Alph{\numexpr#1-26\relax}\else\@Alph{#1}\fi}
 \makeatother
 \begin{document}
 \maketitle
@@ -162,6 +169,12 @@
 \input{appendix-continuous-observed}
 \clearpage
 \input{appendix-observed-upper}
+\clearpage
+\tocgroup{Appendix AA: the sharp constant of the RMS law}
+\addtocontents{toc}{\protect\renewcommand\protect\tocnumberwidth{2.4em}}
+\renewcommand{\thesection}{\appendixletter{\value{section}}}
+\renewcommand{\theHsection}{appendix.\arabic{section}}
+\input{appendix-sharp-rms}
 \clearpage
 \input{references}
 \end{document}

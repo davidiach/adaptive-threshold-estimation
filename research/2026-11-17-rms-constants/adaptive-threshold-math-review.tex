@@ -1,0 +1,116 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[letterpaper,margin=0.86in,top=0.72in,bottom=0.77in]{geometry}
+\usepackage{amsmath,amssymb,xcolor,hyperref}
+\definecolor{ink}{HTML}{183E55}
+\hypersetup{colorlinks=true,urlcolor=ink,pdftitle={Sharper bounds for adaptive threshold estimation}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt minus 1pt}
+\setlength{\abovedisplayskip}{6pt}
+\setlength{\belowdisplayskip}{6pt}
+\raggedbottom
+\newcommand{\E}{\mathbb E}
+\newcommand{\Aff}{\operatorname{Aff}}
+\newcommand{\hd}{\mathfrak h}
+\newcommand{\heading}[1]{{\LARGE\bfseries\color{ink} #1}\par\smallskip}
+\newcommand{\src}[2]{\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/97a501383083cc0fa64cb96405444048b8fd4053/#1}{#2}}
+\begin{document}
+{\small\color{ink} ADAPTIVE THRESHOLD ESTIMATION \hfill MATHEMATICAL REVIEW \quad 17 NOVEMBER 2026}\par
+\heading{A stronger constant for the main RMS law}
+For every positive-gap law $\mu$ on $(0,1/2]$ and expected flip budget $B\ge1$, let
+$h=B^{-1/2}$, $f(d)=\min(1,h/d)$ and $\omega_\mu(h)=\int f\,d\mu$.
+In the ordinary hidden-magnitude experiment the minimax RMS risk satisfies
+\[
+   R_\mu(B)\ \ge\ \frac{4\sqrt{21}-15}{25}\,\omega_\mu(h)
+          \ >\ 0.1332\,\omega_\mu(h).
+\]
+The published coefficient is $1/64$. A four-flip example below puts an upper bound of $1/6$ on the best possible universal coefficient. The results in this note are paper derivations based on the linked statements at commit \texttt{97a5013}.
+
+\textbf{Proof.} Use the two sign laws $q_\pm(d)=1/2\pm f(d)/5$. At the midpoint, conditional on the gap $d$, the hidden sign $S\in\{-1,1\}$ is fair. For a one-coin policy, let $M_n$ be the posterior mean of $S$ given $d$, the independent seed and the first $n$ flips of its potential stream. For $z=M_n$, after observing a flip $Y\in\{-1,1\}$ the new mean is $(z+2dY)/(1+2dzY)$ and $\Pr(Y=y)=(1+2dzy)/2$. Consequently
+\[
+ \E[(M_{n+1}-M_n)^2\mid\mathcal F_n]
+  =\frac{4d^2(1-z^2)^2}{1-4d^2z^2}\ \le\ 4d^2.
+\]
+When the sign is already known the increment is zero, including at $d=1/2$.
+For each bounded local stop $T$, summing the conditional variances from $M_0=0$ gives $\E[f(d)^2 M_T^2]\le4h^2\E T$.
+
+Write $\hd(P,Q)=1-\Aff(P,Q)$. Under the midpoint, the endpoint likelihoods on the stopped transcript augmented by $d$ are $1\pm u$, where $u=2 f(d) M_T/5$. Erasing $d$ can only decrease $\hd$. Since $|u|\le2/5$, the ordinary local transcript laws satisfy
+\[
+ \hd(P_-,P_+)\le \E[1-\sqrt{1-u^2}]
+ \le \frac{\E[u^2]}{1+\sqrt{21}/5}
+ \le 4(1-\sqrt{21}/5)\,h^2 \E T.
+\]
+The manuscript's midpoint work decomposition sums this estimate over coins even with adaptive revisits. The midpoint is admissible, so its expected work is at most $B$. Apply the decomposition at every finite total cap and pass to the stopped transcript by almost-sure termination. Its affinity is at least $4\sqrt{21}/5-3$. The two targets differ by $2\omega_\mu(h)/5$. The squared-loss affinity inequality $R\ge|\Delta\theta|\,\Aff/2$ gives the result.
+
+\textbf{Ceiling on the constant.} Take $\mu=\delta_{1/2}$ and $B=4$. One flip reveals each fresh sign, so four fresh coins give $X\sim{\rm Bin}(4,q)$. The estimator $(X+1)/6$ has MSE $[4q(1-q)+(1-2q)^2]/36=1/36$ for every $q$, and $\omega_\mu(1/2)=1$.
+
+{\small Sources: \src{paper/v6/core.tex}{main theorem and experiment},
+\src{paper/v6/appendix-transfer-foundations.tex}{midpoint work decomposition},
+\src{paper/v6/appendix-dual.tex}{squared-loss testing by affinity}.}
+\newpage
+\heading{A smaller cap for the stopping certificate}
+Let $P_N$ be the ordinary stopping-program value with at most $N$ flips per coin, $G_N$ the optimized dual with a terminal reveal of the latent state, and $P_\infty$ their common limit. For every positive-gap law, $0<\rho\le1/2$, $B>0$, and integer $N\ge1$, set $t=\sqrt{B/N}$. Then
+\[
+ G_N\ \le\ P_\infty\ \le\ P_N\ \le\ kG_N,\qquad
+ k=\frac{\sqrt{4+t^2}+t}{2}.
+\]
+Thus $k=1+t/2+O(t^2)$ as $t\to0$. The published joint bound has cube-root excess. The factor-two test $P_N\le2G_N$ now holds for $N\ge\lceil4B/9\rceil$, compared with the published sufficient cap $\lceil4B/3\rceil$.
+
+\textbf{Proof.} Fix admissible endpoint, variance and work priors with finite ordinary information/work ratio $K$ at cap $N$. Mixing both reference priors toward the endpoint midpoint with weight $0<e<1$ preserves the target gap $\Delta$. The manuscript's regularization estimate bounds the resulting genie price by
+\[
+ K^+(e)\le\max\{K/(1-e)^2,\,4/(Ne^2)\}.
+\]
+Put $x=\sqrt{BK}/2$. For $x>0$ choose $e=t/(x+t)$, which equalizes the two terms and gives $BK^+(e)/4\le (x+t)^2$. Since $k-1/k=t$, the required denominator comparison follows from the exact identity
+\[
+ k^2(1+x^2)-1-(x+t)^2=(k^2-1)(x-1/k)^2\ge0.
+\]
+Hence $\Delta_+^2/(4+BK)\le k^2 G_N^2$. At $K=0$ take $e\uparrow1$ in the bound for this same optimized value. Infinite $K$ gives a zero ordinary quotient. Taking the supremum over ordinary quartets proves the result. The condition $k\le2$ is exactly $t\le3/2$.
+
+\textbf{A lower obstruction for the optimized genie.} For each fixed $B,N$, take $\rho=1/2$ and a single gap $d>0$. In the infinite ordinary dual choose $q_L=0$, $q_H=q_v=q_w=1/2$. Its stopped signed likelihood score is the posterior sign mean $M_T$ on page 1. The variance calculation bounds its information/work ratio by $4d^2$ at every cap, with equality after one flip. Hence $P_\infty\ge (1/2)/\sqrt{4+4Bd^2}$.
+
+For \emph{every} genie quartet, the policy that always buys $N$ flips and receives the sign has information/work at least $4\Delta^2/N$, since $q_v(1-q_v)\le1/4$. This includes singular references under the closed-perspective convention. As $|\Delta|\le1/2$, the optimized value satisfies $G_N\le(1/2)/\sqrt{4+B/N}$. Letting $d\downarrow0$ through admissible positive gaps proves
+\[
+ \sup_{\mu,\,0<\rho\le1/2} P_\infty/G_N \ \ge\ \sqrt{1+B/(4N)}.
+\]
+The worst-case relative excess therefore lies between a lower bound of order $B/N$ and an upper bound of order $\sqrt{B/N}$ as $B/N\to0$. The sharp exponent remains open.
+
+{\small Sources: \src{paper/v6/appendix-cap-rate.tex}{published cap theorem},
+\src{lean/ThresholdHC/GenieRate/Flow.lean}{formal mixed-price inequality},
+\src{paper/v6/appendix-genie.tex}{optimized dual definitions and brackets}.}
+\newpage
+\heading{A tighter certificate for minimax risk}
+In the same rare-event model let $R$ be the minimax RMS risk with expected budget $B$. The infinite stopping program satisfies
+\[
+       R\ \le\ P_\infty\ \le\ \frac{3\sqrt7}{2}\,R
+       \qquad (3\sqrt7/2 \simeq 3.969).
+\]
+The published upper factor is $8$. Combining this bound with page 2 gives $R\le P_N\le 3\sqrt7\,R<8R$ whenever $N\ge\lceil4B/9\rceil$. A verified feasible upper bound $U$ and genie lower bound $L$ with $U\le2L$ give the same factor for $U$.
+
+\textbf{Proof.} Take an admissible quartet $(q_L,q_H,q_v,q_w)$ in the infinite-cap dual, with nonnegative target gap $\Delta$ and finite ordinary price $K$. For $0<a<1$, let $b=(1-a)/2$ and replace the endpoints by
+\[
+ q'_- = a q_L+bq_v+bq_w,\qquad
+ q'_+ = a q_H+bq_v+bq_w.
+\]
+They are admissible by convexity and have target separation $a\Delta$. For any capped local policy its transcript laws are affine in the one-coin prior. With densities relative to a common dominating measure, both new densities are at least $b p_v$, their difference is $a(p_H-p_L)$, and the new midpoint work $W_m$ is at least $b W_w$. Consequently
+\begin{align*}
+ \hd(P'_-,P'_+)
+ &=\tfrac12\int \frac{(p'_+-p'_-)^2}
+                         {(\sqrt{p'_+}+\sqrt{p'_-})^2}\\
+ &\le \frac{a^2}{8b}\int\frac{(p_H-p_L)^2}{p_v}
+ \ \le\ \frac{a^2 K}{8b}W_w
+ \ \le\ \frac{a^2 K}{8b^2}W_m .
+\end{align*}
+The integral uses the closed perspective at zero. Finite $K$ forces zero contrast on a null reference cell. A local policy that sometimes takes zero flips follows by conditioning on activation, which depends only on its independent seed.
+
+Apply the midpoint work decomposition to bounded population prefixes, then pass to the limit as on page 1. Writing $x=BK$, the population affinity is at least $1-a^2x/[2(1-a)^2]$. When $x>0$ take $a=(1+\sqrt{3x/2})^{-1}$. This gives affinity at least $2/3$, hence
+\[
+ R\ \ge\ \frac{\Delta}{3(1+\sqrt{3x/2})}
+ \ \ge\ \frac{2}{3\sqrt7}\,\frac{\Delta}{\sqrt{4+x}}.
+\]
+The last step is Cauchy--Schwarz on $(2,\sqrt{x})$ and $(1/2,\sqrt{3/2})$. At $x=0$ let $a\uparrow1$ to obtain $R\ge\Delta/2$. An infinite price contributes zero to the dual. Taking the supremum over quartets gives the upper comparison, and the published estimator realization gives $R\le P_\infty$.
+
+{\small Sources: \src{paper/v6/appendix-dual.tex}{reference absorption and affinity testing},
+\src{paper/v6/appendix-genie.tex}{infinite-cap dual and published factor eight},
+\src{paper/v6/appendix-transfer-foundations.tex}{local-to-population transfer}.}
+\end{document}

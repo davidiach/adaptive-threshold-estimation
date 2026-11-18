@@ -1,0 +1,182 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[letterpaper,margin=0.83in,top=0.70in,bottom=0.72in]{geometry}
+\usepackage{amsmath,amssymb,xcolor,hyperref}
+\definecolor{ink}{HTML}{183E55}
+\hypersetup{colorlinks=true,urlcolor=ink,pdftitle={The sharp unrestricted RMS constant is one sixth}}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt plus 1pt minus 1pt}
+\setlength{\abovedisplayskip}{6pt}\setlength{\belowdisplayskip}{6pt}
+\raggedbottom
+\newcommand{\E}{\mathbb E}
+\newcommand{\atanh}{\operatorname{atanh}}
+\newcommand{\KL}{\operatorname{KL}}
+\newcommand{\heading}[1]{{\LARGE\bfseries\color{ink} #1}\par\smallskip}
+\begin{document}
+{\small\color{ink} ADAPTIVE THRESHOLD ESTIMATION \hfill RESEARCH NOTE \quad 17 NOVEMBER 2026}\par
+\heading{The sharp unrestricted RMS constant is one sixth}
+Let $R_\mu(B)$ be the minimax root-mean-square error for estimating the fraction of positive coins, with expected flips at most $B$ under every sign law. The gap distribution $\mu$ is supported on $(0,1/2]$. A coin of gap $d$ and latent sign $S\in\{-1,1\}$ produces independent flips in $\{-1,1\}$ with conditional mean $2dS$. Decisions may depend on the entire history, including the outcomes of other coins.
+\[
+ \boxed{\displaystyle
+ \inf_{\mu,\, B\ge1}\frac{R_\mu(B)}{\int\min\{1,B^{-1/2}/d\}\,\mu(dd)}=\frac16 .}
+\]
+Both magnitude oracles have the same sharp constant. Four fresh deterministic-sign flips attain the infimum. Pages 2--3 bound the risk at three sign biases for large budgets. Pages 4--6 treat the other budgets and give the exact arithmetic certificate.
+
+\textbf{Reduction to one gap.} Write $a=2d$, $s=\min(1,2/\sqrt B)$, $f=\min(1,s/a)$ and $\omega=\int f\,d\mu$. Use the family of sign means $tf$, $-1\le t\le1$, so the target is $(1+t\omega)/2$. Write $r_s(B)$ for minimax RMS in the single-gap experiment with flip bias $s$, unknown sign mean $t$, and target $(1+t)/2$. In each of the three models,
+\[
+                  R_\mu(B)\ \ge\ \omega\,r_s(B).
+                  \tag{1}
+\]
+Run the given protocol using one independent source coin of bias $s$ per requested coin. Generate its environment and magnitudes with the protocol's stipulated law. If $a\le s$, independently retain or negate each source flip so its mean conditional on $S$ becomes $aS$. If $a>s$, the desired auxiliary sign has conditional mean $fS$ with $f=s/a$. Given a local simulated word of net count $K$, put $z=\tanh(K\atanh a)$ for $a<1$. The desired next conditional mean, given the source sign $S$, is
+\[
+           a\,\frac{z+fS}{1+fzS}
+       = b+c\,sS,\qquad
+     b=\frac{az(1-f^2)}{1-f^2z^2},\qquad c=\frac{1-z^2}{1-f^2z^2}.
+\]
+At $z=0$ return the source flip. Otherwise copy it with probability $c$ and return an independent bit of mean $a/z$ with probability $1-c$. This is feasible because every nonzero reachable $z$ satisfies $|z|\ge a$ and $(1-c)a/z=b$. For $a=1>s$, use the first source flip as the auxiliary sign and repeat it on every revisit. Request one source observation per simulated flip, discarding it when unused. The conditional kernels give the correct joint law and cost under arbitrary interleaving. Affine rescaling from the target $(1+t\omega)/2$ to $(1+t)/2$ gives (1). Conversely, $\mu=\delta_{s/2}$ has $\omega=1$ and permits any single-gap rule. Thus (1) identifies the exact infimum over $\mu$ at each fixed $B$.
+
+\newpage
+\heading{A common reference law for three biases}
+For $B>4$ the reduction gives $0<s<1$ and $s^2B=4$. In this experiment write $P_t$ for the law of a protocol transcript, including its parameter-independent seed, when the sign mean is $t$. Set $\beta=7/10$. We first prove $r_s(B)\ge1/6$ for $s\le2/5$.
+
+Calculations can be made at a bounded total horizon. An estimator of $t$ may be clipped to $[-1,1]$, stopped at $M$ flips and given a fixed fallback. Its squared risk increases by at most $4B/M$ uniformly. Thus any strict improvement over $1/6$ for $(1+t)/2$ would give a bounded-horizon estimator of $t$ with squared risk below $1/9$. This truncation also suffices for the information arguments below.
+
+At a stopped transcript let $K_i$ be the net count on coin $i$, and put $z_i=\tanh(K_i\atanh s)$. Relative to the law $P_0$, the likelihood under $t$ equals $\prod_i(1+t z_i)$. To see this, condition on the seed and fix a history. Each coin contributes its mixture of the two conditional word probabilities, and the policy executes the prescribed actions on that history. In particular $\E_0[S_i\mid\text{transcript}]=z_i$ for each visited coin. Hence
+\[
+ \frac{\KL(P_0\Vert P_\beta)+\KL(P_0\Vert P_{-\beta})}{2}
+ =\frac12\,\E_0\sum_i-\log(1-\beta^2 z_i^2).                 \tag{2}
+\]
+For $|z|<1$ one has $-\log(1-\beta^2 z^2)\le\beta^2 z\atanh z$. In the two power series the degree-$2j$ coefficients satisfy $\beta^{2j-2}\le j/(2j-1)$. At $j=1$ they agree, and for $j\ge2$ the left side is at most $49/100$.
+
+There is an exact expected-work identity even when a revisit depends on other coins. Conditional on all signs and the past, a paid observation $Y$ of the chosen coin has $\E[S_iY]=s$. Summing over the paid observations, then conditioning on the transcript under $P_0$, gives
+\[
+ \E_0\sum_i z_i\atanh z_i
+ =(\atanh s)\E_0\sum_i S_i K_i
+ =s(\atanh s)\E_0 T.
+\]
+Combining this with (2) and $s^2 B=4$ bounds the averaged relative entropy by $2\beta^2\,\atanh(s)/s$. For $s\le 2/5$ the series gives
+\[
+ \frac{\atanh s}{s}\le1+\frac{s^2}{3(1-s^2)}
+ \le\frac{67}{63},\qquad
+ \frac{\KL(P_0\Vert P_\beta)+\KL(P_0\Vert P_{-\beta})}{2}
+ \le\frac{3283}{3150}<\frac{19}{18}.                         \tag{3}
+\]
+This charges all information to expected work under the single reference law $P_0$.
+
+\newpage
+\heading{The risk forces more relative entropy}
+Suppose an output $X$ estimates $t$ with squared risk at most $1/9$ at $0$ and $\pm\beta$. The two functions
+\[
+              g_\pm(X)=1+8\big((X\mp\beta)^2-1/9\big)
+\]
+are positive and satisfy $\E_{\pm\beta}g_\pm\le1$. The entropy inequality $\KL(P\Vert Q)\ge\E_P\log g-\log\E_Qg$ follows from Jensen's inequality. Applied under the same reference law for both signs it yields
+\[
+ \frac{\KL(P_0\Vert P_\beta)+\KL(P_0\Vert P_{-\beta})}{2}
+       \ge \tfrac12\,\E_0\log G(X^2),\quad
+ G(y)=(907/225+8y)^2-256(49/100)y .
+\]
+For $y\ge0$,
+\[
+                   \tfrac12\log G(y)+\tfrac52 y\ \ge\ \tfrac43 .
+                   \tag{4}
+\]
+Here $G(y)$ is positive as the product of the two positive functions at $X=\sqrt y$. The derivative on the left of (4) has the sign of
+\[
+       G'(y)+5G(y)=320y^2-\tfrac{7952}{45}y+\tfrac{205609}{10125}.
+\]
+Its signs at $0,19/50,39/100$ are respectively positive, negative and positive. The minimum on $[0,\infty)$ is therefore at zero or at the larger root in $[19/50,39/100]$. At zero the value exceeds $\log4>4/3$. On that interval $G$ decreases and $G(39/100)=(67/45)^2$. The value at the larger root is at least
+\[
+        \log(67/45)+19/20
+        \ \ge\ 11/28+19/20\ >\ 4/3 .
+\]
+Both log estimates follow from $\log u\ge2(u-1)/(u+1)$ for $u\ge1$, with strict inequality when $u>1$.
+
+Since $\E_0 X^2\le1/9$, (4) forces the averaged relative entropy to be at least $4/3-5/18=19/18$. This contradicts (3). It proves the lower bound for all $B\ge25$.
+
+\textbf{A score bound for the other budgets.} Let $J(t)$ denote transcript Fisher information in the single-gap experiment and $v=1-t^2$. With a uniform prior on $(-1,1)$, write $\overline\E$ for averaging over both $t$ and the transcript, and $S_t$ for its centered score. Integration by parts gives
+\[
+ \overline\E[(X-t)(vS_t-2t)]=\tfrac23,\qquad
+ \overline\E[(vS_t-2t)^2]=\tfrac43+
+                      \tfrac12\int_{-1}^{1}v^2J(t)\,dt .      \tag{5}
+\]
+The boundary term vanishes because $v(\pm1)=0$ and the output is bounded. The finite-horizon likelihood is a polynomial on each history. If the right side of the second identity is at most four, Cauchy--Schwarz forces mean squared risk at least $1/9$ for $t$, hence RMS at least $1/6$ for $(1+t)/2$.
+
+\newpage
+\heading{The exact one-coin information per flip}
+Fix $0<s<1$ and $0\le t<1$. For a local stopping rule write $W_t$ for expected flips, $I_t$ for information, and $Z=\tanh(K\atanh s)$ at its stop. Changing from its fair law to bias $t$ gives
+\[
+ \E_0Z=0,\quad I_t=\E_0\frac{Z^2}{1+tZ},\quad
+ s^2W_t=\E_0\frac{(Z+t)\atanh Z}{L(s^2)},\qquad
+ L(w)=\frac{\atanh\sqrt w}{\sqrt w},\quad L(0)=1.
+\]
+For the last identity use $\E_t[SK]=s W_t$ and
+$\E_t[SK]=\E_0[(Z+t)K]$. The identities apply to bounded rules, and also to the finite-mean exit times below by stopping and taking limits.
+
+Put $x_k=\tanh(k\atanh s)$, $k\ge1$. The rule that stops when the net count hits $+1$ or $-k$ ends at $Z=s$ or $Z=-x_k$. The fair exit probabilities are $x_k/(s+x_k)$ and $s/(s+x_k)$ by $\E_0Z=0$. Substitution yields
+\[
+ H_k(s,t)=\frac{I_t}{s^2W_t}
+ =\frac{1+x_k/s}
+ {(1-tx_k)(1+ts)[k+1-t(k/x_k-1/s)]},\qquad
+ H_s(t)=\sup_{k\ge1}H_k(s,t).                                 \tag{6}
+\]
+Each exit time has finite mean under either sign, since a run of $k+1$ identical flips ensures an exit from any interior state.
+
+\textbf{Why these exits suffice.} Set $P=1/H_s(t)>0$. Revealing the sign gives $I_t\le1/v$ for any root-active rule and $W_t\ge1$, ensuring finiteness. The choice $k=1$ gives $P\le1-s^2t^2\le1$. Define
+\[
+ F(z)=(z+t)L(z^2)/L(s^2)-Pz/(1+tz).
+\]
+On $s\le z<1$, the derivative of the first term is at least one because $L$ increases. The derivative of the term subtracted is at most one. Thus $F(z)\ge F(s)$. For every negative reachable value $-x_k$, the definition of $P$ applied to its two-boundary exit gives $\E_0[Z F(Z)]\ge0$, or $F(-x_k)\le F(s)$. Consequently $Z(F(Z)-F(s))\ge0$ at every reachable value, including zero. Taking expectations proves $I_t\le s^2 H_s(t)W_t$ for every local rule. Reflection uses $H_s(|t|)$ at a negative bias.
+
+\textbf{Transfer through arbitrary adaptation.} At a bounded total horizon, differentiating the log likelihood from page 2 gives $J(t)=\E_t\sum_i z_i^2/(1+t z_i)^2$ by the negative second derivative identity. For each created coin condition on its birth history and the seed. Generate the rest of the experiment using the other coins' tapes at the fixed $t$, as auxiliary randomness for this coin's local rule. Conditional on birth, its sign and future flips are independent of those tapes. The displayed summand has expectation equal to this local rule's information. Its cost is the number of flips paid for the coin. Summing the local bound thus gives $J(t)\le s^2B H_s(|t|)=4H_s(|t|)$. This includes interleaving and outcome-dependent coin creation.
+
+\newpage
+\heading{The intermediate range, by integer arithmetic}
+By (5) it suffices to prove
+\[
+                   \int_0^1 (1-t^2)^2 H_s(t)\,dt\ \le\ 2/3 .
+                   \tag{7}
+\]
+The companion \texttt{check\_budget\_window.py} proves (7) on the full interval $2/5\le s\le39/40$. Its only dependencies are Python's standard library and arbitrary-precision integers. Here are the enclosure rules.
+
+For a fixed rational $s$, use $x_1=s$, $x_{k+1}=(x_k+s)/(1+sx_k)$. Each $H_k$ increases with $t\ge0$, since $(1-tx_k)(1+ts)$ decreases for $x_k\ge s$, and $k/x_k-1/s\ge0$ since $x_k\le ks$. The length factor
+\[
+ D_k=k+1-t(k/x_k-1/s)
+     =k(1-t)+1+t/s-t(k/x_k-k)
+\]
+is positive and increases with $k$, since $k/x_k-k=2k/(\exp(2k\atanh s)-1)$ decreases with $k$. The length at $k=1$ is two. For $k\ge20$ use $D_{20}$ in the denominator of (6), and replace $x_k$ by one in the numerator and the factor $1-tx_k$. This upper bound also increases with $t$.
+
+On each of 2,048 equal subintervals, bound $v^2$ at the left endpoint and each of the nineteen finite-barrier expressions and the infinite tail at the right endpoint. All endpoint expressions are rational. An independent upper bound on $v^2H_s$ is $v/s^2$, from sign revelation and the minimum cost of one flip. Apply it over the whole bin, including the endpoint $t=1$. Each rectangle height rounds upwards to a multiple of $2^{-32}$. The script sums upper heights and divides by 2,048.
+
+To cover a bias interval $[\ell,h]$, independently negate flips of a bias-$h$ coin to simulate a bias-$s$ coin for every $s\le h$. Given the true sign this reproduces all stopped transcripts at the same cost. Keeping the source data can only increase information. The one-coin bound on page 4 applies to the simulated rule, including its independent randomization. It follows that $s^2H_s(t)\le h^2 H_h(t)$. Thus $(h/\ell)^2$ times the upper sum at $h$ covers the whole interval. The script bisects an interval whenever this bound exceeds $2/3$, checking both halves. Its 140 accepted intervals cover $[2/5,39/40]$. The largest accepted bound is
+\[
+              \frac{52846888864666147911}{79271578888208121856}<\frac23 .
+\]
+The finite cover and the infinite-barrier estimate prove (7) for every bias in this range and every stopping depth.
+
+\newpage
+\heading{Near-perfect coins and attainment}
+For $39/40\le s<1$, (7) has an elementary proof. The $k=1$ expression is $H_1=1/(1-s^2t^2)$. For $k\ge2$, the exit rule must pay for a second flip if the first is negative. Sign revelation and this necessary cost give
+\[
+      H_k\le\frac{1}{s^2v\{1+(1-st)/2\}} .
+\]
+On $0\le t\le3/4$, $s^2v(1-st)/2\ge(39/40)^2(7/16)/8
+>1-(39/40)^2\ge1-s^2$. Therefore $H_k\le H_1$ there. On the rest of the interval use $H_s\le1/(s^2v)$.
+
+Relative to $v$, the shortfall of $v^2H_1$ on the first interval is at least $(1-s^2)vt^2$, and the excess of the upper bound on the other interval is $(1-s^2)v/s^2$. The shortfall covers that excess since
+\[
+ \int_0^{3/4}vt^2\,dt=\frac{477}{5120}
+ >\left(\frac{40}{39}\right)^2\frac{11}{192}
+ \ge s^{-2}\int_{3/4}^{1}v\,dt .
+\]
+This proves (7) by $\int_0^1 v\,dt=2/3$.
+
+\textbf{Budgets at most four.} Here $s=1$, and the first flip of a fresh coin reveals an independent sign of mean $t$. Its information is $1/v$. A revisit has zero score. Summing conditional score variances gives $J(t)\le B/v$ for bounded protocols. For $B\le4$, (5) then gives $\overline\E[(vS_t-2t)^2]\le4/3+4(2/3)=4$. Truncation as on page 2 gives $r_1(B)\ge1/6$.
+
+\textbf{Equality.} At $B=4$, take $\mu=\delta_{1/2}$, so $\omega=1$. If $X$ is the number of positive signs in four fresh flips and $q$ is the positive-sign fraction, $(X+1)/6$ has squared risk
+\[
+                \frac{4q(1-q)+(1-2q)^2}{36}=\frac1{36}
+\]
+for every $q\in[0,1]$. It attains $1/6$ in all three models. Together with (1), the entropy bound for $s\le2/5$, and (7) for larger $s$, this proves the theorem.
+
+\textbf{Verification and context.} The proof above is written for readers. Its one computational step is the exact certificate for a compact interval; run \texttt{python check\_budget\_window.py} from the directory containing this note. The theorem is also proved in Lean against the repository's original experiment, risk and modulus definitions, in the ordinary model and for both magnitude oracles. That proof includes the reduction to one gap and the integer certificate, which the Lean kernel evaluates. The modules are in \texttt{lean/ThresholdHC/SharpRMS} and \texttt{tools/verify\_sharp\_rms.py} audits their statements. The earlier \href{https://github.com/davidiach/adaptive-threshold-estimation/tree/f5a2c44ae5cd43337dfacd83b86ba8812baf6f81/research/2026-11-17-rms-constants}{RMS notes} contain the prior bounds and the local four-flip Fisher counterexample. For the sequential score approach in binomial estimation, see \href{https://digicoll.lib.berkeley.edu/record/112743/files/math_s2_article-02.pdf}{Hodges and Lehmann, \emph{Some Applications of the Cram\'er--Rao Inequality}.}
+\end{document}

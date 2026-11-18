@@ -1,0 +1,37 @@
+{
+ "purpose": "Shows that the local toolchain that typeset sharp-rms-constant-20261118 reproduces the two previous published PDFs, one of which was published from the manuscript workflow.",
+ "rebuilds": [
+  {
+   "rebuilt_pdf": "paper/v6/builds/power-window-complete-20261116.pdf",
+   "origin": "published from a manuscript-workflow build",
+   "rebuilt_from_commit": "cbfd73ef3d4a5db1481f9a55ce9e1640ad3c916b",
+   "published_pdf_sha256": "dbdbd77cf32e06890cd03277db5f7ec996415783e5aac4a2525443bd7fedb372",
+   "local_rebuild_sha256": "dbdbd77cf32e06890cd03277db5f7ec996415783e5aac4a2525443bd7fedb372",
+   "byte_identical": true,
+   "local_rebuild_bytes": 1514110
+  },
+  {
+   "rebuilt_pdf": "paper/v6/builds/review-corrections-20261117.pdf",
+   "origin": "published from a local build with this toolchain",
+   "rebuilt_from_commit": "97a501383083cc0fa64cb96405444048b8fd4053",
+   "published_pdf_sha256": "9f98e4f9329f772764b6d818cbb1fe670ed52fb2af808d59e034a4b6c4a56af7",
+   "local_rebuild_sha256": "9f98e4f9329f772764b6d818cbb1fe670ed52fb2af808d59e034a4b6c4a56af7",
+   "byte_identical": true,
+   "local_rebuild_bytes": 1515796
+  }
+ ],
+ "rebuilds_made": "2026-11-18, in the session that typeset this build",
+ "build_command": "SOURCE_DATE_EPOCH=1793232000 FORCE_SOURCE_DATE=1 latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex",
+ "host": "Ubuntu 24.04.5 LTS",
+ "packages": {
+  "latexmk": "1:4.83-1",
+  "lmodern": "2.005-1",
+  "texlive-latex-base": "2023.20240207-1",
+  "texlive-latex-recommended": "2023.20240207-1",
+  "texlive-latex-extra": "2023.20240207-1",
+  "texlive-fonts-recommended": "2023.20240207-1",
+  "texlive-binaries": "2023.20230311.66589-9build3",
+  "poppler-utils": "24.02.0-1ubuntu9.11"
+ },
+ "engine": "This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.11.17)  29 OCT 2026 00:00"
+}

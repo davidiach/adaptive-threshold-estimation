@@ -448,6 +448,12 @@ adds a robust stopping-program dual and convergent finite certificates.
         "characterization for every magnitude law remains open.",
         "The localized theory is developed in \\cref{sec:rare}, and\n"
         "\\cref{sec:entropy-tail} characterizes it for every magnitude law.")
+    # The proof of Section 5 gives 1/64; Appendix AA proves the best constant.
+    core = once(core,
+        "In the lower bounds one may take $c=1/64$ for RMS and\n"
+        "$c=15/(256\\sqrt2)$ for confidence.",
+        "In the lower bounds one may take $c=1/6$ for RMS, which is sharp\n"
+        "(\\cref{thm:sharp-rms}), and $c=15/(256\\sqrt2)$ for confidence.")
     # The frozen DistributionBlindUpperStatement asserts only some C > 0; the
     # coefficient 512 is in the types of the companion upper theorems.
     core = once(core,
@@ -456,7 +462,9 @@ adds a robust stopping-program dual and convergent finite certificates.
         "coefficients $1/64$ and $512$. The upper family is chosen before every\n"
         "gap law and satisfies the budget in the same experiment.",
         "\\leanref{Tier6/Full.lean}{minimax\\_lower\\_bound}, with coefficient\n"
-        "$1/64$, and \\leanref{BlindUpper/Full.lean}{minimax\\_upper\\_bound}, with\n"
+        "$1/64$, \\sharprmsleanref{Full.lean}{sharp\\_lower}, with the sharp\n"
+        "coefficient $1/6$, and\n"
+        "\\leanref{BlindUpper/Full.lean}{minimax\\_upper\\_bound}, with\n"
         "coefficient $512$. The frozen target\n"
         "\\leanref{BlindUpper/Full.lean}{distribution\\_blind\\_upper} chooses the\n"
         "upper family before every gap law and asserts a positive constant; the\n"

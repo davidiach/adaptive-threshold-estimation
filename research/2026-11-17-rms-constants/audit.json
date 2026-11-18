@@ -1,0 +1,28 @@
+{
+  "compiler": "Lean (version 4.36.0-rc1, x86_64-w64-windows-gnu, commit c9afcddf514a6772bd4d649f7cfc04eff0b9f15e, Release)",
+  "imported_checkout_commit": "992762844d2983ed6b9c1569c60690a47ef7b6c9",
+  "lean_source_tree": "71ebb71cdc57f16898b35fb988848cdd2381631c",
+  "source_sha256": {
+    "SharpCap.lean": "12831732355e89b1124aef94c1ed3eebc1abcd8e7379d216c5f852ecca1215ce",
+    "AuditSharpCap.lean": "70bedfc5628ecee24df3f47d3fd4ba6a2c9481d123a422277de4fd173d5be2a0"
+  },
+  "fresh_compilation": "SharpCap",
+  "exact_type_checks": [
+    "four_ninths_cap",
+    "square_root_cap_factor"
+  ],
+  "transitive_axioms": {
+    "square_root_cap_factor": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "four_ninths_cap": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "kernel_replay": "SharpCap passed",
+  "dependencies": "Existing compiled project and Mathlib imports"
+}
