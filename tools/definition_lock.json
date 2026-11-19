@@ -2788,6 +2788,13 @@
     "ThresholdHC.UpperMixture.mixEstimator": "6912316442925404910:1949776050215199182",
     "ThresholdHC.UpperMoment.BlindUpper36Statement": "4762494857145497995:823291444558196657",
     "ThresholdHC.UpperMoment.MinimaxUpper36Statement": "4762494857145497995:7154172743550025559",
+    "ThresholdHC.UpperQuarter.BlindUpper13Statement": "4762494857145497995:17388444844951704728",
+    "ThresholdHC.UpperQuarter.MinimaxUpper13Statement": "4762494857145497995:15110088813835807934",
+    "ThresholdHC.UpperQuarter.bandBot": "15266474460176836143:10584579481793355301",
+    "ThresholdHC.UpperQuarter.bandCoef": "15266474460176836143:8569247414844980215",
+    "ThresholdHC.UpperQuarter.bandStep": "18106699104632012756:13862385545953118289",
+    "ThresholdHC.UpperQuarter.bandTop": "15266474460176836143:9581728253915414537",
+    "ThresholdHC.UpperQuarter.quarterWeight": "15687204093786460919:10860807283118380330",
     "ThresholdHC.UpperSign.BlindUpper15Statement": "4762494857145497995:10068999579533142454",
     "ThresholdHC.UpperSign.MinimaxUpper15Statement": "4762494857145497995:15001413201132347153",
     "ThresholdHC.UpperSign.driftBound": "10394737814777886938:10557204909180673009",
@@ -3092,6 +3099,10 @@
     {
       "at": "2026-11-19T00:34:24+00:00",
       "count": 8
+    },
+    {
+      "at": "2026-11-19T09:04:46+00:00",
+      "count": 7
     }
   ]
 }
