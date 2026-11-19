@@ -2795,6 +2795,19 @@
     "ThresholdHC.UpperQuarter.bandStep": "18106699104632012756:13862385545953118289",
     "ThresholdHC.UpperQuarter.bandTop": "15266474460176836143:9581728253915414537",
     "ThresholdHC.UpperQuarter.quarterWeight": "15687204093786460919:10860807283118380330",
+    "ThresholdHC.UpperScale.BlindUpper12Statement": "4762494857145497995:1105352780928808762",
+    "ThresholdHC.UpperScale.MinimaxUpper12Statement": "4762494857145497995:3010056785264873772",
+    "ThresholdHC.UpperScale.budgetRatio": "18133891100220672328:9166594675858739696",
+    "ThresholdHC.UpperScale.calScale": "15687204093786460919:15843578666320595804",
+    "ThresholdHC.UpperScale.scaleMarks": "3684654753983291091:14230683651175538178",
+    "ThresholdHC.UpperScale.scaleRatio": "18133891100220672328:1942757868501867425",
+    "ThresholdHC.UpperScale.scaleSeed": "5759858271467314712:13356091353948024",
+    "ThresholdHC.UpperScale.scaleState": "7919029764875257056:1613428584814778963",
+    "ThresholdHC.UpperScale.scaledBatchOutput": "14357209313001748745:9905018072651247228",
+    "ThresholdHC.UpperScale.scaledBatchWork": "3375682211470456681:17093914132250310976",
+    "ThresholdHC.UpperScale.scaledEstimator": "4211842407156581770:6600396293523112755",
+    "ThresholdHC.UpperScale.scaledFamily": "10978692463684592028:5206385852606008246",
+    "ThresholdHC.UpperScale.scaledMark": "8115909766055619226:2829962664458850207",
     "ThresholdHC.UpperSign.BlindUpper15Statement": "4762494857145497995:10068999579533142454",
     "ThresholdHC.UpperSign.MinimaxUpper15Statement": "4762494857145497995:15001413201132347153",
     "ThresholdHC.UpperSign.driftBound": "10394737814777886938:10557204909180673009",
@@ -3103,6 +3116,10 @@
     {
       "at": "2026-11-19T09:04:46+00:00",
       "count": 7
+    },
+    {
+      "at": "2026-11-19T09:55:40+00:00",
+      "count": 13
     }
   ]
 }

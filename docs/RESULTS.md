@@ -145,7 +145,8 @@ Here $r_\mu(B,\delta)$ is the minimax uniform error radius at failure probabilit
 | Lower, $B\ge25$ | $\sqrt{59/2100}\approx0.1676$ | `large_budget_lower` in the same file | CI, the same audit | Appendix AA |
 | Lower, $B\ge25$, best known | $0.175198$, and $0.17807955$ for $B\ge100$; the best constant is at most $0.186752$ | `bracket_lower`, `hundred_lower` and `bracket_upper` in [LargeBudgetRMS/Full.lean](../lean/ThresholdHC/LargeBudgetRMS/Full.lean) | CI, `tools/verify_large_budget_rms.py` | Appendix AA, Theorem AA.7 |
 | Lower, original frozen target | $1/64$ | `minimax_lower_bound` in [Tier6/Full.lean](../lean/ThresholdHC/Tier6/Full.lean) | CI, `tools/verify_tier6.py` | §5 |
-| Upper, $B\ge1$ | $13$ | `minimax_upper_13` and `blind_upper_13` in [UpperQuarter/Full.lean](../lean/ThresholdHC/UpperQuarter/Full.lean) | CI, `tools/verify_upper_quarter.py` | No: the paper states $15$ |
+| Upper, $B\ge1$ | $12$ | `minimax_upper_12` and `blind_upper_12` in [UpperScale/Full.lean](../lean/ThresholdHC/UpperScale/Full.lean) | CI, `tools/verify_upper_scale.py` | No: the paper states $15$ |
+| Upper, $B\ge1$, earlier stage | $13$ | `minimax_upper_13` and `blind_upper_13` in [UpperQuarter/Full.lean](../lean/ThresholdHC/UpperQuarter/Full.lean) | CI, `tools/verify_upper_quarter.py` | No |
 | Upper, $B\ge1$, earlier stage | $15$ | `minimax_upper_15` and `blind_upper_15` in [UpperSign/Full.lean](../lean/ThresholdHC/UpperSign/Full.lean) | CI, `tools/verify_upper_sign.py` | Appendix AB, Theorem AB.1 |
 | Upper, $B\ge1$, earlier stage | $17$ | `minimax_upper_17` and `blind_upper_17` in [UpperDisagreement/Full.lean](../lean/ThresholdHC/UpperDisagreement/Full.lean) | CI, `tools/verify_upper_disagreement.py` | No |
 | Upper, $B\ge1$, earlier stage | $19$ | `minimax_upper_19` and `blind_upper_19` in [UpperCost/Full.lean](../lean/ThresholdHC/UpperCost/Full.lean) | CI, `tools/verify_upper_cost.py` | No |
@@ -155,12 +156,13 @@ Here $r_\mu(B,\delta)$ is the minimax uniform error radius at failure probabilit
 | Upper, $B\ge1$, earlier stage | $119$ | `minimax_upper_119` and `blind_upper_119` in [UpperConstant/Full.lean](../lean/ThresholdHC/UpperConstant/Full.lean) | CI, `tools/verify_upper_constant.py` | No |
 | Upper, frozen target | $512$ | `minimax_upper_bound` in [BlindUpper/Full.lean](../lean/ThresholdHC/BlindUpper/Full.lean) | CI, `tools/verify_blind_upper_components.py` | §18 derives $512$; §5 proves the bound with $\sqrt{8\cdot12666}<319$ |
 
-The lower constant is settled for $B\ge1$. The upper constant is not, so the two sides remain a factor $78$ apart.
+The lower constant is settled for $B\ge1$. The upper constant is not, so the two sides remain a factor $72$ apart.
 
-**The upper constants 119, 45, 36, 27, 19, 17, 15 and 13.** The constants $512$,
+**The upper constants 119, 45, 36, 27, 19, 17, 15, 13 and 12.** The constants $512$,
 $119$, $45$ and $36$ come from the same distribution-blind estimator, which
-knows only the budget; $27$, $19$, $17$ and $15$ randomize between two of its
-levels. Its analysis
+knows only the budget; $27$, $19$, $17$, $15$ and $13$ randomize between two of its
+levels, and $12$ runs one level at a calibration scale that need not be a
+power of two. Its analysis
 bounds the second moment and the cost of one call by level sums. The library
 proves those sums below $23$ and $527/7$, but the proofs of the frozen Tier 2
 targets weaken them to $85$ and $149$. Kept sharp, they give a mean-square
@@ -269,13 +271,33 @@ $\tfrac{147}{4}=1+\tfrac{13}{2}\cdot\tfrac{11}{2}$ times the squared modulus,
 and $\sqrt{(9/2)\cdot147/4}<13$
 ([record](../results/upper-quarter-20261119/README.md)).
 
+The constant $12$ sharpens the padded call cost and drops the two-level
+mixture. The cost sum groups its survival terms by the difference $j+1$ of
+the level and the check, one dyadic grid each with threshold scale
+$v_j=1+(j+1)\log2$. The offset bound of these grids decreases with $v_j$:
+it is at most $399/100$ for $j\ge2$, in place of $17/4$. With the square
+roots of the first eight scales bounded one by one, the padded call cost is at
+most $\tfrac{26}{5}\min(\sqrt N,1/d)$, in place of $\tfrac{11}{2}$. The
+batch machine of the frozen construction marks a call of cost $C$ when its
+uniform seed mark $u$ satisfies $u<C/2^L$. Run on a seed whose marks are
+multiplied by $t\ge1$, the same machine marks it when $u<C/(t2^L)$, so it
+realizes the calibration at scale $t2^L$, which need not be a power of two,
+with the same calls. The family runs level $L$ at scale $B/4$, with
+$t=B/(4\cdot2^L)\in[1,2)$, and uses the whole budget. Its mean-square error
+is at most $(1+\tfrac{169}{5t})\,\omega(2^{-L/2})^2\le4(t+\tfrac{169}{5})\,
+\omega(B^{-1/2})^2\le\tfrac{716}{5}\,\omega(B^{-1/2})^2$, and
+$\sqrt{716/5}<12$. The two-level mixture with the same bounds would give
+$\sqrt{(9/2)\cdot174/5}\approx12.5$
+([record](../results/upper-scale-20261119/README.md)).
+
 A [numerical study](../research/2026-11-18-upper-constant/README.md) puts the
 actual worst ratio of the single-level estimator near $7.6$; it does not
 compute the mixture. Its route table gives sharp per-gap constants of about
 $2.9$ for the call second moment and about $2.8$ to $3.6$ for the call cost,
-against $13/2$ and $11/2$ here. Below the split the disagreement bound is
-one quarter plus the drift terms, about $0.3$ to $0.6$; and the budget mixture
-costs a factor $9/2$ where a batch of size $B/4$ would cost $4$.
+against $13/2$ and $26/5$ here. Below the split the disagreement bound is
+one quarter plus the drift terms, about $0.3$ to $0.6$. The calibration at
+scale $B/4$ costs the factor $4$; the bias stays that of the dyadic level $L$,
+at most $t\le2$ times the squared modulus at scale $B/4$.
 
 The lower constant of the RMS law is sharp. For every gap law and every $B\ge1$,
 
@@ -406,11 +428,15 @@ The original simulation law, actual controller cost/output identities,
 almost-sure pilot termination and budget selection are proved. The
 [full audit](../results/blind_upper_components_002.json) checks the unchanged
 frozen specification and all 373 declaration roots; coefficient 512 is not
-claimed optimal. A family that mixes two of its levels has the constant $13$:
-[`UpperQuarter/Full.lean`](../lean/ThresholdHC/UpperQuarter/Full.lean)
-proves `budgetMixture_maximalRMSRisk` and the minimax bound with $13$ in place
-of $512$, audited exactly by `tools/verify_upper_quarter.py`
-([record](../results/upper-quarter-20261119/README.md)). With earlier
+claimed optimal. A family that runs one of its levels at the calibration
+scale $B/4$ has the constant $12$:
+[`UpperScale/Full.lean`](../lean/ThresholdHC/UpperScale/Full.lean)
+proves `scaledFamily_maximalRMSRisk` and the minimax bound with $12$ in place
+of $512$, audited exactly by `tools/verify_upper_scale.py`
+([record](../results/upper-scale-20261119/README.md)). A family that mixes
+two of its levels has the constant $13$
+([`UpperQuarter/Full.lean`](../lean/ThresholdHC/UpperQuarter/Full.lean),
+[record](../results/upper-quarter-20261119/README.md)). With earlier
 bounds the same mixture has the constants $15$
 ([`UpperSign/Full.lean`](../lean/ThresholdHC/UpperSign/Full.lean),
 [record](../results/upper-sign-20261119/README.md)), $17$

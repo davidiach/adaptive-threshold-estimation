@@ -41,7 +41,11 @@ to $89/10$. The v6 paper states $15$ and proves it in Appendix AB. An eighth
 stage checks $13$ ([`UpperQuarter`](../../lean/ThresholdHC/UpperQuarter/Full.lean),
 [record](../../results/upper-quarter-20261119/README.md)). The vote-change
 probability is exactly $a(1-a)\le\tfrac14$, which brings the call second moment
-to $13/2$.
+to $13/2$. A ninth stage checks $12$
+([`UpperScale`](../../lean/ThresholdHC/UpperScale/Full.lean),
+[record](../../results/upper-scale-20261119/README.md)). It bounds the padded
+call cost by $26/5$ and replaces the two-level mixture by one level calibrated
+at the scale $B/4$.
 
 The RMS law states
 $\tfrac16\,\omega_\mu(B^{-1/2})\le R_\mu(B)\le512\,\omega_\mu(B^{-1/2})$
