@@ -90,7 +90,7 @@ At an average budget of 16,384 flips:
   Proven no-tuning method, simulated 200 times on your guess:
     typical error: 0.277 (about 28 percentage points), give or take 0.012
     at most 0.363 with 95% confidence, given these 200 runs
-    flips used: 15,540 on average; 90% of runs used at most 31,091, 99% at most 46,572
+    flips used: 15,540 on average; 90% of runs used at most 31,058, 99% at most 46,556
 
   On your guess, the simple plan's typical error is 4.7x smaller.
 
@@ -260,7 +260,9 @@ print(inverse.budget, inverse.status)
 ```
 
 `FiniteGapLaw` normalizes relative weights, removes zero-mass entries and
-merges duplicate gaps. Gaps must lie in $(0,1/2]$; weights must be finite and
+merges duplicate gaps. Each mass is its exact share of the total, rounded once,
+so weights 1, 2 and 7 give the floats 0.1, 0.2 and 0.7, and a rarity of 0.1
+ends exactly at the first gap. Gaps must lie in $(0,1/2]$; weights must be finite and
 nonnegative, with positive total mass. Positive weights that would disappear
 during normalization are rejected. Omitting `weights` gives equal masses.
 The entropy sums inverse-square costs **by dyadic band**, using the actual

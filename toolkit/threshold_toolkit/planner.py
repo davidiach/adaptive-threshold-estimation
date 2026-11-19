@@ -243,16 +243,24 @@ def _odd_flip_counts(limit: float) -> List[int]:
     return counts
 
 
-def _majority_terms(population: Population, m: int) -> Tuple[float, float]:
-    """(share called above 50/50, average chance an item is called on the wrong side)."""
-    return population.majority_terms(m)
+# Item counts beyond 2**53 are no longer exact floats, so 1 / (4 * items) stops
+# moving the bound; a target this close to the misclassification probability
+# is out of floating-point planning range for that flip count.
+_MAX_PLAN_ITEMS = 2 ** 53
 
 
-def _majority_plan(population: Population, m: int, items: int) -> MajorityPlan:
+def _majority_error_terms(population: Population, m: int) -> Tuple[float, float, float]:
+    """Checked (bias, decision variance, misclassification probability) for odd m."""
     bias, variance, wrong = population.majority_error_terms(m)
     if (not all(math.isfinite(x) for x in (bias, variance, wrong))
             or not -1 <= bias <= 1 or variance < 0 or not 0 <= wrong <= 1):
         raise ValueError("majority error terms must have finite bias, nonnegative variance and probability")
+    return bias, variance, wrong
+
+
+def _majority_plan(population: Population, m: int, items: int,
+                   terms: Optional[Tuple[float, float, float]] = None) -> MajorityPlan:
+    bias, variance, wrong = _majority_error_terms(population, m) if terms is None else terms
     # Indicators are independent Bernoulli(above); bias is at most the mean
     # misclassification chance, whichever side each item is on.
     on_guess = math.hypot(bias, math.sqrt(variance) / math.sqrt(items))
@@ -283,7 +291,11 @@ def majority_plan_for_target(population: Population, target: float,
     for m in _odd_flip_counts(max_flips_per_item):
         if best is not None and m / (4 * target ** 2) >= best.flips:
             break  # every later plan needs at least this many flips
-        _, wrong = _majority_terms(population, m)
+        # The plan's bound uses these terms, so its feasibility must too: the
+        # misclassification probability of majority_terms can differ from this
+        # one in the last bit, and a target between the two was never reached.
+        terms = _majority_error_terms(population, m)
+        wrong = terms[2]
         if wrong >= target:
             continue
         remainder = (target - wrong) * (target + wrong)
@@ -292,10 +304,17 @@ def majority_plan_for_target(population: Population, target: float,
         count = 1 / (4 * remainder)
         if not math.isfinite(count):
             raise ValueError("required item count exceeds floating-point planning range")
-        plan = _majority_plan(population, m, max(1, math.ceil(count)))
-        while plan.worst_case_error > target:  # floating-point rounding only
-            plan = _majority_plan(population, m, plan.items + 1)
-        if best is None or plan.flips < best.flips:
+        items = max(1, math.ceil(count))
+        plan = _majority_plan(population, m, items, terms)
+        step = 1
+        while plan is not None and plan.worst_case_error > target:  # floating-point rounding only
+            if items >= _MAX_PLAN_ITEMS:
+                plan = None  # rounding keeps the bound above a target this close to `wrong`
+            else:
+                items += step
+                step *= 2
+                plan = _majority_plan(population, m, items, terms)
+        if plan is not None and (best is None or plan.flips < best.flips):
             best = plan
     return best
 
@@ -548,7 +567,11 @@ def simulate(population: Population, budget: float, runs: int = 200,
         budget=budget, runs=runs, truth=truth, rms_error=rms, rms_error_se=se,
         raw_rms_error=math.sqrt(np.mean((raw - truth) ** 2)),
         bias=float(clipped.mean() - truth), mean_flips=float(flips.mean()),
-        flips_p90=float(np.quantile(flips, 0.9)), flips_p99=float(np.quantile(flips, 0.99)),
+        # The smallest simulated flip count with at least that share of runs at
+        # or below it, so "99% of runs used at most" stays true for few runs,
+        # where an interpolated quantile can fall below more than 1% of them.
+        flips_p90=float(np.quantile(flips, 0.9, method="inverted_cdf")),
+        flips_p99=float(np.quantile(flips, 0.99, method="inverted_cdf")),
         mean_items=float(items.mean()),
         rms_error_upper=rms_upper_bound(squared, confidence, comparisons),
         confidence=confidence, comparisons=int(comparisons))

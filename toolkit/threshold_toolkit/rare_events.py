@@ -79,7 +79,8 @@ class FiniteGapLaw:
     Gaps must be finite and in (0, 1/2].  Weights must be finite and nonnegative;
     an omitted weight sequence gives equal weights.  Zero weights are removed
     and equal gaps are merged.  Weights need not sum to one: normalization is
-    explicit and automatic.  Positive weights that would underflow during
+    explicit and automatic, and each stored weight is the exact share of its
+    gap rounded once.  Positive weights that would underflow during
     normalization are rejected rather than silently discarded.
 
     Construction costs O(n log n); the stored tuples cannot be mutated.
@@ -101,23 +102,24 @@ class FiniteGapLaw:
             raise ValueError("gaps must be finite and in (0, 1/2]")
         if any(not math.isfinite(weight) or weight < 0 for weight in weights):
             raise ValueError("weights must be finite and nonnegative")
-        largest = max(weights)
-        if largest == 0:
+        if max(weights) == 0:
             raise ValueError("at least one weight must be positive")
-        scaled = tuple(weight / largest for weight in weights)
-        if any(weight > 0 and value == 0 for weight, value in zip(weights, scaled)):
-            raise ValueError("positive weights underflow during normalization")
-        total = math.fsum(scaled)
-        normalized = tuple(value / total for value in scaled)
-        if any(weight > 0 and value == 0 for weight, value in zip(weights, normalized)):
+        # Each stored mass is the exact share of its gap, rounded once. Dividing
+        # by the largest weight and then by a rounded sum rounded twice: weights
+        # 1 and 9 gave 0.09999999999999999, so a smallest-gap mass equal to
+        # rho = 0.1 left a sliver of the tail to the next atom, which then
+        # became the quantile gap.
+        exact = tuple(Fraction(weight) for weight in weights)
+        total = sum(exact)
+        if any(weight and not float(weight / total) for weight in exact):
             raise ValueError("positive weights underflow during normalization")
         grouped = {}
-        for gap, weight in zip(gaps, normalized):
+        for gap, weight in zip(gaps, exact):
             if weight:
-                grouped.setdefault(gap, []).append(weight)
+                grouped[gap] = grouped.get(gap, 0) + weight
         ordered = tuple(sorted(grouped))
         object.__setattr__(self, "gaps", ordered)
-        object.__setattr__(self, "weights", tuple(math.fsum(grouped[gap]) for gap in ordered))
+        object.__setattr__(self, "weights", tuple(float(grouped[gap] / total) for gap in ordered))
 
     def profile(self, rho: float) -> "RareEventProfile":
         """Precompute the smallest-gap mass rho and the remaining core."""

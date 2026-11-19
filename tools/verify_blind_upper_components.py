@@ -62,25 +62,84 @@ ANY_DECLARATION = re.compile(
 # rejected here first.
 _KEYWORDS = (r"sorry|sorryAx|axiom|admit|native_decide|native|implemented_by|extern|unsafe|opaque"
              r"|run_cmd|run_elab|run_meta|run_tac|elab\w*|macro\w*|syntax|initialize|Lean|debug")
-FORBIDDEN = re.compile(
+# Python's \b counts every Unicode alphanumeric as a word character, so it sees
+# no boundary in `2⁻¹axiom` or `ℕˣmacro_rules`: `¹` and `ˣ` are alphanumeric to
+# Python but not identifier characters to Lean, which ends the token `⁻¹` or `ˣ`
+# there and reads the keyword (`def x : Nat := 2⁻¹axiom bad : False` declares an
+# axiom in Lean 4.36). Every \b of the pattern is therefore replaced by a
+# boundary of Lean's identifier characters (isIdRest in Init/Meta/Defs.lean):
+# ASCII letters and digits, `_`, the letter-like ranges and the subscripts. The
+# characters ' ! ?, which Lean also reads inside identifiers, count as
+# boundaries here, so the replacement can only reject more.
+_LEAN_IDENTIFIER = (r"A-Za-z0-9_\u00c0-\u00d6\u00d8-\u00f6\u00f8-\u017f"
+                    r"\u0391-\u039f\u03a1-\u03a2\u03a4-\u03a9\u03b1-\u03ba\u03bc-\u03fb"
+                    r"\u1f00-\u1ffe\u2100-\u214f\U0001d49c-\U0001d59f"
+                    r"\u2080-\u2089\u2090-\u209c\u1d62-\u1d6a\u2c7c")
+_LEAN_BOUNDARY = (rf"(?:(?<=[{_LEAN_IDENTIFIER}])(?![{_LEAN_IDENTIFIER}])"
+                  rf"|(?<![{_LEAN_IDENTIFIER}])(?=[{_LEAN_IDENTIFIER}]))")
+_PATTERN = (
     TIER6_FORBIDDEN.pattern + r'|\badmit\b|"|«|#guard_msgs\b'
     r'|\bLean\b|\b(?:by_)?elab(?:_\w+)?\b|\b(?:builtin_)?d?simproc(?:_decl)?\b|\+\s*native\b'
     r'|\bnative\b|\d(?:' + _KEYWORDS + r')'
     r'|\bscoped\s+instance\b|\bpriority\s*:=|\bdefault_instance\b|\battribute\s*\[[^\]]*\bscoped\b'
     r'|\b(?:macro|macro_rules|syntax|initialize|builtin_initialize)\b'
-    r'|(?:@|\battribute\s*)\[[^\]]*\b(?:command_elab|term_elab|tactic|macro|d?simproc)\b',
-    TIER6_FORBIDDEN.flags)
+    r'|(?:@|\battribute\s*)\[[^\]]*\b(?:command_elab|term_elab|tactic|macro|d?simproc)\b')
+if "\\\\b" in _PATTERN:
+    raise ValueError("Escaped backslash before b in the forbidden pattern")
+FORBIDDEN = re.compile(_PATTERN.replace(r"\b", _LEAN_BOUNDARY), TIER6_FORBIDDEN.flags)
+
+
+def glued_line_comment(source: str) -> int | None:
+    """The line of the first `--` outside block comments that follows a non-space.
+
+    Lean starts a line comment only between tokens. In `let y <--1` the token
+    `<-` takes the first `-`, so Lean runs the rest of the line, while the
+    frozen stripper drops it as a comment. Walking the frozen stripper's states,
+    this finds every line comment that does not start a line or follow a space.
+    """
+    i = depth = 0
+    while i < len(source):
+        if source.startswith("/-", i):
+            depth += 1
+            i += 2
+        elif depth and source.startswith("-/", i):
+            depth -= 1
+            i += 2
+        elif depth:
+            i += 1
+        elif source.startswith("--", i):
+            if i and source[i - 1] not in " \n":
+                return source.count("\n", 0, i) + 1
+            end = source.find("\n", i)
+            i = len(source) if end == -1 else end
+        else:
+            i += 1
+    return None
 
 
 def strip_comments(source: str) -> str:
-    """The frozen comment stripper, refusing the one opener it misreads.
+    """The frozen comment stripper, refusing the forms it reads differently from Lean.
 
     Lean reads `/--` as a three-character doc-comment opener, so `/--/` opens a
     comment that a later `-/` closes. The frozen stripper closes it at once, and
     a `--` after it then hides from the scan code that Lean runs.
+
+    Lean's block-comment opener `/-` also consumes the character after it, so
+    `/-/-/` is one closed comment to Lean. The frozen stripper reads a second,
+    nested opener in it and hides the code that follows until another `-/`.
+    No audited source contains `/-/`.
+
+    A line comment glued to the token before it can be read differently too
+    (`glued_line_comment`), so every line comment outside a block comment must
+    start a line or follow a space.
     """
     if "/--/" in source:
         raise ValueError("Ambiguous doc-comment opener /--/")
+    if "/-/" in source:
+        raise ValueError("Ambiguous block-comment opener /-/")
+    line = glued_line_comment(source)
+    if line is not None:
+        raise ValueError(f"Line comment glued to the token before it, line {line}")
     return strip_frozen(source)
 
 

@@ -9,6 +9,14 @@ import verify_blind_upper_components as audit
 from verify_blind_upper_components import REGISTRY, validate_reports, validate_sources
 
 
+def rejected(source: str) -> bool:
+    """An audit rejects a source at the comment stripper or by the pattern."""
+    try:
+        return audit.FORBIDDEN.search(audit.strip_comments(source)) is not None
+    except ValueError:
+        return True
+
+
 class BlindUpperAuditTests(unittest.TestCase):
     def setUp(self):
         self.registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
@@ -67,9 +75,34 @@ class BlindUpperAuditTests(unittest.TestCase):
                        'def \u00ab--\u00bb : Nat := 0 ; run_cmd pure ()\n',
                        '#print "\'A.foo\' does not depend on any axioms"\n'):
             with self.subTest(source=source):
-                self.assertIsNotNone(audit.FORBIDDEN.search(audit.strip_comments(source)))
+                self.assertTrue(rejected(source))
         self.assertIsNone(audit.FORBIDDEN.search(audit.strip_comments(
             "/- \"quoted\" admit -/\ntheorem admits_x' : True := trivial -- \"note\"\n")))
+
+    def test_sources_lean_lexes_differently_from_the_stripper_rejected(self):
+        # Lean 4.36 accepts each with the escape live (the `ˣ` case with Mathlib's
+        # units notation), and the frozen stripper and pattern miss it.
+        inv = "instance : Inv Nat := ⟨id⟩\n"
+        for source in (
+                # Lean's opener `/-` swallows the `/` after it: one closed comment.
+                "/-/-/ set_option debug.skipKernelTC true in\n-- -/ -/\ntheorem t : True := trivial\n",
+                # `¹` and `ˣ` end the tokens `⁻¹` and `ˣ`; the keyword follows.
+                inv + "def x : Nat := 2⁻¹axiom bad : False\n",
+                inv + "def x : Nat := 2⁻¹run_cmd pure ()\n",
+                inv + "def x : Nat := 2⁻¹initialize pure ()\n",
+                "abbrev U (M : Type) [Monoid M] : Type := Mˣmacro_rules"
+                " | `(tactic| rfl) => `(tactic| trivial)\n",
+                # `<-` takes the first `-`, so the rest of the line is code.
+                "theorem h : (Id.run do let y <--(1 : Int); pure y) = -1 := by native_decide\n"):
+            with self.subTest(source=source):
+                self.assertIsNone(audit.TIER6_FORBIDDEN.search(audit.strip_frozen(source)))
+                self.assertTrue(rejected(source))
+        for source in ("theorem t (x : ℝ) (h : x⁻¹ = 1) : True := trivial -- x⁻¹\n",
+                       "/-- doc -/\ntheorem t₁ (hρ : 1 ≤ 2) : True := trivial\n"
+                       "-- a comment at the start of a line\n"
+                       "theorem selected_x' (α : Type) : True := trivial\n"):
+            with self.subTest(source=source):
+                self.assertIsNone(audit.FORBIDDEN.search(audit.strip_comments(source)))
 
     def test_metaprograms_missed_by_the_frozen_pattern_rejected(self):
         for source in ("elab_rules : tactic | `(tactic| trivial) => pure ()\n",
