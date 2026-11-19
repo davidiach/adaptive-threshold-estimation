@@ -7,12 +7,18 @@ review, and CI history.
 
 ## Current priorities
 
-This section was brought up to date on 18 November 2026, after
-[#128](https://github.com/davidiach/adaptive-threshold-estimation/pull/128)
-(the sharp RMS constant and the square-root cap) and
-[#129](https://github.com/davidiach/adaptive-threshold-estimation/pull/129)
-(the large-budget bracket). The first table lists what is open. The second
-lists areas that are finished and where their evidence is.
+This section was brought up to date on 19 November 2026 with
+[#155](https://github.com/davidiach/adaptive-threshold-estimation/pull/155),
+which publishes the [release build](../paper/v6/README.md#release-build) of
+the v6 manuscript. An AI review of the proofs, the paper and the toolkit on
+that date found no mathematical error; its corrections to wording, the
+toolkit and the audit tools are in
+[#149](https://github.com/davidiach/adaptive-threshold-estimation/pull/149),
+[#151](https://github.com/davidiach/adaptive-threshold-estimation/pull/151),
+[#152](https://github.com/davidiach/adaptive-threshold-estimation/pull/152)
+and [#154](https://github.com/davidiach/adaptive-threshold-estimation/pull/154).
+The first table lists what is open. The second lists areas that are
+finished and where their evidence is.
 
 ### Open work
 
