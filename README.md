@@ -35,19 +35,19 @@ $\omega_\mu(h)=\mathbb E_\mu[\min(1,h/D)]$ for $h>0$. Then
 ```math
 \frac{1}{6}\,\omega_\mu(B^{-1/2})
 \;\le\; R_\mu(B)
-\;\le\; 17\,\omega_\mu(B^{-1/2}).
+\;\le\; 15\,\omega_\mu(B^{-1/2}).
 ```
 
 Both bounds are proved in Lean for the observable adaptive experiment.
 The lower constant $1/6$ is sharp: no larger constant holds for every gap
-law and budget. The upper constant $17$ is not optimized: a
+law and budget. The upper constant $15$ is not optimized: a
 [numerical study](research/2026-11-18-upper-constant/README.md) puts the
 actual worst ratio of the single-level algorithm behind the earlier
 constants near $7.6$. One upper algorithm works
 for every gap law without knowing $\mu$. The v6 paper and the frozen upper
 target state $512$. The
 [lower theorem](lean/ThresholdHC/SharpRMS/Full.lean),
-[upper theorem](lean/ThresholdHC/UpperDisagreement/Full.lean), and
+[upper theorem](lean/ThresholdHC/UpperSign/Full.lean), and
 [model and scope](docs/RESULTS.md#minimax-law-and-unbiasedness) give the
 precise statements. The original lower theorem, with the constant $1/64$,
 is kept as a [frozen target](lean/ThresholdHC/Tier6/Full.lean).
@@ -64,7 +64,7 @@ on the gap, at a fixed gap law $\mu$.
 |---|---|---|
 | For $B\ge1$, the sharp universal minimax RMS lower bound is $\omega_\mu(B^{-1/2})/6$ in the ordinary model and both magnitude oracles. Four fresh flips attain equality at $B=4$ and $\mu=\delta_{1/2}$. | Lean-checked | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) · written proof in Appendix AA of the [paper](paper/v6/README.md) |
 | For $B\ge25$ the best universal lower constant lies between $0.175198$ and $0.186752$; its exact value is open. | Lean-checked | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) · outline in Appendix AA of the [paper](paper/v6/README.md) |
-| One algorithm that knows only the budget attains RMS error at most $17\,\omega_\mu(B^{-1/2})$ ($512$ in the paper and the frozen target). | Lean-checked | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) |
+| One algorithm that knows only the budget attains RMS error at most $15\,\omega_\mu(B^{-1/2})$ ($512$ in the paper and the frozen target). | Lean-checked | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) |
 | Confidence radius of order $\omega_\mu\bigl(\sqrt{\log(1/\delta)/B}\bigr)$ | Lean-checked | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) |
 | An unbiased estimator with finite variance and expected work exists exactly when $I=\mathbb E_\mu[D^{-1}]$ is finite; the best variance–work product lies between $I^2/16$ and $713I^2$ | Lean-checked | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) · [713](docs/RESULTS.md#the-713-construction) |
 | Extensions to unknown gap laws under a stochastic envelope, smooth densities and observed outer states, and lower bounds when magnitudes are revealed | Lean-checked | [Envelope](docs/RESULTS.md#unknown-gap-laws-under-a-stochastic-envelope) · [Densities](docs/RESULTS.md#fixed-finite-order-smooth-densities) · [States](docs/RESULTS.md#finite-cell-observed-state-obstruction) · [Oracles](docs/RESULTS.md#magnitude-oracle-lower-bounds) |
@@ -170,13 +170,13 @@ cd lean
 lake exe cache get
 cd ..
 python tools/verify_sharp_rms.py
-python tools/verify_upper_disagreement.py
+python tools/verify_upper_sign.py
 python tools/verify_blind_upper_components.py --sequential
 python tools/verify_tier6.py --sequential --require-complete
 ```
 
 The first command checks the sharp lower bound with the constant $1/6$,
-the second the upper bound with $17$, the third the frozen upper target
+the second the upper bound with $15$, the third the frozen upper target
 with $512$, and the fourth the original frozen lower target with $1/64$. Each one builds what it needs, restates the
 target types exactly and reports the axioms the proofs use.
 
@@ -200,7 +200,7 @@ Use a disposable checkout for reproduction: some checks write diagnostic files.
   [v6 §14.8](docs/RESULTS.md#the-variational-modulus-in-closed-form), with
   its asymptotic interpretation.
 - **Constants of the main law.** The lower constant $1/6$ is sharp and the
-  upper constant is $17$, so the two sides are a factor $102$ apart. For
+  upper constant is $15$, so the two sides are a factor $90$ apart. For
   budgets of at least 25 the best lower constant is known only to lie in
   $[0.175198,\,0.186752]$.
 - **Toolkit verification.** The Python toolkit is tested and not formally
