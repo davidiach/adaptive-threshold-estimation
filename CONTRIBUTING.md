@@ -98,7 +98,8 @@ documentation-only change, validate relative links and heading anchors, run
 diff contains only intended documentation. The `cr-at-eol` setting keeps
 CRLF files such as `docs/VERIFY.md` from being reported as trailing whitespace;
 `verify_locks.py` covers the frozen and tier locks and the five manuscript and
-record manifests named in the script. The other `results/*/SHA256SUMS` files
+record manifests named in the script, whose own digests it pins, so a deleted
+manifest line fails as well. The other `results/*/SHA256SUMS` files
 are checked with `sha256sum -c`. Run the matching audit if the diff touches a
 path in a specification lock. Use the relevant proof, tool, toolkit,
 or manuscript checks when those areas change.

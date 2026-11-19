@@ -9,6 +9,7 @@ declaration of the directory is an axiom-audit root; the one private lemma is
 covered by the whole-project audit. The statements were written after the
 proof, from the research checkpoint `research/2026-11-17-rms-constants`.
 """
+import re
 import subprocess
 
 from verify_blind_upper_components import FORBIDDEN, LEAN, sha, strip_comments, validate_reports
@@ -22,7 +23,8 @@ TARGETS = {
     "square_root_cap": "SquareRootCapStatement",
     "four_ninths": "FourNinthsCapStatement",
 }
-EXACT_COUNT = 2
+COMPONENTS = ("square_root_cap_factor", "four_ninths_cap")
+EXACT_COUNT = len(COMPONENTS)
 
 EXACT = """
 example : ∀ (μ : Measure Gap) [IsProbabilityMeasure μ] {ρ B k : ℝ},
@@ -48,8 +50,7 @@ def declared_roots() -> set[str]:
         if FORBIDDEN.search(source):
             raise ValueError(f"Forbidden proof escape in SquareRootCap/{name}.lean")
         roots.extend(public_names(source, f"SquareRootCap/{name}.lean"))
-    required = {name for pair in TARGETS.items() for name in pair} | {
-        "square_root_cap_factor", "four_ninths_cap"}
+    required = {name for pair in TARGETS.items() for name in pair} | set(COMPONENTS)
     missing = {PREFIX + name for name in required} - set(roots)
     if missing:
         raise ValueError("Missing square-root cap target: " + ", ".join(sorted(missing)))
@@ -70,6 +71,9 @@ def audit_input() -> tuple[str, set[str]]:
         EXACT.strip("\n"),
         *["#print axioms " + root for root in sorted(roots)],
     ]) + "\n"
+    if ("\n" + EXACT).count("\nexample") != EXACT_COUNT or any(
+            len(re.findall(rf":=\s*@?{re.escape(name)}\n", EXACT)) != 1 for name in COMPONENTS):
+        raise ValueError("Each component needs exactly one restated statement")
     return source, roots
 
 

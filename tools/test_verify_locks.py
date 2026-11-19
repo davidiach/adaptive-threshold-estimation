@@ -29,6 +29,26 @@ class LockTests(unittest.TestCase):
             write(listed + listed[:1])
             self.assertIn("twice", locks.frozen_coverage(manifest, listed)[-1])
 
+    def test_manifests_no_lock_lists_are_pinned(self):
+        # A line deleted from TIER6_FROZEN.sha256 or a published SHA256SUMS,
+        # with the file it named then edited, passed every line check.
+        self.assertEqual(locks.pinned_problems(), [])
+        checked = ["FROZEN.sha256", *locks.TIER_LOCKS, *locks.CHECKSUM_MANIFESTS]
+        listed = {name for _, name in locks.entries(locks.ROOT / "TIER6_FROZEN.sha256")}
+        self.assertEqual({n for n in checked if n not in listed}, set(locks.PINNED_MANIFESTS))
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            lines = (locks.ROOT / "TIER6_FROZEN.sha256").read_text(encoding="utf-8").splitlines(True)
+            (root / "TIER6_FROZEN.sha256").write_text("".join(lines[:-1]), encoding="utf-8")
+            pinned = {"TIER6_FROZEN.sha256": locks.PINNED_MANIFESTS["TIER6_FROZEN.sha256"]}
+            found = locks.pinned_problems(root, pinned, ["TIER6_FROZEN.sha256"])
+            self.assertEqual(len(found), 1)
+            self.assertIn("changed since its digest was pinned", found[0])
+            (root / "SHA256SUMS").write_text(f"{'0' * 64}  a.txt\n", encoding="utf-8")
+            found = locks.pinned_problems(root, {}, ["SHA256SUMS"])
+            self.assertEqual(len(found), 1)
+            self.assertIn("neither pinned", found[0])
+
     def test_changed_missing_or_unreadable_entries_fail(self):
         with tempfile.TemporaryDirectory() as directory:
             base = Path(directory)

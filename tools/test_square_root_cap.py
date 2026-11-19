@@ -28,6 +28,13 @@ class SquareRootCapAuditTests(unittest.TestCase):
             self.assertIn(text, audit.EXACT)
         shared.validate_reports(report(roots), 0, roots)
 
+    def test_each_component_is_restated_exactly_once(self):
+        first, second = audit.EXACT.split("\nexample")[1:]
+        for changed in ("\nexample" + first + "\nexample" + first, "\nexample" + first):
+            with self.subTest(changed=changed[-30:]), patch.object(audit, "EXACT", changed):
+                with self.assertRaisesRegex(ValueError, "exactly one restated statement"):
+                    audit.audit_input()
+
     def test_changed_specification_rejected(self):
         with patch.object(audit, "sha", return_value="0" * 64):
             with self.assertRaisesRegex(ValueError, "Changed square-root cap statement"):

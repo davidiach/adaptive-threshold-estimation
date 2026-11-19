@@ -75,7 +75,9 @@ For navigation-only edits, check relative links and heading anchors, run
 whitespace) and `python tools/verify_locks.py`, and inspect the final file
 list. `verify_locks.py` checks `FROZEN.sha256` (including a deleted line, which
 `freeze.py --verify` misses), the tier locks and the five published
-checksum manifests named in the script; if the diff touches a path in a
+checksum manifests named in the script, and pins the digests of the manifests
+no tier lock lists, so a line deleted from any of them fails too. A deliberate
+change to one of those manifests updates its pinned digest in the script; if the diff touches a path in a
 specification lock, run that
 lock's audit too. A full Lean rebuild is
 unnecessary when proof sources, specifications, tools, and dependencies are
