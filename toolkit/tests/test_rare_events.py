@@ -24,6 +24,21 @@ class FiniteLawTests(unittest.TestCase):
         with self.assertRaises(dataclasses.FrozenInstanceError):
             law.weights = (1.0,)
 
+    def test_masses_are_rounded_once_so_quantiles_stay_on_their_atom(self):
+        # Dividing by the largest weight and then by a rounded sum stored 1/10 as
+        # 0.09999999999999999, so rho = 0.1 left a sliver of the tail to the next
+        # atom and the quantile gap moved there.
+        self.assertEqual(FiniteGapLaw([0.01, 0.1, 0.4], [1, 2, 7]).weights, (0.1, 0.2, 0.7))
+        self.assertEqual(FiniteGapLaw([0.01, 0.4], [0.1, 0.9]).weights, (0.1, 0.9))
+        self.assertEqual(FiniteGapLaw([0.01, 0.01, 0.4], [1, 1, 8]).weights, (0.2, 0.8))
+        self.assertEqual(FiniteGapLaw([0.01, 0.1, 0.4], [1, 2, 7]).profile(0.1).quantile_gap, 0.01)
+        for n in range(2, 51):
+            for k in range(1, n // 4 + 1):
+                with self.subTest(k=k, n=n):
+                    law = FiniteGapLaw([0.01, 0.4], [k, n - k])
+                    self.assertEqual(law.weights[0], k / n)
+                    self.assertEqual(law.profile(k / n).quantile_gap, 0.01)
+
     def test_invalid_laws_are_rejected(self):
         cases = [([], None), ([0], None), ([-0.1], None), ([0.50001], None),
                  ([math.inf], None), ([math.nan], None), ([0.25], []),

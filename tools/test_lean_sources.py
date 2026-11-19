@@ -57,6 +57,28 @@ class LeanSourceGuardTests(unittest.TestCase):
             found = guard.violations(paths)
         self.assertEqual(len(found), len(sources), found)
 
+    def test_sources_lean_lexes_differently_from_the_stripper_are_rejected(self):
+        # Lean 4.36 runs the escape in each; the frozen stripper and pattern miss it.
+        sources = {
+            # `/-` swallows the `/` after it, so `/-/-/` is one closed comment.
+            "opener.lean": "/-/-/ set_option debug.skipKernelTC true in\n-- -/ -/\n"
+                           "theorem t : True := trivial\n",
+            # `¹` ends the token `⁻¹`, so the keyword after it declares an axiom.
+            "postfix.lean": "instance : Inv Nat := ⟨id⟩\n"
+                            "def x : Nat := 2⁻¹axiom bad : False\n",
+            # `<-` takes the first `-`, so the rest of the line is code.
+            "glued.lean": "theorem h : (Id.run do let y <--(1 : Int); pure y) = -1 := by native_decide\n",
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            paths = []
+            for name, text in sources.items():
+                path = Path(directory) / name
+                path.write_text(text, encoding="utf-8")
+                paths.append(path)
+                self.assertIsNone(TIER6_FORBIDDEN.search(strip_comments(text)), name)
+            found = guard.violations(paths)
+        self.assertEqual(len(found), len(sources), found)
+
     def test_ordinary_words_are_not_mistaken_for_escapes(self):
         sources = {"words.lean": "open scoped ENNReal\ndef stop_x (hρ1 : 1 ≤ 2) : Nat := 0\n"
                                  "-- an Alternative and nativeish name in a comment\n"
