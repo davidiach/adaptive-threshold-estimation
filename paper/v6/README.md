@@ -1,15 +1,17 @@
 # Consolidated version 6
 
-[Current manuscript](builds/upper-constant-12-20261119.pdf) · [LaTeX sources](main.tex) · [Build record](builds/upper-constant-12-20261119.json) · [Previous build](builds/upper-constant-20261119.pdf)
+[Current manuscript](builds/release-20261119.pdf) · [LaTeX sources](main.tex) · [Build record](builds/release-20261119.json) · [Previous build](builds/upper-constant-12-20261119.pdf)
 
-The current PDF is the [upper constant 12 build](#upper-constant-12-build)
-of 19 November 2026, with 205 pages. It states both constants of the RMS law,
+The current PDF is the [release build](#release-build) of 19 November 2026,
+with 205 pages. It states both constants of the RMS law,
 $\tfrac16\,\omega_\mu(B^{-1/2})\le R_\mu(B)\le12\,\omega_\mu(B^{-1/2})$,
 a factor $72$ apart. Appendix AA proves the sharp lower constant $1/6$, and
 Appendix AB proves the upper constant $12$ for one distribution-blind family.
-Lean checks both. Every other result is unchanged. The build before it is the
-[upper constant build](#upper-constant-build), also with 205 pages, which
-stated $15$; earlier builds stated $512$.
+Lean checks both. The build before it, the
+[upper constant 12 build](#upper-constant-12-build), has the same
+mathematical content; the release build corrects five wording slips in
+§14.8 and Appendix AB. The [upper constant build](#upper-constant-build)
+before that stated $15$; earlier builds stated $512$.
 
 [status.json](status.json) tracks 33 results. Lean checks 32 of them. One,
 the critical-window simplification (Corollary 14.14 and Remark 14.15), has a
@@ -221,12 +223,13 @@ published build or source change at its own date and is kept as written:
 current state use the sections above and the
 [status table](../../docs/RESULTS.md#verification-status).
 
-The table lists all 51 published builds, newest first. `paper.pdf` in
+The table lists all 52 published builds, newest first. `paper.pdf` in
 this folder, the earliest v6 build kept in the repository, is described under
 [Preserved build record](#preserved-build-record).
 
 | Date | Pages | Build | Files | Described in |
 |---|---:|---|---|---|
+| 2026-11-19 | 205 | `release-20261119` | [PDF](builds/release-20261119.pdf) · [record](builds/release-20261119.json) | [Release build](#release-build) |
 | 2026-11-19 | 205 | `upper-constant-12-20261119` | [PDF](builds/upper-constant-12-20261119.pdf) · [record](builds/upper-constant-12-20261119.json) | [Upper constant 12 build](#upper-constant-12-build) |
 | 2026-11-19 | 205 | `upper-constant-20261119` | [PDF](builds/upper-constant-20261119.pdf) · [record](builds/upper-constant-20261119.json) | [Upper constant build](#upper-constant-build) |
 | 2026-11-18 | 199 | `large-budget-bracket-20261118` | [PDF](builds/large-budget-bracket-20261118.pdf) · [record](builds/large-budget-bracket-20261118.json) | [Large-budget bracket build](#large-budget-bracket-build) |
@@ -1231,3 +1234,47 @@ holds the build logs, the page comparison, the toolchain check and the
 workflow run. All earlier PDFs and records remain unchanged.
 
 [Published manuscript](builds/upper-constant-12-20261119.pdf) · [Build record](builds/upper-constant-12-20261119.json)
+
+### Release build
+
+This publication corrects five wording slips found by the review of
+19 November 2026. No statement, constant or proof step changes; the
+mathematical content is that of the [upper constant 12 build](#upper-constant-12-build).
+
+- §14.8: the quadratic law exceeds $\Psi$ by the factor $\sqrt{1+\log L}$,
+  not $1+\log L$; and $Y_\alpha(x,\rho)$ is defined for every $x>0$, as
+  Corollary 14.14 and its proof use it.
+- Appendix AB: the dyadic batch that the calibration at $B/4$ improves on
+  uses as little as about $B/2$ minus the mean cost of one call; the bound
+  $\lambda<2$ times the squared modulus at scale $B/4$ is on the square of
+  the bias; and the list of values Lean does not check includes the decimal
+  bounds $5.19$, $0.401$ and $6.49$.
+- Appendix AB.4 cites the
+  [numerical study](../../research/2026-11-19-upper-constant-12/README.md)
+  of the family of Theorem AB.1: its worst ratio is near $5.4$ and its exact
+  one-call constants are near $2.2$ and $3.6$, against $13/2$ and $26/5$.
+
+Two AI reviewers that had not written the text read Appendix AB against the
+Lean proofs and Corollary 14.14 and Remark 14.15 numerically over their
+whole parameter range. Neither found a mathematical error. This is not a
+specialist referee report.
+
+Two builds at source checkpoint `a8b2324596009abe58db8cbe39434246722fc03d`
+are byte-identical: 205 pages, 34 embedded font objects, 440 unique source
+labels and 29 resolved citations. They were typeset locally with the
+manuscript workflow's command and TeX Live packages. The same toolchain
+rebuilds the six previous PDFs byte for byte from their source checkpoints.
+One workflow build of the source checkpoint reports the same page count and
+file size. Its artifact was not downloaded, so byte identity with it is not
+claimed.
+
+Five pages change, compared by rendered pixels at 100 dpi: pages 46 and 48
+in §14.8, and pages 198, 199 and 203 in Appendix AB. No page moves. The
+other 200 pages have identical body pixels. The changed pages were rendered
+and visually inspected. The only warning is the inherited overfull line in
+Appendix C. The
+[publication record](../../results/release-publication-20261119/README.md)
+holds the build logs, the page comparison and its script, the toolchain
+check and the workflow run. All earlier PDFs and records remain unchanged.
+
+[Published manuscript](builds/release-20261119.pdf) · [Build record](builds/release-20261119.json)

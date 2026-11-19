@@ -1,0 +1,26 @@
+[
+  {
+    "id": 44613897206,
+    "event": "pull_request",
+    "pull_request": 155,
+    "head_branch": "claude/great-mayer-sm5oie",
+    "head_sha": "a8b2324596009abe58db8cbe39434246722fc03d",
+    "html_url": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/44613897206",
+    "conclusion": "success",
+    "run_started_at": "2026-11-19T20:57:32Z",
+    "updated_at": "2026-11-19T20:59:13Z",
+    "job_id": 135877313264,
+    "pdfinfo": {
+      "pages": 205,
+      "file_size_bytes": 1612581
+    },
+    "artifacts": [
+      {
+        "id": 14573367783,
+        "name": "v6-paper",
+        "size_in_bytes": 1594843,
+        "digest": "sha256:374eb9a6d78b10a767d04599dfeb3a5c14b0dd1c3d8eba99934aec11891cfb7d"
+      }
+    ]
+  }
+]
