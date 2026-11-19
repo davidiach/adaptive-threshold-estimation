@@ -297,7 +297,7 @@ $2.9$ for the call second moment and about $2.8$ to $3.6$ for the call cost,
 against $13/2$ and $26/5$ here. Below the split the disagreement bound is
 one quarter plus the drift terms, about $0.3$ to $0.6$. The calibration at
 scale $B/4$ costs the factor $4$; the bias stays that of the dyadic level $L$,
-at most $t\le2$ times the squared modulus at scale $B/4$.
+and its square is at most $t\le2$ times the squared modulus at scale $B/4$.
 
 The lower constant of the RMS law is sharp. For every gap law and every $B\ge1$,
 
