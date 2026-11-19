@@ -152,7 +152,7 @@ Here $r_\mu(B,\delta)$ is the minimax uniform error radius at failure probabilit
 | Upper, $B\ge1$, earlier stage | $36$ | `minimax_upper_36` and `blind_upper_36` in [UpperMoment/Full.lean](../lean/ThresholdHC/UpperMoment/Full.lean) | CI, `tools/verify_upper_moment.py` | No |
 | Upper, $B\ge1$, earlier stage | $45$ | `minimax_upper_45` and `blind_upper_45` in [UpperWork/Full.lean](../lean/ThresholdHC/UpperWork/Full.lean) | CI, `tools/verify_upper_work.py` | No |
 | Upper, $B\ge1$, earlier stage | $119$ | `minimax_upper_119` and `blind_upper_119` in [UpperConstant/Full.lean](../lean/ThresholdHC/UpperConstant/Full.lean) | CI, `tools/verify_upper_constant.py` | No |
-| Upper, frozen target | $512$ | `minimax_upper_bound` in [BlindUpper/Full.lean](../lean/ThresholdHC/BlindUpper/Full.lean) | CI, `tools/verify_blind_upper_components.py` | §18 derives $512$; §5 proves the bound with a larger constant |
+| Upper, frozen target | $512$ | `minimax_upper_bound` in [BlindUpper/Full.lean](../lean/ThresholdHC/BlindUpper/Full.lean) | CI, `tools/verify_blind_upper_components.py` | §18 derives $512$; §5 proves the bound with $\sqrt{8\cdot12666}<319$ |
 
 The lower constant is settled for $B\ge1$. The upper constant is not, so the two sides remain a factor $90$ apart.
 

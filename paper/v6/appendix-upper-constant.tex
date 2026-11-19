@@ -51,8 +51,8 @@ $J>L$. Then $1\le C_L\le N$, and
 $\E[C_L\mid d,S]=\sum_{\ell\le L}p_\ell\E[W_\ell\mid d,S]+r^{L+1}$.
 
 The \emph{batch at level $L$} applies \cref{lem:calibration} to
-$(Z,C)=(Y_L,C_L)$. For $B<4$, $\cA_B$ outputs $1/2$ and observes
-nothing. For $B\ge4$, let $L\ge0$ satisfy $4\cdot2^L\le B<8\cdot2^L$ and
+$(Z,C)=(Y_L,C_L)$. For $B<4$, $\cA_B$ observes nothing and outputs $0$,
+as the formal family does; any fixed output in $[0,1]$ would do. For $B\ge4$, let $L\ge0$ satisfy $4\cdot2^L\le B<8\cdot2^L$ and
 put $p=B/(4\cdot2^L)-1\in[0,1)$. With an independent coin, $\cA_B$ runs
 the batch at level $L+1$ with probability $p$ and the batch at level $L$
 otherwise. The algorithm uses neither $\mu$ nor $q$.
@@ -71,11 +71,11 @@ For every $L\ge0$, $N=2^L$, both signs and $0<d\le1/2$,
 \end{align}
 \end{lemma}
 
-The regime term $\rho_N$ is needed because for $Nd^2\le1$ the second
-moment can only be bounded by about $11.66\sqrt N$, which exceeds
-$\tfrac{89}{10}\sqrt N$. In that regime the padded cost is at most
-$\sqrt N$, far below $\tfrac{11}{2}\sqrt N$, and the product of the two
-bounds is what matters.
+The regime term $\rho_N$ is needed because for $Nd^2\le1$ the bounds
+used here give the second moment only $(6+4\sqrt2)\sqrt N<11.66\sqrt N$,
+which exceeds $\tfrac{89}{10}\sqrt N$. In that regime the padded cost is
+at most $\sqrt N$, far below $\tfrac{11}{2}\sqrt N$, and the product of
+the two bounds is what matters.
 
 \begin{lemma}\label[lemma]{lem:upper-15-batch}
 For every $L\ge0$ and $N=2^L$, the batch at level $L$ uses at most $4N$
@@ -87,12 +87,13 @@ every $\mu$ and $q$.
 \begin{proof}
 The work bound is \eqref{eq:calibration}. Put $h=N^{-1/2}$,
 $A=\Am(h)=\E_\mu\min\{\sqrt N,D^{-1}\}$ and $G=\E_\mu\rho_N(D)\ge0$.
-Averaging \cref{lem:upper-15-call} over $(D,S)$ bounds the variance $v$
-and the mean cost $c$ of one call by
-$v\le\tfrac{89}{10}A+\tfrac{69}{25}G$ and
-$0\le c\le\tfrac{11}{2}A-\tfrac92G$. Hence
+Averaging \cref{lem:upper-15-call} over $(D,S)$ bounds the variance
+$\sigma^2$ and the mean cost $\kappa$ of one call, the $v$ and $c$ of
+\cref{lem:calibration}, by
+$\sigma^2\le\tfrac{89}{10}A+\tfrac{69}{25}G$ and
+$0\le\kappa\le\tfrac{11}{2}A-\tfrac92G$. Hence
 \[
- vc\le\tfrac{89}{10}\cdot\tfrac{11}{2}A^2
+ \sigma^2\kappa\le\tfrac{89}{10}\cdot\tfrac{11}{2}A^2
   +\bigl(\tfrac{69}{25}\cdot\tfrac{11}{2}-\tfrac{89}{10}\cdot\tfrac92\bigr)AG
   -\tfrac{69}{25}\cdot\tfrac92G^2
  \le\tfrac{979}{20}A^2,
@@ -100,13 +101,13 @@ $0\le c\le\tfrac{11}{2}A-\tfrac92G$. Hence
 since $\tfrac{69}{25}\cdot\tfrac{11}{2}=\tfrac{759}{50}<\tfrac{801}{20}
 =\tfrac{89}{10}\cdot\tfrac92$. By \eqref{eq:calibration} and the bias
 bound of \eqref{eq:one-call}, the mean-square error is at most
-$\om(h)^2+vc/N$, and $A^2/N=\om(h)^2$ because $\om(h)=hA$. So it is at
+$\om(h)^2+\sigma^2\kappa/N$, and $A^2/N=\om(h)^2$ because $\om(h)=hA$. So it is at
 most $(1+\tfrac{979}{20})\om(h)^2=\tfrac{999}{20}\om(h)^2$.
 \end{proof}
 
 \begin{proof}[Proof of \cref{thm:upper-15}]
 For $B<4$, $\om(B^{-1/2})=1$ because $B^{-1/2}>1/2\ge D$, and the
-output $1/2$ has error at most $1/2$. Let $B\ge4$. By
+output $0$ has error at most $1$. Let $B\ge4$. By
 \cref{lem:upper-15-batch}, the expected work is at most
 $(1-p)\,4\cdot2^L+p\,8\cdot2^L=B$. For $0<N\le B$,
 \eqref{eq:scaling} with $c=\sqrt{B/N}$ gives
@@ -252,12 +253,12 @@ observations differ with probability at most $1/2$:
 \end{lemma}
 
 \begin{proof}
-Let $N_1$ and $N_2$ count the successes among the first and the last
-$2m$ observations. The votes are $\ind\{N_1>m\}$ and
-$\ind\{N_1+N_2>2m\}$. If $N_1>m$ and $N_1+N_2\le2m$, then $N_2<m$; if
-$N_1\le m$ and $N_1+N_2>2m$, then $N_2>m$. The counts are independent
-with the same law, so with $a=\Prob(N_1>m)$ the probability is at most
-$a\Prob(N_2<m)+(1-a)\Prob(N_2>m)\le a(1-a)+(1-a)a\le1/2$.
+Let $U_1$ and $U_2$ count the successes among the first and the last
+$2m$ observations. The votes are $\ind\{U_1>m\}$ and
+$\ind\{U_1+U_2>2m\}$. If $U_1>m$ and $U_1+U_2\le2m$, then $U_2<m$; if
+$U_1\le m$ and $U_1+U_2>2m$, then $U_2>m$. The counts are independent
+with the same law, so with $a=\Prob(U_1>m)$ the probability is at most
+$a\Prob(U_2<m)+(1-a)\Prob(U_2>m)\le a(1-a)+(1-a)a\le1/2$.
 \end{proof}
 
 \begin{lemma}\label[lemma]{lem:upper-15-level}
@@ -325,14 +326,14 @@ $\sum_{j\ge1}(\sqrt2/4)^j=\sqrt2/(4-\sqrt2)$, the last sum in
 \]
 
 \emph{Right-side early stops below the split.}
-Let $M=2^{L'}$ with $L'\ge1$, and put $X=Md^2$. At the prefix $n=2^k$,
-with $J=L'-k$, $nt_{n,M}^2=v_J$ and $2^kd^2=X2^{-J}$. If $X\le3/8$, then
-$2^kd^2<1\le v_J$, so $d<t_{n,M}$ and
+Let $M=2^{L'}$ with $L'\ge1$, and put $\xi=Md^2$. At the prefix $n=2^k$,
+with $j=L'-k$, $nt_{n,M}^2=v_j$ and $2^kd^2=\xi2^{-j}$. If $\xi\le3/8$, then
+$2^kd^2<1\le v_j$, so $d<t_{n,M}$ and
 \[
- \mathcal D_M(d)\le\sum_{J\ge1}
- \exp\Bigl(-2\bigl(\sqrt{v_J}-\sqrt{X2^{-J}}\bigr)^2\Bigr),
+ \mathcal D_M(d)\le\sum_{j\ge1}
+ \exp\Bigl(-2\bigl(\sqrt{v_j}-\sqrt{\xi2^{-j}}\bigr)^2\Bigr),
 \]
-which increases with $X$.
+which increases with $\xi$.
 
 \begin{lemma}\label[lemma]{lem:upper-15-drift}
 Let $e_0,\dots,e_4$ be $0.282385$, $0.178521$, $0.1253$, $0.096265$ and
@@ -341,10 +342,10 @@ $\mathcal D_M(d)\le e_i$.
 \end{lemma}
 
 \begin{proof}
-It suffices to take $X=\tfrac38\cdot2^{-i}$ for $i\le4$. The Lean proofs
-bound the first six terms with rational bounds on $\sqrt{v_J}$ and
-$\sqrt{X2^{-J}}$ and an eight-term Taylor sum, and the terms with $J\ge7$
-by $(31/100)^J$, which add less than $1/2000$.
+It suffices to take $\xi=\tfrac38\cdot2^{-i}$ for $i\le4$. The Lean proofs
+bound the first six terms with rational bounds on $\sqrt{v_j}$ and
+$\sqrt{\xi2^{-j}}$ and an eight-term Taylor sum, and the terms with $j\ge7$
+by $(31/100)^j$, which add less than $1/2000$.
 \end{proof}
 
 \begin{lemma}\label[lemma]{lem:upper-15-offset-moment}
@@ -364,23 +365,24 @@ maximum of the left side is about $2.430$.
 \end{proof}
 
 \begin{proof}[Proof of \eqref{eq:upper-15-moment}]
-It remains to bound the first sum in \eqref{eq:upper-15-split}. Let $K$ be
-the first level with $x_K\ge3/4$ and $s=x_K\in[3/4,3/2)$. Then $K\ge2$.
+It remains to bound the first sum in \eqref{eq:upper-15-split}. Let $\ell_*$ be
+the first level with $x_{\ell_*}\ge3/4$ and $s=x_{\ell_*}\in[3/4,3/2)$.
+Then $\ell_*\ge2$.
 
-\emph{Levels below $K$.} Write $\ell=K-1-i$, so that
+\emph{Levels below $\ell_*$.} Write $\ell=\ell_*-1-i$, so that
 $\sqrt{x_\ell}=r^{i+1}\sqrt s$. For $\ell\ge2$,
 $x_{\ell-1}=s2^{-i-2}\le\tfrac38\cdot2^{-i}$, so
 $w_\ell\le\tfrac12+e_i$ by \cref{lem:upper-15-drift}. Levels $1$ and $0$,
-with $i=K-2$ and $i=K-1$, have weight one, and
-$r^{K-1}+r^K=\tfrac12\sum_{i\ge K-2}r^{i+1}$, because
-$1+r=1/(2(1-r))$. So the levels below $K$ add at most
+with $i=\ell_*-2$ and $i=\ell_*-1$, have weight one, and
+$r^{\ell_*-1}+r^{\ell_*}=\tfrac12\sum_{i\ge\ell_*-2}r^{i+1}$, because
+$1+r=1/(2(1-r))$. So the levels below $\ell_*$ add at most
 \[
  \sqrt s\sum_{i\ge0}r^{i+1}\bigl(\tfrac12+e_i\bigr)
  =\sqrt s\Bigl(\frac{1+\sqrt2}{2}+\sum_{i\ge0}r^{i+1}e_i\Bigr)
  <1.613\sqrt s .
 \]
 
-\emph{Levels from $K$ on.} The level $K+i$ adds
+\emph{Levels from $\ell_*$ on.} The level $\ell_*+i$ adds
 $\sqrt{2^is}\,(e^{-2^{i+1}s}+e^{-2^is})$.
 
 By \cref{lem:upper-15-offset-moment} the first sum in
@@ -393,20 +395,23 @@ By \cref{lem:upper-15-offset-moment} the first sum in
 
 \subsection{What Lean checks and what remains}\label{sec:upper-15-scope}
 
-The Lean proof of \cref{thm:upper-15} is assembled from four groups of
-modules, which also contain the audited stages between $512$ and $15$:
+The Lean proof of \cref{thm:upper-15} builds on \texttt{BlindUpper},
+which supplies the cutoff estimator, the calibrated batch and its budget,
+on \texttt{UpperWork}, which supplies \eqref{eq:upper-15-survival}, and
+on \texttt{UpperMoment}. Four groups of modules, which also hold the
+audited stages $27$, $19$, $17$ and $15$, add the rest:
 \begin{itemize}
 \item \upperleanref{UpperMixture/Full.lean}{budgetMixture} defines the
  mixture. Its expected work and squared risk are the same mixtures of
  those of the two batches, for every gap law and sign law.
 \item \upperleanref{UpperCost/Full.lean}{budgetMixture\_risk\_of\_batch}
- turns a batch factor $K$ into the constant $c$ whenever
- $\tfrac92K\le c^2$ and $c\ge1$. \texttt{UpperCost} also proves
+ turns a batch factor $\beta\ge0$ into the constant $C$ whenever
+ $\tfrac92\beta\le C^2$ and $C\ge1$. \texttt{UpperCost} also proves
  \eqref{eq:upper-15-cost} without the regime term and
  \cref{lem:upper-15-offset-cost}.
 \item \texttt{UpperDisagreement} proves part (i) of
  \cref{lem:upper-15-level}, the bound $41/100$ on the wrong-side early
- stops and the regime terms of both bounds.
+ stops and the regime term of \eqref{eq:upper-15-cost}.
 \item \texttt{UpperSign} proves \cref{lem:upper-15-sign}, part (ii) of
  \cref{lem:upper-15-level}, \cref{lem:upper-15-drift,lem:upper-15-offset-moment},
  \eqref{eq:upper-15-moment}, \cref{lem:upper-15-batch} and
@@ -429,5 +434,7 @@ A numerical study of the single-level estimator, recorded in
 $7.6$, and the sharp constants of one call near $2.9$ for the second
 moment and between $2.8$ and $3.6$ for the cost, against $89/10$ and
 $11/2$ here. Below the split, the bound $\tfrac12+e_i$ on the
-disagreement is about $0.6$ to $0.8$, while the exact disagreement is at
-most $0.25$. The mixture pays the factor $9/2$ in the worst case.
+disagreement is about $0.6$ to $0.8$. At level $2$, for instance, neither
+classifier can stop early, and the disagreement equals $P^2(1-P^2)\le1/4$
+for a coin with success probability $P$. The mixture pays the factor $9/2$
+in the worst case.
