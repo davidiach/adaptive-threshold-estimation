@@ -1,15 +1,15 @@
 # Consolidated version 6
 
-[Current manuscript](builds/upper-constant-20261119.pdf) · [LaTeX sources](main.tex) · [Build record](builds/upper-constant-20261119.json) · [Previous build](builds/large-budget-bracket-20261118.pdf)
+[Current manuscript](builds/upper-constant-12-20261119.pdf) · [LaTeX sources](main.tex) · [Build record](builds/upper-constant-12-20261119.json) · [Previous build](builds/upper-constant-20261119.pdf)
 
-The current PDF is the [upper constant build](#upper-constant-build) of
-19 November 2026, with 205 pages. It states both constants of the RMS law,
-$\tfrac16\,\omega_\mu(B^{-1/2})\le R_\mu(B)\le15\,\omega_\mu(B^{-1/2})$,
-a factor $90$ apart. Appendix AA proves the sharp lower constant $1/6$, and
-the new Appendix AB proves the upper constant $15$ for one
-distribution-blind family; earlier builds stated $512$. Lean checks both.
-Every other result is unchanged. The build before it is the
-[large-budget bracket build](#large-budget-bracket-build), with 199 pages.
+The current PDF is the [upper constant 12 build](#upper-constant-12-build)
+of 19 November 2026, with 205 pages. It states both constants of the RMS law,
+$\tfrac16\,\omega_\mu(B^{-1/2})\le R_\mu(B)\le12\,\omega_\mu(B^{-1/2})$,
+a factor $72$ apart. Appendix AA proves the sharp lower constant $1/6$, and
+Appendix AB proves the upper constant $12$ for one distribution-blind family.
+Lean checks both. Every other result is unchanged. The build before it is the
+[upper constant build](#upper-constant-build), also with 205 pages, which
+stated $15$; earlier builds stated $512$.
 
 [status.json](status.json) tracks 33 results. Lean checks 32 of them. One,
 the critical-window simplification (Corollary 14.14 and Remark 14.15), has a
@@ -61,7 +61,7 @@ unchanged.
 | Appendix W | The smooth-density theorem in the adaptive experiment |
 | Appendices X–Z | Observed states: the finite-cell lower bound, continuous-magnitude lower bounds and the fresh-outer-state upper-bound transfer |
 | Appendix AA | The sharp constant $1/6$ of the RMS lower bound, also under both magnitude oracles: the reduction to one gap, three sign biases for large budgets, the exact one-coin information price with an integer certificate for intermediate budgets, four fresh flips for equality, and the bracket $[0.175198,0.186752]$ for budgets of at least 25 |
-| Appendix AB | The upper constant $15$ of the RMS law: a mixture of the calibrated batches of two adjacent levels, the padded call cost $11/2$, the call second moment $89/10$ with a regime term, the sign change of majority votes, and the numerical certificates that Lean checks |
+| Appendix AB | The upper constant $12$ of the RMS law: one level calibrated at the scale $B/4$, the padded call cost $26/5$, the call second moment $13/2$ with a regime term, the exact vote-change probability of majority votes, and the numerical certificates that Lean checks |
 
 ## Verification status
 
@@ -221,12 +221,13 @@ published build or source change at its own date and is kept as written:
 current state use the sections above and the
 [status table](../../docs/RESULTS.md#verification-status).
 
-The table lists all 50 published builds, newest first. `paper.pdf` in
+The table lists all 51 published builds, newest first. `paper.pdf` in
 this folder, the earliest v6 build kept in the repository, is described under
 [Preserved build record](#preserved-build-record).
 
 | Date | Pages | Build | Files | Described in |
 |---|---:|---|---|---|
+| 2026-11-19 | 205 | `upper-constant-12-20261119` | [PDF](builds/upper-constant-12-20261119.pdf) · [record](builds/upper-constant-12-20261119.json) | [Upper constant 12 build](#upper-constant-12-build) |
 | 2026-11-19 | 205 | `upper-constant-20261119` | [PDF](builds/upper-constant-20261119.pdf) · [record](builds/upper-constant-20261119.json) | [Upper constant build](#upper-constant-build) |
 | 2026-11-18 | 199 | `large-budget-bracket-20261118` | [PDF](builds/large-budget-bracket-20261118.pdf) · [record](builds/large-budget-bracket-20261118.json) | [Large-budget bracket build](#large-budget-bracket-build) |
 | 2026-11-18 | 197 | `sharp-rms-constant-20261118` | [PDF](builds/sharp-rms-constant-20261118.pdf) · [record](builds/sharp-rms-constant-20261118.json) | [Sharp RMS constant build](#sharp-rms-constant-build) |
@@ -1156,3 +1157,77 @@ holds the build logs, the page comparison, the toolchain check and the
 workflow run. All earlier PDFs and records remain unchanged.
 
 [Published manuscript](builds/upper-constant-20261119.pdf) · [Build record](builds/upper-constant-20261119.json)
+
+### Upper constant 12 build
+
+This publication states the upper constant $12$ of the RMS law, which Lean
+already checked in the library, in place of $15$.
+
+- Appendix AB is rewritten. Theorem AB.1 now states that for each budget
+  $B\ge1$ one algorithm, depending only on $B$, keeps the expected work at
+  most $B$ and has RMS error at most $12\,\omega_\mu(B^{-1/2})$ for every
+  gap law and sign law. Its proof has three parts:
+  - The algorithm runs one level calibrated at the scale $B/4$, which need
+    not be a power of two.
+  - One call of the cutoff estimator has padded cost at most $\tfrac{26}{5}$:
+    a third offset bound, $399/100$, covers the grids of level difference at
+    least three.
+  - Its second moment is at most $\tfrac{13}{2}$, with a regime term for
+    $Nd^2\le1$. The majority votes after $m$ and $2m$ flips change with
+    probability exactly $a(1-a)\le1/4$, and four bands of drift tables
+    cover the levels below the split $19/20$.
+
+  The text states which numerical certificates Lean checks and does not
+  repeat them.
+- Theorem 2.1 gives $C=12$ for RMS, its formal scope cites
+  `blind_upper_12` and `minimax_upper_12`, and §5.2 points to Theorem AB.1.
+  The overview table, the closing remark of Appendix AA.5 (now a factor
+  $72$), the Verification boundary paragraph and Section 18 state $12$.
+- The status table keeps 33 entries. It lists `UpperScale/Full.lean` for the
+  RMS law. The results that use the family of §5, among them the confidence
+  bound and Appendices R, T and Z, keep their stated constants.
+
+Lean checks the constant as
+[`lean/ThresholdHC/UpperScale`](../../lean/ThresholdHC/UpperScale/Specification.lean),
+with the call cost of
+[`lean/ThresholdHC/UpperCallCost`](../../lean/ThresholdHC/UpperCallCost/LevelSum.lean).
+The [library audit record](../../results/upper-scale-20261119/README.md)
+gives the statements, the axiom reports and the kernel replay.
+
+An AI reviewer that had not written the new text read it against the Lean
+proofs and recomputed its constants. It found no mathematical error. Its
+other findings were fixed before the build:
+
+- module attributions;
+- the scope of the numerical study;
+- an undefined term;
+- clashing symbols;
+- wording about the budget.
+
+This is not a specialist referee report.
+
+Two builds at source checkpoint `b1cff202deb9f36a4f4f1f7a7a78cc86660e0dd0`
+are byte-identical: 205 pages, 34 embedded font objects, 440 unique source
+labels and 29 resolved citations. They were typeset locally with the
+manuscript workflow's command and TeX Live packages. The same toolchain
+rebuilds the five previous PDFs byte for byte from their source
+checkpoints. One workflow build of the source checkpoint reports the same
+page count and file size. Its artifact was not downloaded, so byte identity
+with it is not claimed.
+
+Twenty-one pages change, compared by rendered pixels at 100 dpi:
+
+- page 3, the contents;
+- the edited passages on pages 5, 6, 8, 10, 12 and 19;
+- Section 18 on pages 54 and 58–63;
+- page 195;
+- Appendix AB, which keeps pages 198–203.
+
+No page moves. The other 184 pages have identical body pixels. The changed
+pages were rendered and visually inspected. The only warning is the
+inherited overfull line in Appendix C. The
+[publication record](../../results/upper-constant-12-publication-20261119/README.md)
+holds the build logs, the page comparison, the toolchain check and the
+workflow run. All earlier PDFs and records remain unchanged.
+
+[Published manuscript](builds/upper-constant-12-20261119.pdf) · [Build record](builds/upper-constant-12-20261119.json)

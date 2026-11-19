@@ -10,7 +10,7 @@ can differ from the current files after a later proof-only change: the
 eight Lean files that were refactored afterwards without changing a
 statement. For the current tree the evidence is the CI run on that commit.
 
-The folder holds 110 dated record directories, named for a result and a
+The folder holds 111 dated record directories, named for a result and a
 date, and the loose JSON and log files of the first phases of the project.
 The table below indexes the records that the guides cite. Later sections
 describe the remaining records in prose: the time-uniform bounds, cost
@@ -22,6 +22,7 @@ is the current evidence for that result.
 
 | Claim or check | Published record |
 |---|---|
+| Typeset v6 manuscript with the RMS upper constant $12$ (Theorem AB.1, Appendix AB rewritten): build logs, page comparison and toolchain check | [upper-constant-12-publication-20261119](upper-constant-12-publication-20261119/README.md) |
 | Typeset v6 manuscript with the RMS upper constant $15$ (Theorem AB.1, Appendix AB): build logs, page comparison and toolchain check | [upper-constant-publication-20261119](upper-constant-publication-20261119/README.md) |
 | RMS upper constant $12$, from the padded call cost $26/5$ and one budget level calibrated at the scale $B/4$ in place of the mixture below: library statement, axiom and kernel-replay audits | [upper-scale-20261119](upper-scale-20261119/README.md) |
 | RMS upper constant $13$ for the mixture below, from the exact vote-change probability, at most one quarter, the stage that `upper-sign-20261119` extends: library statement, axiom and kernel-replay audits | [upper-quarter-20261119](upper-quarter-20261119/README.md) |
