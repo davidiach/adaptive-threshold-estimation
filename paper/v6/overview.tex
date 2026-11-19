@@ -30,10 +30,10 @@ Result & Statement & Where\\
 \multicolumn{3}{@{}l}{\emph{Every sign law: any gap law $\mu$ on $(0,1/2]$,
  $B\ge1$, $0<\delta\le1/4$}}\\[3pt]
 Minimax RMS error
- & $\tfrac16\,\omega_\mu(B^{-1/2})\le R_\mu(B)\le C\,\omega_\mu(B^{-1/2})$,
+ & $\tfrac16\,\omega_\mu(B^{-1/2})\le R_\mu(B)\le15\,\omega_\mu(B^{-1/2})$,
    where $\omega_\mu(h)=\E_\mu\min\{1,h/D\}$. The constant $1/6$ is sharp.
    One algorithm that depends only on $B$ attains the upper bound for every $\mu$.
- & \cref{thm:main,thm:sharp-rms}; proof in \cref{sec:lower,sec:classifier,sec:minimax-proof,app:sharp-rms}\\[3pt]
+ & \cref{thm:main,thm:sharp-rms,thm:upper-15}; proof in \cref{sec:lower,sec:classifier,sec:minimax-proof,app:sharp-rms,app:upper-15}\\[3pt]
 Confidence radius
  & $r_\mu(B,\delta)\asymp\omega_\mu\bigl(\sqrt{\log(1/\delta)/B}\bigr)$, again
    with one algorithm for every $\mu$.
@@ -203,6 +203,8 @@ power-margin rates below exponent two; \cref{app:anytime} treats
 time-uniform confidence and unknown gap laws; and
 \crefrange{app:smooth-density}{app:observed-upper} carry the results of
 \cref{sec:smooth,sec:outer} to the adaptive experiment.
+\Cref{app:sharp-rms,app:upper-15} prove the constants $1/6$ and $15$ of
+the RMS law.
 
 \emph{Reading paths.} \Crefrange{sec:model}{sec:minimax-proof} are
 self-contained and give the main law with its proof. The rare-event part

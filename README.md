@@ -44,8 +44,8 @@ law and budget. The upper constant $15$ is not optimized: a
 [numerical study](research/2026-11-18-upper-constant/README.md) puts the
 actual worst ratio of the single-level algorithm behind the earlier
 constants near $7.6$. One upper algorithm works
-for every gap law without knowing $\mu$. The v6 paper and the frozen upper
-target state $512$. The
+for every gap law without knowing $\mu$. The v6 paper states $15$ and proves
+it in Appendix AB; the frozen upper target states $512$. The
 [lower theorem](lean/ThresholdHC/SharpRMS/Full.lean),
 [upper theorem](lean/ThresholdHC/UpperSign/Full.lean), and
 [model and scope](docs/RESULTS.md#minimax-law-and-unbiasedness) give the
@@ -64,7 +64,7 @@ on the gap, at a fixed gap law $\mu$.
 |---|---|---|
 | For $B\ge1$, the sharp universal minimax RMS lower bound is $\omega_\mu(B^{-1/2})/6$ in the ordinary model and both magnitude oracles. Four fresh flips attain equality at $B=4$ and $\mu=\delta_{1/2}$. | Lean-checked | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) · written proof in Appendix AA of the [paper](paper/v6/README.md) |
 | For $B\ge25$ the best universal lower constant lies between $0.175198$ and $0.186752$; its exact value is open. | Lean-checked | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) · outline in Appendix AA of the [paper](paper/v6/README.md) |
-| One algorithm that knows only the budget attains RMS error at most $15\,\omega_\mu(B^{-1/2})$ ($512$ in the paper and the frozen target). | Lean-checked | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) |
+| One algorithm that knows only the budget attains RMS error at most $15\,\omega_\mu(B^{-1/2})$ ($512$ in the frozen target). | Lean-checked | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) · written proof in Appendix AB of the [paper](paper/v6/README.md) |
 | Confidence radius of order $\omega_\mu\bigl(\sqrt{\log(1/\delta)/B}\bigr)$ | Lean-checked | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) |
 | An unbiased estimator with finite variance and expected work exists exactly when $I=\mathbb E_\mu[D^{-1}]$ is finite; the best variance–work product lies between $I^2/16$ and $713I^2$ | Lean-checked | [Scope](docs/RESULTS.md#minimax-law-and-unbiasedness) · [713](docs/RESULTS.md#the-713-construction) |
 | Extensions to unknown gap laws under a stochastic envelope, smooth densities and observed outer states, and lower bounds when magnitudes are revealed | Lean-checked | [Envelope](docs/RESULTS.md#unknown-gap-laws-under-a-stochastic-envelope) · [Densities](docs/RESULTS.md#fixed-finite-order-smooth-densities) · [States](docs/RESULTS.md#finite-cell-observed-state-obstruction) · [Oracles](docs/RESULTS.md#magnitude-oracle-lower-bounds) |

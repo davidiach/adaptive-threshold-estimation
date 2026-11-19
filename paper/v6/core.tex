@@ -71,6 +71,8 @@ There is likewise one algorithm depending only on $(B,\delta)$ for the
 upper confidence bound. Neither algorithm observes $D$ or knows $\mu$.
 In the lower bounds one may take $c=1/6$ for RMS, which is sharp
 (\cref{thm:sharp-rms}), and $c=15/(256\sqrt2)$ for confidence.
+For RMS, the upper bound and \eqref{eq:blind-guarantee} hold with
+$C=15$ (\cref{thm:upper-15}).
 The lower bounds hold even if every coin's magnitude is revealed for free,
 or if the algorithm selects the magnitude of each fresh coin. In the latter
 experiment $q$ is defined on all $(0,1/2]$ and the target is still
@@ -86,7 +88,10 @@ coefficient $1/6$, and
 coefficient $512$. The frozen target
 \leanref{BlindUpper/Full.lean}{distribution\_blind\_upper} chooses the
 upper family before every gap law and asserts a positive constant; the
-family satisfies the budget in the same experiment. The
+family satisfies the budget in the same experiment.
+\upperleanref{UpperSign/Full.lean}{minimax\_upper\_15} proves the
+coefficient $15$ with another family chosen before every gap law
+(\cref{app:upper-15}). The
 confidence law is proved by \confidenceleanref{confidence\_characterization},
 with coefficients $1/64$ and $8192$ for $B\ge1$ and $0<\delta\le1/4$.
 Its upper family depends only on $(B,\delta)$. The stronger revealed- and
@@ -535,6 +540,8 @@ Since $N>B/8$, \eqref{eq:scaling} gives the RMS upper bound, for example
 with $C_R=\sqrt{8\cdot12666}$. For $1\le B<4$, output $1/2$ with no
 observations; then $\om(B^{-1/2})=1$. This proves
 \eqref{eq:blind-guarantee} without any knowledge of $\mu$ or $q$.
+\Cref{thm:upper-15} gives $C=15$ for RMS by mixing the batches of
+two adjacent levels.
 
 For confidence, choose the least odd integer
 $k\ge(32/9)\log(1/\delta)$; then $k<5\log(1/\delta)$ for
