@@ -1,0 +1,26 @@
+[
+  {
+    "id": 44480978663,
+    "event": "pull_request",
+    "pull_request": 145,
+    "head_branch": "claude/kind-turing-pqjssw",
+    "head_sha": "581444620f69ad9e169c07a43afd007d4b3612ae",
+    "html_url": "https://github.com/davidiach/adaptive-threshold-estimation/actions/runs/44480978663",
+    "conclusion": "success",
+    "run_started_at": "2026-11-19T07:36:56Z",
+    "updated_at": "2026-11-19T07:44:51Z",
+    "job_id": 135412842687,
+    "pdfinfo": {
+      "pages": 205,
+      "file_size_bytes": 1608201
+    },
+    "artifacts": [
+      {
+        "id": 14508553151,
+        "name": "v6-paper",
+        "size_in_bytes": 1590456,
+        "digest": "sha256:7a89999726ffc4620e4afe09fb0c8e5295bdcaca093a7bccce58e15b9d166f33"
+      }
+    ]
+  }
+]

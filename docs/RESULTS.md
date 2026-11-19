@@ -74,7 +74,7 @@ The [status source](../paper/v6/status.json) of the v6 abstract lists 33 results
 
 | Result | Status | Evidence |
 |---|---|---|
-| Original RMS law in both directions, with coefficients $1/6$ (sharp) and $512$ and one distribution-blind upper algorithm | Lean-checked | [Tier6/Full.lean](../lean/ThresholdHC/Tier6/Full.lean) · [BlindUpper/Full.lean](../lean/ThresholdHC/BlindUpper/Full.lean) · [SharpRMS/Full.lean](../lean/ThresholdHC/SharpRMS/Full.lean) · [LargeBudgetRMS/Full.lean](../lean/ThresholdHC/LargeBudgetRMS/Full.lean) |
+| Original RMS law in both directions, with coefficients $1/6$ (sharp) and $15$ and one distribution-blind upper algorithm | Lean-checked | [Tier6/Full.lean](../lean/ThresholdHC/Tier6/Full.lean) · [BlindUpper/Full.lean](../lean/ThresholdHC/BlindUpper/Full.lean) · [UpperSign/Full.lean](../lean/ThresholdHC/UpperSign/Full.lean) · [SharpRMS/Full.lean](../lean/ThresholdHC/SharpRMS/Full.lean) · [LargeBudgetRMS/Full.lean](../lean/ThresholdHC/LargeBudgetRMS/Full.lean) |
 | Critical minimax law | Lean-checked | [CriticalEntropy/CriticalMinimax.lean](../lean/ThresholdHC/CriticalEntropy/CriticalMinimax.lean) · [CriticalUpper/Full.lean](../lean/ThresholdHC/CriticalUpper/Full.lean) |
 | Exact $\Psi$ comparison and counterexample | Lean-checked | [CriticalPsi/Full.lean](../lean/ThresholdHC/CriticalPsi/Full.lean) |
 | Variational optimizer | Lean-checked | [Tier3/Optimizer.lean](../lean/ThresholdHC/Tier3/Optimizer.lean) |
@@ -145,14 +145,14 @@ Here $r_\mu(B,\delta)$ is the minimax uniform error radius at failure probabilit
 | Lower, $B\ge25$ | $\sqrt{59/2100}\approx0.1676$ | `large_budget_lower` in the same file | CI, the same audit | Appendix AA |
 | Lower, $B\ge25$, best known | $0.175198$, and $0.17807955$ for $B\ge100$; the best constant is at most $0.186752$ | `bracket_lower`, `hundred_lower` and `bracket_upper` in [LargeBudgetRMS/Full.lean](../lean/ThresholdHC/LargeBudgetRMS/Full.lean) | CI, `tools/verify_large_budget_rms.py` | Appendix AA, Theorem AA.7 |
 | Lower, original frozen target | $1/64$ | `minimax_lower_bound` in [Tier6/Full.lean](../lean/ThresholdHC/Tier6/Full.lean) | CI, `tools/verify_tier6.py` | §5 |
-| Upper, $B\ge1$ | $15$ | `minimax_upper_15` and `blind_upper_15` in [UpperSign/Full.lean](../lean/ThresholdHC/UpperSign/Full.lean) | CI, `tools/verify_upper_sign.py` | No: the paper states $512$ |
+| Upper, $B\ge1$ | $15$ | `minimax_upper_15` and `blind_upper_15` in [UpperSign/Full.lean](../lean/ThresholdHC/UpperSign/Full.lean) | CI, `tools/verify_upper_sign.py` | Appendix AB, Theorem AB.1 |
 | Upper, $B\ge1$, earlier stage | $17$ | `minimax_upper_17` and `blind_upper_17` in [UpperDisagreement/Full.lean](../lean/ThresholdHC/UpperDisagreement/Full.lean) | CI, `tools/verify_upper_disagreement.py` | No |
 | Upper, $B\ge1$, earlier stage | $19$ | `minimax_upper_19` and `blind_upper_19` in [UpperCost/Full.lean](../lean/ThresholdHC/UpperCost/Full.lean) | CI, `tools/verify_upper_cost.py` | No |
 | Upper, $B\ge1$, earlier stage | $27$ | `minimax_upper_27` and `blind_upper_27` in [UpperMixture/Full.lean](../lean/ThresholdHC/UpperMixture/Full.lean) | CI, `tools/verify_upper_mixture.py` | No |
 | Upper, $B\ge1$, earlier stage | $36$ | `minimax_upper_36` and `blind_upper_36` in [UpperMoment/Full.lean](../lean/ThresholdHC/UpperMoment/Full.lean) | CI, `tools/verify_upper_moment.py` | No |
 | Upper, $B\ge1$, earlier stage | $45$ | `minimax_upper_45` and `blind_upper_45` in [UpperWork/Full.lean](../lean/ThresholdHC/UpperWork/Full.lean) | CI, `tools/verify_upper_work.py` | No |
 | Upper, $B\ge1$, earlier stage | $119$ | `minimax_upper_119` and `blind_upper_119` in [UpperConstant/Full.lean](../lean/ThresholdHC/UpperConstant/Full.lean) | CI, `tools/verify_upper_constant.py` | No |
-| Upper, frozen target | $512$ | `minimax_upper_bound` in [BlindUpper/Full.lean](../lean/ThresholdHC/BlindUpper/Full.lean) | CI, `tools/verify_blind_upper_components.py` | §18 derives $512$; §5 proves the bound with a larger constant |
+| Upper, frozen target | $512$ | `minimax_upper_bound` in [BlindUpper/Full.lean](../lean/ThresholdHC/BlindUpper/Full.lean) | CI, `tools/verify_blind_upper_components.py` | §18 derives $512$; §5 proves the bound with $\sqrt{8\cdot12666}<319$ |
 
 The lower constant is settled for $B\ge1$. The upper constant is not, so the two sides remain a factor $90$ apart.
 
