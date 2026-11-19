@@ -41,9 +41,8 @@ $\omega_\mu(h)=\mathbb E_\mu[\min(1,h/D)]$ for $h>0$. Then
 Both bounds are proved in Lean for the observable adaptive experiment.
 The lower constant $1/6$ is sharp: no larger constant holds for every gap
 law and budget. The upper constant $12$ is not optimized: a
-[numerical study](research/2026-11-18-upper-constant/README.md) puts the
-actual worst ratio of the single-level algorithm behind the earlier
-constants near $7.6$. One upper algorithm works
+[numerical study](research/2026-11-19-upper-constant-12/README.md) puts the
+actual worst ratio of the algorithm behind it near $5.4$. One upper algorithm works
 for every gap law without knowing $\mu$. The v6 paper states $12$ and
 proves it in Appendix AB; the frozen upper target states $512$. The
 [lower theorem](lean/ThresholdHC/SharpRMS/Full.lean),

@@ -290,14 +290,20 @@ $\sqrt{716/5}<12$. The two-level mixture with the same bounds would give
 $\sqrt{(9/2)\cdot174/5}\approx12.5$
 ([record](../results/upper-scale-20261119/README.md)).
 
-A [numerical study](../research/2026-11-18-upper-constant/README.md) puts the
-actual worst ratio of the single-level estimator near $7.6$; it does not
-compute the mixture. Its route table gives sharp per-gap constants of about
-$2.9$ for the call second moment and about $2.8$ to $3.6$ for the call cost,
-against $13/2$ and $26/5$ here. Below the split the disagreement bound is
-one quarter plus the drift terms, about $0.3$ to $0.6$. The calibration at
-scale $B/4$ costs the factor $4$; the bias stays that of the dyadic level $L$,
-at most $t\le2$ times the squared modulus at scale $B/4$.
+A [numerical study](../research/2026-11-19-upper-constant-12/README.md)
+computes the risk of this family. Its worst ratio
+$\mathrm{RMS}/\omega_\mu(B^{-1/2})$ is $5.07$ at $N=2^{14}$ and tends to
+about $5.37$ as $B$ grows; that of the single-level estimator is near $7.6$
+([earlier study](../research/2026-11-18-upper-constant/README.md)). In the
+large-budget limit, the exact one-coin constants are about $2.2$ for the
+call second moment and $3.6$ for the call cost, against $13/2$ and $26/5$
+here. The Hoeffding bounds that the Lean certificates round give about $6.0$
+and $4.9$. Below the split the disagreement bound is one quarter plus the
+drift terms, about $0.3$ to $0.6$. The calibration at scale $B/4$ costs the
+factor $4$, in the actual risk as well; the bias stays that of the dyadic
+level $L$, at most $t\le2$ times the squared modulus at scale $B/4$. With the
+paper's thresholds, the Lean method gives at best about $11.2$ with that
+bias bound.
 
 The lower constant of the RMS law is sharp. For every gap law and every $B\ge1$,
 

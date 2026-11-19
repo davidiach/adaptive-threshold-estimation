@@ -46,7 +46,8 @@ to $13/2$. A ninth stage checks $12$
 [record](../../results/upper-scale-20261119/README.md)). It bounds the padded
 call cost by $26/5$ and replaces the two-level mixture by one level calibrated
 at the scale $B/4$. The v6 paper now states $12$ and proves it in Appendix
-AB.
+AB. A [follow-up study](../2026-11-19-upper-constant-12/README.md) computes
+the risk of that estimator: its worst ratio tends to about $5.37$.
 
 The RMS law states
 $\tfrac16\,\omega_\mu(B^{-1/2})\le R_\mu(B)\le512\,\omega_\mu(B^{-1/2})$
