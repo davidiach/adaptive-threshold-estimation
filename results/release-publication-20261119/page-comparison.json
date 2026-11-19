@@ -1,0 +1,29 @@
+{
+  "baseline_pdf": "paper/v6/builds/upper-constant-12-20261119.pdf",
+  "baseline_pdf_sha256": "08eab6fa14e0d6f9ba9fa6b66e7a4cf522c1b9ad928a79cfd3414fc1bfc91709",
+  "baseline_pages": 205,
+  "pdf": "paper/v6/builds/release-20261119.pdf",
+  "pdf_sha256": "8cdf0b7bbf3f4b61bae924619d039f4e7e01be25a65bdc415755b894ffaf381f",
+  "pages": 205,
+  "method": "Each page rendered with Poppler pdftoppm 24.02.0 at 100 dpi in 8-bit grey; the body pixels, excluding a 60 pt band at the top and at the bottom of each page (running header and page number), compared by SHA-256. A page counts as unchanged only if its body pixels are identical at that resolution.",
+  "unchanged_pages_same_number": 200,
+  "relocated_pages": {},
+  "relocated_pages_note": "New page number to baseline page number. No page moved.",
+  "changed_pages": [
+    46,
+    48,
+    198,
+    199,
+    203
+  ],
+  "edited_pages": [
+    46,
+    48,
+    198,
+    199,
+    203
+  ],
+  "edited_pages_note": "Every changed page has an edited passage; no page changes by reflow alone.",
+  "visual_check": "All 5 changed pages rendered at 70 dpi and inspected one by one; no clipping, overlap, missing text or displaced header or footer was found",
+  "tool": "pixcmp.py in this record, which implements the method stated above."
+}
