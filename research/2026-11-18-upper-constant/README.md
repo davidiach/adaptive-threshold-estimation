@@ -32,7 +32,12 @@ checks $17$ for the same variant
 ([`UpperDisagreement`](../../lean/ThresholdHC/UpperDisagreement/Full.lean),
 [record](../../results/upper-disagreement-20261119/README.md)). It bounds the
 disagreement of consecutive classifiers by their error union bounds, which
-brings the call second moment from $72/5$ to $57/5$.
+brings the call second moment from $72/5$ to $57/5$. A seventh stage checks
+$15$ ([`UpperSign`](../../lean/ThresholdHC/UpperSign/Full.lean),
+[record](../../results/upper-sign-20261119/README.md)). Below the cap scale it
+bounds that disagreement by the sign-change probability of the majority votes,
+at most one half, plus an early-stop term, which brings the call second moment
+to $89/10$.
 
 The RMS law states
 $\tfrac16\,\omega_\mu(B^{-1/2})\le R_\mu(B)\le512\,\omega_\mu(B^{-1/2})$

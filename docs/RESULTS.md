@@ -145,7 +145,8 @@ Here $r_\mu(B,\delta)$ is the minimax uniform error radius at failure probabilit
 | Lower, $B\ge25$ | $\sqrt{59/2100}\approx0.1676$ | `large_budget_lower` in the same file | CI, the same audit | Appendix AA |
 | Lower, $B\ge25$, best known | $0.175198$, and $0.17807955$ for $B\ge100$; the best constant is at most $0.186752$ | `bracket_lower`, `hundred_lower` and `bracket_upper` in [LargeBudgetRMS/Full.lean](../lean/ThresholdHC/LargeBudgetRMS/Full.lean) | CI, `tools/verify_large_budget_rms.py` | Appendix AA, Theorem AA.7 |
 | Lower, original frozen target | $1/64$ | `minimax_lower_bound` in [Tier6/Full.lean](../lean/ThresholdHC/Tier6/Full.lean) | CI, `tools/verify_tier6.py` | §5 |
-| Upper, $B\ge1$ | $17$ | `minimax_upper_17` and `blind_upper_17` in [UpperDisagreement/Full.lean](../lean/ThresholdHC/UpperDisagreement/Full.lean) | CI, `tools/verify_upper_disagreement.py` | No: the paper states $512$ |
+| Upper, $B\ge1$ | $15$ | `minimax_upper_15` and `blind_upper_15` in [UpperSign/Full.lean](../lean/ThresholdHC/UpperSign/Full.lean) | CI, `tools/verify_upper_sign.py` | No: the paper states $512$ |
+| Upper, $B\ge1$, earlier stage | $17$ | `minimax_upper_17` and `blind_upper_17` in [UpperDisagreement/Full.lean](../lean/ThresholdHC/UpperDisagreement/Full.lean) | CI, `tools/verify_upper_disagreement.py` | No |
 | Upper, $B\ge1$, earlier stage | $19$ | `minimax_upper_19` and `blind_upper_19` in [UpperCost/Full.lean](../lean/ThresholdHC/UpperCost/Full.lean) | CI, `tools/verify_upper_cost.py` | No |
 | Upper, $B\ge1$, earlier stage | $27$ | `minimax_upper_27` and `blind_upper_27` in [UpperMixture/Full.lean](../lean/ThresholdHC/UpperMixture/Full.lean) | CI, `tools/verify_upper_mixture.py` | No |
 | Upper, $B\ge1$, earlier stage | $36$ | `minimax_upper_36` and `blind_upper_36` in [UpperMoment/Full.lean](../lean/ThresholdHC/UpperMoment/Full.lean) | CI, `tools/verify_upper_moment.py` | No |
@@ -153,11 +154,11 @@ Here $r_\mu(B,\delta)$ is the minimax uniform error radius at failure probabilit
 | Upper, $B\ge1$, earlier stage | $119$ | `minimax_upper_119` and `blind_upper_119` in [UpperConstant/Full.lean](../lean/ThresholdHC/UpperConstant/Full.lean) | CI, `tools/verify_upper_constant.py` | No |
 | Upper, frozen target | $512$ | `minimax_upper_bound` in [BlindUpper/Full.lean](../lean/ThresholdHC/BlindUpper/Full.lean) | CI, `tools/verify_blind_upper_components.py` | §18 derives $512$; §5 proves the bound with a larger constant |
 
-The lower constant is settled for $B\ge1$. The upper constant is not, so the two sides remain a factor $102$ apart.
+The lower constant is settled for $B\ge1$. The upper constant is not, so the two sides remain a factor $90$ apart.
 
-**The upper constants 119, 45, 36, 27, 19 and 17.** The constants $512$,
+**The upper constants 119, 45, 36, 27, 19, 17 and 15.** The constants $512$,
 $119$, $45$ and $36$ come from the same distribution-blind estimator, which
-knows only the budget; $27$, $19$ and $17$ randomize between two of its
+knows only the budget; $27$, $19$, $17$ and $15$ randomize between two of its
 levels. Its analysis
 bounds the second moment and the cost of one call by level sums. The library
 proves those sums below $23$ and $527/7$, but the proofs of the frozen Tier 2
@@ -236,13 +237,30 @@ $\tfrac{637}{10}=1+\tfrac{57}{5}\cdot\tfrac{11}{2}$ times the squared modulus,
 and $\sqrt{(9/2)\cdot637/10}<17$
 ([record](../results/upper-disagreement-20261119/README.md)).
 
+The constant $15$ sharpens the call second moment below the cap scale. If the
+cap-$n$ classifier runs to its cap, the cap-$2n$ classifier agrees with it
+unless the majority votes after $n$ and $2n$ flips differ. With $N_1$ and $N_2$
+the successes in the two halves and $n=2m$, the votes differ only if
+$m<N_1$ and $N_2<m$, or $N_1\le m$ and $m<N_2$. The halves are independent and
+have the same law, so with $a=\Pr(m<N_1)$ this has probability at most
+$a(1-a)+(1-a)a\le\tfrac12$, for every coin. Otherwise the smaller classifier
+stopped early, which its drift and error terms bound. Below $x=3/4$ the drift
+bounds are evaluated in five steps of $x$, and with the cap terms above the
+split the weighted grid sum is at most $247/100$. So $d$ times the call second
+moment is at most $(2+\sqrt2)\cdot\tfrac{247}{100}+\tfrac{41}{100}\le\tfrac{89}{10}$.
+With the regime term the batch mean-square error is at most
+$\tfrac{999}{20}=1+\tfrac{89}{10}\cdot\tfrac{11}{2}$ times the squared modulus,
+and $\sqrt{(9/2)\cdot999/20}<15$
+([record](../results/upper-sign-20261119/README.md)).
+
 A [numerical study](../research/2026-11-18-upper-constant/README.md) puts the
 actual worst ratio of the single-level estimator near $7.6$; it does not
 compute the mixture. Its route table gives sharp per-gap constants of about
 $2.9$ for the call second moment and about $2.8$ to $3.6$ for the call cost,
-against $57/5$ and $11/2$ here. Most of the remaining slack in $57/5$ is in the
-levels below the split, whose disagreement is bounded by one; the exact
-disagreement probability is at most $0.25$.
+against $89/10$ and $11/2$ here. Below the split the disagreement bound is
+about $0.6$ to $0.8$, where the exact disagreement probability is at most
+$0.25$; and the budget mixture costs a factor $9/2$ where a batch of size
+$B/4$ would cost $4$.
 
 The lower constant of the RMS law is sharp. For every gap law and every $B\ge1$,
 
@@ -271,7 +289,7 @@ an integer certificate over 140 bias intervals elsewhere; the Lean kernel
 evaluates that certificate. For $B\ge25$, three sign biases compared under
 one reference law. Appendix AA of the v6 paper and the
 [research note](../research/2026-11-17-rms-constants/sharp-unrestricted.pdf)
-give the written proof. The upper constant is $17$ (below).
+give the written proof. The upper constant is $15$ (below).
 
 **Budgets of at least 25.** Let $c_{25}$ be the largest constant with
 $R_\mu(B)\ge c_{25}\,\omega_\mu(B^{-1/2})$ for every gap law and every
@@ -373,12 +391,14 @@ The original simulation law, actual controller cost/output identities,
 almost-sure pilot termination and budget selection are proved. The
 [full audit](../results/blind_upper_components_002.json) checks the unchanged
 frozen specification and all 373 declaration roots; coefficient 512 is not
-claimed optimal. A family that mixes two of its levels has the constant $17$:
-[`UpperDisagreement/Full.lean`](../lean/ThresholdHC/UpperDisagreement/Full.lean)
-proves `budgetMixture_maximalRMSRisk` and the minimax bound with $17$ in place
-of $512$, audited exactly by `tools/verify_upper_disagreement.py`
-([record](../results/upper-disagreement-20261119/README.md)). With earlier
-bounds the same mixture has the constant $19$
+claimed optimal. A family that mixes two of its levels has the constant $15$:
+[`UpperSign/Full.lean`](../lean/ThresholdHC/UpperSign/Full.lean)
+proves `budgetMixture_maximalRMSRisk` and the minimax bound with $15$ in place
+of $512$, audited exactly by `tools/verify_upper_sign.py`
+([record](../results/upper-sign-20261119/README.md)). With earlier
+bounds the same mixture has the constants $17$
+([`UpperDisagreement/Full.lean`](../lean/ThresholdHC/UpperDisagreement/Full.lean),
+[record](../results/upper-disagreement-20261119/README.md)), $19$
 ([`UpperCost/Full.lean`](../lean/ThresholdHC/UpperCost/Full.lean),
 [record](../results/upper-cost-20261118/README.md)) and $27$:
 [`UpperMixture/Full.lean`](../lean/ThresholdHC/UpperMixture/Full.lean)
