@@ -27,7 +27,12 @@ its ratios are for the single-level estimator. A fifth stage checks $19$ for
 the same variant ([`UpperCost`](../../lean/ThresholdHC/UpperCost/Full.lean),
 [record](../../results/upper-cost-20261118/README.md)). It sums the survival
 bounds of the early-stopping classifiers by the difference of level and
-check, which brings the padded call cost from $273/25$ to $11/2$.
+check, which brings the padded call cost from $273/25$ to $11/2$. A sixth stage
+checks $17$ for the same variant
+([`UpperDisagreement`](../../lean/ThresholdHC/UpperDisagreement/Full.lean),
+[record](../../results/upper-disagreement-20261119/README.md)). It bounds the
+disagreement of consecutive classifiers by their error union bounds, which
+brings the call second moment from $72/5$ to $57/5$.
 
 The RMS law states
 $\tfrac16\,\omega_\mu(B^{-1/2})\le R_\mu(B)\le512\,\omega_\mu(B^{-1/2})$
