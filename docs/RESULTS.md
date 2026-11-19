@@ -304,7 +304,9 @@ factor $4$, in the actual risk as well; the bias stays that of the dyadic
 level $L$, and its square is at most $t\le2$ times the squared modulus at
 scale $B/4$. With the
 paper's thresholds, the Lean method gives at best about $11.2$ with that
-bias bound.
+bias bound. A [scoping study](../research/2026-11-19-one-coin-bounds/README.md)
+locates most of that loss in Hoeffding's inequality: Bahadur's binomial tail
+bound, with the same proof structure, would give about $7.75$.
 
 The lower constant of the RMS law is sharp. For every gap law and every $B\ge1$,
 

@@ -1,0 +1,143 @@
+limit, hoeffding: kappa=4.8949 sigma=5.9770 (at d=0.000; small d 5.9770)
+limit, mills    : kappa=4.4672 sigma=2.9930 (at d=0.380; small d 2.9336)
+limit, sharp    : kappa=3.8922 sigma=2.9930 (at d=0.380; small d 2.9336)
+limit, gauss    : kappa=3.6157 sigma=2.7702 (at d=0.486; small d 2.6487)
+rigorous          d=0.0020: sigma=2.8997 kappa=4.4376
+rigorous          d=0.0022: sigma=2.8819 kappa=4.4095
+rigorous          d=0.0025: sigma=2.8498 kappa=4.4025
+rigorous          d=0.0028: sigma=2.8984 kappa=4.4364
+rigorous          d=0.0032: sigma=2.8831 kappa=4.4079
+rigorous          d=0.0036: sigma=2.8499 kappa=4.4006
+rigorous          d=0.0040: sigma=2.8971 kappa=4.4348
+rigorous          d=0.0045: sigma=2.8831 kappa=4.4060
+rigorous          d=0.0050: sigma=2.8484 kappa=4.3994
+rigorous          d=0.0056: sigma=2.8938 kappa=4.4326
+rigorous          d=0.0063: sigma=2.8857 kappa=4.4038
+rigorous          d=0.0071: sigma=2.8503 kappa=4.3971
+rigorous          d=0.0080: sigma=2.8947 kappa=4.4293
+rigorous          d=0.0089: sigma=2.8855 kappa=4.3985
+rigorous          d=0.0100: sigma=2.8482 kappa=4.3913
+rigorous          d=0.0112: sigma=2.8903 kappa=4.4224
+rigorous          d=0.0126: sigma=2.8851 kappa=4.3915
+rigorous          d=0.0141: sigma=2.8457 kappa=4.3848
+rigorous          d=0.0159: sigma=2.8849 kappa=4.4155
+rigorous          d=0.0178: sigma=2.8877 kappa=4.3819
+rigorous          d=0.0200: sigma=2.8469 kappa=4.3736
+rigorous          d=0.0224: sigma=2.8840 kappa=4.4046
+rigorous          d=0.0251: sigma=2.8849 kappa=4.3742
+rigorous          d=0.0282: sigma=2.8404 kappa=4.3625
+rigorous          d=0.0316: sigma=2.8722 kappa=4.3943
+rigorous          d=0.0355: sigma=2.8793 kappa=4.3539
+rigorous          d=0.0398: sigma=2.8290 kappa=4.3418
+rigorous          d=0.0447: sigma=2.8524 kappa=4.3737
+rigorous          d=0.0501: sigma=2.8787 kappa=4.3311
+rigorous          d=0.0562: sigma=2.8220 kappa=4.3229
+rigorous          d=0.0631: sigma=2.8362 kappa=4.3578
+rigorous          d=0.0707: sigma=2.8883 kappa=4.3122
+rigorous          d=0.0794: sigma=2.8254 kappa=4.2783
+rigorous          d=0.0890: sigma=2.8302 kappa=4.2890
+rigorous          d=0.0999: sigma=2.9109 kappa=4.2351
+rigorous          d=0.1121: sigma=2.8544 kappa=4.2218
+rigorous          d=0.1257: sigma=2.8544 kappa=4.2152
+rigorous          d=0.1411: sigma=2.9297 kappa=4.1796
+rigorous          d=0.1583: sigma=2.8504 kappa=4.1605
+rigorous          d=0.1776: sigma=2.8282 kappa=4.0991
+rigorous          d=0.1992: sigma=2.8753 kappa=4.0599
+rigorous          d=0.2235: sigma=2.8817 kappa=4.0529
+rigorous          d=0.2507: sigma=2.8428 kappa=3.9621
+rigorous          d=0.2813: sigma=2.8759 kappa=3.8423
+rigorous          d=0.3156: sigma=2.8506 kappa=3.7761
+rigorous          d=0.3541: sigma=2.7722 kappa=3.6374
+rigorous          d=0.3972: sigma=2.7783 kappa=3.4895
+rigorous          d=0.4457: sigma=2.3145 kappa=3.3515
+rigorous          d=0.5000: sigma=1.7071 kappa=3.1858
+rigorous +central d=0.0020: sigma=2.8997 kappa=3.8652
+rigorous +central d=0.0022: sigma=2.8819 kappa=3.8912
+rigorous +central d=0.0025: sigma=2.8498 kappa=3.8635
+rigorous +central d=0.0028: sigma=2.8984 kappa=3.8650
+rigorous +central d=0.0032: sigma=2.8831 kappa=3.8918
+rigorous +central d=0.0036: sigma=2.8499 kappa=3.8637
+rigorous +central d=0.0040: sigma=2.8971 kappa=3.8651
+rigorous +central d=0.0045: sigma=2.8831 kappa=3.8911
+rigorous +central d=0.0050: sigma=2.8484 kappa=3.8630
+rigorous +central d=0.0056: sigma=2.8938 kappa=3.8637
+rigorous +central d=0.0063: sigma=2.8857 kappa=3.8888
+rigorous +central d=0.0071: sigma=2.8503 kappa=3.8595
+rigorous +central d=0.0080: sigma=2.8947 kappa=3.8621
+rigorous +central d=0.0089: sigma=2.8855 kappa=3.8874
+rigorous +central d=0.0100: sigma=2.8482 kappa=3.8541
+rigorous +central d=0.0112: sigma=2.8903 kappa=3.8664
+rigorous +central d=0.0126: sigma=2.8851 kappa=3.8859
+rigorous +central d=0.0141: sigma=2.8457 kappa=3.8585
+rigorous +central d=0.0159: sigma=2.8849 kappa=3.8630
+rigorous +central d=0.0178: sigma=2.8877 kappa=3.8871
+rigorous +central d=0.0200: sigma=2.8469 kappa=3.8562
+rigorous +central d=0.0224: sigma=2.8840 kappa=3.8609
+rigorous +central d=0.0251: sigma=2.8849 kappa=3.8833
+rigorous +central d=0.0282: sigma=2.8404 kappa=3.8560
+rigorous +central d=0.0316: sigma=2.8722 kappa=3.8555
+rigorous +central d=0.0355: sigma=2.8793 kappa=3.8754
+rigorous +central d=0.0398: sigma=2.8290 kappa=3.8510
+rigorous +central d=0.0447: sigma=2.8524 kappa=3.8587
+rigorous +central d=0.0501: sigma=2.8787 kappa=3.8709
+rigorous +central d=0.0562: sigma=2.8220 kappa=3.8415
+rigorous +central d=0.0631: sigma=2.8362 kappa=3.8274
+rigorous +central d=0.0707: sigma=2.8883 kappa=3.8443
+rigorous +central d=0.0794: sigma=2.8254 kappa=3.8250
+rigorous +central d=0.0890: sigma=2.8302 kappa=3.8404
+rigorous +central d=0.0999: sigma=2.9109 kappa=3.8364
+rigorous +central d=0.1121: sigma=2.8544 kappa=3.8160
+rigorous +central d=0.1257: sigma=2.8544 kappa=3.7829
+rigorous +central d=0.1411: sigma=2.9297 kappa=3.7754
+rigorous +central d=0.1583: sigma=2.8504 kappa=3.7818
+rigorous +central d=0.1776: sigma=2.8282 kappa=3.7935
+rigorous +central d=0.1992: sigma=2.8753 kappa=3.7955
+rigorous +central d=0.2235: sigma=2.8817 kappa=3.7366
+rigorous +central d=0.2507: sigma=2.8428 kappa=3.6933
+rigorous +central d=0.2813: sigma=2.8759 kappa=3.6789
+rigorous +central d=0.3156: sigma=2.8506 kappa=3.6279
+rigorous +central d=0.3541: sigma=2.7722 kappa=3.6071
+rigorous +central d=0.3972: sigma=2.7783 kappa=3.4841
+rigorous +central d=0.4457: sigma=2.3145 kappa=3.3514
+rigorous +central d=0.5000: sigma=1.7071 kappa=3.1858
+
+ladder: sigma kappa product | C(beta=1) C(beta=1/2) | room for 8 (beta=1, 1/2) | room for 9
+  limit, hoeffding       5.977 4.895  29.26 | 11.18 10.91 | -52.1% -47.0% | -37.6% -32.5%
+  limit, mills           2.993 4.467  13.37 | 7.84 7.45 | +4.7% +15.9% | +36.5% +47.7%
+  limit, sharp           2.993 3.892  11.65 | 7.39 6.97 | +20.2% +33.1% | +56.7% +69.5%
+  limit, gauss           2.770 3.616  10.02 | 6.93 6.49 | +39.8% +54.8% | +82.2% +97.2%
+  rigorous               2.930 4.438  13.00 | 7.75 7.35 | +7.7% +19.2% | +40.4% +51.9%
+  rigorous + median      2.930 3.892  11.40 | 7.32 6.90 | +22.8% +35.9% | +60.1% +73.2%
+  exact                  2.240 3.601   8.07 | 6.35 5.85 | +73.6% +92.2% | +126.3% +144.9%
+  Lean                   6.500 5.200  33.80 | 11.97 11.71 | -58.6% -54.1% | -46.0% -41.6%
+hybrid         d0=0.01: sigma=2.900 kappa=4.438 C(beta=1)=7.71 C(beta=1/2)=7.31
+hybrid         d0=0.02: sigma=2.900 kappa=4.438 C(beta=1)=7.71 C(beta=1/2)=7.31
+hybrid         d0=0.05: sigma=2.900 kappa=4.438 C(beta=1)=7.71 C(beta=1/2)=7.31
+hybrid         d0=0.1: sigma=2.911 kappa=4.438 C(beta=1)=7.72 C(beta=1/2)=7.33
+hybrid         d0=0.2: sigma=2.930 kappa=4.438 C(beta=1)=7.75 C(beta=1/2)=7.35
+hybrid +median d0=0.01: sigma=2.900 kappa=3.892 C(beta=1)=7.29 C(beta=1/2)=6.87
+hybrid +median d0=0.02: sigma=2.900 kappa=3.892 C(beta=1)=7.29 C(beta=1/2)=6.87
+hybrid +median d0=0.05: sigma=2.900 kappa=3.892 C(beta=1)=7.29 C(beta=1/2)=6.87
+hybrid +median d0=0.1: sigma=2.911 kappa=3.892 C(beta=1)=7.30 C(beta=1/2)=6.88
+hybrid +median d0=0.2: sigma=2.930 kappa=3.892 C(beta=1)=7.32 C(beta=1/2)=6.90
+
+second-moment bound by band of x at d=0.01: [0,0.25) [0.25,1) [1,4) [4,16) [16,inf)
+  limit form, hoeffding         1.902  2.672  1.264  0.013  0.000  total 5.851
+  limit form, mills             1.416  1.184  0.251  0.001  0.000  total 2.852
+  limit form, gauss             1.405  1.033  0.210  0.001  0.000  total 2.650
+  rigorous                      1.404  1.189  0.255  0.001  0.000  total 2.848
+  rigorous, central             1.404  1.189  0.255  0.001  0.000  total 2.848
+  exact                         1.179  0.620  0.185  0.001  0.000  total 1.985
+
+second-moment bound by band of x at d=0.2: [0,0.25) [0.25,1) [1,4) [4,16) [16,inf)
+  limit form, hoeffding         1.402  2.163  1.839  0.048  0.000  total 5.452
+  limit form, mills             1.290  1.239  0.400  0.006  0.000  total 2.935
+  limit form, gauss             1.286  1.036  0.327  0.005  0.000  total 2.654
+  rigorous                      1.266  1.166  0.442  0.005  0.000  total 2.878
+  rigorous, central             1.266  1.166  0.442  0.005  0.000  total 2.878
+  exact                         1.022  0.866  0.340  0.005  0.000  total 2.233
+
+check, rigorous.py with Hoeffding alone (limits: sigma 5.9770, kappa 4.8949):
+  d=0.05: sigma=5.0170 kappa=4.8280
+  d=0.01: sigma=5.6637 kappa=4.8818
+  d=0.002: sigma=5.7833 kappa=4.8920
