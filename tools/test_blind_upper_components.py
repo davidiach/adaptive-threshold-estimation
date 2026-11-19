@@ -39,9 +39,13 @@ class BlindUpperAuditTests(unittest.TestCase):
         self.assertEqual(audit.imports('  import ThresholdHC.Tier6.AlgorithmModel\n'),
                          ['ThresholdHC.Tier6.AlgorithmModel'])
         for source in ('import Mathlib ThresholdHC.Tier6.AlgorithmModel\n',
-                       'import\n ThresholdHC.Tier6.AlgorithmModel\n'):
+                       'import\n ThresholdHC.Tier6.AlgorithmModel\n',
+                       'public import ThresholdHC.Tier6.AlgorithmModel\n',
+                       'meta import ThresholdHC.Tier6.AlgorithmModel\n'):
             with self.subTest(source=source), self.assertRaisesRegex(ValueError, 'import syntax'):
                 audit.imports(source)
+        with self.assertRaisesRegex(ValueError, 'module-system'):
+            audit.imports('module\n\nimport Mathlib\n')
 
     def test_failed_command_cannot_supply_success_evidence(self):
         with self.assertRaises(ValueError):
@@ -114,7 +118,9 @@ class BlindUpperAuditTests(unittest.TestCase):
                        "theorem t : 1 = 1 := by_elab pure ()\n",
                        "simproc_decl s (_) := fun _ => pure .continue\n",
                        "dsimproc_decl s (_) := fun _ => pure .continue\n",
-                       "theorem t : 2 + 2 = 4 := by decide +native\n"):
+                       "theorem t : 2 + 2 = 4 := by decide +native\n",
+                       "@[instance 2000] def hijack : LE Nat := ⟨fun _ _ => True⟩\n",
+                       "attribute [instance high] hijack\n"):
             with self.subTest(source=source):
                 stripped = audit.strip_comments(source)
                 self.assertIsNone(audit.TIER6_FORBIDDEN.search(stripped))
@@ -136,10 +142,21 @@ class BlindUpperAuditTests(unittest.TestCase):
                        "@[simp] @[reducible] def a : Nat := 0\n",
                        "nonrec def a : Nat := 0\n",
                        "local instance a : Inhabited Nat := ⟨0⟩\n",
-                       "class A where\n"):
+                       "class A where\n",
+                       # Each of these once matched neither pattern, so it was
+                       # neither registered nor rejected.
+                       "public theorem hidden : True := trivial\n",
+                       "meta def hidden : Nat := 0\n",
+                       "coinductive Hidden : Prop where\n",
+                       "@[aesop safe (rule_sets := [Foo])] theorem hidden : True := trivial\n",
+                       "open Classical in theorem hidden : True := trivial\n",
+                       "set_option maxHeartbeats 400000 in theorem hidden : True := trivial\n"):
             with self.subTest(source=source):
                 with self.assertRaisesRegex(ValueError, "registry cannot read"):
                     audit.registered_names(source)
+        # On its own line, `open ... in` still leaves the declaration readable.
+        self.assertEqual(audit.registered_names("open Classical in\ntheorem a : True := trivial\n"
+                                                "@[simp]\ntheorem b : True := trivial\n"), ["a", "b"])
 
     def test_each_registered_name_has_its_own_restatement(self):
         source = ("example : P := @thm_a\nexample : Q := @thm_b\n"

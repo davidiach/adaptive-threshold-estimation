@@ -30,10 +30,16 @@ IMPORT = re.compile(r"^import\s+([\w.]+)\s*$", re.M)
 # Every declaration form, with any attributes and modifiers. DECLARATION reads
 # the name of the plain forms only; registered_names fails on the others, so
 # a private, protected or anonymous declaration cannot escape a registry.
+# The forms include attributes with bracketed arguments, as in
+# `@[aesop safe (rule_sets := [R])]`, the `public` and `meta` modifiers,
+# `coinductive`, and a declaration after a same-line `open ... in` or
+# `set_option ... in`; each was once neither registered nor rejected.
+_ATTRIBUTES = r"@\[(?:[^\[\]]|\[[^\[\]]*\])*\]"
 ANY_DECLARATION = re.compile(
-    r"^\s*(?:@\[[^\]]*\]\s*)*(?:(?:private|protected|noncomputable|nonrec|partial|unsafe|scoped"
-    r"|local)\s+)*(?:def|abbrev|structure|class|theorem|lemma|instance|inductive|irreducible_def"
-    r"|alias|opaque|axiom)\b", re.M)
+    r"^[ \t]*(?:[^\n]*\bin[ \t]+)?(?:" + _ATTRIBUTES + r"\s*)*"
+    r"(?:(?:private|protected|public|meta|noncomputable|nonrec|partial|unsafe|scoped"
+    r"|local)\s+)*(?:def|abbrev|structure|class|theorem|lemma|instance|inductive|coinductive"
+    r"|irreducible_def|alias|opaque|axiom)\b", re.M)
 # The frozen Tier 6 pattern misses the `admit` tactic, which is Lean's synonym
 # for `sorry`. Audited sources also contain no string literals or escaped
 # identifiers: strip_comments parses neither, so "/-" or «--» inside one could
@@ -59,7 +65,8 @@ ANY_DECLARATION = re.compile(
 # A scoped, prioritised or default instance can change what a restated
 # statement elaborates to once the audited namespace is opened; the
 # whole-project audit checks every exported instance, and these forms are
-# rejected here first.
+# rejected here first, including a priority given as an attribute argument
+# (`@[instance 2000]`, `attribute [instance high] f`).
 _KEYWORDS = (r"sorry|sorryAx|axiom|admit|native_decide|native|implemented_by|extern|unsafe|opaque"
              r"|run_cmd|run_elab|run_meta|run_tac|elab\w*|macro\w*|syntax|initialize|Lean|debug")
 # Python's \b counts every Unicode alphanumeric as a word character, so it sees
@@ -82,6 +89,7 @@ _PATTERN = (
     r'|\bLean\b|\b(?:by_)?elab(?:_\w+)?\b|\b(?:builtin_)?d?simproc(?:_decl)?\b|\+\s*native\b'
     r'|\bnative\b|\d(?:' + _KEYWORDS + r')'
     r'|\bscoped\s+instance\b|\bpriority\s*:=|\bdefault_instance\b|\battribute\s*\[[^\]]*\bscoped\b'
+    r'|(?:@|\battribute\s*)\[[^\]]*\binstance[ \t]+[^\],\s]'
     r'|\b(?:macro|macro_rules|syntax|initialize|builtin_initialize)\b'
     r'|(?:@|\battribute\s*)\[[^\]]*\b(?:command_elab|term_elab|tactic|macro|d?simproc)\b')
 if "\\\\b" in _PATTERN:
@@ -171,10 +179,14 @@ def imports(source: str) -> list[str]:
 
     Lean also accepts several modules on one import line. Silently ignoring such
     a line would omit dependencies from the source hashes and specification lock.
+    Files of Lean's module system (`module`, then `public import`, `meta import`)
+    are refused for the same reason; no project file uses them.
     """
     result = []
     for line in source.splitlines():
-        if re.match(r"\s*import\b", line):
+        if re.fullmatch(r"\s*module\s*", line):
+            raise ValueError("Unsupported module-system file")
+        if re.match(r"\s*(?:(?:public|meta|private)\s+)*import\b", line):
             match = re.fullmatch(r"\s*import[^\S\n]+([\w.]+)\s*", line)
             if match is None:
                 raise ValueError("Unsupported import syntax: " + line.strip())

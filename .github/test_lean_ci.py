@@ -72,3 +72,7 @@ class LeanRoutingTests(unittest.TestCase):
             for path in tools:
                 with self.subTest(job=job, path=path):
                     self.assertIn(job, select_jobs({path}))
+
+
+if __name__ == "__main__":
+    unittest.main()

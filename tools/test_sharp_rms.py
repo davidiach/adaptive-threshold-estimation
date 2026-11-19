@@ -45,6 +45,17 @@ class SharpRMSAuditTests(unittest.TestCase):
             self.assertIn(text, audit.EXACT)
         shared.validate_reports(report(roots), 0, roots)
 
+    def test_a_statement_restated_twice_cannot_replace_another(self):
+        # The count of examples stays the same when one restatement is replaced
+        # by a copy of another, so each name must be restated exactly once.
+        examples = audit.EXACT.split("\nexample")
+        wald = next(i for i, e in enumerate(examples) if e.rstrip().endswith("@creation_wald"))
+        tilt = next(i for i, e in enumerate(examples) if e.rstrip().endswith("@creation_tilt"))
+        examples[wald] = examples[tilt]
+        with patch.object(audit, "EXACT", "\nexample".join(examples)):
+            with self.assertRaisesRegex(ValueError, "exactly one restated statement"):
+                audit.audit_input()
+
     def test_every_module_is_imported_and_replayed(self):
         source, _ = audit.audit_input()
         for name in audit.MODULES:

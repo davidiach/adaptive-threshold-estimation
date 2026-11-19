@@ -301,6 +301,10 @@ def audit_input() -> tuple[str, set[str]]:
     ]) + "\n"
     if source.count("\nexample") != EXACT_COUNT + len(TARGETS):
         raise ValueError("Each target and component needs exactly one restated statement")
+    # A count alone accepts one statement restated twice and another not at all.
+    for name in list(TARGETS) + list(COMPONENTS):
+        if len(re.findall(rf":=\s*@?{re.escape(name)}\n", EXACT)) != 1:
+            raise ValueError("Each target and component needs exactly one restated statement")
     return source, roots
 
 
