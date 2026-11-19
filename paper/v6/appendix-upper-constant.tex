@@ -1,41 +1,43 @@
-\section{The upper constant 15 of the RMS law}
-\label{app:upper-15}
+\section{The upper constant 12 of the RMS law}
+\label{app:upper-12}
 
 The proof of \cref{thm:main} in \cref{sec:minimax-proof} gives the upper
 constant $\sqrt{8\cdot12666}<319$, and its formal version gives $512$.
-This appendix proves the constant $15$ for one distribution-blind family.
-The family mixes the calibrated batches of two adjacent levels. Each
-batch is that of \cref{sec:minimax-proof}, with every call that would
-use no observation padded by one, as in its formal version. The
-improvement comes from the mixture and from sharper bounds on the second
-moment and the cost of one call of the cutoff estimator.
+This appendix proves the constant $12$ for one distribution-blind family.
+The family runs the calibrated batch of one level, as in
+\cref{sec:minimax-proof}, with every call that would use no observation
+padded by one, as in its formal version. Its calibration denominator is
+$B/4$, which need not be a power of two, so the batch uses $B$ minus the mean
+cost of one call in expectation, in place of as little as $B/2$. The other
+improvements are sharper bounds on the second moment and the cost of one call
+of the cutoff estimator.
 
-\begin{theorem}\label{thm:upper-15}
+\begin{theorem}\label{thm:upper-12}
 For each $B\ge1$ there is one algorithm $\cA_B$, depending only on $B$,
 such that for every probability law $\mu$ on $(0,1/2]$ and every sign
 function $q$,
-\begin{equation}\label{eq:upper-15}
+\begin{equation}\label{eq:upper-12}
  \E_{\mu,q}T\le B,\qquad
- \bigl(\E_{\mu,q}(\widehat\theta-\theta)^2\bigr)^{1/2}\le15\,\om(B^{-1/2}).
+ \bigl(\E_{\mu,q}(\widehat\theta-\theta)^2\bigr)^{1/2}\le12\,\om(B^{-1/2}).
 \end{equation}
-In particular $R_\mu(B)\le15\,\om(B^{-1/2})$. With \cref{thm:sharp-rms},
-the two sides of \eqref{eq:main-rms} are within the factor $90$.
+In particular $R_\mu(B)\le12\,\om(B^{-1/2})$. With \cref{thm:sharp-rms},
+the two sides of \eqref{eq:main-rms} are within the factor $72$.
 \end{theorem}
 
-The constant $15$ is not claimed optimal; \cref{sec:upper-15-scope}
+The constant $12$ is not claimed optimal; \cref{sec:upper-12-scope}
 describes the remaining slack.
 
 \paragraph{Formal scope.}
-\upperleanref{UpperSign/Full.lean}{blind\_upper\_15} proves
-\eqref{eq:upper-15} for one budget-indexed family chosen before the gap
+\upperleanref{UpperScale/Full.lean}{blind\_upper\_12} proves
+\eqref{eq:upper-12} for one budget-indexed family chosen before the gap
 law, against the same experiment, budget, risk and modulus definitions as
 the formal statement of \cref{thm:main}, and
-\upperleanref{UpperSign/Full.lean}{minimax\_upper\_15} proves the
+\upperleanref{UpperScale/Full.lean}{minimax\_upper\_12} proves the
 minimax bound. The Lean proof follows the route below, and the Lean kernel
 checks the numerical certificates that the text summarizes: the offset
-bounds of \cref{lem:upper-15-offset-cost,lem:upper-15-offset-moment} and
-the drift steps of \cref{lem:upper-15-drift}.
-\Cref{sec:upper-15-scope} lists the modules and the audit.
+bounds of \cref{lem:upper-12-offset-cost,lem:upper-12-offset-moment} and
+the drift steps of \cref{lem:upper-12-drift}.
+\Cref{sec:upper-12-scope} lists the modules and the audit.
 
 \subsection{The algorithm and the reduction to one call}
 
@@ -50,82 +52,90 @@ $\mathcal W_L$ when $J\le L$, and one observation of a fresh coin when
 $J>L$. Then $1\le C_L\le N$, and
 $\E[C_L\mid d,S]=\sum_{\ell\le L}p_\ell\E[W_\ell\mid d,S]+r^{L+1}$.
 
-The \emph{batch at level $L$} applies \cref{lem:calibration} to
-$(Z,C)=(Y_L,C_L)$. For $B<4$, $\cA_B$ observes nothing and outputs $0$,
-as the formal family does; any fixed output in $[0,1]$ would do. For $B\ge4$, let $L\ge0$ satisfy $4\cdot2^L\le B<8\cdot2^L$ and
-put $p=B/(4\cdot2^L)-1\in[0,1)$. With an independent coin, $\cA_B$ runs
-the batch at level $L+1$ with probability $p$ and the batch at level $L$
-otherwise. The algorithm uses neither $\mu$ nor $q$.
+For $\lambda\ge1$, the \emph{batch at level $L$ and scale $\lambda N$}
+applies \cref{lem:calibration} to $(Z,C)=(Y_L,C_L)$ with the calibration
+denominator $\lambda N$ in place of the $N$ of that lemma, which is allowed
+because $C_L\le N\le\lambda N$. Given its cost $C_L$, each pilot call is
+marked with probability $C_L/(\lambda N)$; at the second mark, after $K$ pilot
+calls, the batch averages $K-1$ fresh production calls. For $B<4$, $\cA_B$
+observes nothing and outputs $0$, as the formal family does; any fixed output
+in $[0,1]$ would do. For $B\ge4$, let $L\ge0$ satisfy
+$4\cdot2^L\le B<8\cdot2^L$, so that the cap is $N=2^L$, and put
+$\lambda=B/(4\cdot2^L)\in[1,2)$. Then $\cA_B$ runs the batch at level $L$
+and scale $\lambda2^L=B/4$. The algorithm uses neither $\mu$ nor $q$.
 
 Put $\rho_N(d)=\sqrt N$ when $Nd^2\le1$ and $\rho_N(d)=0$
 otherwise. The following bounds on one call replace the constants $85$
 and $149$ of \cref{lem:universal}.
 
-\begin{lemma}\label[lemma]{lem:upper-15-call}
+\begin{lemma}\label[lemma]{lem:upper-12-call}
 For every $L\ge0$, $N=2^L$, both signs and $0<d\le1/2$,
 \begin{align}
- \E[C_L\mid d,S]&\le\tfrac{11}{2}\min\{\sqrt N,d^{-1}\}
-   -\tfrac92\rho_N(d),\label{eq:upper-15-cost}\\
- \E[Y_L^2\mid d,S]&\le\tfrac{89}{10}\min\{\sqrt N,d^{-1}\}
-   +\tfrac{69}{25}\rho_N(d).\label{eq:upper-15-moment}
+ \E[C_L\mid d,S]&\le\tfrac{26}{5}\min\{\sqrt N,d^{-1}\}
+   -\tfrac{21}{5}\rho_N(d),\label{eq:upper-12-cost}\\
+ \E[Y_L^2\mid d,S]&\le\tfrac{13}{2}\min\{\sqrt N,d^{-1}\}
+   +\tfrac{129}{25}\rho_N(d).\label{eq:upper-12-moment}
 \end{align}
 \end{lemma}
 
 The regime term $\rho_N$ is needed because for $Nd^2\le1$ the bounds
 used here give the second moment only $(6+4\sqrt2)\sqrt N<11.66\sqrt N$,
-which exceeds $\tfrac{89}{10}\sqrt N$. In that regime the padded cost is
-at most $\sqrt N$, far below $\tfrac{11}{2}\sqrt N$, and the product of
+which exceeds $\tfrac{13}{2}\sqrt N$. In that regime the padded cost is
+at most $\sqrt N$, far below $\tfrac{26}{5}\sqrt N$, and the product of
 the two bounds is what matters.
 
-\begin{lemma}\label[lemma]{lem:upper-15-batch}
-For every $L\ge0$ and $N=2^L$, the batch at level $L$ uses at most $4N$
-expected observations and
-$\E(\widehat\theta-\theta)^2\le\tfrac{999}{20}\om(N^{-1/2})^2$, for
-every $\mu$ and $q$.
+\begin{lemma}\label[lemma]{lem:upper-12-batch}
+For every $L\ge0$, $N=2^L$ and $\lambda\ge1$, the batch at level $L$ and
+scale $\lambda N$ uses at most $4\lambda N$ expected observations and
+$\E(\widehat\theta-\theta)^2\le\bigl(1+\tfrac{169}{5\lambda}\bigr)\om(N^{-1/2})^2$,
+for every $\mu$ and $q$.
 \end{lemma}
 
 \begin{proof}
-The work bound is \eqref{eq:calibration}. Put $h=N^{-1/2}$,
-$A=\Am(h)=\E_\mu\min\{\sqrt N,D^{-1}\}$ and $G=\E_\mu\rho_N(D)\ge0$.
-Averaging \cref{lem:upper-15-call} over $(D,S)$ bounds the variance
-$\sigma^2$ and the mean cost $\kappa$ of one call, the $v$ and $c$ of
-\cref{lem:calibration}, by
-$\sigma^2\le\tfrac{89}{10}A+\tfrac{69}{25}G$ and
-$0\le\kappa\le\tfrac{11}{2}A-\tfrac92G$. Hence
+The work bound is \eqref{eq:calibration} with $\lambda N$ in place of $N$.
+Put $h=N^{-1/2}$, $A=\Am(h)=\E_\mu\min\{\sqrt N,D^{-1}\}$ and
+$G=\E_\mu\rho_N(D)\ge0$. Averaging \cref{lem:upper-12-call} over $(D,S)$
+bounds the variance $V$ and the mean cost $\bar C$ of one call, the $v$ and
+$c$ of \cref{lem:calibration}, by
+$V\le\tfrac{13}{2}A+\tfrac{129}{25}G$ and
+$0\le\bar C\le\tfrac{26}{5}A-\tfrac{21}{5}G$. Hence
 \[
- \sigma^2\kappa\le\tfrac{89}{10}\cdot\tfrac{11}{2}A^2
-  +\bigl(\tfrac{69}{25}\cdot\tfrac{11}{2}-\tfrac{89}{10}\cdot\tfrac92\bigr)AG
-  -\tfrac{69}{25}\cdot\tfrac92G^2
- \le\tfrac{979}{20}A^2,
+ V\bar C\le\tfrac{13}{2}\cdot\tfrac{26}{5}A^2
+  +\bigl(\tfrac{129}{25}\cdot\tfrac{26}{5}-\tfrac{13}{2}\cdot\tfrac{21}{5}\bigr)AG
+  -\tfrac{129}{25}\cdot\tfrac{21}{5}G^2
+ \le\tfrac{169}{5}A^2,
 \]
-since $\tfrac{69}{25}\cdot\tfrac{11}{2}=\tfrac{759}{50}<\tfrac{801}{20}
-=\tfrac{89}{10}\cdot\tfrac92$. By \eqref{eq:calibration} and the bias
+since $\tfrac{129}{25}\cdot\tfrac{26}{5}=\tfrac{3354}{125}<\tfrac{273}{10}
+=\tfrac{13}{2}\cdot\tfrac{21}{5}$. By \eqref{eq:calibration} and the bias
 bound of \eqref{eq:one-call}, the mean-square error is at most
-$\om(h)^2+\sigma^2\kappa/N$, and $A^2/N=\om(h)^2$ because $\om(h)=hA$. So it is at
-most $(1+\tfrac{979}{20})\om(h)^2=\tfrac{999}{20}\om(h)^2$.
+$\om(h)^2+V\bar C/(\lambda N)$, and $A^2/N=\om(h)^2$ because $\om(h)=hA$.
+So it is at most $(1+\tfrac{169}{5\lambda})\om(h)^2$.
 \end{proof}
 
-\begin{proof}[Proof of \cref{thm:upper-15}]
+\begin{proof}[Proof of \cref{thm:upper-12}]
 For $B<4$, $\om(B^{-1/2})=1$ because $B^{-1/2}>1/2\ge D$, and the
-output $0$ has error at most $1$. Let $B\ge4$. By
-\cref{lem:upper-15-batch}, the expected work is at most
-$(1-p)\,4\cdot2^L+p\,8\cdot2^L=B$. For $0<N\le B$,
-\eqref{eq:scaling} with $c=\sqrt{B/N}$ gives
-$\om(N^{-1/2})^2\le(B/N)\om(B^{-1/2})^2$. Since $B/2^L=4(1+p)$ and
-$B/2^{L+1}=2(1+p)$, the mean-square error is at most
+output $0$ has error at most $1$. Let $B\ge4$ and $N=2^L$. By
+\cref{lem:upper-12-batch}, the expected work is at most $4\lambda N=B$.
+Since $N\le B$, \eqref{eq:scaling} with $c=\sqrt{B/N}$ gives
+$\om(N^{-1/2})^2\le(B/N)\om(B^{-1/2})^2=4\lambda\,\om(B^{-1/2})^2$. So the
+mean-square error is at most
 \[
- \tfrac{999}{20}\om(B^{-1/2})^2\bigl((1-p)\,4(1+p)+p\,2(1+p)\bigr)
- =\tfrac{999}{20}\cdot4(1+p)(1-\tfrac p2)\,\om(B^{-1/2})^2.
+ 4\lambda\bigl(1+\tfrac{169}{5\lambda}\bigr)\om(B^{-1/2})^2
+ =4\bigl(\lambda+\tfrac{169}{5}\bigr)\om(B^{-1/2})^2
+ <\tfrac{716}{5}\,\om(B^{-1/2})^2,
 \]
-The factor $4(1+p)(1-p/2)$ is at most $9/2$, with equality at $p=1/2$,
-and $\tfrac92\cdot\tfrac{999}{20}=\tfrac{8991}{40}<15^2$. Taking the
-infimum over admissible algorithms gives the minimax bound.
+because $\lambda<2$, and $\tfrac{716}{5}<12^2$. Taking the infimum over
+admissible algorithms gives the minimax bound.
 \end{proof}
 
-A batch at the single level $L$ with $4\cdot2^L\le B$ would pay the
+The batch at the dyadic scale $2^L$ with $4\cdot2^L\le B$ would pay the
 factor $8$ of \cref{sec:minimax-proof} in the worst case, at $B$ just
-below $8\cdot2^L$. The mixture spends the whole budget and pays at most
-$9/2$.
+below $8\cdot2^L$. A mixture of the batches of levels $L$ and $L+1$, each
+at its dyadic scale, also has expected work at most $B$, but pays the factor
+$9/2$, which with the bounds of \cref{lem:upper-12-call} gives
+$\sqrt{(9/2)\cdot174/5}\approx12.5$. The calibration at scale $B/4$ pays
+the factor $4$; the bias stays that of the dyadic level $L$, at most
+$\lambda<2$ times $\om((B/4)^{-1/2})^2$.
 
 \subsection{The cost of one call}
 
@@ -144,50 +154,49 @@ $M=2^\ell$ and $j=\ell-k\ge1$, and put
 \]
 Then $nt_{n,M}^2=v_j$, so $t_{n,M}\le d$ exactly when $y_k\ge v_j$, and
 then $n(d-t_{n,M})^2=v_j\bigl(\sqrt{y_k/v_j}-1\bigr)^2$. The threshold
-depends on $\ell$ and $k$ only through $j$; \cref{lem:classifier} bounded
-it by its largest value over the prefixes and lost this dependence.
-Hence
-\begin{equation}\label{eq:upper-15-survival}
- \E\tau_{2^\ell}\le1+\sum_{k<\ell}2^k\sigma_{\ell-k}(y_k),\qquad
- \sigma_j(y)=\begin{cases}1,&y<v_j,\\
+depends on $\ell$ and $k$ only through $j$, which the proof of
+\cref{lem:classifier} does not use. Hence
+\begin{equation}\label{eq:upper-12-survival}
+ \E\tau_{2^\ell}\le1+\sum_{k<\ell}2^k\pi_{\ell-k}(y_k),\qquad
+ \pi_j(y)=\begin{cases}1,&y<v_j,\\
  e^{-2v_j(\sqrt{y/v_j}-1)^2},&y\ge v_j.\end{cases}
 \end{equation}
 
-\begin{lemma}\label[lemma]{lem:upper-15-offset-cost}
+\begin{lemma}\label[lemma]{lem:upper-12-offset-cost}
 For $v>0$ and $s\in[1,2]$ put
 \[
  F_v(s)=(1+\sqrt2)\sqrt s
   +\sum_{i\ge0}\sqrt{2^is}\,e^{-2v(\sqrt{2^is}-1)^2}.
 \]
-Then $F_v(s)\le89/20$ for $v\ge169/100$ and $F_v(s)\le17/4$ for
-$v\ge119/50$.
+Then $F_v(s)\le89/20$ for $v\ge169/100$, $F_v(s)\le17/4$ for
+$v\ge119/50$, and $F_v(s)\le399/100$ for $v\ge307/100$.
 \end{lemma}
 
 \begin{proof}
-$F_v$ decreases in $v$, so it suffices to take $v=169/100$ and
-$v=119/50$. The Lean proofs split $[1,2]$ into $11$ and $9$ pieces,
-chosen and checked in exact rational arithmetic. On each piece they bound
-the first four terms of the series by the monotonicity of each factor and
-an eight-term Taylor lower bound for the exponential, and the remaining
-terms by $1/80$.
+$F_v$ decreases in $v$, so it suffices to take $v=169/100$, $v=119/50$
+and $v=307/100$. The Lean proofs split $[1,2]$ into $11$, $9$ and $29$
+pieces, chosen and checked in exact rational arithmetic. On each piece
+they bound the first four terms of the series by the monotonicity of each
+factor and an eight-term Taylor lower bound for the exponential, and the
+remaining terms by $1/80$.
 \end{proof}
 
-\begin{proof}[Proof of \eqref{eq:upper-15-cost}]
+\begin{proof}[Proof of \eqref{eq:upper-12-cost}]
 \emph{The cap bound.} Since $\tau_{2^\ell}\le2^\ell$,
 \[
  \E[C_L\mid d,S]\le(1-r)\sum_{\ell\le L}2^{\ell/2}+r^{L+1}
  =\sqrt N-r+r^{L+1}\le\sqrt N .
 \]
-If $Nd^2\le1$, the right side of \eqref{eq:upper-15-cost} is
-$(\tfrac{11}{2}-\tfrac92)\sqrt N$. If $1<Nd^2\le16$, then
-$\sqrt N\le4/d<\tfrac{11}{2}\min\{\sqrt N,d^{-1}\}$.
+If $Nd^2\le1$, the right side of \eqref{eq:upper-12-cost} is
+$(\tfrac{26}{5}-\tfrac{21}{5})\sqrt N=\sqrt N$. If $1<Nd^2\le16$, then
+$\sqrt N\le4/d<\tfrac{26}{5}\min\{\sqrt N,d^{-1}\}$.
 
 \emph{Reordering by $j$.} Let $Nd^2>16$; since $d\le1/2$, then $L\ge7$.
-By \eqref{eq:upper-15-survival}, and since
+By \eqref{eq:upper-12-survival}, and since
 $p_\ell2^k=(1-r)r^j\sqrt{y_k}/d$ for $\ell=k+j$,
 \[
  d\,\E[C_L\mid d,S]\le d\Bigl(\sum_{\ell\le L}p_\ell+r^{L+1}\Bigr)
- +(1-r)\sum_{j=1}^Lr^j\sum_{k=0}^{L-j}\sqrt{y_k}\,\sigma_j(y_k),
+ +(1-r)\sum_{j=1}^Lr^j\sum_{k=0}^{L-j}\sqrt{y_k}\,\pi_j(y_k),
 \]
 and the first term is $d$.
 
@@ -199,17 +208,18 @@ $\sqrt{sv}\sum_{i\ge1}2^{-i/2}=(1+\sqrt2)\sqrt{sv}$, and those from it on
 add $\sqrt v\sum_{i\ge0}\sqrt{2^is}\,e^{-2v(\sqrt{2^is}-1)^2}$. So the
 inner sum is at most $\sqrt{v_j}F_{v_j}(s)-(1+\sqrt2)d$.
 
-\emph{The constant.} Since $v_1=1+\log2>169/100$ and $v_j\ge v_2>119/50$
-for $j\ge2$, \cref{lem:upper-15-offset-cost} applies with $89/20$ and
-$17/4$. The subtracted terms add
+\emph{The constant.} Let $C_1=89/20$, $C_2=17/4$ and $C_j=399/100$ for
+$j\ge3$. Since $v_1=1+\log2>169/100$, $v_2>119/50$ and
+$v_j\ge v_3>307/100$ for $j\ge3$, \cref{lem:upper-12-offset-cost} bounds
+the inner sum by $\sqrt{v_j}C_j-(1+\sqrt2)d$. The subtracted terms add
 $(1-r)(1+\sqrt2)d\sum_{j=1}^Lr^j=(1+r)(1-r^L)d$, which exceeds $d$ for
 $L\ge3$ and pays for the first term. Hence
 \[
- d\,\E[C_L\mid d,S]\le(1-r)\Bigl(\tfrac{89}{20}r\sqrt{v_1}
- +\tfrac{17}{4}\sum_{j\ge2}r^j\tfrac{v_j+4}{4}\Bigr)<5.49<\tfrac{11}{2},
+ d\,\E[C_L\mid d,S]\le(1-r)\sum_{j\ge1}r^jC_j\sqrt{v_j}<5.19<\tfrac{26}{5}.
 \]
-using $\sqrt{v_j}\le(v_j+4)/4$. Here $\rho_N(d)=0$ and
-$\min\{\sqrt N,d^{-1}\}=d^{-1}$.
+The Lean proof bounds $\sqrt{v_j}$ by a rational number for $j\le8$ and by
+$(v_j+9)/6$ for $j\ge9$, which gives about $5.185$; the sum itself is about
+$5.182$. Here $\rho_N(d)=0$ and $\min\{\sqrt N,d^{-1}\}=d^{-1}$.
 \end{proof}
 
 \subsection{The second moment of one call}
@@ -222,10 +232,10 @@ Because $\Delta_\ell\in\{-1,0,1\}$,
 Bounding every probability by one gives
 $(2+\sqrt2)\sum_{\ell\le L}2^{\ell/2}\le(2+\sqrt2)^2\sqrt N
 =(6+4\sqrt2)\sqrt N<11.66\sqrt N$. This is
-\eqref{eq:upper-15-moment} when $Nd^2\le1$, since
-$\tfrac{89}{10}+\tfrac{69}{25}=11.66$. The rest of this section
-proves $d\,\E[Y_L^2\mid d,S]\le89/10$, which is
-\eqref{eq:upper-15-moment} when $Nd^2>1$.
+\eqref{eq:upper-12-moment} when $Nd^2\le1$, since
+$\tfrac{13}{2}+\tfrac{129}{25}=11.66$. The rest of this section
+proves $d\,\E[Y_L^2\mid d,S]\le13/2$, which is
+\eqref{eq:upper-12-moment} when $Nd^2>1$.
 
 For a dyadic cap $M$, write the two kinds of early stop of the
 classifier with cap $M$ as
@@ -235,38 +245,44 @@ classifier with cap $M$ as
  \delta_{n,M}(d)=\begin{cases}e^{-2n(t_{n,M}-d)^2},&d\le t_{n,M},\\
  1,&d>t_{n,M},\end{cases}
 \end{gather*}
-summed over dyadic $n$, with $\mathcal E_{1/2}=0$. By Hoeffding's
-inequality, for a coin with gap $d$ the sample mean at the prefix $n$
-crosses the threshold on the wrong side of $1/2$ with probability at most
-$e^{-2n(d+t_{n,M})^2}$, and on the right side with probability at most
-$\delta_{n,M}(d)$. The first kind is the early-stopping part of the union
-bound \eqref{eq:error-sum}.
+summed over dyadic $n$, with $\mathcal E_{1/2}=0$; for $M=1$ both sums are
+empty. By Hoeffding's inequality, for a coin with gap $d$ the sample mean
+at the prefix $n$ crosses the threshold on the wrong side of $1/2$ with
+probability at most $e^{-2n(d+t_{n,M})^2}$, and on the right side with
+probability at most $\delta_{n,M}(d)$. The first kind is the
+early-stopping part of the union bound \eqref{eq:error-sum}.
 
-\begin{lemma}[Sign change]\label[lemma]{lem:upper-15-sign}
-Let $m\ge1$ and let $X_1,\dots,X_{4m}$ be independent with a common
-Bernoulli law. Then the majority votes after $2m$ and after $4m$
-observations differ with probability at most $1/2$:
+\begin{lemma}[Vote change]\label[lemma]{lem:upper-12-vote}
+Let $m\ge1$ and let $X_1,\dots,X_{2m}$ be independent with a common
+Bernoulli law. Then the majority votes after $m$ and after $2m$
+observations differ with probability exactly $a(1-a)\le1/4$, where
+$a=\Prob(\overline X_m>1/2)$:
 \[
- \Prob\bigl(\ind\{\overline X_{2m}>1/2\}\ne\ind\{\overline X_{4m}>1/2\}\bigr)
- \le\tfrac12 .
+ \Prob\bigl(\ind\{\overline X_m>1/2\}\ne\ind\{\overline X_{2m}>1/2\}\bigr)
+ =a(1-a)\le\tfrac14 .
 \]
 \end{lemma}
 
 \begin{proof}
-Let $U_1$ and $U_2$ count the successes among the first and the last
-$2m$ observations. The votes are $\ind\{U_1>m\}$ and
-$\ind\{U_1+U_2>2m\}$. If $U_1>m$ and $U_1+U_2\le2m$, then $U_2<m$; if
-$U_1\le m$ and $U_1+U_2>2m$, then $U_2>m$. The counts are independent
-with the same law, so with $a=\Prob(U_1>m)$ the probability is at most
-$a\Prob(U_2<m)+(1-a)\Prob(U_2>m)\le a(1-a)+(1-a)a\le1/2$.
+Let $U_1$ and $U_2$ count the successes among the first and the last $m$
+observations. The votes are $\ind\{2U_1>m\}$ and $\ind\{U_1+U_2>m\}$, so
+they differ exactly on
+\[
+ E=\{2U_1>m,\ U_1+U_2\le m\}\cup\{2U_1\le m,\ U_1+U_2>m\}.
+\]
+Let $E'$ be the same event with $U_1$ and $U_2$ exchanged. On the first
+part of $E$, $U_2\le m-U_1<m/2$; on the second, $U_2>m-U_1\ge m/2$. So $E$
+and $E'$ are disjoint, and $E\cup E'$ is the event that exactly one of
+$2U_1>m$ and $2U_2>m$ holds. The counts are independent with the same law,
+so $\Prob(E')=\Prob(E)$ and $2\Prob(E)=\Prob(E\cup E')=2a(1-a)$.
 \end{proof}
 
-\begin{lemma}\label[lemma]{lem:upper-15-level}
+\begin{lemma}\label[lemma]{lem:upper-12-level}
 Let $\ell\ge1$ and $x=2^\ell d^2$.
 \begin{enumerate}[label=(\roman*)]
 \item $\Prob(\Delta_\ell\ne0)\le e^{-2x}+e^{-x}+\mathcal E_{2^\ell}(d)
  +\mathcal E_{2^{\ell-1}}(d)$.
-\item If $\ell\ge2$, then $\Prob(\Delta_\ell\ne0)\le\tfrac12
+\item $\Prob(\Delta_\ell\ne0)\le\tfrac14
  +\mathcal D_{2^{\ell-1}}(d)+\mathcal E_{2^{\ell-1}}(d)$.
 \end{enumerate}
 \end{lemma}
@@ -276,50 +292,51 @@ Let $\ell\ge1$ and $x=2^\ell d^2$.
 bound \eqref{eq:error-sum} bounds the error of each by its final term
 $e^{-2Md^2}$ plus $\mathcal E_M(d)$, with $Md^2=x$ and $x/2$.
 
-(ii) Put $M=2^{\ell-1}\ge2$. The classifier with cap $M$ stops early with
+(ii) Put $M=2^{\ell-1}\ge1$. The classifier with cap $M$ stops early with
 probability at most $\mathcal D_M(d)+\mathcal E_M(d)$. Otherwise it
 outputs $\ind\{\overline X_M>1/2\}$, and the classifier with cap $2M$,
 whose thresholds are larger, has not stopped before $M$ either. If it
 stops at $M$, it outputs the same side. If not, it outputs
 $\ind\{\overline X_{2M}>1/2\}$. So disagreement without an early stop
 requires the votes after $M$ and $2M$ observations to differ, which has
-probability at most $1/2$ by \cref{lem:upper-15-sign} with $M=2m$.
+probability at most $1/4$ by \cref{lem:upper-12-vote} with $m=M$.
 \end{proof}
 
 Define the weight of level $\ell$, with $x_\ell=2^\ell d^2$, by
 \[
  w_\ell=\begin{cases}
- e^{-2x_\ell}+e^{-x_\ell},& x_\ell\ge3/4,\\
- \tfrac12+\mathcal D_{2^{\ell-1}}(d),& x_\ell<3/4,\ \ell\ge2,\\
- 1,&\ell\le1.\end{cases}
+ e^{-2x_\ell}+e^{-x_\ell},& x_\ell\ge19/20,\\
+ \tfrac14+\mathcal D_{2^{\ell-1}}(d),& x_\ell<19/20,\ \ell\ge1,\\
+ 1,&\ell=0.\end{cases}
 \]
-Since $x_1=2d^2\le1/2$, the first case has $\ell\ge2$. By
-\cref{lem:upper-15-level}, every level satisfies
+We call the value $19/20$ of $x_\ell$ the split. Since $x_1=2d^2\le1/2$,
+the first case has $\ell\ge2$. By
+\cref{lem:upper-12-level}, every level satisfies
 $\Prob(\Delta_\ell\ne0)\le w_\ell+\mathcal E_{2^\ell}(d)
 +\mathcal E_{2^{\ell-1}}(d)$. Since $d/p_\ell=(2+\sqrt2)\sqrt{x_\ell}$,
-\begin{equation}\label{eq:upper-15-split}
+\begin{equation}\label{eq:upper-12-split}
  d\,\E[Y_L^2\mid d,S]\le(2+\sqrt2)\sum_{\ell\ge0}\sqrt{x_\ell}\,w_\ell
  +d\sum_{\ell\le L}\frac{\mathcal E_{2^\ell}(d)+\mathcal E_{2^{\ell-1}}(d)}
  {p_\ell}.
 \end{equation}
 
 \emph{Wrong-side early stops.} At the prefix $n=2^k$ of the cap
-$2^\ell$, with $j=\ell-k$, $nt_{n,M}^2=v_j$, so
+$M=2^\ell$, with $j=\ell-k$, $nt_{n,M}^2=v_j$, so
 $n(d+t_{n,M})^2=(\sqrt{y_k}+\sqrt{v_j})^2\ge v_j+2\sqrt{v_j}\sqrt{y_k}$,
 where $e^{-2v_j}=e^{-2}2^{-2j}$. The values $u_k=\sqrt{y_k}$ form a grid
-of ratio $\sqrt2$, and for $c>0$,
+of ratio $\sqrt2$, and for $\psi>0$,
 \[
- \sum_ku_ke^{-cu_k}\le\frac{2+\sqrt2}{c},
+ \sum_ku_ke^{-\psi u_k}\le\frac{2+\sqrt2}{\psi},
 \]
 because $(1-r)z\,e^{-z}\le e^{-rz}-e^{-z}$ for $z\ge0$ and the right
 side telescopes along the grid. With $d/p_\ell=(2+\sqrt2)2^{j/2}u_k$ and
-$c=4\sqrt{v_j}\ge4\cdot\tfrac{13}{10}$, the terms of the larger classifier
+$\psi=4\sqrt{v_j}\ge4\cdot\tfrac{13}{10}$, the terms of the larger classifier
 add at most
 $\tfrac{(2+\sqrt2)^2}{4\cdot13/10}e^{-2}\sum_{j\ge1}(\sqrt2/4)^j$. Those
 of the smaller classifier add at most $\sqrt2$ times as much, because
 $1/p_\ell=\sqrt2/p_{\ell-1}$. Since
 $\sum_{j\ge1}(\sqrt2/4)^j=\sqrt2/(4-\sqrt2)$, the last sum in
-\eqref{eq:upper-15-split} is at most
+\eqref{eq:upper-12-split} is at most
 \[
  (1+\sqrt2)\,\frac{(2+\sqrt2)^2}{4\cdot13/10}\,e^{-2}\,
  \frac{\sqrt2}{4-\sqrt2}<0.401<\tfrac{41}{100}.
@@ -327,7 +344,7 @@ $\sum_{j\ge1}(\sqrt2/4)^j=\sqrt2/(4-\sqrt2)$, the last sum in
 
 \emph{Right-side early stops below the split.}
 Let $M=2^{L'}$ with $L'\ge1$, and put $\xi=Md^2$. At the prefix $n=2^k$,
-with $j=L'-k$, $nt_{n,M}^2=v_j$ and $2^kd^2=\xi2^{-j}$. If $\xi\le3/8$, then
+with $j=L'-k$, $nt_{n,M}^2=v_j$ and $2^kd^2=\xi2^{-j}$. If $\xi\le1/2$, then
 $2^kd^2<1\le v_j$, so $d<t_{n,M}$ and
 \[
  \mathcal D_M(d)\le\sum_{j\ge1}
@@ -335,106 +352,129 @@ $2^kd^2<1\le v_j$, so $d<t_{n,M}$ and
 \]
 which increases with $\xi$.
 
-\begin{lemma}\label[lemma]{lem:upper-15-drift}
-Let $e_0,\dots,e_4$ be $0.282385$, $0.178521$, $0.1253$, $0.096265$ and
-$0.079431$, and $e_i=e_4$ for $i>4$. If $Md^2\le\tfrac38\cdot2^{-i}$, then
-$\mathcal D_M(d)\le e_i$.
-\end{lemma}
-
-\begin{proof}
-It suffices to take $\xi=\tfrac38\cdot2^{-i}$ for $i\le4$. The Lean proofs
-bound the first six terms with rational bounds on $\sqrt{v_j}$ and
-$\sqrt{\xi2^{-j}}$ and an eight-term Taylor sum, and the terms with $j\ge7$
-by $(31/100)^j$, which add less than $1/2000$.
-\end{proof}
-
-\begin{lemma}\label[lemma]{lem:upper-15-offset-moment}
-For every $s\in[3/4,3/2]$,
+The first value $x_\ell$ at or above the split lies in $[19/20,19/10)$.
+Cut this interval into the four bands $[s_g,s_{g+1}]$, $g=0,1,2,3$, with
 \[
- 1.613\sqrt s+\sum_{i\ge0}\sqrt{2^is}\,\bigl(e^{-2^{i+1}s}+e^{-2^is}\bigr)
- \le\tfrac{247}{100}.
+ (s_0,s_1,s_2,s_3,s_4)=\bigl(\tfrac{19}{20},\tfrac{19}{16},\tfrac{57}{40},
+ \tfrac{133}{80},\tfrac{19}{10}\bigr).
+\]
+
+\begin{lemma}\label[lemma]{lem:upper-12-drift}
+Let $e_{g,i}$ be the entry of the following table for $i\le4$, and
+$e_{g,i}=e_{g,4}$ for $i>4$. If $Md^2\le s_{g+1}2^{-i-2}$, then
+$\mathcal D_M(d)\le e_{g,i}$.
+\[
+\begin{array}{c|ccccc}
+ g & i=0 & i=1 & i=2 & i=3 & i=4\\\hline
+ 0 & 0.239064 & 0.156680 & 0.113601 & 0.089594 & 0.075413\\
+ 1 & 0.271967 & 0.173304 & 0.122528 & 0.094695 & 0.078491\\
+ 2 & 0.305008 & 0.189799 & 0.131249 & 0.099608 & 0.081419\\
+ 3 & 0.338195 & 0.206233 & 0.139823 & 0.104379 & 0.084231
+\end{array}
 \]
 \end{lemma}
 
 \begin{proof}
-The Lean proof splits $[3/4,3/2]$ into $14$ pieces, chosen and checked in
-exact rational arithmetic. On each piece it bounds the first six terms of
-the series by the monotonicity of each factor and an eight-term Taylor
-lower bound for the exponential, and the remaining terms by $1/1000$. The
-maximum of the left side is about $2.430$.
+Since $s_{g+1}2^{-i-2}\le19/40<1/2$, it suffices to take
+$\xi=s_{g+1}2^{-i-2}$ for $i\le4$. The Lean proofs bound the first six
+terms with rational bounds on $\sqrt{v_j}$ and $\sqrt{\xi2^{-j}}$ and an
+eight-term Taylor sum, and the terms with $j\ge7$ by $(31/100)^j$, which
+add less than $1/2000$ for $\xi\le1/2$.
 \end{proof}
 
-\begin{proof}[Proof of \eqref{eq:upper-15-moment}]
-It remains to bound the first sum in \eqref{eq:upper-15-split}. Let $\ell_*$ be
-the first level with $x_{\ell_*}\ge3/4$ and $s=x_{\ell_*}\in[3/4,3/2)$.
-Then $\ell_*\ge2$.
+\begin{lemma}\label[lemma]{lem:upper-12-offset-moment}
+Let $\phi_0,\phi_1,\phi_2,\phi_3$ be $0.96$, $0.997$, $1.035$ and $1.073$.
+For every $g$ and every $s\in[s_g,s_{g+1}]$,
+\[
+ \phi_g\sqrt s+\sum_{i\ge0}\sqrt{2^is}\,\bigl(e^{-2^{i+1}s}+e^{-2^is}\bigr)
+ \le\tfrac{89}{50}.
+\]
+\end{lemma}
+
+\begin{proof}
+The Lean proof splits the four bands into $17$ pieces in all, chosen and
+checked in exact rational arithmetic. On each piece it bounds the first six
+terms of the series by the monotonicity of each factor and an eight-term
+Taylor lower bound for the exponential, and the remaining terms by
+$1/1000$. The maximum of the left side is about $1.762$.
+\end{proof}
+
+\begin{proof}[Proof of \eqref{eq:upper-12-moment}]
+It remains to bound the first sum in \eqref{eq:upper-12-split}. Let
+$\ell_*$ be the first level with $x_{\ell_*}\ge19/20$ and
+$s=x_{\ell_*}\in[19/20,19/10)$, in the band $g$. Then $\ell_*\ge2$.
 
 \emph{Levels below $\ell_*$.} Write $\ell=\ell_*-1-i$, so that
-$\sqrt{x_\ell}=r^{i+1}\sqrt s$. For $\ell\ge2$,
-$x_{\ell-1}=s2^{-i-2}\le\tfrac38\cdot2^{-i}$, so
-$w_\ell\le\tfrac12+e_i$ by \cref{lem:upper-15-drift}. Levels $1$ and $0$,
-with $i=\ell_*-2$ and $i=\ell_*-1$, have weight one, and
-$r^{\ell_*-1}+r^{\ell_*}=\tfrac12\sum_{i\ge\ell_*-2}r^{i+1}$, because
-$1+r=1/(2(1-r))$. So the levels below $\ell_*$ add at most
+$\sqrt{x_\ell}=r^{i+1}\sqrt s$. For $\ell\ge1$,
+$x_{\ell-1}=s2^{-i-2}\le s_{g+1}2^{-i-2}$, so
+$w_\ell\le\tfrac14+e_{g,i}$ by \cref{lem:upper-12-drift}. Level $0$,
+with $i=\ell_*-1$, has weight one. So the levels below $\ell_*$ add at
+most
 \[
- \sqrt s\sum_{i\ge0}r^{i+1}\bigl(\tfrac12+e_i\bigr)
- =\sqrt s\Bigl(\frac{1+\sqrt2}{2}+\sum_{i\ge0}r^{i+1}e_i\Bigr)
- <1.613\sqrt s .
+ \sqrt s\Bigl(\sum_{i<\ell_*-1}r^{i+1}\bigl(\tfrac14+e_{g,i}\bigr)+r^{\ell_*}\Bigr)
+ \le\phi_g\sqrt s,
 \]
+which the Lean proof checks for every value of $\ell_*$ from the table of
+\cref{lem:upper-12-drift}.
 
 \emph{Levels from $\ell_*$ on.} The level $\ell_*+i$ adds
 $\sqrt{2^is}\,(e^{-2^{i+1}s}+e^{-2^is})$.
 
-By \cref{lem:upper-15-offset-moment} the first sum in
-\eqref{eq:upper-15-split} is at most $247/100$. Hence
+By \cref{lem:upper-12-offset-moment} the first sum in
+\eqref{eq:upper-12-split} is at most $89/50$. Hence
 \[
- d\,\E[Y_L^2\mid d,S]\le(2+\sqrt2)\tfrac{247}{100}+\tfrac{41}{100}
- <8.85<\tfrac{89}{10}.\qedhere
+ d\,\E[Y_L^2\mid d,S]\le(2+\sqrt2)\tfrac{89}{50}+\tfrac{41}{100}
+ <6.49<\tfrac{13}{2}.\qedhere
 \]
 \end{proof}
 
-\subsection{What Lean checks and what remains}\label{sec:upper-15-scope}
+\subsection{What Lean checks and what remains}\label{sec:upper-12-scope}
 
-The Lean proof of \cref{thm:upper-15} builds on \texttt{BlindUpper},
+The Lean proof of \cref{thm:upper-12} builds on \texttt{BlindUpper},
 which supplies the cutoff estimator, the calibrated batch and its budget,
-on \texttt{UpperWork}, which supplies \eqref{eq:upper-15-survival}, and
-on \texttt{UpperMoment}. Four groups of modules, which also hold the
-audited stages $27$, $19$, $17$ and $15$, add the rest:
+on \texttt{UpperWork}, which supplies \eqref{eq:upper-12-survival}, on
+\texttt{UpperMoment}, which supplies the weights $1/p_\ell$ and their sums,
+and on \texttt{UpperMixture}, which supplies \eqref{eq:scaling} in the form
+used here. Six groups of modules, which also hold the audited stages $19$,
+$17$, $15$, $13$ and $12$ of \cref{sec:verification}, add the rest:
 \begin{itemize}
-\item \upperleanref{UpperMixture/Full.lean}{budgetMixture} defines the
- mixture. Its expected work and squared risk are the same mixtures of
- those of the two batches, for every gap law and sign law.
-\item \upperleanref{UpperCost/Full.lean}{budgetMixture\_risk\_of\_batch}
- turns a batch factor $\beta\ge0$ into the constant $C$ whenever
- $\tfrac92\beta\le C^2$ and $C\ge1$. \texttt{UpperCost} also proves
- \eqref{eq:upper-15-cost} without the regime term and
- \cref{lem:upper-15-offset-cost}.
+\item \texttt{UpperCost} proves the first two bounds of
+ \cref{lem:upper-12-offset-cost} and the lemmas of the reordering by $j$.
 \item \texttt{UpperDisagreement} proves part (i) of
- \cref{lem:upper-15-level}, the bound $41/100$ on the wrong-side early
- stops and the regime term of \eqref{eq:upper-15-cost}.
-\item \texttt{UpperSign} proves \cref{lem:upper-15-sign}, part (ii) of
- \cref{lem:upper-15-level}, \cref{lem:upper-15-drift,lem:upper-15-offset-moment},
- \eqref{eq:upper-15-moment}, \cref{lem:upper-15-batch} and
- \cref{thm:upper-15}.
+ \cref{lem:upper-12-level} and the bound $41/100$ on the wrong-side early
+ stops, and defines the regime term $\rho_N$.
+\item \texttt{UpperSign} proves the drift series bounds for $\xi\le3/8$,
+ which \texttt{UpperQuarter} extends to $\xi\le1/2$.
+\item \texttt{UpperQuarter} proves the bound $1/4$ of
+ \cref{lem:upper-12-vote}, whose proof establishes the identity, part (ii) of
+ \cref{lem:upper-12-level},
+ \cref{lem:upper-12-drift,lem:upper-12-offset-moment} and
+ \eqref{eq:upper-12-moment}, with its regime term.
+\item \texttt{UpperCallCost} proves the third bound of
+ \cref{lem:upper-12-offset-cost}, the constant $26/5$, the reordering by
+ $j$ with these offsets, and \eqref{eq:upper-12-cost}, with its regime
+ term.
+\item \texttt{UpperScale} proves \cref{lem:upper-12-batch} and
+ \cref{thm:upper-12}. The batch machine of \texttt{BlindUpper} marks a
+ call when its uniform seed mark $u$ satisfies $u<C_L/2^L$; run on seeds
+ whose marks are multiplied by $\lambda$, the same machine marks it when
+ $u<C_L/(\lambda2^L)$, and so realizes the batch at scale $\lambda2^L$ with
+ the same calls.
 \end{itemize}
-The two target statements were written after the proof and are pinned by
-hash from their audit onward. The audit \path{tools/verify_upper_sign.py}
-restates them and eleven components with their types written out, and
-reports the axioms of all 67 public declarations of \texttt{UpperSign};
-the record is \path{results/upper-sign-20261119/}.
+The two targets were stated after the proof and are pinned by hash. The
+audit \path{tools/verify_upper_scale.py} restates them and twelve components
+with their types written out and reports the axioms of all 90 public
+declarations of the last two groups (record:
+\path{results/upper-scale-20261119/}). The confidence bound of
+\cref{thm:main} and \cref{app:hard-budget,app:sublinear-power,app:observed-upper}
+keep the family of \cref{sec:minimax-proof} and their stated constants.
 
-The other results of this paper that use a distribution-blind RMS family
-keep the family of \cref{sec:minimax-proof} and their stated constants:
-the confidence bound of \cref{thm:main}, the hard-budget bounds of
-\cref{app:hard-budget}, the rates of \cref{app:sublinear-power} and the
-observed-state bounds of \cref{app:observed-upper}.
-
-A numerical study of the single-level estimator, recorded in
-\path{research/2026-11-18-upper-constant/}, puts its worst ratio near
-$7.6$, and the sharp constants of one call near $2.9$ for the second
-moment and between $2.8$ and $3.6$ for the cost, against $89/10$ and
-$11/2$ here. Below the split, the bound $\tfrac12+e_i$ on the
-disagreement is about $0.6$ to $0.8$. At level $2$, for instance, neither
-classifier can stop early, and the disagreement equals $P^2(1-P^2)\le1/4$
-for a coin with success probability $P$. The mixture pays the factor $9/2$
-in the worst case.
+Lean does not check the approximate values in the text ($5.182$, $5.185$,
+$1.762$ and $12.5$) or the remarks after the proof of \cref{thm:upper-12}.
+A numerical study in \path{research/2026-11-18-upper-constant/} puts the
+worst ratio of the dyadic estimator of \cref{sec:minimax-proof} near $7.6$,
+without computing the family of \cref{thm:upper-12}, and the sharp constants
+of one call near $2.9$ for the second moment and $2.8$ to $3.6$ for the cost,
+against $13/2$ and $26/5$ here. Below the split the bound $\tfrac14+e_{g,i}$
+is about $0.3$ to $0.6$, and the cost bound takes the survival probability to
+be one below each threshold.

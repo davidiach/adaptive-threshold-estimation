@@ -37,7 +37,7 @@ $15$ ([`UpperSign`](../../lean/ThresholdHC/UpperSign/Full.lean),
 [record](../../results/upper-sign-20261119/README.md)). Below the cap scale it
 bounds that disagreement by the sign-change probability of the majority votes,
 at most one half, plus an early-stop term, which brings the call second moment
-to $89/10$. The v6 paper states $15$ and proves it in Appendix AB. An eighth
+to $89/10$. A build of the v6 paper stated $15$ in Appendix AB. An eighth
 stage checks $13$ ([`UpperQuarter`](../../lean/ThresholdHC/UpperQuarter/Full.lean),
 [record](../../results/upper-quarter-20261119/README.md)). The vote-change
 probability is exactly $a(1-a)\le\tfrac14$, which brings the call second moment
@@ -45,7 +45,8 @@ to $13/2$. A ninth stage checks $12$
 ([`UpperScale`](../../lean/ThresholdHC/UpperScale/Full.lean),
 [record](../../results/upper-scale-20261119/README.md)). It bounds the padded
 call cost by $26/5$ and replaces the two-level mixture by one level calibrated
-at the scale $B/4$.
+at the scale $B/4$. The v6 paper now states $12$ and proves it in Appendix
+AB.
 
 The RMS law states
 $\tfrac16\,\omega_\mu(B^{-1/2})\le R_\mu(B)\le512\,\omega_\mu(B^{-1/2})$
