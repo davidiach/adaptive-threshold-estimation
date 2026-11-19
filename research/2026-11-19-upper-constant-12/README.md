@@ -4,6 +4,12 @@
 grids, with no proof and no Lean check. Nothing here changes a claimed
 result.
 
+*Since this study,* a [scoping study](../2026-11-19-one-coin-bounds/README.md)
+finds that most of the method's loss is in Hoeffding's tail bound. Bahadur's
+binomial tail bound, with the same proof structure, would give about $7.75$.
+Exact one-coin values from interval arithmetic would gain little, contrary
+to conclusion 5 below.
+
 Lean checks the upper constant $12$ of the RMS law
 ([`minimax_upper_12`](../../lean/ThresholdHC/UpperScale/Full.lean),
 [record](../../results/upper-scale-20261119/README.md)), and the v6 paper

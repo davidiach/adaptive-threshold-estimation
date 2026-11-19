@@ -21,6 +21,7 @@ later results do not rewrite those historical records.
 
 | Package | Accepted scope | Evidence |
 |---|---|---|
+| [Which one-coin bounds would bring the upper constant to 8?](2026-11-19-one-coin-bounds/README.md) | Keeping the structure of the Lean proof of 12, Bahadur's binomial tail bound in place of Hoeffding's would give a constant of about 7.75 for the same estimator (7.35 with a bias bound near 1/2), and a median bound for central probabilities about 7.3. With these, 9 is a safe target and 8 is within reach; exact one-coin values from interval arithmetic would gain at most 0.04. | Floating-point evaluation of the proof's bounds with rigorous lattice tail bounds and with tail proxies, compared with exact one-coin quantities. Numerical evidence only; no proof and no Lean check. |
 | [How far is the upper constant 12 from its estimator's risk?](2026-11-19-upper-constant-12/README.md) | For the estimator behind the Lean constant 12, the worst RMS-to-modulus ratio found is 5.07 at budgets below $2^{17}$, tending to about 5.37. Lean's proof method, with exact sums in place of its certificates, gives at best about 11.2 with the current bias bound and 10.85 to 10.93 with a sharp one, at the paper's thresholds; retuned thresholds bring it to about 10.1 to 10.3. The level ratio $r=2^{-1/2}$ is forced. | Exact floating-point risk formula over finite grids of gaps, sign laws and budgets, and its large-budget limit; floating-point evaluation of the Hoeffding bounds behind the Lean certificates. Numerical evidence only; no proof and no Lean check. |
 | [How loose is the upper constant 512?](2026-11-18-upper-constant/README.md) | For the distribution-blind algorithm behind the upper constant, the worst RMS-to-modulus ratio found is about 7.6, and a proof along the paper's route with sharp per-gap constants would give about 9; the proven constant is 512. | Exact floating-point risk formula over finite grids of gaps, sign laws and budgets, cross-checked by simulation of the toolkit implementation. Numerical evidence only; no proof and no Lean check. Lean has since checked smaller constants for the same algorithm; the [results guide](../docs/RESULTS.md#minimax-law-and-unbiasedness) states the current one. |
 | [Two updates at stopping times](2026-11-18-two-stopping-updates/README.md) | Even two schedule replacements triggered by observed answers give worst-case RMS at least 0.186764460. | Exact rational optimization and Lean proof of strict separation from the fully adaptive witness. |
@@ -73,14 +74,15 @@ The confidence-transfer package's
 [audits](2026-10-30-confidence-transfer/README.md#reproduce-from-the-repository-root)
 write only to `.runtime/confidence-transfer/` and likewise have none.
 
-Six recent packages are replayed from their own guides and are not
+Seven recent packages are replayed from their own guides and are not
 part of the two commands above or of CI:
 [selection approximation](2026-11-06-selection-approximation/README.md#verification-performed),
 [$\Psi$ in closed form](2026-11-09-psi-closed-form/README.md#numerical-check),
 [RMS constants](2026-11-17-rms-constants/README.md#reproducing-the-formal-checks),
 [pilot feedback](2026-11-18-pilot-feedback/README.md#verification-scope-and-replay),
-[the upper-constant study](2026-11-18-upper-constant/README.md#reproduce) and
-its [follow-up for the constant 12](2026-11-19-upper-constant-12/README.md#reproduce).
+[the upper-constant study](2026-11-18-upper-constant/README.md#reproduce),
+its [follow-up for the constant 12](2026-11-19-upper-constant-12/README.md#reproduce)
+and the [one-coin scoping](2026-11-19-one-coin-bounds/README.md#reproduce).
 For the [scheduled-update package](2026-11-18-scheduled-update/README.md#replay),
 `python tools/verify_population_research.py` checks the proof-source hashes
 and reruns the independent integer calculation; its Lean replay is in its
