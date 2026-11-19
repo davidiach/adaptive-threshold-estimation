@@ -471,13 +471,11 @@ declarations of the last two groups (record:
 keep the family of \cref{sec:minimax-proof} and their stated constants.
 
 Lean does not check the approximate values in the text ($5.182$, $5.185$,
-$1.762$ and $12.5$), the decimal bounds $5.19$, $0.401$ and $6.49$ (it checks
-$26/5$, $41/100$ and $13/2$ in their place), or the remarks after the proof
-of \cref{thm:upper-12}.
-A numerical study in \path{research/2026-11-18-upper-constant/} puts the
-worst ratio of the dyadic estimator of \cref{sec:minimax-proof} near $7.6$,
-without computing the family of \cref{thm:upper-12}, and the sharp constants
-of one call near $2.9$ for the second moment and $2.8$ to $3.6$ for the cost,
+$1.762$, $12.5$, and the bounds $5.19$, $0.401$, $6.49$, for which it checks
+$26/5$, $41/100$, $13/2$) or the remarks after the proof of \cref{thm:upper-12}.
+A numerical study in \path{research/2026-11-19-upper-constant-12/} puts the
+worst ratio of the family of \cref{thm:upper-12} near $5.4$, and the exact
+constants of one call near $2.2$ for the second moment and $3.6$ for the cost,
 against $13/2$ and $26/5$ here. Below the split the bound $\tfrac14+e_{g,i}$
 is about $0.3$ to $0.6$, and the cost bound takes the survival probability to
 be one below each threshold.
