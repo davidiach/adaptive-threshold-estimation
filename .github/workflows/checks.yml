@@ -170,6 +170,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_upper_cost.py' -v
           python -m unittest discover -s tools -p 'test_upper_disagreement.py' -v
           python -m unittest discover -s tools -p 'test_upper_sign.py' -v
+          python -m unittest discover -s tools -p 'test_upper_quarter.py' -v
           python -m unittest discover -s tools -p 'test_square_root_cap.py' -v
       - name: Regression tests for the whole-project axiom audit
         run: python -m unittest discover -s tools -p 'test_project_axioms.py' -v
@@ -403,6 +404,11 @@ jobs:
       # second moment to 89/10.
       - name: Verify the upper constant 15 of the RMS law and replay its modules
         run: python tools/verify_upper_sign.py --replay --jobs 3
+      # Its 12 modules bound the disagreement of consecutive classifiers by
+      # the exact vote-change probability, at most one quarter, plus early
+      # stops, which brings the call second moment to 13/2.
+      - name: Verify the upper constant 13 of the RMS law and replay its modules
+        run: python tools/verify_upper_quarter.py --replay --jobs 3
       - name: Verify the full observable above-two rare-event theory
         run: python tools/verify_rare_above_two.py --sequential
       - name: Verify the registered quantile-comparison target

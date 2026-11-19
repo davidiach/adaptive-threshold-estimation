@@ -37,7 +37,11 @@ $15$ ([`UpperSign`](../../lean/ThresholdHC/UpperSign/Full.lean),
 [record](../../results/upper-sign-20261119/README.md)). Below the cap scale it
 bounds that disagreement by the sign-change probability of the majority votes,
 at most one half, plus an early-stop term, which brings the call second moment
-to $89/10$. The v6 paper states $15$ and proves it in Appendix AB.
+to $89/10$. The v6 paper states $15$ and proves it in Appendix AB. An eighth
+stage checks $13$ ([`UpperQuarter`](../../lean/ThresholdHC/UpperQuarter/Full.lean),
+[record](../../results/upper-quarter-20261119/README.md)). The vote-change
+probability is exactly $a(1-a)\le\tfrac14$, which brings the call second moment
+to $13/2$.
 
 The RMS law states
 $\tfrac16\,\omega_\mu(B^{-1/2})\le R_\mu(B)\le512\,\omega_\mu(B^{-1/2})$
