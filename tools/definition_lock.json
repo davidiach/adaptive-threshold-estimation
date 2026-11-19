@@ -2771,6 +2771,14 @@
     "ThresholdHC.UpperCost.MinimaxUpper19Statement": "4762494857145497995:13962711096709895422",
     "ThresholdHC.UpperCost.gridSurvival": "4492441409891286651:14520291098939376930",
     "ThresholdHC.UpperCost.tailTerm": "4492441409891286651:4073307794443313797",
+    "ThresholdHC.UpperDisagreement.BlindUpper17Statement": "4762494857145497995:3081201419548567430",
+    "ThresholdHC.UpperDisagreement.MinimaxUpper17Statement": "4762494857145497995:17715123793834120821",
+    "ThresholdHC.UpperDisagreement.capTerm": "18133891100220672328:16179305775548309427",
+    "ThresholdHC.UpperDisagreement.capWeight": "18133891100220672328:7064595552831320697",
+    "ThresholdHC.UpperDisagreement.gapRegime": "13670112168180337430:11295389175089227533",
+    "ThresholdHC.UpperDisagreement.levelBound": "15687204093786460919:18032207794868904019",
+    "ThresholdHC.UpperDisagreement.regimeTerm": "15687204093786460919:13943795092832371034",
+    "ThresholdHC.UpperDisagreement.stopError": "15687204093786460919:16487272247453233212",
     "ThresholdHC.UpperMixture.BlindUpper27Statement": "4762494857145497995:286895682976129496",
     "ThresholdHC.UpperMixture.MinimaxUpper27Statement": "4762494857145497995:15722284388380880548",
     "ThresholdHC.UpperMixture.budgetMixture": "10480305565590345481:7672193882952363545",
@@ -3068,6 +3076,10 @@
     {
       "at": "2026-11-18T23:29:37+00:00",
       "count": 4
+    },
+    {
+      "at": "2026-11-18T23:51:48+00:00",
+      "count": 8
     }
   ]
 }
