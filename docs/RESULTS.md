@@ -145,17 +145,18 @@ Here $r_\mu(B,\delta)$ is the minimax uniform error radius at failure probabilit
 | Lower, $B\ge25$ | $\sqrt{59/2100}\approx0.1676$ | `large_budget_lower` in the same file | CI, the same audit | Appendix AA |
 | Lower, $B\ge25$, best known | $0.175198$, and $0.17807955$ for $B\ge100$; the best constant is at most $0.186752$ | `bracket_lower`, `hundred_lower` and `bracket_upper` in [LargeBudgetRMS/Full.lean](../lean/ThresholdHC/LargeBudgetRMS/Full.lean) | CI, `tools/verify_large_budget_rms.py` | Appendix AA, Theorem AA.7 |
 | Lower, original frozen target | $1/64$ | `minimax_lower_bound` in [Tier6/Full.lean](../lean/ThresholdHC/Tier6/Full.lean) | CI, `tools/verify_tier6.py` | §5 |
-| Upper, $B\ge1$ | $27$ | `minimax_upper_27` and `blind_upper_27` in [UpperMixture/Full.lean](../lean/ThresholdHC/UpperMixture/Full.lean) | CI, `tools/verify_upper_mixture.py` | No: the paper states $512$ |
+| Upper, $B\ge1$ | $19$ | `minimax_upper_19` and `blind_upper_19` in [UpperCost/Full.lean](../lean/ThresholdHC/UpperCost/Full.lean) | CI, `tools/verify_upper_cost.py` | No: the paper states $512$ |
+| Upper, $B\ge1$, earlier stage | $27$ | `minimax_upper_27` and `blind_upper_27` in [UpperMixture/Full.lean](../lean/ThresholdHC/UpperMixture/Full.lean) | CI, `tools/verify_upper_mixture.py` | No |
 | Upper, $B\ge1$, earlier stage | $36$ | `minimax_upper_36` and `blind_upper_36` in [UpperMoment/Full.lean](../lean/ThresholdHC/UpperMoment/Full.lean) | CI, `tools/verify_upper_moment.py` | No |
 | Upper, $B\ge1$, earlier stage | $45$ | `minimax_upper_45` and `blind_upper_45` in [UpperWork/Full.lean](../lean/ThresholdHC/UpperWork/Full.lean) | CI, `tools/verify_upper_work.py` | No |
 | Upper, $B\ge1$, earlier stage | $119$ | `minimax_upper_119` and `blind_upper_119` in [UpperConstant/Full.lean](../lean/ThresholdHC/UpperConstant/Full.lean) | CI, `tools/verify_upper_constant.py` | No |
 | Upper, frozen target | $512$ | `minimax_upper_bound` in [BlindUpper/Full.lean](../lean/ThresholdHC/BlindUpper/Full.lean) | CI, `tools/verify_blind_upper_components.py` | §18 derives $512$; §5 proves the bound with a larger constant |
 
-The lower constant is settled for $B\ge1$. The upper constant is not, so the two sides remain a factor $162$ apart.
+The lower constant is settled for $B\ge1$. The upper constant is not, so the two sides remain a factor $114$ apart.
 
-**The upper constants 119, 45, 36 and 27.** The constants $512$, $119$, $45$
-and $36$ come from the same distribution-blind estimator, which knows only the
-budget; $27$ randomizes between two of its levels. Its analysis
+**The upper constants 119, 45, 36, 27 and 19.** The constants $512$, $119$,
+$45$ and $36$ come from the same distribution-blind estimator, which knows only
+the budget; $27$ and $19$ randomize between two of its levels. Its analysis
 bounds the second moment and the cost of one call by level sums. The library
 proves those sums below $23$ and $527/7$, but the proofs of the frozen Tier 2
 targets weaken them to $85$ and $149$. Kept sharp, they give a mean-square
@@ -200,12 +201,28 @@ $\omega_\mu(B^{-1/2})^2$, and $\sqrt{(9/2)\cdot19781/125}<27$
 ([record](../results/upper-mixture-20261118/README.md)). The mixture is still
 chosen before the gap law and knows only the budget.
 
+The constant $19$ sharpens the cost of one call of the same mixture. The
+check with $n$ flips of the cap-$N$ classifier survives with probability at
+most $\exp(-2n(d-t_n)^2)$ once its threshold $t_n$ is below $d$. The constant
+$45$ bounded $t_n$ by $\sqrt{u/n}$ with $u=1+\log(Nd^2)$ and dropped $u$ from
+the exponent. Summed over the pairs of a level $l$ and a check $k<l$, the
+threshold depends only on $j=l-k$: it is below $d$ exactly when
+$2^kd^2\ge v_j=1+j\log2$. So the pairs with a fixed $j$ follow one dyadic grid
+of $2^kd^2/v_j$, and offset bounds on those grids, $89/20$ for $j=1$ and $17/4$
+for $j\ge2$, bound the padded call cost by $\tfrac{11}{2}\min(\sqrt N,1/d)$ in
+place of $273/25$. The geometric extension of each grid below $k=0$ also pays
+for the one flip that the padded call takes above level $L$. The batch
+mean-square error is then at most $401/5=1+\tfrac{72}{5}\cdot\tfrac{11}{2}$
+times the squared modulus, and $\sqrt{(9/2)\cdot401/5}<19$
+([record](../results/upper-cost-20261118/README.md)).
+
 A [numerical study](../research/2026-11-18-upper-constant/README.md) puts the
 actual worst ratio of the single-level estimator near $7.6$; it does not
-compute the mixture. The remaining slack is in the per-level bounds
-themselves: the exact disagreement probability is at most $0.25$ and
-$0.115/x^2$, and the exact expected flips at most $1.26$ times the work
-envelope.
+compute the mixture. Most of the remaining slack is in the call second
+moment $72/5$, where the study's route table gives about $2.9$. It rests on
+the bound $\min\{1,1.13/x^2\}$ for the disagreement of consecutive
+classifiers, whose exact value is at most $0.25$ and $0.115/x^2$. The padded
+call cost $11/2$ compares with about $2.8$ to $3.6$ in the same table.
 
 The lower constant of the RMS law is sharp. For every gap law and every $B\ge1$,
 
@@ -234,7 +251,7 @@ an integer certificate over 140 bias intervals elsewhere; the Lean kernel
 evaluates that certificate. For $B\ge25$, three sign biases compared under
 one reference law. Appendix AA of the v6 paper and the
 [research note](../research/2026-11-17-rms-constants/sharp-unrestricted.pdf)
-give the written proof. The upper constant is $27$ (below).
+give the written proof. The upper constant is $19$ (below).
 
 **Budgets of at least 25.** Let $c_{25}$ be the largest constant with
 $R_\mu(B)\ge c_{25}\,\omega_\mu(B^{-1/2})$ for every gap law and every
@@ -336,11 +353,14 @@ The original simulation law, actual controller cost/output identities,
 almost-sure pilot termination and budget selection are proved. The
 [full audit](../results/blind_upper_components_002.json) checks the unchanged
 frozen specification and all 373 declaration roots; coefficient 512 is not
-claimed optimal. A family that mixes two of its levels has the constant $27$:
+claimed optimal. A family that mixes two of its levels has the constant $19$:
+[`UpperCost/Full.lean`](../lean/ThresholdHC/UpperCost/Full.lean)
+proves `budgetMixture_maximalRMSRisk` and the minimax bound with $19$ in place
+of $512$, audited exactly by `tools/verify_upper_cost.py`
+([record](../results/upper-cost-20261118/README.md)). The same mixture has
+the constant $27$ with the earlier call cost:
 [`UpperMixture/Full.lean`](../lean/ThresholdHC/UpperMixture/Full.lean)
-proves `budgetMixture_maximalRMSRisk`, the uniform budget and the minimax
-bound with $27$ in place of $512$, audited exactly by
-`tools/verify_upper_mixture.py`
+proves its uniform budget and the bound with $27$
 ([record](../results/upper-mixture-20261118/README.md)). The family itself
 has the constant $36$:
 [`UpperMoment/Full.lean`](../lean/ThresholdHC/UpperMoment/Full.lean)
