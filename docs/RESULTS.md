@@ -301,7 +301,8 @@ here. The Hoeffding bounds that the Lean certificates round give about $6.0$
 and $4.9$. Below the split the disagreement bound is one quarter plus the
 drift terms, about $0.3$ to $0.6$. The calibration at scale $B/4$ costs the
 factor $4$, in the actual risk as well; the bias stays that of the dyadic
-level $L$, at most $t\le2$ times the squared modulus at scale $B/4$. With the
+level $L$, and its square is at most $t\le2$ times the squared modulus at
+scale $B/4$. With the
 paper's thresholds, the Lean method gives at best about $11.2$ with that
 bias bound.
 
