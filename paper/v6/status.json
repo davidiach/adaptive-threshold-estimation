@@ -4,9 +4,9 @@
     "rms-law": {
       "status": "lean",
       "verification_rows": ["Original RMS minimax lower bound", "Original RMS upper bound"],
-      "evidence": ["lean/ThresholdHC/Tier6/Full.lean", "lean/ThresholdHC/BlindUpper/Full.lean", "lean/ThresholdHC/UpperSign/Full.lean", "lean/ThresholdHC/SharpRMS/Full.lean", "lean/ThresholdHC/LargeBudgetRMS/Full.lean"],
-      "abstract": "the original RMS law in both directions, with coefficients $1/6$ (sharp) and $15$ and one distribution-blind upper algorithm",
-      "boundary": "both directions of the original RMS law, with coefficients $1/6$ and $15$ and one distribution-blind upper algorithm"
+      "evidence": ["lean/ThresholdHC/Tier6/Full.lean", "lean/ThresholdHC/BlindUpper/Full.lean", "lean/ThresholdHC/UpperScale/Full.lean", "lean/ThresholdHC/SharpRMS/Full.lean", "lean/ThresholdHC/LargeBudgetRMS/Full.lean"],
+      "abstract": "the original RMS law in both directions, with coefficients $1/6$ (sharp) and $12$ and one distribution-blind upper algorithm",
+      "boundary": "both directions of the original RMS law, with coefficients $1/6$ and $12$ and one distribution-blind upper algorithm"
     },
     "critical-law": {
       "status": "lean",

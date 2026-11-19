@@ -37,12 +37,12 @@ and the family bound are axiom-audited roots, not exact-type targets.
 Actual cost/output identities,
 almost-sure termination and every budget are included. The unchanged
 frozen specification has no additional statistical premise.
-\upperleanref{UpperSign/Full.lean}{blind\_upper\_15} chooses another
-budget-indexed family before every gap law, the mixture of
-\cref{app:upper-15}, and proves the budget and
-worst-case RMS at most $15\omega_\mu(B^{-1/2})$ for that family in the
+\upperleanref{UpperScale/Full.lean}{blind\_upper\_12} chooses another
+budget-indexed family before every gap law, the batch at scale $B/4$ of
+\cref{app:upper-12}, and proves the budget and
+worst-case RMS at most $12\omega_\mu(B^{-1/2})$ for that family in the
 same experiment;
-\upperleanref{UpperSign/Full.lean}{minimax\_upper\_15} gives the minimax
+\upperleanref{UpperScale/Full.lean}{minimax\_upper\_12} gives the minimax
 bound. Both are exact-type targets of a specification written after the
 proof and pinned by hash from its audit onward.\\[5pt]
 Confidence characterization &
@@ -255,16 +255,19 @@ includes padding and conservative rounding and is not claimed optimal.
 The full audit checks the unchanged specification and all transitive axioms;
 the earlier component records retain their historical incomplete status.
 
-\paragraph{The upper constant 15.}
-The family of \cref{thm:upper-15} reuses these calibrated batches,
-padding included, and mixes two adjacent levels so that it spends the
-whole budget. Its Lean proof follows \cref{app:upper-15}. It was reached
-in stages, each with its own specification and audit, which lowered the
-constant from $512$ to $119$, $45$, $36$, $27$, $19$, $17$ and $15$.
-The last audit, \path{tools/verify_upper_sign.py}, restates the two
-targets and eleven components with their types written out, reports the
-axioms of 67 declarations and replays its modules through the independent
-kernel checker. Its record is \path{results/upper-sign-20261119/}.
+\paragraph{The upper constant 12.}
+The family of \cref{thm:upper-12} reuses these calibrated batches,
+padding included, and calibrates one level at the scale $B/4$, which need
+not be a power of two, so that it spends the whole budget. The same batch
+machine realizes that scale when the uniform marks of its seed are
+multiplied by $B/(4\cdot2^L)$. Its Lean proof follows \cref{app:upper-12}.
+It was reached in stages, each with its own specification and audit, which
+lowered the constant from $512$ to $119$, $45$, $36$, $27$, $19$, $17$,
+$15$, $13$ and $12$. The last audit, \path{tools/verify_upper_scale.py},
+restates the two targets and twelve components with their types written
+out, reports the axioms of 90 declarations and replays its modules through
+the independent kernel checker. Its record is
+\path{results/upper-scale-20261119/}.
 
 \paragraph{Realizing the confidence upper algorithm.}
 Put $m=\lceil2\log(1/\delta)\rceil$ and $k=2m+1$. Each of $k$ independent
@@ -594,9 +597,9 @@ experiment and under both magnitude oracles, with an audit that restates
 \href{https://github.com/davidiach/adaptive-threshold-estimation/blob/7ed941f198939a95f282e491c66a2defeef0528b/lean/ThresholdHC/LargeBudgetRMS/Full.lean}{bracket}
 $[0.175198,0.186752]$ for the best constant at $B\ge25$, with an audit
 that restates 25 statements.
-\Cref{app:upper-15} verifies the
-\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/ac9e4ae6e8d8c266bab05140dacc6abfdaacb04d/lean/ThresholdHC/UpperSign/Full.lean}{upper RMS constant} $15$,
-with an audit that restates 13 statements.
+\Cref{app:upper-12} verifies the
+\href{https://github.com/davidiach/adaptive-threshold-estimation/blob/eb9f1a19f59d7afe6145fa91b150321f49a2a1ef/lean/ThresholdHC/UpperScale/Full.lean}{upper RMS constant} $12$,
+with an audit that restates 14 statements.
 
 \paragraph{Paper proofs, open questions and model limits.}
 In \cref{sec:psi-window}, Proposition~\ref{prop:psi-closed},
