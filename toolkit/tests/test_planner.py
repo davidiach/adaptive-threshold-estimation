@@ -3,6 +3,7 @@ import dataclasses
 import io
 import math
 import sys
+import threading
 import unittest
 from fractions import Fraction
 from pathlib import Path
@@ -240,6 +241,39 @@ class MajorityPlanTests(unittest.TestCase):
         self.assertIsNone(majority_plan_for_target(GuessedRates([0.50001, 0.9]), 0.1,
                                                    max_flips_per_item=10_000))
 
+    def test_target_within_rounding_of_the_error_ends(self):
+        # The search once tested feasibility with majority_terms and bounded the
+        # plan with majority_error_terms. With numpy 2.4 they gave this guess's
+        # misclassification chance at one flip as 0.20166666666666666 and
+        # 0.2016666666666667, and the target 0.2016666666666667 looped forever.
+        rates = [0.01, 0.88, 0.69, 0.97, 0.73, 0.53]
+
+        class Rounded(GuessedRates):
+            """Error terms one bit above those of majority_terms."""
+            def majority_error_terms(self, m):
+                bias, variance, wrong = super().majority_error_terms(m)
+                return bias, variance, math.nextafter(wrong, 1.0)
+
+        def search(population, target, limit=2 ** 24):
+            result = []
+            worker = threading.Thread(daemon=True, target=lambda: result.append(
+                majority_plan_for_target(population, target, max_flips_per_item=limit)))
+            worker.start()
+            worker.join(60)
+            self.assertFalse(worker.is_alive(), "the target search did not end")
+            return result[0]
+
+        # One flip cannot meet the target; three flips per item can.
+        plan = search(GuessedRates(rates), 0.2016666666666667)
+        self.assertGreater(plan.flips_per_item, 1)
+        self.assertLessEqual(plan.worst_case_error, 0.2016666666666667)
+        rounded = Rounded(rates)
+        self.assertIsNone(search(rounded, rounded.majority_error_terms(1)[2], limit=1))
+        # A target one bit above the error needs more items than floats count.
+        wrong = GuessedRates(rates).majority_error_terms(1)[2]
+        plan = search(GuessedRates(rates), math.nextafter(wrong, 1.0), limit=1)
+        self.assertTrue(plan is None or plan.worst_case_error <= math.nextafter(wrong, 1.0))
+
     def test_budget_pruning_preserves_grid_optimum(self):
         for pop in (GuessedRates(self.rates), EvenlySpread()):
             budget = 5000
@@ -288,6 +322,14 @@ class SimulationTests(unittest.TestCase):
         self.assertLess(sim.mean_flips, 256 * 1.1)
         self.assertGreater(sim.mean_flips, 256 * 0.7)
         self.assertLessEqual(sim.flips_p90, sim.flips_p99)
+
+    def test_flip_percentiles_are_attained_by_enough_runs(self):
+        # The report says "90% of runs used at most" and "99% at most". With 20
+        # runs an interpolated 99th percentile, 19.81 here, sat below the top run.
+        runs = [(0.5, float(flips), 1.0) for flips in range(1, 21)]
+        with patch("threshold_toolkit.planner._simulate_run", side_effect=runs):
+            sim = simulate(GuessedRates([0.6, 0.4]), 64, runs=20, seed=0)
+        self.assertEqual((sim.flips_p90, sim.flips_p99), (18.0, 20.0))
 
     def test_chunked_runs_keep_the_calibration(self):
         # Tiny chunks split both pilot streams and the production average.
