@@ -41,6 +41,7 @@ class LeanRoutingTests(unittest.TestCase):
             "tools/verify_upper_scale.py": {"lean-kernel"},
             "tools/verify_critical_window.py": {"entropy-tail-upper"},
             "tools/verify_paper_corollaries.py": {"entropy-tail-upper"},
+            "tools/verify_paper_statements.py": {"entropy-tail-upper"},
             "tools/quantile_comparison_specification_freeze.json": {"lean-kernel", "entropy-tail-upper"},
             "tools/stopping_program_lock.py": {"stopping-program"},
             "tools/verify_genie_convergence.py": {"stopping-program"},

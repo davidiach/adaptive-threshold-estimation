@@ -161,6 +161,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_power_window.py' -v
           python -m unittest discover -s tools -p 'test_critical_window.py' -v
           python -m unittest discover -s tools -p 'test_paper_corollaries.py' -v
+          python -m unittest discover -s tools -p 'test_paper_statements.py' -v
       - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper-constant (119, 45, 36, 27, 19, 17, 15) and square-root cap audits
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
@@ -675,6 +676,12 @@ jobs:
       # divergence sequence for Psi at the quadratic law.
       - name: Verify the paper corollaries and replay their modules
         run: python tools/verify_paper_corollaries.py --replay --jobs 3
+      # Paper claims that had only a paper proof, a numerical check or an
+      # existential constant: the critical theorem with explicit constants, the
+      # sharp unbiased coefficient 1/16, the point-mass constant 1/2, the 713
+      # second moment, the quantile root bound and selection stability at 20/31.
+      - name: Verify the paper statements and replay their modules
+        run: python tools/verify_paper_statements.py --replay --jobs 3
       - name: Verify RMS obstruction transfer and submeasure localization
         run: python tools/verify_rms_localization.py
       - name: Verify the sharp finite-vector quantile factor and scalar root
