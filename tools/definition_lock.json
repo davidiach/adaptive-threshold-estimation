@@ -906,6 +906,17 @@
     "ThresholdHC.CriticalUpper.screenThreshold": "15687204093786460919:5415624794407788093",
     "ThresholdHC.CriticalUpper.screenValue": "10256803621705317044:11974539713041137370",
     "ThresholdHC.CriticalUpper.usedCriticalTapes": "16495783304394026253:7076501531552489555",
+    "ThresholdHC.CriticalWindow.AwayPhiStatement": "4762494857145497995:438299935731426691",
+    "ThresholdHC.CriticalWindow.AwayRiskStatement": "4762494857145497995:17192668983762348505",
+    "ThresholdHC.CriticalWindow.AwayScalesStatement": "4762494857145497995:17165619783748074965",
+    "ThresholdHC.CriticalWindow.NearTwoStatement": "4762494857145497995:12653143440594506115",
+    "ThresholdHC.CriticalWindow.QuadraticRiskStatement": "4762494857145497995:13203620873666675448",
+    "ThresholdHC.CriticalWindow.QuadraticWindowStatement": "4762494857145497995:16462334998551052192",
+    "ThresholdHC.CriticalWindow.WindowPsiStatement": "4762494857145497995:11010381820272591371",
+    "ThresholdHC.CriticalWindow.WindowRateStatement": "4762494857145497995:3217819434204691532",
+    "ThresholdHC.CriticalWindow.WindowRatioStatement": "4762494857145497995:4947166526229539416",
+    "ThresholdHC.CriticalWindow.WindowRiskStatement": "4762494857145497995:3235242963935070583",
+    "ThresholdHC.CriticalWindow.windowRate": "15937309165252210062:8920349101455624138",
     "ThresholdHC.DeterministicCertificates.Contains": "17492228823374603281:1925572794207956408",
     "ThresholdHC.DeterministicCertificates.Evidence": "12841156711311012099:10215511517588799928:3205046003180716156:2539516285982772038:7363387382657599803",
     "ThresholdHC.DeterministicCertificates.Evidence._sizeOf_1": "8664218384620076484:11178689414027140413",
@@ -3120,6 +3131,10 @@
     {
       "at": "2026-11-19T09:55:40+00:00",
       "count": 13
+    },
+    {
+      "at": "2026-11-20T19:36:55+00:00",
+      "count": 11
     }
   ]
 }
