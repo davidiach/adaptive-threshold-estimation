@@ -731,8 +731,9 @@ proof is kept unchanged. The specification was written with the proof.
 
 [Section 14.8 of the v6 paper](../paper/v6/psi-window.tex) proves four deterministic
 statements, all now Lean-checked (the records are at the end of this
-subsection). Only Corollary 14.14 and Remark 14.15, which close that
-section, remain paper proofs. The four statements hold for every probability law on $(0,1/2]$, $0<\rho\le1/4$ and $B>0$, with $h=B^{-1/2}$.
+subsection). Corollary 14.14 and Remark 14.15, which close that section, are
+Lean-checked as well since 20 November 2026; the last paragraph of this
+subsection describes them. The four statements hold for every probability law on $(0,1/2]$, $0<\rho\le1/4$ and $B>0$, with $h=B^{-1/2}$.
 Let $\mathcal Q^0=\min\{\rho,T_h+h\sqrt{\rho A_\kappa}\}$ be the closed quantile functional
 below with the cost entropy $\Gamma_\kappa$ of the quantile core replaced by its inverse-square cost
 $A_\kappa$, and write $\Gamma_\kappa=A_\kappa(1+E_\kappa)$.
@@ -768,9 +769,30 @@ with constants $1/2$ and $3.83$, and the deterministic quantile comparison,
 including exponent two and arbitrary scale $a$. Its RMS coefficients are
 $10^{-17}/\sqrt2$ and $60002$; the confidence lower coefficient is
 $10^{-17}/\sqrt2$ and the upper coefficient is $1500000$. These are unconditional
-consequences of the stated exact-CDF assumptions. Corollary 14.14 and
-Remark 14.15 remain paper results outside the frozen targets and have their
-own status entry.
+consequences of the stated exact-CDF assumptions.
+
+Corollary 14.14 and Remark 14.15 are **Lean-checked** in
+[`CriticalWindow`](../lean/ThresholdHC/CriticalWindow/Full.lean)
+([record](../results/critical-window-20261120/README.md)). On the window
+$3/2\le\alpha\le3$ the uniform rate is $\min\{\rho,Y\}$ within the factor $5.13$,
+with $Y=x\sqrt{\rho\Phi_\alpha(\rho)[1+\log N_\alpha(\rho)]}$. The minimax risk lies
+between $10^{-18}\min\{\rho,Y\}$ and $3.4\cdot10^5\min\{\rho,Y\}$, the paper's
+constants. $\Psi$ lies between $\min\{\rho,Y^0\}/\sqrt2$ and $5.13\min\{\rho,Y^0\}$,
+with $Y^0=x\sqrt{\rho\Phi_\alpha(\rho)}$. When $Y\le\rho$, the ratio of the risk to
+$\Psi$ lies between $10^{-19}$ and $5\cdot10^5$ times $\sqrt{1+\log N_\alpha(\rho)}$.
+The remark's readings are checked with explicit constants:
+- at $\alpha=2$, $a=1/4$ the window rate lies between twice and four times
+  the critical rate $\sqrt{\rho LH/B}$, which gives the quadratic law risk
+  constants $10^{-18}$ and $1.36\cdot10^6$ in this experiment;
+- away from two, once $|1-2/\alpha|\log(1/\rho)\ge1$, $N_\alpha=1/|\alpha-2|$ and
+  the risk is within the factors $5\cdot10^{-19}$ and $7\cdot10^5$ of the
+  displayed rate;
+- near two, once $|\alpha-2|\log(1/\rho)\le1$, $\Phi_\alpha$ and $N_\alpha$ are both of
+  order $\log(1/\rho)$.
+
+The verification-status table above, generated from the v6 status source,
+still lists them as a paper proof; it changes with the next manuscript
+update.
 [Sharpness record](../results/psi-sharpness-20261116/README.md) ·
 [Uniform power-law record](../results/power-window-complete-20261116/README.md). The Lean proof
 of $\mathcal Q^0\le\sqrt2\,\Psi$ uses the paper's allocation but a shorter argument, without splitting

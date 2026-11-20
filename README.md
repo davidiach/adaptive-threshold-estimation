@@ -194,10 +194,12 @@ Use a disposable checkout for reproduction: some checks write diagnostic files.
 
 ## Open work
 
-- **Paper proof only.** One tracked result: the critical-window
-  simplification that closes
-  [v6 §14.8](docs/RESULTS.md#the-variational-modulus-in-closed-form), with
-  its asymptotic interpretation.
+- **Paper proof only, now Lean-checked.** The one tracked result with a
+  paper proof only, the critical-window simplification that closes
+  [v6 §14.8](docs/RESULTS.md#the-variational-modulus-in-closed-form) with its
+  asymptotic interpretation, is Lean-checked since 20 November 2026
+  ([record](results/critical-window-20261120/README.md)). The v6 status table
+  still lists it as a paper proof until the next manuscript update.
 - **Constants of the main law.** The lower constant $1/6$ is sharp and the
   upper constant is $12$, so the two sides are a factor $72$ apart. For
   budgets of at least 25 the best lower constant is known only to lie in

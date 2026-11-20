@@ -858,12 +858,23 @@ the Phi formula, actual core cost and uniform entropy bounds, deterministic
 quantile comparison, RMS bounds and both confidence bounds. This includes
 exponent two and arbitrary scale. Independent restatements retain every
 assumption and the explicit constants. Corollary 14.14 and Remark 14.15
-remain outside the formal scope. [Record](../results/power-window-complete-20261116/README.md).
+are outside this audit; the next one checks them. [Record](../results/power-window-complete-20261116/README.md).
+
+Run `python tools/verify_critical_window.py --replay` for 15 exact statements
+and 49 transitive axiom reports over the five modules of
+`lean/ThresholdHC/CriticalWindow`. It checks Corollary 14.14 and Remark 14.15
+on top of the power-window targets: the window rate within the factor $5.13$
+for $3/2\le\alpha\le3$, display (W9) with the paper's constants $10^{-18}$ and
+$3.4\cdot10^5$, the bounds on $\Psi$, the ratio of the risk to $\Psi$, the
+quadratic law against the critical rate, and the regimes away from and near
+exponent two. With `--replay` the five modules also go through the
+independent kernel checker. Its 11-test guard suite is
+`test_critical_window.py`. [Record](../results/critical-window-20261120/README.md).
 
 Each audit pins its new specification, restates the checked targets and
 reports every new declaration's transitive axioms. Their six-test guard
 suites are `test_psi_sharpness.py` and `test_power_window.py`; CI runs both
-suites and both audits. Existing published records retain their original scope.
+suites and both audits, and also the critical-window suite and audit. Existing published records retain their original scope.
 
 ## Sharp RMS coefficient and square-root cap
 

@@ -10,7 +10,7 @@ can differ from the current files after a later proof-only change: the
 eight Lean files that were refactored afterwards without changing a
 statement. For the current tree the evidence is the CI run on that commit.
 
-The folder holds 112 dated record directories, named for a result and a
+The folder holds 113 dated record directories, named for a result and a
 date, and the loose JSON and log files of the first phases of the project.
 The table below indexes the records that the guides cite. Later sections
 describe the remaining records in prose: the time-uniform bounds, cost
@@ -22,6 +22,7 @@ is the current evidence for that result.
 
 | Claim or check | Published record |
 |---|---|
+| Corollary 14.14 and Remark 14.15 of v6 (the critical window $3/2\le\alpha\le3$ and the regimes away from and near exponent two), the last tracked results with a paper proof only: library statement, axiom and kernel-replay audits | [critical-window-20261120](critical-window-20261120/README.md) |
 | Typeset release v6 manuscript with the review corrections of 19 November (§14.8, Appendix AB; no change of content): build logs, page comparison and its script, toolchain check | [release-publication-20261119](release-publication-20261119/README.md) |
 | Typeset v6 manuscript with the RMS upper constant $12$ (Theorem AB.1, Appendix AB rewritten): build logs, page comparison and toolchain check | [upper-constant-12-publication-20261119](upper-constant-12-publication-20261119/README.md) |
 | Typeset v6 manuscript with the RMS upper constant $15$ (Theorem AB.1, Appendix AB): build logs, page comparison and toolchain check | [upper-constant-publication-20261119](upper-constant-publication-20261119/README.md) |
