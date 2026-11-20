@@ -475,7 +475,7 @@ This is the constant that §5 of the paper proves. `sharp_lower` above replaces 
 
 The [algorithm model](../lean/ThresholdHC/Tier6/AlgorithmModel.lean) takes the infimum over all measurable random-seed spaces and adaptive estimators, with expected work uniformly bounded over every measurable sign law. It permits unrestricted natural-number coin creation, revisits, interleaving, and unbounded stopping. The iid hidden magnitude environment is independent of algorithm randomness and is not visible to policy or output. Squared error and RMS use extended-real values, retaining infinite risk. `process_realization` constructs the infinite probability laws and proves their cylinder identities; realization, KL, absolute continuity, and testing bounds are not assumptions of the final minimax theorem. An immediate-stopping estimator proves the class nonempty and its minimax RMS risk at most one. See the [exact specification](../lean/ThresholdHC/Tier6/Specification.lean), [complete audit](../results/tier6_status.json), and [verification record](TIER6.md). The coefficient $1/64$ is not optimal; the sharp value is $1/6$.
 
-[Theorem 2 and §6](../paper/paper.tex#L272) quantify over every measurable sign function $q$ at a fixed $\mu$. Put $I=\mathbb E_\mu[D^{-1}]$, $V=\sup_q\operatorname{Var}_{\mu,q}(Y)$, and $\overline W=\sup_q\mathbb E_{\mu,q}W$. An estimator unbiased for all such $q$ can have $V,\overline W<\infty$ exactly when $I<\infty$, and every such estimator satisfies $V\overline W\ge I^2/16$. These are uniform bounds, not a lower bound for each individual population. The fixed-gap example attaining the lower coefficient is in §6, equation `eq:fixed-gap-sharp`; it does not identify the optimum for every nondegenerate law. Lean checks the example: at every fixed gap $d$ some unbiased estimator has expected work at most one and largest variance exactly $1/(16d^2)$, so the infimum of $V\overline W$ is $I^2/16$ at every point mass, and a bound $V\overline W\ge cI^2$ holds for every law exactly when $c\le1/16$ ([`one_flip`, `unbiased_sharp_coefficient`](../lean/ThresholdHC/PaperStatements/Full.lean), [record](../results/paper-statements-20261120/README.md)).
+[Theorem 2 and §6](../paper/paper.tex#L272) quantify over every measurable sign function $q$ at a fixed $\mu$. Put $I=\mathbb E_\mu[D^{-1}]$, $V=\sup_q\operatorname{Var}_{\mu,q}(Y)$, and $\overline W=\sup_q\mathbb E_{\mu,q}W$. An estimator unbiased for all such $q$ can have $V,\overline W<\infty$ exactly when $I<\infty$, and every such estimator satisfies $V\overline W\ge I^2/16$. These are uniform bounds, not a lower bound for each individual population. The fixed-gap example attaining the lower coefficient is in §6, equation `eq:fixed-gap-sharp`; it does not identify the optimum for every nondegenerate law. Lean checks the conclusion of the example: at every fixed gap $d$ some unbiased estimator has expected work at most one and largest variance exactly $1/(16d^2)$ (the proof uses one fresh observation), so the infimum of $V\overline W$ is $I^2/16$ at every point mass, and a bound $V\overline W\ge cI^2$ holds for every law with $I<\infty$ exactly when $c\le1/16$ ([`one_flip`, `unbiased_fixed_gap_equality`, `unbiased_sharp_coefficient`](../lean/ThresholdHC/PaperStatements/Full.lean), [record](../results/paper-statements-20261120/README.md)).
 
 The converse is now proved in Lean: [`unbiased_converse`](../lean/ThresholdHC/UnbiasedConverse/Full.lean)
 inhabits the [full specification](../lean/ThresholdHC/UnbiasedConverse/Specification.lean)
@@ -1150,7 +1150,7 @@ including the separated-cost coefficient $16/9$. [Kernel record](../results/quan
 arithmetic verifier checks the upper proof’s rational inequalities and the
 strict lower example. A [sharp-factor proof](OPTIMAL_QUANTILE_FACTOR.md) reduces the
 supremum over laws to the unique root of a scalar equation. Its rational
-certificate gives $1.462554551279<c_*<1.462554551280$. The scalar characterization, all-law comparison and finite-law sharpness are Lean-checked. Lean also checks the lower end, $c_*>1.462554551279$, and a finite law with $Q>1.462554551279\,K$ ([`quantile_root_lower`](../lean/ThresholdHC/PaperStatements/Full.lean), [record](../results/paper-statements-20261120/README.md)). The upper end retains separate exact-arithmetic verification. [Complete native record](../results/quantile-optimality-20261105/README.md)
+certificate gives $1.462554551279<c_*<1.462554551280$. The scalar characterization, all-law comparison and finite-law sharpness are Lean-checked. Lean also checks the lower end, $c_*>1.462554551279$, and a finite law with $Q>1.462554551279\,K$ ([`quantile_root_lower`, `quantile_finite_ratio`](../lean/ThresholdHC/PaperStatements/Full.lean), [record](../results/paper-statements-20261120/README.md)). The upper end retains separate exact-arithmetic verification. [Complete native record](../results/quantile-optimality-20261105/README.md)
 
 ### Computing the selection functional
 
@@ -1238,8 +1238,9 @@ and rho. This supplies no characterization for arbitrary other laws.
 
 Status: **the critical minimax rate is Lean-checked in both directions**.
 The lower theorem states an existential constant; Lean also checks the explicit
-constants $10^{-18}$ and $100000$ for every $0<\rho\le1/4$ and $B>0$, through the
-quadratic power law and the critical window
+lower constant $10^{-18}$ for every $0<\rho\le1/4$ and $B>0$, through the
+quadratic power law and the critical window, together with the existing upper
+constant $100000$ of `CriticalUpper`
 ([`critical_explicit_constants`](../lean/ThresholdHC/PaperStatements/Full.lean), [record](../results/paper-statements-20261120/README.md)).
 The exact Psi formula, rate and failure of a universal matching-Psi upper are
 also Lean-checked. The original
@@ -1425,7 +1426,7 @@ $7\cdot10^{-20}\sqrt{1+\log(1+\log(1/\rho_n))}\ge7\cdot10^{-20}\sqrt{1+n}$
 [record](../results/paper-corollaries-20261120/README.md)). In the critical theorem's
 own model, with the exact $\Psi$ above, the same sequence has $\Psi>0$ and ratio at
 least $(10^{-18}/16)\sqrt{1+\log(1+\log(1/\rho_n))}\ge(10^{-18}/16)\sqrt{1+n}$, and the
-arithmetic of the paper's slow-divergence remark, $\sqrt H<2.54$ for
+arithmetic of the paper's slow-divergence remark, $\sqrt{1+\log(1+\log(1/\rho))}<2.54$ for
 $10^{-100}\le\rho\le1/4$, is checked ([`critical_psi_divergence`,
 `critical_slow_divergence`](../lean/ThresholdHC/PaperStatements/Full.lean), [record](../results/paper-statements-20261120/README.md)). This proves the conjecture
 false for the fixed quadratic law and gives no arbitrary-law replacement.

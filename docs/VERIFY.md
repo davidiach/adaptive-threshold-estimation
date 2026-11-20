@@ -1107,7 +1107,7 @@ Run `python tools/verify_quantile_sharp_law.py` for 84 exact statements and 84 t
 
 ## Exact quantile factor and finite-law optimality
 
-Run `python tools/verify_quantile_optimality.py` for 81 exact statements and 81 transitive axiom reports. It verifies the finite probability-law family, support, fractional quantile split, entropy and selection prices, clipping, the limiting counterexample and exact least-factor equivalences. Together with the scalar and all-law audits above, this gives 219 exact statements and 219 transitive axiom reports. The decimal bracket retains the separate rational verifier `python tools/verify_optimal_quantile_factor.py`. [Complete native record](../results/quantile-optimality-20261105/README.md)
+Run `python tools/verify_quantile_optimality.py` for 81 exact statements and 81 transitive axiom reports. It verifies the finite probability-law family, support, fractional quantile split, entropy and selection prices, clipping, the limiting counterexample and exact least-factor equivalences. Together with the scalar and all-law audits above, this gives 219 exact statements and 219 transitive axiom reports. The decimal bracket retains the separate rational verifier `python tools/verify_optimal_quantile_factor.py`; its lower end is also Lean-checked by `verify_paper_statements.py` ([record](../results/paper-statements-20261120/README.md)). [Complete native record](../results/quantile-optimality-20261105/README.md)
 
 ## Time-uniform lower-bound families
 

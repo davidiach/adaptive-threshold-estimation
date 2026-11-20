@@ -74,7 +74,7 @@ the gap law is known unless a row says otherwise.
 | Result | Status | Details |
 |---|---|---|
 | For every gap law, every rarity $0<\rho\le1/4$ and every budget $B>0$, the risk $R$ satisfies $10^{-17}\mathcal K\le R\le28000\,\mathcal K$, where $\mathcal K$ is an entropy–tail selection functional | Lean-checked | [Scope](docs/RESULTS.md#general-law-rare-event-characterization) |
-| A closed formula $Q$ with $\mathcal K\le Q\le\frac{31}{20}\mathcal K$; the least possible factor is the unique root of a scalar equation, which Lean places in $(\sqrt2,\frac{31}{20})$ and an exact-rational check puts at about $1.4626$ | Lean-checked; decimal by rational certificate | [Scope](docs/RESULTS.md#known-finite-gap-rare-events-closed-quantile-characterization) · [Factor](docs/RESULTS.md#sharp-finite-vector-quantile-factor) |
+| A closed formula $Q$ with $\mathcal K\le Q\le\frac{31}{20}\mathcal K$; the least possible factor is the unique root of a scalar equation, which Lean places in $(\sqrt2,\frac{31}{20})$ and an exact-rational check puts at about $1.4626$ | Lean-checked; lower decimal end Lean-checked, upper by rational certificate | [Scope](docs/RESULTS.md#known-finite-gap-rare-events-closed-quantile-characterization) · [Factor](docs/RESULTS.md#sharp-finite-vector-quantile-factor) |
 | Critical quadratic law $F(d)=(4d)^2$: the rate is $\min(\rho,\sqrt{\rho L(1+\log L)/B})$ with $L=1+\log(1/\rho)$, which refutes a proposed characterization by a simpler modulus $\Psi$ | Lean-checked | [Scope](docs/RESULTS.md#critical-power-margin-full-minimax-characterization) |
 | Power-law gaps: the rates for exponents below and above two | Lean-checked | [Above two](docs/RESULTS.md#rare-event-power-margins-above-two) · [One to two](docs/RESULTS.md#logarithmic-and-intermediate-rare-power-margins) · [Below one](docs/RESULTS.md#rare-event-power-margins-below-exponent-one) |
 | $\Psi$ still bounds the risk from below for every gap law, $0<\rho\le1/4$ and $B>0$, with coefficient $10^{-17}$ | Lean-checked | [Scope](docs/RESULTS.md#rare-event-optimizer) |
@@ -200,13 +200,14 @@ Use a disposable checkout for reproduction: some checks write diagnostic files.
   asymptotic interpretation, is Lean-checked since 20 November 2026
   ([record](results/critical-window-20261120/README.md)). The v6 status table
   still lists it as a paper proof until the next manuscript update.
-- **Smaller paper and guide claims.** Fifteen claims that the paper or the
+- **Smaller paper and guide claims.** Twelve claims that the paper or the
   guides stated with only a written proof, a numerical check or an existential
   constant are Lean-checked since 20 November 2026, among them the critical
   theorem with explicit constants, the sharpness of the unbiased coefficient
   $1/16$ and the lower end of the bracket for the sharp quantile factor
-  ([record](results/paper-statements-20261120/README.md)). Others, such as the
-  four pilot-feedback separations held only in research packages, are next.
+  ([record](results/paper-statements-20261120/README.md)). Next is moving the
+  four pilot-feedback separations, Lean-proved inside their research packages,
+  into the audited library.
 - **Constants of the main law.** The lower constant $1/6$ is sharp and the
   upper constant is $12$, so the two sides are a factor $72$ apart. For
   budgets of at least 25 the best lower constant is known only to lie in

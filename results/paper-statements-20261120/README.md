@@ -1,8 +1,12 @@
 # Paper statements: library audit
 
-The paper and the guides stated fifteen claims with only a written proof, a
-numerical check or an existential constant. Lean now checks all fifteen, in
+Lean now checks fifteen targets in
 [`lean/ThresholdHC/PaperStatements`](../../lean/ThresholdHC/PaperStatements/Full.lean).
+Twelve are paper or guide claims that had only a written proof, a numerical
+check or an existential constant. Two are bridging statements that make the
+critical law's place among the power laws explicit, and one is a new
+stability corollary. The $\Psi$ sequence restates, in the critical theorem's own
+model, a sequence already checked in the rare-event experiment.
 The audit runs below were made at commit
 [`c4a1696fa8ec0817b4a20f86a10e6533cfd4da01`](https://github.com/davidiach/adaptive-threshold-estimation/commit/c4a1696fa8ec0817b4a20f86a10e6533cfd4da01),
 which applies the review fixes to the first version,
@@ -23,14 +27,14 @@ and $H=1+\log L$.
 | `critical_psi_divergence` | Along $\rho_n=\exp(-e^n)$, $B_n=\rho_n^{-2}$, $n\ge3$, in the critical theorem's own model: $\Psi(B_n^{-1/2})>0$, $R\ge(10^{-18}/16)\sqrt{1+\log(1+\log(1/\rho_n))}\,\Psi(B_n^{-1/2})$, and the factor is at least $\sqrt{1+n}$. | The [paper corollaries](../paper-corollaries-20261120/README.md) check the same sequence in the rare-event experiment, with `rarePsi` and the constant $7\cdot10^{-20}$. |
 | `one_flip` | At a fixed gap $d$ some estimator is unbiased for every sign law, with expected work at most one and largest variance exactly $1/(16d^2)$ (`eq:fixed-gap-sharp`). | Paper. |
 | `unbiased_fixed_gap_equality` | At every fixed gap, the infimum of $VW$ over unbiased estimators with uniform variance bound $V$ and uniform work bound $W$ is $I_\mu^2/16$. | Paper. |
-| `unbiased_sharp_coefficient` | A bound $VW\ge cI_\mu^2$ holds for every law exactly when $c\le1/16$. | Paper. |
+| `unbiased_sharp_coefficient` | A bound $VW\ge cI_\mu^2$ holds for every law with $I_\mu<\infty$ exactly when $c\le1/16$. | Paper. |
 | `half_gap_one_flip` | At the gap $1/2$ some estimator is unbiased, $[0,1]$-valued and has expected work at most one (second sentence of Proposition `prop:bounded`). | Paper. |
 | `point_mass_half` | For $B\ge1$, with the law known, a point mass has $R_{\delta_d}(B)\le\omega_{\delta_d}(B^{-1/2})/2$. | Elementary proof in a [numerical study](../../research/2026-11-18-upper-constant/README.md). |
 | `observable_second_moment` | One algorithm, chosen before the law, is unbiased with $\sup_q\mathbb E Y^2\le23I_\mu$ and $\sup_q\mathbb E T\le31I_\mu$ for every law with $I_\mu<\infty$ (the moment sentence of Theorem 2.2). | Lean stated the variance bound $23I_\mu$; the second moment was proved only inside its proof. |
 | `quantile_root_lower` | The sharp quantile factor satisfies $c_*>1.462554551279$. | The decimal bracket had a rational certificate outside Lean. |
-| `quantile_finite_ratio` | Some finitely supported law has $Q>1.462554551279\,\mathcal K$. | A Python verifier checked a five-atom example with $Q/\mathcal K>1.46255$. |
-| `selection_stability_quantile` | Selection stability (Corollary 9) with the quantile choice $L=20Q/31$, $U=Q$. | Lean had $L=5Q/8$; the guide stated $20Q/31$ without a Lean target. |
-| `selection_stability_sharp` | The same with $L=Q/c_*$, from the sharp comparison factor. | New. |
+| `quantile_finite_ratio` | Some finitely supported law has $Q>1.462554551279\,\mathcal K$ for some $0<\rho\le1/4$ and $B>0$. | Lean had finite counterexamples for every factor below $c_*$ (`QuantileOptimality.finite_sharpness`); the six-atom certificate of [`verify_optimal_quantile_factor.py`](../../tools/verify_optimal_quantile_factor.py) checked this ratio outside Lean, and a Python verifier a five-atom example with $1.46255$. |
+| `selection_stability_quantile` | Selection stability (Corollary 9): for $\mu$ within total variation $2\eta$ of $\mu_0$ and a band-preserving rounding by a factor $r\ge1$, with $Q$ the quantile value of the rounded law, $\max(0,20Q/31-\eta)\le\mathcal K(\mu)\le\min(\rho,rQ+\eta)$. | Lean had $L=5Q/8$; the guide stated $20Q/31$ without a Lean target. |
+| `selection_stability_sharp` | The same with $Q/c_*$ in place of $20Q/31$, from the sharp comparison factor. | New. |
 
 `unbiasedVarianceWork` is the infimum, in $[0,\infty]$, of $VW$ over every
 measurable seed space and estimator that is unbiased for every measurable sign
@@ -72,8 +76,10 @@ name it.
   partition series sum to more than one, with margin about $3\cdot10^{-12}$.
   Each term is bounded below by $1/r^{2^m}$, where $r$ is a rational upper bound
   for $\exp$ at a point of $[0,1]$ from a Taylor sum of up to 18 terms. The
-  scalar peak is strictly decreasing and equals one at the root, so the root
-  exceeds $k$. Selection stability transfers any comparison
+  scalar peak is the maximum of the series over $u\in[1,31/20]$, so it exceeds
+  one at $k$; for $k\ge\sqrt2$ the peak is at most one exactly when the root is
+  at most $k$, so the root exceeds $k$. `quantile_finite_ratio` is
+  `finite_sharpness` applied to this bound. Selection stability transfers any comparison
   $\mathcal K\le Q\le c\mathcal K$ at the rounded law to the lower endpoint
   $Q/c$.
 
@@ -128,8 +134,11 @@ $1.36\cdot10^6$, is now the existing formal $100000$; and the $\Psi$ sequence
 is described as a restatement in the critical model of the sequence the paper
 corollaries already check. The minor points were also applied: the sequence
 states $\Psi>0$, so it bounds the ratio; the docstrings of existential
-statements no longer name the witness; and the point-mass, slow-divergence,
-infimum and sharp-stability docstrings give their hypotheses. This was a
-review by AI agents, not a specialist referee report.
+statements mention the witness only as what the proof uses; and the point-mass, slow-divergence,
+infimum and sharp-stability docstrings give their hypotheses. A second pair
+of reviewers then read this record and the guide changes; they found no
+blocking problem, and their corrections to the count, the earlier state of the
+finite-law ratio and the stated hypotheses are included. These were reviews
+by AI agents, not a specialist referee report.
 
 [SHA256SUMS](SHA256SUMS) identifies the files of this record.
