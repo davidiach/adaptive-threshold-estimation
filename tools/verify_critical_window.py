@@ -6,16 +6,17 @@ exact power law within universal factors of the rate (W7). On the window
 factor 5.13, and derives display (W9) with the paper's constants 10^-18 and
 3.4*10^5, the bounds on Psi, and the ratio of the risk to Psi when Y <= rho.
 The remark identifies the quadratic law with the rate of the critical theorem
-and reads off the regimes away from and near exponent two.
+and reads off the regimes away from and near exponent two; near two the risk
+behaves like that of the quadratic law.
 
 The audit
 
 1. requires the directory to hold exactly the registered modules and scans
    each for proof escapes;
-2. pins the specification, whose ten statements use only the definitions of
+2. pins the specification, whose twelve statements use only the definitions of
    `PowerWindow`, the rare-event minimax risk, the variational modulus and the
    critical log factor;
-3. restates the ten targets and five component theorems with their types
+3. restates the twelve targets and five component theorems with their types
    written out, so a changed statement cannot pass under an old name;
 4. reports the transitive axioms of every public declaration in the directory.
 
@@ -36,7 +37,7 @@ GROUP = "CriticalWindow"
 NAMES = ("Specification", "Rate", "Measures", "Remark", "Full")
 SOURCE = LEAN / f"ThresholdHC/{GROUP}"
 SPEC = SOURCE / "Specification.lean"
-SPEC_HASH = "87411dc037f5e3fd7a48bcd4fcacdced2216a9e09d16ca63edf7f91db2cbff09"
+SPEC_HASH = "b37967496af9c8618c95c6d4d5e61cb3e08c0e9f8a96022c81e2f3178d848193"
 TARGETS = {
     "CriticalWindow.critical_window_rate": "CriticalWindow.WindowRateStatement",
     "CriticalWindow.critical_window_risk": "CriticalWindow.WindowRiskStatement",
@@ -48,6 +49,8 @@ TARGETS = {
     "CriticalWindow.window_away_phi": "CriticalWindow.AwayPhiStatement",
     "CriticalWindow.window_away_risk": "CriticalWindow.AwayRiskStatement",
     "CriticalWindow.window_near_two": "CriticalWindow.NearTwoStatement",
+    "CriticalWindow.window_quadratic_scales": "CriticalWindow.QuadraticScalesStatement",
+    "CriticalWindow.window_near_two_risk": "CriticalWindow.NearTwoRiskStatement",
 }
 COMPONENTS = (
     "CriticalWindow.rho_phi_lower", "CriticalWindow.power_tail_upper",
@@ -133,6 +136,19 @@ example : ∀ (α ρ : ℝ), 3/2 ≤ α → α ≤ 3 → 0 < ρ → ρ ≤ 1/4 �
     Real.log (1/ρ) / 2 ≤ powerPhi α ρ ∧ powerPhi α ρ ≤ 2 * Real.log (1/ρ) ∧
     Real.log (1/ρ) / 3 ≤ effectiveScales α ρ ∧ effectiveScales α ρ ≤ 2 * Real.log (1/ρ) :=
   CriticalWindow.window_near_two
+
+example : ∀ (ρ : ℝ), 0 < ρ → ρ ≤ 1/4 →
+    (1 + Real.log (1/ρ)) / 2 ≤ powerPhi 2 ρ ∧ powerPhi 2 ρ ≤ 1 + Real.log (1/ρ) ∧
+    effectiveScales 2 ρ ≤ 1 + Real.log (1/ρ) ∧ 1 + Real.log (1/ρ) ≤ effectiveScales 2 ρ ^ 2 :=
+  CriticalWindow.window_quadratic_scales
+
+example : ∀ (μ : Measure Gap) [IsProbabilityMeasure μ] (α a ρ B : ℝ),
+    3/2 ≤ α → α ≤ 3 → 0 < a → a ≤ 1/2 → 0 < ρ → ρ ≤ 1/4 → 0 < B → ExactPowerLaw μ α a →
+    |α - 2| * Real.log (1/ρ) ≤ 1 →
+    let Z := 1 / (a * Real.sqrt B) * Real.sqrt (ρ * CriticalEntropy.criticalLogFactor ρ)
+    ENNReal.ofReal (2 * (10 : ℝ)⁻¹ ^ 19 * min ρ Z) ≤ rareMinimaxRisk μ ρ B ∧
+    rareMinimaxRisk μ ρ B ≤ ENNReal.ofReal (700000 * min ρ Z) :=
+  CriticalWindow.window_near_two_risk
 
 example : ∀ {α ρ : ℝ}, 3/2 ≤ α → α ≤ 3 → 0 < ρ → ρ ≤ 1/4 →
     (53/100 : ℝ) * ρ ^ (2 - 2/α) ≤ ρ * powerPhi α ρ :=
@@ -235,7 +251,7 @@ def main() -> None:
         from verify_project_axioms import replay
         replay(replay_modules(), "lake", args.jobs)
         print(f"Replayed {len(modules())} modules through the independent kernel checker")
-    print("All ten critical-window target statements are certified")
+    print("All twelve critical-window target statements are certified")
 
 
 if __name__ == "__main__":

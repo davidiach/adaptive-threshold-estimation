@@ -33,7 +33,7 @@ class CriticalWindowAuditTests(unittest.TestCase):
         for name in audit.COMPONENTS:
             self.assertIn("ThresholdHC." + name, roots)
             self.assertRegex(audit.EXACT, rf":=\s*@?{name}\n")
-        self.assertEqual(len(audit.TARGETS), 10)
+        self.assertEqual(len(audit.TARGETS), 12)
         self.assertEqual(len(audit.COMPONENTS), 5)
         self.assertEqual(source.count("\nexample"), audit.EXACT_COUNT + len(audit.TARGETS))
         self.assertEqual(source.count("#print axioms "), len(roots))
@@ -46,7 +46,9 @@ class CriticalWindowAuditTests(unittest.TestCase):
                      "(1 - Real.exp (-1)) * (α / (α - 2)) ≤ powerPhi α ρ",
                      "ENNReal.ofReal (700000 * min ρ Z)",
                      "Real.log (1/ρ) / 3 ≤ effectiveScales α ρ",
-                     "(53/100 : ℝ) * ρ ^ (2 - 2/α) ≤ ρ * powerPhi α ρ"):
+                     "(53/100 : ℝ) * ρ ^ (2 - 2/α) ≤ ρ * powerPhi α ρ",
+                     "1 + Real.log (1/ρ) ≤ effectiveScales 2 ρ ^ 2",
+                     "ENNReal.ofReal (2 * (10 : ℝ)⁻¹ ^ 19 * min ρ Z) ≤ rareMinimaxRisk μ ρ B"):
             self.assertIn(text, audit.EXACT)
         shared.validate_reports(report(roots), 0, roots)
 
