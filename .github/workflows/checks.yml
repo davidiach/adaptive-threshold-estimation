@@ -166,6 +166,7 @@ jobs:
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
           python -m unittest discover -s tools -p 'test_large_budget_rms.py' -v
+          python -m unittest discover -s tools -p 'test_pilot_feedback.py' -v
           python -m unittest discover -s tools -p 'test_upper_constant.py' -v
           python -m unittest discover -s tools -p 'test_upper_work.py' -v
           python -m unittest discover -s tools -p 'test_upper_moment.py' -v
@@ -381,6 +382,11 @@ jobs:
       # pilot policy in the independent kernel checker.
       - name: Verify the large-budget bracket of the RMS coefficient and replay its modules
         run: python tools/verify_large_budget_rms.py --replay --jobs 3
+      # The pilot-feedback separations at gap 1/5, B = 25, promoted from two
+      # research packages; the kernel replay re-evaluates their integer
+      # certificates (about six minutes locally).
+      - name: Verify the pilot-feedback separations and replay their modules
+        run: python tools/verify_pilot_feedback.py --replay --jobs 3
       - name: Verify the upper constant 119 of the RMS law and replay its modules
         run: python tools/verify_upper_constant.py --replay --jobs 3
       # Its 7 modules build on the upper-constant modules above and sharpen the
