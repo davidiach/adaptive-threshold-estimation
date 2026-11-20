@@ -1,7 +1,7 @@
-Built 1421 project modules
-PROJECT_AXIOMS modules=1421
-PROJECT_AXIOMS constants=16456
-PROJECT_AXIOMS theorems=13289
+Built 1425 project modules
+PROJECT_AXIOMS modules=1425
+PROJECT_AXIOMS constants=16479
+PROJECT_AXIOMS theorems=13307
 PROJECT_AXIOMS declared=[]
 PROJECT_AXIOMS used=[propext, Classical.choice, Quot.sound]
 PROJECT_AXIOMS offenders=[]
@@ -136,18 +136,18 @@ PROJECT_INSTANCE ThresholdHC.Genie.uniformGapLaw_probability global 1000 prop
 PROJECT_INSTANCE ThresholdHC.GlobalSelectionCertificates.instDecidableSavingPositiveQ global 1000 data
 PROJECT_INSTANCE ThresholdHC.SharpRMS.oracleArrayLaw_probability global 1000 prop
 PROJECT_INSTANCE ThresholdHC.LawAdaptation.familyStreamLaw_probability global 1000 prop
+PROJECT_INSTANCE ThresholdHC.SharpRMS.Window.Barrier._sizeOf_inst global 1000 data
+PROJECT_INSTANCE ThresholdHC.SharpRMS.Window.decidableGridBound global 1000 data
+PROJECT_INSTANCE ThresholdHC.UpperMixture.coinLaw_probability global 1000 prop
 PROJECT_INSTANCE ThresholdHC.QuantileOptimality.packet_finite global 1000 prop
 PROJECT_INSTANCE ThresholdHC.RareAboveTwo.rareSeedLaw_probability global 1000 prop
 PROJECT_INSTANCE ThresholdHC.RareAboveTwo.boolWordsMeasurableSpace global 1000 orphan
-PROJECT_INSTANCE ThresholdHC.SharpRMS.Window.Barrier._sizeOf_inst global 1000 data
-PROJECT_INSTANCE ThresholdHC.SharpRMS.Window.decidableGridBound global 1000 data
 PROJECT_INSTANCE ThresholdHC.TypedConfidence.parameterWordLaw_probability global 1000 prop
 PROJECT_INSTANCE ThresholdHC.TypedConfidence.probability_update global 1000 prop
 PROJECT_INSTANCE ThresholdHC.TypedConfidence.quarter_probability global 1000 prop
 PROJECT_INSTANCE ThresholdHC.TypedConfidence.countable_parameter_probability global 1000 prop
 PROJECT_INSTANCE ThresholdHC.TypedConfidence.signParameterLaw_probability global 1000 prop
-PROJECT_INSTANCE ThresholdHC.UpperMixture.coinLaw_probability global 1000 prop
-PROJECT_DEFINITIONS count=3031
+PROJECT_DEFINITIONS count=3036
 PROJECT_DEFINITION _private.ThresholdHC.BlindUpper.BatchMachine.0.ThresholdHC.BlindUpper.instCountableBatchControl.countableToNat._@.ThresholdHC.BlindUpper.BatchMachine.2498572135._hygCtx._hyg.43 2971687738090608681:5659482563623340202
 PROJECT_DEFINITION _private.ThresholdHC.EntropyTailExecution.CallMachine.0.ThresholdHC.EntropyTailExecution.instCountablePlanState.countableToNat._@.ThresholdHC.EntropyTailExecution.CallMachine.3902759816._hygCtx._hyg.28 9473174145655191477:13341827522917269068
 PROJECT_DEFINITION _private.ThresholdHC.BlindUpper.BatchMachine.0.ThresholdHC.BlindUpper.instCountableBatchControl.countableToNat.match_1._@.ThresholdHC.BlindUpper.BatchMachine.2498572135._hygCtx._hyg.43 466470936601556764:3830812577574774021
@@ -841,8 +841,10 @@ PROJECT_DEFINITION ThresholdHC.CriticalUpper.usedCriticalTapes 16495783304394026
 PROJECT_DEFINITION ThresholdHC.CriticalWindow.AwayPhiStatement 4762494857145497995:438299935731426691
 PROJECT_DEFINITION ThresholdHC.CriticalWindow.AwayRiskStatement 4762494857145497995:17192668983762348505
 PROJECT_DEFINITION ThresholdHC.CriticalWindow.AwayScalesStatement 4762494857145497995:17165619783748074965
+PROJECT_DEFINITION ThresholdHC.CriticalWindow.NearTwoRiskStatement 4762494857145497995:11148592559425285949
 PROJECT_DEFINITION ThresholdHC.CriticalWindow.NearTwoStatement 4762494857145497995:12653143440594506115
 PROJECT_DEFINITION ThresholdHC.CriticalWindow.QuadraticRiskStatement 4762494857145497995:13203620873666675448
+PROJECT_DEFINITION ThresholdHC.CriticalWindow.QuadraticScalesStatement 4762494857145497995:10302921337160153062
 PROJECT_DEFINITION ThresholdHC.CriticalWindow.QuadraticWindowStatement 4762494857145497995:16462334998551052192
 PROJECT_DEFINITION ThresholdHC.CriticalWindow.WindowPsiStatement 4762494857145497995:11010381820272591371
 PROJECT_DEFINITION ThresholdHC.CriticalWindow.WindowRateStatement 4762494857145497995:3217819434204691532
@@ -1384,6 +1386,9 @@ PROJECT_DEFINITION ThresholdHC.OracleLower.selectedLabel 13554376362010299860:18
 PROJECT_DEFINITION ThresholdHC.OracleLower.selectedMinimaxRisk 10850261107739373973:2549926880631711450
 PROJECT_DEFINITION ThresholdHC.OracleLower.selectedOracle 13092515415492536199:5437546494487480159
 PROJECT_DEFINITION ThresholdHC.OracleLower.selectedRequestMeasurableSpace 7674821830771989894:24979097905214202
+PROJECT_DEFINITION ThresholdHC.PaperCorollaries.EnvelopeRMSStatement 4762494857145497995:3220548424012583486
+PROJECT_DEFINITION ThresholdHC.PaperCorollaries.HardSharpLowerStatement 4762494857145497995:5219002052237726944
+PROJECT_DEFINITION ThresholdHC.PaperCorollaries.PsiSequenceStatement 4762494857145497995:566039933967207105
 PROJECT_DEFINITION ThresholdHC.PowerWindow.PowerConfidenceStatement 4762494857145497995:1530297512267250691
 PROJECT_DEFINITION ThresholdHC.PowerWindow.PowerCoreStatement 4762494857145497995:6587263594223711346
 PROJECT_DEFINITION ThresholdHC.PowerWindow.PowerPhiStatement 4762494857145497995:9720291207922797821
@@ -3179,6 +3184,6 @@ PROJECT_DEFINITION _private.ThresholdHC.Tier3.Examples.0.ThresholdHC.Proofs.step
 PROJECT_DEFINITION _private.ThresholdHC.Tier5.CreationFresh.0.ThresholdHC.Proofs.stepProb.match_1.splitter._sparseCasesOn_4 13208648013163033065:7056258156388248554
 PROJECT_DEFINITION _private.ThresholdHC.Tier5.CreationFresh.0.ThresholdHC.Proofs.stepProb.match_1.splitter._sparseCasesOn_5 14373928458666162397:14537995785574750124
 PROJECT_DEFINITION _private.ThresholdHC.LargeBudgetRMS.RevisitPolynomial.0.ThresholdHC.SharpRMS.Revisit.IntPoly.add.match_1.splitter 8849310907925468771:5197568946107300907
-Verified 16456 constants (13289 theorems) in 1421 modules: axioms propext, Classical.choice, Quot.sound
+Verified 16479 constants (13307 theorems) in 1425 modules: axioms propext, Classical.choice, Quot.sound
 Verified 142 exported project instances: named, global, default priority, 6 registered orphans
-Verified 3031 locked definition fingerprints
+Verified 3036 locked definition fingerprints

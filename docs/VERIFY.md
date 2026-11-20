@@ -860,21 +860,29 @@ exponent two and arbitrary scale. Independent restatements retain every
 assumption and the explicit constants. Corollary 14.14 and Remark 14.15
 are outside this audit; the next one checks them. [Record](../results/power-window-complete-20261116/README.md).
 
-Run `python tools/verify_critical_window.py --replay` for 15 exact statements
-and 49 transitive axiom reports over the five modules of
+Run `python tools/verify_critical_window.py --replay` for 17 exact statements
+and 55 transitive axiom reports over the five modules of
 `lean/ThresholdHC/CriticalWindow`. It checks Corollary 14.14 and Remark 14.15
 on top of the power-window targets: the window rate within the factor $5.13$
 for $3/2\le\alpha\le3$, display (W9) with the paper's constants $10^{-18}$ and
 $3.4\cdot10^5$, the bounds on $\Psi$, the ratio of the risk to $\Psi$, the
 quadratic law against the critical rate, and the regimes away from and near
-exponent two. With `--replay` the five modules also go through the
-independent kernel checker. Its 11-test guard suite is
+exponent two, with the near-two risk. With `--replay` the five modules also
+go through the independent kernel checker. Its 11-test guard suite is
 `test_critical_window.py`. [Record](../results/critical-window-20261120/README.md).
+
+Run `python tools/verify_paper_corollaries.py --replay` for 5 exact statements
+and 11 transitive axiom reports over the four modules of
+`lean/ThresholdHC/PaperCorollaries`: the RMS constants $1/6$ and $12$ under a
+stochastic envelope, the coefficient $1/6$ under a pathwise cap, and the
+paper's divergence sequence for $\Psi$ at the quadratic law. Its 11-test guard
+suite is `test_paper_corollaries.py`. [Record](../results/paper-corollaries-20261120/README.md).
 
 Each audit pins its new specification, restates the checked targets and
 reports every new declaration's transitive axioms. Their six-test guard
 suites are `test_psi_sharpness.py` and `test_power_window.py`; CI runs both
-suites and both audits, and also the critical-window suite and audit. Existing published records retain their original scope.
+suites and both audits, and also the critical-window and paper-corollary
+suites and audits. Existing published records retain their original scope.
 
 ## Sharp RMS coefficient and square-root cap
 

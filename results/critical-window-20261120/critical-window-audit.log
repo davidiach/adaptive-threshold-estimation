@@ -1,61 +1,61 @@
-⚠ [18165/18785] Replayed ThresholdHC.Tier4.Entropy
+⚠ [18165/19323] Replayed ThresholdHC.Tier4.Entropy
 warning: ThresholdHC/Tier4/Entropy.lean: imports `Mathlib.InformationTheory.KullbackLeibler.DataProcessing` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [18166/18785] Ran ThresholdHC.Tier4.Entropy:irArts
+⚠ [18166/19323] Ran ThresholdHC.Tier4.Entropy:irArts
 warning: ThresholdHC/Tier4/Entropy.lean: imports `Mathlib.InformationTheory.KullbackLeibler.DataProcessing` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [18167/18785] Replayed ThresholdHC.Tier5.Entropy
+⚠ [18167/19323] Replayed ThresholdHC.Tier5.Entropy
 warning: ThresholdHC/Tier5/Entropy.lean: imports `Mathlib.Probability.Martingale.Convergence` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [18168/18785] Ran ThresholdHC.Tier5.Entropy:irArts
+⚠ [18168/19323] Ran ThresholdHC.Tier5.Entropy:irArts
 warning: ThresholdHC/Tier5/Entropy.lean: imports `Mathlib.Probability.Martingale.Convergence` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [18169/18785] Replayed ThresholdHC.BlindUpper.InfiniteArrays
+⚠ [18169/19323] Replayed ThresholdHC.BlindUpper.InfiniteArrays
 warning: ThresholdHC/BlindUpper/InfiniteArrays.lean: imports `Mathlib.Probability.Independence.InfinitePi` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [18170/18785] Ran ThresholdHC.BlindUpper.InfiniteArrays:irArts
+⚠ [18170/19323] Ran ThresholdHC.BlindUpper.InfiniteArrays:irArts
 warning: ThresholdHC/BlindUpper/InfiniteArrays.lean: imports `Mathlib.Probability.Independence.InfinitePi` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [18171/18785] Replayed ThresholdHC.EntropyTailUpper.ReferenceDrift
+⚠ [18171/19323] Replayed ThresholdHC.EntropyTailUpper.ReferenceDrift
 warning: ThresholdHC/EntropyTailUpper/ReferenceDrift.lean: imports `Mathlib.Analysis.SpecialFunctions.Log.Deriv` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 warning: ThresholdHC/EntropyTailUpper/ReferenceDrift.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [18172/18785] Ran ThresholdHC.EntropyTailUpper.ReferenceDrift:irArts
+⚠ [18172/19323] Ran ThresholdHC.EntropyTailUpper.ReferenceDrift:irArts
 warning: ThresholdHC/EntropyTailUpper/ReferenceDrift.lean: imports `Mathlib.Analysis.SpecialFunctions.Log.Deriv` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 warning: ThresholdHC/EntropyTailUpper/ReferenceDrift.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [18173/18785] Replayed ThresholdHC.EntropyTailQuantile.CostEntropy
+⚠ [18173/19323] Replayed ThresholdHC.EntropyTailQuantile.CostEntropy
 warning: ThresholdHC/EntropyTailQuantile/CostEntropy.lean: imports `Mathlib.Analysis.SpecialFunctions.Log.NegMulLog` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 warning: ThresholdHC/EntropyTailQuantile/CostEntropy.lean: imports `Mathlib.Analysis.SpecialFunctions.Pow.Real` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 warning: ThresholdHC/EntropyTailQuantile/CostEntropy.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [18174/18785] Ran ThresholdHC.EntropyTailQuantile.CostEntropy:irArts
+⚠ [18174/19323] Ran ThresholdHC.EntropyTailQuantile.CostEntropy:irArts
 warning: ThresholdHC/EntropyTailQuantile/CostEntropy.lean: imports `Mathlib.Analysis.SpecialFunctions.Log.NegMulLog` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 warning: ThresholdHC/EntropyTailQuantile/CostEntropy.lean: imports `Mathlib.Analysis.SpecialFunctions.Pow.Real` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 warning: ThresholdHC/EntropyTailQuantile/CostEntropy.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [18178/19495] Replayed ThresholdHC.EntropyTailUpper.PoissonMoments
+⚠ [18177/19323] Replayed ThresholdHC.EntropyTailUpper.PoissonMoments
 warning: ThresholdHC/EntropyTailUpper/PoissonMoments.lean: imports `Mathlib.Probability.Distributions.Poisson.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 warning: ThresholdHC/EntropyTailUpper/PoissonMoments.lean: imports `Mathlib.Probability.Moments.Variance` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 warning: ThresholdHC/EntropyTailUpper/PoissonMoments.lean: imports `Mathlib.MeasureTheory.Function.L2Space` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 warning: ThresholdHC/EntropyTailUpper/PoissonMoments.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [18179/19495] Ran ThresholdHC.EntropyTailUpper.PoissonMoments:irArts
+⚠ [18178/19323] Ran ThresholdHC.EntropyTailUpper.PoissonMoments:irArts
 warning: ThresholdHC/EntropyTailUpper/PoissonMoments.lean: imports `Mathlib.Probability.Distributions.Poisson.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 warning: ThresholdHC/EntropyTailUpper/PoissonMoments.lean: imports `Mathlib.Probability.Moments.Variance` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 warning: ThresholdHC/EntropyTailUpper/PoissonMoments.lean: imports `Mathlib.MeasureTheory.Function.L2Space` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 warning: ThresholdHC/EntropyTailUpper/PoissonMoments.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [18180/19495] Replayed ThresholdHC.EntropyTailUpper.Allocation
+⚠ [18179/19323] Replayed ThresholdHC.EntropyTailUpper.Allocation
 warning: ThresholdHC/EntropyTailUpper/Allocation.lean: imports `Mathlib.Analysis.SpecialFunctions.Sqrt` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 warning: ThresholdHC/EntropyTailUpper/Allocation.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [18181/19495] Ran ThresholdHC.EntropyTailUpper.Allocation:irArts
+⚠ [18180/19323] Ran ThresholdHC.EntropyTailUpper.Allocation:irArts
 warning: ThresholdHC/EntropyTailUpper/Allocation.lean: imports `Mathlib.Analysis.SpecialFunctions.Sqrt` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 warning: ThresholdHC/EntropyTailUpper/Allocation.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [18182/19495] Replayed ThresholdHC.EntropyTailQuantile.QuantileThreshold
+⚠ [18181/19323] Replayed ThresholdHC.EntropyTailQuantile.QuantileThreshold
 warning: ThresholdHC/EntropyTailQuantile/QuantileThreshold.lean: imports `Mathlib.Probability.CDF` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 warning: ThresholdHC/EntropyTailQuantile/QuantileThreshold.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [18183/19495] Ran ThresholdHC.EntropyTailQuantile.QuantileThreshold:irArts
+⚠ [18182/19323] Ran ThresholdHC.EntropyTailQuantile.QuantileThreshold:irArts
 warning: ThresholdHC/EntropyTailQuantile/QuantileThreshold.lean: imports `Mathlib.Probability.CDF` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 warning: ThresholdHC/EntropyTailQuantile/QuantileThreshold.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [18184/19495] Replayed ThresholdHC.EntropyTailUpper.LogSurcharge
+⚠ [18183/19323] Replayed ThresholdHC.EntropyTailUpper.LogSurcharge
 warning: ThresholdHC/EntropyTailUpper/LogSurcharge.lean: imports `Mathlib.Analysis.SpecialFunctions.Log.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 warning: ThresholdHC/EntropyTailUpper/LogSurcharge.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [18185/19495] Ran ThresholdHC.EntropyTailUpper.LogSurcharge:irArts
+⚠ [18184/19323] Ran ThresholdHC.EntropyTailUpper.LogSurcharge:irArts
 warning: ThresholdHC/EntropyTailUpper/LogSurcharge.lean: imports `Mathlib.Analysis.SpecialFunctions.Log.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 warning: ThresholdHC/EntropyTailUpper/LogSurcharge.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [18186/19495] Replayed ThresholdHC.EntropyTailQuantile.QuantileAlgebra
+⚠ [18185/19323] Replayed ThresholdHC.EntropyTailQuantile.QuantileAlgebra
 warning: ThresholdHC/EntropyTailQuantile/QuantileAlgebra.lean: imports `Mathlib.Analysis.SpecialFunctions.Sqrt` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 warning: ThresholdHC/EntropyTailQuantile/QuantileAlgebra.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [18187/19495] Ran ThresholdHC.EntropyTailQuantile.QuantileAlgebra:irArts
+⚠ [18186/19323] Ran ThresholdHC.EntropyTailQuantile.QuantileAlgebra:irArts
 warning: ThresholdHC/EntropyTailQuantile/QuantileAlgebra.lean: imports `Mathlib.Analysis.SpecialFunctions.Sqrt` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 warning: ThresholdHC/EntropyTailQuantile/QuantileAlgebra.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 ⚠ [18190/19495] Replayed ThresholdHC.Confidence.Median
@@ -1110,11 +1110,11 @@ The difference between `let` and `letI` is that `letI` inlines the value.
 But this is not relevant for proofs because of proof irrelevance.
 
 Note: This linter can be disabled with `set_option linter.style.haveILetI false`
-⚠ [18862/19495] Replayed ThresholdHC.Genie.CompactDecreasingMaximum
+⚠ [18872/19495] Replayed ThresholdHC.Genie.CompactDecreasingMaximum
 warning: ThresholdHC/Genie/CompactDecreasingMaximum.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [18863/19495] Ran ThresholdHC.Genie.CompactDecreasingMaximum:irArts
+⚠ [18873/19495] Ran ThresholdHC.Genie.CompactDecreasingMaximum:irArts
 warning: ThresholdHC/Genie/CompactDecreasingMaximum.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [18864/19495] Replayed ThresholdHC.Proofs.Hellinger
+⚠ [18874/19495] Replayed ThresholdHC.Proofs.Hellinger
 warning: ThresholdHC/Proofs/Hellinger.lean:24:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
 
 Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
@@ -1137,19 +1137,19 @@ Hint: Omit it from the simp argument list.
   [apply] simp only [sub_mul, mul_sub, Finset.sum_sub_distrib, ← Finset.sum_mul, ← Finset.mul_sum, hp1, hq1, one_mul]
 
 Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
-⚠ [18866/19495] Replayed ThresholdHC.UnbiasedConverse.TwoPoint
+⚠ [18876/19495] Replayed ThresholdHC.UnbiasedConverse.TwoPoint
 warning: ThresholdHC/UnbiasedConverse/TwoPoint.lean: imports `Mathlib.InformationTheory.KullbackLeibler.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [18867/19495] Ran ThresholdHC.UnbiasedConverse.TwoPoint:irArts
+⚠ [18877/19495] Ran ThresholdHC.UnbiasedConverse.TwoPoint:irArts
 warning: ThresholdHC/UnbiasedConverse/TwoPoint.lean: imports `Mathlib.InformationTheory.KullbackLeibler.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [18900/19495] Replayed ThresholdHC.StoppingProgram.Slater
+⚠ [18910/19495] Replayed ThresholdHC.StoppingProgram.Slater
 warning: ThresholdHC/StoppingProgram/Slater.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [18901/19495] Ran ThresholdHC.StoppingProgram.Slater:irArts
+⚠ [18911/19495] Ran ThresholdHC.StoppingProgram.Slater:irArts
 warning: ThresholdHC/StoppingProgram/Slater.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [18904/19495] Replayed ThresholdHC.StoppingProgram.MinimaxSelection
+⚠ [18914/19495] Replayed ThresholdHC.StoppingProgram.MinimaxSelection
 warning: ThresholdHC/StoppingProgram/MinimaxSelection.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [18905/19495] Ran ThresholdHC.StoppingProgram.MinimaxSelection:irArts
+⚠ [18915/19495] Ran ThresholdHC.StoppingProgram.MinimaxSelection:irArts
 warning: ThresholdHC/StoppingProgram/MinimaxSelection.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [18926/19495] Replayed ThresholdHC.StoppingProgram.TruncationComparison
+⚠ [18936/19495] Replayed ThresholdHC.StoppingProgram.TruncationComparison
 warning: ThresholdHC/StoppingProgram/TruncationComparison.lean:35:4: Try this: 
   letI̵
 
@@ -1158,7 +1158,7 @@ The difference between `let` and `letI` is that `letI` inlines the value.
 But this is not relevant for proofs because of proof irrelevance.
 
 Note: This linter can be disabled with `set_option linter.style.haveILetI false`
-⚠ [18934/19495] Replayed ThresholdHC.StoppingProgram.PositiveTables
+⚠ [18944/19495] Replayed ThresholdHC.StoppingProgram.PositiveTables
 warning: ThresholdHC/StoppingProgram/PositiveTables.lean:24:2: Try this: 
   letI̵
 
@@ -1167,7 +1167,16 @@ The difference between `let` and `letI` is that `letI` inlines the value.
 But this is not relevant for proofs because of proof irrelevance.
 
 Note: This linter can be disabled with `set_option linter.style.haveILetI false`
-⚠ [18980/19495] Replayed ThresholdHC.Genie.PerspectiveIntegral
+⚠ [18990/19495] Replayed ThresholdHC.Genie.InfiniteDuality
+warning: ThresholdHC/Genie/InfiniteDuality.lean:34:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+⚠ [18992/19495] Replayed ThresholdHC.Genie.PerspectiveIntegral
 warning: ThresholdHC/Genie/PerspectiveIntegral.lean:39:12: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
 
 Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
@@ -1180,19 +1189,19 @@ Note: This linter can be disabled with `set_option linter.unusedTactic false`
 warning: ThresholdHC/Genie/PerspectiveIntegral.lean:53:10: Unused tactic linter: `<;>` can be replaced with `;`.
 
 Note: This linter can be disabled with `set_option linter.unusedTactic false`
-⚠ [18992/19495] Replayed ThresholdHC.Genie.ReferenceRegularization
+⚠ [19004/19495] Replayed ThresholdHC.Genie.ReferenceRegularization
 warning: ThresholdHC/Genie/ReferenceRegularization.lean:115:4: Unused tactic linter: `change _ ≤ (2 / ε) * v` does not change the goal.
 
 Note: This linter can be disabled with `set_option linter.unusedTactic false`
-⚠ [19082/19495] Replayed ThresholdHC.EntropyTailLower.LocalizationAlgebra
+⚠ [19096/19495] Replayed ThresholdHC.EntropyTailLower.LocalizationAlgebra
 warning: ThresholdHC/EntropyTailLower/LocalizationAlgebra.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19083/19495] Ran ThresholdHC.EntropyTailLower.LocalizationAlgebra:irArts
+⚠ [19097/19495] Ran ThresholdHC.EntropyTailLower.LocalizationAlgebra:irArts
 warning: ThresholdHC/EntropyTailLower/LocalizationAlgebra.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19092/19495] Replayed ThresholdHC.EntropyTailLower.EntropyIncrement
+⚠ [19106/19495] Replayed ThresholdHC.EntropyTailLower.EntropyIncrement
 warning: ThresholdHC/EntropyTailLower/EntropyIncrement.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19093/19495] Ran ThresholdHC.EntropyTailLower.EntropyIncrement:irArts
+⚠ [19107/19495] Ran ThresholdHC.EntropyTailLower.EntropyIncrement:irArts
 warning: ThresholdHC/EntropyTailLower/EntropyIncrement.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19096/19495] Replayed ThresholdHC.EntropyTailLower.EntropyPacking
+⚠ [19110/19495] Replayed ThresholdHC.EntropyTailLower.EntropyPacking
 warning: ThresholdHC/EntropyTailLower/EntropyPacking.lean:142:39: This simp argument is unused:
   neg_zero
 
@@ -1201,7 +1210,7 @@ Hint: Omit it from the simp argument list.
     log_one, mul_zero, add_zero]
 
 Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
-⚠ [19102/19495] Replayed ThresholdHC.EntropyTailLower.ComparableGroups
+⚠ [19116/19495] Replayed ThresholdHC.EntropyTailLower.ComparableGroups
 warning: ThresholdHC/EntropyTailLower/ComparableGroups.lean:20:2: Try this: 
   letI̵
 
@@ -1218,12 +1227,12 @@ The difference between `let` and `letI` is that `letI` inlines the value.
 But this is not relevant for proofs because of proof irrelevance.
 
 Note: This linter can be disabled with `set_option linter.style.haveILetI false`
-⚠ [19110/19495] Replayed ThresholdHC.EntropyTail.Bridge
+⚠ [19124/19495] Replayed ThresholdHC.EntropyTail.Bridge
 warning: ThresholdHC/EntropyTail/Bridge.lean:30:57: `Set.mem_setOf_eq` has been deprecated: Use `Set.mem_ofPred_eq` instead
 
 Hint: Replace the deprecated name:
   S̵e̵t̵.̵m̵e̵m̵_̵s̵e̵t̵O̵f̵_̵e̵q̵S̲e̲t̲.̲m̲e̲m̲_̲o̲f̲P̲r̲e̲d̲_̲e̲q̲
-⚠ [19112/19495] Replayed ThresholdHC.EntropyTailLower.FiniteBandApprox
+⚠ [19126/19495] Replayed ThresholdHC.EntropyTailLower.FiniteBandApprox
 warning: ThresholdHC/EntropyTailLower/FiniteBandApprox.lean:61:24: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
 
 Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
@@ -1236,7 +1245,7 @@ Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus fa
 warning: ThresholdHC/EntropyTailLower/FiniteBandApprox.lean:142:51: Unused tactic linter: `<;>` can be replaced with `;`.
 
 Note: This linter can be disabled with `set_option linter.unusedTactic false`
-⚠ [19130/19495] Replayed ThresholdHC.EntropyTailLower.JointAllocation
+⚠ [19144/19495] Replayed ThresholdHC.EntropyTailLower.JointAllocation
 warning: ThresholdHC/EntropyTailLower/JointAllocation.lean:8:52: Variable name `hρ` is not explicitly referenced.
 
 Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
@@ -1255,7 +1264,7 @@ Note: This linter can be disabled with `set_option linter.unusedTactic false`
 warning: ThresholdHC/EntropyTailLower/JointAllocation.lean:77:22: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
 
 Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
-⚠ [19134/19495] Replayed ThresholdHC.EntropyTailLower.TrimmedGroup
+⚠ [19148/19495] Replayed ThresholdHC.EntropyTailLower.TrimmedGroup
 warning: ThresholdHC/EntropyTailLower/TrimmedGroup.lean:125:68: `simp` already closes the goal
 
 Hint: Use `simp` instead of `simpa`:
@@ -1268,7 +1277,7 @@ Hint: Use `simp` instead of `simpa`:
   [apply] simp
 
 Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
-⚠ [19138/19495] Replayed ThresholdHC.EntropyTailLower.RetainedFamily
+⚠ [19152/19495] Replayed ThresholdHC.EntropyTailLower.RetainedFamily
 warning: ThresholdHC/EntropyTailLower/RetainedFamily.lean:38:2: Try this: 
   letI̵
 
@@ -1277,11 +1286,11 @@ The difference between `let` and `letI` is that `letI` inlines the value.
 But this is not relevant for proofs because of proof irrelevance.
 
 Note: This linter can be disabled with `set_option linter.style.haveILetI false`
-⚠ [19140/19495] Replayed ThresholdHC.EntropyTailLower.DyadicMass
+⚠ [19154/19495] Replayed ThresholdHC.EntropyTailLower.DyadicMass
 warning: ThresholdHC/EntropyTailLower/DyadicMass.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19141/19495] Ran ThresholdHC.EntropyTailLower.DyadicMass:irArts
+⚠ [19155/19495] Ran ThresholdHC.EntropyTailLower.DyadicMass:irArts
 warning: ThresholdHC/EntropyTailLower/DyadicMass.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19154/19495] Replayed ThresholdHC.EntropyTailLower.OptimalRetained
+⚠ [19168/19495] Replayed ThresholdHC.EntropyTailLower.OptimalRetained
 warning: ThresholdHC/EntropyTailLower/OptimalRetained.lean:158:2: Try this: 
   letI̵
 
@@ -1297,15 +1306,19 @@ Hint: Omit it from the simp argument list.
   [apply] simp [X, maskedCost, Y, p, a, hiS, hi6, hz]
 
 Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
-⚠ [19167/19495] Replayed ThresholdHC.EntropyTailAssembly.AccuracySchedule
+⚠ [19182/19495] Replayed ThresholdHC.EntropyTailAssembly.AccuracySchedule
 warning: ThresholdHC/EntropyTailAssembly/AccuracySchedule.lean: imports `Mathlib.Analysis.SpecificLimits.Normed` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19168/19495] Ran ThresholdHC.EntropyTailAssembly.AccuracySchedule:irArts
+⚠ [19183/19495] Ran ThresholdHC.EntropyTailAssembly.AccuracySchedule:irArts
 warning: ThresholdHC/EntropyTailAssembly/AccuracySchedule.lean: imports `Mathlib.Analysis.SpecificLimits.Normed` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19229/19495] Replayed ThresholdHC.RareAboveTwo.BudgetMath
+⚠ [19244/19495] Replayed ThresholdHC.RareAboveTwo.BudgetMath
 warning: ThresholdHC/RareAboveTwo/BudgetMath.lean: imports `Mathlib.Algebra.Order.Floor.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19230/19495] Ran ThresholdHC.RareAboveTwo.BudgetMath:irArts
+⚠ [19245/19495] Ran ThresholdHC.RareAboveTwo.BudgetMath:irArts
 warning: ThresholdHC/RareAboveTwo/BudgetMath.lean: imports `Mathlib.Algebra.Order.Floor.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19269/19495] Replayed ThresholdHC.Genie.LatentModel
+⚠ [19254/19495] Replayed ThresholdHC.FiniteQuantile.CoreRisk
+warning: ThresholdHC/FiniteQuantile/CoreRisk.lean: imports `Mathlib.Analysis.Complex.ExponentialBounds` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [19255/19495] Ran ThresholdHC.FiniteQuantile.CoreRisk:irArts
+warning: ThresholdHC/FiniteQuantile/CoreRisk.lean: imports `Mathlib.Analysis.Complex.ExponentialBounds` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [19292/19495] Replayed ThresholdHC.Genie.LatentModel
 warning: ThresholdHC/Genie/LatentModel.lean:23:60: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
 
 Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
@@ -1320,21 +1333,21 @@ The difference between `let` and `letI` is that `letI` inlines the value.
 But this is not relevant for proofs because of proof irrelevance.
 
 Note: This linter can be disabled with `set_option linter.style.haveILetI false`
-⚠ [19273/19495] Replayed ThresholdHC.Genie.TapeIdentification
+⚠ [19296/19495] Replayed ThresholdHC.Genie.TapeIdentification
 warning: ThresholdHC/Genie/TapeIdentification.lean: imports `Mathlib.Probability.StrongLaw` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 warning: ThresholdHC/Genie/TapeIdentification.lean: imports `Mathlib.MeasureTheory.Measure.Prod` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19274/19495] Ran ThresholdHC.Genie.TapeIdentification:irArts
+⚠ [19297/19495] Ran ThresholdHC.Genie.TapeIdentification:irArts
 warning: ThresholdHC/Genie/TapeIdentification.lean: imports `Mathlib.Probability.StrongLaw` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 warning: ThresholdHC/Genie/TapeIdentification.lean: imports `Mathlib.MeasureTheory.Measure.Prod` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19275/19495] Replayed ThresholdHC.Genie.ObservationFiltration
+⚠ [19298/19495] Replayed ThresholdHC.Genie.ObservationFiltration
 warning: ThresholdHC/Genie/ObservationFiltration.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19276/19495] Ran ThresholdHC.Genie.ObservationFiltration:irArts
+⚠ [19299/19495] Ran ThresholdHC.Genie.ObservationFiltration:irArts
 warning: ThresholdHC/Genie/ObservationFiltration.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19277/19495] Replayed ThresholdHC.Genie.LatentTape
+⚠ [19300/19495] Replayed ThresholdHC.Genie.LatentTape
 warning: ThresholdHC/Genie/LatentTape.lean: imports `Mathlib.Probability.Martingale.Convergence` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19278/19495] Ran ThresholdHC.Genie.LatentTape:irArts
+⚠ [19301/19495] Ran ThresholdHC.Genie.LatentTape:irArts
 warning: ThresholdHC/Genie/LatentTape.lean: imports `Mathlib.Probability.Martingale.Convergence` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19281/19495] Replayed ThresholdHC.Genie.FinitePosterior
+⚠ [19304/19495] Replayed ThresholdHC.Genie.FinitePosterior
 warning: ThresholdHC/Genie/FinitePosterior.lean: imports `Mathlib.MeasureTheory.Function.FactorsThrough` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 warning: ThresholdHC/Genie/FinitePosterior.lean:20:2: Try this: 
   letI̵
@@ -1344,33 +1357,47 @@ The difference between `let` and `letI` is that `letI` inlines the value.
 But this is not relevant for proofs because of proof irrelevance.
 
 Note: This linter can be disabled with `set_option linter.style.haveILetI false`
-⚠ [19282/19495] Ran ThresholdHC.Genie.FinitePosterior:irArts
+⚠ [19305/19495] Ran ThresholdHC.Genie.FinitePosterior:irArts
 warning: ThresholdHC/Genie/FinitePosterior.lean: imports `Mathlib.MeasureTheory.Function.FactorsThrough` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19311/19495] Replayed ThresholdHC.HardBudget.Recurrence
+⚠ [19314/19495] Replayed ThresholdHC.Genie.OptimizedConvergence
+warning: ThresholdHC/Genie/OptimizedConvergence.lean:15:13: Variable name `hB` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hB
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [19340/19495] Replayed ThresholdHC.HardBudget.Recurrence
 warning: ThresholdHC/HardBudget/Recurrence.lean: imports `Mathlib.Probability.Independence.Integration` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19312/19495] Ran ThresholdHC.HardBudget.Recurrence:irArts
+⚠ [19341/19495] Ran ThresholdHC.HardBudget.Recurrence:irArts
 warning: ThresholdHC/HardBudget/Recurrence.lean: imports `Mathlib.Probability.Independence.Integration` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19315/19495] Replayed ThresholdHC.HardBudget.Full
+⚠ [19344/19495] Replayed ThresholdHC.HardBudget.Full
 warning: ThresholdHC/HardBudget/Full.lean: imports `Mathlib.Probability.Independence.InfinitePi` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19316/19495] Ran ThresholdHC.HardBudget.Full:irArts
+⚠ [19345/19495] Ran ThresholdHC.HardBudget.Full:irArts
 warning: ThresholdHC/HardBudget/Full.lean: imports `Mathlib.Probability.Independence.InfinitePi` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19329/19495] Replayed ThresholdHC.Confidence.Amplification
+⚠ [19358/19495] Replayed ThresholdHC.Confidence.Amplification
 warning: ThresholdHC/Confidence/Amplification.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19330/19495] Ran ThresholdHC.Confidence.Amplification:irArts
+⚠ [19359/19495] Ran ThresholdHC.Confidence.Amplification:irArts
 warning: ThresholdHC/Confidence/Amplification.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19331/19495] Replayed ThresholdHC.ConfidenceProgram.Majority
+⚠ [19360/19495] Replayed ThresholdHC.ConfidenceProgram.Majority
 warning: ThresholdHC/ConfidenceProgram/Majority.lean: imports `Mathlib.Probability.Independence.Integration` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19332/19495] Ran ThresholdHC.ConfidenceProgram.Majority:irArts
+⚠ [19361/19495] Ran ThresholdHC.ConfidenceProgram.Majority:irArts
 warning: ThresholdHC/ConfidenceProgram/Majority.lean: imports `Mathlib.Probability.Independence.Integration` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19340/19495] Replayed ThresholdHC.QuantileSelection.Interaction
+ℹ [19362/19495] Replayed ThresholdHC.ConfidenceProgram.Amplify
+info: ThresholdHC/ConfidenceProgram/Amplify.lean:98:34: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+⚠ [19376/19495] Replayed ThresholdHC.QuantileSelection.Interaction
 warning: ThresholdHC/QuantileSelection/Interaction.lean: imports `Mathlib.Analysis.Complex.ExponentialBounds` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19341/19495] Ran ThresholdHC.QuantileSelection.Interaction:irArts
+⚠ [19377/19495] Ran ThresholdHC.QuantileSelection.Interaction:irArts
 warning: ThresholdHC/QuantileSelection/Interaction.lean: imports `Mathlib.Analysis.Complex.ExponentialBounds` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19344/19495] Replayed ThresholdHC.QuantileSelection.ScaleWeights
+⚠ [19380/19495] Replayed ThresholdHC.QuantileSelection.ScaleWeights
 warning: ThresholdHC/QuantileSelection/ScaleWeights.lean: imports `Mathlib.Analysis.Complex.ExponentialBounds` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19345/19495] Ran ThresholdHC.QuantileSelection.ScaleWeights:irArts
+⚠ [19381/19495] Ran ThresholdHC.QuantileSelection.ScaleWeights:irArts
 warning: ThresholdHC/QuantileSelection/ScaleWeights.lean: imports `Mathlib.Analysis.Complex.ExponentialBounds` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19372/19495] Replayed ThresholdHC.CriticalEntropy.AffinityTesting
+⚠ [19412/19495] Replayed ThresholdHC.CriticalEntropy.AffinityTesting
 warning: ThresholdHC/CriticalEntropy/AffinityTesting.lean:76:68: `Set.mem_setOf_eq` has been deprecated: Use `Set.mem_ofPred_eq` instead
 
 Hint: Replace the deprecated name:
@@ -1399,25 +1426,29 @@ Note: This linter can be disabled with `set_option linter.unusedTactic false`
 warning: ThresholdHC/CriticalEntropy/AffinityTesting.lean:71:37: Unused tactic linter: `<;>` can be replaced with `;`.
 
 Note: This linter can be disabled with `set_option linter.unusedTactic false`
-⚠ [19374/19495] Replayed ThresholdHC.CriticalEntropy.CriticalAlgorithmLower
+⚠ [19414/19495] Replayed ThresholdHC.CriticalEntropy.CriticalAlgorithmLower
 warning: ThresholdHC/CriticalEntropy/CriticalAlgorithmLower.lean:58:8: Unused tactic linter: `change a < b` does not change the goal.
 
 Note: This linter can be disabled with `set_option linter.unusedTactic false`
-⚠ [19376/19495] Replayed ThresholdHC.CriticalEntropy.CriticalRate
+⚠ [19416/19495] Replayed ThresholdHC.CriticalEntropy.CriticalRate
 warning: ThresholdHC/CriticalEntropy/CriticalRate.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19377/19495] Ran ThresholdHC.CriticalEntropy.CriticalRate:irArts
+⚠ [19417/19495] Ran ThresholdHC.CriticalEntropy.CriticalRate:irArts
 warning: ThresholdHC/CriticalEntropy/CriticalRate.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19386/19495] Replayed ThresholdHC.RareAboveTwo.PowerLaw
+⚠ [19434/19495] Replayed ThresholdHC.PowerWindow.Specification
+warning: ThresholdHC/PowerWindow/Specification.lean: imports `Mathlib.Analysis.SpecialFunctions.Integrals.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [19435/19495] Ran ThresholdHC.PowerWindow.Specification:irArts
+warning: ThresholdHC/PowerWindow/Specification.lean: imports `Mathlib.Analysis.SpecialFunctions.Integrals.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [19438/19495] Replayed ThresholdHC.RareAboveTwo.PowerLaw
 warning: ThresholdHC/RareAboveTwo/PowerLaw.lean: imports `Mathlib.Analysis.SpecialFunctions.Pow.Real` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19387/19495] Ran ThresholdHC.RareAboveTwo.PowerLaw:irArts
+⚠ [19439/19495] Ran ThresholdHC.RareAboveTwo.PowerLaw:irArts
 warning: ThresholdHC/RareAboveTwo/PowerLaw.lean: imports `Mathlib.Analysis.SpecialFunctions.Pow.Real` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19388/19495] Replayed ThresholdHC.SubcriticalPower.Layers
+⚠ [19440/19495] Replayed ThresholdHC.SubcriticalPower.Layers
 warning: ThresholdHC/SubcriticalPower/Layers.lean: imports `Mathlib.MeasureTheory.Integral.Layercake` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 warning: ThresholdHC/SubcriticalPower/Layers.lean: imports `Mathlib.Analysis.SpecialFunctions.Integrals.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19389/19495] Ran ThresholdHC.SubcriticalPower.Layers:irArts
+⚠ [19441/19495] Ran ThresholdHC.SubcriticalPower.Layers:irArts
 warning: ThresholdHC/SubcriticalPower/Layers.lean: imports `Mathlib.MeasureTheory.Integral.Layercake` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 warning: ThresholdHC/SubcriticalPower/Layers.lean: imports `Mathlib.Analysis.SpecialFunctions.Integrals.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19390/19495] Replayed ThresholdHC.Proofs.Tier2.RareEvent
+⚠ [19450/19495] Replayed ThresholdHC.Proofs.Tier2.RareEvent
 warning: ThresholdHC/Proofs/Tier2/RareEvent.lean:19:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
 
 Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
@@ -1433,37 +1464,6 @@ Note: This linter can be disabled with `set_option linter.unusedTactic false`
 warning: ThresholdHC/Proofs/Tier2/RareEvent.lean:72:46: Unused tactic linter: `ring` is never executed.
 
 Note: This linter can be disabled with `set_option linter.unusedTactic false`
-⚠ [19404/19495] Replayed ThresholdHC.Genie.InfiniteDuality
-warning: ThresholdHC/Genie/InfiniteDuality.lean:34:2: Try this: 
-  letI̵
-
-The goal is a proposition, so `let` is preferred over `letI`.
-The difference between `let` and `letI` is that `letI` inlines the value.
-But this is not relevant for proofs because of proof irrelevance.
-
-Note: This linter can be disabled with `set_option linter.style.haveILetI false`
-⚠ [19409/19495] Replayed ThresholdHC.FiniteQuantile.CoreRisk
-warning: ThresholdHC/FiniteQuantile/CoreRisk.lean: imports `Mathlib.Analysis.Complex.ExponentialBounds` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19410/19495] Ran ThresholdHC.FiniteQuantile.CoreRisk:irArts
-warning: ThresholdHC/FiniteQuantile/CoreRisk.lean: imports `Mathlib.Analysis.Complex.ExponentialBounds` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19417/19495] Replayed ThresholdHC.Genie.OptimizedConvergence
-warning: ThresholdHC/Genie/OptimizedConvergence.lean:15:13: Variable name `hB` is not explicitly referenced.
-
-Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
-  [apply] _hB
-
-Note: This linter can be disabled with `set_option linter.unusedVariables false`
-ℹ [19423/19495] Replayed ThresholdHC.ConfidenceProgram.Amplify
-info: ThresholdHC/ConfidenceProgram/Amplify.lean:98:34: Try this:
-  [apply] ring_nf
-  
-  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
-    
-  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
-⚠ [19442/19495] Replayed ThresholdHC.PowerWindow.Specification
-warning: ThresholdHC/PowerWindow/Specification.lean: imports `Mathlib.Analysis.SpecialFunctions.Integrals.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
-⚠ [19443/19495] Ran ThresholdHC.PowerWindow.Specification:irArts
-warning: ThresholdHC/PowerWindow/Specification.lean: imports `Mathlib.Analysis.SpecialFunctions.Integrals.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 ⚠ [19464/19495] Replayed ThresholdHC.PowerWindow.LogMoments
 warning: ThresholdHC/PowerWindow/LogMoments.lean: imports `Mathlib.Analysis.SpecialFunctions.Log.Deriv` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
 ⚠ [19465/19495] Ran ThresholdHC.PowerWindow.LogMoments:irArts
@@ -1508,8 +1508,10 @@ Build completed successfully (19495 jobs).
 'ThresholdHC.CriticalWindow.AwayPhiStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
 'ThresholdHC.CriticalWindow.AwayRiskStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
 'ThresholdHC.CriticalWindow.AwayScalesStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CriticalWindow.NearTwoRiskStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
 'ThresholdHC.CriticalWindow.NearTwoStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
 'ThresholdHC.CriticalWindow.QuadraticRiskStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CriticalWindow.QuadraticScalesStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
 'ThresholdHC.CriticalWindow.QuadraticWindowStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
 'ThresholdHC.CriticalWindow.WindowPsiStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
 'ThresholdHC.CriticalWindow.WindowRateStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -1529,12 +1531,14 @@ Build completed successfully (19495 jobs).
 'ThresholdHC.CriticalWindow.log_inv_ge_one' depends on axioms: [propext, Classical.choice, Quot.sound]
 'ThresholdHC.CriticalWindow.mul_sqrt_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
 'ThresholdHC.CriticalWindow.near_two_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CriticalWindow.near_two_risk_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
 'ThresholdHC.CriticalWindow.power_quantileZero' depends on axioms: [propext, Classical.choice, Quot.sound]
 'ThresholdHC.CriticalWindow.power_tail_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
 'ThresholdHC.CriticalWindow.power_tail_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
 'ThresholdHC.CriticalWindow.psi_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
 'ThresholdHC.CriticalWindow.quadratic_rate_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
 'ThresholdHC.CriticalWindow.quadratic_risk_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CriticalWindow.quadratic_scales_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
 'ThresholdHC.CriticalWindow.ratio_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
 'ThresholdHC.CriticalWindow.rho_phi_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
 'ThresholdHC.CriticalWindow.risk_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
@@ -1551,9 +1555,11 @@ Build completed successfully (19495 jobs).
 'ThresholdHC.CriticalWindow.window_away_risk' depends on axioms: [propext, Classical.choice, Quot.sound]
 'ThresholdHC.CriticalWindow.window_away_scales' depends on axioms: [propext, Classical.choice, Quot.sound]
 'ThresholdHC.CriticalWindow.window_near_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CriticalWindow.window_near_two_risk' depends on axioms: [propext, Classical.choice, Quot.sound]
 'ThresholdHC.CriticalWindow.window_quadratic_rate' depends on axioms: [propext, Classical.choice, Quot.sound]
 'ThresholdHC.CriticalWindow.window_quadratic_risk' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.CriticalWindow.window_quadratic_scales' depends on axioms: [propext, Classical.choice, Quot.sound]
 'ThresholdHC.CriticalWindow.window_rate_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
-Verified 15 exact statements and 49 transitive axiom reports
+Verified 17 exact statements and 55 transitive axiom reports
 Replayed 5 modules through the independent kernel checker
-All ten critical-window target statements are certified
+All twelve critical-window target statements are certified

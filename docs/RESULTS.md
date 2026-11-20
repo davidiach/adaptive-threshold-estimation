@@ -603,8 +603,11 @@ Suppose the actual gap law $\nu$ satisfies $\nu((0,t])\le\mu((0,t])$
 for every $t>0$. One observable estimator family works over that whole
 class before the reference $\mu$ is chosen. For $B\ge1$ the RMS minimax
 coefficients on $\omega_\mu(1/\sqrt B)$ are $1/64$ and $512$ in the Lean
-statement. The sharp lower coefficient $1/6$ applies as well, because the
-reference law belongs to the class; that step is not restated in Lean. For $B\ge1$ and
+statement. Lean also checks the sharp lower coefficient $1/6$, because the
+reference law belongs to the class, and the upper constant $12$, because the
+distribution-blind family of the constant 12 works under every law below the
+envelope ([`envelope_rms`](../lean/ThresholdHC/PaperCorollaries/Full.lean),
+[record](../results/paper-corollaries-20261120/README.md)). For $B\ge1$ and
 $0<\delta\le1/4$, the confidence coefficients at scale
 $\sqrt{\log(1/\delta)/B}$ are $15/(256\sqrt2)$ and $8192$.
 
@@ -781,14 +784,19 @@ constants. $\Psi$ lies between $\min\{\rho,Y^0\}/\sqrt2$ and $5.13\min\{\rho,Y^0
 with $Y^0=x\sqrt{\rho\Phi_\alpha(\rho)}$. When $Y\le\rho$, the ratio of the risk to
 $\Psi$ lies between $10^{-19}$ and $5\cdot10^5$ times $\sqrt{1+\log N_\alpha(\rho)}$.
 The remark's readings are checked with explicit constants:
-- at $\alpha=2$, $a=1/4$ the window rate lies between twice and four times
-  the critical rate $\sqrt{\rho LH/B}$, which gives the quadratic law risk
-  constants $10^{-18}$ and $1.36\cdot10^6$ in this experiment;
+- at $\alpha=2$, $a=1/4$: $L/2\le\Phi_2\le L$ and $N_2\le L\le N_2^2$, and $Y$ lies
+  between twice and four times the critical rate $\sqrt{\rho LH/B}$, which
+  gives the quadratic law risk constants $10^{-18}$ and $1.36\cdot10^6$ in this
+  experiment;
 - away from two, once $|1-2/\alpha|\log(1/\rho)\ge1$, $N_\alpha=1/|\alpha-2|$ and
   the risk is within the factors $5\cdot10^{-19}$ and $7\cdot10^5$ of the
   displayed rate;
 - near two, once $|\alpha-2|\log(1/\rho)\le1$, $\Phi_\alpha$ and $N_\alpha$ are both of
-  order $\log(1/\rho)$.
+  order $\log(1/\rho)$, and the risk lies between $2\cdot10^{-19}$ and $7\cdot10^5$
+  times $\min\{\rho,x\sqrt{\rho LH}\}$, the rate of the quadratic law.
+
+The remark's comparison with the rows of §14 is a reading of these statements,
+not a separate target.
 
 The verification-status table above, generated from the v6 status source,
 still lists them as a paper proof; it changes with the next manuscript
@@ -1400,7 +1408,11 @@ rarity and budget for every `C>0` at which the original unrestricted minimax
 risk exceeds `C*Psi(rho,1/sqrt(B))`. The
 [Psi audit](../results/critical_psi_001.json) checks the frozen model and three
 full targets. Its witness budget is `L*(1+log L)/rho`; the paper's specific
-`rho^(-2)` sequence remains a paper derivation. This proves the conjecture
+`rho^(-2)` sequence is checked separately, in the rare-event experiment of an
+exact quadratic power law: for $n\ge3$ the ratio of the risk to $\Psi$ is at least
+$7\cdot10^{-20}\sqrt{1+\log(1+\log(1/\rho_n))}\ge7\cdot10^{-20}\sqrt{1+n}$
+([`psi_sequence`](../lean/ThresholdHC/PaperCorollaries/Full.lean),
+[record](../results/paper-corollaries-20261120/README.md)). This proves the conjecture
 false for the fixed quadratic law and gives no arbitrary-law replacement.
 
 ## Hard observation caps for the RMS rates
@@ -1430,7 +1442,7 @@ essential.
 
 | Application | Lean-checked hard-cap conclusion | Statistical input |
 |---|---|---|
-| Distribution-blind RMS law | $\frac1{64}\omega_\mu(B^{-1/2})\le R^{\rm hard}_\mu(B)\le3000\,\omega_\mu(B^{-1/2})$ for $B\ge1$, with one family for every $\mu$. This is the Lean statement; since $R\le R^{\rm hard}$, the sharp lower coefficient $1/6$ holds too. | Both expected-budget bounds Lean-checked |
+| Distribution-blind RMS law | $\frac1{64}\omega_\mu(B^{-1/2})\le R^{\rm hard}_\mu(B)\le3000\,\omega_\mu(B^{-1/2})$ for $B\ge1$, with one family for every $\mu$. This is the Lean statement; since $R\le R^{\rm hard}$, the sharp lower coefficient $1/6$ holds too, which Lean also checks ([`hard_sharp_lower`](../lean/ThresholdHC/PaperCorollaries/Full.lean)). | Both expected-budget bounds Lean-checked |
 | Critical quadratic law | $R^{\rm hard}_{\mu,\rho}(B)\asymp\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}$ for $0<\rho\le1/4$ and $B>0$, upper coefficient $570000$ | Both expected-budget bounds Lean-checked |
 | Known general law, known rarity | $10^{-17}\mathcal K_{\mu,\rho}(B)\le R^{\rm hard}_{\mu,\rho}(B)\le160000\mathcal K_{\mu,\rho}(B)$ for $0<\rho\le1/4$ and $B>0$ | The expected-budget upper coefficient $28000$ and positivity supply dyadic base rules with coefficient $28001$. |
 

@@ -7,14 +7,16 @@ uniform power-law theorem of
 [`PowerWindow`](../../lean/ThresholdHC/PowerWindow/Full.lean)
 ([record](../power-window-complete-20261116/README.md)). The audit runs below
 were made at commit
-[`44df4ed414c9c7d3ccacb47d27816628d7726121`](https://github.com/davidiach/adaptive-threshold-estimation/commit/44df4ed414c9c7d3ccacb47d27816628d7726121),
-which adds the audit tool to the Lean commit
-[`4fbb4fcc5a14a45ff652e1226888d71398ddc281`](https://github.com/davidiach/adaptive-threshold-estimation/commit/4fbb4fcc5a14a45ff652e1226888d71398ddc281).
+[`82f0de32ac01336e14c610a0db17a334f6ef20b3`](https://github.com/davidiach/adaptive-threshold-estimation/commit/82f0de32ac01336e14c610a0db17a334f6ef20b3),
+which adds the audit tools to the Lean commit
+[`e5c53d53c13533a08b7335832786ff7e97953f7e`](https://github.com/davidiach/adaptive-threshold-estimation/commit/e5c53d53c13533a08b7335832786ff7e97953f7e).
+The same runs cover the [paper corollaries](../paper-corollaries-20261120/README.md)
+built on this group.
 
 ## Statements
 
 [`lean/ThresholdHC/CriticalWindow/Specification.lean`](../../lean/ThresholdHC/CriticalWindow/Specification.lean)
-states ten targets. They use only the definitions of `PowerWindow` (the
+states twelve targets. They use only the definitions of `PowerWindow` (the
 uniform rate $\mathcal R_\alpha$ of (W7) as `uniformRate`, $\Phi_\alpha$ as
 `powerPhi`, $N_\alpha$ as `effectiveScales`), the rare-event minimax risk, the
 variational modulus $\Psi$ and the critical log factor $LH$, with
@@ -31,19 +33,25 @@ $F(d)=(d/a)^\alpha$ with $0<a\le1/2$ and a budget $B>0$.
 | `critical_window_psi` | Cor. 14.14 | $\min\{\rho,Y^0\}/\sqrt2\le\Psi_{\mu,\rho}(B^{-1/2})\le5.13\min\{\rho,Y^0\}$. |
 | `critical_window_ratio` | Cor. 14.14 | If $Y\le\rho$: $10^{-19}\sqrt{1+\log N}\,\Psi\le R\le5\cdot10^5\sqrt{1+\log N}\,\Psi$. |
 | `window_quadratic_rate` | Rem. 14.15 | At $\alpha=2$, $a=1/4$: $\Phi_2(\rho)=\log(1/\rho)$, $N_2(\rho)=1+\tfrac12\log_2(1/\rho)$ and $2\sqrt{\rho LH/B}\le Y\le4\sqrt{\rho LH/B}$. |
+| `window_quadratic_scales` | Rem. 14.15 | At $\alpha=2$: $L/2\le\Phi_2(\rho)\le L$ and $N_2(\rho)\le L\le N_2(\rho)^2$, so each is within universal factors of $L$. |
 | `window_quadratic_risk` | Rem. 14.15 | For $F(d)=(4d)^2$: $10^{-18}\min\{\rho,\sqrt{\rho LH/B}\}\le R\le1.36\cdot10^6\min\{\rho,\sqrt{\rho LH/B}\}$. |
 | `window_away_scales` | Rem. 14.15 | If $\alpha\ne2$ and $u=|1-2/\alpha|\log(1/\rho)\ge1$: $N_\alpha(\rho)=1/\varepsilon$. |
 | `window_away_phi` | Rem. 14.15 | If $u\ge1$: $\Phi_\alpha(\rho)$ lies between $1-e^{-1}$ and $1$ times $\alpha/(\alpha-2)$ for $\alpha>2$, and times $\alpha\rho^{1-2/\alpha}/(2-\alpha)$ for $\alpha<2$. |
 | `window_away_risk` | Rem. 14.15 | If $\alpha\ne2$ and $u\ge1$: $R$ lies between $5\cdot10^{-19}$ and $7\cdot10^5$ times $\min\{\rho,\ x\rho^{\min\{1/2,1-1/\alpha\}}\sqrt{(1+\log(1/\varepsilon))/\varepsilon}\}$. |
 | `window_near_two` | Rem. 14.15 | If $\varepsilon\log(1/\rho)\le1$: $\tfrac12\log(1/\rho)\le\Phi_\alpha(\rho)\le2\log(1/\rho)$ and $\tfrac13\log(1/\rho)\le N_\alpha(\rho)\le2\log(1/\rho)$. |
+| `window_near_two_risk` | Rem. 14.15 | If $\varepsilon\log(1/\rho)\le1$: $R$ lies between $2\cdot10^{-19}$ and $7\cdot10^5$ times $\min\{\rho,\ x\sqrt{\rho LH}\}$, the rate of the quadratic law. |
 
 The corollary's last sentence and the remark state their comparisons "within
 universal constants" or "of order"; the targets give explicit constants. The
 remark's sentence that the constants stop growing once
-$\varepsilon\log(1/\rho)\le1$ is the last target: there $\Phi_\alpha$ and
-$N_\alpha$ are of order $\log(1/\rho)$, as for the quadratic law. The paper
-assumes $3/2\le\alpha\le3$ throughout; `window_away_phi` keeps that
-hypothesis in its statement but does not use $\alpha\le3$.
+$\varepsilon\log(1/\rho)\le1$ is the last two targets: there $\Phi_\alpha$ and
+$N_\alpha$ are of order $\log(1/\rho)$, and the risk is that of the quadratic
+law within universal factors. The second conjunct of
+`window_quadratic_rate` restates the $\alpha=2$ branch of the definition of
+$N_\alpha$. The remark's comparison with the rows of §14 is a reading of these
+statements and has no separate target. The paper assumes $3/2\le\alpha\le3$
+throughout; `window_away_phi` keeps that hypothesis in its statement but does
+not use $\alpha\le3$.
 
 ## How the proof goes
 
@@ -78,22 +86,26 @@ the $\Psi$ bounds, and the ratio statement follows from both.
   displayed rate (`away_rate_bounds`).
 - *Near two.* $\Phi_\alpha=\log(1/\rho)\,(1-e^{-u})/u$ above two and
   $\log(1/\rho)\,(e^{u}-1)/u$ below two, with $u\le2/3$. Elementary
-  exponential bounds then give the two-sided estimates.
+  exponential bounds then give the two-sided estimates. They give
+  $\Phi_\alpha$ within the factors $1/4$ and $2$ of $L$ and $1+\log N_\alpha$ within
+  $1/3$ and $2$ of $H$, hence the near-two risk bound.
 
 ## Runs
 
 | Command | Outcome | Log |
 |---|---|---|
-| `python tools/verify_critical_window.py --replay --jobs 3` | 15 exact statements (10 targets and 5 components) and 49 transitive axiom reports over the 5 registered modules, all within `propext`, `Classical.choice` and `Quot.sound`. All 5 modules replayed through the independent kernel checker. | [critical-window-audit.log](critical-window-audit.log) |
-| `python tools/verify_project_axioms.py` | 16,456 constants (13,289 theorems) in 1,421 modules, same axioms. 142 exported instances. 3,031 locked definition fingerprints. | [project-audit.log](project-audit.log) |
+| `python tools/verify_critical_window.py --replay --jobs 3` | 17 exact statements (12 targets and 5 components) and 55 transitive axiom reports over the 5 registered modules, all within `propext`, `Classical.choice` and `Quot.sound`. All 5 modules replayed through the independent kernel checker. | [critical-window-audit.log](critical-window-audit.log) |
+| `python tools/verify_project_axioms.py` | 16,479 constants (13,307 theorems) in 1,425 modules, same axioms. 142 exported instances. 3,036 locked definition fingerprints. | [project-audit.log](project-audit.log) |
 | `python -m unittest discover -s tools -p 'test_critical_window.py'` | 11 guard tests pass. | |
-| `python tools/verify_lean_sources.py` | 1,422 Lean sources, no proof escapes. | |
+| `python tools/verify_lean_sources.py` | 1,426 Lean sources, no proof escapes. | |
 
-The whole-project audit was first run with `--add-definitions`. It added
-eleven entries to `tools/definition_lock.json`: the ten statement definitions
-and the helper `windowRate`, the window rate with a general entropy factor.
-No existing entry changed. The run recorded here is a later one without that
-flag.
+The whole-project audit was run twice with `--add-definitions`, before and
+after an independent review added two targets. Together the runs added
+sixteen entries to `tools/definition_lock.json`: the twelve statement
+definitions and the helper `windowRate` (the window rate with a general
+entropy factor) of this group, and the three statement definitions of the
+corollaries. No existing entry changed. The run recorded here is a later one
+without that flag.
 
 ## Scope
 
@@ -106,11 +118,23 @@ restate the critical theorem of
 [`CriticalEntropy`](../../lean/ThresholdHC/CriticalEntropy/CriticalMinimax.lean),
 whose separate model and existential constants are unchanged.
 
-The v6 paper, its status table and
-[`paper/v6/status.json`](../../paper/v6/status.json) still list Corollary 14.14
-and Remark 14.15 as paper results. They change with the next manuscript
-update, not in this record. The floating-point script of the
+The v6 paper, its status table,
+[`paper/v6/status.json`](../../paper/v6/status.json) and the build notes in
+[`paper/v6/README.md`](../../paper/v6/README.md) still list Corollary 14.14 and
+Remark 14.15 as paper results. They describe the published build and change
+with the next manuscript update, not in this record. The floating-point script of the
 [closed-form study](../../research/2026-11-09-psi-closed-form/README.md)
 remains numerical evidence only.
+
+## Review
+
+Before these runs, two reviewers that had not written the proofs read the
+first ten statements against the paper, one for faithfulness and one for
+hypotheses, vacuity and strength. Both found every statement faithful and
+found no blocking or important problem. They raised four minor points: the
+two readings of the remark now stated as `window_quadratic_scales` and
+`window_near_two_risk`, the wording of one sentence of the results guide,
+and two navigation pages that did not yet point here. This was a review by
+AI agents, not a specialist referee report.
 
 [SHA256SUMS](SHA256SUMS) identifies the files of this record.

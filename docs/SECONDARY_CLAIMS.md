@@ -138,9 +138,13 @@ The synthetic 7,680-replicate experiment remains numerical evidence.
 
 ### 6. The particular critical-Psi witness
 
-**Retain the sequence as a paper derivation:** at the exact quadratic law,
+**Lean-checked since 20 November 2026** (`psi_sequence` in
+[PaperCorollaries](../lean/ThresholdHC/PaperCorollaries/Full.lean),
+[record](../results/paper-corollaries-20261120/README.md)), after first being
+retained as a paper derivation: at the exact quadratic law,
 `rho_n = exp(-exp(n))` and `B_n = rho_n^(-2)` give a divergent risk/Psi ratio
-in the [results guide](RESULTS.md#critical-power-margin-full-minimax-characterization).
+in the [results guide](RESULTS.md#critical-power-margin-full-minimax-characterization),
+at least `7*10^-20 sqrt(1 + n)` times `Psi` for `n >= 3`.
 The checked [critical_matching_psi_refuted](../lean/ThresholdHC/CriticalPsi/Full.lean)
 already proves, for every `C > 0`, the existence of valid `rho` and `B >= 1`
 with risk greater than `C Psi`. Its proof uses budget
