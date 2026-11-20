@@ -22,6 +22,9 @@ Finite and general gap laws have the same least comparison factor. Lean checks t
 The [exact arithmetic verifier](../tools/verify_optimal_quantile_factor.py)
 certifies the displayed numerical bracket. It uses a concrete six-atom
 law on the lower side and a covering of the entire interval in $u$ on the upper side.
+Lean also checks the lower end, $c_*>1.462554551279$, from five terms of the
+partition series at $u=1.2591049$ ([`quantile_root_lower`](../lean/ThresholdHC/PaperStatements/Full.lean),
+[record](../results/paper-statements-20261120/README.md)). The upper end rests on the verifier alone.
 
 ## 1. Normalizing an arbitrary law and selection
 

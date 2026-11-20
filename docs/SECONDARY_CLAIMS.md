@@ -152,7 +152,12 @@ with risk greater than `C Psi`. Its proof uses budget
 [Exact statements](../lean/ThresholdHC/CriticalPsi/Specification.lean) ·
 [evidence](../results/critical_psi_001.json).
 The broader refutation is complete; the particular sequence is not a pending
-premise of that theorem.
+premise of that theorem. Since the second batch of 20 November 2026 the same
+sequence is also checked in the critical theorem's own model, with the exact
+`Psi`, `Psi > 0` and constant `10^-18/16`, together with the arithmetic of the
+slow-divergence remark, `sqrt H < 2.54` for `10^-100 <= rho <= 1/4`
+(`critical_psi_divergence`, `critical_slow_divergence` in
+[PaperStatements](../lean/ThresholdHC/PaperStatements/Full.lean), [record](../results/paper-statements-20261120/README.md)).
 
 ### 7. Fixed-plan comparison and its analytic integral
 

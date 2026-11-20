@@ -200,6 +200,13 @@ Use a disposable checkout for reproduction: some checks write diagnostic files.
   asymptotic interpretation, is Lean-checked since 20 November 2026
   ([record](results/critical-window-20261120/README.md)). The v6 status table
   still lists it as a paper proof until the next manuscript update.
+- **Smaller paper and guide claims.** Fifteen claims that the paper or the
+  guides stated with only a written proof, a numerical check or an existential
+  constant are Lean-checked since 20 November 2026, among them the critical
+  theorem with explicit constants, the sharpness of the unbiased coefficient
+  $1/16$ and the lower end of the bracket for the sharp quantile factor
+  ([record](results/paper-statements-20261120/README.md)). Others, such as the
+  four pilot-feedback separations held only in research packages, are next.
 - **Constants of the main law.** The lower constant $1/6$ is sharp and the
   upper constant is $12$, so the two sides are a factor $72$ apart. For
   budgets of at least 25 the best lower constant is known only to lie in

@@ -294,7 +294,9 @@ A [numerical study](../research/2026-11-19-upper-constant-12/README.md)
 computes the risk of this family. Its worst ratio
 $\mathrm{RMS}/\omega_\mu(B^{-1/2})$ is $5.07$ at $N=2^{14}$ and tends to
 about $5.37$ as $B$ grows; that of the single-level estimator is near $7.6$
-([earlier study](../research/2026-11-18-upper-constant/README.md)). In the
+([earlier study](../research/2026-11-18-upper-constant/README.md); its
+point-mass bound, $R_{\delta_d}(B)\le\omega_{\delta_d}(B^{-1/2})/2$ for a known point mass and
+$B\ge1$, is Lean-checked as [`point_mass_half`](../lean/ThresholdHC/PaperStatements/Full.lean)). In the
 large-budget limit, the exact one-coin constants are about $2.2$ for the
 call second moment and $3.6$ for the call cost, against $13/2$ and $26/5$
 here. The Hoeffding bounds that the Lean certificates round give about $6.0$
@@ -473,7 +475,7 @@ This is the constant that §5 of the paper proves. `sharp_lower` above replaces 
 
 The [algorithm model](../lean/ThresholdHC/Tier6/AlgorithmModel.lean) takes the infimum over all measurable random-seed spaces and adaptive estimators, with expected work uniformly bounded over every measurable sign law. It permits unrestricted natural-number coin creation, revisits, interleaving, and unbounded stopping. The iid hidden magnitude environment is independent of algorithm randomness and is not visible to policy or output. Squared error and RMS use extended-real values, retaining infinite risk. `process_realization` constructs the infinite probability laws and proves their cylinder identities; realization, KL, absolute continuity, and testing bounds are not assumptions of the final minimax theorem. An immediate-stopping estimator proves the class nonempty and its minimax RMS risk at most one. See the [exact specification](../lean/ThresholdHC/Tier6/Specification.lean), [complete audit](../results/tier6_status.json), and [verification record](TIER6.md). The coefficient $1/64$ is not optimal; the sharp value is $1/6$.
 
-[Theorem 2 and §6](../paper/paper.tex#L272) quantify over every measurable sign function $q$ at a fixed $\mu$. Put $I=\mathbb E_\mu[D^{-1}]$, $V=\sup_q\operatorname{Var}_{\mu,q}(Y)$, and $\overline W=\sup_q\mathbb E_{\mu,q}W$. An estimator unbiased for all such $q$ can have $V,\overline W<\infty$ exactly when $I<\infty$, and every such estimator satisfies $V\overline W\ge I^2/16$. These are uniform bounds, not a lower bound for each individual population. The fixed-gap example attaining the lower coefficient is in §6, equation `eq:fixed-gap-sharp`; it does not identify the optimum for every nondegenerate law.
+[Theorem 2 and §6](../paper/paper.tex#L272) quantify over every measurable sign function $q$ at a fixed $\mu$. Put $I=\mathbb E_\mu[D^{-1}]$, $V=\sup_q\operatorname{Var}_{\mu,q}(Y)$, and $\overline W=\sup_q\mathbb E_{\mu,q}W$. An estimator unbiased for all such $q$ can have $V,\overline W<\infty$ exactly when $I<\infty$, and every such estimator satisfies $V\overline W\ge I^2/16$. These are uniform bounds, not a lower bound for each individual population. The fixed-gap example attaining the lower coefficient is in §6, equation `eq:fixed-gap-sharp`; it does not identify the optimum for every nondegenerate law. Lean checks the example: at every fixed gap $d$ some unbiased estimator has expected work at most one and largest variance exactly $1/(16d^2)$, so the infimum of $V\overline W$ is $I^2/16$ at every point mass, and a bound $V\overline W\ge cI^2$ holds for every law exactly when $c\le1/16$ ([`one_flip`, `unbiased_sharp_coefficient`](../lean/ThresholdHC/PaperStatements/Full.lean), [record](../results/paper-statements-20261120/README.md)).
 
 The converse is now proved in Lean: [`unbiased_converse`](../lean/ThresholdHC/UnbiasedConverse/Full.lean)
 inhabits the [full specification](../lean/ThresholdHC/UnbiasedConverse/Specification.lean)
@@ -556,7 +558,10 @@ It chooses one `AdaptiveEstimator ℕ` before every gap law. Whenever
 $I=\mathbb E_\mu[D^{-1}]<\infty$, its output is integrable and unbiased for every
 measurable sign law, with extended variance at most $23I$ and actual expected
 flips at most $31I$. The product of the **two separate extended-real suprema**
-is at most $713I^2$.
+is at most $713I^2$. Lean also states the moment sentence of Theorem 2.2: one
+algorithm, chosen before the law, is unbiased with $\sup_q\mathbb E Y^2\le23I$ and
+$\sup_q\mathbb E W\le31I$; the proof uses this estimator
+([`observable_second_moment`](../lean/ThresholdHC/PaperStatements/Full.lean), [record](../results/paper-statements-20261120/README.md)).
 
 The seed is a geometric level. The policy reads coin zero until its fine
 classifier stops; the adjacent coarse classifier reuses the same observed
@@ -787,7 +792,8 @@ The remark's readings are checked with explicit constants:
 - at $\alpha=2$, $a=1/4$: $L/2\le\Phi_2\le L$ and $N_2\le L\le N_2^2$, and $Y$ lies
   between twice and four times the critical rate $\sqrt{\rho LH/B}$, which
   gives the quadratic law risk constants $10^{-18}$ and $1.36\cdot10^6$ in this
-  experiment;
+  experiment; in the critical theorem's own model the constants are $10^{-18}$
+  and the existing $100000$ ([`critical_explicit_constants`](../lean/ThresholdHC/PaperStatements/Full.lean));
 - away from two, once $|1-2/\alpha|\log(1/\rho)\ge1$, $N_\alpha=1/|\alpha-2|$ and
   the risk is within the factors $5\cdot10^{-19}$ and $7\cdot10^5$ of the
   displayed rate;
@@ -1144,7 +1150,7 @@ including the separated-cost coefficient $16/9$. [Kernel record](../results/quan
 arithmetic verifier checks the upper proof’s rational inequalities and the
 strict lower example. A [sharp-factor proof](OPTIMAL_QUANTILE_FACTOR.md) reduces the
 supremum over laws to the unique root of a scalar equation. Its rational
-certificate gives $1.462554551279<c_*<1.462554551280$. The scalar characterization, all-law comparison and finite-law sharpness are Lean-checked. The numerical bracket retains separate exact-arithmetic verification. [Complete native record](../results/quantile-optimality-20261105/README.md)
+certificate gives $1.462554551279<c_*<1.462554551280$. The scalar characterization, all-law comparison and finite-law sharpness are Lean-checked. Lean also checks the lower end, $c_*>1.462554551279$, and a finite law with $Q>1.462554551279\,K$ ([`quantile_root_lower`](../lean/ThresholdHC/PaperStatements/Full.lean), [record](../results/paper-statements-20261120/README.md)). The upper end retains separate exact-arithmetic verification. [Complete native record](../results/quantile-optimality-20261105/README.md)
 
 ### Computing the selection functional
 
@@ -1193,12 +1199,12 @@ $\eta$ changes $K$ by at most $\eta$. Within-band upward rounding by a factor
 at most $r$ gives a value between $K/r$ and $K$. For every $\eta>0$ and
 $r>1$ the proof constructs a finite approximation. Its interval $[L,U]$
 gives $[\max(0,L-\eta),\min(\rho,rU+\eta)]$ for the original law.
-The quantile choice is $L=5Q/8$, $U=Q$ (the Lean corollary uses the earlier $8/5$ comparison; $20Q/31$ also holds, by the later one). The Python certificate evaluator
+The quantile choice is $L=5Q/8$, $U=Q$ in the original Lean corollary, which uses the earlier $8/5$ comparison. Lean also checks $L=20Q/31$ and $L=Q/c_*$, from the later comparisons ([`selection_stability_quantile`, `selection_stability_sharp`](../lean/ThresholdHC/PaperStatements/Full.lean), [record](../results/paper-statements-20261120/README.md)). The Python certificate evaluator
 remains unverified. [Verification record](../results/selection-stability-20261104/README.md)
 
 ## Sharp finite-vector quantile factor
 
-Lean checks a unique scalar root in $(\sqrt2,31/20)$ and proves that every finite nonnegative-vector inequality holds exactly when its factor is at least that root. Every smaller factor has a finite-vector counterexample. The proof includes the exact Gibbs test, tangent and scale elimination, summability, joint continuity, compact maximization, strict monotonicity and analytic endpoint inequalities. The tight numerical bracket retains its separate rational certificate. [Native record](../results/optimal-quantile-root-20261105/README.md)
+Lean checks a unique scalar root in $(\sqrt2,31/20)$ and proves that every finite nonnegative-vector inequality holds exactly when its factor is at least that root. Every smaller factor has a finite-vector counterexample. The proof includes the exact Gibbs test, tangent and scale elimination, summability, joint continuity, compact maximization, strict monotonicity and analytic endpoint inequalities. Lean checks the lower end $1.462554551279$ of the tight numerical bracket ([record](../results/paper-statements-20261120/README.md)); the upper end retains its separate rational certificate. [Native record](../results/optimal-quantile-root-20261105/README.md)
 
 The [finite-core selection reduction](../results/quantile-core-reduction-20261105/README.md) is also Lean-checked at the exact scalar-root factor, including the entropy Lipschitz bound, fractional selections and both boundary-band cases. The all-law comparison below includes the measure normalization.
 
@@ -1231,6 +1237,10 @@ forces R/Psi to diverge, refuting a universal C Psi upper even with known mu
 and rho. This supplies no characterization for arbitrary other laws.
 
 Status: **the critical minimax rate is Lean-checked in both directions**.
+The lower theorem states an existential constant; Lean also checks the explicit
+constants $10^{-18}$ and $100000$ for every $0<\rho\le1/4$ and $B>0$, through the
+quadratic power law and the critical window
+([`critical_explicit_constants`](../lean/ThresholdHC/PaperStatements/Full.lean), [record](../results/paper-statements-20261120/README.md)).
 The exact Psi formula, rate and failure of a universal matching-Psi upper are
 also Lean-checked. The original
 [paper checkpoint](../research/2026-10-27-nonlinear-critical/CHECKPOINT.md)
@@ -1412,7 +1422,12 @@ full targets. Its witness budget is `L*(1+log L)/rho`; the paper's specific
 exact quadratic power law: for $n\ge3$ the ratio of the risk to $\Psi$ is at least
 $7\cdot10^{-20}\sqrt{1+\log(1+\log(1/\rho_n))}\ge7\cdot10^{-20}\sqrt{1+n}$
 ([`psi_sequence`](../lean/ThresholdHC/PaperCorollaries/Full.lean),
-[record](../results/paper-corollaries-20261120/README.md)). This proves the conjecture
+[record](../results/paper-corollaries-20261120/README.md)). In the critical theorem's
+own model, with the exact $\Psi$ above, the same sequence has $\Psi>0$ and ratio at
+least $(10^{-18}/16)\sqrt{1+\log(1+\log(1/\rho_n))}\ge(10^{-18}/16)\sqrt{1+n}$, and the
+arithmetic of the paper's slow-divergence remark, $\sqrt H<2.54$ for
+$10^{-100}\le\rho\le1/4$, is checked ([`critical_psi_divergence`,
+`critical_slow_divergence`](../lean/ThresholdHC/PaperStatements/Full.lean), [record](../results/paper-statements-20261120/README.md)). This proves the conjecture
 false for the fixed quadratic law and gives no arbitrary-law replacement.
 
 ## Hard observation caps for the RMS rates

@@ -878,11 +878,21 @@ stochastic envelope, the coefficient $1/6$ under a pathwise cap, and the
 paper's divergence sequence for $\Psi$ at the quadratic law. Its 11-test guard
 suite is `test_paper_corollaries.py`. [Record](../results/paper-corollaries-20261120/README.md).
 
+Run `python tools/verify_paper_statements.py --replay` for 20 exact statements
+and 63 transitive axiom reports over the six modules of
+`lean/ThresholdHC/PaperStatements`: the critical theorem with the explicit
+constants $10^{-18}$ and $100000$, the arithmetic of the slow-divergence remark
+and the $\Psi$ sequence in the critical model, the unbiased coefficient $1/16$
+attained at every fixed gap, the endpoint case of `prop:bounded`, the known
+point-mass constant $1/2$, the 713 second moment, $c_*>1.462554551279$ and
+selection stability with $20Q/31$ and $Q/c_*$. Its 11-test guard suite is
+`test_paper_statements.py`. [Record](../results/paper-statements-20261120/README.md).
+
 Each audit pins its new specification, restates the checked targets and
 reports every new declaration's transitive axioms. Their six-test guard
 suites are `test_psi_sharpness.py` and `test_power_window.py`; CI runs both
-suites and both audits, and also the critical-window and paper-corollary
-suites and audits. Existing published records retain their original scope.
+suites and both audits, and also the critical-window, paper-corollary and
+paper-statement suites and audits. Existing published records retain their original scope.
 
 ## Sharp RMS coefficient and square-root cap
 

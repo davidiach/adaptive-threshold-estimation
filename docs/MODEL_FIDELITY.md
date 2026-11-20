@@ -381,7 +381,7 @@ read.
 | Seed spaces in universe 0; measurable algorithms only | narrower | Lower bounds transfer if every intended algorithm embeds. |
 | No computability constraint; output defined when $T=\infty$ | wider | Strengthens the lower bounds; irrelevant under a finite budget. |
 | $\theta=P_G(P>1/2)$ for general $G$ | partial | Lean works with $(\mu,q)$; the general $G$ form is a paper step. |
-| Theorem 2.2's $\sup_q E Y^2\le23\,I_\mu$ | narrower | The locked [`Observable713Statement`][Observable713] states extended variance at most $23\,I_\mu$. The second-moment bound is proved only inside [`output_variance_le`][output_variance_le], not as a stated theorem. |
+| Theorem 2.2's $\sup_q E Y^2\le23\,I_\mu$ | narrower | The locked [`Observable713Statement`][Observable713] states extended variance at most $23\,I_\mu$. The second-moment bound is proved only inside [`output_variance_le`][output_variance_le], not as a stated theorem. Since 20 November 2026 the later target `observable_second_moment` states it ([record](../results/paper-statements-20261120/README.md)). |
 | Theorem 2.1's hidden-model confidence coefficient $15/(256\sqrt2)$ | narrower | Rests on the per-algorithm [`hidden_confidence_lower`][hidden_conf], which is axiom-audited but not an exact-type target. The minimax step is one `le_sInf`. The frozen confidence characterization carries $1/64$. |
 | Hard-cap fallback (Theorem R.1) | wider | Lean needs the base-rule premise only at the $(\mu,q)$ where it concludes, and allows any $M\ge0$. |
 | Hard-cap critical rate | wider | Lean covers every $B>0$; Theorem 11.2 states $B\ge1$. |
@@ -453,7 +453,9 @@ read.
   ($1/16$), StoppingProgram ($16$) and EntropyTailQuantile ($33000$). Locked
   types that assert only a positive constant: BlindUpper, EntropyTail,
   ClosedQuantile, RareAboveTwo and CriticalUpper; the unlocked
-  `CriticalMinimaxLowerStatement` also asserts only a positive constant. The
+  `CriticalMinimaxLowerStatement` also asserts only a positive constant (since
+  20 November 2026 the later target `critical_explicit_constants` gives it
+  $10^{-18}$ in the same model; [record](../results/paper-statements-20261120/README.md)). The
   coefficients 512 ([`minimax_upper_bound`][minimax_upper_bound]), 28000
   ([`entropy_tail_upper_explicit`][tail_upper_explicit]), 30001 and 100000
   (critical upper) are in the types of audited companion theorems, and
@@ -492,8 +494,8 @@ read.
    all $G$ with $|P-1/2|\sim\mu$, rests on an unformalized disintegration?
 6. Are the paper-only steps acceptable as stated: $c<C$ and the equivalence of
    (61) with (62) in Theorem 13.2, the constant bookkeeping of Appendix E, the
-   second-moment sentence of Theorem 2.2, and the remark on charging for coin
-   creation?
+   second-moment sentence of Theorem 2.2 (a stated theorem since 20 November
+   2026; [record](../results/paper-statements-20261120/README.md)), and the remark on charging for coin creation?
 7. For each explicit coefficient you cite, read the companion theorem whose
    type carries it (section 10), not the locked existential target.
 8. Read `hardMinimaxRisk`, `hardRareMinimaxRisk`, `rareConfidenceRadius` and
