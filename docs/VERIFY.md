@@ -888,11 +888,20 @@ point-mass constant $1/2$, the 713 second moment, $c_*>1.462554551279$ and
 selection stability with $20Q/31$ and $Q/c_*$. Its 11-test guard suite is
 `test_paper_statements.py`. [Record](../results/paper-statements-20261120/README.md).
 
+Run `python tools/verify_pilot_feedback.py --replay` for 14 exact statements
+and 126 transitive axiom reports over the 18 modules of
+`lean/ThresholdHC/PilotFeedback`, promoted from the pilot-feedback and
+scheduled-update research packages: the precommitted and one-update lower
+bounds $0.18735887$ and $0.186960371$ at gap $1/5$ with budget $25$, in RMS
+form, and their separations from the adaptive witness. The replay re-evaluates
+the integer certificates (about six minutes). Its 11-test guard suite is
+`test_pilot_feedback.py`. [Record](../results/pilot-feedback-20261120/README.md).
+
 Each audit pins its new specification, restates the checked targets and
 reports every new declaration's transitive axioms. Their six-test guard
 suites are `test_psi_sharpness.py` and `test_power_window.py`; CI runs both
-suites and both audits, and also the critical-window, paper-corollary and
-paper-statement suites and audits. Existing published records retain their original scope.
+suites and both audits, and also the critical-window, paper-corollary,
+paper-statement and pilot-feedback suites and audits. Existing published records retain their original scope.
 
 ## Sharp RMS coefficient and square-root cap
 

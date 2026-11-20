@@ -372,15 +372,18 @@ strictly helps at this fixed budget of 25 flips. Lean checks the
 reconstruction of ordered histories from counts and the strict comparison in
 the original population experiment, in a second
 [research package](../research/2026-11-18-pilot-feedback/README.md) with its
-own replay record; it is not in the CI-audited library or the paper.
+own replay record. Since 20 November 2026 the proof is also in the CI-audited
+library, stated in RMS form ([`precommitted_rms_lower`,
+`precommitted_rms_separation`](../lean/ThresholdHC/PilotFeedback/Full.lean), [record](../results/pilot-feedback-20261120/README.md)); it is not in the paper.
 
 Even if the ordered pilot chooses when to update once during the seven
 follow-ups, and all answers so far determine the second batch, the worst-case
 RMS is at least $0.186960371$. The fully adaptive policy still beats this
 larger class. The [scheduled-update proof](../research/2026-11-18-scheduled-update/README.md)
 covers randomized plans and full-transcript estimates in the population experiment.
-Lean checks it in that third research package, with its own replay record; it
-is not in the CI-audited library or the paper.
+Lean checks it in that third research package, with its own replay record,
+and since 20 November 2026 in the CI-audited library ([`one_update_rms_lower`,
+`one_update_rms_separation`](../lean/ThresholdHC/PilotFeedback/Full.lean), [record](../results/pilot-feedback-20261120/README.md)); it is not in the paper.
 
 Allowing the update time itself to depend on the follow-up answers still gives
 worst-case RMS at least $0.186844275$. At each prefix the policy may continue
@@ -395,6 +398,9 @@ least $0.186764460$, above the fully adaptive witness's $0.186752$ upper
 bound. Both triggers can use the full ordered history. The research package
 includes the exact rational calculation and the independent Lean replay.
 [Two-update proof and audit](../research/2026-11-18-two-stopping-updates/README.md)
+These two packages stay outside the library: one row of their integer
+certificates needs more than 13.5 GB of memory in the kernel
+([record](../results/pilot-feedback-20261120/README.md)).
 
 The confidence theorem [`confidence_characterization`](../lean/ThresholdHC/Confidence/Full.lean)
 proves the explicit bounds

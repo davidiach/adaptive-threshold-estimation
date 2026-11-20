@@ -205,9 +205,11 @@ Use a disposable checkout for reproduction: some checks write diagnostic files.
   constant are Lean-checked since 20 November 2026, among them the critical
   theorem with explicit constants, the sharpness of the unbiased coefficient
   $1/16$ and the lower end of the bracket for the sharp quantile factor
-  ([record](results/paper-statements-20261120/README.md)). Next is moving the
-  four pilot-feedback separations, Lean-proved inside their research packages,
-  into the audited library.
+  ([record](results/paper-statements-20261120/README.md)). Two of the four
+  pilot-feedback separations, Lean-proved inside their research packages, are
+  in the audited library too
+  ([record](results/pilot-feedback-20261120/README.md)); the other two need
+  their integer certificates split before CI can check them.
 - **Constants of the main law.** The lower constant $1/6$ is sharp and the
   upper constant is $12$, so the two sides are a factor $72$ apart. For
   budgets of at least 25 the best lower constant is known only to lie in

@@ -10,7 +10,7 @@ can differ from the current files after a later proof-only change: the
 eight Lean files that were refactored afterwards without changing a
 statement. For the current tree the evidence is the CI run on that commit.
 
-The folder holds 115 dated record directories, named for a result and a
+The folder holds 116 dated record directories, named for a result and a
 date, and the loose JSON and log files of the first phases of the project.
 The table below indexes the records that the guides cite. Later sections
 describe the remaining records in prose: the time-uniform bounds, cost
@@ -22,6 +22,7 @@ is the current evidence for that result.
 
 | Claim or check | Published record |
 |---|---|
+| Pilot-feedback separations at gap $1/5$ with budget $25$ (precommitted follow-ups at least $0.18735887$, one scheduled update at least $0.186960371$, both above the adaptive witness), promoted from two research packages: library statement, axiom and kernel-replay audits | [pilot-feedback-20261120](pilot-feedback-20261120/README.md) |
 | Fifteen targets, twelve of them paper and guide claims with only a written proof, a numerical check or an existential constant: the critical theorem with explicit constants and the $\Psi$ sequence in its model, the sharp unbiased coefficient $1/16$ at every fixed gap, the known point-mass constant $1/2$, the 713 second moment, $c_*>1.462554551279$ and selection stability with $20Q/31$: library statement, axiom and kernel-replay audits | [paper-statements-20261120](paper-statements-20261120/README.md) |
 | RMS constants $1/6$ and $12$ under a stochastic envelope, $1/6$ under a pathwise cap, and the paper's divergence sequence for $\Psi$ at the quadratic law: library statement, axiom and kernel-replay audits | [paper-corollaries-20261120](paper-corollaries-20261120/README.md) |
 | Corollary 14.14 and Remark 14.15 of v6 (the critical window $3/2\le\alpha\le3$ and the regimes away from and near exponent two), the last tracked results with a paper proof only: library statement, axiom and kernel-replay audits | [critical-window-20261120](critical-window-20261120/README.md) |
