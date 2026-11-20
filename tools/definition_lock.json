@@ -1791,6 +1791,26 @@
     "ThresholdHC.PaperCorollaries.EnvelopeRMSStatement": "4762494857145497995:3220548424012583486",
     "ThresholdHC.PaperCorollaries.HardSharpLowerStatement": "4762494857145497995:5219002052237726944",
     "ThresholdHC.PaperCorollaries.PsiSequenceStatement": "4762494857145497995:566039933967207105",
+    "ThresholdHC.PaperStatements.CriticalExplicitStatement": "4762494857145497995:4701641617687125921",
+    "ThresholdHC.PaperStatements.CriticalModelStatement": "4762494857145497995:14041065159965654037",
+    "ThresholdHC.PaperStatements.CriticalPowerLawStatement": "4762494857145497995:1501121246808434857",
+    "ThresholdHC.PaperStatements.CriticalPsiSequenceStatement": "4762494857145497995:7205348479159315087",
+    "ThresholdHC.PaperStatements.FiniteRatioStatement": "4762494857145497995:2767097030237462792",
+    "ThresholdHC.PaperStatements.FixedGapEqualityStatement": "4762494857145497995:9709020218066758062",
+    "ThresholdHC.PaperStatements.HalfGapUnbiasedStatement": "4762494857145497995:4814224388063734484",
+    "ThresholdHC.PaperStatements.OneFlipStatement": "4762494857145497995:16877449619605120295",
+    "ThresholdHC.PaperStatements.PointMassUpperStatement": "4762494857145497995:9178338112990787746",
+    "ThresholdHC.PaperStatements.RootLowerStatement": "4762494857145497995:7914443650174266453",
+    "ThresholdHC.PaperStatements.SecondMomentStatement": "4762494857145497995:15654523571491436310",
+    "ThresholdHC.PaperStatements.SlowDivergenceStatement": "4762494857145497995:13558057429392783909",
+    "ThresholdHC.PaperStatements.StabilityQuantileStatement": "4762494857145497995:87647071171839006",
+    "ThresholdHC.PaperStatements.StabilitySharpStatement": "4762494857145497995:10015822001895154666",
+    "ThresholdHC.PaperStatements.UnbiasedSharpStatement": "4762494857145497995:1988949010584274589",
+    "ThresholdHC.PaperStatements.freshFlips": "10546611169361373985:3931112129133374622",
+    "ThresholdHC.PaperStatements.halfLaw": "12783342425771617565:4085315254452925119",
+    "ThresholdHC.PaperStatements.oneFlip": "10684047182353987744:2392397557135733554",
+    "ThresholdHC.PaperStatements.pointMassFlips": "14131465042550490024:15166504896238148834",
+    "ThresholdHC.PaperStatements.unbiasedVarianceWork": "8365012974107077350:2914422438379813559",
     "ThresholdHC.PowerWindow.PowerConfidenceStatement": "4762494857145497995:1530297512267250691",
     "ThresholdHC.PowerWindow.PowerCoreStatement": "4762494857145497995:6587263594223711346",
     "ThresholdHC.PowerWindow.PowerPhiStatement": "4762494857145497995:9720291207922797821",
@@ -3144,6 +3164,10 @@
     {
       "at": "2026-11-20T19:53:24+00:00",
       "count": 5
+    },
+    {
+      "at": "2026-11-20T22:49:25+00:00",
+      "count": 20
     }
   ]
 }

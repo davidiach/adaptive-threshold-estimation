@@ -3,8 +3,8 @@ import ThresholdHC.PaperStatements.OneFlip
 import ThresholdHC.PaperStatements.Observable
 import ThresholdHC.PaperStatements.Quantile
 
-/-! Paper claims that had only a paper proof, a numerical check or an
-existential constant, as Lean theorems: the critical theorem with explicit
+/-! Paper and guide claims that had only a written proof, a numerical check or
+an existential constant, as Lean theorems: the critical theorem with explicit
 constants and the paper's `Ψ` sequence in its model, the sharpness of the
 unbiased coefficient `1/16`, the endpoint case of the nonnegativity
 proposition, the constant `1/2` for a known point mass, the moment sentence of

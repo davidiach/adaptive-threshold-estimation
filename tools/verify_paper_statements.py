@@ -1,16 +1,19 @@
-"""Audit paper claims that had only a paper proof, a numerical check or an existential constant.
+"""Audit paper and guide claims that had only a written proof, numerics or an existential constant.
 
 * The critical law: the density 32d on (0,1/4] is the exact power law
   F(d) = (4d)^2, the critical theorem's minimax risk is the rare-event minimax
-  risk of that law, and so the critical theorem holds with the explicit
-  constants 10^-18 and 1.36*10^6. The divergence remark sqrt H < 2.54 for
+  risk of that law, and so the critical theorem holds with the explicit lower
+  constant 10^-18 (the upper constant 100000 is the existing one). The
+  arithmetic of the slow-divergence remark, sqrt H < 2.54 for
   rho >= 10^-100, and the paper's Psi sequence rho_n = exp(-exp n),
-  B_n = rho_n^-2 in the critical theorem's own model.
-* The unbiased coefficient: one fresh observation (X - 1/2 + d)/(2d) at a fixed
-  gap d is unbiased with unit work and largest variance 1/(16 d^2), so
-  inf VW = I^2/16 and 1/16 is the largest valid universal coefficient. At the
-  gap 1/2 the output is [0,1]-valued. A known point mass has minimax RMS risk
-  at most half its modulus.
+  B_n = rho_n^-2, restated in the critical theorem's own model (it was
+  already checked in the rare-event experiment).
+* The unbiased coefficient: at a fixed gap d some estimator is unbiased with
+  expected work at most one and largest variance 1/(16 d^2) (the proof uses one
+  fresh observation), so inf VW = I^2/16 and 1/16 is the largest valid
+  universal coefficient. At the gap 1/2 some such estimator is [0,1]-valued.
+  For B >= 1 a known point mass has minimax RMS risk at most half its modulus
+  at B^-1/2 (from a research note).
 * The observable 713 construction has sup_q E Y^2 <= 23 I and work 31 I.
 * The sharp quantile factor exceeds 1.462554551279, the lower end of the
   paper's decimal bracket, so some finite law has Q > 1.462554551279 K, and
@@ -43,7 +46,7 @@ GROUP = "PaperStatements"
 NAMES = ("Specification", "Critical", "OneFlip", "Observable", "Quantile", "Full")
 SOURCE = LEAN / f"ThresholdHC/{GROUP}"
 SPEC = SOURCE / "Specification.lean"
-SPEC_HASH = "23c9b2361992e15163563ced3a119ad8f82572542afd8176a2ef4692324167ad"
+SPEC_HASH = "bc1365f23fec761d2e212185074d78adc5c9896c801a3cefb4d5c88e3d7d3a9a"
 TARGETS = {
     "PaperStatements.critical_power_law_exact": "PaperStatements.CriticalPowerLawStatement",
     "PaperStatements.critical_model": "PaperStatements.CriticalModelStatement",
@@ -81,7 +84,7 @@ example : ∀ ρ B : ℝ, CriticalEntropy.criticalMinimaxRisk ρ B =
 example : ∀ ρ B : ℝ, 0 < ρ → ρ ≤ 1/4 → 0 < B →
     let C := Real.sqrt (ρ * CriticalEntropy.criticalLogFactor ρ / B)
     ENNReal.ofReal ((10 : ℝ)⁻¹ ^ 18 * min ρ C) ≤ CriticalEntropy.criticalMinimaxRisk ρ B ∧
-      CriticalEntropy.criticalMinimaxRisk ρ B ≤ ENNReal.ofReal (1360000 * min ρ C) :=
+      CriticalEntropy.criticalMinimaxRisk ρ B ≤ ENNReal.ofReal (100000 * min ρ C) :=
   PaperStatements.critical_explicit_constants
 
 example : ∀ ρ : ℝ, (10 : ℝ)⁻¹ ^ 100 ≤ ρ → ρ ≤ 1/4 →
@@ -91,6 +94,7 @@ example : ∀ ρ : ℝ, (10 : ℝ)⁻¹ ^ 100 ≤ ρ → ρ ≤ 1/4 →
 example : ∀ n : ℕ, 3 ≤ n →
     let ρ := Real.exp (-Real.exp n)
     let B := 1 / ρ ^ 2
+    0 < CriticalPsi.criticalPsi ρ (1 / Real.sqrt B) ∧
     ENNReal.ofReal ((10 : ℝ)⁻¹ ^ 18 / 16 * Real.sqrt (1 + Real.log (1 + Real.log (1/ρ))) *
         CriticalPsi.criticalPsi ρ (1 / Real.sqrt B)) ≤ CriticalEntropy.criticalMinimaxRisk ρ B ∧
     Real.sqrt (1 + n) ≤ Real.sqrt (1 + Real.log (1 + Real.log (1/ρ))) :=

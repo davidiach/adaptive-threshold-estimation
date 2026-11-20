@@ -9,7 +9,8 @@ import ThresholdHC.PaperCorollaries.PsiSequence
 The density `32d` on `(0,1/4]` is the exact power law `F(d) = (4d)^2`, and the
 critical theorem's minimax risk is the rare-event minimax risk of that law, by the
 budget and risk transport of `HardBudget`. The quadratic-law target of the
-critical window then gives explicit constants. Along `ρ_n = exp(-exp n)`,
+critical window then gives the lower constant `10^{-18}`; the upper constant
+`100000` is the existing formal critical upper bound. Along `ρ_n = exp(-exp n)`,
 `B_n = ρ_n^{-2}`, the rate is `ρ √(ρ L H)` and `Ψ ≤ 16 ρ √(ρ L)` by the closed
 form of `CriticalPsi`, so the ratio is at least `10^{-18} √H / 16`. -/
 noncomputable section
@@ -59,10 +60,16 @@ theorem critical_minimax_eq (ρ B : ℝ) :
 theorem critical_explicit (ρ B : ℝ) (hρ : 0 < ρ) (hρ4 : ρ ≤ 1/4) (hB : 0 < B) :
     let C := Real.sqrt (ρ * criticalLogFactor ρ / B)
     ENNReal.ofReal ((10 : ℝ)⁻¹ ^ 18 * min ρ C) ≤ criticalMinimaxRisk ρ B ∧
-    criticalMinimaxRisk ρ B ≤ ENNReal.ofReal (1360000 * min ρ C) := by
+    criticalMinimaxRisk ρ B ≤ ENNReal.ofReal (100000 * min ρ C) := by
   intro C
-  rw [critical_minimax_eq]
-  exact CriticalWindow.window_quadratic_risk criticalPositiveLaw ρ B hρ hρ4 hB critical_power_law
+  constructor
+  · rw [critical_minimax_eq]
+    exact (CriticalWindow.window_quadratic_risk criticalPositiveLaw ρ B hρ hρ4 hB
+      critical_power_law).1
+  · apply le_trans ?_ (CriticalUpper.criticalBudget_maximalRMSRisk ρ hρ (by linarith) B hB)
+    exact sInf_le ⟨CriticalUpper.CriticalSeed, inferInstance,
+      CriticalUpper.criticalBudgetEstimator ρ B,
+      CriticalUpper.criticalBudget_uniformBudget ρ hρ (by linarith) B, rfl⟩
 
 theorem log_ten_lt : Real.log 10 < 230304/100000 := by
   have h : (10 : ℝ) ^ 31 < 2 ^ 103 := by norm_num
@@ -105,6 +112,8 @@ theorem slow_divergence (ρ : ℝ) (hρ : (10 : ℝ)⁻¹ ^ 100 ≤ ρ) (hρ4 : 
   linarith
 
 theorem critical_psi_sequence (n : ℕ) (hn : 3 ≤ n) :
+    0 < CriticalPsi.criticalPsi (Real.exp (-Real.exp n))
+      (1 / Real.sqrt (1 / Real.exp (-Real.exp n) ^ 2)) ∧
     ENNReal.ofReal ((10 : ℝ)⁻¹ ^ 18 / 16 *
         Real.sqrt (1 + Real.log (1 + Real.log (1 / Real.exp (-Real.exp n)))) *
         CriticalPsi.criticalPsi (Real.exp (-Real.exp n))
@@ -168,12 +177,16 @@ theorem critical_psi_sequence (n : ℕ) (hn : 3 ≤ n) :
   obtain ⟨hlo, -⟩ := critical_explicit ρ B hρ hρ4 hB
   rw [hC, hmin] at hlo
   -- Ψ ≤ 16 ρ s
-  obtain ⟨-, hpsi⟩ := CriticalPsi.critical_psi_rate ρ (1 / Real.sqrt B) hρ hρ4 (by rw [hh]; exact hρ)
-  rw [hh, hlog] at hpsi
+  obtain ⟨hpsilo, hpsi⟩ :=
+    CriticalPsi.critical_psi_rate ρ (1 / Real.sqrt B) hρ hρ4 (by rw [hh]; exact hρ)
+  rw [hh, hlog] at hpsi hpsilo
+  have hpos : 0 < CriticalPsi.criticalPsi ρ ρ := by
+    refine lt_of_lt_of_le (lt_min hρ ?_) hpsilo
+    exact mul_pos hρ (Real.sqrt_pos.2 (by positivity))
   have hpsi' : CriticalPsi.criticalPsi ρ ρ ≤ 16 * (ρ * s) :=
     hpsi.trans (by gcongr; exact min_le_right _ _)
   rw [hlog, hh]
-  constructor
+  refine ⟨hpos, ?_, ?_⟩
   · refine le_trans (ENNReal.ofReal_le_ofReal ?_) hlo
     calc (10 : ℝ)⁻¹ ^ 18 / 16 * t * CriticalPsi.criticalPsi ρ ρ
         ≤ (10 : ℝ)⁻¹ ^ 18 / 16 * t * (16 * (ρ * s)) :=

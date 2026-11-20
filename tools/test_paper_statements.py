@@ -39,7 +39,8 @@ class PaperStatementsAuditTests(unittest.TestCase):
         self.assertEqual(source.count("#print axioms "), len(roots))
         for text in ("ExactPowerLaw ConfidenceTransfer.criticalPositiveLaw 2 (1/4)",
                      "ENNReal.ofReal ((10 : ℝ)⁻¹ ^ 18 * min ρ C) ≤ CriticalEntropy.criticalMinimaxRisk ρ B",
-                     "CriticalEntropy.criticalMinimaxRisk ρ B ≤ ENNReal.ofReal (1360000 * min ρ C)",
+                     "CriticalEntropy.criticalMinimaxRisk ρ B ≤ ENNReal.ofReal (100000 * min ρ C)",
+                     "0 < CriticalPsi.criticalPsi ρ (1 / Real.sqrt B) ∧",
                      "Real.sqrt (1 + Real.log (1 + Real.log (1/ρ))) < 127/50",
                      "CriticalPsi.criticalPsi ρ (1 / Real.sqrt B)) ≤ CriticalEntropy.criticalMinimaxRisk ρ B",
                      "UniformVarianceBound (Measure.dirac d) A (1 / (16 * (d : ℝ)^2))",
