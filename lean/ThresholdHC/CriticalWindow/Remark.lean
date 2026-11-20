@@ -441,4 +441,122 @@ theorem near_two_bounds {α ρ : ℝ} (hα1 : 3/2 ≤ α) (hα3 : α ≤ 3) (hρ
         nlinarith [mul_le_mul_of_nonneg_left h1 (by linarith : (0:ℝ) ≤ ℓ)]
       linarith
 
+/-- Remark 14.15 at exponent two: `Φ_2(ρ)` and `N_2(ρ)` are each within universal
+factors of `L = 1 + log(1/ρ)`; precisely `L/2 ≤ Φ_2(ρ) ≤ L` and `N_2(ρ) ≤ L ≤ N_2(ρ)^2`. -/
+theorem quadratic_scales_bounds {ρ : ℝ} (hρ : 0 < ρ) (hρ4 : ρ ≤ 1/4) :
+    (1 + Real.log (1/ρ)) / 2 ≤ powerPhi 2 ρ ∧ powerPhi 2 ρ ≤ 1 + Real.log (1/ρ) ∧
+    effectiveScales 2 ρ ≤ 1 + Real.log (1/ρ) ∧ 1 + Real.log (1/ρ) ≤ effectiveScales 2 ρ ^ 2 := by
+  have hl2 := Real.log_two_gt_d9
+  have hl2' := Real.log_two_lt_d9
+  have hℓ1 := log_inv_ge_one hρ hρ4
+  have hphi : powerPhi 2 ρ = Real.log (1/ρ) := by
+    have := power_phi_closed 2 ρ (by norm_num) hρ (by linarith)
+    rwa [ite_eq_left (show (2 : ℝ) = 2 from rfl)] at this
+  set ℓ := Real.log (1/ρ) with hℓ
+  have hN : effectiveScales 2 ρ = 1 + ℓ / (2 * Real.log 2) := by
+    simp only [effectiveScales, ite_true]
+    rw [← Real.log_div_log, hℓ]; ring
+  rw [hphi, hN]
+  have hq : 0 ≤ ℓ / (2 * Real.log 2) := by positivity
+  refine ⟨by linarith, by linarith, ?_, ?_⟩
+  · have : ℓ / (2 * Real.log 2) ≤ ℓ := by
+      rw [div_le_iff₀ (by positivity)]; nlinarith
+    linarith
+  · have h1 : ℓ ≤ 2 * (ℓ / (2 * Real.log 2)) := by
+      rw [mul_div_assoc', le_div_iff₀ (by positivity)]; nlinarith
+    nlinarith [sq_nonneg (ℓ / (2 * Real.log 2))]
+
+/-- Remark 14.15, near two, for the risk: once `|α - 2| log(1/ρ) ≤ 1`, the minimax risk
+is within universal factors of `min{ρ, x √(ρ L H)}`, the rate of the quadratic law. -/
+theorem near_two_risk_bounds (μ : Measure Gap) [IsProbabilityMeasure μ]
+    {α a ρ B : ℝ} (hα1 : 3/2 ≤ α) (hα3 : α ≤ 3) (ha : 0 < a) (ha2 : a ≤ 1/2)
+    (hρ : 0 < ρ) (hρ4 : ρ ≤ 1/4) (hB : 0 < B) (hm : ExactPowerLaw μ α a)
+    (hε : |α - 2| * Real.log (1/ρ) ≤ 1) :
+    let Z := 1 / (a * Real.sqrt B) *
+      Real.sqrt (ρ * ThresholdHC.CriticalEntropy.criticalLogFactor ρ)
+    ENNReal.ofReal (2 * (10 : ℝ)⁻¹ ^ 19 * min ρ Z) ≤ rareMinimaxRisk μ ρ B ∧
+    rareMinimaxRisk μ ρ B ≤ ENNReal.ofReal (700000 * min ρ Z) := by
+  intro Z
+  have hα : 0 < α := by linarith
+  have hρ1 : ρ < 1 := by linarith
+  obtain ⟨hΦl, hΦu, hNl, hNu⟩ := near_two_bounds hα1 hα3 hρ hρ4 hε
+  have hN1 := effective_scales_ge_one hα hρ hρ1
+  set ℓ := Real.log (1/ρ) with hℓ
+  have hℓ1 : 1 ≤ ℓ := log_inv_ge_one hρ hρ4
+  set L := 1 + ℓ with hL
+  set H := 1 + Real.log L with hH
+  have hL1 : 1 ≤ L := by linarith
+  have hlogL : 0 ≤ Real.log L := Real.log_nonneg hL1
+  have hcrit : ThresholdHC.CriticalEntropy.criticalLogFactor ρ = L * H := by
+    unfold ThresholdHC.CriticalEntropy.criticalLogFactor; rw [hH, hL, hℓ]
+  set N := effectiveScales α ρ with hNdef
+  set K := 1 + Real.log N with hKdef
+  have hlogN : 0 ≤ Real.log N := Real.log_nonneg hN1
+  -- K ≤ 2 H
+  have hKup : K ≤ 2 * H := by
+    have h1 : Real.log N ≤ Real.log (2 * L) := Real.log_le_log (by linarith) (by linarith)
+    rw [Real.log_mul (by norm_num) (by linarith)] at h1
+    have := Real.log_two_lt_d9
+    linarith
+  -- K ≥ H/3
+  have hKlo : H / 3 ≤ K := by
+    have h6 : Real.log 6 ≤ 2 := by
+      rw [Real.log_le_iff_le_exp (by norm_num)]
+      have h2 : Real.exp 2 = Real.exp 1 ^ 2 := by rw [← Real.exp_nat_mul]; norm_num
+      have he := Real.exp_one_gt_d9
+      nlinarith
+    have h1 : Real.log (L / 6) ≤ Real.log N := Real.log_le_log (by positivity) (by linarith)
+    rw [Real.log_div (by linarith) (by norm_num)] at h1
+    by_cases hH3 : H ≤ 3
+    · linarith
+    · linarith
+  -- the radicands
+  have hP : ρ * (L * H) / 16 ≤ ρ * powerPhi α ρ * K ∧ ρ * powerPhi α ρ * K ≤ 4 * (ρ * (L * H)) := by
+    have hΦL : L / 4 ≤ powerPhi α ρ := by linarith
+    have hΦU : powerPhi α ρ ≤ 2 * L := by linarith
+    have hH1 : 1 ≤ H := by linarith
+    have hK0 : 0 ≤ K := by linarith
+    constructor
+    · have : L * H / 16 ≤ powerPhi α ρ * K := by
+        have := mul_le_mul hΦL hKlo (by positivity) (by linarith)
+        nlinarith
+      nlinarith
+    · have : powerPhi α ρ * K ≤ 4 * (L * H) := by
+        have := mul_le_mul hΦU hKup hK0 (by linarith)
+        nlinarith
+      nlinarith
+  obtain ⟨hRl, hRu⟩ := risk_bounds μ hα1 hα3 ha ha2 hρ hρ4 hB hm
+  set x := 1 / (a * Real.sqrt B) with hx
+  have hx0 : 0 < x := by positivity
+  set Y := x * Real.sqrt (ρ * powerPhi α ρ * K) with hY
+  have hZ : Z = x * Real.sqrt (ρ * (L * H)) := by rw [← hcrit]
+  have hYlo : Z / 4 ≤ Y := by
+    rw [hZ, hY]
+    have h := Real.sqrt_le_sqrt hP.1
+    rw [Real.sqrt_div' _ (by norm_num : (0:ℝ) ≤ 16),
+      show Real.sqrt 16 = 4 by rw [show (16:ℝ) = 4^2 by norm_num, Real.sqrt_sq (by norm_num)]] at h
+    rw [mul_div_assoc]
+    exact mul_le_mul_of_nonneg_left h hx0.le
+  have hYhi : Y ≤ 2 * Z := by
+    rw [hZ, hY]
+    have h := Real.sqrt_le_sqrt hP.2
+    rw [Real.sqrt_mul (by norm_num : (0:ℝ) ≤ 4),
+      show Real.sqrt 4 = 2 by rw [show (4:ℝ) = 2^2 by norm_num, Real.sqrt_sq (by norm_num)]] at h
+    nlinarith [mul_le_mul_of_nonneg_left h hx0.le]
+  have hZ0 : 0 ≤ Z := by positivity
+  have hm1 : min ρ Z / 4 ≤ min ρ Y := by
+    rw [le_min_iff]; constructor
+    · linarith [min_le_left ρ Z]
+    · linarith [min_le_right ρ Z]
+  have hm2 : min ρ Y ≤ 2 * min ρ Z := by
+    rw [mul_min_of_nonneg _ _ (by norm_num : (0:ℝ) ≤ 2)]
+    exact min_le_min (by linarith) hYhi
+  have h0 : 0 ≤ min ρ Z := le_min hρ.le hZ0
+  constructor
+  · refine le_trans (ENNReal.ofReal_le_ofReal ?_) hRl
+    have hc : 2 * (10 : ℝ)⁻¹ ^ 19 * 4 ≤ (10 : ℝ)⁻¹ ^ 18 := by norm_num
+    nlinarith [pow_pos (show (0 : ℝ) < 10⁻¹ by norm_num) 18]
+  · refine hRu.trans (ENNReal.ofReal_le_ofReal ?_)
+    nlinarith
+
 end ThresholdHC.CriticalWindow

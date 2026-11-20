@@ -909,8 +909,10 @@
     "ThresholdHC.CriticalWindow.AwayPhiStatement": "4762494857145497995:438299935731426691",
     "ThresholdHC.CriticalWindow.AwayRiskStatement": "4762494857145497995:17192668983762348505",
     "ThresholdHC.CriticalWindow.AwayScalesStatement": "4762494857145497995:17165619783748074965",
+    "ThresholdHC.CriticalWindow.NearTwoRiskStatement": "4762494857145497995:11148592559425285949",
     "ThresholdHC.CriticalWindow.NearTwoStatement": "4762494857145497995:12653143440594506115",
     "ThresholdHC.CriticalWindow.QuadraticRiskStatement": "4762494857145497995:13203620873666675448",
+    "ThresholdHC.CriticalWindow.QuadraticScalesStatement": "4762494857145497995:10302921337160153062",
     "ThresholdHC.CriticalWindow.QuadraticWindowStatement": "4762494857145497995:16462334998551052192",
     "ThresholdHC.CriticalWindow.WindowPsiStatement": "4762494857145497995:11010381820272591371",
     "ThresholdHC.CriticalWindow.WindowRateStatement": "4762494857145497995:3217819434204691532",
@@ -1786,6 +1788,9 @@
     "ThresholdHC.OracleLower.selectedMinimaxRisk": "10850261107739373973:2549926880631711450",
     "ThresholdHC.OracleLower.selectedOracle": "13092515415492536199:5437546494487480159",
     "ThresholdHC.OracleLower.selectedRequestMeasurableSpace": "7674821830771989894:24979097905214202",
+    "ThresholdHC.PaperCorollaries.EnvelopeRMSStatement": "4762494857145497995:3220548424012583486",
+    "ThresholdHC.PaperCorollaries.HardSharpLowerStatement": "4762494857145497995:5219002052237726944",
+    "ThresholdHC.PaperCorollaries.PsiSequenceStatement": "4762494857145497995:566039933967207105",
     "ThresholdHC.PowerWindow.PowerConfidenceStatement": "4762494857145497995:1530297512267250691",
     "ThresholdHC.PowerWindow.PowerCoreStatement": "4762494857145497995:6587263594223711346",
     "ThresholdHC.PowerWindow.PowerPhiStatement": "4762494857145497995:9720291207922797821",
@@ -3135,6 +3140,10 @@
     {
       "at": "2026-11-20T19:36:55+00:00",
       "count": 11
+    },
+    {
+      "at": "2026-11-20T19:53:24+00:00",
+      "count": 5
     }
   ]
 }

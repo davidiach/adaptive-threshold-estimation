@@ -109,4 +109,23 @@ def NearTwoStatement : Prop :=
     Real.log (1/ρ) / 2 ≤ powerPhi α ρ ∧ powerPhi α ρ ≤ 2 * Real.log (1/ρ) ∧
     Real.log (1/ρ) / 3 ≤ effectiveScales α ρ ∧ effectiveScales α ρ ≤ 2 * Real.log (1/ρ)
 
+/-- Remark 14.15 at exponent two: `Φ_2(ρ)` and `N_2(ρ)` are each within universal
+factors of `L = 1 + log(1/ρ)`. -/
+def QuadraticScalesStatement : Prop :=
+  ∀ (ρ : ℝ), 0 < ρ → ρ ≤ 1/4 →
+    (1 + Real.log (1/ρ)) / 2 ≤ powerPhi 2 ρ ∧ powerPhi 2 ρ ≤ 1 + Real.log (1/ρ) ∧
+    effectiveScales 2 ρ ≤ 1 + Real.log (1/ρ) ∧ 1 + Real.log (1/ρ) ≤ effectiveScales 2 ρ ^ 2
+
+/-- Remark 14.15, near two, for the risk: once `|α - 2| log(1/ρ) ≤ 1`, the minimax
+risk is within universal factors of `min{ρ, x √(ρ L H)}`, the rate of the quadratic
+law, so the exponents near two behave like the quadratic law. -/
+def NearTwoRiskStatement : Prop :=
+  ∀ (μ : Measure Gap) [IsProbabilityMeasure μ] (α a ρ B : ℝ),
+    3/2 ≤ α → α ≤ 3 → 0 < a → a ≤ 1/2 → 0 < ρ → ρ ≤ 1/4 → 0 < B → ExactPowerLaw μ α a →
+    |α - 2| * Real.log (1/ρ) ≤ 1 →
+    let Z := 1 / (a * Real.sqrt B) *
+      Real.sqrt (ρ * ThresholdHC.CriticalEntropy.criticalLogFactor ρ)
+    ENNReal.ofReal (2 * (10 : ℝ)⁻¹ ^ 19 * min ρ Z) ≤ rareMinimaxRisk μ ρ B ∧
+    rareMinimaxRisk μ ρ B ≤ ENNReal.ofReal (700000 * min ρ Z)
+
 end ThresholdHC.CriticalWindow

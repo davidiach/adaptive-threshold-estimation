@@ -9,7 +9,8 @@ risk satisfies display (W9) with the paper's constants, `Ψ` is `min{ρ, Y⁰}`
 within the factors `1/√2` and `5.13`, and when `Y ≤ ρ` the ratio of the risk to
 `Ψ` is within universal factors of `√(1 + log N_α(ρ))`. The remark identifies the
 quadratic law with the critical theorem's rate and reads off the regimes away
-from and near exponent two. -/
+from and near exponent two, where near two the risk behaves like that of the
+quadratic law. -/
 noncomputable section
 namespace ThresholdHC.CriticalWindow
 open MeasureTheory ThresholdHC.Tier6 ThresholdHC.RareAboveTwo ThresholdHC.PowerWindow
@@ -58,5 +59,13 @@ theorem window_away_risk : AwayRiskStatement := by
 theorem window_near_two : NearTwoStatement := by
   intro α ρ hα1 hα3 hρ hρ4 hε
   exact near_two_bounds hα1 hα3 hρ hρ4 hε
+
+theorem window_quadratic_scales : QuadraticScalesStatement := by
+  intro ρ hρ hρ4
+  exact quadratic_scales_bounds hρ hρ4
+
+theorem window_near_two_risk : NearTwoRiskStatement := by
+  intro μ _ α a ρ B hα1 hα3 ha ha2 hρ hρ4 hB hm hε
+  exact near_two_risk_bounds μ hα1 hα3 ha ha2 hρ hρ4 hB hm hε
 
 end ThresholdHC.CriticalWindow
