@@ -1850,8 +1850,13 @@ law at a known gap law, the fixed plan's bias is at most the mean
 misclassification probability and its variance at most $1/(4n)$. The toolkit
 evaluates the analytic formulas with binomial tails, using floating-point
 arithmetic. The continuous uniform law uses an analytic integral rather than
-a finite grid. This elementary bound is not Lean-checked, and its numerical
-evaluation is subject to roundoff.
+a finite grid. Since 21 November 2026 Lean checks the bound for the plan run in
+the original adaptive experiment: expected work $n(2k+1)$ for $m=2k+1$, bias
+at most $e_m$, extended variance at most $1/(4n)$, RMS at most
+$\sqrt{e_m^2+1/(4n)}$ over all sign laws, and for uniform success rates
+$e_m=\binom{2a}{a}/2^{2a+1}=1/(2a\,\mathrm B(a,1/2))$ with $a=k+1$, in
+binomial-tail form ([record](../results/fixed-plan-20261121/README.md)). The
+numerical evaluation remains subject to roundoff.
 
 Take the ten-coin example law from the toolkit guide, with probabilities 0.9,
 0.8, 0.7, 0.6, 0.55, 0.52, 0.45, 0.3, 0.2 and 0.1 drawn uniformly, and

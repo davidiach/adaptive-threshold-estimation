@@ -170,6 +170,10 @@ at the specified known gap law. For success rates uniformly distributed on
 `2 integral_0^(1/2) I_p(a,a) dp = binom(2a,a)/2^(2a+1) = 1/(2a Beta(a,1/2))`.
 See [practical comparison](RESULTS.md#practical-comparison-with-a-fixed-plan)
 and the formula in [EvenlySpread.majority_terms](../toolkit/threshold_toolkit/planner.py).
+Since 21 November 2026 the bias, variance and RMS bound and the analytic
+integral are Lean-checked for the plan run in the original experiment, with
+the integrand in binomial-tail form `P(Bin(2a-1,p) >= a)` rather than as
+`I_p(a,a)` ([record](../results/fixed-plan-20261121/README.md)).
 The integral and bias/variance formula are separate from their floating-point
 evaluation. Deterministic calculator correctness belongs to #85; independent
 coin callbacks and actual execution belong to #86. Simulation comparisons

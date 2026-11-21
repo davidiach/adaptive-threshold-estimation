@@ -1019,6 +1019,13 @@ the paper's table. CI runs it in the `entropy-tail-upper` job. Its 11-test
 guard suite is `test_noninterval_selection.py`.
 [Record](../results/noninterval-selection-20261121/README.md).
 
+Run `python tools/verify_fixed_plan.py --replay` for 14 exact statements and 85
+transitive axiom reports over the six modules of `lean/ThresholdHC/FixedPlan`:
+the toolkit's fixed majority plan, its exact work, bias, variance and RMS
+bounds, and the closed form of $e_m$ for uniform rates. CI runs it in the
+`entropy-tail-upper` job. Its 11-test guard suite is `test_fixed_plan.py`.
+[Record](../results/fixed-plan-20261121/README.md).
+
 Each audit pins its new specification, restates the checked targets and
 reports every new declaration's transitive axioms. Their six-test guard
 suites are `test_psi_sharpness.py` and `test_power_window.py`; CI runs both
@@ -1026,7 +1033,8 @@ suites and both audits, and also the critical-window, paper-corollary,
 paper-statement, pilot-feedback, explicit-constant, nonnegativity,
 finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
 split, critical common-pair, bias-subtraction, global-cut, psi-null,
-entropy-tail-forms and noninterval-selection suites and audits, the
+entropy-tail-forms, noninterval-selection and fixed-plan suites and audits,
+the
 `lean-kernel` job also the restricted-class and sharp-strictness suites and
 audits; the `stopping-program` job also runs the fixed-cap
 estimate and program-factor suites and audits. Existing published records retain their original scope.
