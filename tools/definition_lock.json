@@ -559,6 +559,9 @@
     "ThresholdHC.ConfidenceTransfer.quarterPrior": "4267506953839953567:5794831402177390322",
     "ThresholdHC.ConfidenceTransfer.rareConfidenceRadius": "7239133348808244728:18306744567384014024",
     "ThresholdHC.ConfidenceTransfer.smoothedSign": "1292767222612221575:13838125857283268430",
+    "ThresholdHC.ConfidenceTransferSteps.AboveTwoConfidenceFamilyStatement": "4762494857145497995:6110903772383585156",
+    "ThresholdHC.ConfidenceTransferSteps.AboveTwoConfidenceStatement": "4762494857145497995:6238619225024847531",
+    "ThresholdHC.ConfidenceTransferSteps.PsiConfidenceNullStatement": "4762494857145497995:8880057024857093175",
     "ThresholdHC.ContinuousObserved.CellDesign.queryDesign": "7524630190921397715:12687287162219080268",
     "ThresholdHC.ContinuousObserved.QueryDesign": "13547518494752764177:5512452968589302897",
     "ThresholdHC.ContinuousObserved.QueryDesign._sizeOf_1": "16283949725800873056:4678174070054216778",
@@ -3547,6 +3550,10 @@
     {
       "at": "2026-11-21T07:14:44+00:00",
       "count": 4
+    },
+    {
+      "at": "2026-11-21T07:19:30+00:00",
+      "count": 3
     }
   ]
 }
