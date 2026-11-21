@@ -416,14 +416,19 @@ The fully adaptive witness stays below $0.186752$ under the same budget and
 menu. The research package includes the independent Lean replay record. CI
 checks the proof-source hashes and reruns the rational calculation.
 [Exact calculation and Lean proof](../research/2026-11-18-stopping-update/README.md)
+Since 21 November 2026 it is also in the CI-audited library
+([`one_stopping_update_rms_lower`,
+`one_stopping_update_rms_separation`](../lean/ThresholdHC/StoppingUpdate/Full.lean),
+[record](../results/stopping-update-20261121/README.md)), with each certificate row split into 27 pieces of
+about 1.1 GB of kernel memory.
 
 With two updates triggered by follow-up answers, worst-case RMS is still at
 least $0.186764460$, above the fully adaptive witness's $0.186752$ upper
 bound. Both triggers can use the full ordered history. The research package
 includes the exact rational calculation and the independent Lean replay.
 [Two-update proof and audit](../research/2026-11-18-two-stopping-updates/README.md)
-These two packages stay outside the library: one row of their integer
-certificates needs more than 13.5 GB of memory in the kernel
+This package stays outside the library: the research build of one row of its
+integer certificate ran out of memory above 13.5 GB
 ([record](../results/pilot-feedback-20261120/README.md)).
 
 The confidence theorem [`confidence_characterization`](../lean/ThresholdHC/Confidence/Full.lean)

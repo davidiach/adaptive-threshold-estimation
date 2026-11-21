@@ -965,6 +965,16 @@ CI runs it in the `stopping-program` job. Its 11-test guard suite is
 `test_program_factor.py`.
 [Record](../results/program-factor-20261121/README.md).
 
+Run `python tools/verify_stopping_update.py --replay` for 5 exact statements
+and 53 transitive axiom reports over the 20 modules of
+`lean/ThresholdHC/StoppingUpdate`: one schedule replacement at a stopping time
+at gap $1/5$ with $B=25$. The certificate is split into 513 pieces over eleven
+row modules; compiling them takes about 46 minutes of kernel time on one
+core, and each row module uses about 1.1 GB of its own memory. CI runs it in
+the `stopping-program` job. Its 11-test guard suite is
+`test_stopping_update.py`.
+[Record](../results/stopping-update-20261121/README.md).
+
 Run `python tools/verify_cap_identification_estimate.py --replay` for 4 exact
 statements and 13 transitive axiom reports over the three modules of
 `lean/ThresholdHC/CapIdentificationEstimate`: the explicit estimate
@@ -1088,7 +1098,7 @@ suites and audits, the
 `lean-kernel` job also the restricted-class, sharp-strictness,
 oracle-sharpness, oracle-upper, clipped-output and revisit-upper suites and
 audits; the `stopping-program` job also runs the fixed-cap
-estimate and program-factor suites and audits. Existing published records retain their original scope.
+estimate, program-factor and stopping-update suites and audits. Existing published records retain their original scope.
 
 ## Sharp RMS coefficient and square-root cap
 
