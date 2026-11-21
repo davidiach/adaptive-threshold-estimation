@@ -1306,6 +1306,9 @@
     "ThresholdHC.FiniteCapTruncation.capFlow": "8883207573819834653:17912944308524359175",
     "ThresholdHC.FiniteCapTruncation.discardedMean": "4030656061861035135:6212000943580522811",
     "ThresholdHC.FiniteCapTruncation.liftState": "13973241956409672958:3230467018989671660",
+    "ThresholdHC.FiniteGapCorollaries.LargeBudgetMeanSquareStatement": "4762494857145497995:6604154826240828036",
+    "ThresholdHC.FiniteGapCorollaries.MeanSquareStatement": "4762494857145497995:11444615300432093922",
+    "ThresholdHC.FiniteGapCorollaries.OneGapStatement": "4762494857145497995:7184489768429297776",
     "ThresholdHC.FiniteLawCertificates.atomicMeasure": "12922074357574839470:12622090790099464396",
     "ThresholdHC.FiniteLawCertificates.costs": "9424954462821477935:3917870239622101413",
     "ThresholdHC.FiniteLawCertificates.errorValue": "16521312326086869767:8075155152554099559",
@@ -3337,6 +3340,10 @@
     {
       "at": "2026-11-21T00:10:22+00:00",
       "count": 9
+    },
+    {
+      "at": "2026-11-21T00:28:46+00:00",
+      "count": 3
     }
   ]
 }
