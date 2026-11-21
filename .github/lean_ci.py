@@ -32,7 +32,7 @@ VERIFIERS = {
         quantile_sharp_law quantile_optimality optimal_quantile bandwise_suffix selection_stability
         quarter_smoothing confidence_* critical_confidence hard_budget stopping_confidence
         stochastic_envelope sublinear_power shifted_power anytime_* smooth_density observed_*
-        continuous_observed nested_assumptions typed_confidence additive_confidence psi_* power_window critical_window paper_corollaries paper_statements finite_gap_corollaries stopped_time_uniform latent_threshold zero_atom_split critical_pair_rms bias_subtraction rms_localization
+        continuous_observed nested_assumptions light_contraction_constant typed_confidence additive_confidence psi_* power_window critical_window paper_corollaries paper_statements finite_gap_corollaries stopped_time_uniform latent_threshold zero_atom_split critical_pair_rms bias_subtraction rms_localization
         band_cost_selection gap_law_menus law_adaptation* arbitrary_law_* known_law_*
         dyadic_summability robust_* clipping_pilot_independence clipping_boundary paid_median project_axioms
     """,
