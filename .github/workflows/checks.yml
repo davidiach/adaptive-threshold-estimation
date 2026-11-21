@@ -178,6 +178,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_program_factor.py' -v
           python -m unittest discover -s tools -p 'test_fixed_plan.py' -v
           python -m unittest discover -s tools -p 'test_oracle_sharpness.py' -v
+          python -m unittest discover -s tools -p 'test_clipping_boundary.py' -v
       - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper-constant (119, 45, 36, 27, 19, 17, 15) and square-root cap audits
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
@@ -859,6 +860,10 @@ jobs:
         run: python tools/verify_robust_cdf_bridge.py
       - name: Verify clipping and independence from the paid pilot
         run: python tools/verify_clipping_pilot_independence.py
+      # The clipping-boundary note: a bounded-kurtosis transfer of the variance to
+      # the clipped risk, and seed noise showing no unrestricted transfer.
+      - name: Verify the clipping boundary and replay its modules
+        run: python tools/verify_clipping_boundary.py --replay --jobs 3
       - name: Verify conditional capped-median and paid-stage coverage
         run: python tools/verify_paid_median.py
       - name: Verify the full arbitrary-law all-budget controller

@@ -56,6 +56,7 @@ class LeanRoutingTests(unittest.TestCase):
             "tools/verify_entropy_tail_forms.py": {"entropy-tail-upper"},
             "tools/verify_noninterval_selection.py": {"entropy-tail-upper"},
             "tools/verify_fixed_plan.py": {"entropy-tail-upper"},
+            "tools/verify_clipping_boundary.py": {"entropy-tail-upper"},
             "tools/verify_restricted_rms.py": {"lean-kernel"},
             "tools/verify_sharp_strict.py": {"lean-kernel"},
             "tools/verify_oracle_sharpness.py": {"lean-kernel"},

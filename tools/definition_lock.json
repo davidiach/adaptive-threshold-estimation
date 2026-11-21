@@ -464,6 +464,16 @@
     "ThresholdHC.CapIdentification.topState": "436853959800551734:9520876910378162236",
     "ThresholdHC.CapIdentification.weightedPolynomialIntegral": "13854896178846804948:11604544561755347667",
     "ThresholdHC.CapIdentificationEstimate.ExplicitCapEstimateStatement": "4762494857145497995:16193258090100559029",
+    "ThresholdHC.ClippingBoundary.KurtosisRMSStatement": "4762494857145497995:2293105327283414516",
+    "ThresholdHC.ClippingBoundary.KurtosisTransferStatement": "4762494857145497995:13281123519804259971",
+    "ThresholdHC.ClippingBoundary.NoiseCounterexampleStatement": "4762494857145497995:11702217860438700562",
+    "ThresholdHC.ClippingBoundary.NoisyEstimatorStatement": "4762494857145497995:4134637390636218055",
+    "ThresholdHC.ClippingBoundary.UniformClippedFloorStatement": "4762494857145497995:14875035454529790830",
+    "ThresholdHC.ClippingBoundary.noisyEstimator": "11890012239849836157:11600371725660149947",
+    "ThresholdHC.ClippingBoundary.noisyOutput": "1302746660734412362:17512000773172552334",
+    "ThresholdHC.ClippingBoundary.noisyView": "12971037458217485459:771125999951944220",
+    "ThresholdHC.ClippingBoundary.plainView": "15833249306480395891:3496135749202688924",
+    "ThresholdHC.ClippingBoundary.seedNoise": "10014115706358363835:10545757671186910161",
     "ThresholdHC.ClosedQuantile.ClosedQuantileLawStatement": "4762494857145497995:4075525623914069557",
     "ThresholdHC.Confidence.CalibrationArray": "12841156711311012099:16285824005406231133",
     "ThresholdHC.Confidence.ConfidenceAlgorithmLowerStatement": "4762494857145497995:18009727335439264695",
@@ -3482,6 +3492,10 @@
     {
       "at": "2026-11-21T03:57:01+00:00",
       "count": 8
+    },
+    {
+      "at": "2026-11-21T04:06:16+00:00",
+      "count": 10
     }
   ]
 }
