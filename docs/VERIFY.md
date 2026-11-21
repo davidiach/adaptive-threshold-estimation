@@ -1019,6 +1019,14 @@ the paper's table. CI runs it in the `entropy-tail-upper` job. Its 11-test
 guard suite is `test_noninterval_selection.py`.
 [Record](../results/noninterval-selection-20261121/README.md).
 
+Run `python tools/verify_oracle_upper.py --replay` for 6 exact statements and
+97 transitive axiom reports over the seven modules of
+`lean/ThresholdHC/OracleUpper`: both magnitude-oracle minimax risks are at most
+$\omega_\mu(B^{-1/2})/2$, so $1/2$ is exactly the best oracle coefficient. CI
+runs it in the `lean-kernel` job. Its 11-test guard suite is
+`test_oracle_upper.py`.
+[Record](../results/oracle-upper-20261121/README.md).
+
 Run `python tools/verify_oracle_sharpness.py --replay` for 4 exact statements
 and 9 transitive axiom reports over the five modules of
 `lean/ThresholdHC/OracleSharpness`: no magnitude-oracle upper coefficient below
@@ -1050,8 +1058,8 @@ finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
 split, critical common-pair, bias-subtraction, global-cut, psi-null,
 entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
 suites and audits, the
-`lean-kernel` job also the restricted-class, sharp-strictness and
-oracle-sharpness suites and audits; the `stopping-program` job also runs the fixed-cap
+`lean-kernel` job also the restricted-class, sharp-strictness,
+oracle-sharpness and oracle-upper suites and audits; the `stopping-program` job also runs the fixed-cap
 estimate and program-factor suites and audits. Existing published records retain their original scope.
 
 ## Sharp RMS coefficient and square-root cap

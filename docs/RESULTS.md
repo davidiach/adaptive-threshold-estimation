@@ -534,7 +534,10 @@ sharp. Since 21 November 2026 Lean checks the sharpness half: for every
 $B\ge1$ and $c<1/2$, point masses at all sufficiently small gaps have both
 oracle risks above $c\,\omega(B^{-1/2})$, so no oracle upper coefficient below
 $1/2$ holds ([record](../results/oracle-sharpness-20261121/README.md)). The
-upper bound itself is not yet Lean-checked.
+upper bound is Lean-checked as well since the same date, for every gap law and
+every $B\ge1$, with the floor form at the scale $1/(2\sqrt{\lfloor B\rfloor})$,
+so $1/2$ is exactly the best universal oracle coefficient
+([record](../results/oracle-upper-20261121/README.md)).
 
 The original oracle theorems are frozen targets, Lean-checked for both
 revealed and adaptively selected magnitudes. They prove the RMS bound with
