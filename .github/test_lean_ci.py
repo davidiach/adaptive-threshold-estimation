@@ -57,6 +57,7 @@ class LeanRoutingTests(unittest.TestCase):
             "tools/verify_observed_hoeffding.py": {"entropy-tail-upper"},
             "tools/verify_nested_assumptions.py": {"entropy-tail-upper"},
             "tools/verify_light_contraction_constant.py": {"entropy-tail-upper"},
+            "tools/verify_band_cost_example.py": {"entropy-tail-upper"},
             "tools/verify_entropy_tail_forms.py": {"entropy-tail-upper"},
             "tools/verify_noninterval_selection.py": {"entropy-tail-upper"},
             "tools/verify_fixed_plan.py": {"entropy-tail-upper"},

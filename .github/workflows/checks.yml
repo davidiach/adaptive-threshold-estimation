@@ -186,6 +186,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_observed_hoeffding.py' -v
           python -m unittest discover -s tools -p 'test_nested_assumptions.py' -v
           python -m unittest discover -s tools -p 'test_light_contraction_constant.py' -v
+          python -m unittest discover -s tools -p 'test_band_cost_example.py' -v
       - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper-constant (119, 45, 36, 27, 19, 17, 15) and square-root cap audits
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
@@ -821,6 +822,10 @@ jobs:
         run: python tools/verify_stopped_time_uniform.py --replay --jobs 3
       - name: Verify finite-menu cost grouping, exact comparisons and certificates
         run: python tools/verify_band_cost_selection.py
+      # The 64-band example of the finite-law section: equal one-atom costs, the
+      # two largest gaps attain K, and the formal solver run with 65 terminal states.
+      - name: Verify the 64-band selection example and replay its modules
+        run: python tools/verify_band_cost_example.py --replay --jobs 3
       - name: Verify the concrete finite-gap-law menu construction
         run: python tools/verify_gap_law_menus.py
       - name: Verify finite-family law-adaptation components

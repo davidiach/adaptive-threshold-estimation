@@ -287,6 +287,33 @@
     "ThresholdHC.ArbitraryLawController.tableInterval._f": "16835522591871973821:5474140725634519335",
     "ThresholdHC.ArbitraryLawController.tableInterval._sunfold": "6273451985467190859:4438195767493923649",
     "ThresholdHC.ArbitraryLawController.tableInterval._unsafe_rec": "6273451985467190859:13501547437706489296",
+    "ThresholdHC.BandCostExample.EqualCostStatement": "4762494857145497995:9845213679640063394",
+    "ThresholdHC.BandCostExample.J": "18134474554951495511:5385025909387455587",
+    "ThresholdHC.BandCostExample.OptimizerStatement": "4762494857145497995:14469722894453790457",
+    "ThresholdHC.BandCostExample.SetupStatement": "4762494857145497995:4272668676102719288",
+    "ThresholdHC.BandCostExample.SolverRunStatement": "4762494857145497995:217986103107721334",
+    "ThresholdHC.BandCostExample.TT": "9035701922190319447:14688567203133185262",
+    "ThresholdHC.BandCostExample.UniqueHardMinimumStatement": "4762494857145497995:17590329063990177203",
+    "ThresholdHC.BandCostExample.V": "18134474554951495511:7539444056680141996",
+    "ThresholdHC.BandCostExample.X": "18134474554951495511:5300078854810969896",
+    "ThresholdHC.BandCostExample.atomSet": "18218124078144729986:1073254917949073008",
+    "ThresholdHC.BandCostExample.atoms": "16340517616522400583:6131186822426559655",
+    "ThresholdHC.BandCostExample.cc": "9035701922190319447:16650683099304336847",
+    "ThresholdHC.BandCostExample.chosen": "6030673031125352054:4614147800197394012",
+    "ThresholdHC.BandCostExample.ent": "15266474460176836143:16890995284928532463",
+    "ThresholdHC.BandCostExample.gaps": "3380750080580903803:2185142885014303292",
+    "ThresholdHC.BandCostExample.hh": "9035701922190319447:15557909945283323030",
+    "ThresholdHC.BandCostExample.kc": "5220562534244580727:12924083629085486505",
+    "ThresholdHC.BandCostExample.labels": "8644384512945017767:13882547493596076417",
+    "ThresholdHC.BandCostExample.law": "14578872644517123936:12249933534999102055",
+    "ThresholdHC.BandCostExample.masses": "13317159924223829697:14967027998186093820",
+    "ThresholdHC.BandCostExample.retained": "362897375286189288:17446857746701635641",
+    "ThresholdHC.BandCostExample.saved": "18134474554951495511:10687427792389551671",
+    "ThresholdHC.BandCostExample.topTwo": "10793020740126862809:3454321887565385847",
+    "ThresholdHC.BandCostExample.tt": "13317159924223829697:15574236938705463133",
+    "ThresholdHC.BandCostExample.weights": "3380750080580903803:17839529056945536081",
+    "ThresholdHC.BandCostExample.zq": "10302851985160509177:17740795847235177373",
+    "ThresholdHC.BandCostExample.zsum": "9035701922190319447:9747634025535127968",
     "ThresholdHC.BandCostSelection.compress": "2573422415247015079:2735661636646559537",
     "ThresholdHC.BandCostSelection.enumerate": "16582834398818943838:16303276325381347144",
     "ThresholdHC.BandCostSelection.enumerate._f": "12325488855625017950:13504718126452666844",
@@ -3621,6 +3648,10 @@
     {
       "at": "2026-11-21T07:40:29+00:00",
       "count": 9
+    },
+    {
+      "at": "2026-11-21T07:45:35+00:00",
+      "count": 27
     }
   ]
 }
