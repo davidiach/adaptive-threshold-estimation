@@ -1379,10 +1379,12 @@ replay evidence and attribution. The later formal proofs are detailed below.
 No explicit hard-pair formula, external specialist review or priority
 certification is claimed. The note's RMS affine comparison lemma
 `lem:comparison`, which the formal route does not use, is Lean-checked since
-21 November 2026 in its categorical case, with the constant $6$ (a sharpening
-from the Lean route) and the note's $12$ as a corollary; the Poisson case is
-not ([`categorical_comparison_6`](../lean/ThresholdHC/AffineComparison/Full.lean),
-[record](../results/affine-comparison-20261121/README.md)).
+21 November 2026 in both its cases, with the constant $6$ (a sharpening from
+the Lean route) and the note's $12$ as a corollary: the categorical case
+([`categorical_comparison_6`](../lean/ThresholdHC/AffineComparison/Full.lean),
+[record](../results/affine-comparison-20261121/README.md)) and the Poisson case
+([`poisson_comparison_6`](../lean/ThresholdHC/PoissonComparison/Full.lean),
+[record](../results/poisson-comparison-20261121/README.md)).
 
 The critical single-coin base-cost theorem (BC1) is Lean-checked in
 [BaseCost.lean](../lean/ThresholdHC/CriticalEntropy/BaseCost.lean):
