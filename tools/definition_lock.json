@@ -2330,6 +2330,23 @@
     "ThresholdHC.RepeatedCheck.wordCount": "15615368425278368434:13728097592118761183",
     "ThresholdHC.ResearchRouteA.SeparateMomentBoundsStatement": "4762494857145497995:2105256557531570170",
     "ThresholdHC.ResearchRouteA.UniformFamilyBoundsStatement": "4762494857145497995:4019469352008831600",
+    "ThresholdHC.ReservoirTermination.CreationTwoLawStoppingStatement": "4762494857145497995:7532190122750023682",
+    "ThresholdHC.ReservoirTermination.HalfGapExampleStatement": "4762494857145497995:9702539439720026082",
+    "ThresholdHC.ReservoirTermination.NaiveBridgeFailsStatement": "4762494857145497995:13217038448973537754",
+    "ThresholdHC.ReservoirTermination.OriginalExperimentStatement": "4762494857145497995:4907858336907246130",
+    "ThresholdHC.ReservoirTermination.QuarterGapExampleStatement": "4762494857145497995:15944485264821321950",
+    "ThresholdHC.ReservoirTermination.ReservoirCounterexampleStatement": "4762494857145497995:337613802654115215",
+    "ThresholdHC.ReservoirTermination.RunsForever": "8010021489583850521:4238424686977620582",
+    "ThresholdHC.ReservoirTermination.WalkFirstPassageStatement": "4762494857145497995:14662049052022986128",
+    "ThresholdHC.ReservoirTermination.constantSignLaw": "3599652347145722457:5533193895304631192",
+    "ThresholdHC.ReservoirTermination.halfGap": "8521207260225387558:6124762381179615037",
+    "ThresholdHC.ReservoirTermination.quarterGap": "8521207260225387558:14633946064286805466",
+    "ThresholdHC.ReservoirTermination.walkAlive": "15956882335135876686:8622480659539154597",
+    "ThresholdHC.ReservoirTermination.walkEstimator": "2976063371730128439:1953736370336334175",
+    "ThresholdHC.ReservoirTermination.walkExp": "13136595815966580891:1122934532408644152",
+    "ThresholdHC.ReservoirTermination.walkOp": "1867914961376292953:4569419811054333264",
+    "ThresholdHC.ReservoirTermination.walkPolicy": "15735018935422174038:5337153481800931225",
+    "ThresholdHC.ReservoirTermination.walkValue": "1548098486767938697:9032828524493917871",
     "ThresholdHC.RestrictedRMS.OracleSmallBudgetCoefficientStatement": "4762494857145497995:6776036176079391793",
     "ThresholdHC.RestrictedRMS.RestrictedCoefficientStatement": "4762494857145497995:7670711586288367666",
     "ThresholdHC.RestrictedRMS.SmallBudgetCoefficientStatement": "4762494857145497995:10142821778236086927",
@@ -3390,6 +3407,7 @@
     "_private.ThresholdHC.RareAboveTwo.PathVariation.0.ThresholdHC.pathProb.match_1.splitter": "18178128407945934573:13481565310722253739",
     "_private.ThresholdHC.RareAboveTwo.PathVariation.0.ThresholdHC.pathProb.match_1.splitter._sparseCasesOn_4": "13208648013163033065:7056258156388248554",
     "_private.ThresholdHC.RareAboveTwo.PathVariation.0.ThresholdHC.pathProb.match_1.splitter._sparseCasesOn_5": "14373928458666162397:14537995785574750124",
+    "_private.ThresholdHC.ReservoirTermination.WalkLaw.0.ThresholdHC.Proofs.obsProb.match_1.splitter": "6413325036791249966:3115877313523060835",
     "_private.ThresholdHC.RevisitUpper.RevisitCertificate.0.ThresholdHC.RevisitUpper.difference": "9807201502060117812:8923895146490982792",
     "_private.ThresholdHC.RevisitUpper.RevisitCertificate.0.ThresholdHC.RevisitUpper.down": "9807201502060117812:7980009077310871653",
     "_private.ThresholdHC.RevisitUpper.RevisitCertificate.0.ThresholdHC.RevisitUpper.expandedRisk": "9807201502060117812:6891588316496876193",
@@ -3679,6 +3697,10 @@
     {
       "at": "2026-11-21T07:50:27+00:00",
       "count": 23
+    },
+    {
+      "at": "2026-11-21T07:55:27+00:00",
+      "count": 18
     }
   ]
 }

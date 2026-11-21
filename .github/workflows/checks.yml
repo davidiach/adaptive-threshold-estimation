@@ -188,6 +188,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_light_contraction_constant.py' -v
           python -m unittest discover -s tools -p 'test_band_cost_example.py' -v
           python -m unittest discover -s tools -p 'test_repeated_check.py' -v
+          python -m unittest discover -s tools -p 'test_reservoir_termination.py' -v
       - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper-constant (119, 45, 36, 27, 19, 17, 15) and square-root cap audits
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
@@ -732,6 +733,10 @@ jobs:
       # 0.428... > 1/4. The replay re-evaluates the survivor certificate.
       - name: Verify the repeated-check counterexample and replay its modules
         run: python tools/verify_repeated_check.py --replay --jobs 3
+      # The minimax audit's stopping-bridge note: finite expected work under one
+      # law does not transfer termination with a countable coin reservoir.
+      - name: Verify the countable-reservoir termination counterexample and replay its modules
+        run: python tools/verify_reservoir_termination.py --replay --jobs 3
       - name: Verify the smooth-density construction and adaptive information bound
         run: python tools/verify_smooth_density.py
       # theta = G_{mu,q}(P > 1/2) for every gap law, not only laws with a density.
