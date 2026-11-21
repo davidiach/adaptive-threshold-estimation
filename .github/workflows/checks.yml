@@ -213,6 +213,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_weighted_sign_sharp.py' -v
           python -m unittest discover -s tools -p 'test_full_null_bank.py' -v
           python -m unittest discover -s tools -p 'test_robust_continuation_forms.py' -v
+          python -m unittest discover -s tools -p 'test_finite_quantile_formula.py' -v
       - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper-constant (119, 45, 36, 27, 19, 17, 15) and square-root cap audits
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
@@ -932,6 +933,10 @@ jobs:
       # reference sign allocation and the pathwise correct-time bounds (UA15).
       - name: Verify the literal forms of the robust planner and replay their modules
         run: python tools/verify_robust_continuation_forms.py --replay --jobs 3
+      # Displays (67)-(69) of section 14.2: the finite quantile split, core entropy
+      # and closed functional, with the direct finite-law theorem at the formula.
+      - name: Verify the explicit quantile formula for finite laws and replay its modules
+        run: python tools/verify_finite_quantile_formula.py --replay --jobs 3
       - name: Verify prior families for the law-dependent time-uniform lower bound
         run: |
           python tools/verify_anytime_lower.py

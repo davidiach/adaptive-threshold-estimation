@@ -1431,6 +1431,13 @@
     "ThresholdHC.FiniteQuantile.prefixEnergy": "4809873858780146497:8980391146639361852",
     "ThresholdHC.FiniteQuantile.tailEndpoint": "4929043357499094141:5828187856927648661",
     "ThresholdHC.FiniteQuantile.tailEpsilon": "14599578583427873890:11229452615355553424",
+    "ThresholdHC.FiniteQuantileFormula.ExplicitFiniteLawStatement": "4762494857145497995:17203111302640536533",
+    "ThresholdHC.FiniteQuantileFormula.FiniteFormulaStatement": "4762494857145497995:15443426490956119849",
+    "ThresholdHC.FiniteQuantileFormula.coreGamma": "11186686773922080944:1932081831783018056",
+    "ThresholdHC.FiniteQuantileFormula.finiteCoreCost": "11186686773922080944:2418459218076381342",
+    "ThresholdHC.FiniteQuantileFormula.finiteQuantile": "15026540374001111765:10617345367728074511",
+    "ThresholdHC.FiniteQuantileFormula.tailSum": "7846158080644893272:3242039510775248215",
+    "ThresholdHC.FiniteQuantileFormula.tailWeight": "1447670386002138807:11133931752155207934",
     "ThresholdHC.FiniteSelectionApproximation.FiniteLawApproximationStatement": "4762494857145497995:7238758818325523172",
     "ThresholdHC.FiniteSelectionApproximation.beta": "18133891100220672328:5984242323965019262",
     "ThresholdHC.FiniteSelectionApproximation.binKey": "12882841973659675420:6213174970180674552",
@@ -4178,6 +4185,10 @@
     {
       "at": "2026-11-21T18:29:44+00:00",
       "count": 28
+    },
+    {
+      "at": "2026-11-21T18:34:14+00:00",
+      "count": 7
     }
   ]
 }
