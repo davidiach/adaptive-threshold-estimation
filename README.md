@@ -222,8 +222,9 @@ Use a disposable checkout for reproduction: some checks write diagnostic files.
   which proves the obstruction premise of the transfer theorems for every
   gap law, the three-piece form and ordered constants of the entropy-tail
   law, the paper's noninterval optimal assignment, the stopping-program
-  factor $3\sqrt7/2$, the fixed-plan majority bound, and the sharpness of
-  the magnitude-oracle coefficient $1/2$ ([records](results/README.md)).
+  factor $3\sqrt7/2$, the fixed-plan majority bound, the sharpness of the
+  magnitude-oracle coefficient $1/2$, and the clipping boundary
+  ([records](results/README.md)).
 - **Constants of the main law.** The lower constant $1/6$ is sharp and the
   upper constant is $12$, so the two sides are a factor $72$ apart. For
   budgets of at least 25 the best lower constant is known only to lie in

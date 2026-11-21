@@ -1026,6 +1026,14 @@ $1/2$, since point masses at small gaps have oracle risk near $1/2$. CI runs it
 in the `lean-kernel` job. Its 11-test guard suite is `test_oracle_sharpness.py`.
 [Record](../results/oracle-sharpness-20261121/README.md).
 
+Run `python tools/verify_clipping_boundary.py --replay` for 8 exact statements
+and 55 transitive axiom reports over the seven modules of
+`lean/ThresholdHC/ClippingBoundary`: the bounded-kurtosis transfer of the
+variance to the clipped risk, its uniform corollary, and the seed-noise
+counterexample. CI runs it in the `entropy-tail-upper` job. Its 11-test guard
+suite is `test_clipping_boundary.py`.
+[Record](../results/clipping-boundary-20261121/README.md).
+
 Run `python tools/verify_fixed_plan.py --replay` for 14 exact statements and 85
 transitive axiom reports over the six modules of `lean/ThresholdHC/FixedPlan`:
 the toolkit's fixed majority plan, its exact work, bias, variance and RMS
@@ -1040,8 +1048,8 @@ suites and both audits, and also the critical-window, paper-corollary,
 paper-statement, pilot-feedback, explicit-constant, nonnegativity,
 finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
 split, critical common-pair, bias-subtraction, global-cut, psi-null,
-entropy-tail-forms, noninterval-selection and fixed-plan suites and audits,
-the
+entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
+suites and audits, the
 `lean-kernel` job also the restricted-class, sharp-strictness and
 oracle-sharpness suites and audits; the `stopping-program` job also runs the fixed-cap
 estimate and program-factor suites and audits. Existing published records retain their original scope.
