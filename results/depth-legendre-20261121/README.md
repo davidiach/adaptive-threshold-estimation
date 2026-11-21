@@ -35,7 +35,7 @@ The equality of the whole seed-and-transcript law is stronger than the source's
 equality of finite-prefix laws, and needs no almost-sure termination
 hypothesis; neither statement has a work or budget hypothesis, as in the
 source's "regardless of its expected total work". The hypotheses are the
-source's; the proofs use only $a\le1/2$, $\rho\le1$ and $K\ge1$. The depth-tail
+source's; the proofs use only $0<a\le1/2$, $0<\rho\le1$ and $K\ge1$. The depth-tail
 bound `thm:tail` ($p_K\ge1-4\varepsilon^2/\Delta_K^2$) is not part of this group.
 
 ## How the proofs go

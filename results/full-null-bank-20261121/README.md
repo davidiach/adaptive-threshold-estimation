@@ -27,7 +27,7 @@ its full-null probability is at most $u$ times its positive-bank probability.
 
 | Target | Statement |
 |---|---|
-| `full_null_bank` | For $0\le z_0<1$, a probability law $\eta$ and summable weights with total one: the test is upward for every $u$; Ville's bound holds under the full null; the integrated false positives on the positive part are at most $u$; and for a design $\sigma+\tau+\zeta=(1-z_0)\eta$ the race on a positive coin of gap at least $d_0$ in band $j$ has work at most $12\,$`positiveAllowance`$\cdot(z_0+$`threePieceEnvelope σ τ ζ d₀`$)/d_0^2$, and on a negative coin at most $\frac{3}{2d_0^2}(1+\log(\varepsilon w_j)^{-1})$. |
+| `full_null_bank` | For $0\le z_0<1$, a probability law $\eta$ and summable weights with total one: the test is upward for every $u$; Ville's bound holds under the full null; the integrated false positives on the positive part are at most $u$; and for a design $\sigma+\tau+\zeta=(1-z_0)\eta$ the race on a positive coin of gap at least $d_0$ in band $j$ has work at most $12\,$`positiveAllowance ε (weights j) ρ (z₀ + threePieceEnvelope σ τ ζ d₀)`$/d_0^2$, where `positiveAllowance ε w ρ V` $=1+\log\varepsilon^{-1}+\log w^{-1}+\max\{0,\log(V/\rho)\}$, and on a negative coin at most $\frac{3}{2d_0^2}(1+\log(\varepsilon w_j)^{-1})$. |
 | `full_null_level` | Under a coupling of the reference with the true law and a rare prior: the level error of the race with parameter $L=2k$ (cap $4^k$) with the full-null bank at $u=\rho\varepsilon_l$ is at most the level accuracy, and the level work is at most $128(l+1)\Gamma+6H^2/\rho+2O_\tau+2\,\mathrm{cap}\,L\,(\zeta(\text{all})+\mu_0(\text{all}))$ under $z_0+\zeta(\text{all})\le\rho$. |
 
 The constants and hypotheses are those of the robust planner's

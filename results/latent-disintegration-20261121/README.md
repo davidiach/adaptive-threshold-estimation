@@ -26,7 +26,8 @@ magnitude law $|P-1/2|\sim\mu$ is read on $\mathbb R$: the law of $|P-1/2|$
 under $G$ equals the law of the gap under $\mu$. This already rules out an
 atom at $P=1/2$, since every gap is positive. The map `gapOf` reads $|P-1/2|$
 as a gap; it sends the null point $P=1/2$ to the default $1/2$, and enters only
-the component form of the converse.
+the target `latent_disintegration` (the converse for its own magnitude law) and
+three components.
 
 | Target | Statement |
 |---|---|
@@ -51,7 +52,7 @@ without it. The risk theorems are not restated in $G$-form.
   on bounded measurable tests; then pass from `gapOf` to the real magnitude law
   through a measurable embedding.
 - [`Full.lean`](../../lean/ThresholdHC/LatentDisintegration/Full.lean): the four
-  targets, with `LatentThreshold.threshold_mean` for the target.
+  targets, with `LatentThreshold.threshold_mean_eq` for the target.
 
 ## Runs
 

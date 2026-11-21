@@ -67,7 +67,7 @@ comparison designs are not covered.
 - [`Bayes.lean`](../../lean/ThresholdHC/FiniteBayesAllocation/Bayes.lean),
   [`Cases.lean`](../../lean/ThresholdHC/FiniteBayesAllocation/Cases.lean) and
   [`Full.lean`](../../lean/ThresholdHC/FiniteBayesAllocation/Full.lean): the
-  posterior-mean estimator attains the ceiling sums; every estimator with a
+  posterior-mean estimator has error at most the ceiling sums; every estimator with a
   fixed design, after clipping its output to $[0,1/8]$, is at least the floor
   sums, seed by seed.
 

@@ -1,6 +1,6 @@
 # The margin-class corollaries: library audit
 
-Section `sec:model` of the v6 manuscript
+Section `sec:rates` of the v6 manuscript
 ([`paper/v6/core.tex`](../../paper/v6/core.tex)) states two corollaries of
 the stochastic-envelope theorems for natural classes of laws. Corollary
 `cor:gap` concerns the gap class
@@ -25,7 +25,8 @@ defines `classWork P ε δ`, the infimum of the real budgets $B$ for which one
 estimator is $(\varepsilon,\delta)$-valid (`UniformConfidence`, under every
 measurable sign law) with uniform expected work at most $B$ (`UniformBudget`)
 at every law in the class $P$; and the classes `GapClass Δ` and
-`PowerClass α C`. All statements assume $0<\varepsilon\le1/25$ and
+`PowerClass α C`. The statements `gap_class`, `sublinear_class`,
+`superlinear_class` and `common_confidence` assume $0<\varepsilon\le1/25$ and
 $0<\delta\le1/4$, in place of the source's "sufficiently small $\varepsilon$".
 
 | Target | Statement |
