@@ -191,6 +191,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_reservoir_termination.py' -v
           python -m unittest discover -s tools -p 'test_quantile_factor_upper.py' -v
           python -m unittest discover -s tools -p 'test_creation_charge.py' -v
+          python -m unittest discover -s tools -p 'test_stage_pilot_law.py' -v
       - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper-constant (119, 45, 36, 27, 19, 17, 15) and square-root cap audits
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
@@ -826,6 +827,10 @@ jobs:
       # per created coin costs at most the factor 1 + c, and the charged rate.
       - name: Verify the per-coin creation fee and replay its modules
         run: python tools/verify_creation_charge.py --replay --jobs 3
+      # Displays (A8) and (A11) of the arbitrary-law adaptation note under the
+      # experiment law of the whole learning stage, with (A11) on the same event.
+      - name: Verify the pilot events under the whole learning stage and replay its modules
+        run: python tools/verify_stage_pilot_law.py --replay --jobs 3
       - name: Verify prior families for the law-dependent time-uniform lower bound
         run: |
           python tools/verify_anytime_lower.py
