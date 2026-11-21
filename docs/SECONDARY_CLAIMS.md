@@ -30,6 +30,13 @@ have simultaneous coverage at every authorized integer budget and width
 tending to zero. The particular stage bound is
 `P(D <= 2r) + 3a + 3tau`, not the oracle rate.
 
+*Update, 21 November 2026.* This construction is now Lean-checked in the
+observable simulation, with the supplied `u >= theta` and the unconditional
+`u = 1` case, coverage at every integer budget on one measurable event of
+probability at least `1 - delta`, the stage bound at every completed stage and
+the width limit ([record](../results/unknown-law-confidence-20261121/README.md)). The Bernoulli-subfamily coefficient
+below stays paper-only.
+
 The later [arbitrary_law_controller](../lean/ThresholdHC/ArbitraryLawController/Full.lean)
 is checked for `0 < rho <= 1/4` and `0 < delta <= 1/4`, with its own paid
 pilot, learned law and continuation. It does not certify the simpler

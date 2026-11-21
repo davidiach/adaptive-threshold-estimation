@@ -12,9 +12,14 @@ all budgets and its width tends to zero. The procedure uses neither the gap
 distribution nor an upper bound on its small-gap tail. The rate proved below
 depends on that tail and can be slower than the known-law minimax rate.
 
-**Verification boundary:** this theorem and the time-uniform lower bound below
-are paper proofs in this note, not Lean-checked theorems. The lower bound
-applies Duchi and Haque's Proposition 11 as a cited result. The toolkit's unit
+**Verification boundary:** the time-uniform lower bound below is a paper proof
+in this note, not a Lean-checked theorem; it applies Duchi and Haque's
+Proposition 11 as a cited result. The upper theorem was a paper proof too; it
+is Lean-checked since 21 November 2026 for the construction run in the
+observable simulation, with coverage at every integer budget on one measurable
+event of probability at least $1-\delta$, the stage width bound and the width
+limit ([`unknown_law_confidence`](../lean/ThresholdHC/UnknownLawConfidence/Full.lean),
+[record](../results/unknown-law-confidence-20261121/README.md)). The toolkit's unit
 tests check the integer thresholds, interval endpoints and flip budget, not
 the coverage or width claims.
 
@@ -112,7 +117,7 @@ followed by clipping at $\rho$. The lower bound thus matches the iterated
 logarithm term of the known-law upper rate on this law for fixed $\delta$
 as $n\to\infty$. The [full gap-law dependent comparison](TIME_UNIFORM_LOWER.md) now has a complete Lean proof. The [arbitrary-law adaptation theorem](ARBITRARY_LAW_ADAPTATION.md) gives a law-agnostic interval whose width is within a universal constant of the known-law rate after a law-dependent onset; its [full observable controller is now Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#full-arbitrary-law-all-budget-controller).
 
-The [law-dependent lower-bound development](TIME_UNIFORM_LOWER.md) proves that every deterministic joint coverage-and-width envelope exceeds a universal multiple of the known-law rate infinitely often, for every positive-gap law. Its prior-family, sequential-testing, infinite-moment and asymptotic arguments are Lean-checked, including the observable interval consequence. The [complete audit](../results/anytime-asymptotic-20261105/README.md) verifies the deterministic-envelope bound without a monotonicity assumption. The unknown-law upper construction and the sharper Bernoulli-subfamily coefficient described on this page retain their separate paper-proof scope.
+The [law-dependent lower-bound development](TIME_UNIFORM_LOWER.md) proves that every deterministic joint coverage-and-width envelope exceeds a universal multiple of the known-law rate infinitely often, for every positive-gap law. Its prior-family, sequential-testing, infinite-moment and asymptotic arguments are Lean-checked, including the observable interval consequence. The [complete audit](../results/anytime-asymptotic-20261105/README.md) verifies the deterministic-envelope bound without a monotonicity assumption. The sharper Bernoulli-subfamily coefficient described on this page retains its paper-proof scope; the unknown-law upper construction is Lean-checked since 21 November 2026 ([record](../results/unknown-law-confidence-20261121/README.md)).
 
 ## Adaptation within a supplied finite family
 

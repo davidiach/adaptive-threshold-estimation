@@ -1671,8 +1671,9 @@ The stronger lower coefficient follows from the direct checked inequality $30\cd
 
 The known-law time-uniform width row now has a [Lean proof](../results/anytime-confidence-20261105/README.md), with half-width coefficient $1500002$. It uses one common observable experiment and consistent acquisition prefixes across budgets. The
 algorithms in the table may know $\mu$, $\rho$, $B$ and $\delta$. A separate
-[unknown-law construction and lower bound](UNKNOWN_LAW_CONFIDENCE.md), which
-are paper proofs and not Lean-checked, give
+[unknown-law construction and lower bound](UNKNOWN_LAW_CONFIDENCE.md) give
+(the construction Lean-checked since 21 November 2026,
+[record](../results/unknown-law-confidence-20261121/README.md); the lower bound a paper proof)
 observable, simultaneously valid intervals that shrink for every fixed
 positive-gap law. Its width bound depends on unresolved small gaps.
 A Bernoulli subfamily forces the iterated logarithm infinitely often and
