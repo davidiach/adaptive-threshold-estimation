@@ -32,7 +32,7 @@ VERIFIERS = {
         quantile_sharp_law quantile_optimality optimal_quantile bandwise_suffix selection_stability
         quarter_smoothing confidence_* critical_confidence hard_budget stopping_confidence
         stochastic_envelope sublinear_power shifted_power anytime_* smooth_density observed_*
-        continuous_observed typed_confidence additive_confidence psi_* power_window critical_window paper_corollaries paper_statements finite_gap_corollaries rms_localization
+        continuous_observed typed_confidence additive_confidence psi_* power_window critical_window paper_corollaries paper_statements finite_gap_corollaries stopped_time_uniform latent_threshold zero_atom_split rms_localization
         band_cost_selection gap_law_menus law_adaptation* arbitrary_law_* known_law_*
         dyadic_summability robust_* clipping_pilot_independence paid_median project_axioms
     """,
@@ -41,7 +41,7 @@ VERIFIERS = {
         stopping_dual information_bellman reference_absorption ordered_information
         adaptive_information stopping_program_upper finite_risk_certificate infinite_cap_dual
         genie_* finite_cap_truncation entropy_tail entropy_tail_components entropy_tail_lower_components
-        square_root_cap sharp_rms
+        square_root_cap sharp_rms cap_identification_estimate
     """,
 }
 

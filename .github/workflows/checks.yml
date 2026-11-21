@@ -163,6 +163,10 @@ jobs:
           python -m unittest discover -s tools -p 'test_paper_corollaries.py' -v
           python -m unittest discover -s tools -p 'test_paper_statements.py' -v
           python -m unittest discover -s tools -p 'test_finite_gap_corollaries.py' -v
+          python -m unittest discover -s tools -p 'test_stopped_time_uniform.py' -v
+          python -m unittest discover -s tools -p 'test_latent_threshold.py' -v
+          python -m unittest discover -s tools -p 'test_zero_atom_split.py' -v
+          python -m unittest discover -s tools -p 'test_cap_identification_estimate.py' -v
       - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper-constant (119, 45, 36, 27, 19, 17, 15) and square-root cap audits
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
@@ -662,6 +666,9 @@ jobs:
         run: python tools/verify_anytime_confidence.py
       - name: Verify the smooth-density construction and adaptive information bound
         run: python tools/verify_smooth_density.py
+      # theta = G_{mu,q}(P > 1/2) for every gap law, not only laws with a density.
+      - name: Verify the threshold form of the target and replay its modules
+        run: python tools/verify_latent_threshold.py --replay --jobs 3
       - name: Verify observed-state proof components and the concrete experiment
         run: python tools/verify_observed_states.py
       - name: Verify the adaptive noise simulation for observed-state queries
@@ -723,6 +730,11 @@ jobs:
           python tools/verify_anytime_tail.py
       - name: Verify the complete law-dependent time-uniform lower bound
         run: python tools/verify_anytime_asymptotics.py
+      # Remark: stopping a time-uniform procedure at budget n gives a
+      # fixed-budget interval, so 10^-17 applies at every n >= 1 and (TU1)
+      # holds with 10^-22 at every n >= 2 with log log n <= (10^10 - 1) log(1/delta).
+      - name: Verify the stopped time-uniform remark and replay its modules
+        run: python tools/verify_stopped_time_uniform.py --replay --jobs 3
       - name: Verify finite-menu cost grouping, exact comparisons and certificates
         run: python tools/verify_band_cost_selection.py
       - name: Verify the concrete finite-gap-law menu construction
@@ -747,6 +759,9 @@ jobs:
         run: python tools/verify_arbitrary_law_cdf_coupling.py
       - name: Verify zero-atom selection and CDF comparison
         run: python tools/verify_arbitrary_law_zero.py
+      # K_alpha = min{rho, z + (1 - z) K_{eta, rho/(1 - z)}} for alpha = z delta_0 + (1 - z) eta.
+      - name: Verify the zero-atom split of the selection functional and replay its modules
+        run: python tools/verify_zero_atom_split.py --replay --jobs 3
       - name: Verify dominated-mass entropy-tail comparison
         run: python tools/verify_arbitrary_law_dominated.py
       - name: Verify light-contraction product entropy
@@ -887,6 +902,10 @@ jobs:
             python tools/verify_${audit}.py --cached-dependencies
             echo "::endgroup::"
           done
+      # Delta_N / 2 >= rho ||h||_2^2 / (4 ||h||_inf), the explicit estimate after
+      # the fixed-cap identification theorem.
+      - name: Verify the explicit fixed-cap estimate and replay its modules
+        run: python tools/verify_cap_identification_estimate.py --replay --jobs 3
       - name: Verify uniform convergence of the optimized cap programs
         run: python tools/verify_genie_rate.py
       - name: Verify square-root convergence of the ordinary cap program

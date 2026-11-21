@@ -459,6 +459,7 @@
     "ThresholdHC.CapIdentification.terminalArray": "1736885584524539636:13737699178859636705",
     "ThresholdHC.CapIdentification.topState": "436853959800551734:9520876910378162236",
     "ThresholdHC.CapIdentification.weightedPolynomialIntegral": "13854896178846804948:11604544561755347667",
+    "ThresholdHC.CapIdentificationEstimate.ExplicitCapEstimateStatement": "4762494857145497995:16193258090100559029",
     "ThresholdHC.ClosedQuantile.ClosedQuantileLawStatement": "4762494857145497995:4075525623914069557",
     "ThresholdHC.Confidence.CalibrationArray": "12841156711311012099:16285824005406231133",
     "ThresholdHC.Confidence.ConfidenceAlgorithmLowerStatement": "4762494857145497995:18009727335439264695",
@@ -1599,6 +1600,7 @@
     "ThresholdHC.LargeBudgetRMS.FifthGapUpperStatement": "4762494857145497995:2978567471075109879",
     "ThresholdHC.LargeBudgetRMS.HundredLowerStatement": "4762494857145497995:8923385802350548635",
     "ThresholdHC.LargeBudgetRMS.fifthGap": "8521207260225387558:14741846154969092294",
+    "ThresholdHC.LatentThreshold.ThresholdMeanStatement": "4762494857145497995:16167148996144567148",
     "ThresholdHC.LawAdaptation.Compatible": "6197786085367624802:2391358144811726126",
     "ThresholdHC.LawAdaptation.bitMass": "4757135297370679990:2467682419439716778",
     "ThresholdHC.LawAdaptation.branchInputs": "8371907315120332378:6280680095008689702",
@@ -2450,6 +2452,9 @@
     "ThresholdHC.SmoothDensity.upperBudget": "4179594114320068645:8298618292215198657",
     "ThresholdHC.SquareRootCap.FourNinthsCapStatement": "4762494857145497995:13169136034376788420",
     "ThresholdHC.SquareRootCap.SquareRootCapStatement": "4762494857145497995:4557066768832710430",
+    "ThresholdHC.StoppedTimeUniform.PrefixConfidenceStatement": "4762494857145497995:7001204578979733830",
+    "ThresholdHC.StoppedTimeUniform.StoppedFixedBudgetStatement": "4762494857145497995:16296964721535975085",
+    "ThresholdHC.StoppedTimeUniform.StoppedTimeUniformStatement": "4762494857145497995:14919952938107865734",
     "ThresholdHC.StoppingProgram.Admissible": "16084709032629965218:3948283377107053902",
     "ThresholdHC.StoppingProgram.AttainedDualStatement": "4762494857145497995:7386682743009838904",
     "ThresholdHC.StoppingProgram.Certificate": "13547518494752764177:1974837893333939534",
@@ -3008,6 +3013,8 @@
     "ThresholdHC.UpperWork.MinimaxUpper45Statement": "4762494857145497995:1725723950899202190",
     "ThresholdHC.UpperWork.bump": "18133891100220672328:18250383750437467366",
     "ThresholdHC.UpperWork.survivalBound": "10394737814777886938:12134011773123049815",
+    "ThresholdHC.ZeroAtomSplit.ZeroAtomSplitLawStatement": "4762494857145497995:279466990870979903",
+    "ThresholdHC.ZeroAtomSplit.ZeroAtomSplitStatement": "4762494857145497995:10327748595784057039",
     "ThresholdHC.checkpointK": "416736479123539982:6681553361166407854",
     "ThresholdHC.classifyK": "11992021862951762388:3947292422365675078",
     "ThresholdHC.classifyK.match_1": "2115373487647785129:318329409616365605",
@@ -3344,6 +3351,10 @@
     {
       "at": "2026-11-21T00:28:46+00:00",
       "count": 3
+    },
+    {
+      "at": "2026-11-21T01:01:12+00:00",
+      "count": 7
     }
   ]
 }
