@@ -1734,6 +1734,11 @@
     "ThresholdHC.LargeBudgetRMS.FifthGapUpperStatement": "4762494857145497995:2978567471075109879",
     "ThresholdHC.LargeBudgetRMS.HundredLowerStatement": "4762494857145497995:8923385802350548635",
     "ThresholdHC.LargeBudgetRMS.fifthGap": "8521207260225387558:14741846154969092294",
+    "ThresholdHC.LatentDisintegration.DisintegrationStatement": "4762494857145497995:710485731104029773",
+    "ThresholdHC.LatentDisintegration.GFormTargetStatement": "4762494857145497995:91813766268062075",
+    "ThresholdHC.LatentDisintegration.LatentMagnitudeStatement": "4762494857145497995:18412299125675109855",
+    "ThresholdHC.LatentDisintegration.PopulationClassStatement": "4762494857145497995:11041242063107520788",
+    "ThresholdHC.LatentDisintegration.gapOf": "6949499614304212606:9275354247931622134",
     "ThresholdHC.LatentThreshold.ThresholdMeanStatement": "4762494857145497995:16167148996144567148",
     "ThresholdHC.LawAdaptation.Compatible": "6197786085367624802:2391358144811726126",
     "ThresholdHC.LawAdaptation.bitMass": "4757135297370679990:2467682419439716778",
@@ -4023,6 +4028,10 @@
     {
       "at": "2026-11-21T16:21:53+00:00",
       "count": 9
+    },
+    {
+      "at": "2026-11-21T16:41:12+00:00",
+      "count": 5
     }
   ]
 }
