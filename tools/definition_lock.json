@@ -3585,6 +3585,12 @@
     "ThresholdHC.UpperWork.MinimaxUpper45Statement": "4762494857145497995:1725723950899202190",
     "ThresholdHC.UpperWork.bump": "18133891100220672328:18250383750437467366",
     "ThresholdHC.UpperWork.survivalBound": "10394737814777886938:12134011773123049815",
+    "ThresholdHC.WeightedSignSharp.SignWorkFloorStatement": "4762494857145497995:2085834830391922317",
+    "ThresholdHC.WeightedSignSharp.WeightedSignEntropy214Statement": "4762494857145497995:8714495839364329879",
+    "ThresholdHC.WeightedSignSharp.WindowOverlapStatement": "4762494857145497995:11587364869674582323",
+    "ThresholdHC.WeightedSignSharp.cappedCost": "16870463196478298188:13520977130055978294",
+    "ThresholdHC.WeightedSignSharp.cappedFalseEvent": "1585965211170352878:5714763860722767381",
+    "ThresholdHC.WeightedSignSharp.cappedSignProcedure": "4347762229654654611:9529710510437972758",
     "ThresholdHC.ZeroAtomSplit.ZeroAtomSplitLawStatement": "4762494857145497995:279466990870979903",
     "ThresholdHC.ZeroAtomSplit.ZeroAtomSplitStatement": "4762494857145497995:10327748595784057039",
     "ThresholdHC.checkpointK": "416736479123539982:6681553361166407854",
@@ -4127,6 +4133,10 @@
     {
       "at": "2026-11-21T18:13:17+00:00",
       "count": 5
+    },
+    {
+      "at": "2026-11-21T18:16:17+00:00",
+      "count": 6
     }
   ]
 }
