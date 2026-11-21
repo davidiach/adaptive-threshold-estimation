@@ -51,6 +51,11 @@ moment of real order \(q\ge0\) is bounded by \(3^{q/2}\).
 
 These bounds verify the density and moment requirements in Assumptions
 2.1 and 2.4 of the authors' paper. [Giles–Haji-Ali](https://arxiv.org/pdf/1802.05016)
+The class-wide form of Corollary `cor:nested`, for every measurable
+conditional model with uniform outer state and \(D(U)\) uniform on
+\((0,1/4]\), is checked separately in `lean/ThresholdHC/NestedAssumptions`
+against transcriptions of the two assumptions
+([record](../results/nested-assumptions-20261121/README.md); `python tools/verify_nested_assumptions.py --replay`).
 
 ## Proof map and audit
 

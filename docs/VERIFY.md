@@ -1066,7 +1066,8 @@ suites and both audits, and also the critical-window, paper-corollary,
 paper-statement, pilot-feedback, explicit-constant, nonnegativity,
 finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
 split, critical common-pair, bias-subtraction, global-cut, psi-null,
-confidence-transfer-steps, observed-hoeffding, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
+confidence-transfer-steps, observed-hoeffding, nested-assumptions,
+entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
 suites and audits, the
 `lean-kernel` job also the restricted-class, sharp-strictness,
 oracle-sharpness, oracle-upper, clipped-output and revisit-upper suites and
@@ -1271,6 +1272,14 @@ CI runs it in the `entropy-tail-upper` job. Its 11-test guard suite is
 ## Continuous-magnitude observed states
 
 Run `python tools/verify_continuous_observed.py` for 34 exact statements and 87 transitive axiom reports. The audit covers the physical query law, exact uniform gap distribution, normalized density and moments, and both complexity lower bounds. [Native record](../results/continuous-observed-lower-20261105/README.md)
+
+Run `python tools/verify_nested_assumptions.py --replay` for 8 exact statements
+and 36 transitive axiom reports over the five modules of
+`lean/ThresholdHC/NestedAssumptions`: every model of the class of
+Corollary `cor:nested` meets transcriptions of Giles–Haji-Ali Assumptions 2.1
+and 2.4 with uniform constants. CI runs it in the `entropy-tail-upper` job.
+Its 11-test guard suite is `test_nested_assumptions.py`.
+[Record](../results/nested-assumptions-20261121/README.md).
 
 ## Fresh-state upper-bound transfer
 

@@ -717,7 +717,13 @@ transcript measure. The exact gap-law construction enforces the
 one-quarter cutoff at every state. It identifies the actual threshold
 target and proves that the normalized conditional magnitude has density
 bounded by two. Every normalized conditional central moment of real
-order $q\ge0$ is bounded by $3^{q/2}$.
+order $q\ge0$ is bounded by $3^{q/2}$. Since 21 November 2026 Lean also
+checks the class-wide form in the last sentence of Corollary `cor:nested`:
+every measurable conditional model with $U$ uniform and $D(U)$ uniform on
+$(0,1/4]$ meets transcriptions of Assumptions 2.1 and 2.4 of Giles and
+Haji-Ali with the constants $2$ and $3^{q/2}$, chosen before the model; the
+transcriptions follow the repository's paraphrases and have not been
+compared with the paper's text ([record](../results/nested-assumptions-20261121/README.md)).
 
 The matching upper rate is now Lean-checked through the full fresh-state
 transfer. For $0<\varepsilon\le e^{-16}$, the actual expected-work upper
