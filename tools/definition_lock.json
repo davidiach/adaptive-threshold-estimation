@@ -1730,6 +1730,12 @@
     "ThresholdHC.ObservableSimulation.populationPath": "8599962758595094509:2326042255344239938",
     "ThresholdHC.ObservableSimulation.signUnit": "10514399125233785169:226345474309997639",
     "ThresholdHC.ObservableSimulation.simulationOptionSpace": "10427325985963383002:5950999295324618883",
+    "ThresholdHC.ObservedHoeffding.HoeffdingConfidenceLowerStatement": "4762494857145497995:12515353978407356794",
+    "ThresholdHC.ObservedHoeffding.HoeffdingDesignLowerStatement": "4762494857145497995:17268165537966443384",
+    "ThresholdHC.ObservedHoeffding.HoeffdingFiniteObservedStatement": "4762494857145497995:10042982010065411673",
+    "ThresholdHC.ObservedHoeffding.ReplicationTailStatement": "4762494857145497995:16257989205872114012",
+    "ThresholdHC.ObservedHoeffding.WeightedHoeffdingStatement": "4762494857145497995:3477702522109333840",
+    "ThresholdHC.ObservedHoeffding.centeredCell": "14292830154179311390:13553787847088539715",
     "ThresholdHC.ObservedState.CellDesign": "15499695897288638874:17249525474781894618",
     "ThresholdHC.ObservedState.CellDesign._sizeOf_1": "8045469440525125702:8332409386710540526",
     "ThresholdHC.ObservedState.CellDesign._sizeOf_inst": "15219942418526973510:14364398307062474578",
@@ -3582,6 +3588,10 @@
     {
       "at": "2026-11-21T07:26:34+00:00",
       "count": 24
+    },
+    {
+      "at": "2026-11-21T07:31:16+00:00",
+      "count": 6
     }
   ]
 }
