@@ -1059,7 +1059,7 @@ split, critical common-pair, bias-subtraction, global-cut, psi-null,
 entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
 suites and audits, the
 `lean-kernel` job also the restricted-class, sharp-strictness,
-oracle-sharpness and oracle-upper suites and audits; the `stopping-program` job also runs the fixed-cap
+oracle-sharpness, oracle-upper and clipped-output suites and audits; the `stopping-program` job also runs the fixed-cap
 estimate and program-factor suites and audits. Existing published records retain their original scope.
 
 ## Sharp RMS coefficient and square-root cap
@@ -1195,6 +1195,14 @@ squared risk as the calibrated mean-square error, the variance times the cost
 $169/5$, the mean-square bound at scale $t\,2^L$, and the risk bound $12$. The
 guard suite is `test_upper_scale.py`; CI runs it and the audit.
 [Record](../results/upper-scale-20261119/README.md).
+
+Run `python tools/verify_clipped_output.py --replay` for 6 exact statements and
+19 transitive axiom reports over the three modules of
+`lean/ThresholdHC/ClippedOutput`: clipping the output to $[0,1]$ keeps the
+budget and cannot raise the RMS risk, and the family with constant $12$ can be
+taken $[0,1]$-valued. CI runs it in the `lean-kernel` job. Its 11-test guard
+suite is `test_clipped_output.py`.
+[Record](../results/clipped-output-20261121/README.md).
 
 ## Whole-project build, axioms and kernel replay
 

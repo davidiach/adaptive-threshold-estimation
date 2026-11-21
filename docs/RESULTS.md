@@ -309,6 +309,13 @@ paper's thresholds, the Lean method gives at best about $11.2$ with that
 bias bound. A [scoping study](../research/2026-11-19-one-coin-bounds/README.md)
 locates most of that loss in Hoeffding's inequality: Bahadur's binomial tail
 bound, with the same proof structure, would give about $7.75$.
+The earlier study's remark that clipping the output to $[0,1]$ can only help
+is Lean-checked since 21 November 2026: the clipped estimator keeps the
+budget, its RMS risk is no larger for any sign law, and the family with
+constant $12$ can be taken $[0,1]$-valued with risk at most
+$\min(1,12\,\omega_\mu(B^{-1/2}))$
+([record](../results/clipped-output-20261121/README.md)). The simulated
+clipped ratios, about $3.8$ and $4.9$, remain numerical.
 
 The lower constant of the RMS law is sharp. For every gap law and every $B\ge1$,
 
