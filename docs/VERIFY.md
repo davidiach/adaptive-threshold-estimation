@@ -1069,7 +1069,8 @@ split, critical common-pair, bias-subtraction, global-cut, psi-null,
 confidence-transfer-steps, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
 suites and audits, the
 `lean-kernel` job also the restricted-class, sharp-strictness,
-oracle-sharpness, oracle-upper and clipped-output suites and audits; the `stopping-program` job also runs the fixed-cap
+oracle-sharpness, oracle-upper, clipped-output and revisit-upper suites and
+audits; the `stopping-program` job also runs the fixed-cap
 estimate and program-factor suites and audits. Existing published records retain their original scope.
 
 ## Sharp RMS coefficient and square-root cap
@@ -1101,6 +1102,14 @@ $1/5$ and the upper bound on the coefficient. The modules build on
 `SharpRMS`; with `--replay` they also go through the independent kernel
 checker. The guard suite is `test_large_budget_rms.py`; CI runs it and the
 audit. [Record](../results/large-budget-rms-20261118/README.md).
+
+Run `python tools/verify_revisit_upper.py --replay` for 5 exact statements and
+23 transitive axiom reports over the eight modules of
+`lean/ThresholdHC/RevisitUpper`: the 20+5 revisit witness with RMS at most
+$0.188087$ at the gap $1/5$ under a hard cap of 25 flips. The replay
+re-evaluates its integer risk certificate. CI runs it in the `lean-kernel`
+job. Its 11-test guard suite is `test_revisit_upper.py`.
+[Record](../results/revisit-upper-20261121/README.md).
 
 Run `python tools/verify_upper_constant.py --replay` for the upper constant
 $119$ of the RMS law: 7 exact statements and 22 transitive axiom reports over

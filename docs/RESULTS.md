@@ -377,7 +377,10 @@ These bounds are Lean-checked in the audited library
 audit, `tools/verify_large_budget_rms.py`. Appendix AA of the v6 paper
 states them as Theorem AA.7 and outlines the Lean proof. The proofs come
 from the [research package](../research/2026-11-17-rms-constants/README.md#the-coefficient-for-budgets-of-at-least-25),
-which keeps its own replay records.
+which keeps its own replay records. The package's earlier 20+5 witness at the
+same gap, a 20-flip pilot followed by five revisits of pilot heads or tails
+or five fresh flips, with RMS at most $0.188087$, is in the audited library
+since 21 November 2026 ([record](../results/revisit-upper-20261121/README.md)); it gives no new bound.
 
 **Feedback helps at the upper witness.** At the same gap $1/5$ and the same
 18-flip pilot, every policy that commits to all seven follow-up choices

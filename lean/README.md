@@ -5,7 +5,7 @@ Use this map to find a formal statement, its proof, and the audit that checks it
 [verification setup](../docs/VERIFY.md#setup) covers Python, Lean, and Mathlib.
 Commands below run from the repository root.
 
-`ThresholdHC/` holds 1,534 Lean files: 114 top-level directories and seven root
+`ThresholdHC/` holds 1,542 Lean files: 115 top-level directories and seven root
 files beside them. Most results have a
 directory with a `Specification.lean`, which states the targets, and a
 `Full.lean`, which proves them. `ThresholdHC.lean` is the frozen root of the
@@ -48,6 +48,7 @@ overwrite tracked files under `results/`. Run them in a disposable checkout.
 |---|---|---|
 | RMS lower bound in the observable experiment, frozen coefficient $1/64$ (the sharp coefficient $1/6$ is the next row) | [Tier6 specification](ThresholdHC/Tier6/Specification.lean), [Full](ThresholdHC/Tier6/Full.lean) | `python tools/verify_tier6.py --sequential --require-complete` |
 | Sharp RMS lower coefficient $1/6$ for every gap law and $B\ge1$, and no larger constant (equality at $\delta_{1/2}$, $B=4$); $\sqrt{59/2100}$ for $B\ge25$; the same under both magnitude oracles; the reduction to one gap; the integer certificate for intermediate budgets | [Specification](ThresholdHC/SharpRMS/Specification.lean), [Full](ThresholdHC/SharpRMS/Full.lean), [ordinary model](ThresholdHC/SharpRMS/Unrestricted.lean), [oracles](ThresholdHC/SharpRMS/OracleAttainment.lean), [record](../results/sharp-rms-20261117/README.md) | `python tools/verify_sharp_rms.py --replay` |
+| The 20+5 revisit witness at the gap $1/5$: a 20-flip pilot, then five revisits of pilot heads ($5\le j\le9$) or tails ($11\le j\le15$) or five fresh flips, under a hard cap of 25 flips and with RMS at most $0.188087$; the research proofs moved with only imports, namespace and option scoping changed | [Specification](ThresholdHC/RevisitUpper/Specification.lean), [LabelRule](ThresholdHC/RevisitUpper/LabelRule.lean), [RevisitWitness](ThresholdHC/RevisitUpper/RevisitWitness.lean), [Full](ThresholdHC/RevisitUpper/Full.lean), [record](../results/revisit-upper-20261121/README.md) | `python tools/verify_revisit_upper.py --replay` |
 | Best RMS lower coefficient for $B\ge25$ between $0.175198$ and $0.186752$: the lower bound in all three models ($0.17807955$ for $B\ge100$) from five pairs of sign biases, and the upper bound from an adaptive 25-flip policy at gap $1/5$ | [Specification](ThresholdHC/LargeBudgetRMS/Specification.lean), [Full](ThresholdHC/LargeBudgetRMS/Full.lean), [lower bounds](ThresholdHC/LargeBudgetRMS/MultiBiasBounds.lean), [upper witness](ThresholdHC/LargeBudgetRMS/PilotWitness.lean), [record](../results/large-budget-rms-20261118/README.md) | `python tools/verify_large_budget_rms.py --replay` |
 | Distribution-blind RMS upper bound, coefficient $512$ | [BlindUpper specification](ThresholdHC/BlindUpper/Specification.lean), [Full](ThresholdHC/BlindUpper/Full.lean) | `python tools/verify_blind_upper_components.py --sequential` |
 | The same family with coefficient $119$: sharp level sums ($23$ and $527/7$) for the call moments and the budget factor $17/6$ | [Specification](ThresholdHC/UpperConstant/Specification.lean), [Full](ThresholdHC/UpperConstant/Full.lean), [record](../results/upper-constant-20261118/README.md) | `python tools/verify_upper_constant.py --replay` |
