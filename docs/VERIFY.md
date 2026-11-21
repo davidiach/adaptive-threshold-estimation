@@ -1075,7 +1075,7 @@ finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
 split, critical common-pair, bias-subtraction, global-cut, psi-null,
 confidence-transfer-steps, observed-hoeffding, nested-assumptions,
 light-contraction-constant, band-cost-example, repeated-check,
-entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
+reservoir-termination, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
 suites and audits, the
 `lean-kernel` job also the restricted-class, sharp-strictness,
 oracle-sharpness, oracle-upper, clipped-output and revisit-upper suites and
@@ -1268,6 +1268,14 @@ every $n$ fails with probability $1-S/4^{512}\approx0.428$ when checked up to
 512. The replay re-evaluates the survivor certificate. CI runs it in the
 `entropy-tail-upper` job. Its 11-test guard suite is `test_repeated_check.py`.
 [Record](../results/repeated-check-20261121/README.md).
+
+Run `python tools/verify_reservoir_termination.py --replay` for 9 exact
+statements and 80 transitive axiom reports over the six modules of
+`lean/ThresholdHC/ReservoirTermination`: finite expected work under one law
+does not transfer termination with a countable coin reservoir, for every
+realization of the creation model. CI runs it in the `entropy-tail-upper`
+job. Its 11-test guard suite is `test_reservoir_termination.py`.
+[Record](../results/reservoir-termination-20261121/README.md).
 
 ## Smooth-density robustness
 
