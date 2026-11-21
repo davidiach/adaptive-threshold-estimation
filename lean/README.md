@@ -5,7 +5,7 @@ Use this map to find a formal statement, its proof, and the audit that checks it
 [verification setup](../docs/VERIFY.md#setup) covers Python, Lean, and Mathlib.
 Commands below run from the repository root.
 
-`ThresholdHC/` holds 1,579 Lean files: 121 top-level directories and seven root
+`ThresholdHC/` holds 1,587 Lean files: 122 top-level directories and seven root
 files beside them. Most results have a
 directory with a `Specification.lean`, which states the targets, and a
 `Full.lean`, which proves them. `ThresholdHC.lean` is the frozen root of the
@@ -153,6 +153,7 @@ Records and manuscripts behind these rows:
 | Sharper $31/20$ quantile-selection comparison and $16/9$ separated cost | [Original functional](ThresholdHC/QuantilePrice/Full.lean), [kernel record](../results/quantile-price-20261104/README.md) | `python tools/verify_quantile_price_upper.py` |
 | Sharp quantile factor: the finite-vector factor is equivalent to the unique scalar root for every real factor | [FiniteSharp](ThresholdHC/OptimalQuantile/FiniteSharp.lean), [Root](ThresholdHC/OptimalQuantile/Root.lean), [record](../results/optimal-quantile-root-20261105/README.md) | `python tools/verify_optimal_quantile.py` |
 | Finite-core selection reduction at the exact scalar-root factor, and the all-law comparison on the original selection functional | [Lipschitz](ThresholdHC/QuantileSharpLaw/Lipschitz.lean), [CoreReduction](ThresholdHC/QuantileSharpLaw/CoreReduction.lean), [Full](ThresholdHC/QuantileSharpLaw/Full.lean), [reduction record](../results/quantile-core-reduction-20261105/README.md), [comparison record](../results/sharp-quantile-upper-20261105/README.md) | `python tools/verify_quantile_sharp_law.py` |
+| Theorem `thm:sharp-quantile-factor` in full, with the upper end $c_*<1.462554551280$: a bisection cover of $[1,31/20]$ with 85 cells checked by `decide +kernel` on natural-number exponential enclosures, a five-term truncation (tail at most $2^{-62}$) and a convexity bound; exactly one root in $[\sqrt2,31/20]$, the least factor for general and finite laws, inside $(1.462554551279,1.462554551280)$ | [Specification](ThresholdHC/QuantileFactorUpper/Specification.lean), [Checker](ThresholdHC/QuantileFactorUpper/Checker.lean), [Certificate](ThresholdHC/QuantileFactorUpper/Certificate.lean), [Cover](ThresholdHC/QuantileFactorUpper/Cover.lean), [Full](ThresholdHC/QuantileFactorUpper/Full.lean), [record](../results/quantile-factor-upper-20261121/README.md) | `python tools/verify_quantile_factor_upper.py --replay` |
 | Finite-law sharpness and exact optimality: general and finite-support laws have the same least comparison factor | [Full](ThresholdHC/QuantileOptimality/Full.lean), [record](../results/quantile-optimality-20261105/README.md) | `python tools/verify_quantile_optimality.py` |
 | Finite-law bandwise-suffix optimizer and search bound | [Specification](ThresholdHC/BandwiseSuffix/Specification.lean), [Theorem 5](ThresholdHC/BandwiseSuffix/Full.lean), [Search](ThresholdHC/BandwiseSuffix/Search.lean) | `python tools/verify_bandwise_suffix.py` |
 

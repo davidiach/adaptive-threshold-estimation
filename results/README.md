@@ -10,7 +10,7 @@ can differ from the current files after a later proof-only change: the
 eight Lean files that were refactored afterwards without changing a
 statement. For the current tree the evidence is the CI run on that commit.
 
-The folder holds 145 dated record directories, named for a result and a
+The folder holds 146 dated record directories, named for a result and a
 date, and the loose JSON and log files of the first phases of the project.
 The table below indexes the records that the guides cite. Later sections
 describe the remaining records in prose: the time-uniform bounds, cost
@@ -126,6 +126,7 @@ is the current evidence for that result.
 | Hard-budget fallback and three RMS minimax bounds | [hard-budget-rms-20261104](hard-budget-rms-20261104/README.md) |
 | Critical-law minimax confidence lower bound | [critical-confidence-20261104](critical-confidence-20261104/README.md) |
 | Uniform finite-cap convergence and the linear sufficient cap | [genie-rate-20261104](genie-rate-20261104/README.md) |
+| Upper end $c_*<1.462554551280$ of the sharp quantile factor and the whole of `thm:sharp-quantile-factor`, by a kernel-checked bisection cover: library statement, axiom and kernel-replay audits | [quantile-factor-upper-20261121](quantile-factor-upper-20261121/README.md) |
 | Exact scalar-root quantile factor and finite-law sharpness | [quantile-optimality-20261105](quantile-optimality-20261105/README.md) |
 | The finite laws that realize sharpness of the quantile factor: 50 exact statements. A component of the record above | [finite-law-family-20261105](finite-law-family-20261105/README.md) |
 | All-law quantile upper comparison at the exact scalar-root factor | [sharp-quantile-upper-20261105](sharp-quantile-upper-20261105/README.md) |

@@ -24,7 +24,13 @@ certifies the displayed numerical bracket. It uses a concrete six-atom
 law on the lower side and a covering of the entire interval in $u$ on the upper side.
 Lean also checks the lower end, $c_*>1.462554551279$, from five terms of the
 partition series at $u=1.2591049$ ([`quantile_root_lower`](../lean/ThresholdHC/PaperStatements/Full.lean),
-[record](../results/paper-statements-20261120/README.md)). The upper end rests on the verifier alone.
+[record](../results/paper-statements-20261120/README.md)). Since 21 November 2026 Lean also checks the
+upper end $c_*<1.462554551280$ and the whole theorem
+([`sharp_quantile_factor`](../lean/ThresholdHC/QuantileFactorUpper/Full.lean),
+[record](../results/quantile-factor-upper-20261121/README.md)). Its cover is the verifier's 85-cell bisection,
+checked by `decide +kernel` with natural-number exponential enclosures, and
+it bounds the curvature of the first five terms only, with the tail bounded
+uniformly by $2^{-62}$.
 
 ## 1. Normalizing an arbitrary law and selection
 

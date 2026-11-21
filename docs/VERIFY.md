@@ -1075,7 +1075,7 @@ finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
 split, critical common-pair, bias-subtraction, global-cut, psi-null,
 confidence-transfer-steps, observed-hoeffding, nested-assumptions,
 light-contraction-constant, band-cost-example, repeated-check,
-reservoir-termination, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
+reservoir-termination, quantile-factor-upper, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
 suites and audits, the
 `lean-kernel` job also the restricted-class, sharp-strictness,
 oracle-sharpness, oracle-upper, clipped-output and revisit-upper suites and
@@ -1342,6 +1342,8 @@ The finite-core checkpoint records 49 exact statements and 49 transitive axiom r
 Run `python tools/verify_quantile_sharp_law.py` for 84 exact statements and 84 transitive axiom reports. The audit includes the original selection functional, countable tail merging, moment and work bounds, normalization, fractional quantile atoms, saturation and the selection infimum. [Native record](../results/sharp-quantile-upper-20261105/README.md)
 
 ## Exact quantile factor and finite-law optimality
+
+Run `python tools/verify_quantile_factor_upper.py --replay` for 7 exact statements and 82 transitive axiom reports over the eight modules of `lean/ThresholdHC/QuantileFactorUpper`: the upper end $c_*<1.462554551280$ by a kernel-checked bisection cover, and `thm:sharp-quantile-factor` in full. The replay re-evaluates the four certificate quarters. CI runs it in the `entropy-tail-upper` job with its 11-test guard suite `test_quantile_factor_upper.py`. [Record](../results/quantile-factor-upper-20261121/README.md).
 
 Run `python tools/verify_quantile_optimality.py` for 81 exact statements and 81 transitive axiom reports. It verifies the finite probability-law family, support, fractional quantile split, entropy and selection prices, clipping, the limiting counterexample and exact least-factor equivalences. Together with the scalar and all-law audits above, this gives 219 exact statements and 219 transitive axiom reports. The decimal bracket retains the separate rational verifier `python tools/verify_optimal_quantile_factor.py`; its lower end is also Lean-checked by `verify_paper_statements.py` ([record](../results/paper-statements-20261120/README.md)). [Complete native record](../results/quantile-optimality-20261105/README.md)
 
