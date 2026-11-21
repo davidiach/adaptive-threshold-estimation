@@ -1769,6 +1769,18 @@
     "ThresholdHC.LightContractionConstant.bandProb": "10007179495964123957:17041565012181345277",
     "ThresholdHC.LightContractionConstant.cvTerm": "10007179495964123957:11566142428454636072",
     "ThresholdHC.LightContractionConstant.lightCV": "1127924755969559278:5513214642038911074",
+    "ThresholdHC.LocalizationCounter.CounterLawProbabilityStatement": "4762494857145497995:3382925285872708426",
+    "ThresholdHC.LocalizationCounter.CounterUnboundedStatement": "4762494857145497995:16793439507383921896",
+    "ThresholdHC.LocalizationCounter.CounterexampleStatement": "4762494857145497995:2348102558018318504",
+    "ThresholdHC.LocalizationCounter.Observable713NoiseFloorStatement": "4762494857145497995:81261821122660006",
+    "ThresholdHC.LocalizationCounter.OriginalSecondMomentFloorStatement": "4762494857145497995:8738391020798455850",
+    "ThresholdHC.LocalizationCounter.TruncatedNoiseFloorStatement": "4762494857145497995:8827208926439610328",
+    "ThresholdHC.LocalizationCounter.counterLaw": "15829495871363270852:4721112804110952156",
+    "ThresholdHC.LocalizationCounter.counterSign": "12945996716995331585:121694794629123392",
+    "ThresholdHC.LocalizationCounter.counterSignLaw": "11715874625291273752:2636065215340782170",
+    "ThresholdHC.LocalizationCounter.heuristic": "10861947409966953712:7605545115660371610",
+    "ThresholdHC.LocalizationCounter.negativeSign": "12783342425771617565:6917765521745422214",
+    "ThresholdHC.LocalizationCounter.quarterGap": "8521207260225387558:14633946064286805466",
     "ThresholdHC.NestedAssumptions.GHABoundedDensity": "15116872399278757298:10477656081120476244",
     "ThresholdHC.NestedAssumptions.GHAStandardizedMoment": "11222985548750745331:13516608952492391468",
     "ThresholdHC.NestedAssumptions.HardDesignLawStatement": "4762494857145497995:8803442856323342973",
@@ -3835,6 +3847,10 @@
     {
       "at": "2026-11-21T11:36:49+00:00",
       "count": 8
+    },
+    {
+      "at": "2026-11-21T11:41:14+00:00",
+      "count": 12
     }
   ]
 }

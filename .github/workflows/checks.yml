@@ -197,6 +197,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_hard_cap_necessity.py' -v
           python -m unittest discover -s tools -p 'test_pilot_correction.py' -v
           python -m unittest discover -s tools -p 'test_depth_obstruction.py' -v
+          python -m unittest discover -s tools -p 'test_localization_counter.py' -v
       - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper-constant (119, 45, 36, 27, 19, 17, 15) and square-root cap audits
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
@@ -856,6 +857,10 @@ jobs:
       # arbitrary cross-coin feedback (thm:cap, the population half).
       - name: Verify the bounded-depth obstruction (part 1) and replay its modules
         run: python tools/verify_depth_obstruction.py --replay --jobs 3
+      # Theorem loc:thm:counter (the rescaling heuristic underestimates the
+      # minimax risk by an unbounded factor) and Proposition loc:prop:noise.
+      - name: Verify the localization counterexample and noise floor and replay their modules
+        run: python tools/verify_localization_counter.py --replay --jobs 3
       - name: Verify prior families for the law-dependent time-uniform lower bound
         run: |
           python tools/verify_anytime_lower.py
