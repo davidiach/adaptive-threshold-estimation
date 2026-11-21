@@ -1478,6 +1478,10 @@
     "ThresholdHC.Genie.uniformMonomial": "10394737814777886938:13984833173345649464",
     "ThresholdHC.Genie.uniformSignPrior": "12783342425771617565:2272027898855345473",
     "ThresholdHC.GenieRate.mixedReferences": "332339554610433432:8712875917793223703",
+    "ThresholdHC.GlobalCut.FiniteCutStatement": "4762494857145497995:17922903117410978033",
+    "ThresholdHC.GlobalCut.GlobalCutStatement": "4762494857145497995:16284946202739056870",
+    "ThresholdHC.GlobalCut.NotExactStatement": "4762494857145497995:18383297316209779713",
+    "ThresholdHC.GlobalCut.globalCutValue": "17993522273744119061:9584655986241211907",
     "ThresholdHC.GlobalSelectionCertificates.extendMasks": "7655206841145796050:4633389036330847551",
     "ThresholdHC.GlobalSelectionCertificates.fixedSaving": "3602624714592085540:10824598212251548238",
     "ThresholdHC.GlobalSelectionCertificates.fractions": "3648013827897579529:2374909203032608230",
@@ -3392,6 +3396,10 @@
     {
       "at": "2026-11-21T01:44:13+00:00",
       "count": 15
+    },
+    {
+      "at": "2026-11-21T01:57:19+00:00",
+      "count": 4
     }
   ]
 }
