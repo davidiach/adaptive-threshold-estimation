@@ -1204,6 +1204,15 @@ the entropy fixed and strictly increases the saved tail cost. A suffix is
 determined by its selected count in each band, so at most $\prod_j(n_j+1)$
 candidates suffice. [Theorem 5 and verification](VERIFY.md#finite-law-bandwise-suffix-theorem)
 
+The suffix structure holds within each band, not across bands. In the
+rare-event paper's example, masses $(1-\varepsilon)/2$, $\varepsilon$,
+$(1-\varepsilon)/2$ at $1/2$, $1/4$, $1/8$ with $\varepsilon=1/1024$, $\rho=1/4$
+and $h=1/1024$, the unique optimal hard selection retains $\{1/2,1/8\}$, so
+no interval of gaps is optimal. Since 21 November 2026 Lean checks the
+example: all eight enclosures of the paper's table, the strict minimum, the
+inactive cap, and that every interval retention costs strictly more
+([record](../results/noninterval-selection-20261121/README.md)).
+
 **Lean verifies the mathematical cost-grouping algorithm.** The
 [finite-menu audit](../results/band-cost-formal-20261105/README.md) checks
 feasible compression, preservation of a global minimum, the

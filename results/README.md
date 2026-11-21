@@ -10,7 +10,7 @@ can differ from the current files after a later proof-only change: the
 eight Lean files that were refactored afterwards without changing a
 statement. For the current tree the evidence is the CI run on that commit.
 
-The folder holds 130 dated record directories, named for a result and a
+The folder holds 131 dated record directories, named for a result and a
 date, and the loose JSON and log files of the first phases of the project.
 The table below indexes the records that the guides cite. Later sections
 describe the remaining records in prose: the time-uniform bounds, cost
@@ -23,6 +23,7 @@ is the current evidence for that result.
 | Claim or check | Published record |
 |---|---|
 | Selection and three-piece forms of the entropy-tail law: (61) $=$ (62) before and after the cap, the law with $0<c<C$, hard measurable partitions and a hard minimizer on finite laws: library statement, axiom and kernel-replay audits | [entropy-tail-forms-20261121](entropy-tail-forms-20261121/README.md) |
+| Noninterval optimal assignment of the rare-event discussion: the eight table enclosures, the unique hard minimum $\{1/2,1/8\}$, the inactive cap and no optimal interval retention: library statement, axiom and kernel-replay audits | [noninterval-selection-20261121](noninterval-selection-20261121/README.md) |
 | Global-cut bound of the certified-selection note (Corollary 6): $\mathcal K\le V\le Q\le\frac85\mathcal K$, $V$ is the scan of the $n+1$ top-$k$ cuts on finite laws, and $\mathcal K<V$ on the note's two-atom law: library statement, axiom and kernel-replay audits | [global-cut-20261121](global-cut-20261121/README.md) |
 | Strictness of the sharp RMS bound: for every gap law and every $B\ge1$ other than four, $R_\mu(B)>\omega_\mu(B^{-1/2})/6$, also under both oracles, so equality forces $B=4$: library statement, axiom and kernel-replay audits | [sharp-strict-20261121](sharp-strict-20261121/README.md) |
 | RMS coefficient exactly $1/6$ for budgets through four (and both oracles there), for protocols with at most three flips per coin, and conditionally for any class containing the four-fresh-flip protocols: library statement, axiom and kernel-replay audits | [restricted-rms-20261121](restricted-rms-20261121/README.md) |

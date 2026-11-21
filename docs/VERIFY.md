@@ -1003,14 +1003,22 @@ runs it in the `entropy-tail-upper` job. Its 11-test guard suite is
 `test_entropy_tail_forms.py`.
 [Record](../results/entropy-tail-forms-20261121/README.md).
 
+Run `python tools/verify_noninterval_selection.py --replay` for 8 exact
+statements and 59 transitive axiom reports over the five modules of
+`lean/ThresholdHC/NonintervalSelection`: the noninterval optimal assignment of
+the rare-event discussion, with eight kernel-checked interval certificates for
+the paper's table. CI runs it in the `entropy-tail-upper` job. Its 11-test
+guard suite is `test_noninterval_selection.py`.
+[Record](../results/noninterval-selection-20261121/README.md).
+
 Each audit pins its new specification, restates the checked targets and
 reports every new declaration's transitive axioms. Their six-test guard
 suites are `test_psi_sharpness.py` and `test_power_window.py`; CI runs both
 suites and both audits, and also the critical-window, paper-corollary,
 paper-statement, pilot-feedback, explicit-constant, nonnegativity,
 finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
-split, critical common-pair, bias-subtraction, global-cut, psi-null and
-entropy-tail-forms suites and audits, the
+split, critical common-pair, bias-subtraction, global-cut, psi-null,
+entropy-tail-forms and noninterval-selection suites and audits, the
 `lean-kernel` job also the restricted-class and sharp-strictness suites and
 audits; the `stopping-program` job also runs the fixed-cap
 estimate suite and audit. Existing published records retain their original scope.
