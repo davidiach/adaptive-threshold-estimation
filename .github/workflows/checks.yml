@@ -201,6 +201,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_affine_comparison.py' -v
           python -m unittest discover -s tools -p 'test_two_flip_feedback.py' -v
           python -m unittest discover -s tools -p 'test_unknown_law_confidence.py' -v
+          python -m unittest discover -s tools -p 'test_upper_twelve_numerics.py' -v
       - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper-constant (119, 45, 36, 27, 19, 17, 15) and square-root cap audits
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
@@ -876,6 +877,10 @@ jobs:
       # probability 1 - delta at every budget and width tending to zero.
       - name: Verify the unknown-law confidence sequence and replay its modules
         run: python tools/verify_unknown_law_confidence.py --replay --jobs 3
+      # The decimal bounds 5.19, 0.401 and 6.49 of app:upper-12 and its three
+      # remarks on the mixture, dyadic and scale-B/4 routes.
+      - name: Verify the decimals and remarks of the upper-12 appendix and replay its modules
+        run: python tools/verify_upper_twelve_numerics.py --replay --jobs 3
       - name: Verify prior families for the law-dependent time-uniform lower bound
         run: |
           python tools/verify_anytime_lower.py

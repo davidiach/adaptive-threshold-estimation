@@ -3445,6 +3445,15 @@
     "ThresholdHC.UpperSign.signWeight": "15687204093786460919:8910425113057545875",
     "ThresholdHC.UpperSign.stepE": "15266474460176836143:6741696857776009986",
     "ThresholdHC.UpperSign.successes": "1446087376058205158:452195194002454370",
+    "ThresholdHC.UpperTwelveNumerics.CallCostDecimalStatement": "4762494857145497995:9547627596758377385",
+    "ThresholdHC.UpperTwelveNumerics.DyadicBatchStatement": "4762494857145497995:2734610804262872573",
+    "ThresholdHC.UpperTwelveNumerics.MixtureRemarkStatement": "4762494857145497995:6600215882735315060",
+    "ThresholdHC.UpperTwelveNumerics.ScaleFourBiasStatement": "4762494857145497995:4642475006536754005",
+    "ThresholdHC.UpperTwelveNumerics.SecondMomentDecimalStatement": "4762494857145497995:10614781765736311998",
+    "ThresholdHC.UpperTwelveNumerics.WrongSideDecimalStatement": "4762494857145497995:4264176406640423935",
+    "ThresholdHC.UpperTwelveNumerics.callCostTerm": "15266474460176836143:14031561851624040972",
+    "ThresholdHC.UpperTwelveNumerics.callOffset": "15266474460176836143:1962084650532598050",
+    "ThresholdHC.UpperTwelveNumerics.wrongSideConstant": "9035701922190319447:858105854506798097",
     "ThresholdHC.UpperWork.BlindUpper45Statement": "4762494857145497995:15018850749603950551",
     "ThresholdHC.UpperWork.MinimaxUpper45Statement": "4762494857145497995:1725723950899202190",
     "ThresholdHC.UpperWork.bump": "18133891100220672328:18250383750437467366",
@@ -3953,6 +3962,10 @@
     {
       "at": "2026-11-21T12:27:28+00:00",
       "count": 32
+    },
+    {
+      "at": "2026-11-21T12:46:15+00:00",
+      "count": 9
     }
   ]
 }
