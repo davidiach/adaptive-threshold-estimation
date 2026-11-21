@@ -175,6 +175,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_psi_null.py' -v
           python -m unittest discover -s tools -p 'test_entropy_tail_forms.py' -v
           python -m unittest discover -s tools -p 'test_noninterval_selection.py' -v
+          python -m unittest discover -s tools -p 'test_program_factor.py' -v
       - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper-constant (119, 45, 36, 27, 19, 17, 15) and square-root cap audits
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
@@ -944,6 +945,10 @@ jobs:
       # the fixed-cap identification theorem.
       - name: Verify the explicit fixed-cap estimate and replay its modules
         run: python tools/verify_cap_identification_estimate.py --replay --jobs 3
+      # The rms-constants review: R <= P_inf <= (3 sqrt 7 / 2) R, and with a cap of
+      # at least 4B/9 the factor 3 sqrt 7 < 8 for the program and the genie test.
+      - name: Verify the stopping-program factor 3 sqrt 7 / 2 and replay its modules
+        run: python tools/verify_program_factor.py --replay --jobs 3
       - name: Verify uniform convergence of the optimized cap programs
         run: python tools/verify_genie_rate.py
       - name: Verify square-root convergence of the ordinary cap program

@@ -41,7 +41,7 @@ VERIFIERS = {
         stopping_dual information_bellman reference_absorption ordered_information
         adaptive_information stopping_program_upper finite_risk_certificate infinite_cap_dual
         genie_* finite_cap_truncation entropy_tail entropy_tail_components entropy_tail_lower_components
-        square_root_cap sharp_rms cap_identification_estimate
+        square_root_cap sharp_rms cap_identification_estimate program_factor
     """,
 }
 

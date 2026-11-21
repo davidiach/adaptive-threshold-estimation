@@ -2011,6 +2011,12 @@
     "ThresholdHC.PowerWindow.powerQuantileScale": "4492441409891286651:16089869982525379898",
     "ThresholdHC.PowerWindow.powerTail": "4179594114320068645:17999074220542502913",
     "ThresholdHC.PowerWindow.uniformRate": "4179594114320068645:5237347962418714819",
+    "ThresholdHC.ProgramFactor.BelowEightStatement": "4762494857145497995:17466127232478687460",
+    "ThresholdHC.ProgramFactor.FourNinthsFactorStatement": "4762494857145497995:17789991517968664095",
+    "ThresholdHC.ProgramFactor.GenieTestFactorStatement": "4762494857145497995:14216675789940703656",
+    "ThresholdHC.ProgramFactor.InfiniteProgramFactorStatement": "4762494857145497995:4904755863354339404",
+    "ThresholdHC.ProgramFactor.weightedHigh": "3075463014001136059:12841337051948984331",
+    "ThresholdHC.ProgramFactor.weightedLow": "3075463014001136059:7394425706576648853",
     "ThresholdHC.Proofs.Transcript.klTerm": "4492441409891286651:6085712751033180867",
     "ThresholdHC.Proofs.Transcript.mixMass": "4179594114320068645:3265987704054087132",
     "ThresholdHC.Proofs.Transcript.mixPredict": "15937309165252210062:10469906832299469040",
@@ -3439,6 +3445,10 @@
     {
       "at": "2026-11-21T03:35:08+00:00",
       "count": 15
+    },
+    {
+      "at": "2026-11-21T03:40:52+00:00",
+      "count": 6
     }
   ]
 }
