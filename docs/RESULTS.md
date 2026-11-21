@@ -1897,7 +1897,11 @@ upper bound for that specified radial submodel. The counterexample rules out
 that proof route; it does not refute the later full critical-law theorem above,
 whose hard pair is not the radial proposal. Its finite Bayes calculations use
 deterministic observation caps and do not settle the expected-budget minimax
-problem. Its calibrated radial upper bound is Lean-checked since 21 November
+problem. At horizon eight, Lean checks since 21 November 2026 that an explicit
+adaptive policy (the stored dynamic-program policy) beats every estimator with
+the fixed fresh or single-coin design by at least $1.5917\%$ and $5.0307\%$ in
+Bayes squared error; that the policy is the dynamic-program minimum is not
+checked ([record](../results/finite-bayes-allocation-20261121/README.md)). Its calibrated radial upper bound is Lean-checked since 21 November
 2026 on the known radial submodel, with the calibrated cutoff, the
 random-walk call and $R_{\rm radial}(B)\le\min\{\rho/4,\sqrt{160\rho L/B}\}$
 ([`radial_upper`](../lean/ThresholdHC/RadialUpper/Full.lean),

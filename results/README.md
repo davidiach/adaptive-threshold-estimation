@@ -10,7 +10,7 @@ can differ from the current files after a later proof-only change: the
 eight Lean files that were refactored afterwards without changing a
 statement. For the current tree the evidence is the CI run on that commit.
 
-The folder holds 173 dated record directories, named for a result and a
+The folder holds 174 dated record directories, named for a result and a
 date, and the loose JSON and log files of the first phases of the project.
 The table below indexes the records that the guides cite. Later sections
 describe the remaining records in prose: the time-uniform bounds, cost
@@ -166,6 +166,7 @@ is the current evidence for that result.
 | The early-stopping pilot of the arbitrary-law adaptation: existence, the event (A8), expected work and the easy-law bounds: library statement, axiom and kernel-replay audits | [early-pilot-20261121](early-pilot-20261121/README.md) |
 | The Bernoulli-subfamily time-uniform lower bound of the unknown-law note and the observable prefix KL of constant sign laws: library statement, axiom and kernel-replay audits | [bernoulli-time-uniform-20261121](bernoulli-time-uniform-20261121/README.md) |
 | The dominance step of the two-flip acquisition-feedback advantage: the order-free local class, its reduction to the normal form, its lower bound, minimax bracket and separation: library statement, axiom and kernel-replay audits | [two-flip-dominance-20261121](two-flip-dominance-20261121/README.md) |
+| The horizon-eight finite-prior Bayes allocation example of the population-step package: an explicit adaptive witness against the fixed fresh and single-coin designs: library statement, axiom and kernel-replay audits | [finite-bayes-allocation-20261121](finite-bayes-allocation-20261121/README.md) |
 | Universal closed-quantile minimax corollary (cached dependencies) | [closed-quantile-law-20261101](closed-quantile-law-20261101/README.md) |
 | Constant search and scope | [constants_theory.json](constants_theory.json), [constants_finite_grid.json](constants_finite_grid.json), [process account](../docs/process/TRACK_B.md) |
 | Real-valued benchmark | [real_comparison.json](real_comparison.json), [real_verification.json](real_verification.json), [benchmark protocol](../benchmark/README.md) |

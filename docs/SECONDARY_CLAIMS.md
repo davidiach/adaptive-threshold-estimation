@@ -135,7 +135,11 @@ moment/work constants are `28 rho` and `112000000 criticalLogFactor(rho)`.
 
 The report's inherited single-coin obstruction is mapped in item 3. Its
 finite-prior dynamic-program values are exact finite examples, not a new
-uniform expected-budget theorem. The later full critical theorem resolves the
+uniform expected-budget theorem. Their horizon-eight comparison is Lean-checked
+since 21 November 2026 for an explicit adaptive witness against the fixed
+fresh and single-coin designs, with the constants rounded at `10^-15`; the
+witness's optimality and the other horizons are not
+([record](../results/finite-bayes-allocation-20261121/README.md)). The later full critical theorem resolves the
 report's historical broad open question by a different argument; it does not
 upgrade these four auxiliary claims or their constants.
 
