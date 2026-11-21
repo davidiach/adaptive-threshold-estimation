@@ -1076,7 +1076,7 @@ finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
 split, critical common-pair, bias-subtraction, global-cut, psi-null,
 confidence-transfer-steps, observed-hoeffding, nested-assumptions,
 light-contraction-constant, band-cost-example, repeated-check,
-reservoir-termination, quantile-factor-upper, creation-charge, stage-pilot-law, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
+reservoir-termination, quantile-factor-upper, creation-charge, stage-pilot-law, bias-audit, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
 suites and audits, the
 `lean-kernel` job also the restricted-class, sharp-strictness,
 oracle-sharpness, oracle-upper, clipped-output and revisit-upper suites and
@@ -1249,6 +1249,15 @@ learning stage under the law of the original experiment of the whole stage.
 CI runs it in the `entropy-tail-upper` job. Its 11-test guard suite is
 `test_stage_pilot_law.py`.
 [Record](../results/stage-pilot-law-20261121/README.md).
+
+Run `python tools/verify_bias_audit.py --replay` for 6 exact statements and
+33 transitive axiom reports over the five modules of
+`lean/ThresholdHC/BiasAudit`: the grid-winner counterexample of
+`proposals/constants/BIAS_AUDIT.md` and the envelope for every $k_1\ge0$,
+$k_2\ge1$, against the frozen classifier error. CI runs it in the
+`entropy-tail-upper` job. Its 11-test guard suite is `test_bias_audit.py`.
+`python proposals/constants/bias_audit.py` remains the exact-arithmetic check.
+[Record](../results/bias-audit-20261121/README.md).
 
 ## Whole-project build, axioms and kernel replay
 
