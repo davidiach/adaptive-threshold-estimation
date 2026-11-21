@@ -528,6 +528,14 @@ the whole iid array and a magnitude selected at each creation.
 The stronger [lower bounds for budgets of at least 25](#minimax-law-and-unbiasedness),
 $0.175198$ and $0.17807955$ for $B\ge100$, hold for both oracles too.
 
+The rms-constants package also states the oracle upper bound
+$R_\mu^{\mathrm{oracle}}(B)\le\omega_\mu(B^{-1/2})/2$ for $B\ge1$, with $1/2$
+sharp. Since 21 November 2026 Lean checks the sharpness half: for every
+$B\ge1$ and $c<1/2$, point masses at all sufficiently small gaps have both
+oracle risks above $c\,\omega(B^{-1/2})$, so no oracle upper coefficient below
+$1/2$ holds ([record](../results/oracle-sharpness-20261121/README.md)). The
+upper bound itself is not yet Lean-checked.
+
 The original oracle theorems are frozen targets, Lean-checked for both
 revealed and adaptively selected magnitudes. They prove the RMS bound with
 the constant $1/64$, which the sharp $1/6$ above supersedes, and the

@@ -1019,6 +1019,13 @@ the paper's table. CI runs it in the `entropy-tail-upper` job. Its 11-test
 guard suite is `test_noninterval_selection.py`.
 [Record](../results/noninterval-selection-20261121/README.md).
 
+Run `python tools/verify_oracle_sharpness.py --replay` for 4 exact statements
+and 9 transitive axiom reports over the five modules of
+`lean/ThresholdHC/OracleSharpness`: no magnitude-oracle upper coefficient below
+$1/2$, since point masses at small gaps have oracle risk near $1/2$. CI runs it
+in the `lean-kernel` job. Its 11-test guard suite is `test_oracle_sharpness.py`.
+[Record](../results/oracle-sharpness-20261121/README.md).
+
 Run `python tools/verify_fixed_plan.py --replay` for 14 exact statements and 85
 transitive axiom reports over the six modules of `lean/ThresholdHC/FixedPlan`:
 the toolkit's fixed majority plan, its exact work, bias, variance and RMS
@@ -1035,8 +1042,8 @@ finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
 split, critical common-pair, bias-subtraction, global-cut, psi-null,
 entropy-tail-forms, noninterval-selection and fixed-plan suites and audits,
 the
-`lean-kernel` job also the restricted-class and sharp-strictness suites and
-audits; the `stopping-program` job also runs the fixed-cap
+`lean-kernel` job also the restricted-class, sharp-strictness and
+oracle-sharpness suites and audits; the `stopping-program` job also runs the fixed-cap
 estimate and program-factor suites and audits. Existing published records retain their original scope.
 
 ## Sharp RMS coefficient and square-root cap
