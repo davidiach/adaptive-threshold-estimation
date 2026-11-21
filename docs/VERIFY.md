@@ -920,12 +920,44 @@ and both displays of Corollary `cor:mse`, with $c_0=10^{-20}$ and $C_0=30001$.
 Its 11-test guard suite is `test_finite_gap_corollaries.py`.
 [Record](../results/finite-gap-corollaries-20261121/README.md).
 
+Run `python tools/verify_stopped_time_uniform.py --replay` for 6 exact
+statements and 12 transitive axiom reports over the three modules of
+`lean/ThresholdHC/StoppedTimeUniform`: the fixed-budget coefficient $10^{-17}$
+for estimates from the seed and the first $n$ observations, its consequence
+for time-uniform interval envelopes, and display (TU1) with $10^{-22}$ at every
+$n\ge2$ with $\log\log n\le(10^{10}-1)\log(1/\delta)$. Its 11-test guard
+suite is `test_stopped_time_uniform.py`.
+[Record](../results/stopped-time-uniform-20261121/README.md).
+
+Run `python tools/verify_latent_threshold.py --replay` for 2 exact statements
+and 4 transitive axiom reports over the three modules of
+`lean/ThresholdHC/LatentThreshold`: $\theta=G_{\mu,q}(P>1/2)$ for every gap
+law and sign law. Its 11-test guard suite is `test_latent_threshold.py`.
+[Record](../results/latent-threshold-20261121/README.md).
+
+Run `python tools/verify_zero_atom_split.py --replay` for 5 exact statements
+and 11 transitive axiom reports over the three modules of
+`lean/ThresholdHC/ZeroAtomSplit`: the identity
+$K_\alpha=\min\{\rho,z+(1-z)K_{\eta,\rho/(1-z)}\}$ and its arbitrary-law form.
+Its 11-test guard suite is `test_zero_atom_split.py`.
+[Record](../results/zero-atom-split-20261121/README.md).
+
+Run `python tools/verify_cap_identification_estimate.py --replay` for 4 exact
+statements and 13 transitive axiom reports over the three modules of
+`lean/ThresholdHC/CapIdentificationEstimate`: the explicit estimate
+$\Delta_N/2\ge\rho\|h\|_2^2/(4\|h\|_\infty)$ after the fixed-cap
+identification theorem. CI runs it in the `stopping-program` job. Its 11-test
+guard suite is `test_cap_identification_estimate.py`.
+[Record](../results/cap-identification-estimate-20261121/README.md).
+
 Each audit pins its new specification, restates the checked targets and
 reports every new declaration's transitive axioms. Their six-test guard
 suites are `test_psi_sharpness.py` and `test_power_window.py`; CI runs both
 suites and both audits, and also the critical-window, paper-corollary,
-paper-statement, pilot-feedback, explicit-constant, nonnegativity and
-finite-gap corollary suites and audits. Existing published records retain their original scope.
+paper-statement, pilot-feedback, explicit-constant, nonnegativity,
+finite-gap corollary, stopped time-uniform, latent-threshold and zero-atom
+split suites and audits; the `stopping-program` job also runs the fixed-cap
+estimate suite and audit. Existing published records retain their original scope.
 
 ## Sharp RMS coefficient and square-root cap
 

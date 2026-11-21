@@ -213,7 +213,9 @@ Use a disposable checkout for reproduction: some checks write diagnostic files.
   Since 21 November 2026 Lean also checks the impossibility half of
   Proposition `prop:bounded`, states the explicit constants $15/(256\sqrt2)$,
   $1/256$ and $28\rho$ as exact targets, and checks both corollaries of the
-  finite-gap manuscript ([records](results/README.md)).
+  finite-gap manuscript, the stopped time-uniform remark, the threshold form
+  of the target for every law, the zero-atom split and the explicit fixed-cap
+  estimate ([records](results/README.md)).
 - **Constants of the main law.** The lower constant $1/6$ is sharp and the
   upper constant is $12$, so the two sides are a factor $72$ apart. For
   budgets of at least 25 the best lower constant is known only to lie in

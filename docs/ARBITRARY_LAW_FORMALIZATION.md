@@ -715,6 +715,16 @@ module. The audit fails if a declaration is added without being registered.
 The [zero-quantile record](../results/arbitrary-law-zero-quantile-20261112/README.md)
 identifies the proof checkpoint and source hashes.
 
+That record compared `Q_alpha` with `K_alpha` numerically through the identity
+`K_alpha = min(rho, z + (1 - z) K_(eta, rho/(1 - z)))`, which it describes as
+not Lean-checked. Since 21 November 2026 the separate group
+[ZeroAtomSplit](../lean/ThresholdHC/ZeroAtomSplit/Full.lean) proves it for
+`0 <= z < 1`, `rho > 0` and `B > 0`, and for every law on `[0, 1/2]` with
+`alpha{0} < 1`; `python tools/verify_zero_atom_split.py --replay` checks it
+([record](../results/zero-atom-split-20261121/README.md)). The rarity is `rho/(1 - z)`, not the
+design rarity `r`. The toolkit's enclosure of `K_eta` and the correspondence
+with its oracle split remain outside Lean.
+
 The plan that uses this design is specified in the next section, and its
 rate for exact integrals in the one after. The coefficients `C_0` and `C_*`
 are checked, for the planner's numbers, in the

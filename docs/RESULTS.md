@@ -987,7 +987,7 @@ minimax risk.
 | Attained four-prior stopping dual | `AttainedDualStatement`: exact value identity, primal and dual optimizers, positive value and finite optimal information ratio, for $0<\rho\le1/4$, $B>0$, $N>0$. `ProgramUpperStatement`: every feasible certificate is realized by an observable estimator, so $R\le P_N$. The finite-cap value lies between the two-prior midpoint modulus and three times it. At infinite cap the dual is attained, with factor-three midpoint and factor-eight minimax comparisons and monotone cap limits, for $0<\rho\le1/2$. |
 | Factor-sixteen risk certificate, first form | `FiniteCertificateStatement`: for $0<\rho\le1/4$, $R\le P_N\le16R$ at $N=\lceil64\max(B,\rho B^2)\rceil$ (the later cap theorems above lower the cap to $N\ge4B/9$), through the exact truncation penalty and a universal Bernoulli-label floor. It does not use the entropy-tail lower bound. Also: exact finite cone/cutoff representation for finitely supported laws, the rarity-support optimizer, Bellman attainment of the information/work ratio, and information bounds for arbitrary seeded, order-dependent capped procedures. |
 | Genie convergence | Monotone latent-reveal brackets and exact Bellman certificates. Residual convergence assumes finite latent divergence. Optimized convergence uses variance-reference regularization before the cap limit. Risk brackets give finite termination of the factor-sixteen test, for $0<\rho\le1/2$ and $B>0$. The direct squared-risk certificate and an exact finite-atom SOCP for $G_N^2$ are included. So is the uniform-gap counterexample: infinite latent divergence, infinite genie ratios and failure of pointwise convergence. |
-| Fixed-cap identification | `fixed_cap_identification`: on $m$ distinct positive magnitudes the target is identified exactly when $N\ge2m-1$, via odd moments and count coefficients. For infinite support, every fixed cap has a positive bias floor uniform in the budget, and $P_N(B)\to\Delta_N/2$ as $B\to\infty$, where $\Delta_N$ is the largest target gap between rare priors whose capped count laws agree. |
+| Fixed-cap identification | `fixed_cap_identification`: on $m$ distinct positive magnitudes the target is identified exactly when $N\ge2m-1$, via odd moments and count coefficients. For infinite support, every fixed cap has a positive bias floor uniform in the budget, and $P_N(B)\to\Delta_N/2$ as $B\to\infty$, where $\Delta_N$ is the largest target gap between rare priors whose capped count laws agree. Since 21 November 2026 Lean also checks the explicit estimate $\Delta_N/2\ge\rho\|h\|_{L^2(\mu)}^2/(4\|h\|_{L^\infty(\mu)})$ with $h=1-\operatorname{proj}_{\mathcal V_L}1$, whenever $1\notin\mathcal V_L$ ([record](../results/cap-identification-estimate-20261121/README.md)). |
 
 These results are **Lean-checked** with exact statements and only the
 standard axioms, subject to the CI audit in the `stopping-program` job
@@ -1579,7 +1579,10 @@ paper-level remark on its constant: stopping such a procedure at budget $n$
 gives a fixed-budget interval, so the fixed-budget coefficient $10^{-17}$
 already implies the displayed inequality at every $n$ with
 $\log\log n\le(10^{10}-1)\log(1/\delta)$. The iterated logarithm is forced
-only beyond that range.
+only beyond that range. Lean checks this remark since 21 November 2026 for
+every $n\ge2$, by proving the fixed-budget chain again for estimates formed
+from the seed and the first $n$ observations
+([record](../results/stopped-time-uniform-20261121/README.md)).
 The [sequential testing step](ANYTIME_SEQUENTIAL.md), [infinite-moment
 construction and adaptive acquisition transfer](ANYTIME_TAIL.md), and
 [complete asymptotic and interval comparison](../results/anytime-asymptotic-20261105/README.md)
