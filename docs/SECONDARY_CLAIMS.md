@@ -64,6 +64,13 @@ contradicts this different quantifier order. Additive error floors, a positive
 lower bound on rarity, and restricted parameter ranges remain outside the
 obstruction. This reconciliation introduces no new unknown-rarity theorem.
 
+*Update, 21 November 2026.* The obstruction is now Lean-checked in the Tier 6
+adaptive experiment at the gap law $\delta_d$, with the expected-work form and
+the stopped-transcript absolute continuity it uses; one estimator at one
+budget $B>4C^2/d^2$ that stops almost surely at $\theta=1/4$ already fails the
+bound ([record](../results/unknown-rarity-20261121/README.md)). The process note keeps its original status
+line.
+
 ### 3. Earlier critical single-coin and additive-class claims
 
 The [historical critical note](../research/2026-10-27-critical-two/construction.tex)

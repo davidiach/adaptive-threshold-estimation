@@ -1076,7 +1076,7 @@ finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
 split, critical common-pair, bias-subtraction, global-cut, psi-null,
 confidence-transfer-steps, observed-hoeffding, nested-assumptions,
 light-contraction-constant, band-cost-example, repeated-check,
-reservoir-termination, quantile-factor-upper, creation-charge, stage-pilot-law, bias-audit, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
+reservoir-termination, quantile-factor-upper, creation-charge, stage-pilot-law, bias-audit, unknown-rarity, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
 suites and audits, the
 `lean-kernel` job also the restricted-class, sharp-strictness,
 oracle-sharpness, oracle-upper, clipped-output and revisit-upper suites and
@@ -1258,6 +1258,15 @@ $k_2\ge1$, against the frozen classifier error. CI runs it in the
 `entropy-tail-upper` job. Its 11-test guard suite is `test_bias_audit.py`.
 `python proposals/constants/bias_audit.py` remains the exact-arithmetic check.
 [Record](../results/bias-audit-20261121/README.md).
+
+Run `python tools/verify_unknown_rarity.py --replay` for 7 exact statements
+and 26 transitive axiom reports over the five modules of
+`lean/ThresholdHC/UnknownRarity`: the obstruction to uniform adaptation to
+unknown rarity at a known gap, its expected-work form, the stopped-transcript
+absolute continuity and the fixed-budget strengthening. CI runs it in the
+`entropy-tail-upper` job. Its 11-test guard suite is
+`test_unknown_rarity.py`.
+[Record](../results/unknown-rarity-20261121/README.md).
 
 ## Whole-project build, axioms and kernel replay
 
