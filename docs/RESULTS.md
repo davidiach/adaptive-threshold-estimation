@@ -1912,9 +1912,12 @@ The [nonlinear-feedback report](../research/2026-10-27-nonlinear-population/FINA
 adds a reviewed paper proof of strict acquisition-feedback advantage for a
 two-gap experiment at a deterministic two-flip cap (Lean-checked since
 21 November 2026 against the seed-conditional normal form of the comparison
-class, without the paper's dominance reduction to it;
+class,
 [`feedback_separation`](../lean/ThresholdHC/TwoFlipFeedback/Full.lean),
-[record](../results/two-flip-feedback-20261121/README.md)), an arbitrary-feedback
+[record](../results/two-flip-feedback-20261121/README.md); and, through the
+paper's dominance reduction, for an order-free local class,
+[`local_separation`](../lean/ThresholdHC/TwoFlipDominance/Full.lean),
+[record](../results/two-flip-dominance-20261121/README.md)), an arbitrary-feedback
 bounded-depth obstruction, and a finite approximation theorem that preserves
 the uniform expected budget. The population half of the bounded-depth
 obstruction is Lean-checked since 21 November 2026 for every per-coin cap, gap
