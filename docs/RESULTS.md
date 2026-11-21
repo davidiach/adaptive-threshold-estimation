@@ -667,6 +667,20 @@ has uniform variance at most $23I$ and uniform work at most $31I$.
 The reference law belongs to the class and supplies all lower bounds.
 [Exact statements and proof record](../results/stochastic-envelope-20261105/README.md)
 
+The margin-class corollaries of the v6 manuscript invert these confidence
+bounds into work. Lean checks since 21 November 2026, for $\varepsilon\le1/25$
+and $0<\delta\le1/4$: Corollary `cor:gap`, smallest uniform expected work
+between $(225/131072)\log(1/\delta)/(\varepsilon^2\Delta^2)$ and
+$8192^2\log(1/\delta)/(\varepsilon^2\Delta^2)$ on the gap class; the rows
+$0<\alpha<1$ and $\alpha>1$ of Corollary `cor:power` on the polynomial margin
+class, with explicit constants that depend on $(\alpha,C)$ except the
+universal lower one for $\alpha>1$; its unbiased dichotomy
+($\alpha>1$ exactly); and one common unbiased estimator and one common
+budget-indexed family chosen before the class parameters
+([`gap_class`](../lean/ThresholdHC/MarginClasses/Full.lean),
+[record](../results/margin-classes-20261121/README.md)). The critical row $\alpha=1$ and the logarithmic
+classes of `cor:log` remain paper statements.
+
 ## Fixed finite-order smooth densities
 
 For each fixed integer $s\ge1$, there is a finite $M_s$ such that the class

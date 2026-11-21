@@ -1083,7 +1083,7 @@ finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
 split, critical common-pair, bias-subtraction, global-cut, psi-null,
 confidence-transfer-steps, observed-hoeffding, nested-assumptions,
 light-contraction-constant, band-cost-example, repeated-check,
-reservoir-termination, quantile-factor-upper, creation-charge, stage-pilot-law, bias-audit, unknown-rarity, hard-cap-necessity, pilot-correction, depth-obstruction, localization-counter, affine-comparison, two-flip-feedback, unknown-law-confidence, upper-twelve-numerics, radial-upper, time-uniform-two-sided, depth-legendre, latent-disintegration, known-gap-rarity, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
+reservoir-termination, quantile-factor-upper, creation-charge, stage-pilot-law, bias-audit, unknown-rarity, hard-cap-necessity, pilot-correction, depth-obstruction, localization-counter, affine-comparison, two-flip-feedback, unknown-law-confidence, upper-twelve-numerics, radial-upper, time-uniform-two-sided, depth-legendre, latent-disintegration, known-gap-rarity, margin-classes, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
 suites and audits, the
 `lean-kernel` job also the restricted-class, sharp-strictness,
 oracle-sharpness, oracle-upper, clipped-output and revisit-upper suites and
@@ -1414,6 +1414,13 @@ audit's adaptation note that needs no rarity, with its interval. CI runs it in
 the `entropy-tail-upper` job. Its 11-test guard suite is
 `test_known_gap_rarity.py`.
 [Record](../results/known-gap-rarity-20261121/README.md).
+
+Run `python tools/verify_margin_classes.py --replay` for 9 exact statements
+and 50 transitive axiom reports over the six modules of
+`lean/ThresholdHC/MarginClasses`: the margin-class corollaries `cor:gap` and
+`cor:power` (rows $\alpha<1$ and $\alpha>1$). CI runs it in the
+`entropy-tail-upper` job. Its 11-test guard suite is `test_margin_classes.py`.
+[Record](../results/margin-classes-20261121/README.md).
 
 ## Smooth-density robustness
 
