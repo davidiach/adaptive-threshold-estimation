@@ -60,6 +60,7 @@ class LeanRoutingTests(unittest.TestCase):
             "tools/verify_restricted_rms.py": {"lean-kernel"},
             "tools/verify_sharp_strict.py": {"lean-kernel"},
             "tools/verify_oracle_sharpness.py": {"lean-kernel"},
+            "tools/verify_oracle_upper.py": {"lean-kernel"},
             "tools/verify_cap_identification_estimate.py": {"stopping-program"},
             "tools/verify_program_factor.py": {"stopping-program"},
             "tools/quantile_comparison_specification_freeze.json": {"lean-kernel", "entropy-tail-upper"},

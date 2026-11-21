@@ -179,6 +179,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_fixed_plan.py' -v
           python -m unittest discover -s tools -p 'test_oracle_sharpness.py' -v
           python -m unittest discover -s tools -p 'test_clipping_boundary.py' -v
+          python -m unittest discover -s tools -p 'test_oracle_upper.py' -v
       - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper-constant (119, 45, 36, 27, 19, 17, 15) and square-root cap audits
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
@@ -408,6 +409,10 @@ jobs:
       # below one half, since small-gap point masses have oracle risk near 1/2.
       - name: Verify the sharpness of the oracle coefficient one half and replay its modules
         run: python tools/verify_oracle_sharpness.py --replay --jobs 3
+      # The second rms-constants review: both oracle risks are at most half the
+      # modulus at B^(-1/2), so one half is exactly the best oracle coefficient.
+      - name: Verify the oracle upper bound with coefficient one half and replay its modules
+        run: python tools/verify_oracle_upper.py --replay --jobs 3
       # Its 28 modules build on the sharp RMS modules above. The replay
       # re-evaluates the integer certificates of the five-bias test and the
       # pilot policy in the independent kernel checker.
