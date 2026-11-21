@@ -942,6 +942,14 @@ $K_\alpha=\min\{\rho,z+(1-z)K_{\eta,\rho/(1-z)}\}$ and its arbitrary-law form.
 Its 11-test guard suite is `test_zero_atom_split.py`.
 [Record](../results/zero-atom-split-20261121/README.md).
 
+Run `python tools/verify_program_factor.py --replay` for 7 exact statements and
+37 transitive axiom reports over the five modules of
+`lean/ThresholdHC/ProgramFactor`: $R\le P_\infty\le(3\sqrt7/2)R$, the
+finite-cap factor $3\sqrt7$ for $N\ge4B/9$, the genie test and $3\sqrt7R<8R$.
+CI runs it in the `stopping-program` job. Its 11-test guard suite is
+`test_program_factor.py`.
+[Record](../results/program-factor-20261121/README.md).
+
 Run `python tools/verify_cap_identification_estimate.py --replay` for 4 exact
 statements and 13 transitive axiom reports over the three modules of
 `lean/ThresholdHC/CapIdentificationEstimate`: the explicit estimate
@@ -1021,7 +1029,7 @@ split, critical common-pair, bias-subtraction, global-cut, psi-null,
 entropy-tail-forms and noninterval-selection suites and audits, the
 `lean-kernel` job also the restricted-class and sharp-strictness suites and
 audits; the `stopping-program` job also runs the fixed-cap
-estimate suite and audit. Existing published records retain their original scope.
+estimate and program-factor suites and audits. Existing published records retain their original scope.
 
 ## Sharp RMS coefficient and square-root cap
 

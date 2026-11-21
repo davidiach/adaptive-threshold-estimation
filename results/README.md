@@ -10,7 +10,7 @@ can differ from the current files after a later proof-only change: the
 eight Lean files that were refactored afterwards without changing a
 statement. For the current tree the evidence is the CI run on that commit.
 
-The folder holds 131 dated record directories, named for a result and a
+The folder holds 132 dated record directories, named for a result and a
 date, and the loose JSON and log files of the first phases of the project.
 The table below indexes the records that the guides cite. Later sections
 describe the remaining records in prose: the time-uniform bounds, cost
@@ -30,6 +30,7 @@ is the current evidence for that result.
 | Proposition `prop:psi-null`, $\mathfrak J_0(b)\ge(\Psi(h)-4b)_+^2/(192h^2)$ for every gap law, and its corollary $R\ge\Psi(B^{-1/2})/8192$: library statement, axiom and kernel-replay audits | [psi-null-20261121](psi-null-20261121/README.md) |
 | Bias subtraction in Proposition `prop:psi-null`: for every $c<4$ and $K>0$, the bound with $cb$ and $K$ in place of $4b$ and $192$ fails on the remark's two-atom laws: library statement, axiom and kernel-replay audits | [bias-subtraction-20261121](bias-subtraction-20261121/README.md) |
 | Common-pair RMS bound at the critical law, $R\ge\min\{\rho/32,\sqrt{a\rho L(1+\log L)/B}\}/128$ for some $a>0$: library statement, axiom and kernel-replay audits | [critical-pair-rms-20261121](critical-pair-rms-20261121/README.md) |
+| Stopping-program factor $3\sqrt7/2$: $R\le P_\infty\le(3\sqrt7/2)R$, $R\le P_N\le3\sqrt7\,R<8R$ for $N\ge4B/9$, and the genie test: library statement, axiom and kernel-replay audits | [program-factor-20261121](program-factor-20261121/README.md) |
 | Explicit fixed-cap estimate $\Delta_N/2\ge\rho\|h\|_2^2/(4\|h\|_\infty)$ after the fixed-cap identification theorem, with $h=1-\operatorname{proj}_{\mathcal V_L}1$: library statement, axiom and kernel-replay audits | [cap-identification-estimate-20261121](cap-identification-estimate-20261121/README.md) |
 | Zero-atom split $K_\alpha=\min\{\rho,z+(1-z)K_{\eta,\rho/(1-z)}\}$ for $\alpha=z\delta_0+(1-z)\eta$, the identity the zero-quantile record used without a Lean proof: library statement, axiom and kernel-replay audits | [zero-atom-split-20261121](zero-atom-split-20261121/README.md) |
 | Threshold form of the target: $\theta=G_{\mu,q}(P>1/2)$ for every gap law and sign law, not only laws with a density: library statement, axiom and kernel-replay audits | [latent-threshold-20261121](latent-threshold-20261121/README.md) |
