@@ -10,7 +10,7 @@ can differ from the current files after a later proof-only change: the
 eight Lean files that were refactored afterwards without changing a
 statement. For the current tree the evidence is the CI run on that commit.
 
-The folder holds 159 dated record directories, named for a result and a
+The folder holds 160 dated record directories, named for a result and a
 date, and the loose JSON and log files of the first phases of the project.
 The table below indexes the records that the guides cite. Later sections
 describe the remaining records in prose: the time-uniform bounds, cost
@@ -40,6 +40,7 @@ is the current evidence for that result.
 | Zero-atom split $K_\alpha=\min\{\rho,z+(1-z)K_{\eta,\rho/(1-z)}\}$ for $\alpha=z\delta_0+(1-z)\eta$, the identity the zero-quantile record used without a Lean proof: library statement, axiom and kernel-replay audits | [zero-atom-split-20261121](zero-atom-split-20261121/README.md) |
 | Threshold form of the target: $\theta=G_{\mu,q}(P>1/2)$ for every gap law and sign law, not only laws with a density: library statement, axiom and kernel-replay audits | [latent-threshold-20261121](latent-threshold-20261121/README.md) |
 | Time-uniform remark: stopping at budget $n$ gives a fixed-budget interval, so every estimate from the seed and the first $n$ observations obeys the coefficient $10^{-17}$, and display (TU1) with $10^{-22}$ holds at every $n\ge2$ with $\log\log n\le(10^{10}-1)\log(1/\delta)$: library statement, axiom and kernel-replay audits | [stopped-time-uniform-20261121](stopped-time-uniform-20261121/README.md) |
+| The two-sided time-uniform order in one model: the known-law stage family as one online policy in the original experiment, with envelope at most $3000004\,\mathcal K(n/\lambda(n))$ for $n\ge3$ and the lower bound (TU1): library statement, axiom and kernel-replay audits | [time-uniform-two-sided-20261121](time-uniform-two-sided-20261121/README.md) |
 | Corollaries `cor:one-gap` and `cor:mse` (both displays) of the finite-gap manuscript: the one-gap rate with the entropy–tail constants $10^{-17}$ and $28000$, and the mean-square forms with $c_0^2=10^{-40}$ and $2C_0^2=2\cdot30001^2$: library statement, axiom and kernel-replay audits | [finite-gap-corollaries-20261121](finite-gap-corollaries-20261121/README.md) |
 | Proposition `prop:bounded`, first sentence: no almost surely nonnegative unbiased output when $\mu((0,1/2))>0$: library statement, axiom and kernel-replay audits | [nonnegative-unbiased-20261121](nonnegative-unbiased-20261121/README.md) |
 | Explicit constants that frozen statements leave existential or prove only per algorithm: the hidden-model confidence coefficient $15/(256\sqrt2)$, the rare-event lower coefficient $1/256$ and the single-coin second moment $28\rho$: library statement, axiom and kernel-replay audits | [explicit-constants-20261121](explicit-constants-20261121/README.md) |

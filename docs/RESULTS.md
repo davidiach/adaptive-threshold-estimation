@@ -1689,9 +1689,17 @@ coverage and width control is at least
 $10^{-22}\mathcal K(n/[\log(1/\delta)+\log\log n])$ at arbitrarily late integer
 budgets. No monotonicity of the envelope is required. The theorem assumes
 $0<\rho\le1/4$ and $0<\delta\le1/4$. It matches the upper row in order, up to
-constants and at paper level: the upper theorem is stated for a stage-indexed
-controller with its own stream law and the lower theorem for an online policy
-in the original experiment, and no Lean theorem composes the two. A
+constants. The upper theorem is stated for a stage-indexed controller with its
+own stream law and the lower theorem for an online policy in the original
+experiment; since 21 November 2026 Lean also composes the two in one model.
+The stage family, run as one online policy in the original experiment with an
+interval at every integer budget that reads the seed and the first $n$
+observations, has joint coverage and width control with an envelope at most
+$3000004\,\mathcal K(n/[\log(1/\delta)+\log\log n])$ for $n\ge3$, and the lower
+bound applies to it
+([`time_uniform_two_sided`](../lean/ThresholdHC/TimeUniformTwoSided/Full.lean),
+[record](../results/time-uniform-two-sided-20261121/README.md)). The nesting of the intervals and real budgets are
+not restated there. A
 paper-level remark on its constant: stopping such a procedure at budget $n$
 gives a fixed-budget interval, so the fixed-budget coefficient $10^{-17}$
 already implies the displayed inequality at every $n$ with

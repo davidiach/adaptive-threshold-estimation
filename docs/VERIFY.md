@@ -1076,7 +1076,7 @@ finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
 split, critical common-pair, bias-subtraction, global-cut, psi-null,
 confidence-transfer-steps, observed-hoeffding, nested-assumptions,
 light-contraction-constant, band-cost-example, repeated-check,
-reservoir-termination, quantile-factor-upper, creation-charge, stage-pilot-law, bias-audit, unknown-rarity, hard-cap-necessity, pilot-correction, depth-obstruction, localization-counter, affine-comparison, two-flip-feedback, unknown-law-confidence, upper-twelve-numerics, radial-upper, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
+reservoir-termination, quantile-factor-upper, creation-charge, stage-pilot-law, bias-audit, unknown-rarity, hard-cap-necessity, pilot-correction, depth-obstruction, localization-counter, affine-comparison, two-flip-feedback, unknown-law-confidence, upper-twelve-numerics, radial-upper, time-uniform-two-sided, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
 suites and audits, the
 `lean-kernel` job also the restricted-class, sharp-strictness,
 oracle-sharpness, oracle-upper, clipped-output and revisit-upper suites and
@@ -1338,6 +1338,14 @@ Run `python tools/verify_radial_upper.py --replay` for 7 exact statements and
 radial submodel. CI runs it in the `entropy-tail-upper` job. Its 11-test guard
 suite is `test_radial_upper.py`.
 [Record](../results/radial-upper-20261121/README.md).
+
+Run `python tools/verify_time_uniform_two_sided.py --replay` for 5 exact
+statements and 17 transitive axiom reports over the four modules of
+`lean/ThresholdHC/TimeUniformTwoSided`: the known-law time-uniform procedure as
+one online policy in the original experiment, composed with the lower bound
+(TU1). CI runs it in the `entropy-tail-upper` job. Its 11-test guard suite is
+`test_time_uniform_two_sided.py`.
+[Record](../results/time-uniform-two-sided-20261121/README.md).
 
 ## Whole-project build, axioms and kernel replay
 
