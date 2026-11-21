@@ -1563,7 +1563,13 @@ observations, not CPU time, and cannot check the statistical premises. The
 package's exact finite audits (56 recurrence instances with 26,232 enumerated
 paths, and 10,301 schedules) and its counterexamples are finite evidence, not
 proofs. The counterexamples show that a single timeout fallback, or randomness
-shared across stages, leaves a nonvanishing error floor.
+shared across stages, leaves a nonvanishing error floor; since 21 November 2026
+they are Lean-checked at $\delta_{1/2}$ with $\rho=1/4$: one base family meets
+the reduction's stage premise, the independent ladder has squared risk at most
+$32K(B)^2$, and every estimator with the shared seed or the single fallback has
+squared risk at least $\rho^2/32$ at $\theta=0$
+([`hard_cap_necessity`](../lean/ThresholdHC/HardCapNecessity/Full.lean),
+[record](../results/hard-cap-necessity-20261121/README.md)).
 
 ## Confidence rates and sequential stopping
 
