@@ -1688,6 +1688,17 @@
     "ThresholdHC.HardCapNecessity.sharedController": "3071636019516803469:2504439916889827970",
     "ThresholdHC.HardCapNecessity.singleFallback": "12473592069353736076:16328599105885845810",
     "ThresholdHC.HardCapNecessity.zeroSigns": "12783342425771617565:17627338810624542598",
+    "ThresholdHC.KnownGapRarity.FlipCountStatement": "4762494857145497995:11489641453881168214",
+    "ThresholdHC.KnownGapRarity.KnownGapConfidenceStatement": "4762494857145497995:7770747257387342047",
+    "ThresholdHC.KnownGapRarity.KnownGapRarityFreeStatement": "4762494857145497995:13714698821503269122",
+    "ThresholdHC.KnownGapRarity.coinCount": "10076756603458991803:8209867114545592775",
+    "ThresholdHC.KnownGapRarity.debiased": "18243382802130854013:10782893214803555251",
+    "ThresholdHC.KnownGapRarity.flipCount": "10076756603458991803:12151636204199918599",
+    "ThresholdHC.KnownGapRarity.flipIndex": "10076756603458991803:13411780514293949792",
+    "ThresholdHC.KnownGapRarity.knownGapEstimator": "1510812334825109610:11401541278934193185",
+    "ThresholdHC.KnownGapRarity.knownGapRadius": "7727043260292789585:5715961086063166745",
+    "ThresholdHC.KnownGapRarity.missRate": "17245840341404731250:521086502637045314",
+    "ThresholdHC.KnownGapRarity.rawEstimator": "1510812334825109610:18431881569553246786",
     "ThresholdHC.KnownLawPlanner.EnvelopeVanishes": "4856981831159933834:1518086693346589507",
     "ThresholdHC.KnownLawPlanner.RunsPlan": "16272607701373074505:7722679834166416114",
     "ThresholdHC.KnownLawPlanner.SplitEnclosure": "1706631895523079689:2152732164989668790",
@@ -4032,6 +4043,10 @@
     {
       "at": "2026-11-21T16:41:12+00:00",
       "count": 5
+    },
+    {
+      "at": "2026-11-21T17:06:08+00:00",
+      "count": 11
     }
   ]
 }

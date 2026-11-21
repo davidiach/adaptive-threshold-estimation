@@ -206,6 +206,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_time_uniform_two_sided.py' -v
           python -m unittest discover -s tools -p 'test_depth_legendre.py' -v
           python -m unittest discover -s tools -p 'test_latent_disintegration.py' -v
+          python -m unittest discover -s tools -p 'test_known_gap_rarity.py' -v
       - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper-constant (119, 45, 36, 27, 19, 17, 15) and square-root cap audits
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
@@ -901,6 +902,10 @@ jobs:
       # |P - 1/2| ~ mu is some G_{mu,q}, and theta = P_G(P > 1/2).
       - name: Verify the population class and the G-form of the target and replay their modules
         run: python tools/verify_latent_disintegration.py --replay --jobs 3
+      # The proposition of the minimax-audit adaptation note: at a known gap, one
+      # rarity-free estimator with MSE at most 8m theta/B + 4m/B^2 and its interval.
+      - name: Verify the known-gap estimator without rarity and replay its modules
+        run: python tools/verify_known_gap_rarity.py --replay --jobs 3
       - name: Verify prior families for the law-dependent time-uniform lower bound
         run: |
           python tools/verify_anytime_lower.py
