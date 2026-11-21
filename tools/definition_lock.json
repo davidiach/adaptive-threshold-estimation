@@ -2018,6 +2018,17 @@
     "ThresholdHC.PaperStatements.oneFlip": "10684047182353987744:2392397557135733554",
     "ThresholdHC.PaperStatements.pointMassFlips": "14131465042550490024:15166504896238148834",
     "ThresholdHC.PaperStatements.unbiasedVarianceWork": "8365012974107077350:2914422438379813559",
+    "ThresholdHC.PilotCorrection.CoinWitnessStatement": "4762494857145497995:5613726332817842867",
+    "ThresholdHC.PilotCorrection.FixedFeatures": "10022623981105519385:5728488645513478289",
+    "ThresholdHC.PilotCorrection.PilotNoGainStatement": "4762494857145497995:10016907313320031850",
+    "ThresholdHC.PilotCorrection.SaddleStatement": "4762494857145497995:12046429658579801891",
+    "ThresholdHC.PilotCorrection.coinLaw": "14807163983662275926:4672193428978322716",
+    "ThresholdHC.PilotCorrection.fairCoin": "439898854724250517:13646853392844464383",
+    "ThresholdHC.PilotCorrection.fixedRisk": "11438287300634061469:1393803233824563329",
+    "ThresholdHC.PilotCorrection.pilotRisk": "8393422589433949477:17559399137196873467",
+    "ThresholdHC.PilotCorrection.rarityPolytope": "2769257932077940701:10306612667421875025",
+    "ThresholdHC.PilotCorrection.rawAverage": "8763383001746831655:13882495667224026655",
+    "ThresholdHC.PilotCorrection.signMass": "3436488426318929090:7519652815860443667",
     "ThresholdHC.PilotFeedback.FixedHorizon.Capped": "713192825493649384:12203985320898299078",
     "ThresholdHC.PilotFeedback.OneUpdateLowerStatement": "4762494857145497995:4618969109156709594",
     "ThresholdHC.PilotFeedback.OneUpdateSeparationStatement": "4762494857145497995:5010936459542127423",
@@ -3808,6 +3819,10 @@
     {
       "at": "2026-11-21T11:18:39+00:00",
       "count": 16
+    },
+    {
+      "at": "2026-11-21T11:22:11+00:00",
+      "count": 11
     }
   ]
 }
