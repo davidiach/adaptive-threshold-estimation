@@ -2257,6 +2257,19 @@
     "ThresholdHC.RestrictedRMS.RestrictedCoefficientStatement": "4762494857145497995:7670711586288367666",
     "ThresholdHC.RestrictedRMS.SmallBudgetCoefficientStatement": "4762494857145497995:10142821778236086927",
     "ThresholdHC.RestrictedRMS.ThreeFlipCoefficientStatement": "4762494857145497995:7532517490422516990",
+    "ThresholdHC.RevisitUpper.RevisitRule": "4298034433886340636:7422184015771368738",
+    "ThresholdHC.RevisitUpper.RevisitWitnessStatement": "4762494857145497995:13249076895040247668",
+    "ThresholdHC.RevisitUpper.bound": "9035701922190319447:4198968292685870961",
+    "ThresholdHC.RevisitUpper.entry": "315134888161699255:2592682407184084428",
+    "ThresholdHC.RevisitUpper.estimate": "18106699104632012756:9584877905407779727",
+    "ThresholdHC.RevisitUpper.factors": "11711694605790698607:11712007777666872092",
+    "ThresholdHC.RevisitUpper.factors.match_1": "1390127252416845572:4514954279347007176",
+    "ThresholdHC.RevisitUpper.finish": "4396150839458517393:10242730022090611606",
+    "ThresholdHC.RevisitUpper.policy": "15735018935422174038:7841928583170434353",
+    "ThresholdHC.RevisitUpper.revisitEstimator": "2976063371730128439:13065942209695706989",
+    "ThresholdHC.RevisitUpper.riskCoeffs": "9807201502060117812:10315844822159951756",
+    "ThresholdHC.RevisitUpper.riskCoeffs.match_1": "1777122684607884978:14980978680129837219",
+    "ThresholdHC.RevisitUpper.table": "1993410611067728219:1451686227315087907",
     "ThresholdHC.RobustContinuation.DownwardTest": "3473256954544449577:6189543645655764170",
     "ThresholdHC.RobustContinuation.MedianSeed": "8474060294423459527:2610015977480711148",
     "ThresholdHC.RobustContinuation.ReferenceSeed": "5396577758409121332:1458380281236907424",
@@ -3300,6 +3313,17 @@
     "_private.ThresholdHC.RareAboveTwo.PathVariation.0.ThresholdHC.pathProb.match_1.splitter": "18178128407945934573:13481565310722253739",
     "_private.ThresholdHC.RareAboveTwo.PathVariation.0.ThresholdHC.pathProb.match_1.splitter._sparseCasesOn_4": "13208648013163033065:7056258156388248554",
     "_private.ThresholdHC.RareAboveTwo.PathVariation.0.ThresholdHC.pathProb.match_1.splitter._sparseCasesOn_5": "14373928458666162397:14537995785574750124",
+    "_private.ThresholdHC.RevisitUpper.RevisitCertificate.0.ThresholdHC.RevisitUpper.difference": "9807201502060117812:8923895146490982792",
+    "_private.ThresholdHC.RevisitUpper.RevisitCertificate.0.ThresholdHC.RevisitUpper.down": "9807201502060117812:7980009077310871653",
+    "_private.ThresholdHC.RevisitUpper.RevisitCertificate.0.ThresholdHC.RevisitUpper.expandedRisk": "9807201502060117812:6891588316496876193",
+    "_private.ThresholdHC.RevisitUpper.RevisitCertificate.0.ThresholdHC.RevisitUpper.up": "9807201502060117812:14411746160699607797",
+    "_private.ThresholdHC.RevisitUpper.RevisitExperiment.0.ThresholdHC.Proofs.obsProb.match_1.splitter": "6413325036791249966:3115877313523060835",
+    "_private.ThresholdHC.RevisitUpper.RevisitExperiment.0.ThresholdHC.RevisitUpper.future": "10676027935310290342:16486677599624985354",
+    "_private.ThresholdHC.RevisitUpper.RevisitRisk.0.ThresholdHC.RevisitUpper.denom": "4366266268524388166:524896844894779908",
+    "_private.ThresholdHC.RevisitUpper.RevisitRisk.0.ThresholdHC.RevisitUpper.denom.match_1": "1939726373408955591:6043599625714542616",
+    "_private.ThresholdHC.RevisitUpper.RevisitRisk.0.ThresholdHC.RevisitUpper.units": "12990176762299533531:568340639534523538",
+    "_private.ThresholdHC.RevisitUpper.RevisitRisk.0.ThresholdHC.RevisitUpper.units.match_1": "17432351611082359131:6688360478181910292",
+    "_private.ThresholdHC.RevisitUpper.RevisitWitness.0.ThresholdHC.RevisitUpper.output25": "9098822366922830228:10407678393433508130",
     "_private.ThresholdHC.SharpRMS.AdaptiveSimulation.0.ThresholdHC.SharpRMS.simulatedStep.match_1.splitter": "7386119825252204829:2290043212106810609",
     "_private.ThresholdHC.SharpRMS.Attainment.0.ThresholdHC.SharpRMS.heads": "233039632943524666:6471617346906576080",
     "_private.ThresholdHC.SharpRMS.Attainment.0.ThresholdHC.SharpRMS.mass": "6027103651706228991:8389453473300251890",
@@ -3554,6 +3578,10 @@
     {
       "at": "2026-11-21T07:19:30+00:00",
       "count": 3
+    },
+    {
+      "at": "2026-11-21T07:26:34+00:00",
+      "count": 24
     }
   ]
 }

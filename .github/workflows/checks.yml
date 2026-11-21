@@ -182,6 +182,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_oracle_upper.py' -v
           python -m unittest discover -s tools -p 'test_clipped_output.py' -v
           python -m unittest discover -s tools -p 'test_confidence_transfer_steps.py' -v
+          python -m unittest discover -s tools -p 'test_revisit_upper.py' -v
       - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper-constant (119, 45, 36, 27, 19, 17, 15) and square-root cap audits
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
@@ -420,6 +421,11 @@ jobs:
       # pilot policy in the independent kernel checker.
       - name: Verify the large-budget bracket of the RMS coefficient and replay its modules
         run: python tools/verify_large_budget_rms.py --replay --jobs 3
+      # The rms-constants package: the 20+5 revisit witness at the gap 1/5 with
+      # a hard cap of 25 flips and RMS risk at most 0.188087. The replay
+      # re-evaluates its integer risk certificate in the kernel checker.
+      - name: Verify the 20+5 revisit witness and replay its modules
+        run: python tools/verify_revisit_upper.py --replay --jobs 3
       # The pilot-feedback separations at gap 1/5, B = 25, promoted from two
       # research packages; the kernel replay re-evaluates their integer
       # certificates (about six minutes locally).
