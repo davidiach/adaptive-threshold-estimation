@@ -3253,6 +3253,11 @@
     "ThresholdHC.Uniform713.uniformWork": "11832211714127730738:6149869951253863118",
     "ThresholdHC.Uniform713.work": "15070467639815682564:14350974232019653022",
     "ThresholdHC.Uniform713.workEnvelope": "15687204093786460919:2881883496541012723",
+    "ThresholdHC.UnknownRarity.ExpectedWorkObstructionStatement": "4762494857145497995:10892103718116340865",
+    "ThresholdHC.UnknownRarity.FixedBudgetObstructionStatement": "4762494857145497995:10025074016694981180",
+    "ThresholdHC.UnknownRarity.StoppedTranscriptACStatement": "4762494857145497995:12939095224439305805",
+    "ThresholdHC.UnknownRarity.UnknownRarityObstructionStatement": "4762494857145497995:1199075817950899368",
+    "ThresholdHC.UnknownRarity.setEvent": "13466973939813536060:4727027996982251328",
     "ThresholdHC.UpperConstant.BlindUpper119Statement": "4762494857145497995:13136368238912912254",
     "ThresholdHC.UpperConstant.MinimaxUpper119Statement": "4762494857145497995:13326688895613944597",
     "ThresholdHC.UpperCost.BlindUpper19Statement": "4762494857145497995:10992590369338711412",
@@ -3778,6 +3783,10 @@
     },
     {
       "at": "2026-11-21T10:55:53+00:00",
+      "count": 5
+    },
+    {
+      "at": "2026-11-21T10:59:14+00:00",
       "count": 5
     }
   ]
