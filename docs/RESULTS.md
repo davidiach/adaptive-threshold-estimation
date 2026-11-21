@@ -1852,7 +1852,13 @@ The [nonlinear-feedback report](../research/2026-10-27-nonlinear-population/FINA
 adds a reviewed paper proof of strict acquisition-feedback advantage for a
 two-gap experiment at a deterministic two-flip cap, an arbitrary-feedback
 bounded-depth obstruction, and a finite approximation theorem that preserves
-the uniform expected budget. Exact rational certificates support the finite
+the uniform expected budget. The population half of the bounded-depth
+obstruction is Lean-checked since 21 November 2026 for every per-coin cap, gap
+law and pair with matching odd moments: equal seed-and-transcript laws under
+arbitrary feedback, and the RMS floor of half the separation
+([`capped_transcript`, `equal_law_floor`](../lean/ThresholdHC/DepthObstruction/Full.lean),
+[record](../results/depth-obstruction-20261121/README.md)); the explicit Legendre pair, its separation and the
+exit bound remain paper proofs. Exact rational certificates support the finite
 examples; no general finite convex program was solved. The 7,680-replicate
 synthetic experiment is numerical evidence with 32 replicates per cell, not
 a uniform risk guarantee, practical superiority claim, or confidence result.

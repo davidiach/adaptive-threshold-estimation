@@ -1076,7 +1076,7 @@ finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
 split, critical common-pair, bias-subtraction, global-cut, psi-null,
 confidence-transfer-steps, observed-hoeffding, nested-assumptions,
 light-contraction-constant, band-cost-example, repeated-check,
-reservoir-termination, quantile-factor-upper, creation-charge, stage-pilot-law, bias-audit, unknown-rarity, hard-cap-necessity, pilot-correction, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
+reservoir-termination, quantile-factor-upper, creation-charge, stage-pilot-law, bias-audit, unknown-rarity, hard-cap-necessity, pilot-correction, depth-obstruction, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
 suites and audits, the
 `lean-kernel` job also the restricted-class, sharp-strictness,
 oracle-sharpness, oracle-upper, clipped-output and revisit-upper suites and
@@ -1284,6 +1284,15 @@ abstract mixture model, with a nonvacuity witness. CI runs it in the
 `entropy-tail-upper` job. Its 11-test guard suite is
 `test_pilot_correction.py`.
 [Record](../results/pilot-correction-20261121/README.md).
+
+Run `python tools/verify_depth_obstruction.py --replay` for 7 exact
+statements and 31 transitive axiom reports over the seven modules of
+`lean/ThresholdHC/DepthObstruction`: the population half of the bounded-depth
+obstruction, equal transcript laws under a per-coin cap with matching odd
+moments and the floor of half the separation. CI runs it in the
+`entropy-tail-upper` job. Its 11-test guard suite is
+`test_depth_obstruction.py`.
+[Record](../results/depth-obstruction-20261121/README.md).
 
 ## Whole-project build, axioms and kernel replay
 
