@@ -190,6 +190,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_repeated_check.py' -v
           python -m unittest discover -s tools -p 'test_reservoir_termination.py' -v
           python -m unittest discover -s tools -p 'test_quantile_factor_upper.py' -v
+          python -m unittest discover -s tools -p 'test_creation_charge.py' -v
       - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper-constant (119, 45, 36, 27, 19, 17, 15) and square-root cap audits
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
@@ -821,6 +822,10 @@ jobs:
       # c_* < 1.462554551280 from a kernel-checked bisection certificate.
       - name: Verify the upper end of the sharp quantile factor and replay its modules
         run: python tools/verify_quantile_factor_upper.py --replay --jobs 3
+      # The model paragraph of sec:model: created coins are observed, a fee c
+      # per created coin costs at most the factor 1 + c, and the charged rate.
+      - name: Verify the per-coin creation fee and replay its modules
+        run: python tools/verify_creation_charge.py --replay --jobs 3
       - name: Verify prior families for the law-dependent time-uniform lower bound
         run: |
           python tools/verify_anytime_lower.py

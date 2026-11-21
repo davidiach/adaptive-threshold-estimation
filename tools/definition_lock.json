@@ -667,6 +667,16 @@
     "ThresholdHC.ContinuousObserved.uniformGaps": "14578872644517123936:2054377662975566194",
     "ThresholdHC.ContinuousObserved.uniformTail": "15070467639815682564:14778355195665590844",
     "ThresholdHC.ContinuousObserved.uniformUpperBudget": "18133891100220672328:17884112250853601010",
+    "ThresholdHC.CreationCharge.ChargedBlindUpperStatement": "4762494857145497995:792112863427906000",
+    "ThresholdHC.CreationCharge.ChargedMinimaxStatement": "4762494857145497995:7217341332244131153",
+    "ThresholdHC.CreationCharge.ChargedRateStatement": "4762494857145497995:5777504199837169047",
+    "ThresholdHC.CreationCharge.ChargedUniformBudget": "1486731086759968891:6881916533827577969",
+    "ThresholdHC.CreationCharge.ChargedWorkStatement": "4762494857145497995:4975118681622483816",
+    "ThresholdHC.CreationCharge.CreatedObservedStatement": "4762494857145497995:8765455096841432319",
+    "ThresholdHC.CreationCharge.chargedExpectedWork": "12874359863149660750:13367210778487381926",
+    "ThresholdHC.CreationCharge.chargedMinimaxRisk": "17116761874674699351:9732492484766767327",
+    "ThresholdHC.CreationCharge.createdLabels": "13148050507498284259:13418667918554336251",
+    "ThresholdHC.CreationCharge.totalCreated": "830049746405932919:1057690979305405838",
     "ThresholdHC.CriticalAllSizes.AllGapEstimationStatement": "4762494857145497995:6328834458918715314",
     "ThresholdHC.CriticalAllSizes.AllGapStatement": "4762494857145497995:10292429372818592139",
     "ThresholdHC.CriticalAllSizes.ExplicitBaseCostStatement": "4762494857145497995:5467252427785895670",
@@ -3749,6 +3759,10 @@
     {
       "at": "2026-11-21T07:59:49+00:00",
       "count": 44
+    },
+    {
+      "at": "2026-11-21T10:41:17+00:00",
+      "count": 10
     }
   ]
 }
