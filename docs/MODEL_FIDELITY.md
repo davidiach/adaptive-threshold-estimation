@@ -70,6 +70,11 @@ later changes bear on it:
   changes the cost by at most a constant factor is a stated theorem, with the
   factor $1+c$, for every adaptive estimator (`CreationCharge`; section 3 and
   question 6 note it; [record](../results/creation-charge-20261121/README.md)).
+- **Population class.** Since 21 November 2026 the converse disintegration is
+  Lean-checked: every law of $P$ on $[0,1]$ with $|P-1/2|\sim\mu$ is some
+  $G_{\mu,q}$, and $\theta=P_G(P>1/2)$ for every $q$ representing it
+  (`LatentDisintegration`; section 1, section 9 and question 5 note it;
+  [record](../results/latent-disintegration-20261121/README.md)).
 
 Counts below that are not marked with a commit describe `43d9fba`.
 
@@ -144,12 +149,13 @@ is a proved theorem ([`process_realization`][process_realization],
 | One sign per coin, kept on revisits | eq. (3); §11.1 | the sum over `s` outside the product over time in `transcriptLaw` | matches | Signs are never random variables on the sample space; they are summed out of every finite-prefix weight. The gap persists because it is stored in the seed. |
 | Independent coins | §2 | iid gap array; independent sign factors | matches | All gaps are drawn at time 0 rather than at creation. They are independent of the algorithm seed and invisible to it, so this agrees in law. |
 | Literal iid-tape experiment | eq. (3), Section 1 | [`original_observable_simulation_law`][original_sim] | matches | It proves that the (seed, tape) law of `experimentLaw` equals running the policy on independent per-coin flip tapes. It is outside the Tier 6 lock. The blind upper bound and several later developments use it. The Tier 6 lower bound and the RMS transfer chain do not; they work from the finite-prefix identity. |
-| Target $\theta=\int q\,d\mu$ | §2 | [`signMean`][signMean] | matches | The paper's Section 1 writes $\theta(G)=P_G(P>1/2)$. Lean defines $G_{\mu,q}$ (`populationParameterLaw`, `SmoothDensity.latentLaw`), but proves $\theta=G(P>1/2)$ only for laws with a density. That it holds for every law is one line from `populationParameterLaw_integral` but is not stated, and the converse (every $G$ is some $G_{\mu,q}$) is not formalized. Since 21 November 2026 the later target `threshold_mean` states $\theta=G_{\mu,q}(P>1/2)$ for every gap law and sign law ([record](../results/latent-threshold-20261121/README.md)); the converse is still not formalized. |
+| Target $\theta=\int q\,d\mu$ | §2 | [`signMean`][signMean] | matches | The paper's Section 1 writes $\theta(G)=P_G(P>1/2)$. Lean defines $G_{\mu,q}$ (`populationParameterLaw`, `SmoothDensity.latentLaw`), but proves $\theta=G(P>1/2)$ only for laws with a density. That it holds for every law is one line from `populationParameterLaw_integral` but is not stated, and the converse (every $G$ is some $G_{\mu,q}$) is not formalized. Since 21 November 2026 the later target `threshold_mean` states $\theta=G_{\mu,q}(P>1/2)$ for every gap law and sign law ([record](../results/latent-threshold-20261121/README.md)). Since the same day the converse is Lean-checked too: every law $G$ of $P$ on $[0,1]$ with $|P-1/2|\sim\mu$ is some $G_{\mu,q}$, so $\mathcal G(\mu)$ is exactly that set and $\theta=P_G(P>1/2)$ for every $q$ representing $G$ (`g_form_target`, [record](../results/latent-disintegration-20261121/README.md)). |
 
 **For the reviewer.** Is summing each sign once, outside the time product, the
 persistent-sign model you intend? Is a pre-drawn, label-indexed gap array an
 acceptable reading of "draw a fresh gap at creation"? Is it acceptable that
-the $G$-form of the claims rests on an unformalized disintegration?
+the $G$-form of the claims rests on an unformalized disintegration? (Lean
+checks the disintegration since 21 November 2026; [record](../results/latent-disintegration-20261121/README.md).)
 
 ## 2. Adaptive policies
 
@@ -414,7 +420,7 @@ read.
 |---|---|---|
 | Seed spaces in universe 0; measurable algorithms only | narrower | Lower bounds transfer if every intended algorithm embeds. |
 | No computability constraint; output defined when $T=\infty$ | wider | Strengthens the lower bounds; irrelevant under a finite budget. |
-| $\theta=P_G(P>1/2)$ for general $G$ | partial | Lean works with $(\mu,q)$; the general $G$ form is a paper step. Since 21 November 2026 Lean states $\theta=G_{\mu,q}(P>1/2)$ for every $(\mu,q)$ (`threshold_mean`, [record](../results/latent-threshold-20261121/README.md)); that every such $G$ is some $G_{\mu,q}$ remains a paper step. |
+| $\theta=P_G(P>1/2)$ for general $G$ | partial | Lean works with $(\mu,q)$; the general $G$ form is a paper step. Since 21 November 2026 Lean states $\theta=G_{\mu,q}(P>1/2)$ for every $(\mu,q)$ (`threshold_mean`, [record](../results/latent-threshold-20261121/README.md)); since the same day it also states that every $G$ with $|P-1/2|\sim\mu$ is some $G_{\mu,q}$ (`population_class`, [record](../results/latent-disintegration-20261121/README.md)); the risk theorems are still stated in the $(\mu,q)$ form. |
 | Theorem 2.2's $\sup_q E Y^2\le23\,I_\mu$ | narrower | The locked [`Observable713Statement`][Observable713] states extended variance at most $23\,I_\mu$. The second-moment bound is proved only inside [`output_variance_le`][output_variance_le], not as a stated theorem. Since 20 November 2026 the later target `observable_second_moment` states it ([record](../results/paper-statements-20261120/README.md)). |
 | Theorem 2.1's hidden-model confidence coefficient $15/(256\sqrt2)$ | narrower | Rests on the per-algorithm [`hidden_confidence_lower`][hidden_conf], which is axiom-audited but not an exact-type target. The minimax step is one `le_sInf`. The frozen confidence characterization carries $1/64$. Since 21 November 2026 the later targets `hidden_confidence` and `hidden_confidence_minimax` state the coefficient for each algorithm and for the minimax radius ([record](../results/explicit-constants-20261121/README.md)). |
 | Hard-cap fallback (Theorem R.1) | wider | Lean needs the base-rule premise only at the $(\mu,q)$ where it concludes, and allows any $M\ge0$. |
@@ -530,6 +536,9 @@ read.
    with $J=(\Psi(h)-4b)_+^2/(192h^2)$.
 5. Is it acceptable that the $G$-form of the claims, $\theta=P_G(P>1/2)$ over
    all $G$ with $|P-1/2|\sim\mu$, rests on an unformalized disintegration?
+   Since 21 November 2026 Lean checks the disintegration and the $G$-form of
+   the target ([record](../results/latent-disintegration-20261121/README.md)); the risk theorems keep the
+   $(\mu,q)$ form.
 6. Are the paper-only steps acceptable as stated: $c<C$ and the equivalence of
    (61) with (62) in Theorem 13.2 (both Lean-checked since 21 November 2026;
    [record](../results/entropy-tail-forms-20261121/README.md)), the constant bookkeeping of Appendix E, the

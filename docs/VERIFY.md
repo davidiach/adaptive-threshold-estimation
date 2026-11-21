@@ -943,6 +943,13 @@ and 4 transitive axiom reports over the three modules of
 law and sign law. Its 11-test guard suite is `test_latent_threshold.py`.
 [Record](../results/latent-threshold-20261121/README.md).
 
+Run `python tools/verify_latent_disintegration.py --replay` for 7 exact
+statements and 28 transitive axiom reports over the four modules of
+`lean/ThresholdHC/LatentDisintegration`: the population class and the $G$-form
+of the target. CI runs it in the `entropy-tail-upper` job. Its 11-test guard
+suite is `test_latent_disintegration.py`.
+[Record](../results/latent-disintegration-20261121/README.md).
+
 Run `python tools/verify_zero_atom_split.py --replay` for 5 exact statements
 and 11 transitive axiom reports over the three modules of
 `lean/ThresholdHC/ZeroAtomSplit`: the identity
@@ -1076,7 +1083,7 @@ finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
 split, critical common-pair, bias-subtraction, global-cut, psi-null,
 confidence-transfer-steps, observed-hoeffding, nested-assumptions,
 light-contraction-constant, band-cost-example, repeated-check,
-reservoir-termination, quantile-factor-upper, creation-charge, stage-pilot-law, bias-audit, unknown-rarity, hard-cap-necessity, pilot-correction, depth-obstruction, localization-counter, affine-comparison, two-flip-feedback, unknown-law-confidence, upper-twelve-numerics, radial-upper, time-uniform-two-sided, depth-legendre, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
+reservoir-termination, quantile-factor-upper, creation-charge, stage-pilot-law, bias-audit, unknown-rarity, hard-cap-necessity, pilot-correction, depth-obstruction, localization-counter, affine-comparison, two-flip-feedback, unknown-law-confidence, upper-twelve-numerics, radial-upper, time-uniform-two-sided, depth-legendre, latent-disintegration, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
 suites and audits, the
 `lean-kernel` job also the restricted-class, sharp-strictness,
 oracle-sharpness, oracle-upper, clipped-output and revisit-upper suites and
