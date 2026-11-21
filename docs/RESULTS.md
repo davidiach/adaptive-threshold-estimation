@@ -288,7 +288,12 @@ is at most $(1+\tfrac{169}{5t})\,\omega(2^{-L/2})^2\le4(t+\tfrac{169}{5})\,
 \omega(B^{-1/2})^2\le\tfrac{716}{5}\,\omega(B^{-1/2})^2$, and
 $\sqrt{716/5}<12$. The two-level mixture with the same bounds would give
 $\sqrt{(9/2)\cdot174/5}\approx12.5$
-([record](../results/upper-scale-20261119/README.md)).
+([record](../results/upper-scale-20261119/README.md)). Since 21 November 2026
+Lean also checks the appendix's decimal bounds ($5.19$, $0.401$, $6.49$) and
+its three remarks for the specific families: the mixture with constant
+$\sqrt{(9/2)\cdot174/5}\in(12.51,12.52)$, the dyadic batch with factor
+$B/2^L<8$, and the scale-$B/4$ call bias
+([record](../results/upper-twelve-numerics-20261121/README.md)).
 
 A [numerical study](../research/2026-11-19-upper-constant-12/README.md)
 computes the risk of this family. Its worst ratio

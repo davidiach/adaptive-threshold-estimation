@@ -10,7 +10,7 @@ can differ from the current files after a later proof-only change: the
 eight Lean files that were refactored afterwards without changing a
 statement. For the current tree the evidence is the CI run on that commit.
 
-The folder holds 157 dated record directories, named for a result and a
+The folder holds 158 dated record directories, named for a result and a
 date, and the loose JSON and log files of the first phases of the project.
 The table below indexes the records that the guides cite. Later sections
 describe the remaining records in prose: the time-uniform bounds, cost
@@ -50,6 +50,7 @@ is the current evidence for that result.
 | Typeset release v6 manuscript with the review corrections of 19 November (§14.8, Appendix AB; no change of content): build logs, page comparison and its script, toolchain check | [release-publication-20261119](release-publication-20261119/README.md) |
 | Typeset v6 manuscript with the RMS upper constant $12$ (Theorem AB.1, Appendix AB rewritten): build logs, page comparison and toolchain check | [upper-constant-12-publication-20261119](upper-constant-12-publication-20261119/README.md) |
 | Typeset v6 manuscript with the RMS upper constant $15$ (Theorem AB.1, Appendix AB): build logs, page comparison and toolchain check | [upper-constant-publication-20261119](upper-constant-publication-20261119/README.md) |
+| The decimal bounds $5.19$, $0.401$, $6.49$ and the three remarks of the upper-12 appendix: library statement, axiom and kernel-replay audits | [upper-twelve-numerics-20261121](upper-twelve-numerics-20261121/README.md) |
 | The simpler unknown-law confidence sequence: coverage at every budget with probability $1-\delta$, the stage width bound and width tending to zero: library statement, axiom and kernel-replay audits | [unknown-law-confidence-20261121](unknown-law-confidence-20261121/README.md) |
 | The strict acquisition-feedback advantage at two flips: the feedback witness below $0.015443$, the normal-form noninteractive class above $0.015475$: library statement, axiom and kernel-replay audits | [two-flip-feedback-20261121](two-flip-feedback-20261121/README.md) |
 | The categorical affine comparison lemma of the full critical note, with the constant $6$ (Lean-only) and the note's $12$: library statement, axiom and kernel-replay audits | [affine-comparison-20261121](affine-comparison-20261121/README.md) |
