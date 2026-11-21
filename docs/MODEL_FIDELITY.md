@@ -384,10 +384,10 @@ by the RMS theorem.
 | Dyadic bands, costs $a_j$, entropy $G$, $\Gamma_\sigma$ | §13.1, eq. (60) | [EntropyTail/Model.lean:16-32][EntropyTailModel] | matches. Band $j$ is $(2^{-(j+2)},2^{-(j+1)}]$. Mathlib's $\log 0=0$ gives the paper's convention for zero coordinates. $\Gamma$ is a supremum over finite prefixes and may be $\infty$. |
 | Selection $\mathcal K_{\mu,\rho}(B)$ | eq. (61) | [`selection`][selection] | matches. The infimum is over all $\sigma\le\mu$ in $[0,\infty]$; infinite entropy is never treated as zero. |
 | Closed quantile $Q(B)$ with a fractional boundary atom | §14.2 eqs. (67)-(69); §14.6.1 | [`closedQuantileValue`][closedQuantile] | matches the general-law definition. The finite formula (67) is not restated in Lean. |
-| Two-sided law | Theorem 13.2, eq. (63) | [`EntropyTailLawStatement`][EntropyTailLaw] | narrower. The constants come first, then $\rho$, $B$ and $\mu$, as in the paper. Lean does not state $c<C$, or that (61) and the three-piece form (62) are equivalent. |
+| Two-sided law | Theorem 13.2, eq. (63) | [`EntropyTailLawStatement`][EntropyTailLaw] | narrower. The constants come first, then $\rho$, $B$ and $\mu$, as in the paper. Lean does not state $c<C$, or that (61) and the three-piece form (62) are equivalent. Since 21 November 2026 the later targets `ordered_law`, `three_piece_inf`, `three_piece_form` and `three_piece_law` state both ([record](../results/entropy-tail-forms-20261121/README.md)). |
 | Coefficients $10^{-17}$ and $28000$ | eq. (128) states $33000$ | [`ExplicitLawStatement`][ExplicitLaw]; [`entropy_tail_upper_explicit`][tail_upper_explicit] | Lean's 28000 is stronger than the paper's 33000. [`paper_comparison`][paper_comparison] states (128) itself. The lower coefficient is reached through $\mathcal K\le Q$ and a direct closed-quantile bound, so Lean does not check the constant bookkeeping in Appendix E. |
 | $R\le30001\,Q$ for every law | §14.6, Corollary 14.6 | [`closed_quantile_upper_30001`][closed_quantile_30001] | It runs $R\le28000\,\mathcal K'\le28000\,Q$. It is not the direct finite-law construction. |
-| Lemma 13.1, attainment for finite laws | `entropy-tail-statement.tex` | [`BandwiseSuffixStatement`][BandwiseSuffix] | matches in form (61). The split of the remainder in form (62) relies on the paper-only equivalence. |
+| Lemma 13.1, attainment for finite laws | `entropy-tail-statement.tex` | [`BandwiseSuffixStatement`][BandwiseSuffix] | matches in form (61). The split of the remainder in form (62) relies on the paper-only equivalence. Since 21 November 2026 `finite_hard_three_piece` states the hard minimizer in form (62) and `hard_three_piece` hard measurable partitions for every law ([record](../results/entropy-tail-forms-20261121/README.md)). |
 | Proof-vehicle $\mathcal K'$ | §18 | [`quantile_selectionValue_le`][bridge_le], [`quantile_selectionValue_eq`][bridge_eq] | $\mathcal K'\le\mathcal K$ for every measure, and $\mathcal K'=\mathcal K$ for every finite measure, hence for every probability law. |
 
 **Name collisions.** `budgetScale` means $1/(4\sqrt B)$ in `Tier6` and
@@ -520,7 +520,8 @@ read.
 5. Is it acceptable that the $G$-form of the claims, $\theta=P_G(P>1/2)$ over
    all $G$ with $|P-1/2|\sim\mu$, rests on an unformalized disintegration?
 6. Are the paper-only steps acceptable as stated: $c<C$ and the equivalence of
-   (61) with (62) in Theorem 13.2, the constant bookkeeping of Appendix E, the
+   (61) with (62) in Theorem 13.2 (both Lean-checked since 21 November 2026;
+   [record](../results/entropy-tail-forms-20261121/README.md)), the constant bookkeeping of Appendix E, the
    second-moment sentence of Theorem 2.2 (a stated theorem since 20 November
    2026; [record](../results/paper-statements-20261120/README.md)), and the remark on charging for coin creation?
 7. For each explicit coefficient you cite, read the companion theorem whose

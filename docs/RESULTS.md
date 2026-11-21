@@ -881,7 +881,12 @@ The [explicit comparison](../lean/ThresholdHC/EntropyTailSharp/Full.lean) now
 proves this lower bound and the stronger upper coefficient $28000$ in Lean.
 The table gives the scopes of the entropy-tail, stopping-program and genie
 results. The hard-selection reduction and elementary properties of $\mathcal K$
-are also checked.
+are also checked. Since 21 November 2026 Lean also checks the rest of Theorem
+13.2: the three-piece form
+$\min\{\rho,\inf_{\sigma+\tau+\zeta=\mu}[\zeta((0,1/2])+(\sqrt{\rho\Gamma_\sigma}+H_\tau)/\sqrt B]\}$
+equals $\mathcal K$, hard measurable partitions suffice in it, finite laws have
+a hard minimizer, and the law holds with ordered constants $0<c<C$ in both
+forms ([record](../results/entropy-tail-forms-20261121/README.md)).
 
 | Claim | Scope and qualification |
 |---|---|
