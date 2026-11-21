@@ -24,7 +24,7 @@ VERIFIERS = {
         observable713 confidence oracle_lower rare_above_two quantile_comparison
         selection_approximation finite_selection_approximation deterministic_certificates
         finite_law_certificates envelope_transfer_certificates global_selection_certificates
-        entropy_tail_components sharp_rms large_budget_rms pilot_feedback explicit_constants nonnegative_unbiased upper_constant upper_work upper_moment upper_mixture upper_cost upper_disagreement upper_sign upper_quarter upper_scale project_axioms
+        entropy_tail_components sharp_rms large_budget_rms pilot_feedback restricted_rms explicit_constants nonnegative_unbiased upper_constant upper_work upper_moment upper_mixture upper_cost upper_disagreement upper_sign upper_quarter upper_scale project_axioms
     """,
     "entropy-tail-upper": """
         entropy_tail entropy_tail_components entropy_tail_sharp entropy_tail_upper

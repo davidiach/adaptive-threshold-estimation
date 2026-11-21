@@ -2143,6 +2143,10 @@
     "ThresholdHC.RareAboveTwo.workKernel": "4328516925777286019:18334271174905099372",
     "ThresholdHC.ResearchRouteA.SeparateMomentBoundsStatement": "4762494857145497995:2105256557531570170",
     "ThresholdHC.ResearchRouteA.UniformFamilyBoundsStatement": "4762494857145497995:4019469352008831600",
+    "ThresholdHC.RestrictedRMS.OracleSmallBudgetCoefficientStatement": "4762494857145497995:6776036176079391793",
+    "ThresholdHC.RestrictedRMS.RestrictedCoefficientStatement": "4762494857145497995:7670711586288367666",
+    "ThresholdHC.RestrictedRMS.SmallBudgetCoefficientStatement": "4762494857145497995:10142821778236086927",
+    "ThresholdHC.RestrictedRMS.ThreeFlipCoefficientStatement": "4762494857145497995:7532517490422516990",
     "ThresholdHC.RobustContinuation.DownwardTest": "3473256954544449577:6189543645655764170",
     "ThresholdHC.RobustContinuation.MedianSeed": "8474060294423459527:2610015977480711148",
     "ThresholdHC.RobustContinuation.ReferenceSeed": "5396577758409121332:1458380281236907424",
@@ -3365,6 +3369,10 @@
     {
       "at": "2026-11-21T01:16:08+00:00",
       "count": 6
+    },
+    {
+      "at": "2026-11-21T01:27:20+00:00",
+      "count": 4
     }
   ]
 }
