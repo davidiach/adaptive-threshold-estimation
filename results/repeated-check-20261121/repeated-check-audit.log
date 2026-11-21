@@ -1,0 +1,112 @@
+⚠ [6229/6231] Replayed ThresholdHC.RepeatedCheck.Specification
+warning: ThresholdHC/RepeatedCheck/Specification.lean: imports `Mathlib.Probability.Distributions.Bernoulli` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/RepeatedCheck/Specification.lean: imports `Mathlib.Probability.ProductMeasure` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [6230/6231] Ran ThresholdHC.RepeatedCheck.Specification:irArts
+warning: ThresholdHC/RepeatedCheck/Specification.lean: imports `Mathlib.Probability.Distributions.Bernoulli` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/RepeatedCheck/Specification.lean: imports `Mathlib.Probability.ProductMeasure` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18174/18193] Replayed ThresholdHC.Statements
+warning: ThresholdHC/Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18175/18193] Ran ThresholdHC.Statements:irArts
+warning: ThresholdHC/Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18180/18193] Replayed ThresholdHC.Uniform713.Concentration
+warning: ThresholdHC/Uniform713/Concentration.lean: imports `Mathlib.Probability.Moments.SubGaussian` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/Uniform713/Concentration.lean:54:8: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: ThresholdHC/Uniform713/Concentration.lean:54:4: Unused tactic linter: `<;>` can be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Uniform713/Concentration.lean:54:8: Unused tactic linter: `ring` is never executed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Uniform713/Concentration.lean:74:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Uniform713/Concentration.lean:74:4: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [18181/18193] Ran ThresholdHC.Uniform713.Concentration:irArts
+warning: ThresholdHC/Uniform713/Concentration.lean: imports `Mathlib.Probability.Moments.SubGaussian` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18182/18193] Replayed ThresholdHC.Proofs.Tier2.ClassifierProbability
+warning: ThresholdHC/Proofs/Tier2/ClassifierProbability.lean: imports `Mathlib.Probability.Distributions.Bernoulli` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/Proofs/Tier2/ClassifierProbability.lean: imports `Mathlib.Probability.Independence.InfinitePi` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/Proofs/Tier2/ClassifierProbability.lean: imports `Mathlib.MeasureTheory.Integral.Bochner.SumMeasure` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18183/18193] Ran ThresholdHC.Proofs.Tier2.ClassifierProbability:irArts
+warning: ThresholdHC/Proofs/Tier2/ClassifierProbability.lean: imports `Mathlib.Probability.Distributions.Bernoulli` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/Proofs/Tier2/ClassifierProbability.lean: imports `Mathlib.Probability.Independence.InfinitePi` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/Proofs/Tier2/ClassifierProbability.lean: imports `Mathlib.MeasureTheory.Integral.Bochner.SumMeasure` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+Build completed successfully (18193 jobs).
+'ThresholdHC.RepeatedCheck.FixedTimeStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.RepeatedCheckInvalidStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.RepeatedCheckStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.abs_bit_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.aliveWeight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.aliveWeight_snoc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.aliveWeight_tape_of_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.aliveWeight_tape_of_notMem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.bit_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.crossNat' depends on axioms: [propext]
+'ThresholdHC.RepeatedCheck.crossNat_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.fixedTime_holds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.fixed_time' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.fixed_time_quarter' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.fixed_time_tail' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.headCount' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.headCount_congr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.heads_cast' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.indicator_repeatedEvent_compl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.integrable_sq_deviation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.integral_heads' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.integral_sq_deviation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.list_sum_eq_range' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.measurableSet_repeatedEvent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.memLp_observations' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.prefixCount' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.prefixCount_of_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.prefixCount_snoc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.prefixCount_tape' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.quarter_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.quarter_event' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.repeatedEvent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.repeatedEvent_eq_preimage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.repeatedEvent_real' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.repeated_check' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.repeated_check_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.repeated_check_invalid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.stepAux' depends on axioms: [propext]
+'ThresholdHC.RepeatedCheck.stepAux_getD' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.stepAux_length' depends on axioms: [propext]
+'ThresholdHC.RepeatedCheck.stopTime' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.stopTime_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.stopTime_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.stopTime_observable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.stopped_check' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.stopped_check_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.stopped_miss_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.streamProb_snoc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.survivalMass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.survivalMass_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.survivalMass_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.survivalMass_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.survival_total' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.survivor' depends on axioms: [propext]
+'ThresholdHC.RepeatedCheck.survivorRow' depends on axioms: [propext]
+'ThresholdHC.RepeatedCheck.survivorRow_length' depends on axioms: [propext]
+'ThresholdHC.RepeatedCheck.survivorRow_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.survivorRow_sum_512' depends on axioms: [propext]
+'ThresholdHC.RepeatedCheck.survivorRow_sum_real' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.survivorTotal' does not depend on any axioms
+'ThresholdHC.RepeatedCheck.survivorTotal_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.survivorTotal_lower_nat' depends on axioms: [propext]
+'ThresholdHC.RepeatedCheck.survivorTotal_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.survivorTotal_upper_nat' depends on axioms: [propext]
+'ThresholdHC.RepeatedCheck.survivor_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.survivor_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.variance_heads' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.variance_observations' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.wordCount' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.wordCount_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.RepeatedCheck.wordCount_snoc' depends on axioms: [propext, Classical.choice, Quot.sound]
+Verified 6 exact statements and 71 transitive axiom reports
+Replayed 8 modules through the independent kernel checker
+All 3 repeated-check targets are certified

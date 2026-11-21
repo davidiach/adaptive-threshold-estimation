@@ -1,0 +1,148 @@
+⚠ [18168/18207] Replayed ThresholdHC.Statements
+warning: ThresholdHC/Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18169/18207] Ran ThresholdHC.Statements:irArts
+warning: ThresholdHC/Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18176/18207] Replayed ThresholdHC.Uniform713.Concentration
+warning: ThresholdHC/Uniform713/Concentration.lean: imports `Mathlib.Probability.Moments.SubGaussian` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/Uniform713/Concentration.lean:54:8: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: ThresholdHC/Uniform713/Concentration.lean:54:4: Unused tactic linter: `<;>` can be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Uniform713/Concentration.lean:54:8: Unused tactic linter: `ring` is never executed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Uniform713/Concentration.lean:74:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Uniform713/Concentration.lean:74:4: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [18177/18207] Ran ThresholdHC.Uniform713.Concentration:irArts
+warning: ThresholdHC/Uniform713/Concentration.lean: imports `Mathlib.Probability.Moments.SubGaussian` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18178/18207] Replayed ThresholdHC.Proofs.Tier2.ClassifierProbability
+warning: ThresholdHC/Proofs/Tier2/ClassifierProbability.lean: imports `Mathlib.Probability.Distributions.Bernoulli` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/Proofs/Tier2/ClassifierProbability.lean: imports `Mathlib.Probability.Independence.InfinitePi` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/Proofs/Tier2/ClassifierProbability.lean: imports `Mathlib.MeasureTheory.Integral.Bochner.SumMeasure` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18179/18207] Ran ThresholdHC.Proofs.Tier2.ClassifierProbability:irArts
+warning: ThresholdHC/Proofs/Tier2/ClassifierProbability.lean: imports `Mathlib.Probability.Distributions.Bernoulli` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/Proofs/Tier2/ClassifierProbability.lean: imports `Mathlib.Probability.Independence.InfinitePi` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/Proofs/Tier2/ClassifierProbability.lean: imports `Mathlib.MeasureTheory.Integral.Bochner.SumMeasure` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18180/18207] Replayed ThresholdHC.Uniform713.Classifier
+warning: ThresholdHC/Uniform713/Classifier.lean:121:10: `if_neg` has been deprecated: Use `ite_eq_right` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲
+warning: ThresholdHC/Uniform713/Classifier.lean:131:16: `if_pos` has been deprecated: Use `ite_eq_left` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲
+warning: ThresholdHC/Uniform713/Classifier.lean:221:0: automatically included section variable(s) unused in theorem `ThresholdHC.Uniform713.work_survival_identity`:
+  [MeasurableSpace Ω]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [MeasurableSpace Ω] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [18184/18207] Replayed ThresholdHC.Uniform713.WorkArithmetic
+warning: ThresholdHC/Uniform713/WorkArithmetic.lean:149:6: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Uniform713/WorkArithmetic.lean:149:6: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+ℹ [18188/18207] Replayed ThresholdHC.Uniform713.Arithmetic
+info: ThresholdHC/Uniform713/Arithmetic.lean:74:0: 'ThresholdHC.Uniform713.Arithmetic.error_prefactor_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Arithmetic.lean:76:0: 'ThresholdHC.Uniform713.Arithmetic.geometric_second_moment_factor_lt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: ThresholdHC/Uniform713/Arithmetic.lean:78:0: 'ThresholdHC.Uniform713.Arithmetic.fourth_root_three_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Arithmetic.lean:80:0: 'ThresholdHC.Uniform713.Arithmetic.second_moment_scalar_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Arithmetic.lean:82:0: 'ThresholdHC.Uniform713.Arithmetic.survival_coefficients' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Arithmetic.lean:84:0: 'ThresholdHC.Uniform713.Arithmetic.work_scalar_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: ThresholdHC/Uniform713/Arithmetic.lean:86:0: 'ThresholdHC.Uniform713.Arithmetic.product_of_moment_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+⚠ [18190/18207] Replayed ThresholdHC.Uniform713.ClassifierModel
+warning: ThresholdHC/Uniform713/ClassifierModel.lean:145:0: automatically included section variable(s) unused in theorem `ThresholdHC.Uniform713.squared_decision_difference_integral`:
+  [IsProbabilityMeasure μ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [IsProbabilityMeasure μ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ThresholdHC/Uniform713/ClassifierModel.lean:241:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Uniform713/ClassifierModel.lean:241:4: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [18192/18207] Replayed ThresholdHC.Proofs.Classifier
+warning: ThresholdHC/Proofs/Classifier.lean:25:75: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: ThresholdHC/Proofs/Classifier.lean:25:71: Unused tactic linter: `<;>` can be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/Classifier.lean:25:75: Unused tactic linter: `ring` is never executed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [18194/18207] Replayed ThresholdHC.Proofs.Tier2.ClassifierModel
+warning: ThresholdHC/Proofs/Tier2/ClassifierModel.lean:107:0: automatically included section variable(s) unused in theorem `ThresholdHC.Tier2.Model.work_survival_identity`:
+  [MeasurableSpace Ω]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [MeasurableSpace Ω] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ThresholdHC/Proofs/Tier2/ClassifierModel.lean:190:6: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Proofs/Tier2/ClassifierModel.lean:190:6: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/Tier2/ClassifierModel.lean:328:0: automatically included section variable(s) unused in theorem `ThresholdHC.Tier2.Model.squared_decision_difference_integral`:
+  [IsProbabilityMeasure μ]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [IsProbabilityMeasure μ] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ThresholdHC/Proofs/Tier2/ClassifierModel.lean:379:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Proofs/Tier2/ClassifierModel.lean:379:4: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+Build completed successfully (18207 jobs).
+'ThresholdHC.BiasAudit.GridWinnerCounterexampleStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.GridWinnerFailsEnvelopeStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.SmallerThresholdErrorStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.dyadicMean_tails' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.early_error_term_gen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.errProbK_eq_measure_gen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.errorUnionBoundK' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.errorUnionBoundK_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.error_negative_union_gen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.error_positive_union_gen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.exp_neg_two_le_fifth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.explicit_le_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.finiteBoundary_eq_cap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.finiteBoundary_eq_log_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.finiteBoundary_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.gridWinnerCounterexample' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.gridWinnerFailsEnvelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.gridWinner_decision_tails' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.gridWinner_envelope_small' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.gridWinner_error_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.gridWinner_threshold_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.grid_winner_counterexample' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.grid_winner_fails_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.log_cap_ratio_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.measurableSet_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.measurable_firstDecision' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.smallerThresholdError' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.smallerThreshold_error_measure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.smaller_threshold_error' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.tailsCylinder' does not depend on any axioms
+'ThresholdHC.BiasAudit.tailsCylinder_apply' does not depend on any axioms
+'ThresholdHC.BiasAudit.tailsCylinder_prob' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BiasAudit.zK_prefix_gen' depends on axioms: [propext, Classical.choice, Quot.sound]
+Verified 6 exact statements and 33 transitive axiom reports
+Replayed 5 modules through the independent kernel checker
+All 3 bias-audit targets are certified

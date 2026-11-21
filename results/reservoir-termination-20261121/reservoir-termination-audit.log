@@ -1,0 +1,567 @@
+⚠ [18166/18301] Replayed ThresholdHC.Tier4.Entropy
+warning: ThresholdHC/Tier4/Entropy.lean: imports `Mathlib.InformationTheory.KullbackLeibler.DataProcessing` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18167/18301] Ran ThresholdHC.Tier4.Entropy:irArts
+warning: ThresholdHC/Tier4/Entropy.lean: imports `Mathlib.InformationTheory.KullbackLeibler.DataProcessing` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18168/18301] Replayed ThresholdHC.Tier5.Entropy
+warning: ThresholdHC/Tier5/Entropy.lean: imports `Mathlib.Probability.Martingale.Convergence` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18169/18301] Ran ThresholdHC.Tier5.Entropy:irArts
+warning: ThresholdHC/Tier5/Entropy.lean: imports `Mathlib.Probability.Martingale.Convergence` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18172/18301] Replayed ThresholdHC.Statements
+warning: ThresholdHC/Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18173/18301] Ran ThresholdHC.Statements:irArts
+warning: ThresholdHC/Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18180/18301] Replayed ThresholdHC.Tier4.Model
+warning: ThresholdHC/Tier4/Model.lean: imports `Mathlib.InformationTheory.KullbackLeibler.DataProcessing` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18181/18301] Ran ThresholdHC.Tier4.Model:irArts
+warning: ThresholdHC/Tier4/Model.lean: imports `Mathlib.InformationTheory.KullbackLeibler.DataProcessing` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18186/18301] Replayed ThresholdHC.Tier6.HardPairModel
+warning: ThresholdHC/Tier6/HardPairModel.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18187/18301] Ran ThresholdHC.Tier6.HardPairModel:irArts
+warning: ThresholdHC/Tier6/HardPairModel.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18190/18301] Replayed ThresholdHC.Tier6.AlgorithmCore
+warning: ThresholdHC/Tier6/AlgorithmCore.lean: imports `Mathlib.Probability.ProductMeasure` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18191/18301] Ran ThresholdHC.Tier6.AlgorithmCore:irArts
+warning: ThresholdHC/Tier6/AlgorithmCore.lean: imports `Mathlib.Probability.ProductMeasure` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18192/18301] Replayed ThresholdHC.Proofs.Tier2.TranscriptBase
+warning: ThresholdHC/Proofs/Tier2/TranscriptBase.lean:51:39: This simp argument is unused:
+  Bool.false_eq_true
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [↓reduceIte]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ThresholdHC/Proofs/Tier2/TranscriptBase.lean:51:59: This simp argument is unused:
+  ↓reduceIte
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Bool.false_eq_true]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ThresholdHC/Proofs/Tier2/TranscriptBase.lean:55:67: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: ThresholdHC/Proofs/Tier2/TranscriptBase.lean:55:63: Unused tactic linter: `<;>` can be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/Tier2/TranscriptBase.lean:55:67: Unused tactic linter: `ring` is never executed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [18194/18301] Replayed ThresholdHC.Proofs.Tier2.TranscriptLikelihood
+warning: ThresholdHC/Proofs/Tier2/TranscriptLikelihood.lean:35:15: This simp argument is unused:
+  he
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Option.some_ne_none, ↓reduceIte, one_mul, Option.some.injEq]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [18202/18301] Replayed ThresholdHC.Proofs.KL
+warning: ThresholdHC/Proofs/KL.lean:22:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Proofs/KL.lean:22:4: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/KL.lean:39:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Proofs/KL.lean:39:4: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/KL.lean:103:6: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [← h, hvf]
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: ThresholdHC/Proofs/KL.lean:78:10: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: ThresholdHC/Proofs/KL.lean:78:6: Unused tactic linter: `<;>` can be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/KL.lean:78:10: Unused tactic linter: `ring` is never executed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/KL.lean:121:10: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: ThresholdHC/Proofs/KL.lean:124:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Proofs/KL.lean:125:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Proofs/KL.lean:158:2: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Proofs/KL.lean:121:6: Unused tactic linter: `<;>` can be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/KL.lean:121:10: Unused tactic linter: `ring` is never executed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/KL.lean:124:4: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/KL.lean:125:4: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/KL.lean:158:2: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [18204/18301] Replayed ThresholdHC.Proofs.Tier2.TranscriptScalar
+warning: ThresholdHC/Proofs/Tier2/TranscriptScalar.lean:68:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Proofs/Tier2/TranscriptScalar.lean:68:4: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/Tier2/TranscriptScalar.lean:77:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Proofs/Tier2/TranscriptScalar.lean:77:4: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/Tier2/TranscriptScalar.lean:106:31: Variable name `hAB` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hAB
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: ThresholdHC/Proofs/Tier2/TranscriptScalar.lean:121:60: Variable name `hAB` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hAB
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [18214/18301] Replayed ThresholdHC.Tier4.FiniteDensity
+warning: ThresholdHC/Tier4/FiniteDensity.lean: imports `Mathlib.InformationTheory.KullbackLeibler.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18215/18301] Ran ThresholdHC.Tier4.FiniteDensity:irArts
+warning: ThresholdHC/Tier4/FiniteDensity.lean: imports `Mathlib.InformationTheory.KullbackLeibler.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18220/18301] Replayed ThresholdHC.Tier5.FiniteJoint
+warning: ThresholdHC/Tier5/FiniteJoint.lean:100:2: Unused tactic linter: `change |p u a * w a| ≤ |w a|` does not change the goal.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [18226/18301] Replayed ThresholdHC.Tier5.FiniteCreation
+warning: ThresholdHC/Tier5/FiniteCreation.lean:97:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThresholdHC/Tier5/FiniteCreation.lean:98:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+⚠ [18228/18301] Replayed ThresholdHC.Tier6.ProcessWeights
+warning: ThresholdHC/Tier6/ProcessWeights.lean: imports `Mathlib.Probability.Kernel.IonescuTulcea.Traj` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18229/18301] Ran ThresholdHC.Tier6.ProcessWeights:irArts
+warning: ThresholdHC/Tier6/ProcessWeights.lean: imports `Mathlib.Probability.Kernel.IonescuTulcea.Traj` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18230/18301] Replayed ThresholdHC.Tier6.ProcessModel
+warning: ThresholdHC/Tier6/ProcessModel.lean:51:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThresholdHC/Tier6/ProcessModel.lean:83:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThresholdHC/Tier6/ProcessModel.lean:85:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+⚠ [18242/18301] Replayed ThresholdHC.Tier6.ProcessIntegral
+warning: ThresholdHC/Tier6/ProcessIntegral.lean: imports `Mathlib.Probability.Kernel.Composition.IntegralCompProd` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/Tier6/ProcessIntegral.lean:21:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThresholdHC/Tier6/ProcessIntegral.lean:28:30: This simp argument is unused:
+  creationStepKernel
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [measureReal_def, Kernel.comap_apply, creationNextKernel, Kernel.coe_mk, Measure.finsetSum_apply,
+    Measure.smul_apply, smul_eq_mul, Measure.dirac_apply' _ (measurableSet_singleton o)]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ThresholdHC/Tier6/ProcessIntegral.lean:28:50: This simp argument is unused:
+  Kernel.comap_apply
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [measureReal_def, creationStepKernel, creationNextKernel, Kernel.coe_mk, Measure.finsetSum_apply,
+    Measure.smul_apply, smul_eq_mul, Measure.dirac_apply' _ (measurableSet_singleton o)]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ThresholdHC/Tier6/ProcessIntegral.lean:32:4: This simp argument is unused:
+  ite_mul
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Set.indicator_apply, Set.mem_singleton_iff, Pi.one_apply, mul_ite, mul_one, mul_zero,
+    Finset.sum_ite_eq', Finset.mem_univ, ite_true]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ThresholdHC/Tier6/ProcessIntegral.lean:72:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThresholdHC/Tier6/ProcessIntegral.lean:74:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThresholdHC/Tier6/ProcessIntegral.lean:107:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThresholdHC/Tier6/ProcessIntegral.lean:109:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThresholdHC/Tier6/ProcessIntegral.lean:114:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThresholdHC/Tier6/ProcessIntegral.lean:116:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+⚠ [18243/18301] Ran ThresholdHC.Tier6.ProcessIntegral:irArts
+warning: ThresholdHC/Tier6/ProcessIntegral.lean: imports `Mathlib.Probability.Kernel.Composition.IntegralCompProd` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18246/18301] Replayed ThresholdHC.Tier6.Process
+warning: ThresholdHC/Tier6/Process.lean:31:6: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+⚠ [18252/18301] Replayed ThresholdHC.Tier6.TestingFinite
+warning: ThresholdHC/Tier6/TestingFinite.lean: imports `Mathlib.InformationTheory.KullbackLeibler.DataProcessing` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18253/18301] Ran ThresholdHC.Tier6.TestingFinite:irArts
+warning: ThresholdHC/Tier6/TestingFinite.lean: imports `Mathlib.InformationTheory.KullbackLeibler.DataProcessing` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18254/18301] Replayed ThresholdHC.Tier6.Testing
+warning: ThresholdHC/Tier6/Testing.lean:42:70: `Set.mem_setOf_eq` has been deprecated: Use `Set.mem_ofPred_eq` instead
+
+Hint: Replace the deprecated name:
+  S̵e̵t̵.̵m̵e̵m̵_̵s̵e̵t̵O̵f̵_̵e̵q̵S̲e̲t̲.̲m̲e̲m̲_̲o̲f̲P̲r̲e̲d̲_̲e̲q̲
+warning: ThresholdHC/Tier6/Testing.lean:33:25: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Tier6/Testing.lean:33:37: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Tier6/Testing.lean:36:25: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Tier6/Testing.lean:36:37: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Tier6/Testing.lean:33:25: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Tier6/Testing.lean:33:37: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Tier6/Testing.lean:36:25: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Tier6/Testing.lean:36:37: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Tier6/Testing.lean:72:23: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Tier6/Testing.lean:72:35: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Tier6/Testing.lean:72:23: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Tier6/Testing.lean:72:35: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [18262/18301] Replayed ThresholdHC.Tier4.StoppedReconstruction
+warning: ThresholdHC/Tier4/StoppedReconstruction.lean:182:33: Variable name `hr` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hr
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [18266/18301] Replayed ThresholdHC.Tier6.AlgorithmNonempty
+warning: ThresholdHC/Tier6/AlgorithmNonempty.lean:25:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThresholdHC/Tier6/AlgorithmNonempty.lean:75:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+⚠ [18272/18301] Replayed ThresholdHC.Tier4.BoundReduction
+warning: ThresholdHC/Tier4/BoundReduction.lean:59:2: Try this: 
+  haveI̵
+
+The goal is a proposition, so `have` is preferred over `haveI`.
+The difference between `have` and `haveI` is that `haveI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThresholdHC/Tier4/BoundReduction.lean:62:2: Try this: 
+  haveI̵
+
+The goal is a proposition, so `have` is preferred over `haveI`.
+The difference between `have` and `haveI` is that `haveI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+⚠ [18274/18301] Replayed ThresholdHC.Tier5.BoundReduction
+warning: ThresholdHC/Tier5/BoundReduction.lean:38:2: Try this: 
+  haveI̵
+
+The goal is a proposition, so `have` is preferred over `haveI`.
+The difference between `have` and `haveI` is that `haveI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThresholdHC/Tier5/BoundReduction.lean:39:2: Try this: 
+  haveI̵
+
+The goal is a proposition, so `have` is preferred over `haveI`.
+The difference between `have` and `haveI` is that `haveI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+⚠ [18276/18301] Replayed ThresholdHC.Tier5.EntropyPrefix
+warning: ThresholdHC/Tier5/EntropyPrefix.lean:11:0: Definition `ThresholdHC.Tier5.prefixSigma` of class type is semireducible. Most type class instances should be instance-reducible, so consider marking this
+definition with `@[instance_reducible]`. If it is intentionally semireducible, this warning can be disabled with `set_option warn.classDefReducibility false`.
+⚠ [18278/18301] Replayed ThresholdHC.Tier5.StoppingEntropy
+warning: ThresholdHC/Tier5/StoppingEntropy.lean:81:2: Try this: 
+  haveI̵
+
+The goal is a proposition, so `have` is preferred over `haveI`.
+The difference between `have` and `haveI` is that `haveI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThresholdHC/Tier5/StoppingEntropy.lean:82:2: Try this: 
+  haveI̵
+
+The goal is a proposition, so `have` is preferred over `haveI`.
+The difference between `have` and `haveI` is that `haveI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+⚠ [18282/18301] Replayed ThresholdHC.Tier3.ExamplesModel
+warning: ThresholdHC/Tier3/ExamplesModel.lean: imports `Mathlib.Probability.Distributions.Geometric` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/Tier3/ExamplesModel.lean: imports `Mathlib.Probability.Distributions.Bernoulli` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18283/18301] Ran ThresholdHC.Tier3.ExamplesModel:irArts
+warning: ThresholdHC/Tier3/ExamplesModel.lean: imports `Mathlib.Probability.Distributions.Geometric` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/Tier3/ExamplesModel.lean: imports `Mathlib.Probability.Distributions.Bernoulli` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18286/18301] Replayed ThresholdHC.Tier5.CreationProduct
+warning: ThresholdHC/Tier5/CreationProduct.lean: imports `Mathlib.Probability.ProductMeasure` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18287/18301] Ran ThresholdHC.Tier5.CreationProduct:irArts
+warning: ThresholdHC/Tier5/CreationProduct.lean: imports `Mathlib.Probability.ProductMeasure` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18288/18301] Replayed ThresholdHC.Tier5.CreationFresh
+warning: ThresholdHC/Tier5/CreationFresh.lean:27:18: This simp argument is unused:
+  freshTruncatedPrefix
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [fullHist]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ThresholdHC/Tier5/CreationFresh.lean:61:10: `if_pos` has been deprecated: Use `ite_eq_left` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲
+warning: ThresholdHC/Tier5/CreationFresh.lean:61:10: `if_pos` has been deprecated: Use `ite_eq_left` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵p̵o̵s̵i̲t̲e̲_̲e̲q̲_̲l̲e̲f̲t̲
+warning: ThresholdHC/Tier5/CreationFresh.lean:64:10: `if_neg` has been deprecated: Use `ite_eq_right` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲
+warning: ThresholdHC/Tier5/CreationFresh.lean:64:10: `if_neg` has been deprecated: Use `ite_eq_right` instead
+
+Hint: Replace the deprecated name:
+  i̵f̵_̵n̵e̵g̵i̲t̲e̲_̲e̲q̲_̲r̲i̲g̲h̲t̲
+warning: ThresholdHC/Tier5/CreationFresh.lean:63:54: This simp argument is unused:
+  Fintype.sum_bool
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [stepProb, hpol, hs, Fintype.sum_option]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [18290/18301] Replayed ThresholdHC.Tier5.CreationExample
+warning: ThresholdHC/Tier5/CreationExample.lean:44:78: This simp argument is unused:
+  h
+
+Hint: Omit it from the simp argument list.
+  [apply] simp [processPrefix, freshTape, exampleTape]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [18294/18301] Replayed ThresholdHC.Tier6.AlgorithmRisk
+warning: ThresholdHC/Tier6/AlgorithmRisk.lean:67:24: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Tier6/AlgorithmRisk.lean:67:36: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Tier6/AlgorithmRisk.lean:67:24: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Tier6/AlgorithmRisk.lean:67:36: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [18296/18301] Replayed ThresholdHC.Tier6.Full
+warning: ThresholdHC/Tier6/Full.lean:25:13: Variable name `hB` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hB
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Build completed successfully (18301 jobs).
+'ThresholdHC.ReservoirTermination.CreationTwoLawStoppingStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ReservoirTermination.HalfGapExampleStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.NaiveBridgeFailsStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.OriginalExperimentStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ReservoirTermination.QuarterGapExampleStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.ReservoirCounterexampleStatement' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ReservoirTermination.RunsForever' does not depend on any axioms
+'ThresholdHC.ReservoirTermination.WalkFirstPassageStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.constantSignLaw' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.experiment_first_passage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.experiment_prefix_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.experiment_tape' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.finiteHistory_last' does not depend on any axioms
+'ThresholdHC.ReservoirTermination.finiteHistory_snoc_castSucc' depends on axioms: [propext, Quot.sound]
+'ThresholdHC.ReservoirTermination.halfGap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.half_gap_counterexample' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.half_gap_example' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.iSup_ofReal_of_tendsto' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.iterate_walkOp_const' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.iterate_walkOp_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.iterate_walkOp_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.iterate_walkOp_tilt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.measurableSet_prefix_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.measurableSet_runsForever' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.measurableSet_tape_snd' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.naive_bridge_fails' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.naive_bridge_fails_proof' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.neg_length_le_walkValue' depends on axioms: [propext, Quot.sound]
+'ThresholdHC.ReservoirTermination.ofReal_three_fifths' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.ofReal_two_fifths' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.ofReal_two_ninths' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.original_experiment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.original_experiment_proof' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.quarterGap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.quarter_gap_counterexample' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.quarter_gap_example' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.realized_alive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.realized_prefix_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.realized_runsForever' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.realized_work' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.reservoir_counterexample' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.reservoir_counterexample_proof' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ThresholdHC.ReservoirTermination.walkAlive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walkEstimator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walkExp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walkExp_alive_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walkExp_const' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walkExp_gap_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walkExp_gap_sq_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walkExp_length_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walkExp_length_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walkExp_linear' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walkExp_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walkExp_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walkExp_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walkExp_tilt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walkExp_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walkOp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walkOp_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walkOp_gap_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walkOp_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walkOp_tilt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walkPolicy' does not depend on any axioms
+'ThresholdHC.ReservoirTermination.walkValue' does not depend on any axioms
+'ThresholdHC.ReservoirTermination.walkValue_append_false' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walkValue_append_true' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walkValue_nil' depends on axioms: [propext]
+'ThresholdHC.ReservoirTermination.walk_absorb' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walk_first_passage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walk_first_passage_holds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walk_first_passage_of_sums' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walk_fullHist_snoc' depends on axioms: [propext, Quot.sound]
+'ThresholdHC.ReservoirTermination.walk_minus_limits' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walk_plus_limits' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walk_process_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walk_shape' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walk_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walk_step_of_shape' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.walk_sum_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ReservoirTermination.workOf_eq_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+Verified 9 exact statements and 80 transitive axiom reports
+Replayed 6 modules through the independent kernel checker
+All 6 reservoir-termination targets are certified

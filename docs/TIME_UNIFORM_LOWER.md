@@ -169,3 +169,11 @@ and dependency hashes. The earlier
 [8-root sequential audit](../results/anytime-sequential-20261105/README.md), and
 [15-root tail-family audit](../results/anytime-tail-20261105/README.md)
 retain their original scopes and checkpoint identities.
+
+The theorem gives the displayed bound at arbitrarily late budgets. Stopping
+the procedure at budget $n$ gives a fixed-budget interval, and the
+fixed-budget coefficient $10^{-17}$ holds for every estimate formed from the
+seed and the first $n$ observations. So the bound with coefficient $10^{-22}$
+holds at every $n\ge2$ with $\log\log n\le(10^{10}-1)\log(1/\delta)$.
+`python tools/verify_stopped_time_uniform.py --replay` checks both
+([record](../results/stopped-time-uniform-20261121/README.md)).

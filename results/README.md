@@ -10,7 +10,7 @@ can differ from the current files after a later proof-only change: the
 eight Lean files that were refactored afterwards without changing a
 statement. For the current tree the evidence is the CI run on that commit.
 
-The folder holds 112 dated record directories, named for a result and a
+The folder holds 172 dated record directories, named for a result and a
 date, and the loose JSON and log files of the first phases of the project.
 The table below indexes the records that the guides cite. Later sections
 describe the remaining records in prose: the time-uniform bounds, cost
@@ -22,9 +22,52 @@ is the current evidence for that result.
 
 | Claim or check | Published record |
 |---|---|
+| Selection and three-piece forms of the entropy-tail law: (61) $=$ (62) before and after the cap, the law with $0<c<C$, hard measurable partitions and a hard minimizer on finite laws: library statement, axiom and kernel-replay audits | [entropy-tail-forms-20261121](entropy-tail-forms-20261121/README.md) |
+| Noninterval optimal assignment of the rare-event discussion: the eight table enclosures, the unique hard minimum $\{1/2,1/8\}$, the inactive cap and no optimal interval retention: library statement, axiom and kernel-replay audits | [noninterval-selection-20261121](noninterval-selection-20261121/README.md) |
+| Global-cut bound of the certified-selection note (Corollary 6): $\mathcal K\le V\le Q\le\frac85\mathcal K$, $V$ is the scan of the $n+1$ top-$k$ cuts on finite laws, and $\mathcal K<V$ on the note's two-atom law: library statement, axiom and kernel-replay audits | [global-cut-20261121](global-cut-20261121/README.md) |
+| Magnitude-oracle upper bound $R\le\omega_\mu(B^{-1/2})/2$ for both oracles, its floor form, and the coefficient $1/2$ as exactly the best: library statement, axiom and kernel-replay audits | [oracle-upper-20261121](oracle-upper-20261121/README.md) |
+| Sharpness of the magnitude-oracle upper coefficient $1/2$: point masses at small gaps have both oracle risks above $c\,\omega(B^{-1/2})$ for every $c<1/2$; the upper bound is not stated: library statement, axiom and kernel-replay audits | [oracle-sharpness-20261121](oracle-sharpness-20261121/README.md) |
+| Strictness of the sharp RMS bound: for every gap law and every $B\ge1$ other than four, $R_\mu(B)>\omega_\mu(B^{-1/2})/6$, also under both oracles, so equality forces $B=4$: library statement, axiom and kernel-replay audits | [sharp-strict-20261121](sharp-strict-20261121/README.md) |
+| RMS coefficient exactly $1/6$ for budgets through four (and both oracles there), for protocols with at most three flips per coin, and conditionally for any class containing the four-fresh-flip protocols: library statement, axiom and kernel-replay audits | [restricted-rms-20261121](restricted-rms-20261121/README.md) |
+| Residual steps of the confidence-transfer note: $r^{\rm exp}\ge\Psi(\sqrt{\log(1/\delta)/B})/8192$ for every gap law, and the exact-power-law confidence rate above two under both budget conventions: library statement, axiom and kernel-replay audits | [confidence-transfer-steps-20261121](confidence-transfer-steps-20261121/README.md) |
+| Proposition `prop:psi-null`, $\mathfrak J_0(b)\ge(\Psi(h)-4b)_+^2/(192h^2)$ for every gap law, and its corollary $R\ge\Psi(B^{-1/2})/8192$: library statement, axiom and kernel-replay audits | [psi-null-20261121](psi-null-20261121/README.md) |
+| Bias subtraction in Proposition `prop:psi-null`: for every $c<4$ and $K>0$, the bound with $cb$ and $K$ in place of $4b$ and $192$ fails on the remark's two-atom laws: library statement, axiom and kernel-replay audits | [bias-subtraction-20261121](bias-subtraction-20261121/README.md) |
+| Common-pair RMS bound at the critical law, $R\ge\min\{\rho/32,\sqrt{a\rho L(1+\log L)/B}\}/128$ for some $a>0$: library statement, axiom and kernel-replay audits | [critical-pair-rms-20261121](critical-pair-rms-20261121/README.md) |
+| Clipping boundary: the bounded-kurtosis transfer to the clipped risk, its uniform corollary, and the seed-noise counterexample, also in the original experiment: library statement, axiom and kernel-replay audits | [clipping-boundary-20261121](clipping-boundary-20261121/README.md) |
+| Fixed-plan majority bound: expected work $n(2k+1)$, bias at most $e_m$, variance at most $1/(4n)$, RMS at most $\sqrt{e_m^2+1/(4n)}$, and $e_m$ in closed form for uniform rates: library statement, axiom and kernel-replay audits | [fixed-plan-20261121](fixed-plan-20261121/README.md) |
+| Stopping-program factor $3\sqrt7/2$: $R\le P_\infty\le(3\sqrt7/2)R$, $R\le P_N\le3\sqrt7\,R<8R$ for $N\ge4B/9$, and the genie test: library statement, axiom and kernel-replay audits | [program-factor-20261121](program-factor-20261121/README.md) |
+| Explicit fixed-cap estimate $\Delta_N/2\ge\rho\|h\|_2^2/(4\|h\|_\infty)$ after the fixed-cap identification theorem, with $h=1-\operatorname{proj}_{\mathcal V_L}1$: library statement, axiom and kernel-replay audits | [cap-identification-estimate-20261121](cap-identification-estimate-20261121/README.md) |
+| Zero-atom split $K_\alpha=\min\{\rho,z+(1-z)K_{\eta,\rho/(1-z)}\}$ for $\alpha=z\delta_0+(1-z)\eta$, the identity the zero-quantile record used without a Lean proof: library statement, axiom and kernel-replay audits | [zero-atom-split-20261121](zero-atom-split-20261121/README.md) |
+| Threshold form of the target: $\theta=G_{\mu,q}(P>1/2)$ for every gap law and sign law, not only laws with a density: library statement, axiom and kernel-replay audits | [latent-threshold-20261121](latent-threshold-20261121/README.md) |
+| The population class and the $G$-form of the target: every law of $P$ with $|P-1/2|\sim\mu$ is some $G_{\mu,q}$, and $\theta=P_G(P>1/2)$ for every representing $q$: library statement, axiom and kernel-replay audits | [latent-disintegration-20261121](latent-disintegration-20261121/README.md) |
+| Time-uniform remark: stopping at budget $n$ gives a fixed-budget interval, so every estimate from the seed and the first $n$ observations obeys the coefficient $10^{-17}$, and display (TU1) with $10^{-22}$ holds at every $n\ge2$ with $\log\log n\le(10^{10}-1)\log(1/\delta)$: library statement, axiom and kernel-replay audits | [stopped-time-uniform-20261121](stopped-time-uniform-20261121/README.md) |
+| The two-sided time-uniform order in one model: the known-law stage family as one online policy in the original experiment, with envelope at most $3000004\,\mathcal K(n/\lambda(n))$ for $n\ge3$ and the lower bound (TU1): library statement, axiom and kernel-replay audits | [time-uniform-two-sided-20261121](time-uniform-two-sided-20261121/README.md) |
+| Corollaries `cor:one-gap` and `cor:mse` (both displays) of the finite-gap manuscript: the one-gap rate with the entropy–tail constants $10^{-17}$ and $28000$, and the mean-square forms with $c_0^2=10^{-40}$ and $2C_0^2=2\cdot30001^2$: library statement, axiom and kernel-replay audits | [finite-gap-corollaries-20261121](finite-gap-corollaries-20261121/README.md) |
+| Proposition `prop:bounded`, first sentence: no almost surely nonnegative unbiased output when $\mu((0,1/2))>0$: library statement, axiom and kernel-replay audits | [nonnegative-unbiased-20261121](nonnegative-unbiased-20261121/README.md) |
+| Explicit constants that frozen statements leave existential or prove only per algorithm: the hidden-model confidence coefficient $15/(256\sqrt2)$, the rare-event lower coefficient $1/256$ and the single-coin second moment $28\rho$: library statement, axiom and kernel-replay audits | [explicit-constants-20261121](explicit-constants-20261121/README.md) |
+| Pilot-feedback separations at gap $1/5$ with budget $25$ (precommitted follow-ups at least $0.18735887$, one scheduled update at least $0.186960371$, both above the adaptive witness), promoted from two research packages: library statement, axiom and kernel-replay audits | [pilot-feedback-20261120](pilot-feedback-20261120/README.md) |
+| One schedule replacement at a stopping time: every one-stopping-update algorithm has worst RMS risk at least $0.186844275$, promoted from the research package with the certificate split by row and first actions: library statement, axiom and kernel-replay audits | [stopping-update-20261121](stopping-update-20261121/README.md) |
+| Fifteen targets, twelve of them paper and guide claims with only a written proof, a numerical check or an existential constant: the critical theorem with explicit constants and the $\Psi$ sequence in its model, the sharp unbiased coefficient $1/16$ at every fixed gap, the known point-mass constant $1/2$, the 713 second moment, $c_*>1.462554551279$ and selection stability with $20Q/31$: library statement, axiom and kernel-replay audits | [paper-statements-20261120](paper-statements-20261120/README.md) |
+| RMS constants $1/6$ and $12$ under a stochastic envelope, $1/6$ under a pathwise cap, and the paper's divergence sequence for $\Psi$ at the quadratic law: library statement, axiom and kernel-replay audits | [paper-corollaries-20261120](paper-corollaries-20261120/README.md) |
+| Corollary 14.14 and Remark 14.15 of v6 (the critical window $3/2\le\alpha\le3$ and the regimes away from and near exponent two), the last tracked results with a paper proof only: library statement, axiom and kernel-replay audits | [critical-window-20261120](critical-window-20261120/README.md) |
 | Typeset release v6 manuscript with the review corrections of 19 November (§14.8, Appendix AB; no change of content): build logs, page comparison and its script, toolchain check | [release-publication-20261119](release-publication-20261119/README.md) |
 | Typeset v6 manuscript with the RMS upper constant $12$ (Theorem AB.1, Appendix AB rewritten): build logs, page comparison and toolchain check | [upper-constant-12-publication-20261119](upper-constant-12-publication-20261119/README.md) |
 | Typeset v6 manuscript with the RMS upper constant $15$ (Theorem AB.1, Appendix AB): build logs, page comparison and toolchain check | [upper-constant-publication-20261119](upper-constant-publication-20261119/README.md) |
+| The calibrated radial upper bound on the known radial submodel, with the calibrated cutoff and the random-walk call: library statement, axiom and kernel-replay audits | [radial-upper-20261121](radial-upper-20261121/README.md) |
+| The decimal bounds $5.19$, $0.401$, $6.49$ and the three remarks of the upper-12 appendix: library statement, axiom and kernel-replay audits | [upper-twelve-numerics-20261121](upper-twelve-numerics-20261121/README.md) |
+| The simpler unknown-law confidence sequence: coverage at every budget with probability $1-\delta$, the stage width bound and width tending to zero: library statement, axiom and kernel-replay audits | [unknown-law-confidence-20261121](unknown-law-confidence-20261121/README.md) |
+| The strict acquisition-feedback advantage at two flips: the feedback witness below $0.015443$, the normal-form noninteractive class above $0.015475$: library statement, axiom and kernel-replay audits | [two-flip-feedback-20261121](two-flip-feedback-20261121/README.md) |
+| The categorical affine comparison lemma of the full critical note, with the constant $6$ (Lean-only) and the note's $12$: library statement, axiom and kernel-replay audits | [affine-comparison-20261121](affine-comparison-20261121/README.md) |
+| The localization counterexample (the rescaling heuristic fails by an unbounded factor) and the noise floor of the single-term estimator: library statement, axiom and kernel-replay audits | [localization-counter-20261121](localization-counter-20261121/README.md) |
+| The population half of the bounded-depth obstruction: per-coin caps with matching odd moments give equal transcript laws under arbitrary feedback, and the RMS floor of half the separation: library statement, axiom and kernel-replay audits | [depth-obstruction-20261121](depth-obstruction-20261121/README.md) |
+| The explicit odd-Legendre pair of the bounded-depth obstruction: the polynomial of `lem:poly`, the pair on the exact quadratic law and the floor $\rho/(2(K+1)(2K+1))$ under the per-coin cap $2K$: library statement, axiom and kernel-replay audits | [depth-legendre-20261121](depth-legendre-20261121/README.md) |
+| The restricted pilot correction: a fixed scalar control variate has a saddle point, and no independent pilot improves the worst mean squared error $F^*/n$, with a nonvacuity witness: library statement, axiom and kernel-replay audits | [pilot-correction-20261121](pilot-correction-20261121/README.md) |
+| A single timeout fallback or one seed shared by every stage keeps the error floor $\rho^2/32$, while the independent fallback ladder does not: library statement, axiom and kernel-replay audits | [hard-cap-necessity-20261121](hard-cap-necessity-20261121/README.md) |
+| No budget-indexed family that does not receive $\rho$ adapts uniformly to unknown rarity at a known gap, with the expected-work form, the stopped-transcript absolute continuity and a fixed-budget strengthening: library statement, axiom and kernel-replay audits | [unknown-rarity-20261121](unknown-rarity-20261121/README.md) |
+| The bias audit of the constant search: the grid winner fails the v4 error envelope at cap $2^{97}$ by a factor above 2907, and every $k_1\ge0$, $k_2\ge1$ keeps it: library statement, axiom and kernel-replay audits | [bias-audit-20261121](bias-audit-20261121/README.md) |
+| Pilot events (A8) and (A11) of the paid learning stage under the law of the whole stage, with (A11) on the same event: library statement, axiom and kernel-replay audits | [stage-pilot-law-20261121](stage-pilot-law-20261121/README.md) |
+| A fee per created coin changes the cost by at most the factor $1+c$, for every adaptive estimator, with the charged minimax sandwich and rate: library statement, axiom and kernel-replay audits | [creation-charge-20261121](creation-charge-20261121/README.md) |
+| Clipping the output to $[0,1]$ can only help: budget kept, RMS risk not raised, the same minimax risk over $[0,1]$-valued estimators, and a $[0,1]$-valued family with constant $12$: library statement, axiom and kernel-replay audits | [clipped-output-20261121](clipped-output-20261121/README.md) |
 | RMS upper constant $12$, from the padded call cost $26/5$ and one budget level calibrated at the scale $B/4$ in place of the mixture below: library statement, axiom and kernel-replay audits | [upper-scale-20261119](upper-scale-20261119/README.md) |
 | RMS upper constant $13$ for the mixture below, from the exact vote-change probability, at most one quarter, the stage that `upper-sign-20261119` extends: library statement, axiom and kernel-replay audits | [upper-quarter-20261119](upper-quarter-20261119/README.md) |
 | RMS upper constant $15$ for the mixture below, from the sign-change bound on the disagreement below the cap scale: library statement, axiom and kernel-replay audits | [upper-sign-20261119](upper-sign-20261119/README.md) |
@@ -34,6 +77,7 @@ is the current evidence for that result.
 | RMS upper constant $36$ for the distribution-blind algorithm, from a sharper call second moment, the stage that `upper-mixture-20261118` extends: library statement, axiom and kernel-replay audits | [upper-moment-20261118](upper-moment-20261118/README.md) |
 | RMS upper constant $45$ for the same algorithm, from a sharper per-level work bound, the stage that `upper-moment-20261118` extends: library statement, axiom and kernel-replay audits | [upper-work-20261118](upper-work-20261118/README.md) |
 | RMS upper constant $119$ for the same algorithm, the earlier stage that `upper-work-20261118` extends: library statement, axiom and kernel-replay audits | [upper-constant-20261118](upper-constant-20261118/README.md) |
+| The 20+5 revisit witness with RMS at most $0.188087$ at the gap $1/5$ under a hard cap of 25 flips, moved from the rms-constants package: library statement, axiom and kernel-replay audits | [revisit-upper-20261121](revisit-upper-20261121/README.md) |
 | RMS lower coefficient for $B\ge25$ in $[0.175198,0.186752]$: library statement, axiom and kernel-replay audits | [large-budget-rms-20261118](large-budget-rms-20261118/README.md) |
 | Typeset v6 manuscript with the large-budget bracket (Theorem AA.7) and the $4B/9$ cap (Theorem Q.1): build logs, page comparison and toolchain check | [large-budget-publication-20261118](large-budget-publication-20261118/README.md) |
 | Sharp RMS lower constant $1/6$ in all three models and the square-root cap comparison: library statement, axiom and kernel-replay audits | [sharp-rms-20261117](sharp-rms-20261117/README.md) |
@@ -70,23 +114,33 @@ is the current evidence for that result.
 | Distance of $\Psi$ from the rate, through the entropy of the quantile core | [psi-gap-20261116](psi-gap-20261116/README.md) |
 | Two-atom sharpness and occupied-band entropy | [psi-sharpness-20261116](psi-sharpness-20261116/README.md) |
 | Uniform power-law entropy, quantile and statistical bounds | [power-window-complete-20261116](power-window-complete-20261116/README.md) |
+| The rows of the power-margin table through the closed quantile form (Remark `rem:power-quantile`), for every exponent: library statement, axiom and kernel-replay audits | [power-quantile-rows-20261121](power-quantile-rows-20261121/README.md) |
+| The weighted sign entropy of Lemma `lem:weighted-sign` with the paper's coefficient 214, the floor $3/40$ and the overlap $25/3$: library statement, axiom and kernel-replay audits | [weighted-sign-sharp-20261121](weighted-sign-sharp-20261121/README.md) |
+| The full-null bank of the zero-atom planner (fair coin for the zero-gap mass): Ville's bound, per-coin work and level certificates: library statement, axiom and kernel-replay audits | [full-null-bank-20261121](full-null-bank-20261121/README.md) |
+| The literal forms of the robust-continuation planner (issue 82): the named plan branch, the induced reference sign allocation and the correct-time bound (UA15): library statement, axiom and kernel-replay audits | [robust-continuation-forms-20261121](robust-continuation-forms-20261121/README.md) |
 | Power-law quantile split and inverse-square core cost | [power-window-foundation-20261116](power-window-foundation-20261116/README.md) |
 | Whole-project build, axiom audit and main-theorem kernel replay | [project-axioms-20261109](project-axioms-20261109/README.md) |
 | Whole-project audit with the exported-instance checks and the definition lock | [project-definitions-20261114](project-definitions-20261114/README.md) |
 | Finite-law bandwise-suffix optimizer and sufficient search family | [bandwise-suffix-20261104](bandwise-suffix-20261104/README.md) |
 | Total variation, rounding, transported enclosures and finite approximation | [selection-stability-20261104](selection-stability-20261104/README.md) |
 | Quarter smoothing in both KL directions | [quarter-smoothing-20261104](quarter-smoothing-20261104/README.md) |
-| Generic RMS obstruction transfer and additive submeasure localization with coefficient $1/128$, conditional on a single-coin obstruction premise that Lean establishes for no gap law | [rms-localization-20261105](rms-localization-20261105/README.md) |
+| Generic RMS obstruction transfer and additive submeasure localization with coefficient $1/128$, conditional on a single-coin obstruction premise that Lean established for no gap law until [psi-null-20261121](psi-null-20261121/README.md) | [rms-localization-20261105](rms-localization-20261105/README.md) |
 | General-law confidence coefficients $10^{-17}$ and $750000$ | [entropy-confidence-20261105](entropy-confidence-20261105/README.md) |
-| Fractional-submeasure additive confidence localization with coefficient $1/128$, from the same unestablished obstruction premise | [additive-confidence-20261105](additive-confidence-20261105/README.md) |
+| Fractional-submeasure additive confidence localization with coefficient $1/128$, from the same obstruction premise | [additive-confidence-20261105](additive-confidence-20261105/README.md) |
 | Common pairs from variance–null-work obstructions and the $1/128$ confidence consequence, given such an obstruction | [common-pair-20261105](common-pair-20261105/README.md) |
+| Countable-reservoir termination counterexample: finite work under one law does not transfer termination, for every realization of the creation model: library statement, axiom and kernel-replay audits | [reservoir-termination-20261121](reservoir-termination-20261121/README.md) |
+| The known-gap estimator that needs no rarity: deterministic cap, $\mathbb E T\le B$, mean squared error at most $8m\theta/B+4m/B^2$ and a conservative interval: library statement, axiom and kernel-replay audits | [known-gap-rarity-20261121](known-gap-rarity-20261121/README.md) |
+| The margin-class corollaries `cor:gap` and `cor:power` (rows $\alpha<1$ and $\alpha>1$), with the unbiased dichotomy and common estimators: library statement, axiom and kernel-replay audits | [margin-classes-20261121](margin-classes-20261121/README.md) |
 | Selected-type information transfer through unbounded stopping | [adaptive-types-20261105](adaptive-types-20261105/README.md) |
 | Fresh-state upper-bound transfer and complete observed-state rates | [observed-state-upper-20261105](observed-state-upper-20261105/README.md) |
+| The nested-simulation class of `cor:nested` and transcriptions of the Giles–Haji-Ali Assumptions 2.1 and 2.4, with uniform constants: library statement, axiom and kernel-replay audits | [nested-assumptions-20261121](nested-assumptions-20261121/README.md) |
 | Continuous-magnitude observed-state lower bounds and regularity | [continuous-observed-lower-20261105](continuous-observed-lower-20261105/README.md) |
+| The Hoeffding replication count $M=\lceil32\Delta^{-2}\log(2/\delta)\rceil$ of the finite-cell observed-state bound: library statement, axiom and kernel-replay audits | [observed-hoeffding-20261121](observed-hoeffding-20261121/README.md) |
 | Finite-cell observed-state lower bound | [finite-observed-20261105](finite-observed-20261105/README.md) |
 | Smooth-density complexity and unbiased impossibility | [smooth-density-20261105](smooth-density-20261105/README.md) |
 | Prior-family and per-flip information inequalities for the all-law time-uniform lower bound (the complete theorem is checked separately in [anytime-asymptotic-20261105](anytime-asymptotic-20261105/README.md)) | [anytime-lower-20261105](anytime-lower-20261105/README.md) |
 | Common prior families and information bounds for the time-uniform lower bounds: 11 exact statements. The earlier checkpoint of the record above | [anytime-lower-family-20261105](anytime-lower-family-20261105/README.md) |
+| Repeated inspection of a fixed-time interval: coverage $3/4$ at every fixed $n$, failure $0.42809100970105\ldots>1/4$ when checked up to 512: library statement, axiom and kernel-replay audits | [repeated-check-20261121](repeated-check-20261121/README.md) |
 | Observable time-uniform confidence for known laws | [anytime-confidence-20261105](anytime-confidence-20261105/README.md) |
 | Logarithmic and intermediate rare power margins | [shifted-power-20261105](shifted-power-20261105/README.md) |
 | Rare power margins below exponent one | [sublinear-power-20261105](sublinear-power-20261105/README.md) |
@@ -95,6 +149,7 @@ is the current evidence for that result.
 | Hard-budget fallback and three RMS minimax bounds | [hard-budget-rms-20261104](hard-budget-rms-20261104/README.md) |
 | Critical-law minimax confidence lower bound | [critical-confidence-20261104](critical-confidence-20261104/README.md) |
 | Uniform finite-cap convergence and the linear sufficient cap | [genie-rate-20261104](genie-rate-20261104/README.md) |
+| Upper end $c_*<1.462554551280$ of the sharp quantile factor and the whole of `thm:sharp-quantile-factor`, by a kernel-checked bisection cover: library statement, axiom and kernel-replay audits | [quantile-factor-upper-20261121](quantile-factor-upper-20261121/README.md) |
 | Exact scalar-root quantile factor and finite-law sharpness | [quantile-optimality-20261105](quantile-optimality-20261105/README.md) |
 | The finite laws that realize sharpness of the quantile factor: 50 exact statements. A component of the record above | [finite-law-family-20261105](finite-law-family-20261105/README.md) |
 | All-law quantile upper comparison at the exact scalar-root factor | [sharp-quantile-upper-20261105](sharp-quantile-upper-20261105/README.md) |
@@ -107,6 +162,9 @@ is the current evidence for that result.
 | Single-type population confidence transfer and common-pair lower bound | [confidence-population-20261104](confidence-population-20261104/README.md) |
 | Eight-fifths quantile-selection comparison for arbitrary laws | [quantile-selection-20261104](quantile-selection-20261104/README.md) |
 | Direct finite-law quantile bounds and estimator quantifiers | [direct-finite-quantile-20261104](direct-finite-quantile-20261104/README.md) |
+| The explicit quantile formula for finite laws, displays (67)-(69), with the direct finite-law bounds at that formula: library statement, axiom and kernel-replay audits | [finite-quantile-formula-20261121](finite-quantile-formula-20261121/README.md) |
+| The early-stopping pilot of the arbitrary-law adaptation: existence, the event (A8), expected work and the easy-law bounds: library statement, axiom and kernel-replay audits | [early-pilot-20261121](early-pilot-20261121/README.md) |
+| The Bernoulli-subfamily time-uniform lower bound of the unknown-law note and the observable prefix KL of constant sign laws: library statement, axiom and kernel-replay audits | [bernoulli-time-uniform-20261121](bernoulli-time-uniform-20261121/README.md) |
 | Universal closed-quantile minimax corollary (cached dependencies) | [closed-quantile-law-20261101](closed-quantile-law-20261101/README.md) |
 | Constant search and scope | [constants_theory.json](constants_theory.json), [constants_finite_grid.json](constants_finite_grid.json), [process account](../docs/process/TRACK_B.md) |
 | Real-valued benchmark | [real_comparison.json](real_comparison.json), [real_verification.json](real_verification.json), [benchmark protocol](../benchmark/README.md) |
@@ -178,7 +236,11 @@ exact saving comparison and interval certificates. The
 [new 13-statement connection](gap-law-menus-20261105/README.md) additionally
 constructs the actual finite-law menus and proves their compressed optimum
 equals the original $K$, including atomic cost and saving formulas.
-Python execution remains unverified.
+Python execution remains unverified. The
+[64-band example audit](band-cost-example-20261121/README.md) of
+21 November 2026 checks the guide's example for the formal solver: the
+optimizer, its strict uniqueness among hard masks, and 4,160 transitions and
+65 terminal states.
 
 ## Ordinary cap truncation
 
@@ -241,6 +303,9 @@ The [concrete light-contraction audit](arbitrary-law-light-20261106/README.md)
 adds 62 exact statements and transitive reports. It constructs the multiplier
 from a uniform variable, proves its exact CDF, derives product-law entropy
 and residual-tail bounds, and proves the full factor-32 selection comparison.
+The [light-contraction constant audit](light-contraction-constant-20261121/README.md)
+of 21 November 2026 adds the paper's intermediate constants: the band masses,
+the first summand below $192$, $C_V<256$ and the two inverse moments.
 
 The [sign-neutral tail-test audit](arbitrary-law-tail-test-20261110/README.md)
 adds 91 exact statements and transitive reports for the single-coin test of

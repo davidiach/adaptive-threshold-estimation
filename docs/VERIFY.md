@@ -305,6 +305,27 @@ pins that file by hash and fails if they are missing. It rejects imports
 of the completed general statistical lower theorem. The [finite-law record](../results/direct-finite-quantile-20261104/README.md)
 gives the local verification scope and the exact coefficients.
 
+Run `python tools/verify_finite_quantile_formula.py --replay` for 5 exact
+statements and 32 transitive axiom reports over the five modules of
+`lean/ThresholdHC/FiniteQuantileFormula`: the explicit finite-law formula
+(67)-(69) and the direct bounds at it. CI runs it in the `entropy-tail-upper`
+job. Its 11-test guard suite is `test_finite_quantile_formula.py`.
+[Record](../results/finite-quantile-formula-20261121/README.md).
+
+Run `python tools/verify_early_pilot.py --replay` for 8 exact statements and
+78 transitive axiom reports over the seven modules of
+`lean/ThresholdHC/EarlyPilot`: the early-stopping pilot of the arbitrary-law
+adaptation. CI runs it in the `entropy-tail-upper` job. Its 11-test guard
+suite is `test_early_pilot.py`.
+[Record](../results/early-pilot-20261121/README.md).
+
+Run `python tools/verify_bernoulli_time_uniform.py --replay` for 5 exact
+statements and 44 transitive axiom reports over the six modules of
+`lean/ThresholdHC/BernoulliTimeUniform`: the Bernoulli-subfamily time-uniform
+lower bound of the unknown-law note. CI runs it in the `entropy-tail-upper`
+job. Its 11-test guard suite is `test_bernoulli_time_uniform.py`.
+[Record](../results/bernoulli-time-uniform-20261121/README.md).
+
 The upper half imports the observable upper-bound development of
 [#33](https://github.com/davidiach/adaptive-threshold-estimation/pull/33), about
 240 modules, so this audit takes much longer than the other theorem audits. CI
@@ -327,8 +348,9 @@ axioms of every declaration in the five upper-bound module groups. Without
 takes much longer. With the flag it recompiles only the sampling and execution
 groups and reuses objects built earlier, so run it after the first audit.
 `verify_entropy_tail_components.py` audits the quantile model alone, and
-`verify_entropy_tail_assembly.py` an intermediate stage. CI does not run
-these two. Their
+`verify_entropy_tail_assembly.py` an intermediate stage. Since 21 November
+2026 CI runs both in the `entropy-tail-upper` job, the first with its full
+closure rebuild and the second with cached dependencies. Their
 [lock](../tools/entropy_tail_quantile_specification_freeze.json) records the
 rename of #33's namespace and the superseded lock's hashes. All three write
 timestamped evidence under `.runtime/`.
@@ -468,6 +490,13 @@ disjointness, the original prefix-supremum entropy, tail savings, equality of
 the optimized value with $K$, and the atomic weight formulas.
 Its [native record](../results/gap-law-menus-20261105/README.md) binds all 64 project
 sources, five fresh empty compiler logs and 59 previously published dependencies.
+
+Run `python tools/verify_band_cost_example.py --replay` for 8 exact statements
+and 147 transitive axiom reports over the eight modules of
+`lean/ThresholdHC/BandCostExample`: the 64-band example of the band-cost guide
+for the formal solver. CI runs it in the `entropy-tail-upper` job. Its
+11-test guard suite is `test_band_cost_example.py`.
+[Record](../results/band-cost-example-20261121/README.md).
 Python execution remains outside the formal proofs.
 
 ## Finite-law bandwise-suffix theorem
@@ -858,12 +887,268 @@ the Phi formula, actual core cost and uniform entropy bounds, deterministic
 quantile comparison, RMS bounds and both confidence bounds. This includes
 exponent two and arbitrary scale. Independent restatements retain every
 assumption and the explicit constants. Corollary 14.14 and Remark 14.15
-remain outside the formal scope. [Record](../results/power-window-complete-20261116/README.md).
+are outside this audit; the next one checks them. [Record](../results/power-window-complete-20261116/README.md).
+
+Run `python tools/verify_critical_window.py --replay` for 17 exact statements
+and 55 transitive axiom reports over the five modules of
+`lean/ThresholdHC/CriticalWindow`. It checks Corollary 14.14 and Remark 14.15
+on top of the power-window targets: the window rate within the factor $5.13$
+for $3/2\le\alpha\le3$, display (W9) with the paper's constants $10^{-18}$ and
+$3.4\cdot10^5$, the bounds on $\Psi$, the ratio of the risk to $\Psi$, the
+quadratic law against the critical rate, and the regimes away from and near
+exponent two, with the near-two risk. With `--replay` the five modules also
+go through the independent kernel checker. Its 11-test guard suite is
+`test_critical_window.py`. [Record](../results/critical-window-20261120/README.md).
+
+Run `python tools/verify_power_quantile_rows.py --replay` for 7 exact
+statements and 48 transitive axiom reports over the six modules of
+`lean/ThresholdHC/PowerQuantileRows`: Remark `rem:power-quantile`, the rows of
+the power-margin table through the closed quantile form. CI runs it in the
+`entropy-tail-upper` job. Its 11-test guard suite is
+`test_power_quantile_rows.py`.
+[Record](../results/power-quantile-rows-20261121/README.md).
+
+Run `python tools/verify_weighted_sign_sharp.py --replay` for 6 exact
+statements and 26 transitive axiom reports over the five modules of
+`lean/ThresholdHC/WeightedSignSharp`: Lemma `lem:weighted-sign` with the
+paper's coefficient 214. CI runs it in the `entropy-tail-upper` job. Its
+11-test guard suite is `test_weighted_sign_sharp.py`.
+[Record](../results/weighted-sign-sharp-20261121/README.md).
+
+Run `python tools/verify_full_null_bank.py --replay` for 5 exact statements
+and 29 transitive axiom reports over the five modules of
+`lean/ThresholdHC/FullNullBank`: the full-null bank of the zero-atom planner
+and its level certificates. CI runs it in the `entropy-tail-upper` job. Its
+11-test guard suite is `test_full_null_bank.py`.
+[Record](../results/full-null-bank-20261121/README.md).
+
+Run `python tools/verify_robust_continuation_forms.py --replay` for 14 exact
+statements and 69 transitive axiom reports over the five modules of
+`lean/ThresholdHC/RobustContinuationForms`: the literal forms of the robust
+planner of issue 82. CI runs it in the `entropy-tail-upper` job. Its 11-test
+guard suite is `test_robust_continuation_forms.py`.
+[Record](../results/robust-continuation-forms-20261121/README.md).
+
+Run `python tools/verify_paper_corollaries.py --replay` for 5 exact statements
+and 11 transitive axiom reports over the four modules of
+`lean/ThresholdHC/PaperCorollaries`: the RMS constants $1/6$ and $12$ under a
+stochastic envelope, the coefficient $1/6$ under a pathwise cap, and the
+paper's divergence sequence for $\Psi$ at the quadratic law. Its 11-test guard
+suite is `test_paper_corollaries.py`. [Record](../results/paper-corollaries-20261120/README.md).
+
+Run `python tools/verify_paper_statements.py --replay` for 20 exact statements
+and 63 transitive axiom reports over the six modules of
+`lean/ThresholdHC/PaperStatements`: the critical theorem with the explicit
+constants $10^{-18}$ and $100000$, the arithmetic of the slow-divergence remark
+and the $\Psi$ sequence in the critical model, the unbiased coefficient $1/16$
+attained at every fixed gap, the endpoint case of `prop:bounded`, the known
+point-mass constant $1/2$, the 713 second moment, $c_*>1.462554551279$ and
+selection stability with $20Q/31$ and $Q/c_*$. Its 11-test guard suite is
+`test_paper_statements.py`. [Record](../results/paper-statements-20261120/README.md).
+
+Run `python tools/verify_pilot_feedback.py --replay` for 14 exact statements
+and 126 transitive axiom reports over the 18 modules of
+`lean/ThresholdHC/PilotFeedback`, promoted from the pilot-feedback and
+scheduled-update research packages: the precommitted and one-update lower
+bounds $0.18735887$ and $0.186960371$ at gap $1/5$ with budget $25$, in RMS
+form, and their separations from the adaptive witness. The replay re-evaluates
+the integer certificates (about six minutes). Its 11-test guard suite is
+`test_pilot_feedback.py`. [Record](../results/pilot-feedback-20261120/README.md).
+
+Run `python tools/verify_explicit_constants.py --replay` for 5 exact statements
+and 10 transitive axiom reports over the two modules of
+`lean/ThresholdHC/ExplicitConstants`: the hidden-model confidence coefficient
+$15/(256\sqrt2)$ for each algorithm and the minimax radius, the rare-event
+lower coefficient $1/256$ and the single-coin second moment $28\rho$, which the
+frozen statements leave existential or state only per algorithm. Its 11-test
+guard suite is `test_explicit_constants.py`. [Record](../results/explicit-constants-20261121/README.md).
+
+Run `python tools/verify_nonnegative_unbiased.py --replay` for 4 exact
+statements and 14 transitive axiom reports over the three modules of
+`lean/ThresholdHC/NonnegativeUnbiased`: Proposition `prop:bounded`, first
+sentence, with the support comparison, the empty tail after stopping and tape
+recovery. Its 11-test guard suite is `test_nonnegative_unbiased.py`.
+[Record](../results/nonnegative-unbiased-20261121/README.md).
+
+Run `python tools/verify_finite_gap_corollaries.py --replay` for 6 exact
+statements and 15 transitive axiom reports over the three modules of
+`lean/ThresholdHC/FiniteGapCorollaries`: Corollary `cor:one-gap` of the
+finite-gap manuscript, with the entropy–tail constants $10^{-17}$ and $28000$,
+and both displays of Corollary `cor:mse`, with $c_0=10^{-20}$ and $C_0=30001$.
+Its 11-test guard suite is `test_finite_gap_corollaries.py`.
+[Record](../results/finite-gap-corollaries-20261121/README.md).
+
+Run `python tools/verify_stopped_time_uniform.py --replay` for 6 exact
+statements and 12 transitive axiom reports over the three modules of
+`lean/ThresholdHC/StoppedTimeUniform`: the fixed-budget coefficient $10^{-17}$
+for estimates from the seed and the first $n$ observations, its consequence
+for time-uniform interval envelopes, and display (TU1) with $10^{-22}$ at every
+$n\ge2$ with $\log\log n\le(10^{10}-1)\log(1/\delta)$. Its 11-test guard
+suite is `test_stopped_time_uniform.py`.
+[Record](../results/stopped-time-uniform-20261121/README.md).
+
+Run `python tools/verify_latent_threshold.py --replay` for 2 exact statements
+and 4 transitive axiom reports over the three modules of
+`lean/ThresholdHC/LatentThreshold`: $\theta=G_{\mu,q}(P>1/2)$ for every gap
+law and sign law. Its 11-test guard suite is `test_latent_threshold.py`.
+[Record](../results/latent-threshold-20261121/README.md).
+
+Run `python tools/verify_latent_disintegration.py --replay` for 7 exact
+statements and 28 transitive axiom reports over the four modules of
+`lean/ThresholdHC/LatentDisintegration`: the population class and the $G$-form
+of the target. CI runs it in the `entropy-tail-upper` job. Its 11-test guard
+suite is `test_latent_disintegration.py`.
+[Record](../results/latent-disintegration-20261121/README.md).
+
+Run `python tools/verify_zero_atom_split.py --replay` for 5 exact statements
+and 11 transitive axiom reports over the three modules of
+`lean/ThresholdHC/ZeroAtomSplit`: the identity
+$K_\alpha=\min\{\rho,z+(1-z)K_{\eta,\rho/(1-z)}\}$ and its arbitrary-law form.
+Its 11-test guard suite is `test_zero_atom_split.py`.
+[Record](../results/zero-atom-split-20261121/README.md).
+
+Run `python tools/verify_program_factor.py --replay` for 7 exact statements and
+37 transitive axiom reports over the five modules of
+`lean/ThresholdHC/ProgramFactor`: $R\le P_\infty\le(3\sqrt7/2)R$, the
+finite-cap factor $3\sqrt7$ for $N\ge4B/9$, the genie test and $3\sqrt7R<8R$.
+CI runs it in the `stopping-program` job. Its 11-test guard suite is
+`test_program_factor.py`.
+[Record](../results/program-factor-20261121/README.md).
+
+Run `python tools/verify_stopping_update.py --replay` for 5 exact statements
+and 53 transitive axiom reports over the 20 modules of
+`lean/ThresholdHC/StoppingUpdate`: one schedule replacement at a stopping time
+at gap $1/5$ with $B=25$. The certificate is split into 513 pieces over eleven
+row modules; compiling them takes about 46 minutes of kernel time on one
+core, and each row module uses about 1.1 GB of its own memory. CI runs it in
+the `stopping-program` job. Its 11-test guard suite is
+`test_stopping_update.py`.
+[Record](../results/stopping-update-20261121/README.md).
+
+Run `python tools/verify_cap_identification_estimate.py --replay` for 4 exact
+statements and 13 transitive axiom reports over the three modules of
+`lean/ThresholdHC/CapIdentificationEstimate`: the explicit estimate
+$\Delta_N/2\ge\rho\|h\|_2^2/(4\|h\|_\infty)$ after the fixed-cap
+identification theorem. CI runs it in the `stopping-program` job. Its 11-test
+guard suite is `test_cap_identification_estimate.py`.
+[Record](../results/cap-identification-estimate-20261121/README.md).
+
+Run `python tools/verify_psi_null.py --replay` for 6 exact statements and 29
+transitive axiom reports over the six modules of `lean/ThresholdHC/PsiNull`:
+Proposition `prop:psi-null`, the null-work obstruction
+$\mathfrak J_0(b)\ge(\Psi(h)-4b)_+^2/(192h^2)$ for every gap law, and its
+corollary $R\ge\Psi(B^{-1/2})/8192$. CI runs it in the `entropy-tail-upper`
+job. Its 11-test guard suite is `test_psi_null.py`.
+[Record](../results/psi-null-20261121/README.md).
+
+Run `python tools/verify_confidence_transfer_steps.py --replay` for 6 exact
+statements and 14 transitive axiom reports over the four modules of
+`lean/ThresholdHC/ConfidenceTransferSteps`: equation (17) of the
+confidence-transfer note, $r^{\rm exp}\ge\Psi(\sqrt{\log(1/\delta)/B})/8192$ for
+every gap law, and its equation (22), the exact-power-law confidence rate
+above two under both budget conventions. CI runs it in the
+`entropy-tail-upper` job. Its 11-test guard suite is
+`test_confidence_transfer_steps.py`.
+[Record](../results/confidence-transfer-steps-20261121/README.md).
+
+Run `python tools/verify_bias_subtraction.py --replay` for 5 exact statements
+and 24 transitive axiom reports over the three modules of
+`lean/ThresholdHC/BiasSubtraction`: the remark after Proposition
+`prop:psi-null` that the bias term $4b$ cannot be lowered. Its 11-test guard
+suite is `test_bias_subtraction.py`.
+[Record](../results/bias-subtraction-20261121/README.md).
+
+Run `python tools/verify_critical_pair_rms.py --replay` for 2 exact statements
+and 4 transitive axiom reports over the two modules of
+`lean/ThresholdHC/CriticalPairRMS`: the critical common pair composed with the
+RMS transfer, with an existential constant. Its 11-test guard suite is
+`test_critical_pair_rms.py`.
+[Record](../results/critical-pair-rms-20261121/README.md).
+
+Run `python tools/verify_restricted_rms.py --replay` for 7 exact statements and
+16 transitive axiom reports over the three modules of
+`lean/ThresholdHC/RestrictedRMS`: the coefficient $1/6$ for budgets through
+four, for both oracles there, for three flips per coin and, conditionally,
+for any class containing the four-fresh-flip protocols. CI runs it in the
+`lean-kernel` job. Its 11-test guard suite is `test_restricted_rms.py`.
+[Record](../results/restricted-rms-20261121/README.md).
+
+Run `python tools/verify_sharp_strict.py --replay` for 9 exact statements and
+29 transitive axiom reports over the three modules of
+`lean/ThresholdHC/SharpStrict`: the bound $\omega/6$ is strict for every gap
+law and every $B\ge1$ other than four, also under both oracles. CI runs it in
+the `lean-kernel` job. Its 11-test guard suite is `test_sharp_strict.py`.
+[Record](../results/sharp-strict-20261121/README.md).
+
+Run `python tools/verify_global_cut.py --replay` for 6 exact statements and 25
+transitive axiom reports over the three modules of `lean/ThresholdHC/GlobalCut`:
+Corollary 6 of the certified-selection note, $\mathcal K\le V\le Q\le\frac85\mathcal K$
+for the best global upper-gap cut, its top-$k$ form on finite laws and its
+non-exactness. Its 11-test guard suite is `test_global_cut.py`.
+[Record](../results/global-cut-20261121/README.md).
+
+Run `python tools/verify_entropy_tail_forms.py --replay` for 10 exact
+statements and 37 transitive axiom reports over the four modules of
+`lean/ThresholdHC/EntropyTailForms`: the selection and three-piece forms of
+Theorem 13.2, their equality before and after the cap, the law with
+$0<c<C$, hard measurable partitions and a hard minimizer on finite laws. CI
+runs it in the `entropy-tail-upper` job. Its 11-test guard suite is
+`test_entropy_tail_forms.py`.
+[Record](../results/entropy-tail-forms-20261121/README.md).
+
+Run `python tools/verify_noninterval_selection.py --replay` for 8 exact
+statements and 59 transitive axiom reports over the five modules of
+`lean/ThresholdHC/NonintervalSelection`: the noninterval optimal assignment of
+the rare-event discussion, with eight kernel-checked interval certificates for
+the paper's table. CI runs it in the `entropy-tail-upper` job. Its 11-test
+guard suite is `test_noninterval_selection.py`.
+[Record](../results/noninterval-selection-20261121/README.md).
+
+Run `python tools/verify_oracle_upper.py --replay` for 6 exact statements and
+97 transitive axiom reports over the seven modules of
+`lean/ThresholdHC/OracleUpper`: both magnitude-oracle minimax risks are at most
+$\omega_\mu(B^{-1/2})/2$, so $1/2$ is exactly the best oracle coefficient. CI
+runs it in the `lean-kernel` job. Its 11-test guard suite is
+`test_oracle_upper.py`.
+[Record](../results/oracle-upper-20261121/README.md).
+
+Run `python tools/verify_oracle_sharpness.py --replay` for 4 exact statements
+and 9 transitive axiom reports over the five modules of
+`lean/ThresholdHC/OracleSharpness`: no magnitude-oracle upper coefficient below
+$1/2$, since point masses at small gaps have oracle risk near $1/2$. CI runs it
+in the `lean-kernel` job. Its 11-test guard suite is `test_oracle_sharpness.py`.
+[Record](../results/oracle-sharpness-20261121/README.md).
+
+Run `python tools/verify_clipping_boundary.py --replay` for 8 exact statements
+and 55 transitive axiom reports over the seven modules of
+`lean/ThresholdHC/ClippingBoundary`: the bounded-kurtosis transfer of the
+variance to the clipped risk, its uniform corollary, and the seed-noise
+counterexample. CI runs it in the `entropy-tail-upper` job. Its 11-test guard
+suite is `test_clipping_boundary.py`.
+[Record](../results/clipping-boundary-20261121/README.md).
+
+Run `python tools/verify_fixed_plan.py --replay` for 14 exact statements and 85
+transitive axiom reports over the six modules of `lean/ThresholdHC/FixedPlan`:
+the toolkit's fixed majority plan, its exact work, bias, variance and RMS
+bounds, and the closed form of $e_m$ for uniform rates. CI runs it in the
+`entropy-tail-upper` job. Its 11-test guard suite is `test_fixed_plan.py`.
+[Record](../results/fixed-plan-20261121/README.md).
 
 Each audit pins its new specification, restates the checked targets and
 reports every new declaration's transitive axioms. Their six-test guard
 suites are `test_psi_sharpness.py` and `test_power_window.py`; CI runs both
-suites and both audits. Existing published records retain their original scope.
+suites and both audits, and also the critical-window, paper-corollary,
+paper-statement, pilot-feedback, explicit-constant, nonnegativity,
+finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
+split, critical common-pair, bias-subtraction, global-cut, psi-null,
+confidence-transfer-steps, observed-hoeffding, nested-assumptions,
+light-contraction-constant, band-cost-example, repeated-check,
+reservoir-termination, quantile-factor-upper, creation-charge, stage-pilot-law, bias-audit, unknown-rarity, hard-cap-necessity, pilot-correction, depth-obstruction, localization-counter, affine-comparison, two-flip-feedback, unknown-law-confidence, upper-twelve-numerics, radial-upper, time-uniform-two-sided, depth-legendre, latent-disintegration, known-gap-rarity, margin-classes, power-quantile-rows, weighted-sign-sharp, full-null-bank, robust-continuation-forms, finite-quantile-formula, early-pilot, bernoulli-time-uniform, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
+suites and audits, the
+`lean-kernel` job also the restricted-class, sharp-strictness,
+oracle-sharpness, oracle-upper, clipped-output and revisit-upper suites and
+audits; the `stopping-program` job also runs the fixed-cap
+estimate, program-factor and stopping-update suites and audits. Existing published records retain their original scope.
 
 ## Sharp RMS coefficient and square-root cap
 
@@ -894,6 +1179,14 @@ $1/5$ and the upper bound on the coefficient. The modules build on
 `SharpRMS`; with `--replay` they also go through the independent kernel
 checker. The guard suite is `test_large_budget_rms.py`; CI runs it and the
 audit. [Record](../results/large-budget-rms-20261118/README.md).
+
+Run `python tools/verify_revisit_upper.py --replay` for 5 exact statements and
+23 transitive axiom reports over the eight modules of
+`lean/ThresholdHC/RevisitUpper`: the 20+5 revisit witness with RMS at most
+$0.188087$ at the gap $1/5$ under a hard cap of 25 flips. The replay
+re-evaluates its integer risk certificate. CI runs it in the `lean-kernel`
+job. Its 11-test guard suite is `test_revisit_upper.py`.
+[Record](../results/revisit-upper-20261121/README.md).
 
 Run `python tools/verify_upper_constant.py --replay` for the upper constant
 $119$ of the RMS law: 7 exact statements and 22 transitive axiom reports over
@@ -999,6 +1292,136 @@ $169/5$, the mean-square bound at scale $t\,2^L$, and the risk bound $12$. The
 guard suite is `test_upper_scale.py`; CI runs it and the audit.
 [Record](../results/upper-scale-20261119/README.md).
 
+Run `python tools/verify_clipped_output.py --replay` for 6 exact statements and
+19 transitive axiom reports over the three modules of
+`lean/ThresholdHC/ClippedOutput`: clipping the output to $[0,1]$ keeps the
+budget and cannot raise the RMS risk, and the family with constant $12$ can be
+taken $[0,1]$-valued. CI runs it in the `lean-kernel` job. Its 11-test guard
+suite is `test_clipped_output.py`.
+[Record](../results/clipped-output-20261121/README.md).
+
+Run `python tools/verify_creation_charge.py --replay` for 8 exact statements
+and 29 transitive axiom reports over the four modules of
+`lean/ThresholdHC/CreationCharge`: a fee $c\ge0$ per created coin changes the
+expected cost by at most the factor $1+c$, and the charged minimax risk lies
+between the minimax risks at budgets $B$ and $B/(1+c)$. CI runs it in the
+`entropy-tail-upper` job. Its 11-test guard suite is
+`test_creation_charge.py`.
+[Record](../results/creation-charge-20261121/README.md).
+
+Run `python tools/verify_stage_pilot_law.py --replay` for 6 exact statements
+and 11 transitive axiom reports over the four modules of
+`lean/ThresholdHC/StagePilotLaw`: the pilot events (A8) and (A11) of the paid
+learning stage under the law of the original experiment of the whole stage.
+CI runs it in the `entropy-tail-upper` job. Its 11-test guard suite is
+`test_stage_pilot_law.py`.
+[Record](../results/stage-pilot-law-20261121/README.md).
+
+Run `python tools/verify_bias_audit.py --replay` for 6 exact statements and
+33 transitive axiom reports over the five modules of
+`lean/ThresholdHC/BiasAudit`: the grid-winner counterexample of
+`proposals/constants/BIAS_AUDIT.md` and the envelope for every $k_1\ge0$,
+$k_2\ge1$, against the frozen classifier error. CI runs it in the
+`entropy-tail-upper` job. Its 11-test guard suite is `test_bias_audit.py`.
+`python proposals/constants/bias_audit.py` remains the exact-arithmetic check.
+[Record](../results/bias-audit-20261121/README.md).
+
+Run `python tools/verify_unknown_rarity.py --replay` for 7 exact statements
+and 26 transitive axiom reports over the five modules of
+`lean/ThresholdHC/UnknownRarity`: the obstruction to uniform adaptation to
+unknown rarity at a known gap, its expected-work form, the stopped-transcript
+absolute continuity and the fixed-budget strengthening. CI runs it in the
+`entropy-tail-upper` job. Its 11-test guard suite is
+`test_unknown_rarity.py`.
+[Record](../results/unknown-rarity-20261121/README.md).
+
+Run `python tools/verify_hard_cap_necessity.py --replay` for 5 exact
+statements and 65 transitive axiom reports over the six modules of
+`lean/ThresholdHC/HardCapNecessity`: the hard-cap counterexamples of the
+hard-budget note, a single timeout fallback or one shared seed keeping the
+floor $\rho^2/32$. CI runs it in the `entropy-tail-upper` job. Its 11-test
+guard suite is `test_hard_cap_necessity.py`.
+[Record](../results/hard-cap-necessity-20261121/README.md).
+
+Run `python tools/verify_pilot_correction.py --replay` for 6 exact statements
+and 49 transitive axiom reports over the seven modules of
+`lean/ThresholdHC/PilotCorrection`: the saddle point of a fixed scalar
+control variate and the no-gain theorem for independent pilots, for an
+abstract mixture model, with a nonvacuity witness. CI runs it in the
+`entropy-tail-upper` job. Its 11-test guard suite is
+`test_pilot_correction.py`.
+[Record](../results/pilot-correction-20261121/README.md).
+
+Run `python tools/verify_depth_obstruction.py --replay` for 7 exact
+statements and 31 transitive axiom reports over the seven modules of
+`lean/ThresholdHC/DepthObstruction`: the population half of the bounded-depth
+obstruction, equal transcript laws under a per-coin cap with matching odd
+moments and the floor of half the separation. CI runs it in the
+`entropy-tail-upper` job. Its 11-test guard suite is
+`test_depth_obstruction.py`.
+[Record](../results/depth-obstruction-20261121/README.md).
+
+Run `python tools/verify_depth_legendre.py --replay` for 7 exact statements
+and 72 transitive axiom reports over the nine modules of
+`lean/ThresholdHC/DepthLegendre`: the explicit odd-Legendre pair of the
+bounded-depth obstruction and its per-coin-cap floor. CI runs it in the
+`entropy-tail-upper` job. Its 11-test guard suite is
+`test_depth_legendre.py`.
+[Record](../results/depth-legendre-20261121/README.md).
+
+Run `python tools/verify_localization_counter.py --replay` for 9 exact
+statements and 42 transitive axiom reports over the six modules of
+`lean/ThresholdHC/LocalizationCounter`: Theorem `loc:thm:counter` and
+Proposition `loc:prop:noise` of the localization appendix. CI runs it in the
+`entropy-tail-upper` job. Its 11-test guard suite is
+`test_localization_counter.py`.
+[Record](../results/localization-counter-20261121/README.md).
+
+Run `python tools/verify_affine_comparison.py --replay` for 5 exact
+statements and 36 transitive axiom reports over the six modules of
+`lean/ThresholdHC/AffineComparison`: the categorical affine comparison lemma
+of the full critical note, with the constant $6$ and the note's $12$. CI runs
+it in the `entropy-tail-upper` job. Its 11-test guard suite is
+`test_affine_comparison.py`.
+[Record](../results/affine-comparison-20261121/README.md).
+
+Run `python tools/verify_two_flip_feedback.py --replay` for 8 exact
+statements and 123 transitive axiom reports over the ten modules of
+`lean/ThresholdHC/TwoFlipFeedback`: the two-flip acquisition-feedback
+advantage against the seed-conditional normal-form noninteractive class. CI
+runs it in the `entropy-tail-upper` job. Its 11-test guard suite is
+`test_two_flip_feedback.py`.
+[Record](../results/two-flip-feedback-20261121/README.md).
+
+Run `python tools/verify_unknown_law_confidence.py --replay` for 5 exact
+statements and 121 transitive axiom reports over the nine modules of
+`lean/ThresholdHC/UnknownLawConfidence`: the simpler unknown-law confidence
+sequence. CI runs it in the `entropy-tail-upper` job. Its 11-test guard suite
+is `test_unknown_law_confidence.py`.
+[Record](../results/unknown-law-confidence-20261121/README.md).
+
+Run `python tools/verify_upper_twelve_numerics.py --replay` for 9 exact
+statements and 34 transitive axiom reports over the six modules of
+`lean/ThresholdHC/UpperTwelveNumerics`: the decimal bounds and the three
+remarks of the upper-12 appendix. CI runs it in the `entropy-tail-upper` job.
+Its 11-test guard suite is `test_upper_twelve_numerics.py`.
+[Record](../results/upper-twelve-numerics-20261121/README.md).
+
+Run `python tools/verify_radial_upper.py --replay` for 7 exact statements and
+118 transitive axiom reports over the nine modules of
+`lean/ThresholdHC/RadialUpper`: the calibrated radial upper bound on the known
+radial submodel. CI runs it in the `entropy-tail-upper` job. Its 11-test guard
+suite is `test_radial_upper.py`.
+[Record](../results/radial-upper-20261121/README.md).
+
+Run `python tools/verify_time_uniform_two_sided.py --replay` for 5 exact
+statements and 17 transitive axiom reports over the four modules of
+`lean/ThresholdHC/TimeUniformTwoSided`: the known-law time-uniform procedure as
+one online policy in the original experiment, composed with the lower bound
+(TU1). CI runs it in the `entropy-tail-upper` job. Its 11-test guard suite is
+`test_time_uniform_two_sided.py`.
+[Record](../results/time-uniform-two-sided-20261121/README.md).
+
 ## Whole-project build, axioms and kernel replay
 
 Run `python tools/verify_project_axioms.py --replay-main-theorem`. It builds
@@ -1028,6 +1451,37 @@ Run `python tools/verify_shifted_power.py` for ten exact statements and 35 trans
 
 Run `python tools/verify_anytime_confidence.py` for nine exact statements and 29 transitive axiom reports. Both interval endpoints use the same observed prefix and private seed. [Native record](../results/anytime-confidence-20261105/README.md)
 
+Run `python tools/verify_repeated_check.py --replay` for 6 exact statements and
+71 transitive axiom reports over the eight modules of
+`lean/ThresholdHC/RepeatedCheck`: a fixed-time interval with coverage $3/4$ at
+every $n$ fails with probability $1-S/4^{512}\approx0.428$ when checked up to
+512. The replay re-evaluates the survivor certificate. CI runs it in the
+`entropy-tail-upper` job. Its 11-test guard suite is `test_repeated_check.py`.
+[Record](../results/repeated-check-20261121/README.md).
+
+Run `python tools/verify_reservoir_termination.py --replay` for 9 exact
+statements and 80 transitive axiom reports over the six modules of
+`lean/ThresholdHC/ReservoirTermination`: finite expected work under one law
+does not transfer termination with a countable coin reservoir, for every
+realization of the creation model. CI runs it in the `entropy-tail-upper`
+job. Its 11-test guard suite is `test_reservoir_termination.py`.
+[Record](../results/reservoir-termination-20261121/README.md).
+
+Run `python tools/verify_known_gap_rarity.py --replay` for 6 exact statements
+and 69 transitive axiom reports over the seven modules of
+`lean/ThresholdHC/KnownGapRarity`: the known-gap estimator of the minimax
+audit's adaptation note that needs no rarity, with its interval. CI runs it in
+the `entropy-tail-upper` job. Its 11-test guard suite is
+`test_known_gap_rarity.py`.
+[Record](../results/known-gap-rarity-20261121/README.md).
+
+Run `python tools/verify_margin_classes.py --replay` for 9 exact statements
+and 50 transitive axiom reports over the six modules of
+`lean/ThresholdHC/MarginClasses`: the margin-class corollaries `cor:gap` and
+`cor:power` (rows $\alpha<1$ and $\alpha>1$). CI runs it in the
+`entropy-tail-upper` job. Its 11-test guard suite is `test_margin_classes.py`.
+[Record](../results/margin-classes-20261121/README.md).
+
 ## Smooth-density robustness
 
 Run `python tools/verify_smooth_density.py` for 15 exact statements and 46 transitive axiom reports. The audit covers uniform derivative bounds, the normalized density pair, its original parameter law, both expected-complexity bounds, and unbiased impossibility. [Native record](../results/smooth-density-20261105/README.md)
@@ -1036,9 +1490,25 @@ Run `python tools/verify_smooth_density.py` for 15 exact statements and 46 trans
 
 Run `python tools/verify_observed_states.py` for 22 exact statements and 58 transitive axiom reports. The audit covers the finite partition, magnitude envelope, target separation, physical observation law and exact lower bound. [Native record](../results/finite-observed-20261105/README.md)
 
+Run `python tools/verify_observed_hoeffding.py --replay` for 8 exact statements
+and 26 transitive axiom reports over the five modules of
+`lean/ThresholdHC/ObservedHoeffding`: the paper's Hoeffding replication count
+$M=\lceil32\Delta^{-2}\log(2/\delta)\rceil$ in place of the second-moment
+condition, with the lower bound for every finite cell design that meets it.
+CI runs it in the `entropy-tail-upper` job. Its 11-test guard suite is
+`test_observed_hoeffding.py`. [Record](../results/observed-hoeffding-20261121/README.md).
+
 ## Continuous-magnitude observed states
 
 Run `python tools/verify_continuous_observed.py` for 34 exact statements and 87 transitive axiom reports. The audit covers the physical query law, exact uniform gap distribution, normalized density and moments, and both complexity lower bounds. [Native record](../results/continuous-observed-lower-20261105/README.md)
+
+Run `python tools/verify_nested_assumptions.py --replay` for 8 exact statements
+and 36 transitive axiom reports over the five modules of
+`lean/ThresholdHC/NestedAssumptions`: every model of the class of
+Corollary `cor:nested` meets transcriptions of Giles–Haji-Ali Assumptions 2.1
+and 2.4 with uniform constants. CI runs it in the `entropy-tail-upper` job.
+Its 11-test guard suite is `test_nested_assumptions.py`.
+[Record](../results/nested-assumptions-20261121/README.md).
 
 ## Fresh-state upper-bound transfer
 
@@ -1078,7 +1548,9 @@ Run `python tools/verify_quantile_sharp_law.py` for 84 exact statements and 84 t
 
 ## Exact quantile factor and finite-law optimality
 
-Run `python tools/verify_quantile_optimality.py` for 81 exact statements and 81 transitive axiom reports. It verifies the finite probability-law family, support, fractional quantile split, entropy and selection prices, clipping, the limiting counterexample and exact least-factor equivalences. Together with the scalar and all-law audits above, this gives 219 exact statements and 219 transitive axiom reports. The decimal bracket retains the separate rational verifier `python tools/verify_optimal_quantile_factor.py`. [Complete native record](../results/quantile-optimality-20261105/README.md)
+Run `python tools/verify_quantile_factor_upper.py --replay` for 7 exact statements and 82 transitive axiom reports over the eight modules of `lean/ThresholdHC/QuantileFactorUpper`: the upper end $c_*<1.462554551280$ by a kernel-checked bisection cover, and `thm:sharp-quantile-factor` in full. The replay re-evaluates the four certificate quarters. CI runs it in the `entropy-tail-upper` job with its 11-test guard suite `test_quantile_factor_upper.py`. [Record](../results/quantile-factor-upper-20261121/README.md).
+
+Run `python tools/verify_quantile_optimality.py` for 81 exact statements and 81 transitive axiom reports. It verifies the finite probability-law family, support, fractional quantile split, entropy and selection prices, clipping, the limiting counterexample and exact least-factor equivalences. Together with the scalar and all-law audits above, this gives 219 exact statements and 219 transitive axiom reports. The decimal bracket retains the separate rational verifier `python tools/verify_optimal_quantile_factor.py`; its lower end is also Lean-checked by `verify_paper_statements.py` ([record](../results/paper-statements-20261120/README.md)). [Complete native record](../results/quantile-optimality-20261105/README.md)
 
 ## Time-uniform lower-bound families
 
@@ -1162,6 +1634,13 @@ two-band product geometry and the factor-1024 entropy bound for actual product
 measure cells. Run `python tools/verify_arbitrary_law_light.py` for 26 more
 exact statements and transitive reports: residual tails, the constructed
 multiplier's exact CDF, and the full capped selection comparison with factor 32.
+Run `python tools/verify_light_contraction_constant.py --replay` for 9 exact
+statements and 42 transitive axiom reports over the five modules of
+`lean/ThresholdHC/LightContractionConstant`: the band masses, the first
+summand, $C_V<256$ and the inverse moments of display (UA4); CI runs it in
+the `entropy-tail-upper` job with its 11-test guard suite
+`test_light_contraction_constant.py`.
+[Record](../results/light-contraction-constant-20261121/README.md).
 The final result imposes no inverse-moment or entropy condition on the input law.
 Run `python tools/verify_arbitrary_law_tail_test.py` for 91 exact statements
 and transitive reports on the sign-neutral single-coin tail test: its work cap,

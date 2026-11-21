@@ -155,14 +155,74 @@ jobs:
         run: python -m unittest discover -s tools -p 'test_psi_closed_form.py' -v
       - name: Regression tests for the Psi gap audit
         run: python -m unittest discover -s tools -p 'test_psi_gap.py' -v
-      - name: Regression tests for Psi sharpness and power-window audits
+      - name: Regression tests for Psi sharpness, power-window, critical-window and paper-corollary audits
         run: |
           python -m unittest discover -s tools -p 'test_psi_sharpness.py' -v
           python -m unittest discover -s tools -p 'test_power_window.py' -v
+          python -m unittest discover -s tools -p 'test_critical_window.py' -v
+          python -m unittest discover -s tools -p 'test_paper_corollaries.py' -v
+          python -m unittest discover -s tools -p 'test_paper_statements.py' -v
+          python -m unittest discover -s tools -p 'test_finite_gap_corollaries.py' -v
+          python -m unittest discover -s tools -p 'test_stopped_time_uniform.py' -v
+          python -m unittest discover -s tools -p 'test_latent_threshold.py' -v
+          python -m unittest discover -s tools -p 'test_zero_atom_split.py' -v
+          python -m unittest discover -s tools -p 'test_cap_identification_estimate.py' -v
+          python -m unittest discover -s tools -p 'test_critical_pair_rms.py' -v
+          python -m unittest discover -s tools -p 'test_bias_subtraction.py' -v
+          python -m unittest discover -s tools -p 'test_restricted_rms.py' -v
+          python -m unittest discover -s tools -p 'test_sharp_strict.py' -v
+          python -m unittest discover -s tools -p 'test_global_cut.py' -v
+          python -m unittest discover -s tools -p 'test_psi_null.py' -v
+          python -m unittest discover -s tools -p 'test_entropy_tail_forms.py' -v
+          python -m unittest discover -s tools -p 'test_noninterval_selection.py' -v
+          python -m unittest discover -s tools -p 'test_program_factor.py' -v
+          python -m unittest discover -s tools -p 'test_stopping_update.py' -v
+          python -m unittest discover -s tools -p 'test_fixed_plan.py' -v
+          python -m unittest discover -s tools -p 'test_oracle_sharpness.py' -v
+          python -m unittest discover -s tools -p 'test_clipping_boundary.py' -v
+          python -m unittest discover -s tools -p 'test_oracle_upper.py' -v
+          python -m unittest discover -s tools -p 'test_clipped_output.py' -v
+          python -m unittest discover -s tools -p 'test_confidence_transfer_steps.py' -v
+          python -m unittest discover -s tools -p 'test_revisit_upper.py' -v
+          python -m unittest discover -s tools -p 'test_observed_hoeffding.py' -v
+          python -m unittest discover -s tools -p 'test_nested_assumptions.py' -v
+          python -m unittest discover -s tools -p 'test_light_contraction_constant.py' -v
+          python -m unittest discover -s tools -p 'test_band_cost_example.py' -v
+          python -m unittest discover -s tools -p 'test_repeated_check.py' -v
+          python -m unittest discover -s tools -p 'test_reservoir_termination.py' -v
+          python -m unittest discover -s tools -p 'test_quantile_factor_upper.py' -v
+          python -m unittest discover -s tools -p 'test_creation_charge.py' -v
+          python -m unittest discover -s tools -p 'test_stage_pilot_law.py' -v
+          python -m unittest discover -s tools -p 'test_bias_audit.py' -v
+          python -m unittest discover -s tools -p 'test_unknown_rarity.py' -v
+          python -m unittest discover -s tools -p 'test_hard_cap_necessity.py' -v
+          python -m unittest discover -s tools -p 'test_pilot_correction.py' -v
+          python -m unittest discover -s tools -p 'test_depth_obstruction.py' -v
+          python -m unittest discover -s tools -p 'test_localization_counter.py' -v
+          python -m unittest discover -s tools -p 'test_affine_comparison.py' -v
+          python -m unittest discover -s tools -p 'test_two_flip_feedback.py' -v
+          python -m unittest discover -s tools -p 'test_unknown_law_confidence.py' -v
+          python -m unittest discover -s tools -p 'test_upper_twelve_numerics.py' -v
+          python -m unittest discover -s tools -p 'test_radial_upper.py' -v
+          python -m unittest discover -s tools -p 'test_time_uniform_two_sided.py' -v
+          python -m unittest discover -s tools -p 'test_depth_legendre.py' -v
+          python -m unittest discover -s tools -p 'test_latent_disintegration.py' -v
+          python -m unittest discover -s tools -p 'test_known_gap_rarity.py' -v
+          python -m unittest discover -s tools -p 'test_margin_classes.py' -v
+          python -m unittest discover -s tools -p 'test_power_quantile_rows.py' -v
+          python -m unittest discover -s tools -p 'test_weighted_sign_sharp.py' -v
+          python -m unittest discover -s tools -p 'test_full_null_bank.py' -v
+          python -m unittest discover -s tools -p 'test_robust_continuation_forms.py' -v
+          python -m unittest discover -s tools -p 'test_finite_quantile_formula.py' -v
+          python -m unittest discover -s tools -p 'test_early_pilot.py' -v
+          python -m unittest discover -s tools -p 'test_bernoulli_time_uniform.py' -v
       - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper-constant (119, 45, 36, 27, 19, 17, 15) and square-root cap audits
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
           python -m unittest discover -s tools -p 'test_large_budget_rms.py' -v
+          python -m unittest discover -s tools -p 'test_pilot_feedback.py' -v
+          python -m unittest discover -s tools -p 'test_explicit_constants.py' -v
+          python -m unittest discover -s tools -p 'test_nonnegative_unbiased.py' -v
           python -m unittest discover -s tools -p 'test_upper_constant.py' -v
           python -m unittest discover -s tools -p 'test_upper_work.py' -v
           python -m unittest discover -s tools -p 'test_upper_moment.py' -v
@@ -373,11 +433,47 @@ jobs:
       # them in the independent kernel checker.
       - name: Verify the sharp universal RMS coefficient in all three models and replay its modules
         run: python tools/verify_sharp_rms.py --replay --jobs 3
+      # The coefficient 1/6 is exact in the restricted settings of the rms-gap
+      # note: budgets through four, both oracles there, and three flips per coin.
+      - name: Verify the restricted-class RMS coefficient and replay its modules
+        run: python tools/verify_restricted_rms.py --replay --jobs 3
+      # The remark after Theorem sharp-rms: the bound omega/6 is strict for every
+      # B >= 1 other than four, at every gap law and under both oracles.
+      - name: Verify strictness of the sharp RMS bound away from B = 4 and replay its modules
+        run: python tools/verify_sharp_strict.py --replay --jobs 3
+      # The second rms-constants review: no magnitude-oracle upper coefficient
+      # below one half, since small-gap point masses have oracle risk near 1/2.
+      - name: Verify the sharpness of the oracle coefficient one half and replay its modules
+        run: python tools/verify_oracle_sharpness.py --replay --jobs 3
+      # The second rms-constants review: both oracle risks are at most half the
+      # modulus at B^(-1/2), so one half is exactly the best oracle coefficient.
+      - name: Verify the oracle upper bound with coefficient one half and replay its modules
+        run: python tools/verify_oracle_upper.py --replay --jobs 3
       # Its 28 modules build on the sharp RMS modules above. The replay
       # re-evaluates the integer certificates of the five-bias test and the
       # pilot policy in the independent kernel checker.
       - name: Verify the large-budget bracket of the RMS coefficient and replay its modules
         run: python tools/verify_large_budget_rms.py --replay --jobs 3
+      # The rms-constants package: the 20+5 revisit witness at the gap 1/5 with
+      # a hard cap of 25 flips and RMS risk at most 0.188087. The replay
+      # re-evaluates its integer risk certificate in the kernel checker.
+      - name: Verify the 20+5 revisit witness and replay its modules
+        run: python tools/verify_revisit_upper.py --replay --jobs 3
+      # The pilot-feedback separations at gap 1/5, B = 25, promoted from two
+      # research packages; the kernel replay re-evaluates their integer
+      # certificates (about six minutes locally).
+      - name: Verify the pilot-feedback separations and replay their modules
+        run: python tools/verify_pilot_feedback.py --replay --jobs 3
+      # Explicit constants that frozen statements leave existential: the
+      # hidden-model confidence coefficient 15/(256 sqrt 2), the rare-event
+      # lower coefficient 1/256 and the single-coin second moment 28 rho.
+      - name: Verify the explicit constants and replay their modules
+        run: python tools/verify_explicit_constants.py --replay --jobs 3
+      # Proposition prop:bounded, first sentence: no algorithm that stops almost
+      # surely has an almost surely nonnegative unbiased output when some gaps
+      # lie below 1/2.
+      - name: Verify the nonnegativity obstruction and replay its modules
+        run: python tools/verify_nonnegative_unbiased.py --replay --jobs 3
       - name: Verify the upper constant 119 of the RMS law and replay its modules
         run: python tools/verify_upper_constant.py --replay --jobs 3
       # Its 7 modules build on the upper-constant modules above and sharpen the
@@ -415,6 +511,11 @@ jobs:
       # family uses the whole budget without the two-level mixture.
       - name: Verify the upper constant 12 of the RMS law and replay its modules
         run: python tools/verify_upper_scale.py --replay --jobs 3
+      # The upper-constant study: clipping the output to [0, 1] keeps the
+      # budget and cannot raise the RMS risk; the blind family with constant 12
+      # can be taken [0, 1]-valued.
+      - name: Verify that clipping the output to [0, 1] can only help and replay its modules
+        run: python tools/verify_clipped_output.py --replay --jobs 3
       - name: Verify the full observable above-two rare-event theory
         run: python tools/verify_rare_above_two.py --sequential
       - name: Verify the registered quantile-comparison target
@@ -618,6 +719,22 @@ jobs:
         run: python tools/verify_bandwise_suffix.py
       - name: Verify selection stability and finite approximation of arbitrary laws
         run: python tools/verify_selection_stability.py
+      # Corollary 6 of the certified-selection note: the best global upper-gap
+      # cut V satisfies K <= V <= Q <= (8/5) K and is not exact in general.
+      - name: Verify the global-cut bound and replay its modules
+        run: python tools/verify_global_cut.py --replay --jobs 3
+      # Theorem 13.2 and Lemma 13.1: the selection and three-piece forms (61)-(62)
+      # agree, hard assignments suffice, and the law holds with 0 < c < C.
+      - name: Verify the entropy-tail forms and replay their modules
+        run: python tools/verify_entropy_tail_forms.py --replay --jobs 3
+      # The noninterval optimal assignment of the rare-event discussion: eight
+      # kernel-checked enclosures and the strict minimum retaining {1/2, 1/8}.
+      - name: Verify the noninterval optimal assignment and replay its modules
+        run: python tools/verify_noninterval_selection.py --replay --jobs 3
+      # The toolkit's fixed plan: n coins, 2k+1 flips each, majority share; bias at
+      # most e_m, variance at most 1/(4n), and e_m in closed form for uniform rates.
+      - name: Verify the fixed-plan majority bound and replay its modules
+        run: python tools/verify_fixed_plan.py --replay --jobs 3
       - name: Verify the two-sided quarter-smoothing inequality
         run: python tools/verify_quarter_smoothing.py
       - name: Verify the observable single-type KL and confidence transfer
@@ -638,14 +755,34 @@ jobs:
         run: python tools/verify_shifted_power.py
       - name: Verify observable time-uniform confidence and the known-law width
         run: python tools/verify_anytime_confidence.py
+      # Displays (28) and (29) of the confidence-transfer package's ANYTIME.md:
+      # repeated inspection of a fixed-time interval misses with probability
+      # 0.428... > 1/4. The replay re-evaluates the survivor certificate.
+      - name: Verify the repeated-check counterexample and replay its modules
+        run: python tools/verify_repeated_check.py --replay --jobs 3
+      # The minimax audit's stopping-bridge note: finite expected work under one
+      # law does not transfer termination with a countable coin reservoir.
+      - name: Verify the countable-reservoir termination counterexample and replay its modules
+        run: python tools/verify_reservoir_termination.py --replay --jobs 3
       - name: Verify the smooth-density construction and adaptive information bound
         run: python tools/verify_smooth_density.py
+      # theta = G_{mu,q}(P > 1/2) for every gap law, not only laws with a density.
+      - name: Verify the threshold form of the target and replay its modules
+        run: python tools/verify_latent_threshold.py --replay --jobs 3
       - name: Verify observed-state proof components and the concrete experiment
         run: python tools/verify_observed_states.py
       - name: Verify the adaptive noise simulation for observed-state queries
         run: python tools/verify_continuous_observed.py
+      # Corollary cor:nested: every measurable conditional model of the class
+      # satisfies the transcribed Giles--Haji-Ali Assumptions 2.1 and 2.4.
+      - name: Verify the Giles--Haji-Ali assumptions for the nested-simulation class and replay its modules
+        run: python tools/verify_nested_assumptions.py --replay --jobs 3
       - name: Verify the fresh-outer-state upper-bound transfer
         run: python tools/verify_observed_upper.py
+      # Proposition prop:outer with the paper's Hoeffding replication count
+      # M = ceil(32 log(2/delta)/Delta^2) in place of the second-moment count.
+      - name: Verify the Hoeffding count of the finite-cell observable-state bound and replay its modules
+        run: python tools/verify_observed_hoeffding.py --replay --jobs 3
       - name: Verify heterogeneous adaptive-type information transfer
         run: python tools/verify_typed_confidence.py
       - name: Verify common-pair confidence-localization components
@@ -664,14 +801,152 @@ jobs:
         run: python tools/verify_psi_sharpness.py
       - name: Verify the power-law quantile split and core cost
         run: python tools/verify_power_window.py
+      # Corollary 14.14 and Remark 14.15: the critical window 3/2 <= alpha <= 3
+      # and the regimes away from and near exponent two, on top of PowerWindow.
+      - name: Verify the critical window and replay its modules
+        run: python tools/verify_critical_window.py --replay --jobs 3
+      # Corollaries the guides state as paper arguments: the RMS constants 1/6
+      # and 12 under a stochastic envelope, 1/6 under a pathwise cap, and the
+      # divergence sequence for Psi at the quadratic law.
+      - name: Verify the paper corollaries and replay their modules
+        run: python tools/verify_paper_corollaries.py --replay --jobs 3
+      # Paper claims that had only a paper proof, a numerical check or an
+      # existential constant: the critical theorem with explicit constants, the
+      # sharp unbiased coefficient 1/16, the point-mass constant 1/2, the 713
+      # second moment, the quantile root bound and selection stability at 20/31.
+      - name: Verify the paper statements and replay their modules
+        run: python tools/verify_paper_statements.py --replay --jobs 3
+      # Corollary cor:one-gap (with the entropy-tail constants) and both
+      # displays of Corollary cor:mse of the finite-gap manuscript.
+      - name: Verify the finite-gap corollaries and replay their modules
+        run: python tools/verify_finite_gap_corollaries.py --replay --jobs 3
       - name: Verify RMS obstruction transfer and submeasure localization
         run: python tools/verify_rms_localization.py
+      # The common-pair RMS bound at the critical law, and the remark that the
+      # bias subtraction 4b of Proposition psi-null cannot be lowered.
+      - name: Verify the critical common-pair RMS bound and replay its modules
+        run: python tools/verify_critical_pair_rms.py --replay --jobs 3
+      - name: Verify the bias-subtraction remark and replay its modules
+        run: python tools/verify_bias_subtraction.py --replay --jobs 3
+      # Proposition psi-null: the null-work obstruction J_0(b) >= (Psi - 4b)_+^2/(192 h^2),
+      # and its corollary R(B) >= Psi(B^(-1/2))/8192.
+      - name: Verify the psi-null proposition and replay its modules
+        run: python tools/verify_psi_null.py --replay --jobs 3
+      # The confidence-transfer note: its equation (17), Psi/8192 for every gap
+      # law at the confidence resolution, and its equation (22) for exact power
+      # laws above two under both budget conventions.
+      - name: Verify the residual steps of the confidence-transfer note and replay their modules
+        run: python tools/verify_confidence_transfer_steps.py --replay --jobs 3
       - name: Verify the sharp finite-vector quantile factor and scalar root
         run: python tools/verify_optimal_quantile.py
       - name: Verify the all-law quantile comparison at the exact root factor
         run: python tools/verify_quantile_sharp_law.py
       - name: Verify the sharp factor and finite-law optimality
         run: python tools/verify_quantile_optimality.py
+      # Theorem thm:sharp-quantile-factor in full, with the upper end
+      # c_* < 1.462554551280 from a kernel-checked bisection certificate.
+      - name: Verify the upper end of the sharp quantile factor and replay its modules
+        run: python tools/verify_quantile_factor_upper.py --replay --jobs 3
+      # The model paragraph of sec:model: created coins are observed, a fee c
+      # per created coin costs at most the factor 1 + c, and the charged rate.
+      - name: Verify the per-coin creation fee and replay its modules
+        run: python tools/verify_creation_charge.py --replay --jobs 3
+      # Displays (A8) and (A11) of the arbitrary-law adaptation note under the
+      # experiment law of the whole learning stage, with (A11) on the same event.
+      - name: Verify the pilot events under the whole learning stage and replay its modules
+        run: python tools/verify_stage_pilot_law.py --replay --jobs 3
+      # The grid-winner threshold (1/4, 1/2) fails the v4 error envelope at cap
+      # 2^97, while every k1 >= 0, k2 >= 1 keeps it (BIAS_AUDIT.md).
+      - name: Verify the bias audit of the constant search and replay its modules
+        run: python tools/verify_bias_audit.py --replay --jobs 3
+      # No budget-indexed family that does not receive rho adapts uniformly at a
+      # known gap d < 1/2 (TRACK_D.md), with the fixed-budget strengthening.
+      - name: Verify the unknown-rarity obstruction and replay its modules
+        run: python tools/verify_unknown_rarity.py --replay --jobs 3
+      # A single timeout fallback, or one seed shared by every stage, keeps the
+      # error floor rho^2/32 that the independent fallback ladder avoids.
+      - name: Verify the hard-cap counterexamples and replay their modules
+        run: python tools/verify_hard_cap_necessity.py --replay --jobs 3
+      # A fixed scalar control variate has a saddle point on the rarity polytope,
+      # and no independent pilot improves its worst mean squared error F*/n.
+      - name: Verify the restricted pilot correction and replay its modules
+        run: python tools/verify_pilot_correction.py --replay --jobs 3
+      # Per-coin caps with matching odd moments give equal transcript laws under
+      # arbitrary cross-coin feedback (thm:cap, the population half).
+      - name: Verify the bounded-depth obstruction (part 1) and replay its modules
+        run: python tools/verify_depth_obstruction.py --replay --jobs 3
+      # Theorem loc:thm:counter (the rescaling heuristic underestimates the
+      # minimax risk by an unbounded factor) and Proposition loc:prop:noise.
+      - name: Verify the localization counterexample and noise floor and replay their modules
+        run: python tools/verify_localization_counter.py --replay --jobs 3
+      # Lemma lem:comparison of the nonlinear-critical note, categorical case, with
+      # the constant 6 (a Lean-only sharpening) and the source's 12.
+      - name: Verify the categorical affine comparison lemma and replay its modules
+        run: python tools/verify_affine_comparison.py --replay --jobs 3
+      # Theorem feedback:full-class: the feedback witness beats every noninteractive
+      # cap-two design in normal form at the two-point gap law.
+      - name: Verify the two-flip acquisition-feedback advantage and replay its modules
+        run: python tools/verify_two_flip_feedback.py --replay --jobs 3
+      # The confidence sequence of UNKNOWN_LAW_CONFIDENCE.md: coverage with
+      # probability 1 - delta at every budget and width tending to zero.
+      - name: Verify the unknown-law confidence sequence and replay its modules
+        run: python tools/verify_unknown_law_confidence.py --replay --jobs 3
+      # The decimal bounds 5.19, 0.401 and 6.49 of app:upper-12 and its three
+      # remarks on the mixture, dyadic and scale-B/4 routes.
+      - name: Verify the decimals and remarks of the upper-12 appendix and replay its modules
+        run: python tools/verify_upper_twelve_numerics.py --replay --jobs 3
+      # Corollary pop:radial-upper of the population-step note on the known radial
+      # submodel of the quadratic law, with the calibrated cutoff.
+      - name: Verify the calibrated radial upper bound and replay its modules
+        run: python tools/verify_radial_upper.py --replay --jobs 3
+      # The time-uniform upper procedure run as one online policy in the original
+      # experiment, composed with the law-dependent lower bound (TU1).
+      - name: Verify the two-sided time-uniform order in one model and replay its modules
+        run: python tools/verify_time_uniform_two_sided.py --replay --jobs 3
+      # Lemma lem:poly and Theorem thm:cap of the nonlinear-population upper note: the
+      # explicit pair, its separation and the per-coin-cap floor.
+      - name: Verify the explicit odd-Legendre pair of the bounded-depth obstruction and replay its modules
+        run: python tools/verify_depth_legendre.py --replay --jobs 3
+      # The converse disintegration of the model section: every law of P with
+      # |P - 1/2| ~ mu is some G_{mu,q}, and theta = P_G(P > 1/2).
+      - name: Verify the population class and the G-form of the target and replay their modules
+        run: python tools/verify_latent_disintegration.py --replay --jobs 3
+      # The proposition of the minimax-audit adaptation note: at a known gap, one
+      # rarity-free estimator with MSE at most 8m theta/B + 4m/B^2 and its interval.
+      - name: Verify the known-gap estimator without rarity and replay its modules
+        run: python tools/verify_known_gap_rarity.py --replay --jobs 3
+      # Corollary cor:gap and the rows alpha < 1 and alpha > 1 of Corollary cor:power,
+      # with the unbiased dichotomy and the common estimators.
+      - name: Verify the margin-class corollaries and replay their modules
+        run: python tools/verify_margin_classes.py --replay --jobs 3
+      # Remark rem:power-quantile of the rare-event section: each row of the power-margin
+      # table from the comparison of the minimax risk with the closed quantile form.
+      - name: Verify the power-margin rows through the closed quantile form and replay their modules
+        run: python tools/verify_power_quantile_rows.py --replay --jobs 3
+      # Lemma lem:weighted-sign of the lower-bound foundations appendix with the paper's
+      # coefficient 214, the per-gap floor 3/40 and the window overlap 25/3.
+      - name: Verify the weighted sign entropy with coefficient 214 and replay its modules
+        run: python tools/verify_weighted_sign_sharp.py --replay --jobs 3
+      # The toolkit's full null law (a fair coin with the zero-gap mass, mixed with
+      # the all-negative law) as the positive bank of the robust planner's levels.
+      - name: Verify the full-null bank of the zero-atom planner and replay its modules
+        run: python tools/verify_full_null_bank.py --replay --jobs 3
+      # Issue 82: the robust planner's plan branch as a named estimator, the induced
+      # reference sign allocation and the pathwise correct-time bounds (UA15).
+      - name: Verify the literal forms of the robust planner and replay their modules
+        run: python tools/verify_robust_continuation_forms.py --replay --jobs 3
+      # Displays (67)-(69) of section 14.2: the finite quantile split, core entropy
+      # and closed functional, with the direct finite-law theorem at the formula.
+      - name: Verify the explicit quantile formula for finite laws and replay its modules
+        run: python tools/verify_finite_quantile_formula.py --replay --jobs 3
+      # The capped multi-depth pilot with early stopping: existence, the event (A8),
+      # its expected work and the easy-law bounds.
+      - name: Verify the early-stopping pilot and replay its modules
+        run: python tools/verify_early_pilot.py --replay --jobs 3
+      # The unknown-law note's time-uniform lower bound sqrt(3(1-delta)rho/64)
+      # sqrt(log log n / n), with the observable prefix KL of constant sign laws.
+      - name: Verify the Bernoulli-subfamily time-uniform lower bound and replay its modules
+        run: python tools/verify_bernoulli_time_uniform.py --replay --jobs 3
       - name: Verify prior families for the law-dependent time-uniform lower bound
         run: |
           python tools/verify_anytime_lower.py
@@ -682,8 +957,17 @@ jobs:
           python tools/verify_anytime_tail.py
       - name: Verify the complete law-dependent time-uniform lower bound
         run: python tools/verify_anytime_asymptotics.py
+      # Remark: stopping a time-uniform procedure at budget n gives a
+      # fixed-budget interval, so 10^-17 applies at every n >= 1 and (TU1)
+      # holds with 10^-22 at every n >= 2 with log log n <= (10^10 - 1) log(1/delta).
+      - name: Verify the stopped time-uniform remark and replay its modules
+        run: python tools/verify_stopped_time_uniform.py --replay --jobs 3
       - name: Verify finite-menu cost grouping, exact comparisons and certificates
         run: python tools/verify_band_cost_selection.py
+      # The 64-band example of the finite-law section: equal one-atom costs, the
+      # two largest gaps attain K, and the formal solver run with 65 terminal states.
+      - name: Verify the 64-band selection example and replay its modules
+        run: python tools/verify_band_cost_example.py --replay --jobs 3
       - name: Verify the concrete finite-gap-law menu construction
         run: python tools/verify_gap_law_menus.py
       - name: Verify finite-family law-adaptation components
@@ -706,12 +990,19 @@ jobs:
         run: python tools/verify_arbitrary_law_cdf_coupling.py
       - name: Verify zero-atom selection and CDF comparison
         run: python tools/verify_arbitrary_law_zero.py
+      # K_alpha = min{rho, z + (1 - z) K_{eta, rho/(1 - z)}} for alpha = z delta_0 + (1 - z) eta.
+      - name: Verify the zero-atom split of the selection functional and replay its modules
+        run: python tools/verify_zero_atom_split.py --replay --jobs 3
       - name: Verify dominated-mass entropy-tail comparison
         run: python tools/verify_arbitrary_law_dominated.py
       - name: Verify light-contraction product entropy
         run: python tools/verify_arbitrary_law_light_entropy.py
       - name: Verify concrete light multiplier and selection comparison
         run: python tools/verify_arbitrary_law_light.py
+      # Display (UA4): the band masses, the constant C_V < 256 and the inverse
+      # moments of the light random contraction.
+      - name: Verify the constant of the light random contraction and replay its modules
+        run: python tools/verify_light_contraction_constant.py --replay --jobs 3
       - name: Verify the sign-neutral single-coin tail test
         run: python tools/verify_arbitrary_law_tail_test.py
       - name: Verify the capped tail probe
@@ -754,6 +1045,10 @@ jobs:
         run: python tools/verify_robust_cdf_bridge.py
       - name: Verify clipping and independence from the paid pilot
         run: python tools/verify_clipping_pilot_independence.py
+      # The clipping-boundary note: a bounded-kurtosis transfer of the variance to
+      # the clipped risk, and seed noise showing no unrestricted transfer.
+      - name: Verify the clipping boundary and replay its modules
+        run: python tools/verify_clipping_boundary.py --replay --jobs 3
       - name: Verify conditional capped-median and paid-stage coverage
         run: python tools/verify_paid_median.py
       - name: Verify the full arbitrary-law all-budget controller
@@ -762,6 +1057,12 @@ jobs:
           python -c "import sys; sys.path.insert(0, 'tools'); import verify_project_axioms as p; import verify_arbitrary_law_controller as a; p.replay(a.MODULES, 'lake', 2)"
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
+      # The two intermediate audits: the quantile model alone, with a full
+      # rebuild of its 53-module closure, and the multilevel assembly stage.
+      - name: Audit the entropy-tail quantile model and assembly stage
+        run: |
+          python tools/verify_entropy_tail_components.py
+          python tools/verify_entropy_tail_assembly.py --cached-dependencies
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -770,6 +1071,8 @@ jobs:
           path: |
             .runtime/entropy-tail/
             .runtime/entropy-tail-upper/
+            .runtime/entropy-tail-quantile/
+            .runtime/entropy-tail-assembly/
             .runtime/closed-quantile/
       - name: Save compiled project modules
         if: success() && steps.build-cache.outputs.cache-hit != 'true'
@@ -846,6 +1149,19 @@ jobs:
             python tools/verify_${audit}.py --cached-dependencies
             echo "::endgroup::"
           done
+      # Delta_N / 2 >= rho ||h||_2^2 / (4 ||h||_inf), the explicit estimate after
+      # the fixed-cap identification theorem.
+      - name: Verify the explicit fixed-cap estimate and replay its modules
+        run: python tools/verify_cap_identification_estimate.py --replay --jobs 3
+      # The rms-constants review: R <= P_inf <= (3 sqrt 7 / 2) R, and with a cap of
+      # at least 4B/9 the factor 3 sqrt 7 < 8 for the program and the genie test.
+      - name: Verify the stopping-program factor 3 sqrt 7 / 2 and replay its modules
+        run: python tools/verify_program_factor.py --replay --jobs 3
+      # One schedule replacement at a stopping time at gap 1/5 with B = 25; the
+      # certificate is split into 513 pieces over eleven row modules (about 46 minutes
+      # of kernel time on one core, about 1.1 GB of own memory per row module).
+      - name: Verify the one-stopping-update separation and replay its modules
+        run: python tools/verify_stopping_update.py --replay --jobs 3
       - name: Verify uniform convergence of the optimized cap programs
         run: python tools/verify_genie_rate.py
       - name: Verify square-root convergence of the ordinary cap program

@@ -74,10 +74,10 @@ the gap law is known unless a row says otherwise.
 | Result | Status | Details |
 |---|---|---|
 | For every gap law, every rarity $0<\rho\le1/4$ and every budget $B>0$, the risk $R$ satisfies $10^{-17}\mathcal K\le R\le28000\,\mathcal K$, where $\mathcal K$ is an entropy–tail selection functional | Lean-checked | [Scope](docs/RESULTS.md#general-law-rare-event-characterization) |
-| A closed formula $Q$ with $\mathcal K\le Q\le\frac{31}{20}\mathcal K$; the least possible factor is the unique root of a scalar equation, which Lean places in $(\sqrt2,\frac{31}{20})$ and an exact-rational check puts at about $1.4626$ | Lean-checked; decimal by rational certificate | [Scope](docs/RESULTS.md#known-finite-gap-rare-events-closed-quantile-characterization) · [Factor](docs/RESULTS.md#sharp-finite-vector-quantile-factor) |
+| A closed formula $Q$ with $\mathcal K\le Q\le\frac{31}{20}\mathcal K$; the least possible factor is the unique root of a scalar equation, which Lean places in $(\sqrt2,\frac{31}{20})$ and an exact-rational check puts at about $1.4626$ | Lean-checked; lower decimal end Lean-checked, upper by rational certificate | [Scope](docs/RESULTS.md#known-finite-gap-rare-events-closed-quantile-characterization) · [Factor](docs/RESULTS.md#sharp-finite-vector-quantile-factor) |
 | Critical quadratic law $F(d)=(4d)^2$: the rate is $\min(\rho,\sqrt{\rho L(1+\log L)/B})$ with $L=1+\log(1/\rho)$, which refutes a proposed characterization by a simpler modulus $\Psi$ | Lean-checked | [Scope](docs/RESULTS.md#critical-power-margin-full-minimax-characterization) |
 | Power-law gaps: the rates for exponents below and above two | Lean-checked | [Above two](docs/RESULTS.md#rare-event-power-margins-above-two) · [One to two](docs/RESULTS.md#logarithmic-and-intermediate-rare-power-margins) · [Below one](docs/RESULTS.md#rare-event-power-margins-below-exponent-one) |
-| $\Psi$ still bounds the risk from below for every gap law, $0<\rho\le1/4$ and $B>0$, with coefficient $10^{-17}$ | Lean-checked | [Scope](docs/RESULTS.md#rare-event-optimizer) |
+| $\Psi$ still bounds the risk from below for every gap law, $0<\rho\le1/4$ and $B>0$, with coefficient $1/8192$ (Proposition `prop:psi-null`), and the confidence radius with coefficient $10^{-17}$ | Lean-checked | [Scope](docs/RESULTS.md#rare-event-optimizer) |
 | $\Psi$ in closed form within a factor $\sqrt2$, and one power-law rate with constants independent of the exponent | Lean-checked | [Scope](docs/RESULTS.md#the-variational-modulus-in-closed-form) |
 | A stopping program with an exact dual, and certificates within a factor sixteen of the minimax risk | Lean-checked | [Scope](docs/RESULTS.md#general-law-rare-event-characterization) |
 | Hard caps on the number of flips; fixed-confidence radius of order $\mathcal K(B/\log(1/\delta))$; a time-uniform rate for a known law and a lower bound of the same order, not composed in Lean | Lean-checked | [Caps](docs/RESULTS.md#hard-observation-caps-for-the-rms-rates) · [Confidence](docs/RESULTS.md#confidence-rates-and-sequential-stopping) |
@@ -194,10 +194,42 @@ Use a disposable checkout for reproduction: some checks write diagnostic files.
 
 ## Open work
 
-- **Paper proof only.** One tracked result: the critical-window
-  simplification that closes
-  [v6 §14.8](docs/RESULTS.md#the-variational-modulus-in-closed-form), with
-  its asymptotic interpretation.
+- **Paper proof only, now Lean-checked.** The one tracked result with a
+  paper proof only, the critical-window simplification that closes
+  [v6 §14.8](docs/RESULTS.md#the-variational-modulus-in-closed-form) with its
+  asymptotic interpretation, is Lean-checked since 20 November 2026
+  ([record](results/critical-window-20261120/README.md)). The v6 status table
+  still lists it as a paper proof until the next manuscript update.
+- **Smaller paper and guide claims.** Twelve claims that the paper or the
+  guides stated with only a written proof, a numerical check or an existential
+  constant are Lean-checked since 20 November 2026, among them the critical
+  theorem with explicit constants, the sharpness of the unbiased coefficient
+  $1/16$ and the lower end of the bracket for the sharp quantile factor
+  ([record](results/paper-statements-20261120/README.md)); the upper end, and
+  with it the whole sharp-factor theorem, is Lean-checked since 21 November
+  ([record](results/quantile-factor-upper-20261121/README.md)). Two of the four
+  pilot-feedback separations, Lean-proved inside their research packages, are
+  in the audited library too
+  ([record](results/pilot-feedback-20261120/README.md)); the other two need
+  their integer certificates split before CI can check them.
+  Since 21 November 2026 Lean also checks the impossibility half of
+  Proposition `prop:bounded`, states the explicit constants $15/(256\sqrt2)$,
+  $1/256$ and $28\rho$ as exact targets, and checks both corollaries of the
+  finite-gap manuscript, the stopped time-uniform remark, the threshold form
+  of the target for every law, the zero-atom split, the explicit fixed-cap
+  estimate, the bias-subtraction remark of Appendix H, the common-pair RMS
+  bound at the critical law, the restricted-class coefficient $1/6$, the
+  strictness of the sharp bound for $B\ne4$, the global-cut bound, and
+  Proposition `prop:psi-null` with its corollary $R\ge\Psi(B^{-1/2})/8192$,
+  which proves the obstruction premise of the transfer theorems for every
+  gap law, its confidence form and the exact-power-law confidence rate above
+  two, the three-piece form and ordered constants of the entropy-tail
+  law, the paper's noninterval optimal assignment, the stopping-program
+  factor $3\sqrt7/2$, the fixed-plan majority bound, the exact
+  magnitude-oracle coefficient $1/2$ (both halves), the clipping boundary,
+  the remark that clipping the output to $[0,1]$ can only help, and the
+  Hoeffding replication count of the finite-cell observable-state bound
+  ([records](results/README.md)).
 - **Constants of the main law.** The lower constant $1/6$ is sharp and the
   upper constant is $12$, so the two sides are a factor $72$ apart. For
   budgets of at least 25 the best lower constant is known only to lie in
