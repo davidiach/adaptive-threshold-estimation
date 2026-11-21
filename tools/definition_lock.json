@@ -985,6 +985,14 @@
     "ThresholdHC.CriticalWindow.WindowRatioStatement": "4762494857145497995:4947166526229539416",
     "ThresholdHC.CriticalWindow.WindowRiskStatement": "4762494857145497995:3235242963935070583",
     "ThresholdHC.CriticalWindow.windowRate": "15937309165252210062:8920349101455624138",
+    "ThresholdHC.DepthObstruction.CappedTranscriptStatement": "4762494857145497995:3483573466671944071",
+    "ThresholdHC.DepthObstruction.EqualLawFloorStatement": "4762494857145497995:10203277342318794811",
+    "ThresholdHC.DepthObstruction.HistoryCapBridgeStatement": "4762494857145497995:2641407139339172323",
+    "ThresholdHC.DepthObstruction.PerCoinCap": "12867135706007029492:12604611758892911836",
+    "ThresholdHC.DepthObstruction.PopulationCapFloorStatement": "4762494857145497995:1520815754120252198",
+    "ThresholdHC.DepthObstruction.capTapes": "4283796434648832691:15355897832693588952",
+    "ThresholdHC.DepthObstruction.historyCount": "3299366972673820788:17539155220409939856",
+    "ThresholdHC.DepthObstruction.readPrefix": "17768728880940516567:17075677985102466871",
     "ThresholdHC.DeterministicCertificates.Contains": "17492228823374603281:1925572794207956408",
     "ThresholdHC.DeterministicCertificates.Evidence": "12841156711311012099:10215511517588799928:3205046003180716156:2539516285982772038:7363387382657599803",
     "ThresholdHC.DeterministicCertificates.Evidence._sizeOf_1": "8664218384620076484:11178689414027140413",
@@ -3823,6 +3831,10 @@
     {
       "at": "2026-11-21T11:22:11+00:00",
       "count": 11
+    },
+    {
+      "at": "2026-11-21T11:36:49+00:00",
+      "count": 8
     }
   ]
 }
