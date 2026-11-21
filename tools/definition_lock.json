@@ -1854,6 +1854,8 @@
     "ThresholdHC.OracleLower.selectedMinimaxRisk": "10850261107739373973:2549926880631711450",
     "ThresholdHC.OracleLower.selectedOracle": "13092515415492536199:5437546494487480159",
     "ThresholdHC.OracleLower.selectedRequestMeasurableSpace": "7674821830771989894:24979097905214202",
+    "ThresholdHC.OracleSharpness.OracleUpperSharpnessStatement": "4762494857145497995:4689368117195150490",
+    "ThresholdHC.OracleSharpness.SmallGapSignLowerStatement": "4762494857145497995:11846493836222870738",
     "ThresholdHC.PaperCorollaries.EnvelopeRMSStatement": "4762494857145497995:3220548424012583486",
     "ThresholdHC.PaperCorollaries.HardSharpLowerStatement": "4762494857145497995:5219002052237726944",
     "ThresholdHC.PaperCorollaries.PsiSequenceStatement": "4762494857145497995:566039933967207105",
@@ -3195,6 +3197,12 @@
     "_private.ThresholdHC.ObservableSimulation.PopulationPath.0.ThresholdHC.ObservableSimulation.measurable_seeded_populationSimulation.match_1_1.splitter": "2768292523083620860:13544452639429970733",
     "_private.ThresholdHC.OracleLower.Examples.0.ThresholdHC.OracleLower.selectedLabel.match_1.splitter": "13132223457540246259:14909000597956114508",
     "_private.ThresholdHC.OracleLower.SelectedSemantics.0.ThresholdHC.OracleLower.selectedLabel.match_1.splitter": "13132223457540246259:14909000597956114508",
+    "_private.ThresholdHC.OracleSharpness.SignPopulation.0.ThresholdHC.OracleSharpness.constantLaw": "1523014442632208775:5565275827759531720",
+    "_private.ThresholdHC.OracleSharpness.SignTest.0.ThresholdHC.OracleSharpness.netBits": "13917486347975437969:10849370510542262904",
+    "_private.ThresholdHC.OracleSharpness.SignTest.0.ThresholdHC.Proofs.stepProb.match_1.splitter": "5116676621704740280:3441847675736113905",
+    "_private.ThresholdHC.OracleSharpness.SignTest.0.ThresholdHC.Proofs.stepProb.match_1.splitter._sparseCasesOn_4": "13208648013163033065:7056258156388248554",
+    "_private.ThresholdHC.OracleSharpness.SignTest.0.ThresholdHC.Proofs.stepProb.match_1.splitter._sparseCasesOn_5": "14373928458666162397:14537995785574750124",
+    "_private.ThresholdHC.OracleSharpness.SignTest.0.ThresholdHC.SharpRMS.bitValue.match_1.splitter": "10067367714426522006:9556395074836709022",
     "_private.ThresholdHC.PilotFeedback.FixedHorizonRisk.0.ThresholdHC.PilotFeedback.FixedHorizon.asTape": "4592446411961580297:18345233607247475715",
     "_private.ThresholdHC.PilotFeedback.FixedHorizonRisk.0.ThresholdHC.PilotFeedback.FixedHorizon.conditionalMSE": "2298466640260011235:3204121290268808711",
     "_private.ThresholdHC.PilotFeedback.FixedHorizonRisk.0.ThresholdHC.PilotFeedback.FixedHorizon.estimate": "3009438993272391437:11488252135800747638",
@@ -3470,6 +3478,10 @@
     {
       "at": "2026-11-21T03:46:32+00:00",
       "count": 17
+    },
+    {
+      "at": "2026-11-21T03:57:01+00:00",
+      "count": 8
     }
   ]
 }
