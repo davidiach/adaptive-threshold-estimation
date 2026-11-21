@@ -351,6 +351,13 @@
     "ThresholdHC.BandwiseSuffix.saving": "14599578583427873890:4823801299316633076",
     "ThresholdHC.BandwiseSuffix.slice": "14584743811033911906:545313462396170321",
     "ThresholdHC.BandwiseSuffix.suffixChoices": "16828787728812670730:903971590379442361",
+    "ThresholdHC.BernoulliTimeUniform.BernoulliTimeUniformLowerStatement": "4762494857145497995:358833122032728152",
+    "ThresholdHC.BernoulliTimeUniform.ConstantPriorPrefixKLStatement": "4762494857145497995:16473742984004503574",
+    "ThresholdHC.BernoulliTimeUniform.baseVar": "18133891100220672328:4060597080195724837",
+    "ThresholdHC.BernoulliTimeUniform.meanShift": "4328516925777286019:10186949611580617593",
+    "ThresholdHC.BernoulliTimeUniform.scheduleBudget": "14693155793205266143:14192289727733809718",
+    "ThresholdHC.BernoulliTimeUniform.shiftScale": "4328516925777286019:9395746306169778236",
+    "ThresholdHC.BernoulliTimeUniform.twoThirdEvents": "14698843572891493206:783611238944389321",
     "ThresholdHC.BiasAudit.GridWinnerCounterexampleStatement": "4762494857145497995:15408585867259340136",
     "ThresholdHC.BiasAudit.GridWinnerFailsEnvelopeStatement": "4762494857145497995:11312902790488014511",
     "ThresholdHC.BiasAudit.SmallerThresholdErrorStatement": "4762494857145497995:2431758291714213611",
@@ -4232,6 +4239,10 @@
     {
       "at": "2026-11-21T18:46:22+00:00",
       "count": 39
+    },
+    {
+      "at": "2026-11-21T18:55:39+00:00",
+      "count": 7
     }
   ]
 }

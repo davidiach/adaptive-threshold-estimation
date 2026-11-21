@@ -215,6 +215,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_robust_continuation_forms.py' -v
           python -m unittest discover -s tools -p 'test_finite_quantile_formula.py' -v
           python -m unittest discover -s tools -p 'test_early_pilot.py' -v
+          python -m unittest discover -s tools -p 'test_bernoulli_time_uniform.py' -v
       - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper-constant (119, 45, 36, 27, 19, 17, 15) and square-root cap audits
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
@@ -942,6 +943,10 @@ jobs:
       # its expected work and the easy-law bounds.
       - name: Verify the early-stopping pilot and replay its modules
         run: python tools/verify_early_pilot.py --replay --jobs 3
+      # The unknown-law note's time-uniform lower bound sqrt(3(1-delta)rho/64)
+      # sqrt(log log n / n), with the observable prefix KL of constant sign laws.
+      - name: Verify the Bernoulli-subfamily time-uniform lower bound and replay its modules
+        run: python tools/verify_bernoulli_time_uniform.py --replay --jobs 3
       - name: Verify prior families for the law-dependent time-uniform lower bound
         run: |
           python tools/verify_anytime_lower.py
