@@ -1694,6 +1694,18 @@
     "ThresholdHC.LawAdaptation.thenChoose": "9233813382836131955:6380820355396657549",
     "ThresholdHC.LawAdaptation.wordMass": "14947032557917822136:14350387944666578903",
     "ThresholdHC.LawAdaptation.wordParity": "13377287681791528615:127871489413401625",
+    "ThresholdHC.NestedAssumptions.GHABoundedDensity": "15116872399278757298:10477656081120476244",
+    "ThresholdHC.NestedAssumptions.GHAStandardizedMoment": "11222985548750745331:13516608952492391468",
+    "ThresholdHC.NestedAssumptions.HardDesignLawStatement": "4762494857145497995:8803442856323342973",
+    "ThresholdHC.NestedAssumptions.HardDesignStatement": "4762494857145497995:5286492384550670670",
+    "ThresholdHC.NestedAssumptions.NestedAssumptionsStatement": "4762494857145497995:13180061078369477904",
+    "ThresholdHC.NestedAssumptions.NestedModel": "9337347688760281756:14803785590983938199",
+    "ThresholdHC.NestedAssumptions.NestedModelNonemptyStatement": "4762494857145497995:8480304191463794842",
+    "ThresholdHC.NestedAssumptions.UniformConstantsStatement": "4762494857145497995:10272435173003890116",
+    "ThresholdHC.NestedAssumptions.binaryLaw": "2588511656525994026:16754662416141897130",
+    "ThresholdHC.NestedAssumptions.condMean": "17955507081796810496:923811475690086643",
+    "ThresholdHC.NestedAssumptions.condSD": "17955507081796810496:127441751104522988",
+    "ThresholdHC.NestedAssumptions.normalizedMean": "17955507081796810496:17721097962188485256",
     "ThresholdHC.NonintervalSelection.EnclosureStatement": "4762494857145497995:2724525595970620835",
     "ThresholdHC.NonintervalSelection.J": "13979285021046866625:1095221704422084035",
     "ThresholdHC.NonintervalSelection.NonintervalStatement": "4762494857145497995:13021356560107429583",
@@ -3592,6 +3604,10 @@
     {
       "at": "2026-11-21T07:31:16+00:00",
       "count": 6
+    },
+    {
+      "at": "2026-11-21T07:36:01+00:00",
+      "count": 12
     }
   ]
 }
