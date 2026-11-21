@@ -69,6 +69,7 @@ class LeanRoutingTests(unittest.TestCase):
             "tools/verify_pilot_correction.py": {"entropy-tail-upper"},
             "tools/verify_depth_obstruction.py": {"entropy-tail-upper"},
             "tools/verify_localization_counter.py": {"entropy-tail-upper"},
+            "tools/verify_affine_comparison.py": {"entropy-tail-upper"},
             "tools/verify_entropy_tail_assembly.py": {"entropy-tail-upper"},
             "tools/verify_entropy_tail_forms.py": {"entropy-tail-upper"},
             "tools/verify_noninterval_selection.py": {"entropy-tail-upper"},

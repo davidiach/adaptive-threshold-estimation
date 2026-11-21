@@ -25,6 +25,11 @@
     "ThresholdHC.AdditiveConfidence.positiveMeasure": "14357565084681207864:7652580928679351431",
     "ThresholdHC.AdditiveConfidence.submeasureMixture": "9573513039377218059:4298667257008131602",
     "ThresholdHC.AdditiveConfidence.tapeStatisticLaw": "15594001213759802525:1860766709881826075",
+    "ThresholdHC.AffineComparison.CategoricalComparisonStatement": "12864510656592775454:8538062978233401468",
+    "ThresholdHC.AffineComparison.categoricalLaw": "7782664106346049561:334239446944227001",
+    "ThresholdHC.AffineComparison.categoricalLogMoment": "3930311644450778661:14451673233204554949",
+    "ThresholdHC.AffineComparison.categoricalProductLaw": "18237281126391100216:682070262628372966",
+    "ThresholdHC.AffineComparison.pairObjective": "6237934451698364552:15198008357001141830",
     "ThresholdHC.Anytime.endpointEstimator": "9863311163870598528:2400703988506427981",
     "ThresholdHC.Anytime.halfWidth": "6819535112746901338:3130404443506386897",
     "ThresholdHC.Anytime.historyInterval": "13202265747671851080:9742484605112513747",
@@ -3851,6 +3856,10 @@
     {
       "at": "2026-11-21T11:41:14+00:00",
       "count": 12
+    },
+    {
+      "at": "2026-11-21T11:58:28+00:00",
+      "count": 5
     }
   ]
 }
