@@ -10,7 +10,7 @@ can differ from the current files after a later proof-only change: the
 eight Lean files that were refactored afterwards without changing a
 statement. For the current tree the evidence is the CI run on that commit.
 
-The folder holds 142 dated record directories, named for a result and a
+The folder holds 143 dated record directories, named for a result and a
 date, and the loose JSON and log files of the first phases of the project.
 The table below indexes the records that the guides cite. Later sections
 describe the remaining records in prose: the time-uniform bounds, cost
@@ -207,7 +207,11 @@ exact saving comparison and interval certificates. The
 [new 13-statement connection](gap-law-menus-20261105/README.md) additionally
 constructs the actual finite-law menus and proves their compressed optimum
 equals the original $K$, including atomic cost and saving formulas.
-Python execution remains unverified.
+Python execution remains unverified. The
+[64-band example audit](band-cost-example-20261121/README.md) of
+21 November 2026 checks the guide's example for the formal solver: the
+optimizer, its strict uniqueness among hard masks, and 4,160 transitions and
+65 terminal states.
 
 ## Ordinary cap truncation
 

@@ -101,6 +101,13 @@ assert result.optimality_proved
 assert [a.gap for a, keep in zip(law.atoms, result.selected) if keep] == [F(1,4), F(1,2)]
 ```
 
+Lean checks this example for the formal solver
+(`lean/ThresholdHC/BandCostExample`,
+[record](../results/band-cost-example-20261121/README.md)): the equal one-atom costs, the optimizer
+against every submeasure with the cap inactive, its strict uniqueness among
+all $2^{64}$ hard masks, and 4,160 transitions and 65 terminal states on the
+actual support menus. The Python run above is not what Lean checks.
+
 The transition limit raises an error before expanding a stage that would
 exceed the allowance. The bound on state counts counts arithmetic operations
 separately from the bit cost and the precision of transcendental evaluations.

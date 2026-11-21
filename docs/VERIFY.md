@@ -468,6 +468,13 @@ disjointness, the original prefix-supremum entropy, tail savings, equality of
 the optimized value with $K$, and the atomic weight formulas.
 Its [native record](../results/gap-law-menus-20261105/README.md) binds all 64 project
 sources, five fresh empty compiler logs and 59 previously published dependencies.
+
+Run `python tools/verify_band_cost_example.py --replay` for 8 exact statements
+and 147 transitive axiom reports over the eight modules of
+`lean/ThresholdHC/BandCostExample`: the 64-band example of the band-cost guide
+for the formal solver. CI runs it in the `entropy-tail-upper` job. Its
+11-test guard suite is `test_band_cost_example.py`.
+[Record](../results/band-cost-example-20261121/README.md).
 Python execution remains outside the formal proofs.
 
 ## Finite-law bandwise-suffix theorem
@@ -1067,7 +1074,7 @@ paper-statement, pilot-feedback, explicit-constant, nonnegativity,
 finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
 split, critical common-pair, bias-subtraction, global-cut, psi-null,
 confidence-transfer-steps, observed-hoeffding, nested-assumptions,
-light-contraction-constant, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
+light-contraction-constant, band-cost-example, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
 suites and audits, the
 `lean-kernel` job also the restricted-class, sharp-strictness,
 oracle-sharpness, oracle-upper, clipped-output and revisit-upper suites and

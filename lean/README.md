@@ -5,7 +5,7 @@ Use this map to find a formal statement, its proof, and the audit that checks it
 [verification setup](../docs/VERIFY.md#setup) covers Python, Lean, and Mathlib.
 Commands below run from the repository root.
 
-`ThresholdHC/` holds 1,557 Lean files: 118 top-level directories and seven root
+`ThresholdHC/` holds 1,565 Lean files: 119 top-level directories and seven root
 files beside them. Most results have a
 directory with a `Specification.lean`, which states the targets, and a
 `Full.lean`, which proves them. `ThresholdHC.lean` is the frozen root of the
@@ -200,6 +200,7 @@ The $31/20$ row and the sharp-factor rows above have since improved it.
 
 | Result | Formal entry point | Audit command |
 |---|---|---|
+| The 64-band example: gaps $2^{-i}$ with masses $\propto d^2$, $\rho=1/4$, $B=2^{32}$; equal one-atom costs, the two largest gaps attain $K$ with the cap inactive and are the strict unique minimum among all $2^{64}$ hard masks, and the formal solver makes 4,160 transitions and ends with 65 terminal states | [Specification](ThresholdHC/BandCostExample/Specification.lean), [Optimal](ThresholdHC/BandCostExample/Optimal.lean), [Solver](ThresholdHC/BandCostExample/Solver.lean), [Full](ThresholdHC/BandCostExample/Full.lean), [record](../results/band-cost-example-20261121/README.md) | `python tools/verify_band_cost_example.py --replay` |
 | Finite-menu cost grouping and exact certificates | [Dynamic](ThresholdHC/BandCostSelection/Dynamic.lean), [Counting](ThresholdHC/BandCostSelection/Counting.lean), [Entropy](ThresholdHC/BandCostSelection/Entropy.lean), [Comparison](ThresholdHC/BandCostSelection/Comparison.lean), [Certificates](ThresholdHC/BandCostSelection/Certificates.lean) | `python tools/verify_band_cost_selection.py` |
 | Concrete finite-law menus and original selection value | [Menus](ThresholdHC/GapLawMenus/Menus.lean), [Entropy and costs](ThresholdHC/GapLawMenus/Costs.lean), [Full solver](ThresholdHC/GapLawMenus/Full.lean), [Atomic formulas](ThresholdHC/GapLawMenus/Atoms.lean) | `python tools/verify_gap_law_menus.py` |
 | Selection stability and finite approximation | [Variation](ThresholdHC/SelectionStability/Variation.lean), [Rounding](ThresholdHC/SelectionStability/Rounding.lean), [Enclosures](ThresholdHC/SelectionStability/Approximation.lean), [Finite approximation](ThresholdHC/SelectionStability/FiniteApproximation.lean) | `python tools/verify_selection_stability.py` |

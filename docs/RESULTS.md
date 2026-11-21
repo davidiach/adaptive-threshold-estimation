@@ -1252,7 +1252,12 @@ exact saving comparisons, and interval certificates. A further
 [13-statement audit](../results/gap-law-menus-20261105/README.md) verifies the
 concrete finite-law menu construction, its exact entropy and saving identities,
 atomic formulas, and the equality of its optimized value with the original
-$K$. Python execution remains unverified. Efficient exact selection with
+$K$. Python execution remains unverified. The 64-band example of the
+band-cost guide is Lean-checked for the formal solver since 21 November 2026:
+equal one-atom costs, the two largest gaps attain $K$ with the cap inactive
+(the strict unique minimum among all $2^{64}$ hard masks), and 4,160
+transitions and 65 terminal states on the actual support menus
+([record](../results/band-cost-example-20261121/README.md)). Efficient exact selection with
 unrestricted distinct band costs remains open.
 
 **Prescribed relative accuracy is Lean-checked for the mathematical finite scheme.**

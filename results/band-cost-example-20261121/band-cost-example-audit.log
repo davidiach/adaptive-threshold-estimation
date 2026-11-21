@@ -1,0 +1,401 @@
+⚠ [18166/18327] Replayed ThresholdHC.BandCostSelection.Compression
+warning: ThresholdHC/BandCostSelection/Compression.lean: imports `Mathlib.Data.Finset.Max` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/BandCostSelection/Compression.lean: imports `Mathlib.Data.Finset.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/BandCostSelection/Compression.lean: imports `Mathlib.Basic.Real.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18167/18327] Ran ThresholdHC.BandCostSelection.Compression:irArts
+warning: ThresholdHC/BandCostSelection/Compression.lean: imports `Mathlib.Data.Finset.Max` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/BandCostSelection/Compression.lean: imports `Mathlib.Data.Finset.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/BandCostSelection/Compression.lean: imports `Mathlib.Basic.Real.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18168/18327] Replayed ThresholdHC.BandCostSelection.Dynamic
+warning: ThresholdHC/BandCostSelection/Dynamic.lean: imports `Mathlib.Algebra.BigOperators.Group.List.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/BandCostSelection/Dynamic.lean: imports `Mathlib.Data.Multiset.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/BandCostSelection/Dynamic.lean: imports `Mathlib.Data.Finset.Union` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18169/18327] Ran ThresholdHC.BandCostSelection.Dynamic:irArts
+warning: ThresholdHC/BandCostSelection/Dynamic.lean: imports `Mathlib.Algebra.BigOperators.Group.List.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/BandCostSelection/Dynamic.lean: imports `Mathlib.Data.Multiset.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/BandCostSelection/Dynamic.lean: imports `Mathlib.Data.Finset.Union` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18170/18327] Replayed ThresholdHC.BandCostSelection.Counting
+warning: ThresholdHC/BandCostSelection/Counting.lean: imports `Mathlib.Data.Sym.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18171/18327] Ran ThresholdHC.BandCostSelection.Counting:irArts
+warning: ThresholdHC/BandCostSelection/Counting.lean: imports `Mathlib.Data.Sym.Card` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18172/18327] Replayed ThresholdHC.EntropyTailQuantile.CostEntropy
+warning: ThresholdHC/EntropyTailQuantile/CostEntropy.lean: imports `Mathlib.Analysis.SpecialFunctions.Log.NegMulLog` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/EntropyTailQuantile/CostEntropy.lean: imports `Mathlib.Analysis.SpecialFunctions.Pow.Real` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/EntropyTailQuantile/CostEntropy.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18173/18327] Ran ThresholdHC.EntropyTailQuantile.CostEntropy:irArts
+warning: ThresholdHC/EntropyTailQuantile/CostEntropy.lean: imports `Mathlib.Analysis.SpecialFunctions.Log.NegMulLog` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/EntropyTailQuantile/CostEntropy.lean: imports `Mathlib.Analysis.SpecialFunctions.Pow.Real` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/EntropyTailQuantile/CostEntropy.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18174/18327] Replayed ThresholdHC.BandCostSelection.Entropy
+warning: ThresholdHC/BandCostSelection/Entropy.lean: imports `Mathlib.Algebra.BigOperators.Fin` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/BandCostSelection/Entropy.lean: imports `Mathlib.Algebra.BigOperators.Group.Multiset.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/BandCostSelection/Entropy.lean: imports `Mathlib.Analysis.SpecialFunctions.Sqrt` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18175/18327] Ran ThresholdHC.BandCostSelection.Entropy:irArts
+warning: ThresholdHC/BandCostSelection/Entropy.lean: imports `Mathlib.Algebra.BigOperators.Fin` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/BandCostSelection/Entropy.lean: imports `Mathlib.Algebra.BigOperators.Group.Multiset.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/BandCostSelection/Entropy.lean: imports `Mathlib.Analysis.SpecialFunctions.Sqrt` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18178/18327] Replayed ThresholdHC.DeterministicCertificates.Intervals
+warning: ThresholdHC/DeterministicCertificates/Intervals.lean: imports `Mathlib.Analysis.SpecialFunctions.Log.Deriv` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/DeterministicCertificates/Intervals.lean: imports `Mathlib.Data.Rat.Cast.Order` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/DeterministicCertificates/Intervals.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18179/18327] Ran ThresholdHC.DeterministicCertificates.Intervals:irArts
+warning: ThresholdHC/DeterministicCertificates/Intervals.lean: imports `Mathlib.Analysis.SpecialFunctions.Log.Deriv` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/DeterministicCertificates/Intervals.lean: imports `Mathlib.Data.Rat.Cast.Order` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/DeterministicCertificates/Intervals.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18180/18327] Replayed ThresholdHC.DeterministicCertificates.Logarithm
+warning: ThresholdHC/DeterministicCertificates/Logarithm.lean:23:4: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/DeterministicCertificates/Logarithm.lean:23:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [18184/18327] Replayed ThresholdHC.DeterministicCertificates.Entropy
+warning: ThresholdHC/DeterministicCertificates/Entropy.lean: imports `Mathlib.Algebra.BigOperators.Fin` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18185/18327] Ran ThresholdHC.DeterministicCertificates.Entropy:irArts
+warning: ThresholdHC/DeterministicCertificates/Entropy.lean: imports `Mathlib.Algebra.BigOperators.Fin` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18186/18327] Replayed ThresholdHC.BandCostExample.Frontier
+warning: ThresholdHC/BandCostExample/Frontier.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18187/18327] Ran ThresholdHC.BandCostExample.Frontier:irArts
+warning: ThresholdHC/BandCostExample/Frontier.lean: imports `Mathlib.Tactic.Ring` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18190/18327] Replayed ThresholdHC.Tier6.HardPairModel
+warning: ThresholdHC/Tier6/HardPairModel.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18191/18327] Ran ThresholdHC.Tier6.HardPairModel:irArts
+warning: ThresholdHC/Tier6/HardPairModel.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18192/18327] Replayed ThresholdHC.Statements
+warning: ThresholdHC/Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18193/18327] Ran ThresholdHC.Statements:irArts
+warning: ThresholdHC/Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18200/18327] Replayed ThresholdHC.Tier4.Model
+warning: ThresholdHC/Tier4/Model.lean: imports `Mathlib.InformationTheory.KullbackLeibler.DataProcessing` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18201/18327] Ran ThresholdHC.Tier4.Model:irArts
+warning: ThresholdHC/Tier4/Model.lean: imports `Mathlib.InformationTheory.KullbackLeibler.DataProcessing` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18208/18327] Replayed ThresholdHC.Tier6.AlgorithmCore
+warning: ThresholdHC/Tier6/AlgorithmCore.lean: imports `Mathlib.Probability.ProductMeasure` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18209/18327] Ran ThresholdHC.Tier6.AlgorithmCore:irArts
+warning: ThresholdHC/Tier6/AlgorithmCore.lean: imports `Mathlib.Probability.ProductMeasure` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18210/18327] Replayed ThresholdHC.Proofs.Tier2.TranscriptBase
+warning: ThresholdHC/Proofs/Tier2/TranscriptBase.lean:51:39: This simp argument is unused:
+  Bool.false_eq_true
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [↓reduceIte]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ThresholdHC/Proofs/Tier2/TranscriptBase.lean:51:59: This simp argument is unused:
+  ↓reduceIte
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Bool.false_eq_true]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ThresholdHC/Proofs/Tier2/TranscriptBase.lean:55:67: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: ThresholdHC/Proofs/Tier2/TranscriptBase.lean:55:63: Unused tactic linter: `<;>` can be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/Tier2/TranscriptBase.lean:55:67: Unused tactic linter: `ring` is never executed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [18212/18327] Replayed ThresholdHC.Proofs.Tier2.TranscriptLikelihood
+warning: ThresholdHC/Proofs/Tier2/TranscriptLikelihood.lean:35:15: This simp argument is unused:
+  he
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Option.some_ne_none, ↓reduceIte, one_mul, Option.some.injEq]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [18220/18327] Replayed ThresholdHC.Proofs.KL
+warning: ThresholdHC/Proofs/KL.lean:22:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Proofs/KL.lean:22:4: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/KL.lean:39:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Proofs/KL.lean:39:4: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/KL.lean:103:6: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [← h, hvf]
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: ThresholdHC/Proofs/KL.lean:78:10: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: ThresholdHC/Proofs/KL.lean:78:6: Unused tactic linter: `<;>` can be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/KL.lean:78:10: Unused tactic linter: `ring` is never executed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/KL.lean:121:10: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: ThresholdHC/Proofs/KL.lean:124:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Proofs/KL.lean:125:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Proofs/KL.lean:158:2: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Proofs/KL.lean:121:6: Unused tactic linter: `<;>` can be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/KL.lean:121:10: Unused tactic linter: `ring` is never executed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/KL.lean:124:4: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/KL.lean:125:4: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/KL.lean:158:2: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [18222/18327] Replayed ThresholdHC.Proofs.Tier2.TranscriptScalar
+warning: ThresholdHC/Proofs/Tier2/TranscriptScalar.lean:68:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Proofs/Tier2/TranscriptScalar.lean:68:4: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/Tier2/TranscriptScalar.lean:77:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Proofs/Tier2/TranscriptScalar.lean:77:4: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/Tier2/TranscriptScalar.lean:106:31: Variable name `hAB` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hAB
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: ThresholdHC/Proofs/Tier2/TranscriptScalar.lean:121:60: Variable name `hAB` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hAB
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [18232/18327] Replayed ThresholdHC.Tier4.FiniteDensity
+warning: ThresholdHC/Tier4/FiniteDensity.lean: imports `Mathlib.InformationTheory.KullbackLeibler.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18233/18327] Ran ThresholdHC.Tier4.FiniteDensity:irArts
+warning: ThresholdHC/Tier4/FiniteDensity.lean: imports `Mathlib.InformationTheory.KullbackLeibler.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18238/18327] Replayed ThresholdHC.Tier5.FiniteJoint
+warning: ThresholdHC/Tier5/FiniteJoint.lean:100:2: Unused tactic linter: `change |p u a * w a| ≤ |w a|` does not change the goal.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [18244/18327] Replayed ThresholdHC.Tier5.FiniteCreation
+warning: ThresholdHC/Tier5/FiniteCreation.lean:97:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThresholdHC/Tier5/FiniteCreation.lean:98:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+⚠ [18246/18327] Replayed ThresholdHC.Tier6.ProcessWeights
+warning: ThresholdHC/Tier6/ProcessWeights.lean: imports `Mathlib.Probability.Kernel.IonescuTulcea.Traj` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18247/18327] Ran ThresholdHC.Tier6.ProcessWeights:irArts
+warning: ThresholdHC/Tier6/ProcessWeights.lean: imports `Mathlib.Probability.Kernel.IonescuTulcea.Traj` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18248/18327] Replayed ThresholdHC.Tier6.ProcessModel
+warning: ThresholdHC/Tier6/ProcessModel.lean:51:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThresholdHC/Tier6/ProcessModel.lean:83:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThresholdHC/Tier6/ProcessModel.lean:85:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+⚠ [18292/18327] Replayed ThresholdHC.EntropyTail.Bridge
+warning: ThresholdHC/EntropyTail/Bridge.lean:30:57: `Set.mem_setOf_eq` has been deprecated: Use `Set.mem_ofPred_eq` instead
+
+Hint: Replace the deprecated name:
+  S̵e̵t̵.̵m̵e̵m̵_̵s̵e̵t̵O̵f̵_̵e̵q̵S̲e̲t̲.̲m̲e̲m̲_̲o̲f̲P̲r̲e̲d̲_̲e̲q̲
+⚠ [18320/18327] Replayed ThresholdHC.BandCostExample.Optimal
+warning: ThresholdHC/BandCostExample/Optimal.lean: imports `Mathlib.Analysis.Complex.ExponentialBounds` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18321/18327] Ran ThresholdHC.BandCostExample.Optimal:irArts
+warning: ThresholdHC/BandCostExample/Optimal.lean: imports `Mathlib.Analysis.Complex.ExponentialBounds` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+Build completed successfully (18327 jobs).
+'ThresholdHC.BandCostExample.EqualCostStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.J' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.J_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.J_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.J_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.J_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.J_topTwo' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.J_topTwo_lt_cap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.OptimizerStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.SetupStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.SolverRunStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.TT' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.TT_le_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.UniqueHardMinimumStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.V' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.V_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.V_topTwo' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.V_topTwo_lt_cap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.X' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.X_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.X_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.X_pair' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.a_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.atomSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.atomSet_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.atoms' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.atoms_band_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.atoms_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.atoms_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.atoms_mem_band' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.atoms_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.atoms_sum_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.atoms_top_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.atoms_val' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.bandIndex_atoms' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.capped_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.card_two_tags' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.cc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.cc_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.cc_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.chosen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.chosen_topTwo' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.compress_image_key' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.core' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.costEntropy_mask' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.cost_atom' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.cost_empty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.costs_entropy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.costs_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.count_add_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.ent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.ent_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.ent_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.ent_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.ent_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.ent_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.equal_cost' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.extend_image_congr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.fractions_cast' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.gaps' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.gaps_cast' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.gaps_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.gaps_valid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.half_sum_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.hh' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.hh_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.inBand_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.kc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.kc_topTwo' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.labels' does not depend on any axioms
+'ThresholdHC.BandCostExample.labels_cover' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.labels_injective' does not depend on any axioms
+'ThresholdHC.BandCostExample.labels_valid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.law' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.law_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.law_probability' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.law_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.masses' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.masses_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.mem_atomSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.mem_extend_image' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.mem_key_image_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.mem_menus' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.menus_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.menus_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.menus_tags' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.objective_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.objective_topTwo' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.objective_topTwo_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.objective_topTwo_lt_cap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.occupiedBands_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.one_le_log_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.optimizer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.pair_sum_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.restrict_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.retained' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.retained_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.retained_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.retained_topTwo_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.saved' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.saved_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.saved_topTwo' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.selection_attained' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.selection_eq_topTwo' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.setup' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.slice_atomSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.solve_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.solve_card_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.solve_image_key' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.solver_run' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.solver_trace' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.sqrt_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.sqrt_ent_big' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.sqrt_ent_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.sqrt_ent_three' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.sqrt_part' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.suffixChoices_atomSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.suffixChoices_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.suffixChoices_singleton' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.support_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.tail_part' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.tail_term' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.three_lt_cc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.toFinset_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.topTwo' does not depend on any axioms
+'ThresholdHC.BandCostExample.transitions' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.tt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.tt_eq_of_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.tt_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.tt_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.two_tag_solve_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.two_tag_transitions' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.u_gt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.u_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.unique_hard_minimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.weights' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.weights_cast' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.weights_div' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.weights_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.weights_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.weights_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.zq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.zq_cast' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.zq_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.zsum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.zsum_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.BandCostExample.zsum_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+Verified 8 exact statements and 147 transitive axiom reports
+Replayed 8 modules through the independent kernel checker
+All 5 band-cost-example targets are certified
