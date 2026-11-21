@@ -218,6 +218,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_bernoulli_time_uniform.py' -v
           python -m unittest discover -s tools -p 'test_two_flip_dominance.py' -v
           python -m unittest discover -s tools -p 'test_finite_bayes_allocation.py' -v
+          python -m unittest discover -s tools -p 'test_poisson_comparison.py' -v
       - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper-constant (119, 45, 36, 27, 19, 17, 15) and square-root cap audits
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
@@ -957,6 +958,10 @@ jobs:
       # adaptive witness beats the fixed fresh and single-coin designs.
       - name: Verify the horizon-eight finite-prior Bayes allocation example and replay its modules
         run: python tools/verify_finite_bayes_allocation.py --replay --jobs 3
+      # Lemma lem:comparison, Poisson case: an arbitrary estimator yields an additive
+      # one within the constant 6 (and the source's 12) in RMS.
+      - name: Verify the Poisson affine comparison lemma and replay its modules
+        run: python tools/verify_poisson_comparison.py --replay --jobs 3
       - name: Verify prior families for the law-dependent time-uniform lower bound
         run: |
           python tools/verify_anytime_lower.py

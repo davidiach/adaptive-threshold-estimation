@@ -88,6 +88,7 @@ class LeanRoutingTests(unittest.TestCase):
             "tools/verify_bernoulli_time_uniform.py": {"entropy-tail-upper"},
             "tools/verify_two_flip_dominance.py": {"entropy-tail-upper"},
             "tools/verify_finite_bayes_allocation.py": {"entropy-tail-upper"},
+            "tools/verify_poisson_comparison.py": {"entropy-tail-upper"},
             "tools/verify_entropy_tail_assembly.py": {"entropy-tail-upper"},
             "tools/verify_entropy_tail_forms.py": {"entropy-tail-upper"},
             "tools/verify_noninterval_selection.py": {"entropy-tail-upper"},
