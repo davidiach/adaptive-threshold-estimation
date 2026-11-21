@@ -10,7 +10,7 @@ can differ from the current files after a later proof-only change: the
 eight Lean files that were refactored afterwards without changing a
 statement. For the current tree the evidence is the CI run on that commit.
 
-The folder holds 118 dated record directories, named for a result and a
+The folder holds 119 dated record directories, named for a result and a
 date, and the loose JSON and log files of the first phases of the project.
 The table below indexes the records that the guides cite. Later sections
 describe the remaining records in prose: the time-uniform bounds, cost
@@ -22,6 +22,7 @@ is the current evidence for that result.
 
 | Claim or check | Published record |
 |---|---|
+| Corollaries `cor:one-gap` and `cor:mse` (both displays) of the finite-gap manuscript: the one-gap rate with the entropy–tail constants $10^{-17}$ and $28000$, and the mean-square forms with $c_0^2=10^{-40}$ and $2C_0^2=2\cdot30001^2$: library statement, axiom and kernel-replay audits | [finite-gap-corollaries-20261121](finite-gap-corollaries-20261121/README.md) |
 | Proposition `prop:bounded`, first sentence: no almost surely nonnegative unbiased output when $\mu((0,1/2))>0$: library statement, axiom and kernel-replay audits | [nonnegative-unbiased-20261121](nonnegative-unbiased-20261121/README.md) |
 | Explicit constants that frozen statements leave existential or prove only per algorithm: the hidden-model confidence coefficient $15/(256\sqrt2)$, the rare-event lower coefficient $1/256$ and the single-coin second moment $28\rho$: library statement, axiom and kernel-replay audits | [explicit-constants-20261121](explicit-constants-20261121/README.md) |
 | Pilot-feedback separations at gap $1/5$ with budget $25$ (precommitted follow-ups at least $0.18735887$, one scheduled update at least $0.186960371$, both above the adaptive witness), promoted from two research packages: library statement, axiom and kernel-replay audits | [pilot-feedback-20261120](pilot-feedback-20261120/README.md) |

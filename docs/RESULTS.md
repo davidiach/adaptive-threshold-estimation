@@ -1083,6 +1083,15 @@ covers both new modules and both declaration roots. The new corollary target
 was introduced alongside its proof; it is not described as independently
 frozen before the proof. The original experiment and quantile definitions
 remain unchanged.
+The manuscript's two corollaries in §6 are Lean-checked since 21 November 2026
+([record](../results/finite-gap-corollaries-20261121/README.md)). The
+mean-square form `cor:mse` squares the finite-law bounds:
+$c_0^2\min\{\rho^2,T_h^2+\rho\Gamma_\kappa/B\}\le R^2\le2C_0^2\min\{\rho^2,T_h^2+\rho\Gamma_\kappa/B\}$,
+and once $B\ge d^{-2}$ at every atom, $T_h=hJ_\nu$ with
+$J_\nu=\int d^{-1}\,\nu(dd)$. The one-gap form `cor:one-gap` is checked with
+the entropy–tail constants $10^{-17}$ and $28000$ rather than through
+Theorem 1.1. The manuscript and its guide still call them paper proofs; they
+are preserved as published.
 The precursor received fresh-context AI review; the
 [provenance note](../paper/finite-gap-rare-events/PROVENANCE.md) records its
 limits. The standalone finite-law manuscript does not establish an unknown-law guarantee, a

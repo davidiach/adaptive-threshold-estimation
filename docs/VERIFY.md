@@ -912,12 +912,20 @@ sentence, with the support comparison, the empty tail after stopping and tape
 recovery. Its 11-test guard suite is `test_nonnegative_unbiased.py`.
 [Record](../results/nonnegative-unbiased-20261121/README.md).
 
+Run `python tools/verify_finite_gap_corollaries.py --replay` for 6 exact
+statements and 15 transitive axiom reports over the three modules of
+`lean/ThresholdHC/FiniteGapCorollaries`: Corollary `cor:one-gap` of the
+finite-gap manuscript, with the entropy–tail constants $10^{-17}$ and $28000$,
+and both displays of Corollary `cor:mse`, with $c_0=10^{-20}$ and $C_0=30001$.
+Its 11-test guard suite is `test_finite_gap_corollaries.py`.
+[Record](../results/finite-gap-corollaries-20261121/README.md).
+
 Each audit pins its new specification, restates the checked targets and
 reports every new declaration's transitive axioms. Their six-test guard
 suites are `test_psi_sharpness.py` and `test_power_window.py`; CI runs both
 suites and both audits, and also the critical-window, paper-corollary,
-paper-statement, pilot-feedback, explicit-constant and nonnegativity suites and
-audits. Existing published records retain their original scope.
+paper-statement, pilot-feedback, explicit-constant, nonnegativity and
+finite-gap corollary suites and audits. Existing published records retain their original scope.
 
 ## Sharp RMS coefficient and square-root cap
 
