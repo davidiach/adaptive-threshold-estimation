@@ -200,8 +200,12 @@ needed in the final theorem; finite positive-gap input measures suffice.
 Run `python tools/verify_arbitrary_law_light.py` for 26 additional exact
 statements and transitive axiom reports. The proof uses a fixed two-cell
 reference code to obtain the post-division entropy bound 1024 directly.
-The paper's intermediate sharper `C_V < 256` calculation in (A4) is not
-asserted as a separately formalized result.
+The paper's intermediate sharper `C_V < 256` calculation in (A4) is not part
+of this proof. Its constants (the band masses, the first summand below 192,
+`C_V < 256` and the inverse moments) are checked separately in
+`lean/ThresholdHC/LightContractionConstant`
+([record](../results/light-contraction-constant-20261121/README.md); `python tools/verify_light_contraction_constant.py --replay`);
+the entropy inequality of (A4) itself is not.
 The [native light-contraction record](../results/arbitrary-law-light-20261106/README.md)
 binds both audits to the proof checkpoint and complete project closure.
 

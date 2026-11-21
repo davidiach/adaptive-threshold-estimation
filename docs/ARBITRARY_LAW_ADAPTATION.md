@@ -134,8 +134,11 @@ at most 32 times the old tail cost. This proves (A3).
 The formal proof uses an alternative fixed reference code, with weights
 $7/16$ for each of the two first-band cells and $2^{-(n+4)}$ for each
 cell in multiplier band $n=k-2\ge1$. It proves the post-division entropy bound
-$1024\Gamma$ and tail coefficient 32 directly. The sharper intermediate
-calculation $C_V<256$ in (A4) remains the paper calculation above.
+$1024\Gamma$ and tail coefficient 32 directly. The constants of the
+sharper intermediate calculation are [Lean-checked](../results/light-contraction-constant-20261121/README.md)
+separately: the band masses, the first summand below 192, $C_V<256$ (in fact
+$C_V\le1024/5$) and the two inverse moments. The entropy inequality of (A4)
+remains the paper calculation above.
 
 **Dominated mass.** This comparison is [Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#dominated-mass). If $\lambda$ is a probability measure satisfying
 $\lambda\le c\eta+e\delta_0$, with $c\ge1$ and $e\ge0$, then

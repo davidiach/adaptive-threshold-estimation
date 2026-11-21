@@ -192,6 +192,14 @@ entropy factor `1024` and tail factor `32`, hence the factor-32 selection
 comparison. No proof of the sharper intermediate series is needed by that
 completed formal result, and none is claimed here.
 
+*Update, 21 November 2026.* The constants of this item are now Lean-checked
+separately: $p_2=1-2e^{-32}$, $p_k\le2e^{-4^k/2}$ for $k\ge3$, a first
+summand below $192$, $C_V<256$ (in fact $C_V\le1024/5$), $\mathbb
+EV^{-2}\le C_V$, $\mathbb EV^{-2}\le256$ and $\mathbb EV^{-1}\le16$, for
+every law with that distribution function
+([record](../results/light-contraction-constant-20261121/README.md)). The entropy inequality
+$\Gamma_{\mathcal L(VD)}\le C_V\Gamma_\mu$ of (A4) stays paper-only.
+
 ### 9. Cross-check of the rest of the current inventory
 
 The [33-entry status source](../paper/v6/status.json) remains unchanged:

@@ -1067,7 +1067,7 @@ paper-statement, pilot-feedback, explicit-constant, nonnegativity,
 finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
 split, critical common-pair, bias-subtraction, global-cut, psi-null,
 confidence-transfer-steps, observed-hoeffding, nested-assumptions,
-entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
+light-contraction-constant, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
 suites and audits, the
 `lean-kernel` job also the restricted-class, sharp-strictness,
 oracle-sharpness, oracle-upper, clipped-output and revisit-upper suites and
@@ -1403,6 +1403,13 @@ two-band product geometry and the factor-1024 entropy bound for actual product
 measure cells. Run `python tools/verify_arbitrary_law_light.py` for 26 more
 exact statements and transitive reports: residual tails, the constructed
 multiplier's exact CDF, and the full capped selection comparison with factor 32.
+Run `python tools/verify_light_contraction_constant.py --replay` for 9 exact
+statements and 42 transitive axiom reports over the five modules of
+`lean/ThresholdHC/LightContractionConstant`: the band masses, the first
+summand, $C_V<256$ and the inverse moments of display (UA4); CI runs it in
+the `entropy-tail-upper` job with its 11-test guard suite
+`test_light_contraction_constant.py`.
+[Record](../results/light-contraction-constant-20261121/README.md).
 The final result imposes no inverse-moment or entropy condition on the input law.
 Run `python tools/verify_arbitrary_law_tail_test.py` for 91 exact statements
 and transitive reports on the sign-neutral single-coin tail test: its work cap,

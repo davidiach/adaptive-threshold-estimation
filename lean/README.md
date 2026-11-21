@@ -5,7 +5,7 @@ Use this map to find a formal statement, its proof, and the audit that checks it
 [verification setup](../docs/VERIFY.md#setup) covers Python, Lean, and Mathlib.
 Commands below run from the repository root.
 
-`ThresholdHC/` holds 1,552 Lean files: 117 top-level directories and seven root
+`ThresholdHC/` holds 1,557 Lean files: 118 top-level directories and seven root
 files beside them. Most results have a
 directory with a `Specification.lean`, which states the targets, and a
 `Full.lean`, which proves them. `ThresholdHC.lean` is the frozen root of the
@@ -216,6 +216,7 @@ The $31/20$ row and the sharp-factor rows above have since improved it.
 |---|---|---|
 | Envelope minimax rates and unbiased variance and work for unknown laws ordered by their gap CDFs | [Minimax](ThresholdHC/Envelope/Minimax.lean), [Unbiased](ThresholdHC/Envelope/Unbiased.lean), [record](../results/stochastic-envelope-20261105/README.md) | `python tools/verify_stochastic_envelope.py` |
 | Adaptation over a supplied finite family of gap laws | [LawAdaptation/Full](ThresholdHC/LawAdaptation/Full.lean), [note](../docs/FINITE_FAMILY_ADAPTATION.md) | `python tools/verify_law_adaptation.py`, `python tools/verify_law_adaptation_realization.py` |
+| The constant of the light random contraction in display (UA4): $p_2=1-2e^{-32}$, $p_k\le2e^{-4^k/2}$ for $k\ge3$, a first summand below $192$, $C_V<256$ (and $C_V\le1024/5$), $\mathbb EV^{-2}\le C_V$, $\mathbb EV^{-2}\le256$ and $\mathbb EV^{-1}\le16$, for every law with the multiplier's distribution function; the entropy inequality of (UA4) is not stated | [Specification](ThresholdHC/LightContractionConstant/Specification.lean), [Masses](ThresholdHC/LightContractionConstant/Masses.lean), [Series](ThresholdHC/LightContractionConstant/Series.lean), [Moments](ThresholdHC/LightContractionConstant/Moments.lean), [Full](ThresholdHC/LightContractionConstant/Full.lean), [record](../results/light-contraction-constant-20261121/README.md) | `python tools/verify_light_contraction_constant.py --replay` |
 | Components of the arbitrary-law proof: entropy transport, the conservative envelope, the pilot and the tail certificate | [ArbitraryLawAdaptation](ThresholdHC/ArbitraryLawAdaptation/), [component inventory](../docs/ARBITRARY_LAW_FORMALIZATION.md) | The 20 `tools/verify_arbitrary_law_*.py` component audits |
 | The known-law plan and its rate: a valid plan certificate, the planner's minimax rate with risk at most $44801\,\mathcal K$, and the named estimator | [KnownLawPlanner](ThresholdHC/KnownLawPlanner/) | The 5 `tools/verify_known_law_*.py` audits |
 | The plan under a true law dominated by the reference, the coupling from CDF domination, clipping and pilot independence, and paid-median coverage | [RobustContinuation](ThresholdHC/RobustContinuation/) | The 5 `tools/verify_robust_*.py` audits, `python tools/verify_clipping_pilot_independence.py`, `python tools/verify_paid_median.py` |

@@ -10,7 +10,7 @@ can differ from the current files after a later proof-only change: the
 eight Lean files that were refactored afterwards without changing a
 statement. For the current tree the evidence is the CI run on that commit.
 
-The folder holds 141 dated record directories, named for a result and a
+The folder holds 142 dated record directories, named for a result and a
 date, and the loose JSON and log files of the first phases of the project.
 The table below indexes the records that the guides cite. Later sections
 describe the remaining records in prose: the time-uniform bounds, cost
@@ -270,6 +270,9 @@ The [concrete light-contraction audit](arbitrary-law-light-20261106/README.md)
 adds 62 exact statements and transitive reports. It constructs the multiplier
 from a uniform variable, proves its exact CDF, derives product-law entropy
 and residual-tail bounds, and proves the full factor-32 selection comparison.
+The [light-contraction constant audit](light-contraction-constant-20261121/README.md)
+of 21 November 2026 adds the paper's intermediate constants: the band masses,
+the first summand below $192$, $C_V<256$ and the two inverse moments.
 
 The [sign-neutral tail-test audit](arbitrary-law-tail-test-20261110/README.md)
 adds 91 exact statements and transitive reports for the single-coin test of
