@@ -382,7 +382,7 @@ read.
 | No computability constraint; output defined when $T=\infty$ | wider | Strengthens the lower bounds; irrelevant under a finite budget. |
 | $\theta=P_G(P>1/2)$ for general $G$ | partial | Lean works with $(\mu,q)$; the general $G$ form is a paper step. |
 | Theorem 2.2's $\sup_q E Y^2\le23\,I_\mu$ | narrower | The locked [`Observable713Statement`][Observable713] states extended variance at most $23\,I_\mu$. The second-moment bound is proved only inside [`output_variance_le`][output_variance_le], not as a stated theorem. Since 20 November 2026 the later target `observable_second_moment` states it ([record](../results/paper-statements-20261120/README.md)). |
-| Theorem 2.1's hidden-model confidence coefficient $15/(256\sqrt2)$ | narrower | Rests on the per-algorithm [`hidden_confidence_lower`][hidden_conf], which is axiom-audited but not an exact-type target. The minimax step is one `le_sInf`. The frozen confidence characterization carries $1/64$. |
+| Theorem 2.1's hidden-model confidence coefficient $15/(256\sqrt2)$ | narrower | Rests on the per-algorithm [`hidden_confidence_lower`][hidden_conf], which is axiom-audited but not an exact-type target. The minimax step is one `le_sInf`. The frozen confidence characterization carries $1/64$. Since 21 November 2026 the later targets `hidden_confidence` and `hidden_confidence_minimax` state the coefficient for each algorithm and for the minimax radius ([record](../results/explicit-constants-20261121/README.md)). |
 | Hard-cap fallback (Theorem R.1) | wider | Lean needs the base-rule premise only at the $(\mu,q)$ where it concludes, and allows any $M\ge0$. |
 | Hard-cap critical rate | wider | Lean covers every $B>0$; Theorem 11.2 states $B\ge1$. |
 | Explicit upper coefficients | see §10 | 512, 28000, 30001 and others are in companion theorems, not in the locked types. |
@@ -462,7 +462,9 @@ read.
   $512/(1-\alpha)$ and $8192/(1-\alpha)$ in inline audit statements for the
   row below one. The above-two coefficient $1/256$ appears only as the
   witness inside the proof of `rare_supported_lower`; no stated type carries
-  it. The 512 companions use only locked Tier 6 definitions.
+  it (since 21 November 2026 the later targets `rare_lower_256` and
+  `rare_single_coin_28` state $1/256$ and the second moment $28\rho$;
+  [record](../results/explicit-constants-20261121/README.md)). The 512 companions use only locked Tier 6 definitions.
 - **Instances.** Inline audit statements are elaborated after the proof
   modules are imported, so an imported instance could change how their type
   classes resolve. At `43d9fba` the tree has 137 `instance` declarations and two global

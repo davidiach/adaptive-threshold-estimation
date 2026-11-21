@@ -897,11 +897,27 @@ form, and their separations from the adaptive witness. The replay re-evaluates
 the integer certificates (about six minutes). Its 11-test guard suite is
 `test_pilot_feedback.py`. [Record](../results/pilot-feedback-20261120/README.md).
 
+Run `python tools/verify_explicit_constants.py --replay` for 5 exact statements
+and 10 transitive axiom reports over the two modules of
+`lean/ThresholdHC/ExplicitConstants`: the hidden-model confidence coefficient
+$15/(256\sqrt2)$ for each algorithm and the minimax radius, the rare-event
+lower coefficient $1/256$ and the single-coin second moment $28\rho$, which the
+frozen statements leave existential or state only per algorithm. Its 11-test
+guard suite is `test_explicit_constants.py`. [Record](../results/explicit-constants-20261121/README.md).
+
+Run `python tools/verify_nonnegative_unbiased.py --replay` for 4 exact
+statements and 14 transitive axiom reports over the three modules of
+`lean/ThresholdHC/NonnegativeUnbiased`: Proposition `prop:bounded`, first
+sentence, with the support comparison, the empty tail after stopping and tape
+recovery. Its 11-test guard suite is `test_nonnegative_unbiased.py`.
+[Record](../results/nonnegative-unbiased-20261121/README.md).
+
 Each audit pins its new specification, restates the checked targets and
 reports every new declaration's transitive axioms. Their six-test guard
 suites are `test_psi_sharpness.py` and `test_power_window.py`; CI runs both
 suites and both audits, and also the critical-window, paper-corollary,
-paper-statement and pilot-feedback suites and audits. Existing published records retain their original scope.
+paper-statement, pilot-feedback, explicit-constant and nonnegativity suites and
+audits. Existing published records retain their original scope.
 
 ## Sharp RMS coefficient and square-root cap
 
