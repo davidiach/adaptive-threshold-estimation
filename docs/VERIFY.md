@@ -319,6 +319,13 @@ adaptation. CI runs it in the `entropy-tail-upper` job. Its 11-test guard
 suite is `test_early_pilot.py`.
 [Record](../results/early-pilot-20261121/README.md).
 
+Run `python tools/verify_bernoulli_time_uniform.py --replay` for 5 exact
+statements and 44 transitive axiom reports over the six modules of
+`lean/ThresholdHC/BernoulliTimeUniform`: the Bernoulli-subfamily time-uniform
+lower bound of the unknown-law note. CI runs it in the `entropy-tail-upper`
+job. Its 11-test guard suite is `test_bernoulli_time_uniform.py`.
+[Record](../results/bernoulli-time-uniform-20261121/README.md).
+
 The upper half imports the observable upper-bound development of
 [#33](https://github.com/davidiach/adaptive-threshold-estimation/pull/33), about
 240 modules, so this audit takes much longer than the other theorem audits. CI
@@ -1136,7 +1143,7 @@ finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
 split, critical common-pair, bias-subtraction, global-cut, psi-null,
 confidence-transfer-steps, observed-hoeffding, nested-assumptions,
 light-contraction-constant, band-cost-example, repeated-check,
-reservoir-termination, quantile-factor-upper, creation-charge, stage-pilot-law, bias-audit, unknown-rarity, hard-cap-necessity, pilot-correction, depth-obstruction, localization-counter, affine-comparison, two-flip-feedback, unknown-law-confidence, upper-twelve-numerics, radial-upper, time-uniform-two-sided, depth-legendre, latent-disintegration, known-gap-rarity, margin-classes, power-quantile-rows, weighted-sign-sharp, full-null-bank, robust-continuation-forms, finite-quantile-formula, early-pilot, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
+reservoir-termination, quantile-factor-upper, creation-charge, stage-pilot-law, bias-audit, unknown-rarity, hard-cap-necessity, pilot-correction, depth-obstruction, localization-counter, affine-comparison, two-flip-feedback, unknown-law-confidence, upper-twelve-numerics, radial-upper, time-uniform-two-sided, depth-legendre, latent-disintegration, known-gap-rarity, margin-classes, power-quantile-rows, weighted-sign-sharp, full-null-bank, robust-continuation-forms, finite-quantile-formula, early-pilot, bernoulli-time-uniform, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
 suites and audits, the
 `lean-kernel` job also the restricted-class, sharp-strictness,
 oracle-sharpness, oracle-upper, clipped-output and revisit-upper suites and

@@ -35,7 +35,7 @@ observable simulation, with the supplied `u >= theta` and the unconditional
 `u = 1` case, coverage at every integer budget on one measurable event of
 probability at least `1 - delta`, the stage bound at every completed stage and
 the width limit ([record](../results/unknown-law-confidence-20261121/README.md)). The Bernoulli-subfamily coefficient
-below stays paper-only.
+below is checked separately; see the update after it.
 
 The later [arbitrary_law_controller](../lean/ThresholdHC/ArbitraryLawController/Full.lean)
 is checked for `0 < rho <= 1/4` and `0 < delta <= 1/4`, with its own paid
@@ -55,6 +55,14 @@ large `n`, under its measurable observable interval and joint-event hypotheses,
 with `0 < delta <= 1/4`; it requires no monotonicity of `t`.
 Its stronger law dependence does not supply the historical numerical coefficient.
 [Lower-bound evidence](../results/anytime-asymptotic-20261105/README.md).
+
+*Update, 21 November 2026.* The coefficient is now Lean-checked
+([`bernoulli_time_uniform_lower`](../lean/ThresholdHC/BernoulliTimeUniform/Full.lean),
+[record](../results/bernoulli-time-uniform-20261121/README.md)): `sqrt(3(1-delta)rho/64) sqrt(log(log n)/n) <= t(n)`
+for arbitrarily large `n`, for every gap law, `0 < rho <= 1/4` and
+`0 < delta < 1`, under the joint-event hypothesis above and without
+monotonicity of `t`. The Lean proof bounds the observable KL of constant sign
+laws directly and does not use the cited proposition.
 
 ### 2. Unknown rarity
 
