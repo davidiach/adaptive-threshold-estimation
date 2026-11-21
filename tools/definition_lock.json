@@ -2331,6 +2331,37 @@
     "ThresholdHC.QuantileSharpLaw.fullCoreCost": "14898146397093870501:295128791185074883",
     "ThresholdHC.QuantileSharpLaw.outwardCosts": "937761120456001756:17297561183773832899",
     "ThresholdHC.QuantileSharpLaw.outwardCosts.match_1": "274104682538120160:6137722000379390502",
+    "ThresholdHC.RadialUpper.RadialCalibrated": "13819270181853274244:4633412365329239976",
+    "ThresholdHC.RadialUpper.RadialCallStatement": "4762494857145497995:1537708163776300220",
+    "ThresholdHC.RadialUpper.RadialCutoffStatement": "4762494857145497995:12608972868614036966",
+    "ThresholdHC.RadialUpper.RadialIndex": "15820348137893566557:15469023802031256697",
+    "ThresholdHC.RadialUpper.RadialMinimaxUpperStatement": "4762494857145497995:15328680921481267223",
+    "ThresholdHC.RadialUpper.RadialUpperStatement": "4762494857145497995:16430238084080467615",
+    "ThresholdHC.RadialUpper.downCost": "10394737814777886938:12450122709551457731",
+    "ThresholdHC.RadialUpper.downHit": "10394737814777886938:9621179430026783030",
+    "ThresholdHC.RadialUpper.hitValue": "17736451841058554635:7884303020112768656",
+    "ThresholdHC.RadialUpper.radialCap": "5576080891825940683:13193384108303208898",
+    "ThresholdHC.RadialUpper.radialLogFactor": "18133891100220672328:8034045958745705382",
+    "ThresholdHC.RadialUpper.radialMinimaxRisk": "5869733465726718051:2015210171021431673",
+    "ThresholdHC.RadialUpper.radialMiss": "18133891100220672328:17873048535237834793",
+    "ThresholdHC.RadialUpper.radialScale": "4492441409891286651:2666047472264845003",
+    "ThresholdHC.RadialUpper.radialSign": "5729666349052454240:14056503845317801111",
+    "ThresholdHC.RadialUpper.radialSlope": "18133891100220672328:2637646384107790922",
+    "ThresholdHC.RadialUpper.radialTop": "5576080891825940683:17056269304282720637",
+    "ThresholdHC.RadialUpper.radialWeight": "14599578583427873890:3275483488976109315",
+    "ThresholdHC.RadialUpper.upCost": "10394737814777886938:17996619273644065851",
+    "ThresholdHC.RadialUpper.upHit": "10394737814777886938:14773290891679618941",
+    "ThresholdHC.RadialUpper.walkCall": "8310906636005474308:2036687207936740730",
+    "ThresholdHC.RadialUpper.walkGeom": "4328516925777286019:5385517572712478676",
+    "ThresholdHC.RadialUpper.walkHit": "18106699104632012756:8776746068953511185",
+    "ThresholdHC.RadialUpper.walkRatio": "18133891100220672328:12259351659556543791",
+    "ThresholdHC.RadialUpper.walkRun": "11706072847764099884:6784092893345171608",
+    "ThresholdHC.RadialUpper.walkRun._f": "6310601357466502929:6763074864510372398",
+    "ThresholdHC.RadialUpper.walkRun._sunfold": "11706072847764099884:6868491270520974987",
+    "ThresholdHC.RadialUpper.walkRun._unsafe_rec": "11706072847764099884:13599648892461406233",
+    "ThresholdHC.RadialUpper.walkRun.match_1": "1498455459610383803:10122538945751404825",
+    "ThresholdHC.RadialUpper.walkStep": "1613028837870634899:6973364181929066236",
+    "ThresholdHC.RadialUpper.walkSum": "2548063661651977066:7285682042998987858",
     "ThresholdHC.RareAboveTwo.AboveTwoMinimaxStatement": "4762494857145497995:1898782716588440850",
     "ThresholdHC.RareAboveTwo.AboveTwoPsiStatement": "4762494857145497995:17938457595353886049",
     "ThresholdHC.RareAboveTwo.AboveTwoUpperStatement": "4762494857145497995:915660349007848017",
@@ -3966,6 +3997,10 @@
     {
       "at": "2026-11-21T12:46:15+00:00",
       "count": 9
+    },
+    {
+      "at": "2026-11-21T13:06:39+00:00",
+      "count": 31
     }
   ]
 }
