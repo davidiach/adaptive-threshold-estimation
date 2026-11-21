@@ -990,6 +990,15 @@
     "ThresholdHC.CriticalWindow.WindowRatioStatement": "4762494857145497995:4947166526229539416",
     "ThresholdHC.CriticalWindow.WindowRiskStatement": "4762494857145497995:3235242963935070583",
     "ThresholdHC.CriticalWindow.windowRate": "15937309165252210062:8920349101455624138",
+    "ThresholdHC.DepthLegendre.DepthCapFloorStatement": "4762494857145497995:1925283630944903078",
+    "ThresholdHC.DepthLegendre.DepthPairStatement": "4762494857145497995:2362027995222083167",
+    "ThresholdHC.DepthLegendre.DepthPolynomialStatement": "4762494857145497995:12789200382615985241",
+    "ThresholdHC.DepthLegendre.depthEnergy": "15687204093786460919:3172074966359384883",
+    "ThresholdHC.DepthLegendre.depthMoment": "15266474460176836143:640128291391120585",
+    "ThresholdHC.DepthLegendre.depthPolynomial": "17676381308220779276:16756197758266906251",
+    "ThresholdHC.DepthLegendre.depthSign": "15768674776153537579:5902332136140283499",
+    "ThresholdHC.DepthLegendre.depthSlope": "15266474460176836143:3297073802042904609",
+    "ThresholdHC.DepthLegendre.legendre": "17676381308220779276:4890130804586976053",
     "ThresholdHC.DepthObstruction.CappedTranscriptStatement": "4762494857145497995:3483573466671944071",
     "ThresholdHC.DepthObstruction.EqualLawFloorStatement": "4762494857145497995:10203277342318794811",
     "ThresholdHC.DepthObstruction.HistoryCapBridgeStatement": "4762494857145497995:2641407139339172323",
@@ -4010,6 +4019,10 @@
     {
       "at": "2026-11-21T16:04:47+00:00",
       "count": 5
+    },
+    {
+      "at": "2026-11-21T16:21:53+00:00",
+      "count": 9
     }
   ]
 }

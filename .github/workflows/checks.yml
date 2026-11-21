@@ -204,6 +204,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_upper_twelve_numerics.py' -v
           python -m unittest discover -s tools -p 'test_radial_upper.py' -v
           python -m unittest discover -s tools -p 'test_time_uniform_two_sided.py' -v
+          python -m unittest discover -s tools -p 'test_depth_legendre.py' -v
       - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper-constant (119, 45, 36, 27, 19, 17, 15) and square-root cap audits
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
@@ -891,6 +892,10 @@ jobs:
       # experiment, composed with the law-dependent lower bound (TU1).
       - name: Verify the two-sided time-uniform order in one model and replay its modules
         run: python tools/verify_time_uniform_two_sided.py --replay --jobs 3
+      # Lemma lem:poly and Theorem thm:cap of the nonlinear-population upper note: the
+      # explicit pair, its separation and the per-coin-cap floor.
+      - name: Verify the explicit odd-Legendre pair of the bounded-depth obstruction and replay its modules
+        run: python tools/verify_depth_legendre.py --replay --jobs 3
       - name: Verify prior families for the law-dependent time-uniform lower bound
         run: |
           python tools/verify_anytime_lower.py

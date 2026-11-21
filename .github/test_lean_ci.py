@@ -75,6 +75,7 @@ class LeanRoutingTests(unittest.TestCase):
             "tools/verify_upper_twelve_numerics.py": {"entropy-tail-upper"},
             "tools/verify_radial_upper.py": {"entropy-tail-upper"},
             "tools/verify_time_uniform_two_sided.py": {"entropy-tail-upper"},
+            "tools/verify_depth_legendre.py": {"entropy-tail-upper"},
             "tools/verify_entropy_tail_assembly.py": {"entropy-tail-upper"},
             "tools/verify_entropy_tail_forms.py": {"entropy-tail-upper"},
             "tools/verify_noninterval_selection.py": {"entropy-tail-upper"},
