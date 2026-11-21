@@ -10,7 +10,7 @@ can differ from the current files after a later proof-only change: the
 eight Lean files that were refactored afterwards without changing a
 statement. For the current tree the evidence is the CI run on that commit.
 
-The folder holds 147 dated record directories, named for a result and a
+The folder holds 148 dated record directories, named for a result and a
 date, and the loose JSON and log files of the first phases of the project.
 The table below indexes the records that the guides cite. Later sections
 describe the remaining records in prose: the time-uniform bounds, cost
@@ -50,6 +50,7 @@ is the current evidence for that result.
 | Typeset release v6 manuscript with the review corrections of 19 November (§14.8, Appendix AB; no change of content): build logs, page comparison and its script, toolchain check | [release-publication-20261119](release-publication-20261119/README.md) |
 | Typeset v6 manuscript with the RMS upper constant $12$ (Theorem AB.1, Appendix AB rewritten): build logs, page comparison and toolchain check | [upper-constant-12-publication-20261119](upper-constant-12-publication-20261119/README.md) |
 | Typeset v6 manuscript with the RMS upper constant $15$ (Theorem AB.1, Appendix AB): build logs, page comparison and toolchain check | [upper-constant-publication-20261119](upper-constant-publication-20261119/README.md) |
+| Pilot events (A8) and (A11) of the paid learning stage under the law of the whole stage, with (A11) on the same event: library statement, axiom and kernel-replay audits | [stage-pilot-law-20261121](stage-pilot-law-20261121/README.md) |
 | A fee per created coin changes the cost by at most the factor $1+c$, for every adaptive estimator, with the charged minimax sandwich and rate: library statement, axiom and kernel-replay audits | [creation-charge-20261121](creation-charge-20261121/README.md) |
 | Clipping the output to $[0,1]$ can only help: budget kept, RMS risk not raised, the same minimax risk over $[0,1]$-valued estimators, and a $[0,1]$-valued family with constant $12$: library statement, axiom and kernel-replay audits | [clipped-output-20261121](clipped-output-20261121/README.md) |
 | RMS upper constant $12$, from the padded call cost $26/5$ and one budget level calibrated at the scale $B/4$ in place of the mixture below: library statement, axiom and kernel-replay audits | [upper-scale-20261119](upper-scale-20261119/README.md) |

@@ -1753,7 +1753,12 @@ gap law.
 The learned law's oracle comparison (A11) is checked: for $\rho\le1/4$ and
 past a finite onset that depends on the gap law and $\rho$ only, on that
 event the selection functional of the learned law is at most $2^{24}$ times
-the oracle's. For a law $\alpha$ on $[0,1/2]$ with mass at zero, the quantile
+the oracle's. Both events are stated on the coin array of the original
+simulation law; since 21 November 2026 they are also stated under the law of
+the original hidden-gap experiment of the whole learning stage, with (A11)
+on the full event (A8)
+([`stage_pilot_event`, `stage_pilot_oracle_eventually`](../lean/ThresholdHC/StagePilotLaw/Full.lean),
+[record](../results/stage-pilot-law-20261121/README.md)). For a law $\alpha$ on $[0,1/2]$ with mass at zero, the quantile
 design satisfies $K_\alpha\le Q_\alpha\le4K_\alpha$, (A16). The squared-error
 certificate of a known-law plan is checked for every admissible plan, with
 the level price of the checked upper theorem and not the toolkit's smaller

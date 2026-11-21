@@ -1076,7 +1076,7 @@ finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
 split, critical common-pair, bias-subtraction, global-cut, psi-null,
 confidence-transfer-steps, observed-hoeffding, nested-assumptions,
 light-contraction-constant, band-cost-example, repeated-check,
-reservoir-termination, quantile-factor-upper, creation-charge, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
+reservoir-termination, quantile-factor-upper, creation-charge, stage-pilot-law, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
 suites and audits, the
 `lean-kernel` job also the restricted-class, sharp-strictness,
 oracle-sharpness, oracle-upper, clipped-output and revisit-upper suites and
@@ -1241,6 +1241,14 @@ between the minimax risks at budgets $B$ and $B/(1+c)$. CI runs it in the
 `entropy-tail-upper` job. Its 11-test guard suite is
 `test_creation_charge.py`.
 [Record](../results/creation-charge-20261121/README.md).
+
+Run `python tools/verify_stage_pilot_law.py --replay` for 6 exact statements
+and 11 transitive axiom reports over the four modules of
+`lean/ThresholdHC/StagePilotLaw`: the pilot events (A8) and (A11) of the paid
+learning stage under the law of the original experiment of the whole stage.
+CI runs it in the `entropy-tail-upper` job. Its 11-test guard suite is
+`test_stage_pilot_law.py`.
+[Record](../results/stage-pilot-law-20261121/README.md).
 
 ## Whole-project build, axioms and kernel replay
 

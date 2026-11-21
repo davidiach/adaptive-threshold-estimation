@@ -286,7 +286,10 @@ are proof witnesses; the learner never samples or computes them.
 maximum. (A11) is checked for certificates that satisfy the upper half of
 (A8), with a finite onset that depends on $\mu$ and $\rho$ only, and on the
 pilot event for the learned law of the paid learning stage, on the coin array
-of the original simulation law.
+of the original simulation law. Since 21 November 2026 (A8) and (A11) on the
+same event are also checked under the law of the original hidden-gap
+experiment of the whole learning stage
+([record](../results/stage-pilot-law-20261121/README.md)).
 
 ## 4. Robust use of the known-law estimator
 

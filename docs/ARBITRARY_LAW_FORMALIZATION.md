@@ -570,7 +570,12 @@ on every admissible path.
 The reader buys every block in full, so the pilot is charged its cap. The
 paper's remark that the coin cap lets easy-law pilots stop early is not
 formalized. (A8) is stated under the law of the original experiment for the
-pilot alone, and on the coin array for the stage.
+pilot alone, and on the coin array for the stage. Since 21 November 2026 it
+is also stated for the stage under the law of the original hidden-gap
+experiment of the whole stage, for the certificates read off the paid
+chronological prefix of the observed history
+([`stage_pilot_event`](../lean/ThresholdHC/StagePilotLaw/Full.lean),
+[record](../results/stage-pilot-law-20261121/README.md)).
 
 Run `python tools/verify_arbitrary_law_pilot.py` for 66 exact statements and
 66 transitive axiom reports, one for each declaration of the two modules. The
@@ -680,8 +685,13 @@ registered. The
 [learned-oracle record](../results/arbitrary-law-learned-oracle-20261111/README.md)
 identifies the proof checkpoint and source hashes.
 
-The event is stated on the coin array, as (A8) is, not under the law of the
-experiment of the whole stage.
+The event is stated on the coin array, as (A8) is. Since 21 November 2026 the
+same comparison is also stated under the law of the experiment of the whole
+stage, on the full event (A8) with both halves and the domination, at a fixed
+depth under the onset condition and from a finite onset chosen before the
+seed type, the sign law, the stage, `m` and `eps`
+([`stage_pilot_oracle`, `stage_pilot_oracle_eventually`](../lean/ThresholdHC/StagePilotLaw/Full.lean),
+[record](../results/stage-pilot-law-20261121/README.md)).
 
 ## Quantile design with a zero atom
 
