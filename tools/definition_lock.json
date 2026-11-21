@@ -2424,6 +2424,12 @@
     "ThresholdHC.SharpRMS.virtualEvent": "2248830560708730380:6608438430469376121",
     "ThresholdHC.SharpRMS.virtualTape": "1500082025245932241:4469912525289207472",
     "ThresholdHC.SharpRMS.wordMass": "3885662865369981937:13472720272065888204",
+    "ThresholdHC.SharpStrict.CriticalStrictStatement": "4762494857145497995:2212333701022617614",
+    "ThresholdHC.SharpStrict.OracleStrictSharpLowerStatement": "4762494857145497995:15922505609833462292",
+    "ThresholdHC.SharpStrict.SharpEqualityCaseStatement": "4762494857145497995:13879994409431371522",
+    "ThresholdHC.SharpStrict.SmallBudgetLowerStatement": "4762494857145497995:16505258744125844371",
+    "ThresholdHC.SharpStrict.StrictCoefficientStatement": "4762494857145497995:1544194301252029018",
+    "ThresholdHC.SharpStrict.StrictSharpLowerStatement": "4762494857145497995:11474982777041414394",
     "ThresholdHC.ShiftedPower.amplitude": "6282284895651314331:17065714872518203188",
     "ThresholdHC.ShiftedPower.classifierCall": "1556282790189859500:13669517541439209951",
     "ThresholdHC.ShiftedPower.costWeights": "16809827104452449965:4702480020451929126",
@@ -3218,6 +3224,15 @@
     "_private.ThresholdHC.SharpRMS.WindowReal.0.ThresholdHC.SharpRMS.Window.lastEndpoint._unsafe_rec": "17433475247749891233:9973324522825354623",
     "_private.ThresholdHC.SharpRMS.WindowReal.0.ThresholdHC.SharpRMS.Window.lastEndpoint.match_1": "16970315678118884778:3644595227326571314",
     "_private.ThresholdHC.SharpRMS.WordSimulation.0.ThresholdHC.SharpRMS.localPosterior": "3885662865369981937:9849532003217538919",
+    "_private.ThresholdHC.SharpStrict.Strict.0.ThresholdHC.SharpStrict.box": "13186746514934285975:4452176504682366993",
+    "_private.ThresholdHC.SharpStrict.Strict.0.ThresholdHC.SharpStrict.cappedGap": "14253664178508283431:5962042010351687452",
+    "_private.ThresholdHC.SharpStrict.Strict.0.ThresholdHC.SharpStrict.flatPrior": "4751230442226894606:18345164092578802667",
+    "_private.ThresholdHC.SharpStrict.Strict.0.ThresholdHC.SharpStrict.histogram": "6491984578860897939:16007407041747058007",
+    "_private.ThresholdHC.SharpStrict.Strict.0.ThresholdHC.SharpStrict.lastEndpoint": "17433475247749891233:941943992292412836",
+    "_private.ThresholdHC.SharpStrict.Strict.0.ThresholdHC.SharpStrict.lastEndpoint._f": "2821243389657591174:12526566943378063136",
+    "_private.ThresholdHC.SharpStrict.Strict.0.ThresholdHC.SharpStrict.lastEndpoint._sunfold": "17433475247749891233:15311112607489297518",
+    "_private.ThresholdHC.SharpStrict.Strict.0.ThresholdHC.SharpStrict.lastEndpoint._unsafe_rec": "17433475247749891233:13038305310204745915",
+    "_private.ThresholdHC.SharpStrict.Strict.0.ThresholdHC.SharpStrict.lastEndpoint.match_1": "4218760666263161605:14621520500946591812",
     "_private.ThresholdHC.ShiftedPower.Kernels.0.ThresholdHC.ShiftedPower.powerGap": "11606226552075269786:10731925287097451614",
     "_private.ThresholdHC.SmoothDensity.Densities.0.ThresholdHC.SmoothDensity.baseBound": "15266474460176836143:10908683461439515735",
     "_private.ThresholdHC.SmoothDensity.Densities.0.ThresholdHC.SmoothDensity.pairBound": "15266474460176836143:12244275816884584965",
@@ -3373,6 +3388,10 @@
     {
       "at": "2026-11-21T01:27:20+00:00",
       "count": 4
+    },
+    {
+      "at": "2026-11-21T01:44:13+00:00",
+      "count": 15
     }
   ]
 }
