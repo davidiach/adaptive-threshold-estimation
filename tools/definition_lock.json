@@ -3447,6 +3447,20 @@
     "ThresholdHC.TimeUniformTwoSided.limitEstimator": "213567481925362202:9015742651729280448",
     "ThresholdHC.TimeUniformTwoSided.limitPolicy": "953247319010747251:4250630243800283635",
     "ThresholdHC.TimeUniformTwoSided.onlineInterval": "2684256663093676171:13168110539047506079",
+    "ThresholdHC.TwoFlipDominance.AlmostSureCap": "17099849204615346188:5063464593775746800",
+    "ThresholdHC.TwoFlipDominance.LocalAcquisition": "13238349895171570699:11233495740753517943",
+    "ThresholdHC.TwoFlipDominance.LocalAt": "7214555843600033686:12027677462574467428",
+    "ThresholdHC.TwoFlipDominance.LocalClassStatement": "4762494857145497995:1582496940363392279",
+    "ThresholdHC.TwoFlipDominance.LocalLowerStatement": "4762494857145497995:801682391544843129",
+    "ThresholdHC.TwoFlipDominance.LocalSeparationStatement": "4762494857145497995:12709082065838626811",
+    "ThresholdHC.TwoFlipDominance.LocalUniformLowerStatement": "4762494857145497995:17626562073155114433",
+    "ThresholdHC.TwoFlipDominance.NormalAt": "2731792776084714802:6047730337098918451",
+    "ThresholdHC.TwoFlipDominance.PathwiseDominanceStatement": "4762494857145497995:4535654371510847423",
+    "ThresholdHC.TwoFlipDominance.SeedDominanceStatement": "4762494857145497995:10576537793199271859",
+    "ThresholdHC.TwoFlipDominance.StopsAtTwo": "2731792776084714802:5816128858014959738",
+    "ThresholdHC.TwoFlipDominance.localMinimax": "7442895942209839342:4819525964632203143",
+    "ThresholdHC.TwoFlipDominance.ownBits": "7190345018108909558:16936219903084416017",
+    "ThresholdHC.TwoFlipDominance.thirdFlipSeeds": "4895586362412452160:5846182198236048410",
     "ThresholdHC.TwoFlipFeedback.FeedbackUpperStatement": "4762494857145497995:10761235850260901252",
     "ThresholdHC.TwoFlipFeedback.NoninteractiveCapTwo": "3994044143892190551:6449799866959892460",
     "ThresholdHC.TwoFlipFeedback.NoninteractiveClassStatement": "4762494857145497995:11443183480154281370",
@@ -3920,6 +3934,7 @@
     "_private.ThresholdHC.Tier5.CreationFresh.0.ThresholdHC.pathProb.match_1.splitter": "18178128407945934573:793049950166235738",
     "_private.ThresholdHC.Tier5.CreationFresh.0.ThresholdHC.pathProb.match_1.splitter._sparseCasesOn_4": "13208648013163033065:7056258156388248554",
     "_private.ThresholdHC.Tier5.CreationFresh.0.ThresholdHC.pathProb.match_1.splitter._sparseCasesOn_5": "14373928458666162397:14537995785574750124",
+    "_private.ThresholdHC.TwoFlipDominance.AlmostSureLower.0.ThresholdHC.TwoFlipDominance.localSeedLoss": "2620057502164795920:14458137558013988495",
     "_private.ThresholdHC.TwoFlipFeedback.Lower.0.ThresholdHC.TwoFlipFeedback.seedLoss": "13916143551722715108:15905266914801357587",
     "_private.ThresholdHC.UnbiasedConverse.Transcript.0.ThresholdHC.pathProb.match_1.splitter": "18178128407945934573:15264338612811403282",
     "_private.ThresholdHC.UnbiasedConverse.Transcript.0.ThresholdHC.pathProb.match_1.splitter._sparseCasesOn_4": "13208648013163033065:7056258156388248554",
@@ -4243,6 +4258,10 @@
     {
       "at": "2026-11-21T18:55:39+00:00",
       "count": 7
+    },
+    {
+      "at": "2026-11-21T19:16:48+00:00",
+      "count": 15
     }
   ]
 }
