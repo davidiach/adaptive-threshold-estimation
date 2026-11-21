@@ -356,7 +356,13 @@ over the coupling they give the level-work certificate, which is
 [Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#robust-continuation-level-certificates-under-a-coupled-law)
 together with the level error. The Lean proof integrates the surcharge
 against the sign law at the true gap through the coupling and does not
-form the induced sign allocation.
+form the induced sign allocation. Since 21 November 2026 Lean also states
+both separately: the induced reference sign allocation, with its integral
+identity, its positive fraction and the sharp admissibility clause, and the
+pathwise bound (A15) with correct-sign crossing times, in parameter form, at
+the gap coupling, at the reference zero atom and for the reference level race
+([record](../results/robust-continuation-forms-20261121/README.md)). The integrated work bounds from (A15) are not
+restated.
 
 Assign a reference zero atom entirely to the unresolved part. It contributes
 at most its mass to error and its mass times the race cap $2M$ to work. All selected-core

@@ -1101,7 +1101,10 @@ The rarity surcharge is integrated against the sign law at the true gap,
 read at the reference gap through the coupling: at a reference gap it is at
 most `log 3 d_0^-2 + A/rho + H^2/(2 rho^2)`, and the positive mass under the
 coupling is at most `rho`. The conditional law of the sign given the
-reference gap is not formed.
+reference gap is not formed here; since 21 November 2026 it is formed
+separately, as the induced reference sign allocation with its integral
+identity and admissibility (`RobustContinuationForms`,
+[record](../results/robust-continuation-forms-20261121/README.md)).
 
 A reference law `z_0 delta_0 + (1 - z_0) eta` is the case `c = 1 - z_0`, with
 `mu_0` the part of the true law coupled to the atom. The bank's null law is
@@ -1168,7 +1171,11 @@ combines this with the rate of the zero-atom plan. For a reference law
 The estimator is fixed by the reference before the true law is chosen: the
 statements have the form "there is an estimator such that for every true
 law". It is the plan's estimator, or the constant `rho/2` when the unresolved
-mass is large or the plan's certified risk is above `rho/2`.
+mass is large or the plan's certified risk is above `rho/2`. Since 21 November
+2026 the plan branch is also stated with the estimator named, in a tight
+two-branch form for a coupled and for every CDF-dominated true law, with the
+zero-atom split named from the reference law, the rarity and the budget, and
+the case `rho <= z_0` (`RobustContinuationForms`, [record](../results/robust-continuation-forms-20261121/README.md)).
 
 The coupling is a hypothesis. The Lean estimator draws Poisson counts, reads
 both races of a correction from the same flips, and uses the bank whose null
