@@ -2228,6 +2228,11 @@
     "ThresholdHC.PilotFeedback.sumTo.match_1": "25070856117536511:16578753742936672862",
     "ThresholdHC.PilotFeedback.varianceFloor": "8983121026584075817:2667122925901299096",
     "ThresholdHC.PilotFeedback.worstFour": "3939186980175322006:15059415882067523233",
+    "ThresholdHC.PowerQuantileRows.PowerRowQuantileStatement": "4762494857145497995:10807019228610010871",
+    "ThresholdHC.PowerQuantileRows.PowerRowRateStatement": "4762494857145497995:18101276312817942736",
+    "ThresholdHC.PowerQuantileRows.PowerRowRiskStatement": "4762494857145497995:15178369929815642587",
+    "ThresholdHC.PowerQuantileRows.QuadraticRowFormStatement": "4762494857145497995:13256904441816711055",
+    "ThresholdHC.PowerQuantileRows.powerRow": "4179594114320068645:11097224282656191541",
     "ThresholdHC.PowerWindow.PowerConfidenceStatement": "4762494857145497995:1530297512267250691",
     "ThresholdHC.PowerWindow.PowerCoreStatement": "4762494857145497995:6587263594223711346",
     "ThresholdHC.PowerWindow.PowerPhiStatement": "4762494857145497995:9720291207922797821",
@@ -4118,6 +4123,10 @@
     {
       "at": "2026-11-21T17:47:38+00:00",
       "count": 54
+    },
+    {
+      "at": "2026-11-21T18:13:17+00:00",
+      "count": 5
     }
   ]
 }
