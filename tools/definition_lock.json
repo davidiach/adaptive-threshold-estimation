@@ -1660,6 +1660,21 @@
     "ThresholdHC.LawAdaptation.thenChoose": "9233813382836131955:6380820355396657549",
     "ThresholdHC.LawAdaptation.wordMass": "14947032557917822136:14350387944666578903",
     "ThresholdHC.LawAdaptation.wordParity": "13377287681791528615:127871489413401625",
+    "ThresholdHC.NonintervalSelection.EnclosureStatement": "4762494857145497995:2724525595970620835",
+    "ThresholdHC.NonintervalSelection.J": "13979285021046866625:1095221704422084035",
+    "ThresholdHC.NonintervalSelection.NonintervalStatement": "4762494857145497995:13021356560107429583",
+    "ThresholdHC.NonintervalSelection.OriginalOptimizerStatement": "4762494857145497995:6078695195139004603",
+    "ThresholdHC.NonintervalSelection.SetupStatement": "4762494857145497995:2333367732141595833",
+    "ThresholdHC.NonintervalSelection.UniqueHardMinimumStatement": "4762494857145497995:7431840330608540662",
+    "ThresholdHC.NonintervalSelection.atoms": "470741747839902290:12887754337398434743",
+    "ThresholdHC.NonintervalSelection.enclosures": "18196610562470819384:14291860957615048659",
+    "ThresholdHC.NonintervalSelection.gaps": "11219063880958636611:4580610043966910715",
+    "ThresholdHC.NonintervalSelection.labels": "10015496757275900871:8892430583818761377",
+    "ThresholdHC.NonintervalSelection.law": "14578872644517123936:8864940188697875426",
+    "ThresholdHC.NonintervalSelection.masses": "4574767441623112172:5367739862283260764",
+    "ThresholdHC.NonintervalSelection.optimalMask": "12525805574782516565:8056669193530749497",
+    "ThresholdHC.NonintervalSelection.retained": "17422493540112487285:3555450735986771677",
+    "ThresholdHC.NonintervalSelection.weights": "11219063880958636611:5129217220832265562",
     "ThresholdHC.NonnegativeUnbiased.NonnegativeUnbiasedStatement": "4762494857145497995:8759989393828784835",
     "ThresholdHC.NonnegativeUnbiased.hist": "5795044584456020204:4461218246979965445",
     "ThresholdHC.NonnegativeUnbiased.pad": "260365659094488033:8510871719039909601",
@@ -3420,6 +3435,10 @@
     {
       "at": "2026-11-21T03:29:21+00:00",
       "count": 10
+    },
+    {
+      "at": "2026-11-21T03:35:08+00:00",
+      "count": 15
     }
   ]
 }
