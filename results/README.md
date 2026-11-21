@@ -10,7 +10,7 @@ can differ from the current files after a later proof-only change: the
 eight Lean files that were refactored afterwards without changing a
 statement. For the current tree the evidence is the CI run on that commit.
 
-The folder holds 160 dated record directories, named for a result and a
+The folder holds 161 dated record directories, named for a result and a
 date, and the loose JSON and log files of the first phases of the project.
 The table below indexes the records that the guides cite. Later sections
 describe the remaining records in prose: the time-uniform bounds, cost
@@ -58,6 +58,7 @@ is the current evidence for that result.
 | The categorical affine comparison lemma of the full critical note, with the constant $6$ (Lean-only) and the note's $12$: library statement, axiom and kernel-replay audits | [affine-comparison-20261121](affine-comparison-20261121/README.md) |
 | The localization counterexample (the rescaling heuristic fails by an unbounded factor) and the noise floor of the single-term estimator: library statement, axiom and kernel-replay audits | [localization-counter-20261121](localization-counter-20261121/README.md) |
 | The population half of the bounded-depth obstruction: per-coin caps with matching odd moments give equal transcript laws under arbitrary feedback, and the RMS floor of half the separation: library statement, axiom and kernel-replay audits | [depth-obstruction-20261121](depth-obstruction-20261121/README.md) |
+| The explicit odd-Legendre pair of the bounded-depth obstruction: the polynomial of `lem:poly`, the pair on the exact quadratic law and the floor $\rho/(2(K+1)(2K+1))$ under the per-coin cap $2K$: library statement, axiom and kernel-replay audits | [depth-legendre-20261121](depth-legendre-20261121/README.md) |
 | The restricted pilot correction: a fixed scalar control variate has a saddle point, and no independent pilot improves the worst mean squared error $F^*/n$, with a nonvacuity witness: library statement, axiom and kernel-replay audits | [pilot-correction-20261121](pilot-correction-20261121/README.md) |
 | A single timeout fallback or one seed shared by every stage keeps the error floor $\rho^2/32$, while the independent fallback ladder does not: library statement, axiom and kernel-replay audits | [hard-cap-necessity-20261121](hard-cap-necessity-20261121/README.md) |
 | No budget-indexed family that does not receive $\rho$ adapts uniformly to unknown rarity at a known gap, with the expected-work form, the stopped-transcript absolute continuity and a fixed-budget strengthening: library statement, axiom and kernel-replay audits | [unknown-rarity-20261121](unknown-rarity-20261121/README.md) |

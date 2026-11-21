@@ -1895,8 +1895,12 @@ obstruction is Lean-checked since 21 November 2026 for every per-coin cap, gap
 law and pair with matching odd moments: equal seed-and-transcript laws under
 arbitrary feedback, and the RMS floor of half the separation
 ([`capped_transcript`, `equal_law_floor`](../lean/ThresholdHC/DepthObstruction/Full.lean),
-[record](../results/depth-obstruction-20261121/README.md)); the explicit Legendre pair, its separation and the
-exit bound remain paper proofs. Exact rational certificates support the finite
+[record](../results/depth-obstruction-20261121/README.md)), and so is the explicit
+odd-Legendre pair on the exact quadratic law: $u_K$ of `lem:poly`, the
+separation $\rho/((K+1)(2K+1))$, equal word probabilities through depth $2K$
+and the floor $\rho/(2(K+1)(2K+1))$
+([`depth_cap_floor`](../lean/ThresholdHC/DepthLegendre/Full.lean),
+[record](../results/depth-legendre-20261121/README.md)). The exit bound `thm:tail` remains a paper proof. Exact rational certificates support the finite
 examples; no general finite convex program was solved. The 7,680-replicate
 synthetic experiment is numerical evidence with 32 replicates per cell, not
 a uniform risk guarantee, practical superiority claim, or confidence result.
