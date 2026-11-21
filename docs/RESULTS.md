@@ -1863,7 +1863,11 @@ upper bound for that specified radial submodel. The counterexample rules out
 that proof route; it does not refute the later full critical-law theorem above,
 whose hard pair is not the radial proposal. Its finite Bayes calculations use
 deterministic observation caps and do not settle the expected-budget minimax
-problem. Its restricted pilot correction is Lean-checked since 21 November
+problem. Its calibrated radial upper bound is Lean-checked since 21 November
+2026 on the known radial submodel, with the calibrated cutoff, the
+random-walk call and $R_{\rm radial}(B)\le\min\{\rho/4,\sqrt{160\rho L/B}\}$
+([`radial_upper`](../lean/ThresholdHC/RadialUpper/Full.lean),
+[record](../results/radial-upper-20261121/README.md)). Its restricted pilot correction is Lean-checked since 21 November
 2026 for an abstract mixture model of one coin's observations: a fixed scalar
 control variate has a saddle point on the rarity polytope, and no coefficient
 learned by an independent pilot improves the worst mean squared error $F^*/n$
