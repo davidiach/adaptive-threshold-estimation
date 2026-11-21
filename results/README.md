@@ -10,7 +10,7 @@ can differ from the current files after a later proof-only change: the
 eight Lean files that were refactored afterwards without changing a
 statement. For the current tree the evidence is the CI run on that commit.
 
-The folder holds 166 dated record directories, named for a result and a
+The folder holds 167 dated record directories, named for a result and a
 date, and the loose JSON and log files of the first phases of the project.
 The table below indexes the records that the guides cite. Later sections
 describe the remaining records in prose: the time-uniform bounds, cost
@@ -115,6 +115,7 @@ is the current evidence for that result.
 | Two-atom sharpness and occupied-band entropy | [psi-sharpness-20261116](psi-sharpness-20261116/README.md) |
 | Uniform power-law entropy, quantile and statistical bounds | [power-window-complete-20261116](power-window-complete-20261116/README.md) |
 | The rows of the power-margin table through the closed quantile form (Remark `rem:power-quantile`), for every exponent: library statement, axiom and kernel-replay audits | [power-quantile-rows-20261121](power-quantile-rows-20261121/README.md) |
+| The weighted sign entropy of Lemma `lem:weighted-sign` with the paper's coefficient 214, the floor $3/40$ and the overlap $25/3$: library statement, axiom and kernel-replay audits | [weighted-sign-sharp-20261121](weighted-sign-sharp-20261121/README.md) |
 | Power-law quantile split and inverse-square core cost | [power-window-foundation-20261116](power-window-foundation-20261116/README.md) |
 | Whole-project build, axiom audit and main-theorem kernel replay | [project-axioms-20261109](project-axioms-20261109/README.md) |
 | Whole-project audit with the exported-instance checks and the definition lock | [project-definitions-20261114](project-definitions-20261114/README.md) |
