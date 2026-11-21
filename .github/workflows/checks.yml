@@ -180,6 +180,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_oracle_sharpness.py' -v
           python -m unittest discover -s tools -p 'test_clipping_boundary.py' -v
           python -m unittest discover -s tools -p 'test_oracle_upper.py' -v
+          python -m unittest discover -s tools -p 'test_clipped_output.py' -v
       - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper-constant (119, 45, 36, 27, 19, 17, 15) and square-root cap audits
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
@@ -470,6 +471,11 @@ jobs:
       # family uses the whole budget without the two-level mixture.
       - name: Verify the upper constant 12 of the RMS law and replay its modules
         run: python tools/verify_upper_scale.py --replay --jobs 3
+      # The upper-constant study: clipping the output to [0, 1] keeps the
+      # budget and cannot raise the RMS risk; the blind family with constant 12
+      # can be taken [0, 1]-valued.
+      - name: Verify that clipping the output to [0, 1] can only help and replay its modules
+        run: python tools/verify_clipped_output.py --replay --jobs 3
       - name: Verify the full observable above-two rare-event theory
         run: python tools/verify_rare_above_two.py --sequential
       - name: Verify the registered quantile-comparison target
