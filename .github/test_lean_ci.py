@@ -81,6 +81,7 @@ class LeanRoutingTests(unittest.TestCase):
             "tools/verify_margin_classes.py": {"entropy-tail-upper"},
             "tools/verify_power_quantile_rows.py": {"entropy-tail-upper"},
             "tools/verify_weighted_sign_sharp.py": {"entropy-tail-upper"},
+            "tools/verify_full_null_bank.py": {"entropy-tail-upper"},
             "tools/verify_entropy_tail_assembly.py": {"entropy-tail-upper"},
             "tools/verify_entropy_tail_forms.py": {"entropy-tail-upper"},
             "tools/verify_noninterval_selection.py": {"entropy-tail-upper"},

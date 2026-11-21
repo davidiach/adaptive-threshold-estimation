@@ -211,6 +211,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_margin_classes.py' -v
           python -m unittest discover -s tools -p 'test_power_quantile_rows.py' -v
           python -m unittest discover -s tools -p 'test_weighted_sign_sharp.py' -v
+          python -m unittest discover -s tools -p 'test_full_null_bank.py' -v
       - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper-constant (119, 45, 36, 27, 19, 17, 15) and square-root cap audits
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
@@ -922,6 +923,10 @@ jobs:
       # coefficient 214, the per-gap floor 3/40 and the window overlap 25/3.
       - name: Verify the weighted sign entropy with coefficient 214 and replay its modules
         run: python tools/verify_weighted_sign_sharp.py --replay --jobs 3
+      # The toolkit's full null law (a fair coin with the zero-gap mass, mixed with
+      # the all-negative law) as the positive bank of the robust planner's levels.
+      - name: Verify the full-null bank of the zero-atom planner and replay its modules
+        run: python tools/verify_full_null_bank.py --replay --jobs 3
       - name: Verify prior families for the law-dependent time-uniform lower bound
         run: |
           python tools/verify_anytime_lower.py
