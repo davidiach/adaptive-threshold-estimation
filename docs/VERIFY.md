@@ -36,7 +36,9 @@ a manual run; a green run on a documentation-only change ran no Lean audit.
 On pull requests each Lean job restores the project's compiled modules from
 an earlier run of the same job on the branch or on `main`, and Lake rebuilds
 every module whose source, imports or toolchain changed. Pushes to `main` and
-manual runs build every module from scratch.
+manual runs build every module from scratch. A from-scratch `lean-kernel` run
+took more than 90 minutes on 21 November 2026 (about 41 with the cache), so
+its limit is 150 minutes, the same as `lean-all-modules`.
 Three further workflows cover the [toolkit](../.github/workflows/toolkit.yml),
 the [v6 PDF](../.github/workflows/manuscript.yml) and
 [experiment persistence](../.github/workflows/experiment-persistence.yml).

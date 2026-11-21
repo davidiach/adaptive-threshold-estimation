@@ -324,7 +324,9 @@ jobs:
     needs: lean-inputs
     if: ${{ !cancelled() && needs.lean-inputs.outputs.kernel != 'false' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    # A from-scratch run (pushes to main, manual runs) took more than 90 minutes
+    # on 21 November 2026; a run that restores the module cache takes about 41.
+    timeout-minutes: 150
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
