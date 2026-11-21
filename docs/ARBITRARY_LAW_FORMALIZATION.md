@@ -893,7 +893,9 @@ scaled by `1 - z_0`, and the mass at zero is part of the unresolved mass
 These are statements about the numbers the planner computes. The experiment
 of the upper theorem has positive gaps only, so the estimator of a reference
 law with mass at zero, with the fair-coin likelihood its bank uses for that
-mass, is not formalized. Nor is the rational arithmetic that produces a tight
+mass, is not formalized. Since 21 November 2026 that bank and its level
+certificates are (`FullNullBank`, [record](../results/full-null-bank-20261121/README.md)); the plan and the
+planner rate with it are not. Nor is the rational arithmetic that produces a tight
 enclosure for a finite law. The level races of such a reference and the
 estimator that runs its plan are covered below
 ([levels](#robust-continuation-level-certificates-under-a-coupled-law),
@@ -1106,7 +1108,9 @@ A reference law `z_0 delta_0 + (1 - z_0) eta` is the case `c = 1 - z_0`, with
 `eta`, so no coin of gap zero and no fair-coin likelihood is used, and the
 work bound is the level price of the zero-atom design with unresolved mass
 `z_0 + zeta(all gaps)`. A bank that evaluates the null mixture of the whole
-reference law is a different test and is not the one checked.
+reference law is a different test and is not the one checked here; its level
+certificates are checked separately (`FullNullBank`,
+[record](../results/full-null-bank-20261121/README.md)).
 
 The coupling in this form is a hypothesis. The corrections and the plan
 under the true law are in the next section.

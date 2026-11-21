@@ -368,7 +368,12 @@ $\alpha=z\delta_0+(1-z)\eta$: its null law is the positive part $\eta$
 alone and its positive allowance is $\rho\varepsilon/(1-z)$. The error and
 work bounds above hold for it, and it needs neither a coin of gap zero nor
 the fair-coin likelihood. The bank with the exact null mixture of $\alpha$
-is not the one checked.
+is not the one these certificates use. Since 21 November 2026 Lean also
+checks that bank and its level certificates: Ville's bound under the full
+null, its integrated false positives, its per-coin work and the level error
+and work bounds, under $z+\zeta(\text{all gaps})\le\rho$
+([record](../results/full-null-bank-20261121/README.md)). The plan and the planner rate built on it are
+not checked.
 
 The binary correction variances, finite multilevel telescoping, clipping and
 expected-work allocation now follow unchanged. Successive corrections use
