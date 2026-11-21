@@ -349,6 +349,13 @@ critical law, with $b=\rho/32$ and an existential constant in $J$
 ([`critical_common_pair_bound`][critical_cp], by a separate route). No theorem
 states the composed RMS bound for that law. The critical RMS law itself is
 Lean-checked separately ([`critical_minimax_lower_bound`][critical_lower]).
+Since 21 November 2026 the later targets `critical_pair_rms` and
+`critical_pair_minimax_rms` state the composed bound, with the existential
+constant ([record](../results/critical-pair-rms-20261121/README.md)), and `bias_subtraction` shows
+that on the two-atom laws of the remark after Proposition `prop:psi-null` the
+obstruction at the remark's bias level forces $J\le1/4$, so the bias term $4b$
+cannot be lowered ([record](../results/bias-subtraction-20261121/README.md)).
+`NullVarianceObstruction` itself is still proved for no gap law.
 
 **Side result.** The selected-type KL transfer (Theorem S.2,
 `TypedConfidence`) is stated on a directly defined tape model and is not used

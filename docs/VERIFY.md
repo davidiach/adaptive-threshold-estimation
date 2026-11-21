@@ -950,13 +950,27 @@ identification theorem. CI runs it in the `stopping-program` job. Its 11-test
 guard suite is `test_cap_identification_estimate.py`.
 [Record](../results/cap-identification-estimate-20261121/README.md).
 
+Run `python tools/verify_bias_subtraction.py --replay` for 5 exact statements
+and 24 transitive axiom reports over the three modules of
+`lean/ThresholdHC/BiasSubtraction`: the remark after Proposition
+`prop:psi-null` that the bias term $4b$ cannot be lowered. Its 11-test guard
+suite is `test_bias_subtraction.py`.
+[Record](../results/bias-subtraction-20261121/README.md).
+
+Run `python tools/verify_critical_pair_rms.py --replay` for 2 exact statements
+and 4 transitive axiom reports over the two modules of
+`lean/ThresholdHC/CriticalPairRMS`: the critical common pair composed with the
+RMS transfer, with an existential constant. Its 11-test guard suite is
+`test_critical_pair_rms.py`.
+[Record](../results/critical-pair-rms-20261121/README.md).
+
 Each audit pins its new specification, restates the checked targets and
 reports every new declaration's transitive axioms. Their six-test guard
 suites are `test_psi_sharpness.py` and `test_power_window.py`; CI runs both
 suites and both audits, and also the critical-window, paper-corollary,
 paper-statement, pilot-feedback, explicit-constant, nonnegativity,
-finite-gap corollary, stopped time-uniform, latent-threshold and zero-atom
-split suites and audits; the `stopping-program` job also runs the fixed-cap
+finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
+split, critical common-pair and bias-subtraction suites and audits; the `stopping-program` job also runs the fixed-cap
 estimate suite and audit. Existing published records retain their original scope.
 
 ## Sharp RMS coefficient and square-root cap

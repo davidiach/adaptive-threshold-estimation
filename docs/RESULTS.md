@@ -1528,7 +1528,12 @@ overlapping-submeasure version are also checked with coefficient $1/128$.
 Their proof charges Hellinger loss to midpoint work and uses a strengthened
 binary risk bound. Every statement with coefficient $1/128$ here is a
 transfer theorem: it takes the single-coin variance–null-work obstruction as
-a hypothesis, and Lean establishes that hypothesis for no gap law. The
+a hypothesis, and Lean establishes that hypothesis for no gap law. The common
+pair it yields is proved for the critical law, and the composed RMS bound
+there is stated with an existential constant since 21 November 2026
+([record](../results/critical-pair-rms-20261121/README.md)). The remark that the bias term $4b$ of
+Proposition `prop:psi-null` cannot be lowered is Lean-checked since the same
+date ([record](../results/bias-subtraction-20261121/README.md)); the proposition itself is not. The
 unconditional Lean confidence lower bounds are the critical-law bound and
 the general-law coefficient $10^{-17}$ in the table below.
 [Single-type record](../results/confidence-population-20261104/README.md) · [Selected-type record](../results/adaptive-types-20261105/README.md) · [Common-pair record](../results/common-pair-20261105/README.md) · [Additive localization record](../results/additive-confidence-20261105/README.md) · [Sharper confidence record](../results/entropy-confidence-20261105/README.md) · [RMS localization record](../results/rms-localization-20261105/README.md)
