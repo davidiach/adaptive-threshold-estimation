@@ -950,6 +950,14 @@ identification theorem. CI runs it in the `stopping-program` job. Its 11-test
 guard suite is `test_cap_identification_estimate.py`.
 [Record](../results/cap-identification-estimate-20261121/README.md).
 
+Run `python tools/verify_psi_null.py --replay` for 6 exact statements and 29
+transitive axiom reports over the six modules of `lean/ThresholdHC/PsiNull`:
+Proposition `prop:psi-null`, the null-work obstruction
+$\mathfrak J_0(b)\ge(\Psi(h)-4b)_+^2/(192h^2)$ for every gap law, and its
+corollary $R\ge\Psi(B^{-1/2})/8192$. CI runs it in the `entropy-tail-upper`
+job. Its 11-test guard suite is `test_psi_null.py`.
+[Record](../results/psi-null-20261121/README.md).
+
 Run `python tools/verify_bias_subtraction.py --replay` for 5 exact statements
 and 24 transitive axiom reports over the three modules of
 `lean/ThresholdHC/BiasSubtraction`: the remark after Proposition
@@ -992,8 +1000,8 @@ suites are `test_psi_sharpness.py` and `test_power_window.py`; CI runs both
 suites and both audits, and also the critical-window, paper-corollary,
 paper-statement, pilot-feedback, explicit-constant, nonnegativity,
 finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
-split, critical common-pair, bias-subtraction and global-cut suites and
-audits, the
+split, critical common-pair, bias-subtraction, global-cut and psi-null
+suites and audits, the
 `lean-kernel` job also the restricted-class and sharp-strictness suites and
 audits; the `stopping-program` job also runs the fixed-cap
 estimate suite and audit. Existing published records retain their original scope.

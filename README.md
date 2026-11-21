@@ -77,7 +77,7 @@ the gap law is known unless a row says otherwise.
 | A closed formula $Q$ with $\mathcal K\le Q\le\frac{31}{20}\mathcal K$; the least possible factor is the unique root of a scalar equation, which Lean places in $(\sqrt2,\frac{31}{20})$ and an exact-rational check puts at about $1.4626$ | Lean-checked; lower decimal end Lean-checked, upper by rational certificate | [Scope](docs/RESULTS.md#known-finite-gap-rare-events-closed-quantile-characterization) · [Factor](docs/RESULTS.md#sharp-finite-vector-quantile-factor) |
 | Critical quadratic law $F(d)=(4d)^2$: the rate is $\min(\rho,\sqrt{\rho L(1+\log L)/B})$ with $L=1+\log(1/\rho)$, which refutes a proposed characterization by a simpler modulus $\Psi$ | Lean-checked | [Scope](docs/RESULTS.md#critical-power-margin-full-minimax-characterization) |
 | Power-law gaps: the rates for exponents below and above two | Lean-checked | [Above two](docs/RESULTS.md#rare-event-power-margins-above-two) · [One to two](docs/RESULTS.md#logarithmic-and-intermediate-rare-power-margins) · [Below one](docs/RESULTS.md#rare-event-power-margins-below-exponent-one) |
-| $\Psi$ still bounds the risk from below for every gap law, $0<\rho\le1/4$ and $B>0$, with coefficient $10^{-17}$ | Lean-checked | [Scope](docs/RESULTS.md#rare-event-optimizer) |
+| $\Psi$ still bounds the risk from below for every gap law, $0<\rho\le1/4$ and $B>0$, with coefficient $1/8192$ (Proposition `prop:psi-null`), and the confidence radius with coefficient $10^{-17}$ | Lean-checked | [Scope](docs/RESULTS.md#rare-event-optimizer) |
 | $\Psi$ in closed form within a factor $\sqrt2$, and one power-law rate with constants independent of the exponent | Lean-checked | [Scope](docs/RESULTS.md#the-variational-modulus-in-closed-form) |
 | A stopping program with an exact dual, and certificates within a factor sixteen of the minimax risk | Lean-checked | [Scope](docs/RESULTS.md#general-law-rare-event-characterization) |
 | Hard caps on the number of flips; fixed-confidence radius of order $\mathcal K(B/\log(1/\delta))$; a time-uniform rate for a known law and a lower bound of the same order, not composed in Lean | Lean-checked | [Caps](docs/RESULTS.md#hard-observation-caps-for-the-rms-rates) · [Confidence](docs/RESULTS.md#confidence-rates-and-sequential-stopping) |
@@ -217,8 +217,10 @@ Use a disposable checkout for reproduction: some checks write diagnostic files.
   of the target for every law, the zero-atom split, the explicit fixed-cap
   estimate, the bias-subtraction remark of Appendix H, the common-pair RMS
   bound at the critical law, the restricted-class coefficient $1/6$, the
-  strictness of the sharp bound for $B\ne4$ and the global-cut bound
-  ([records](results/README.md)).
+  strictness of the sharp bound for $B\ne4$, the global-cut bound, and
+  Proposition `prop:psi-null` with its corollary $R\ge\Psi(B^{-1/2})/8192$,
+  which proves the obstruction premise of the transfer theorems for every
+  gap law ([records](results/README.md)).
 - **Constants of the main law.** The lower constant $1/6$ is sharp and the
   upper constant is $12$, so the two sides are a factor $72$ apart. For
   budgets of at least 25 the best lower constant is known only to lie in

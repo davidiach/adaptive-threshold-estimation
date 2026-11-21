@@ -752,6 +752,13 @@ Hellinger bound of Lee and Valiant; the Lean route does not, and the paper
 proof is kept unchanged. The specification was written with the proof.
 [Record](../results/psi-selection-20261109/README.md) · `python tools/verify_psi_selection.py`
 
+For the risk, Lean also checks the paper's sharper constant since 21 November
+2026: $R_{\mu,\rho}(B)\ge\Psi_{\mu,\rho}(B^{-1/2})/8192$ for $0<\rho\le1/4$ and
+every $B>0$ ([`psi_budget_lower`](../lean/ThresholdHC/PsiNull/Full.lean)). It
+follows Appendix H: Proposition `prop:psi-null` and the RMS transfer, with
+neither the Lee–Valiant input nor the selection functional.
+[Record](../results/psi-null-20261121/README.md) · `python tools/verify_psi_null.py`
+
 ### The variational modulus in closed form
 
 [Section 14.8 of the v6 paper](../paper/v6/psi-window.tex) proves four deterministic
@@ -772,7 +779,8 @@ $A_\kappa$, and write $\Gamma_\kappa=A_\kappa(1+E_\kappa)$.
 - $\Psi\le\mathcal K\le\mathcal Q$. With the entropy-tail and known-law confidence lower bounds this gives
   $R\ge10^{-17}\Psi(B^{-1/2})$ and $r_{\rm exp}\ge10^{-17}\Psi(\sqrt{\log(1/\delta)/B})$ for every $B>0$,
   without the Lee-Valiant input used in Appendix A. This item is the Lean-checked comparison and
-  lower bound of the preceding paragraph.
+  lower bound of the preceding paragraph; for the risk, Proposition `prop:psi-null` gives the
+  checked constant $1/8192$.
 - $\mathcal Q\le\sqrt{2(1+E_\kappa)}\,\Psi$, so $\Psi$ gives the rate whenever the core entropy is bounded;
   when the core term dominates and the cap is inactive, $\mathcal Q\ge\tfrac12\sqrt{1+E_\kappa}\,\Psi$.
   This item is **Lean-checked** ([`psi_gap`](../lean/ThresholdHC/PsiGap/Full.lean) and the three statements
@@ -1540,14 +1548,20 @@ overlapping-submeasure version are also checked with coefficient $1/128$.
 Their proof charges Hellinger loss to midpoint work and uses a strengthened
 binary risk bound. Every statement with coefficient $1/128$ here is a
 transfer theorem: it takes the single-coin variance–null-work obstruction as
-a hypothesis, and Lean establishes that hypothesis for no gap law. The common
-pair it yields is proved for the critical law, and the composed RMS bound
-there is stated with an existential constant since 21 November 2026
-([record](../results/critical-pair-rms-20261121/README.md)). The remark that the bias term $4b$ of
-Proposition `prop:psi-null` cannot be lowered is Lean-checked since the same
-date ([record](../results/bias-subtraction-20261121/README.md)); the proposition itself is not. The
-unconditional Lean confidence lower bounds are the critical-law bound and
-the general-law coefficient $10^{-17}$ in the table below.
+a hypothesis. Since 21 November 2026 Lean establishes that hypothesis for
+every gap law, in the form of Proposition `prop:psi-null`:
+$\mathfrak J_0(b)\ge(\Psi_{\mu,\rho}(h)-4b)_+^2/(192h^2)$ for $0<\rho\le1/4$,
+$0\le b\le\rho/64$ and $h>0$. Composed with the RMS transfer it gives
+$R_{\mu,\rho}(B)\ge\Psi_{\mu,\rho}(B^{-1/2})/8192$ for every $B>0$, the
+paper's `eq:psi-budget-lower` ([record](../results/psi-null-20261121/README.md)).
+The common pair is also proved for the critical law by a separate route, and
+the composed RMS bound there is stated with an existential constant since the
+same date ([record](../results/critical-pair-rms-20261121/README.md)). The remark that the bias term $4b$ of
+Proposition `prop:psi-null` cannot be lowered is Lean-checked as well
+([record](../results/bias-subtraction-20261121/README.md)). The confidence consequences of the
+proposition through the common pair are not stated. The unconditional Lean
+confidence lower bounds are the critical-law bound and the general-law
+coefficient $10^{-17}$ in the table below.
 [Single-type record](../results/confidence-population-20261104/README.md) · [Selected-type record](../results/adaptive-types-20261105/README.md) · [Common-pair record](../results/common-pair-20261105/README.md) · [Additive localization record](../results/additive-confidence-20261105/README.md) · [Sharper confidence record](../results/entropy-confidence-20261105/README.md) · [RMS localization record](../results/rms-localization-20261105/README.md)
 
 **Amplification.** If a procedure has $\mathbb ET\le b$ and RMS at most $R(b)$,

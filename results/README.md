@@ -10,7 +10,7 @@ can differ from the current files after a later proof-only change: the
 eight Lean files that were refactored afterwards without changing a
 statement. For the current tree the evidence is the CI run on that commit.
 
-The folder holds 128 dated record directories, named for a result and a
+The folder holds 129 dated record directories, named for a result and a
 date, and the loose JSON and log files of the first phases of the project.
 The table below indexes the records that the guides cite. Later sections
 describe the remaining records in prose: the time-uniform bounds, cost
@@ -25,6 +25,7 @@ is the current evidence for that result.
 | Global-cut bound of the certified-selection note (Corollary 6): $\mathcal K\le V\le Q\le\frac85\mathcal K$, $V$ is the scan of the $n+1$ top-$k$ cuts on finite laws, and $\mathcal K<V$ on the note's two-atom law: library statement, axiom and kernel-replay audits | [global-cut-20261121](global-cut-20261121/README.md) |
 | Strictness of the sharp RMS bound: for every gap law and every $B\ge1$ other than four, $R_\mu(B)>\omega_\mu(B^{-1/2})/6$, also under both oracles, so equality forces $B=4$: library statement, axiom and kernel-replay audits | [sharp-strict-20261121](sharp-strict-20261121/README.md) |
 | RMS coefficient exactly $1/6$ for budgets through four (and both oracles there), for protocols with at most three flips per coin, and conditionally for any class containing the four-fresh-flip protocols: library statement, axiom and kernel-replay audits | [restricted-rms-20261121](restricted-rms-20261121/README.md) |
+| Proposition `prop:psi-null`, $\mathfrak J_0(b)\ge(\Psi(h)-4b)_+^2/(192h^2)$ for every gap law, and its corollary $R\ge\Psi(B^{-1/2})/8192$: library statement, axiom and kernel-replay audits | [psi-null-20261121](psi-null-20261121/README.md) |
 | Bias subtraction in Proposition `prop:psi-null`: for every $c<4$ and $K>0$, the bound with $cb$ and $K$ in place of $4b$ and $192$ fails on the remark's two-atom laws: library statement, axiom and kernel-replay audits | [bias-subtraction-20261121](bias-subtraction-20261121/README.md) |
 | Common-pair RMS bound at the critical law, $R\ge\min\{\rho/32,\sqrt{a\rho L(1+\log L)/B}\}/128$ for some $a>0$: library statement, axiom and kernel-replay audits | [critical-pair-rms-20261121](critical-pair-rms-20261121/README.md) |
 | Explicit fixed-cap estimate $\Delta_N/2\ge\rho\|h\|_2^2/(4\|h\|_\infty)$ after the fixed-cap identification theorem, with $h=1-\operatorname{proj}_{\mathcal V_L}1$: library statement, axiom and kernel-replay audits | [cap-identification-estimate-20261121](cap-identification-estimate-20261121/README.md) |
@@ -92,9 +93,9 @@ is the current evidence for that result.
 | Finite-law bandwise-suffix optimizer and sufficient search family | [bandwise-suffix-20261104](bandwise-suffix-20261104/README.md) |
 | Total variation, rounding, transported enclosures and finite approximation | [selection-stability-20261104](selection-stability-20261104/README.md) |
 | Quarter smoothing in both KL directions | [quarter-smoothing-20261104](quarter-smoothing-20261104/README.md) |
-| Generic RMS obstruction transfer and additive submeasure localization with coefficient $1/128$, conditional on a single-coin obstruction premise that Lean establishes for no gap law | [rms-localization-20261105](rms-localization-20261105/README.md) |
+| Generic RMS obstruction transfer and additive submeasure localization with coefficient $1/128$, conditional on a single-coin obstruction premise that Lean established for no gap law until [psi-null-20261121](psi-null-20261121/README.md) | [rms-localization-20261105](rms-localization-20261105/README.md) |
 | General-law confidence coefficients $10^{-17}$ and $750000$ | [entropy-confidence-20261105](entropy-confidence-20261105/README.md) |
-| Fractional-submeasure additive confidence localization with coefficient $1/128$, from the same unestablished obstruction premise | [additive-confidence-20261105](additive-confidence-20261105/README.md) |
+| Fractional-submeasure additive confidence localization with coefficient $1/128$, from the same obstruction premise | [additive-confidence-20261105](additive-confidence-20261105/README.md) |
 | Common pairs from variance–null-work obstructions and the $1/128$ confidence consequence, given such an obstruction | [common-pair-20261105](common-pair-20261105/README.md) |
 | Selected-type information transfer through unbounded stopping | [adaptive-types-20261105](adaptive-types-20261105/README.md) |
 | Fresh-state upper-bound transfer and complete observed-state rates | [observed-state-upper-20261105](observed-state-upper-20261105/README.md) |

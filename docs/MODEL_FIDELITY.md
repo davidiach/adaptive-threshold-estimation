@@ -57,6 +57,12 @@ later changes bear on it:
   sets import, is not replayed.
 - **Definition lock.** Since 14 November the whole-project audit checks a
   fingerprint of every project definition (section 10).
+- **The obstruction premise.** Since 21 November 2026 Proposition
+  `prop:psi-null` is proved as `psi_null : PsiNullStatement`, against the same
+  `NullVarianceObstruction`, and `psi_budget_lower` gives
+  $R_{\mu,\rho}(B)\ge\Psi_{\mu,\rho}(B^{-1/2})/8192$ through
+  `minimax_rms_of_obstruction`. Its audit pins the specification by hash;
+  sections 7 and 11 note it ([record](../results/psi-null-20261121/README.md)).
 
 Counts below that are not marked with a commit describe `43d9fba`.
 
@@ -75,8 +81,11 @@ Counts below that are not marked with a commit describe `43d9fba`.
 4. [`minimaxRisk`][minimaxRisk] and [`rareMinimaxRisk`][rareMinimaxRisk]:
    where the infimum and supremum sit, and over which seed spaces.
 5. [`NullVarianceObstruction`][NullVarianceObstruction]: the premise of the
-   general RMS transfer. Lean never proves it for any gap law
+   general RMS transfer. At the pin Lean proved it for no gap law
    ([section 7](#7-theorem-chain-from-the-single-coin-obstruction-to-the-population-bound)).
+   Since 21 November 2026 the later target `psi_null` proves it for every gap
+   law, in the form of Proposition `prop:psi-null`
+   ([record](../results/psi-null-20261121/README.md)).
 
 ## 1. The observable experiment
 
@@ -355,7 +364,14 @@ constant ([record](../results/critical-pair-rms-20261121/README.md)), and `bias_
 that on the two-atom laws of the remark after Proposition `prop:psi-null` the
 obstruction at the remark's bias level forces $J\le1/4$, so the bias term $4b$
 cannot be lowered ([record](../results/bias-subtraction-20261121/README.md)).
-`NullVarianceObstruction` itself is still proved for no gap law.
+Since the same date the later target `psi_null` proves
+`NullVarianceObstruction` itself, for every probability law of gaps,
+$0<\rho\le1/4$, $0\le b\le\rho/64$ and $h>0$, with
+$J=(\Psi_{\mu,\rho}(h)-4b)_+^2/(192h^2)$: this is Proposition `prop:psi-null`.
+The target `psi_budget_lower` composes it with `minimax_rms_of_obstruction`
+into $R_{\mu,\rho}(B)\ge\Psi_{\mu,\rho}(B^{-1/2})/8192$ for every $B>0$
+([record](../results/psi-null-20261121/README.md)). The confidence
+consequences through the common pair are not stated.
 
 **Side result.** The selected-type KL transfer (Theorem S.2,
 `TypedConfidence`) is stated on a directly defined tape model and is not used
@@ -497,8 +513,10 @@ read.
 4. Is `NullVarianceObstruction` the obstruction you would actually prove for a
    given law? It uses mixture variance, bias over the pointwise class
    $q\le1/2$, work under the all-negative prior, a deterministic cap and
-   bounded output. For which laws is it known? Lean proves only the
-   downstream `CommonPairBound`, and only for the quadratic critical law.
+   bounded output. For which laws is it known? At the pin Lean proved only
+   the downstream `CommonPairBound`, and only for the quadratic critical law.
+   Since 21 November 2026 `psi_null` proves the obstruction for every gap law
+   with $J=(\Psi(h)-4b)_+^2/(192h^2)$.
 5. Is it acceptable that the $G$-form of the claims, $\theta=P_G(P>1/2)$ over
    all $G$ with $|P-1/2|\sim\mu$, rests on an unformalized disintegration?
 6. Are the paper-only steps acceptable as stated: $c<C$ and the equivalence of
