@@ -10,7 +10,7 @@ can differ from the current files after a later proof-only change: the
 eight Lean files that were refactored afterwards without changing a
 statement. For the current tree the evidence is the CI run on that commit.
 
-The folder holds 127 dated record directories, named for a result and a
+The folder holds 128 dated record directories, named for a result and a
 date, and the loose JSON and log files of the first phases of the project.
 The table below indexes the records that the guides cite. Later sections
 describe the remaining records in prose: the time-uniform bounds, cost
@@ -22,6 +22,7 @@ is the current evidence for that result.
 
 | Claim or check | Published record |
 |---|---|
+| Global-cut bound of the certified-selection note (Corollary 6): $\mathcal K\le V\le Q\le\frac85\mathcal K$, $V$ is the scan of the $n+1$ top-$k$ cuts on finite laws, and $\mathcal K<V$ on the note's two-atom law: library statement, axiom and kernel-replay audits | [global-cut-20261121](global-cut-20261121/README.md) |
 | Strictness of the sharp RMS bound: for every gap law and every $B\ge1$ other than four, $R_\mu(B)>\omega_\mu(B^{-1/2})/6$, also under both oracles, so equality forces $B=4$: library statement, axiom and kernel-replay audits | [sharp-strict-20261121](sharp-strict-20261121/README.md) |
 | RMS coefficient exactly $1/6$ for budgets through four (and both oracles there), for protocols with at most three flips per coin, and conditionally for any class containing the four-fresh-flip protocols: library statement, axiom and kernel-replay audits | [restricted-rms-20261121](restricted-rms-20261121/README.md) |
 | Bias subtraction in Proposition `prop:psi-null`: for every $c<4$ and $K>0$, the bound with $cb$ and $K$ in place of $4b$ and $192$ fails on the remark's two-atom laws: library statement, axiom and kernel-replay audits | [bias-subtraction-20261121](bias-subtraction-20261121/README.md) |

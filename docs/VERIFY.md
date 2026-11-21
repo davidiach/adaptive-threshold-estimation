@@ -979,13 +979,21 @@ law and every $B\ge1$ other than four, also under both oracles. CI runs it in
 the `lean-kernel` job. Its 11-test guard suite is `test_sharp_strict.py`.
 [Record](../results/sharp-strict-20261121/README.md).
 
+Run `python tools/verify_global_cut.py --replay` for 6 exact statements and 25
+transitive axiom reports over the three modules of `lean/ThresholdHC/GlobalCut`:
+Corollary 6 of the certified-selection note, $\mathcal K\le V\le Q\le\frac85\mathcal K$
+for the best global upper-gap cut, its top-$k$ form on finite laws and its
+non-exactness. Its 11-test guard suite is `test_global_cut.py`.
+[Record](../results/global-cut-20261121/README.md).
+
 Each audit pins its new specification, restates the checked targets and
 reports every new declaration's transitive axioms. Their six-test guard
 suites are `test_psi_sharpness.py` and `test_power_window.py`; CI runs both
 suites and both audits, and also the critical-window, paper-corollary,
 paper-statement, pilot-feedback, explicit-constant, nonnegativity,
 finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
-split, critical common-pair and bias-subtraction suites and audits, the
+split, critical common-pair, bias-subtraction and global-cut suites and
+audits, the
 `lean-kernel` job also the restricted-class and sharp-strictness suites and
 audits; the `stopping-program` job also runs the fixed-cap
 estimate suite and audit. Existing published records retain their original scope.

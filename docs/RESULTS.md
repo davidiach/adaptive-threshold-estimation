@@ -1156,7 +1156,10 @@ six-atom law ($Q/\mathcal K>1.42132$) and an eight-atom law
 package also proves that some optimal hard selection is an upper-gap suffix in
 every dyadic band. It proves $|\mathcal K_\mu-\mathcal K_{\tilde\mu}|\le d_{\rm TV}(\mu,\tilde\mu)$
 and a band-preserving rounding bound, and adds an exact-rational evaluator of
-$\mathcal K$ to the toolkit. Composed with the results above, the comparison gives
+$\mathcal K$ to the toolkit. Its Corollary 6, that the best global upper-gap
+cut $V$ satisfies $\mathcal K\le V\le Q$ and is not exact in general, is
+Lean-checked since 21 November 2026
+([record](../results/global-cut-20261121/README.md)). Composed with the results above, the comparison gives
 $R\le30001\cdot\frac85\mathcal K$ for finite laws and
 $\frac58\cdot10^{-17}Q\le R$ for every law. The later direct lower proof
 establishes the stronger $10^{-17}Q\le R$ in Lean. The
