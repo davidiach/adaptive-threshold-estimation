@@ -1811,6 +1811,15 @@
     "ThresholdHC.LocalizationCounter.heuristic": "10861947409966953712:7605545115660371610",
     "ThresholdHC.LocalizationCounter.negativeSign": "12783342425771617565:6917765521745422214",
     "ThresholdHC.LocalizationCounter.quarterGap": "8521207260225387558:14633946064286805466",
+    "ThresholdHC.MarginClasses.CommonConfidenceStatement": "4762494857145497995:520637357584065489",
+    "ThresholdHC.MarginClasses.CommonUnbiasedStatement": "4762494857145497995:9186274615462941957",
+    "ThresholdHC.MarginClasses.GapClass": "15463495202471944461:16246160337548842372",
+    "ThresholdHC.MarginClasses.GapClassStatement": "4762494857145497995:6161414967671331322",
+    "ThresholdHC.MarginClasses.PowerClass": "14597421333659419090:11826111152206044514",
+    "ThresholdHC.MarginClasses.PowerUnbiasedStatement": "4762494857145497995:8836132446914188673",
+    "ThresholdHC.MarginClasses.SublinearClassStatement": "4762494857145497995:11317019908160623058",
+    "ThresholdHC.MarginClasses.SuperlinearClassStatement": "4762494857145497995:14097939708577513207",
+    "ThresholdHC.MarginClasses.classWork": "1934262608228549788:13279600159661927983",
     "ThresholdHC.NestedAssumptions.GHABoundedDensity": "15116872399278757298:10477656081120476244",
     "ThresholdHC.NestedAssumptions.GHAStandardizedMoment": "11222985548750745331:13516608952492391468",
     "ThresholdHC.NestedAssumptions.HardDesignLawStatement": "4762494857145497995:8803442856323342973",
@@ -4047,6 +4056,10 @@
     {
       "at": "2026-11-21T17:06:08+00:00",
       "count": 11
+    },
+    {
+      "at": "2026-11-21T17:27:31+00:00",
+      "count": 9
     }
   ]
 }

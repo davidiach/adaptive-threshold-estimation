@@ -78,6 +78,7 @@ class LeanRoutingTests(unittest.TestCase):
             "tools/verify_depth_legendre.py": {"entropy-tail-upper"},
             "tools/verify_latent_disintegration.py": {"entropy-tail-upper"},
             "tools/verify_known_gap_rarity.py": {"entropy-tail-upper"},
+            "tools/verify_margin_classes.py": {"entropy-tail-upper"},
             "tools/verify_entropy_tail_assembly.py": {"entropy-tail-upper"},
             "tools/verify_entropy_tail_forms.py": {"entropy-tail-upper"},
             "tools/verify_noninterval_selection.py": {"entropy-tail-upper"},
