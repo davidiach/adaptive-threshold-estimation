@@ -167,6 +167,8 @@ jobs:
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
           python -m unittest discover -s tools -p 'test_large_budget_rms.py' -v
           python -m unittest discover -s tools -p 'test_pilot_feedback.py' -v
+          python -m unittest discover -s tools -p 'test_explicit_constants.py' -v
+          python -m unittest discover -s tools -p 'test_nonnegative_unbiased.py' -v
           python -m unittest discover -s tools -p 'test_upper_constant.py' -v
           python -m unittest discover -s tools -p 'test_upper_work.py' -v
           python -m unittest discover -s tools -p 'test_upper_moment.py' -v
@@ -387,6 +389,16 @@ jobs:
       # certificates (about six minutes locally).
       - name: Verify the pilot-feedback separations and replay their modules
         run: python tools/verify_pilot_feedback.py --replay --jobs 3
+      # Explicit constants that frozen statements leave existential: the
+      # hidden-model confidence coefficient 15/(256 sqrt 2), the rare-event
+      # lower coefficient 1/256 and the single-coin second moment 28 rho.
+      - name: Verify the explicit constants and replay their modules
+        run: python tools/verify_explicit_constants.py --replay --jobs 3
+      # Proposition prop:bounded, first sentence: no algorithm that stops almost
+      # surely has an almost surely nonnegative unbiased output when some gaps
+      # lie below 1/2.
+      - name: Verify the nonnegativity obstruction and replay its modules
+        run: python tools/verify_nonnegative_unbiased.py --replay --jobs 3
       - name: Verify the upper constant 119 of the RMS law and replay its modules
         run: python tools/verify_upper_constant.py --replay --jobs 3
       # Its 7 modules build on the upper-constant modules above and sharpen the

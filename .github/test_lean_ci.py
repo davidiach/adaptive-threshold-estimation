@@ -31,6 +31,8 @@ class LeanRoutingTests(unittest.TestCase):
             "tools/verify_square_root_cap.py": {"stopping-program"},
             "tools/verify_large_budget_rms.py": {"lean-kernel"},
             "tools/verify_pilot_feedback.py": {"lean-kernel"},
+            "tools/verify_explicit_constants.py": {"lean-kernel"},
+            "tools/verify_nonnegative_unbiased.py": {"lean-kernel"},
             "tools/verify_upper_constant.py": {"lean-kernel"},
             "tools/verify_upper_work.py": {"lean-kernel"},
             "tools/verify_upper_moment.py": {"lean-kernel"},

@@ -1297,6 +1297,11 @@
     "ThresholdHC.EnvelopeTransferCertificates.pointMap._unsafe_rec": "5201099579525978323:10548736155159915739",
     "ThresholdHC.EnvelopeTransferCertificates.pointMap.match_1": "2297858043081383054:2971654980888778852",
     "ThresholdHC.EnvelopeTransferCertificates.transferCheck": "3314190491927523138:350379918326502293",
+    "ThresholdHC.ExplicitConstants.HiddenConfidenceLowerStatement": "4762494857145497995:12998717360887223739",
+    "ThresholdHC.ExplicitConstants.HiddenConfidenceMinimaxStatement": "4762494857145497995:16468844087450347618",
+    "ThresholdHC.ExplicitConstants.RareSingleCoin28Statement": "4762494857145497995:2104262243189972681",
+    "ThresholdHC.ExplicitConstants.RareSupportedLower256Statement": "4762494857145497995:11180218097084018404",
+    "ThresholdHC.ExplicitConstants.RareSupportedMinimax256Statement": "4762494857145497995:11961314303875145730",
     "ThresholdHC.FiniteCapTruncation.capCertificate": "8328039496499656394:2277270573146115961",
     "ThresholdHC.FiniteCapTruncation.capFlow": "8883207573819834653:17912944308524359175",
     "ThresholdHC.FiniteCapTruncation.discardedMean": "4030656061861035135:6212000943580522811",
@@ -1630,6 +1635,10 @@
     "ThresholdHC.LawAdaptation.thenChoose": "9233813382836131955:6380820355396657549",
     "ThresholdHC.LawAdaptation.wordMass": "14947032557917822136:14350387944666578903",
     "ThresholdHC.LawAdaptation.wordParity": "13377287681791528615:127871489413401625",
+    "ThresholdHC.NonnegativeUnbiased.NonnegativeUnbiasedStatement": "4762494857145497995:8759989393828784835",
+    "ThresholdHC.NonnegativeUnbiased.hist": "5795044584456020204:4461218246979965445",
+    "ThresholdHC.NonnegativeUnbiased.pad": "260365659094488033:8510871719039909601",
+    "ThresholdHC.NonnegativeUnbiased.stopEvent": "18435434080356709257:3836366410609812407",
     "ThresholdHC.Observable713.Observable713Statement": "4762494857145497995:578908447698971972",
     "ThresholdHC.Observable713.ObservableUnbiasedIffStatement": "4762494857145497995:9802411582324686404",
     "ThresholdHC.Observable713.callCost": "12739408154031102621:4788794469869448160",
@@ -3324,6 +3333,10 @@
     {
       "at": "2026-11-20T23:50:42+00:00",
       "count": 152
+    },
+    {
+      "at": "2026-11-21T00:10:22+00:00",
+      "count": 9
     }
   ]
 }
