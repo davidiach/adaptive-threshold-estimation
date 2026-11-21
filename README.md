@@ -220,7 +220,8 @@ Use a disposable checkout for reproduction: some checks write diagnostic files.
   strictness of the sharp bound for $B\ne4$, the global-cut bound, and
   Proposition `prop:psi-null` with its corollary $R\ge\Psi(B^{-1/2})/8192$,
   which proves the obstruction premise of the transfer theorems for every
-  gap law, the three-piece form and ordered constants of the entropy-tail
+  gap law, its confidence form and the exact-power-law confidence rate above
+  two, the three-piece form and ordered constants of the entropy-tail
   law, the paper's noninterval optimal assignment, the stopping-program
   factor $3\sqrt7/2$, the fixed-plan majority bound, the exact
   magnitude-oracle coefficient $1/2$ (both halves), the clipping boundary,

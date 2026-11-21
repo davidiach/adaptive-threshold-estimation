@@ -797,8 +797,8 @@ $A_\kappa$, and write $\Gamma_\kappa=A_\kappa(1+E_\kappa)$.
 - $\Psi\le\mathcal K\le\mathcal Q$. With the entropy-tail and known-law confidence lower bounds this gives
   $R\ge10^{-17}\Psi(B^{-1/2})$ and $r_{\rm exp}\ge10^{-17}\Psi(\sqrt{\log(1/\delta)/B})$ for every $B>0$,
   without the Lee-Valiant input used in Appendix A. This item is the Lean-checked comparison and
-  lower bound of the preceding paragraph; for the risk, Proposition `prop:psi-null` gives the
-  checked constant $1/8192$.
+  lower bound of the preceding paragraph; for the risk and for $r_{\rm exp}$, Proposition
+  `prop:psi-null` gives the checked constant $1/8192$.
 - $\mathcal Q\le\sqrt{2(1+E_\kappa)}\,\Psi$, so $\Psi$ gives the rate whenever the core entropy is bounded;
   when the core term dominates and the cap is inactive, $\mathcal Q\ge\tfrac12\sqrt{1+E_\kappa}\,\Psi$.
   This item is **Lean-checked** ([`psi_gap`](../lean/ThresholdHC/PsiGap/Full.lean) and the three statements
@@ -1590,10 +1590,17 @@ The common pair is also proved for the critical law by a separate route, and
 the composed RMS bound there is stated with an existential constant since the
 same date ([record](../results/critical-pair-rms-20261121/README.md)). The remark that the bias term $4b$ of
 Proposition `prop:psi-null` cannot be lowered is Lean-checked as well
-([record](../results/bias-subtraction-20261121/README.md)). The confidence consequences of the
-proposition through the common pair are not stated. The unconditional Lean
-confidence lower bounds are the critical-law bound and the general-law
-coefficient $10^{-17}$ in the table below.
+([record](../results/bias-subtraction-20261121/README.md)). Its confidence consequence through the
+common pair is Lean-checked as well since the same date: for every gap law,
+$r^{\rm exp}_{\mu,\rho}(B,\delta)\ge\Psi_{\mu,\rho}(\sqrt{\ell/B})/8192$, the
+confidence-transfer note's equation (17). For an exact power law
+$F(d)=(d/a)^\alpha$ with $\alpha>2$, both radii then lie between $z/8192$ and
+$C_\alpha z$ with $z=\min\{\rho,\sqrt{\rho\ell}/(a\sqrt B)\}$, the note's
+equation (22), and one hard-cap procedure fixed before the law attains the
+upper rate over the whole power-margin class; $C_\alpha$ is existential
+([record](../results/confidence-transfer-steps-20261121/README.md)). The other unconditional Lean confidence
+lower bounds are the critical-law bound and the general-law coefficient
+$10^{-17}$ in the table below.
 [Single-type record](../results/confidence-population-20261104/README.md) · [Selected-type record](../results/adaptive-types-20261105/README.md) · [Common-pair record](../results/common-pair-20261105/README.md) · [Additive localization record](../results/additive-confidence-20261105/README.md) · [Sharper confidence record](../results/entropy-confidence-20261105/README.md) · [RMS localization record](../results/rms-localization-20261105/README.md)
 
 **Amplification.** If a procedure has $\mathbb ET\le b$ and RMS at most $R(b)$,

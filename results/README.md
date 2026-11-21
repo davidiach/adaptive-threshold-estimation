@@ -10,7 +10,7 @@ can differ from the current files after a later proof-only change: the
 eight Lean files that were refactored afterwards without changing a
 statement. For the current tree the evidence is the CI run on that commit.
 
-The folder holds 137 dated record directories, named for a result and a
+The folder holds 138 dated record directories, named for a result and a
 date, and the loose JSON and log files of the first phases of the project.
 The table below indexes the records that the guides cite. Later sections
 describe the remaining records in prose: the time-uniform bounds, cost
@@ -29,6 +29,7 @@ is the current evidence for that result.
 | Sharpness of the magnitude-oracle upper coefficient $1/2$: point masses at small gaps have both oracle risks above $c\,\omega(B^{-1/2})$ for every $c<1/2$; the upper bound is not stated: library statement, axiom and kernel-replay audits | [oracle-sharpness-20261121](oracle-sharpness-20261121/README.md) |
 | Strictness of the sharp RMS bound: for every gap law and every $B\ge1$ other than four, $R_\mu(B)>\omega_\mu(B^{-1/2})/6$, also under both oracles, so equality forces $B=4$: library statement, axiom and kernel-replay audits | [sharp-strict-20261121](sharp-strict-20261121/README.md) |
 | RMS coefficient exactly $1/6$ for budgets through four (and both oracles there), for protocols with at most three flips per coin, and conditionally for any class containing the four-fresh-flip protocols: library statement, axiom and kernel-replay audits | [restricted-rms-20261121](restricted-rms-20261121/README.md) |
+| Residual steps of the confidence-transfer note: $r^{\rm exp}\ge\Psi(\sqrt{\log(1/\delta)/B})/8192$ for every gap law, and the exact-power-law confidence rate above two under both budget conventions: library statement, axiom and kernel-replay audits | [confidence-transfer-steps-20261121](confidence-transfer-steps-20261121/README.md) |
 | Proposition `prop:psi-null`, $\mathfrak J_0(b)\ge(\Psi(h)-4b)_+^2/(192h^2)$ for every gap law, and its corollary $R\ge\Psi(B^{-1/2})/8192$: library statement, axiom and kernel-replay audits | [psi-null-20261121](psi-null-20261121/README.md) |
 | Bias subtraction in Proposition `prop:psi-null`: for every $c<4$ and $K>0$, the bound with $cb$ and $K$ in place of $4b$ and $192$ fails on the remark's two-atom laws: library statement, axiom and kernel-replay audits | [bias-subtraction-20261121](bias-subtraction-20261121/README.md) |
 | Common-pair RMS bound at the critical law, $R\ge\min\{\rho/32,\sqrt{a\rho L(1+\log L)/B}\}/128$ for some $a>0$: library statement, axiom and kernel-replay audits | [critical-pair-rms-20261121](critical-pair-rms-20261121/README.md) |

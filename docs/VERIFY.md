@@ -966,6 +966,16 @@ corollary $R\ge\Psi(B^{-1/2})/8192$. CI runs it in the `entropy-tail-upper`
 job. Its 11-test guard suite is `test_psi_null.py`.
 [Record](../results/psi-null-20261121/README.md).
 
+Run `python tools/verify_confidence_transfer_steps.py --replay` for 6 exact
+statements and 14 transitive axiom reports over the four modules of
+`lean/ThresholdHC/ConfidenceTransferSteps`: equation (17) of the
+confidence-transfer note, $r^{\rm exp}\ge\Psi(\sqrt{\log(1/\delta)/B})/8192$ for
+every gap law, and its equation (22), the exact-power-law confidence rate
+above two under both budget conventions. CI runs it in the
+`entropy-tail-upper` job. Its 11-test guard suite is
+`test_confidence_transfer_steps.py`.
+[Record](../results/confidence-transfer-steps-20261121/README.md).
+
 Run `python tools/verify_bias_subtraction.py --replay` for 5 exact statements
 and 24 transitive axiom reports over the three modules of
 `lean/ThresholdHC/BiasSubtraction`: the remark after Proposition
@@ -1056,7 +1066,7 @@ suites and both audits, and also the critical-window, paper-corollary,
 paper-statement, pilot-feedback, explicit-constant, nonnegativity,
 finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
 split, critical common-pair, bias-subtraction, global-cut, psi-null,
-entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
+confidence-transfer-steps, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
 suites and audits, the
 `lean-kernel` job also the restricted-class, sharp-strictness,
 oracle-sharpness, oracle-upper and clipped-output suites and audits; the `stopping-program` job also runs the fixed-cap
