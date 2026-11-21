@@ -931,6 +931,12 @@ jobs:
           python -c "import sys; sys.path.insert(0, 'tools'); import verify_project_axioms as p; import verify_arbitrary_law_controller as a; p.replay(a.MODULES, 'lake', 2)"
       - name: Audit the observable entropy-tail and closed-quantile upper theorems
         run: python tools/verify_entropy_tail_upper.py --cached-dependencies
+      # The two intermediate audits: the quantile model alone, with a full
+      # rebuild of its 53-module closure, and the multilevel assembly stage.
+      - name: Audit the entropy-tail quantile model and assembly stage
+        run: |
+          python tools/verify_entropy_tail_components.py
+          python tools/verify_entropy_tail_assembly.py --cached-dependencies
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -939,6 +945,8 @@ jobs:
           path: |
             .runtime/entropy-tail/
             .runtime/entropy-tail-upper/
+            .runtime/entropy-tail-quantile/
+            .runtime/entropy-tail-assembly/
             .runtime/closed-quantile/
       - name: Save compiled project modules
         if: success() && steps.build-cache.outputs.cache-hit != 'true'

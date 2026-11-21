@@ -27,7 +27,7 @@ VERIFIERS = {
         entropy_tail_components sharp_rms large_budget_rms pilot_feedback restricted_rms sharp_strict oracle_sharpness oracle_upper explicit_constants nonnegative_unbiased upper_constant upper_work upper_moment upper_mixture upper_cost upper_disagreement upper_sign upper_quarter upper_scale clipped_output revisit_upper project_axioms
     """,
     "entropy-tail-upper": """
-        entropy_tail entropy_tail_components entropy_tail_sharp entropy_tail_upper
+        entropy_tail entropy_tail_components entropy_tail_assembly entropy_tail_sharp entropy_tail_upper
         closed_quantile finite_quantile quantile_comparison quantile_selection global_cut entropy_tail_forms noninterval_selection fixed_plan quantile_price_upper
         quantile_sharp_law quantile_optimality optimal_quantile quantile_factor_upper bandwise_suffix selection_stability
         quarter_smoothing confidence_* critical_confidence hard_budget stopping_confidence

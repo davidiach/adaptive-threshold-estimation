@@ -63,6 +63,9 @@ later changes bear on it:
   $R_{\mu,\rho}(B)\ge\Psi_{\mu,\rho}(B^{-1/2})/8192$ through
   `minimax_rms_of_obstruction`. Its audit pins the specification by hash;
   sections 7 and 11 note it ([record](../results/psi-null-20261121/README.md)).
+- **Entropy-tail intermediate audits.** Since 21 November 2026 CI also runs
+  `verify_entropy_tail_components.py` and `verify_entropy_tail_assembly.py`,
+  which section 10 lists as local only.
 
 Counts below that are not marked with a commit describe `43d9fba`.
 

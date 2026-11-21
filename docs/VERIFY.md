@@ -327,8 +327,9 @@ axioms of every declaration in the five upper-bound module groups. Without
 takes much longer. With the flag it recompiles only the sampling and execution
 groups and reuses objects built earlier, so run it after the first audit.
 `verify_entropy_tail_components.py` audits the quantile model alone, and
-`verify_entropy_tail_assembly.py` an intermediate stage. CI does not run
-these two. Their
+`verify_entropy_tail_assembly.py` an intermediate stage. Since 21 November
+2026 CI runs both in the `entropy-tail-upper` job, the first with its full
+closure rebuild and the second with cached dependencies. Their
 [lock](../tools/entropy_tail_quantile_specification_freeze.json) records the
 rename of #33's namespace and the superseded lock's hashes. All three write
 timestamped evidence under `.runtime/`.

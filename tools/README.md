@@ -117,8 +117,9 @@ toolchain or the workflow, runs all of them. On pull requests the Lean jobs
 restore compiled project modules from earlier runs and rebuild only the
 modules whose sources, imports or toolchain changed; pushes to `main` and
 manual runs build from scratch. A full run covers every
-maintained audit except `verify_entropy_tail_components.py` and
-`verify_entropy_tail_assembly.py`, which CI does not run.
+maintained audit; since 21 November 2026 this includes
+`verify_entropy_tail_components.py` and `verify_entropy_tail_assembly.py`, in
+the `entropy-tail-upper` job.
 [Toolkit CI](../.github/workflows/toolkit.yml) separately checks the Python
 package, and two further workflows build the v6 PDF and test experiment
 persistence.
