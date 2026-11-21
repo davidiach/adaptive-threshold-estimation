@@ -346,6 +346,11 @@
     "ThresholdHC.BandwiseSuffix.saving": "14599578583427873890:4823801299316633076",
     "ThresholdHC.BandwiseSuffix.slice": "14584743811033911906:545313462396170321",
     "ThresholdHC.BandwiseSuffix.suffixChoices": "16828787728812670730:903971590379442361",
+    "ThresholdHC.BiasAudit.GridWinnerCounterexampleStatement": "4762494857145497995:15408585867259340136",
+    "ThresholdHC.BiasAudit.GridWinnerFailsEnvelopeStatement": "4762494857145497995:11312902790488014511",
+    "ThresholdHC.BiasAudit.SmallerThresholdErrorStatement": "4762494857145497995:2431758291714213611",
+    "ThresholdHC.BiasAudit.errorUnionBoundK": "8365773875678769393:3993462020149837002",
+    "ThresholdHC.BiasAudit.tailsCylinder": "11862723206978163087:10885934793190641097",
     "ThresholdHC.BiasSubtraction.BiasSubtractionStatement": "4762494857145497995:6402194373474613292",
     "ThresholdHC.BiasSubtraction.oneFlipProcedure": "16000969431518481022:17960185688351815473",
     "ThresholdHC.BiasSubtraction.remarkBias": "2337041800726076989:15187216648130617033",
@@ -3770,6 +3775,10 @@
     {
       "at": "2026-11-21T10:46:33+00:00",
       "count": 3
+    },
+    {
+      "at": "2026-11-21T10:55:53+00:00",
+      "count": 5
     }
   ]
 }

@@ -192,6 +192,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_quantile_factor_upper.py' -v
           python -m unittest discover -s tools -p 'test_creation_charge.py' -v
           python -m unittest discover -s tools -p 'test_stage_pilot_law.py' -v
+          python -m unittest discover -s tools -p 'test_bias_audit.py' -v
       - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper-constant (119, 45, 36, 27, 19, 17, 15) and square-root cap audits
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
@@ -831,6 +832,10 @@ jobs:
       # experiment law of the whole learning stage, with (A11) on the same event.
       - name: Verify the pilot events under the whole learning stage and replay its modules
         run: python tools/verify_stage_pilot_law.py --replay --jobs 3
+      # The grid-winner threshold (1/4, 1/2) fails the v4 error envelope at cap
+      # 2^97, while every k1 >= 0, k2 >= 1 keeps it (BIAS_AUDIT.md).
+      - name: Verify the bias audit of the constant search and replay its modules
+        run: python tools/verify_bias_audit.py --replay --jobs 3
       - name: Verify prior families for the law-dependent time-uniform lower bound
         run: |
           python tools/verify_anytime_lower.py
