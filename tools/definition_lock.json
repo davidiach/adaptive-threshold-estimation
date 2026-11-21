@@ -319,6 +319,10 @@
     "ThresholdHC.BandwiseSuffix.saving": "14599578583427873890:4823801299316633076",
     "ThresholdHC.BandwiseSuffix.slice": "14584743811033911906:545313462396170321",
     "ThresholdHC.BandwiseSuffix.suffixChoices": "16828787728812670730:903971590379442361",
+    "ThresholdHC.BiasSubtraction.BiasSubtractionStatement": "4762494857145497995:6402194373474613292",
+    "ThresholdHC.BiasSubtraction.oneFlipProcedure": "16000969431518481022:17960185688351815473",
+    "ThresholdHC.BiasSubtraction.remarkBias": "2337041800726076989:15187216648130617033",
+    "ThresholdHC.BiasSubtraction.remarkLaw": "12399161652004324022:11310173759670929551",
     "ThresholdHC.BlindUpper.BatchConsumes": "11930363109839641980:18086527703196316615:9448153930347942419",
     "ThresholdHC.BlindUpper.BatchConsumes.below": "17632591627107121238:7291435585804803601:6711969006708108102",
     "ThresholdHC.BlindUpper.BatchConsumes.below.casesOn": "5078570083183918988:11689896840951382086",
@@ -847,6 +851,8 @@
     "ThresholdHC.CriticalEntropy.uniformUnitMeasure": "14048183948135719435:1104094795049249003",
     "ThresholdHC.CriticalEntropy.wordHeads": "15615368425278368434:10819836235135654528",
     "ThresholdHC.CriticalEntropy.wordLikelihood": "16243791558451677129:6154402361839883365",
+    "ThresholdHC.CriticalPairRMS.CriticalPairMinimaxRMSStatement": "4762494857145497995:4874934620694424948",
+    "ThresholdHC.CriticalPairRMS.CriticalPairRMSStatement": "4762494857145497995:6224861140244082436",
     "ThresholdHC.CriticalPsi.CriticalPsiFormulaStatement": "4762494857145497995:11522740669706080172",
     "ThresholdHC.CriticalPsi.CriticalPsiRateStatement": "4762494857145497995:9988997218865198873",
     "ThresholdHC.CriticalPsi.CriticalPsiSeparationStatement": "4762494857145497995:3614545694003147464",
@@ -3355,6 +3361,10 @@
     {
       "at": "2026-11-21T01:01:12+00:00",
       "count": 7
+    },
+    {
+      "at": "2026-11-21T01:16:08+00:00",
+      "count": 6
     }
   ]
 }

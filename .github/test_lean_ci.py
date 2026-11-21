@@ -49,6 +49,8 @@ class LeanRoutingTests(unittest.TestCase):
             "tools/verify_stopped_time_uniform.py": {"entropy-tail-upper"},
             "tools/verify_latent_threshold.py": {"entropy-tail-upper"},
             "tools/verify_zero_atom_split.py": {"entropy-tail-upper"},
+            "tools/verify_critical_pair_rms.py": {"entropy-tail-upper"},
+            "tools/verify_bias_subtraction.py": {"entropy-tail-upper"},
             "tools/verify_cap_identification_estimate.py": {"stopping-program"},
             "tools/quantile_comparison_specification_freeze.json": {"lean-kernel", "entropy-tail-upper"},
             "tools/stopping_program_lock.py": {"stopping-program"},
