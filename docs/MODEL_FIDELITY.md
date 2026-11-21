@@ -66,6 +66,10 @@ later changes bear on it:
 - **Entropy-tail intermediate audits.** Since 21 November 2026 CI also runs
   `verify_entropy_tail_components.py` and `verify_entropy_tail_assembly.py`,
   which section 10 lists as local only.
+- **Creation fee.** Since 21 November 2026 the remark that a fee per new coin
+  changes the cost by at most a constant factor is a stated theorem, with the
+  factor $1+c$, for every adaptive estimator (`CreationCharge`; section 3 and
+  question 6 note it; [record](../results/creation-charge-20261121/README.md)).
 
 Counts below that are not marked with a commit describe `43d9fba`.
 
@@ -220,8 +224,12 @@ representable; it simply fails a budget.
 - **Label: matches.** A coin exists in Lean only once it is flipped, so on
   every path the number of coins is at most $T$. The paper's remark that a
   fixed fee per new coin changes cost by at most a constant factor is
-  therefore immediate in the Lean model. No separate creation-cost model is
-  formalized.
+  therefore immediate in the Lean model. Since 21 November 2026 it is also a
+  stated theorem, with a created coin read as a newly selected label and the
+  factor $1+c$ for a fee $c\ge0$
+  ([`charged_work`](../lean/ThresholdHC/CreationCharge/Full.lean),
+  [record](../results/creation-charge-20261121/README.md)). Coins created and never observed cannot be
+  represented.
 - **Almost-sure stopping** is a theorem: finite expected work under one
   measure forces stopping almost surely ([`CreationStopsStatement`][CreationStops],
   proved as [`creation_stops`][creation_stops]). No named Tier 6 theorem
@@ -526,7 +534,7 @@ read.
    (61) with (62) in Theorem 13.2 (both Lean-checked since 21 November 2026;
    [record](../results/entropy-tail-forms-20261121/README.md)), the constant bookkeeping of Appendix E, the
    second-moment sentence of Theorem 2.2 (a stated theorem since 20 November
-   2026; [record](../results/paper-statements-20261120/README.md)), and the remark on charging for coin creation?
+   2026; [record](../results/paper-statements-20261120/README.md)), and the remark on charging for coin creation (a stated theorem since 21 November 2026; [record](../results/creation-charge-20261121/README.md))?
 7. For each explicit coefficient you cite, read the companion theorem whose
    type carries it (section 10), not the locked existential target.
 8. Read `hardMinimaxRisk`, `hardRareMinimaxRisk`, `rareConfidenceRadius` and

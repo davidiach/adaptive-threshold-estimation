@@ -1076,7 +1076,7 @@ finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
 split, critical common-pair, bias-subtraction, global-cut, psi-null,
 confidence-transfer-steps, observed-hoeffding, nested-assumptions,
 light-contraction-constant, band-cost-example, repeated-check,
-reservoir-termination, quantile-factor-upper, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
+reservoir-termination, quantile-factor-upper, creation-charge, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
 suites and audits, the
 `lean-kernel` job also the restricted-class, sharp-strictness,
 oracle-sharpness, oracle-upper, clipped-output and revisit-upper suites and
@@ -1232,6 +1232,15 @@ budget and cannot raise the RMS risk, and the family with constant $12$ can be
 taken $[0,1]$-valued. CI runs it in the `lean-kernel` job. Its 11-test guard
 suite is `test_clipped_output.py`.
 [Record](../results/clipped-output-20261121/README.md).
+
+Run `python tools/verify_creation_charge.py --replay` for 8 exact statements
+and 29 transitive axiom reports over the four modules of
+`lean/ThresholdHC/CreationCharge`: a fee $c\ge0$ per created coin changes the
+expected cost by at most the factor $1+c$, and the charged minimax risk lies
+between the minimax risks at budgets $B$ and $B/(1+c)$. CI runs it in the
+`entropy-tail-upper` job. Its 11-test guard suite is
+`test_creation_charge.py`.
+[Record](../results/creation-charge-20261121/README.md).
 
 ## Whole-project build, axioms and kernel replay
 
