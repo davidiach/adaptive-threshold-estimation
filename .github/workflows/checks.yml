@@ -194,6 +194,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_stage_pilot_law.py' -v
           python -m unittest discover -s tools -p 'test_bias_audit.py' -v
           python -m unittest discover -s tools -p 'test_unknown_rarity.py' -v
+          python -m unittest discover -s tools -p 'test_hard_cap_necessity.py' -v
       - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper-constant (119, 45, 36, 27, 19, 17, 15) and square-root cap audits
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
@@ -841,6 +842,10 @@ jobs:
       # known gap d < 1/2 (TRACK_D.md), with the fixed-budget strengthening.
       - name: Verify the unknown-rarity obstruction and replay its modules
         run: python tools/verify_unknown_rarity.py --replay --jobs 3
+      # A single timeout fallback, or one seed shared by every stage, keeps the
+      # error floor rho^2/32 that the independent fallback ladder avoids.
+      - name: Verify the hard-cap counterexamples and replay their modules
+        run: python tools/verify_hard_cap_necessity.py --replay --jobs 3
       - name: Verify prior families for the law-dependent time-uniform lower bound
         run: |
           python tools/verify_anytime_lower.py

@@ -1650,6 +1650,22 @@
     "ThresholdHC.HardBudget.stopAt": "18229793961072238770:421439254796973091",
     "ThresholdHC.HardBudget.thenRead": "6754309005236550052:3929312372758172107",
     "ThresholdHC.HardBudget.timedOut": "5714712422813701917:14869742358380806467",
+    "ThresholdHC.HardCapNecessity.HardCapNecessityStatement": "4762494857145497995:7188491206237515853",
+    "ThresholdHC.HardCapNecessity.RarePremise": "13044378517395794571:3696034222691173639",
+    "ThresholdHC.HardCapNecessity.RareRateStatement": "4762494857145497995:13147120330863769791",
+    "ThresholdHC.HardCapNecessity.capBase": "5985318329703864137:1347622699470060963",
+    "ThresholdHC.HardCapNecessity.capBase.match_1": "4992136348480928149:7981673676088679226",
+    "ThresholdHC.HardCapNecessity.delayBase": "5985318329703864137:4928199564846821874",
+    "ThresholdHC.HardCapNecessity.delaySeedLaw": "9026329846592417376:12684555286192235059",
+    "ThresholdHC.HardCapNecessity.delayedClip": "12214026985229273149:1770254253431418416",
+    "ThresholdHC.HardCapNecessity.freshClip": "14960550183251518179:14193388473393582781",
+    "ThresholdHC.HardCapNecessity.freshMean": "14960550183251518179:16386321660424467355",
+    "ThresholdHC.HardCapNecessity.halfGap": "8521207260225387558:6124762381179615037",
+    "ThresholdHC.HardCapNecessity.midBase": "1855237878851296551:13010564128564567614",
+    "ThresholdHC.HardCapNecessity.rareRate": "18133891100220672328:7305849596202358241",
+    "ThresholdHC.HardCapNecessity.sharedController": "3071636019516803469:2504439916889827970",
+    "ThresholdHC.HardCapNecessity.singleFallback": "12473592069353736076:16328599105885845810",
+    "ThresholdHC.HardCapNecessity.zeroSigns": "12783342425771617565:17627338810624542598",
     "ThresholdHC.KnownLawPlanner.EnvelopeVanishes": "4856981831159933834:1518086693346589507",
     "ThresholdHC.KnownLawPlanner.RunsPlan": "16272607701373074505:7722679834166416114",
     "ThresholdHC.KnownLawPlanner.SplitEnclosure": "1706631895523079689:2152732164989668790",
@@ -3788,6 +3804,10 @@
     {
       "at": "2026-11-21T10:59:14+00:00",
       "count": 5
+    },
+    {
+      "at": "2026-11-21T11:18:39+00:00",
+      "count": 16
     }
   ]
 }

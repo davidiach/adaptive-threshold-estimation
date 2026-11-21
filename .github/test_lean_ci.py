@@ -65,6 +65,7 @@ class LeanRoutingTests(unittest.TestCase):
             "tools/verify_stage_pilot_law.py": {"entropy-tail-upper"},
             "tools/verify_bias_audit.py": {"entropy-tail-upper"},
             "tools/verify_unknown_rarity.py": {"entropy-tail-upper"},
+            "tools/verify_hard_cap_necessity.py": {"entropy-tail-upper"},
             "tools/verify_entropy_tail_assembly.py": {"entropy-tail-upper"},
             "tools/verify_entropy_tail_forms.py": {"entropy-tail-upper"},
             "tools/verify_noninterval_selection.py": {"entropy-tail-upper"},
