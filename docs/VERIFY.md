@@ -305,6 +305,13 @@ pins that file by hash and fails if they are missing. It rejects imports
 of the completed general statistical lower theorem. The [finite-law record](../results/direct-finite-quantile-20261104/README.md)
 gives the local verification scope and the exact coefficients.
 
+Run `python tools/verify_finite_quantile_formula.py --replay` for 5 exact
+statements and 32 transitive axiom reports over the five modules of
+`lean/ThresholdHC/FiniteQuantileFormula`: the explicit finite-law formula
+(67)-(69) and the direct bounds at it. CI runs it in the `entropy-tail-upper`
+job. Its 11-test guard suite is `test_finite_quantile_formula.py`.
+[Record](../results/finite-quantile-formula-20261121/README.md).
+
 The upper half imports the observable upper-bound development of
 [#33](https://github.com/davidiach/adaptive-threshold-estimation/pull/33), about
 240 modules, so this audit takes much longer than the other theorem audits. CI
@@ -1122,7 +1129,7 @@ finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
 split, critical common-pair, bias-subtraction, global-cut, psi-null,
 confidence-transfer-steps, observed-hoeffding, nested-assumptions,
 light-contraction-constant, band-cost-example, repeated-check,
-reservoir-termination, quantile-factor-upper, creation-charge, stage-pilot-law, bias-audit, unknown-rarity, hard-cap-necessity, pilot-correction, depth-obstruction, localization-counter, affine-comparison, two-flip-feedback, unknown-law-confidence, upper-twelve-numerics, radial-upper, time-uniform-two-sided, depth-legendre, latent-disintegration, known-gap-rarity, margin-classes, power-quantile-rows, weighted-sign-sharp, full-null-bank, robust-continuation-forms, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
+reservoir-termination, quantile-factor-upper, creation-charge, stage-pilot-law, bias-audit, unknown-rarity, hard-cap-necessity, pilot-correction, depth-obstruction, localization-counter, affine-comparison, two-flip-feedback, unknown-law-confidence, upper-twelve-numerics, radial-upper, time-uniform-two-sided, depth-legendre, latent-disintegration, known-gap-rarity, margin-classes, power-quantile-rows, weighted-sign-sharp, full-null-bank, robust-continuation-forms, finite-quantile-formula, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
 suites and audits, the
 `lean-kernel` job also the restricted-class, sharp-strictness,
 oracle-sharpness, oracle-upper, clipped-output and revisit-upper suites and
