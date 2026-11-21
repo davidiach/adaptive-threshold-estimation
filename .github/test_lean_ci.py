@@ -92,6 +92,7 @@ class LeanRoutingTests(unittest.TestCase):
             "tools/verify_revisit_upper.py": {"lean-kernel"},
             "tools/verify_cap_identification_estimate.py": {"stopping-program"},
             "tools/verify_program_factor.py": {"stopping-program"},
+            "tools/verify_stopping_update.py": {"stopping-program"},
             "tools/quantile_comparison_specification_freeze.json": {"lean-kernel", "entropy-tail-upper"},
             "tools/stopping_program_lock.py": {"stopping-program"},
             "tools/verify_genie_convergence.py": {"stopping-program"},

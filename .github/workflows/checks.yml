@@ -176,6 +176,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_entropy_tail_forms.py' -v
           python -m unittest discover -s tools -p 'test_noninterval_selection.py' -v
           python -m unittest discover -s tools -p 'test_program_factor.py' -v
+          python -m unittest discover -s tools -p 'test_stopping_update.py' -v
           python -m unittest discover -s tools -p 'test_fixed_plan.py' -v
           python -m unittest discover -s tools -p 'test_oracle_sharpness.py' -v
           python -m unittest discover -s tools -p 'test_clipping_boundary.py' -v
@@ -1121,6 +1122,11 @@ jobs:
       # at least 4B/9 the factor 3 sqrt 7 < 8 for the program and the genie test.
       - name: Verify the stopping-program factor 3 sqrt 7 / 2 and replay its modules
         run: python tools/verify_program_factor.py --replay --jobs 3
+      # One schedule replacement at a stopping time at gap 1/5 with B = 25; the
+      # certificate is split into 513 pieces over eleven row modules (about 46 minutes
+      # of kernel time on one core, about 1.1 GB of own memory per row module).
+      - name: Verify the one-stopping-update separation and replay its modules
+        run: python tools/verify_stopping_update.py --replay --jobs 3
       - name: Verify uniform convergence of the optimized cap programs
         run: python tools/verify_genie_rate.py
       - name: Verify square-root convergence of the ordinary cap program
