@@ -1841,7 +1841,12 @@ upper bound for that specified radial submodel. The counterexample rules out
 that proof route; it does not refute the later full critical-law theorem above,
 whose hard pair is not the radial proposal. Its finite Bayes calculations use
 deterministic observation caps and do not settle the expected-budget minimax
-problem.
+problem. Its restricted pilot correction is Lean-checked since 21 November
+2026 for an abstract mixture model of one coin's observations: a fixed scalar
+control variate has a saddle point on the rarity polytope, and no coefficient
+learned by an independent pilot improves the worst mean squared error $F^*/n$
+([`saddle`, `pilot_no_gain`](../lean/ThresholdHC/PilotCorrection/Full.lean),
+[record](../results/pilot-correction-20261121/README.md)).
 
 The [nonlinear-feedback report](../research/2026-10-27-nonlinear-population/FINAL_REPORT.md)
 adds a reviewed paper proof of strict acquisition-feedback advantage for a
