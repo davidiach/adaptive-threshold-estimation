@@ -205,7 +205,9 @@ Use a disposable checkout for reproduction: some checks write diagnostic files.
   constant are Lean-checked since 20 November 2026, among them the critical
   theorem with explicit constants, the sharpness of the unbiased coefficient
   $1/16$ and the lower end of the bracket for the sharp quantile factor
-  ([record](results/paper-statements-20261120/README.md)). Two of the four
+  ([record](results/paper-statements-20261120/README.md)); the upper end, and
+  with it the whole sharp-factor theorem, is Lean-checked since 21 November
+  ([record](results/quantile-factor-upper-20261121/README.md)). Two of the four
   pilot-feedback separations, Lean-proved inside their research packages, are
   in the audited library too
   ([record](results/pilot-feedback-20261120/README.md)); the other two need
