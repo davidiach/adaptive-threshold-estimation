@@ -129,6 +129,10 @@ extended nonnegative reals. The witness uses `rho=exp(-exp(M))` and
 The preserved paper instead uses `B=rho^(-2)`. The formal proof establishes
 the same failure of every universal matching-Psi bound, without certifying
 that particular paper sequence or supplying an arbitrary-law replacement.
+The paper's sequence is checked separately since 20 November 2026:
+`psi_sequence` in PaperCorollaries for the rare-event experiment and, in this
+critical model, `critical_psi_divergence`
+([record](../results/paper-statements-20261120/README.md)).
 
 [Full.lean](../lean/ThresholdHC/CriticalPsi/Full.lean) exports the exact formula,
 rate and separation targets. The [first Psi record](../results/critical_psi_001.json)

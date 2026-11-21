@@ -1,0 +1,252 @@
+⚠ [6527/7094] Replayed ThresholdHC.EntropyTailQuantile.CostEntropy
+warning: ThresholdHC/EntropyTailQuantile/CostEntropy.lean: imports `Mathlib.Analysis.SpecialFunctions.Log.NegMulLog` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/EntropyTailQuantile/CostEntropy.lean: imports `Mathlib.Analysis.SpecialFunctions.Pow.Real` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/EntropyTailQuantile/CostEntropy.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [6528/7094] Ran ThresholdHC.EntropyTailQuantile.CostEntropy:irArts
+warning: ThresholdHC/EntropyTailQuantile/CostEntropy.lean: imports `Mathlib.Analysis.SpecialFunctions.Log.NegMulLog` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/EntropyTailQuantile/CostEntropy.lean: imports `Mathlib.Analysis.SpecialFunctions.Pow.Real` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/EntropyTailQuantile/CostEntropy.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [6535/7094] Replayed ThresholdHC.ArbitraryLawAdaptation.CountableEntropy
+warning: ThresholdHC/ArbitraryLawAdaptation/CountableEntropy.lean: imports `Mathlib.Topology.Algebra.InfiniteSum.Real` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [6536/7094] Ran ThresholdHC.ArbitraryLawAdaptation.CountableEntropy:irArts
+warning: ThresholdHC/ArbitraryLawAdaptation/CountableEntropy.lean: imports `Mathlib.Topology.Algebra.InfiniteSum.Real` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18178/18353] Replayed ThresholdHC.QuantileSelection.BinaryEntropy
+warning: ThresholdHC/QuantileSelection/BinaryEntropy.lean: imports `Mathlib.Analysis.SpecialFunctions.BinaryEntropy` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/QuantileSelection/BinaryEntropy.lean: imports `Mathlib.Analysis.SpecialFunctions.Sqrt` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18179/18353] Ran ThresholdHC.QuantileSelection.BinaryEntropy:irArts
+warning: ThresholdHC/QuantileSelection/BinaryEntropy.lean: imports `Mathlib.Analysis.SpecialFunctions.BinaryEntropy` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/QuantileSelection/BinaryEntropy.lean: imports `Mathlib.Analysis.SpecialFunctions.Sqrt` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18180/18353] Replayed ThresholdHC.QuantileComparison.Specification
+warning: ThresholdHC/QuantileComparison/Specification.lean: imports `Mathlib.Analysis.Real.Sqrt` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18181/18353] Ran ThresholdHC.QuantileComparison.Specification:irArts
+warning: ThresholdHC/QuantileComparison/Specification.lean: imports `Mathlib.Analysis.Real.Sqrt` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18182/18353] Replayed ThresholdHC.QuantileComparison.Scalar
+warning: ThresholdHC/QuantileComparison/Scalar.lean: imports `Mathlib.Tactic.LinearCombination` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/QuantileComparison/Scalar.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/QuantileComparison/Scalar.lean: imports `Mathlib.Tactic.Positivity` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18183/18353] Ran ThresholdHC.QuantileComparison.Scalar:irArts
+warning: ThresholdHC/QuantileComparison/Scalar.lean: imports `Mathlib.Tactic.LinearCombination` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/QuantileComparison/Scalar.lean: imports `Mathlib.Tactic.Linarith` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/QuantileComparison/Scalar.lean: imports `Mathlib.Tactic.Positivity` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18186/18353] Replayed ThresholdHC.EntropyTailQuantile.QuantileThreshold
+warning: ThresholdHC/EntropyTailQuantile/QuantileThreshold.lean: imports `Mathlib.Probability.CDF` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/EntropyTailQuantile/QuantileThreshold.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18187/18353] Ran ThresholdHC.EntropyTailQuantile.QuantileThreshold:irArts
+warning: ThresholdHC/EntropyTailQuantile/QuantileThreshold.lean: imports `Mathlib.Probability.CDF` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/EntropyTailQuantile/QuantileThreshold.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18188/18353] Replayed ThresholdHC.EntropyTailQuantile.QuantileAlgebra
+warning: ThresholdHC/EntropyTailQuantile/QuantileAlgebra.lean: imports `Mathlib.Analysis.SpecialFunctions.Sqrt` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/EntropyTailQuantile/QuantileAlgebra.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18189/18353] Ran ThresholdHC.EntropyTailQuantile.QuantileAlgebra:irArts
+warning: ThresholdHC/EntropyTailQuantile/QuantileAlgebra.lean: imports `Mathlib.Analysis.SpecialFunctions.Sqrt` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/EntropyTailQuantile/QuantileAlgebra.lean: imports `Mathlib.Tactic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18194/18353] Replayed ThresholdHC.Tier6.HardPairModel
+warning: ThresholdHC/Tier6/HardPairModel.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18195/18353] Ran ThresholdHC.Tier6.HardPairModel:irArts
+warning: ThresholdHC/Tier6/HardPairModel.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18196/18353] Replayed ThresholdHC.Statements
+warning: ThresholdHC/Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18197/18353] Ran ThresholdHC.Statements:irArts
+warning: ThresholdHC/Statements.lean: imports `Mathlib` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18204/18353] Replayed ThresholdHC.Tier4.Model
+warning: ThresholdHC/Tier4/Model.lean: imports `Mathlib.InformationTheory.KullbackLeibler.DataProcessing` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18205/18353] Ran ThresholdHC.Tier4.Model:irArts
+warning: ThresholdHC/Tier4/Model.lean: imports `Mathlib.InformationTheory.KullbackLeibler.DataProcessing` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18212/18353] Replayed ThresholdHC.Tier6.AlgorithmCore
+warning: ThresholdHC/Tier6/AlgorithmCore.lean: imports `Mathlib.Probability.ProductMeasure` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18213/18353] Ran ThresholdHC.Tier6.AlgorithmCore:irArts
+warning: ThresholdHC/Tier6/AlgorithmCore.lean: imports `Mathlib.Probability.ProductMeasure` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18214/18353] Replayed ThresholdHC.Proofs.Tier2.TranscriptBase
+warning: ThresholdHC/Proofs/Tier2/TranscriptBase.lean:51:39: This simp argument is unused:
+  Bool.false_eq_true
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [↓reduceIte]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ThresholdHC/Proofs/Tier2/TranscriptBase.lean:51:59: This simp argument is unused:
+  ↓reduceIte
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Bool.false_eq_true]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: ThresholdHC/Proofs/Tier2/TranscriptBase.lean:55:67: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: ThresholdHC/Proofs/Tier2/TranscriptBase.lean:55:63: Unused tactic linter: `<;>` can be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/Tier2/TranscriptBase.lean:55:67: Unused tactic linter: `ring` is never executed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [18216/18353] Replayed ThresholdHC.Proofs.Tier2.TranscriptLikelihood
+warning: ThresholdHC/Proofs/Tier2/TranscriptLikelihood.lean:35:15: This simp argument is unused:
+  he
+
+Hint: Omit it from the simp argument list.
+  [apply] simp only [Option.some_ne_none, ↓reduceIte, one_mul, Option.some.injEq]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [18224/18353] Replayed ThresholdHC.Proofs.KL
+warning: ThresholdHC/Proofs/KL.lean:22:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Proofs/KL.lean:22:4: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/KL.lean:39:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Proofs/KL.lean:39:4: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/KL.lean:103:6: `simp` already closes the goal
+
+Hint: Use `simp` instead of `simpa`:
+  [apply] simp [← h, hvf]
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+warning: ThresholdHC/Proofs/KL.lean:78:10: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: ThresholdHC/Proofs/KL.lean:78:6: Unused tactic linter: `<;>` can be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/KL.lean:78:10: Unused tactic linter: `ring` is never executed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/KL.lean:121:10: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: ThresholdHC/Proofs/KL.lean:124:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Proofs/KL.lean:125:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Proofs/KL.lean:158:2: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Proofs/KL.lean:121:6: Unused tactic linter: `<;>` can be removed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/KL.lean:121:10: Unused tactic linter: `ring` is never executed.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/KL.lean:124:4: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/KL.lean:125:4: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/KL.lean:158:2: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [18226/18353] Replayed ThresholdHC.Proofs.Tier2.TranscriptScalar
+warning: ThresholdHC/Proofs/Tier2/TranscriptScalar.lean:68:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Proofs/Tier2/TranscriptScalar.lean:68:4: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/Tier2/TranscriptScalar.lean:77:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ThresholdHC/Proofs/Tier2/TranscriptScalar.lean:77:4: Unused tactic linter: `<;>` can be replaced with `;`.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: ThresholdHC/Proofs/Tier2/TranscriptScalar.lean:106:31: Variable name `hAB` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hAB
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: ThresholdHC/Proofs/Tier2/TranscriptScalar.lean:121:60: Variable name `hAB` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hAB
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [18236/18353] Replayed ThresholdHC.Tier4.FiniteDensity
+warning: ThresholdHC/Tier4/FiniteDensity.lean: imports `Mathlib.InformationTheory.KullbackLeibler.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18237/18353] Ran ThresholdHC.Tier4.FiniteDensity:irArts
+warning: ThresholdHC/Tier4/FiniteDensity.lean: imports `Mathlib.InformationTheory.KullbackLeibler.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18242/18353] Replayed ThresholdHC.Tier5.FiniteJoint
+warning: ThresholdHC/Tier5/FiniteJoint.lean:100:2: Unused tactic linter: `change |p u a * w a| ≤ |w a|` does not change the goal.
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+⚠ [18248/18353] Replayed ThresholdHC.Tier5.FiniteCreation
+warning: ThresholdHC/Tier5/FiniteCreation.lean:97:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThresholdHC/Tier5/FiniteCreation.lean:98:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+⚠ [18250/18353] Replayed ThresholdHC.Tier6.ProcessWeights
+warning: ThresholdHC/Tier6/ProcessWeights.lean: imports `Mathlib.Probability.Kernel.IonescuTulcea.Traj` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18251/18353] Ran ThresholdHC.Tier6.ProcessWeights:irArts
+warning: ThresholdHC/Tier6/ProcessWeights.lean: imports `Mathlib.Probability.Kernel.IonescuTulcea.Traj` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18252/18353] Replayed ThresholdHC.Tier6.ProcessModel
+warning: ThresholdHC/Tier6/ProcessModel.lean:51:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThresholdHC/Tier6/ProcessModel.lean:83:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+warning: ThresholdHC/Tier6/ProcessModel.lean:85:2: Try this: 
+  letI̵
+
+The goal is a proposition, so `let` is preferred over `letI`.
+The difference between `let` and `letI` is that `letI` inlines the value.
+But this is not relevant for proofs because of proof irrelevance.
+
+Note: This linter can be disabled with `set_option linter.style.haveILetI false`
+⚠ [18268/18353] Replayed ThresholdHC.EntropyTail.Bridge
+warning: ThresholdHC/EntropyTail/Bridge.lean:30:57: `Set.mem_setOf_eq` has been deprecated: Use `Set.mem_ofPred_eq` instead
+
+Hint: Replace the deprecated name:
+  S̵e̵t̵.̵m̵e̵m̵_̵s̵e̵t̵O̵f̵_̵e̵q̵S̲e̲t̲.̲m̲e̲m̲_̲o̲f̲P̲r̲e̲d̲_̲e̲q̲
+⚠ [18310/18353] Replayed ThresholdHC.QuantileSelection.Interaction
+warning: ThresholdHC/QuantileSelection/Interaction.lean: imports `Mathlib.Analysis.Complex.ExponentialBounds` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18311/18353] Ran ThresholdHC.QuantileSelection.Interaction:irArts
+warning: ThresholdHC/QuantileSelection/Interaction.lean: imports `Mathlib.Analysis.Complex.ExponentialBounds` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18320/18353] Replayed ThresholdHC.QuantileSelection.ScaleWeights
+warning: ThresholdHC/QuantileSelection/ScaleWeights.lean: imports `Mathlib.Analysis.Complex.ExponentialBounds` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [18321/18353] Ran ThresholdHC.QuantileSelection.ScaleWeights:irArts
+warning: ThresholdHC/QuantileSelection/ScaleWeights.lean: imports `Mathlib.Analysis.Complex.ExponentialBounds` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+Build completed successfully (18353 jobs).
+'ThresholdHC.ZeroAtomSplit.ZeroAtomSplitLawStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ZeroAtomSplit.ZeroAtomSplitStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ZeroAtomSplit.le_of_le_zeroAtom_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ZeroAtomSplit.selectionObjective_smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ZeroAtomSplit.selection_smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ZeroAtomSplit.zeroObjective_add_zeroAtom' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ZeroAtomSplit.zeroObjective_eq_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ZeroAtomSplit.zeroSelection_add_zeroAtom' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ZeroAtomSplit.zeroSelection_zeroAtomLaw' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ZeroAtomSplit.zero_atom_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.ZeroAtomSplit.zero_atom_split_law' depends on axioms: [propext, Classical.choice, Quot.sound]
+Verified 5 exact statements and 11 transitive axiom reports
+Replayed 3 modules through the independent kernel checker
+All 2 zero-atom split targets are certified

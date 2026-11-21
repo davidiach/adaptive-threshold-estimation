@@ -30,6 +30,13 @@ have simultaneous coverage at every authorized integer budget and width
 tending to zero. The particular stage bound is
 `P(D <= 2r) + 3a + 3tau`, not the oracle rate.
 
+*Update, 21 November 2026.* This construction is now Lean-checked in the
+observable simulation, with the supplied `u >= theta` and the unconditional
+`u = 1` case, coverage at every integer budget on one measurable event of
+probability at least `1 - delta`, the stage bound at every completed stage and
+the width limit ([record](../results/unknown-law-confidence-20261121/README.md)). The Bernoulli-subfamily coefficient
+below is checked separately; see the update after it.
+
 The later [arbitrary_law_controller](../lean/ThresholdHC/ArbitraryLawController/Full.lean)
 is checked for `0 < rho <= 1/4` and `0 < delta <= 1/4`, with its own paid
 pilot, learned law and continuation. It does not certify the simpler
@@ -49,6 +56,14 @@ with `0 < delta <= 1/4`; it requires no monotonicity of `t`.
 Its stronger law dependence does not supply the historical numerical coefficient.
 [Lower-bound evidence](../results/anytime-asymptotic-20261105/README.md).
 
+*Update, 21 November 2026.* The coefficient is now Lean-checked
+([`bernoulli_time_uniform_lower`](../lean/ThresholdHC/BernoulliTimeUniform/Full.lean),
+[record](../results/bernoulli-time-uniform-20261121/README.md)): `sqrt(3(1-delta)rho/64) sqrt(log(log n)/n) <= t(n)`
+for arbitrarily large `n`, for every gap law, `0 < rho <= 1/4` and
+`0 < delta < 1`, under the joint-event hypothesis above and without
+monotonicity of `t`. The Lean proof bounds the observable KL of constant sign
+laws directly and does not use the cited proposition.
+
 ### 2. Unknown rarity
 
 **Retain as paper-only:** the [unknown-rarity obstruction](process/TRACK_D.md#an-obstruction-to-completely-uniform-adaptation-to-unknown-rarity).
@@ -63,6 +78,13 @@ The checked adaptation controller receives `rho`; it neither proves nor
 contradicts this different quantifier order. Additive error floors, a positive
 lower bound on rarity, and restricted parameter ranges remain outside the
 obstruction. This reconciliation introduces no new unknown-rarity theorem.
+
+*Update, 21 November 2026.* The obstruction is now Lean-checked in the Tier 6
+adaptive experiment at the gap law $\delta_d$, with the expected-work form and
+the stopped-transcript absolute continuity it uses; one estimator at one
+budget $B>4C^2/d^2$ that stops almost surely at $\theta=1/4$ already fails the
+bound ([record](../results/unknown-rarity-20261121/README.md)). The process note keeps its original status
+line.
 
 ### 3. Earlier critical single-coin and additive-class claims
 
@@ -108,12 +130,16 @@ moment/work constants are `28 rho` and `112000000 criticalLogFactor(rho)`.
 |---|---|
 | Conditional information reduction | A uniform directional Fisher-information/work bound for every capped one-coin policy, plus the stated likelihood regularity, transfers to finite-prefix creation/interleaving. Terminal testing requires termination at both endpoints and the uniform expected-work bound. A variance/work lower bound is not that information premise. |
 | Radial counterexample | For the fixed quadratic law and `q_eta = (1+eta) min(1,b^2/d^2)/2`, `abs(eta) <= 1/2`, with the cutoff calibrated to rarity, the supremum over finite-cap policies has information/work ratio at least `a^2 rho/(32L)`. This refutes the proposed extra-log bound only in that radial direction. |
-| Calibrated radial upper bound | On that known-profile submodel, with exact calibration integrals, `R_radial(B) <= min(rho/4, sqrt(160 rho L/B))`; the displayed variance/work constants and approximate-calibration perturbation bound belong to this construction. This is not an arbitrary-sign-law upper bound. |
-| Restricted pilot correction | An independent pilot selecting only a scalar correction coefficient for fixed unbiased features, with the stated parameter-independent positive variance, cannot improve minimax raw production MSE over the best fixed coefficient. It is not a general prohibition on acquisition feedback or nonlinear estimators. |
+| Calibrated radial upper bound | On that known-profile submodel, with exact calibration integrals, `R_radial(B) <= min(rho/4, sqrt(160 rho L/B))`; the displayed variance/work constants and approximate-calibration perturbation bound belong to this construction. This is not an arbitrary-sign-law upper bound. Lean-checked since 21 November 2026 with exact calibration, the calibrated cutoff's existence and uniqueness, and the call's constants; the approximate-calibration bound stays paper-only ([record](../results/radial-upper-20261121/README.md)). |
+| Restricted pilot correction | An independent pilot selecting only a scalar correction coefficient for fixed unbiased features, with the stated parameter-independent positive variance, cannot improve minimax raw production MSE over the best fixed coefficient. It is not a general prohibition on acquisition feedback or nonlinear estimators. Lean-checked since 21 November 2026 for an abstract mixture model of one coin's observations, with a nonvacuity witness ([record](../results/pilot-correction-20261121/README.md)). |
 
 The report's inherited single-coin obstruction is mapped in item 3. Its
 finite-prior dynamic-program values are exact finite examples, not a new
-uniform expected-budget theorem. The later full critical theorem resolves the
+uniform expected-budget theorem. Their horizon-eight comparison is Lean-checked
+since 21 November 2026 for an explicit adaptive witness against the fixed
+fresh and single-coin designs, with the constants rounded at `10^-15`; the
+witness's optimality and the other horizons are not
+([record](../results/finite-bayes-allocation-20261121/README.md)). The later full critical theorem resolves the
 report's historical broad open question by a different argument; it does not
 upgrade these four auxiliary claims or their constants.
 
@@ -124,10 +150,10 @@ upgrade these four auxiliary claims or their constants.
 
 | Claim | Exact scope retained |
 |---|---|
-| Strict acquisition-feedback advantage | Law `(delta_(1/4)+delta_(1/8))/2`, `rho = 1/4`, deterministic total cap two. The displayed feedback policy has worst MSE below `0.015443` over the entire feasible sign triangle; every preselected independent local-acquisition design has MSE above `0.015475`, including shared seeds and nonlinear terminal estimation. This does not compare expected-budget-two procedures or prove an asymptotic advantage. |
-| Bounded-depth obstruction | Exact quadratic law, `K >= 1`, hard pair with separation `Delta_K = rho/((K+1)(2K+1))`, identical word probabilities through depth `2K`. Arbitrary feedback with that per-coin depth cap has RMS at least `Delta_K/2`. The unrestricted exit bound is `p_K >= 1-4 epsilon^2/Delta_K^2`; each `K` uses a different pair, so these tails cannot be summed under one population. |
+| Strict acquisition-feedback advantage | Law `(delta_(1/4)+delta_(1/8))/2`, `rho = 1/4`, deterministic total cap two. The displayed feedback policy has worst MSE below `0.015443` over the entire feasible sign triangle; every preselected independent local-acquisition design has MSE above `0.015475`, including shared seeds and nonlinear terminal estimation. This does not compare expected-budget-two procedures or prove an asymptotic advantage. Since 21 November 2026 the upper bound, and the lower bound and separation against the seed-conditional normal form under a pathwise cap of two, are Lean-checked; the paper's dominance reduction to that form followed the same day, for an order-free local class (each coin continues on its own answers, the condition imposed at every finite history), with the lower bound `0.01547585`, the minimax bracket and the separation stated for that class under an almost-sure cap of two ([record](../results/two-flip-feedback-20261121/README.md), [dominance record](../results/two-flip-dominance-20261121/README.md)). |
+| Bounded-depth obstruction | Exact quadratic law, `K >= 1`, hard pair with separation `Delta_K = rho/((K+1)(2K+1))`, identical word probabilities through depth `2K`. Arbitrary feedback with that per-coin depth cap has RMS at least `Delta_K/2`. The unrestricted exit bound is `p_K >= 1-4 epsilon^2/Delta_K^2`; each `K` uses a different pair, so these tails cannot be summed under one population. Since 21 November 2026 the population half is Lean-checked for every cap, gap law and matching pair (equal transcript laws under arbitrary feedback and the floor `|theta_H-theta_L|/2`); the explicit pair, `Delta_K` and the floor `Delta_K/2` are Lean-checked as well ([record](../results/depth-legendre-20261121/README.md)); the exit bound stays paper-only ([record](../results/depth-obstruction-20261121/README.md)). |
 | Approximation of the expected-budget minimax value | With exact known-law bin masses, total truncation cap `N`, gap mesh `eta`, downward prior mesh `gamma`, and the same uniform expected budget `B > 0`, the squared-value error is at most `rho^2 B/N + rho^2 N(eta+gamma) + 2rho gamma + rho^2 N^2(eta+gamma)/(4(B+N^2(eta+gamma)))`. The activation correction preserves the budget; the claim is not a solved numerical convex program or a complexity theorem. |
-| Clipping and pilot-profile observations | For an unbiased `F`, `theta in [0,rho]`, finite variance `sigma^2`, and `E(F-theta)^4 <= K sigma^4` with `1 <= K < infinity`, clipping to `[0,rho]` has RMS at least `min(rho,sigma)/(16K)`. The [clipping note](../research/2026-10-27-nonlinear-population/audit/CLIPPING_BOUNDARY.tex) retains this conditional transfer and its independent-noise counterexample; no uniform kurtosis bound for the telescope is supplied. Shallow word matching alone does not control the response-weighted calibration bias. |
+| Clipping and pilot-profile observations | For an unbiased `F`, `theta in [0,rho]`, finite variance `sigma^2`, and `E(F-theta)^4 <= K sigma^4` with `1 <= K < infinity`, clipping to `[0,rho]` has RMS at least `min(rho,sigma)/(16K)`. The [clipping note](../research/2026-10-27-nonlinear-population/audit/CLIPPING_BOUNDARY.tex) retains this conditional transfer and its independent-noise counterexample; both are Lean-checked since 21 November 2026, with the uniform corollary over every rare sign law and the noise construction in the original experiment ([record](../results/clipping-boundary-20261121/README.md)). No uniform kurtosis bound for the telescope is supplied. Shallow word matching alone does not control the response-weighted calibration bias. |
 
 The checked [fixed_cap_identification](../lean/ThresholdHC/CapIdentification/Full.lean)
 and [selection finite approximation](../lean/ThresholdHC/SelectionStability/FiniteApproximation.lean)
@@ -138,9 +164,13 @@ The synthetic 7,680-replicate experiment remains numerical evidence.
 
 ### 6. The particular critical-Psi witness
 
-**Retain the sequence as a paper derivation:** at the exact quadratic law,
+**Lean-checked since 20 November 2026** (`psi_sequence` in
+[PaperCorollaries](../lean/ThresholdHC/PaperCorollaries/Full.lean),
+[record](../results/paper-corollaries-20261120/README.md)), after first being
+retained as a paper derivation: at the exact quadratic law,
 `rho_n = exp(-exp(n))` and `B_n = rho_n^(-2)` give a divergent risk/Psi ratio
-in the [results guide](RESULTS.md#critical-power-margin-full-minimax-characterization).
+in the [results guide](RESULTS.md#critical-power-margin-full-minimax-characterization),
+at least `7*10^-20 sqrt(1 + n)` times `Psi` for `n >= 3`.
 The checked [critical_matching_psi_refuted](../lean/ThresholdHC/CriticalPsi/Full.lean)
 already proves, for every `C > 0`, the existence of valid `rho` and `B >= 1`
 with risk greater than `C Psi`. Its proof uses budget
@@ -148,7 +178,12 @@ with risk greater than `C Psi`. Its proof uses budget
 [Exact statements](../lean/ThresholdHC/CriticalPsi/Specification.lean) ·
 [evidence](../results/critical_psi_001.json).
 The broader refutation is complete; the particular sequence is not a pending
-premise of that theorem.
+premise of that theorem. Since 20 November 2026 (`PaperStatements`) the same
+sequence is also checked in the critical theorem's own model, with the exact
+`Psi`, `Psi > 0` and constant `10^-18/16`, together with the arithmetic of the
+slow-divergence remark, `sqrt(1 + log(1 + log(1/rho))) < 2.54` for `10^-100 <= rho <= 1/4`
+(`critical_psi_divergence`, `critical_slow_divergence` in
+[PaperStatements](../lean/ThresholdHC/PaperStatements/Full.lean), [record](../results/paper-statements-20261120/README.md)).
 
 ### 7. Fixed-plan comparison and its analytic integral
 
@@ -161,6 +196,10 @@ at the specified known gap law. For success rates uniformly distributed on
 `2 integral_0^(1/2) I_p(a,a) dp = binom(2a,a)/2^(2a+1) = 1/(2a Beta(a,1/2))`.
 See [practical comparison](RESULTS.md#practical-comparison-with-a-fixed-plan)
 and the formula in [EvenlySpread.majority_terms](../toolkit/threshold_toolkit/planner.py).
+Since 21 November 2026 the bias, variance and RMS bound and the analytic
+integral are Lean-checked for the plan run in the original experiment, with
+the integrand in binomial-tail form `P(Bin(2a-1,p) >= a)` rather than as
+`I_p(a,a)` ([record](../results/fixed-plan-20261121/README.md)).
 The integral and bias/variance formula are separate from their floating-point
 evaluation. Deterministic calculator correctness belongs to #85; independent
 coin callbacks and actual execution belong to #86. Simulation comparisons
@@ -179,6 +218,14 @@ entropy factor `1024` and tail factor `32`, hence the factor-32 selection
 comparison. No proof of the sharper intermediate series is needed by that
 completed formal result, and none is claimed here.
 
+*Update, 21 November 2026.* The constants of this item are now Lean-checked
+separately: $p_2=1-2e^{-32}$, $p_k\le2e^{-4^k/2}$ for $k\ge3$, a first
+summand below $192$, $C_V<256$ (in fact $C_V\le1024/5$), $\mathbb
+EV^{-2}\le C_V$, $\mathbb EV^{-2}\le256$ and $\mathbb EV^{-1}\le16$, for
+every law with that distribution function
+([record](../results/light-contraction-constant-20261121/README.md)). The entropy inequality
+$\Gamma_{\mathcal L(VD)}\le C_V\Gamma_\mu$ of (A4) stays paper-only.
+
 ### 9. Cross-check of the rest of the current inventory
 
 The [33-entry status source](../paper/v6/status.json) remains unchanged:
@@ -188,7 +235,7 @@ RESULTS and manuscript section 18.
 
 | Boundary | Disposition |
 |---|---|
-| Critical-window Corollary 14.14 and Remark 14.15 | Intentionally paper-only, as decided in #100. For `3/2 <= alpha <= 3` they simplify the checked uniform rate using constants `5.13` and `3.4*10^5`; the remark reads off the exponent-dependent asymptotics and transition window. The five frozen `PowerWindow` targets do not include these statements. [Source](../paper/v6/psi-window.tex), [checked scope](../results/power-window-complete-20261116/README.md). |
+| Critical-window Corollary 14.14 and Remark 14.15 | Kept paper-only by the decision in #100, and Lean-checked since 20 November 2026 in `CriticalWindow`. For `3/2 <= alpha <= 3` they simplify the checked uniform rate using constants `5.13` and `3.4*10^5`; the remark reads off the exponent-dependent asymptotics and transition window. The Lean targets give the remark's universal constants explicitly. The five frozen `PowerWindow` targets do not include these statements; the v6 status table changes with the next manuscript update. [Source](../paper/v6/psi-window.tex), [record](../results/critical-window-20261120/README.md). |
 | Finite-law `(1+epsilon)` approximation | Selected formal follow-up #93. The entropy perturbation and compression invariant are already checked; concrete bins, parameter/state bounds, the finite-law bridge and terminating rational endpoint selection are the remaining assembled theorem. Bit complexity and Python execution have separate scopes. [Existing components](../lean/ThresholdHC/SelectionApproximation/README.md). |
 | Earlier `5/3` and algebraic quantile-comparison constants | Their particular computation-note derivation stays a paper proof. The checked all-law `8/5` comparison gives a stronger numerical inequality on the same positive-gap probability-law domain; this does not identify the historical argument with the later proof. [Current comparison](RESULTS.md#general-law-rare-event-characterization), [computation note](RARE_EVENT_COMPUTATION.md). |
 | Earlier above-two construction and constants | Retain the original paper construction and constants, including `153/56` for its second moment. The formal observable construction uses `28` and its own work bound and lower coefficient; its exact rate theorem is already checked. [Scope map](RARE_ABOVE_TWO.md), [original record](../research/2026-10-27-route-a/CHECKPOINT.md). |

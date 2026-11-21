@@ -24,24 +24,25 @@ VERIFIERS = {
         observable713 confidence oracle_lower rare_above_two quantile_comparison
         selection_approximation finite_selection_approximation deterministic_certificates
         finite_law_certificates envelope_transfer_certificates global_selection_certificates
-        entropy_tail_components sharp_rms large_budget_rms upper_constant upper_work upper_moment upper_mixture upper_cost upper_disagreement upper_sign upper_quarter upper_scale project_axioms
+        entropy_tail_components sharp_rms large_budget_rms pilot_feedback restricted_rms sharp_strict oracle_sharpness oracle_upper explicit_constants nonnegative_unbiased upper_constant upper_work upper_moment upper_mixture upper_cost upper_disagreement upper_sign upper_quarter upper_scale clipped_output revisit_upper project_axioms
     """,
     "entropy-tail-upper": """
-        entropy_tail entropy_tail_components entropy_tail_sharp entropy_tail_upper
-        closed_quantile finite_quantile quantile_comparison quantile_selection quantile_price_upper
-        quantile_sharp_law quantile_optimality optimal_quantile bandwise_suffix selection_stability
+        entropy_tail entropy_tail_components entropy_tail_assembly entropy_tail_sharp entropy_tail_upper
+        closed_quantile finite_quantile quantile_comparison quantile_selection global_cut entropy_tail_forms noninterval_selection fixed_plan quantile_price_upper
+        quantile_sharp_law quantile_optimality optimal_quantile quantile_factor_upper bandwise_suffix selection_stability
         quarter_smoothing confidence_* critical_confidence hard_budget stopping_confidence
         stochastic_envelope sublinear_power shifted_power anytime_* smooth_density observed_*
-        continuous_observed typed_confidence additive_confidence psi_* power_window rms_localization
-        band_cost_selection gap_law_menus law_adaptation* arbitrary_law_* known_law_*
-        dyadic_summability robust_* clipping_pilot_independence paid_median project_axioms
+        continuous_observed nested_assumptions light_contraction_constant typed_confidence additive_confidence psi_* power_window critical_window paper_corollaries paper_statements finite_gap_corollaries stopped_time_uniform latent_threshold zero_atom_split critical_pair_rms bias_subtraction rms_localization
+        band_cost_selection band_cost_example repeated_check reservoir_termination gap_law_menus law_adaptation* arbitrary_law_* known_law_*
+        creation_charge stage_pilot_law bias_audit unknown_rarity hard_cap_necessity pilot_correction depth_obstruction localization_counter affine_comparison two_flip_feedback unknown_law_confidence upper_twelve_numerics radial_upper time_uniform_two_sided depth_legendre latent_disintegration known_gap_rarity margin_classes power_quantile_rows weighted_sign_sharp full_null_bank robust_continuation_forms finite_quantile_formula early_pilot bernoulli_time_uniform two_flip_dominance finite_bayes_allocation poisson_comparison
+        dyadic_summability robust_* clipping_pilot_independence clipping_boundary paid_median project_axioms
     """,
     "stopping-program": """
         stopping_components stopping_flow_mixture finite_stopping_program rarity_support
         stopping_dual information_bellman reference_absorption ordered_information
         adaptive_information stopping_program_upper finite_risk_certificate infinite_cap_dual
         genie_* finite_cap_truncation entropy_tail entropy_tail_components entropy_tail_lower_components
-        square_root_cap sharp_rms
+        square_root_cap sharp_rms cap_identification_estimate program_factor stopping_update
     """,
 }
 

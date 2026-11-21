@@ -134,8 +134,11 @@ at most 32 times the old tail cost. This proves (A3).
 The formal proof uses an alternative fixed reference code, with weights
 $7/16$ for each of the two first-band cells and $2^{-(n+4)}$ for each
 cell in multiplier band $n=k-2\ge1$. It proves the post-division entropy bound
-$1024\Gamma$ and tail coefficient 32 directly. The sharper intermediate
-calculation $C_V<256$ in (A4) remains the paper calculation above.
+$1024\Gamma$ and tail coefficient 32 directly. The constants of the
+sharper intermediate calculation are [Lean-checked](../results/light-contraction-constant-20261121/README.md)
+separately: the band masses, the first summand below 192, $C_V<256$ (in fact
+$C_V\le1024/5$) and the two inverse moments. The entropy inequality of (A4)
+remains the paper calculation above.
 
 **Dominated mass.** This comparison is [Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#dominated-mass). If $\lambda$ is a probability measure satisfying
 $\lambda\le c\eta+e\delta_0$, with $c\ge1$ and $e\ge0$, then
@@ -208,7 +211,11 @@ $$
 $$
 For the lower bound the reciprocal sum contributes at least $N/4$, and
 the geometric sum contributes at least $N/4$. The cap $M$ makes easy-law
-pilots stop without spending all their authorized flips.
+pilots stop without spending all their authorized flips. Lean checks this
+since 21 November 2026 for a pilot whose probes stop once decided: with every
+gap at least $a$ its expected work is at most $512\,mMJ(J+3)/a^2$, a vanishing
+fraction of the cap at a depth independent of the law
+([record](../results/early-pilot-20261121/README.md)); that pilot is not installed in the checked stage.
 
 ## 3. The learned law retains the oracle rate
 
@@ -283,7 +290,10 @@ are proof witnesses; the learner never samples or computes them.
 maximum. (A11) is checked for certificates that satisfy the upper half of
 (A8), with a finite onset that depends on $\mu$ and $\rho$ only, and on the
 pilot event for the learned law of the paid learning stage, on the coin array
-of the original simulation law.
+of the original simulation law. Since 21 November 2026 (A8) and (A11) on the
+same event are also checked under the law of the original hidden-gap
+experiment of the whole learning stage
+([record](../results/stage-pilot-law-20261121/README.md)).
 
 ## 4. Robust use of the known-law estimator
 
@@ -350,7 +360,13 @@ over the coupling they give the level-work certificate, which is
 [Lean-checked](ARBITRARY_LAW_FORMALIZATION.md#robust-continuation-level-certificates-under-a-coupled-law)
 together with the level error. The Lean proof integrates the surcharge
 against the sign law at the true gap through the coupling and does not
-form the induced sign allocation.
+form the induced sign allocation. Since 21 November 2026 Lean also states
+both separately: the induced reference sign allocation, with its integral
+identity, its positive fraction and the sharp admissibility clause, and the
+pathwise bound (A15) with correct-sign crossing times, in parameter form, at
+the gap coupling, at the reference zero atom and for the reference level race
+([record](../results/robust-continuation-forms-20261121/README.md)). The integrated work bounds from (A15) are not
+restated.
 
 Assign a reference zero atom entirely to the unresolved part. It contributes
 at most its mass to error and its mass times the race cap $2M$ to work. All selected-core
@@ -362,7 +378,12 @@ $\alpha=z\delta_0+(1-z)\eta$: its null law is the positive part $\eta$
 alone and its positive allowance is $\rho\varepsilon/(1-z)$. The error and
 work bounds above hold for it, and it needs neither a coin of gap zero nor
 the fair-coin likelihood. The bank with the exact null mixture of $\alpha$
-is not the one checked.
+is not the one these certificates use. Since 21 November 2026 Lean also
+checks that bank and its level certificates: Ville's bound under the full
+null, its integrated false positives, its per-coin work and the level error
+and work bounds, under $z+\zeta(\text{all gaps})\le\rho$
+([record](../results/full-null-bank-20261121/README.md)). The plan and the planner rate built on it are
+not checked.
 
 The binary correction variances, finite multilevel telescoping, clipping and
 expected-work allocation now follow unchanged. Successive corrections use

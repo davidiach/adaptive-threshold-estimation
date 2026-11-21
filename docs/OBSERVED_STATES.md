@@ -43,7 +43,12 @@ experiment connections.
 
 The construction uses the second-moment condition
 \(M^{-1}\le\delta\Delta^2/16\). The paper's Hoeffding-based replication
-count remains a separately proved bound.
+count, \(M=\lceil32\Delta^{-2}\log(2/\delta)\rceil\), is Lean-checked since
+21 November 2026 in `lean/ThresholdHC/ObservedHoeffding`, with weighted
+Hoeffding for the sign target and the lower bound for every finite cell
+design that meets the Hoeffding condition
+([record](../results/observed-hoeffding-20261121/README.md); `python tools/verify_observed_hoeffding.py --replay`).
+The continuous-magnitude construction still uses the second-moment count.
 
 ## Continuous magnitudes
 

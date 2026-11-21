@@ -1,0 +1,71 @@
+⚠ [6066/6079] Replayed ThresholdHC.PilotCorrection.Specification
+warning: ThresholdHC/PilotCorrection/Specification.lean: imports `Mathlib.Probability.Moments.Variance` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/PilotCorrection/Specification.lean: imports `Mathlib.Order.SaddlePoint` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/PilotCorrection/Specification.lean: imports `Mathlib.Data.EReal.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [6067/6079] Ran ThresholdHC.PilotCorrection.Specification:irArts
+warning: ThresholdHC/PilotCorrection/Specification.lean: imports `Mathlib.Probability.Moments.Variance` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/PilotCorrection/Specification.lean: imports `Mathlib.Order.SaddlePoint` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/PilotCorrection/Specification.lean: imports `Mathlib.Data.EReal.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [6068/6079] Replayed ThresholdHC.PilotCorrection.Quadratic
+warning: ThresholdHC/PilotCorrection/Quadratic.lean: imports `Mathlib.Analysis.Convex.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/PilotCorrection/Quadratic.lean: imports `Mathlib.Topology.Instances.Real.Lemmas` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/PilotCorrection/Quadratic.lean: imports `Mathlib.Topology.Order.Compact` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/PilotCorrection/Quadratic.lean: imports `Mathlib.Order.SaddlePoint` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+⚠ [6069/6079] Ran ThresholdHC.PilotCorrection.Quadratic:irArts
+warning: ThresholdHC/PilotCorrection/Quadratic.lean: imports `Mathlib.Analysis.Convex.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/PilotCorrection/Quadratic.lean: imports `Mathlib.Topology.Instances.Real.Lemmas` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/PilotCorrection/Quadratic.lean: imports `Mathlib.Topology.Order.Compact` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: ThresholdHC/PilotCorrection/Quadratic.lean: imports `Mathlib.Order.SaddlePoint` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+Build completed successfully (6079 jobs).
+'ThresholdHC.PilotCorrection.CoinWitnessStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.FixedFeatures' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.PilotNoGainStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.SaddleStatement' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.coinLaw' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.coinLaw_isProbability' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.coinLaw_isProbability_of_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.coinWitness_features' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.coinWitness_holds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.coinWitness_prob' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.coinWitness_variance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.coin_witness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.continuous_sum_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.fairCoin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.fairCoin_isProbability' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.fixedRisk' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.fixedRisk_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.iid_average_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.iid_average_memLp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.iid_average_risk' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.iid_average_variance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.iid_eval_integral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.integrable_coinLaw' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.integral_coinLaw' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.integral_dirac_prod_fairCoin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.integral_fairCoin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.integral_feature' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.integral_rawAverage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.le_zero_of_forall_le_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.measurable_pilotIntegrand' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.memLp_coinLaw' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.memLp_feature' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.pilotRisk' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.pilotRisk_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.pilot_no_gain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.quadratic_saddle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.rarityPolytope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.rarityPolytope_convex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.rarityPolytope_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.rarityPolytope_isCompact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.rawAverage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.saddle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.saddle_real' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.saddle_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.signMass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.signMass_eq_sum_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.sum_affine_segment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.variance_coinLaw' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ThresholdHC.PilotCorrection.zero_mem_rarityPolytope' depends on axioms: [propext, Classical.choice, Quot.sound]
+Verified 6 exact statements and 49 transitive axiom reports
+Replayed 7 modules through the independent kernel checker
+All 3 pilot-correction targets are certified

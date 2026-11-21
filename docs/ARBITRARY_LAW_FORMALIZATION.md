@@ -200,8 +200,12 @@ needed in the final theorem; finite positive-gap input measures suffice.
 Run `python tools/verify_arbitrary_law_light.py` for 26 additional exact
 statements and transitive axiom reports. The proof uses a fixed two-cell
 reference code to obtain the post-division entropy bound 1024 directly.
-The paper's intermediate sharper `C_V < 256` calculation in (A4) is not
-asserted as a separately formalized result.
+The paper's intermediate sharper `C_V < 256` calculation in (A4) is not part
+of this proof. Its constants (the band masses, the first summand below 192,
+`C_V < 256` and the inverse moments) are checked separately in
+`lean/ThresholdHC/LightContractionConstant`
+([record](../results/light-contraction-constant-20261121/README.md); `python tools/verify_light_contraction_constant.py --replay`);
+the entropy inequality of (A4) itself is not.
 The [native light-contraction record](../results/arbitrary-law-light-20261106/README.md)
 binds both audits to the proof checkpoint and complete project closure.
 
@@ -507,7 +511,9 @@ of positive gaps and every measurable gap-dependent sign law:
 The reader buys every block in full. Flips bought after a probe has stopped
 are charged and ignored, so the estimator's charge is its cap, `m b` flips at
 one depth. An estimator that stops buying when its probes stop is not
-constructed.
+constructed here; since 21 November 2026 one is, as a separate group
+(`EarlyPilot`, [record](../results/early-pilot-20261121/README.md)), with the event (A8) and expected-work
+bounds, but it is not installed in the learning stage.
 
 Run `python tools/verify_arbitrary_law_tail_observable.py` for 68 exact
 statements and 68 transitive axiom reports, one for each declaration of the
@@ -564,9 +570,17 @@ event (A8). The stage buys at most `m sum_j b_j` flips plus the continuation's
 on every admissible path.
 
 The reader buys every block in full, so the pilot is charged its cap. The
-paper's remark that the coin cap lets easy-law pilots stop early is not
-formalized. (A8) is stated under the law of the original experiment for the
-pilot alone, and on the coin array for the stage.
+paper's remark that the coin cap lets easy-law pilots stop early is not used
+here. Since 21 November 2026 it is formalized for a separate early-stopping
+pilot: for laws with every gap at least `a` its expected work is at most
+`512 m M J (J + 3)/a^2`, a vanishing fraction of the cap
+([record](../results/early-pilot-20261121/README.md)). (A8) is stated under the law of the original experiment for the
+pilot alone, and on the coin array for the stage. Since 21 November 2026 it
+is also stated for the stage under the law of the original hidden-gap
+experiment of the whole stage, for the certificates read off the paid
+chronological prefix of the observed history
+([`stage_pilot_event`](../lean/ThresholdHC/StagePilotLaw/Full.lean),
+[record](../results/stage-pilot-law-20261121/README.md)).
 
 Run `python tools/verify_arbitrary_law_pilot.py` for 66 exact statements and
 66 transitive axiom reports, one for each declaration of the two modules. The
@@ -676,8 +690,13 @@ registered. The
 [learned-oracle record](../results/arbitrary-law-learned-oracle-20261111/README.md)
 identifies the proof checkpoint and source hashes.
 
-The event is stated on the coin array, as (A8) is, not under the law of the
-experiment of the whole stage.
+The event is stated on the coin array, as (A8) is. Since 21 November 2026 the
+same comparison is also stated under the law of the experiment of the whole
+stage, on the full event (A8) with both halves and the domination, at a fixed
+depth under the onset condition and from a finite onset chosen before the
+seed type, the sign law, the stage, `m` and `eps`
+([`stage_pilot_oracle`, `stage_pilot_oracle_eventually`](../lean/ThresholdHC/StagePilotLaw/Full.lean),
+[record](../results/stage-pilot-law-20261121/README.md)).
 
 ## Quantile design with a zero atom
 
@@ -714,6 +733,16 @@ statements and 22 transitive axiom reports, one for each declaration of the
 module. The audit fails if a declaration is added without being registered.
 The [zero-quantile record](../results/arbitrary-law-zero-quantile-20261112/README.md)
 identifies the proof checkpoint and source hashes.
+
+That record compared `Q_alpha` with `K_alpha` numerically through the identity
+`K_alpha = min(rho, z + (1 - z) K_(eta, rho/(1 - z)))`, which it describes as
+not Lean-checked. Since 21 November 2026 the separate group
+[ZeroAtomSplit](../lean/ThresholdHC/ZeroAtomSplit/Full.lean) proves it for
+`0 <= z < 1`, `rho > 0` and `B > 0`, and for every law on `[0, 1/2]` with
+`alpha{0} < 1`; `python tools/verify_zero_atom_split.py --replay` checks it
+([record](../results/zero-atom-split-20261121/README.md)). The rarity is `rho/(1 - z)`, not the
+design rarity `r`. The toolkit's enclosure of `K_eta` and the correspondence
+with its oracle split remain outside Lean.
 
 The plan that uses this design is specified in the next section, and its
 rate for exact integrals in the one after. The coefficients `C_0` and `C_*`
@@ -869,7 +898,9 @@ scaled by `1 - z_0`, and the mass at zero is part of the unresolved mass
 These are statements about the numbers the planner computes. The experiment
 of the upper theorem has positive gaps only, so the estimator of a reference
 law with mass at zero, with the fair-coin likelihood its bank uses for that
-mass, is not formalized. Nor is the rational arithmetic that produces a tight
+mass, is not formalized. Since 21 November 2026 that bank and its level
+certificates are (`FullNullBank`, [record](../results/full-null-bank-20261121/README.md)); the plan and the
+planner rate with it are not. Nor is the rational arithmetic that produces a tight
 enclosure for a finite law. The level races of such a reference and the
 estimator that runs its plan are covered below
 ([levels](#robust-continuation-level-certificates-under-a-coupled-law),
@@ -1075,14 +1106,19 @@ The rarity surcharge is integrated against the sign law at the true gap,
 read at the reference gap through the coupling: at a reference gap it is at
 most `log 3 d_0^-2 + A/rho + H^2/(2 rho^2)`, and the positive mass under the
 coupling is at most `rho`. The conditional law of the sign given the
-reference gap is not formed.
+reference gap is not formed here; since 21 November 2026 it is formed
+separately, as the induced reference sign allocation with its integral
+identity and admissibility (`RobustContinuationForms`,
+[record](../results/robust-continuation-forms-20261121/README.md)).
 
 A reference law `z_0 delta_0 + (1 - z_0) eta` is the case `c = 1 - z_0`, with
 `mu_0` the part of the true law coupled to the atom. The bank's null law is
 `eta`, so no coin of gap zero and no fair-coin likelihood is used, and the
 work bound is the level price of the zero-atom design with unresolved mass
 `z_0 + zeta(all gaps)`. A bank that evaluates the null mixture of the whole
-reference law is a different test and is not the one checked.
+reference law is a different test and is not the one checked here; its level
+certificates are checked separately (`FullNullBank`,
+[record](../results/full-null-bank-20261121/README.md)).
 
 The coupling in this form is a hypothesis. The corrections and the plan
 under the true law are in the next section.
@@ -1140,7 +1176,11 @@ combines this with the rate of the zero-atom plan. For a reference law
 The estimator is fixed by the reference before the true law is chosen: the
 statements have the form "there is an estimator such that for every true
 law". It is the plan's estimator, or the constant `rho/2` when the unresolved
-mass is large or the plan's certified risk is above `rho/2`.
+mass is large or the plan's certified risk is above `rho/2`. Since 21 November
+2026 the plan branch is also stated with the estimator named, in a tight
+two-branch form for a coupled and for every CDF-dominated true law, with the
+zero-atom split named from the reference law, the rarity and the budget, and
+the case `rho <= z_0` (`RobustContinuationForms`, [record](../results/robust-continuation-forms-20261121/README.md)).
 
 The coupling is a hypothesis. The Lean estimator draws Poisson counts, reads
 both races of a correction from the same flips, and uses the bank whose null

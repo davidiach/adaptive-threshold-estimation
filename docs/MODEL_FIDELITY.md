@@ -57,6 +57,24 @@ later changes bear on it:
   sets import, is not replayed.
 - **Definition lock.** Since 14 November the whole-project audit checks a
   fingerprint of every project definition (section 10).
+- **The obstruction premise.** Since 21 November 2026 Proposition
+  `prop:psi-null` is proved as `psi_null : PsiNullStatement`, against the same
+  `NullVarianceObstruction`, and `psi_budget_lower` gives
+  $R_{\mu,\rho}(B)\ge\Psi_{\mu,\rho}(B^{-1/2})/8192$ through
+  `minimax_rms_of_obstruction`. Its audit pins the specification by hash;
+  sections 7 and 11 note it ([record](../results/psi-null-20261121/README.md)).
+- **Entropy-tail intermediate audits.** Since 21 November 2026 CI also runs
+  `verify_entropy_tail_components.py` and `verify_entropy_tail_assembly.py`,
+  which section 10 lists as local only.
+- **Creation fee.** Since 21 November 2026 the remark that a fee per new coin
+  changes the cost by at most a constant factor is a stated theorem, with the
+  factor $1+c$, for every adaptive estimator (`CreationCharge`; section 3 and
+  question 6 note it; [record](../results/creation-charge-20261121/README.md)).
+- **Population class.** Since 21 November 2026 the converse disintegration is
+  Lean-checked: every law of $P$ on $[0,1]$ with $|P-1/2|\sim\mu$ is some
+  $G_{\mu,q}$, and $\theta=P_G(P>1/2)$ for every $q$ representing it
+  (`LatentDisintegration`; section 1, section 9 and question 5 note it;
+  [record](../results/latent-disintegration-20261121/README.md)).
 
 Counts below that are not marked with a commit describe `43d9fba`.
 
@@ -75,8 +93,11 @@ Counts below that are not marked with a commit describe `43d9fba`.
 4. [`minimaxRisk`][minimaxRisk] and [`rareMinimaxRisk`][rareMinimaxRisk]:
    where the infimum and supremum sit, and over which seed spaces.
 5. [`NullVarianceObstruction`][NullVarianceObstruction]: the premise of the
-   general RMS transfer. Lean never proves it for any gap law
+   general RMS transfer. At the pin Lean proved it for no gap law
    ([section 7](#7-theorem-chain-from-the-single-coin-obstruction-to-the-population-bound)).
+   Since 21 November 2026 the later target `psi_null` proves it for every gap
+   law, in the form of Proposition `prop:psi-null`
+   ([record](../results/psi-null-20261121/README.md)).
 
 ## 1. The observable experiment
 
@@ -128,12 +149,13 @@ is a proved theorem ([`process_realization`][process_realization],
 | One sign per coin, kept on revisits | eq. (3); §11.1 | the sum over `s` outside the product over time in `transcriptLaw` | matches | Signs are never random variables on the sample space; they are summed out of every finite-prefix weight. The gap persists because it is stored in the seed. |
 | Independent coins | §2 | iid gap array; independent sign factors | matches | All gaps are drawn at time 0 rather than at creation. They are independent of the algorithm seed and invisible to it, so this agrees in law. |
 | Literal iid-tape experiment | eq. (3), Section 1 | [`original_observable_simulation_law`][original_sim] | matches | It proves that the (seed, tape) law of `experimentLaw` equals running the policy on independent per-coin flip tapes. It is outside the Tier 6 lock. The blind upper bound and several later developments use it. The Tier 6 lower bound and the RMS transfer chain do not; they work from the finite-prefix identity. |
-| Target $\theta=\int q\,d\mu$ | §2 | [`signMean`][signMean] | matches | The paper's Section 1 writes $\theta(G)=P_G(P>1/2)$. Lean defines $G_{\mu,q}$ (`populationParameterLaw`, `SmoothDensity.latentLaw`), but proves $\theta=G(P>1/2)$ only for laws with a density. That it holds for every law is one line from `populationParameterLaw_integral` but is not stated, and the converse (every $G$ is some $G_{\mu,q}$) is not formalized. |
+| Target $\theta=\int q\,d\mu$ | §2 | [`signMean`][signMean] | matches | The paper's Section 1 writes $\theta(G)=P_G(P>1/2)$. Lean defines $G_{\mu,q}$ (`populationParameterLaw`, `SmoothDensity.latentLaw`), but proves $\theta=G(P>1/2)$ only for laws with a density. That it holds for every law is one line from `populationParameterLaw_integral` but is not stated, and the converse (every $G$ is some $G_{\mu,q}$) is not formalized. Since 21 November 2026 the later target `threshold_mean` states $\theta=G_{\mu,q}(P>1/2)$ for every gap law and sign law ([record](../results/latent-threshold-20261121/README.md)). Since the same day the converse is Lean-checked too: every law $G$ of $P$ on $[0,1]$ with $|P-1/2|\sim\mu$ is some $G_{\mu,q}$, so $\mathcal G(\mu)$ is exactly that set and $\theta=P_G(P>1/2)$ for every $q$ representing $G$ (`g_form_target`, [record](../results/latent-disintegration-20261121/README.md)). |
 
 **For the reviewer.** Is summing each sign once, outside the time product, the
 persistent-sign model you intend? Is a pre-drawn, label-indexed gap array an
 acceptable reading of "draw a fresh gap at creation"? Is it acceptable that
-the $G$-form of the claims rests on an unformalized disintegration?
+the $G$-form of the claims rests on an unformalized disintegration? (Lean
+checks the disintegration since 21 November 2026; [record](../results/latent-disintegration-20261121/README.md).)
 
 ## 2. Adaptive policies
 
@@ -208,8 +230,12 @@ representable; it simply fails a budget.
 - **Label: matches.** A coin exists in Lean only once it is flipped, so on
   every path the number of coins is at most $T$. The paper's remark that a
   fixed fee per new coin changes cost by at most a constant factor is
-  therefore immediate in the Lean model. No separate creation-cost model is
-  formalized.
+  therefore immediate in the Lean model. Since 21 November 2026 it is also a
+  stated theorem, with a created coin read as a newly selected label and the
+  factor $1+c$ for a fee $c\ge0$
+  ([`charged_work`](../lean/ThresholdHC/CreationCharge/Full.lean),
+  [record](../results/creation-charge-20261121/README.md)). Coins created and never observed cannot be
+  represented.
 - **Almost-sure stopping** is a theorem: finite expected work under one
   measure forces stopping almost surely ([`CreationStopsStatement`][CreationStops],
   proved as [`creation_stops`][creation_stops]). No named Tier 6 theorem
@@ -349,6 +375,20 @@ critical law, with $b=\rho/32$ and an existential constant in $J$
 ([`critical_common_pair_bound`][critical_cp], by a separate route). No theorem
 states the composed RMS bound for that law. The critical RMS law itself is
 Lean-checked separately ([`critical_minimax_lower_bound`][critical_lower]).
+Since 21 November 2026 the later targets `critical_pair_rms` and
+`critical_pair_minimax_rms` state the composed bound, with the existential
+constant ([record](../results/critical-pair-rms-20261121/README.md)), and `bias_subtraction` shows
+that on the two-atom laws of the remark after Proposition `prop:psi-null` the
+obstruction at the remark's bias level forces $J\le1/4$, so the bias term $4b$
+cannot be lowered ([record](../results/bias-subtraction-20261121/README.md)).
+Since the same date the later target `psi_null` proves
+`NullVarianceObstruction` itself, for every probability law of gaps,
+$0<\rho\le1/4$, $0\le b\le\rho/64$ and $h>0$, with
+$J=(\Psi_{\mu,\rho}(h)-4b)_+^2/(192h^2)$: this is Proposition `prop:psi-null`.
+The target `psi_budget_lower` composes it with `minimax_rms_of_obstruction`
+into $R_{\mu,\rho}(B)\ge\Psi_{\mu,\rho}(B^{-1/2})/8192$ for every $B>0$
+([record](../results/psi-null-20261121/README.md)). The confidence
+consequences through the common pair are not stated.
 
 **Side result.** The selected-type KL transfer (Theorem S.2,
 `TypedConfidence`) is stated on a directly defined tape model and is not used
@@ -360,11 +400,11 @@ by the RMS theorem.
 |---|---|---|---|
 | Dyadic bands, costs $a_j$, entropy $G$, $\Gamma_\sigma$ | §13.1, eq. (60) | [EntropyTail/Model.lean:16-32][EntropyTailModel] | matches. Band $j$ is $(2^{-(j+2)},2^{-(j+1)}]$. Mathlib's $\log 0=0$ gives the paper's convention for zero coordinates. $\Gamma$ is a supremum over finite prefixes and may be $\infty$. |
 | Selection $\mathcal K_{\mu,\rho}(B)$ | eq. (61) | [`selection`][selection] | matches. The infimum is over all $\sigma\le\mu$ in $[0,\infty]$; infinite entropy is never treated as zero. |
-| Closed quantile $Q(B)$ with a fractional boundary atom | §14.2 eqs. (67)-(69); §14.6.1 | [`closedQuantileValue`][closedQuantile] | matches the general-law definition. The finite formula (67) is not restated in Lean. |
-| Two-sided law | Theorem 13.2, eq. (63) | [`EntropyTailLawStatement`][EntropyTailLaw] | narrower. The constants come first, then $\rho$, $B$ and $\mu$, as in the paper. Lean does not state $c<C$, or that (61) and the three-piece form (62) are equivalent. |
+| Closed quantile $Q(B)$ with a fractional boundary atom | §14.2 eqs. (67)-(69); §14.6.1 | [`closedQuantileValue`][closedQuantile] | matches the general-law definition. The finite formula (67) was not restated in Lean at the pin; since 21 November 2026 the later targets `finite_formula` and `explicit_finite_law` state (67)-(69) for finite laws and the direct finite-law bounds with $Q$ given by the formula ([record](../results/finite-quantile-formula-20261121/README.md)). |
+| Two-sided law | Theorem 13.2, eq. (63) | [`EntropyTailLawStatement`][EntropyTailLaw] | narrower. The constants come first, then $\rho$, $B$ and $\mu$, as in the paper. Lean does not state $c<C$, or that (61) and the three-piece form (62) are equivalent. Since 21 November 2026 the later targets `ordered_law`, `three_piece_inf`, `three_piece_form` and `three_piece_law` state both ([record](../results/entropy-tail-forms-20261121/README.md)). |
 | Coefficients $10^{-17}$ and $28000$ | eq. (128) states $33000$ | [`ExplicitLawStatement`][ExplicitLaw]; [`entropy_tail_upper_explicit`][tail_upper_explicit] | Lean's 28000 is stronger than the paper's 33000. [`paper_comparison`][paper_comparison] states (128) itself. The lower coefficient is reached through $\mathcal K\le Q$ and a direct closed-quantile bound, so Lean does not check the constant bookkeeping in Appendix E. |
 | $R\le30001\,Q$ for every law | §14.6, Corollary 14.6 | [`closed_quantile_upper_30001`][closed_quantile_30001] | It runs $R\le28000\,\mathcal K'\le28000\,Q$. It is not the direct finite-law construction. |
-| Lemma 13.1, attainment for finite laws | `entropy-tail-statement.tex` | [`BandwiseSuffixStatement`][BandwiseSuffix] | matches in form (61). The split of the remainder in form (62) relies on the paper-only equivalence. |
+| Lemma 13.1, attainment for finite laws | `entropy-tail-statement.tex` | [`BandwiseSuffixStatement`][BandwiseSuffix] | matches in form (61). The split of the remainder in form (62) relies on the paper-only equivalence. Since 21 November 2026 `finite_hard_three_piece` states the hard minimizer in form (62) and `hard_three_piece` hard measurable partitions for every law ([record](../results/entropy-tail-forms-20261121/README.md)). |
 | Proof-vehicle $\mathcal K'$ | §18 | [`quantile_selectionValue_le`][bridge_le], [`quantile_selectionValue_eq`][bridge_eq] | $\mathcal K'\le\mathcal K$ for every measure, and $\mathcal K'=\mathcal K$ for every finite measure, hence for every probability law. |
 
 **Name collisions.** `budgetScale` means $1/(4\sqrt B)$ in `Tier6` and
@@ -380,9 +420,9 @@ read.
 |---|---|---|
 | Seed spaces in universe 0; measurable algorithms only | narrower | Lower bounds transfer if every intended algorithm embeds. |
 | No computability constraint; output defined when $T=\infty$ | wider | Strengthens the lower bounds; irrelevant under a finite budget. |
-| $\theta=P_G(P>1/2)$ for general $G$ | partial | Lean works with $(\mu,q)$; the general $G$ form is a paper step. |
-| Theorem 2.2's $\sup_q E Y^2\le23\,I_\mu$ | narrower | The locked [`Observable713Statement`][Observable713] states extended variance at most $23\,I_\mu$. The second-moment bound is proved only inside [`output_variance_le`][output_variance_le], not as a stated theorem. |
-| Theorem 2.1's hidden-model confidence coefficient $15/(256\sqrt2)$ | narrower | Rests on the per-algorithm [`hidden_confidence_lower`][hidden_conf], which is axiom-audited but not an exact-type target. The minimax step is one `le_sInf`. The frozen confidence characterization carries $1/64$. |
+| $\theta=P_G(P>1/2)$ for general $G$ | partial | Lean works with $(\mu,q)$; the general $G$ form is a paper step. Since 21 November 2026 Lean states $\theta=G_{\mu,q}(P>1/2)$ for every $(\mu,q)$ (`threshold_mean`, [record](../results/latent-threshold-20261121/README.md)); since the same day it also states that every $G$ with $|P-1/2|\sim\mu$ is some $G_{\mu,q}$ (`population_class`, [record](../results/latent-disintegration-20261121/README.md)); the risk theorems are still stated in the $(\mu,q)$ form. |
+| Theorem 2.2's $\sup_q E Y^2\le23\,I_\mu$ | narrower | The locked [`Observable713Statement`][Observable713] states extended variance at most $23\,I_\mu$. The second-moment bound is proved only inside [`output_variance_le`][output_variance_le], not as a stated theorem. Since 20 November 2026 the later target `observable_second_moment` states it ([record](../results/paper-statements-20261120/README.md)). |
+| Theorem 2.1's hidden-model confidence coefficient $15/(256\sqrt2)$ | narrower | Rests on the per-algorithm [`hidden_confidence_lower`][hidden_conf], which is axiom-audited but not an exact-type target. The minimax step is one `le_sInf`. The frozen confidence characterization carries $1/64$. Since 21 November 2026 the later targets `hidden_confidence` and `hidden_confidence_minimax` state the coefficient for each algorithm and for the minimax radius ([record](../results/explicit-constants-20261121/README.md)). |
 | Hard-cap fallback (Theorem R.1) | wider | Lean needs the base-rule premise only at the $(\mu,q)$ where it concludes, and allows any $M\ge0$. |
 | Hard-cap critical rate | wider | Lean covers every $B>0$; Theorem 11.2 states $B\ge1$. |
 | Explicit upper coefficients | see §10 | 512, 28000, 30001 and others are in companion theorems, not in the locked types. |
@@ -453,14 +493,18 @@ read.
   ($1/16$), StoppingProgram ($16$) and EntropyTailQuantile ($33000$). Locked
   types that assert only a positive constant: BlindUpper, EntropyTail,
   ClosedQuantile, RareAboveTwo and CriticalUpper; the unlocked
-  `CriticalMinimaxLowerStatement` also asserts only a positive constant. The
+  `CriticalMinimaxLowerStatement` also asserts only a positive constant (since
+  20 November 2026 the later target `critical_explicit_constants` gives it
+  $10^{-18}$ in the same model; [record](../results/paper-statements-20261120/README.md)). The
   coefficients 512 ([`minimax_upper_bound`][minimax_upper_bound]), 28000
   ([`entropy_tail_upper_explicit`][tail_upper_explicit]), 30001 and 100000
   (critical upper) are in the types of audited companion theorems, and
   $512/(1-\alpha)$ and $8192/(1-\alpha)$ in inline audit statements for the
   row below one. The above-two coefficient $1/256$ appears only as the
   witness inside the proof of `rare_supported_lower`; no stated type carries
-  it. The 512 companions use only locked Tier 6 definitions.
+  it (since 21 November 2026 the later targets `rare_lower_256` and
+  `rare_single_coin_28` state $1/256$ and the second moment $28\rho$;
+  [record](../results/explicit-constants-20261121/README.md)). The 512 companions use only locked Tier 6 definitions.
 - **Instances.** Inline audit statements are elaborated after the proof
   modules are imported, so an imported instance could change how their type
   classes resolve. At `43d9fba` the tree has 137 `instance` declarations and two global
@@ -486,14 +530,20 @@ read.
 4. Is `NullVarianceObstruction` the obstruction you would actually prove for a
    given law? It uses mixture variance, bias over the pointwise class
    $q\le1/2$, work under the all-negative prior, a deterministic cap and
-   bounded output. For which laws is it known? Lean proves only the
-   downstream `CommonPairBound`, and only for the quadratic critical law.
+   bounded output. For which laws is it known? At the pin Lean proved only
+   the downstream `CommonPairBound`, and only for the quadratic critical law.
+   Since 21 November 2026 `psi_null` proves the obstruction for every gap law
+   with $J=(\Psi(h)-4b)_+^2/(192h^2)$.
 5. Is it acceptable that the $G$-form of the claims, $\theta=P_G(P>1/2)$ over
    all $G$ with $|P-1/2|\sim\mu$, rests on an unformalized disintegration?
+   Since 21 November 2026 Lean checks the disintegration and the $G$-form of
+   the target ([record](../results/latent-disintegration-20261121/README.md)); the risk theorems keep the
+   $(\mu,q)$ form.
 6. Are the paper-only steps acceptable as stated: $c<C$ and the equivalence of
-   (61) with (62) in Theorem 13.2, the constant bookkeeping of Appendix E, the
-   second-moment sentence of Theorem 2.2, and the remark on charging for coin
-   creation?
+   (61) with (62) in Theorem 13.2 (both Lean-checked since 21 November 2026;
+   [record](../results/entropy-tail-forms-20261121/README.md)), the constant bookkeeping of Appendix E, the
+   second-moment sentence of Theorem 2.2 (a stated theorem since 20 November
+   2026; [record](../results/paper-statements-20261120/README.md)), and the remark on charging for coin creation (a stated theorem since 21 November 2026; [record](../results/creation-charge-20261121/README.md))?
 7. For each explicit coefficient you cite, read the companion theorem whose
    type carries it (section 10), not the locked existential target.
 8. Read `hardMinimaxRisk`, `hardRareMinimaxRisk`, `rareConfidenceRadius` and

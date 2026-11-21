@@ -14,7 +14,9 @@ as alpha approaches 2 is claimed. The frozen targets assert positive constants.
 The kernel-checked proofs instantiate the lower coefficient as 1/256
 ([Lower](../lean/ThresholdHC/RareAboveTwo/Lower.lean)) and the single-coin
 second-moment constant as 28 ([Realization](../lean/ThresholdHC/RareAboveTwo/Realization.lean)),
-but these values are not part of the audited exact types.
+but these values are not part of the frozen exact types. Since 21 November 2026
+the later targets `rare_lower_256`, `rare_minimax_256` and `rare_single_coin_28`
+state them ([ExplicitConstants](../lean/ThresholdHC/ExplicitConstants/Full.lean), [record](../results/explicit-constants-20261121/README.md)).
 
 ## Statements and observation model
 

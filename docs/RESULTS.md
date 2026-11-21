@@ -288,13 +288,20 @@ is at most $(1+\tfrac{169}{5t})\,\omega(2^{-L/2})^2\le4(t+\tfrac{169}{5})\,
 \omega(B^{-1/2})^2\le\tfrac{716}{5}\,\omega(B^{-1/2})^2$, and
 $\sqrt{716/5}<12$. The two-level mixture with the same bounds would give
 $\sqrt{(9/2)\cdot174/5}\approx12.5$
-([record](../results/upper-scale-20261119/README.md)).
+([record](../results/upper-scale-20261119/README.md)). Since 21 November 2026
+Lean also checks the appendix's decimal bounds ($5.19$, $0.401$, $6.49$) and
+its three remarks for the specific families: the mixture with constant
+$\sqrt{(9/2)\cdot174/5}\in(12.51,12.52)$, the dyadic batch with factor
+$B/2^L<8$, and the scale-$B/4$ call bias
+([record](../results/upper-twelve-numerics-20261121/README.md)).
 
 A [numerical study](../research/2026-11-19-upper-constant-12/README.md)
 computes the risk of this family. Its worst ratio
 $\mathrm{RMS}/\omega_\mu(B^{-1/2})$ is $5.07$ at $N=2^{14}$ and tends to
 about $5.37$ as $B$ grows; that of the single-level estimator is near $7.6$
-([earlier study](../research/2026-11-18-upper-constant/README.md)). In the
+([earlier study](../research/2026-11-18-upper-constant/README.md); its
+point-mass bound, $R_{\delta_d}(B)\le\omega_{\delta_d}(B^{-1/2})/2$ for a known point mass and
+$B\ge1$, is Lean-checked as [`point_mass_half`](../lean/ThresholdHC/PaperStatements/Full.lean)). In the
 large-budget limit, the exact one-coin constants are about $2.2$ for the
 call second moment and $3.6$ for the call cost, against $13/2$ and $26/5$
 here. The Hoeffding bounds that the Lean certificates round give about $6.0$
@@ -307,13 +314,23 @@ paper's thresholds, the Lean method gives at best about $11.2$ with that
 bias bound. A [scoping study](../research/2026-11-19-one-coin-bounds/README.md)
 locates most of that loss in Hoeffding's inequality: Bahadur's binomial tail
 bound, with the same proof structure, would give about $7.75$.
+The earlier study's remark that clipping the output to $[0,1]$ can only help
+is Lean-checked since 21 November 2026: the clipped estimator keeps the
+budget, its RMS risk is no larger for any sign law, and the family with
+constant $12$ can be taken $[0,1]$-valued with risk at most
+$\min(1,12\,\omega_\mu(B^{-1/2}))$
+([record](../results/clipped-output-20261121/README.md)). The simulated
+clipped ratios, about $3.8$ and $4.9$, remain numerical.
 
 The lower constant of the RMS law is sharp. For every gap law and every $B\ge1$,
 
 $$R_\mu(B)\ \ge\ \tfrac16\,\omega_\mu(B^{-1/2}),$$
 
 and $1/6$ is the largest constant valid for all gap laws and budgets: four
-fresh flips attain equality at $B=4$ and $\mu=\delta_{1/2}$. For $B\ge25$ the
+fresh flips attain equality at $B=4$ and $\mu=\delta_{1/2}$. Equality needs
+$B=4$: for every law and every $B\ge1$ other than four the bound is strict,
+also under both oracles, as Lean checks since 21 November 2026
+([record](../results/sharp-strict-20261121/README.md)). For $B\ge25$ the
 constant improves to $\sqrt{59/2100}\approx0.1676$, and further to $0.175198$
 (below). The experiment is the
 original one: arbitrary measurable private randomness, interleaving,
@@ -335,7 +352,13 @@ an integer certificate over 140 bias intervals elsewhere; the Lean kernel
 evaluates that certificate. For $B\ge25$, three sign biases compared under
 one reference law. Appendix AA of the v6 paper and the
 [research note](../research/2026-11-17-rms-constants/sharp-unrestricted.pdf)
-give the written proof. The upper constant is $12$ (below).
+give the written proof. The upper constant is $12$ (below). The coefficient is
+also exactly $1/6$ in the restricted settings of the
+[rms-gap note](../research/2026-11-17-rms-constants/README.md): budgets through
+four, both oracles there, and protocols with at most three flips per coin.
+Lean checks these as corollaries since 21 November 2026, and covers the note's
+two unlimited-revisit classes only conditionally
+([record](../results/restricted-rms-20261121/README.md)).
 
 **Budgets of at least 25.** Let $c_{25}$ be the largest constant with
 $R_\mu(B)\ge c_{25}\,\omega_\mu(B^{-1/2})$ for every gap law and every
@@ -359,7 +382,10 @@ These bounds are Lean-checked in the audited library
 audit, `tools/verify_large_budget_rms.py`. Appendix AA of the v6 paper
 states them as Theorem AA.7 and outlines the Lean proof. The proofs come
 from the [research package](../research/2026-11-17-rms-constants/README.md#the-coefficient-for-budgets-of-at-least-25),
-which keeps its own replay records.
+which keeps its own replay records. The package's earlier 20+5 witness at the
+same gap, a 20-flip pilot followed by five revisits of pilot heads or tails
+or five fresh flips, with RMS at most $0.188087$, is in the audited library
+since 21 November 2026 ([record](../results/revisit-upper-20261121/README.md)); it gives no new bound.
 
 **Feedback helps at the upper witness.** At the same gap $1/5$ and the same
 18-flip pilot, every policy that commits to all seven follow-up choices
@@ -370,15 +396,18 @@ strictly helps at this fixed budget of 25 flips. Lean checks the
 reconstruction of ordered histories from counts and the strict comparison in
 the original population experiment, in a second
 [research package](../research/2026-11-18-pilot-feedback/README.md) with its
-own replay record; it is not in the CI-audited library or the paper.
+own replay record. Since 20 November 2026 the proof is also in the CI-audited
+library, stated in RMS form ([`precommitted_rms_lower`,
+`precommitted_rms_separation`](../lean/ThresholdHC/PilotFeedback/Full.lean), [record](../results/pilot-feedback-20261120/README.md)); it is not in the paper.
 
 Even if the ordered pilot chooses when to update once during the seven
 follow-ups, and all answers so far determine the second batch, the worst-case
 RMS is at least $0.186960371$. The fully adaptive policy still beats this
 larger class. The [scheduled-update proof](../research/2026-11-18-scheduled-update/README.md)
 covers randomized plans and full-transcript estimates in the population experiment.
-Lean checks it in that third research package, with its own replay record; it
-is not in the CI-audited library or the paper.
+Lean checks it in that third research package, with its own replay record,
+and since 20 November 2026 in the CI-audited library ([`one_update_rms_lower`,
+`one_update_rms_separation`](../lean/ThresholdHC/PilotFeedback/Full.lean), [record](../results/pilot-feedback-20261120/README.md)); it is not in the paper.
 
 Allowing the update time itself to depend on the follow-up answers still gives
 worst-case RMS at least $0.186844275$. At each prefix the policy may continue
@@ -387,12 +416,20 @@ The fully adaptive witness stays below $0.186752$ under the same budget and
 menu. The research package includes the independent Lean replay record. CI
 checks the proof-source hashes and reruns the rational calculation.
 [Exact calculation and Lean proof](../research/2026-11-18-stopping-update/README.md)
+Since 21 November 2026 it is also in the CI-audited library
+([`one_stopping_update_rms_lower`,
+`one_stopping_update_rms_separation`](../lean/ThresholdHC/StoppingUpdate/Full.lean),
+[record](../results/stopping-update-20261121/README.md)), with each certificate row split into 27 pieces,
+checked in eleven row modules that each use about 1.1 GB of their own memory.
 
 With two updates triggered by follow-up answers, worst-case RMS is still at
 least $0.186764460$, above the fully adaptive witness's $0.186752$ upper
 bound. Both triggers can use the full ordered history. The research package
 includes the exact rational calculation and the independent Lean replay.
 [Two-update proof and audit](../research/2026-11-18-two-stopping-updates/README.md)
+This package stays outside the library: the research build of one row of its
+integer certificate ran out of memory above 13.5 GB
+([record](../results/pilot-feedback-20261120/README.md)).
 
 The confidence theorem [`confidence_characterization`](../lean/ThresholdHC/Confidence/Full.lean)
 proves the explicit bounds
@@ -409,7 +446,9 @@ event is $|\widehat\theta-\theta|>r$, uniformly over every measurable sign
 law; work is the original extended-real expectation of actual flips. The
 [oracle theorem](#magnitude-oracle-lower-bounds) improves the lower
 coefficient to $15/(256\sqrt2)$ in this model as well; the frozen statement
-keeps $1/64$.
+keeps $1/64$. The exact targets `hidden_confidence` and
+`hidden_confidence_minimax` state $15/(256\sqrt2)$ for each algorithm and for
+the minimax radius in this model ([ExplicitConstants](../lean/ThresholdHC/ExplicitConstants/Full.lean), [record](../results/explicit-constants-20261121/README.md)).
 
 The upper construction runs $2\lceil2\log(1/\delta)\rceil+1$ independent
 calibrated batches and takes their median. Pair-numbered coin labels and
@@ -471,9 +510,9 @@ $$R_\mu(B)\ge\frac1{64}\omega_\mu(B^{-1/2})\qquad(B\ge1).$$
 
 This is the constant that §5 of the paper proves. `sharp_lower` above replaces it by the optimal $1/6$ in the same model, which the next paragraph describes.
 
-The [algorithm model](../lean/ThresholdHC/Tier6/AlgorithmModel.lean) takes the infimum over all measurable random-seed spaces and adaptive estimators, with expected work uniformly bounded over every measurable sign law. It permits unrestricted natural-number coin creation, revisits, interleaving, and unbounded stopping. The iid hidden magnitude environment is independent of algorithm randomness and is not visible to policy or output. Squared error and RMS use extended-real values, retaining infinite risk. `process_realization` constructs the infinite probability laws and proves their cylinder identities; realization, KL, absolute continuity, and testing bounds are not assumptions of the final minimax theorem. An immediate-stopping estimator proves the class nonempty and its minimax RMS risk at most one. See the [exact specification](../lean/ThresholdHC/Tier6/Specification.lean), [complete audit](../results/tier6_status.json), and [verification record](TIER6.md). The coefficient $1/64$ is not optimal; the sharp value is $1/6$.
+The [algorithm model](../lean/ThresholdHC/Tier6/AlgorithmModel.lean) takes the infimum over all measurable random-seed spaces and adaptive estimators, with expected work uniformly bounded over every measurable sign law. It permits unrestricted natural-number coin creation, revisits, interleaving, and unbounded stopping. The iid hidden magnitude environment is independent of algorithm randomness and is not visible to policy or output. Squared error and RMS use extended-real values, retaining infinite risk. `process_realization` constructs the infinite probability laws and proves their cylinder identities; realization, KL, absolute continuity, and testing bounds are not assumptions of the final minimax theorem. An immediate-stopping estimator proves the class nonempty and its minimax RMS risk at most one. See the [exact specification](../lean/ThresholdHC/Tier6/Specification.lean), [complete audit](../results/tier6_status.json), and [verification record](TIER6.md). The coefficient $1/64$ is not optimal; the sharp value is $1/6$. The model paragraph's remark that charging a fixed amount per new coin changes the cost by at most a constant factor is Lean-checked since 21 November 2026, reading a created coin as a newly selected label: for every adaptive estimator the created coins are almost surely at most the work, a fee $c\ge0$ per created coin keeps the expected cost within the factor $1+c$, and the charged minimax risk lies between the minimax risks at budgets $B$ and $B/(1+c)$, so $\omega_\mu(B^{-1/2})/6\le R_c(B)\le12\sqrt{1+c}\,\omega_\mu(B^{-1/2})$ for $B\ge1+c$ ([`charged_work`, `charged_rate`](../lean/ThresholdHC/CreationCharge/Full.lean), [record](../results/creation-charge-20261121/README.md)).
 
-[Theorem 2 and §6](../paper/paper.tex#L272) quantify over every measurable sign function $q$ at a fixed $\mu$. Put $I=\mathbb E_\mu[D^{-1}]$, $V=\sup_q\operatorname{Var}_{\mu,q}(Y)$, and $\overline W=\sup_q\mathbb E_{\mu,q}W$. An estimator unbiased for all such $q$ can have $V,\overline W<\infty$ exactly when $I<\infty$, and every such estimator satisfies $V\overline W\ge I^2/16$. These are uniform bounds, not a lower bound for each individual population. The fixed-gap example attaining the lower coefficient is in §6, equation `eq:fixed-gap-sharp`; it does not identify the optimum for every nondegenerate law.
+[Theorem 2 and §6](../paper/paper.tex#L272) quantify over every measurable sign function $q$ at a fixed $\mu$. Put $I=\mathbb E_\mu[D^{-1}]$, $V=\sup_q\operatorname{Var}_{\mu,q}(Y)$, and $\overline W=\sup_q\mathbb E_{\mu,q}W$. An estimator unbiased for all such $q$ can have $V,\overline W<\infty$ exactly when $I<\infty$, and every such estimator satisfies $V\overline W\ge I^2/16$. These are uniform bounds, not a lower bound for each individual population. The fixed-gap example attaining the lower coefficient is in §6, equation `eq:fixed-gap-sharp`; it does not identify the optimum for every nondegenerate law. Lean checks the conclusion of the example: at every fixed gap $d$ some unbiased estimator has expected work at most one and largest variance exactly $1/(16d^2)$ (the proof uses one fresh observation), so the infimum of $V\overline W$ is $I^2/16$ at every point mass, and a bound $V\overline W\ge cI^2$ holds for every law with $I<\infty$ exactly when $c\le1/16$ ([`one_flip`, `unbiased_fixed_gap_equality`, `unbiased_sharp_coefficient`](../lean/ThresholdHC/PaperStatements/Full.lean), [record](../results/paper-statements-20261120/README.md)). Proposition `prop:bounded` is Lean-checked in both sentences, in the hidden-magnitude observable model: if $\mu((0,1/2))>0$, no algorithm that stops almost surely with almost surely nonnegative output under every sign law is unbiased ([`nonnegative_unbiased_impossible`](../lean/ThresholdHC/NonnegativeUnbiased/Full.lean), [record](../results/nonnegative-unbiased-20261121/README.md)), while at the gap $1/2$ an unbiased $[0,1]$-valued estimator with work at most one exists (`half_gap_one_flip`).
 
 The converse is now proved in Lean: [`unbiased_converse`](../lean/ThresholdHC/UnbiasedConverse/Full.lean)
 inhabits the [full specification](../lean/ThresholdHC/UnbiasedConverse/Specification.lean)
@@ -508,6 +547,17 @@ the whole iid array and a magnitude selected at each creation.
 [oracle proofs](../lean/ThresholdHC/SharpRMS/OracleAttainment.lean).
 The stronger [lower bounds for budgets of at least 25](#minimax-law-and-unbiasedness),
 $0.175198$ and $0.17807955$ for $B\ge100$, hold for both oracles too.
+
+The rms-constants package also states the oracle upper bound
+$R_\mu^{\mathrm{oracle}}(B)\le\omega_\mu(B^{-1/2})/2$ for $B\ge1$, with $1/2$
+sharp. Since 21 November 2026 Lean checks the sharpness half: for every
+$B\ge1$ and $c<1/2$, point masses at all sufficiently small gaps have both
+oracle risks above $c\,\omega(B^{-1/2})$, so no oracle upper coefficient below
+$1/2$ holds ([record](../results/oracle-sharpness-20261121/README.md)). The
+upper bound is Lean-checked as well since the same date, for every gap law and
+every $B\ge1$, with the floor form at the scale $1/(2\sqrt{\lfloor B\rfloor})$,
+so $1/2$ is exactly the best universal oracle coefficient
+([record](../results/oracle-upper-20261121/README.md)).
 
 The original oracle theorems are frozen targets, Lean-checked for both
 revealed and adaptively selected magnitudes. They prove the RMS bound with
@@ -556,7 +606,10 @@ It chooses one `AdaptiveEstimator ℕ` before every gap law. Whenever
 $I=\mathbb E_\mu[D^{-1}]<\infty$, its output is integrable and unbiased for every
 measurable sign law, with extended variance at most $23I$ and actual expected
 flips at most $31I$. The product of the **two separate extended-real suprema**
-is at most $713I^2$.
+is at most $713I^2$. Lean also states the moment sentence of Theorem 2.2: one
+algorithm, chosen before the law, is unbiased with $\sup_q\mathbb E Y^2\le23I$ and
+$\sup_q\mathbb E W\le31I$; the proof uses this estimator
+([`observable_second_moment`](../lean/ThresholdHC/PaperStatements/Full.lean), [record](../results/paper-statements-20261120/README.md)).
 
 The seed is a geometric level. The policy reads coin zero until its fine
 classifier stops; the adjacent coarse classifier reuses the same observed
@@ -588,6 +641,7 @@ Fix a finite set of $m$ coins with magnitudes $0<d_i\le1/2$. The hypotheses have
 - `ThresholdHC.Tier3.randomized_information_bound` in [RandomizedBase.lean](../lean/ThresholdHC/Tier3/RandomizedBase.lean) proves the average conditional information bound for an arbitrary common measurable random seed. `ThresholdHC.Tier3.randomized_marginal_kl_bound` and `ThresholdHC.Tier3.randomized_testing_bound` in [Randomized.lean](../lean/ThresholdHC/Tier3/Randomized.lean) handle the seed-marginal transcript and tests allowed to observe the seed. See [RandomizedModel.lean](../lean/ThresholdHC/Tier3/RandomizedModel.lean) for assumptions.
 - `ThresholdHC.Tier3.unbounded_stopping` in [StoppingBase.lean](../lean/ThresholdHC/Tier3/StoppingBase.lean) derives almost-sure halting under both hypotheses from finite expected actual work under the plus hypothesis alone. `ThresholdHC.Tier3.unbounded_testing` in [Stopping.lean](../lean/ThresholdHC/Tier3/Stopping.lean) proves $\operatorname{kl}(1-\delta,\delta)\le(128/225)h^2\mathbb E_+T$ for $0<\delta<1/2$ when both terminal-test errors are at most $\delta$. [StoppingModel.lean](../lean/ThresholdHC/Tier3/StoppingModel.lean) requires finite-prefix laws to realize the explicit experiment; it does not assume termination or the information bound.
 - `ThresholdHC.Tier3.unbounded_example` in [Examples.lean](../lean/ThresholdHC/Tier3/Examples.lean) supplies a geometric-seed experiment with finite expected work and positive probability of exceeding every finite cap.
+- The two-law halting transfer needs the finite coin family. With fresh coins from a countable reservoir, stopping when the walk of observed bits first reaches $+1$ has $\mathbb E_+T=4$ under the sign prior $5/8$ at gap $1/2$, but runs forever with probability $2/5$ under $3/8$; Lean checks this for every realization of the Tier 5 creation model, with the general law $1/(4d\eta)$ and $8d\eta/(1+4d\eta)$, and refutes the created-label analogue of the Tier 3 statement (since 21 November 2026, [record](../results/reservoir-termination-20261121/README.md)).
 
 The stopping theorem above concerns terminal testing; the [audit record](../results/tier3_status.json) lists its exact targets. The subsequent `ThresholdHC.Tier4.infinite_kl_bound` in [Full.lean](../lean/ThresholdHC/Tier4/Full.lean) proves the same information/work inequality for the actual joint law of the seed and entire infinite observation tape, using Mathlib's `InformationTheory.klDiv`. Its [model](../lean/ThresholdHC/Tier4/Model.lean) retains the finite coin set, the same prior and magnitude constraints, arbitrary measurable seeds, and finite expected actual work under the plus hypothesis. It assumes the joint finite-prefix experiment laws, not an entropy identity or bound.
 
@@ -603,8 +657,11 @@ Suppose the actual gap law $\nu$ satisfies $\nu((0,t])\le\mu((0,t])$
 for every $t>0$. One observable estimator family works over that whole
 class before the reference $\mu$ is chosen. For $B\ge1$ the RMS minimax
 coefficients on $\omega_\mu(1/\sqrt B)$ are $1/64$ and $512$ in the Lean
-statement. The sharp lower coefficient $1/6$ applies as well, because the
-reference law belongs to the class; that step is not restated in Lean. For $B\ge1$ and
+statement. Lean also checks the sharp lower coefficient $1/6$, because the
+reference law belongs to the class, and the upper constant $12$, because the
+distribution-blind family of the constant 12 works under every law below the
+envelope ([`envelope_rms`](../lean/ThresholdHC/PaperCorollaries/Full.lean),
+[record](../results/paper-corollaries-20261120/README.md)). For $B\ge1$ and
 $0<\delta\le1/4$, the confidence coefficients at scale
 $\sqrt{\log(1/\delta)/B}$ are $15/(256\sqrt2)$ and $8192$.
 
@@ -614,6 +671,20 @@ uniform bounds lies between $I^2/16$ and $713I^2$. The upper estimator
 has uniform variance at most $23I$ and uniform work at most $31I$.
 The reference law belongs to the class and supplies all lower bounds.
 [Exact statements and proof record](../results/stochastic-envelope-20261105/README.md)
+
+The margin-class corollaries of the v6 manuscript invert these confidence
+bounds into work. Lean checks since 21 November 2026, for $\varepsilon\le1/25$
+and $0<\delta\le1/4$: Corollary `cor:gap`, smallest uniform expected work
+between $(225/131072)\log(1/\delta)/(\varepsilon^2\Delta^2)$ and
+$8192^2\log(1/\delta)/(\varepsilon^2\Delta^2)$ on the gap class; the rows
+$0<\alpha<1$ and $\alpha>1$ of Corollary `cor:power` on the polynomial margin
+class, with explicit constants that depend on $(\alpha,C)$ except the
+universal lower one for $\alpha>1$; its unbiased dichotomy
+($\alpha>1$ exactly); and one common unbiased estimator and one common
+budget-indexed family chosen before the class parameters
+([`gap_class`](../lean/ThresholdHC/MarginClasses/Full.lean),
+[record](../results/margin-classes-20261121/README.md)). The critical row $\alpha=1$ and the logarithmic
+classes of `cor:log` remain paper statements.
 
 ## Fixed finite-order smooth densities
 
@@ -649,7 +720,11 @@ The theorem allows arbitrary point queries, revisits, interleaving,
 private randomness and unbounded stopping. It identifies the physical
 observation law and the threshold target.
 
-The checked construction uses a second-moment replication condition.
+The checked construction uses a second-moment replication condition. The
+paper's Hoeffding count, $M=\lceil32\Delta^{-2}\log(2/\delta)\rceil$ replicas per
+magnitude with tail $2\exp(-M\Delta^2/32)\le\delta$, is Lean-checked as well
+since 21 November 2026, with the same lower bound for every finite cell
+design that meets it ([record](../results/observed-hoeffding-20261121/README.md)).
 The continuous-magnitude extension is checked, including its lower bounds, regularity and fresh-state upper-bound transfer.
 [Proof map](OBSERVED_STATES.md) · [Native audit](../results/finite-observed-20261105/README.md)
 
@@ -667,7 +742,13 @@ transcript measure. The exact gap-law construction enforces the
 one-quarter cutoff at every state. It identifies the actual threshold
 target and proves that the normalized conditional magnitude has density
 bounded by two. Every normalized conditional central moment of real
-order $q\ge0$ is bounded by $3^{q/2}$.
+order $q\ge0$ is bounded by $3^{q/2}$. Since 21 November 2026 Lean also
+checks the class-wide form in the last sentence of Corollary `cor:nested`:
+every measurable conditional model with $U$ uniform and $D(U)$ uniform on
+$(0,1/4]$ meets transcriptions of Assumptions 2.1 and 2.4 of Giles and
+Haji-Ali with the constants $2$ and $3^{q/2}$, chosen before the model; the
+transcriptions follow the repository's paraphrases and have not been
+compared with the paper's text ([record](../results/nested-assumptions-20261121/README.md)).
 
 The matching upper rate is now Lean-checked through the full fresh-state
 transfer. For $0<\varepsilon\le e^{-16}$, the actual expected-work upper
@@ -727,12 +808,31 @@ Hellinger bound of Lee and Valiant; the Lean route does not, and the paper
 proof is kept unchanged. The specification was written with the proof.
 [Record](../results/psi-selection-20261109/README.md) · `python tools/verify_psi_selection.py`
 
+For the risk, Lean also checks the paper's sharper constant since 21 November
+2026: $R_{\mu,\rho}(B)\ge\Psi_{\mu,\rho}(B^{-1/2})/8192$ for $0<\rho\le1/4$ and
+every $B>0$ ([`psi_budget_lower`](../lean/ThresholdHC/PsiNull/Full.lean)). It
+follows Appendix H: Proposition `prop:psi-null` and the RMS transfer, with
+neither the Lee–Valiant input nor the selection functional.
+[Record](../results/psi-null-20261121/README.md) · `python tools/verify_psi_null.py`
+
+Two auxiliary results of the same appendix are Lean-checked since 21 November
+2026. Theorem `loc:thm:counter`: at $\mu_\rho=\rho\delta_{\rho^2}+(1-\rho)\delta_{1/4}$
+and $B=\rho^{-4}$, $\rho/100\le R\le\rho/2$ while the rescaling heuristic
+$\rho\,\omega_\mu(h/\sqrt\rho)$ is at most $3\rho^2$, so it underestimates
+the minimax error by an unbounded factor. Proposition `loc:prop:noise`: at one
+fixed negative coin of gap $d<1/2$ the level-0 term forces the second moment
+$(1/2-d)/(1-2^{-1/2})$, as a variance floor for the 713-threshold estimator, as
+an extended-second-moment floor for the original untruncated estimator and in
+truncated form ([`counterexample`, `observable713_noise_floor`](../lean/ThresholdHC/LocalizationCounter/Full.lean),
+[record](../results/localization-counter-20261121/README.md)).
+
 ### The variational modulus in closed form
 
 [Section 14.8 of the v6 paper](../paper/v6/psi-window.tex) proves four deterministic
 statements, all now Lean-checked (the records are at the end of this
-subsection). Only Corollary 14.14 and Remark 14.15, which close that
-section, remain paper proofs. The four statements hold for every probability law on $(0,1/2]$, $0<\rho\le1/4$ and $B>0$, with $h=B^{-1/2}$.
+subsection). Corollary 14.14 and Remark 14.15, which close that section, are
+Lean-checked as well since 20 November 2026; the last paragraph of this
+subsection describes them. The four statements hold for every probability law on $(0,1/2]$, $0<\rho\le1/4$ and $B>0$, with $h=B^{-1/2}$.
 Let $\mathcal Q^0=\min\{\rho,T_h+h\sqrt{\rho A_\kappa}\}$ be the closed quantile functional
 below with the cost entropy $\Gamma_\kappa$ of the quantile core replaced by its inverse-square cost
 $A_\kappa$, and write $\Gamma_\kappa=A_\kappa(1+E_\kappa)$.
@@ -746,7 +846,8 @@ $A_\kappa$, and write $\Gamma_\kappa=A_\kappa(1+E_\kappa)$.
 - $\Psi\le\mathcal K\le\mathcal Q$. With the entropy-tail and known-law confidence lower bounds this gives
   $R\ge10^{-17}\Psi(B^{-1/2})$ and $r_{\rm exp}\ge10^{-17}\Psi(\sqrt{\log(1/\delta)/B})$ for every $B>0$,
   without the Lee-Valiant input used in Appendix A. This item is the Lean-checked comparison and
-  lower bound of the preceding paragraph.
+  lower bound of the preceding paragraph; for the risk and for $r_{\rm exp}$, Proposition
+  `prop:psi-null` gives the checked constant $1/8192$.
 - $\mathcal Q\le\sqrt{2(1+E_\kappa)}\,\Psi$, so $\Psi$ gives the rate whenever the core entropy is bounded;
   when the core term dominates and the cap is inactive, $\mathcal Q\ge\tfrac12\sqrt{1+E_\kappa}\,\Psi$.
   This item is **Lean-checked** ([`psi_gap`](../lean/ThresholdHC/PsiGap/Full.lean) and the three statements
@@ -768,9 +869,42 @@ with constants $1/2$ and $3.83$, and the deterministic quantile comparison,
 including exponent two and arbitrary scale $a$. Its RMS coefficients are
 $10^{-17}/\sqrt2$ and $60002$; the confidence lower coefficient is
 $10^{-17}/\sqrt2$ and the upper coefficient is $1500000$. These are unconditional
-consequences of the stated exact-CDF assumptions. Corollary 14.14 and
-Remark 14.15 remain paper results outside the frozen targets and have their
-own status entry.
+consequences of the stated exact-CDF assumptions. Remark `rem:power-quantile`,
+that each row of the power-margin table also follows from the closed quantile
+form, is Lean-checked since 21 November 2026 with constants depending on
+$\alpha$, for the uniform rate, $\mathcal Q$ and the rare-event minimax risk
+([`power_row_risk`](../lean/ThresholdHC/PowerQuantileRows/Full.lean),
+[record](../results/power-quantile-rows-20261121/README.md)); for $\alpha>4$ it rests on a Lean-only extension of
+the comparison $\mathcal R_\alpha/\sqrt2\le\mathcal Q\le2\mathcal R_\alpha$.
+
+Corollary 14.14 and Remark 14.15 are **Lean-checked** in
+[`CriticalWindow`](../lean/ThresholdHC/CriticalWindow/Full.lean)
+([record](../results/critical-window-20261120/README.md)). On the window
+$3/2\le\alpha\le3$ the uniform rate is $\min\{\rho,Y\}$ within the factor $5.13$,
+with $Y=x\sqrt{\rho\Phi_\alpha(\rho)[1+\log N_\alpha(\rho)]}$. The minimax risk lies
+between $10^{-18}\min\{\rho,Y\}$ and $3.4\cdot10^5\min\{\rho,Y\}$, the paper's
+constants. $\Psi$ lies between $\min\{\rho,Y^0\}/\sqrt2$ and $5.13\min\{\rho,Y^0\}$,
+with $Y^0=x\sqrt{\rho\Phi_\alpha(\rho)}$. When $Y\le\rho$, the ratio of the risk to
+$\Psi$ lies between $10^{-19}$ and $5\cdot10^5$ times $\sqrt{1+\log N_\alpha(\rho)}$.
+The remark's readings are checked with explicit constants:
+- at $\alpha=2$, $a=1/4$: $L/2\le\Phi_2\le L$ and $N_2\le L\le N_2^2$, and $Y$ lies
+  between twice and four times the critical rate $\sqrt{\rho LH/B}$, which
+  gives the quadratic law risk constants $10^{-18}$ and $1.36\cdot10^6$ in this
+  experiment; in the critical theorem's own model the constants are $10^{-18}$
+  and the existing $100000$ ([`critical_explicit_constants`](../lean/ThresholdHC/PaperStatements/Full.lean));
+- away from two, once $|1-2/\alpha|\log(1/\rho)\ge1$, $N_\alpha=1/|\alpha-2|$ and
+  the risk is within the factors $5\cdot10^{-19}$ and $7\cdot10^5$ of the
+  displayed rate;
+- near two, once $|\alpha-2|\log(1/\rho)\le1$, $\Phi_\alpha$ and $N_\alpha$ are both of
+  order $\log(1/\rho)$, and the risk lies between $2\cdot10^{-19}$ and $7\cdot10^5$
+  times $\min\{\rho,x\sqrt{\rho LH}\}$, the rate of the quadratic law.
+
+The remark's comparison with the rows of §14 is a reading of these statements,
+not a separate target.
+
+The verification-status table above, generated from the v6 status source,
+still lists them as a paper proof; it changes with the next manuscript
+update.
 [Sharpness record](../results/psi-sharpness-20261116/README.md) ·
 [Uniform power-law record](../results/power-window-complete-20261116/README.md). The Lean proof
 of $\mathcal Q^0\le\sqrt2\,\Psi$ uses the paper's allocation but a shorter argument, without splitting
@@ -820,13 +954,18 @@ The [explicit comparison](../lean/ThresholdHC/EntropyTailSharp/Full.lean) now
 proves this lower bound and the stronger upper coefficient $28000$ in Lean.
 The table gives the scopes of the entropy-tail, stopping-program and genie
 results. The hard-selection reduction and elementary properties of $\mathcal K$
-are also checked.
+are also checked. Since 21 November 2026 Lean also checks the rest of Theorem
+13.2: the three-piece form
+$\min\{\rho,\inf_{\sigma+\tau+\zeta=\mu}[\zeta((0,1/2])+(\sqrt{\rho\Gamma_\sigma}+H_\tau)/\sqrt B]\}$
+equals $\mathcal K$, hard measurable partitions suffice in it, finite laws have
+a hard minimizer, and the law holds with ordered constants $0<c<C$ in both
+forms ([record](../results/entropy-tail-forms-20261121/README.md)).
 
 | Claim | Scope and qualification |
 |---|---|
 | Matching entropy-tail upper/lower bounds | Every law, known rarity, and positive expected budget in the model; hard measurable assignments suffice. |
 | Attained four-prior stopping dual | Exact identity for the robust certificate program; its connection to minimax risk is a comparison inequality. |
-| Factor-sixteen risk certificate | For $0<\rho\le1/2$: $P_N\le2G_N$ and $R\le P_N\le16R$ whenever $N\ge4B/9$. This is the current cap. It follows from the [square-root cap comparison](../lean/ThresholdHC/SquareRootCap/Full.lean): $P_N\le kG_N$ once $B\le N(k-1/k)^2$, for every $k>1$ ([Lean record](../results/sharp-rms-20261117/README.md)); the v6 paper states it as Theorem Q.1. The earlier [uniform cap theorem](FINITE_CAP_RATE.md) needed $N\ge4B/3$. |
+| Factor-sixteen risk certificate | For $0<\rho\le1/2$: $P_N\le2G_N$ and $R\le P_N\le16R$ whenever $N\ge4B/9$. This is the current cap. It follows from the [square-root cap comparison](../lean/ThresholdHC/SquareRootCap/Full.lean): $P_N\le kG_N$ once $B\le N(k-1/k)^2$, for every $k>1$ ([Lean record](../results/sharp-rms-20261117/README.md)); the v6 paper states it as Theorem Q.1. The earlier [uniform cap theorem](FINITE_CAP_RATE.md) needed $N\ge4B/3$. Since 21 November 2026 Lean also checks the sharper $R\le P_\infty\le(3\sqrt7/2)R$ of the rms-constants review, hence $R\le P_N\le3\sqrt7\,R<8R$ for $N\ge4B/9$ and the same factor for any program upper bound $U$ and genie lower bound $L$ with $U\le2L$ ([record](../results/program-factor-20261121/README.md)). |
 | Ordinary cap convergence | The [truncation theorem](FINITE_CAP_RATE.md#a-sharper-rate-for-the-ordinary-upper-program) gives $P_\infty\le P_N\le(1+\sqrt{B/(N+1)})P_\infty$ uniformly in the law. For $0<\rho\le1/2$ and $B>0$, $P_N\le8(1+\sqrt{B/(N+1)})R$, so $N+1\ge B$ suffices for factor sixteen; the square-root cap comparison above gives the smaller cap $N\ge4B/9$ and the comparison with the genie program. Optimality is not proved. [Lean record](../results/finite-cap-truncation-20261105/README.md) |
 | Genie convergence | Pointwise convergence assumes finite latent divergence. An explicit infinite-divergence counterexample is included. Mixing the variance and work references with the endpoint midpoint gives $P_N/G_N\le1+2(B/N)^{1/3}$ for $N\ge B$. The square-root cap comparison above improves this rate: $P_N/G_N\le k$ with $k-1/k=\sqrt{B/N}$, which is $1+O(\sqrt{B/N})$. [Lean record](../results/genie-rate-20261104/README.md) |
 | Fixed-cap identification | For $m$ distinct positive magnitudes, the zero-bias threshold is $N\ge2m-1$. This identifies the target, not necessarily the full allocation $q$. Infinite support has a positive floor at every fixed cap; the cap may grow. |
@@ -943,7 +1082,7 @@ minimax risk.
 | Attained four-prior stopping dual | `AttainedDualStatement`: exact value identity, primal and dual optimizers, positive value and finite optimal information ratio, for $0<\rho\le1/4$, $B>0$, $N>0$. `ProgramUpperStatement`: every feasible certificate is realized by an observable estimator, so $R\le P_N$. The finite-cap value lies between the two-prior midpoint modulus and three times it. At infinite cap the dual is attained, with factor-three midpoint and factor-eight minimax comparisons and monotone cap limits, for $0<\rho\le1/2$. |
 | Factor-sixteen risk certificate, first form | `FiniteCertificateStatement`: for $0<\rho\le1/4$, $R\le P_N\le16R$ at $N=\lceil64\max(B,\rho B^2)\rceil$ (the later cap theorems above lower the cap to $N\ge4B/9$), through the exact truncation penalty and a universal Bernoulli-label floor. It does not use the entropy-tail lower bound. Also: exact finite cone/cutoff representation for finitely supported laws, the rarity-support optimizer, Bellman attainment of the information/work ratio, and information bounds for arbitrary seeded, order-dependent capped procedures. |
 | Genie convergence | Monotone latent-reveal brackets and exact Bellman certificates. Residual convergence assumes finite latent divergence. Optimized convergence uses variance-reference regularization before the cap limit. Risk brackets give finite termination of the factor-sixteen test, for $0<\rho\le1/2$ and $B>0$. The direct squared-risk certificate and an exact finite-atom SOCP for $G_N^2$ are included. So is the uniform-gap counterexample: infinite latent divergence, infinite genie ratios and failure of pointwise convergence. |
-| Fixed-cap identification | `fixed_cap_identification`: on $m$ distinct positive magnitudes the target is identified exactly when $N\ge2m-1$, via odd moments and count coefficients. For infinite support, every fixed cap has a positive bias floor uniform in the budget, and $P_N(B)\to\Delta_N/2$ as $B\to\infty$, where $\Delta_N$ is the largest target gap between rare priors whose capped count laws agree. |
+| Fixed-cap identification | `fixed_cap_identification`: on $m$ distinct positive magnitudes the target is identified exactly when $N\ge2m-1$, via odd moments and count coefficients. For infinite support, every fixed cap has a positive bias floor uniform in the budget, and $P_N(B)\to\Delta_N/2$ as $B\to\infty$, where $\Delta_N$ is the largest target gap between rare priors whose capped count laws agree. Since 21 November 2026 Lean also checks the explicit estimate $\Delta_N/2\ge\rho\|h\|_{L^2(\mu)}^2/(4\|h\|_{L^\infty(\mu)})$ with $h=1-\operatorname{proj}_{\mathcal V_L}1$, whenever $1\notin\mathcal V_L$ ([record](../results/cap-identification-estimate-20261121/README.md)). |
 
 These results are **Lean-checked** with exact statements and only the
 standard axioms, subject to the CI audit in the `stopping-program` job
@@ -963,7 +1102,7 @@ for $F_\mu(d)=(d/a)^\alpha$ on $(0,a]$, all $0<a\le1/2$, $0<\rho\le1/4$, $B\ge1$
 
 The original paper construction uses asymmetric sign-test errors and a randomized telescope. Its unbiased single-coin output has $\mathbb E Y^2\le(153/56)\rho$ and separately $\mathbb E T\le w_\alpha/a^2$, with explicit finite $w_\alpha$ in the note. The central integration step is $\mathbb E[q(D)\min(D,a)^{-2}]\le[\alpha/(\alpha-2)]a^{-2}\rho^{1-2/\alpha}$; this uses the global constraint, not $q(d)\le\rho$. Compound-Poisson replication enforces the exact expected budget, and a constant estimate covers saturation. The matching lower proof imports Lee–Valiant Corollary 19 and Lemma 18, then gives an explicit fixed-gap simulation reduction.
 
-The [adversarial review](../research/2026-10-27-route-a/review.md), [second analytic review](../research/2026-10-27-route-a/second-review.md), [primary-source comparison](../research/2026-10-27-route-a/sources.md), and [baseline ledger](../research/2026-10-27-route-a/BASELINE.md) record the evidence. Reviewers did not author the main proof; model diversity is not guaranteed. The new Lean construction has second moment at most $28\rho$ and uses fixed-count averaging with the constant saturation estimator. Its matching lower coefficient is $1/256$ for every law supported below $a$, proved without importing an external statistical theorem. These two constants are instantiated in the proofs; the frozen statements assert positive constants. The [formal scope and proof map](RARE_ABOVE_TWO.md) distinguish these conservative constants and the formal algorithm from the paper construction. The seven frozen targets also cover exact-law existence, Psi equivalence and nonvacuity. External specialist review and worldwide novelty remain unverified. At the 27 October paper checkpoint, the arbitrary-law conjecture and $\alpha=2$ were unresolved. The later critical-law theorem below resolves the specified quadratic law and refutes the matching-Psi conjecture. The [general-law manuscript](#general-law-rare-event-characterization) supplies an entropy-tail replacement as an audited paper proof, since Lean-checked in both directions with conservative universal constants. The separate finite-gap manuscript below gives a closed quantile formula for known finite laws, including two atoms; infinite-support and unknown-law guarantees remain outside that manuscript's scope. Constants diverge as $\alpha\downarrow2$. The preserved paper and imported continuation are unchanged.
+The [adversarial review](../research/2026-10-27-route-a/review.md), [second analytic review](../research/2026-10-27-route-a/second-review.md), [primary-source comparison](../research/2026-10-27-route-a/sources.md), and [baseline ledger](../research/2026-10-27-route-a/BASELINE.md) record the evidence. Reviewers did not author the main proof; model diversity is not guaranteed. The new Lean construction has second moment at most $28\rho$ and uses fixed-count averaging with the constant saturation estimator. Its matching lower coefficient is $1/256$ for every law supported below $a$, proved without importing an external statistical theorem. These two constants are instantiated in the proofs; the frozen statements assert positive constants, and the later exact targets `rare_single_coin_28`, `rare_lower_256` and `rare_minimax_256` state them ([record](../results/explicit-constants-20261121/README.md)). The [formal scope and proof map](RARE_ABOVE_TWO.md) distinguish these conservative constants and the formal algorithm from the paper construction. The seven frozen targets also cover exact-law existence, Psi equivalence and nonvacuity. External specialist review and worldwide novelty remain unverified. At the 27 October paper checkpoint, the arbitrary-law conjecture and $\alpha=2$ were unresolved. The later critical-law theorem below resolves the specified quadratic law and refutes the matching-Psi conjecture. The [general-law manuscript](#general-law-rare-event-characterization) supplies an entropy-tail replacement as an audited paper proof, since Lean-checked in both directions with conservative universal constants. The separate finite-gap manuscript below gives a closed quantile formula for known finite laws, including two atoms; infinite-support and unknown-law guarantees remain outside that manuscript's scope. Constants diverge as $\alpha\downarrow2$. The preserved paper and imported continuation are unchanged.
 
 ## Logarithmic and intermediate rare power margins
 
@@ -1039,6 +1178,15 @@ covers both new modules and both declaration roots. The new corollary target
 was introduced alongside its proof; it is not described as independently
 frozen before the proof. The original experiment and quantile definitions
 remain unchanged.
+The manuscript's two corollaries in §6 are Lean-checked since 21 November 2026
+([record](../results/finite-gap-corollaries-20261121/README.md)). The
+mean-square form `cor:mse` squares the finite-law bounds:
+$c_0^2\min\{\rho^2,T_h^2+\rho\Gamma_\kappa/B\}\le R^2\le2C_0^2\min\{\rho^2,T_h^2+\rho\Gamma_\kappa/B\}$,
+and once $B\ge d^{-2}$ at every atom, $T_h=hJ_\nu$ with
+$J_\nu=\int d^{-1}\,\nu(dd)$. The one-gap form `cor:one-gap` is checked with
+the entropy–tail constants $10^{-17}$ and $28000$ rather than through
+Theorem 1.1. The manuscript and its guide still call them paper proofs; they
+are preserved as published.
 The precursor received fresh-context AI review; the
 [provenance note](../paper/finite-gap-rare-events/PROVENANCE.md) records its
 limits. The standalone finite-law manuscript does not establish an unknown-law guarantee, a
@@ -1094,7 +1242,10 @@ six-atom law ($Q/\mathcal K>1.42132$) and an eight-atom law
 package also proves that some optimal hard selection is an upper-gap suffix in
 every dyadic band. It proves $|\mathcal K_\mu-\mathcal K_{\tilde\mu}|\le d_{\rm TV}(\mu,\tilde\mu)$
 and a band-preserving rounding bound, and adds an exact-rational evaluator of
-$\mathcal K$ to the toolkit. Composed with the results above, the comparison gives
+$\mathcal K$ to the toolkit. Its Corollary 6, that the best global upper-gap
+cut $V$ satisfies $\mathcal K\le V\le Q$ and is not exact in general, is
+Lean-checked since 21 November 2026
+([record](../results/global-cut-20261121/README.md)). Composed with the results above, the comparison gives
 $R\le30001\cdot\frac85\mathcal K$ for finite laws and
 $\frac58\cdot10^{-17}Q\le R$ for every law. The later direct lower proof
 establishes the stronger $10^{-17}Q\le R$ in Lean. The
@@ -1114,7 +1265,7 @@ including the separated-cost coefficient $16/9$. [Kernel record](../results/quan
 arithmetic verifier checks the upper proof’s rational inequalities and the
 strict lower example. A [sharp-factor proof](OPTIMAL_QUANTILE_FACTOR.md) reduces the
 supremum over laws to the unique root of a scalar equation. Its rational
-certificate gives $1.462554551279<c_*<1.462554551280$. The scalar characterization, all-law comparison and finite-law sharpness are Lean-checked. The numerical bracket retains separate exact-arithmetic verification. [Complete native record](../results/quantile-optimality-20261105/README.md)
+certificate gives $1.462554551279<c_*<1.462554551280$. The scalar characterization, all-law comparison and finite-law sharpness are Lean-checked. Lean also checks the lower end, $c_*>1.462554551279$, and a finite law with $Q>1.462554551279\,K$ ([`quantile_root_lower`, `quantile_finite_ratio`](../lean/ThresholdHC/PaperStatements/Full.lean), [record](../results/paper-statements-20261120/README.md)). Since 21 November 2026 Lean checks the upper end $c_*<1.462554551280$ as well, by a bisection cover of $[1,31/20]$ whose 85 cells are checked by `decide +kernel`, and states `thm:sharp-quantile-factor` in full ([`sharp_quantile_factor`](../lean/ThresholdHC/QuantileFactorUpper/Full.lean), [record](../results/quantile-factor-upper-20261121/README.md)); the exact-arithmetic verifier remains an independent check. [Complete native record](../results/quantile-optimality-20261105/README.md)
 
 ### Computing the selection functional
 
@@ -1126,6 +1277,15 @@ the entropy fixed and strictly increases the saved tail cost. A suffix is
 determined by its selected count in each band, so at most $\prod_j(n_j+1)$
 candidates suffice. [Theorem 5 and verification](VERIFY.md#finite-law-bandwise-suffix-theorem)
 
+The suffix structure holds within each band, not across bands. In the
+rare-event paper's example, masses $(1-\varepsilon)/2$, $\varepsilon$,
+$(1-\varepsilon)/2$ at $1/2$, $1/4$, $1/8$ with $\varepsilon=1/1024$, $\rho=1/4$
+and $h=1/1024$, the unique optimal hard selection retains $\{1/2,1/8\}$, so
+no interval of gaps is optimal. Since 21 November 2026 Lean checks the
+example: all eight enclosures of the paper's table, the strict minimum, the
+inactive cap, and that every interval retention costs strictly more
+([record](../results/noninterval-selection-20261121/README.md)).
+
 **Lean verifies the mathematical cost-grouping algorithm.** The
 [finite-menu audit](../results/band-cost-formal-20261105/README.md) checks
 feasible compression, preservation of a global minimum, the
@@ -1134,7 +1294,12 @@ exact saving comparisons, and interval certificates. A further
 [13-statement audit](../results/gap-law-menus-20261105/README.md) verifies the
 concrete finite-law menu construction, its exact entropy and saving identities,
 atomic formulas, and the equality of its optimized value with the original
-$K$. Python execution remains unverified. Efficient exact selection with
+$K$. Python execution remains unverified. The 64-band example of the
+band-cost guide is Lean-checked for the formal solver since 21 November 2026:
+equal one-atom costs, the two largest gaps attain $K$ with the cap inactive
+(the strict unique minimum among all $2^{64}$ hard masks), and 4,160
+transitions and 65 terminal states on the actual support menus
+([record](../results/band-cost-example-20261121/README.md)). Efficient exact selection with
 unrestricted distinct band costs remains open.
 
 **Prescribed relative accuracy is Lean-checked for the mathematical finite scheme.**
@@ -1163,12 +1328,12 @@ $\eta$ changes $K$ by at most $\eta$. Within-band upward rounding by a factor
 at most $r$ gives a value between $K/r$ and $K$. For every $\eta>0$ and
 $r>1$ the proof constructs a finite approximation. Its interval $[L,U]$
 gives $[\max(0,L-\eta),\min(\rho,rU+\eta)]$ for the original law.
-The quantile choice is $L=5Q/8$, $U=Q$ (the Lean corollary uses the earlier $8/5$ comparison; $20Q/31$ also holds, by the later one). The Python certificate evaluator
+The quantile choice is $L=5Q/8$, $U=Q$ in the original Lean corollary, which uses the earlier $8/5$ comparison. Lean also checks $L=20Q/31$ and $L=Q/c_*$, from the later comparisons ([`selection_stability_quantile`, `selection_stability_sharp`](../lean/ThresholdHC/PaperStatements/Full.lean), [record](../results/paper-statements-20261120/README.md)). The Python certificate evaluator
 remains unverified. [Verification record](../results/selection-stability-20261104/README.md)
 
 ## Sharp finite-vector quantile factor
 
-Lean checks a unique scalar root in $(\sqrt2,31/20)$ and proves that every finite nonnegative-vector inequality holds exactly when its factor is at least that root. Every smaller factor has a finite-vector counterexample. The proof includes the exact Gibbs test, tangent and scale elimination, summability, joint continuity, compact maximization, strict monotonicity and analytic endpoint inequalities. The tight numerical bracket retains its separate rational certificate. [Native record](../results/optimal-quantile-root-20261105/README.md)
+Lean checks a unique scalar root in $(\sqrt2,31/20)$ and proves that every finite nonnegative-vector inequality holds exactly when its factor is at least that root. Every smaller factor has a finite-vector counterexample. The proof includes the exact Gibbs test, tangent and scale elimination, summability, joint continuity, compact maximization, strict monotonicity and analytic endpoint inequalities. Lean checks the lower end $1.462554551279$ of the tight numerical bracket ([record](../results/paper-statements-20261120/README.md)); the upper end retains its separate rational certificate. [Native record](../results/optimal-quantile-root-20261105/README.md)
 
 The [finite-core selection reduction](../results/quantile-core-reduction-20261105/README.md) is also Lean-checked at the exact scalar-root factor, including the entropy Lipschitz bound, fractional selections and both boundary-band cases. The all-law comparison below includes the measure normalization.
 
@@ -1201,13 +1366,25 @@ forces R/Psi to diverge, refuting a universal C Psi upper even with known mu
 and rho. This supplies no characterization for arbitrary other laws.
 
 Status: **the critical minimax rate is Lean-checked in both directions**.
+The lower theorem states an existential constant; Lean also checks the explicit
+lower constant $10^{-18}$ for every $0<\rho\le1/4$ and $B>0$, through the
+quadratic power law and the critical window, together with the existing upper
+constant $100000$ of `CriticalUpper`
+([`critical_explicit_constants`](../lean/ThresholdHC/PaperStatements/Full.lean), [record](../results/paper-statements-20261120/README.md)).
 The exact Psi formula, rate and failure of a universal matching-Psi upper are
 also Lean-checked. The original
 [paper checkpoint](../research/2026-10-27-nonlinear-critical/CHECKPOINT.md)
 preserves the four-file source bundle, independent adversarial agent review,
 replay evidence and attribution. The later formal proofs are detailed below.
 No explicit hard-pair formula, external specialist review or priority
-certification is claimed.
+certification is claimed. The note's RMS affine comparison lemma
+`lem:comparison`, which the formal route does not use, is Lean-checked since
+21 November 2026 in both its cases, with the constant $6$ (a sharpening from
+the Lean route) and the note's $12$ as a corollary: the categorical case
+([`categorical_comparison_6`](../lean/ThresholdHC/AffineComparison/Full.lean),
+[record](../results/affine-comparison-20261121/README.md)) and the Poisson case
+([`poisson_comparison_6`](../lean/ThresholdHC/PoissonComparison/Full.lean),
+[record](../results/poisson-comparison-20261121/README.md)).
 
 The critical single-coin base-cost theorem (BC1) is Lean-checked in
 [BaseCost.lean](../lean/ThresholdHC/CriticalEntropy/BaseCost.lean):
@@ -1378,7 +1555,16 @@ rarity and budget for every `C>0` at which the original unrestricted minimax
 risk exceeds `C*Psi(rho,1/sqrt(B))`. The
 [Psi audit](../results/critical_psi_001.json) checks the frozen model and three
 full targets. Its witness budget is `L*(1+log L)/rho`; the paper's specific
-`rho^(-2)` sequence remains a paper derivation. This proves the conjecture
+`rho^(-2)` sequence is checked separately, in the rare-event experiment of an
+exact quadratic power law: for $n\ge3$ the ratio of the risk to $\Psi$ is at least
+$7\cdot10^{-20}\sqrt{1+\log(1+\log(1/\rho_n))}\ge7\cdot10^{-20}\sqrt{1+n}$
+([`psi_sequence`](../lean/ThresholdHC/PaperCorollaries/Full.lean),
+[record](../results/paper-corollaries-20261120/README.md)). In the critical theorem's
+own model, with the exact $\Psi$ above, the same sequence has $\Psi>0$ and ratio at
+least $(10^{-18}/16)\sqrt{1+\log(1+\log(1/\rho_n))}\ge(10^{-18}/16)\sqrt{1+n}$, and the
+arithmetic of the paper's slow-divergence remark, $\sqrt{1+\log(1+\log(1/\rho))}<2.54$ for
+$10^{-100}\le\rho\le1/4$, is checked ([`critical_psi_divergence`,
+`critical_slow_divergence`](../lean/ThresholdHC/PaperStatements/Full.lean), [record](../results/paper-statements-20261120/README.md)). This proves the conjecture
 false for the fixed quadratic law and gives no arbitrary-law replacement.
 
 ## Hard observation caps for the RMS rates
@@ -1408,7 +1594,7 @@ essential.
 
 | Application | Lean-checked hard-cap conclusion | Statistical input |
 |---|---|---|
-| Distribution-blind RMS law | $\frac1{64}\omega_\mu(B^{-1/2})\le R^{\rm hard}_\mu(B)\le3000\,\omega_\mu(B^{-1/2})$ for $B\ge1$, with one family for every $\mu$. This is the Lean statement; since $R\le R^{\rm hard}$, the sharp lower coefficient $1/6$ holds too. | Both expected-budget bounds Lean-checked |
+| Distribution-blind RMS law | $\frac1{64}\omega_\mu(B^{-1/2})\le R^{\rm hard}_\mu(B)\le3000\,\omega_\mu(B^{-1/2})$ for $B\ge1$, with one family for every $\mu$. This is the Lean statement; since $R\le R^{\rm hard}$, the sharp lower coefficient $1/6$ holds too, which Lean also checks ([`hard_sharp_lower`](../lean/ThresholdHC/PaperCorollaries/Full.lean)). | Both expected-budget bounds Lean-checked |
 | Critical quadratic law | $R^{\rm hard}_{\mu,\rho}(B)\asymp\min\{\rho,\sqrt{\rho L(1+\log L)/B}\}$ for $0<\rho\le1/4$ and $B>0$, upper coefficient $570000$ | Both expected-budget bounds Lean-checked |
 | Known general law, known rarity | $10^{-17}\mathcal K_{\mu,\rho}(B)\le R^{\rm hard}_{\mu,\rho}(B)\le160000\mathcal K_{\mu,\rho}(B)$ for $0<\rho\le1/4$ and $B>0$ | The expected-budget upper coefficient $28000$ and positivity supply dyadic base rules with coefficient $28001$. |
 
@@ -1425,7 +1611,13 @@ observations, not CPU time, and cannot check the statistical premises. The
 package's exact finite audits (56 recurrence instances with 26,232 enumerated
 paths, and 10,301 schedules) and its counterexamples are finite evidence, not
 proofs. The counterexamples show that a single timeout fallback, or randomness
-shared across stages, leaves a nonvanishing error floor.
+shared across stages, leaves a nonvanishing error floor; since 21 November 2026
+they are Lean-checked at $\delta_{1/2}$ with $\rho=1/4$: one base family meets
+the reduction's stage premise, the independent ladder has squared risk at most
+$32K(B)^2$, and every estimator with the shared seed or the single fallback has
+squared risk at least $\rho^2/32$ at $\theta=0$
+([`hard_cap_necessity`](../lean/ThresholdHC/HardCapNecessity/Full.lean),
+[record](../results/hard-cap-necessity-20261121/README.md)).
 
 ## Confidence rates and sequential stopping
 
@@ -1461,9 +1653,27 @@ overlapping-submeasure version are also checked with coefficient $1/128$.
 Their proof charges Hellinger loss to midpoint work and uses a strengthened
 binary risk bound. Every statement with coefficient $1/128$ here is a
 transfer theorem: it takes the single-coin variance–null-work obstruction as
-a hypothesis, and Lean establishes that hypothesis for no gap law. The
-unconditional Lean confidence lower bounds are the critical-law bound and
-the general-law coefficient $10^{-17}$ in the table below.
+a hypothesis. Since 21 November 2026 Lean establishes that hypothesis for
+every gap law, in the form of Proposition `prop:psi-null`:
+$\mathfrak J_0(b)\ge(\Psi_{\mu,\rho}(h)-4b)_+^2/(192h^2)$ for $0<\rho\le1/4$,
+$0\le b\le\rho/64$ and $h>0$. Composed with the RMS transfer it gives
+$R_{\mu,\rho}(B)\ge\Psi_{\mu,\rho}(B^{-1/2})/8192$ for every $B>0$, the
+paper's `eq:psi-budget-lower` ([record](../results/psi-null-20261121/README.md)).
+The common pair is also proved for the critical law by a separate route, and
+the composed RMS bound there is stated with an existential constant since the
+same date ([record](../results/critical-pair-rms-20261121/README.md)). The remark that the bias term $4b$ of
+Proposition `prop:psi-null` cannot be lowered is Lean-checked as well
+([record](../results/bias-subtraction-20261121/README.md)). Its confidence consequence through the
+common pair is Lean-checked as well since the same date: for every gap law,
+$r^{\rm exp}_{\mu,\rho}(B,\delta)\ge\Psi_{\mu,\rho}(\sqrt{\ell/B})/8192$, the
+confidence-transfer note's equation (17). For an exact power law
+$F(d)=(d/a)^\alpha$ with $\alpha>2$, both radii then lie between $z/8192$ and
+$C_\alpha z$ with $z=\min\{\rho,\sqrt{\rho\ell}/(a\sqrt B)\}$, the note's
+equation (22), and one hard-cap procedure fixed before the law attains the
+upper rate over the whole power-margin class; $C_\alpha$ is existential
+([record](../results/confidence-transfer-steps-20261121/README.md)). The other unconditional Lean confidence
+lower bounds are the critical-law bound and the general-law coefficient
+$10^{-17}$ in the table below.
 [Single-type record](../results/confidence-population-20261104/README.md) · [Selected-type record](../results/adaptive-types-20261105/README.md) · [Common-pair record](../results/common-pair-20261105/README.md) · [Additive localization record](../results/additive-confidence-20261105/README.md) · [Sharper confidence record](../results/entropy-confidence-20261105/README.md) · [RMS localization record](../results/rms-localization-20261105/README.md)
 
 **Amplification.** If a procedure has $\mathbb ET\le b$ and RMS at most $R(b)$,
@@ -1493,8 +1703,10 @@ The stronger lower coefficient follows from the direct checked inequality $30\cd
 
 The known-law time-uniform width row now has a [Lean proof](../results/anytime-confidence-20261105/README.md), with half-width coefficient $1500002$. It uses one common observable experiment and consistent acquisition prefixes across budgets. The
 algorithms in the table may know $\mu$, $\rho$, $B$ and $\delta$. A separate
-[unknown-law construction and lower bound](UNKNOWN_LAW_CONFIDENCE.md), which
-are paper proofs and not Lean-checked, give
+[unknown-law construction and lower bound](UNKNOWN_LAW_CONFIDENCE.md) give
+(both Lean-checked since 21 November 2026: the construction,
+[record](../results/unknown-law-confidence-20261121/README.md), and the lower
+bound, [record](../results/bernoulli-time-uniform-20261121/README.md))
 observable, simultaneously valid intervals that shrink for every fixed
 positive-gap law. Its width bound depends on unresolved small gaps.
 A Bernoulli subfamily forces the iterated logarithm infinitely often and
@@ -1505,14 +1717,25 @@ coverage and width control is at least
 $10^{-22}\mathcal K(n/[\log(1/\delta)+\log\log n])$ at arbitrarily late integer
 budgets. No monotonicity of the envelope is required. The theorem assumes
 $0<\rho\le1/4$ and $0<\delta\le1/4$. It matches the upper row in order, up to
-constants and at paper level: the upper theorem is stated for a stage-indexed
-controller with its own stream law and the lower theorem for an online policy
-in the original experiment, and no Lean theorem composes the two. A
+constants. The upper theorem is stated for a stage-indexed controller with its
+own stream law and the lower theorem for an online policy in the original
+experiment; since 21 November 2026 Lean also composes the two in one model.
+The stage family, run as one online policy in the original experiment with an
+interval at every integer budget that reads the seed and the first $n$
+observations, has joint coverage and width control with an envelope at most
+$3000004\,\mathcal K(n/[\log(1/\delta)+\log\log n])$ for $n\ge3$, and the lower
+bound applies to it
+([`time_uniform_two_sided`](../lean/ThresholdHC/TimeUniformTwoSided/Full.lean),
+[record](../results/time-uniform-two-sided-20261121/README.md)). The nesting of the intervals and real budgets are
+not restated there. A
 paper-level remark on its constant: stopping such a procedure at budget $n$
 gives a fixed-budget interval, so the fixed-budget coefficient $10^{-17}$
 already implies the displayed inequality at every $n$ with
 $\log\log n\le(10^{10}-1)\log(1/\delta)$. The iterated logarithm is forced
-only beyond that range.
+only beyond that range. Lean checks this remark since 21 November 2026 for
+every $n\ge2$, by proving the fixed-budget chain again for estimates formed
+from the seed and the first $n$ observations
+([record](../results/stopped-time-uniform-20261121/README.md)).
 The [sequential testing step](ANYTIME_SEQUENTIAL.md), [infinite-moment
 construction and adaptive acquisition transfer](ANYTIME_TAIL.md), and
 [complete asymptotic and interval comparison](../results/anytime-asymptotic-20261105/README.md)
@@ -1594,7 +1817,12 @@ gap law.
 The learned law's oracle comparison (A11) is checked: for $\rho\le1/4$ and
 past a finite onset that depends on the gap law and $\rho$ only, on that
 event the selection functional of the learned law is at most $2^{24}$ times
-the oracle's. For a law $\alpha$ on $[0,1/2]$ with mass at zero, the quantile
+the oracle's. Both events are stated on the coin array of the original
+simulation law; since 21 November 2026 they are also stated under the law of
+the original hidden-gap experiment of the whole learning stage, with (A11)
+on the full event (A8)
+([`stage_pilot_event`, `stage_pilot_oracle_eventually`](../lean/ThresholdHC/StagePilotLaw/Full.lean),
+[record](../results/stage-pilot-law-20261121/README.md)). For a law $\alpha$ on $[0,1/2]$ with mass at zero, the quantile
 design satisfies $K_\alpha\le Q_\alpha\le4K_\alpha$, (A16). The squared-error
 certificate of a known-law plan is checked for every admissible plan, with
 the level price of the checked upper theorem and not the toolkit's smaller
@@ -1652,7 +1880,10 @@ links the manuscript build of 16 November, the exact proof evidence and the back
 An exact path count shows that repeatedly
 checking a fixed-time interval fails: a check with fixed-time failure at most
 $1/4$ fails with probability about $0.428$ when checked at every step up to
-512. The [toolkit drivers](../toolkit/README.md#research-modules-high-confidence-and-sequential-stopping)
+512. Lean checks both halves since 21 November 2026, the second as the exact
+value $1-S/4^{512}=0.4280910097010513377\ldots$ for an integer survivor
+weight $S$; the package's display $0.42809100970105135$ is a floating-point
+rendering slightly above it ([record](../results/repeated-check-20261121/README.md)). The [toolkit drivers](../toolkit/README.md#research-modules-high-confidence-and-sequential-stopping)
 implement the median and the sequential intervals for a caller-supplied
 estimator. They cap observations, not CPU time, and cannot check the
 statistical premises. An AI integration review, recorded in the
@@ -1668,13 +1899,43 @@ upper bound for that specified radial submodel. The counterexample rules out
 that proof route; it does not refute the later full critical-law theorem above,
 whose hard pair is not the radial proposal. Its finite Bayes calculations use
 deterministic observation caps and do not settle the expected-budget minimax
-problem.
+problem. At horizon eight, Lean checks since 21 November 2026 that an explicit
+adaptive policy (the stored dynamic-program policy) beats every estimator with
+the fixed fresh or single-coin design by at least $1.5917\%$ and $5.0307\%$ in
+Bayes squared error; that the policy is the dynamic-program minimum is not
+checked ([record](../results/finite-bayes-allocation-20261121/README.md)). Its calibrated radial upper bound is Lean-checked since 21 November
+2026 on the known radial submodel, with the calibrated cutoff, the
+random-walk call and $R_{\rm radial}(B)\le\min\{\rho/4,\sqrt{160\rho L/B}\}$
+([`radial_upper`](../lean/ThresholdHC/RadialUpper/Full.lean),
+[record](../results/radial-upper-20261121/README.md)). Its restricted pilot correction is Lean-checked since 21 November
+2026 for an abstract mixture model of one coin's observations: a fixed scalar
+control variate has a saddle point on the rarity polytope, and no coefficient
+learned by an independent pilot improves the worst mean squared error $F^*/n$
+([`saddle`, `pilot_no_gain`](../lean/ThresholdHC/PilotCorrection/Full.lean),
+[record](../results/pilot-correction-20261121/README.md)).
 
 The [nonlinear-feedback report](../research/2026-10-27-nonlinear-population/FINAL_REPORT.md)
 adds a reviewed paper proof of strict acquisition-feedback advantage for a
-two-gap experiment at a deterministic two-flip cap, an arbitrary-feedback
+two-gap experiment at a deterministic two-flip cap (Lean-checked since
+21 November 2026 against the seed-conditional normal form of the comparison
+class,
+[`feedback_separation`](../lean/ThresholdHC/TwoFlipFeedback/Full.lean),
+[record](../results/two-flip-feedback-20261121/README.md); and, through the
+paper's dominance reduction, for an order-free local class,
+[`local_separation`](../lean/ThresholdHC/TwoFlipDominance/Full.lean),
+[record](../results/two-flip-dominance-20261121/README.md)), an arbitrary-feedback
 bounded-depth obstruction, and a finite approximation theorem that preserves
-the uniform expected budget. Exact rational certificates support the finite
+the uniform expected budget. The population half of the bounded-depth
+obstruction is Lean-checked since 21 November 2026 for every per-coin cap, gap
+law and pair with matching odd moments: equal seed-and-transcript laws under
+arbitrary feedback, and the RMS floor of half the separation
+([`capped_transcript`, `equal_law_floor`](../lean/ThresholdHC/DepthObstruction/Full.lean),
+[record](../results/depth-obstruction-20261121/README.md)), and so is the explicit
+odd-Legendre pair on the exact quadratic law: $u_K$ of `lem:poly`, the
+separation $\rho/((K+1)(2K+1))$, equal word probabilities through depth $2K$
+and the floor $\rho/(2(K+1)(2K+1))$
+([`depth_cap_floor`](../lean/ThresholdHC/DepthLegendre/Full.lean),
+[record](../results/depth-legendre-20261121/README.md)). The exit bound `thm:tail` remains a paper proof. Exact rational certificates support the finite
 examples; no general finite convex program was solved. The 7,680-replicate
 synthetic experiment is numerical evidence with 32 replicates per cell, not
 a uniform risk guarantee, practical superiority claim, or confidence result.
@@ -1722,9 +1983,9 @@ evidence are preserved.
 
 ## Unknown rarity and numerical evidence
 
-The [unknown-rarity obstruction](process/TRACK_D.md#an-obstruction-to-completely-uniform-adaptation-to-unknown-rarity) concerns a budget-indexed estimator family independent of the rarity bound. For a known fixed $0<d<1/2$ and almost-sure stopping at every constant sign prior in $[0,1/4]$, no universal finite $C$ gives RMS error at most $C\min\{\rho,\sqrt\rho/(d\sqrt B)\}$ for every $B\ge1$, $0<\rho\le1/4$, and $\theta\in[0,\rho]$. This is an independently agent-reviewed paper proof. It does not rule out an additive error floor, a positive lower bound on rarity, or an algorithm given $\rho$.
+The [unknown-rarity obstruction](process/TRACK_D.md#an-obstruction-to-completely-uniform-adaptation-to-unknown-rarity) concerns a budget-indexed estimator family independent of the rarity bound. For a known fixed $0<d<1/2$ and almost-sure stopping at every constant sign prior in $[0,1/4]$, no universal finite $C$ gives RMS error at most $C\min\{\rho,\sqrt\rho/(d\sqrt B)\}$ for every $B\ge1$, $0<\rho\le1/4$, and $\theta\in[0,\rho]$. It is Lean-checked since 21 November 2026 in the Tier 6 adaptive experiment at the gap law $\delta_d$, with the expected-work form, the stopped-transcript absolute continuity it uses, and, beyond the note, the failure already for one estimator at one budget $B>4C^2/d^2$ that stops almost surely at $\theta=1/4$ ([`unknown_rarity_obstruction`, `fixed_budget_obstruction`](../lean/ThresholdHC/UnknownRarity/Full.lean), [record](../results/unknown-rarity-20261121/README.md)). It does not rule out an additive error floor, a positive lower bound on rarity, or an algorithm given $\rho$.
 
-[Constant scores](../results/constants_theory.json), [upper-bracket evaluations](../results/power_bracket.json), and [held-out benchmark summaries](../results/real_test.json) are numerical evidence. Finite grids, truncation, floating-point arithmetic, and benchmark-specific assumptions do not yield universal theorems. See the [off-grid counterexample](../proposals/constants/BIAS_AUDIT.md) and [benchmark report](process/TRACK_C.md).
+[Constant scores](../results/constants_theory.json), [upper-bracket evaluations](../results/power_bracket.json), and [held-out benchmark summaries](../results/real_test.json) are numerical evidence. Finite grids, truncation, floating-point arithmetic, and benchmark-specific assumptions do not yield universal theorems. See the [off-grid counterexample](../proposals/constants/BIAS_AUDIT.md) and [benchmark report](process/TRACK_C.md). Since 21 November 2026 Lean checks both halves of that bias audit against the frozen classifier error: the grid winner $(k_1,k_2)=(1/4,1/2)$ has error at least $(2/5)^{128}$ at $d=1/10$ and cap $2^{97}$, more than 2907 times the v4 envelope, while every $k_1\ge0$, $k_2\ge1$ keeps the envelope $\min\{1,(Nd^2)^{-2}\}$ ([`grid_winner_counterexample`, `smaller_threshold_error`](../lean/ThresholdHC/BiasAudit/Full.lean), [record](../results/bias-audit-20261121/README.md)).
 
 ## Practical comparison with a fixed plan
 
@@ -1735,8 +1996,13 @@ law at a known gap law, the fixed plan's bias is at most the mean
 misclassification probability and its variance at most $1/(4n)$. The toolkit
 evaluates the analytic formulas with binomial tails, using floating-point
 arithmetic. The continuous uniform law uses an analytic integral rather than
-a finite grid. This elementary bound is not Lean-checked, and its numerical
-evaluation is subject to roundoff.
+a finite grid. Since 21 November 2026 Lean checks the bound for the plan run in
+the original adaptive experiment: expected work $n(2k+1)$ for $m=2k+1$, bias
+at most $e_m$, extended variance at most $1/(4n)$, RMS at most
+$\sqrt{e_m^2+1/(4n)}$ over all sign laws, and for uniform success rates
+$e_m=\binom{2a}{a}/2^{2a+1}=1/(2a\,\mathrm B(a,1/2))$ with $a=k+1$, in
+binomial-tail form ([record](../results/fixed-plan-20261121/README.md)). The
+numerical evaluation remains subject to roundoff.
 
 Take the ten-coin example law from the toolkit guide, with probabilities 0.9,
 0.8, 0.7, 0.6, 0.55, 0.52, 0.45, 0.3, 0.2 and 0.1 drawn uniformly, and
