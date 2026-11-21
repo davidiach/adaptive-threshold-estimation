@@ -1083,7 +1083,7 @@ finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
 split, critical common-pair, bias-subtraction, global-cut, psi-null,
 confidence-transfer-steps, observed-hoeffding, nested-assumptions,
 light-contraction-constant, band-cost-example, repeated-check,
-reservoir-termination, quantile-factor-upper, creation-charge, stage-pilot-law, bias-audit, unknown-rarity, hard-cap-necessity, pilot-correction, depth-obstruction, localization-counter, affine-comparison, two-flip-feedback, unknown-law-confidence, upper-twelve-numerics, radial-upper, time-uniform-two-sided, depth-legendre, latent-disintegration, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
+reservoir-termination, quantile-factor-upper, creation-charge, stage-pilot-law, bias-audit, unknown-rarity, hard-cap-necessity, pilot-correction, depth-obstruction, localization-counter, affine-comparison, two-flip-feedback, unknown-law-confidence, upper-twelve-numerics, radial-upper, time-uniform-two-sided, depth-legendre, latent-disintegration, known-gap-rarity, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
 suites and audits, the
 `lean-kernel` job also the restricted-class, sharp-strictness,
 oracle-sharpness, oracle-upper, clipped-output and revisit-upper suites and
@@ -1406,6 +1406,14 @@ does not transfer termination with a countable coin reservoir, for every
 realization of the creation model. CI runs it in the `entropy-tail-upper`
 job. Its 11-test guard suite is `test_reservoir_termination.py`.
 [Record](../results/reservoir-termination-20261121/README.md).
+
+Run `python tools/verify_known_gap_rarity.py --replay` for 6 exact statements
+and 69 transitive axiom reports over the seven modules of
+`lean/ThresholdHC/KnownGapRarity`: the known-gap estimator of the minimax
+audit's adaptation note that needs no rarity, with its interval. CI runs it in
+the `entropy-tail-upper` job. Its 11-test guard suite is
+`test_known_gap_rarity.py`.
+[Record](../results/known-gap-rarity-20261121/README.md).
 
 ## Smooth-density robustness
 
