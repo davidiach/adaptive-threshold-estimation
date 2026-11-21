@@ -10,7 +10,7 @@ can differ from the current files after a later proof-only change: the
 eight Lean files that were refactored afterwards without changing a
 statement. For the current tree the evidence is the CI run on that commit.
 
-The folder holds 143 dated record directories, named for a result and a
+The folder holds 144 dated record directories, named for a result and a
 date, and the loose JSON and log files of the first phases of the project.
 The table below indexes the records that the guides cite. Later sections
 describe the remaining records in prose: the time-uniform bounds, cost
@@ -116,6 +116,7 @@ is the current evidence for that result.
 | Smooth-density complexity and unbiased impossibility | [smooth-density-20261105](smooth-density-20261105/README.md) |
 | Prior-family and per-flip information inequalities for the all-law time-uniform lower bound (the complete theorem is checked separately in [anytime-asymptotic-20261105](anytime-asymptotic-20261105/README.md)) | [anytime-lower-20261105](anytime-lower-20261105/README.md) |
 | Common prior families and information bounds for the time-uniform lower bounds: 11 exact statements. The earlier checkpoint of the record above | [anytime-lower-family-20261105](anytime-lower-family-20261105/README.md) |
+| Repeated inspection of a fixed-time interval: coverage $3/4$ at every fixed $n$, failure $0.42809100970105\ldots>1/4$ when checked up to 512: library statement, axiom and kernel-replay audits | [repeated-check-20261121](repeated-check-20261121/README.md) |
 | Observable time-uniform confidence for known laws | [anytime-confidence-20261105](anytime-confidence-20261105/README.md) |
 | Logarithmic and intermediate rare power margins | [shifted-power-20261105](shifted-power-20261105/README.md) |
 | Rare power margins below exponent one | [sublinear-power-20261105](sublinear-power-20261105/README.md) |

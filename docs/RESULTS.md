@@ -1810,7 +1810,10 @@ links the manuscript build of 16 November, the exact proof evidence and the back
 An exact path count shows that repeatedly
 checking a fixed-time interval fails: a check with fixed-time failure at most
 $1/4$ fails with probability about $0.428$ when checked at every step up to
-512. The [toolkit drivers](../toolkit/README.md#research-modules-high-confidence-and-sequential-stopping)
+512. Lean checks both halves since 21 November 2026, the second as the exact
+value $1-S/4^{512}=0.4280910097010513377\ldots$ for an integer survivor
+weight $S$; the package's display $0.42809100970105135$ is a floating-point
+rendering slightly above it ([record](../results/repeated-check-20261121/README.md)). The [toolkit drivers](../toolkit/README.md#research-modules-high-confidence-and-sequential-stopping)
 implement the median and the sequential intervals for a caller-supplied
 estimator. They cap observations, not CPU time, and cannot check the
 statistical premises. An AI integration review, recorded in the

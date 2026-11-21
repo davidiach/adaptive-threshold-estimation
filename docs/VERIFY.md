@@ -1074,7 +1074,8 @@ paper-statement, pilot-feedback, explicit-constant, nonnegativity,
 finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
 split, critical common-pair, bias-subtraction, global-cut, psi-null,
 confidence-transfer-steps, observed-hoeffding, nested-assumptions,
-light-contraction-constant, band-cost-example, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
+light-contraction-constant, band-cost-example, repeated-check,
+entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
 suites and audits, the
 `lean-kernel` job also the restricted-class, sharp-strictness,
 oracle-sharpness, oracle-upper, clipped-output and revisit-upper suites and
@@ -1259,6 +1260,14 @@ Run `python tools/verify_shifted_power.py` for ten exact statements and 35 trans
 ## Observable time-uniform confidence
 
 Run `python tools/verify_anytime_confidence.py` for nine exact statements and 29 transitive axiom reports. Both interval endpoints use the same observed prefix and private seed. [Native record](../results/anytime-confidence-20261105/README.md)
+
+Run `python tools/verify_repeated_check.py --replay` for 6 exact statements and
+71 transitive axiom reports over the eight modules of
+`lean/ThresholdHC/RepeatedCheck`: a fixed-time interval with coverage $3/4$ at
+every $n$ fails with probability $1-S/4^{512}\approx0.428$ when checked up to
+512. The replay re-evaluates the survivor certificate. CI runs it in the
+`entropy-tail-upper` job. Its 11-test guard suite is `test_repeated_check.py`.
+[Record](../results/repeated-check-20261121/README.md).
 
 ## Smooth-density robustness
 
