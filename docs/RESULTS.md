@@ -315,7 +315,10 @@ The lower constant of the RMS law is sharp. For every gap law and every $B\ge1$,
 $$R_\mu(B)\ \ge\ \tfrac16\,\omega_\mu(B^{-1/2}),$$
 
 and $1/6$ is the largest constant valid for all gap laws and budgets: four
-fresh flips attain equality at $B=4$ and $\mu=\delta_{1/2}$. For $B\ge25$ the
+fresh flips attain equality at $B=4$ and $\mu=\delta_{1/2}$. Equality needs
+$B=4$: for every law and every $B\ge1$ other than four the bound is strict,
+also under both oracles, as Lean checks since 21 November 2026
+([record](../results/sharp-strict-20261121/README.md)). For $B\ge25$ the
 constant improves to $\sqrt{59/2100}\approx0.1676$, and further to $0.175198$
 (below). The experiment is the
 original one: arbitrary measurable private randomness, interleaving,

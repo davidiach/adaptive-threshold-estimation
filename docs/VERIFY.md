@@ -972,6 +972,13 @@ for any class containing the four-fresh-flip protocols. CI runs it in the
 `lean-kernel` job. Its 11-test guard suite is `test_restricted_rms.py`.
 [Record](../results/restricted-rms-20261121/README.md).
 
+Run `python tools/verify_sharp_strict.py --replay` for 9 exact statements and
+29 transitive axiom reports over the three modules of
+`lean/ThresholdHC/SharpStrict`: the bound $\omega/6$ is strict for every gap
+law and every $B\ge1$ other than four, also under both oracles. CI runs it in
+the `lean-kernel` job. Its 11-test guard suite is `test_sharp_strict.py`.
+[Record](../results/sharp-strict-20261121/README.md).
+
 Each audit pins its new specification, restates the checked targets and
 reports every new declaration's transitive axioms. Their six-test guard
 suites are `test_psi_sharpness.py` and `test_power_window.py`; CI runs both
@@ -979,7 +986,8 @@ suites and both audits, and also the critical-window, paper-corollary,
 paper-statement, pilot-feedback, explicit-constant, nonnegativity,
 finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
 split, critical common-pair and bias-subtraction suites and audits, the
-`lean-kernel` job also the restricted-class suite and audit; the `stopping-program` job also runs the fixed-cap
+`lean-kernel` job also the restricted-class and sharp-strictness suites and
+audits; the `stopping-program` job also runs the fixed-cap
 estimate suite and audit. Existing published records retain their original scope.
 
 ## Sharp RMS coefficient and square-root cap

@@ -216,8 +216,8 @@ Use a disposable checkout for reproduction: some checks write diagnostic files.
   finite-gap manuscript, the stopped time-uniform remark, the threshold form
   of the target for every law, the zero-atom split, the explicit fixed-cap
   estimate, the bias-subtraction remark of Appendix H, the common-pair RMS
-  bound at the critical law and the restricted-class coefficient $1/6$
-  ([records](results/README.md)).
+  bound at the critical law, the restricted-class coefficient $1/6$ and the
+  strictness of the sharp bound for $B\ne4$ ([records](results/README.md)).
 - **Constants of the main law.** The lower constant $1/6$ is sharp and the
   upper constant is $12$, so the two sides are a factor $72$ apart. For
   budgets of at least 25 the best lower constant is known only to lie in
