@@ -10,7 +10,7 @@ can differ from the current files after a later proof-only change: the
 eight Lean files that were refactored afterwards without changing a
 statement. For the current tree the evidence is the CI run on that commit.
 
-The folder holds 139 dated record directories, named for a result and a
+The folder holds 140 dated record directories, named for a result and a
 date, and the loose JSON and log files of the first phases of the project.
 The table below indexes the records that the guides cite. Later sections
 describe the remaining records in prose: the time-uniform bounds, cost
@@ -110,6 +110,7 @@ is the current evidence for that result.
 | Selected-type information transfer through unbounded stopping | [adaptive-types-20261105](adaptive-types-20261105/README.md) |
 | Fresh-state upper-bound transfer and complete observed-state rates | [observed-state-upper-20261105](observed-state-upper-20261105/README.md) |
 | Continuous-magnitude observed-state lower bounds and regularity | [continuous-observed-lower-20261105](continuous-observed-lower-20261105/README.md) |
+| The Hoeffding replication count $M=\lceil32\Delta^{-2}\log(2/\delta)\rceil$ of the finite-cell observed-state bound: library statement, axiom and kernel-replay audits | [observed-hoeffding-20261121](observed-hoeffding-20261121/README.md) |
 | Finite-cell observed-state lower bound | [finite-observed-20261105](finite-observed-20261105/README.md) |
 | Smooth-density complexity and unbiased impossibility | [smooth-density-20261105](smooth-density-20261105/README.md) |
 | Prior-family and per-flip information inequalities for the all-law time-uniform lower bound (the complete theorem is checked separately in [anytime-asymptotic-20261105](anytime-asymptotic-20261105/README.md)) | [anytime-lower-20261105](anytime-lower-20261105/README.md) |

@@ -5,7 +5,7 @@ Use this map to find a formal statement, its proof, and the audit that checks it
 [verification setup](../docs/VERIFY.md#setup) covers Python, Lean, and Mathlib.
 Commands below run from the repository root.
 
-`ThresholdHC/` holds 1,542 Lean files: 115 top-level directories and seven root
+`ThresholdHC/` holds 1,547 Lean files: 116 top-level directories and seven root
 files beside them. Most results have a
 directory with a `Specification.lean`, which states the targets, and a
 `Full.lean`, which proves them. `ThresholdHC.lean` is the frozen root of the
@@ -190,6 +190,7 @@ The $31/20$ row and the sharp-factor rows above have since improved it.
 | Result | Formal entry point | Audit command |
 |---|---|---|
 | Smooth-density robustness: both expected-complexity bounds and uniform unbiased impossibility in the original adaptive experiment | [Full](ThresholdHC/SmoothDensity/Full.lean), [proof map](../docs/SMOOTH_DENSITY.md), [record](../results/smooth-density-20261105/README.md) | `python tools/verify_smooth_density.py` |
+| The Hoeffding count of the finite-cell observed-state bound: weighted Hoeffding for the sign target, the replication tail $2\exp(-M\Delta^2/32)\le\delta$, the testing lower bound under $32\log(2/\delta)\sum w^2\le\Delta^2$ for every finite cell design, and Proposition `prop:outer` with $M=\lceil32\Delta^{-2}\log(2/\delta)\rceil$ replicas and distinct label caps | [Specification](ThresholdHC/ObservedHoeffding/Specification.lean), [Hoeffding](ThresholdHC/ObservedHoeffding/Hoeffding.lean), [Lower](ThresholdHC/ObservedHoeffding/Lower.lean), [Construction](ThresholdHC/ObservedHoeffding/Construction.lean), [Full](ThresholdHC/ObservedHoeffding/Full.lean), [record](../results/observed-hoeffding-20261121/README.md) | `python tools/verify_observed_hoeffding.py --replay` |
 | Finite-cell observed-state lower bound: a measurable uniform-state partition and the exact testing bound for arbitrary selected-state policies | [Finite](ThresholdHC/ObservedState/Finite.lean), [proof map](../docs/OBSERVED_STATES.md), [record](../results/finite-observed-20261105/README.md) | `python tools/verify_observed_states.py` |
 | Continuous-magnitude observed-state complexity and RMS lower bounds in the actual selected-query experiment, with density regularity | [UniformLower](ThresholdHC/ContinuousObserved/UniformLower.lean), [UniformRMSLower](ThresholdHC/ContinuousObserved/UniformRMSLower.lean), [Regularity](ThresholdHC/ContinuousObserved/Regularity.lean), [proof map](../docs/CONTINUOUS_OBSERVED.md), [record](../results/continuous-observed-lower-20261105/README.md) | `python tools/verify_continuous_observed.py` |
 | Fresh-state upper bounds transferred to selected-state queries, and uniform-gap rates | [Upper](ThresholdHC/ContinuousObserved/Upper.lean), [UniformUpper](ThresholdHC/ContinuousObserved/UniformUpper.lean), [proof map](../docs/OBSERVED_UPPER.md), [record](../results/observed-state-upper-20261105/README.md) | `python tools/verify_observed_upper.py` |

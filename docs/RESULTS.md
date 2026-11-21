@@ -695,7 +695,11 @@ The theorem allows arbitrary point queries, revisits, interleaving,
 private randomness and unbounded stopping. It identifies the physical
 observation law and the threshold target.
 
-The checked construction uses a second-moment replication condition.
+The checked construction uses a second-moment replication condition. The
+paper's Hoeffding count, $M=\lceil32\Delta^{-2}\log(2/\delta)\rceil$ replicas per
+magnitude with tail $2\exp(-M\Delta^2/32)\le\delta$, is Lean-checked as well
+since 21 November 2026, with the same lower bound for every finite cell
+design that meets it ([record](../results/observed-hoeffding-20261121/README.md)).
 The continuous-magnitude extension is checked, including its lower bounds, regularity and fresh-state upper-bound transfer.
 [Proof map](OBSERVED_STATES.md) · [Native audit](../results/finite-observed-20261105/README.md)
 

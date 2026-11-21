@@ -1066,7 +1066,7 @@ suites and both audits, and also the critical-window, paper-corollary,
 paper-statement, pilot-feedback, explicit-constant, nonnegativity,
 finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
 split, critical common-pair, bias-subtraction, global-cut, psi-null,
-confidence-transfer-steps, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
+confidence-transfer-steps, observed-hoeffding, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
 suites and audits, the
 `lean-kernel` job also the restricted-class, sharp-strictness,
 oracle-sharpness, oracle-upper, clipped-output and revisit-upper suites and
@@ -1259,6 +1259,14 @@ Run `python tools/verify_smooth_density.py` for 15 exact statements and 46 trans
 ## Finite-cell observed states
 
 Run `python tools/verify_observed_states.py` for 22 exact statements and 58 transitive axiom reports. The audit covers the finite partition, magnitude envelope, target separation, physical observation law and exact lower bound. [Native record](../results/finite-observed-20261105/README.md)
+
+Run `python tools/verify_observed_hoeffding.py --replay` for 8 exact statements
+and 26 transitive axiom reports over the five modules of
+`lean/ThresholdHC/ObservedHoeffding`: the paper's Hoeffding replication count
+$M=\lceil32\Delta^{-2}\log(2/\delta)\rceil$ in place of the second-moment
+condition, with the lower bound for every finite cell design that meets it.
+CI runs it in the `entropy-tail-upper` job. Its 11-test guard suite is
+`test_observed_hoeffding.py`. [Record](../results/observed-hoeffding-20261121/README.md).
 
 ## Continuous-magnitude observed states
 
