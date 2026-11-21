@@ -1866,7 +1866,11 @@ learned by an independent pilot improves the worst mean squared error $F^*/n$
 
 The [nonlinear-feedback report](../research/2026-10-27-nonlinear-population/FINAL_REPORT.md)
 adds a reviewed paper proof of strict acquisition-feedback advantage for a
-two-gap experiment at a deterministic two-flip cap, an arbitrary-feedback
+two-gap experiment at a deterministic two-flip cap (Lean-checked since
+21 November 2026 against the seed-conditional normal form of the comparison
+class, without the paper's dominance reduction to it;
+[`feedback_separation`](../lean/ThresholdHC/TwoFlipFeedback/Full.lean),
+[record](../results/two-flip-feedback-20261121/README.md)), an arbitrary-feedback
 bounded-depth obstruction, and a finite approximation theorem that preserves
 the uniform expected budget. The population half of the bounded-depth
 obstruction is Lean-checked since 21 November 2026 for every per-coin cap, gap

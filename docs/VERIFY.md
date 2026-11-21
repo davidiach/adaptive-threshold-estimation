@@ -1076,7 +1076,7 @@ finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
 split, critical common-pair, bias-subtraction, global-cut, psi-null,
 confidence-transfer-steps, observed-hoeffding, nested-assumptions,
 light-contraction-constant, band-cost-example, repeated-check,
-reservoir-termination, quantile-factor-upper, creation-charge, stage-pilot-law, bias-audit, unknown-rarity, hard-cap-necessity, pilot-correction, depth-obstruction, localization-counter, affine-comparison, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
+reservoir-termination, quantile-factor-upper, creation-charge, stage-pilot-law, bias-audit, unknown-rarity, hard-cap-necessity, pilot-correction, depth-obstruction, localization-counter, affine-comparison, two-flip-feedback, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
 suites and audits, the
 `lean-kernel` job also the restricted-class, sharp-strictness,
 oracle-sharpness, oracle-upper, clipped-output and revisit-upper suites and
@@ -1309,6 +1309,14 @@ of the full critical note, with the constant $6$ and the note's $12$. CI runs
 it in the `entropy-tail-upper` job. Its 11-test guard suite is
 `test_affine_comparison.py`.
 [Record](../results/affine-comparison-20261121/README.md).
+
+Run `python tools/verify_two_flip_feedback.py --replay` for 8 exact
+statements and 123 transitive axiom reports over the ten modules of
+`lean/ThresholdHC/TwoFlipFeedback`: the two-flip acquisition-feedback
+advantage against the seed-conditional normal-form noninteractive class. CI
+runs it in the `entropy-tail-upper` job. Its 11-test guard suite is
+`test_two_flip_feedback.py`.
+[Record](../results/two-flip-feedback-20261121/README.md).
 
 ## Whole-project build, axioms and kernel replay
 
