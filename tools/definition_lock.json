@@ -1166,6 +1166,16 @@
     "ThresholdHC.EntropyTailExecution.scaleCall": "14496667888052377390:2165622248016337065",
     "ThresholdHC.EntropyTailExecution.scheduledCall": "5467582791349630779:5813869484117123236",
     "ThresholdHC.EntropyTailExecution.statePolicy": "17485440210656893107:4879486189684146746",
+    "ThresholdHC.EntropyTailForms.FiniteHardThreePieceStatement": "4762494857145497995:4031891845818677983",
+    "ThresholdHC.EntropyTailForms.FixedCoreSplitStatement": "4762494857145497995:7550423087655167038",
+    "ThresholdHC.EntropyTailForms.HardThreePieceStatement": "4762494857145497995:4608720293316246825",
+    "ThresholdHC.EntropyTailForms.OrderedLawStatement": "4762494857145497995:9512372956544487079",
+    "ThresholdHC.EntropyTailForms.ThreePieceFormStatement": "4762494857145497995:11953207719276086238",
+    "ThresholdHC.EntropyTailForms.ThreePieceInfStatement": "4762494857145497995:9216193892238532413",
+    "ThresholdHC.EntropyTailForms.ThreePieceLawStatement": "4762494857145497995:8939140857687124056",
+    "ThresholdHC.EntropyTailForms.inverseMass": "12553442774180996230:4390628703359427778",
+    "ThresholdHC.EntropyTailForms.threePieceObjective": "1931552964246088271:12212820231966843793",
+    "ThresholdHC.EntropyTailForms.threePieceSelection": "17993522273744119061:18004517647601114221",
     "ThresholdHC.EntropyTailLower.CertificateLowerStatement": "4762494857145497995:9379477633920435163",
     "ThresholdHC.EntropyTailLower.ComparableOrderedGroups": "14714578838084730036:10165571694004415384",
     "ThresholdHC.EntropyTailLower.ComparableOrderedGroups._sizeOf_1": "5749221001924709095:7986885049148673649",
@@ -3406,6 +3416,10 @@
     {
       "at": "2026-11-21T02:31:03+00:00",
       "count": 2
+    },
+    {
+      "at": "2026-11-21T03:29:21+00:00",
+      "count": 10
     }
   ]
 }

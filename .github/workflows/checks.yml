@@ -173,6 +173,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_sharp_strict.py' -v
           python -m unittest discover -s tools -p 'test_global_cut.py' -v
           python -m unittest discover -s tools -p 'test_psi_null.py' -v
+          python -m unittest discover -s tools -p 'test_entropy_tail_forms.py' -v
       - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper-constant (119, 45, 36, 27, 19, 17, 15) and square-root cap audits
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
@@ -662,6 +663,10 @@ jobs:
       # cut V satisfies K <= V <= Q <= (8/5) K and is not exact in general.
       - name: Verify the global-cut bound and replay its modules
         run: python tools/verify_global_cut.py --replay --jobs 3
+      # Theorem 13.2 and Lemma 13.1: the selection and three-piece forms (61)-(62)
+      # agree, hard assignments suffice, and the law holds with 0 < c < C.
+      - name: Verify the entropy-tail forms and replay their modules
+        run: python tools/verify_entropy_tail_forms.py --replay --jobs 3
       - name: Verify the two-sided quarter-smoothing inequality
         run: python tools/verify_quarter_smoothing.py
       - name: Verify the observable single-type KL and confidence transfer
