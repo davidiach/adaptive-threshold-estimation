@@ -2014,6 +2014,8 @@
     "ThresholdHC.PsiGap.PsiGapStatement": "4762494857145497995:16324396047881139787",
     "ThresholdHC.PsiGap.coreCost": "11709136789403681613:9908235509534212809",
     "ThresholdHC.PsiGap.coreEntropy": "11709136789403681613:8991851623341376515",
+    "ThresholdHC.PsiNull.PsiBudgetLowerStatement": "4762494857145497995:15279223481723380206",
+    "ThresholdHC.PsiNull.PsiNullStatement": "4762494857145497995:10054056138353423447",
     "ThresholdHC.PsiSelection.PsiConfidenceLowerStatement": "4762494857145497995:8098242220366657162",
     "ThresholdHC.PsiSelection.PsiRiskLowerStatement": "4762494857145497995:4606347027223051104",
     "ThresholdHC.PsiSelection.PsiSelectionStatement": "4762494857145497995:6724307736138068239",
@@ -3400,6 +3402,10 @@
     {
       "at": "2026-11-21T01:57:19+00:00",
       "count": 4
+    },
+    {
+      "at": "2026-11-21T02:31:03+00:00",
+      "count": 2
     }
   ]
 }

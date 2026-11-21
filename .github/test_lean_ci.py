@@ -52,6 +52,7 @@ class LeanRoutingTests(unittest.TestCase):
             "tools/verify_critical_pair_rms.py": {"entropy-tail-upper"},
             "tools/verify_bias_subtraction.py": {"entropy-tail-upper"},
             "tools/verify_global_cut.py": {"entropy-tail-upper"},
+            "tools/verify_psi_null.py": {"entropy-tail-upper"},
             "tools/verify_restricted_rms.py": {"lean-kernel"},
             "tools/verify_sharp_strict.py": {"lean-kernel"},
             "tools/verify_cap_identification_estimate.py": {"stopping-program"},

@@ -172,6 +172,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_restricted_rms.py' -v
           python -m unittest discover -s tools -p 'test_sharp_strict.py' -v
           python -m unittest discover -s tools -p 'test_global_cut.py' -v
+          python -m unittest discover -s tools -p 'test_psi_null.py' -v
       - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper-constant (119, 45, 36, 27, 19, 17, 15) and square-root cap audits
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
@@ -737,6 +738,10 @@ jobs:
         run: python tools/verify_critical_pair_rms.py --replay --jobs 3
       - name: Verify the bias-subtraction remark and replay its modules
         run: python tools/verify_bias_subtraction.py --replay --jobs 3
+      # Proposition psi-null: the null-work obstruction J_0(b) >= (Psi - 4b)_+^2/(192 h^2),
+      # and its corollary R(B) >= Psi(B^(-1/2))/8192.
+      - name: Verify the psi-null proposition and replay its modules
+        run: python tools/verify_psi_null.py --replay --jobs 3
       - name: Verify the sharp finite-vector quantile factor and scalar root
         run: python tools/verify_optimal_quantile.py
       - name: Verify the all-law quantile comparison at the exact root factor
