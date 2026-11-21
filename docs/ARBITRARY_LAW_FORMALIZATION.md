@@ -511,7 +511,9 @@ of positive gaps and every measurable gap-dependent sign law:
 The reader buys every block in full. Flips bought after a probe has stopped
 are charged and ignored, so the estimator's charge is its cap, `m b` flips at
 one depth. An estimator that stops buying when its probes stop is not
-constructed.
+constructed here; since 21 November 2026 one is, as a separate group
+(`EarlyPilot`, [record](../results/early-pilot-20261121/README.md)), with the event (A8) and expected-work
+bounds, but it is not installed in the learning stage.
 
 Run `python tools/verify_arbitrary_law_tail_observable.py` for 68 exact
 statements and 68 transitive axiom reports, one for each declaration of the
@@ -568,8 +570,11 @@ event (A8). The stage buys at most `m sum_j b_j` flips plus the continuation's
 on every admissible path.
 
 The reader buys every block in full, so the pilot is charged its cap. The
-paper's remark that the coin cap lets easy-law pilots stop early is not
-formalized. (A8) is stated under the law of the original experiment for the
+paper's remark that the coin cap lets easy-law pilots stop early is not used
+here. Since 21 November 2026 it is formalized for a separate early-stopping
+pilot: for laws with every gap at least `a` its expected work is at most
+`512 m M J (J + 3)/a^2`, a vanishing fraction of the cap
+([record](../results/early-pilot-20261121/README.md)). (A8) is stated under the law of the original experiment for the
 pilot alone, and on the coin array for the stage. Since 21 November 2026 it
 is also stated for the stage under the law of the original hidden-gap
 experiment of the whole stage, for the certificates read off the paid

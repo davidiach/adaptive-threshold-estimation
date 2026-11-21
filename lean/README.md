@@ -5,7 +5,7 @@ Use this map to find a formal statement, its proof, and the audit that checks it
 [verification setup](../docs/VERIFY.md#setup) covers Python, Lean, and Mathlib.
 Commands below run from the repository root.
 
-`ThresholdHC/` holds 1,747 Lean files: 146 top-level directories and seven root
+`ThresholdHC/` holds 1,754 Lean files: 147 top-level directories and seven root
 files beside them. Most results have a
 directory with a `Specification.lean`, which states the targets, and a
 `Full.lean`, which proves them. `ThresholdHC.lean` is the frozen root of the
@@ -170,6 +170,7 @@ Records and manuscripts behind these rows:
 | Universal two-sided closed-quantile minimax rate | [ClosedQuantile specification](ThresholdHC/ClosedQuantile/Specification.lean), [Full](ThresholdHC/ClosedQuantile/Full.lean) | `python tools/verify_closed_quantile.py` |
 | Direct finite-law quantile bounds with constants $10^{-20}$ and 30001 | [Full theorem](ThresholdHC/FiniteQuantile/Full.lean), [estimator and converse](ThresholdHC/FiniteQuantile/Operational.lean) | `python tools/verify_finite_quantile.py` |
 | The explicit quantile formula for finite laws, displays (67)-(69): the quantile tail and core as explicit atoms and the closed quantile functional as $\min\{\rho,T+h\sqrt{\rho\Gamma}\}$, with the direct finite-law bounds $10^{-20}Q\le R\le30001\,Q$ at that formula | [Specification](ThresholdHC/FiniteQuantileFormula/Specification.lean), [Split](ThresholdHC/FiniteQuantileFormula/Split.lean), [Formula](ThresholdHC/FiniteQuantileFormula/Formula.lean), [Full](ThresholdHC/FiniteQuantileFormula/Full.lean), [record](../results/finite-quantile-formula-20261121/README.md) | `python tools/verify_finite_quantile_formula.py --replay` |
+| The early-stopping pilot of the arbitrary-law adaptation: a pilot family whose probes stop once decided exists, keeps the full pilot's certificates and the event (A8) under the original experiment, has expected work at most the probes' capped work envelopes, and for laws with every gap at least $a$ at most $512\,mMJ(J+3)/a^2$, a vanishing fraction of the cap at a depth independent of the law | [Specification](ThresholdHC/EarlyPilot/Specification.lean), [Estimator](ThresholdHC/EarlyPilot/Estimator.lean), [Law](ThresholdHC/EarlyPilot/Law.lean), [Easy](ThresholdHC/EarlyPilot/Easy.lean), [Full](ThresholdHC/EarlyPilot/Full.lean), [record](../results/early-pilot-20261121/README.md) | `python tools/verify_early_pilot.py --replay` |
 | Full $8/5$ quantile-selection comparison, Lemmas 1 and 2, saturation and the tail floor | [Statements](ThresholdHC/QuantileSelection/Specification.lean), [Theorem 4](ThresholdHC/QuantileSelection/Full.lean) | `python tools/verify_quantile_selection.py` |
 | Scalar inequality (Lemma 3) of the 8/5 quantile-selection comparison | [QuantileComparison specification](ThresholdHC/QuantileComparison/Specification.lean), [Scalar](ThresholdHC/QuantileComparison/Scalar.lean) | `python tools/verify_quantile_comparison.py --sequential --require-complete` |
 | Sharper $31/20$ quantile-selection comparison and $16/9$ separated cost | [Original functional](ThresholdHC/QuantilePrice/Full.lean), [kernel record](../results/quantile-price-20261104/README.md) | `python tools/verify_quantile_price_upper.py` |

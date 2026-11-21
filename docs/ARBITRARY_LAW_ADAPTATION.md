@@ -211,7 +211,11 @@ $$
 $$
 For the lower bound the reciprocal sum contributes at least $N/4$, and
 the geometric sum contributes at least $N/4$. The cap $M$ makes easy-law
-pilots stop without spending all their authorized flips.
+pilots stop without spending all their authorized flips. Lean checks this
+since 21 November 2026 for a pilot whose probes stop once decided: with every
+gap at least $a$ its expected work is at most $512\,mMJ(J+3)/a^2$, a vanishing
+fraction of the cap at a depth independent of the law
+([record](../results/early-pilot-20261121/README.md)); that pilot is not installed in the checked stage.
 
 ## 3. The learned law retains the oracle rate
 
