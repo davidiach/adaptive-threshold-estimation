@@ -1381,6 +1381,23 @@
     "ThresholdHC.FiniteSelectionApproximation.upperEndpoint": "17342176727369243623:16694261470641723538",
     "ThresholdHC.FiniteSelectionApproximation.upperLog": "4179594114320068645:12231210266059992945",
     "ThresholdHC.FiniteSelectionApproximation.upperWitness": "7459660070399470794:6244130222593962979",
+    "ThresholdHC.FixedPlan.MajorityBiasStatement": "4762494857145497995:1677542486281334771",
+    "ThresholdHC.FixedPlan.MajorityMSEStatement": "4762494857145497995:15894799676295804040",
+    "ThresholdHC.FixedPlan.MajorityMeanStatement": "4762494857145497995:14975778546295529819",
+    "ThresholdHC.FixedPlan.MajorityMinimaxStatement": "4762494857145497995:11619299647542347185",
+    "ThresholdHC.FixedPlan.MajorityMissStatement": "4762494857145497995:3003178908041260010",
+    "ThresholdHC.FixedPlan.MajorityRMSStatement": "4762494857145497995:8364197461714065970",
+    "ThresholdHC.FixedPlan.MajorityVarianceStatement": "4762494857145497995:468117025866993739",
+    "ThresholdHC.FixedPlan.MajorityWorkStatement": "4762494857145497995:11419048400190748015",
+    "ThresholdHC.FixedPlan.UniformBetaStatement": "4762494857145497995:18372062061498156913",
+    "ThresholdHC.FixedPlan.UniformMeanMissStatement": "4762494857145497995:1230981899126455536",
+    "ThresholdHC.FixedPlan.UniformTailIntegralStatement": "4762494857145497995:11088005248090366383",
+    "ThresholdHC.FixedPlan.majorityCall": "15761482559010991533:4055821370338101635",
+    "ThresholdHC.FixedPlan.majorityEstimator": "12214026985229273149:3202552050531653374",
+    "ThresholdHC.FixedPlan.majorityMiss": "13670112168180337430:11944552264795434572",
+    "ThresholdHC.FixedPlan.majorityTail": "15687204093786460919:5314536301976909499",
+    "ThresholdHC.FixedPlan.majorityVote": "987477463752297012:16651872053841132936",
+    "ThresholdHC.FixedPlan.meanMajorityMiss": "10007179495964123957:2370091324702350625",
     "ThresholdHC.GapLawMenus.cost": "9602725940143059455:5939007915968771213",
     "ThresholdHC.GapLawMenus.costMass": "7040026318020663876:5962837493925153065",
     "ThresholdHC.GapLawMenus.menuObjective": "7274534308022458067:2511342508911330722",
@@ -3449,6 +3466,10 @@
     {
       "at": "2026-11-21T03:40:52+00:00",
       "count": 6
+    },
+    {
+      "at": "2026-11-21T03:46:32+00:00",
+      "count": 17
     }
   ]
 }

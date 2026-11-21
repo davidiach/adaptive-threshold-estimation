@@ -176,6 +176,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_entropy_tail_forms.py' -v
           python -m unittest discover -s tools -p 'test_noninterval_selection.py' -v
           python -m unittest discover -s tools -p 'test_program_factor.py' -v
+          python -m unittest discover -s tools -p 'test_fixed_plan.py' -v
       - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper-constant (119, 45, 36, 27, 19, 17, 15) and square-root cap audits
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
@@ -673,6 +674,10 @@ jobs:
       # kernel-checked enclosures and the strict minimum retaining {1/2, 1/8}.
       - name: Verify the noninterval optimal assignment and replay its modules
         run: python tools/verify_noninterval_selection.py --replay --jobs 3
+      # The toolkit's fixed plan: n coins, 2k+1 flips each, majority share; bias at
+      # most e_m, variance at most 1/(4n), and e_m in closed form for uniform rates.
+      - name: Verify the fixed-plan majority bound and replay its modules
+        run: python tools/verify_fixed_plan.py --replay --jobs 3
       - name: Verify the two-sided quarter-smoothing inequality
         run: python tools/verify_quarter_smoothing.py
       - name: Verify the observable single-type KL and confidence transfer

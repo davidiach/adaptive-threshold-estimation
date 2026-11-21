@@ -28,7 +28,7 @@ VERIFIERS = {
     """,
     "entropy-tail-upper": """
         entropy_tail entropy_tail_components entropy_tail_sharp entropy_tail_upper
-        closed_quantile finite_quantile quantile_comparison quantile_selection global_cut entropy_tail_forms noninterval_selection quantile_price_upper
+        closed_quantile finite_quantile quantile_comparison quantile_selection global_cut entropy_tail_forms noninterval_selection fixed_plan quantile_price_upper
         quantile_sharp_law quantile_optimality optimal_quantile bandwise_suffix selection_stability
         quarter_smoothing confidence_* critical_confidence hard_budget stopping_confidence
         stochastic_envelope sublinear_power shifted_power anytime_* smooth_density observed_*
