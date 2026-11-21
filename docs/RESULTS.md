@@ -791,6 +791,17 @@ follows Appendix H: Proposition `prop:psi-null` and the RMS transfer, with
 neither the Lee–Valiant input nor the selection functional.
 [Record](../results/psi-null-20261121/README.md) · `python tools/verify_psi_null.py`
 
+Two auxiliary results of the same appendix are Lean-checked since 21 November
+2026. Theorem `loc:thm:counter`: at $\mu_\rho=\rho\delta_{\rho^2}+(1-\rho)\delta_{1/4}$
+and $B=\rho^{-4}$, $\rho/100\le R\le\rho/2$ while the rescaling heuristic
+$\rho\,\omega_\mu(h/\sqrt\rho)$ is at most $3\rho^2$, so it underestimates
+the minimax error by an unbounded factor. Proposition `loc:prop:noise`: at one
+fixed negative coin of gap $d<1/2$ the level-0 term forces the second moment
+$(1/2-d)/(1-2^{-1/2})$, as a variance floor for the 713-threshold estimator, as
+an extended-second-moment floor for the original untruncated estimator and in
+truncated form ([`counterexample`, `observable713_noise_floor`](../lean/ThresholdHC/LocalizationCounter/Full.lean),
+[record](../results/localization-counter-20261121/README.md)).
+
 ### The variational modulus in closed form
 
 [Section 14.8 of the v6 paper](../paper/v6/psi-window.tex) proves four deterministic

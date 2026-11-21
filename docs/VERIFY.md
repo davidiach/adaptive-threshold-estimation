@@ -1076,7 +1076,7 @@ finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
 split, critical common-pair, bias-subtraction, global-cut, psi-null,
 confidence-transfer-steps, observed-hoeffding, nested-assumptions,
 light-contraction-constant, band-cost-example, repeated-check,
-reservoir-termination, quantile-factor-upper, creation-charge, stage-pilot-law, bias-audit, unknown-rarity, hard-cap-necessity, pilot-correction, depth-obstruction, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
+reservoir-termination, quantile-factor-upper, creation-charge, stage-pilot-law, bias-audit, unknown-rarity, hard-cap-necessity, pilot-correction, depth-obstruction, localization-counter, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
 suites and audits, the
 `lean-kernel` job also the restricted-class, sharp-strictness,
 oracle-sharpness, oracle-upper, clipped-output and revisit-upper suites and
@@ -1293,6 +1293,14 @@ moments and the floor of half the separation. CI runs it in the
 `entropy-tail-upper` job. Its 11-test guard suite is
 `test_depth_obstruction.py`.
 [Record](../results/depth-obstruction-20261121/README.md).
+
+Run `python tools/verify_localization_counter.py --replay` for 9 exact
+statements and 42 transitive axiom reports over the six modules of
+`lean/ThresholdHC/LocalizationCounter`: Theorem `loc:thm:counter` and
+Proposition `loc:prop:noise` of the localization appendix. CI runs it in the
+`entropy-tail-upper` job. Its 11-test guard suite is
+`test_localization_counter.py`.
+[Record](../results/localization-counter-20261121/README.md).
 
 ## Whole-project build, axioms and kernel replay
 
