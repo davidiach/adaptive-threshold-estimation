@@ -869,7 +869,13 @@ with constants $1/2$ and $3.83$, and the deterministic quantile comparison,
 including exponent two and arbitrary scale $a$. Its RMS coefficients are
 $10^{-17}/\sqrt2$ and $60002$; the confidence lower coefficient is
 $10^{-17}/\sqrt2$ and the upper coefficient is $1500000$. These are unconditional
-consequences of the stated exact-CDF assumptions.
+consequences of the stated exact-CDF assumptions. Remark `rem:power-quantile`,
+that each row of the power-margin table also follows from the closed quantile
+form, is Lean-checked since 21 November 2026 with constants depending on
+$\alpha$, for the uniform rate, $\mathcal Q$ and the rare-event minimax risk
+([`power_row_risk`](../lean/ThresholdHC/PowerQuantileRows/Full.lean),
+[record](../results/power-quantile-rows-20261121/README.md)); for $\alpha>4$ it rests on a Lean-only extension of
+the comparison $\mathcal R_\alpha/\sqrt2\le\mathcal Q\le2\mathcal R_\alpha$.
 
 Corollary 14.14 and Remark 14.15 are **Lean-checked** in
 [`CriticalWindow`](../lean/ThresholdHC/CriticalWindow/Full.lean)

@@ -879,6 +879,14 @@ exponent two, with the near-two risk. With `--replay` the five modules also
 go through the independent kernel checker. Its 11-test guard suite is
 `test_critical_window.py`. [Record](../results/critical-window-20261120/README.md).
 
+Run `python tools/verify_power_quantile_rows.py --replay` for 7 exact
+statements and 48 transitive axiom reports over the six modules of
+`lean/ThresholdHC/PowerQuantileRows`: Remark `rem:power-quantile`, the rows of
+the power-margin table through the closed quantile form. CI runs it in the
+`entropy-tail-upper` job. Its 11-test guard suite is
+`test_power_quantile_rows.py`.
+[Record](../results/power-quantile-rows-20261121/README.md).
+
 Run `python tools/verify_paper_corollaries.py --replay` for 5 exact statements
 and 11 transitive axiom reports over the four modules of
 `lean/ThresholdHC/PaperCorollaries`: the RMS constants $1/6$ and $12$ under a
@@ -1093,7 +1101,7 @@ finite-gap corollary, stopped time-uniform, latent-threshold, zero-atom
 split, critical common-pair, bias-subtraction, global-cut, psi-null,
 confidence-transfer-steps, observed-hoeffding, nested-assumptions,
 light-contraction-constant, band-cost-example, repeated-check,
-reservoir-termination, quantile-factor-upper, creation-charge, stage-pilot-law, bias-audit, unknown-rarity, hard-cap-necessity, pilot-correction, depth-obstruction, localization-counter, affine-comparison, two-flip-feedback, unknown-law-confidence, upper-twelve-numerics, radial-upper, time-uniform-two-sided, depth-legendre, latent-disintegration, known-gap-rarity, margin-classes, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
+reservoir-termination, quantile-factor-upper, creation-charge, stage-pilot-law, bias-audit, unknown-rarity, hard-cap-necessity, pilot-correction, depth-obstruction, localization-counter, affine-comparison, two-flip-feedback, unknown-law-confidence, upper-twelve-numerics, radial-upper, time-uniform-two-sided, depth-legendre, latent-disintegration, known-gap-rarity, margin-classes, power-quantile-rows, entropy-tail-forms, noninterval-selection, fixed-plan and clipping-boundary
 suites and audits, the
 `lean-kernel` job also the restricted-class, sharp-strictness,
 oracle-sharpness, oracle-upper, clipped-output and revisit-upper suites and
