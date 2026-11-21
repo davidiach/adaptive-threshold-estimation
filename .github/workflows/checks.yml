@@ -199,6 +199,7 @@ jobs:
           python -m unittest discover -s tools -p 'test_depth_obstruction.py' -v
           python -m unittest discover -s tools -p 'test_localization_counter.py' -v
           python -m unittest discover -s tools -p 'test_affine_comparison.py' -v
+          python -m unittest discover -s tools -p 'test_two_flip_feedback.py' -v
       - name: Regression tests for the sharp RMS coefficient, large-budget bracket, upper-constant (119, 45, 36, 27, 19, 17, 15) and square-root cap audits
         run: |
           python -m unittest discover -s tools -p 'test_sharp_rms.py' -v
@@ -866,6 +867,10 @@ jobs:
       # the constant 6 (a Lean-only sharpening) and the source's 12.
       - name: Verify the categorical affine comparison lemma and replay its modules
         run: python tools/verify_affine_comparison.py --replay --jobs 3
+      # Theorem feedback:full-class: the feedback witness beats every noninteractive
+      # cap-two design in normal form at the two-point gap law.
+      - name: Verify the two-flip acquisition-feedback advantage and replay its modules
+        run: python tools/verify_two_flip_feedback.py --replay --jobs 3
       - name: Verify prior families for the law-dependent time-uniform lower bound
         run: |
           python tools/verify_anytime_lower.py
