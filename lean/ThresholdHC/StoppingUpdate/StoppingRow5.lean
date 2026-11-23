@@ -1,12 +1,10 @@
 import ThresholdHC.StoppingUpdate.StoppingPieces
 
-/-! Kernel certificate pieces for the pilot count `j = 5`. The single tactic block
-below checks the 27 pieces of each row one after another, each with its
-own `decide +kernel` kernel check. -/
+/-! Kernel certificate row for the pilot count `j = 5`, evaluated whole in
+the form `fastRowCheck` by one `decide +kernel`. -/
 namespace ThresholdHC.StoppingUpdate
 
 set_option maxHeartbeats 0 in
-theorem pieces_5 (a b c : Fin 3) : pieceCheck 5 a b c = true := by
-  fin_cases a <;> fin_cases b <;> fin_cases c <;> decide +kernel
+theorem row_5 : fastRowCheck 5 = true := by decide +kernel
 
 end ThresholdHC.StoppingUpdate
