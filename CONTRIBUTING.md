@@ -104,6 +104,12 @@ are checked with `sha256sum -c`. Run the matching audit if the diff touches a
 path in a specification lock. Use the relevant proof, tool, toolkit,
 or manuscript checks when those areas change.
 
+A change that alters or removes a check's pinned digest, restated statement,
+lock entry, checker code or CI check line needs an entry in the
+[checker-change log](docs/process/CHECKER_CHANGES.md). Run
+`python tools/check_trust_anchors.py --base origin/main --head HEAD` for the
+keys to record.
+
 Before submitting, inspect `git diff --stat` and `git status --short` for generated
 logs, PDFs, or evidence rewritten by a local run. Keep the pull request focused;
 describe the user-visible change, the checks actually run, and any limitations.

@@ -42,6 +42,14 @@ revert instruction. The frozen-source and held-out-data constraints remain in fo
   rewrites an existing entry. A changed or removed entry means a definition
   behind a checked statement changed: restore it, or obtain the owner's
   authorization and record the change in `FREEZE_LOG.md`.
+- A change to a check's own trust anchors must be acknowledged in
+  [docs/process/CHECKER_CHANGES.md](docs/process/CHECKER_CHANGES.md). Trust
+  anchors are pinned digests, restated statements, lock entries, checker code
+  and CI check lines. Run
+  `python tools/check_trust_anchors.py --base origin/main --head HEAD`; it lists
+  each changed anchor and the key to record with your reason. CI judges a pull
+  request with the base branch's copy of this guard, so editing the guard does
+  not change the verdict on your own change.
 - Preserve imported `inputs/`, sealed `research/` packages, published records in
   `results/`, `paper/rare-event/v2/`, `paper/rare-event/audit/`, and the
   hash-listed files of `paper/finite-gap-rare-events/` byte for byte.

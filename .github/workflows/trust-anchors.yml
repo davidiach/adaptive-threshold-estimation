@@ -1,0 +1,69 @@
+# Requires every change to the checks' own trust anchors (pinned digests,
+# restated statements, lock entries, checker code and CI lines) to be
+# acknowledged in docs/process/CHECKER_CHANGES.md. See
+# tools/check_trust_anchors.py.
+#
+# The guard job judges a change with the guard held by the base commit, never
+# with the copy inside the change. On pull_request_target this workflow file
+# also comes from the base branch, so a pull request cannot edit either one to
+# pass. The pull request's commits are fetched and read through git as data:
+# nothing from them is checked out or executed, and the run has read access
+# only and no secrets.
+#
+# The guard counts only when the repository's branch protection requires the
+# "Trust anchors / guard" check.
+name: Trust anchors
+on:
+  pull_request_target:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: trust-anchors-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  guard:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The base branch, with its history for the merge base.
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Run the base commit's guard on the change
+        env:
+          EVENT: ${{ github.event_name }}
+          BASE: ${{ github.event_name == 'push' && github.event.before || github.sha }}
+          HEAD: ${{ github.event_name == 'push' && github.sha || github.event.pull_request.head.sha }}
+        run: |
+          set -eu
+          for sha in "$BASE" "$HEAD"; do
+            printf '%s' "$sha" | grep -Eqx '[0-9a-f]{40}' || { echo "FAULT: not a commit id: $sha"; exit 3; }
+          done
+          if [ "$EVENT" = pull_request_target ]; then
+            git fetch --quiet --no-tags origin "$HEAD"
+          fi
+          guard="$RUNNER_TEMP/check_trust_anchors.py"
+          if git cat-file -e "$BASE:tools/check_trust_anchors.py" 2>/dev/null; then
+            git show "$BASE:tools/check_trust_anchors.py" > "$guard"
+          else
+            # Only the change that introduces the guard has a base without one.
+            echo "::notice::The base commit has no guard; using the copy this change adds."
+            git show "$HEAD:tools/check_trust_anchors.py" > "$guard"
+          fi
+          python3 -I "$guard" --base "$BASE" --head "$HEAD" --summary "$GITHUB_STEP_SUMMARY"
+  self-test:
+    # The regression tests of the copy in the change. Advisory for the verdict:
+    # the guard job above is the one that judges.
+    if: github.event_name != 'pull_request_target'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - run: python3 -m unittest discover -s tools -p 'test_check_trust_anchors.py' -v

@@ -23,6 +23,7 @@ concise process account. The documents below retain the chronological evidence.
 | [REPORT.md](REPORT.md) | Research report, proof scopes, and remaining questions. |
 | [PROVENANCE.md](PROVENANCE.md) | Input provenance and verification policy. |
 | [FREEZE_LOG.md](../../FREEZE_LOG.md) | Approval history for frozen targets and tools. |
+| [CHECKER_CHANGES.md](CHECKER_CHANGES.md) | Acknowledged changes to the checks' own pins, restated statements, locks, code and CI lines. |
 | [Independent argument review](../../proposals/RESEARCH_REVIEW.md) | Agent review of the 713 argument, bias counterexample, and adaptation obstruction. |
 
 `BRIEF.md` and `FREEZE_LOG.md` remain at the root because the frozen [freeze tool](../../tools/freeze.py) names them in instructions and diagnostics; the [Lean setup script](../../lean/setup.sh) also names `FREEZE_LOG.md`. The other process documents were relocated after checking tools, tests, and CI for dependencies on their original paths. Paths inside commands remain relative to the repository root unless stated otherwise.
