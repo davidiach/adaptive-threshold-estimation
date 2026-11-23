@@ -6,10 +6,11 @@ schedule may replace the rest of that schedule once, at a stopping time of the
 observed answers. Every such algorithm has worst RMS risk at least
 0.186844275, so the adaptive witness, at most 0.186752, is strictly better.
 The research certificate checked each of 19 pilot-count rows in one kernel
-evaluation and its build ran out of memory above 13.5 GB; here each row is
-split by its first three actions into 27 pieces over eleven row modules, each
-under about 1.1 GB of its own memory. The one-update class of PilotFeedback
-is contained in this one.
+evaluation and its build ran out of memory above 13.5 GB. The library first
+split each row into 27 pieces; since 23 November 2026 each row is checked
+whole, over eleven row modules, in a form whose weights the kernel reduces to
+literals (`fastRowCheck`, proved equal to `rowCheck`). The one-update class
+of PilotFeedback is contained in this one.
 
 The audit
 
@@ -20,7 +21,7 @@ The audit
 4. reports the transitive axioms of every public declaration in the directory.
 
 With --replay the registered modules also go through the toolchain's
-independent kernel checker, which re-evaluates every certificate piece. The
+independent kernel checker, which re-evaluates every certificate row. The
 statements were written before the proofs and reviewed before the pin; they
 are pinned from this audit onward.
 """

@@ -13,32 +13,32 @@ import ThresholdHC.StoppingUpdate.StoppingRows14to18
 /-! The two certificate facts of the research module
 `research/2026-11-18-stopping-update/StoppingCertificate.lean`, with the same
 statements. There each `rowCheck j` was one kernel evaluation; here each row is
-assembled by `row_of_pieces` from its 27 pieces, checked in the row modules.
-`total` is copied verbatim. -/
+checked in the form `fastRowCheck` in the row modules, and `rowCheck_eq_fast`
+turns it into `rowCheck j`. `total` is copied verbatim. -/
 namespace ThresholdHC.StoppingUpdate
 
 theorem certified (j : Fin 19) : rowCheck j = true := by
-  apply row_of_pieces
+  rw [rowCheck_eq_fast]
   fin_cases j
-  · exact pieces_0_4 0 (by decide)
-  · exact pieces_0_4 1 (by decide)
-  · exact pieces_0_4 2 (by decide)
-  · exact pieces_0_4 3 (by decide)
-  · exact pieces_0_4 4 (by decide)
-  · exact pieces_5
-  · exact pieces_6
-  · exact pieces_7
-  · exact pieces_8
-  · exact pieces_9
-  · exact pieces_10
-  · exact pieces_11
-  · exact pieces_12
-  · exact pieces_13
-  · exact pieces_14_18 14 (by decide) (by decide)
-  · exact pieces_14_18 15 (by decide) (by decide)
-  · exact pieces_14_18 16 (by decide) (by decide)
-  · exact pieces_14_18 17 (by decide) (by decide)
-  · exact pieces_14_18 18 (by decide) (by decide)
+  · exact rows_0_4 0 (by decide)
+  · exact rows_0_4 1 (by decide)
+  · exact rows_0_4 2 (by decide)
+  · exact rows_0_4 3 (by decide)
+  · exact rows_0_4 4 (by decide)
+  · exact row_5
+  · exact row_6
+  · exact row_7
+  · exact row_8
+  · exact row_9
+  · exact row_10
+  · exact row_11
+  · exact row_12
+  · exact row_13
+  · exact rows_14_18 14 (by decide) (by decide)
+  · exact rows_14_18 15 (by decide) (by decide)
+  · exact rows_14_18 16 (by decide) (by decide)
+  · exact rows_14_18 17 (by decide) (by decide)
+  · exact rows_14_18 18 (by decide) (by decide)
 
 set_option maxHeartbeats 0 in
 theorem total : 186844275^2 * 10^6 ≤ pilotSum 18 0 := by decide +kernel
