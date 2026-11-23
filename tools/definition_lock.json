@@ -2315,10 +2315,33 @@
     "ThresholdHC.PilotFeedback.Scheduled.Plan.recOn": "2201436947908176264:231708603907741549",
     "ThresholdHC.PilotFeedback.Scheduled.Plan.second": "2664959916638831648:13074790448703763569",
     "ThresholdHC.PilotFeedback.Scheduled.Plan.split": "10403909061402047292:1172530980779267459",
+    "ThresholdHC.PilotFeedback.Scheduled.Quad": "12841156711311012099:8297007566120700493",
+    "ThresholdHC.PilotFeedback.Scheduled.Quad._sizeOf_1": "12635368564363743825:14813877204606195845",
+    "ThresholdHC.PilotFeedback.Scheduled.Quad._sizeOf_inst": "7921101876395811085:14999489998722782215",
+    "ThresholdHC.PilotFeedback.Scheduled.Quad.casesOn": "2559951951836198740:9515276296081928969",
+    "ThresholdHC.PilotFeedback.Scheduled.Quad.ctorIdx": "12635368564363743825:11480282220519693183",
+    "ThresholdHC.PilotFeedback.Scheduled.Quad.mk._flat_ctor": "8297007566120700493:15888217908496182474",
+    "ThresholdHC.PilotFeedback.Scheduled.Quad.mk.noConfusion": "14647711520179342947:17864570050546682931",
+    "ThresholdHC.PilotFeedback.Scheduled.Quad.noConfusion": "6905104376098151835:2576179937831845103",
+    "ThresholdHC.PilotFeedback.Scheduled.Quad.noConfusionType": "14934827411311334201:15288661579698455542",
+    "ThresholdHC.PilotFeedback.Scheduled.Quad.recOn": "2559951951836198740:5173229892505880850",
+    "ThresholdHC.PilotFeedback.Scheduled.Quad.toWeights": "7070671519393545825:11273291915375325196",
+    "ThresholdHC.PilotFeedback.Scheduled.Quad.w0": "12635368564363743825:3919366843082424586",
+    "ThresholdHC.PilotFeedback.Scheduled.Quad.w1": "12635368564363743825:17015258663944061664",
+    "ThresholdHC.PilotFeedback.Scheduled.Quad.w2": "12635368564363743825:14913523535364831208",
+    "ThresholdHC.PilotFeedback.Scheduled.Quad.w3": "12635368564363743825:2780060158294549377",
     "ThresholdHC.PilotFeedback.Scheduled.Row": "8133177251457119103:2329154621483006091",
     "ThresholdHC.PilotFeedback.Scheduled.action": "1214669503512707497:14583649065053608052",
+    "ThresholdHC.PilotFeedback.Scheduled.advanceK": "18423478715140714443:9950485257722315175",
+    "ThresholdHC.PilotFeedback.Scheduled.fastLeaf": "12635368564363743825:11620589599080139728",
+    "ThresholdHC.PilotFeedback.Scheduled.fastMin": "315134888161699255:16594458443027615364",
+    "ThresholdHC.PilotFeedback.Scheduled.fastMinThrough": "14093154529904035825:2966247677049843405",
+    "ThresholdHC.PilotFeedback.Scheduled.fastPilot": "2043360552723106085:9393348730724507246",
+    "ThresholdHC.PilotFeedback.Scheduled.fastSuffix": "811390138362230474:4996026932124466114",
+    "ThresholdHC.PilotFeedback.Scheduled.fastTail": "14583726772989855585:11471140829885608946",
     "ThresholdHC.PilotFeedback.Scheduled.firstOK": "16899670821346966524:7954034470307137922",
     "ThresholdHC.PilotFeedback.Scheduled.firstOK_decidable": "7119091086083094390:4754784975258759731",
+    "ThresholdHC.PilotFeedback.Scheduled.force": "15552883805597689461:11252416061305245810",
     "ThresholdHC.PilotFeedback.Scheduled.frozen": "8620397363953638384:8586262045955114684",
     "ThresholdHC.PilotFeedback.Scheduled.label": "6223209941725833944:14786863595034030585",
     "ThresholdHC.PilotFeedback.Scheduled.minThrough": "14093154529904035825:9399795533757141668",
@@ -4398,6 +4421,10 @@
     {
       "at": "2026-11-23T16:25:13+00:00",
       "count": 25
+    },
+    {
+      "at": "2026-11-23T18:53:50+00:00",
+      "count": 23
     }
   ]
 }
