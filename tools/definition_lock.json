@@ -2893,6 +2893,16 @@
     "ThresholdHC.SharpRMS.Window.decidableGridBound": "14307824735713080662:11632540646875728709",
     "ThresholdHC.SharpRMS.Window.endpoints": "11360359165923389154:4958557076906718015",
     "ThresholdHC.SharpRMS.Window.exitHeight": "8983121026584075817:2261906861738361414",
+    "ThresholdHC.SharpRMS.Window.fastBound": "15296007888934684534:456038146833508000",
+    "ThresholdHC.SharpRMS.Window.fastExit": "14342793652189823441:271827376238415322",
+    "ThresholdHC.SharpRMS.Window.fastMax": "315134888161699255:3028864873061195333",
+    "ThresholdHC.SharpRMS.Window.fastMaximum": "11081834581275358693:2305304450080219578",
+    "ThresholdHC.SharpRMS.Window.fastMin": "315134888161699255:4997728409197903118",
+    "ThresholdHC.SharpRMS.Window.fastPartial": "6925453074258769167:12508973142585650072",
+    "ThresholdHC.SharpRMS.Window.fastRoundUp": "315134888161699255:7025564655618740337",
+    "ThresholdHC.SharpRMS.Window.fastSign": "8591375269767482030:10914499346047513718",
+    "ThresholdHC.SharpRMS.Window.fastSum": "3936274805427221488:6953151683569581310",
+    "ThresholdHC.SharpRMS.Window.fastWeight": "3936274805427221488:2132821427747433020",
     "ThresholdHC.SharpRMS.Window.gridBound": "4833914791235822653:3732496076721992530",
     "ThresholdHC.SharpRMS.Window.gridChain": "9274154572927510339:17435616027566700653",
     "ThresholdHC.SharpRMS.Window.gridChain._f": "10729693002496518477:4167340853369316460",
@@ -4355,6 +4365,10 @@
     {
       "at": "2026-11-21T20:13:28+00:00",
       "count": 4
+    },
+    {
+      "at": "2026-11-23T09:11:10+00:00",
+      "count": 10
     }
   ]
 }
