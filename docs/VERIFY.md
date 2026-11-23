@@ -973,13 +973,17 @@ selection stability with $20Q/31$ and $Q/c_*$. Its 11-test guard suite is
 `test_paper_statements.py`. [Record](../results/paper-statements-20261120/README.md).
 
 Run `python tools/verify_pilot_feedback.py --replay` for 14 exact statements
-and 126 transitive axiom reports over the 18 modules of
+and 144 transitive axiom reports over the 18 modules of
 `lean/ThresholdHC/PilotFeedback`, promoted from the pilot-feedback and
 scheduled-update research packages: the precommitted and one-update lower
 bounds $0.18735887$ and $0.186960371$ at gap $1/5$ with budget $25$, in RMS
 form, and their separations from the adaptive witness. The replay re-evaluates
-the integer certificates (about six minutes). Its 11-test guard suite is
-`test_pilot_feedback.py`. [Record](../results/pilot-feedback-20261120/README.md).
+the integer certificates. Since 23 November 2026 the one-update rows are
+checked in the form `fastRows`, whose weights the kernel reduces to literals,
+and the whole audit with replay takes about 74 s with the modules built
+([record](../results/pilot-feedback-kernel-20261123/README.md)); it took about six minutes before.
+Its 11-test guard suite is `test_pilot_feedback.py`.
+[Record](../results/pilot-feedback-20261120/README.md).
 
 Run `python tools/verify_explicit_constants.py --replay` for 5 exact statements
 and 10 transitive axiom reports over the two modules of
