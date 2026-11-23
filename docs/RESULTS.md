@@ -419,8 +419,9 @@ checks the proof-source hashes and reruns the rational calculation.
 Since 21 November 2026 it is also in the CI-audited library
 ([`one_stopping_update_rms_lower`,
 `one_stopping_update_rms_separation`](../lean/ThresholdHC/StoppingUpdate/Full.lean),
-[record](../results/stopping-update-20261121/README.md)), with each certificate row split into 27 pieces,
-checked in eleven row modules that each use about 1.1 GB of their own memory.
+[record](../results/stopping-update-20261121/README.md)). Each certificate row was first split into 27
+pieces; since 23 November 2026 each row is checked whole, about 30 times faster
+([record](../results/stopping-update-kernel-20261123/README.md)).
 
 With two updates triggered by follow-up answers, worst-case RMS is still at
 least $0.186764460$, above the fully adaptive witness's $0.186752$ upper

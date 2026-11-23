@@ -1042,11 +1042,14 @@ CI runs it in the `stopping-program` job. Its 11-test guard suite is
 [Record](../results/program-factor-20261121/README.md).
 
 Run `python tools/verify_stopping_update.py --replay` for 5 exact statements
-and 53 transitive axiom reports over the 20 modules of
+and 74 transitive axiom reports over the 20 modules of
 `lean/ThresholdHC/StoppingUpdate`: one schedule replacement at a stopping time
-at gap $1/5$ with $B=25$. The certificate is split into 513 pieces over eleven
-row modules; compiling them takes about 46 minutes of kernel time on one
-core, and each row module uses about 1.1 GB of its own memory. CI runs it in
+at gap $1/5$ with $B=25$. Since 23 November 2026 each of the 19 certificate
+rows is checked whole, over eleven row modules, in the form `fastRowCheck`,
+whose weights the kernel reduces to literals; `rowCheck_eq_fast` proves it
+equal to `rowCheck`. The row modules take about 80 s on one core, where the
+earlier 513 pieces took about 44 minutes
+([record](../results/stopping-update-kernel-20261123/README.md)). CI runs it in
 the `stopping-program` job. Its 11-test guard suite is
 `test_stopping_update.py`.
 [Record](../results/stopping-update-20261121/README.md).
