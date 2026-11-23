@@ -1179,13 +1179,18 @@ estimate, program-factor and stopping-update suites and audits. Existing publish
 ## Sharp RMS coefficient and square-root cap
 
 Run `python tools/verify_sharp_rms.py --replay` for 38 exact statements and
-343 transitive axiom reports over the 54 modules of `lean/ThresholdHC/SharpRMS`.
+361 transitive axiom reports over the 54 modules of `lean/ThresholdHC/SharpRMS`.
 It checks the sharp RMS lower coefficient $1/6$ for every gap law and every
 $B\ge1$, its optimality, the stronger coefficient for $B\ge25$, the reduction
 to one gap, and the same bounds under both magnitude oracles. With `--replay`
 every module also goes through the independent kernel checker, which
 re-evaluates the 140 integer comparisons of the intermediate budgets. Seven
 window modules hold those comparisons, so Lake builds them in parallel.
+Since 23 November 2026 the kernel reduces each comparison in the form
+`fastBound`, with primitive `Nat` operations and recursors, and
+`WindowBound.lean` proves it gives `gridBound`; a window module then builds
+and replays about four times faster
+([record](../results/sharp-rms-window-kernel-20261123/README.md)).
 Run `python tools/verify_square_root_cap.py` for the square-root cap
 comparison of the optimized stopping programs and its $4B/9$ corollary: two
 exact statements and six axiom reports. Both specifications were written
