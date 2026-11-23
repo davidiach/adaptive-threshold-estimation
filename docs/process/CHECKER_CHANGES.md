@@ -10,7 +10,9 @@ guard held by the base branch, so a change cannot edit the guard that judges
 it.
 
 Only changes and removals need an entry. Adding an audit, a pin, a restated
-statement, a lock entry or a CI step adds checks and needs none. An entry does
+statement, a lock entry or a CI step adds checks and needs none. Growing an
+allowlist or an exclusion list, such as the axioms an audit accepts, weakens a
+check and needs an entry. An entry does
 not authorize a change to frozen material: that still needs the owner's
 approval and a [FREEZE_LOG.md](../../FREEZE_LOG.md) record.
 

@@ -19,8 +19,12 @@ commits and lists every trust anchor that the newer one changes or removes:
              step or lets a failing one pass;
   log        a line removed from the checker-change log.
 
-Additions are not listed: a new pin, restated statement, lock entry, name or
-audit adds checks, and a `*_COUNT` constant counts only when it falls. Comments,
+Additions are not listed: a new pin, restated statement, lock entry or audit
+adds checks. Within a constant, additions pass only for the collections that
+enumerate checks (ADDITIVE_NAME below: targets, components, audited modules and
+the like); any other constant, such as an axiom allowlist or an exclusion
+list, counts as changed when it grows. A `*_COUNT` constant counts only when it
+falls. Comments,
 docstrings and workflow step names and timeouts are ignored. Published evidence (results/,
 research/, paper/, inputs/) is out of scope; the locks protect it.
 
@@ -59,6 +63,12 @@ CHECKER = re.compile(r"tools/(?:verify_\w+|check_\w+|\w+_lock|freeze|score|run_r
                      r"|\.github/(?!test_)\w+\.py")
 # Module-level constants whose elements are statements or target mappings.
 STATEMENT_NAME = re.compile(r"EXACT|TARGET|STATEMENT|COMPONENT")
+# Collections whose elements each add a check, so that an added element passes.
+# Every other collection (an allowlist, an exclusion list, a set of flags) is
+# compared whole: adding "sorryAx" to an axiom allowlist weakens its check.
+ADDITIVE_NAME = re.compile(r"(?:NEW_)?(?:EXACT_)?(?:TARGETS|TARGET_NAMES|COMPONENTS|NAMES|MODULES|GROUPS"
+                           r"|REQUIRED|FROZEN|TIER_LOCKS|CHECKSUM_MANIFESTS|PINNED_MANIFESTS"
+                           r"|VERIFIERS|SHARED)")
 # A string of names, such as a list of verifiers, compared name by name.
 WORDS = re.compile(r"[\w.*?\[\]/-]+")
 EXAMPLE_START = re.compile(r"(?m)^(?=[ \t]*example\b)")
@@ -237,10 +247,10 @@ def python_items(source: str) -> dict[str, tuple[str, str, str]]:
                     put(f"{var}:{theorem}", "statement", chunk, first_line(chunk))
                 continue
             elements = _literal_elements(value)
-            if elements is not None:
+            if elements is not None and ADDITIVE_NAME.fullmatch(var):
                 for name, content in elements:
                     kind = "pin" if HEX64.search(content) else "statement" if named else "code"
-                    put(f"{var}[{short(name, 50)}]", kind, content, f"{var}[{short(name, 50)}]")
+                    put(f"{var}[{name}]", kind, content, short(f"{var}[{name}]", 80))
                 continue
             if (var.endswith("_COUNT") and isinstance(value, ast.Constant)
                     and isinstance(value.value, int)):
@@ -276,9 +286,10 @@ def json_items(text: str) -> dict[str, tuple[str, str, str]]:
                 walk(child, path + [str(index)])
         else:
             content = json.dumps(value, sort_keys=True, ensure_ascii=False)
-            name = "/".join(path) or "<root>"
+            # The full JSON pointer is the identity; only the display is shortened.
+            name = "/".join(part.replace("~", "~0").replace("/", "~1") for part in path) or "<root>"
             kind = "pin" if HEX64.search(content) else "lock"
-            items[short(name, 120)] = (kind, content, f"{short(name, 80)} = {short(content, 40)}")
+            items[name] = (kind, content, f"{short(name, 80)} = {short(content, 40)}")
 
     walk(json.loads(text), [])
     return items
@@ -294,7 +305,7 @@ def line_items(text: str) -> dict[str, tuple[str, str, str]]:
         if manifest:
             items[manifest.group(2)] = ("pin", line, manifest.group(2))
         else:
-            items[short(line, 80)] = ("lock", line, short(line, 80))
+            items[" ".join(line.split())] = ("lock", line, short(line, 80))
     return items
 
 

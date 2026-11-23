@@ -163,6 +163,31 @@ class GuardTest(unittest.TestCase):
         found = self.anchors({}, {"tools/definition_lock.json": json.dumps(changed)})
         self.assertEqual(self.kinds(found), [("lock", "definitions/X.a"), ("lock", "definitions/X.b")])
 
+    def test_long_lock_names_stay_distinct(self):
+        # Two names that agree on their first 150 characters, as in definition_lock.json.
+        stem = "ThresholdHC." + "x" * 150
+        lock = {"definitions": {stem + "_4": "1:2", stem + "_5": "3:4"}}
+        changed = {"definitions": {stem + "_4": "0:0", stem + "_5": "3:4"}}
+        found = self.anchors({"tools/definition_lock.json": json.dumps(lock)},
+                             {"tools/definition_lock.json": json.dumps(changed)})
+        self.assertEqual(self.kinds(found), [("lock", f"definitions/{stem}_4")])
+        line = "moreLeanArgs = [" + "'-Dx'," * 20
+        found = self.anchors({"lean/lakefile.toml": f"{line}'-Da']\n{line}'-Db']\n"},
+                             {"lean/lakefile.toml": f"{line}'-Dc']\n{line}'-Db']\n"})
+        self.assertEqual([a.content for a in found], [f"{line}'-Da']"])
+
+    def test_growing_an_allowlist_is_flagged(self):
+        for literal in ('("propext", "Classical.choice", "Quot.sound")',
+                        '{"propext", "Classical.choice", "Quot.sound"}'):
+            source = f"ALLOWED = {literal}\nPRESERVED = ('results/',)\n"
+            grown = source.replace('"Quot.sound"', '"Quot.sound", "sorryAx"')
+            found = self.anchors({"tools/verify_project_axioms.py": source},
+                                 {"tools/verify_project_axioms.py": grown})
+            self.assertEqual(self.kinds(found), [("code", "ALLOWED")])
+        excluded = grown.replace("('results/',)", "('results/', 'tools/')")
+        found = self.anchors({}, {"tools/verify_project_axioms.py": excluded})
+        self.assertEqual(self.kinds(found), [("code", "PRESERVED")])
+
     def test_manifest_digest_change_is_a_pin(self):
         found = self.anchors({"FROZEN.sha256": f"{H1}  lean/A.lean\n{H1}  tools/x.py\n"},
                              {"FROZEN.sha256": f"{H2}  lean/A.lean\n{H1}  tools/x.py\n"})
