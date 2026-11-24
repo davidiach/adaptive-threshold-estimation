@@ -15,7 +15,9 @@ ThresholdHC.PilotFeedback and three named Decidable instances, of
 research/2026-11-18-pilot-feedback and research/2026-11-18-scheduled-update,
 which stay unchanged. Since 23 November 2026 ScheduledCertificate.lean
 checks each row of the one-update certificate in a form whose weights the
-kernel reduces to literals (`fastRows`), proved to give `Row`. The audit
+kernel reduces to literals (`fastRows`), proved to give `Row`, and since 24
+November 2026 OrderedCounts.lean checks the precommitted certificate the same
+way (`Literal.certified`). The audit
 
 1. requires the directory to hold exactly the registered modules and scans
    each for proof escapes;

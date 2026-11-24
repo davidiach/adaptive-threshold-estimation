@@ -2231,6 +2231,26 @@
     "ThresholdHC.PilotFeedback.OneUpdateLowerStatement": "4762494857145497995:4618969109156709594",
     "ThresholdHC.PilotFeedback.OneUpdateSeparationStatement": "4762494857145497995:5010936459542127423",
     "ThresholdHC.PilotFeedback.Ordered.Counts": "12841156711311012099:7269253965528710152",
+    "ThresholdHC.PilotFeedback.Ordered.Literal.Agrees": "2661754802727024024:7428028719873943828",
+    "ThresholdHC.PilotFeedback.Ordered.Literal.Quad": "12841156711311012099:7776166703009201814",
+    "ThresholdHC.PilotFeedback.Ordered.Literal.Quad._sizeOf_1": "12822936882799963619:9052867814134737583",
+    "ThresholdHC.PilotFeedback.Ordered.Literal.Quad._sizeOf_inst": "13604156226825801889:211232075398203034",
+    "ThresholdHC.PilotFeedback.Ordered.Literal.Quad.casesOn": "12227543305361760687:10050872109443975856",
+    "ThresholdHC.PilotFeedback.Ordered.Literal.Quad.ctorIdx": "12822936882799963619:3802251141913407523",
+    "ThresholdHC.PilotFeedback.Ordered.Literal.Quad.mk._flat_ctor": "7776166703009201814:1120334938315268175",
+    "ThresholdHC.PilotFeedback.Ordered.Literal.Quad.mk.noConfusion": "5045425817735637655:8349681089468576202",
+    "ThresholdHC.PilotFeedback.Ordered.Literal.Quad.noConfusion": "1730943990402194620:15322007017243046917",
+    "ThresholdHC.PilotFeedback.Ordered.Literal.Quad.noConfusionType": "6732759357460083770:16273290304192303392",
+    "ThresholdHC.PilotFeedback.Ordered.Literal.Quad.recOn": "12227543305361760687:17883868356119907233",
+    "ThresholdHC.PilotFeedback.Ordered.Literal.Quad.w0": "12822936882799963619:3397673157012496588",
+    "ThresholdHC.PilotFeedback.Ordered.Literal.Quad.w1": "12822936882799963619:16331246999426755104",
+    "ThresholdHC.PilotFeedback.Ordered.Literal.Quad.w2": "12822936882799963619:3729199897908024581",
+    "ThresholdHC.PilotFeedback.Ordered.Literal.Quad.w3": "12822936882799963619:16428719982767511549",
+    "ThresholdHC.PilotFeedback.Ordered.Literal.advanceK": "873336320056725561:14125374039646047883",
+    "ThresholdHC.PilotFeedback.Ordered.Literal.force": "15552883805597689461:3383490390917522213",
+    "ThresholdHC.PilotFeedback.Ordered.Literal.leaf": "12822936882799963619:1183869611742997224",
+    "ThresholdHC.PilotFeedback.Ordered.Literal.pilot": "1302292490125390836:14722289268304403192",
+    "ThresholdHC.PilotFeedback.Ordered.Literal.suffix": "11117377738543806432:17302141221567705433",
     "ThresholdHC.PilotFeedback.Ordered.Mode": "12841156711311012099:9103282755904317182",
     "ThresholdHC.PilotFeedback.Ordered.Precommitted": "18381070404461704774:4342593766142960830",
     "ThresholdHC.PilotFeedback.Ordered.Schedule": "12841156711311012099:4620373233951015394",
@@ -4425,6 +4445,10 @@
     {
       "at": "2026-11-23T18:53:50+00:00",
       "count": 23
+    },
+    {
+      "at": "2026-11-24T07:51:29+00:00",
+      "count": 20
     }
   ]
 }
